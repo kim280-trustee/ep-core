@@ -1,0 +1,11 @@
+export type MovementType =
+  | "INITIAL_STOCK"
+  | "PURCHASE_RECEIPT"
+  | "SALE"
+  | "SALE_RETURN"
+  | "PURCHASE_RETURN"
+  | "TRANSFER_OUT"
+  | "TRANSFER_IN"
+  | "ADJUSTMENT_IN"
+  | "ADJUSTMENT_OUT"
+  | "STOCK_COUNT";
