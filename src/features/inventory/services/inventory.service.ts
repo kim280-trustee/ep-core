@@ -30,6 +30,7 @@ class InventoryService {
 
   ) {
 
+
     return inventoryContext.repository
 
       .findByProductAndWarehouse(
@@ -52,8 +53,11 @@ class InventoryService {
 
   ) {
 
+
     return inventoryContext.repository.create(
+
       record,
+
     );
 
   }
@@ -125,9 +129,11 @@ class InventoryService {
 
       {
 
+
         quantityOnHand:
 
           totalQuantity,
+
 
 
         availableQuantity:
@@ -137,14 +143,17 @@ class InventoryService {
           record.reservedQuantity,
 
 
+
         averageCost:
 
           newAverageCost,
 
 
+
         lastMovementAt:
 
           new Date().toISOString(),
+
 
       },
 
@@ -179,9 +188,11 @@ class InventoryService {
 
       {
 
+
         quantityOnHand:
 
           newQuantity,
+
 
 
         availableQuantity:
@@ -191,9 +202,11 @@ class InventoryService {
           record.reservedQuantity,
 
 
+
         lastMovementAt:
 
           new Date().toISOString(),
+
 
       },
 
@@ -228,9 +241,11 @@ class InventoryService {
 
       {
 
+
         reservedQuantity:
 
           newReserved,
+
 
 
         availableQuantity:
@@ -238,6 +253,7 @@ class InventoryService {
           record.quantityOnHand -
 
           newReserved,
+
 
       },
 
@@ -278,9 +294,11 @@ class InventoryService {
 
       {
 
+
         reservedQuantity:
 
           newReserved,
+
 
 
         availableQuantity:
@@ -289,9 +307,105 @@ class InventoryService {
 
           newReserved,
 
+
       },
 
     );
+
+  }
+
+
+
+
+
+  getProductStock(
+
+    productId: string,
+
+  ) {
+
+
+    return inventoryContext.repository
+
+      .findAll()
+
+      .filter(
+
+        (record) =>
+
+          record.productId === productId,
+
+      );
+
+  }
+
+
+
+
+
+  getWarehouseInventory(
+
+    warehouseId: string,
+
+  ) {
+
+
+    return inventoryContext.repository
+
+      .findAll()
+
+      .filter(
+
+        (record) =>
+
+          record.warehouseId === warehouseId,
+
+      );
+
+  }
+
+
+
+
+
+  getAvailableStock(
+
+    productId: string,
+
+  ) {
+
+
+    return inventoryContext.repository
+
+      .findAll()
+
+      .filter(
+
+        (record) =>
+
+          record.productId === productId,
+
+      )
+
+      .reduce(
+
+        (
+
+          total,
+
+          record,
+
+        ) =>
+
+          total +
+
+          record.availableQuantity,
+
+
+
+        0,
+
+      );
 
   }
 
@@ -323,4 +437,5 @@ class InventoryService {
 
 
 export const inventoryService =
+
   new InventoryService();

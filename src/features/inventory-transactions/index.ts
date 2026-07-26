@@ -1,5 +1,5 @@
 export * from "./types";
 
-export * from "./services/sale.service";
+export * from "./services/inventory-transaction.service";
 
 export * from "./repositories";
