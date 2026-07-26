@@ -31,5 +31,8 @@ export interface IInventoryRepository {
     id: string,
     updates: Partial<InventoryRecord>,
   ): InventoryRecord | undefined;
+   delete(
+    id: string,
+  ): boolean;
 
 }

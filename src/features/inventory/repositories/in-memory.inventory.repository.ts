@@ -19,7 +19,7 @@ class InMemoryInventoryRepository
 
   findById(
     id: string,
-  ) {
+  ): InventoryRecord | undefined {
 
     return this.records.find(
       (record) => record.id === id,
@@ -29,7 +29,7 @@ class InMemoryInventoryRepository
 
   findByProduct(
     productId: string,
-  ) {
+  ): InventoryRecord[] {
 
     return this.records.filter(
       (record) =>
@@ -40,7 +40,7 @@ class InMemoryInventoryRepository
 
   findByWarehouse(
     warehouseId: string,
-  ) {
+  ): InventoryRecord[] {
 
     return this.records.filter(
       (record) =>
@@ -52,7 +52,7 @@ class InMemoryInventoryRepository
   findByProductAndWarehouse(
     productId: string,
     warehouseId: string,
-  ) {
+  ): InventoryRecord | undefined {
 
     return this.records.find(
       (record) =>
@@ -64,9 +64,11 @@ class InMemoryInventoryRepository
 
   create(
     record: InventoryRecord,
-  ) {
+  ): InventoryRecord {
 
-    this.records.push(record);
+    this.records.push(
+      record,
+    );
 
     return record;
 
@@ -75,7 +77,7 @@ class InMemoryInventoryRepository
   update(
     id: string,
     updates: Partial<InventoryRecord>,
-  ) {
+  ): InventoryRecord | undefined {
 
     const index =
       this.records.findIndex(
@@ -101,6 +103,31 @@ class InMemoryInventoryRepository
     };
 
     return this.records[index];
+
+  }
+
+  delete(
+    id: string,
+  ): boolean {
+
+    const index =
+      this.records.findIndex(
+        (record) =>
+          record.id === id,
+      );
+
+    if (index === -1) {
+
+      return false;
+
+    }
+
+    this.records.splice(
+      index,
+      1,
+    );
+
+    return true;
 
   }
 

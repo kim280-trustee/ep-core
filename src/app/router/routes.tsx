@@ -42,9 +42,14 @@ import {
   paymentMethodRoutes,
 } from "../../features/payment-methods/routes/payment-method.routes";
 
+import {
+  inventoryRoutes,
+} from "../../features/inventory/routes/inventory.routes";
+
 
 
 export const routes: RouteObject[] = [
+
 
   {
 
@@ -84,6 +89,8 @@ export const routes: RouteObject[] = [
   ...taxRoutes,
 
   ...paymentMethodRoutes,
+
+  ...inventoryRoutes,
 
 
   {

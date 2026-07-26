@@ -12,7 +12,6 @@ import type {
 class InventoryService {
 
 
-
   getInventory() {
 
     return inventoryContext.repository.findAll();
@@ -30,7 +29,6 @@ class InventoryService {
     warehouseId: string,
 
   ) {
-
 
     return inventoryContext.repository
 
@@ -54,7 +52,6 @@ class InventoryService {
 
   ) {
 
-
     return inventoryContext.repository.create(
       record,
     );
@@ -74,7 +71,6 @@ class InventoryService {
     incomingCost: number,
 
   ) {
-
 
 
     const currentValue =
@@ -129,11 +125,9 @@ class InventoryService {
 
       {
 
-
         quantityOnHand:
 
           totalQuantity,
-
 
 
         availableQuantity:
@@ -143,17 +137,14 @@ class InventoryService {
           record.reservedQuantity,
 
 
-
         averageCost:
 
           newAverageCost,
 
 
-
         lastMovementAt:
 
           new Date().toISOString(),
-
 
       },
 
@@ -174,7 +165,6 @@ class InventoryService {
   ) {
 
 
-
     const newQuantity =
 
       record.quantityOnHand -
@@ -189,11 +179,9 @@ class InventoryService {
 
       {
 
-
         quantityOnHand:
 
           newQuantity,
-
 
 
         availableQuantity:
@@ -203,11 +191,9 @@ class InventoryService {
           record.reservedQuantity,
 
 
-
         lastMovementAt:
 
           new Date().toISOString(),
-
 
       },
 
@@ -242,11 +228,9 @@ class InventoryService {
 
       {
 
-
         reservedQuantity:
 
           newReserved,
-
 
 
         availableQuantity:
@@ -255,6 +239,55 @@ class InventoryService {
 
           newReserved,
 
+      },
+
+    );
+
+  }
+
+
+
+
+
+  releaseReservedStock(
+
+    record: InventoryRecord,
+
+    quantity: number,
+
+  ) {
+
+
+    const newReserved =
+
+      Math.max(
+
+        0,
+
+        record.reservedQuantity -
+
+        quantity,
+
+      );
+
+
+
+    return inventoryContext.repository.update(
+
+      record.id,
+
+      {
+
+        reservedQuantity:
+
+          newReserved,
+
+
+        availableQuantity:
+
+          record.quantityOnHand -
+
+          newReserved,
 
       },
 
