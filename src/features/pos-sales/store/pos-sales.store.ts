@@ -7,29 +7,31 @@ import type {
 
 interface PosSalesState {
 
-  items: SaleItem[];
 
-  customerId?: string;
+  tenantId: string;
+
+  storeId: string;
 
   warehouseId?: string;
 
 
-  addItem(
-    item: SaleItem,
+  items: SaleItem[];
+
+
+  customerId?: string;
+
+
+
+  setTenant(
+    tenantId: string,
   ): void;
 
 
-  removeItem(
-    productId: string,
+
+  setStore(
+    storeId: string,
   ): void;
 
-
-  clearCart(): void;
-
-
-  setCustomer(
-    customerId?: string,
-  ): void;
 
 
   setWarehouse(
@@ -37,13 +39,39 @@ interface PosSalesState {
   ): void;
 
 
+
+  setCustomer(
+    customerId?: string,
+  ): void;
+
+
+
+  addItem(
+    item: SaleItem,
+  ): void;
+
+
+
+  removeItem(
+    productId: string,
+  ): void;
+
+
+
+  clearCart(): void;
+
+
+
   getSubtotal(): number;
+
 
 
   getTaxAmount(): number;
 
 
+
   getTotal(): number;
+
 
 }
 
@@ -53,21 +81,95 @@ export const usePosSalesStore =
   create<PosSalesState>((set, get) => ({
 
 
+    tenantId:
+      "DEFAULT-TENANT",
+
+
+    storeId:
+      "DEFAULT-STORE",
+
+
+
+    warehouseId:
+      undefined,
+
+
+
     items: [],
 
 
-    customerId: undefined,
+
+    customerId:
+      undefined,
 
 
-    warehouseId: undefined,
+
+
+    setTenant(
+      tenantId,
+    ) {
+
+      set({
+
+        tenantId,
+
+      });
+
+    },
 
 
 
-    addItem(item) {
 
+    setStore(
+      storeId,
+    ) {
+
+      set({
+
+        storeId,
+
+      });
+
+    },
+
+
+
+
+    setWarehouse(
+      warehouseId,
+    ) {
+
+      set({
+
+        warehouseId,
+
+      });
+
+    },
+
+
+
+
+    setCustomer(
+      customerId,
+    ) {
+
+      set({
+
+        customerId,
+
+      });
+
+    },
+
+
+
+
+    addItem(
+      item,
+    ) {
 
       set((state) => ({
-
 
         items: [
 
@@ -77,18 +179,18 @@ export const usePosSalesStore =
 
         ],
 
-
       }));
 
     },
 
 
 
-    removeItem(productId) {
 
+    removeItem(
+      productId,
+    ) {
 
       set((state) => ({
-
 
         items:
 
@@ -100,15 +202,14 @@ export const usePosSalesStore =
 
           ),
 
-
       }));
 
     },
 
 
 
-    clearCart() {
 
+    clearCart() {
 
       set({
 
@@ -118,41 +219,12 @@ export const usePosSalesStore =
 
       });
 
-
     },
 
-
-
-    setCustomer(customerId) {
-
-
-      set({
-
-        customerId,
-
-      });
-
-
-    },
-
-
-
-    setWarehouse(warehouseId) {
-
-
-      set({
-
-        warehouseId,
-
-      });
-
-
-    },
 
 
 
     getSubtotal() {
-
 
       return get()
 
@@ -168,13 +240,12 @@ export const usePosSalesStore =
 
         );
 
-
     },
 
 
 
-    getTaxAmount() {
 
+    getTaxAmount() {
 
       return get()
 
@@ -198,13 +269,12 @@ export const usePosSalesStore =
 
         );
 
-
     },
 
 
 
-    getTotal() {
 
+    getTotal() {
 
       return (
 
@@ -215,7 +285,6 @@ export const usePosSalesStore =
         get().getTaxAmount()
 
       );
-
 
     },
 
