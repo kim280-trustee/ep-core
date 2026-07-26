@@ -62,56 +62,32 @@ class CustomerService {
 
 
     const customer: Customer = {
+  id: this.generateId(),
 
-      id:
-        this.generateId(),
+  tenantId,
 
+  storeId,
 
-      tenantId,
+  customerCode: `CUST-${Date.now()}`,
 
+  name: input.name,
 
-      storeId,
+  phone: input.phone,
 
+  email: input.email,
 
-      name:
-        input.name,
+  address: input.address,
 
+  customerType: input.customerType,
 
-      phone:
-        input.phone,
+  creditLimit: input.creditLimit,
 
+  status: "ACTIVE",
 
-      email:
-        input.email,
+  createdAt: now,
 
-
-      address:
-        input.address,
-
-
-      customerType:
-        input.customerType,
-
-
-      creditLimit:
-        input.creditLimit,
-
-
-      status:
-        "active",
-
-
-      createdAt:
-        now,
-
-
-      updatedAt:
-        now,
-
-    };
-
-
-
+  updatedAt: now,
+};
     return customerRepository.create(
       customer,
     );

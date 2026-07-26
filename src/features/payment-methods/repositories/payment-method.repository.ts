@@ -2,7 +2,6 @@ import type {
   PaymentMethod,
 } from "../types/payment-method.types";
 
-
 export interface IPaymentMethodRepository {
 
   findAll(): PaymentMethod[];
