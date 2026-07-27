@@ -6,151 +6,92 @@ import type {
   InventoryRecord,
 } from "../types/inventory-record.types";
 
-import {
-  inventoryService,
-} from "../services/inventory.service";
 
+interface InventoryState {
 
-interface InventoryStore {
+  records: InventoryRecord[];
 
-  inventory: InventoryRecord[];
-
-  loadInventory: () => void;
-
-  increaseStock: (
-    record: InventoryRecord,
-    quantity: number,
-    incomingCost: number,
+  setRecords: (
+    records: InventoryRecord[],
   ) => void;
 
-
-  decreaseStock: (
+  addRecord: (
     record: InventoryRecord,
-    quantity: number,
   ) => void;
 
-
-  reserveStock: (
+  updateRecord: (
     record: InventoryRecord,
-    quantity: number,
   ) => void;
 
-
-  releaseReservedStock: (
-    record: InventoryRecord,
-    quantity: number,
+  removeRecord: (
+    id: string,
   ) => void;
 
 }
 
 
-
 export const useInventoryStore =
-  create<InventoryStore>((set) => ({
+  create<InventoryState>(
+    (set) => ({
 
-    inventory: [],
+      records: [],
 
+      setRecords: (
+        records,
+      ) =>
+        set({
+          records,
+        }),
 
-
-    loadInventory: () => {
-
-      set({
-
-        inventory:
-          inventoryService.getInventory(),
-
-      });
-
-    },
-
-
-
-    increaseStock: (
-      record,
-      quantity,
-      incomingCost,
-    ) => {
-
-      inventoryService.increaseStock(
+      addRecord: (
         record,
-        quantity,
-        incomingCost,
-      );
+      ) =>
+        set(
+          (state) => ({
 
+            records: [
 
-      set({
+              ...state.records,
 
-        inventory:
-          inventoryService.getInventory(),
+              record,
 
-      });
+            ],
 
-    },
+          }),
+        ),
 
-
-
-    decreaseStock: (
-      record,
-      quantity,
-    ) => {
-
-      inventoryService.decreaseStock(
+      updateRecord: (
         record,
-        quantity,
-      );
+      ) =>
+        set(
+          (state) => ({
 
+            records:
+              state.records.map(
+                (item) =>
 
-      set({
+                  item.id === record.id
+                    ? record
+                    : item,
+              ),
 
-        inventory:
-          inventoryService.getInventory(),
+          }),
+        ),
 
-      });
+      removeRecord: (
+        id,
+      ) =>
+        set(
+          (state) => ({
 
-    },
+            records:
+              state.records.filter(
+                (item) =>
+                  item.id !== id,
+              ),
 
+          }),
+        ),
 
-
-    reserveStock: (
-      record,
-      quantity,
-    ) => {
-
-      inventoryService.reserveStock(
-        record,
-        quantity,
-      );
-
-
-      set({
-
-        inventory:
-          inventoryService.getInventory(),
-
-      });
-
-    },
-
-
-
-    releaseReservedStock: (
-      record,
-      quantity,
-    ) => {
-
-      inventoryService.releaseReservedStock(
-        record,
-        quantity,
-      );
-
-
-      set({
-
-        inventory:
-          inventoryService.getInventory(),
-
-      });
-
-    },
-
-  }));
+    }),
+  );

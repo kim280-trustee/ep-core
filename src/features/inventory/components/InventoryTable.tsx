@@ -2,98 +2,85 @@ import type {
   InventoryRecord,
 } from "../types/inventory-record.types";
 
+interface InventoryTableProps {
 
-interface Props {
-
-  inventory: InventoryRecord[];
+  records: InventoryRecord[];
 
 }
 
-
 export function InventoryTable({
-  inventory,
-}: Props) {
-
+  records,
+}: InventoryTableProps) {
 
   return (
 
-    <div>
+    <table className="w-full border border-collapse">
 
-      <table className="w-full border-collapse">
+      <thead>
 
-        <thead>
+        <tr>
 
-          <tr>
+          <th className="border p-2">Product</th>
 
-            <th className="border p-2">
-              Product
-            </th>
+          <th className="border p-2">Warehouse</th>
 
-            <th className="border p-2">
-              Warehouse
-            </th>
+          <th className="border p-2">On Hand</th>
 
-            <th className="border p-2">
-              On Hand
-            </th>
+          <th className="border p-2">Available</th>
 
-            <th className="border p-2">
-              Reserved
-            </th>
+          <th className="border p-2">Average Cost</th>
 
-            <th className="border p-2">
-              Available
-            </th>
+        </tr>
 
-            <th className="border p-2">
-              Cost
-            </th>
+      </thead>
 
-          </tr>
+      <tbody>
 
-        </thead>
+        {records.map(
 
-
-        <tbody>
-
-          {inventory.map((record) => (
+          (record) => (
 
             <tr key={record.id}>
 
               <td className="border p-2">
+
                 {record.productId}
+
               </td>
 
               <td className="border p-2">
+
                 {record.warehouseId}
+
               </td>
 
               <td className="border p-2">
+
                 {record.quantityOnHand}
+
               </td>
 
               <td className="border p-2">
-                {record.reservedQuantity}
-              </td>
 
-              <td className="border p-2">
                 {record.availableQuantity}
+
               </td>
 
               <td className="border p-2">
+
                 {record.averageCost}
+
               </td>
 
             </tr>
 
-          ))}
+          ),
 
-        </tbody>
+        )}
 
+      </tbody>
 
-      </table>
-
-    </div>
+    </table>
 
   );
 

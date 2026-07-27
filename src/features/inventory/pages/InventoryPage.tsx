@@ -1,70 +1,95 @@
 import {
+  useEffect,
+} from "react";
+
+import {
+  useInventory,
+} from "../hooks/useInventory";
+
+import {
   useInventoryStore,
 } from "../store/inventory.store";
 
+import {
+  InventoryToolbar,
+} from "../components/InventoryToolbar";
 
 import {
   InventoryTable,
-  InventorySummaryCards,
-} from "../components";
+} from "../components/InventoryTable";
 
 
 export function InventoryPage() {
 
+  const {
+
+    inventory,
+
+    refresh,
+
+  } = useInventory();
+
 
   const {
-    inventory,
-    loadInventory,
+
+    records,
+
+    setRecords,
+
   } = useInventoryStore();
 
 
+  useEffect(
 
-  if (inventory.length === 0) {
+    () => {
 
-    loadInventory();
+      refresh();
 
-  }
+    },
 
+    [],
+
+  );
+
+
+  useEffect(
+
+    () => {
+
+      setRecords(
+
+        inventory,
+
+      );
+
+    },
+
+    [
+
+      inventory,
+
+      setRecords,
+
+    ],
+
+  );
 
 
   return (
 
-    <div className="p-6 space-y-6">
+    <div className="p-6">
 
+      <InventoryToolbar
 
-      <div>
-
-        <h1 className="text-2xl font-semibold">
-
-          Inventory
-
-        </h1>
-
-
-        <p className="mt-2 text-gray-600">
-
-          Manage stock levels across warehouses.
-
-        </p>
-
-      </div>
-
-
-
-      <InventorySummaryCards
-
-        inventory={inventory}
+        onRefresh={refresh}
 
       />
-
-
 
       <InventoryTable
 
-        inventory={inventory}
+        records={records}
 
       />
-
 
     </div>
 

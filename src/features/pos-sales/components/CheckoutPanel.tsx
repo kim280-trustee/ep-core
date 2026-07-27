@@ -1,4 +1,9 @@
 import {
+  useState,
+} from "react";
+
+
+import {
   usePosSalesStore,
 } from "../store/pos-sales.store";
 
@@ -10,6 +15,13 @@ import {
 
 
 export function CheckoutPanel() {
+
+
+  const [
+    message,
+    setMessage,
+  ] = useState("");
+
 
 
   const items =
@@ -54,7 +66,6 @@ export function CheckoutPanel() {
     );
 
 
-
   const subtotal =
     usePosSalesStore(
       (state) =>
@@ -80,59 +91,98 @@ export function CheckoutPanel() {
   function completeSale() {
 
 
-    if (!warehouseId) {
+    try {
 
-      throw new Error(
-        "Warehouse is required before completing sale.",
+
+      if (items.length === 0) {
+
+        throw new Error(
+          "Cart is empty.",
+        );
+
+      }
+
+
+
+      if (!warehouseId) {
+
+        throw new Error(
+          "Warehouse is required.",
+        );
+
+      }
+
+
+
+      const sale =
+
+        saleService.createSale({
+
+          tenantId,
+
+          storeId,
+
+          warehouseId,
+
+          customerId,
+
+        });
+
+
+
+      items.forEach(
+
+        (item) => {
+
+          saleService.addItem(
+
+            sale.id,
+
+            item,
+
+          );
+
+        },
+
       );
+
+
+
+      saleService.completeSale(
+
+        sale.id,
+
+      );
+
+
+
+      clearCart();
+
+
+
+      setMessage(
+        "Sale completed successfully.",
+      );
+
 
     }
 
+    catch(error) {
 
 
-    const sale =
+      setMessage(
 
-      saleService.createSale({
+        error instanceof Error
 
-        tenantId,
+          ? error.message
 
-        storeId,
+          : "Sale failed.",
 
-        warehouseId,
-
-        customerId,
-
-      });
+      );
 
 
+    }
 
-    items.forEach(
-
-      (item) => {
-
-        saleService.addItem(
-
-          sale.id,
-
-          item,
-
-        );
-
-      },
-
-    );
-
-
-
-    saleService.completeSale(
-
-      sale.id,
-
-    );
-
-
-
-    clearCart();
 
   }
 
@@ -182,6 +232,20 @@ export function CheckoutPanel() {
         Complete Sale
 
       </button>
+
+
+
+      {
+        message && (
+
+          <p className="mt-4 text-sm">
+
+            {message}
+
+          </p>
+
+        )
+      }
 
 
     </div>

@@ -1,16 +1,54 @@
 import React from "react";
+
 import ReactDOM from "react-dom/client";
 
-import App from "./App";
+import {
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
 
-import "./styles/index.css";
 
-import { AppProviders } from "@/app/providers/AppProviders";
+import {
+  routes,
+} from "./app/router/routes";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+
+import {
+  initializeRuntime,
+} from "./core";
+
+
+import {
+  runSeed,
+} from "./shared/testing";
+
+
+
+initializeRuntime();
+
+
+runSeed();
+
+
+
+const router =
+  createBrowserRouter(
+    routes,
+  );
+
+
+
+ReactDOM.createRoot(
+  document.getElementById("root")!,
+)
+.render(
+
   <React.StrictMode>
-    <AppProviders>
-      <App />
-    </AppProviders>
-  </React.StrictMode>,
+
+    <RouterProvider
+      router={router}
+    />
+
+  </React.StrictMode>
+
 );
