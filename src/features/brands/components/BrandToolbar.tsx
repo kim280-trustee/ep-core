@@ -1,82 +1,118 @@
-import {
-  Link,
-} from "react-router-dom";
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Brand Toolbar
+ * ============================================================
+ */
+
+
+
 
 
 interface BrandToolbarProps {
 
-  search: string;
 
-  onSearchChange: (
-    value: string,
-  ) => void;
+  search:string;
+
+
+
+  onSearchChange:(
+
+    value:string,
+
+  )=>void;
+
 
 }
 
 
 
+
+
+
+
+
 export function BrandToolbar({
+
 
   search,
 
+
   onSearchChange,
 
-}: BrandToolbarProps) {
+
+}:BrandToolbarProps){
+
+
+
 
 
   return (
 
+
+
     <div
-      className="
-        flex
-        gap-4
-        mb-6
-      "
+
+      className="mb-4"
+
     >
+
+
+
 
       <input
 
+
+
         value={search}
 
-        onChange={(event) =>
+
+
+        onChange={(event)=>
+
+
           onSearchChange(
+
             event.target.value,
+
           )
+
+
         }
 
-        placeholder="Search brands..."
+
+
+        placeholder="Search brands"
+
+
 
         className="
-          border
-          rounded
-          p-2
-          flex-1
+
+        border
+
+        rounded
+
+        p-2
+
+        w-full
+
         "
+
+
 
       />
 
 
-      <Link
 
-        to="/brands/create"
 
-        className="
-          bg-black
-          text-white
-          px-4
-          py-2
-          rounded
-        "
-
-      >
-
-        Add Brand
-
-      </Link>
 
 
     </div>
 
+
+
   );
+
 
 }

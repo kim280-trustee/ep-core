@@ -8,48 +8,86 @@
  * ============================================================
  */
 
+
 export enum BrandStatus {
+
   ACTIVE = "active",
+
   INACTIVE = "inactive",
+
 }
+
+
+
+
+
 
 
 export interface Brand {
 
-  id: string;
 
-  tenantId: string;
+  id:string;
 
-  storeId: string;
 
-  name: string;
+  tenantId:string;
 
-  description: string | null;
 
-  status: BrandStatus;
+  storeId:string;
 
-  createdAt: string;
 
-  updatedAt: string;
+
+  name:string;
+
+
+  description:string | null;
+
+
+
+  status:BrandStatus;
+
+
+
+  createdAt:string;
+
+
+  updatedAt:string;
+
 
 }
+
+
+
+
+
 
 
 export interface CreateBrandDto {
 
-  name: string;
 
-  description?: string | null;
+  name:string;
+
+
+  description?:string | null;
+
 
 }
 
 
+
+
+
+
+
 export interface UpdateBrandDto {
 
-  name?: string;
 
-  description?: string | null;
+  name?:string;
 
-  status?: BrandStatus;
+
+  description?:string | null;
+
+
+  status?:BrandStatus;
+
 
 }

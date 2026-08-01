@@ -8,151 +8,366 @@
  * ============================================================
  */
 
+
 import {
+
   brandRepository,
+
 } from "../repositories";
 
 
+
 import {
-  BrandStatus,
-} from "../types/brand.types";
 
+  brandSchema,
 
-import type {
-  Brand,
-} from "../types/brand.types";
-
-
-import type {
-  BrandFormInput,
 } from "../validators/brand.schema";
+
+
+
+import {
+
+  BrandStatus,
+
+} from "../types/brand.types";
+
+
+
+import type {
+
+  Brand,
+
+  CreateBrandDto,
+
+  UpdateBrandDto,
+
+} from "../types/brand.types";
+
+
+
+
 
 
 
 class BrandService {
 
 
-  generateId(): string {
+
+
+
+
+  private generateId():string {
+
 
     return crypto.randomUUID();
 
+
   }
 
 
 
-  getBrands(): Brand[] {
+
+
+
+
+
+
+  getBrands():Brand[]{
+
 
     return brandRepository.findAll();
 
+
   }
+
+
+
+
+
+
 
 
 
   getBrandById(
-    id: string,
-  ): Brand | undefined {
+
+    id:string,
+
+  ):Brand | undefined {
+
 
     return brandRepository.findById(
+
       id,
+
     );
 
+
   }
+
+
+
+
+
+
 
 
 
   createBrand(
 
-    input: BrandFormInput,
 
-    tenantId: string,
+    input:CreateBrandDto,
 
-    storeId: string,
 
-  ): Brand {
+    tenantId:string,
+
+
+    storeId:string,
+
+
+  ):Brand {
+
+
+
+    const validated =
+
+
+      brandSchema.parse(
+
+        input,
+
+      );
+
+
+
+
+
+
+
+
+    const duplicate =
+
+
+      this.getBrands()
+
+        .find(
+
+
+          brand =>
+
+
+            brand.tenantId === tenantId &&
+
+
+            brand.storeId === storeId &&
+
+
+            brand.name.toLowerCase() ===
+
+            validated.name.toLowerCase(),
+
+
+
+        );
+
+
+
+
+
+
+
+    if(duplicate){
+
+
+      throw new Error(
+
+        "Brand with this name already exists.",
+
+      );
+
+
+    }
+
+
+
+
+
+
+
 
 
     const now =
+
+
       new Date().toISOString();
 
 
 
-    const brand: Brand = {
+
+
+
+
+
+
+    const brand:Brand = {
+
 
 
       id:
+
+
         this.generateId(),
+
 
 
       tenantId,
 
 
+
       storeId,
 
 
+
       name:
-        input.name,
+
+
+        validated.name,
+
 
 
       description:
-        input.description ?? null,
+
+
+        validated.description ?? null,
+
 
 
       status:
+
+
         BrandStatus.ACTIVE,
 
 
+
       createdAt:
+
+
         now,
+
 
 
       updatedAt:
+
+
         now,
+
 
 
     };
 
 
 
+
+
+
+
+
     return brandRepository.create(
+
       brand,
+
     );
 
+
+
   }
+
+
+
+
+
+
 
 
 
   updateBrand(
 
-    id: string,
 
-    updates: Partial<Brand>,
+    id:string,
 
-  ): Brand | undefined {
+
+    updates:UpdateBrandDto,
+
+
+  ):Brand | undefined {
+
 
 
     return brandRepository.update(
+
+
       id,
-      updates,
+
+
+      {
+
+
+        ...updates,
+
+
+        updatedAt:
+
+
+          new Date().toISOString(),
+
+
+      },
+
+
     );
 
+
   }
+
+
+
+
+
+
 
 
 
   deleteBrand(
-    id: string,
-  ): boolean {
+
+    id:string,
+
+  ):boolean {
+
+
 
     return brandRepository.delete(
+
       id,
+
     );
 
+
   }
+
+
+
+
 
 
 }
 
 
 
+
+
+
+
+
 export const brandService =
+
+
   new BrandService();

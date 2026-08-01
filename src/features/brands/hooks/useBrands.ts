@@ -1,60 +1,175 @@
-import {
-  useState,
-} from "react";
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Brands Hook
+ * ============================================================
+ */
 
 
 import {
-  brandService,
-} from "../services/brand.service";
+
+  useBrandsStore,
+
+} from "../store/brands.store";
 
 
 
-export function useBrands() {
-
-
-  const [
-    brands,
-    setBrands,
-  ] = useState(
-    brandService.getBrands(),
-  );
 
 
 
-  function refresh() {
 
-    setBrands(
-      brandService.getBrands(),
-    );
-
-  }
+export function useBrands(){
 
 
 
-  function removeBrand(
-    id: string,
-  ) {
 
 
-    brandService.deleteBrand(
-      id,
+  const brands =
+
+
+    useBrandsStore(
+
+
+      state => state.brands,
+
+
     );
 
 
-    refresh();
 
-  }
+
+
+
+  const search =
+
+
+    useBrandsStore(
+
+
+      state => state.search,
+
+
+    );
+
+
+
+
+
+
+
+  const loadBrands =
+
+
+    useBrandsStore(
+
+
+      state => state.loadBrands,
+
+
+    );
+
+
+
+
+
+
+
+  const createBrand =
+
+
+    useBrandsStore(
+
+
+      state => state.createBrand,
+
+
+    );
+
+
+
+
+
+
+
+  const updateBrand =
+
+
+    useBrandsStore(
+
+
+      state => state.updateBrand,
+
+
+    );
+
+
+
+
+
+
+
+  const deleteBrand =
+
+
+    useBrandsStore(
+
+
+      state => state.deleteBrand,
+
+
+    );
+
+
+
+
+
+
+
+  const setSearch =
+
+
+    useBrandsStore(
+
+
+      state => state.setSearch,
+
+
+    );
+
+
+
+
+
+
 
 
 
   return {
 
+
     brands,
 
-    refresh,
 
-    removeBrand,
+    search,
+
+
+    loadBrands,
+
+
+    createBrand,
+
+
+    updateBrand,
+
+
+    deleteBrand,
+
+
+    setSearch,
+
 
   };
+
 
 }

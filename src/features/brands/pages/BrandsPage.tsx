@@ -1,94 +1,224 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Brands Page
+ * ============================================================
+ */
+
+
 import {
-  useState,
+
+  useEffect,
+
 } from "react";
 
 
+
 import {
+
   BrandToolbar,
+
 } from "../components/BrandToolbar";
 
 
+
 import {
+
   BrandTable,
+
 } from "../components/BrandTable";
 
 
+
 import {
+
   useBrands,
+
 } from "../hooks/useBrands";
 
 
 
-export function BrandsPage() {
+
+
+
+
+export function BrandsPage(){
+
+
+
 
 
   const {
+
+
     brands,
-    removeBrand,
+
+
+    search,
+
+
+    setSearch,
+
+
+    loadBrands,
+
+
+    deleteBrand,
+
+
+
   } = useBrands();
 
 
 
-  const [
-    search,
-    setSearch,
-  ] = useState("");
+
+
+
+
+
+  useEffect(()=>{
+
+
+    loadBrands();
+
+
+  },[
+
+    loadBrands,
+
+  ]);
+
+
+
+
+
+
 
 
 
   const filteredBrands =
+
+
     brands.filter(
-      (brand) =>
+
+
+      brand =>
+
+
         brand.name
+
+
           .toLowerCase()
+
+
           .includes(
+
+
             search.toLowerCase(),
+
+
           ),
+
+
     );
+
+
+
+
+
+
 
 
 
   return (
 
+
+
+
     <div
+
       className="p-6"
+
     >
 
+
+
+
+
       <h1
+
         className="
-          text-2xl
-          font-bold
-          mb-6
+
+        text-2xl
+
+        font-bold
+
+        mb-6
+
         "
+
       >
 
+
         Brands
+
+
 
       </h1>
 
 
 
+
+
+
+
       <BrandToolbar
+
+
 
         search={search}
 
+
+
         onSearchChange={setSearch}
 
+
+
       />
+
+
+
+
+
 
 
 
       <BrandTable
 
+
+
         brands={filteredBrands}
 
-        onDelete={removeBrand}
+
+
+        onDelete={deleteBrand}
+
+
 
       />
 
 
+
+
+
+
     </div>
 
+
+
   );
+
+
 
 }

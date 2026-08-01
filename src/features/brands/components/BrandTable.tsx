@@ -1,6 +1,10 @@
-import {
-  Link,
-} from "react-router-dom";
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Brand Table
+ * ============================================================
+ */
 
 
 import type {
@@ -8,13 +12,14 @@ import type {
 } from "../types/brand.types";
 
 
+
 interface BrandTableProps {
 
   brands: Brand[];
 
-  onDelete: (
-    id: string,
-  ) => void;
+  onDelete(
+    id:string,
+  ):void;
 
 }
 
@@ -26,20 +31,24 @@ export function BrandTable({
 
   onDelete,
 
-}: BrandTableProps) {
+}:BrandTableProps){
 
 
-  if (brands.length === 0) {
+  if(
+    brands.length === 0
+  ){
 
     return (
 
       <div
+
         className="
-          border
-          rounded
-          p-8
-          text-center
+        p-6
+        border
+        rounded
+        text-gray-500
         "
+
       >
 
         No brands found.
@@ -54,135 +63,133 @@ export function BrandTable({
 
   return (
 
-    <table
+    <div
+
       className="
-        w-full
-        border-collapse
+      border
+      rounded
+      overflow-hidden
       "
+
     >
 
-      <thead>
 
-        <tr
-          className="
-            border-b
-          "
-        >
+      {
+        brands.map(
 
-          <th className="text-left p-3">
-            Name
-          </th>
+          brand=>(
 
+            <div
 
-          <th className="text-left p-3">
-            Description
-          </th>
-
-
-          <th className="text-left p-3">
-            Status
-          </th>
-
-
-          <th className="text-left p-3">
-            Actions
-          </th>
-
-
-        </tr>
-
-      </thead>
-
-
-
-      <tbody>
-
-        {brands.map(
-
-          (brand) => (
-
-            <tr
-
-              key={brand.id}
+              key={
+                brand.id
+              }
 
               className="
-                border-b
+              flex
+              justify-between
+              items-center
+              p-4
+              border-b
               "
 
             >
 
-              <td className="p-3">
 
-                {brand.name}
-
-              </td>
+              <div>
 
 
-              <td className="p-3">
+                <p
 
-                {brand.description || "-"}
+                  className="
+                  font-medium
+                  "
 
-              </td>
+                >
+
+                  {brand.name}
+
+                </p>
 
 
-              <td className="p-3">
 
-                {brand.status}
+                {
+                  brand.description && (
 
-              </td>
+                    <p
+
+                      className="
+                      text-sm
+                      text-gray-500
+                      "
+
+                    >
+
+                      {brand.description}
+
+                    </p>
+
+                  )
+                }
 
 
-              <td
+
+                <span
+
+                  className="
+                  text-xs
+                  "
+
+                >
+
+                  {brand.status}
+
+                </span>
+
+
+
+              </div>
+
+
+
+
+              <button
+
+                onClick={()=>
+
+
+                  onDelete(
+                    brand.id,
+                  )
+
+                }
+
                 className="
-                  p-3
-                  flex
-                  gap-3
+                text-red-600
                 "
+
               >
 
-                <Link
+                Delete
 
-                  to={`/brands/edit/${brand.id}`}
 
-                  className="underline"
-
-                >
-
-                  Edit
-
-                </Link>
+              </button>
 
 
 
-                <button
-
-                  onClick={() =>
-                    onDelete(brand.id)
-                  }
-
-                  className="text-red-600"
-
-                >
-
-                  Delete
-
-                </button>
+            </div>
 
 
-              </td>
+          )
+
+        )
+      }
 
 
-            </tr>
 
-          ),
-
-        )}
-
-      </tbody>
-
-
-    </table>
+    </div>
 
   );
+
 
 }
