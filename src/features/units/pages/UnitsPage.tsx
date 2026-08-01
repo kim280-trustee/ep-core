@@ -1,3 +1,11 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Units Page
+ * ============================================================
+ */
+
 import {
   useState,
 } from "react";
@@ -23,43 +31,66 @@ export function UnitsPage() {
 
 
   const {
+
     units,
-    removeUnit,
+
+    deleteUnit,
+
   } = useUnits();
 
 
 
+
+
   const [
+
     search,
+
     setSearch,
+
   ] = useState("");
 
 
 
+
+
+
   const filteredUnits =
+
     units.filter(
+
       (unit) =>
+
         unit.name
+
           .toLowerCase()
+
           .includes(
+
             search.toLowerCase(),
+
           ),
+
     );
+
+
+
 
 
 
   return (
 
-    <div
-      className="p-6"
-    >
+    <div className="p-6">
+
 
       <h1
+
         className="
           text-2xl
           font-bold
           mb-6
         "
+
       >
 
         Units
@@ -68,13 +99,19 @@ export function UnitsPage() {
 
 
 
+
+
       <UnitToolbar
 
         search={search}
 
-        onSearchChange={setSearch}
+        onSearchChange={
+          setSearch
+        }
 
       />
+
+
 
 
 
@@ -82,13 +119,15 @@ export function UnitsPage() {
 
         units={filteredUnits}
 
-        onDelete={removeUnit}
+        onDelete={deleteUnit}
 
       />
+
 
 
     </div>
 
   );
+
 
 }

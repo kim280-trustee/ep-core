@@ -1,5 +1,15 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Units Module
+ * ------------------------------------------------------------
+ * Units Hook
+ * ============================================================
+ */
+
 import {
-  useState,
+  useEffect,
 } from "react";
 
 
@@ -8,42 +18,147 @@ import {
 } from "../services/unit.service";
 
 
+import {
+  useUnitsStore,
+} from "../store/units.store";
+
+
 
 export function useUnits() {
 
 
-  const [
+  const {
+
     units,
+
     setUnits,
-  ] = useState(
-    unitService.getUnits(),
-  );
+
+    addUnit,
+
+    updateUnit,
+
+    removeUnit,
+
+  } =
+  useUnitsStore();
 
 
 
-  function refresh() {
+
+  useEffect(() => {
 
     setUnits(
       unitService.getUnits(),
     );
 
-  }
+  }, [setUnits]);
 
 
 
-  function removeUnit(
-    id: string,
+
+
+  function createUnit(
+
+    input: Parameters<
+      typeof unitService.createUnit
+    >[0],
+
   ) {
 
 
-    unitService.deleteUnit(
-      id,
-    );
+    const unit =
+
+      unitService.createUnit(
+
+        input,
+
+        "default-tenant",
+
+        "default-store",
+
+      );
 
 
-    refresh();
+
+    addUnit(unit);
+
+
+
+    return unit;
 
   }
+
+
+
+
+
+  function updateUnitById(
+
+    id: string,
+
+    updates: Parameters<
+      typeof unitService.updateUnit
+    >[1],
+
+  ) {
+
+
+    const updated =
+
+      unitService.updateUnit(
+
+        id,
+
+        updates,
+
+      );
+
+
+
+    if (updated) {
+
+      updateUnit(updated);
+
+    }
+
+
+
+    return updated;
+
+  }
+
+
+
+
+
+  function deleteUnit(
+
+    id: string,
+
+  ) {
+
+
+    const deleted =
+
+      unitService.deleteUnit(
+        id,
+      );
+
+
+
+    if (deleted) {
+
+      removeUnit(id);
+
+    }
+
+
+
+    return deleted;
+
+  }
+
+
 
 
 
@@ -51,10 +166,13 @@ export function useUnits() {
 
     units,
 
-    refresh,
+    createUnit,
 
-    removeUnit,
+    updateUnitById,
+
+    deleteUnit,
 
   };
+
 
 }

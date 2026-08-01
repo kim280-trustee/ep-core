@@ -8,13 +8,14 @@ import type {
 } from "../types/unit.types";
 
 
+
 interface UnitTableProps {
 
   units: Unit[];
 
-  onDelete: (
-    id: string,
-  ) => void;
+  onDelete(
+    id:string,
+  ):void;
 
 }
 
@@ -26,21 +27,15 @@ export function UnitTable({
 
   onDelete,
 
-}: UnitTableProps) {
+}:UnitTableProps){
 
 
-  if (units.length === 0) {
+
+  if(!units.length){
 
     return (
 
-      <div
-        className="
-          border
-          rounded
-          p-8
-          text-center
-        "
-      >
+      <div className="border rounded p-8 text-center">
 
         No units found.
 
@@ -52,132 +47,159 @@ export function UnitTable({
 
 
 
+  function handleDelete(
+    id:string,
+  ){
+
+    const confirmed =
+      window.confirm(
+        "Delete this unit?"
+      );
+
+
+    if(confirmed){
+
+      onDelete(id);
+
+    }
+
+  }
+
+
+
   return (
 
-    <table
-      className="
-        w-full
-        border-collapse
-      "
-    >
-
-      <thead>
-
-        <tr
-          className="border-b"
-        >
-
-          <th className="text-left p-3">
-            Name
-          </th>
+    <div className="overflow-x-auto">
 
 
-          <th className="text-left p-3">
-            Symbol
-          </th>
+      <table className="w-full border-collapse">
 
 
-          <th className="text-left p-3">
-            Description
-          </th>
+        <thead>
+
+          <tr className="border-b">
 
 
-          <th className="text-left p-3">
-            Actions
-          </th>
+            <th className="text-left p-3">
+              Name
+            </th>
 
 
-        </tr>
+            <th className="text-left p-3">
+              Symbol
+            </th>
 
-      </thead>
+
+            <th className="text-left p-3">
+              Description
+            </th>
+
+
+            <th className="text-left p-3">
+              Actions
+            </th>
+
+
+          </tr>
+
+        </thead>
 
 
 
-      <tbody>
-
-        {units.map(
-
-          (unit) => (
-
-            <tr
-
-              key={unit.id}
-
-              className="border-b"
-
-            >
-
-              <td className="p-3">
-
-                {unit.name}
-
-              </td>
+        <tbody>
 
 
-              <td className="p-3">
+        {
+          units.map(
 
-                {unit.symbol}
-
-              </td>
-
-
-              <td className="p-3">
-
-                {unit.description || "-"}
-
-              </td>
+            unit=>(
 
 
-              <td
-                className="
-                  p-3
-                  flex
-                  gap-3
-                "
+              <tr
+
+                key={unit.id}
+
+                className="border-b"
+
               >
 
-                <Link
+                <td className="p-3">
 
-                  to={`/units/edit/${unit.id}`}
+                  {unit.name}
 
-                  className="underline"
-
-                >
-
-                  Edit
-
-                </Link>
+                </td>
 
 
+                <td className="p-3">
 
-                <button
+                  {unit.symbol}
 
-                  onClick={() =>
-                    onDelete(unit.id)
-                  }
-
-                  className="text-red-600"
-
-                >
-
-                  Delete
-
-                </button>
+                </td>
 
 
-              </td>
+                <td className="p-3">
+
+                  {unit.description ?? "-"}
+
+                </td>
 
 
-            </tr>
-
-          ),
-
-        )}
-
-      </tbody>
+                <td className="p-3">
 
 
-    </table>
+                  <div className="flex gap-3">
+
+
+                    <Link
+
+                      to={`/units/edit/${unit.id}`}
+
+                      className="underline"
+
+                    >
+
+                      Edit
+
+                    </Link>
+
+
+                    <button
+
+                      onClick={()=>
+                        handleDelete(unit.id)
+                      }
+
+                      className="text-red-600"
+
+                    >
+
+                      Delete
+
+                    </button>
+
+
+                  </div>
+
+
+                </td>
+
+
+              </tr>
+
+
+            )
+
+          )
+        }
+
+
+        </tbody>
+
+
+      </table>
+
+
+    </div>
 
   );
 

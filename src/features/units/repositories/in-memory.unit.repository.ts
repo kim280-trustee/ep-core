@@ -10,42 +10,56 @@ import type {
 
 
 class InMemoryUnitRepository
-  implements IUnitRepository {
+implements IUnitRepository {
 
 
 
-  private units: Unit[] = [];
+  private units:Unit[]=[];
 
 
 
-  findAll(): Unit[] {
 
-    return this.units;
+  findAll():Unit[] {
+
+
+    return [
+
+      ...this.units,
+
+    ];
 
   }
+
 
 
 
   findById(
-    id: string,
-  ): Unit | undefined {
+    id:string,
+  ):Unit|undefined {
+
 
     return this.units.find(
-      (unit) =>
-        unit.id === id,
+
+      (unit)=>
+
+        unit.id===id,
+
     );
 
   }
 
 
 
+
   create(
-    unit: Unit,
-  ): Unit {
+    unit:Unit,
+  ):Unit {
+
 
     this.units.push(
       unit,
     );
+
 
     return unit;
 
@@ -53,21 +67,30 @@ class InMemoryUnitRepository
 
 
 
+
   update(
-    id: string,
-    updates: Partial<Unit>,
-  ): Unit | undefined {
+
+    id:string,
+
+    updates:Partial<Unit>,
+
+  ):Unit|undefined {
+
 
 
     const index =
+
       this.units.findIndex(
-        (unit) =>
-          unit.id === id,
+
+        (unit)=>
+
+          unit.id===id,
+
       );
 
 
 
-    if (index === -1) {
+    if(index===-1){
 
       return undefined;
 
@@ -75,39 +98,54 @@ class InMemoryUnitRepository
 
 
 
-    this.units[index] = {
+
+    const updated:Unit={
+
 
       ...this.units[index],
 
+
       ...updates,
 
+
       updatedAt:
+
         new Date().toISOString(),
+
 
     };
 
 
 
-    return this.units[index];
+    this.units[index]=updated;
+
+
+
+    return updated;
 
   }
 
 
 
+
   delete(
-    id: string,
-  ): boolean {
+    id:string,
+  ):boolean {
 
 
-    const index =
+    const index=
+
       this.units.findIndex(
-        (unit) =>
-          unit.id === id,
+
+        (unit)=>
+
+          unit.id===id,
+
       );
 
 
 
-    if (index === -1) {
+    if(index===-1){
 
       return false;
 
@@ -116,9 +154,13 @@ class InMemoryUnitRepository
 
 
     this.units.splice(
+
       index,
+
       1,
+
     );
+
 
 
     return true;

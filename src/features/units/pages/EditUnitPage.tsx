@@ -1,3 +1,11 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Edit Unit Page
+ * ============================================================
+ */
+
 import {
   useNavigate,
   useParams,
@@ -10,8 +18,8 @@ import {
 
 
 import {
-  unitService,
-} from "../services/unit.service";
+  useUnits,
+} from "../hooks/useUnits";
 
 
 
@@ -22,26 +30,47 @@ export function EditUnitPage() {
     useNavigate();
 
 
+
   const {
     id,
   } = useParams();
 
 
 
-  const foundUnit =
-    id
-      ? unitService.getUnitById(id)
-      : undefined;
+
+  const {
+
+    units,
+
+    updateUnitById,
+
+  } =
+  useUnits();
 
 
 
-  if (!foundUnit) {
+
+
+  const existingUnit =
+
+    units.find(
+
+      (item) =>
+
+        item.id === id,
+
+    );
+
+
+
+
+
+  if (!existingUnit) {
+
 
     return (
 
-      <div
-        className="p-6"
-      >
+      <div className="p-6">
 
         Unit not found
 
@@ -53,24 +82,29 @@ export function EditUnitPage() {
 
 
 
-  const unit = foundUnit;
+
+
+  const unit = existingUnit;
+
+
 
 
 
   function handleSubmit(
 
     data: Parameters<
-      typeof unitService.createUnit
-    >[0],
+      typeof updateUnitById
+    >[1],
 
   ) {
 
 
-    unitService.updateUnit(
+    updateUnitById(
 
       unit.id,
 
       {
+
 
         name:
           data.name,
@@ -83,29 +117,35 @@ export function EditUnitPage() {
         description:
           data.description ?? null,
 
+
       },
 
     );
 
 
+
     navigate("/units");
+
 
   }
 
 
 
+
+
   return (
 
-    <div
-      className="p-6"
-    >
+    <div className="p-6">
+
 
       <h1
+
         className="
           text-2xl
           font-bold
           mb-6
         "
+
       >
 
         Edit Unit
@@ -114,9 +154,13 @@ export function EditUnitPage() {
 
 
 
+
+
       <UnitForm
 
+
         defaultValues={{
+
 
           name:
             unit.name,
@@ -129,10 +173,13 @@ export function EditUnitPage() {
           description:
             unit.description ?? undefined,
 
+
         }}
 
 
+
         onSubmit={handleSubmit}
+
 
       />
 
@@ -140,5 +187,6 @@ export function EditUnitPage() {
     </div>
 
   );
+
 
 }

@@ -52,9 +52,11 @@ class UnitService {
 
 
 
+
   getUnitById(
-    id: string,
-  ): Unit | undefined {
+    id:string,
+  ):Unit|undefined {
+
 
     return unitRepository.findById(
       id,
@@ -65,15 +67,16 @@ class UnitService {
 
 
 
+
   createUnit(
 
-    input: UnitFormInput,
+    input:UnitFormInput,
 
-    tenantId: string,
+    tenantId:string,
 
-    storeId: string,
+    storeId:string,
 
-  ): Unit {
+  ):Unit {
 
 
     const now =
@@ -81,7 +84,7 @@ class UnitService {
 
 
 
-    const unit: Unit = {
+    const unit:Unit={
 
 
       id:
@@ -131,18 +134,31 @@ class UnitService {
 
 
 
+
   updateUnit(
 
-    id: string,
+    id:string,
 
-    updates: Partial<Unit>,
+    updates:Partial<Unit>,
 
-  ): Unit | undefined {
+  ):Unit|undefined {
 
 
     return unitRepository.update(
+
       id,
-      updates,
+
+      {
+
+        ...updates,
+
+
+        updatedAt:
+
+          new Date().toISOString(),
+
+      },
+
     );
 
   }
@@ -150,9 +166,11 @@ class UnitService {
 
 
 
+
   deleteUnit(
-    id: string,
-  ): boolean {
+    id:string,
+  ):boolean {
+
 
     return unitRepository.delete(
       id,

@@ -23,10 +23,9 @@ interface BrandFormProps {
 
   defaultValues?: Partial<BrandFormInput>;
 
-
-  onSubmit: (
+  onSubmit(
     data: BrandFormInput,
-  ) => void;
+  ): void;
 
 }
 
@@ -41,22 +40,23 @@ export function BrandForm({
 }: BrandFormProps) {
 
 
-
   const {
 
     register,
 
     handleSubmit,
 
-    formState: {
+    formState:{
       errors,
+      isSubmitting,
     },
 
   } = useForm<BrandFormInput>({
 
     resolver:
-      zodResolver(brandSchema),
-
+      zodResolver(
+        brandSchema,
+      ),
 
     defaultValues,
 
@@ -73,13 +73,15 @@ export function BrandForm({
       }
 
       className="
-        space-y-4
-        max-w-xl
+      space-y-4
+      max-w-xl
       "
 
     >
 
+
       <div>
+
 
         <input
 
@@ -88,25 +90,27 @@ export function BrandForm({
           placeholder="Brand name"
 
           className="
-            border
-            rounded
-            p-2
-            w-full
+          border
+          rounded
+          p-2
+          w-full
           "
 
         />
 
 
+        {
+          errors.name && (
 
-        {errors.name && (
+            <p className="text-red-600">
 
-          <p className="text-red-600">
+              {errors.name.message}
 
-            {errors.name.message}
+            </p>
 
-          </p>
+          )
+        }
 
-        )}
 
       </div>
 
@@ -119,10 +123,10 @@ export function BrandForm({
         placeholder="Description"
 
         className="
-          border
-          rounded
-          p-2
-          w-full
+        border
+        rounded
+        p-2
+        w-full
         "
 
       />
@@ -131,21 +135,32 @@ export function BrandForm({
 
       <button
 
+        disabled={isSubmitting}
+
         type="submit"
 
         className="
-          bg-black
-          text-white
-          px-5
-          py-2
-          rounded
+        bg-black
+        text-white
+        px-5
+        py-2
+        rounded
+        disabled:opacity-50
         "
 
       >
 
-        Save Brand
+        {
+          isSubmitting
+          ?
+          "Saving..."
+          :
+          "Save Brand"
+        }
+
 
       </button>
+
 
 
     </form>

@@ -1,3 +1,12 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Create Unit Page
+ * ============================================================
+ */
+
+
 import {
   useNavigate,
 } from "react-router-dom";
@@ -9,8 +18,8 @@ import {
 
 
 import {
-  unitService,
-} from "../services/unit.service";
+  useUnits,
+} from "../hooks/useUnits";
 
 
 
@@ -22,49 +31,62 @@ export function CreateUnitPage() {
 
 
 
+  const {
+
+    createUnit,
+
+  } =
+  useUnits();
+
+
+
+
+
+
   function handleSubmit(
 
     data: Parameters<
-      typeof unitService.createUnit
+      typeof createUnit
     >[0],
 
   ) {
 
 
-    unitService.createUnit(
+    createUnit(data);
 
-      data,
-
-      "default-tenant",
-
-      "default-store",
-
-    );
 
 
     navigate("/units");
+
 
   }
 
 
 
+
+
+
+
   return (
 
-    <div
-      className="p-6"
-    >
+    <div className="p-6">
+
 
       <h1
+
         className="
           text-2xl
           font-bold
           mb-6
         "
+
       >
 
         Create Unit
 
       </h1>
+
+
 
 
 
@@ -75,8 +97,10 @@ export function CreateUnitPage() {
       />
 
 
+
     </div>
 
   );
+
 
 }

@@ -24,9 +24,9 @@ interface UnitFormProps {
   defaultValues?: Partial<UnitFormInput>;
 
 
-  onSubmit: (
+  onSubmit(
     data: UnitFormInput,
-  ) => void;
+  ): void;
 
 }
 
@@ -41,22 +41,21 @@ export function UnitForm({
 }: UnitFormProps) {
 
 
-
   const {
 
     register,
 
     handleSubmit,
 
-    formState: {
+    formState:{
       errors,
     },
 
-  } = useForm<UnitFormInput>({
+  } =
+  useForm<UnitFormInput>({
 
     resolver:
       zodResolver(unitSchema),
-
 
     defaultValues,
 
@@ -68,16 +67,16 @@ export function UnitForm({
 
     <form
 
+      noValidate
+
       onSubmit={
         handleSubmit(onSubmit)
       }
 
-      className="
-        space-y-4
-        max-w-xl
-      "
+      className="space-y-4 max-w-xl"
 
     >
+
 
       <div>
 
@@ -87,24 +86,19 @@ export function UnitForm({
 
           placeholder="Unit name"
 
-          className="
-            border
-            rounded
-            p-2
-            w-full
-          "
+          className="border rounded p-2 w-full"
 
         />
 
-        {errors.name && (
 
+        {
+          errors.name &&
           <p className="text-red-600">
 
             {errors.name.message}
 
           </p>
-
-        )}
+        }
 
       </div>
 
@@ -118,24 +112,19 @@ export function UnitForm({
 
           placeholder="Symbol e.g. kg, pcs"
 
-          className="
-            border
-            rounded
-            p-2
-            w-full
-          "
+          className="border rounded p-2 w-full"
 
         />
 
-        {errors.symbol && (
 
+        {
+          errors.symbol &&
           <p className="text-red-600">
 
             {errors.symbol.message}
 
           </p>
-
-        )}
+        }
 
       </div>
 
@@ -147,12 +136,7 @@ export function UnitForm({
 
         placeholder="Description"
 
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
+        className="border rounded p-2 w-full"
 
       />
 
@@ -162,13 +146,7 @@ export function UnitForm({
 
         type="submit"
 
-        className="
-          bg-black
-          text-white
-          px-5
-          py-2
-          rounded
-        "
+        className="bg-black text-white px-5 py-2 rounded"
 
       >
 
