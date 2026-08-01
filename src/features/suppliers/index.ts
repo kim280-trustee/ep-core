@@ -1,23 +1,37 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Suppliers Module Public API
+ * ============================================================
+ */
+
+
+// Services
+
 export {
-
   supplierService,
-
 } from "./services/supplier.service";
 
 
+
+// Hooks
+
 export {
-
   useSuppliers,
-
 } from "./hooks/useSuppliers";
 
 
+
+// Store
+
 export {
-
-  useSupplierStore,
-
+  useSuppliersStore,
 } from "./store/supplier.store";
 
+
+
+// Types
 
 export type {
 
@@ -30,8 +44,9 @@ export type {
 } from "./types/supplier.types";
 
 
+
+// Routes
+
 export {
-
   supplierRoutes,
-
 } from "./routes/supplier.routes";

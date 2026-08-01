@@ -1,15 +1,22 @@
 /**
  * ============================================================
  * E&P Technologies
- * Smart POS
- * Supplier Types
+ * E&P Smart POS
+ * Suppliers Module
+ * ------------------------------------------------------------
+ * Supplier Type Definitions
  * ============================================================
  */
 
 
-export type SupplierStatus =
-  | "ACTIVE"
-  | "INACTIVE";
+export enum SupplierStatus {
+
+  ACTIVE = "active",
+
+  INACTIVE = "inactive",
+
+}
+
 
 
 
@@ -25,114 +32,104 @@ export interface Supplier {
   storeId: string;
 
 
-  code: string;
-
 
   name: string;
 
 
-  contactPerson: string;
+  contactPerson: string | null;
 
 
-  email: string;
+
+  phone: string | null;
 
 
-  phone: string;
+  email: string | null;
 
 
-  taxId?: string;
+
+  address: string | null;
 
 
-  address: string;
+
+  taxId: string | null;
 
 
-  city: string;
 
+  paymentTerms: string | null;
 
-  province: string;
-
-
-  postalCode: string;
-
-
-  country: string;
-
-
-  notes?: string;
 
 
   status: SupplierStatus;
 
 
-  createdAt: Date;
+
+  createdAt: string;
 
 
-  updatedAt: Date;
+  updatedAt: string;
 
 
 }
 
 
 
-export type CreateSupplierDto = {
 
 
-  tenantId: string;
-
-
-  storeId: string;
-
-
-  code: string;
+export interface CreateSupplierDto {
 
 
   name: string;
 
 
-  contactPerson: string;
+  contactPerson?: string | null;
 
 
-  email: string;
+  phone?: string | null;
 
 
-  phone: string;
+  email?: string | null;
 
 
-  taxId?: string;
+  address?: string | null;
 
 
-  address: string;
+  taxId?: string | null;
 
 
-  city: string;
+  paymentTerms?: string | null;
 
 
-  province: string;
-
-
-  postalCode: string;
-
-
-  country: string;
-
-
-  notes?: string;
-
-
-};
+}
 
 
 
-export type UpdateSupplierDto = Partial<
 
-  Omit<
 
-    CreateSupplierDto,
+export interface UpdateSupplierDto {
 
-    "tenantId"
 
-    | "storeId"
+  name?: string;
 
-  >
 
->;
+  contactPerson?: string | null;
+
+
+  phone?: string | null;
+
+
+  email?: string | null;
+
+
+  address?: string | null;
+
+
+  taxId?: string | null;
+
+
+  paymentTerms?: string | null;
+
+
+  status?: SupplierStatus;
+
+
+}

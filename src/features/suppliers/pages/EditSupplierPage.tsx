@@ -1,8 +1,6 @@
 import {
   useNavigate,
-
   useParams,
-
 } from "react-router-dom";
 
 
@@ -16,58 +14,99 @@ import {
 } from "../services/supplier.service";
 
 
+import type {
+  SupplierFormInput,
+} from "../validators/supplier.schema";
+
+
 
 export function EditSupplierPage() {
-
-
-  const {
-    id,
-  } =
-    useParams();
 
 
   const navigate =
     useNavigate();
 
 
+  const {
+    id,
+  } = useParams();
 
-  const supplier =
+
+
+  const foundSupplier =
     id
-
-      ? supplierService.getSupplierById(
-          id,
-        )
-
+      ? supplierService.getSupplierById(id)
       : undefined;
 
 
 
+  if (!foundSupplier) {
+
+    return (
+
+      <div className="p-6">
+
+        Supplier not found
+
+      </div>
+
+    );
+
+  }
+
+
+
+  const supplier = foundSupplier;
+
+
+
   function handleSubmit(
-    data: any,
+
+    data: SupplierFormInput,
+
   ) {
-
-
-    if (!id) {
-
-      return;
-
-    }
-
 
 
     supplierService.updateSupplier(
 
-      id,
+      supplier.id,
 
-      data,
+      {
+
+        name:
+          data.name,
+
+
+        contactPerson:
+          data.contactPerson ?? null,
+
+
+        phone:
+          data.phone ?? null,
+
+
+        email:
+          data.email ?? null,
+
+
+        address:
+          data.address ?? null,
+
+
+        taxId:
+          data.taxId ?? null,
+
+
+        paymentTerms:
+          data.paymentTerms ?? null,
+
+
+      },
 
     );
 
 
-
-    navigate(
-      "/suppliers",
-    );
+    navigate("/suppliers");
 
   }
 
@@ -75,17 +114,60 @@ export function EditSupplierPage() {
 
   return (
 
-    <SupplierForm
+    <div className="p-6">
 
-      defaultValues={
-        supplier
-      }
 
-      onSubmit={
-        handleSubmit
-      }
+      <h1 className="text-2xl font-bold mb-6">
 
-    />
+        Edit Supplier
+
+      </h1>
+
+
+
+      <SupplierForm
+
+        defaultValues={{
+
+          name:
+            supplier.name,
+
+
+          contactPerson:
+            supplier.contactPerson ?? undefined,
+
+
+          phone:
+            supplier.phone ?? undefined,
+
+
+          email:
+            supplier.email ?? undefined,
+
+
+          address:
+            supplier.address ?? undefined,
+
+
+          taxId:
+            supplier.taxId ?? undefined,
+
+
+          paymentTerms:
+            supplier.paymentTerms ?? undefined,
+
+
+        }}
+
+
+        onSubmit={
+          handleSubmit
+        }
+
+      />
+
+
+    </div>
 
   );
 

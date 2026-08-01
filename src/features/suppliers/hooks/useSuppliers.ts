@@ -1,15 +1,6 @@
-/**
- * ============================================================
- * E&P Technologies
- * Smart POS
- * Supplier Hook
- * ============================================================
- */
-
-
 import {
-  useEffect,
-} from "react";
+  useSuppliersStore,
+} from "../store/supplier.store";
 
 
 import {
@@ -17,95 +8,86 @@ import {
 } from "../services/supplier.service";
 
 
-import {
-  useSupplierStore,
-} from "../store/supplier.store";
-
-
 
 export function useSuppliers() {
 
 
-  const suppliers =
-    useSupplierStore(
 
-      state =>
-        state.suppliers,
+  const {
 
-    );
+    suppliers,
 
+    setSuppliers,
 
+    removeSupplier,
 
-  const setSuppliers =
-    useSupplierStore(
-
-      state =>
-        state.setSuppliers,
-
-    );
+  } = useSuppliersStore();
 
 
 
-  const addSupplier =
-    useSupplierStore(
 
-      state =>
-        state.addSupplier,
+
+  function refresh() {
+
+
+    setSuppliers(
+
+      supplierService.getSuppliers(),
 
     );
 
 
+  }
 
-  const updateSupplier =
-    useSupplierStore(
 
-      state =>
-        state.updateSupplier,
+
+
+
+  function removeSupplierHandler(
+
+    id:string,
+
+  ){
+
+
+    supplierService.deleteSupplier(
+
+      id,
 
     );
 
 
+    removeSupplier(
 
-  const removeSupplier =
-    useSupplierStore(
-
-      state =>
-        state.removeSupplier,
+      id,
 
     );
 
 
+  }
 
-  useEffect(
 
-    () => {
-
-      setSuppliers(
-
-        supplierService.getSuppliers(),
-
-      );
-
-    },
-
-    [
-      setSuppliers,
-    ],
-
-  );
 
 
 
   return {
 
+
     suppliers,
 
-    addSupplier,
 
-    updateSupplier,
+    refresh,
 
-    removeSupplier,
+
+    removeSupplier:
+      removeSupplierHandler,
+
+
+    deleteSupplier:
+      removeSupplierHandler,
+
 
   };
+
 
 }

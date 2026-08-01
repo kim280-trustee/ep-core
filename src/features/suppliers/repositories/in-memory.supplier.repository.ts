@@ -1,194 +1,184 @@
-/**
- * ============================================================
- * E&P Technologies
- * Smart POS
- * In Memory Supplier Repository
- * ============================================================
- */
-
-
-import {
-  v4 as uuid,
-} from "uuid";
-
-
 import type {
-
   Supplier,
-
-  CreateSupplierDto,
-
-  UpdateSupplierDto,
-
 } from "../types/supplier.types";
 
 
 import type {
-
-  SupplierRepository,
-
+  ISupplierRepository,
 } from "./supplier.repository";
 
 
 
+
 class InMemorySupplierRepository
-implements SupplierRepository {
 
+implements ISupplierRepository {
 
-  private suppliers: Supplier[] = [];
 
 
+private suppliers:Supplier[] = [];
 
-  findAll(): Supplier[] {
 
-    return this.suppliers;
 
-  }
 
 
+findAll(){
 
-  findById(
-    id: string,
-  ) {
+  return this.suppliers;
 
-    return this.suppliers.find(
+}
 
-      supplier =>
-        supplier.id === id,
 
-    );
 
-  }
 
 
+findById(
 
-  create(
-    supplier: CreateSupplierDto,
-  ): Supplier {
+id:string,
 
+){
 
-    const item: Supplier = {
+ return this.suppliers.find(
 
+  supplier =>
 
-      id: uuid(),
+    supplier.id === id,
 
+ );
 
-      ...supplier,
+}
 
 
-      status:
-        "ACTIVE",
 
 
-      createdAt:
-        new Date(),
 
+create(
 
-      updatedAt:
-        new Date(),
+supplier:Supplier,
 
+){
 
-    };
+ this.suppliers.push(
 
+  supplier,
 
+ );
 
-    this.suppliers.push(
-      item,
-    );
+ return supplier;
 
+}
 
 
-    return item;
 
-  }
 
 
+update(
 
-  update(
-    id: string,
-    supplier: UpdateSupplierDto,
-  ) {
+id:string,
 
+updates:Partial<Supplier>,
 
-    const existing =
-      this.findById(
-        id,
-      );
+){
 
 
+ const index =
 
-    if (!existing) {
+ this.suppliers.findIndex(
 
-      return undefined;
+  supplier =>
 
-    }
+  supplier.id === id,
 
+ );
 
 
-    Object.assign(
 
-      existing,
 
-      supplier,
+ if(index === -1){
 
-      {
+  return undefined;
 
-        updatedAt:
-          new Date(),
+ }
 
-      },
 
-    );
 
+ this.suppliers[index] = {
 
 
-    return existing;
+  ...this.suppliers[index],
 
-  }
 
+  ...updates,
 
 
-  delete(
-    id: string,
-  ) {
+  updatedAt:
 
+   new Date().toISOString(),
 
-    const index =
-      this.suppliers.findIndex(
 
-        item =>
-          item.id === id,
+ };
 
-      );
 
 
-
-    if (index === -1) {
-
-      return false;
-
-    }
-
-
-
-    this.suppliers.splice(
-
-      index,
-
-      1,
-
-    );
-
-
-
-    return true;
-
-  }
+ return this.suppliers[index];
 
 
 }
 
 
 
+
+
+delete(
+
+id:string,
+
+){
+
+
+ const index =
+
+ this.suppliers.findIndex(
+
+ supplier =>
+
+ supplier.id === id,
+
+ );
+
+
+
+ if(index === -1){
+
+  return false;
+
+ }
+
+
+
+ this.suppliers.splice(
+
+  index,
+
+  1,
+
+ );
+
+
+
+ return true;
+
+
+}
+
+
+
+}
+
+
+
+
+
 export const inMemorySupplierRepository =
-  new InMemorySupplierRepository();
+
+new InMemorySupplierRepository();

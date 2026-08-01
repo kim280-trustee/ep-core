@@ -1,153 +1,186 @@
-/**
- * ============================================================
- * E&P Technologies
- * Smart POS
- * Supplier Store
- * ============================================================
- */
-
 import {
-  create,
+
+create,
+
 } from "zustand";
 
 
+
 import type {
-  Supplier,
+
+Supplier,
+
 } from "../types/supplier.types";
 
 
 
-interface SupplierStore {
 
 
-  suppliers: Supplier[];
+interface SuppliersStore {
 
 
-  setSuppliers(
-    suppliers: Supplier[],
-  ): void;
+suppliers:Supplier[];
 
 
-  addSupplier(
-    supplier: Supplier,
-  ): void;
+
+setSuppliers(
+
+suppliers:Supplier[],
+
+):void;
 
 
-  updateSupplier(
-    supplier: Supplier,
-  ): void;
+
+addSupplier(
+
+supplier:Supplier,
+
+):void;
 
 
-  removeSupplier(
-    id: string,
-  ): void;
+
+updateSupplier(
+
+supplier:Supplier,
+
+):void;
+
+
+
+removeSupplier(
+
+id:string,
+
+):void;
 
 
 }
 
 
 
-export const useSupplierStore =
-  create<SupplierStore>(
-
-    (set) => ({
-
-      suppliers: [],
 
 
+export const useSuppliersStore =
 
-      setSuppliers(
-        suppliers,
-      ) {
-
-        set({
-
-          suppliers,
-
-        });
-
-      },
+create<SuppliersStore>((set)=>({
 
 
 
-      addSupplier(
-        supplier,
-      ) {
-
-        set(
-
-          state => ({
-
-            suppliers: [
-
-              ...state.suppliers,
-
-              supplier,
-
-            ],
-
-          }),
-
-        );
-
-      },
+suppliers:[],
 
 
 
-      updateSupplier(
-        supplier,
-      ) {
 
-        set(
+setSuppliers(
 
-          state => ({
+suppliers,
 
-            suppliers:
+){
 
-              state.suppliers.map(
+set({
 
-                item =>
+suppliers,
 
-                  item.id === supplier.id
+});
 
-                    ? supplier
-
-                    : item,
-
-              ),
-
-          }),
-
-        );
-
-      },
+},
 
 
 
-      removeSupplier(
-        id,
-      ) {
-
-        set(
-
-          state => ({
-
-            suppliers:
-
-              state.suppliers.filter(
-
-                item =>
-                  item.id !== id,
-
-              ),
-
-          }),
-
-        );
-
-      },
 
 
-    }),
+addSupplier(
 
-  );
+supplier,
+
+){
+
+set(
+
+state=>({
+
+suppliers:[
+
+...state.suppliers,
+
+supplier,
+
+],
+
+}),
+
+);
+
+},
+
+
+
+
+
+updateSupplier(
+
+supplier,
+
+){
+
+set(
+
+state=>({
+
+suppliers:
+
+state.suppliers.map(
+
+item=>
+
+item.id === supplier.id
+
+?
+
+supplier
+
+:
+
+item,
+
+),
+
+}),
+
+);
+
+},
+
+
+
+
+
+removeSupplier(
+
+id,
+
+){
+
+set(
+
+state=>({
+
+suppliers:
+
+state.suppliers.filter(
+
+item=>
+
+item.id !== id,
+
+),
+
+}),
+
+);
+
+},
+
+
+
+}));

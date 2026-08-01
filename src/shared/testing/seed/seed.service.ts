@@ -86,7 +86,7 @@ import {
 
 import {
   sampleProducts,
-} from "../sample-data/products";
+} from "..//sample-data/products";
 
 
 import {
@@ -126,9 +126,9 @@ class SeedService {
 
   seed(
 
-    options:Partial<SeedOptions> = {},
+    options: Partial<SeedOptions> = {},
 
-  ){
+  ) {
 
 
 
@@ -142,7 +142,6 @@ class SeedService {
 
 
     };
-
 
 
 
@@ -168,7 +167,6 @@ class SeedService {
 
 
 
-
     sampleBrands.forEach(
 
       brand => {
@@ -188,7 +186,6 @@ class SeedService {
       },
 
     );
-
 
 
 
@@ -214,7 +211,6 @@ class SeedService {
 
 
 
-
     sampleWarehouses.forEach(
 
       warehouse => {
@@ -234,7 +230,6 @@ class SeedService {
       },
 
     );
-
 
 
 
@@ -260,7 +255,6 @@ class SeedService {
 
 
 
-
     sampleSuppliers.forEach(
 
       supplier => {
@@ -268,11 +262,11 @@ class SeedService {
 
         supplierService.createSupplier(
 
+          supplier,
+
           config.tenantId,
 
           config.storeId,
-
-          supplier,
 
         );
 
@@ -280,11 +274,7 @@ class SeedService {
       },
 
     );
-
-
-
-
-    sampleTaxes.forEach(
+        sampleTaxes.forEach(
 
       tax => {
 
@@ -303,7 +293,6 @@ class SeedService {
       },
 
     );
-
 
 
 
@@ -326,7 +315,6 @@ class SeedService {
       },
 
     );
-
 
 
 
@@ -469,7 +457,6 @@ class SeedService {
 
 
 
-
     sampleInventory.forEach(
 
       record => {
@@ -487,9 +474,7 @@ class SeedService {
     );
 
 
-
   }
-
 
 
 }

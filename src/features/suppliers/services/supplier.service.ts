@@ -1,106 +1,149 @@
 /**
  * ============================================================
  * E&P Technologies
- * Smart POS
- * Supplier Service
+ * E&P Smart POS
+ * Suppliers Module
+ * ------------------------------------------------------------
+ * Supplier Business Service
  * ============================================================
  */
 
-
-import type {
-
-  CreateSupplierDto,
-
-  UpdateSupplierDto,
-
-} from "../types/supplier.types";
-
-
 import {
   supplierRepository,
-} from "../repositories/repository.provider";
+} from "../repositories";
 
+import {
+  SupplierStatus,
+} from "../types/supplier.types";
 
+import type {
+  Supplier,
+} from "../types/supplier.types";
 
-export const supplierService = {
+import type {
+  SupplierFormInput,
+} from "../validators/supplier.schema";
 
+class SupplierService {
 
-  getSuppliers() {
+  private generateId(): string {
+
+    return crypto.randomUUID();
+
+  }
+
+  getSuppliers(): Supplier[] {
 
     return supplierRepository.findAll();
 
-  },
-
-
+  }
 
   getSupplierById(
     id: string,
-  ) {
+  ): Supplier | undefined {
 
     return supplierRepository.findById(
       id,
     );
 
-  },
-
-
+  }
 
   createSupplier(
+
+    input: SupplierFormInput,
+
     tenantId: string,
 
     storeId: string,
 
-    supplier: Omit<
-      CreateSupplierDto,
-      "tenantId"
-      | "storeId"
-    >,
+  ): Supplier {
 
-  ) {
+    const now =
+      new Date().toISOString();
 
+    const supplier: Supplier = {
 
-    return supplierRepository.create({
-
-      ...supplier,
+      id:
+        this.generateId(),
 
       tenantId,
 
       storeId,
 
-    });
+      name:
+        input.name,
 
-  },
+      contactPerson:
+        input.contactPerson ?? null,
 
+      phone:
+        input.phone ?? null,
 
+      email:
+        input.email ?? null,
+
+      address:
+        input.address ?? null,
+
+      taxId:
+        input.taxId ?? null,
+
+      paymentTerms:
+        input.paymentTerms ?? null,
+
+      status:
+        SupplierStatus.ACTIVE,
+
+      createdAt:
+        now,
+
+      updatedAt:
+        now,
+
+    };
+
+    return supplierRepository.create(
+      supplier,
+    );
+
+  }
 
   updateSupplier(
+
     id: string,
 
-    supplier: UpdateSupplierDto,
+    updates: Partial<Supplier>,
 
-  ) {
+  ): Supplier | undefined {
 
     return supplierRepository.update(
 
       id,
 
-      supplier,
+      {
+
+        ...updates,
+
+        updatedAt:
+          new Date().toISOString(),
+
+      },
 
     );
 
-  },
-
-
+  }
 
   deleteSupplier(
     id: string,
-  ) {
+  ): boolean {
 
     return supplierRepository.delete(
       id,
     );
 
-  },
+  }
 
+}
 
-};
+export const supplierService =
+  new SupplierService();
