@@ -90,4 +90,7 @@ export interface UpdateBrandDto {
   status?:BrandStatus;
 
 
+  updatedAt?:string;
+
+
 }
