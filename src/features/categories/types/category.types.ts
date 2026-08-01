@@ -20,6 +20,7 @@ export enum CategoryStatus {
 
 
 
+
 export interface Category {
 
 
@@ -94,6 +95,9 @@ export interface UpdateCategoryDto {
 
 
   status?: CategoryStatus;
+
+
+  updatedAt?: string;
 
 
 }
