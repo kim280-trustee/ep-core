@@ -2,6 +2,8 @@
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
+ * Products Module
+ * ------------------------------------------------------------
  * In Memory Product Repository
  * ============================================================
  */
@@ -13,21 +15,33 @@ import {
 
 
 import type {
+
   Product,
+
   CreateProductDto,
+
   UpdateProductDto,
+
 } from "../types/product.types";
 
 
 import {
+
   ProductStatus,
+
   ProductType,
+
 } from "../types/product.types";
 
 
 import type {
+
   IProductRepository,
+
 } from "./product.repository";
+
+
+
 
 
 
@@ -44,7 +58,10 @@ implements IProductRepository {
 
 
 
-  findAll(): Product[] {
+
+
+
+  findAll():Product[]{
 
 
     return Array.from(
@@ -55,6 +72,9 @@ implements IProductRepository {
 
 
   }
+
+
+
 
 
 
@@ -78,6 +98,9 @@ implements IProductRepository {
 
 
 
+
+
+
   findBySku(
 
     sku:string,
@@ -85,16 +108,21 @@ implements IProductRepository {
   ):Product | undefined {
 
 
-    return this.findAll().find(
+    return this.findAll()
 
-      product =>
+      .find(
 
-        product.identifiers.sku === sku,
+        product =>
 
-    );
+          product.identifiers.sku === sku,
+
+      );
 
 
   }
+
+
+
 
 
 
@@ -106,16 +134,21 @@ implements IProductRepository {
   ):Product | undefined {
 
 
-    return this.findAll().find(
+    return this.findAll()
 
-      product =>
+      .find(
 
-        product.identifiers.barcode === barcode,
+        product =>
 
-    );
+          product.identifiers.barcode === barcode,
+
+      );
 
 
   }
+
+
+
 
 
 
@@ -127,16 +160,15 @@ implements IProductRepository {
   ):boolean {
 
 
-    return (
+    return this.findBySku(sku)
 
-      this.findBySku(sku)
-
-      !== undefined
-
-    );
+      !== undefined;
 
 
   }
+
+
+
 
 
 
@@ -148,16 +180,15 @@ implements IProductRepository {
   ):boolean {
 
 
-    return (
+    return this.findByBarcode(barcode)
 
-      this.findByBarcode(barcode)
-
-      !== undefined
-
-    );
+      !== undefined;
 
 
   }
+
+
+
 
 
 
@@ -173,7 +204,6 @@ implements IProductRepository {
   ):Product {
 
 
-
     const now =
 
       new Date().toISOString();
@@ -181,8 +211,8 @@ implements IProductRepository {
 
 
 
-    const product:Product = {
 
+    const product:Product = {
 
 
       id:
@@ -219,14 +249,17 @@ implements IProductRepository {
 
       identifiers: {
 
+
         sku:
 
           data.identifiers.sku,
 
 
+
         barcode:
 
           data.identifiers.barcode ?? null,
+
 
       },
 
@@ -234,9 +267,11 @@ implements IProductRepository {
 
       pricing: {
 
+
         costPrice:
 
           data.pricing.costPrice,
+
 
 
         sellingPrice:
@@ -244,9 +279,11 @@ implements IProductRepository {
           data.pricing.sellingPrice,
 
 
+
         currency:
 
           data.pricing.currency,
+
 
       },
 
@@ -256,9 +293,12 @@ implements IProductRepository {
 
         data.tax ?? {
 
+
           taxId:null,
 
+
           taxRate:0,
+
 
         },
 
@@ -268,9 +308,12 @@ implements IProductRepository {
 
         data.inventory ?? {
 
-          trackInventory:true,
+
+          trackInventory:false,
+
 
           stockQuantity:0,
+
 
         },
 
@@ -321,6 +364,8 @@ implements IProductRepository {
 
 
 
+
+
     this.products.set(
 
       product.id,
@@ -331,10 +376,14 @@ implements IProductRepository {
 
 
 
+
+
     return product;
 
 
   }
+
+
 
 
 
@@ -350,10 +399,11 @@ implements IProductRepository {
   ):Product | undefined {
 
 
-
     const existing =
 
       this.products.get(id);
+
+
 
 
 
@@ -366,8 +416,10 @@ implements IProductRepository {
 
 
 
-    const updated:Product = {
 
+
+
+    const updated:Product = {
 
 
       ...existing,
@@ -380,9 +432,12 @@ implements IProductRepository {
 
       identifiers: {
 
+
         ...existing.identifiers,
 
+
         ...updates.identifiers,
+
 
       },
 
@@ -390,9 +445,12 @@ implements IProductRepository {
 
       pricing: {
 
+
         ...existing.pricing,
 
+
         ...updates.pricing,
+
 
       },
 
@@ -400,9 +458,12 @@ implements IProductRepository {
 
       tax: {
 
+
         ...existing.tax,
 
+
         ...updates.tax,
+
 
       },
 
@@ -410,9 +471,12 @@ implements IProductRepository {
 
       inventory: {
 
+
         ...existing.inventory,
 
+
         ...updates.inventory,
+
 
       },
 
@@ -427,6 +491,9 @@ implements IProductRepository {
 
 
 
+
+
+
     this.products.set(
 
       id,
@@ -437,10 +504,14 @@ implements IProductRepository {
 
 
 
+
+
     return updated;
 
 
   }
+
+
 
 
 
@@ -462,6 +533,7 @@ implements IProductRepository {
 
 
   }
+
 
 
 }

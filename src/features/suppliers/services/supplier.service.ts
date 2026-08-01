@@ -12,19 +12,23 @@ import {
   supplierRepository,
 } from "../repositories";
 
+
 import {
   SupplierStatus,
 } from "../types/supplier.types";
 
+
 import type {
   Supplier,
+  CreateSupplierDto,
+  UpdateSupplierDto,
 } from "../types/supplier.types";
 
-import type {
-  SupplierFormInput,
-} from "../validators/supplier.schema";
+
 
 class SupplierService {
+
+
 
   private generateId(): string {
 
@@ -32,15 +36,26 @@ class SupplierService {
 
   }
 
+
+
+
+
   getSuppliers(): Supplier[] {
 
     return supplierRepository.findAll();
 
   }
 
+
+
+
+
+
+
   getSupplierById(
-    id: string,
-  ): Supplier | undefined {
+    id:string,
+  ):Supplier | undefined {
+
 
     return supplierRepository.findById(
       id,
@@ -48,73 +63,141 @@ class SupplierService {
 
   }
 
+
+
+
+
+
+
   createSupplier(
 
-    input: SupplierFormInput,
+    input:CreateSupplierDto,
 
-    tenantId: string,
+    tenantId:string,
 
-    storeId: string,
+    storeId:string,
 
-  ): Supplier {
+  ):Supplier {
+
+
 
     const now =
+
       new Date().toISOString();
 
-    const supplier: Supplier = {
+
+
+
+
+    const supplier:Supplier = {
+
 
       id:
+
         this.generateId(),
+
+
 
       tenantId,
 
+
+
       storeId,
 
+
+
       name:
+
         input.name,
 
+
+
       contactPerson:
+
         input.contactPerson ?? null,
 
+
+
       phone:
+
         input.phone ?? null,
 
+
+
       email:
+
         input.email ?? null,
 
+
+
       address:
+
         input.address ?? null,
 
+
+
       taxId:
+
         input.taxId ?? null,
 
+
+
       paymentTerms:
+
         input.paymentTerms ?? null,
 
+
+
       status:
+
         SupplierStatus.ACTIVE,
 
+
+
       createdAt:
+
         now,
 
+
+
       updatedAt:
+
         now,
+
+
 
     };
 
+
+
+
+
     return supplierRepository.create(
+
       supplier,
+
     );
+
 
   }
 
+
+
+
+
+
+
+
+
   updateSupplier(
 
-    id: string,
+    id:string,
 
-    updates: Partial<Supplier>,
+    updates:UpdateSupplierDto,
 
-  ): Supplier | undefined {
+  ):Supplier | undefined {
+
+
 
     return supplierRepository.update(
 
@@ -122,28 +205,54 @@ class SupplierService {
 
       {
 
+
         ...updates,
 
+
         updatedAt:
+
           new Date().toISOString(),
+
 
       },
 
     );
 
+
   }
+
+
+
+
+
+
+
+
 
   deleteSupplier(
-    id: string,
-  ): boolean {
+
+    id:string,
+
+  ):boolean {
+
 
     return supplierRepository.delete(
+
       id,
+
     );
 
+
   }
+
+
+
+
 
 }
 
+
+
 export const supplierService =
+
   new SupplierService();

@@ -2,53 +2,119 @@
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
- * Product Repository
+ * Products Module
+ * ------------------------------------------------------------
+ * Product Repository Contract
  * ============================================================
  */
 
+
 import type {
+
   Product,
+
   CreateProductDto,
+
   UpdateProductDto,
+
 } from "../types/product.types";
+
+
+
+
 
 export interface IProductRepository {
 
+
+
   findAll(): Product[];
 
+
+
+
+
   findById(
-    id: string,
+
+    id:string,
+
   ): Product | undefined;
+
+
+
+
 
   findBySku(
-    sku: string,
+
+    sku:string,
+
   ): Product | undefined;
+
+
+
+
 
   findByBarcode(
-    barcode: string,
+
+    barcode:string,
+
   ): Product | undefined;
+
+
+
+
 
   existsBySku(
-    sku: string,
+
+    sku:string,
+
   ): boolean;
+
+
+
+
 
   existsByBarcode(
-    barcode: string,
+
+    barcode:string,
+
   ): boolean;
+
+
+
+
 
   create(
-    tenantId: string,
-    storeId: string,
-    data: CreateProductDto,
+
+    tenantId:string,
+
+    storeId:string,
+
+    data:CreateProductDto,
+
   ): Product;
 
+
+
+
+
   update(
-    id: string,
-    updates: UpdateProductDto,
+
+    id:string,
+
+    updates:UpdateProductDto,
+
   ): Product | undefined;
 
+
+
+
+
   delete(
-    id: string,
+
+    id:string,
+
   ): boolean;
+
+
 
 }
