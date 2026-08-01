@@ -1,82 +1,80 @@
 import {
-  useNavigate,
+
+ useNavigate,
+
 } from "react-router-dom";
 
 
 import {
-  TaxForm,
+
+ TaxForm,
+
 } from "../components/TaxForm";
 
 
 import {
-  taxService,
+
+ taxService,
+
 } from "../services/tax.service";
 
 
+import type {
 
-export function CreateTaxPage() {
+ TaxFormInput,
 
-
-  const navigate =
-    useNavigate();
-
-
-
-  function handleSubmit(
-
-    data: Parameters<
-      typeof taxService.createTax
-    >[0],
-
-  ) {
-
-
-    taxService.createTax(
-
-      data,
-
-      "default-tenant",
-
-      "default-store",
-
-    );
-
-
-    navigate("/taxes");
-
-  }
+} from "../validators/tax.schema";
 
 
 
-  return (
+export function CreateTaxPage(){
 
-    <div
-      className="p-6"
-    >
 
-      <h1
-        className="
-          text-2xl
-          font-bold
-          mb-6
-        "
-      >
+ const navigate=
 
-        Create Tax
-
-      </h1>
+ useNavigate();
 
 
 
-      <TaxForm
+ function handleSubmit(
 
-        onSubmit={handleSubmit}
+  data:TaxFormInput,
 
-      />
+ ){
 
 
-    </div>
+  taxService.createTax(
+
+    "default-tenant",
+
+    "default-store",
+
+    data,
 
   );
+
+
+
+  navigate(
+
+    "/taxes"
+
+  );
+
+
+ }
+
+
+
+ return (
+
+  <TaxForm
+
+    onSubmit={handleSubmit}
+
+  />
+
+ );
+
 
 }

@@ -1,99 +1,84 @@
 import {
+
   useNavigate,
+
   useParams,
+
 } from "react-router-dom";
 
 
 import {
+
   WarehouseForm,
+
 } from "../components/WarehouseForm";
 
 
 import {
+
   warehouseService,
+
 } from "../services/warehouse.service";
 
 
 
-export function EditWarehousePage() {
+export function EditWarehousePage(){
+
+
+  const {
+
+    id,
+
+  } = useParams();
+
 
 
   const navigate =
     useNavigate();
 
 
-  const {
-    id,
-  } = useParams();
-
-
-
-  const foundWarehouse =
-    id
-      ? warehouseService.getWarehouseById(id)
-      : undefined;
-
-
-
-  if (!foundWarehouse) {
-
-    return (
-
-      <div
-        className="p-6"
-      >
-
-        Warehouse not found
-
-      </div>
-
-    );
-
-  }
-
-
 
   const warehouse =
-    foundWarehouse;
+
+    id
+
+      ? warehouseService.getWarehouseById(id)
+
+      : undefined;
 
 
 
   function handleSubmit(
 
-    data: Parameters<
-      typeof warehouseService.createWarehouse
-    >[0],
+    data:any,
 
-  ) {
+  ){
+
+
+    if(!id){
+
+      return;
+
+    }
+
 
 
     warehouseService.updateWarehouse(
 
-      warehouse.id,
+      id,
 
-      {
-
-        name:
-          data.name,
-
-
-        code:
-          data.code,
-
-
-        address:
-          data.address,
-
-
-        phone:
-          data.phone,
-
-      },
+      data,
 
     );
 
 
-    navigate("/warehouses");
+
+    navigate(
+
+      "/warehouses",
+
+    );
+
 
   }
 
@@ -101,52 +86,24 @@ export function EditWarehousePage() {
 
   return (
 
-    <div
-      className="p-6"
-    >
-
-      <h1
-        className="
-          text-2xl
-          font-bold
-          mb-6
-        "
-      >
-
-        Edit Warehouse
-
-      </h1>
+    <WarehouseForm
 
 
+      defaultValues={
 
-      <WarehouseForm
+        warehouse
 
-        defaultValues={{
-
-          name:
-            warehouse.name,
+      }
 
 
-          code:
-            warehouse.code,
+      onSubmit={
+
+        handleSubmit
+
+      }
 
 
-          address:
-            warehouse.address,
-
-
-          phone:
-            warehouse.phone,
-
-        }}
-
-
-        onSubmit={handleSubmit}
-
-      />
-
-
-    </div>
+    />
 
   );
 

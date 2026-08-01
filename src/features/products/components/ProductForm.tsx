@@ -1,197 +1,541 @@
-import {
-  useForm,
-} from "react-hook-form";
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Product Form
+ * ============================================================
+ */
 
 
 import {
-  zodResolver,
-} from "@hookform/resolvers/zod";
+  useEffect,
+  useState,
+} from "react";
 
 
 import {
-  productSchema,
-} from "../validators/product.schema";
+  productService,
+} from "../services/product.service";
 
 
-import type {
-  ProductFormInput,
-} from "../validators/product.schema";
+import {
+  useProductsStore,
+} from "../store/products.store";
+
+
+import {
+  ProductFormFields,
+} from "./ProductFormFields";
+
+
+import {
+  ProductActions,
+} from "./ProductActions";
+
+
+import {
+  ProductErrorMessage,
+} from "./ProductErrorMessage";
+
+
+import {
+  ProductLoading,
+} from "./ProductLoading";
+
+
+
+
 
 
 
 interface ProductFormProps {
 
-  defaultValues?: Partial<ProductFormInput>;
 
-  onSubmit: (
-    data: ProductFormInput,
-  ) => void;
+  productId?: string;
+
 
 }
 
 
 
+
+
+
+
 export function ProductForm({
 
-  defaultValues,
+  productId,
 
-  onSubmit,
-
-}: ProductFormProps) {
+}:ProductFormProps){
 
 
 
-  const {
-    register,
-    handleSubmit,
-    formState: {
-      errors,
-    },
 
-  } = useForm<ProductFormInput>({
 
-    resolver:
-      zodResolver(productSchema),
+const addProduct =
 
-    defaultValues,
+useProductsStore(
 
-  });
+state=>state.addProduct,
+
+);
 
 
 
-  return (
-
-    <form
-
-      onSubmit={
-        handleSubmit(onSubmit)
-      }
-
-      className="
-        space-y-4
-        max-w-xl
-      "
-
-    >
-
-      <div>
-
-        <input
-
-          {...register("name")}
-
-          placeholder="Product name"
-
-          className="
-            border
-            rounded
-            p-2
-            w-full
-          "
-
-        />
 
 
-        {errors.name && (
+const updateProduct =
 
-          <p className="text-red-600">
+useProductsStore(
 
-            {errors.name.message}
+state=>state.updateProduct,
 
-          </p>
-
-        )}
-
-      </div>
+);
 
 
 
-      <input
-
-        {...register("sku")}
-
-        placeholder="SKU"
-
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
-
-      />
 
 
 
-      <input
 
-        type="number"
 
-        {...register(
-          "sellingPrice",
-          {
-            valueAsNumber: true,
-          },
-        )}
+const [name,setName] =
 
-        placeholder="Selling price"
-
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
-
-      />
+useState("");
 
 
 
-      <input
+const [sku,setSku] =
 
-        type="number"
-
-        {...register(
-          "stockQuantity",
-          {
-            valueAsNumber: true,
-          },
-        )}
-
-        placeholder="Stock quantity"
-
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
-
-      />
+useState("");
 
 
 
-      <button
+const [price,setPrice] =
 
-        type="submit"
-
-        className="
-          bg-black
-          text-white
-          px-5
-          py-2
-          rounded
-        "
-
-      >
-
-        Save Product
-
-      </button>
+useState(0);
 
 
-    </form>
 
-  );
+
+
+const [loading,setLoading] =
+
+useState(false);
+
+
+
+
+
+const [error,setError] =
+
+useState("");
+
+
+
+
+
+
+
+
+
+
+useEffect(()=>{
+
+
+
+if(!productId){
+
+return;
+
+}
+
+
+
+
+
+const product =
+
+productService.getProductById(
+
+productId,
+
+);
+
+
+
+
+
+
+if(product){
+
+
+setName(product.name);
+
+
+setSku(product.identifiers.sku);
+
+
+setPrice(
+
+product.pricing.sellingPrice,
+
+);
+
+
+}
+
+
+
+},[productId]);
+
+
+
+
+
+
+
+
+
+
+
+function handleSubmit(){
+
+
+
+try {
+
+
+
+setLoading(true);
+
+
+setError("");
+
+
+
+
+
+
+
+if(productId){
+
+
+
+const existing =
+
+productService.getProductById(
+
+productId,
+
+);
+
+
+
+
+
+
+
+if(existing){
+
+
+
+updateProduct({
+
+
+...existing,
+
+
+name,
+
+
+identifiers:{
+
+
+...existing.identifiers,
+
+
+sku,
+
+
+},
+
+
+
+pricing:{
+
+
+...existing.pricing,
+
+
+sellingPrice:price,
+
+
+},
+
+
+
+updatedAt:
+
+new Date().toISOString(),
+
+
+
+});
+
+
+
+}
+
+
+
+return;
+
+
+}
+
+
+
+
+
+
+
+
+
+const product =
+
+productService.createProduct(
+
+"default-tenant",
+
+"default-store",
+
+{
+
+
+name,
+
+
+identifiers:{
+
+
+sku,
+
+
+barcode:null,
+
+
+},
+
+
+
+pricing:{
+
+
+costPrice:0,
+
+
+sellingPrice:price,
+
+
+currency:"THB",
+
+
+},
+
+
+
+inventory:{
+
+
+trackInventory:true,
+
+
+stockQuantity:0,
+
+
+},
+
+
+
+},
+
+
+
+);
+
+
+
+
+
+
+
+addProduct(product);
+
+
+
+
+
+setName("");
+
+setSku("");
+
+setPrice(0);
+
+
+
+
+
+
+}
+
+catch(error){
+
+
+
+setError(
+
+error instanceof Error
+
+? error.message
+
+: "Something went wrong"
+
+);
+
+
+}
+
+
+
+finally{
+
+
+setLoading(false);
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+if(loading){
+
+
+
+return (
+
+<ProductLoading />
+
+);
+
+
+}
+
+
+
+
+
+
+
+
+
+
+return (
+
+
+<div
+
+className="
+flex
+flex-col
+gap-5
+"
+
+>
+
+
+
+<ProductErrorMessage
+
+message={error}
+
+/>
+
+
+
+
+
+<ProductFormFields
+
+
+name={name}
+
+
+onNameChange={setName}
+
+
+sku={sku}
+
+
+onSkuChange={setSku}
+
+
+price={price}
+
+
+onPriceChange={setPrice}
+
+
+/>
+
+
+
+
+
+
+
+<ProductActions
+
+
+onSubmit={handleSubmit}
+
+
+
+label={
+
+productId
+
+? "Update Product"
+
+: "Create Product"
+
+}
+
+
+/>
+
+
+
+
+
+
+</div>
+
+
+);
+
+
 
 }

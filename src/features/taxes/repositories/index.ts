@@ -1,5 +1,19 @@
-export * from "./tax.repository";
+export {
 
-export * from "./in-memory.tax.repository";
+  taxRepository,
 
-export * from "./repository.provider";
+} from "./repository.provider";
+
+
+export {
+
+  inMemoryTaxRepository,
+
+} from "./in-memory.tax.repository";
+
+
+export type {
+
+  TaxRepository,
+
+} from "./tax.repository";

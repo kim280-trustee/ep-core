@@ -1,6 +1,21 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Brands Module
+ * ------------------------------------------------------------
+ * Brand Business Service
+ * ============================================================
+ */
+
 import {
   brandRepository,
 } from "../repositories";
+
+
+import {
+  BrandStatus,
+} from "../types/brand.types";
 
 
 import type {
@@ -15,7 +30,6 @@ import type {
 
 
 class BrandService {
-
 
 
   generateId(): string {
@@ -38,7 +52,9 @@ class BrandService {
     id: string,
   ): Brand | undefined {
 
-    return brandRepository.findById(id);
+    return brandRepository.findById(
+      id,
+    );
 
   }
 
@@ -62,6 +78,7 @@ class BrandService {
 
     const brand: Brand = {
 
+
       id:
         this.generateId(),
 
@@ -77,11 +94,11 @@ class BrandService {
 
 
       description:
-        input.description,
+        input.description ?? null,
 
 
       status:
-        "active",
+        BrandStatus.ACTIVE,
 
 
       createdAt:
@@ -90,6 +107,7 @@ class BrandService {
 
       updatedAt:
         now,
+
 
     };
 
@@ -109,7 +127,7 @@ class BrandService {
 
     updates: Partial<Brand>,
 
-  ) {
+  ): Brand | undefined {
 
 
     return brandRepository.update(
@@ -125,7 +143,9 @@ class BrandService {
     id: string,
   ): boolean {
 
-    return brandRepository.delete(id);
+    return brandRepository.delete(
+      id,
+    );
 
   }
 

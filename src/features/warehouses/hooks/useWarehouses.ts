@@ -1,60 +1,60 @@
 import {
-  useState,
+
+  useEffect,
+
 } from "react";
 
 
 import {
+
   warehouseService,
+
 } from "../services/warehouse.service";
 
 
+import {
 
-export function useWarehouses() {
+  useWarehouseStore,
+
+} from "../store/warehouse.store";
 
 
-  const [
+
+export function useWarehouses(){
+
+
+  const {
+
     warehouses,
+
     setWarehouses,
-  ] = useState(
-    warehouseService.getWarehouses(),
-  );
+
+  } =
+    useWarehouseStore();
 
 
 
-  function refresh() {
+  useEffect(()=>{
+
 
     setWarehouses(
+
       warehouseService.getWarehouses(),
-    );
 
-  }
-
-
-
-  function removeWarehouse(
-    id: string,
-  ) {
-
-
-    warehouseService.deleteWarehouse(
-      id,
     );
 
 
-    refresh();
-
-  }
+  },[setWarehouses]);
 
 
 
   return {
 
+
     warehouses,
 
-    refresh,
-
-    removeWarehouse,
 
   };
+
 
 }

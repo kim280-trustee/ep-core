@@ -77,7 +77,7 @@ export function EditBrandPage() {
 
 
         description:
-          data.description,
+          data.description ?? null,
 
       },
 
@@ -119,7 +119,7 @@ export function EditBrandPage() {
 
 
           description:
-            brand.description,
+            brand.description ?? undefined,
 
         }}
 

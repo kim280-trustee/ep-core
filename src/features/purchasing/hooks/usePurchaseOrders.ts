@@ -1,53 +1,9 @@
 import {
-  useState,
-} from "react";
-
-
-import {
-  purchaseOrderService,
-} from "../services/purchase-order.service";
-
-
+  usePurchaseOrderStore,
+} from "../store/purchase-order.store";
 
 export function usePurchaseOrders() {
 
-
-  const [
-
-    orders,
-
-    setOrders,
-
-  ] = useState(
-
-    purchaseOrderService.getOrders(),
-
-  );
-
-
-
-  function refresh() {
-
-
-    setOrders(
-
-      purchaseOrderService.getOrders(),
-
-    );
-
-  }
-
-
-
-  return {
-
-
-    orders,
-
-
-    refresh,
-
-
-  };
+  return usePurchaseOrderStore();
 
 }

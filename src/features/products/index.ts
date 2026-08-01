@@ -1,7 +1,17 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Products Module
+ * ============================================================
+ */
+
+
 export * from "./types/product.types";
 
-export * from "./constants/product.constants";
+export * from "./validation/product.schema";
 
-export * from "./validators/product.schema";
 
-export * from "./services/product.service";
+export {
+  productService,
+} from "./services/product.service";

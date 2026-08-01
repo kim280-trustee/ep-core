@@ -1,16 +1,38 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * Smart POS
+ * In Memory Warehouse Repository
+ * ============================================================
+ */
+
+
+import {
+  v4 as uuid,
+} from "uuid";
+
+
 import type {
+
   Warehouse,
+
+  CreateWarehouseDto,
+
+  UpdateWarehouseDto,
+
 } from "../types/warehouse.types";
 
 
 import type {
-  IWarehouseRepository,
+
+  WarehouseRepository,
+
 } from "./warehouse.repository";
 
 
 
 class InMemoryWarehouseRepository
-  implements IWarehouseRepository {
+implements WarehouseRepository {
 
 
 
@@ -18,7 +40,7 @@ class InMemoryWarehouseRepository
 
 
 
-  findAll(): Warehouse[] {
+  findAll() {
 
     return this.warehouses;
 
@@ -28,11 +50,13 @@ class InMemoryWarehouseRepository
 
   findById(
     id: string,
-  ): Warehouse | undefined {
+  ) {
 
     return this.warehouses.find(
-      (warehouse) =>
-        warehouse.id === id,
+
+      item =>
+        item.id === id,
+
     );
 
   }
@@ -40,34 +64,71 @@ class InMemoryWarehouseRepository
 
 
   create(
-    warehouse: Warehouse,
-  ): Warehouse {
+    warehouse:
+      CreateWarehouseDto
+      & {
+        tenantId:string;
+        storeId:string;
+      },
+  ) {
+
+
+    const item: Warehouse = {
+
+
+      id:
+
+        uuid(),
+
+
+      ...warehouse,
+
+
+      status:
+
+        "ACTIVE",
+
+
+      createdAt:
+
+        new Date(),
+
+
+      updatedAt:
+
+        new Date(),
+
+
+    };
+
+
 
     this.warehouses.push(
-      warehouse,
+      item,
     );
 
-    return warehouse;
+
+
+    return item;
 
   }
 
 
 
   update(
-    id: string,
-    updates: Partial<Warehouse>,
-  ): Warehouse | undefined {
+    id:string,
+    warehouse:UpdateWarehouseDto,
+  ) {
 
 
-    const index =
-      this.warehouses.findIndex(
-        (warehouse) =>
-          warehouse.id === id,
+    const existing =
+      this.findById(
+        id,
       );
 
 
 
-    if (index === -1) {
+    if (!existing) {
 
       return undefined;
 
@@ -75,39 +136,47 @@ class InMemoryWarehouseRepository
 
 
 
-    this.warehouses[index] = {
+    Object.assign(
 
-      ...this.warehouses[index],
+      existing,
 
-      ...updates,
+      warehouse,
 
-      updatedAt:
-        new Date().toISOString(),
+      {
 
-    };
+        updatedAt:
+
+          new Date(),
+
+      },
+
+    );
 
 
 
-    return this.warehouses[index];
+    return existing;
 
   }
 
 
 
   delete(
-    id: string,
-  ): boolean {
+    id:string,
+  ) {
 
 
     const index =
+
       this.warehouses.findIndex(
-        (warehouse) =>
-          warehouse.id === id,
+
+        item =>
+          item.id === id,
+
       );
 
 
 
-    if (index === -1) {
+    if(index === -1){
 
       return false;
 
@@ -116,9 +185,13 @@ class InMemoryWarehouseRepository
 
 
     this.warehouses.splice(
+
       index,
+
       1,
+
     );
+
 
 
     return true;
@@ -131,4 +204,5 @@ class InMemoryWarehouseRepository
 
 
 export const inMemoryWarehouseRepository =
+
   new InMemoryWarehouseRepository();

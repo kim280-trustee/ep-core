@@ -1,44 +1,55 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Taxes Module
+ * ------------------------------------------------------------
+ * Tax Validation Schema
+ * ============================================================
+ */
+
+
 import {
   z,
 } from "zod";
 
 
+
 export const taxSchema = z.object({
 
-  name: z
-    .string()
-    .min(
-      2,
-      "Tax name must contain at least 2 characters",
-    ),
+
+  name:
+    z.string()
+      .min(1),
 
 
-  rate: z
-    .number()
-    .min(
-      0,
-    )
-    .max(
-      100,
-    ),
+
+  code:
+    z.string()
+      .optional(),
 
 
-  country: z
-    .string()
-    .min(
-      2,
-      "Country is required",
-    ),
+
+  rate:
+    z.number()
+      .min(0)
+      .max(100),
 
 
-  currency: z
-    .string()
-    .min(
-      3,
-      "Currency is required",
-    ),
+
+  country:
+    z.string()
+      .min(1),
+
+
+
+  currency:
+    z.string()
+      .min(1),
+
 
 });
+
 
 
 export type TaxFormInput =

@@ -1,11 +1,15 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Products Page
+ * ============================================================
+ */
+
+
 import {
-  useState,
+  useEffect,
 } from "react";
-
-
-import {
-  ProductToolbar,
-} from "../components/ProductToolbar";
 
 
 import {
@@ -14,158 +18,219 @@ import {
 
 
 import {
-  DeleteProductDialog,
-} from "../components/DeleteProductDialog";
+  ProductSearch,
+} from "../components/ProductSearch";
 
 
 import {
-  useProducts,
-} from "../hooks/useProducts";
+  ProductFilters,
+} from "../components/ProductFilters";
+
+
+import {
+  ProductStats,
+} from "../components/ProductStats";
+
+
+import {
+  useProductsStore,
+} from "../store/products.store";
 
 
 
-export function ProductsPage() {
 
 
-  const {
-    products,
-    removeProduct,
-
-  } = useProducts();
+export function ProductsPage(){
 
 
 
-  const [
-    search,
-    setSearch,
-  ] = useState("");
+  const loadProducts =
 
+    useProductsStore(
 
+      (state)=>
 
-  const [
-    status,
-    setStatus,
-  ] = useState("all");
+        state.loadProducts,
 
-
-
-  const [
-    selectedId,
-    setSelectedId,
-  ] = useState<string | null>(null);
-
-
-
-  const filteredProducts =
-    products.filter(
-      (product) => {
-
-        const matchesSearch =
-          product.name
-            .toLowerCase()
-            .includes(
-              search.toLowerCase(),
-            );
-
-
-        const matchesStatus =
-          status === "all"
-          ||
-          product.status === status;
-
-
-        return (
-          matchesSearch
-          &&
-          matchesStatus
-        );
-
-      },
     );
 
 
 
-  const selectedProduct =
-    products.find(
-      (product) =>
-        product.id === selectedId,
+
+
+  const search =
+
+    useProductsStore(
+
+      (state)=>
+
+        state.search,
+
     );
+
+
+
+
+
+  const setSearch =
+
+    useProductsStore(
+
+      (state)=>
+
+        state.setSearch,
+
+    );
+
+
+
+
+
+
+  const statusFilter =
+
+    useProductsStore(
+
+      (state)=>
+
+        state.statusFilter,
+
+    );
+
+
+
+
+
+
+  const setStatusFilter =
+
+    useProductsStore(
+
+      (state)=>
+
+        state.setStatusFilter,
+
+    );
+
+
+
+
+
+
+
+
+  useEffect(()=>{
+
+
+    loadProducts();
+
+
+
+  },[loadProducts]);
+
+
+
+
 
 
 
   return (
 
+
     <div
+
       className="
-        p-6
+      flex
+      flex-col
+      gap-6
       "
+
     >
 
+
+
+
       <h1
+
         className="
-          text-2xl
-          font-bold
-          mb-6
+        text-2xl
+        font-semibold
         "
+
       >
+
         Products
+
+
       </h1>
 
 
-      <ProductToolbar
-
-        search={search}
-
-        onSearchChange={setSearch}
-
-        status={status}
-
-        onStatusChange={setStatus}
-
-      />
 
 
-      <ProductTable
-
-        products={filteredProducts}
-
-        onDelete={setSelectedId}
-
-      />
 
 
-      <DeleteProductDialog
 
-        open={selectedId !== null}
-
-        productName={
-          selectedProduct?.name
-        }
-
-        onCancel={() =>
-          setSelectedId(null)
-        }
-
-        onConfirm={() => {
-
-          if (selectedId) {
-
-            removeProduct(
-              selectedId,
-            );
-
-          }
+      <ProductStats />
 
 
-          setSelectedId(null);
 
-        }}
 
-      />
+
+
+
+      <div
+
+        className="
+        flex
+        gap-4
+        "
+
+      >
+
+
+
+        <ProductSearch
+
+          value={search}
+
+          onChange={setSearch}
+
+        />
+
+
+
+
+
+
+        <ProductFilters
+
+          status={statusFilter}
+
+          onChange={setStatusFilter}
+
+        />
+
+
+
+      </div>
+
+
+
+
+
+
+
+
+      <ProductTable />
+
+
+
 
 
     </div>
 
+
   );
+
 
 }

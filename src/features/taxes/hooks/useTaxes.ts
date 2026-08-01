@@ -1,60 +1,59 @@
 import {
-  useState,
+
+  useEffect,
+
 } from "react";
 
 
 import {
+
   taxService,
+
 } from "../services/tax.service";
 
 
+import {
 
-export function useTaxes() {
+  useTaxStore,
+
+} from "../store/tax.store";
 
 
-  const [
-    taxes,
-    setTaxes,
-  ] = useState(
-    taxService.getTaxes(),
+
+export function useTaxes(){
+
+
+ const {
+
+  taxes,
+
+  setTaxes,
+
+ } = useTaxStore();
+
+
+
+ useEffect(()=>{
+
+
+  setTaxes(
+
+    taxService.getTaxes()
+
   );
 
 
-
-  function refresh() {
-
-    setTaxes(
-      taxService.getTaxes(),
-    );
-
-  }
+ },[setTaxes]);
 
 
 
-  function removeTax(
-    id: string,
-  ) {
+ return {
 
 
-    taxService.deleteTax(
-      id,
-    );
+  taxes,
 
 
-    refresh();
+ };
 
-  }
-
-
-
-  return {
-
-    taxes,
-
-    refresh,
-
-    removeTax,
-
-  };
 
 }

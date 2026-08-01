@@ -1,6 +1,22 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Units Module
+ * ------------------------------------------------------------
+ * Unit Business Service
+ * ============================================================
+ */
+
+
 import {
   unitRepository,
 } from "../repositories";
+
+
+import {
+  UnitStatus,
+} from "../types/unit.types";
 
 
 import type {
@@ -26,6 +42,7 @@ class UnitService {
 
 
 
+
   getUnits(): Unit[] {
 
     return unitRepository.findAll();
@@ -34,13 +51,17 @@ class UnitService {
 
 
 
+
   getUnitById(
     id: string,
   ): Unit | undefined {
 
-    return unitRepository.findById(id);
+    return unitRepository.findById(
+      id,
+    );
 
   }
+
 
 
 
@@ -55,13 +76,13 @@ class UnitService {
   ): Unit {
 
 
-
     const now =
       new Date().toISOString();
 
 
 
     const unit: Unit = {
+
 
       id:
         this.generateId(),
@@ -82,11 +103,11 @@ class UnitService {
 
 
       description:
-        input.description,
+        input.description ?? null,
 
 
       status:
-        "active",
+        UnitStatus.ACTIVE,
 
 
       createdAt:
@@ -95,6 +116,7 @@ class UnitService {
 
       updatedAt:
         now,
+
 
     };
 
@@ -108,13 +130,14 @@ class UnitService {
 
 
 
+
   updateUnit(
 
     id: string,
 
     updates: Partial<Unit>,
 
-  ) {
+  ): Unit | undefined {
 
 
     return unitRepository.update(
@@ -126,11 +149,14 @@ class UnitService {
 
 
 
+
   deleteUnit(
     id: string,
   ): boolean {
 
-    return unitRepository.delete(id);
+    return unitRepository.delete(
+      id,
+    );
 
   }
 

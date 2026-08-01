@@ -4,6 +4,11 @@ import {
 
 
 import {
+  useSuppliers,
+} from "../hooks/useSuppliers";
+
+
+import {
   SupplierToolbar,
 } from "../components/SupplierToolbar";
 
@@ -13,76 +18,76 @@ import {
 } from "../components/SupplierTable";
 
 
-import {
-  useSuppliers,
-} from "../hooks/useSuppliers";
-
-
 
 export function SuppliersPage() {
 
 
   const {
+
     suppliers,
+
     removeSupplier,
-  } = useSuppliers();
+
+  } =
+    useSuppliers();
 
 
 
   const [
     search,
     setSearch,
-  ] = useState("");
+  ] =
+    useState("");
 
 
 
-  const filteredSuppliers =
+  const filtered =
+
     suppliers.filter(
-      (supplier) =>
+
+      supplier =>
+
         supplier.name
+
           .toLowerCase()
+
           .includes(
+
             search.toLowerCase(),
+
           ),
+
     );
 
 
 
   return (
 
-    <div
-      className="p-6"
-    >
-
-      <h1
-        className="
-          text-2xl
-          font-bold
-          mb-6
-        "
-      >
-
-        Suppliers
-
-      </h1>
-
+    <div>
 
 
       <SupplierToolbar
 
-        search={search}
+        search={
+          search
+        }
 
-        onSearchChange={setSearch}
+        onSearchChange={
+          setSearch
+        }
 
       />
 
 
-
       <SupplierTable
 
-        suppliers={filteredSuppliers}
+        suppliers={
+          filtered
+        }
 
-        onDelete={removeSupplier}
+        onDelete={
+          removeSupplier
+        }
 
       />
 

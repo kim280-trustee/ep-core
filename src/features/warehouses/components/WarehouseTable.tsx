@@ -1,23 +1,17 @@
-import {
-  Link,
-} from "react-router-dom";
-
-
 import type {
   Warehouse,
 } from "../types/warehouse.types";
 
 
-interface WarehouseTableProps {
+interface Props {
 
-  warehouses: Warehouse[];
+  warehouses:Warehouse[];
 
-  onDelete: (
-    id: string,
-  ) => void;
+  onDelete(
+    id:string
+  ):void;
 
 }
-
 
 
 export function WarehouseTable({
@@ -26,158 +20,60 @@ export function WarehouseTable({
 
   onDelete,
 
-}: WarehouseTableProps) {
-
-
-  if (warehouses.length === 0) {
-
-    return (
-
-      <div
-        className="
-          border
-          rounded
-          p-8
-          text-center
-        "
-      >
-
-        No warehouses found.
-
-      </div>
-
-    );
-
-  }
-
+}:Props){
 
 
   return (
 
-    <table
-      className="
-        w-full
-        border-collapse
-      "
-    >
+    <div>
 
-      <thead>
+      {
+        warehouses.map(
 
-        <tr
-          className="border-b"
-        >
+          warehouse => (
 
-          <th className="text-left p-3">
-            Name
-          </th>
+            <div
 
-
-          <th className="text-left p-3">
-            Code
-          </th>
-
-
-          <th className="text-left p-3">
-            Phone
-          </th>
-
-
-          <th className="text-left p-3">
-            Actions
-          </th>
-
-
-        </tr>
-
-      </thead>
-
-
-
-      <tbody>
-
-        {warehouses.map(
-
-          (warehouse) => (
-
-            <tr
-
-              key={warehouse.id}
-
-              className="border-b"
+              key={
+                warehouse.id
+              }
 
             >
 
-              <td className="p-3">
+              <span>
 
                 {warehouse.name}
 
-              </td>
+              </span>
 
 
-              <td className="p-3">
+              <button
 
-                {warehouse.code}
-
-              </td>
+                onClick={()=>
 
 
-              <td className="p-3">
+                  onDelete(
+                    warehouse.id
+                  )
 
-                {warehouse.phone || "-"}
+                }
 
-              </td>
-
-
-              <td
-                className="
-                  p-3
-                  flex
-                  gap-3
-                "
               >
 
-                <Link
+                Delete
 
-                  to={`/warehouses/edit/${warehouse.id}`}
-
-                  className="underline"
-
-                >
-
-                  Edit
-
-                </Link>
+              </button>
 
 
+            </div>
 
-                <button
+          )
 
-                  onClick={() =>
-                    onDelete(warehouse.id)
-                  }
+        )
 
-                  className="text-red-600"
+      }
 
-                >
-
-                  Delete
-
-                </button>
-
-
-              </td>
-
-
-            </tr>
-
-          ),
-
-        )}
-
-      </tbody>
-
-
-    </table>
+    </div>
 
   );
 

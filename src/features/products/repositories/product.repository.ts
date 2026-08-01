@@ -1,8 +1,19 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Product Repository
+ * ============================================================
+ */
+
 import type {
   Product,
+  CreateProductDto,
+  UpdateProductDto,
 } from "../types/product.types";
 
-export interface ProductRepository {
+export interface IProductRepository {
+
   findAll(): Product[];
 
   findById(
@@ -26,15 +37,18 @@ export interface ProductRepository {
   ): boolean;
 
   create(
-    product: Product,
+    tenantId: string,
+    storeId: string,
+    data: CreateProductDto,
   ): Product;
 
   update(
     id: string,
-    updates: Partial<Product>,
+    updates: UpdateProductDto,
   ): Product | undefined;
 
   delete(
     id: string,
   ): boolean;
+
 }

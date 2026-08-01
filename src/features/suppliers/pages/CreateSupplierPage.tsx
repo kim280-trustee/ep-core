@@ -13,6 +13,11 @@ import {
 } from "../services/supplier.service";
 
 
+import type {
+  SupplierFormInput,
+} from "../validators/supplier.schema";
+
+
 
 export function CreateSupplierPage() {
 
@@ -23,26 +28,25 @@ export function CreateSupplierPage() {
 
 
   function handleSubmit(
-
-    data: Parameters<
-      typeof supplierService.createSupplier
-    >[0],
-
+    data: SupplierFormInput,
   ) {
 
 
     supplierService.createSupplier(
 
-      data,
-
       "default-tenant",
 
       "default-store",
 
+      data,
+
     );
 
 
-    navigate("/suppliers");
+
+    navigate(
+      "/suppliers",
+    );
 
   }
 
@@ -50,32 +54,13 @@ export function CreateSupplierPage() {
 
   return (
 
-    <div
-      className="p-6"
-    >
+    <SupplierForm
 
-      <h1
-        className="
-          text-2xl
-          font-bold
-          mb-6
-        "
-      >
+      onSubmit={
+        handleSubmit
+      }
 
-        Create Supplier
-
-      </h1>
-
-
-
-      <SupplierForm
-
-        onSubmit={handleSubmit}
-
-      />
-
-
-    </div>
+    />
 
   );
 

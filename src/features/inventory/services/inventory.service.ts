@@ -8,6 +8,11 @@ import type {
 } from "../types/inventory-record.types";
 
 
+import {
+  inventoryMovementEngine,
+} from "../engine";
+
+
 
 class InventoryService {
 
@@ -29,7 +34,6 @@ class InventoryService {
     warehouseId: string,
 
   ) {
-
 
     return inventoryContext.repository
 
@@ -53,7 +57,6 @@ class InventoryService {
 
   ) {
 
-
     return inventoryContext.repository.create(
 
       record,
@@ -75,6 +78,18 @@ class InventoryService {
     incomingCost: number,
 
   ) {
+
+
+    const updatedRecord =
+
+      inventoryMovementEngine.increase(
+
+        record,
+
+        quantity,
+
+      );
+
 
 
     const currentValue =
@@ -132,13 +147,13 @@ class InventoryService {
 
         quantityOnHand:
 
-          totalQuantity,
+          updatedRecord.quantityOnHand,
 
 
 
         availableQuantity:
 
-          totalQuantity -
+          updatedRecord.quantityOnHand -
 
           record.reservedQuantity,
 
@@ -165,6 +180,8 @@ class InventoryService {
 
 
 
+
+
   decreaseStock(
 
     record: InventoryRecord,
@@ -174,11 +191,15 @@ class InventoryService {
   ) {
 
 
-    const newQuantity =
+    const updatedRecord =
 
-      record.quantityOnHand -
+      inventoryMovementEngine.decrease(
 
-      quantity;
+        record,
+
+        quantity,
+
+      );
 
 
 
@@ -191,13 +212,13 @@ class InventoryService {
 
         quantityOnHand:
 
-          newQuantity,
+          updatedRecord.quantityOnHand,
 
 
 
         availableQuantity:
 
-          newQuantity -
+          updatedRecord.quantityOnHand -
 
           record.reservedQuantity,
 
@@ -213,6 +234,8 @@ class InventoryService {
     );
 
   }
+
+
 
 
 
@@ -260,6 +283,8 @@ class InventoryService {
     );
 
   }
+
+
 
 
 
@@ -318,12 +343,13 @@ class InventoryService {
 
 
 
+
+
   getProductStock(
 
     productId: string,
 
   ) {
-
 
     return inventoryContext.repository
 
@@ -343,12 +369,13 @@ class InventoryService {
 
 
 
+
+
   getWarehouseInventory(
 
     warehouseId: string,
 
   ) {
-
 
     return inventoryContext.repository
 
@@ -363,6 +390,8 @@ class InventoryService {
       );
 
   }
+
+
 
 
 
@@ -402,12 +431,13 @@ class InventoryService {
           record.availableQuantity,
 
 
-
         0,
 
       );
 
   }
+
+
 
 
 

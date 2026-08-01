@@ -1,124 +1,467 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * In Memory Product Repository
+ * ============================================================
+ */
+
+
+import {
+  v4 as uuid,
+} from "uuid";
+
+
 import type {
   Product,
+  CreateProductDto,
+  UpdateProductDto,
 } from "../types/product.types";
 
+
+import {
+  ProductStatus,
+  ProductType,
+} from "../types/product.types";
+
+
 import type {
-  ProductRepository,
+  IProductRepository,
 } from "./product.repository";
 
-export class InMemoryProductRepository
-  implements ProductRepository {
 
-  private readonly products = new Map<
-    string,
-    Product
-  >();
+
+export class InMemoryProductRepository
+
+implements IProductRepository {
+
+
+
+  private readonly products =
+
+    new Map<string, Product>();
+
+
+
 
   findAll(): Product[] {
+
+
     return Array.from(
+
       this.products.values(),
+
     );
+
+
   }
+
+
+
 
   findById(
-    id: string,
-  ): Product | undefined {
-    return this.products.get(id);
+
+    id:string,
+
+  ):Product | undefined {
+
+
+    return this.products.get(
+
+      id,
+
+    );
+
+
   }
+
+
+
 
   findBySku(
-    sku: string,
-  ): Product | undefined {
+
+    sku:string,
+
+  ):Product | undefined {
+
 
     return this.findAll().find(
-      (product) =>
+
+      product =>
+
         product.identifiers.sku === sku,
+
     );
 
+
   }
+
+
+
 
   findByBarcode(
-    barcode: string,
-  ): Product | undefined {
+
+    barcode:string,
+
+  ):Product | undefined {
+
 
     return this.findAll().find(
-      (product) =>
-        product.identifiers.barcode ===
-        barcode,
+
+      product =>
+
+        product.identifiers.barcode === barcode,
+
     );
 
+
   }
+
+
+
 
   existsBySku(
-    sku: string,
-  ): boolean {
 
-    return this.findBySku(sku) !== undefined;
+    sku:string,
 
-  }
+  ):boolean {
 
-  existsByBarcode(
-    barcode: string,
-  ): boolean {
 
     return (
-      this.findByBarcode(barcode) !==
-      undefined
+
+      this.findBySku(sku)
+
+      !== undefined
+
     );
 
+
   }
+
+
+
+
+  existsByBarcode(
+
+    barcode:string,
+
+  ):boolean {
+
+
+    return (
+
+      this.findByBarcode(barcode)
+
+      !== undefined
+
+    );
+
+
+  }
+
+
+
 
   create(
-    product: Product,
-  ): Product {
 
-    this.products.set(
-      product.id,
-      product,
-    );
+    tenantId:string,
 
-    return product;
+    storeId:string,
 
-  }
+    data:CreateProductDto,
 
-  update(
-    id: string,
-    updates: Partial<Product>,
-  ): Product | undefined {
+  ):Product {
 
-    const existing =
-      this.products.get(id);
 
-    if (!existing) {
-      return undefined;
-    }
 
-    const updated: Product = {
+    const now =
 
-      ...existing,
+      new Date().toISOString();
 
-      ...updates,
+
+
+
+    const product:Product = {
+
+
+
+      id:
+
+        uuid(),
+
+
+
+      tenantId,
+
+
+
+      storeId,
+
+
+
+      name:
+
+        data.name,
+
+
+
+      description:
+
+        data.description ?? null,
+
+
+
+      type:
+
+        data.type ?? ProductType.PRODUCT,
+
+
+
+      identifiers: {
+
+        sku:
+
+          data.identifiers.sku,
+
+
+        barcode:
+
+          data.identifiers.barcode ?? null,
+
+      },
+
+
+
+      pricing: {
+
+        costPrice:
+
+          data.pricing.costPrice,
+
+
+        sellingPrice:
+
+          data.pricing.sellingPrice,
+
+
+        currency:
+
+          data.pricing.currency,
+
+      },
+
+
+
+      tax:
+
+        data.tax ?? {
+
+          taxId:null,
+
+          taxRate:0,
+
+        },
+
+
+
+      inventory:
+
+        data.inventory ?? {
+
+          trackInventory:true,
+
+          stockQuantity:0,
+
+        },
+
+
+
+      categoryId:
+
+        data.categoryId ?? null,
+
+
+
+      brandId:
+
+        data.brandId ?? null,
+
+
+
+      unitId:
+
+        data.unitId ?? null,
+
+
+
+      imageUrl:
+
+        data.imageUrl ?? null,
+
+
+
+      status:
+
+        ProductStatus.ACTIVE,
+
+
+
+      createdAt:
+
+        now,
+
+
 
       updatedAt:
-        new Date().toISOString(),
+
+        now,
+
 
     };
 
+
+
     this.products.set(
-      id,
-      updated,
+
+      product.id,
+
+      product,
+
     );
+
+
+
+    return product;
+
+
+  }
+
+
+
+
+
+
+  update(
+
+    id:string,
+
+    updates:UpdateProductDto,
+
+  ):Product | undefined {
+
+
+
+    const existing =
+
+      this.products.get(id);
+
+
+
+    if(!existing){
+
+      return undefined;
+
+    }
+
+
+
+
+    const updated:Product = {
+
+
+
+      ...existing,
+
+
+
+      ...updates,
+
+
+
+      identifiers: {
+
+        ...existing.identifiers,
+
+        ...updates.identifiers,
+
+      },
+
+
+
+      pricing: {
+
+        ...existing.pricing,
+
+        ...updates.pricing,
+
+      },
+
+
+
+      tax: {
+
+        ...existing.tax,
+
+        ...updates.tax,
+
+      },
+
+
+
+      inventory: {
+
+        ...existing.inventory,
+
+        ...updates.inventory,
+
+      },
+
+
+
+      updatedAt:
+
+        new Date().toISOString(),
+
+
+    };
+
+
+
+    this.products.set(
+
+      id,
+
+      updated,
+
+    );
+
+
 
     return updated;
 
+
   }
+
+
+
+
+
 
   delete(
-    id: string,
-  ): boolean {
 
-    return this.products.delete(id);
+    id:string,
+
+  ):boolean {
+
+
+    return this.products.delete(
+
+      id,
+
+    );
+
 
   }
+
 
 }

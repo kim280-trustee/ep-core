@@ -23,53 +23,99 @@ import {
 } from "../pages/EditProductPage";
 
 
-export const productRoutes: RouteObject[] = [
-
-  {
-    path: "/products",
-
-    element: (
-
-      <AppLayout>
-
-        <ProductsPage />
-
-      </AppLayout>
-
-    ),
-
-  },
+import {
+  ProductDetailsPage,
+} from "../pages/ProductDetailsPage";
 
 
-  {
-    path: "/products/create",
-
-    element: (
-
-      <AppLayout>
-
-        <CreateProductPage />
-
-      </AppLayout>
-
-    ),
-
-  },
 
 
-  {
-    path: "/products/edit/:id",
 
-    element: (
+export const productRoutes:RouteObject[]=[
 
-      <AppLayout>
 
-        <EditProductPage />
 
-      </AppLayout>
+{
 
-    ),
+path:"/products",
 
-  },
+element:(
+
+<AppLayout>
+
+<ProductsPage />
+
+</AppLayout>
+
+),
+
+
+},
+
+
+
+
+
+{
+
+path:"/products/create",
+
+element:(
+
+<AppLayout>
+
+<CreateProductPage />
+
+</AppLayout>
+
+),
+
+
+},
+
+
+
+
+
+{
+
+path:"/products/edit/:id",
+
+element:(
+
+<AppLayout>
+
+<EditProductPage />
+
+</AppLayout>
+
+),
+
+
+},
+
+
+
+
+
+{
+
+path:"/products/:id",
+
+element:(
+
+<AppLayout>
+
+<ProductDetailsPage />
+
+</AppLayout>
+
+),
+
+
+},
+
+
+
 
 ];

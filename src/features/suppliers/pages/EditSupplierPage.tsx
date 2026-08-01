@@ -1,6 +1,8 @@
 import {
   useNavigate,
+
   useParams,
+
 } from "react-router-dom";
 
 
@@ -18,89 +20,54 @@ import {
 export function EditSupplierPage() {
 
 
+  const {
+    id,
+  } =
+    useParams();
+
+
   const navigate =
     useNavigate();
 
 
-  const {
-    id,
-  } = useParams();
 
-
-
-  const foundSupplier =
+  const supplier =
     id
-      ? supplierService.getSupplierById(id)
+
+      ? supplierService.getSupplierById(
+          id,
+        )
+
       : undefined;
 
 
 
-  if (!foundSupplier) {
-
-    return (
-
-      <div
-        className="p-6"
-      >
-
-        Supplier not found
-
-      </div>
-
-    );
-
-  }
-
-
-
-  const supplier = foundSupplier;
-
-
-
   function handleSubmit(
-
-    data: Parameters<
-      typeof supplierService.createSupplier
-    >[0],
-
+    data: any,
   ) {
+
+
+    if (!id) {
+
+      return;
+
+    }
+
 
 
     supplierService.updateSupplier(
 
-      supplier.id,
+      id,
 
-      {
-
-        name:
-          data.name,
-
-
-        contactPerson:
-          data.contactPerson,
-
-
-        phone:
-          data.phone,
-
-
-        email:
-          data.email,
-
-
-        address:
-          data.address,
-
-
-        taxId:
-          data.taxId,
-
-      },
+      data,
 
     );
 
 
-    navigate("/suppliers");
+
+    navigate(
+      "/suppliers",
+    );
 
   }
 
@@ -108,60 +75,17 @@ export function EditSupplierPage() {
 
   return (
 
-    <div
-      className="p-6"
-    >
+    <SupplierForm
 
-      <h1
-        className="
-          text-2xl
-          font-bold
-          mb-6
-        "
-      >
+      defaultValues={
+        supplier
+      }
 
-        Edit Supplier
+      onSubmit={
+        handleSubmit
+      }
 
-      </h1>
-
-
-
-      <SupplierForm
-
-        defaultValues={{
-
-          name:
-            supplier.name,
-
-
-          contactPerson:
-            supplier.contactPerson,
-
-
-          phone:
-            supplier.phone,
-
-
-          email:
-            supplier.email,
-
-
-          address:
-            supplier.address,
-
-
-          taxId:
-            supplier.taxId,
-
-        }}
-
-
-        onSubmit={handleSubmit}
-
-      />
-
-
-    </div>
+    />
 
   );
 

@@ -1,75 +1,38 @@
-export interface AuthContext {
+import {
+  createContext,
+} from "react";
 
-  userId: string;
 
-  tenantId: string;
-
-  storeId: string;
-
-  role: string;
-
-  permissions: string[];
-
-}
+import type {
+  User,
+} from "@/features/auth/types";
 
 
 
-class AuthContextManager {
+export interface AuthContextValue {
 
 
-  private context:
-    AuthContext | null = null;
+  user:
+    User | null;
 
 
-
-  setAuth(
-    context: AuthContext,
-  ) {
-
-    this.context = context;
-
-  }
+  loading:
+    boolean;
 
 
-
-  getAuth():
-
-  AuthContext | null {
-
-    return this.context;
-
-  }
+  refreshUser:
+    () => Promise<void>;
 
 
-
-  hasPermission(
-    permission: string,
-  ): boolean {
-
-
-    return (
-
-      this.context?.permissions.includes(
-        permission,
-      ) ?? false
-
-    );
-
-
-  }
-
-
-
-  clearAuth() {
-
-    this.context = null;
-
-  }
-
+  logout:
+    () => Promise<void>;
 
 }
 
 
 
-export const authContext =
-  new AuthContextManager();
+export const AuthContext =
+
+  createContext<AuthContextValue | undefined>(
+    undefined,
+  );

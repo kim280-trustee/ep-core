@@ -1,17 +1,30 @@
-import { paymentService } from "../services/payment.service";
+import {
+  useEffect,
+} from "react";
 
-export const usePayments = () => {
-  return {
-    createPayment:
-      paymentService.createPayment.bind(paymentService),
 
-    getPayments:
-      paymentService.getPayments.bind(paymentService),
+import {
+  usePaymentStore,
+} from "../store/payment.store";
 
-    getPaymentById:
-      paymentService.getPaymentById.bind(paymentService),
 
-    getPaymentsBySaleId:
-      paymentService.getPaymentsBySaleId.bind(paymentService),
-  };
-};
+export function usePayments() {
+
+
+  const store =
+
+    usePaymentStore();
+
+
+
+  useEffect(() => {
+
+    store.loadPayments();
+
+  }, [store]);
+
+
+
+  return store;
+
+}

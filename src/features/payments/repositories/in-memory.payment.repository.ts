@@ -1,56 +1,83 @@
-import type { Payment } from "../types/payment.types";
-import type { PaymentRepository } from "./payment.repository";
+import type {
+  Payment,
+} from "../types/payment.types";
 
-class InMemoryPaymentRepository implements PaymentRepository {
+import type {
+  PaymentRepository,
+} from "./payment.repository";
+
+class InMemoryPaymentRepository
+  implements PaymentRepository {
+
   private payments: Payment[] = [];
 
   findAll(): Payment[] {
+
     return this.payments;
+
   }
 
   findById(
     id: string,
   ): Payment | undefined {
+
     return this.payments.find(
       (payment) => payment.id === id,
     );
+
   }
 
-  findBySaleId(
-    saleId: string,
+  findByOrderId(
+    salesOrderId: string,
   ): Payment[] {
+
     return this.payments.filter(
-      (payment) => payment.saleId === saleId,
+      (payment) =>
+        payment.salesOrderId === salesOrderId,
     );
+
   }
 
   create(
     payment: Payment,
   ): Payment {
+
     this.payments.push(payment);
 
     return payment;
+
   }
 
   update(
     id: string,
     updates: Partial<Payment>,
   ): Payment | undefined {
-    const index = this.payments.findIndex(
-      (payment) => payment.id === id,
-    );
+
+    const index =
+      this.payments.findIndex(
+        (payment) => payment.id === id,
+      );
 
     if (index === -1) {
+
       return undefined;
+
     }
 
     this.payments[index] = {
+
       ...this.payments[index],
+
       ...updates,
+
+      updatedAt: new Date().toISOString(),
+
     };
 
     return this.payments[index];
+
   }
+
 }
 
 export const inMemoryPaymentRepository =

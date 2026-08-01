@@ -1,3 +1,13 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Categories Module
+ * ------------------------------------------------------------
+ * In Memory Category Repository
+ * ============================================================
+ */
+
 import type {
   Category,
 } from "../types/category.types";
@@ -8,10 +18,8 @@ import type {
 } from "./category.repository";
 
 
-
 class InMemoryCategoryRepository
-  implements ICategoryRepository {
-
+implements ICategoryRepository {
 
 
   private categories: Category[] = [];
@@ -58,7 +66,6 @@ class InMemoryCategoryRepository
     updates: Partial<Category>,
   ): Category | undefined {
 
-
     const index =
       this.categories.findIndex(
         (category) =>
@@ -66,13 +73,11 @@ class InMemoryCategoryRepository
       );
 
 
-
     if (index === -1) {
 
       return undefined;
 
     }
-
 
 
     this.categories[index] = {
@@ -87,7 +92,6 @@ class InMemoryCategoryRepository
     };
 
 
-
     return this.categories[index];
 
   }
@@ -98,7 +102,6 @@ class InMemoryCategoryRepository
     id: string,
   ): boolean {
 
-
     const index =
       this.categories.findIndex(
         (category) =>
@@ -106,13 +109,11 @@ class InMemoryCategoryRepository
       );
 
 
-
     if (index === -1) {
 
       return false;
 
     }
-
 
 
     this.categories.splice(
@@ -125,9 +126,7 @@ class InMemoryCategoryRepository
 
   }
 
-
 }
-
 
 
 export const inMemoryCategoryRepository =

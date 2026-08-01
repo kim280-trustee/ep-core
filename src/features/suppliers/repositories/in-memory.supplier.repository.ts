@@ -1,17 +1,38 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * Smart POS
+ * In Memory Supplier Repository
+ * ============================================================
+ */
+
+
+import {
+  v4 as uuid,
+} from "uuid";
+
+
 import type {
+
   Supplier,
+
+  CreateSupplierDto,
+
+  UpdateSupplierDto,
+
 } from "../types/supplier.types";
 
 
 import type {
-  ISupplierRepository,
+
+  SupplierRepository,
+
 } from "./supplier.repository";
 
 
 
 class InMemorySupplierRepository
-  implements ISupplierRepository {
-
+implements SupplierRepository {
 
 
   private suppliers: Supplier[] = [];
@@ -28,11 +49,13 @@ class InMemorySupplierRepository
 
   findById(
     id: string,
-  ): Supplier | undefined {
+  ) {
 
     return this.suppliers.find(
-      (supplier) =>
+
+      supplier =>
         supplier.id === id,
+
     );
 
   }
@@ -40,14 +63,42 @@ class InMemorySupplierRepository
 
 
   create(
-    supplier: Supplier,
+    supplier: CreateSupplierDto,
   ): Supplier {
 
+
+    const item: Supplier = {
+
+
+      id: uuid(),
+
+
+      ...supplier,
+
+
+      status:
+        "ACTIVE",
+
+
+      createdAt:
+        new Date(),
+
+
+      updatedAt:
+        new Date(),
+
+
+    };
+
+
+
     this.suppliers.push(
-      supplier,
+      item,
     );
 
-    return supplier;
+
+
+    return item;
 
   }
 
@@ -55,19 +106,18 @@ class InMemorySupplierRepository
 
   update(
     id: string,
-    updates: Partial<Supplier>,
-  ): Supplier | undefined {
+    supplier: UpdateSupplierDto,
+  ) {
 
 
-    const index =
-      this.suppliers.findIndex(
-        (supplier) =>
-          supplier.id === id,
+    const existing =
+      this.findById(
+        id,
       );
 
 
 
-    if (index === -1) {
+    if (!existing) {
 
       return undefined;
 
@@ -75,20 +125,24 @@ class InMemorySupplierRepository
 
 
 
-    this.suppliers[index] = {
+    Object.assign(
 
-      ...this.suppliers[index],
+      existing,
 
-      ...updates,
+      supplier,
 
-      updatedAt:
-        new Date().toISOString(),
+      {
 
-    };
+        updatedAt:
+          new Date(),
+
+      },
+
+    );
 
 
 
-    return this.suppliers[index];
+    return existing;
 
   }
 
@@ -96,13 +150,15 @@ class InMemorySupplierRepository
 
   delete(
     id: string,
-  ): boolean {
+  ) {
 
 
     const index =
       this.suppliers.findIndex(
-        (supplier) =>
-          supplier.id === id,
+
+        item =>
+          item.id === id,
+
       );
 
 
@@ -116,9 +172,13 @@ class InMemorySupplierRepository
 
 
     this.suppliers.splice(
+
       index,
+
       1,
+
     );
+
 
 
     return true;

@@ -1,31 +1,70 @@
+export type TaxStatus =
+  | "ACTIVE"
+  | "INACTIVE";
+
+
 export interface Tax {
 
-  id: string;
 
-  tenantId: string;
-
-  storeId: string;
+  id:string;
 
 
-  name: string;
+  tenantId:string;
 
 
-  rate: number;
+  storeId:string;
 
 
-  country: string;
+  code?:string;
 
 
-  currency: string;
+  name:string;
 
 
-  status:
-    | "active"
-    | "inactive";
+  rate:number;
 
 
-  createdAt: string;
+  country:string;
 
-  updatedAt: string;
+
+  currency:string;
+
+
+  status:TaxStatus;
+
+
+  createdAt:Date;
+
+
+  updatedAt:Date;
+
 
 }
+
+
+
+export type CreateTaxDto = {
+
+
+  name:string;
+
+
+  rate:number;
+
+
+  country:string;
+
+
+  currency:string;
+
+
+  code?:string;
+
+
+};
+
+
+
+export type UpdateTaxDto =
+
+Partial<CreateTaxDto>;

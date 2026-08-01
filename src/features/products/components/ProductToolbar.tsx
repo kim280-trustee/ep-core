@@ -1,6 +1,15 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Product Toolbar
+ * ============================================================
+ */
+
+
 import {
-  Link,
-} from "react-router-dom";
+  ProductFilters,
+} from "./ProductFilters";
 
 
 import {
@@ -9,76 +18,101 @@ import {
 
 
 import {
-  ProductFilters,
-} from "./ProductFilters";
+  ProductStatus,
+} from "../types/product.types";
+
+
 
 
 interface ProductToolbarProps {
 
+
   search: string;
 
+
   onSearchChange: (
-    value: string,
-  ) => void;
+
+    value:string,
+
+  )=>void;
 
 
-  status: string;
 
-  onStatusChange: (
-    value: string,
-  ) => void;
+  status:
+
+    ProductStatus | "ALL";
+
+
+
+  onStatusChange:
+
+    (
+
+      value: ProductStatus | "ALL",
+
+    )=>void;
+
 
 }
 
 
+
+
+
 export function ProductToolbar({
+
   search,
+
   onSearchChange,
+
   status,
+
   onStatusChange,
 
-}: ProductToolbarProps) {
+}:ProductToolbarProps){
+
 
 
   return (
 
+
     <div
+
       className="
-        flex
-        gap-4
-        items-center
-        mb-6
+      flex
+      gap-4
       "
+
     >
 
+
+
       <ProductSearch
+
         value={search}
+
         onChange={onSearchChange}
+
       />
+
+
+
 
 
       <ProductFilters
+
         status={status}
+
         onChange={onStatusChange}
+
       />
 
 
-      <Link
-        to="/products/create"
-        className="
-          bg-black
-          text-white
-          px-4
-          py-2
-          rounded
-          whitespace-nowrap
-        "
-      >
-        Add Product
-      </Link>
 
     </div>
 
+
   );
+
 
 }

@@ -1,13 +1,7 @@
-export * from "./types/auth.types";
-
-export * from "./store/authStore";
-
-export * from "./services/AuthService";
-
-export * from "./hooks/useAuth";
-export * from "./hooks/usePermission";
-
-export * from "./components/ProtectedRoute";
-export * from "./components/AuthGuard";
-
-export * from "./utils/permissions";
+export * from "./auth.context";
+export * from "./auth.provider";
+export * from "./useAuth";
+export * from "./ProtectedRoute";
+export * from "./auth.repository";
+export * from "./supabase.auth.repository";
+export * from "./auth.service";

@@ -1,32 +1,26 @@
 import {
-  createContext,
   useState,
   type ReactNode,
 } from "react";
+
+import {
+  ThemeContext,
+} from "./theme.context";
 
 import type {
   ThemeMode,
 } from "./theme.types";
 
-interface Context {
-  theme: ThemeMode;
-  setTheme: (
-    theme: ThemeMode,
-  ) => void;
-}
-
-export const ThemeContext =
-  createContext<Context | null>(
-    null,
-  );
-
 interface Props {
+
   children: ReactNode;
+
 }
 
 export function ThemeProvider({
   children,
 }: Props) {
+
   const [
     theme,
     setTheme,
@@ -35,13 +29,23 @@ export function ThemeProvider({
   );
 
   return (
+
     <ThemeContext.Provider
+
       value={{
+
         theme,
+
         setTheme,
+
       }}
+
     >
+
       {children}
+
     </ThemeContext.Provider>
+
   );
+
 }

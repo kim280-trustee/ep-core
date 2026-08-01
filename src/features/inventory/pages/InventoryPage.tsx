@@ -1,25 +1,43 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Inventory Module
+ * ------------------------------------------------------------
+ * Inventory Page
+ * ============================================================
+ */
+
+
 import {
   useEffect,
 } from "react";
+
 
 import {
   useInventory,
 } from "../hooks/useInventory";
 
+
 import {
   useInventoryStore,
 } from "../store/inventory.store";
 
+
 import {
   InventoryToolbar,
 } from "../components/InventoryToolbar";
+
 
 import {
   InventoryTable,
 } from "../components/InventoryTable";
 
 
+
+
 export function InventoryPage() {
+
 
   const {
 
@@ -28,6 +46,8 @@ export function InventoryPage() {
     refresh,
 
   } = useInventory();
+
+
 
 
   const {
@@ -39,6 +59,9 @@ export function InventoryPage() {
   } = useInventoryStore();
 
 
+
+
+
   useEffect(
 
     () => {
@@ -47,9 +70,16 @@ export function InventoryPage() {
 
     },
 
-    [],
+    [
+
+      refresh,
+
+    ],
 
   );
+
+
+
 
 
   useEffect(
@@ -75,9 +105,13 @@ export function InventoryPage() {
   );
 
 
+
+
+
   return (
 
     <div className="p-6">
+
 
       <InventoryToolbar
 
@@ -85,14 +119,18 @@ export function InventoryPage() {
 
       />
 
+
+
       <InventoryTable
 
         records={records}
 
       />
 
+
     </div>
 
   );
+
 
 }

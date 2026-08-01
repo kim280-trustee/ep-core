@@ -1,5 +1,19 @@
-export * from "./warehouse.repository";
+export {
 
-export * from "./in-memory.warehouse.repository";
+  warehouseRepository,
 
-export * from "./repository.provider";
+} from "./repository.provider";
+
+
+export {
+
+  inMemoryWarehouseRepository,
+
+} from "./in-memory.warehouse.repository";
+
+
+export type {
+
+  WarehouseRepository,
+
+} from "./warehouse.repository";

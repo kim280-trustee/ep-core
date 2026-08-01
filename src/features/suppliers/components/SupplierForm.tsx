@@ -9,37 +9,33 @@ import {
 
 
 import {
+
   supplierSchema,
+
+  type SupplierFormInput,
+
 } from "../validators/supplier.schema";
 
 
-import type {
-  SupplierFormInput,
-} from "../validators/supplier.schema";
 
-
-
-interface SupplierFormProps {
+interface Props {
 
   defaultValues?: Partial<SupplierFormInput>;
 
-
-  onSubmit: (
+  onSubmit(
     data: SupplierFormInput,
-  ) => void;
+  ): void;
 
 }
 
 
 
-export function SupplierForm({
-
-  defaultValues,
-
-  onSubmit,
-
-}: SupplierFormProps) {
-
+export function SupplierForm(
+  {
+    defaultValues,
+    onSubmit,
+  }: Props,
+) {
 
 
   const {
@@ -48,166 +44,64 @@ export function SupplierForm({
 
     handleSubmit,
 
-    formState: {
-      errors,
-    },
+  } =
+    useForm<SupplierFormInput>({
 
-  } = useForm<SupplierFormInput>({
+      resolver:
+        zodResolver(
+          supplierSchema,
+        ),
 
-    resolver:
-      zodResolver(supplierSchema),
+      defaultValues,
 
-
-    defaultValues,
-
-  });
+    });
 
 
 
   return (
 
     <form
-
       onSubmit={
-        handleSubmit(onSubmit)
+        handleSubmit(
+          onSubmit,
+        )
       }
-
-      className="
-        space-y-4
-        max-w-xl
-      "
-
     >
 
-      <input
 
+      <input
+        {...register("code")}
+        placeholder="Code"
+      />
+
+
+      <input
         {...register("name")}
-
-        placeholder="Supplier name"
-
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
-
+        placeholder="Name"
       />
 
 
-
-      {errors.name && (
-
-        <p className="text-red-600">
-
-          {errors.name.message}
-
-        </p>
-
-      )}
-
-
-
       <input
-
         {...register("contactPerson")}
-
-        placeholder="Contact person"
-
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
-
+        placeholder="Contact"
       />
 
 
-
       <input
-
-        {...register("phone")}
-
-        placeholder="Phone"
-
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
-
-      />
-
-
-
-      <input
-
         {...register("email")}
-
         placeholder="Email"
-
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
-
       />
-
-
-
-      <textarea
-
-        {...register("address")}
-
-        placeholder="Address"
-
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
-
-      />
-
 
 
       <input
-
-        {...register("taxId")}
-
-        placeholder="Tax ID"
-
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
-
+        {...register("phone")}
+        placeholder="Phone"
       />
 
 
+      <button>
 
-      <button
-
-        type="submit"
-
-        className="
-          bg-black
-          text-white
-          px-5
-          py-2
-          rounded
-        "
-
-      >
-
-        Save Supplier
+        Save
 
       </button>
 

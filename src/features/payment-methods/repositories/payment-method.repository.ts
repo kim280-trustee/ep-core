@@ -1,5 +1,15 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * Smart POS
+ * Payment Method Repository
+ * ============================================================
+ */
+
 import type {
   PaymentMethod,
+  CreatePaymentMethodDto,
+  UpdatePaymentMethodDto,
 } from "../types/payment-method.types";
 
 export interface IPaymentMethodRepository {
@@ -11,12 +21,14 @@ export interface IPaymentMethodRepository {
   ): PaymentMethod | undefined;
 
   create(
-    paymentMethod: PaymentMethod,
+    tenantId: string,
+    storeId: string,
+    data: CreatePaymentMethodDto,
   ): PaymentMethod;
 
   update(
     id: string,
-    updates: Partial<PaymentMethod>,
+    updates: UpdatePaymentMethodDto,
   ): PaymentMethod | undefined;
 
   delete(

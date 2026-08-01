@@ -1,93 +1,79 @@
 import {
-  useNavigate,
-  useParams,
+
+ useParams,
+
+ useNavigate,
+
 } from "react-router-dom";
 
+
 import {
-  PaymentMethodForm,
+
+ PaymentMethodForm,
+
 } from "../components/PaymentMethodForm";
 
+
 import {
-  paymentMethodService,
+
+ paymentMethodService,
+
 } from "../services/payment-method.service";
 
-export function EditPaymentMethodPage() {
 
-  const navigate =
-    useNavigate();
 
-  const {
-    id,
-  } = useParams();
+export function EditPaymentMethodPage(){
 
-  const foundPaymentMethod =
-    id
-      ? paymentMethodService.getPaymentMethodById(id)
-      : undefined;
 
-  if (!foundPaymentMethod) {
+ const {
 
-    return (
-      <div className="p-6">
-        Payment method not found
-      </div>
-    );
+ id,
 
-  }
+ } = useParams();
 
-  const paymentMethod =
-    foundPaymentMethod;
 
-  function handleSubmit(
-    data: Parameters<
-      typeof paymentMethodService.createPaymentMethod
-    >[0],
-  ) {
 
-    paymentMethodService.updatePaymentMethod(
-      paymentMethod.id,
-      {
-        name: data.name,
-        code: data.code,
-        type: data.type,
-        isDefault: data.isDefault,
-        isActive: data.isActive,
-      },
-    );
+ const navigate=
 
-    navigate("/payment-methods");
+ useNavigate();
 
-  }
 
-  return (
 
-    <div className="p-6">
+ function submit(data:any){
 
-      <h1
-        className="
-          text-2xl
-          font-bold
-          mb-6
-        "
-      >
 
-        Edit Payment Method
+ if(!id){
 
-      </h1>
+ return;
 
-      <PaymentMethodForm
-        defaultValues={{
-          name: paymentMethod.name,
-          code: paymentMethod.code,
-          type: paymentMethod.type,
-          isDefault: paymentMethod.isDefault,
-          isActive: paymentMethod.isActive,
-        }}
-        onSubmit={handleSubmit}
-      />
+ }
 
-    </div>
 
-  );
+ paymentMethodService.updatePaymentMethod(
+
+ id,
+
+ data,
+
+ );
+
+
+ navigate("/payment-methods");
+
+
+ }
+
+
+
+ return (
+
+ <PaymentMethodForm
+
+ onSubmit={submit}
+
+ />
+
+ );
+
 
 }

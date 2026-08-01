@@ -1,13 +1,3 @@
-import type {
-  RouteObject,
-} from "react-router-dom";
-
-
-import {
-  AppLayout,
-} from "../../../app/layout";
-
-
 import {
   WarehousesPage,
 } from "../pages/WarehousesPage";
@@ -24,56 +14,38 @@ import {
 
 
 
-export const warehouseRoutes: RouteObject[] = [
+export const warehouseRoutes = [
 
 
   {
 
-    path: "/warehouses",
+    path:
+      "/warehouses",
 
-    element: (
-
-      <AppLayout>
-
-        <WarehousesPage />
-
-      </AppLayout>
-
-    ),
+    element:
+      <WarehousesPage/>,
 
   },
 
 
   {
 
-    path: "/warehouses/create",
+    path:
+      "/warehouses/create",
 
-    element: (
-
-      <AppLayout>
-
-        <CreateWarehousePage />
-
-      </AppLayout>
-
-    ),
+    element:
+      <CreateWarehousePage/>,
 
   },
 
 
   {
 
-    path: "/warehouses/edit/:id",
+    path:
+      "/warehouses/:id/edit",
 
-    element: (
-
-      <AppLayout>
-
-        <EditWarehousePage />
-
-      </AppLayout>
-
-    ),
+    element:
+      <EditWarehousePage/>,
 
   },
 

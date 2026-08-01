@@ -1,69 +1,40 @@
 import {
-  useState,
-} from "react";
 
-import {
-  PaymentMethodToolbar,
-} from "../components/PaymentMethodToolbar";
+ usePaymentMethods,
 
-import {
-  PaymentMethodTable,
-} from "../components/PaymentMethodTable";
-
-import {
-  usePaymentMethods,
 } from "../hooks/usePaymentMethods";
 
-export function PaymentMethodsPage() {
 
-  const {
-    paymentMethods,
-    removePaymentMethod,
-  } = usePaymentMethods();
+import {
 
-  const [
-    search,
-    setSearch,
-  ] = useState("");
+ PaymentMethodTable,
 
-  const filteredPaymentMethods =
-    paymentMethods.filter(
-      (paymentMethod) =>
-        paymentMethod.name
-          .toLowerCase()
-          .includes(
-            search.toLowerCase(),
-          ),
-    );
+} from "../components/PaymentMethodTable";
 
-  return (
 
-    <div className="p-6">
 
-      <h1
-        className="
-          text-2xl
-          font-bold
-          mb-6
-        "
-      >
+export function PaymentMethodsPage(){
 
-        Payment Methods
 
-      </h1>
+ const {
 
-      <PaymentMethodToolbar
-        search={search}
-        onSearchChange={setSearch}
-      />
+ paymentMethods,
 
-      <PaymentMethodTable
-        paymentMethods={filteredPaymentMethods}
-        onDelete={removePaymentMethod}
-      />
+ } = usePaymentMethods();
 
-    </div>
 
-  );
+
+ return (
+
+ <PaymentMethodTable
+
+ paymentMethods={paymentMethods}
+
+ onDelete={()=>{}}
+
+ />
+
+ );
+
 
 }

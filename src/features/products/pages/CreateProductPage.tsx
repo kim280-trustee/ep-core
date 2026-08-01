@@ -1,6 +1,10 @@
-import {
-  useNavigate,
-} from "react-router-dom";
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Create Product Page
+ * ============================================================
+ */
 
 
 import {
@@ -8,72 +12,51 @@ import {
 } from "../components/ProductForm";
 
 
-import {
-  productService,
-} from "../services/product.service";
 
 
 
-export function CreateProductPage() {
-
-
-  const navigate = useNavigate();
+export function CreateProductPage(){
 
 
 
-  function handleSubmit(
-    data: Parameters<
-      typeof productService.createProduct
-    >[0],
-  ) {
+return (
 
 
-    productService.createProduct(
+<div
 
-      data,
+className="
+flex
+flex-col
+gap-6
+"
 
-      "default-tenant",
-
-      "default-store",
-
-    );
-
-
-    navigate("/products");
-
-  }
+>
 
 
+<h1
 
-  return (
+className="
+text-2xl
+font-semibold
+"
 
-    <div
-      className="p-6"
-    >
+>
 
-      <h1
-        className="
-          text-2xl
-          font-bold
-          mb-6
-        "
-      >
+Create Product
 
-        Create Product
-
-      </h1>
+</h1>
 
 
 
-      <ProductForm
 
-        onSubmit={handleSubmit}
-
-      />
+<ProductForm />
 
 
-    </div>
+</div>
 
-  );
+
+);
+
+
 
 }

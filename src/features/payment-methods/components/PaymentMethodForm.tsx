@@ -1,137 +1,89 @@
 import {
-  useForm,
+
+ useForm,
+
 } from "react-hook-form";
 
-import {
-  zodResolver,
-} from "@hookform/resolvers/zod";
-
-import {
-  paymentMethodSchema,
-} from "../validators/payment-method.schema";
 
 import type {
-  PaymentMethodFormInput,
-} from "../validators/payment-method.schema";
 
-interface PaymentMethodFormProps {
+ CreatePaymentMethodDto,
 
-  defaultValues?: Partial<PaymentMethodFormInput>;
+} from "../types/payment-method.types";
 
-  onSubmit: (
-    data: PaymentMethodFormInput,
-  ) => void;
+
+
+interface Props {
+
+ onSubmit(data:CreatePaymentMethodDto):void;
 
 }
 
+
+
 export function PaymentMethodForm({
 
-  defaultValues,
+ onSubmit,
 
-  onSubmit,
+}:Props){
 
-}: PaymentMethodFormProps) {
 
-  const {
+ const {
 
-    register,
+ register,
 
-    handleSubmit,
+ handleSubmit,
 
-    formState: {
-      errors,
-    },
+ } = useForm<CreatePaymentMethodDto>();
 
-  } = useForm<PaymentMethodFormInput>({
 
-    resolver:
-      zodResolver(paymentMethodSchema),
 
-    defaultValues,
+ return (
 
-  });
+ <form
 
-  return (
+  onSubmit={handleSubmit(onSubmit)}
 
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="
-        space-y-4
-        max-w-xl
-      "
-    >
+ >
 
-      <input
-        {...register("name")}
-        placeholder="Payment method"
-        className="border rounded p-2 w-full"
-      />
 
-      {errors.name && (
-        <p className="text-red-600">
-          {errors.name.message}
-        </p>
-      )}
+ <input
 
-      <input
-        {...register("code")}
-        placeholder="Code"
-        className="border rounded p-2 w-full"
-      />
+  {...register("name")}
 
-      <select
-        {...register("type")}
-        className="border rounded p-2 w-full"
-      >
+  placeholder="Name"
 
-        <option value="cash">Cash</option>
-        <option value="card">Card</option>
-        <option value="bank_transfer">Bank Transfer</option>
-        <option value="qr">QR</option>
-        <option value="mobile_money">Mobile Money</option>
-        <option value="other">Other</option>
+ />
 
-      </select>
 
-      <label className="flex gap-2">
+ <input
 
-        <input
-          type="checkbox"
-          {...register("isDefault")}
-        />
+  {...register("code")}
 
-        Default
+  placeholder="Code"
 
-      </label>
+ />
 
-      <label className="flex gap-2">
 
-        <input
-          type="checkbox"
-          {...register("isActive")}
-        />
+ <input
 
-        Active
+  {...register("type")}
 
-      </label>
+  placeholder="Type"
 
-      <button
-        type="submit"
-        className="
-          bg-black
-          text-white
-          px-5
-          py-2
-          rounded
-        "
-      >
+ />
 
-        Save Payment Method
 
-      </button>
+ <button>
 
-    </form>
+ Save
 
-  );
+ </button>
+
+
+ </form>
+
+ );
+
 
 }

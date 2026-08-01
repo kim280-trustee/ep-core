@@ -3,8 +3,8 @@ import type {
 } from "react-router-dom";
 
 import {
-  AppLayout,
-} from "../layout";
+  ProtectedLayout,
+} from "./ProtectedLayout";
 
 import {
   productRoutes,
@@ -46,52 +46,97 @@ import {
   inventoryRoutes,
 } from "../../features/inventory/routes/inventory.routes";
 
+import {
+  purchasingRoutes,
+} from "../../features/purchasing/routes/purchasing.routes";
 
+import {
+  salesRoutes,
+} from "../../features/sales/routes/sales.routes";
+
+import {
+  paymentRoutes,
+} from "../../features/payments/routes/payment.routes";
+
+import {
+  receiptRoutes,
+} from "../../features/receipts/routes/receipt.routes";
+
+import {
+  dashboardRoutes,
+} from "../../features/dashboard/routes/dashboard.routes";
+
+import {
+  authRoutes,
+} from "../../features/auth/routes/auth.routes";
+
+import {
+  settingsRoutes,
+} from "../../features/settings/routes/settings.routes";
 
 export const routes: RouteObject[] = [
 
+  ...authRoutes,
 
   {
 
     path: "/",
 
-    element: (
+    element: <ProtectedLayout />,
 
-      <AppLayout>
+    children: [
 
-        <div>
+      {
 
-          Dashboard
+        index: true,
 
-        </div>
+        element: (
 
-      </AppLayout>
+          <div>
 
-    ),
+            Dashboard
+
+          </div>
+
+        ),
+
+      },
+
+      ...productRoutes,
+
+      ...categoryRoutes,
+
+      ...brandRoutes,
+
+      ...unitRoutes,
+
+      ...supplierRoutes,
+
+      ...customerRoutes,
+
+      ...warehouseRoutes,
+
+      ...taxRoutes,
+
+      ...paymentMethodRoutes,
+
+      ...inventoryRoutes,
+
+      ...purchasingRoutes,
+
+      ...salesRoutes,
+
+      ...paymentRoutes,
+
+      ...receiptRoutes,
+
+      ...dashboardRoutes,
+
+      ...settingsRoutes,
+
+    ],
 
   },
-
-
-  ...productRoutes,
-
-  ...categoryRoutes,
-
-  ...brandRoutes,
-
-  ...unitRoutes,
-
-  ...supplierRoutes,
-
-  ...customerRoutes,
-
-  ...warehouseRoutes,
-
-  ...taxRoutes,
-
-  ...paymentMethodRoutes,
-
-  ...inventoryRoutes,
-
 
   {
 

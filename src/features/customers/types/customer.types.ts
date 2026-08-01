@@ -1,33 +1,66 @@
-import type { CustomerStatus } from "./customer-status.types";
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Customers Module
+ * ------------------------------------------------------------
+ * Customer Type Definitions
+ * ============================================================
+ */
+
+
+import type {
+  CustomerStatus,
+} from "./customer-status.types";
+
+
+
+export type CustomerType =
+  | "regular"
+  | "wholesale"
+  | "retail";
+
+
 
 export interface Customer {
+
+
   id: string;
+
 
   tenantId: string;
 
+
   storeId: string;
- 
-  customerCode: string;
+
 
   name: string;
 
-  firstName?: string;
 
-  lastName?: string;
+  customerType: CustomerType;
 
-  phone?: string;
 
-  email?: string;
+  phone: string | null;
 
-  address?: string;
 
-  customerType: "regular" | "wholesale";
+  email: string | null;
 
-  creditLimit?: number;
+
+  address: string | null;
+
+
+  taxNumber: string | null;
+
+
+  creditLimit: number | null;
+
 
   status: CustomerStatus;
 
+
   createdAt: string;
 
+
   updatedAt: string;
+
 }

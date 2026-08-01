@@ -1,12 +1,29 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * Smart POS
+ * Supplier Repository Contract
+ * ============================================================
+ */
+
+
 import type {
+
   Supplier,
+
+  CreateSupplierDto,
+
+  UpdateSupplierDto,
+
 } from "../types/supplier.types";
 
 
-export interface ISupplierRepository {
+
+export interface SupplierRepository {
 
 
   findAll(): Supplier[];
+
 
 
   findById(
@@ -16,14 +33,14 @@ export interface ISupplierRepository {
 
 
   create(
-    supplier: Supplier,
+    supplier: CreateSupplierDto,
   ): Supplier;
 
 
 
   update(
     id: string,
-    updates: Partial<Supplier>,
+    supplier: UpdateSupplierDto,
   ): Supplier | undefined;
 
 
@@ -31,5 +48,6 @@ export interface ISupplierRepository {
   delete(
     id: string,
   ): boolean;
+
 
 }

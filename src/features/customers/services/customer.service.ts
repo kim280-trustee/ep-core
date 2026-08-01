@@ -1,3 +1,14 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Customers Module
+ * ------------------------------------------------------------
+ * Customer Business Service
+ * ============================================================
+ */
+
+
 import {
   customerRepository,
 } from "../repositories";
@@ -26,6 +37,8 @@ class CustomerService {
 
 
 
+
+
   getCustomers(): Customer[] {
 
     return customerRepository.findAll();
@@ -34,13 +47,23 @@ class CustomerService {
 
 
 
+
+
   getCustomerById(
+
     id: string,
+
   ): Customer | undefined {
 
-    return customerRepository.findById(id);
+    return customerRepository.findById(
+
+      id,
+
+    );
 
   }
+
+
 
 
 
@@ -55,44 +78,89 @@ class CustomerService {
   ): Customer {
 
 
-
     const now =
       new Date().toISOString();
 
 
 
     const customer: Customer = {
-  id: this.generateId(),
 
-  tenantId,
 
-  storeId,
+      id:
+        this.generateId(),
 
-  customerCode: `CUST-${Date.now()}`,
 
-  name: input.name,
 
-  phone: input.phone,
+      tenantId,
 
-  email: input.email,
 
-  address: input.address,
 
-  customerType: input.customerType,
+      storeId,
 
-  creditLimit: input.creditLimit,
 
-  status: "ACTIVE",
 
-  createdAt: now,
+      name:
+        input.name,
 
-  updatedAt: now,
-};
+
+
+      customerType:
+        input.customerType,
+
+
+
+      phone:
+        input.phone ?? null,
+
+
+
+      email:
+        input.email ?? null,
+
+
+
+      address:
+        input.address ?? null,
+
+
+
+      taxNumber:
+        input.taxNumber ?? null,
+
+
+
+      creditLimit:
+        input.creditLimit ?? null,
+
+
+
+      status:
+        "active",
+
+
+
+      createdAt:
+        now,
+
+
+
+      updatedAt:
+        now,
+
+
+    };
+
+
+
     return customerRepository.create(
+
       customer,
+
     );
 
   }
+
+
 
 
 
@@ -102,23 +170,43 @@ class CustomerService {
 
     updates: Partial<Customer>,
 
-  ) {
+  ): Customer | undefined {
 
 
     return customerRepository.update(
+
       id,
-      updates,
+
+      {
+
+        ...updates,
+
+
+        updatedAt:
+          new Date().toISOString(),
+
+      },
+
     );
 
   }
 
 
 
+
+
   deleteCustomer(
+
     id: string,
+
   ): boolean {
 
-    return customerRepository.delete(id);
+
+    return customerRepository.delete(
+
+      id,
+
+    );
 
   }
 
@@ -127,5 +215,8 @@ class CustomerService {
 
 
 
+
+
 export const customerService =
+
   new CustomerService();

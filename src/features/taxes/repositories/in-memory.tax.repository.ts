@@ -1,16 +1,32 @@
+import {
+
+  v4 as uuid,
+
+} from "uuid";
+
+
 import type {
+
   Tax,
+
+  CreateTaxDto,
+
+  UpdateTaxDto,
+
 } from "../types/tax.types";
 
 
 import type {
-  ITaxRepository,
+
+  TaxRepository,
+
 } from "./tax.repository";
 
 
 
 class InMemoryTaxRepository
-  implements ITaxRepository {
+
+implements TaxRepository {
 
 
 
@@ -20,110 +36,203 @@ class InMemoryTaxRepository
 
   findAll(): Tax[] {
 
+
     return this.taxes;
+
 
   }
 
 
 
   findById(
-    id: string,
+
+    id:string,
+
   ): Tax | undefined {
 
+
     return this.taxes.find(
-      (tax) =>
+
+      tax =>
+
         tax.id === id,
+
     );
+
 
   }
 
 
 
   create(
-    tax: Tax,
+
+    tax:
+
+      CreateTaxDto & {
+
+        tenantId:string;
+
+        storeId:string;
+
+      },
+
   ): Tax {
 
+
+
+    const newTax: Tax = {
+
+
+      id:
+
+        uuid(),
+
+
+
+      status:
+
+        "ACTIVE",
+
+
+
+      createdAt:
+
+        new Date(),
+
+
+
+      updatedAt:
+
+        new Date(),
+
+
+
+      ...tax,
+
+
+
+    };
+
+
+
     this.taxes.push(
-      tax,
+
+      newTax,
+
     );
 
-    return tax;
+
+
+    return newTax;
+
 
   }
 
 
 
   update(
-    id: string,
-    updates: Partial<Tax>,
+
+    id:string,
+
+    tax:UpdateTaxDto,
+
   ): Tax | undefined {
 
 
-    const index =
-      this.taxes.findIndex(
-        (tax) =>
-          tax.id === id,
+
+    const existing =
+
+      this.findById(
+
+        id,
+
       );
 
 
 
-    if (index === -1) {
+    if(!existing){
+
 
       return undefined;
+
 
     }
 
 
 
-    this.taxes[index] = {
+    Object.assign(
 
-      ...this.taxes[index],
+      existing,
 
-      ...updates,
+      tax,
 
-      updatedAt:
-        new Date().toISOString(),
-
-    };
+      {
 
 
+        updatedAt:
 
-    return this.taxes[index];
+          new Date(),
+
+
+      },
+
+
+    );
+
+
+
+    return existing;
+
 
   }
 
 
 
   delete(
-    id: string,
+
+    id:string,
+
   ): boolean {
 
 
+
     const index =
+
       this.taxes.findIndex(
-        (tax) =>
+
+        tax =>
+
           tax.id === id,
+
       );
 
 
 
-    if (index === -1) {
+    if(index === -1){
+
 
       return false;
+
 
     }
 
 
 
     this.taxes.splice(
+
       index,
+
       1,
+
     );
+
 
 
     return true;
 
+
   }
+
 
 
 }
@@ -131,4 +240,5 @@ class InMemoryTaxRepository
 
 
 export const inMemoryTaxRepository =
+
   new InMemoryTaxRepository();

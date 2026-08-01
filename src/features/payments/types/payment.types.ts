@@ -1,24 +1,31 @@
-import type { PaymentMethod } from "./payment-method.types";
-import type { PaymentStatus } from "./payment-status.types";
+export type PaymentMethod =
+  | "CASH"
+  | "CARD"
+  | "QR"
+  | "BANK_TRANSFER";
+
+export type PaymentStatus =
+  | "PENDING"
+  | "COMPLETED"
+  | "FAILED"
+  | "REFUNDED";
 
 export interface Payment {
   id: string;
 
   tenantId: string;
 
-  storeId: string;
-
-  saleId: string;
-
-  amount: number;
+  salesOrderId: string;
 
   method: PaymentMethod;
 
+  amount: number;
+
   status: PaymentStatus;
 
-  currency: string;
-
-  referenceNumber?: string;
+  reference?: string;
 
   createdAt: string;
+
+  updatedAt: string;
 }

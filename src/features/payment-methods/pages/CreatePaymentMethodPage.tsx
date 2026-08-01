@@ -1,58 +1,62 @@
 import {
-  useNavigate,
+
+ useNavigate,
+
 } from "react-router-dom";
 
+
 import {
-  PaymentMethodForm,
+
+ PaymentMethodForm,
+
 } from "../components/PaymentMethodForm";
 
+
 import {
-  paymentMethodService,
+
+ paymentMethodService,
+
 } from "../services/payment-method.service";
 
-export function CreatePaymentMethodPage() {
 
-  const navigate =
-    useNavigate();
 
-  function handleSubmit(
-    data: Parameters<
-      typeof paymentMethodService.createPaymentMethod
-    >[0],
-  ) {
+export function CreatePaymentMethodPage(){
 
-    paymentMethodService.createPaymentMethod(
-      data,
-      "default-tenant",
-      "default-store",
-    );
 
-    navigate("/payment-methods");
+ const navigate = useNavigate();
 
-  }
 
-  return (
 
-    <div className="p-6">
+ function submit(data:any){
 
-      <h1
-        className="
-          text-2xl
-          font-bold
-          mb-6
-        "
-      >
 
-        Create Payment Method
+ paymentMethodService.createPaymentMethod(
 
-      </h1>
+ "default-tenant",
 
-      <PaymentMethodForm
-        onSubmit={handleSubmit}
-      />
+ "default-store",
 
-    </div>
+ data,
 
-  );
+ );
+
+
+ navigate("/payment-methods");
+
+
+ }
+
+
+
+ return (
+
+ <PaymentMethodForm
+
+ onSubmit={submit}
+
+ />
+
+ );
+
 
 }

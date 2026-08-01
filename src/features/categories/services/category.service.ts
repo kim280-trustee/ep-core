@@ -1,6 +1,22 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Categories Module
+ * ------------------------------------------------------------
+ * Category Business Service
+ * ============================================================
+ */
+
+
 import {
   categoryRepository,
 } from "../repositories";
+
+
+import {
+  CategoryStatus,
+} from "../types/category.types";
 
 
 import type {
@@ -27,6 +43,7 @@ class CategoryService {
 
 
 
+
   getCategories(): Category[] {
 
     return categoryRepository.findAll();
@@ -36,13 +53,19 @@ class CategoryService {
 
 
 
+
   getCategoryById(
+
     id: string,
+
   ): Category | undefined {
 
-    return categoryRepository.findById(id);
+    return categoryRepository.findById(
+      id,
+    );
 
   }
+
 
 
 
@@ -58,7 +81,6 @@ class CategoryService {
   ): Category {
 
 
-
     const now =
       new Date().toISOString();
 
@@ -66,34 +88,48 @@ class CategoryService {
 
     const category: Category = {
 
+
       id:
         this.generateId(),
+
 
 
       tenantId,
 
 
+
       storeId,
+
 
 
       name:
         input.name,
 
 
+
       description:
-        input.description,
+        input.description ?? null,
+
+
+
+      parentId:
+        input.parentId ?? null,
+
 
 
       status:
-        "active",
+        CategoryStatus.ACTIVE,
+
 
 
       createdAt:
         now,
 
 
+
       updatedAt:
         now,
+
 
     };
 
@@ -108,18 +144,29 @@ class CategoryService {
 
 
 
+
   updateCategory(
 
     id: string,
 
     updates: Partial<Category>,
 
-  ) {
+  ): Category | undefined {
 
 
     return categoryRepository.update(
+
       id,
-      updates,
+
+      {
+
+        ...updates,
+
+        updatedAt:
+          new Date().toISOString(),
+
+      },
+
     );
 
   }
@@ -127,16 +174,24 @@ class CategoryService {
 
 
 
+
   deleteCategory(
+
     id: string,
+
   ): boolean {
 
-    return categoryRepository.delete(id);
+
+    return categoryRepository.delete(
+      id,
+    );
 
   }
 
 
 }
+
+
 
 
 

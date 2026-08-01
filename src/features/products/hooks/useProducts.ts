@@ -1,46 +1,110 @@
-import {
-  useEffect,
-} from "react";
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Products Module
+ * ------------------------------------------------------------
+ * Products Hook
+ * ============================================================
+ */
 
 
 import {
-  useProductStore,
-} from "../stores/product.store";
+  useProductsStore,
+} from "../store/products.store";
 
 
 
-export function useProducts() {
 
 
-  const {
-    products,
-    loadProducts,
-    addProduct,
-    updateProduct,
-    removeProduct,
-
-  } = useProductStore();
+export function useProducts(){
 
 
+  const products =
 
-  useEffect(() => {
+    useProductsStore(
 
-    loadProducts();
+      (state) =>
 
-  }, [loadProducts]);
+        state.products,
+
+    );
+
+
+
+
+  const loadProducts =
+
+    useProductsStore(
+
+      (state) =>
+
+        state.loadProducts,
+
+    );
+
+
+
+
+  const addProduct =
+
+    useProductsStore(
+
+      (state) =>
+
+        state.addProduct,
+
+    );
+
+
+
+
+  const updateProduct =
+
+    useProductsStore(
+
+      (state) =>
+
+        state.updateProduct,
+
+    );
+
+
+
+
+  const deleteProduct =
+
+    useProductsStore(
+
+      (state) =>
+
+        state.deleteProduct,
+
+    );
+
+
 
 
 
   return {
 
+
     products,
+
+
+    loadProducts,
+
 
     addProduct,
 
+
     updateProduct,
 
-    removeProduct,
+
+    deleteProduct,
+
 
   };
+
 
 }

@@ -1,18 +1,29 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * Smart POS
+ * In Memory Payment Method Repository
+ * ============================================================
+ */
+
+import {
+  v4 as uuid,
+} from "uuid";
+
 import type {
   PaymentMethod,
+  CreatePaymentMethodDto,
+  UpdatePaymentMethodDto,
 } from "../types/payment-method.types";
 
 import type {
   IPaymentMethodRepository,
 } from "./payment-method.repository";
 
-
 class InMemoryPaymentMethodRepository
-  implements IPaymentMethodRepository {
+implements IPaymentMethodRepository {
 
-  private paymentMethods:
-    PaymentMethod[] = [];
-
+  private paymentMethods: PaymentMethod[] = [];
 
   findAll(): PaymentMethod[] {
 
@@ -20,22 +31,46 @@ class InMemoryPaymentMethodRepository
 
   }
 
-
   findById(
     id: string,
   ): PaymentMethod | undefined {
 
     return this.paymentMethods.find(
-      (paymentMethod) =>
+
+      paymentMethod =>
         paymentMethod.id === id,
+
     );
 
   }
 
-
   create(
-    paymentMethod: PaymentMethod,
+    tenantId: string,
+    storeId: string,
+    data: CreatePaymentMethodDto,
   ): PaymentMethod {
+
+    const paymentMethod: PaymentMethod = {
+
+      id: uuid(),
+
+      tenantId,
+
+      storeId,
+
+      name: data.name,
+
+      code: data.code,
+
+      type: data.type,
+
+      status: "ACTIVE",
+
+      createdAt: new Date(),
+
+      updatedAt: new Date(),
+
+    };
 
     this.paymentMethods.push(
       paymentMethod,
@@ -45,39 +80,37 @@ class InMemoryPaymentMethodRepository
 
   }
 
-
   update(
     id: string,
-    updates: Partial<PaymentMethod>,
+    updates: UpdatePaymentMethodDto,
   ): PaymentMethod | undefined {
 
-    const index =
-      this.paymentMethods.findIndex(
-        (paymentMethod) =>
-          paymentMethod.id === id,
-      );
+    const existing =
+      this.findById(id);
 
-    if (index === -1) {
+    if (!existing) {
 
       return undefined;
 
     }
 
-    this.paymentMethods[index] = {
+    Object.assign(
 
-      ...this.paymentMethods[index],
+      existing,
 
-      ...updates,
+      updates,
 
-      updatedAt:
-        new Date().toISOString(),
+      {
 
-    };
+        updatedAt: new Date(),
 
-    return this.paymentMethods[index];
+      },
+
+    );
+
+    return existing;
 
   }
-
 
   delete(
     id: string,
@@ -85,8 +118,10 @@ class InMemoryPaymentMethodRepository
 
     const index =
       this.paymentMethods.findIndex(
-        (paymentMethod) =>
+
+        paymentMethod =>
           paymentMethod.id === id,
+
       );
 
     if (index === -1) {
@@ -105,7 +140,6 @@ class InMemoryPaymentMethodRepository
   }
 
 }
-
 
 export const inMemoryPaymentMethodRepository =
   new InMemoryPaymentMethodRepository();

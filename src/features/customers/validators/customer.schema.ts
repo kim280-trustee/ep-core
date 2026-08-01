@@ -1,53 +1,74 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Customers Module
+ * ------------------------------------------------------------
+ * Customer Validation Schema
+ * ============================================================
+ */
+
+
 import {
   z,
 } from "zod";
 
 
+
 export const customerSchema = z.object({
 
-  name: z
-    .string()
-    .min(
-      2,
-      "Customer name must contain at least 2 characters",
-    ),
+
+  name:
+    z.string()
+      .min(1),
 
 
-  phone: z
-    .string()
-    .optional(),
+
+  customerType:
+    z.enum([
+      "regular",
+      "retail",
+      "wholesale",
+    ]),
 
 
-  email: z
-    .string()
-    .email(
-      "Invalid email address",
-    )
-    .optional()
-    .or(
-      z.literal(""),
-    ),
+
+  phone:
+    z.string()
+      .nullable()
+      .optional(),
 
 
-  address: z
-    .string()
-    .optional(),
+
+  email:
+    z.string()
+      .nullable()
+      .optional(),
 
 
-  customerType: z.enum([
-    "regular",
-    "wholesale",
-  ]),
+
+  address:
+    z.string()
+      .nullable()
+      .optional(),
 
 
-  creditLimit: z
-    .number()
-    .min(
-      0,
-    )
-    .optional(),
+
+  taxNumber:
+    z.string()
+      .nullable()
+      .optional(),
+
+
+
+  creditLimit:
+    z.number()
+      .nullable()
+      .optional(),
+
 
 });
+
 
 
 export type CustomerFormInput =

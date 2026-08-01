@@ -9,37 +9,40 @@ import {
 
 
 import {
+
   warehouseSchema,
-} from "../validators/warehouse.schema";
 
+  type WarehouseFormInput,
 
-import type {
-  WarehouseFormInput,
 } from "../validators/warehouse.schema";
 
 
 
 interface WarehouseFormProps {
 
+
   defaultValues?: Partial<WarehouseFormInput>;
 
 
-  onSubmit: (
+  onSubmit(
     data: WarehouseFormInput,
-  ) => void;
+  ): void;
+
 
 }
 
 
 
-export function WarehouseForm({
+export function WarehouseForm(
 
-  defaultValues,
+  {
+    defaultValues,
 
-  onSubmit,
+    onSubmit,
 
-}: WarehouseFormProps) {
+  }: WarehouseFormProps
 
+) {
 
 
   const {
@@ -48,19 +51,19 @@ export function WarehouseForm({
 
     handleSubmit,
 
-    formState: {
-      errors,
-    },
+  } =
+    useForm<WarehouseFormInput>({
 
-  } = useForm<WarehouseFormInput>({
+      resolver:
 
-    resolver:
-      zodResolver(warehouseSchema),
+        zodResolver(
+          warehouseSchema,
+        ),
 
 
-    defaultValues,
+      defaultValues,
 
-  });
+    });
 
 
 
@@ -69,60 +72,75 @@ export function WarehouseForm({
     <form
 
       onSubmit={
-        handleSubmit(onSubmit)
+        handleSubmit(
+          onSubmit,
+        )
       }
 
-      className="
-        space-y-4
-        max-w-xl
-      "
-
     >
-
-      <input
-
-        {...register("name")}
-
-        placeholder="Warehouse name"
-
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
-
-      />
-
-
-
-      {errors.name && (
-
-        <p className="text-red-600">
-
-          {errors.name.message}
-
-        </p>
-
-      )}
-
 
 
       <input
 
         {...register("code")}
 
-        placeholder="Warehouse code"
-
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
+        placeholder="Warehouse Code"
 
       />
 
+
+      <input
+
+        {...register("name")}
+
+        placeholder="Warehouse Name"
+
+      />
+
+
+      <input
+
+        {...register("address")}
+
+        placeholder="Address"
+
+      />
+
+
+      <input
+
+        {...register("city")}
+
+        placeholder="City"
+
+      />
+
+
+      <input
+
+        {...register("province")}
+
+        placeholder="Province"
+
+      />
+
+
+      <input
+
+        {...register("postalCode")}
+
+        placeholder="Postal Code"
+
+      />
+
+
+      <input
+
+        {...register("country")}
+
+        placeholder="Country"
+
+      />
 
 
       <input
@@ -131,47 +149,10 @@ export function WarehouseForm({
 
         placeholder="Phone"
 
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
-
       />
 
 
-
-      <textarea
-
-        {...register("address")}
-
-        placeholder="Address"
-
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
-
-      />
-
-
-
-      <button
-
-        type="submit"
-
-        className="
-          bg-black
-          text-white
-          px-5
-          py-2
-          rounded
-        "
-
-      >
+      <button>
 
         Save Warehouse
 

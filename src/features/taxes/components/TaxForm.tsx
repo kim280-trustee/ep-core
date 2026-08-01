@@ -1,32 +1,39 @@
 import {
+
   useForm,
+
 } from "react-hook-form";
 
 
 import {
+
   zodResolver,
+
 } from "@hookform/resolvers/zod";
 
 
 import {
+
   taxSchema,
+
+  type TaxFormInput,
+
 } from "../validators/tax.schema";
 
 
-import type {
-  TaxFormInput,
-} from "../validators/tax.schema";
+
+interface Props {
 
 
-
-interface TaxFormProps {
-
-  defaultValues?: Partial<TaxFormInput>;
+  defaultValues?:Partial<TaxFormInput>;
 
 
-  onSubmit: (
-    data: TaxFormInput,
-  ) => void;
+  onSubmit(
+
+    data:TaxFormInput,
+
+  ):void;
+
 
 }
 
@@ -38,155 +45,115 @@ export function TaxForm({
 
   onSubmit,
 
-}: TaxFormProps) {
+}:Props){
 
 
 
-  const {
+ const {
 
-    register,
+  register,
 
-    handleSubmit,
+  handleSubmit,
 
-    formState: {
-      errors,
-    },
-
-  } = useForm<TaxFormInput>({
-
-    resolver:
-      zodResolver(taxSchema),
+ } = useForm<TaxFormInput>({
 
 
-    defaultValues,
+  resolver:
 
-  });
+    zodResolver(
+
+      taxSchema,
+
+    ),
+
+
+  defaultValues,
+
+
+ });
 
 
 
-  return (
+ return (
 
-    <form
+  <form
 
-      onSubmit={
-        handleSubmit(onSubmit)
+    onSubmit={
+
+      handleSubmit(onSubmit)
+
+    }
+
+  >
+
+
+   <input
+
+    {...register("code")}
+
+    placeholder="Tax Code"
+
+   />
+
+
+   <input
+
+    {...register("name")}
+
+    placeholder="Tax Name"
+
+   />
+
+
+   <input
+
+    type="number"
+
+    {...register(
+
+      "rate",
+
+      {
+
+        valueAsNumber:true,
+
       }
 
-      className="
-        space-y-4
-        max-w-xl
-      "
+    )}
 
-    >
+    placeholder="Rate"
 
-      <input
-
-        {...register("name")}
-
-        placeholder="Tax name"
-
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
-
-      />
+   />
 
 
+   <input
 
-      {errors.name && (
+    {...register("country")}
 
-        <p className="text-red-600">
+    placeholder="Country"
 
-          {errors.name.message}
-
-        </p>
-
-      )}
+   />
 
 
+   <input
 
-      <input
+    {...register("currency")}
 
-        type="number"
+    placeholder="Currency"
 
-        {...register(
-          "rate",
-          {
-            valueAsNumber: true,
-          },
-        )}
-
-        placeholder="Tax rate"
-
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
-
-      />
+   />
 
 
+   <button>
 
-      <input
+    Save Tax
 
-        {...register("country")}
-
-        placeholder="Country"
-
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
-
-      />
+   </button>
 
 
+  </form>
 
-      <input
+ );
 
-        {...register("currency")}
-
-        placeholder="Currency"
-
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
-
-      />
-
-
-
-      <button
-
-        type="submit"
-
-        className="
-          bg-black
-          text-white
-          px-5
-          py-2
-          rounded
-        "
-
-      >
-
-        Save Tax
-
-      </button>
-
-
-    </form>
-
-  );
 
 }

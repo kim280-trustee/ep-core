@@ -1,12 +1,29 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * Smart POS
+ * Warehouse Repository Contract
+ * ============================================================
+ */
+
+
 import type {
+
   Warehouse,
+
+  CreateWarehouseDto,
+
+  UpdateWarehouseDto,
+
 } from "../types/warehouse.types";
 
 
-export interface IWarehouseRepository {
+
+export interface WarehouseRepository {
 
 
   findAll(): Warehouse[];
+
 
 
   findById(
@@ -16,14 +33,23 @@ export interface IWarehouseRepository {
 
 
   create(
-    warehouse: Warehouse,
+    warehouse: CreateWarehouseDto & {
+
+      tenantId: string;
+
+      storeId: string;
+
+    },
   ): Warehouse;
 
 
 
   update(
+
     id: string,
-    updates: Partial<Warehouse>,
+
+    warehouse: UpdateWarehouseDto,
+
   ): Warehouse | undefined;
 
 
@@ -31,5 +57,6 @@ export interface IWarehouseRepository {
   delete(
     id: string,
   ): boolean;
+
 
 }

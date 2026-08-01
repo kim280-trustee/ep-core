@@ -81,7 +81,7 @@ export function EditUnitPage() {
 
 
         description:
-          data.description,
+          data.description ?? null,
 
       },
 
@@ -127,7 +127,7 @@ export function EditUnitPage() {
 
 
           description:
-            unit.description,
+            unit.description ?? undefined,
 
         }}
 

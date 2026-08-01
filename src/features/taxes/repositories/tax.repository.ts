@@ -1,35 +1,61 @@
 import type {
+
   Tax,
+
+  CreateTaxDto,
+
+  UpdateTaxDto,
+
 } from "../types/tax.types";
 
 
-export interface ITaxRepository {
+
+export interface TaxRepository {
 
 
-  findAll(): Tax[];
+  findAll():Tax[];
+
 
 
   findById(
-    id: string,
-  ): Tax | undefined;
+
+    id:string,
+
+  ):Tax | undefined;
 
 
 
   create(
-    tax: Tax,
-  ): Tax;
+
+    tax:
+
+      CreateTaxDto & {
+
+        tenantId:string;
+
+        storeId:string;
+
+      },
+
+  ):Tax;
 
 
 
   update(
-    id: string,
-    updates: Partial<Tax>,
-  ): Tax | undefined;
+
+    id:string,
+
+    tax:UpdateTaxDto,
+
+  ):Tax | undefined;
 
 
 
   delete(
-    id: string,
-  ): boolean;
+
+    id:string,
+
+  ):boolean;
+
 
 }

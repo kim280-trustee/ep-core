@@ -1,116 +1,115 @@
-import {
-  paymentMethodRepository,
-} from "../repositories";
-
 import type {
-  PaymentMethod,
+
+  CreatePaymentMethodDto,
+
+  UpdatePaymentMethodDto,
+
 } from "../types/payment-method.types";
 
-import type {
-  PaymentMethodFormInput,
-} from "../validators/payment-method.schema";
+
+import {
+
+  paymentMethodRepository,
+
+} from "../repositories/repository.provider";
 
 
-class PaymentMethodService {
 
-  generateId(): string {
-
-    return crypto.randomUUID();
-
-  }
+export const paymentMethodService = {
 
 
-  getPaymentMethods(): PaymentMethod[] {
+
+  getPaymentMethods(){
+
 
     return paymentMethodRepository.findAll();
 
-  }
+
+  },
+
 
 
   getPaymentMethodById(
-    id: string,
-  ): PaymentMethod | undefined {
+
+    id:string,
+
+  ){
+
 
     return paymentMethodRepository.findById(
+
       id,
+
     );
 
-  }
+
+  },
+
 
 
   createPaymentMethod(
-    input: PaymentMethodFormInput,
-    tenantId: string,
-    storeId: string,
-  ): PaymentMethod {
 
-    const now =
-      new Date().toISOString();
+    tenantId:string,
 
-    const paymentMethod: PaymentMethod = {
+    storeId:string,
 
-      id:
-        this.generateId(),
+    data:CreatePaymentMethodDto,
+
+  ){
+
+
+    return paymentMethodRepository.create(
 
       tenantId,
 
       storeId,
 
-      name:
-        input.name,
+      data,
 
-      code:
-        input.code,
-
-      type:
-        input.type,
-
-      isDefault:
-        input.isDefault,
-
-      isActive:
-        input.isActive,
-
-      createdAt:
-        now,
-
-      updatedAt:
-        now,
-
-    };
-
-    return paymentMethodRepository.create(
-      paymentMethod,
     );
 
-  }
+
+  },
+
 
 
   updatePaymentMethod(
-    id: string,
-    updates: Partial<PaymentMethod>,
-  ) {
+
+    id:string,
+
+    data:UpdatePaymentMethodDto,
+
+  ){
+
 
     return paymentMethodRepository.update(
+
       id,
-      updates,
+
+      data,
+
     );
 
-  }
+
+  },
+
 
 
   deletePaymentMethod(
-    id: string,
-  ): boolean {
+
+    id:string,
+
+  ){
+
 
     return paymentMethodRepository.delete(
+
       id,
+
     );
 
-  }
 
-}
+  },
 
 
-export const paymentMethodService =
-  new PaymentMethodService();
+};

@@ -1,147 +1,108 @@
-import {
-  warehouseRepository,
-} from "../repositories";
+/**
+ * ============================================================
+ * E&P Technologies
+ * Smart POS
+ * Warehouse Service
+ * ============================================================
+ */
 
 
 import type {
-  Warehouse,
+
+  CreateWarehouseDto,
+
+  UpdateWarehouseDto,
+
 } from "../types/warehouse.types";
 
 
-import type {
-  WarehouseFormInput,
-} from "../validators/warehouse.schema";
+import {
+
+  warehouseRepository,
+
+} from "../repositories/repository.provider";
 
 
 
-class WarehouseService {
+export const warehouseService = {
 
 
-
-  generateId(): string {
-
-    return crypto.randomUUID();
-
-  }
-
-
-
-  getWarehouses(): Warehouse[] {
+  getWarehouses() {
 
     return warehouseRepository.findAll();
 
-  }
+  },
 
 
 
   getWarehouseById(
-    id: string,
-  ): Warehouse | undefined {
+    id:string,
+  ) {
 
-    return warehouseRepository.findById(id);
+    return warehouseRepository.findById(
+      id,
+    );
 
-  }
+  },
 
 
 
   createWarehouse(
 
-    input: WarehouseFormInput,
+    tenantId:string,
 
-    tenantId: string,
+    storeId:string,
 
-    storeId: string,
+    warehouse:CreateWarehouseDto,
 
-  ): Warehouse {
-
-
-
-    const now =
-      new Date().toISOString();
+  ) {
 
 
+    return warehouseRepository.create({
 
-    const warehouse: Warehouse = {
-
-      id:
-        this.generateId(),
-
+      ...warehouse,
 
       tenantId,
 
-
       storeId,
 
+    });
 
-      name:
-        input.name,
-
-
-      code:
-        input.code,
-
-
-      address:
-        input.address,
-
-
-      phone:
-        input.phone,
-
-
-      status:
-        "active",
-
-
-      createdAt:
-        now,
-
-
-      updatedAt:
-        now,
-
-    };
-
-
-
-    return warehouseRepository.create(
-      warehouse,
-    );
-
-  }
+  },
 
 
 
   updateWarehouse(
 
-    id: string,
+    id:string,
 
-    updates: Partial<Warehouse>,
+    warehouse:UpdateWarehouseDto,
 
   ) {
 
 
     return warehouseRepository.update(
+
       id,
-      updates,
+
+      warehouse,
+
     );
 
-  }
+  },
 
 
 
   deleteWarehouse(
-    id: string,
-  ): boolean {
-
-    return warehouseRepository.delete(id);
-
-  }
+    id:string,
+  ) {
 
 
-}
+    return warehouseRepository.delete(
+      id,
+    );
+
+  },
 
 
-
-export const warehouseService =
-  new WarehouseService();
+};

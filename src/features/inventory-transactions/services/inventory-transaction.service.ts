@@ -1,3 +1,14 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Inventory Transactions Module
+ * ------------------------------------------------------------
+ * Inventory Transaction Service
+ * ============================================================
+ */
+
+
 import {
   inventoryTransactionRepository,
 } from "../repositories";
@@ -16,6 +27,7 @@ import type {
 import type {
   MovementType,
 } from "../types/movement-type.types";
+
 
 
 
@@ -45,7 +57,9 @@ interface CreateInventoryTransactionInput {
 
 
 
+
 class InventoryTransactionService {
+
 
 
 
@@ -57,6 +71,7 @@ class InventoryTransactionService {
     this.validateQuantity(
       input.quantity,
     );
+
 
 
     const record =
@@ -85,6 +100,7 @@ class InventoryTransactionService {
       record?.quantityOnHand ?? 0,
 
     );
+
 
 
 
@@ -139,6 +155,7 @@ class InventoryTransactionService {
       createdAt:
         new Date().toISOString(),
 
+
     };
 
 
@@ -154,6 +171,7 @@ class InventoryTransactionService {
     );
 
   }
+
 
 
 
@@ -178,8 +196,13 @@ class InventoryTransactionService {
 
 
 
+
+
   private validateInventoryRecord(
-    record: unknown,
+    record:
+      ReturnType<
+        typeof inventoryService.getInventoryRecord
+      >,
   ) {
 
 
@@ -192,6 +215,8 @@ class InventoryTransactionService {
     }
 
   }
+
+
 
 
 
@@ -211,6 +236,7 @@ class InventoryTransactionService {
     const decreasingMovements:
       MovementType[] = [
 
+
         "SALE",
 
         "PURCHASE_RETURN",
@@ -218,6 +244,7 @@ class InventoryTransactionService {
         "TRANSFER_OUT",
 
         "ADJUSTMENT_OUT",
+
 
       ];
 
@@ -235,11 +262,13 @@ class InventoryTransactionService {
 
     ) {
 
+
       throw new Error(
         "Insufficient stock available.",
       );
 
     }
+
 
   }
 
@@ -247,8 +276,14 @@ class InventoryTransactionService {
 
 
 
+
+
+
   private applyInventoryChange(
-    transaction: InventoryTransaction,
+
+    transaction:
+      InventoryTransaction,
+
   ) {
 
 
@@ -271,58 +306,100 @@ class InventoryTransactionService {
 
 
 
-    switch (
-      transaction.movementType
+
+    const increasingMovements:
+      MovementType[] = [
+
+
+        "INITIAL_STOCK",
+
+        "PURCHASE_RECEIPT",
+
+        "SALE_RETURN",
+
+        "ADJUSTMENT_IN",
+
+        "TRANSFER_IN",
+
+
+      ];
+
+
+
+
+    const decreasingMovements:
+      MovementType[] = [
+
+
+        "SALE",
+
+        "PURCHASE_RETURN",
+
+        "ADJUSTMENT_OUT",
+
+        "TRANSFER_OUT",
+
+
+      ];
+
+
+
+
+
+    if (
+
+      increasingMovements.includes(
+        transaction.movementType,
+      )
+
     ) {
 
 
+      inventoryService.increaseStock(
 
-      case "INITIAL_STOCK":
+        record,
 
-      case "PURCHASE_RECEIPT":
+        transaction.quantity,
 
-      case "SALE_RETURN":
+        transaction.unitCost,
 
-      case "ADJUSTMENT_IN":
+      );
 
-      case "TRANSFER_IN":
 
-        inventoryService.increaseStock(
+      return;
 
-          record,
-
-          transaction.quantity,
-
-          transaction.unitCost,
-
-        );
-
-        break;
+    }
 
 
 
-      case "SALE":
 
-      case "PURCHASE_RETURN":
 
-      case "ADJUSTMENT_OUT":
 
-      case "TRANSFER_OUT":
+    if (
 
-        inventoryService.decreaseStock(
+      decreasingMovements.includes(
+        transaction.movementType,
+      )
 
-          record,
+    ) {
 
-          transaction.quantity,
 
-        );
+      inventoryService.decreaseStock(
 
-        break;
+        record,
+
+        transaction.quantity,
+
+      );
 
 
     }
 
+
   }
+
+
+
 
 
 
@@ -330,9 +407,13 @@ class InventoryTransactionService {
 
   getTransactions() {
 
+
     return inventoryTransactionRepository.findAll();
 
+
   }
+
+
 
 
 }

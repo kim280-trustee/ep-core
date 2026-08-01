@@ -1,147 +1,114 @@
-import {
-  taxRepository,
-} from "../repositories";
-
-
 import type {
-  Tax,
+
+  CreateTaxDto,
+
+  UpdateTaxDto,
+
 } from "../types/tax.types";
 
 
-import type {
-  TaxFormInput,
-} from "../validators/tax.schema";
+import {
+
+  taxRepository,
+
+} from "../repositories/repository.provider";
 
 
 
-class TaxService {
+export const taxService = {
 
 
+  getTaxes(){
 
-  generateId(): string {
-
-    return crypto.randomUUID();
-
-  }
-
-
-
-  getTaxes(): Tax[] {
 
     return taxRepository.findAll();
 
-  }
+
+  },
 
 
 
   getTaxById(
-    id: string,
-  ): Tax | undefined {
 
-    return taxRepository.findById(id);
+    id:string,
 
-  }
+  ){
+
+
+    return taxRepository.findById(
+
+      id,
+
+    );
+
+
+  },
 
 
 
   createTax(
 
-    input: TaxFormInput,
+    tenantId:string,
 
-    tenantId: string,
+    storeId:string,
 
-    storeId: string,
+    tax:CreateTaxDto,
 
-  ): Tax {
-
-
-
-    const now =
-      new Date().toISOString();
+  ){
 
 
+    return taxRepository.create({
 
-    const tax: Tax = {
-
-      id:
-        this.generateId(),
-
+      ...tax,
 
       tenantId,
 
-
       storeId,
 
-
-      name:
-        input.name,
+    });
 
 
-      rate:
-        input.rate,
-
-
-      country:
-        input.country,
-
-
-      currency:
-        input.currency,
-
-
-      status:
-        "active",
-
-
-      createdAt:
-        now,
-
-
-      updatedAt:
-        now,
-
-    };
-
-
-
-    return taxRepository.create(
-      tax,
-    );
-
-  }
+  },
 
 
 
   updateTax(
 
-    id: string,
+    id:string,
 
-    updates: Partial<Tax>,
+    tax:UpdateTaxDto,
 
-  ) {
+  ){
 
 
     return taxRepository.update(
+
       id,
-      updates,
+
+      tax,
+
     );
 
-  }
+
+  },
 
 
 
   deleteTax(
-    id: string,
-  ): boolean {
 
-    return taxRepository.delete(id);
+    id:string,
 
-  }
+  ){
 
 
-}
+    return taxRepository.delete(
+
+      id,
+
+    );
 
 
+  },
 
-export const taxService =
-  new TaxService();
+
+};

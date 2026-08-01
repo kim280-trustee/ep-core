@@ -5,35 +5,52 @@ import {
 
 export const warehouseSchema = z.object({
 
-  name: z
-    .string()
-    .min(
-      2,
-      "Warehouse name must contain at least 2 characters",
-    ),
+  code:
+    z.string()
+      .min(1),
 
 
-  code: z
-    .string()
-    .min(
-      2,
-      "Warehouse code is required",
-    ),
+  name:
+    z.string()
+      .min(1),
 
 
-  address: z
-    .string()
-    .optional(),
+  address:
+    z.string()
+      .min(1),
 
 
-  phone: z
-    .string()
-    .optional(),
+  city:
+    z.string()
+      .min(1),
+
+
+  province:
+    z.string()
+      .min(1),
+
+
+  postalCode:
+    z.string()
+      .min(1),
+
+
+  country:
+    z.string()
+      .min(1),
+
+
+  phone:
+    z.string()
+      .optional(),
+
 
 });
 
 
+
 export type WarehouseFormInput =
+
   z.infer<
     typeof warehouseSchema
   >;

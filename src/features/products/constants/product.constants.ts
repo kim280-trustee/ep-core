@@ -1,23 +1,16 @@
-import type {
+import {
   ProductStatus,
   ProductType,
 } from "../types/product.types";
 
 
-export const PRODUCT_TYPES: readonly ProductType[] = [
-  "simple",
-  "variable",
-  "service",
+export const PRODUCT_TYPES = [
+  ProductType.PRODUCT,
+  ProductType.SERVICE,
 ];
 
 
-export const PRODUCT_STATUSES: readonly ProductStatus[] = [
-  "active",
-  "inactive",
+export const PRODUCT_STATUSES = [
+  ProductStatus.ACTIVE,
+  ProductStatus.INACTIVE,
 ];
-
-
-export const DEFAULT_PRODUCT_CURRENCY = "THB";
-
-
-export const DEFAULT_TAX_RATE = 7;

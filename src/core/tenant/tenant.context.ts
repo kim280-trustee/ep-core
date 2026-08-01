@@ -1,53 +1,39 @@
-export interface TenantContext {
-
-  tenantId: string;
-
-  name: string;
-
-  country: string;
-
-  currency: string;
-
-}
+/**
+ * ============================================================
+ * E&P Technologies
+ * EP Core
+ * Tenant Context
+ * ============================================================
+ */
 
 
-class TenantContextManager {
+import {
+  createContext,
+} from "react";
+
+import type {
+  Tenant,
+} from "./types/tenant.types";
 
 
-  private context:
-    TenantContext | null = null;
 
+export interface TenantContextValue {
+
+
+  tenant:
+    Tenant | null;
 
 
   setTenant(
-    context: TenantContext,
-  ) {
-
-    this.context = context;
-
-  }
-
-
-
-  getTenant():
-
-  TenantContext | null {
-
-    return this.context;
-
-  }
-
-
-
-  clearTenant() {
-
-    this.context = null;
-
-  }
+    tenant: Tenant | null,
+  ): void;
 
 
 }
 
 
-export const tenantContext =
-  new TenantContextManager();
+
+export const TenantContext =
+createContext<TenantContextValue | undefined>(
+  undefined,
+);

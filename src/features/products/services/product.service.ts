@@ -1,167 +1,524 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Product Service
+ * ============================================================
+ */
+
+
 import {
   productRepository,
 } from "../repositories";
 
+
+import {
+  createProductSchema,
+} from "../validation/product.schema";
+
+
 import type {
+
   Product,
+
+  CreateProductDto,
+
+  UpdateProductDto,
+
 } from "../types/product.types";
 
 
-import type {
-  ProductFormInput,
-} from "../validators/product.schema";
+import {
+
+  ProductStatus,
+
+  ProductType,
+
+} from "../types/product.types";
+
+
+
+
+
 
 
 class ProductService {
 
 
-  generateId(): string {
-    return crypto.randomUUID();
-  }
 
 
-  generateSKU(): string {
 
-    return `SKU-${Date.now()}`;
-  }
 
+getProducts():Product[]{
 
 
-  getProducts(): Product[] {
+return productRepository.findAll();
 
-    return productRepository.findAll();
-
-  }
-
-
-
-  getProductById(
-    id: string,
-  ): Product | undefined {
-
-    return productRepository.findById(id);
-
-  }
-
-
-
-  createProduct(
-    input: ProductFormInput,
-    tenantId: string,
-    storeId: string,
-  ): Product {
-
-
-    const now = new Date().toISOString();
-
-
-    const product: Product = {
-
-      id: this.generateId(),
-
-      tenantId,
-
-      storeId,
-
-      name: input.name,
-
-      description: input.description,
-
-      productType: input.productType,
-
-      identifiers: {
-        sku: input.sku || this.generateSKU(),
-        barcode: input.barcode,
-      },
-
-
-      categoryId: input.categoryId,
-
-      brandId: input.brandId,
-
-      unitId: input.unitId,
-
-
-      pricing: {
-
-        costPrice: input.costPrice,
-
-        sellingPrice: input.sellingPrice,
-
-        wholesalePrice: input.wholesalePrice,
-
-        currency: input.currency,
-
-      },
-
-
-      inventory: {
-
-        trackInventory: input.trackInventory,
-
-        stockQuantity: input.stockQuantity,
-
-        minimumStockLevel:
-          input.minimumStockLevel,
-
-        maximumStockLevel:
-          input.maximumStockLevel,
-
-      },
-
-
-      tax: {
-
-        taxable: input.taxable,
-
-        taxRate: input.taxRate,
-
-      },
-
-
-      imageUrl: input.imageUrl,
-
-
-      status: "active",
-
-
-      createdAt: now,
-
-      updatedAt: now,
-
-    };
-
-
-    return productRepository.create(product);
-
-  }
-
-
-
-  updateProduct(
-    id: string,
-    updates: Partial<Product>,
-  ): Product | undefined {
-
-    return productRepository.update(
-      id,
-      updates,
-    );
-
-  }
-
-
-
-  deleteProduct(
-    id: string,
-  ): boolean {
-
-    return productRepository.delete(id);
-
-  }
 
 }
 
 
+
+
+
+
+
+
+getProductById(id:string):Product | undefined {
+
+
+return productRepository.findById(
+
+id,
+
+);
+
+
+}
+
+
+
+
+
+
+
+
+
+getActiveProducts():Product[]{
+
+
+return this.getProducts()
+
+.filter(
+
+product=>
+
+product.status === ProductStatus.ACTIVE
+
+);
+
+
+}
+
+
+
+
+
+
+
+
+getInactiveProducts():Product[]{
+
+
+return this.getProducts()
+
+.filter(
+
+product=>
+
+product.status === ProductStatus.INACTIVE
+
+);
+
+
+}
+
+
+
+
+
+
+
+
+
+getProductStats(){
+
+
+
+const products =
+
+this.getProducts();
+
+
+
+
+return {
+
+
+total:products.length,
+
+
+active:
+
+products.filter(
+
+p=>
+
+p.status === ProductStatus.ACTIVE
+
+).length,
+
+
+
+inactive:
+
+products.filter(
+
+p=>
+
+p.status === ProductStatus.INACTIVE
+
+).length,
+
+
+};
+
+
+
+}
+
+
+
+
+
+
+
+
+
+createProduct(
+
+tenantId:string,
+
+storeId:string,
+
+input:CreateProductDto,
+
+):Product {
+
+
+
+const validated =
+
+createProductSchema.parse(
+
+input,
+
+);
+
+
+
+
+
+const now =
+
+new Date().toISOString();
+
+
+
+
+
+const product:Product={
+
+
+
+id:
+
+crypto.randomUUID(),
+
+
+
+tenantId,
+
+
+
+storeId,
+
+
+
+name:
+
+validated.name,
+
+
+
+description:
+
+validated.description ?? null,
+
+
+
+type:
+
+validated.type ?? ProductType.PRODUCT,
+
+
+
+identifiers:{
+
+
+sku:
+
+validated.identifiers.sku,
+
+
+barcode:
+
+validated.identifiers.barcode ?? null,
+
+
+},
+
+
+
+pricing:
+
+validated.pricing,
+
+
+
+tax:
+
+validated.tax ?? {
+
+taxId:null,
+
+taxRate:0,
+
+},
+
+
+
+inventory:
+
+validated.inventory ?? {
+
+trackInventory:false,
+
+stockQuantity:0,
+
+},
+
+
+
+categoryId:
+
+validated.categoryId ?? null,
+
+
+
+brandId:
+
+validated.brandId ?? null,
+
+
+
+unitId:
+
+validated.unitId ?? null,
+
+
+
+imageUrl:
+
+validated.imageUrl ?? null,
+
+
+
+status:
+
+ProductStatus.ACTIVE,
+
+
+
+createdAt:now,
+
+
+updatedAt:now,
+
+
+
+};
+
+
+
+
+
+
+return productRepository.create(
+
+tenantId,
+
+storeId,
+
+product,
+
+);
+
+
+}
+
+
+
+
+
+
+
+
+
+updateProduct(
+
+id:string,
+
+updates:UpdateProductDto,
+
+){
+
+
+return productRepository.update(
+
+id,
+
+updates,
+
+);
+
+
+}
+
+
+
+
+
+
+
+
+
+toggleStatus(
+
+product:Product,
+
+):Product {
+
+
+
+const updated:Product={
+
+
+...product,
+
+
+status:
+
+product.status === ProductStatus.ACTIVE
+
+?
+
+ProductStatus.INACTIVE
+
+:
+
+ProductStatus.ACTIVE,
+
+
+
+updatedAt:
+
+new Date().toISOString(),
+
+
+};
+
+
+
+
+return updated;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+duplicateProduct(
+
+product:Product,
+
+):Product {
+
+
+
+return {
+
+
+...product,
+
+
+id:
+
+crypto.randomUUID(),
+
+
+
+name:
+
+`${product.name} Copy`,
+
+
+
+createdAt:
+
+new Date().toISOString(),
+
+
+
+updatedAt:
+
+new Date().toISOString(),
+
+
+
+};
+
+
+
+}
+
+
+
+
+
+
+
+
+
+deleteProduct(id:string){
+
+
+return productRepository.delete(
+
+id,
+
+);
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
 export const productService =
-  new ProductService();
+
+new ProductService();

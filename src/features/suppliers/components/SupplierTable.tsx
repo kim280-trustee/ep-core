@@ -1,178 +1,120 @@
-import {
-  Link,
-} from "react-router-dom";
-
+/**
+ * ============================================================
+ * E&P Technologies
+ * Smart POS
+ * Supplier Table
+ * ============================================================
+ */
 
 import type {
   Supplier,
 } from "../types/supplier.types";
 
 
+
 interface SupplierTableProps {
 
   suppliers: Supplier[];
 
-  onDelete: (
+  onDelete(
     id: string,
-  ) => void;
+  ): void;
 
 }
 
 
 
-export function SupplierTable({
-
-  suppliers,
-
-  onDelete,
-
-}: SupplierTableProps) {
-
-
-  if (suppliers.length === 0) {
-
-    return (
-
-      <div
-        className="
-          border
-          rounded
-          p-8
-          text-center
-        "
-      >
-
-        No suppliers found.
-
-      </div>
-
-    );
-
-  }
-
+export function SupplierTable(
+  {
+    suppliers,
+    onDelete,
+  }: SupplierTableProps,
+) {
 
 
   return (
 
-    <table
-      className="
-        w-full
-        border-collapse
-      "
-    >
+    <table>
 
       <thead>
 
-        <tr
-          className="border-b"
-        >
+        <tr>
 
-          <th className="text-left p-3">
+          <th>
             Name
           </th>
 
-
-          <th className="text-left p-3">
-            Contact
-          </th>
-
-
-          <th className="text-left p-3">
+          <th>
             Phone
           </th>
 
-
-          <th className="text-left p-3">
-            Actions
+          <th>
+            Email
           </th>
 
+          <th>
+            Action
+          </th>
 
         </tr>
 
       </thead>
 
 
-
       <tbody>
 
-        {suppliers.map(
+        {
+          suppliers.map(
 
-          (supplier) => (
+            (supplier) => (
 
-            <tr
-
-              key={supplier.id}
-
-              className="border-b"
-
-            >
-
-              <td className="p-3">
-
-                {supplier.name}
-
-              </td>
-
-
-              <td className="p-3">
-
-                {supplier.contactPerson || "-"}
-
-              </td>
-
-
-              <td className="p-3">
-
-                {supplier.phone || "-"}
-
-              </td>
-
-
-              <td
-                className="
-                  p-3
-                  flex
-                  gap-3
-                "
+              <tr
+                key={
+                  supplier.id
+                }
               >
 
-                <Link
-
-                  to={`/suppliers/edit/${supplier.id}`}
-
-                  className="underline"
-
-                >
-
-                  Edit
-
-                </Link>
+                <td>
+                  {supplier.name}
+                </td>
 
 
-
-                <button
-
-                  onClick={() =>
-                    onDelete(supplier.id)
-                  }
-
-                  className="text-red-600"
-
-                >
-
-                  Delete
-
-                </button>
+                <td>
+                  {supplier.phone}
+                </td>
 
 
-              </td>
+                <td>
+                  {supplier.email}
+                </td>
 
 
-            </tr>
+                <td>
 
-          ),
+                  <button
 
-        )}
+                    onClick={
+                      () =>
+                        onDelete(
+                          supplier.id,
+                        )
+                    }
+
+                  >
+
+                    Delete
+
+                  </button>
+
+                </td>
+
+
+              </tr>
+
+            ),
+
+          )
+        }
 
       </tbody>
 

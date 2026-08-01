@@ -11,12 +11,14 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
+    "@supabase/supabase-js": "^2.109.0",
     "@tanstack/react-query": "^5.101.2",
     "lucide-react": "^1.25.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-hook-form": "^7.82.0",
     "react-router-dom": "^7.18.1",
+    "uuid": "^14.0.1",
     "zod": "^4.4.3",
     "zustand": "^5.0.14"
   },
@@ -26,6 +28,7 @@
     "@types/node": "^24.13.2",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
+    "@types/uuid": "^10.0.0",
     "@vitejs/plugin-react": "^6.0.3",
     "eslint": "^10.6.0",
     "eslint-config-prettier": "^10.1.8",

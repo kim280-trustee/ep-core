@@ -1,166 +1,92 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Edit Product Page
+ * ============================================================
+ */
+
+
 import {
-  useNavigate,
-  useParams,
+
+useParams,
+
 } from "react-router-dom";
 
 
 import {
-  ProductForm,
+
+ProductForm,
+
 } from "../components/ProductForm";
 
 
-import {
-  productService,
-} from "../services/product.service";
 
 
 
-export function EditProductPage() {
 
+export function EditProductPage(){
 
-  const navigate = useNavigate();
 
 
-  const {
-    id,
-  } = useParams();
+const {
 
+id,
 
+}=useParams();
 
-  const foundProduct =
-    id
-      ? productService.getProductById(id)
-      : undefined;
 
 
 
-  if (!foundProduct) {
 
-    return (
 
-      <div
-        className="p-6"
-      >
+return (
 
-        Product not found
 
-      </div>
+<div
 
-    );
+className="
+flex
+flex-col
+gap-6
+"
 
-  }
+>
 
 
 
-  const product = foundProduct;
+<h1
 
+className="
+text-2xl
+font-semibold
+"
 
+>
 
-  function handleSubmit(
-    data: Parameters<
-      typeof productService.createProduct
-    >[0],
-  ) {
+Edit Product
 
+</h1>
 
-    productService.updateProduct(
 
-      product.id,
 
-      {
 
-        name: data.name,
 
 
-        description:
-          data.description,
+<ProductForm
 
+productId={id}
 
-        pricing: {
+/>
 
-          ...product.pricing,
 
 
-          sellingPrice:
-            data.sellingPrice,
 
+</div>
 
-          costPrice:
-            data.costPrice,
 
-        },
+);
 
 
-        inventory: {
-
-          ...product.inventory,
-
-
-          stockQuantity:
-            data.stockQuantity,
-
-        },
-
-      },
-
-    );
-
-
-    navigate("/products");
-
-  }
-
-
-
-  return (
-
-    <div
-      className="p-6"
-    >
-
-      <h1
-        className="
-          text-2xl
-          font-bold
-          mb-6
-        "
-      >
-
-        Edit Product
-
-      </h1>
-
-
-
-      <ProductForm
-
-        defaultValues={{
-
-          name:
-            product.name,
-
-
-          sku:
-            product.identifiers.sku,
-
-
-          sellingPrice:
-            product.pricing.sellingPrice,
-
-
-          stockQuantity:
-            product.inventory.stockQuantity,
-
-        }}
-
-
-        onSubmit={handleSubmit}
-
-      />
-
-
-    </div>
-
-  );
 
 }

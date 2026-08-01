@@ -1,207 +1,590 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Product Table
+ * ============================================================
+ */
+
+
 import {
-  Link,
+  useNavigate,
 } from "react-router-dom";
 
 
-import type {
-  Product,
-} from "../types/product.types";
+import {
+  useProductsStore,
+} from "../store/products.store";
 
 
-interface ProductTableProps {
-
-  products: Product[];
-
-  onDelete: (
-    id: string,
-  ) => void;
-
-}
+import {
+  ProductStatusBadge,
+} from "./ProductStatusBadge";
 
 
-
-export function ProductTable({
-
-  products,
-
-  onDelete,
-
-}: ProductTableProps) {
+import {
+  ProductStatusToggle,
+} from "./ProductStatusToggle";
 
 
-  if (products.length === 0) {
+import {
+  ProductDuplicateButton,
+} from "./ProductDuplicateButton";
 
-    return (
 
-      <div
-        className="
-          border
-          rounded
-          p-8
-          text-center
-        "
-      >
 
-        No products found.
 
-      </div>
+
+
+
+export function ProductTable(){
+
+
+
+  const navigate =
+
+    useNavigate();
+
+
+
+
+
+  const products =
+
+    useProductsStore(
+
+      (state)=>
+
+        state.products,
 
     );
+
+
+
+
+
+  const search =
+
+    useProductsStore(
+
+      (state)=>
+
+        state.search,
+
+    );
+
+
+
+
+
+  const statusFilter =
+
+    useProductsStore(
+
+      (state)=>
+
+        state.statusFilter,
+
+    );
+
+
+
+
+
+  const deleteProduct =
+
+    useProductsStore(
+
+      (state)=>
+
+        state.deleteProduct,
+
+    );
+
+
+
+
+
+  const updateProduct =
+
+    useProductsStore(
+
+      (state)=>
+
+        state.updateProduct,
+
+    );
+
+
+
+
+
+
+
+
+  const filteredProducts =
+
+    products.filter((product)=>{
+
+
+
+      const searchMatch =
+
+        product.name
+
+        .toLowerCase()
+
+        .includes(
+
+          search.toLowerCase(),
+
+        );
+
+
+
+
+
+      const statusMatch =
+
+        statusFilter === "ALL"
+
+        ||
+
+        product.status === statusFilter;
+
+
+
+
+
+      return (
+
+        searchMatch && statusMatch
+
+      );
+
+
+
+    });
+
+
+
+
+
+
+
+
+  function duplicateProduct(product:any){
+
+
+
+    const copy = {
+
+
+      ...product,
+
+
+      id:
+
+        crypto.randomUUID(),
+
+
+      name:
+
+        `${product.name} Copy`,
+
+
+      createdAt:
+
+        new Date().toISOString(),
+
+
+      updatedAt:
+
+        new Date().toISOString(),
+
+
+
+    };
+
+
+
+
+
+    updateProduct(copy);
+
+
 
   }
 
 
 
+
+
+
+
+
+  if(filteredProducts.length===0){
+
+
+    return (
+
+
+      <div
+
+        className="
+        border
+        rounded
+        p-6
+        text-center
+        "
+
+      >
+
+        No products found
+
+
+      </div>
+
+
+    );
+
+
+  }
+
+
+
+
+
+
+
   return (
 
+
     <div
+
       className="
-        overflow-x-auto
+      border
+      rounded
+      overflow-hidden
       "
+
     >
 
+
+
       <table
+
         className="
-          w-full
-          border-collapse
+        w-full
         "
+
       >
+
+
 
         <thead>
 
+
           <tr
+
             className="
-              border-b
+            border-b
+            bg-gray-100
             "
+
           >
 
-            <th className="text-left p-3">
+
+            <th className="p-3 text-left">
+
               Name
+
             </th>
 
 
-            <th className="text-left p-3">
+            <th className="p-3 text-left">
+
               SKU
+
             </th>
 
 
-            <th className="text-left p-3">
+            <th className="p-3 text-left">
+
               Price
+
             </th>
 
 
-            <th className="text-left p-3">
+            <th className="p-3 text-left">
+
+              Stock
+
+            </th>
+
+
+            <th className="p-3 text-left">
+
               Status
+
             </th>
 
 
-            <th className="text-left p-3">
+            <th className="p-3 text-left">
+
               Actions
+
             </th>
+
 
           </tr>
+
 
         </thead>
 
 
+
+
+
+
         <tbody>
 
-          {products.map(
-            (product) => (
 
-              <tr
-                key={product.id}
+        {
+
+          filteredProducts.map((product)=>(
+
+
+
+            <tr
+
+              key={product.id}
+
+              className="
+              border-b
+              "
+
+            >
+
+
+
+              <td className="p-3">
+
+                {product.name}
+
+              </td>
+
+
+
+
+
+              <td className="p-3">
+
+                {product.identifiers.sku}
+
+              </td>
+
+
+
+
+
+              <td className="p-3">
+
+                {product.pricing.sellingPrice}
+
+                {" "}
+
+                {product.pricing.currency}
+
+              </td>
+
+
+
+
+
+              <td className="p-3">
+
+                {product.inventory.stockQuantity}
+
+              </td>
+
+
+
+
+
+              <td className="p-3">
+
+                <ProductStatusBadge
+
+                  status={product.status}
+
+                />
+
+
+              </td>
+
+
+
+
+
+
+              <td
+
                 className="
-                  border-b
+                p-3
+                flex
+                gap-3
                 "
+
               >
 
-                <td className="p-3">
-                  {product.name}
-                </td>
 
 
-                <td className="p-3">
-                  {product.identifiers.sku}
-                </td>
+                <button
+
+                  onClick={()=>
 
 
-                <td className="p-3">
+                    navigate(
 
-                  {product.pricing.currency}
+                      `/products/${product.id}`
 
-                  {" "}
-
-                  {product.pricing.sellingPrice}
-
-                </td>
+                    )
 
 
-                <td className="p-3">
-
-                  {product.status}
-
-                </td>
+                  }
 
 
-                <td
                   className="
-                    p-3
-                    flex
-                    gap-3
+                  text-blue-600
                   "
+
                 >
 
-                  <Link
+                  View
 
-                    to={`/products/edit/${product.id}`}
 
-                    className="
-                      underline
-                    "
-
-                  >
-
-                    Edit
-
-                  </Link>
+                </button>
 
 
 
-                  <button
-
-                    onClick={() =>
-                      onDelete(product.id)
-                    }
-
-                    className="
-                      text-red-600
-                    "
-
-                  >
-
-                    Delete
-
-                  </button>
 
 
-                </td>
 
 
-              </tr>
+                <ProductDuplicateButton
 
-            ),
+                  onDuplicate={()=>
 
-          )}
+
+                    duplicateProduct(product)
+
+
+                  }
+
+                />
+
+
+
+
+
+
+
+                <ProductStatusToggle
+
+
+                  status={product.status}
+
+
+
+                  onChange={(status)=>
+
+
+                    updateProduct({
+
+
+                      ...product,
+
+
+                      status,
+
+
+                      updatedAt:
+
+                        new Date().toISOString(),
+
+
+                    })
+
+
+                  }
+
+
+                />
+
+
+
+
+
+
+
+
+                <button
+
+                  onClick={()=>
+
+
+                    deleteProduct(
+
+                      product.id,
+
+                    )
+
+
+                  }
+
+
+                  className="
+                  text-red-600
+                  "
+
+                >
+
+                  Delete
+
+
+                </button>
+
+
+
+
+              </td>
+
+
+
+
+            </tr>
+
+
+
+          ))
+
+
+        }
+
 
         </tbody>
+
 
 
       </table>
 
 
+
     </div>
 
+
   );
+
 
 }

@@ -1,20 +1,33 @@
 import {
+
   useNavigate,
+
 } from "react-router-dom";
 
 
 import {
+
   WarehouseForm,
+
 } from "../components/WarehouseForm";
 
 
 import {
+
   warehouseService,
+
 } from "../services/warehouse.service";
 
 
+import type {
 
-export function CreateWarehousePage() {
+  WarehouseFormInput,
+
+} from "../validators/warehouse.schema";
+
+
+
+export function CreateWarehousePage(){
 
 
   const navigate =
@@ -24,25 +37,30 @@ export function CreateWarehousePage() {
 
   function handleSubmit(
 
-    data: Parameters<
-      typeof warehouseService.createWarehouse
-    >[0],
+    data: WarehouseFormInput,
 
-  ) {
+  ){
+
 
 
     warehouseService.createWarehouse(
-
-      data,
 
       "default-tenant",
 
       "default-store",
 
+      data,
+
     );
 
 
-    navigate("/warehouses");
+
+    navigate(
+
+      "/warehouses",
+
+    );
+
 
   }
 
@@ -50,32 +68,13 @@ export function CreateWarehousePage() {
 
   return (
 
-    <div
-      className="p-6"
-    >
+    <WarehouseForm
 
-      <h1
-        className="
-          text-2xl
-          font-bold
-          mb-6
-        "
-      >
+      onSubmit={
+        handleSubmit
+      }
 
-        Create Warehouse
-
-      </h1>
-
-
-
-      <WarehouseForm
-
-        onSubmit={handleSubmit}
-
-      />
-
-
-    </div>
+    />
 
   );
 

@@ -1,13 +1,3 @@
-import type {
-  RouteObject,
-} from "react-router-dom";
-
-
-import {
-  AppLayout,
-} from "../../../app/layout";
-
-
 import {
   SuppliersPage,
 } from "../pages/SuppliersPage";
@@ -24,58 +14,38 @@ import {
 
 
 
-export const supplierRoutes: RouteObject[] = [
-
+export const supplierRoutes = [
 
   {
 
-    path: "/suppliers",
+    path:
+      "/suppliers",
 
-    element: (
-
-      <AppLayout>
-
-        <SuppliersPage />
-
-      </AppLayout>
-
-    ),
+    element:
+      <SuppliersPage />,
 
   },
 
 
   {
 
-    path: "/suppliers/create",
+    path:
+      "/suppliers/create",
 
-    element: (
-
-      <AppLayout>
-
-        <CreateSupplierPage />
-
-      </AppLayout>
-
-    ),
+    element:
+      <CreateSupplierPage />,
 
   },
 
 
   {
 
-    path: "/suppliers/edit/:id",
+    path:
+      "/suppliers/:id/edit",
 
-    element: (
-
-      <AppLayout>
-
-        <EditSupplierPage />
-
-      </AppLayout>
-
-    ),
+    element:
+      <EditSupplierPage />,
 
   },
-
 
 ];

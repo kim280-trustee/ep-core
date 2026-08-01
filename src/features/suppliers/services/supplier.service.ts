@@ -1,155 +1,106 @@
-import {
-  supplierRepository,
-} from "../repositories";
+/**
+ * ============================================================
+ * E&P Technologies
+ * Smart POS
+ * Supplier Service
+ * ============================================================
+ */
 
 
 import type {
-  Supplier,
+
+  CreateSupplierDto,
+
+  UpdateSupplierDto,
+
 } from "../types/supplier.types";
 
 
-import type {
-  SupplierFormInput,
-} from "../validators/supplier.schema";
+import {
+  supplierRepository,
+} from "../repositories/repository.provider";
 
 
 
-class SupplierService {
+export const supplierService = {
 
 
-
-  generateId(): string {
-
-    return crypto.randomUUID();
-
-  }
-
-
-
-  getSuppliers(): Supplier[] {
+  getSuppliers() {
 
     return supplierRepository.findAll();
 
-  }
+  },
 
 
 
   getSupplierById(
     id: string,
-  ): Supplier | undefined {
+  ) {
 
-    return supplierRepository.findById(id);
+    return supplierRepository.findById(
+      id,
+    );
 
-  }
+  },
 
 
 
   createSupplier(
-
-    input: SupplierFormInput,
-
     tenantId: string,
 
     storeId: string,
 
-  ): Supplier {
-
-
-
-    const now =
-      new Date().toISOString();
-
-
-
-    const supplier: Supplier = {
-
-      id:
-        this.generateId(),
-
-
-      tenantId,
-
-
-      storeId,
-
-
-      name:
-        input.name,
-
-
-      contactPerson:
-        input.contactPerson,
-
-
-      phone:
-        input.phone,
-
-
-      email:
-        input.email,
-
-
-      address:
-        input.address,
-
-
-      taxId:
-        input.taxId,
-
-
-      status:
-        "active",
-
-
-      createdAt:
-        now,
-
-
-      updatedAt:
-        now,
-
-    };
-
-
-
-    return supplierRepository.create(
-      supplier,
-    );
-
-  }
-
-
-
-  updateSupplier(
-
-    id: string,
-
-    updates: Partial<Supplier>,
+    supplier: Omit<
+      CreateSupplierDto,
+      "tenantId"
+      | "storeId"
+    >,
 
   ) {
 
 
+    return supplierRepository.create({
+
+      ...supplier,
+
+      tenantId,
+
+      storeId,
+
+    });
+
+  },
+
+
+
+  updateSupplier(
+    id: string,
+
+    supplier: UpdateSupplierDto,
+
+  ) {
+
     return supplierRepository.update(
+
       id,
-      updates,
+
+      supplier,
+
     );
 
-  }
+  },
 
 
 
   deleteSupplier(
     id: string,
-  ): boolean {
+  ) {
 
-    return supplierRepository.delete(id);
+    return supplierRepository.delete(
+      id,
+    );
 
-  }
-
-
-}
-
+  },
 
 
-export const supplierService =
-  new SupplierService();
+};

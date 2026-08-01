@@ -1,49 +1,81 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * Smart POS
+ * Supplier Validation
+ * ============================================================
+ */
+
 import {
   z,
 } from "zod";
 
 
+
 export const supplierSchema = z.object({
 
-  name: z
-    .string()
-    .min(
-      2,
-      "Supplier name must contain at least 2 characters",
-    ),
+  code:
+    z.string()
+      .min(1, "Supplier code is required"),
 
 
-  contactPerson: z
-    .string()
-    .optional(),
+  name:
+    z.string()
+      .min(2, "Supplier name is required"),
 
 
-  phone: z
-    .string()
-    .optional(),
+  contactPerson:
+    z.string()
+      .min(2, "Contact person is required"),
 
 
-  email: z
-    .string()
-    .email(
-      "Invalid email address",
-    )
-    .optional()
-    .or(
-      z.literal(""),
-    ),
+  email:
+    z.string()
+      .email("Invalid email")
+      .or(z.literal("")),
 
 
-  address: z
-    .string()
-    .optional(),
+  phone:
+    z.string()
+      .min(5, "Phone number is required"),
 
 
-  taxId: z
-    .string()
-    .optional(),
+  address:
+    z.string()
+      .min(2, "Address is required"),
+
+
+  city:
+    z.string()
+      .min(2, "City is required"),
+
+
+  province:
+    z.string()
+      .min(2, "Province is required"),
+
+
+  postalCode:
+    z.string()
+      .min(2, "Postal code is required"),
+
+
+  country:
+    z.string()
+      .min(2, "Country is required"),
+
+
+  taxId:
+    z.string()
+      .optional(),
+
+
+  notes:
+    z.string()
+      .optional(),
 
 });
+
 
 
 export type SupplierFormInput =

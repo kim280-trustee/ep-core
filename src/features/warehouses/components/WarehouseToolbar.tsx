@@ -1,18 +1,12 @@
-import {
-  Link,
-} from "react-router-dom";
+interface Props {
 
+  search:string;
 
-interface WarehouseToolbarProps {
-
-  search: string;
-
-  onSearchChange: (
-    value: string,
-  ) => void;
+  onSearchChange(
+    value:string
+  ):void;
 
 }
-
 
 
 export function WarehouseToolbar({
@@ -21,62 +15,26 @@ export function WarehouseToolbar({
 
   onSearchChange,
 
-}: WarehouseToolbarProps) {
+}:Props){
 
 
   return (
 
-    <div
-      className="
-        flex
-        gap-4
-        mb-6
-      "
-    >
+    <input
 
-      <input
+      value={search}
 
-        value={search}
+      onChange={(e)=>
 
-        onChange={(event) =>
-          onSearchChange(
-            event.target.value,
-          )
-        }
+        onSearchChange(
+          e.target.value
+        )
 
-        placeholder="Search warehouses..."
+      }
 
-        className="
-          border
-          rounded
-          p-2
-          flex-1
-        "
+      placeholder="Search warehouses"
 
-      />
-
-
-
-      <Link
-
-        to="/warehouses/create"
-
-        className="
-          bg-black
-          text-white
-          px-4
-          py-2
-          rounded
-        "
-
-      >
-
-        Add Warehouse
-
-      </Link>
-
-
-    </div>
+    />
 
   );
 

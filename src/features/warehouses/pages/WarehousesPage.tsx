@@ -4,6 +4,11 @@ import {
 
 
 import {
+  useWarehouses,
+} from "../hooks/useWarehouses";
+
+
+import {
   WarehouseToolbar,
 } from "../components/WarehouseToolbar";
 
@@ -13,76 +18,73 @@ import {
 } from "../components/WarehouseTable";
 
 
-import {
-  useWarehouses,
-} from "../hooks/useWarehouses";
 
-
-
-export function WarehousesPage() {
+export function WarehousesPage(){
 
 
   const {
+
     warehouses,
-    removeWarehouse,
+
   } = useWarehouses();
 
 
 
   const [
+
     search,
+
     setSearch,
+
   ] = useState("");
 
 
 
-  const filteredWarehouses =
+  const filtered =
+
     warehouses.filter(
-      (warehouse) =>
+
+      warehouse =>
+
         warehouse.name
           .toLowerCase()
           .includes(
-            search.toLowerCase(),
-          ),
+
+            search.toLowerCase()
+
+          )
+
     );
 
 
 
   return (
 
-    <div
-      className="p-6"
-    >
-
-      <h1
-        className="
-          text-2xl
-          font-bold
-          mb-6
-        "
-      >
-
-        Warehouses
-
-      </h1>
-
+    <div>
 
 
       <WarehouseToolbar
 
-        search={search}
+        search={
+          search
+        }
 
-        onSearchChange={setSearch}
+        onSearchChange={
+          setSearch
+        }
 
       />
 
 
-
       <WarehouseTable
 
-        warehouses={filteredWarehouses}
+        warehouses={
+          filtered
+        }
 
-        onDelete={removeWarehouse}
+        onDelete={
+          ()=>{}
+        }
 
       />
 

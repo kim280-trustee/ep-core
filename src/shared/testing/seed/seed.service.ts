@@ -1,42 +1,61 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Seed Service
+ * ============================================================
+ */
+
+
 import {
   productService,
 } from "../../../features/products/services/product.service";
+
 
 import {
   inventoryService,
 } from "../../../features/inventory/services/inventory.service";
 
+
 import {
   categoryService,
 } from "../../../features/categories/services/category.service";
+
 
 import {
   brandService,
 } from "../../../features/brands/services/brand.service";
 
+
 import {
   unitService,
 } from "../../../features/units/services/unit.service";
+
 
 import {
   customerService,
 } from "../../../features/customers/services/customer.service";
 
+
 import {
   supplierService,
 } from "../../../features/suppliers/services/supplier.service";
+
 
 import {
   warehouseService,
 } from "../../../features/warehouses/services/warehouse.service";
 
+
 import {
   taxService,
 } from "../../../features/taxes/services/tax.service";
 
+
 import {
   paymentMethodService,
 } from "../../../features/payment-methods/services/payment-method.service";
+
 
 
 import {
@@ -49,41 +68,51 @@ import type {
 } from "./seed.types";
 
 
+
 import {
   sampleCategories,
 } from "../sample-data/categories";
+
 
 import {
   sampleBrands,
 } from "../sample-data/brands";
 
+
 import {
   sampleUnits,
 } from "../sample-data/units";
+
 
 import {
   sampleProducts,
 } from "../sample-data/products";
 
+
 import {
   sampleInventory,
 } from "../sample-data/inventory";
+
 
 import {
   sampleCustomers,
 } from "../sample-data/customers";
 
+
 import {
   sampleSuppliers,
 } from "../sample-data/suppliers";
+
 
 import {
   sampleWarehouses,
 } from "../sample-data/warehouses";
 
+
 import {
   sampleTaxes,
 } from "../sample-data/taxes";
+
 
 import {
   samplePaymentMethods,
@@ -94,24 +123,33 @@ import {
 class SeedService {
 
 
+
   seed(
-    options: Partial<SeedOptions> = {},
-  ) {
+
+    options:Partial<SeedOptions> = {},
+
+  ){
+
 
 
     const config = {
 
+
       ...DEFAULT_SEED,
 
+
       ...options,
+
 
     };
 
 
 
+
     sampleCategories.forEach(
 
-      (category) => {
+      category => {
+
 
         categoryService.createCategory(
 
@@ -123,15 +161,18 @@ class SeedService {
 
         );
 
+
       },
 
     );
 
 
 
+
     sampleBrands.forEach(
 
-      (brand) => {
+      brand => {
+
 
         brandService.createBrand(
 
@@ -143,15 +184,18 @@ class SeedService {
 
         );
 
+
       },
 
     );
 
 
 
+
     sampleUnits.forEach(
 
-      (unit) => {
+      unit => {
+
 
         unitService.createUnit(
 
@@ -163,25 +207,29 @@ class SeedService {
 
         );
 
+
       },
 
     );
+
 
 
 
     sampleWarehouses.forEach(
 
-      (warehouse) => {
+      warehouse => {
+
 
         warehouseService.createWarehouse(
-
-          warehouse,
 
           config.tenantId,
 
           config.storeId,
 
+          warehouse,
+
         );
+
 
       },
 
@@ -189,9 +237,11 @@ class SeedService {
 
 
 
+
     sampleCustomers.forEach(
 
-      (customer) => {
+      customer => {
+
 
         customerService.createCustomer(
 
@@ -203,85 +253,215 @@ class SeedService {
 
         );
 
+
       },
 
     );
+
 
 
 
     sampleSuppliers.forEach(
 
-      (supplier) => {
+      supplier => {
+
 
         supplierService.createSupplier(
-
-          supplier,
 
           config.tenantId,
 
           config.storeId,
 
+          supplier,
+
         );
+
 
       },
 
     );
+
 
 
 
     sampleTaxes.forEach(
 
-      (tax) => {
+      tax => {
+
 
         taxService.createTax(
-
-          tax,
 
           config.tenantId,
 
           config.storeId,
 
+          tax,
+
         );
+
 
       },
 
     );
+
 
 
 
     samplePaymentMethods.forEach(
 
-      (method) => {
+      method => {
+
 
         paymentMethodService.createPaymentMethod(
-
-          method,
 
           config.tenantId,
 
           config.storeId,
 
+          method,
+
         );
+
 
       },
 
     );
+
 
 
 
     sampleProducts.forEach(
 
-      (product) => {
+      product => {
+
+
 
         productService.createProduct(
-
-          product,
 
           config.tenantId,
 
           config.storeId,
 
+          {
+
+
+            name:
+
+              product.name,
+
+
+
+            description:
+
+              product.description ?? null,
+
+
+
+            identifiers: {
+
+
+              sku:
+
+                product.sku,
+
+
+
+              barcode:
+
+                product.barcode ?? null,
+
+
+            },
+
+
+
+            pricing: {
+
+
+              costPrice:
+
+                product.costPrice,
+
+
+
+              sellingPrice:
+
+                product.sellingPrice,
+
+
+
+              currency:
+
+                product.currency,
+
+
+            },
+
+
+
+            tax: {
+
+
+              taxId:
+
+                null,
+
+
+
+              taxRate:
+
+                0,
+
+
+            },
+
+
+
+            inventory: {
+
+
+              trackInventory:
+
+                product.trackInventory,
+
+
+
+              stockQuantity:
+
+                product.stockQuantity,
+
+
+            },
+
+
+
+            categoryId:
+
+              product.categoryId ?? null,
+
+
+
+            brandId:
+
+              product.brandId ?? null,
+
+
+
+            unitId:
+
+              product.unitId ?? null,
+
+
+
+            imageUrl:
+
+              product.imageUrl ?? null,
+
+
+          },
+
         );
+
 
       },
 
@@ -289,9 +469,11 @@ class SeedService {
 
 
 
+
     sampleInventory.forEach(
 
-      (record) => {
+      record => {
+
 
         inventoryService.createInventoryRecord(
 
@@ -299,12 +481,15 @@ class SeedService {
 
         );
 
+
       },
 
     );
 
 
+
   }
+
 
 
 }
@@ -312,4 +497,5 @@ class SeedService {
 
 
 export const seedService =
+
   new SeedService();
