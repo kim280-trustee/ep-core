@@ -1,82 +1,114 @@
-import {
-  Link,
-} from "react-router-dom";
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Category Toolbar
+ * ============================================================
+ */
 
 
 interface CategoryToolbarProps {
 
-  search: string;
 
-  onSearchChange: (
-    value: string,
-  ) => void;
+  search:string;
+
+
+
+  onSearchChange:
+
+    (
+
+      value:string,
+
+    )=>void;
+
 
 }
 
 
 
+
+
+
+
 export function CategoryToolbar({
+
 
   search,
 
+
   onSearchChange,
 
-}: CategoryToolbarProps) {
+
+}:CategoryToolbarProps){
+
+
+
 
 
   return (
 
+
     <div
+
       className="
-        flex
-        gap-4
-        mb-6
+
+      mb-4
+
       "
+
     >
+
+
 
       <input
 
+
+
         value={search}
 
-        onChange={(event) =>
+
+
+        onChange={(event)=>
+
+
           onSearchChange(
+
             event.target.value,
+
           )
+
+
         }
 
-        placeholder="Search categories..."
+
+
+        placeholder="Search categories"
+
+
 
         className="
-          border
-          rounded
-          p-2
-          flex-1
+
+        border
+
+        rounded
+
+        p-2
+
+        w-full
+
         "
+
+
 
       />
 
 
-      <Link
-
-        to="/categories/create"
-
-        className="
-          bg-black
-          text-white
-          px-4
-          py-2
-          rounded
-        "
-
-      >
-
-        Add Category
-
-      </Link>
-
 
     </div>
 
+
   );
+
 
 }

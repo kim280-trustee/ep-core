@@ -10,23 +10,42 @@
 
 
 import {
+
   categoryRepository,
+
 } from "../repositories";
 
 
+
 import {
-  CategoryStatus,
-} from "../types/category.types";
 
+  categorySchema,
 
-import type {
-  Category,
-} from "../types/category.types";
-
-
-import type {
-  CategoryFormInput,
 } from "../validators/category.schema";
+
+
+
+import {
+
+  CategoryStatus,
+
+} from "../types/category.types";
+
+
+
+import type {
+
+  Category,
+
+  CreateCategoryDto,
+
+  UpdateCategoryDto,
+
+} from "../types/category.types";
+
+
+
+
 
 
 
@@ -34,11 +53,21 @@ class CategoryService {
 
 
 
-  generateId(): string {
+
+
+
+
+  private generateId(): string {
+
 
     return crypto.randomUUID();
 
+
   }
+
+
+
+
 
 
 
@@ -46,9 +75,15 @@ class CategoryService {
 
   getCategories(): Category[] {
 
+
     return categoryRepository.findAll();
 
+
   }
+
+
+
+
 
 
 
@@ -56,13 +91,17 @@ class CategoryService {
 
   getCategoryById(
 
-    id: string,
+    id:string,
 
-  ): Category | undefined {
+  ):Category | undefined {
+
 
     return categoryRepository.findById(
+
       id,
+
     );
+
 
   }
 
@@ -70,26 +109,96 @@ class CategoryService {
 
 
 
+
+
+
+
   createCategory(
 
-    input: CategoryFormInput,
+    input:CreateCategoryDto,
 
-    tenantId: string,
+    tenantId:string,
 
-    storeId: string,
+    storeId:string,
 
-  ): Category {
+  ):Category {
+
+
+
+
+    const validated =
+
+      categorySchema.parse(
+
+        input,
+
+      );
+
+
+
+
+
+
+    const duplicate =
+
+      this.getCategories()
+
+        .find(
+
+          category =>
+
+            category.tenantId === tenantId &&
+
+            category.storeId === storeId &&
+
+            category.name.toLowerCase() ===
+
+            validated.name.toLowerCase(),
+
+        );
+
+
+
+
+
+
+
+    if(duplicate){
+
+
+      throw new Error(
+
+        "Category with this name already exists.",
+
+      );
+
+
+    }
+
+
+
+
+
+
+
 
 
     const now =
+
       new Date().toISOString();
 
 
 
-    const category: Category = {
+
+
+
+
+    const category:Category = {
+
 
 
       id:
+
         this.generateId(),
 
 
@@ -103,41 +212,58 @@ class CategoryService {
 
 
       name:
-        input.name,
+
+        validated.name,
 
 
 
       description:
-        input.description ?? null,
+
+        validated.description ?? null,
 
 
 
       parentId:
-        input.parentId ?? null,
+
+        validated.parentId ?? null,
 
 
 
       status:
+
         CategoryStatus.ACTIVE,
 
 
 
       createdAt:
+
         now,
 
 
 
       updatedAt:
+
         now,
+
 
 
     };
 
 
 
+
+
+
+
+
+
     return categoryRepository.create(
+
       category,
+
     );
+
+
 
   }
 
@@ -145,13 +271,18 @@ class CategoryService {
 
 
 
+
+
+
+
   updateCategory(
 
-    id: string,
+    id:string,
 
-    updates: Partial<Category>,
+    updates:UpdateCategoryDto,
 
-  ): Category | undefined {
+  ):Category | undefined {
+
 
 
     return categoryRepository.update(
@@ -163,13 +294,19 @@ class CategoryService {
         ...updates,
 
         updatedAt:
+
           new Date().toISOString(),
 
       },
 
     );
 
+
   }
+
+
+
+
 
 
 
@@ -177,16 +314,25 @@ class CategoryService {
 
   deleteCategory(
 
-    id: string,
+    id:string,
 
-  ): boolean {
+  ):boolean {
+
 
 
     return categoryRepository.delete(
+
       id,
+
     );
 
+
   }
+
+
+
+
+
 
 
 }
@@ -195,5 +341,9 @@ class CategoryService {
 
 
 
+
+
+
 export const categoryService =
+
   new CategoryService();

@@ -1,5 +1,14 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Categories Page
+ * ============================================================
+ */
+
+
 import {
-  useState,
+  useEffect,
 } from "react";
 
 
@@ -19,76 +28,163 @@ import {
 
 
 
-export function CategoriesPage() {
+
+
+
+
+export function CategoriesPage(){
+
 
 
   const {
+
+
     categories,
-    removeCategory,
+
+
+    search,
+
+
+    setSearch,
+
+
+    loadCategories,
+
+
+    deleteCategory,
+
+
   } = useCategories();
 
 
 
-  const [
-    search,
-    setSearch,
-  ] = useState("");
+
+
+
+
+  useEffect(()=>{
+
+
+    loadCategories();
+
+
+  },[
+
+    loadCategories,
+
+  ]);
+
+
+
+
 
 
 
   const filteredCategories =
+
+
     categories.filter(
-      (category) =>
+
+
+      category =>
+
+
         category.name
+
           .toLowerCase()
+
           .includes(
+
             search.toLowerCase(),
+
           ),
+
+
     );
+
+
+
+
+
+
 
 
 
   return (
 
+
+
     <div
+
       className="p-6"
+
     >
 
+
+
       <h1
+
         className="
-          text-2xl
-          font-bold
-          mb-6
+
+        text-2xl
+
+        font-bold
+
+        mb-6
+
         "
+
       >
 
         Categories
+
 
       </h1>
 
 
 
+
+
+
+
       <CategoryToolbar
+
 
         search={search}
 
+
         onSearchChange={setSearch}
 
+
       />
+
+
+
+
+
 
 
 
       <CategoryTable
 
+
         categories={filteredCategories}
 
-        onDelete={removeCategory}
+
+        onDelete={deleteCategory}
+
 
       />
 
 
+
+
+
+
     </div>
 
+
   );
+
 
 }

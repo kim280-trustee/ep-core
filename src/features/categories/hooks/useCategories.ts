@@ -1,57 +1,135 @@
-import {
-  useState,
-} from "react";
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Categories Hook
+ * ============================================================
+ */
 
 
 import {
-  categoryService,
-} from "../services/category.service";
-
-
-export function useCategories() {
-
-
-  const [
-    categories,
-    setCategories,
-  ] = useState(
-    categoryService.getCategories(),
-  );
+  useCategoriesStore,
+} from "../store/categories.store";
 
 
 
-  function refresh() {
 
-    setCategories(
-      categoryService.getCategories(),
+
+export function useCategories(){
+
+
+
+  const categories =
+
+    useCategoriesStore(
+
+      state => state.categories,
+
     );
 
-  }
 
 
 
-  function removeCategory(
-    id: string,
-  ) {
 
-    categoryService.deleteCategory(
-      id,
+  const search =
+
+    useCategoriesStore(
+
+      state => state.search,
+
     );
 
-    refresh();
 
-  }
+
+
+
+  const loadCategories =
+
+    useCategoriesStore(
+
+      state => state.loadCategories,
+
+    );
+
+
+
+
+
+  const createCategory =
+
+    useCategoriesStore(
+
+      state => state.createCategory,
+
+    );
+
+
+
+
+
+  const updateCategory =
+
+    useCategoriesStore(
+
+      state => state.updateCategory,
+
+    );
+
+
+
+
+
+  const deleteCategory =
+
+    useCategoriesStore(
+
+      state => state.deleteCategory,
+
+    );
+
+
+
+
+
+  const setSearch =
+
+    useCategoriesStore(
+
+      state => state.setSearch,
+
+    );
+
+
+
+
 
 
 
   return {
 
+
     categories,
 
-    refresh,
 
-    removeCategory,
+    search,
+
+
+    loadCategories,
+
+
+    createCategory,
+
+
+    updateCategory,
+
+
+    deleteCategory,
+
+
+    setSearch,
+
 
   };
+
 
 }

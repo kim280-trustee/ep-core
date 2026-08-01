@@ -1,144 +1,229 @@
-import {
-  Link,
-} from "react-router-dom";
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Category Table
+ * ============================================================
+ */
 
 
 import type {
+
   Category,
+
 } from "../types/category.types";
+
+
+
+
+
 
 
 interface CategoryTableProps {
 
-  categories: Category[];
 
-  onDelete: (
-    id: string,
-  ) => void;
+  categories:Category[];
+
+
+
+  onDelete:
+
+    (
+
+      id:string,
+
+    )=>void;
+
 
 }
 
 
 
+
+
+
+
+
 export function CategoryTable({
+
 
   categories,
 
+
   onDelete,
 
-}: CategoryTableProps) {
+
+}:CategoryTableProps){
 
 
-  if (categories.length === 0) {
-
-    return (
-
-      <div className="p-6 border rounded">
-
-        No categories found.
-
-      </div>
-
-    );
-
-  }
 
 
 
   return (
 
-    <table className="w-full">
-
-      <thead>
-
-        <tr>
-
-          <th className="text-left p-3">
-            Name
-          </th>
-
-          <th className="text-left p-3">
-            Description
-          </th>
-
-          <th className="text-left p-3">
-            Actions
-          </th>
-
-        </tr>
-
-      </thead>
 
 
-      <tbody>
+    <div
 
-        {categories.map(
+      className="
 
-          (category) => (
+      border
 
-            <tr
+      rounded
+
+      overflow-hidden
+
+      "
+
+    >
+
+
+
+
+
+      {
+
+        categories.map(
+
+
+
+          category => (
+
+
+
+            <div
+
+
               key={category.id}
-              className="border-t"
+
+
+
+              className="
+
+              flex
+
+              justify-between
+
+              items-center
+
+              p-3
+
+              border-b
+
+              "
+
+
             >
 
-              <td className="p-3">
-
-                {category.name}
-
-              </td>
 
 
-              <td className="p-3">
-
-                {category.description || "-"}
-
-              </td>
+              <div>
 
 
-              <td className="p-3 flex gap-3">
 
-                <Link
+                <p
 
-                  to={`/categories/edit/${category.id}`}
-
-                  className="underline"
+                  className="font-medium"
 
                 >
 
-                  Edit
-
-                </Link>
+                  {category.name}
 
 
-                <button
-
-                  onClick={() =>
-                    onDelete(category.id)
-                  }
-
-                  className="text-red-600"
-
-                >
-
-                  Delete
-
-                </button>
+                </p>
 
 
-              </td>
 
 
-            </tr>
 
-          ),
+                {
 
-        )}
-
-      </tbody>
+                  category.description && (
 
 
-    </table>
+                    <p
+
+                      className="text-sm"
+
+                    >
+
+                      {category.description}
+
+
+                    </p>
+
+
+                  )
+
+
+                }
+
+
+              </div>
+
+
+
+
+
+
+              <button
+
+
+
+                onClick={()=>
+
+
+                  onDelete(
+
+                    category.id,
+
+                  )
+
+                }
+
+
+
+                className="
+
+                text-red-600
+
+                "
+
+
+
+              >
+
+
+                Delete
+
+
+              </button>
+
+
+
+
+
+
+            </div>
+
+
+
+          )
+
+
+        )
+
+      }
+
+
+
+
+
+
+    </div>
+
 
   );
+
 
 }
