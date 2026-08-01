@@ -1,3 +1,14 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Taxes Module
+ * ------------------------------------------------------------
+ * Taxes Hook
+ * ============================================================
+ */
+
+
 import {
 
   useEffect,
@@ -7,53 +18,174 @@ import {
 
 import {
 
-  taxService,
-
-} from "../services/tax.service";
-
-
-import {
-
   useTaxStore,
 
 } from "../store/tax.store";
+
+
+import type {
+
+  CreateTaxDto,
+
+  UpdateTaxDto,
+
+} from "../types/tax.types";
+
+
+
+
 
 
 
 export function useTaxes(){
 
 
- const {
-
-  taxes,
-
-  setTaxes,
-
- } = useTaxStore();
 
 
 
- useEffect(()=>{
+  const {
 
 
-  setTaxes(
-
-    taxService.getTaxes()
-
-  );
+    taxes,
 
 
- },[setTaxes]);
+    loadTaxes,
+
+
+    createTax: createTaxStore,
+
+
+    updateTax: updateTaxStore,
+
+
+    deleteTax: deleteTaxStore,
 
 
 
- return {
+  } = useTaxStore();
 
 
-  taxes,
 
 
- };
+
+
+
+
+  useEffect(()=>{
+
+
+    loadTaxes();
+
+
+  },[loadTaxes]);
+
+
+
+
+
+
+
+
+
+  function createTax(
+
+    input:CreateTaxDto,
+
+  ){
+
+
+
+    createTaxStore(
+
+      input,
+
+      "default-tenant",
+
+      "default-store",
+
+    );
+
+
+  }
+
+
+
+
+
+
+
+
+
+  function updateTaxById(
+
+    id:string,
+
+    updates:UpdateTaxDto,
+
+  ){
+
+
+
+    updateTaxStore(
+
+      id,
+
+      updates,
+
+    );
+
+
+  }
+
+
+
+
+
+
+
+
+
+  function deleteTax(
+
+    id:string,
+
+  ){
+
+
+
+    deleteTaxStore(
+
+      id,
+
+    );
+
+
+  }
+
+
+
+
+
+
+
+
+
+  return {
+
+
+    taxes,
+
+
+    createTax,
+
+
+    updateTaxById,
+
+
+    deleteTax,
+
+
+  };
 
 
 }

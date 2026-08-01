@@ -1,19 +1,27 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Taxes Module
+ * ------------------------------------------------------------
+ * In Memory Tax Repository
+ * ============================================================
+ */
+
+
 import {
 
-  v4 as uuid,
+  TaxStatus,
 
-} from "uuid";
+} from "../types/tax.types";
 
 
 import type {
 
   Tax,
 
-  CreateTaxDto,
-
-  UpdateTaxDto,
-
 } from "../types/tax.types";
+
 
 
 import type {
@@ -24,23 +32,98 @@ import type {
 
 
 
-class InMemoryTaxRepository
-
-implements TaxRepository {
 
 
 
-  private taxes: Tax[] = [];
+
+let taxes:Tax[] = [
+
+
+  {
+
+
+    id:
+
+      crypto.randomUUID(),
+
+
+    tenantId:
+
+      "default-tenant",
+
+
+    storeId:
+
+      "default-store",
+
+
+    code:
+
+      "VAT",
+
+
+    name:
+
+      "Value Added Tax",
+
+
+    rate:
+
+      7,
+
+
+    country:
+
+      "Thailand",
+
+
+    currency:
+
+      "THB",
+
+
+    status:
+
+      TaxStatus.ACTIVE,
+
+
+    createdAt:
+
+      new Date().toISOString(),
+
+
+    updatedAt:
+
+      new Date().toISOString(),
+
+
+  },
+
+
+];
 
 
 
-  findAll(): Tax[] {
 
 
-    return this.taxes;
 
 
-  }
+
+export const inMemoryTaxRepository:TaxRepository = {
+
+
+
+  findAll(){
+
+
+    return taxes;
+
+
+  },
+
+
+
+
 
 
 
@@ -48,10 +131,10 @@ implements TaxRepository {
 
     id:string,
 
-  ): Tax | undefined {
+  ){
 
 
-    return this.taxes.find(
+    return taxes.find(
 
       tax =>
 
@@ -60,73 +143,36 @@ implements TaxRepository {
     );
 
 
-  }
+  },
+
+
+
+
 
 
 
   create(
 
-    tax:
+    tax:Tax,
 
-      CreateTaxDto & {
-
-        tenantId:string;
-
-        storeId:string;
-
-      },
-
-  ): Tax {
+  ){
 
 
+    taxes.push(
 
-    const newTax: Tax = {
-
-
-      id:
-
-        uuid(),
-
-
-
-      status:
-
-        "ACTIVE",
-
-
-
-      createdAt:
-
-        new Date(),
-
-
-
-      updatedAt:
-
-        new Date(),
-
-
-
-      ...tax,
-
-
-
-    };
-
-
-
-    this.taxes.push(
-
-      newTax,
+      tax,
 
     );
 
 
+    return tax;
 
-    return newTax;
+
+  },
 
 
-  }
+
+
 
 
 
@@ -134,71 +180,14 @@ implements TaxRepository {
 
     id:string,
 
-    tax:UpdateTaxDto,
+    updates:Partial<Tax>,
 
-  ): Tax | undefined {
-
-
-
-    const existing =
-
-      this.findById(
-
-        id,
-
-      );
-
-
-
-    if(!existing){
-
-
-      return undefined;
-
-
-    }
-
-
-
-    Object.assign(
-
-      existing,
-
-      tax,
-
-      {
-
-
-        updatedAt:
-
-          new Date(),
-
-
-      },
-
-
-    );
-
-
-
-    return existing;
-
-
-  }
-
-
-
-  delete(
-
-    id:string,
-
-  ): boolean {
-
+  ){
 
 
     const index =
 
-      this.taxes.findIndex(
+      taxes.findIndex(
 
         tax =>
 
@@ -208,37 +197,84 @@ implements TaxRepository {
 
 
 
+
+
     if(index === -1){
 
 
-      return false;
+      return undefined;
 
 
     }
 
 
 
-    this.taxes.splice(
-
-      index,
-
-      1,
-
-    );
 
 
 
-    return true;
+    taxes[index] = {
 
 
-  }
+      ...taxes[index],
+
+      ...updates,
+
+
+      updatedAt:
+
+        new Date().toISOString(),
+
+
+    };
 
 
 
-}
+
+
+    return taxes[index];
+
+
+  },
 
 
 
-export const inMemoryTaxRepository =
 
-  new InMemoryTaxRepository();
+
+
+
+  delete(
+
+    id:string,
+
+  ){
+
+
+    const before =
+
+      taxes.length;
+
+
+
+
+
+    taxes =
+
+      taxes.filter(
+
+        tax =>
+
+          tax.id !== id,
+
+      );
+
+
+
+
+
+    return taxes.length < before;
+
+
+  },
+
+
+};

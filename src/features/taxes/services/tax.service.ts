@@ -1,10 +1,12 @@
-import type {
-
-  CreateTaxDto,
-
-  UpdateTaxDto,
-
-} from "../types/tax.types";
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Taxes Module
+ * ------------------------------------------------------------
+ * Tax Business Service
+ * ============================================================
+ */
 
 
 import {
@@ -14,17 +16,66 @@ import {
 } from "../repositories/repository.provider";
 
 
+import {
 
-export const taxService = {
+  TaxStatus,
+
+} from "../types/tax.types";
 
 
-  getTaxes(){
+import type {
+
+  Tax,
+
+  CreateTaxDto,
+
+  UpdateTaxDto,
+
+} from "../types/tax.types";
+
+
+
+
+
+
+
+class TaxService {
+
+
+
+
+
+
+
+  private generateId():string {
+
+
+    return crypto.randomUUID();
+
+
+  }
+
+
+
+
+
+
+
+
+
+  getTaxes():Tax[]{
 
 
     return taxRepository.findAll();
 
 
-  },
+  }
+
+
+
+
+
+
 
 
 
@@ -32,7 +83,7 @@ export const taxService = {
 
     id:string,
 
-  ){
+  ):Tax | undefined {
 
 
     return taxRepository.findById(
@@ -42,7 +93,13 @@ export const taxService = {
     );
 
 
-  },
+  }
+
+
+
+
+
+
 
 
 
@@ -52,23 +109,150 @@ export const taxService = {
 
     storeId:string,
 
-    tax:CreateTaxDto,
+    input:CreateTaxDto,
 
-  ){
+  ):Tax {
 
 
-    return taxRepository.create({
 
-      ...tax,
+    const duplicate =
+
+      this.getTaxes()
+
+        .find(
+
+          tax =>
+
+            tax.tenantId === tenantId &&
+
+            tax.storeId === storeId &&
+
+            tax.name.toLowerCase() ===
+
+            input.name.toLowerCase(),
+
+        );
+
+
+
+
+
+    if(duplicate){
+
+
+      throw new Error(
+
+        "Tax with this name already exists.",
+
+      );
+
+
+    }
+
+
+
+
+
+
+
+
+
+    const now =
+
+      new Date().toISOString();
+
+
+
+
+
+
+
+    const tax:Tax = {
+
+
+      id:
+
+        this.generateId(),
+
+
 
       tenantId,
 
+
+
       storeId,
 
-    });
 
 
-  },
+      code:
+
+        input.code ?? null,
+
+
+
+      name:
+
+        input.name,
+
+
+
+      rate:
+
+        input.rate,
+
+
+
+      country:
+
+        input.country,
+
+
+
+      currency:
+
+        input.currency,
+
+
+
+      status:
+
+        TaxStatus.ACTIVE,
+
+
+
+      createdAt:
+
+        now,
+
+
+
+      updatedAt:
+
+        now,
+
+
+
+    };
+
+
+
+
+
+
+    return taxRepository.create(
+
+      tax,
+
+    );
+
+
+  }
+
+
+
+
+
+
 
 
 
@@ -76,21 +260,36 @@ export const taxService = {
 
     id:string,
 
-    tax:UpdateTaxDto,
+    updates:UpdateTaxDto,
 
-  ){
+  ):Tax | undefined {
+
 
 
     return taxRepository.update(
 
       id,
 
-      tax,
+      {
+
+        ...updates,
+
+        updatedAt:
+
+          new Date().toISOString(),
+
+      },
 
     );
 
 
-  },
+  }
+
+
+
+
+
+
 
 
 
@@ -98,7 +297,7 @@ export const taxService = {
 
     id:string,
 
-  ){
+  ):boolean {
 
 
     return taxRepository.delete(
@@ -108,7 +307,18 @@ export const taxService = {
     );
 
 
-  },
+  }
 
 
-};
+
+}
+
+
+
+
+
+
+
+export const taxService =
+
+  new TaxService();

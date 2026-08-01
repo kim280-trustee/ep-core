@@ -1,6 +1,26 @@
-export type TaxStatus =
-  | "ACTIVE"
-  | "INACTIVE";
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Taxes Module
+ * ------------------------------------------------------------
+ * Tax Type Definitions
+ * ============================================================
+ */
+
+
+export enum TaxStatus {
+
+  ACTIVE = "active",
+
+  INACTIVE = "inactive",
+
+}
+
+
+
+
+
 
 
 export interface Tax {
@@ -15,7 +35,7 @@ export interface Tax {
   storeId:string;
 
 
-  code?:string;
+  code:string | null;
 
 
   name:string;
@@ -33,17 +53,25 @@ export interface Tax {
   status:TaxStatus;
 
 
-  createdAt:Date;
+  createdAt:string;
 
 
-  updatedAt:Date;
+  updatedAt:string;
 
 
 }
 
 
 
-export type CreateTaxDto = {
+
+
+
+
+
+export interface CreateTaxDto {
+
+
+  code?:string | null;
 
 
   name:string;
@@ -58,13 +86,37 @@ export type CreateTaxDto = {
   currency:string;
 
 
-  code?:string;
-
-
-};
+}
 
 
 
-export type UpdateTaxDto =
 
-Partial<CreateTaxDto>;
+
+
+
+
+export interface UpdateTaxDto {
+
+
+  code?:string | null;
+
+
+  name?:string;
+
+
+  rate?:number;
+
+
+  country?:string;
+
+
+  currency?:string;
+
+
+  status?:TaxStatus;
+
+
+  updatedAt?:string;
+
+
+}
