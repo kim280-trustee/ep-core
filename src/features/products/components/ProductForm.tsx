@@ -45,18 +45,11 @@ import {
 
 
 
-
-
-
 interface ProductFormProps {
-
 
   productId?: string;
 
-
 }
-
-
 
 
 
@@ -70,8 +63,6 @@ export function ProductForm({
 
 
 
-
-
 const addProduct =
 
 useProductsStore(
@@ -82,8 +73,6 @@ state=>state.addProduct,
 
 
 
-
-
 const updateProduct =
 
 useProductsStore(
@@ -91,9 +80,6 @@ useProductsStore(
 state=>state.updateProduct,
 
 );
-
-
-
 
 
 
@@ -117,21 +103,15 @@ useState(0);
 
 
 
-
-
 const [loading,setLoading] =
 
 useState(false);
 
 
 
-
-
 const [error,setError] =
 
 useState("");
-
-
 
 
 
@@ -153,7 +133,6 @@ return;
 
 
 
-
 const product =
 
 productService.getProductById(
@@ -165,15 +144,23 @@ productId,
 
 
 
-
-
 if(product){
 
 
-setName(product.name);
+setName(
+
+product.name,
+
+);
 
 
-setSku(product.identifiers.sku);
+
+setSku(
+
+product.identifiers.sku,
+
+);
+
 
 
 setPrice(
@@ -183,13 +170,12 @@ product.pricing.sellingPrice,
 );
 
 
+
 }
 
 
 
 },[productId]);
-
-
 
 
 
@@ -216,8 +202,6 @@ setError("");
 
 
 
-
-
 if(productId){
 
 
@@ -234,54 +218,36 @@ productId,
 
 
 
-
-
 if(existing){
 
 
 
-updateProduct({
+updateProduct(
 
+existing.id,
 
-...existing,
-
+{
 
 name,
 
 
 identifiers:{
 
-
-...existing.identifiers,
-
-
 sku,
 
-
 },
-
 
 
 pricing:{
 
-
-...existing.pricing,
-
-
 sellingPrice:price,
-
 
 },
 
 
+},
 
-updatedAt:
-
-new Date().toISOString(),
-
-
-
-});
+);
 
 
 
@@ -290,6 +256,7 @@ new Date().toISOString(),
 
 
 return;
+
 
 
 }
@@ -361,10 +328,7 @@ stockQuantity:0,
 },
 
 
-
 );
-
-
 
 
 
@@ -386,8 +350,9 @@ setPrice(0);
 
 
 
-
 }
+
+
 
 catch(error){
 
@@ -397,11 +362,16 @@ setError(
 
 error instanceof Error
 
-? error.message
+?
 
-: "Something went wrong"
+error.message
+
+:
+
+"Something went wrong",
 
 );
+
 
 
 }
@@ -411,16 +381,16 @@ error instanceof Error
 finally{
 
 
+
 setLoading(false);
 
 
-}
-
-
 
 }
 
 
+
+}
 
 
 
@@ -433,7 +403,6 @@ setLoading(false);
 if(loading){
 
 
-
 return (
 
 <ProductLoading />
@@ -442,8 +411,6 @@ return (
 
 
 }
-
-
 
 
 
@@ -504,28 +471,28 @@ onPriceChange={setPrice}
 
 
 
-
-
 <ProductActions
 
 
 onSubmit={handleSubmit}
 
 
-
 label={
 
 productId
 
-? "Update Product"
+?
 
-: "Create Product"
+"Update Product"
+
+:
+
+"Create Product"
 
 }
 
 
 />
-
 
 
 

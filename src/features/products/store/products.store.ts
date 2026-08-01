@@ -19,6 +19,7 @@ import {
 
 import type {
   Product,
+  UpdateProductDto,
 } from "../types/product.types";
 
 
@@ -30,10 +31,7 @@ import {
 
 
 
-
-
 interface ProductsStore {
-
 
 
   products: Product[];
@@ -46,56 +44,43 @@ interface ProductsStore {
 
 
 
-
-  loadProducts:()=>void;
-
+  loadProducts():void;
 
 
-  addProduct:(
-
+  addProduct(
     product:Product,
-
-  )=>void;
-
-
-
-  updateProduct:(
-
-    product:Product,
-
-  )=>void;
+  ):void;
 
 
 
-  deleteProduct:(
+  updateProduct(
+    productOrId: Product | string,
+    updates?: UpdateProductDto,
+  ):void;
 
+
+
+  deleteProduct(
     id:string,
-
-  )=>void;
-
+  ):void;
 
 
-  duplicateProduct:(
 
+  duplicateProduct(
     product:Product,
-
-  )=>void;
-
+  ):void;
 
 
-  setSearch:(
 
+  setSearch(
     value:string,
-
-  )=>void;
-
+  ):void;
 
 
-  setStatusFilter:(
 
+  setStatusFilter(
     value:ProductStatus | "ALL",
-
-  )=>void;
+  ):void;
 
 
 
@@ -108,19 +93,19 @@ interface ProductsStore {
 
 
 
-
 export const useProductsStore =
 
-create<ProductsStore>(
+create<ProductsStore>((set)=>({
 
-(set)=>({
 
 
 
 products:[],
 
 
+
 search:"",
+
 
 
 statusFilter:"ALL",
@@ -134,7 +119,6 @@ statusFilter:"ALL",
 loadProducts(){
 
 
-
 set({
 
 products:
@@ -142,7 +126,6 @@ products:
 productService.getProducts(),
 
 });
-
 
 
 },
@@ -169,9 +152,7 @@ product,
 ],
 
 
-
 }));
-
 
 
 },
@@ -182,33 +163,92 @@ product,
 
 
 
-updateProduct(product){
+updateProduct(
+
+productOrId,
+
+updates,
+
+){
+
+
+
+let updatedProduct:Product | undefined;
+
+
+
+if(typeof productOrId === "string"){
+
+
+
+updatedProduct =
+
+productService.updateProduct(
+
+productOrId,
+
+updates ?? {},
+
+);
+
+
+
+}
+
+else {
+
+
+
+updatedProduct =
+
+productService.updateProduct(
+
+productOrId.id,
+
+productOrId,
+
+);
+
+
+
+}
+
+
+
+
+
+if(!updatedProduct){
+
+return;
+
+}
+
+
+
+
 
 
 
 set((state)=>({
 
 
-
 products:
 
 state.products.map(
 
-item=>
+item =>
 
-item.id === product.id
+item.id === updatedProduct!.id
 
 ?
 
-product
+updatedProduct!
 
 :
 
 item,
 
-
 ),
-
 
 
 }));
@@ -235,14 +275,11 @@ id,
 
 
 
-
 set({
-
 
 products:
 
 productService.getProducts(),
-
 
 });
 
@@ -260,40 +297,13 @@ duplicateProduct(product){
 
 
 
-const duplicate:Product={
+const duplicate =
 
+productService.duplicateProduct(
 
+product,
 
-...product,
-
-
-
-id:
-
-crypto.randomUUID(),
-
-
-
-name:
-
-`${product.name} Copy`,
-
-
-
-createdAt:
-
-new Date().toISOString(),
-
-
-
-updatedAt:
-
-new Date().toISOString(),
-
-
-
-};
-
+);
 
 
 
@@ -310,13 +320,11 @@ duplicate,
 ],
 
 
-
 }));
 
 
 
 },
-
 
 
 
@@ -333,7 +341,6 @@ set({
 search:value,
 
 });
-
 
 
 },
@@ -355,7 +362,6 @@ statusFilter:value,
 });
 
 
-
 },
 
 
@@ -364,6 +370,4 @@ statusFilter:value,
 
 
 
-})
-
-);
+}));
