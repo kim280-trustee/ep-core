@@ -10,23 +10,32 @@
 
 
 import {
+
   unitRepository,
+
 } from "../repositories";
 
 
 import {
+
   UnitStatus,
+
 } from "../types/unit.types";
 
 
 import type {
+
   Unit,
+
+  CreateUnitDto,
+
+  UpdateUnitDto,
+
 } from "../types/unit.types";
 
 
-import type {
-  UnitFormInput,
-} from "../validators/unit.schema";
+
+
 
 
 
@@ -34,35 +43,55 @@ class UnitService {
 
 
 
-  generateId(): string {
+
+
+
+  private generateId():string {
+
 
     return crypto.randomUUID();
 
+
   }
 
 
 
 
-  getUnits(): Unit[] {
+
+
+
+  getUnits():Unit[] {
+
 
     return unitRepository.findAll();
 
+
   }
+
+
 
 
 
 
 
   getUnitById(
+
     id:string,
-  ):Unit|undefined {
+
+  ):Unit | undefined {
 
 
     return unitRepository.findById(
+
       id,
+
     );
 
+
   }
+
+
+
 
 
 
@@ -70,7 +99,7 @@ class UnitService {
 
   createUnit(
 
-    input:UnitFormInput,
+    input:CreateUnitDto,
 
     tenantId:string,
 
@@ -79,57 +108,87 @@ class UnitService {
   ):Unit {
 
 
+
     const now =
+
       new Date().toISOString();
 
 
 
-    const unit:Unit={
+
+
+    const unit:Unit = {
+
 
 
       id:
+
         this.generateId(),
+
 
 
       tenantId,
 
 
+
       storeId,
 
 
+
       name:
+
         input.name,
 
 
+
       symbol:
+
         input.symbol,
 
 
+
       description:
+
         input.description ?? null,
 
 
+
       status:
+
         UnitStatus.ACTIVE,
 
 
+
       createdAt:
+
         now,
+
 
 
       updatedAt:
+
         now,
+
 
 
     };
 
 
 
+
+
     return unitRepository.create(
+
       unit,
+
     );
 
+
   }
+
+
+
+
 
 
 
@@ -139,9 +198,9 @@ class UnitService {
 
     id:string,
 
-    updates:Partial<Unit>,
+    updates:UpdateUnitDto,
 
-  ):Unit|undefined {
+  ):Unit | undefined {
 
 
     return unitRepository.update(
@@ -152,7 +211,6 @@ class UnitService {
 
         ...updates,
 
-
         updatedAt:
 
           new Date().toISOString(),
@@ -161,27 +219,44 @@ class UnitService {
 
     );
 
+
   }
+
+
+
+
 
 
 
 
 
   deleteUnit(
+
     id:string,
+
   ):boolean {
 
 
     return unitRepository.delete(
+
       id,
+
     );
 
+
   }
+
+
 
 
 }
 
 
 
+
+
+
+
 export const unitService =
+
   new UnitService();

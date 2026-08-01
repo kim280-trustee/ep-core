@@ -8,50 +8,81 @@
  * ============================================================
  */
 
+
 import {
+
   useEffect,
+
 } from "react";
 
 
 import {
-  unitService,
-} from "../services/unit.service";
 
-
-import {
   useUnitsStore,
+
 } from "../store/units.store";
 
 
+import type {
 
-export function useUnits() {
+  CreateUnitDto,
+
+  UpdateUnitDto,
+
+} from "../types/unit.types";
+
+
+
+
+
+
+
+export function useUnits(){
+
+
+
 
 
   const {
 
+
     units,
 
-    setUnits,
 
-    addUnit,
-
-    updateUnit,
-
-    removeUnit,
-
-  } =
-  useUnitsStore();
+    loadUnits,
 
 
+    createUnit: createUnitStore,
 
 
-  useEffect(() => {
+    updateUnit: updateUnitStore,
 
-    setUnits(
-      unitService.getUnits(),
-    );
 
-  }, [setUnits]);
+    deleteUnit: deleteUnitStore,
+
+
+
+  } = useUnitsStore();
+
+
+
+
+
+
+
+
+
+  useEffect(()=>{
+
+
+    loadUnits();
+
+
+  },[loadUnits]);
+
+
+
+
 
 
 
@@ -59,34 +90,27 @@ export function useUnits() {
 
   function createUnit(
 
-    input: Parameters<
-      typeof unitService.createUnit
-    >[0],
+    input:CreateUnitDto,
 
-  ) {
+  ){
 
 
-    const unit =
+    createUnitStore(
 
-      unitService.createUnit(
+      input,
 
-        input,
+      "default-tenant",
 
-        "default-tenant",
+      "default-store",
 
-        "default-store",
+    );
 
-      );
-
-
-
-    addUnit(unit);
-
-
-
-    return unit;
 
   }
+
+
+
+
 
 
 
@@ -94,38 +118,29 @@ export function useUnits() {
 
   function updateUnitById(
 
-    id: string,
+    id:string,
 
-    updates: Parameters<
-      typeof unitService.updateUnit
-    >[1],
+    updates:UpdateUnitDto,
 
-  ) {
-
-
-    const updated =
-
-      unitService.updateUnit(
-
-        id,
-
-        updates,
-
-      );
+  ){
 
 
 
-    if (updated) {
+    updateUnitStore(
 
-      updateUnit(updated);
+      id,
 
-    }
+      updates,
+
+    );
 
 
-
-    return updated;
 
   }
+
+
+
+
 
 
 
@@ -133,28 +148,17 @@ export function useUnits() {
 
   function deleteUnit(
 
-    id: string,
+    id:string,
 
-  ) {
-
-
-    const deleted =
-
-      unitService.deleteUnit(
-        id,
-      );
+  ){
 
 
+    deleteUnitStore(
 
-    if (deleted) {
+      id,
 
-      removeUnit(id);
+    );
 
-    }
-
-
-
-    return deleted;
 
   }
 
@@ -162,17 +166,27 @@ export function useUnits() {
 
 
 
+
+
+
+
   return {
+
 
     units,
 
+
     createUnit,
+
 
     updateUnitById,
 
+
     deleteUnit,
 
+
   };
+
 
 
 }

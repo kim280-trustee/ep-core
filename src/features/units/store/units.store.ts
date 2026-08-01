@@ -10,43 +10,94 @@
 
 
 import {
+
   create,
+
 } from "zustand";
 
 
+import {
+
+  unitService,
+
+} from "../services/unit.service";
+
+
 import type {
+
   Unit,
+
+  CreateUnitDto,
+
+  UpdateUnitDto,
+
 } from "../types/unit.types";
+
+
+
+
 
 
 
 interface UnitsStore {
 
 
-  units: Unit[];
+  units:Unit[];
 
 
-  setUnits(
-    units: Unit[],
-  ): void;
-
-
-
-  addUnit(
-    unit: Unit,
-  ): void;
+  search:string;
 
 
 
-  updateUnit(
-    unit: Unit,
-  ): void;
+
+
+  loadUnits:()=>void;
 
 
 
-  removeUnit(
-    id: string,
-  ): void;
+
+  createUnit:(
+
+    input:CreateUnitDto,
+
+    tenantId:string,
+
+    storeId:string,
+
+  )=>void;
+
+
+
+
+
+  updateUnit:(
+
+    id:string,
+
+    updates:UpdateUnitDto,
+
+  )=>void;
+
+
+
+
+
+  deleteUnit:(
+
+    id:string,
+
+  )=>void;
+
+
+
+
+
+  setSearch:(
+
+    value:string,
+
+  )=>void;
+
 
 
 }
@@ -54,118 +105,214 @@ interface UnitsStore {
 
 
 
+
+
+
+
+
 export const useUnitsStore =
 
-create<UnitsStore>((set)=>({
+
+create<UnitsStore>(
+
+(set)=>({
 
 
 
-  units: [],
+
+
+  units:[],
+
+
+
+  search:"",
 
 
 
 
-  setUnits(
-    units,
-  ){
+
+
+
+  loadUnits(){
+
 
     set({
 
-      units,
+
+      units:
+
+        unitService.getUnits(),
+
 
     });
 
+
   },
 
 
 
 
 
-  addUnit(
-    unit,
+
+
+
+
+  createUnit(
+
+    input,
+
+    tenantId,
+
+    storeId,
+
   ){
 
-    set(
 
-      (state)=>({
 
-        units:[
+    unitService.createUnit(
 
-          ...state.units,
+      input,
 
-          unit,
+      tenantId,
 
-        ],
-
-      }),
+      storeId,
 
     );
 
+
+
+
+
+    set({
+
+
+      units:
+
+        unitService.getUnits(),
+
+
+    });
+
+
+
   },
+
+
+
+
 
 
 
 
 
   updateUnit(
-    unit,
-  ){
 
-    set(
-
-      (state)=>({
-
-
-        units:
-
-          state.units.map(
-
-            (item)=>
-
-              item.id === unit.id
-
-                ? unit
-
-                : item,
-
-          ),
-
-
-      }),
-
-    );
-
-  },
-
-
-
-
-
-  removeUnit(
     id,
+
+    updates,
+
   ){
 
-    set(
-
-      (state)=>({
 
 
-        units:
+    unitService.updateUnit(
 
-          state.units.filter(
+      id,
 
-            (item)=>
-
-              item.id !== id,
-
-          ),
-
-
-      }),
+      updates,
 
     );
+
+
+
+
+
+    set({
+
+
+      units:
+
+        unitService.getUnits(),
+
+
+    });
+
+
 
   },
 
 
-}));
+
+
+
+
+
+
+
+  deleteUnit(
+
+    id,
+
+  ){
+
+
+
+    unitService.deleteUnit(
+
+      id,
+
+    );
+
+
+
+
+
+    set({
+
+
+      units:
+
+        unitService.getUnits(),
+
+
+    });
+
+
+
+  },
+
+
+
+
+
+
+
+
+
+  setSearch(
+
+    value,
+
+  ){
+
+
+
+    set({
+
+
+      search:value,
+
+
+    });
+
+
+
+  },
+
+
+
+
+
+})
+
+);

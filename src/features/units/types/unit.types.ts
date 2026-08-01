@@ -19,69 +19,87 @@ export enum UnitStatus {
 
 
 
+
+
+
+
 export interface Unit {
 
 
-  id: string;
+  id:string;
 
 
-  tenantId: string;
+  tenantId:string;
 
 
-  storeId: string;
+  storeId:string;
 
 
-  name: string;
+
+  name:string;
 
 
-  symbol: string;
+  symbol:string;
 
 
-  description: string | null;
+  description:string | null;
 
 
-  status: UnitStatus;
+
+  status:UnitStatus;
 
 
-  createdAt: string;
+
+  createdAt:string;
 
 
-  updatedAt: string;
+  updatedAt:string;
 
 
 }
+
+
+
+
 
 
 
 export interface CreateUnitDto {
 
 
-  name: string;
+  name:string;
 
 
-  symbol: string;
+  symbol:string;
 
 
-  description?: string | null;
+  description?:string | null;
 
 
 }
 
 
 
+
+
+
+
 export interface UpdateUnitDto {
 
 
-  name?: string;
+  name?:string;
 
 
-  symbol?: string;
+  symbol?:string;
 
 
-  description?: string | null;
+  description?:string | null;
 
 
-  status?: UnitStatus;
+  status?:UnitStatus;
+
+
+  updatedAt?:string;
 
 
 }
