@@ -13,35 +13,48 @@ export type InventoryMovementType =
 
   | "TRANSFER"
 
-  | "ADJUSTMENT";
+  | "ADJUSTMENT_IN"
+
+  | "ADJUSTMENT_OUT";
 
 
 
 export interface InventoryMovement {
 
+
   id: string;
+
 
   productId: string;
 
+
   warehouseId: string;
+
 
   type: InventoryMovementType;
 
+
   quantity: number;
+
 
   previousQuantity: number;
 
+
   newQuantity: number;
+
 
   referenceId?: string;
 
+
   createdAt: string;
+
 
 }
 
 
 
-export class InventoryMovementEngine {
+class InventoryMovementEngine {
+
 
 
   increase(
@@ -62,25 +75,29 @@ export class InventoryMovementEngine {
     }
 
 
+
     return {
+
 
       ...record,
 
+
       quantityOnHand:
 
-        record.quantityOnHand +
+        record.quantityOnHand + quantity,
 
-        quantity,
+
 
       availableQuantity:
 
-        record.availableQuantity +
+        record.availableQuantity + quantity,
 
-        quantity,
+
 
       lastMovementAt:
 
         new Date().toISOString(),
+
 
     };
 
@@ -99,38 +116,52 @@ export class InventoryMovementEngine {
   ): InventoryRecord {
 
 
-    if (
-
-      record.quantityOnHand < quantity
-
-    ) {
+    if (quantity <= 0) {
 
       throw new Error(
-        "Insufficient stock.",
+        "Quantity must be greater than zero.",
       );
 
     }
 
 
+
+    if (
+
+      record.availableQuantity < quantity
+
+    ) {
+
+      throw new Error(
+        "Insufficient available stock.",
+      );
+
+    }
+
+
+
     return {
+
 
       ...record,
 
+
       quantityOnHand:
 
-        record.quantityOnHand -
+        record.quantityOnHand - quantity,
 
-        quantity,
+
 
       availableQuantity:
 
-        record.availableQuantity -
+        record.availableQuantity - quantity,
 
-        quantity,
+
 
       lastMovementAt:
 
         new Date().toISOString(),
+
 
     };
 
@@ -149,15 +180,19 @@ export class InventoryMovementEngine {
 
     return {
 
+
       id:
 
         crypto.randomUUID(),
 
+
       ...input,
+
 
       createdAt:
 
         new Date().toISOString(),
+
 
     };
 
@@ -165,6 +200,7 @@ export class InventoryMovementEngine {
 
 
 }
+
 
 
 export const inventoryMovementEngine =

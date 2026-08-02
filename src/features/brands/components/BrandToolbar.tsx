@@ -1,27 +1,16 @@
-/**
- * ============================================================
- * E&P Technologies
- * E&P Smart POS
- * Brand Toolbar
- * ============================================================
- */
-
-
-
-
-
 interface BrandToolbarProps {
 
 
   search:string;
 
 
+  onSearchChange:
 
-  onSearchChange:(
+    (
 
-    value:string,
+      value:string,
 
-  )=>void;
+    )=>void;
 
 
 }
@@ -30,57 +19,39 @@ interface BrandToolbarProps {
 
 
 
-
-
-
 export function BrandToolbar({
-
 
   search,
 
-
   onSearchChange,
 
-
 }:BrandToolbarProps){
-
-
 
 
 
   return (
 
 
-
-    <div
-
-      className="mb-4"
-
-    >
-
-
+    <div className="mb-4">
 
 
       <input
 
 
-
         value={search}
 
 
+        onChange={
 
-        onChange={(event)=>
+          e=>
 
+            onSearchChange(
 
-          onSearchChange(
+              e.target.value,
 
-            event.target.value,
-
-          )
-
+            )
 
         }
-
 
 
         placeholder="Search brands"
@@ -100,16 +71,10 @@ export function BrandToolbar({
         "
 
 
-
       />
 
 
-
-
-
-
     </div>
-
 
 
   );

@@ -22,7 +22,28 @@ import {
 
 
 
+type WarehouseFormData =
+
+  Parameters<
+
+    NonNullable<
+
+      React.ComponentProps<
+
+        typeof WarehouseForm
+
+      >["onSubmit"]
+
+    >
+
+  >[0];
+
+
+
+
+
 export function EditWarehousePage(){
+
 
 
   const {
@@ -33,8 +54,13 @@ export function EditWarehousePage(){
 
 
 
+
+
   const navigate =
+
     useNavigate();
+
+
 
 
 
@@ -48,11 +74,16 @@ export function EditWarehousePage(){
 
 
 
+
+
+
+
   function handleSubmit(
 
-    data:any,
+    data: WarehouseFormData,
 
   ){
+
 
 
     if(!id){
@@ -60,6 +91,9 @@ export function EditWarehousePage(){
       return;
 
     }
+
+
+
 
 
 
@@ -73,6 +107,8 @@ export function EditWarehousePage(){
 
 
 
+
+
     navigate(
 
       "/warehouses",
@@ -80,13 +116,21 @@ export function EditWarehousePage(){
     );
 
 
+
   }
+
+
+
+
 
 
 
   return (
 
+
+
     <WarehouseForm
+
 
 
       defaultValues={
@@ -96,6 +140,7 @@ export function EditWarehousePage(){
       }
 
 
+
       onSubmit={
 
         handleSubmit
@@ -103,8 +148,13 @@ export function EditWarehousePage(){
       }
 
 
+
     />
 
+
+
   );
+
+
 
 }

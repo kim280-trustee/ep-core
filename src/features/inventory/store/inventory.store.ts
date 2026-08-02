@@ -27,38 +27,81 @@ interface InventoryState {
     id: string,
   ) => void;
 
+  clearRecords: () => void;
+
+  getRecordById: (
+    id: string,
+  ) => InventoryRecord | undefined;
+
+  getProductRecords: (
+    productId: string,
+  ) => InventoryRecord[];
+
+  getWarehouseRecords: (
+    warehouseId: string,
+  ) => InventoryRecord[];
+
 }
 
 
 export const useInventoryStore =
   create<InventoryState>(
-    (set) => ({
+    (set, get) => ({
 
       records: [],
+
 
       setRecords: (
         records,
       ) =>
         set({
-          records,
+
+          records: [
+            ...records,
+          ],
+
         }),
+
+
 
       addRecord: (
         record,
       ) =>
         set(
-          (state) => ({
+          (state) => {
 
-            records: [
+            const exists =
+              state.records.some(
+                (item) =>
+                  item.id === record.id,
+              );
 
-              ...state.records,
 
-              record,
+            if (exists) {
 
-            ],
+              throw new Error(
+                "Inventory record already exists.",
+              );
 
-          }),
+            }
+
+
+            return {
+
+              records: [
+
+                ...state.records,
+
+                record,
+
+              ],
+
+            };
+
+          },
         ),
+
+
 
       updateRecord: (
         record,
@@ -67,16 +110,22 @@ export const useInventoryStore =
           (state) => ({
 
             records:
+
               state.records.map(
                 (item) =>
 
                   item.id === record.id
+
                     ? record
+
                     : item,
+
               ),
 
           }),
         ),
+
+
 
       removeRecord: (
         id,
@@ -85,6 +134,7 @@ export const useInventoryStore =
           (state) => ({
 
             records:
+
               state.records.filter(
                 (item) =>
                   item.id !== id,
@@ -92,6 +142,61 @@ export const useInventoryStore =
 
           }),
         ),
+
+
+
+      clearRecords: () =>
+        set({
+
+          records: [],
+
+        }),
+
+
+
+      getRecordById: (
+        id,
+      ) => {
+
+        return get()
+          .records
+          .find(
+            (record) =>
+              record.id === id,
+          );
+
+      },
+
+
+
+      getProductRecords: (
+        productId,
+      ) => {
+
+        return get()
+          .records
+          .filter(
+            (record) =>
+              record.productId === productId,
+          );
+
+      },
+
+
+
+      getWarehouseRecords: (
+        warehouseId,
+      ) => {
+
+        return get()
+          .records
+          .filter(
+            (record) =>
+              record.warehouseId === warehouseId,
+          );
+
+      },
+
 
     }),
   );

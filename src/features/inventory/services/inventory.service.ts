@@ -17,6 +17,7 @@ import {
 class InventoryService {
 
 
+
   getInventory() {
 
     return inventoryContext.repository.findAll();
@@ -35,6 +36,7 @@ class InventoryService {
 
   ) {
 
+
     return inventoryContext.repository
 
       .findByProductAndWarehouse(
@@ -44,6 +46,7 @@ class InventoryService {
         warehouseId,
 
       );
+
 
   }
 
@@ -57,11 +60,13 @@ class InventoryService {
 
   ) {
 
+
     return inventoryContext.repository.create(
 
       record,
 
     );
+
 
   }
 
@@ -80,6 +85,7 @@ class InventoryService {
   ) {
 
 
+
     const updatedRecord =
 
       inventoryMovementEngine.increase(
@@ -92,7 +98,7 @@ class InventoryService {
 
 
 
-    const currentValue =
+    const currentStockValue =
 
       record.quantityOnHand *
 
@@ -100,7 +106,7 @@ class InventoryService {
 
 
 
-    const incomingValue =
+    const incomingStockValue =
 
       quantity *
 
@@ -110,13 +116,11 @@ class InventoryService {
 
     const totalQuantity =
 
-      record.quantityOnHand +
-
-      quantity;
+      updatedRecord.quantityOnHand;
 
 
 
-    const newAverageCost =
+    const averageCost =
 
       totalQuantity === 0
 
@@ -126,9 +130,9 @@ class InventoryService {
 
         (
 
-          currentValue +
+          currentStockValue +
 
-          incomingValue
+          incomingStockValue
 
         )
 
@@ -150,19 +154,12 @@ class InventoryService {
           updatedRecord.quantityOnHand,
 
 
-
         availableQuantity:
 
-          updatedRecord.quantityOnHand -
-
-          record.reservedQuantity,
+          updatedRecord.availableQuantity,
 
 
-
-        averageCost:
-
-          newAverageCost,
-
+        averageCost,
 
 
         lastMovementAt:
@@ -174,9 +171,8 @@ class InventoryService {
 
     );
 
+
   }
-
-
 
 
 
@@ -189,6 +185,7 @@ class InventoryService {
     quantity: number,
 
   ) {
+
 
 
     const updatedRecord =
@@ -215,13 +212,9 @@ class InventoryService {
           updatedRecord.quantityOnHand,
 
 
-
         availableQuantity:
 
-          updatedRecord.quantityOnHand -
-
-          record.reservedQuantity,
-
+          updatedRecord.availableQuantity,
 
 
         lastMovementAt:
@@ -233,9 +226,8 @@ class InventoryService {
 
     );
 
+
   }
-
-
 
 
 
@@ -250,11 +242,42 @@ class InventoryService {
   ) {
 
 
-    const newReserved =
+
+    if (quantity <= 0) {
+
+      throw new Error(
+
+        "Reservation quantity must be greater than zero.",
+
+      );
+
+    }
+
+
+
+    const reservedQuantity =
 
       record.reservedQuantity +
 
       quantity;
+
+
+
+    if (
+
+      reservedQuantity >
+
+      record.quantityOnHand
+
+    ) {
+
+      throw new Error(
+
+        "Cannot reserve more than available stock.",
+
+      );
+
+    }
 
 
 
@@ -265,26 +288,22 @@ class InventoryService {
       {
 
 
-        reservedQuantity:
-
-          newReserved,
-
+        reservedQuantity,
 
 
         availableQuantity:
 
           record.quantityOnHand -
 
-          newReserved,
+          reservedQuantity,
 
 
       },
 
     );
 
+
   }
-
-
 
 
 
@@ -299,7 +318,20 @@ class InventoryService {
   ) {
 
 
-    const newReserved =
+
+    if (quantity <= 0) {
+
+      throw new Error(
+
+        "Release quantity must be greater than zero.",
+
+      );
+
+    }
+
+
+
+    const reservedQuantity =
 
       Math.max(
 
@@ -320,26 +352,22 @@ class InventoryService {
       {
 
 
-        reservedQuantity:
-
-          newReserved,
-
+        reservedQuantity,
 
 
         availableQuantity:
 
           record.quantityOnHand -
 
-          newReserved,
+          reservedQuantity,
 
 
       },
 
     );
 
+
   }
-
-
 
 
 
@@ -351,21 +379,17 @@ class InventoryService {
 
   ) {
 
+
     return inventoryContext.repository
 
-      .findAll()
+      .findByProduct(
 
-      .filter(
-
-        (record) =>
-
-          record.productId === productId,
+        productId,
 
       );
 
+
   }
-
-
 
 
 
@@ -377,21 +401,17 @@ class InventoryService {
 
   ) {
 
+
     return inventoryContext.repository
 
-      .findAll()
+      .findByWarehouse(
 
-      .filter(
-
-        (record) =>
-
-          record.warehouseId === warehouseId,
+        warehouseId,
 
       );
 
+
   }
-
-
 
 
 
@@ -404,40 +424,35 @@ class InventoryService {
   ) {
 
 
-    return inventoryContext.repository
 
-      .findAll()
+    return this.getProductStock(
 
-      .filter(
+      productId,
 
-        (record) =>
+    )
 
-          record.productId === productId,
+    .reduce(
 
-      )
+      (
 
-      .reduce(
+        total,
 
-        (
+        record,
 
-          total,
-
-          record,
-
-        ) =>
-
-          total +
-
-          record.availableQuantity,
+      ) =>
 
 
-        0,
+        total +
 
-      );
+        record.availableQuantity,
+
+
+      0,
+
+    );
+
 
   }
-
-
 
 
 
@@ -457,6 +472,7 @@ class InventoryService {
       record.averageCost
 
     );
+
 
   }
 

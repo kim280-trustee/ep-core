@@ -1,37 +1,55 @@
 import type {
+
   RouteObject,
+
 } from "react-router-dom";
 
 
 import {
+
   AppLayout,
+
 } from "../../../app/layout";
 
 
 import {
+
   BrandsPage,
+
 } from "../pages/BrandsPage";
 
 
 import {
+
   CreateBrandPage,
+
 } from "../pages/CreateBrandPage";
 
 
 import {
+
   EditBrandPage,
+
 } from "../pages/EditBrandPage";
 
 
 
-export const brandRoutes: RouteObject[] = [
+
+
+
+
+export const brandRoutes:RouteObject[]=[
+
 
 
   {
 
-    path: "/brands",
 
-    element: (
+    path:"/brands",
+
+
+    element:(
+
 
       <AppLayout>
 
@@ -39,16 +57,24 @@ export const brandRoutes: RouteObject[] = [
 
       </AppLayout>
 
+
     ),
+
 
   },
 
 
+
+
+
   {
 
-    path: "/brands/create",
 
-    element: (
+    path:"/brands/create",
+
+
+    element:(
+
 
       <AppLayout>
 
@@ -56,16 +82,24 @@ export const brandRoutes: RouteObject[] = [
 
       </AppLayout>
 
+
     ),
+
 
   },
 
 
+
+
+
   {
 
-    path: "/brands/edit/:id",
 
-    element: (
+    path:"/brands/edit/:id",
+
+
+    element:(
+
 
       <AppLayout>
 
@@ -73,9 +107,12 @@ export const brandRoutes: RouteObject[] = [
 
       </AppLayout>
 
+
     ),
 
+
   },
+
 
 
 ];

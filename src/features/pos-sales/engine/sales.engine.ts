@@ -181,7 +181,7 @@ export class SalesEngine {
 
         type:
 
-          "sale",
+          "SALE",
 
         quantity:
 

@@ -14,7 +14,6 @@ import {
 } from "react";
 
 
-
 import {
 
   BrandToolbar,
@@ -22,13 +21,11 @@ import {
 } from "../components/BrandToolbar";
 
 
-
 import {
 
   BrandTable,
 
 } from "../components/BrandTable";
-
 
 
 import {
@@ -43,9 +40,8 @@ import {
 
 
 
+
 export function BrandsPage(){
-
-
 
 
 
@@ -67,9 +63,7 @@ export function BrandsPage(){
     deleteBrand,
 
 
-
   } = useBrands();
-
 
 
 
@@ -95,8 +89,6 @@ export function BrandsPage(){
 
 
 
-
-
   const filteredBrands =
 
 
@@ -108,21 +100,16 @@ export function BrandsPage(){
 
         brand.name
 
+        .toLowerCase()
 
-          .toLowerCase()
+        .includes(
 
+          search.toLowerCase(),
 
-          .includes(
-
-
-            search.toLowerCase(),
-
-
-          ),
+        ),
 
 
     );
-
 
 
 
@@ -135,12 +122,7 @@ export function BrandsPage(){
 
 
 
-
-    <div
-
-      className="p-6"
-
-    >
+    <div className="p-6">
 
 
 
@@ -160,9 +142,7 @@ export function BrandsPage(){
 
       >
 
-
         Brands
-
 
 
       </h1>
@@ -176,17 +156,13 @@ export function BrandsPage(){
       <BrandToolbar
 
 
-
         search={search}
-
 
 
         onSearchChange={setSearch}
 
 
-
       />
-
 
 
 
@@ -197,13 +173,10 @@ export function BrandsPage(){
       <BrandTable
 
 
-
         brands={filteredBrands}
 
 
-
         onDelete={deleteBrand}
-
 
 
       />
@@ -212,13 +185,10 @@ export function BrandsPage(){
 
 
 
-
     </div>
 
 
-
   );
-
 
 
 }

@@ -1,9 +1,15 @@
 export type InventoryTransactionType =
-  | "purchase"
-  | "sale"
-  | "return"
-  | "adjustment"
-  | "transfer";
+
+  | "PURCHASE_RECEIPT"
+
+  | "SALE"
+
+  | "RETURN"
+
+  | "TRANSFER"
+
+  | "ADJUSTMENT";
+
 
 
 export interface InventoryTransaction {
@@ -12,7 +18,7 @@ export interface InventoryTransaction {
 
   tenantId: string;
 
-  storeId: string;
+  storeId?: string;
 
   warehouseId: string;
 

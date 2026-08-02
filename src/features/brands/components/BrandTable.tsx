@@ -1,27 +1,42 @@
-/**
- * ============================================================
- * E&P Technologies
- * E&P Smart POS
- * Brand Table
- * ============================================================
- */
-
-
 import type {
+
   Brand,
+
 } from "../types/brand.types";
 
 
+import {
 
-interface BrandTableProps {
+  BrandStatusBadge,
 
-  brands: Brand[];
+} from "./BrandStatusBadge";
 
-  onDelete(
-    id:string,
-  ):void;
+
+
+
+
+
+interface Props {
+
+
+  brands:Brand[];
+
+
+  onDelete:
+
+    (
+
+      id:string,
+
+    )=>void;
+
 
 }
+
+
+
+
+
 
 
 
@@ -31,142 +46,125 @@ export function BrandTable({
 
   onDelete,
 
-}:BrandTableProps){
-
-
-  if(
-    brands.length === 0
-  ){
-
-    return (
-
-      <div
-
-        className="
-        p-6
-        border
-        rounded
-        text-gray-500
-        "
-
-      >
-
-        No brands found.
-
-      </div>
-
-    );
-
-  }
+}:Props){
 
 
 
   return (
 
+
+
     <div
 
       className="
+
       border
+
       rounded
+
       overflow-hidden
+
       "
 
     >
 
 
+
+
       {
-        brands.map(
 
-          brand=>(
-
-            <div
-
-              key={
-                brand.id
-              }
-
-              className="
-              flex
-              justify-between
-              items-center
-              p-4
-              border-b
-              "
-
-            >
+        brands.map(brand=>(
 
 
-              <div>
+          <div
 
 
-                <p
+            key={brand.id}
 
-                  className="
-                  font-medium
-                  "
 
-                >
 
-                  {brand.name}
+            className="
+
+            flex
+
+            justify-between
+
+            items-center
+
+            p-3
+
+            border-b
+
+            "
+
+          >
+
+
+
+
+            <div>
+
+
+              <p className="font-medium">
+
+                {brand.name}
+
+              </p>
+
+
+
+              {
+
+                brand.description &&
+
+                <p className="text-sm">
+
+                  {brand.description}
 
                 </p>
 
-
-
-                {
-                  brand.description && (
-
-                    <p
-
-                      className="
-                      text-sm
-                      text-gray-500
-                      "
-
-                    >
-
-                      {brand.description}
-
-                    </p>
-
-                  )
-                }
+              }
 
 
 
-                <span
-
-                  className="
-                  text-xs
-                  "
-
-                >
-
-                  {brand.status}
-
-                </span>
+            </div>
 
 
 
-              </div>
+
+
+
+
+            <div className="flex gap-4 items-center">
+
+
+
+              <BrandStatusBadge
+
+                status={brand.status}
+
+              />
+
 
 
 
 
               <button
 
-                onClick={()=>
 
+                onClick={
 
-                  onDelete(
+                  ()=>onDelete(
+
                     brand.id,
+
                   )
 
                 }
 
-                className="
-                text-red-600
-                "
+
+                className="text-red-600"
+
 
               >
 
@@ -177,17 +175,26 @@ export function BrandTable({
 
 
 
+
             </div>
 
 
-          )
 
-        )
+
+
+          </div>
+
+
+        ))
+
       }
 
 
 
+
+
     </div>
+
 
   );
 

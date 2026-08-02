@@ -1,79 +1,87 @@
 import {
+  useParams,
 
- useParams,
-
- useNavigate,
+  useNavigate,
 
 } from "react-router-dom";
 
 
 import {
-
- PaymentMethodForm,
-
+  PaymentMethodForm,
 } from "../components/PaymentMethodForm";
 
 
 import {
-
- paymentMethodService,
-
+  paymentMethodService,
 } from "../services/payment-method.service";
 
 
-
-export function EditPaymentMethodPage(){
-
-
- const {
-
- id,
-
- } = useParams();
-
-
-
- const navigate=
-
- useNavigate();
+type PaymentMethodFormData =
+  Parameters<
+    NonNullable<
+      React.ComponentProps<
+        typeof PaymentMethodForm
+      >["onSubmit"]
+    >
+  >[0];
 
 
 
- function submit(data:any){
+export function EditPaymentMethodPage() {
 
 
- if(!id){
-
- return;
-
- }
-
-
- paymentMethodService.updatePaymentMethod(
-
- id,
-
- data,
-
- );
-
-
- navigate("/payment-methods");
-
-
- }
+  const {
+    id,
+  } = useParams();
 
 
 
- return (
+  const navigate =
+    useNavigate();
 
- <PaymentMethodForm
 
- onSubmit={submit}
 
- />
+  function submit(
+    data: PaymentMethodFormData,
+  ) {
 
- );
+
+    if (!id) {
+
+      return;
+
+    }
+
+
+
+    paymentMethodService.updatePaymentMethod(
+
+      id,
+
+      data,
+
+    );
+
+
+
+    navigate(
+      "/payment-methods",
+    );
+
+
+  }
+
+
+
+  return (
+
+    <PaymentMethodForm
+
+      onSubmit={submit}
+
+    />
+
+  );
 
 
 }

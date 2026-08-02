@@ -8,7 +8,9 @@ import {
 } from "./inventory-movement.engine";
 
 
+
 export class StockAdjustmentEngine {
+
 
 
   adjust(
@@ -17,7 +19,7 @@ export class StockAdjustmentEngine {
 
     newQuantity: number,
 
-  ) {
+  ): InventoryRecord {
 
 
     if (newQuantity < 0) {
@@ -29,6 +31,7 @@ export class StockAdjustmentEngine {
     }
 
 
+
     const difference =
 
       newQuantity -
@@ -37,29 +40,48 @@ export class StockAdjustmentEngine {
 
 
 
+    if (difference === 0) {
+
+      return record;
+
+    }
+
+
+
     inventoryMovementEngine.createMovement({
+
 
       productId:
 
         record.productId,
 
+
       warehouseId:
 
         record.warehouseId,
 
+
       type:
 
-        "ADJUSTMENT",
+        difference > 0
+
+          ? "ADJUSTMENT_IN"
+
+          : "ADJUSTMENT_OUT",
+
 
       quantity:
 
-        difference,
+        Math.abs(difference),
+
 
       previousQuantity:
 
         record.quantityOnHand,
 
+
       newQuantity,
+
 
     });
 
@@ -67,11 +89,14 @@ export class StockAdjustmentEngine {
 
     return {
 
+
       ...record,
+
 
       quantityOnHand:
 
         newQuantity,
+
 
       availableQuantity:
 
@@ -79,16 +104,20 @@ export class StockAdjustmentEngine {
 
         record.reservedQuantity,
 
+
       lastMovementAt:
 
         new Date().toISOString(),
 
+
     };
+
 
   }
 
 
 }
+
 
 
 export const stockAdjustmentEngine =

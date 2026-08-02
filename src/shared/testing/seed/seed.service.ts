@@ -167,26 +167,25 @@ class SeedService {
 
 
 
-    sampleBrands.forEach(
+   sampleBrands.forEach(
 
-      brand => {
-
-
-        brandService.createBrand(
-
-          brand,
-
-          config.tenantId,
-
-          config.storeId,
-
-        );
+  brand => {
 
 
-      },
+    brandService.createBrand(
+
+      config.tenantId,
+
+      config.storeId,
+
+      brand,
 
     );
 
+
+  },
+
+);
 
 
     sampleUnits.forEach(

@@ -1,31 +1,43 @@
 export interface InventoryRecord {
 
+
   id: string;
 
-  tenantId: string;
 
-  storeId: string;
+tenantId: string;
+
 
   productId: string;
 
+
   warehouseId: string;
+
 
   quantityOnHand: number;
 
+
   reservedQuantity: number;
+
 
   availableQuantity: number;
 
-  reorderLevel: number;
-
-  reorderQuantity: number;
 
   averageCost: number;
 
-  lastMovementAt: string;
+
+  minimumStockLevel: number;
+
+
+  maximumStockLevel?: number;
+
+
+  lastMovementAt?: string;
+
 
   createdAt: string;
 
+
   updatedAt: string;
+
 
 }

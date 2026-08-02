@@ -1,62 +1,71 @@
 import {
-
- useNavigate,
-
+  useNavigate,
 } from "react-router-dom";
 
 
 import {
-
- PaymentMethodForm,
-
+  PaymentMethodForm,
 } from "../components/PaymentMethodForm";
 
 
 import {
-
- paymentMethodService,
-
+  paymentMethodService,
 } from "../services/payment-method.service";
 
 
-
-export function CreatePaymentMethodPage(){
-
-
- const navigate = useNavigate();
-
-
-
- function submit(data:any){
-
-
- paymentMethodService.createPaymentMethod(
-
- "default-tenant",
-
- "default-store",
-
- data,
-
- );
-
-
- navigate("/payment-methods");
-
-
- }
+type PaymentMethodFormData =
+  Parameters<
+    NonNullable<
+      React.ComponentProps<
+        typeof PaymentMethodForm
+      >["onSubmit"]
+    >
+  >[0];
 
 
 
- return (
+export function CreatePaymentMethodPage() {
 
- <PaymentMethodForm
 
- onSubmit={submit}
+  const navigate =
+    useNavigate();
 
- />
 
- );
+
+  function submit(
+    data: PaymentMethodFormData,
+  ) {
+
+
+    paymentMethodService.createPaymentMethod(
+
+      "default-tenant",
+
+      "default-store",
+
+      data,
+
+    );
+
+
+    navigate(
+      "/payment-methods",
+    );
+
+
+  }
+
+
+
+  return (
+
+    <PaymentMethodForm
+
+      onSubmit={submit}
+
+    />
+
+  );
 
 
 }

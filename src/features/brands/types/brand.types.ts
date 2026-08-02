@@ -21,36 +21,40 @@ export enum BrandStatus {
 
 
 
-
-
 export interface Brand {
 
 
-  id:string;
+  id: string;
 
 
-  tenantId:string;
+  tenantId: string;
 
 
-  storeId:string;
-
-
-
-  name:string;
-
-
-  description:string | null;
+  storeId: string;
 
 
 
-  status:BrandStatus;
+  name: string;
+
+
+  code: string | null;
+
+
+  description: string | null;
+
+
+  logoUrl: string | null;
 
 
 
-  createdAt:string;
+  status: BrandStatus;
 
 
-  updatedAt:string;
+
+  createdAt: string;
+
+
+  updatedAt: string;
 
 
 }
@@ -64,10 +68,16 @@ export interface Brand {
 export interface CreateBrandDto {
 
 
-  name:string;
+  name: string;
 
 
-  description?:string | null;
+  code?: string | null;
+
+
+  description?: string | null;
+
+
+  logoUrl?: string | null;
 
 
 }
@@ -81,16 +91,19 @@ export interface CreateBrandDto {
 export interface UpdateBrandDto {
 
 
-  name?:string;
+  name?: string;
 
 
-  description?:string | null;
+  code?: string | null;
 
 
-  status?:BrandStatus;
+  description?: string | null;
 
 
-  updatedAt?:string;
+  logoUrl?: string | null;
+
+
+  status?: BrandStatus;
 
 
 }

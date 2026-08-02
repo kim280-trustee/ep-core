@@ -12,6 +12,7 @@ import {
 export class StockTransferEngine {
 
 
+
   transfer(
 
     source: InventoryRecord,
@@ -23,14 +24,10 @@ export class StockTransferEngine {
   ) {
 
 
-    if (
-
-      source.quantityOnHand < quantity
-
-    ) {
+    if (quantity <= 0) {
 
       throw new Error(
-        "Insufficient stock.",
+        "Transfer quantity must be greater than zero.",
       );
 
     }
@@ -63,27 +60,34 @@ export class StockTransferEngine {
 
     inventoryMovementEngine.createMovement({
 
+
       productId:
 
         source.productId,
+
 
       warehouseId:
 
         source.warehouseId,
 
+
       type:
 
         "TRANSFER",
 
+
       quantity,
+
 
       previousQuantity:
 
         source.quantityOnHand,
 
+
       newQuantity:
 
         updatedSource.quantityOnHand,
+
 
     });
 
@@ -91,20 +95,25 @@ export class StockTransferEngine {
 
     return {
 
+
       source:
 
         updatedSource,
+
 
       destination:
 
         updatedDestination,
 
+
     };
+
 
   }
 
 
 }
+
 
 
 export const stockTransferEngine =

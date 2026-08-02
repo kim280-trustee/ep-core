@@ -1,4 +1,5 @@
-export interface StockAdjustment {
+export interface StockAdjustmentInput {
+
   id: string;
 
   tenantId: string;
@@ -9,21 +10,48 @@ export interface StockAdjustment {
 
   quantity: number;
 
-  adjustmentType:
-    | "INCREASE"
-    | "DECREASE";
+  adjustmentType: "INCREASE" | "DECREASE";
 
-  reason:
-    | "DAMAGED"
-    | "EXPIRED"
-    | "LOST"
-    | "FOUND"
-    | "STOCK_COUNT"
-    | "MANUAL";
-
-  notes?: string;
+  reason?: string;
 
   adjustedBy: string;
 
   adjustedAt: string;
+
+  warehouseId?: string;
+
+  newQuantity?: number;
+
 }
+
+
+export interface StockAdjustmentResult {
+
+  id: string;
+
+  tenantId: string;
+
+  storeId: string;
+
+  productId: string;
+
+  quantity: number;
+
+  adjustmentType: "INCREASE" | "DECREASE";
+
+  reason?: string;
+
+  adjustedBy: string;
+
+  adjustedAt: string;
+
+  previousQuantity?: number;
+
+  newQuantity?: number;
+
+  difference?: number;
+
+}
+
+
+export type StockAdjustment = StockAdjustmentInput;

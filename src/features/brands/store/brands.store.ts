@@ -50,12 +50,11 @@ interface BrandsStore {
 
 
 
-  loadBrands:()=>void;
+  loadBrands():void;
 
 
 
-
-  createBrand:(
+  createBrand(
 
     input:CreateBrandDto,
 
@@ -63,41 +62,37 @@ interface BrandsStore {
 
     storeId:string,
 
-  )=>void;
+  ):void;
 
 
 
 
-
-  updateBrand:(
+  updateBrand(
 
     id:string,
 
     updates:UpdateBrandDto,
 
-  )=>void;
+  ):void;
 
 
 
 
-
-
-  deleteBrand:(
+  deleteBrand(
 
     id:string,
 
-  )=>void;
+  ):void;
 
 
 
 
-
-
-  setSearch:(
+  setSearch(
 
     value:string,
 
-  )=>void;
+  ):void;
+
 
 
 }
@@ -108,24 +103,17 @@ interface BrandsStore {
 
 
 
-
 export const useBrandsStore =
 
-
-create<BrandsStore>(
-
-(set)=>({
-
-
+create<BrandsStore>((set)=>({
 
 
 
   brands:[],
 
 
+
   search:"",
-
-
 
 
 
@@ -138,19 +126,14 @@ create<BrandsStore>(
 
     set({
 
-
       brands:
 
-
         brandService.getBrands(),
-
 
     });
 
 
   },
-
-
 
 
 
@@ -160,16 +143,11 @@ create<BrandsStore>(
 
   createBrand(
 
-
     input,
-
 
     tenantId,
 
-
     storeId,
-
-
 
   ){
 
@@ -177,38 +155,26 @@ create<BrandsStore>(
 
     brandService.createBrand(
 
-
-      input,
-
-
       tenantId,
-
 
       storeId,
 
+      input,
 
     );
 
 
 
-
-
     set({
-
 
       brands:
 
-
         brandService.getBrands(),
-
 
     });
 
 
-
   },
-
-
 
 
 
@@ -218,13 +184,9 @@ create<BrandsStore>(
 
   updateBrand(
 
-
     id,
 
-
     updates,
-
-
 
   ){
 
@@ -232,35 +194,24 @@ create<BrandsStore>(
 
     brandService.updateBrand(
 
-
       id,
 
-
       updates,
-
 
     );
 
 
 
-
-
     set({
-
 
       brands:
 
-
         brandService.getBrands(),
-
 
     });
 
 
-
   },
-
-
 
 
 
@@ -270,9 +221,7 @@ create<BrandsStore>(
 
   deleteBrand(
 
-
     id,
-
 
   ){
 
@@ -280,32 +229,22 @@ create<BrandsStore>(
 
     brandService.deleteBrand(
 
-
       id,
-
 
     );
 
 
 
-
-
     set({
-
 
       brands:
 
-
         brandService.getBrands(),
-
 
     });
 
 
-
   },
-
-
 
 
 
@@ -315,10 +254,7 @@ create<BrandsStore>(
 
   setSearch(
 
-
     value,
-
-
 
   ){
 
@@ -326,20 +262,13 @@ create<BrandsStore>(
 
     set({
 
-
       search:value,
 
-
     });
-
 
 
   },
 
 
 
-
-
-})
-
-);
+}));

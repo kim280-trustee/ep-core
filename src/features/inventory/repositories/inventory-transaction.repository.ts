@@ -3,6 +3,7 @@ import type {
 } from "../types/inventory-transaction.types";
 
 
+
 export interface IInventoryTransactionRepository {
 
 

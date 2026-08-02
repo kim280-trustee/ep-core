@@ -12,43 +12,47 @@ import {
 class InventoryProductService {
 
 
+
   getInventoryWithProducts() {
 
 
-    const inventory =
+    return inventoryService
 
-      inventoryService.getInventory();
+      .getInventory()
 
+      .map(
 
-
-    return inventory.map(
-
-      (record) => {
+        (record) => {
 
 
-        const product =
+          const product =
 
-          productService.getProductById(
+            productService
 
-            record.productId,
+              .getProductById(
 
-          );
+                record.productId,
 
-
-        return {
-
-
-          ...record,
+              );
 
 
-          product,
 
-        };
+          return {
 
 
-      },
+            ...record,
 
-    );
+
+            product,
+
+
+          };
+
+
+        },
+
+      );
+
 
   }
 
@@ -63,23 +67,28 @@ class InventoryProductService {
   ) {
 
 
-    const records =
 
-      inventoryService.getProductStock(
+    const inventory =
 
-        productId,
+      inventoryService
 
-      );
+        .getProductStock(
+
+          productId,
+
+        );
 
 
 
     const product =
 
-      productService.getProductById(
+      productService
 
-        productId,
+        .getProductById(
 
-      );
+          productId,
+
+        );
 
 
 
@@ -89,16 +98,17 @@ class InventoryProductService {
       product,
 
 
-      inventory: records,
+      inventory,
 
 
     };
 
+
   }
 
 
-
 }
+
 
 
 export const inventoryProductService =

@@ -33,6 +33,10 @@ import {
 
 
 
+type Product = ReturnType<
+  typeof useProductsStore.getState
+>["products"][number];
+
 
 
 
@@ -121,7 +125,6 @@ export function ProductTable(){
 
 
 
-
   const filteredProducts =
 
     products.filter((product)=>{
@@ -172,8 +175,11 @@ export function ProductTable(){
 
 
 
+  function duplicateProduct(
 
-  function duplicateProduct(product:any){
+    product: Product,
+
+  ){
 
 
 
@@ -222,7 +228,6 @@ export function ProductTable(){
 
 
 
-
   if(filteredProducts.length===0){
 
 
@@ -250,6 +255,7 @@ export function ProductTable(){
 
 
   }
+
 
 
 
@@ -341,6 +347,7 @@ export function ProductTable(){
 
 
         </thead>
+
 
 
 
@@ -521,7 +528,6 @@ export function ProductTable(){
 
 
                 />
-
 
 
 

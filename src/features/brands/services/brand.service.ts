@@ -10,27 +10,13 @@
 
 
 import {
-
   brandRepository,
-
 } from "../repositories";
 
 
-
 import {
-
   brandSchema,
-
 } from "../validators/brand.schema";
-
-
-
-import {
-
-  BrandStatus,
-
-} from "../types/brand.types";
-
 
 
 import type {
@@ -40,6 +26,13 @@ import type {
   CreateBrandDto,
 
   UpdateBrandDto,
+
+} from "../types/brand.types";
+
+
+import {
+
+  BrandStatus,
 
 } from "../types/brand.types";
 
@@ -56,30 +49,13 @@ class BrandService {
 
 
 
-  private generateId():string {
-
-
-    return crypto.randomUUID();
-
-
-  }
-
-
-
-
-
-
-
-
-
-  getBrands():Brand[]{
+  getBrands():Brand[] {
 
 
     return brandRepository.findAll();
 
 
   }
-
 
 
 
@@ -111,25 +87,96 @@ class BrandService {
 
 
 
+  getActiveBrands():Brand[] {
+
+
+    return this.getBrands()
+
+      .filter(
+
+        brand =>
+
+          brand.status === BrandStatus.ACTIVE,
+
+      );
+
+
+  }
+
+
+
+
+
+
+
+
+  getBrandStats(){
+
+
+    const brands =
+
+      this.getBrands();
+
+
+
+
+    return {
+
+
+      total:
+
+        brands.length,
+
+
+
+      active:
+
+        brands.filter(
+
+          brand =>
+
+            brand.status === BrandStatus.ACTIVE,
+
+        ).length,
+
+
+
+      inactive:
+
+        brands.filter(
+
+          brand =>
+
+            brand.status === BrandStatus.INACTIVE,
+
+        ).length,
+
+
+    };
+
+
+  }
+
+
+
+
+
+
+
 
   createBrand(
 
-
-    input:CreateBrandDto,
-
-
     tenantId:string,
-
 
     storeId:string,
 
+    input:CreateBrandDto,
 
   ):Brand {
 
 
 
     const validated =
-
 
       brandSchema.parse(
 
@@ -141,49 +188,23 @@ class BrandService {
 
 
 
+    if(
 
+      validated.code &&
 
+      brandRepository.existsByCode(
 
-    const duplicate =
+        validated.code,
 
+      )
 
-      this.getBrands()
-
-        .find(
-
-
-          brand =>
-
-
-            brand.tenantId === tenantId &&
-
-
-            brand.storeId === storeId &&
-
-
-            brand.name.toLowerCase() ===
-
-            validated.name.toLowerCase(),
-
-
-
-        );
-
-
-
-
-
-
-
-    if(duplicate){
-
+    ){
 
       throw new Error(
 
-        "Brand with this name already exists.",
+        "Brand code already exists.",
 
       );
-
 
     }
 
@@ -193,94 +214,18 @@ class BrandService {
 
 
 
-
-
-    const now =
-
-
-      new Date().toISOString();
-
-
-
-
-
-
-
-
-
-    const brand:Brand = {
-
-
-
-      id:
-
-
-        this.generateId(),
-
-
+    return brandRepository.create(
 
       tenantId,
 
-
-
       storeId,
 
-
-
-      name:
-
-
-        validated.name,
-
-
-
-      description:
-
-
-        validated.description ?? null,
-
-
-
-      status:
-
-
-        BrandStatus.ACTIVE,
-
-
-
-      createdAt:
-
-
-        now,
-
-
-
-      updatedAt:
-
-
-        now,
-
-
-
-    };
-
-
-
-
-
-
-
-
-    return brandRepository.create(
-
-      brand,
+      validated,
 
     );
 
 
-
   }
-
 
 
 
@@ -291,43 +236,65 @@ class BrandService {
 
   updateBrand(
 
-
     id:string,
 
-
     updates:UpdateBrandDto,
-
 
   ):Brand | undefined {
 
 
-
     return brandRepository.update(
-
 
       id,
 
-
-      {
-
-
-        ...updates,
-
-
-        updatedAt:
-
-
-          new Date().toISOString(),
-
-
-      },
-
+      updates,
 
     );
 
 
   }
 
+
+
+
+
+
+
+
+  toggleStatus(
+
+    brand:Brand,
+
+  ):Brand {
+
+
+
+    return {
+
+      ...brand,
+
+
+      status:
+
+        brand.status === BrandStatus.ACTIVE
+
+        ?
+
+        BrandStatus.INACTIVE
+
+        :
+
+        BrandStatus.ACTIVE,
+
+
+      updatedAt:
+
+        new Date().toISOString(),
+
+    };
+
+
+  }
 
 
 
@@ -343,7 +310,6 @@ class BrandService {
   ):boolean {
 
 
-
     return brandRepository.delete(
 
       id,
@@ -356,11 +322,7 @@ class BrandService {
 
 
 
-
-
 }
-
-
 
 
 
@@ -369,5 +331,4 @@ class BrandService {
 
 export const brandService =
 
-
-  new BrandService();
+new BrandService();

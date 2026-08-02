@@ -1,4 +1,5 @@
-export interface StockTransfer {
+export interface StockTransferInput {
+
   id: string;
 
   tenantId: string;
@@ -11,19 +12,46 @@ export interface StockTransfer {
 
   quantity: number;
 
-  status:
-    | "PENDING"
-    | "IN_TRANSIT"
-    | "COMPLETED"
-    | "CANCELLED";
+  status: string;
 
   transferredBy: string;
 
-  receivedBy?: string;
+  transferredAt: string;
+
+  sourceWarehouseId?: string;
+
+  destinationWarehouseId?: string;
+
+  reason?: string;
+
+}
+
+
+export interface StockTransferResult {
+
+  id: string;
+
+  tenantId: string;
+
+  fromStoreId: string;
+
+  toStoreId: string;
+
+  productId: string;
+
+  quantity: number;
+
+  status: string;
+
+  transferredBy: string;
 
   transferredAt: string;
 
-  receivedAt?: string;
+  sourceWarehouseId?: string;
 
-  notes?: string;
+  destinationWarehouseId?: string;
+
 }
+
+
+export type StockTransfer = StockTransferInput;

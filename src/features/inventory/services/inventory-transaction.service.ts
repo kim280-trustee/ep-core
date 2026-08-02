@@ -15,11 +15,13 @@ class InventoryTransactionService {
 
   getTransactions() {
 
+
     return inventoryTransactionContext
 
       .repository
 
       .findAll();
+
 
   }
 
@@ -44,6 +46,7 @@ class InventoryTransactionService {
 
       );
 
+
   }
 
 
@@ -66,6 +69,31 @@ class InventoryTransactionService {
         productId,
 
       );
+
+
+  }
+
+
+
+
+
+  getTransactionById(
+
+    id: string,
+
+  ) {
+
+
+    return inventoryTransactionContext
+
+      .repository
+
+      .findById(
+
+        id,
+
+      );
+
 
   }
 

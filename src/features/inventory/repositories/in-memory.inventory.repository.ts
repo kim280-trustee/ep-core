@@ -2,88 +2,185 @@ import type {
   InventoryRecord,
 } from "../types/inventory-record.types";
 
+
 import type {
   IInventoryRepository,
 } from "./inventory.repository";
 
+
+
 class InMemoryInventoryRepository
-  implements IInventoryRepository {
+
+implements IInventoryRepository {
+
+
 
   private records: InventoryRecord[] = [];
 
-  findAll(): InventoryRecord[] {
 
-    return this.records;
+
+  findAll():
+
+    InventoryRecord[] {
+
+    return [
+      ...this.records,
+    ];
 
   }
+
+
+
+
 
   findById(
+
     id: string,
-  ): InventoryRecord | undefined {
+
+  ):
+
+    InventoryRecord | undefined {
+
 
     return this.records.find(
-      (record) => record.id === id,
+
+      (record) =>
+
+        record.id === id,
+
     );
 
+
   }
+
+
+
+
 
   findByProduct(
+
     productId: string,
-  ): InventoryRecord[] {
+
+  ):
+
+    InventoryRecord[] {
+
 
     return this.records.filter(
+
       (record) =>
+
         record.productId === productId,
+
     );
 
+
   }
+
+
+
+
 
   findByWarehouse(
+
     warehouseId: string,
-  ): InventoryRecord[] {
+
+  ):
+
+    InventoryRecord[] {
+
 
     return this.records.filter(
+
       (record) =>
+
         record.warehouseId === warehouseId,
+
     );
 
+
   }
+
+
+
+
 
   findByProductAndWarehouse(
+
     productId: string,
+
     warehouseId: string,
-  ): InventoryRecord | undefined {
+
+  ):
+
+    InventoryRecord | undefined {
+
 
     return this.records.find(
+
       (record) =>
+
         record.productId === productId &&
+
         record.warehouseId === warehouseId,
+
     );
+
 
   }
 
+
+
+
+
   create(
+
     record: InventoryRecord,
-  ): InventoryRecord {
+
+  ):
+
+    InventoryRecord {
+
 
     this.records.push(
+
       record,
+
     );
+
 
     return record;
 
+
   }
 
+
+
+
+
   update(
+
     id: string,
+
     updates: Partial<InventoryRecord>,
-  ): InventoryRecord | undefined {
+
+  ):
+
+    InventoryRecord | undefined {
+
+
 
     const index =
+
       this.records.findIndex(
+
         (record) =>
+
           record.id === id,
+
       );
+
+
 
     if (index === -1) {
 
@@ -91,47 +188,81 @@ class InMemoryInventoryRepository
 
     }
 
-    this.records[index] = {
+
+
+    const updatedRecord = {
+
 
       ...this.records[index],
 
+
       ...updates,
 
+
       updatedAt:
+
         new Date().toISOString(),
+
 
     };
 
-    return this.records[index];
+
+
+    this.records[index] = updatedRecord;
+
+
+
+    return updatedRecord;
+
 
   }
+
+
+
+
 
   delete(
-    id: string,
-  ): boolean {
 
-    const index =
-      this.records.findIndex(
+    id: string,
+
+  ):
+
+    boolean {
+
+
+
+    const initialLength =
+
+      this.records.length;
+
+
+
+    this.records =
+
+      this.records.filter(
+
         (record) =>
-          record.id === id,
+
+          record.id !== id,
+
       );
 
-    if (index === -1) {
 
-      return false;
 
-    }
+    return (
 
-    this.records.splice(
-      index,
-      1,
+      this.records.length !== initialLength
+
     );
 
-    return true;
 
   }
+
 
 }
 
+
+
 export const inMemoryInventoryRepository =
+
   new InMemoryInventoryRepository();

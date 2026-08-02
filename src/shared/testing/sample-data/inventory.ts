@@ -2,19 +2,18 @@ import type {
   InventoryRecord,
 } from "../../../features/inventory/types/inventory-record.types";
 
+
 export const sampleInventory: InventoryRecord[] = [
 
   {
 
-    id: crypto.randomUUID(),
+    id: "INV-001",
 
     tenantId: "DEMO-TENANT",
 
-    storeId: "DEMO-STORE",
+    productId: "PRODUCT-001",
 
-    warehouseId: "DEMO-WAREHOUSE",
-
-    productId: "",
+    warehouseId: "WAREHOUSE-001",
 
     quantityOnHand: 100,
 
@@ -22,17 +21,18 @@ export const sampleInventory: InventoryRecord[] = [
 
     availableQuantity: 100,
 
-    averageCost: 15,
+    minimumStockLevel: 10,
 
-    reorderLevel: 10,
+    averageCost: 50,
 
-    reorderQuantity: 50,
+    lastMovementAt:
+      new Date().toISOString(),
 
-    lastMovementAt: new Date().toISOString(),
+    createdAt:
+      new Date().toISOString(),
 
-    createdAt: new Date().toISOString(),
-
-    updatedAt: new Date().toISOString(),
+    updatedAt:
+      new Date().toISOString(),
 
   },
 

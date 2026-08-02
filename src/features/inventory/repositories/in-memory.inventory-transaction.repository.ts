@@ -14,8 +14,12 @@ class InMemoryInventoryTransactionRepository
 implements IInventoryTransactionRepository {
 
 
+
   private transactions:
+
     InventoryTransaction[] = [];
+
+
 
 
 
@@ -23,9 +27,15 @@ implements IInventoryTransactionRepository {
 
     InventoryTransaction[] {
 
-    return this.transactions;
+    return [
+
+      ...this.transactions,
+
+    ];
 
   }
+
+
 
 
 
@@ -51,6 +61,8 @@ implements IInventoryTransactionRepository {
 
 
 
+
+
   findByProduct(
 
     productId: string,
@@ -73,6 +85,8 @@ implements IInventoryTransactionRepository {
 
 
 
+
+
   create(
 
     transaction: InventoryTransaction,
@@ -90,6 +104,7 @@ implements IInventoryTransactionRepository {
 
 
     return transaction;
+
 
   }
 

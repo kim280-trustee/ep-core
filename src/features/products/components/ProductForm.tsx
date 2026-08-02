@@ -8,7 +8,6 @@
 
 
 import {
-  useEffect,
   useState,
 } from "react";
 
@@ -59,7 +58,26 @@ export function ProductForm({
 
   productId,
 
-}:ProductFormProps){
+}: ProductFormProps) {
+
+
+
+const product =
+
+productId
+
+?
+
+productService.getProductById(
+
+  productId,
+
+)
+
+:
+
+undefined;
+
 
 
 
@@ -67,7 +85,7 @@ const addProduct =
 
 useProductsStore(
 
-state=>state.addProduct,
+state => state.addProduct,
 
 );
 
@@ -77,7 +95,7 @@ const updateProduct =
 
 useProductsStore(
 
-state=>state.updateProduct,
+state => state.updateProduct,
 
 );
 
@@ -85,97 +103,67 @@ state=>state.updateProduct,
 
 
 
-const [name,setName] =
+const [
 
-useState("");
+name,
 
+setName,
 
+] = useState(
 
-const [sku,setSku] =
+product?.name ?? "",
 
-useState("");
-
-
-
-const [price,setPrice] =
-
-useState(0);
+);
 
 
 
-const [loading,setLoading] =
+const [
 
-useState(false);
+sku,
 
+setSku,
 
+] = useState(
 
-const [error,setError] =
+product?.identifiers.sku ?? "",
 
-useState("");
-
-
-
-
+);
 
 
 
+const [
 
-useEffect(()=>{
+price,
 
+setPrice,
 
+] = useState(
 
-if(!productId){
-
-return;
-
-}
-
-
-
-
-const product =
-
-productService.getProductById(
-
-productId,
+product?.pricing.sellingPrice ?? 0,
 
 );
 
 
 
 
-if(product){
 
+const [
 
-setName(
+loading,
 
-product.name,
+setLoading,
 
-);
-
-
-
-setSku(
-
-product.identifiers.sku,
-
-);
+] = useState(false);
 
 
 
-setPrice(
+const [
 
-product.pricing.sellingPrice,
+error,
 
-);
+setError,
 
-
-
-}
-
-
-
-},[productId]);
+] = useState("");
 
 
 
@@ -183,9 +171,7 @@ product.pricing.sellingPrice,
 
 
 
-
-
-function handleSubmit(){
+function handleSubmit() {
 
 
 
@@ -195,14 +181,13 @@ try {
 
 setLoading(true);
 
-
 setError("");
 
 
 
 
 
-if(productId){
+if(productId) {
 
 
 
@@ -218,7 +203,7 @@ productId,
 
 
 
-if(existing){
+if(existing) {
 
 
 
@@ -267,9 +252,7 @@ return;
 
 
 
-
-
-const product =
+const newProduct =
 
 productService.createProduct(
 
@@ -285,12 +268,9 @@ name,
 
 identifiers:{
 
-
 sku,
 
-
 barcode:null,
-
 
 },
 
@@ -298,15 +278,11 @@ barcode:null,
 
 pricing:{
 
-
 costPrice:0,
-
 
 sellingPrice:price,
 
-
 currency:"THB",
-
 
 },
 
@@ -314,18 +290,16 @@ currency:"THB",
 
 inventory:{
 
-
 trackInventory:true,
-
 
 stockQuantity:0,
 
-
 },
 
 
 
 },
+
 
 
 );
@@ -334,7 +308,7 @@ stockQuantity:0,
 
 
 
-addProduct(product);
+addProduct(newProduct);
 
 
 
@@ -378,7 +352,7 @@ error.message
 
 
 
-finally{
+finally {
 
 
 
@@ -399,7 +373,6 @@ setLoading(false);
 
 
 
-
 if(loading){
 
 
@@ -411,9 +384,6 @@ return (
 
 
 }
-
-
-
 
 
 

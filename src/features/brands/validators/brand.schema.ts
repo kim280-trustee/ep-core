@@ -10,12 +10,8 @@
 
 
 import {
-
   z,
-
 } from "zod";
-
-
 
 
 
@@ -26,7 +22,6 @@ export const brandSchema = z.object({
 
 
   name:
-
 
     z.string()
 
@@ -51,9 +46,28 @@ export const brandSchema = z.object({
 
 
 
+  code:
+
+    z.string()
+
+      .trim()
+
+      .max(
+
+        50,
+
+        "Brand code cannot exceed 50 characters.",
+
+      )
+
+      .optional()
+
+      .nullable(),
+
+
+
 
   description:
-
 
     z.string()
 
@@ -73,16 +87,30 @@ export const brandSchema = z.object({
 
 
 
+
+  logoUrl:
+
+    z.string()
+
+      .url(
+
+        "Invalid logo URL.",
+
+      )
+
+      .optional()
+
+      .nullable(),
+
+
+
 });
 
 
 
 
 
-
-
 export type BrandFormInput =
-
 
   z.infer<
 

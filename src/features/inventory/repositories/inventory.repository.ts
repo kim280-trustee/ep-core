@@ -2,37 +2,88 @@ import type {
   InventoryRecord,
 } from "../types/inventory-record.types";
 
+
+
 export interface IInventoryRepository {
 
-  findAll(): InventoryRecord[];
+
+  findAll():
+
+    InventoryRecord[];
+
+
 
   findById(
+
     id: string,
-  ): InventoryRecord | undefined;
+
+  ):
+
+    InventoryRecord | undefined;
+
+
 
   findByProduct(
+
     productId: string,
-  ): InventoryRecord[];
+
+  ):
+
+    InventoryRecord[];
+
+
 
   findByWarehouse(
+
     warehouseId: string,
-  ): InventoryRecord[];
+
+  ):
+
+    InventoryRecord[];
+
+
 
   findByProductAndWarehouse(
+
     productId: string,
+
     warehouseId: string,
-  ): InventoryRecord | undefined;
+
+  ):
+
+    InventoryRecord | undefined;
+
+
 
   create(
+
     record: InventoryRecord,
-  ): InventoryRecord;
+
+  ):
+
+    InventoryRecord;
+
+
 
   update(
+
     id: string,
+
     updates: Partial<InventoryRecord>,
-  ): InventoryRecord | undefined;
-   delete(
+
+  ):
+
+    InventoryRecord | undefined;
+
+
+
+  delete(
+
     id: string,
-  ): boolean;
+
+  ):
+
+    boolean;
+
 
 }
