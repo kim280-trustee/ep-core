@@ -8,9 +8,35 @@ import {
 } from "../services/purchase-order.service";
 
 
+import {
+  purchaseItemEngine,
+} from "../engine";
+
+
 import type {
   PurchaseOrder,
 } from "../types/purchase-order.types";
+
+
+import type {
+  PurchaseOrderItem,
+} from "../types/purchase-order-item.types";
+
+
+
+interface CreatePurchaseOrderInput {
+
+  tenantId: string;
+
+  storeId: string;
+
+  supplierId: string;
+
+  warehouseId: string;
+
+  notes?: string;
+
+}
 
 
 
@@ -20,59 +46,76 @@ interface PurchaseOrderState {
   orders: PurchaseOrder[];
 
 
-  loadOrders: () => void;
 
-
-  createDraft: (
-
-    input: {
-
-      tenantId: string;
-
-      storeId: string;
-
-      supplierId: string;
-
-      warehouseId: string;
-
-      notes?: string;
-
-    },
-
-  ) => PurchaseOrder;
+  loadOrders(): void;
 
 
 
-  submitOrder: (
+  getOrderById(
 
     id: string,
 
-  ) => void;
+  ): PurchaseOrder | undefined;
 
 
 
-  approveOrder: (
+  createDraft(
 
-    id: string,
+    input: CreatePurchaseOrderInput,
 
-  ) => void;
-
-
-
-  cancelOrder: (
-
-    id: string,
-
-  ) => void;
+  ): PurchaseOrder;
 
 
 
-  receiveOrder: (
+  updateOrder(
 
     id: string,
 
-  ) => void;
+    updates: Partial<PurchaseOrder>,
 
+  ): void;
+
+
+
+  addItem(
+
+    orderId: string,
+
+    item: PurchaseOrderItem,
+
+  ): void;
+
+
+
+  submitOrder(
+
+    id: string,
+
+  ): void;
+
+
+
+  approveOrder(
+
+    id: string,
+
+  ): void;
+
+
+
+  cancelOrder(
+
+    id: string,
+
+  ): void;
+
+
+
+  receiveOrder(
+
+    id: string,
+
+  ): void;
 
 
 }
@@ -81,11 +124,13 @@ interface PurchaseOrderState {
 
 export const usePurchaseOrderStore =
 
-  create<PurchaseOrderState>((set) => ({
+  create<PurchaseOrderState>((set, get) => ({
 
 
 
     orders: [],
+
+
 
 
 
@@ -102,6 +147,38 @@ export const usePurchaseOrderStore =
 
 
     },
+
+
+
+
+
+
+
+    getOrderById: (
+
+      id,
+
+    ) => {
+
+
+      return get()
+
+        .orders
+
+        .find(
+
+          (order) =>
+
+            order.id === id,
+
+        );
+
+
+    },
+
+
+
+
 
 
 
@@ -145,6 +222,122 @@ export const usePurchaseOrderStore =
 
 
 
+
+
+
+
+    updateOrder: (
+
+      id,
+
+      updates,
+
+    ) => {
+
+
+      purchaseOrderService.update(
+
+        id,
+
+        updates,
+
+      );
+
+
+
+      set({
+
+        orders:
+
+          purchaseOrderService.getOrders(),
+
+      });
+
+
+    },
+
+
+
+
+
+
+
+    addItem: (
+
+      orderId,
+
+      item,
+
+    ) => {
+
+
+      const order =
+
+        get()
+
+          .orders
+
+          .find(
+
+            (item) =>
+
+              item.id === orderId,
+
+          );
+
+
+
+      if (!order) {
+
+        throw new Error(
+
+          "Purchase order not found.",
+
+        );
+
+      }
+
+
+
+      const updated =
+
+        purchaseItemEngine.addItem(
+
+          order,
+
+          item,
+
+        );
+
+
+
+      purchaseOrderService.update(
+
+        orderId,
+
+        updated,
+
+      );
+
+
+
+      set({
+
+        orders:
+
+          purchaseOrderService.getOrders(),
+
+      });
+
+
+    },
+
+
+
+
+
+
+
     submitOrder: (
 
       id,
@@ -170,6 +363,10 @@ export const usePurchaseOrderStore =
 
 
     },
+
+
+
+
 
 
 
@@ -201,6 +398,10 @@ export const usePurchaseOrderStore =
 
 
 
+
+
+
+
     cancelOrder: (
 
       id,
@@ -229,6 +430,10 @@ export const usePurchaseOrderStore =
 
 
 
+
+
+
+
     receiveOrder: (
 
       id,
@@ -254,6 +459,7 @@ export const usePurchaseOrderStore =
 
 
     },
+
 
 
   }));

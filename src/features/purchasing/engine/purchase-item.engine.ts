@@ -2,12 +2,20 @@ import type {
   PurchaseOrder,
 } from "../types/purchase-order.types";
 
+
 import type {
   PurchaseOrderItem,
 } from "../types/purchase-order-item.types";
 
 
+import {
+  purchaseOrderCalculationEngine,
+} from "./purchase-order-calculation.engine";
+
+
+
 export class PurchaseItemEngine {
+
 
 
   addItem(
@@ -28,19 +36,25 @@ export class PurchaseItemEngine {
     ];
 
 
+
     return {
 
       ...order,
 
       items,
 
-      ...this.calculateTotals(
+      ...purchaseOrderCalculationEngine.calculate(
 
         items,
 
       ),
 
+      updatedAt:
+
+        new Date().toISOString(),
+
     };
+
 
   }
 
@@ -68,19 +82,25 @@ export class PurchaseItemEngine {
       );
 
 
+
     return {
 
       ...order,
 
       items,
 
-      ...this.calculateTotals(
+      ...purchaseOrderCalculationEngine.calculate(
 
         items,
 
       ),
 
+      updatedAt:
+
+        new Date().toISOString(),
+
     };
+
 
   }
 
@@ -99,6 +119,19 @@ export class PurchaseItemEngine {
   ): PurchaseOrder {
 
 
+
+    if (quantity <= 0) {
+
+      throw new Error(
+
+        "Quantity must be greater than zero.",
+
+      );
+
+    }
+
+
+
     const items =
 
       order.items.map(
@@ -117,12 +150,6 @@ export class PurchaseItemEngine {
           }
 
 
-          const lineTotal =
-
-            quantity *
-
-            item.unitCost;
-
 
           return {
 
@@ -132,13 +159,20 @@ export class PurchaseItemEngine {
 
               quantity,
 
-            lineTotal,
+            lineTotal:
+
+              quantity *
+
+              item.unitCost,
 
           };
+
 
         },
 
       );
+
+
 
 
     return {
@@ -147,13 +181,18 @@ export class PurchaseItemEngine {
 
       items,
 
-      ...this.calculateTotals(
+      ...purchaseOrderCalculationEngine.calculate(
 
         items,
 
       ),
 
+      updatedAt:
+
+        new Date().toISOString(),
+
     };
+
 
   }
 
@@ -172,6 +211,19 @@ export class PurchaseItemEngine {
   ): PurchaseOrder {
 
 
+
+    if (unitCost < 0) {
+
+      throw new Error(
+
+        "Unit cost cannot be negative.",
+
+      );
+
+    }
+
+
+
     const items =
 
       order.items.map(
@@ -190,12 +242,6 @@ export class PurchaseItemEngine {
           }
 
 
-          const lineTotal =
-
-            item.quantityOrdered *
-
-            unitCost;
-
 
           return {
 
@@ -203,13 +249,20 @@ export class PurchaseItemEngine {
 
             unitCost,
 
-            lineTotal,
+            lineTotal:
+
+              item.quantityOrdered *
+
+              unitCost,
 
           };
+
 
         },
 
       );
+
+
 
 
     return {
@@ -218,95 +271,25 @@ export class PurchaseItemEngine {
 
       items,
 
-      ...this.calculateTotals(
+      ...purchaseOrderCalculationEngine.calculate(
 
         items,
 
       ),
 
-    };
+      updatedAt:
 
-  }
-
-
-
-
-
-  private calculateTotals(
-
-    items: PurchaseOrderItem[],
-
-  ) {
-
-
-    const subtotal =
-
-      items.reduce(
-
-        (
-
-          total,
-
-          item,
-
-        ) =>
-
-          total +
-
-          item.quantityOrdered *
-
-          item.unitCost,
-
-        0,
-
-      );
-
-
-    const taxAmount =
-
-      items.reduce(
-
-        (
-
-          total,
-
-          item,
-
-        ) =>
-
-          total +
-
-          item.lineTotal *
-
-          (
-
-            item.taxRate / 100
-
-          ),
-
-        0,
-
-      );
-
-
-    return {
-
-      subtotal,
-
-      taxAmount,
-
-      totalAmount:
-
-        subtotal +
-
-        taxAmount,
+        new Date().toISOString(),
 
     };
 
+
   }
+
 
 
 }
+
 
 
 export const purchaseItemEngine =

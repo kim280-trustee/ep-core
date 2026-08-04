@@ -1,5 +1,7 @@
 export * from "./purchase-item.engine";
 
+export * from "./purchase-order-calculation.engine";
+
 export * from "./purchase-receiving.engine";
 
 export * from "./receiving-validation.engine";

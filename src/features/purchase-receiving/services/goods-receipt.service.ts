@@ -1,3 +1,14 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Purchase Receiving Module
+ * ------------------------------------------------------------
+ * Goods Receipt Service
+ * ============================================================
+ */
+
+
 import {
   goodsReceiptRepository,
 } from "../repositories";
@@ -6,6 +17,11 @@ import {
 import {
   inventoryTransactionService,
 } from "../../inventory-transactions/services/inventory-transaction.service";
+
+
+import {
+  eventBus,
+} from "@/core/events";
 
 
 import type {
@@ -21,33 +37,23 @@ import type {
 
 interface CreateGoodsReceiptInput {
 
-
   tenantId: string;
-
 
   storeId: string;
 
-
   purchaseOrderId: string;
-
 
   supplierId: string;
 
-
   warehouseId: string;
-
 
   items: GoodsReceiptItem[];
 
-
   receivedBy?: string;
-
 
   notes?: string;
 
-
 }
-
 
 
 
@@ -71,9 +77,7 @@ class GoodsReceiptService {
 
 
 
-    const receipt:
-
-      GoodsReceipt = {
+    const receipt: GoodsReceipt = {
 
 
       id:
@@ -130,6 +134,7 @@ class GoodsReceiptService {
 
         new Date().toISOString(),
 
+
     };
 
 
@@ -152,9 +157,22 @@ class GoodsReceiptService {
 
 
 
+    eventBus.publish(
+
+      "GOODS_RECEIPT_CREATED",
+
+      savedReceipt,
+
+    );
+
+
+
     return savedReceipt;
 
+
   }
+
+
 
 
 
@@ -165,7 +183,6 @@ class GoodsReceiptService {
     items: GoodsReceiptItem[],
 
   ) {
-
 
 
     if (
@@ -208,7 +225,10 @@ class GoodsReceiptService {
 
     );
 
+
   }
+
+
 
 
 
@@ -221,68 +241,70 @@ class GoodsReceiptService {
   ) {
 
 
-
     receipt.items.forEach(
 
       (item) => {
 
 
-        inventoryTransactionService
-
-          .createTransaction({
-
-            tenantId:
-
-              receipt.tenantId,
+        inventoryTransactionService.createTransaction({
 
 
-            storeId:
+          tenantId:
 
-              receipt.storeId,
-
-
-            productId:
-
-              item.productId,
+            receipt.tenantId,
 
 
-            warehouseId:
+          storeId:
 
-              receipt.warehouseId,
-
-
-            movementType:
-
-              "PURCHASE_RECEIPT",
+            receipt.storeId,
 
 
-            quantity:
+          productId:
 
-              item.quantityReceived,
-
-
-            unitCost:
-
-              item.unitCost,
+            item.productId,
 
 
-            referenceType:
+          warehouseId:
 
-              "GOODS_RECEIPT",
+            receipt.warehouseId,
 
 
-            referenceId:
+          movementType:
 
-              receipt.id,
+            "PURCHASE_RECEIPT",
 
-          });
+
+          quantity:
+
+            item.quantityReceived,
+
+
+          unitCost:
+
+            item.unitCost,
+
+
+          referenceType:
+
+            "GOODS_RECEIPT",
+
+
+          referenceId:
+
+            receipt.id,
+
+
+        });
 
 
       },
 
     );
 
+
   }
+
+
 
 
 
@@ -290,10 +312,11 @@ class GoodsReceiptService {
 
   getReceipts() {
 
-
     return goodsReceiptRepository.findAll();
 
   }
+
+
 
 
 
@@ -305,7 +328,6 @@ class GoodsReceiptService {
 
   ) {
 
-
     return goodsReceiptRepository.findById(
 
       id,
@@ -315,7 +337,127 @@ class GoodsReceiptService {
   }
 
 
+
+
+
+
+
+  getReceiptsByPurchaseOrder(
+
+    purchaseOrderId: string,
+
+  ) {
+
+    return goodsReceiptRepository.findByPurchaseOrder(
+
+      purchaseOrderId,
+
+    );
+
+  }
+
+
+
+
+
+
+
+  updateReceipt(
+
+    id: string,
+
+    updates: Partial<GoodsReceipt>,
+
+  ) {
+
+
+    const receipt =
+
+      this.getReceiptById(
+
+        id,
+
+      );
+
+
+
+    if (!receipt) {
+
+      throw new Error(
+
+        "Goods receipt not found.",
+
+      );
+
+    }
+
+
+
+    return goodsReceiptRepository.update(
+
+      id,
+
+      {
+
+        ...receipt,
+
+        ...updates,
+
+      },
+
+    );
+
+
+  }
+
+
+
+
+
+
+
+  deleteReceipt(
+
+    id: string,
+
+  ) {
+
+
+    const receipt =
+
+      this.getReceiptById(
+
+        id,
+
+      );
+
+
+
+    if (!receipt) {
+
+      throw new Error(
+
+        "Goods receipt not found.",
+
+      );
+
+    }
+
+
+
+    goodsReceiptRepository.delete(
+
+      id,
+
+    );
+
+
+  }
+
+
 }
+
+
 
 
 

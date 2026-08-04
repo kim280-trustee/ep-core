@@ -20,8 +20,6 @@ export interface AuditEvent {
 
   tenantId: string;
 
-  organizationId: string;
-
   userId: string;
 
   entity: string;
@@ -33,5 +31,7 @@ export interface AuditEvent {
   description: string;
 
   timestamp: Date;
+
+  metadata?: unknown;
 
 }

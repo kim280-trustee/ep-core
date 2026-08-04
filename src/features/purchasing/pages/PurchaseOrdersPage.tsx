@@ -4,12 +4,25 @@ import {
 
 
 import {
+  useNavigate,
+} from "react-router-dom";
+
+
+import {
   usePurchaseOrders,
 } from "../hooks/usePurchaseOrders";
 
 
+import {
+  PurchaseOrderTable,
+} from "../components/PurchaseOrderTable";
+
+
 
 export default function PurchaseOrdersPage() {
+
+
+  const navigate = useNavigate();
 
 
   const {
@@ -34,47 +47,39 @@ export default function PurchaseOrdersPage() {
 
     <div>
 
+
       <h1>
+
         Purchase Orders
+
       </h1>
 
 
-      {orders.length === 0 ? (
 
-        <p>
-          No purchase orders found.
-        </p>
+      <button
 
-      ) : (
+        onClick={() =>
 
-        <div>
+          navigate(
+            "/purchasing/create",
+          )
 
-          {orders.map((order) => (
+        }
 
-            <div
-              key={order.id}
-            >
+      >
 
-              <p>
-                {order.orderNumber}
-              </p>
+        Create Purchase Order
 
-              <p>
-                Status: {order.status}
-              </p>
-
-              <p>
-                Total: {order.totalAmount}
-              </p>
+      </button>
 
 
-            </div>
 
-          ))}
+      <PurchaseOrderTable
 
-        </div>
+        orders={orders}
 
-      )}
+      />
+
 
     </div>
 

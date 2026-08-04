@@ -1,21 +1,82 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * EP Core
+ * App Providers
+ * ============================================================
+ */
+
 import type {
-  ReactNode,
+  PropsWithChildren,
 } from "react";
 
 import {
-  ThemeProvider,
-} from "@/core/theme";
+  AuthProvider,
+} from "@/core/auth";
 
-interface Props {
-  children: ReactNode;
-}
+import {
+  TenantProvider,
+} from "@/core/tenant";
+
+import {
+  PermissionProvider,
+} from "@/core/permissions";
+
+import {
+  EventProvider,
+} from "@/core/events";
+
+import {
+  AuditProvider,
+} from "@/core/audit";
+
+import {
+  useEffect,
+} from "react";
+
+import {
+  registerCoreServices,
+} from "../startup/registerCoreServices";
 
 export function AppProviders({
+
   children,
-}: Props) {
+
+}: PropsWithChildren) {
+
+useEffect(
+  () => {
+
+    registerCoreServices();
+
+  },
+  [],
+);
+
   return (
-    <ThemeProvider>
-      {children}
-    </ThemeProvider>
+
+    <AuthProvider>
+
+      <TenantProvider>
+
+        <PermissionProvider>
+
+          <EventProvider>
+
+            <AuditProvider>
+
+              {children}
+
+            </AuditProvider>
+
+          </EventProvider>
+
+        </PermissionProvider>
+
+      </TenantProvider>
+
+    </AuthProvider>
+
   );
+
 }

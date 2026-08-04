@@ -8,17 +8,12 @@ import type {
 } from "./goods-receipt.repository";
 
 
-
 class InMemoryGoodsReceiptRepository
 implements GoodsReceiptRepository {
 
 
-
   private receipts:
     GoodsReceipt[] = [];
-
-
-
 
 
   findAll() {
@@ -28,13 +23,9 @@ implements GoodsReceiptRepository {
   }
 
 
-
-
-
   findById(
     id: string,
   ) {
-
 
     return this.receipts.find(
 
@@ -47,13 +38,9 @@ implements GoodsReceiptRepository {
   }
 
 
-
-
-
   findByPurchaseOrder(
     purchaseOrderId: string,
   ) {
-
 
     return this.receipts.filter(
 
@@ -66,27 +53,70 @@ implements GoodsReceiptRepository {
   }
 
 
-
-
-
   create(
     receipt: GoodsReceipt,
   ) {
 
-
     this.receipts.push(
       receipt,
     );
-
 
     return receipt;
 
   }
 
 
+  update(
+    id: string,
+    receipt: GoodsReceipt,
+  ) {
+
+    const index =
+
+      this.receipts.findIndex(
+
+        (item) =>
+
+          item.id === id,
+
+      );
+
+
+    if (index === -1) {
+
+      throw new Error(
+
+        "Goods receipt not found.",
+
+      );
+
+    }
+
+
+    this.receipts[index] = receipt;
+
+    return receipt;
+
+  }
+
+
+  delete(
+    id: string,
+  ) {
+
+    this.receipts =
+
+      this.receipts.filter(
+
+        (receipt) =>
+
+          receipt.id !== id,
+
+      );
+
+  }
 
 }
-
 
 
 export const inMemoryGoodsReceiptRepository =

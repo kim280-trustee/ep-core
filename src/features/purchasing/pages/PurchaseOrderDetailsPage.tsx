@@ -2,31 +2,64 @@ import {
   useParams,
 } from "react-router-dom";
 
+
 import {
   usePurchaseOrders,
 } from "../hooks/usePurchaseOrders";
 
+
+import {
+  PurchaseOrderSummary,
+} from "../components/PurchaseOrderSummary";
+
+
+import {
+  PurchaseOrderItemTable,
+} from "../components/PurchaseOrderItemTable";
+
+
+import {
+  PurchaseOrderItemForm,
+} from "../components/PurchaseOrderItemForm";
+
+
+import {
+  PurchaseOrderActions,
+} from "../components/PurchaseOrderActions";
+
+
+
 export default function PurchaseOrderDetailsPage() {
 
+
   const {
+
     id,
+
   } = useParams();
 
+
+
   const {
 
-    orders,
-
-    receiveOrder,
+    getOrderById,
 
   } = usePurchaseOrders();
 
+
+
   const order =
-    orders.find(
-      (item) =>
-        item.id === id,
-    );
+
+    id
+
+      ? getOrderById(id)
+
+      : undefined;
+
+
 
   if (!order) {
+
 
     return (
 
@@ -40,181 +73,123 @@ export default function PurchaseOrderDetailsPage() {
 
   }
 
+
+
   return (
 
     <div>
 
+
       <h1>
 
-        Purchase Order
+        Purchase Order Details
 
       </h1>
 
-      <p>
 
-        Order:
 
-        {" "}
+      <div>
 
-        {order.orderNumber}
-
-      </p>
-
-      <p>
-
-        Status:
-
-        {" "}
-
-        {order.status}
-
-      </p>
-
-      <p>
-
-        Supplier:
-
-        {" "}
-
-        {order.supplierId}
-
-      </p>
-
-      <p>
-
-        Warehouse:
-
-        {" "}
-
-        {order.warehouseId}
-
-      </p>
-
-      <h2>
-
-        Items
-
-      </h2>
-
-      {order.items.length === 0 ? (
 
         <p>
 
-          No Items
+          Order Number:
+
+          {" "}
+
+          {order.orderNumber}
 
         </p>
 
-      ) : (
 
-        order.items.map(
 
-          (item) => (
+        <p>
 
-            <div
-              key={item.id}
-            >
+          Supplier:
 
-              <p>
+          {" "}
 
-                Product:
+          {order.supplierId}
 
-                {" "}
+        </p>
 
-                {item.productId}
 
-              </p>
 
-              <p>
+        <p>
 
-                Ordered:
+          Warehouse:
 
-                {" "}
+          {" "}
 
-                {item.quantityOrdered}
+          {order.warehouseId}
 
-              </p>
+        </p>
 
-              <p>
 
-                Received:
 
-                {" "}
+        <p>
 
-                {item.quantityReceived}
+          Status:
 
-              </p>
+          {" "}
 
-              <p>
+          {order.status}
 
-                Cost:
+        </p>
 
-                {" "}
 
-                {item.unitCost}
+      </div>
 
-              </p>
 
-            </div>
 
-          ),
-
-        )
-
-      )}
 
       <hr />
 
-      <p>
 
-        Subtotal:
 
-        {" "}
+      <PurchaseOrderActions
 
-        {order.subtotal}
+        order={order}
 
-      </p>
+      />
 
-      <p>
 
-        Tax:
 
-        {" "}
+      <hr />
 
-        {order.taxAmount}
 
-      </p>
 
-      <p>
+      <PurchaseOrderItemForm
 
-        Total:
+        orderId={order.id}
 
-        {" "}
+      />
 
-        {order.totalAmount}
 
-      </p>
 
-      {order.status === "APPROVED" && (
+      <hr />
 
-        <button
 
-          onClick={() =>
 
-            receiveOrder(
+      <PurchaseOrderItemTable
 
-              order.id,
+        items={order.items}
 
-            )
+      />
 
-          }
 
-        >
 
-          Receive Goods
+      <hr />
 
-        </button>
 
-      )}
+
+      <PurchaseOrderSummary
+
+        order={order}
+
+      />
+
+
 
     </div>
 

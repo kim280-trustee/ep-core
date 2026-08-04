@@ -2,53 +2,41 @@
  * ============================================================
  * E&P Technologies
  * EP Core
- * Application Entry Point
+ * Application Entry
  * ============================================================
  */
 
-
 import React from "react";
-
 import ReactDOM from "react-dom/client";
 
-
 import {
-  ErrorBoundary,
-} from "./core/error-boundary";
-
+  BrowserRouter,
+} from "react-router-dom";
 
 import {
   AppProviders,
-} from "./core/providers";
-
+} from "./app/providers/AppProviders";
 
 import App from "./App";
 
-
 import "./index.css";
 
+ReactDOM.createRoot(
+  document.getElementById("root")!,
+).render(
 
+  <React.StrictMode>
 
-ReactDOM
-  .createRoot(
-    document.getElementById(
-      "root",
-    )!,
-  )
-  .render(
+    <BrowserRouter>
 
-    <React.StrictMode>
+      <AppProviders>
 
-      <ErrorBoundary>
+        <App />
 
-        <AppProviders>
+      </AppProviders>
 
-          <App />
+    </BrowserRouter>
 
-        </AppProviders>
+  </React.StrictMode>,
 
-      </ErrorBoundary>
-
-    </React.StrictMode>
-
-  );
+);

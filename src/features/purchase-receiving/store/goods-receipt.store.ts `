@@ -1,0 +1,211 @@
+import {
+  create,
+} from "zustand";
+
+import {
+  goodsReceiptService,
+} from "../services/goods-receipt.service";
+
+import type {
+  GoodsReceipt,
+} from "../types/goods-receipt.types";
+
+import type {
+  GoodsReceiptItem,
+} from "../types/goods-receipt-item.types";
+
+
+interface CreateGoodsReceiptInput {
+
+  tenantId: string;
+
+  storeId: string;
+
+  purchaseOrderId: string;
+
+  supplierId: string;
+
+  warehouseId: string;
+
+  items: GoodsReceiptItem[];
+
+  receivedBy?: string;
+
+  notes?: string;
+
+}
+
+
+interface GoodsReceiptState {
+
+  receipts: GoodsReceipt[];
+
+  loadReceipts(): void;
+
+  getReceiptById(
+    id: string,
+  ): GoodsReceipt | undefined;
+
+  getReceiptsByPurchaseOrder(
+    purchaseOrderId: string,
+  ): GoodsReceipt[];
+
+  createReceipt(
+    input: CreateGoodsReceiptInput,
+  ): GoodsReceipt;
+
+  updateReceipt(
+    id: string,
+    updates: Partial<GoodsReceipt>,
+  ): void;
+
+  deleteReceipt(
+    id: string,
+  ): void;
+
+}
+
+
+export const useGoodsReceiptStore =
+
+  create<GoodsReceiptState>((set, get) => ({
+
+    receipts: [],
+
+
+    loadReceipts: () => {
+
+      set({
+
+        receipts:
+
+          goodsReceiptService.getReceipts(),
+
+      });
+
+    },
+
+
+    getReceiptById: (
+
+      id,
+
+    ) => {
+
+      return get()
+
+        .receipts
+
+        .find(
+
+          (receipt) =>
+
+            receipt.id === id,
+
+        );
+
+    },
+
+
+    getReceiptsByPurchaseOrder: (
+
+      purchaseOrderId,
+
+    ) => {
+
+      return get()
+
+        .receipts
+
+        .filter(
+
+          (receipt) =>
+
+            receipt.purchaseOrderId === purchaseOrderId,
+
+        );
+
+    },
+
+
+    createReceipt: (
+
+      input,
+
+    ) => {
+
+      const receipt =
+
+        goodsReceiptService.createReceipt(
+
+          input,
+
+        );
+
+      set((state) => ({
+
+        receipts: [
+
+          ...state.receipts,
+
+          receipt,
+
+        ],
+
+      }));
+
+      return receipt;
+
+    },
+
+
+    updateReceipt: (
+
+      id,
+
+      updates,
+
+    ) => {
+
+      goodsReceiptService.updateReceipt(
+
+        id,
+
+        updates,
+
+      );
+
+      set({
+
+        receipts:
+
+          goodsReceiptService.getReceipts(),
+
+      });
+
+    },
+
+
+    deleteReceipt: (
+
+      id,
+
+    ) => {
+
+      goodsReceiptService.deleteReceipt(
+
+        id,
+
+      );
+
+      set({
+
+        receipts:
+
+          goodsReceiptService.getReceipts(),
+
+      });
+
+    },
+
+  }));
