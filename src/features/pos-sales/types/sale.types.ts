@@ -8,7 +8,6 @@ import type {
 } from "./sale-item.types";
 
 
-
 export interface Sale {
 
 
@@ -21,10 +20,13 @@ export interface Sale {
   storeId: string;
 
 
+  warehouseId: string;
+
+
   customerId?: string;
 
 
-  warehouseId: string;
+  cashierId?: string;
 
 
   saleNumber: string;
@@ -39,6 +41,9 @@ export interface Sale {
   subtotal: number;
 
 
+  discountAmount: number;
+
+
   taxAmount: number;
 
 
@@ -47,13 +52,22 @@ export interface Sale {
 
   paymentStatus:
     | "PENDING"
-    | "PAID";
+    | "PAID"
+    | "PARTIAL";
+
+
+  paymentMethod?: string;
+
+
+  notes?: string;
+
+
+  completedAt?: string;
 
 
   createdAt: string;
 
 
   updatedAt: string;
-
 
 }

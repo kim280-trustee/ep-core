@@ -13,6 +13,7 @@ import {
 } from "../store/pos-sales.store";
 
 
+
 interface ProductSearchProps {
 
   products: Product[];
@@ -35,26 +36,20 @@ export function ProductSearch({
 
   const addItem =
     usePosSalesStore(
-      (state) =>
+      state =>
         state.addItem,
     );
 
 
 
   const filteredProducts =
-
     products.filter(
 
-      (product) =>
-
+      product =>
         product.name
-
           .toLowerCase()
-
           .includes(
-
             search.toLowerCase(),
-
           ),
 
     );
@@ -85,6 +80,10 @@ export function ProductSearch({
         product.id,
 
 
+      productName:
+        product.name,
+
+
       quantity:
         1,
 
@@ -93,13 +92,16 @@ export function ProductSearch({
         price,
 
 
+      discountAmount:
+        0,
+
+
       taxRate:
         product.tax.taxRate ?? 0,
 
 
       lineTotal:
         price,
-
 
     });
 
@@ -121,67 +123,55 @@ export function ProductSearch({
 
         value={search}
 
-        onChange={(event) =>
-
-          setSearch(
-
-            event.target.value,
-
-          )
-
+        onChange={
+          event =>
+            setSearch(
+              event.target.value,
+            )
         }
 
       />
 
 
-
       <div className="mt-4 space-y-2">
 
+        {
+          filteredProducts.map(
+            product => (
 
-        {filteredProducts.map(
+              <button
 
-          (product) => (
+                key={product.id}
 
+                className="w-full rounded border p-3 text-left"
 
-            <button
+                onClick={() =>
+                  handleAddProduct(product)
+                }
 
-              key={product.id}
+              >
 
-              className="w-full rounded border p-3 text-left"
-
-              onClick={() =>
-
-                handleAddProduct(product)
-
-              }
-
-            >
-
-              <div className="font-medium">
-
-                {product.name}
-
-              </div>
+                <div className="font-medium">
+                  {product.name}
+                </div>
 
 
-              <div className="text-sm text-gray-600">
+                <div className="text-sm text-gray-600">
 
-                {product.pricing.sellingPrice}
+                  {product.pricing.sellingPrice}
 
-                {" "}
+                  {" "}
 
-                {product.pricing.currency}
+                  {product.pricing.currency}
 
-              </div>
-
-
-            </button>
+                </div>
 
 
-          ),
+              </button>
 
-        )}
-
+            ),
+          )
+        }
 
       </div>
 

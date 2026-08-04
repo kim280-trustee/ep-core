@@ -1,4 +1,22 @@
+export type PaymentMethod =
+  | "CASH"
+  | "QR"
+  | "CARD"
+  | "TRANSFER";
+
+
+export interface PaymentEntry {
+
+  method: PaymentMethod;
+
+  amount: number;
+
+}
+
+
 export interface PaymentResult {
+
+  payments: PaymentEntry[];
 
   paid: number;
 
@@ -10,44 +28,75 @@ export interface PaymentResult {
 
 }
 
+
+
 export class PaymentEngine {
+
 
   process(
 
     total: number,
 
-    amountPaid: number,
+    payments: PaymentEntry[],
 
   ): PaymentResult {
 
+
+    const paid =
+      payments.reduce(
+
+        (sum,payment)=>
+          sum + payment.amount,
+
+        0,
+
+      );
+
+
+
     const balance =
       Math.max(
-        total - amountPaid,
+
+        total - paid,
+
         0,
+
       );
+
+
 
     const change =
       Math.max(
-        amountPaid - total,
+
+        paid - total,
+
         0,
+
       );
+
+
 
     return {
 
-      paid: amountPaid,
+      payments,
+
+      paid,
 
       balance,
 
       change,
 
       completed:
-        amountPaid >= total,
+        paid >= total,
 
     };
 
+
   }
 
+
 }
+
 
 export const paymentEngine =
   new PaymentEngine();

@@ -26,63 +26,71 @@ export function CheckoutPanel() {
 
   const items =
     usePosSalesStore(
-      (state) =>
+      state =>
         state.items,
     );
 
 
+
   const tenantId =
     usePosSalesStore(
-      (state) =>
+      state =>
         state.tenantId,
     );
 
 
+
   const storeId =
     usePosSalesStore(
-      (state) =>
+      state =>
         state.storeId,
     );
 
 
+
   const warehouseId =
     usePosSalesStore(
-      (state) =>
+      state =>
         state.warehouseId,
     );
 
 
+
   const customerId =
     usePosSalesStore(
-      (state) =>
+      state =>
         state.customerId,
     );
 
 
+
   const clearCart =
     usePosSalesStore(
-      (state) =>
+      state =>
         state.clearCart,
     );
 
 
+
   const subtotal =
     usePosSalesStore(
-      (state) =>
+      state =>
         state.getSubtotal(),
     );
 
 
+
   const tax =
     usePosSalesStore(
-      (state) =>
+      state =>
         state.getTaxAmount(),
     );
 
 
+
   const total =
     usePosSalesStore(
-      (state) =>
+      state =>
         state.getTotal(),
     );
 
@@ -94,7 +102,7 @@ export function CheckoutPanel() {
     try {
 
 
-      if (items.length === 0) {
+      if(items.length === 0){
 
         throw new Error(
           "Cart is empty.",
@@ -104,7 +112,7 @@ export function CheckoutPanel() {
 
 
 
-      if (!warehouseId) {
+      if(!warehouseId){
 
         throw new Error(
           "Warehouse is required.",
@@ -134,6 +142,7 @@ export function CheckoutPanel() {
 
         (item) => {
 
+
           saleService.addItem(
 
             sale.id,
@@ -141,6 +150,7 @@ export function CheckoutPanel() {
             item,
 
           );
+
 
         },
 
@@ -161,22 +171,24 @@ export function CheckoutPanel() {
 
 
       setMessage(
+
         "Sale completed successfully.",
+
       );
 
 
     }
 
-    catch(error) {
+    catch(error){
 
 
       setMessage(
 
         error instanceof Error
 
-          ? error.message
+        ? error.message
 
-          : "Sale failed.",
+        : "Sale failed.",
 
       );
 
@@ -194,7 +206,9 @@ export function CheckoutPanel() {
 
 
       <h2 className="font-medium">
+
         Checkout
+
       </h2>
 
 
@@ -203,17 +217,25 @@ export function CheckoutPanel() {
 
 
         <p>
+
           Subtotal: {subtotal}
+
         </p>
+
 
 
         <p>
+
           Tax: {tax}
+
         </p>
 
 
+
         <p className="font-semibold">
+
           Total: {total}
+
         </p>
 
 

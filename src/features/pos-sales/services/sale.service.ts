@@ -1,38 +1,30 @@
 import {
-  saleRepository,
+  getSaleRepository,
 } from "../repositories";
-
-
-import {
-  inventoryTransactionService,
-} from "../../inventory-transactions/services/inventory-transaction.service";
 
 
 import type {
   Sale,
-} from "../types/sale.types";
+} from "../types";
 
 
 import type {
   SaleItem,
-} from "../types/sale-item.types";
+} from "../types";
 
 
 
 interface CreateSaleInput {
 
-
   tenantId: string;
-
 
   storeId: string;
 
-
   warehouseId: string;
-
 
   customerId?: string;
 
+  cashierId?: string;
 
 }
 
@@ -41,16 +33,12 @@ interface CreateSaleInput {
 class SaleService {
 
 
-
   createSale(
-
     input: CreateSaleInput,
-
   ) {
 
 
     const now =
-
       new Date().toISOString();
 
 
@@ -59,37 +47,34 @@ class SaleService {
 
 
       id:
-
         crypto.randomUUID(),
 
 
       tenantId:
-
         input.tenantId,
 
 
       storeId:
-
         input.storeId,
 
 
       warehouseId:
-
         input.warehouseId,
 
 
       customerId:
-
         input.customerId,
 
 
-      saleNumber:
+      cashierId:
+        input.cashierId,
 
+
+      saleNumber:
         `SALE-${Date.now()}`,
 
 
       status:
-
         "COMPLETED",
 
 
@@ -97,238 +82,203 @@ class SaleService {
 
 
       subtotal:
+        0,
 
+
+      discountAmount:
         0,
 
 
       taxAmount:
-
         0,
 
 
       totalAmount:
-
         0,
 
 
       paymentStatus:
-
         "PENDING",
 
 
       createdAt:
-
         now,
 
 
       updatedAt:
-
         now,
-
 
     };
 
 
-
-    return saleRepository.create(
-
-      sale,
-
-    );
+    return getSaleRepository()
+      .create(
+        sale,
+      );
 
   }
 
 
-
-
-
-  addItem(
-
+    addItem(
     saleId: string,
-
     item: SaleItem,
-
   ) {
 
-
     const sale =
-
-      saleRepository.findById(
-
+      this.getSaleById(
         saleId,
-
       );
 
 
-
-    if(!sale) {
-
+    if (!sale) {
 
       throw new Error(
-
-        "Sale not found.",
-
+        "Sale not found",
       );
 
-
     }
-
 
 
     const items = [
-
-
       ...sale.items,
-
-
       item,
-
-
     ];
 
 
+    return getSaleRepository()
+      .update(
 
-    return saleRepository.update(
+        saleId,
 
-      saleId,
-
-      {
-
-
-        items,
-
-
-        ...this.calculateTotals(
+        {
 
           items,
 
-        ),
+          ...this.calculateTotals(
+            items,
+          ),
 
+        },
 
-      },
-
-    );
+      );
 
   }
 
 
-
-
-
-  completeSale(
-
+  addItems(
     saleId: string,
-
+    items: SaleItem[],
   ) {
 
 
     const sale =
-
-      saleRepository.findById(
-
+      this.getSaleById(
         saleId,
-
       );
 
 
-
-    if(!sale) {
-
+    if(!sale){
 
       throw new Error(
-
-        "Sale not found.",
-
+        "Sale not found",
       );
-
 
     }
 
 
 
-    sale.items.forEach(
+    return getSaleRepository()
+      .update(
 
-      item => {
+        saleId,
 
+        {
 
-        inventoryTransactionService
+          items,
 
-          .createTransaction({
+          ...this.calculateTotals(
+            items,
+          ),
 
-            tenantId:
+        },
 
-              sale.tenantId,
+      );
 
-
-            storeId:
-
-              sale.storeId,
-
-
-            productId:
-
-              item.productId,
-
-
-            warehouseId:
-
-              sale.warehouseId,
-
-
-            movementType:
-
-              "SALE",
-
-
-            quantity:
-
-              item.quantity,
-
-
-            unitCost:
-
-              0,
-
-
-            referenceType:
-
-              "SALE",
-
-
-            referenceId:
-
-              sale.id,
-
-
-          });
-
-
-      },
-
-    );
+  }
 
 
 
-    return saleRepository.update(
 
-      saleId,
+  completePayment(
+    saleId:string,
+    paymentMethod:string,
+  ){
 
-      {
+    return getSaleRepository()
+      .update(
+
+        saleId,
+
+        {
+
+          paymentStatus:
+            "PAID",
+
+          paymentMethod,
+
+          completedAt:
+            new Date()
+              .toISOString(),
+
+        },
+
+      );
+
+  }
 
 
-        status:
+  completeSale(
+    saleId: string,
+  ) {
 
-          "COMPLETED",
+    return getSaleRepository()
+      .update(
+
+        saleId,
+
+        {
+
+          paymentStatus:
+            "PAID",
+
+          completedAt:
+            new Date()
+              .toISOString(),
+
+        },
+
+      );
+
+  }
 
 
-        paymentStatus:
+  voidSale(
+    saleId:string,
+  ){
 
-          "PAID",
+    return getSaleRepository()
+      .update(
 
+        saleId,
 
-      },
+        {
 
-    );
+          status:
+            "VOIDED",
+
+        },
+
+      );
 
   }
 
@@ -336,28 +286,24 @@ class SaleService {
 
 
 
-  voidSale(
+  getSales(){
 
-    saleId: string,
+    return getSaleRepository()
+      .findAll();
 
-  ) {
-
-
-    return saleRepository.update(
-
-      saleId,
-
-      {
+  }
 
 
-        status:
-
-          "VOIDED",
 
 
-      },
+  getSaleById(
+    id:string,
+  ){
 
-    );
+    return getSaleRepository()
+      .findById(
+        id,
+      );
 
   }
 
@@ -366,72 +312,47 @@ class SaleService {
 
 
   private calculateTotals(
-
-    items: SaleItem[],
-
-  ) {
-
+    items:SaleItem[],
+  ){
 
 
     const subtotal =
-
       items.reduce(
 
-        (
-
-          total,
-
-          item,
-
-        ) =>
-
-
-          total +
-
-          item.lineTotal,
-
+        (sum,item)=>
+          sum + item.lineTotal,
 
         0,
 
       );
 
 
+
+    const discountAmount =
+      items.reduce(
+
+        (sum,item)=>
+          sum + (item.discountAmount ?? 0),
+        0,
+
+      );
 
 
 
     const taxAmount =
-
       items.reduce(
 
-        (
-
-          total,
-
-          item,
-
-        ) =>
-
-
-          total +
-
+        (sum,item)=>
+          sum +
           (
-
             item.lineTotal *
-
-            (
-
-              item.taxRate / 100
-
-            )
-
+            item.taxRate /
+            100
           ),
-
 
         0,
 
       );
-
-
 
 
 
@@ -440,49 +361,17 @@ class SaleService {
 
       subtotal,
 
+      discountAmount,
 
       taxAmount,
 
-
       totalAmount:
-
-        subtotal +
-
+        subtotal -
+        discountAmount +
         taxAmount,
 
 
     };
-
-
-  }
-
-
-
-
-
-  getSales() {
-
-
-    return saleRepository.findAll();
-
-  }
-
-
-
-
-
-  getSaleById(
-
-    id: string,
-
-  ) {
-
-
-    return saleRepository.findById(
-
-      id,
-
-    );
 
   }
 
@@ -492,5 +381,4 @@ class SaleService {
 
 
 export const saleService =
-
   new SaleService();

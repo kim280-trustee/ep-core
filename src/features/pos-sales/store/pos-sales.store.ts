@@ -1,292 +1,343 @@
 import { create } from "zustand";
 
+
 import type {
   SaleItem,
-} from "../types/sale-item.types";
+} from "../types";
 
 
 interface PosSalesState {
 
 
-  tenantId: string;
+  tenantId:string;
 
-  storeId: string;
+  storeId:string;
 
-  warehouseId?: string;
-
-
-  items: SaleItem[];
+  warehouseId?:string;
 
 
-  customerId?: string;
+  customerId?:string;
+
+
+  items:SaleItem[];
+
+
+  paymentMethod?:string;
+
+
+  amountPaid:number;
 
 
 
   setTenant(
-    tenantId: string,
-  ): void;
-
+    tenantId:string,
+  ):void;
 
 
   setStore(
-    storeId: string,
-  ): void;
-
+    storeId:string,
+  ):void;
 
 
   setWarehouse(
-    warehouseId: string,
-  ): void;
-
+    warehouseId:string,
+  ):void;
 
 
   setCustomer(
-    customerId?: string,
-  ): void;
-
+    customerId?:string,
+  ):void;
 
 
   addItem(
-    item: SaleItem,
-  ): void;
-
+    item:SaleItem,
+  ):void;
 
 
   removeItem(
-    productId: string,
-  ): void;
+    productId:string,
+  ):void;
 
 
-
-  clearCart(): void;
-
+  clearCart():void;
 
 
-  getSubtotal(): number;
+  setPayment(
+    method:string,
+    amount:number,
+  ):void;
 
 
-
-  getTaxAmount(): number;
-
+  getSubtotal():number;
 
 
-  getTotal(): number;
+  getTaxAmount():number;
 
+
+  getTotal():number;
 
 }
 
 
 
 export const usePosSalesStore =
-  create<PosSalesState>((set, get) => ({
+create<PosSalesState>((set,get)=>({
 
 
-    tenantId:
-      "DEFAULT-TENANT",
+tenantId:"DEFAULT-TENANT",
 
+storeId:"DEFAULT-STORE",
 
-    storeId:
-      "DEFAULT-STORE",
+warehouseId:undefined,
 
+customerId:undefined,
 
+items:[],
 
-    warehouseId:
-      undefined,
+paymentMethod:undefined,
 
+amountPaid:0,
 
 
-    items: [],
 
+setTenant(
+ tenantId
+){
 
+ set({
+  tenantId,
+ });
 
-    customerId:
-      undefined,
+},
 
 
 
+setStore(
+ storeId
+){
 
-    setTenant(
-      tenantId,
-    ) {
+ set({
+  storeId,
+ });
 
-      set({
+},
 
-        tenantId,
 
-      });
 
-    },
+setWarehouse(
+ warehouseId
+){
 
+ set({
+  warehouseId,
+ });
 
+},
 
 
-    setStore(
-      storeId,
-    ) {
 
-      set({
+setCustomer(
+ customerId
+){
 
-        storeId,
+ set({
+  customerId,
+ });
 
-      });
+},
 
-    },
 
 
 
+addItem(
+ item
+){
 
-    setWarehouse(
-      warehouseId,
-    ) {
+ set((state)=>{
 
-      set({
 
-        warehouseId,
+ const existing =
+ state.items.find(
+  x=>x.productId===item.productId
+ );
 
-      });
 
-    },
+ if(existing){
 
 
+ return {
 
+ items:
+ state.items.map(x=>
 
-    setCustomer(
-      customerId,
-    ) {
+ x.productId===item.productId
 
-      set({
+ ?
 
-        customerId,
+ {
 
-      });
+ ...x,
 
-    },
+ quantity:
+ x.quantity+
+ item.quantity,
 
 
+ lineTotal:
+ (
+ x.quantity+
+ item.quantity
+ )
+ *
+ x.unitPrice,
 
+ }
 
-    addItem(
-      item,
-    ) {
+ :
 
-      set((state) => ({
+ x
 
-        items: [
+ )
 
-          ...state.items,
+ };
 
-          item,
 
-        ],
+ }
 
-      }));
 
-    },
 
+ return {
 
+ items:[
+ ...state.items,
+ item,
+ ],
 
+ };
 
-    removeItem(
-      productId,
-    ) {
 
-      set((state) => ({
+ });
 
-        items:
 
-          state.items.filter(
+},
 
-            (item) =>
 
-              item.productId !== productId,
 
-          ),
 
-      }));
 
-    },
+removeItem(
+ productId
+){
 
+ set((state)=>({
 
+ items:
+ state.items.filter(
+ x=>x.productId!==productId
+ ),
 
+ }));
 
-    clearCart() {
+},
 
-      set({
 
-        items: [],
 
-        customerId: undefined,
 
-      });
+clearCart(){
 
-    },
+ set({
 
+ items:[],
 
+ customerId:undefined,
 
+ paymentMethod:undefined,
 
-    getSubtotal() {
+ amountPaid:0,
 
-      return get()
+ });
 
-        .items
+},
 
-        .reduce(
 
-          (total, item) =>
 
-            total + item.lineTotal,
 
-          0,
+setPayment(
+ method,
+ amount,
+){
 
-        );
+ set({
 
-    },
+ paymentMethod:
+ method,
 
+ amountPaid:
+ amount,
 
+ });
 
+},
 
-    getTaxAmount() {
 
-      return get()
 
-        .items
 
-        .reduce(
 
-          (total, item) =>
+getSubtotal(){
 
-            total +
+ return get()
+ .items
+ .reduce(
 
-            (
+ (sum,item)=>
+ sum+item.lineTotal,
 
-              item.lineTotal *
+ 0
 
-              (item.taxRate / 100)
+ );
 
-            ),
+},
 
-          0,
 
-        );
 
-    },
 
+getTaxAmount(){
 
+ return get()
+ .items
+ .reduce(
 
+ (sum,item)=>
+ sum+
+ (
+ item.lineTotal*
+ (
+ item.taxRate/100
+ )
+ ),
 
-    getTotal() {
+ 0
 
-      return (
+ );
 
-        get().getSubtotal()
+},
 
-        +
 
-        get().getTaxAmount()
 
-      );
 
-    },
+getTotal(){
 
+ return (
 
-  }));
+ get().getSubtotal()
+
+ +
+
+ get().getTaxAmount()
+
+ );
+
+},
+
+
+}));

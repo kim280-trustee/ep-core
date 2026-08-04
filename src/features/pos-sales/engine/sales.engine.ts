@@ -1,4 +1,8 @@
 import type {
+  PaymentEntry,
+} from "./payment/payment.engine";
+
+import type {
   SaleItem,
 } from "../types";
 
@@ -31,7 +35,7 @@ export class SalesEngine {
 
     items: SaleItem[],
 
-    amountPaid: number,
+   payments: PaymentEntry[],
 
     warehouseId: string,
 
@@ -48,17 +52,17 @@ export class SalesEngine {
 
     const checkout =
 
-      checkoutEngine.checkout(
+     checkoutEngine.checkout(
 
-        items,
+  items,
 
-        amountPaid,
+  payments,
 
-        discountRate,
+  discountRate,
 
-        taxRate,
+  taxRate,
 
-      );
+);
 
 
 

@@ -7,9 +7,9 @@ export interface PricingSummary {
 
   subtotal: number;
 
-  discount: number;
+  discountAmount: number;
 
-  tax: number;
+  taxAmount: number;
 
   total: number;
 
@@ -34,7 +34,6 @@ export class PricingEngine {
       items.reduce(
 
         (sum, item) =>
-
           sum + item.lineTotal,
 
         0,
@@ -42,35 +41,45 @@ export class PricingEngine {
       );
 
 
-    const discount =
-      subtotal * discountRate;
+
+    const discountAmount =
+      subtotal *
+      discountRate;
 
 
-    const taxable =
-      subtotal - discount;
+
+    const taxableAmount =
+      subtotal -
+      discountAmount;
 
 
-    const tax =
-      taxable * taxRate;
+
+    const taxAmount =
+      taxableAmount *
+      taxRate;
+
 
 
     const total =
-      taxable + tax;
+      taxableAmount +
+      taxAmount;
+
 
 
     return {
 
       subtotal,
 
-      discount,
+      discountAmount,
 
-      tax,
+      taxAmount,
 
       total,
 
     };
 
   }
+
 
 }
 
