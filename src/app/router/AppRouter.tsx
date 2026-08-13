@@ -7,5 +7,11 @@ import {
 } from "./routes";
 
 export function AppRouter() {
-  return useRoutes(routes);
+  const element = useRoutes(routes);
+
+  return (
+    <div>
+      {element}
+    </div>
+  );
 }

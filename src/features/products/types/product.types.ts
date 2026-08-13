@@ -1,12 +1,17 @@
 export type EntityId = string;
+
 export type TenantId = string;
+
 export type StoreId = string;
+
 export type UserId = string;
+
 
 export enum ProductStatus {
   ACTIVE = "ACTIVE",
   INACTIVE = "INACTIVE",
 }
+
 
 export enum ProductType {
   PRODUCT = "PRODUCT",
@@ -14,10 +19,12 @@ export enum ProductType {
   SERVICE = "SERVICE",
 }
 
+
 export interface ProductIdentifiers {
   sku: string;
   barcode?: string | null;
 }
+
 
 export interface ProductPricing {
   costPrice: number;
@@ -25,15 +32,19 @@ export interface ProductPricing {
   currency: string;
 }
 
+
 export interface ProductTax {
   taxRate?: number;
 }
+
 
 export interface ProductInventory {
   stockQuantity: number;
 }
 
+
 export interface Product {
+
   id: EntityId;
 
   tenantId: TenantId;
@@ -83,7 +94,9 @@ export interface Product {
   updatedAt: string;
 }
 
+
 export interface ProductFilters {
+
   search?: string;
 
   categoryId?: string;
@@ -97,7 +110,9 @@ export interface ProductFilters {
   productType?: ProductType;
 }
 
+
 export interface ProductListParams {
+
   page?: number;
 
   limit?: number;
@@ -105,7 +120,9 @@ export interface ProductListParams {
   filters?: ProductFilters;
 }
 
+
 export interface ProductListResult {
+
   data: Product[];
 
   total: number;
@@ -115,7 +132,9 @@ export interface ProductListResult {
   limit: number;
 }
 
+
 export interface CreateProductInput {
+
   tenantId: TenantId;
 
   storeId?: StoreId;
@@ -126,7 +145,7 @@ export interface CreateProductInput {
 
   barcode?: string;
 
- description?: string | null;
+  description?: string | null;
 
   categoryId?: string;
 
@@ -151,11 +170,14 @@ export interface CreateProductInput {
   imageUrl?: string;
 }
 
-export interface UpdateProductInput
-  extends Partial<CreateProductInput> {}
+
+export type UpdateProductInput =
+  Partial<CreateProductInput>;
+
 
 export type CreateProductDto =
   CreateProductInput;
+
 
 export type UpdateProductDto =
   UpdateProductInput;

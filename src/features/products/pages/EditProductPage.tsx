@@ -14,6 +14,10 @@ import {
   ProductForm,
 } from "../components/ProductForm";
 
+import type {
+  ProductFormValues,
+} from "../schemas/product.schema";
+
 
 export function EditProductPage() {
 
@@ -23,7 +27,7 @@ export function EditProductPage() {
 
 
   const handleSubmit = (
-    values: any,
+    values: ProductFormValues,
   ) => {
 
     console.log(
@@ -39,16 +43,16 @@ export function EditProductPage() {
 
     <div
       className="
-      flex
-      flex-col
-      gap-6
+        flex
+        flex-col
+        gap-6
       "
     >
 
       <h1
         className="
-        text-2xl
-        font-semibold
+          text-2xl
+          font-semibold
         "
       >
         Edit Product
@@ -69,9 +73,7 @@ export function EditProductPage() {
 
       />
 
-
     </div>
 
   );
-
 }

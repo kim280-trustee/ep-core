@@ -6,11 +6,9 @@
  * ============================================================
  */
 
-
 import type {
   RouteObject,
 } from "react-router-dom";
-
 
 import DashboardPage from "../pages/DashboardPage";
 
@@ -18,11 +16,9 @@ import DashboardPage from "../pages/DashboardPage";
 export const dashboardRoutes: RouteObject[] = [
 
   {
-
-    path: "dashboard",
+    path: "/dashboard",
 
     element: <DashboardPage />,
-
   },
 
 ];

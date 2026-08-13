@@ -11,16 +11,8 @@ import type {
 } from "react-router-dom";
 
 import {
-  Outlet,
-} from "react-router-dom";
-
-import {
-  AppLayout,
-} from "../layout";
-
-import {
-  ProtectedRoute,
-} from "@/core/auth";
+  ProtectedLayout,
+} from "./ProtectedLayout";
 
 
 // Auth
@@ -92,6 +84,7 @@ import {
   receiptRoutes,
 } from "../../features/receipts/routes/receipt.routes";
 
+
 // System
 import {
   dashboardRoutes,
@@ -100,27 +93,6 @@ import {
 import {
   settingsRoutes,
 } from "../../features/settings/routes/settings.routes";
-
-
-
-function ProtectedLayout() {
-
-  return (
-
-    <ProtectedRoute>
-
-      <AppLayout>
-
-        <Outlet />
-
-      </AppLayout>
-
-    </ProtectedRoute>
-
-  );
-
-}
-
 
 
 export const routes: RouteObject[] = [
@@ -143,22 +115,35 @@ export const routes: RouteObject[] = [
 
       // Master Data
       ...productRoutes,
+
       ...categoryRoutes,
+
       ...brandRoutes,
+
       ...unitRoutes,
+
       ...supplierRoutes,
+
       ...customerRoutes,
+
       ...warehouseRoutes,
+
       ...taxRoutes,
+
       ...paymentMethodRoutes,
 
 
       // Operations
       ...inventoryRoutes,
+
       ...purchasingRoutes,
+
       ...goodsReceiptRoutes,
+
       ...salesRoutes,
+
       ...paymentRoutes,
+
       ...receiptRoutes,
 
 
@@ -166,6 +151,7 @@ export const routes: RouteObject[] = [
       ...settingsRoutes,
 
     ],
+
   },
 
 

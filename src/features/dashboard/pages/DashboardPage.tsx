@@ -1,133 +1,138 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Dashboard Page
+ * ============================================================
+ */
+
 import {
   useDashboard,
 } from "../hooks";
 
 
-
 export default function DashboardPage() {
 
-
   const {
-
     summary,
-
   } = useDashboard();
-
 
 
   return (
 
-    <div>
+    <div className="p-6">
 
-
-      <h1>
-
+      <h1 className="text-3xl font-bold">
         Business Dashboard
-
       </h1>
 
 
+      <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
 
-      <div>
+        <div className="rounded-lg border bg-white p-5 shadow-sm">
 
+          <p className="text-sm text-gray-500">
+            Total Sales
+          </p>
 
-        <p>
+          <p className="mt-2 text-2xl font-bold">
+            {summary.totalSales}
+          </p>
 
-          Total Sales:
-
-          {" "}
-
-          {summary.totalSales}
-
-        </p>
-
-
-
-        <p>
-
-          Total Purchases:
-
-          {" "}
-
-          {summary.totalPurchases}
-
-        </p>
+        </div>
 
 
+        <div className="rounded-lg border bg-white p-5 shadow-sm">
 
-        <p>
+          <p className="text-sm text-gray-500">
+            Total Revenue
+          </p>
 
-          Revenue:
+          <p className="mt-2 text-2xl font-bold">
+            ?{summary.totalRevenue}
+          </p>
 
-          {" "}
-
-          {summary.totalRevenue}
-
-        </p>
-
-
-
-        <p>
-
-          Profit:
-
-          {" "}
-
-          {summary.totalProfit}
-
-        </p>
+        </div>
 
 
+        <div className="rounded-lg border bg-white p-5 shadow-sm">
 
-        <p>
+          <p className="text-sm text-gray-500">
+            Total Purchases
+          </p>
 
-          Inventory Value:
+          <p className="mt-2 text-2xl font-bold">
+            {summary.totalPurchases}
+          </p>
 
-          {" "}
-
-          {summary.inventoryValue}
-
-        </p>
-
-
-
-        <p>
-
-          Low Stock Items:
-
-          {" "}
-
-          {summary.lowStockItems}
-
-        </p>
+        </div>
 
 
+        <div className="rounded-lg border bg-white p-5 shadow-sm">
 
-        <p>
+          <p className="text-sm text-gray-500">
+            Inventory Value
+          </p>
 
-          Customers:
+          <p className="mt-2 text-2xl font-bold">
+            ?{summary.inventoryValue}
+          </p>
 
-          {" "}
-
-          {summary.totalCustomers}
-
-        </p>
+        </div>
 
 
+        <div className="rounded-lg border bg-white p-5 shadow-sm">
 
-        <p>
+          <p className="text-sm text-gray-500">
+            Profit
+          </p>
 
-          Suppliers:
+          <p className="mt-2 text-2xl font-bold">
+            ?{summary.totalProfit}
+          </p>
 
-          {" "}
+        </div>
 
-          {summary.totalSuppliers}
 
-        </p>
+        <div className="rounded-lg border bg-white p-5 shadow-sm">
 
+          <p className="text-sm text-gray-500">
+            Low Stock Items
+          </p>
+
+          <p className="mt-2 text-2xl font-bold">
+            {summary.lowStockItems}
+          </p>
+
+        </div>
+
+
+        <div className="rounded-lg border bg-white p-5 shadow-sm">
+
+          <p className="text-sm text-gray-500">
+            Customers
+          </p>
+
+          <p className="mt-2 text-2xl font-bold">
+            {summary.totalCustomers}
+          </p>
+
+        </div>
+
+
+        <div className="rounded-lg border bg-white p-5 shadow-sm">
+
+          <p className="text-sm text-gray-500">
+            Suppliers
+          </p>
+
+          <p className="mt-2 text-2xl font-bold">
+            {summary.totalSuppliers}
+          </p>
+
+        </div>
 
       </div>
-
 
     </div>
 

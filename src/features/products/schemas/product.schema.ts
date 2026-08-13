@@ -15,106 +15,111 @@ import {
 
 
 export const createProductSchema =
-z.object({
+  z.object({
 
-  name:
-    z.string()
-    .min(
-      2,
-      "Product name must have at least 2 characters",
-    ),
+    name:
+      z.string()
+        .min(
+          2,
+          "Product name must have at least 2 characters",
+        ),
 
+    sku:
+      z.string()
+        .min(
+          1,
+          "SKU is required",
+        ),
 
-  sku:
-    z.string()
-    .min(
-      1,
-      "SKU is required",
-    ),
+    barcode:
+      z.string()
+        .nullable()
+        .optional(),
 
+    description:
+      z.string()
+        .nullable()
+        .optional(),
 
-  barcode:
-    z.string()
-    .nullable()
-    .optional(),
+    currency:
+      z.string()
+        .min(
+          3,
+          "Currency is required",
+        )
+        .default("THB"),
 
+    productType:
+      z.nativeEnum(
+        ProductType,
+      ),
 
-  description:
-    z.string()
-    .nullable()
-    .optional(),
+    status:
+      z.nativeEnum(
+        ProductStatus,
+      ),
 
+    costPrice:
+      z.number()
+        .min(
+          0,
+          "Cost price cannot be negative",
+        ),
 
-  currency:
-    z.string()
-    .min(
-      3,
-      "Currency is required",
-    )
-    .default("THB"),
+    sellingPrice:
+      z.number()
+        .min(
+          0,
+          "Selling price cannot be negative",
+        ),
 
+    trackInventory:
+      z.boolean(),
 
-  productType:
-    z.nativeEnum(ProductType),
+    categoryId:
+      z.string()
+        .nullable()
+        .optional(),
 
+    brandId:
+      z.string()
+        .nullable()
+        .optional(),
 
-  status:
-    z.nativeEnum(ProductStatus),
+    unitId:
+      z.string()
+        .nullable()
+        .optional(),
 
+    taxId:
+      z.string()
+        .nullable()
+        .optional(),
 
-  costPrice:
-    z.number()
-    .min(
-      0,
-      "Cost price cannot be negative",
-    ),
+    imageUrl:
+      z.string()
+        .nullable()
+        .optional(),
 
-
-  sellingPrice:
-    z.number()
-    .min(
-      0,
-      "Selling price cannot be negative",
-    ),
-
-
-  trackInventory:
-    z.boolean(),
-
-
-  categoryId:
-    z.string()
-    .nullable()
-    .optional(),
-
-
-  brandId:
-    z.string()
-    .nullable()
-    .optional(),
-
-
-  unitId:
-    z.string()
-    .nullable()
-    .optional(),
-
-
-  taxId:
-    z.string()
-    .nullable()
-    .optional(),
+  });
 
 
-  imageUrl:
-    z.string()
-    .nullable()
-    .optional(),
+/**
+ * Input accepted by the schema.
+ *
+ * Fields with defaults may be optional
+ * before Zod parsing.
+ */
+export type ProductFormInput =
+  z.input<
+    typeof createProductSchema
+  >;
 
-});
 
-
+/**
+ * Final validated form values.
+ */
 export type ProductFormValues =
-z.infer<
-  typeof createProductSchema
->;
+  z.output<
+    typeof createProductSchema
+  >;

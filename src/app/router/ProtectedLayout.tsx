@@ -10,6 +10,7 @@ import {
   ProtectedRoute,
 } from "@/core/auth";
 
+
 export function ProtectedLayout() {
 
   return (

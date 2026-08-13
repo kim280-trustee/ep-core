@@ -1,3 +1,11 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Categories Page
+ * ============================================================
+ */
+
 import {
   useEffect,
 } from "react";
@@ -14,9 +22,12 @@ import {
   storeContext,
 } from "../../../core/store/store.context";
 
+
 export function CategoriesPage() {
+
   const navigate =
     useNavigate();
+
 
   const {
     categories,
@@ -27,83 +38,151 @@ export function CategoriesPage() {
   } =
     useCategoriesStore();
 
+
   const context =
     storeContext.getStore();
 
-  if (!context) {
-    return (
-      <div className="p-6">
-        Store context is not initialized.
-      </div>
-    );
-  }
 
   const tenantId =
-    context.tenantId;
+    context?.tenantId ?? "";
 
+
+  /*
+   * Load categories.
+   *
+   * The hook must always be called,
+   * even when store context is unavailable.
+   */
   useEffect(() => {
+
+    if (!tenantId) {
+      return;
+    }
+
     loadCategories(
       tenantId,
     );
+
   }, [
     loadCategories,
     tenantId,
   ]);
 
+
+  /*
+   * Store context is required for
+   * category operations.
+   */
+  if (!context) {
+
+    return (
+
+      <div className="p-6">
+
+        Store context is not initialized.
+
+      </div>
+
+    );
+
+  }
+
+
   const filteredCategories =
     categories.filter(
-      (category) =>
-        category.name
-          .toLowerCase()
-          .includes(
-            search.toLowerCase(),
-          ) ||
-        (
-          category.description ??
-          ""
-        )
-          .toLowerCase()
-          .includes(
-            search.toLowerCase(),
-          ),
+      (category) => {
+
+        const searchTerm =
+          search.toLowerCase();
+
+
+        return (
+
+          category.name
+            .toLowerCase()
+            .includes(
+              searchTerm,
+            )
+
+          ||
+
+          (
+            category.description ??
+            ""
+          )
+            .toLowerCase()
+            .includes(
+              searchTerm,
+            )
+
+        );
+
+      },
     );
+
 
   function handleDelete(
     id: string,
   ) {
+
     const confirmed =
       window.confirm(
         "Are you sure you want to delete this category?",
       );
 
+
     if (!confirmed) {
       return;
     }
+
 
     deleteCategory(
       tenantId,
       id,
     );
+
   }
 
+
   return (
+
     <div className="p-6">
+
+      {/* Header */}
+
       <div
         className="
+          mb-6
           flex
           items-center
           justify-between
-          mb-6
         "
       >
-        <h1
-          className="
-            text-2xl
-            font-bold
-          "
-        >
-          Categories
-        </h1>
+
+        <div>
+
+          <h1
+            className="
+              text-2xl
+              font-bold
+              text-gray-900
+            "
+          >
+            Categories
+          </h1>
+
+          <p
+            className="
+              mt-1
+              text-sm
+              text-gray-500
+            "
+          >
+            Manage your product categories.
+          </p>
+
+        </div>
+
 
         <button
           type="button"
@@ -113,18 +192,26 @@ export function CategoriesPage() {
             )
           }
           className="
-            bg-black
-            text-white
             rounded
+            bg-blue-600
             px-4
             py-2
+            text-sm
+            font-medium
+            text-white
+            hover:bg-blue-700
           "
         >
-          Create Category
+          Add Category
         </button>
+
       </div>
 
+
+      {/* Search */}
+
       <div className="mb-6">
+
         <input
           type="text"
           value={search}
@@ -133,123 +220,250 @@ export function CategoriesPage() {
               event.target.value,
             )
           }
-          placeholder="Search categories..."
+          placeholder="
+            Search categories...
+          "
           className="
-            border
-            rounded
-            p-2
             w-full
             max-w-md
+            rounded
+            border
+            border-gray-300
+            px-4
+            py-2
+            outline-none
+            focus:border-blue-500
+            focus:ring-1
+            focus:ring-blue-500
           "
         />
+
       </div>
 
-      <div
-        className="
-          border
-          rounded
-          overflow-hidden
-        "
-      >
-        {filteredCategories.length ===
-        0 ? (
-          <div className="p-6">
-            No categories found.
-          </div>
-        ) : (
+
+      {/* Empty State */}
+
+      {filteredCategories.length === 0 ? (
+
+        <div
+          className="
+            rounded-xl
+            border
+            bg-white
+            p-8
+            text-center
+          "
+        >
+
+          <h2
+            className="
+              text-lg
+              font-semibold
+              text-gray-800
+            "
+          >
+            No categories found
+          </h2>
+
+          <p
+            className="
+              mt-2
+              text-sm
+              text-gray-500
+            "
+          >
+            Create a category to organize
+            your products.
+          </p>
+
+        </div>
+
+      ) : (
+
+        /* Category Table */
+
+        <div
+          className="
+            overflow-hidden
+            rounded-xl
+            border
+            bg-white
+          "
+        >
+
           <table
             className="
               w-full
-              border-collapse
+              text-left
             "
           >
-            <thead>
-              <tr
-                className="
-                  border-b
-                  bg-gray-50
-                "
-              >
-                <th className="text-left p-3">
+
+            <thead
+              className="
+                border-b
+                bg-gray-50
+              "
+            >
+
+              <tr>
+
+                <th
+                  className="
+                    px-4
+                    py-3
+                    text-sm
+                    font-semibold
+                    text-gray-700
+                  "
+                >
                   Name
                 </th>
 
-                <th className="text-left p-3">
+                <th
+                  className="
+                    px-4
+                    py-3
+                    text-sm
+                    font-semibold
+                    text-gray-700
+                  "
+                >
                   Description
                 </th>
 
-                <th className="text-left p-3">
-                  Status
-                </th>
-
-                <th className="text-right p-3">
+                <th
+                  className="
+                    px-4
+                    py-3
+                    text-right
+                    text-sm
+                    font-semibold
+                    text-gray-700
+                  "
+                >
                   Actions
                 </th>
+
               </tr>
+
             </thead>
 
+
             <tbody>
+
               {filteredCategories.map(
                 (category) => (
+
                   <tr
                     key={category.id}
-                    className="border-b"
+                    className="
+                      border-b
+                      last:border-b-0
+                    "
                   >
-                    <td className="p-3">
-                      {category.name}
-                    </td>
-
-                    <td className="p-3">
-                      {
-                        category.description ??
-                        "-"
-                      }
-                    </td>
-
-                    <td className="p-3">
-                      {category.status}
-                    </td>
 
                     <td
                       className="
-                        p-3
+                        px-4
+                        py-3
+                        font-medium
+                        text-gray-900
+                      "
+                    >
+                      {category.name}
+                    </td>
+
+
+                    <td
+                      className="
+                        px-4
+                        py-3
+                        text-gray-600
+                      "
+                    >
+                      {
+                        category.description ??
+                        "—"
+                      }
+                    </td>
+
+
+                    <td
+                      className="
+                        px-4
+                        py-3
                         text-right
                       "
                     >
-                      <button
-                        type="button"
-                        onClick={() =>
-                          navigate(
-                            `/categories/edit/${category.id}`,
-                          )
-                        }
+
+                      <div
                         className="
-                          mr-3
-                          underline
+                          flex
+                          justify-end
+                          gap-2
                         "
                       >
-                        Edit
-                      </button>
 
-                      <button
-                        type="button"
-                        onClick={() =>
-                          handleDelete(
-                            category.id,
-                          )
-                        }
-                        className="underline"
-                      >
-                        Delete
-                      </button>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            navigate(
+                              `/categories/${category.id}/edit`,
+                            )
+                          }
+                          className="
+                            rounded
+                            border
+                            px-3
+                            py-1.5
+                            text-sm
+                            text-gray-700
+                            hover:bg-gray-50
+                          "
+                        >
+                          Edit
+                        </button>
+
+
+                        <button
+                          type="button"
+                          onClick={() =>
+                            handleDelete(
+                              category.id,
+                            )
+                          }
+                          className="
+                            rounded
+                            border
+                            border-red-200
+                            px-3
+                            py-1.5
+                            text-sm
+                            text-red-600
+                            hover:bg-red-50
+                          "
+                        >
+                          Delete
+                        </button>
+
+                      </div>
+
                     </td>
+
                   </tr>
+
                 ),
               )}
+
             </tbody>
+
           </table>
-        )}
-      </div>
+
+        </div>
+
+      )}
+
     </div>
+
   );
 }

@@ -1,45 +1,33 @@
 import {
   supabase,
-} from "../";
+} from "../../infrastructure/supabase/client";
 
 
 export async function seedCore() {
 
-
   const tenantId =
-
     crypto.randomUUID();
-
 
 
   const userId =
-
     crypto.randomUUID();
-
 
 
   const roleId =
-
     crypto.randomUUID();
 
 
+  const permissionIds = [
 
-  const permissionIds =
+    crypto.randomUUID(),
 
-    [
+    crypto.randomUUID(),
 
-      crypto.randomUUID(),
+    crypto.randomUUID(),
 
-      crypto.randomUUID(),
+    crypto.randomUUID(),
 
-      crypto.randomUUID(),
-
-      crypto.randomUUID(),
-
-    ];
-
-
-
+  ];
 
 
   const {
@@ -62,20 +50,11 @@ export async function seedCore() {
     });
 
 
-
-
-
   if (tenantError) {
-
 
     throw tenantError;
 
-
   }
-
-
-
-
 
 
   const {
@@ -96,101 +75,68 @@ export async function seedCore() {
     });
 
 
-
-
-
   if (roleError) {
 
-
     throw roleError;
-
 
   }
 
 
-
-
-
-
-
   const permissions = [
-
 
     {
 
       id:
-
         permissionIds[0],
 
       code:
-
         "MANAGE_USERS",
 
       description:
-
         "Manage system users",
 
     },
 
-
-
     {
 
       id:
-
         permissionIds[1],
 
       code:
-
         "MANAGE_PRODUCTS",
 
       description:
-
         "Manage products",
 
     },
 
-
-
     {
 
       id:
-
         permissionIds[2],
 
       code:
-
         "PROCESS_SALES",
 
       description:
-
         "Process sales",
 
     },
 
-
-
     {
 
       id:
-
         permissionIds[3],
 
       code:
-
         "VIEW_REPORTS",
 
       description:
-
         "View reports",
 
     },
 
-
   ];
-
-
-
 
 
   const {
@@ -207,21 +153,11 @@ export async function seedCore() {
     );
 
 
-
-
-
   if (permissionError) {
-
 
     throw permissionError;
 
-
   }
-
-
-
-
-
 
 
   const {
@@ -238,35 +174,22 @@ export async function seedCore() {
       tenant_id: tenantId,
 
       name:
-
         "Paul",
 
       email:
-
         "paul@example.com",
 
       password_hash:
-
         "password",
 
     });
 
 
-
-
-
   if (userError) {
-
 
     throw userError;
 
-
   }
-
-
-
-
-
 
 
   const {
@@ -278,28 +201,20 @@ export async function seedCore() {
 
     .insert({
 
-      user_id: userId,
+      user_id:
+        userId,
 
-      role_id: roleId,
+      role_id:
+        roleId,
 
     });
 
 
-
-
-
   if (userRoleError) {
-
 
     throw userRoleError;
 
-
   }
-
-
-
-
-
 
 
   const rolePermissions =
@@ -308,23 +223,15 @@ export async function seedCore() {
 
       (permissionId) => ({
 
-
         role_id:
-
           roleId,
 
-
         permission_id:
-
           permissionId,
 
-
-      })
+      }),
 
     );
-
-
-
 
 
   const {
@@ -341,19 +248,11 @@ export async function seedCore() {
     );
 
 
-
-
-
   if (rolePermissionError) {
-
 
     throw rolePermissionError;
 
-
   }
-
-
-
 
 
   console.log(
@@ -361,6 +260,5 @@ export async function seedCore() {
     "EP Core seed completed",
 
   );
-
 
 }

@@ -1,6 +1,6 @@
 import {
   supabase,
-} from "./supabase.client";
+} from "../infrastructure/supabase/client";
 
 
 export async function checkDatabaseConnection() {
@@ -21,7 +21,6 @@ export async function checkDatabaseConnection() {
     );
 
     return false;
-
   }
 
 
@@ -29,7 +28,5 @@ export async function checkDatabaseConnection() {
     "Database connection successful",
   );
 
-
   return true;
-
 }
