@@ -2,203 +2,62 @@
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
- * Products Module
- * ------------------------------------------------------------
- * Products Hook
+ * Product Query Hooks
  * ============================================================
  */
 
-
-import {
-  useProductsStore,
-} from "../store/products.store";
-
-
-
-
-
-export function useProducts(){
-
-
-  const products =
-
-    useProductsStore(
-
-      (state) =>
-
-        state.products,
-
-    );
-
-
-
-
-
-  const search =
-
-    useProductsStore(
-
-      (state) =>
-
-        state.search,
-
-    );
-
-
-
-
-
-  const statusFilter =
-
-    useProductsStore(
-
-      (state) =>
-
-        state.statusFilter,
-
-    );
-
-
-
-
-
-  const loadProducts =
-
-    useProductsStore(
-
-      (state) =>
-
-        state.loadProducts,
-
-    );
-
-
-
-
-
-  const addProduct =
-
-    useProductsStore(
-
-      (state) =>
-
-        state.addProduct,
-
-    );
-
-
-
-
-
-  const updateProduct =
-
-    useProductsStore(
-
-      (state) =>
-
-        state.updateProduct,
-
-    );
-
-
-
-
-
-  const deleteProduct =
-
-    useProductsStore(
-
-      (state) =>
-
-        state.deleteProduct,
-
-    );
-
-
-
-
-
-  const duplicateProduct =
-
-    useProductsStore(
-
-      (state) =>
-
-        state.duplicateProduct,
-
-    );
-
-
-
-
-
-  const setSearch =
-
-    useProductsStore(
-
-      (state) =>
-
-        state.setSearch,
-
-    );
-
-
-
-
-
-  const setStatusFilter =
-
-    useProductsStore(
-
-      (state) =>
-
-        state.setStatusFilter,
-
-    );
-
-
-
-
-
-
-
-  return {
-
-
-    products,
-
-
-    search,
-
-
-    statusFilter,
-
-
-
-    loadProducts,
-
-
-    addProduct,
-
-
-    updateProduct,
-
-
-    deleteProduct,
-
-
-    duplicateProduct,
-
-
-
-    setSearch,
-
-
-    setStatusFilter,
-
-
-
-  };
-
-
+import { useQuery } from "@tanstack/react-query";
+
+import { productKeys } from "../queries/product.keys";
+import { productService } from "../services/product.service";
+
+import type {
+  ProductFilters,
+} from "../types/product.types";
+
+interface UseProductsOptions {
+  tenantId: string;
+  filters?: ProductFilters;
+}
+
+export function useProducts({
+  tenantId,
+  filters,
+}: UseProductsOptions) {
+  return useQuery({
+    queryKey: productKeys.list(
+      tenantId,
+      filters,
+    ),
+
+    queryFn: () =>
+      productService.getProducts(
+        tenantId,
+        filters,
+      ),
+
+    enabled: Boolean(tenantId),
+  });
+}
+
+export function useProduct(
+  tenantId: string,
+  productId: string,
+) {
+  return useQuery({
+    queryKey: productKeys.detail(
+      tenantId,
+      productId,
+    ),
+
+    queryFn: () =>
+      productService.getProductById(
+        tenantId,
+        productId,
+      ),
+
+    enabled: Boolean(
+      tenantId && productId,
+    ),
+  });
 }

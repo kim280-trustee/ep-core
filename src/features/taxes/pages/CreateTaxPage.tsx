@@ -1,80 +1,57 @@
-import {
-
- useNavigate,
-
+﻿import {
+  useNavigate,
 } from "react-router-dom";
 
-
 import {
-
- TaxForm,
-
+  TaxForm,
 } from "../components/TaxForm";
 
-
 import {
-
- taxService,
-
+  taxService,
 } from "../services/tax.service";
 
-
 import type {
-
- TaxFormInput,
-
+  TaxFormInput,
 } from "../validators/tax.schema";
 
+import {
+  storeContext,
+} from "@/core/store/store.context";
 
+export function CreateTaxPage() {
 
-export function CreateTaxPage(){
+  const navigate =
+    useNavigate();
 
+  function handleSubmit(
+    data: TaxFormInput,
+  ) {
 
- const navigate=
+    const context =
+      storeContext.getStore();
 
- useNavigate();
+    if (!context) {
+      throw new Error(
+        "Store context is not initialized.",
+      );
+    }
 
+    taxService.createTax(
+      context.tenantId,
+      context.storeId,
+      data,
+    );
 
+    navigate(
+      "/taxes",
+    );
+  }
 
- function handleSubmit(
-
-  data:TaxFormInput,
-
- ){
-
-
-  taxService.createTax(
-
-    "default-tenant",
-
-    "default-store",
-
-    data,
-
+  return (
+    <TaxForm
+      onSubmit={
+        handleSubmit
+      }
+    />
   );
-
-
-
-  navigate(
-
-    "/taxes"
-
-  );
-
-
- }
-
-
-
- return (
-
-  <TaxForm
-
-    onSubmit={handleSubmit}
-
-  />
-
- );
-
-
 }

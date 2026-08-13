@@ -1,71 +1,57 @@
-import {
+﻿import {
   useNavigate,
 } from "react-router-dom";
-
 
 import {
   PaymentMethodForm,
 } from "../components/PaymentMethodForm";
 
-
 import {
   paymentMethodService,
 } from "../services/payment-method.service";
 
+import type {
+  PaymentMethodFormData,
+} from "../types/payment-method.types";
 
-type PaymentMethodFormData =
-  Parameters<
-    NonNullable<
-      React.ComponentProps<
-        typeof PaymentMethodForm
-      >["onSubmit"]
-    >
-  >[0];
-
-
+import {
+  storeContext,
+} from "@/core/store/store.context";
 
 export function CreatePaymentMethodPage() {
 
-
   const navigate =
     useNavigate();
-
-
 
   function submit(
     data: PaymentMethodFormData,
   ) {
 
+    const context =
+      storeContext.getStore();
+
+    if (!context) {
+      throw new Error(
+        "Store context is not initialized.",
+      );
+    }
 
     paymentMethodService.createPaymentMethod(
-
-      "default-tenant",
-
-      "default-store",
-
+      context.tenantId,
+      context.storeId,
       data,
-
     );
-
 
     navigate(
       "/payment-methods",
     );
-
-
   }
 
-
-
   return (
-
     <PaymentMethodForm
-
-      onSubmit={submit}
-
+      onSubmit={
+        submit
+      }
     />
-
   );
-
-
 }

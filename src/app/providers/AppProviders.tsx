@@ -2,12 +2,16 @@
  * ============================================================
  * E&P Technologies
  * EP Core
- * App Providers
+ * Application Providers
  * ============================================================
  */
 
 import type {
   PropsWithChildren,
+} from "react";
+
+import {
+  useEffect,
 } from "react";
 
 import {
@@ -31,51 +35,56 @@ import {
 } from "@/core/audit";
 
 import {
-  useEffect,
-} from "react";
-
-import {
   registerCoreServices,
 } from "../startup/registerCoreServices";
 
+import {
+  QueryProvider,
+} from "./QueryProvider";
+
+
 export function AppProviders({
-
   children,
-
 }: PropsWithChildren) {
 
-useEffect(
-  () => {
 
-    registerCoreServices();
+  useEffect(
+    () => {
 
-  },
-  [],
-);
+      registerCoreServices();
+
+    },
+    [],
+  );
+
 
   return (
 
-    <AuthProvider>
+    <QueryProvider>
 
-      <TenantProvider>
+      <AuthProvider>
 
-        <PermissionProvider>
+        <TenantProvider>
 
-          <EventProvider>
+          <PermissionProvider>
 
-            <AuditProvider>
+            <EventProvider>
 
-              {children}
+              <AuditProvider>
 
-            </AuditProvider>
+                {children}
 
-          </EventProvider>
+              </AuditProvider>
 
-        </PermissionProvider>
+            </EventProvider>
 
-      </TenantProvider>
+          </PermissionProvider>
 
-    </AuthProvider>
+        </TenantProvider>
+
+      </AuthProvider>
+
+    </QueryProvider>
 
   );
 

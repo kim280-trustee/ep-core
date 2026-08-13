@@ -1,63 +1,29 @@
-/**
- * ============================================================
- * E&P Technologies
- * E&P Smart POS
- * Product Status Badge
- * ============================================================
- */
-
-
-import {
-  ProductStatus,
-} from "../types/product.types";
-
-
+import type { ProductStatus } from "../types/product.types";
 
 interface ProductStatusBadgeProps {
-
   status: ProductStatus;
-
 }
 
+const STATUS_CLASSES: Record<ProductStatus, string> = {
+  ACTIVE:
+    "inline-flex items-center rounded-full bg-green-100 px-2.5 py-1 text-xs font-medium text-green-700",
 
+  INACTIVE:
+    "inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-700",
+};
 
 export function ProductStatusBadge({
-
   status,
-
-}:ProductStatusBadgeProps){
-
-
-
+}: ProductStatusBadgeProps) {
   return (
-
-
     <span
-
-      className={`
-      px-3
-      py-1
-      rounded-full
-      text-sm
-      ${
-        status === ProductStatus.ACTIVE
-
-        ? "bg-green-100 text-green-700"
-
-        : "bg-gray-100 text-gray-700"
+      className={
+        STATUS_CLASSES[
+          status
+        ]
       }
-      `}
-
     >
-
-
       {status}
-
-
     </span>
-
-
   );
-
-
 }

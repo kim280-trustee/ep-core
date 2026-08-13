@@ -1,596 +1,80 @@
-/**
- * ============================================================
- * E&P Technologies
- * E&P Smart POS
- * Product Table
- * ============================================================
- */
-
-
-import {
-  useNavigate,
-} from "react-router-dom";
-
-
-import {
-  useProductsStore,
-} from "../store/products.store";
-
-
-import {
-  ProductStatusBadge,
-} from "./ProductStatusBadge";
-
-
-import {
-  ProductStatusToggle,
-} from "./ProductStatusToggle";
-
-
-import {
-  ProductDuplicateButton,
-} from "./ProductDuplicateButton";
-
-
-
-type Product = ReturnType<
-  typeof useProductsStore.getState
->["products"][number];
-
-
-
-
-
-export function ProductTable(){
-
-
-
-  const navigate =
-
-    useNavigate();
-
-
-
-
-
-  const products =
-
-    useProductsStore(
-
-      (state)=>
-
-        state.products,
-
-    );
-
-
-
-
-
-  const search =
-
-    useProductsStore(
-
-      (state)=>
-
-        state.search,
-
-    );
-
-
-
-
-
-  const statusFilter =
-
-    useProductsStore(
-
-      (state)=>
-
-        state.statusFilter,
-
-    );
-
-
-
-
-
-  const deleteProduct =
-
-    useProductsStore(
-
-      (state)=>
-
-        state.deleteProduct,
-
-    );
-
-
-
-
-
-  const updateProduct =
-
-    useProductsStore(
-
-      (state)=>
-
-        state.updateProduct,
-
-    );
-
-
-
-
-
-
-
-  const filteredProducts =
-
-    products.filter((product)=>{
-
-
-
-      const searchMatch =
-
-        product.name
-
-        .toLowerCase()
-
-        .includes(
-
-          search.toLowerCase(),
-
-        );
-
-
-
-
-
-      const statusMatch =
-
-        statusFilter === "ALL"
-
-        ||
-
-        product.status === statusFilter;
-
-
-
-
-
-      return (
-
-        searchMatch && statusMatch
-
-      );
-
-
-
-    });
-
-
-
-
-
-
-
-  function duplicateProduct(
-
-    product: Product,
-
-  ){
-
-
-
-    const copy = {
-
-
-      ...product,
-
-
-      id:
-
-        crypto.randomUUID(),
-
-
-      name:
-
-        `${product.name} Copy`,
-
-
-      createdAt:
-
-        new Date().toISOString(),
-
-
-      updatedAt:
-
-        new Date().toISOString(),
-
-
-
-    };
-
-
-
-
-
-    updateProduct(copy);
-
-
-
-  }
-
-
-
-
-
-
-
-  if(filteredProducts.length===0){
-
-
-    return (
-
-
-      <div
-
-        className="
-        border
-        rounded
-        p-6
-        text-center
-        "
-
-      >
-
-        No products found
-
-
-      </div>
-
-
-    );
-
-
-  }
-
-
-
-
-
-
-
-
-  return (
-
-
-    <div
-
-      className="
-      border
-      rounded
-      overflow-hidden
-      "
-
-    >
-
-
-
-      <table
-
-        className="
-        w-full
-        "
-
-      >
-
-
-
-        <thead>
-
-
-          <tr
-
-            className="
-            border-b
-            bg-gray-100
-            "
-
+import { Link } from "react-router-dom";
+import type { Product } from "../types/product.types";
+
+interface ProductTableProps {
+products: Product[];
+loading?: boolean;
+}
+
+export function ProductTable({
+products,
+loading = false,
+}: ProductTableProps) {
+if (loading) {
+return ( <div className="rounded-lg border bg-white p-8 text-center">
+Loading products... </div>
+);
+}
+
+return ( <div className="overflow-x-auto rounded-lg border bg-white"> <table className="w-full text-sm"> <thead className="border-b bg-gray-50"> <tr> <th className="px-4 py-3 text-left font-semibold">Name</th> <th className="px-4 py-3 text-left font-semibold">SKU</th> <th className="px-4 py-3 text-left font-semibold">Barcode</th> <th className="px-4 py-3 text-right font-semibold">Cost</th> <th className="px-4 py-3 text-right font-semibold">Selling</th> <th className="px-4 py-3 text-left font-semibold">Status</th> <th className="px-4 py-3 text-left font-semibold">Actions</th> </tr> </thead>
+
+```
+    <tbody>
+      {products.length === 0 && (
+        <tr>
+          <td
+            colSpan={7}
+            className="px-4 py-8 text-center text-gray-500"
           >
-
-
-            <th className="p-3 text-left">
-
-              Name
-
-            </th>
-
-
-            <th className="p-3 text-left">
-
-              SKU
-
-            </th>
-
-
-            <th className="p-3 text-left">
-
-              Price
-
-            </th>
-
-
-            <th className="p-3 text-left">
-
-              Stock
-
-            </th>
-
-
-            <th className="p-3 text-left">
-
-              Status
-
-            </th>
-
-
-            <th className="p-3 text-left">
-
-              Actions
-
-            </th>
-
-
-          </tr>
-
-
-        </thead>
-
-
-
-
-
-
-
-        <tbody>
-
-
-        {
-
-          filteredProducts.map((product)=>(
-
-
-
-            <tr
-
-              key={product.id}
-
-              className="
-              border-b
-              "
-
-            >
-
-
-
-              <td className="p-3">
-
-                {product.name}
-
-              </td>
-
-
-
-
-
-              <td className="p-3">
-
-                {product.identifiers.sku}
-
-              </td>
-
-
-
-
-
-              <td className="p-3">
-
-                {product.pricing.sellingPrice}
-
-                {" "}
-
-                {product.pricing.currency}
-
-              </td>
-
-
-
-
-
-              <td className="p-3">
-
-                {product.inventory.stockQuantity}
-
-              </td>
-
-
-
-
-
-              <td className="p-3">
-
-                <ProductStatusBadge
-
-                  status={product.status}
-
-                />
-
-
-              </td>
-
-
-
-
-
-
-              <td
-
-                className="
-                p-3
-                flex
-                gap-3
-                "
-
+            No products found.
+          </td>
+        </tr>
+      )}
+
+      {products.length > 0 &&
+        products.map((product) => (
+          <tr
+            key={product.id}
+            className="border-b hover:bg-gray-50"
+          >
+            <td className="px-4 py-3 font-medium">
+              {product.name}
+            </td>
+
+            <td className="px-4 py-3">
+              {product.sku}
+            </td>
+
+            <td className="px-4 py-3">
+              {product.barcode || "-"}
+            </td>
+
+            <td className="px-4 py-3 text-right">
+              {Number(product.costPrice || 0).toFixed(2)}
+            </td>
+
+            <td className="px-4 py-3 text-right">
+              {Number(product.sellingPrice || 0).toFixed(2)}
+            </td>
+
+            <td className="px-4 py-3">
+              {product.status}
+            </td>
+
+            <td className="px-4 py-3">
+              <Link
+                to={"/products/" + product.id}
+                className="text-blue-600 hover:underline"
               >
-
-
-
-                <button
-
-                  onClick={()=>
-
-
-                    navigate(
-
-                      `/products/${product.id}`
-
-                    )
-
-
-                  }
-
-
-                  className="
-                  text-blue-600
-                  "
-
-                >
-
-                  View
-
-
-                </button>
-
-
-
-
-
-
-
-                <ProductDuplicateButton
-
-                  onDuplicate={()=>
-
-
-                    duplicateProduct(product)
-
-
-                  }
-
-                />
-
-
-
-
-
-
-
-                <ProductStatusToggle
-
-
-                  status={product.status}
-
-
-
-                  onChange={(status)=>
-
-
-                    updateProduct({
-
-
-                      ...product,
-
-
-                      status,
-
-
-                      updatedAt:
-
-                        new Date().toISOString(),
-
-
-                    })
-
-
-                  }
-
-
-                />
-
-
-
-
-
-
-
-                <button
-
-                  onClick={()=>
-
-
-                    deleteProduct(
-
-                      product.id,
-
-                    )
-
-
-                  }
-
-
-                  className="
-                  text-red-600
-                  "
-
-                >
-
-                  Delete
-
-
-                </button>
-
-
-
-
-              </td>
-
-
-
-
-            </tr>
-
-
-
-          ))
-
-
-        }
-
-
-        </tbody>
-
-
-
-      </table>
-
-
-
-    </div>
-
-
-  );
-
-
+                View
+              </Link>
+            </td>
+          </tr>
+        ))}
+    </tbody>
+  </table>
+</div>
+
+
+);
 }

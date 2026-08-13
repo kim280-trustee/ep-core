@@ -21,6 +21,7 @@ interface ProductFormFieldsProps {
 
 
 
+
   sku:string;
 
 
@@ -32,18 +33,31 @@ interface ProductFormFieldsProps {
 
 
 
-  price:number;
+
+  costPrice:number;
 
 
-  onPriceChange:(
+  onCostPriceChange:(
 
     value:number,
 
   )=>void;
 
 
-}
 
+
+  sellingPrice:number;
+
+
+  onSellingPriceChange:(
+
+    value:number,
+
+  )=>void;
+
+
+
+}
 
 
 
@@ -59,15 +73,20 @@ export function ProductFormFields({
 
   onSkuChange,
 
-  price,
+  costPrice,
 
-  onPriceChange,
+  onCostPriceChange,
+
+  sellingPrice,
+
+  onSellingPriceChange,
 
 }:ProductFormFieldsProps){
 
 
 
   return (
+
 
 
     <div
@@ -83,31 +102,23 @@ export function ProductFormFields({
 
 
 
-      <input
 
+      <input
 
         value={name}
 
+        onChange={(event)=>
 
+          onNameChange(
 
-        onChange={
+            event.target.value,
 
-          (event)=>
-
-            onNameChange(
-
-              event.target.value,
-
-            )
+          )
 
         }
-
-
 
         placeholder="Product name"
 
-
-
         className="
         border
         rounded
@@ -115,37 +126,29 @@ export function ProductFormFields({
         py-2
         "
 
-
       />
 
 
 
 
 
-      <input
 
+
+      <input
 
         value={sku}
 
+        onChange={(event)=>
 
+          onSkuChange(
 
-        onChange={
+            event.target.value,
 
-          (event)=>
-
-            onSkuChange(
-
-              event.target.value,
-
-            )
+          )
 
         }
 
-
-
         placeholder="SKU"
-
-
 
         className="
         border
@@ -154,8 +157,8 @@ export function ProductFormFields({
         py-2
         "
 
-
       />
+
 
 
 
@@ -164,32 +167,21 @@ export function ProductFormFields({
 
       <input
 
-
         type="number"
 
+        value={costPrice}
 
+        onChange={(event)=>
 
-        value={price}
+          onCostPriceChange(
 
+            Number(event.target.value),
 
-
-        onChange={
-
-          (event)=>
-
-            onPriceChange(
-
-              Number(event.target.value),
-
-            )
+          )
 
         }
 
-
-
-        placeholder="Selling price"
-
-
+        placeholder="Cost price"
 
         className="
         border
@@ -198,8 +190,43 @@ export function ProductFormFields({
         py-2
         "
 
+      />
+
+
+
+
+
+
+
+
+      <input
+
+        type="number"
+
+        value={sellingPrice}
+
+        onChange={(event)=>
+
+          onSellingPriceChange(
+
+            Number(event.target.value),
+
+          )
+
+        }
+
+        placeholder="Selling price"
+
+        className="
+        border
+        rounded
+        px-3
+        py-2
+        "
 
       />
+
+
 
 
 

@@ -1,32 +1,53 @@
-import { useNavigate } from "react-router-dom";
+import {
+  useNavigate,
+} from "react-router-dom";
 
-import { SupplierForm } from "../components/SupplierForm";
-import { supplierService } from "../services/supplier.service";
+import {
+  SupplierForm,
+} from "../components/SupplierForm";
 
-import type { SupplierFormInput } from "../validators/supplier.schema";
+import {
+  useSuppliers,
+} from "../hooks/useSuppliers";
+
+import {
+  storeContext,
+} from "../../../core/store/store.context";
 
 export function CreateSupplierPage() {
-  const navigate = useNavigate();
+  const navigate =
+    useNavigate();
 
-  function handleSubmit(data: SupplierFormInput) {
-    supplierService.createSupplier(
+  const {
+    createSupplier,
+  } = useSuppliers();
+
+  function handleSubmit(
+    data: Parameters<
+      typeof createSupplier
+    >[0],
+  ) {
+    const context =
+      storeContext.getStore();
+
+    if (!context) {
+      throw new Error(
+        "Store context is not initialized.",
+      );
+    }
+
+    createSupplier(
       data,
-      "default-tenant",
-      "default-store",
     );
 
-    navigate("/suppliers");
+    navigate(
+      "/suppliers",
+    );
   }
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">
-        Create Supplier
-      </h1>
-
-      <SupplierForm
-        onSubmit={handleSubmit}
-      />
-    </div>
+    <SupplierForm
+      onSubmit={handleSubmit}
+    />
   );
 }

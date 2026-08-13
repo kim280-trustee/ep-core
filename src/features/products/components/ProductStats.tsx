@@ -8,151 +8,109 @@
 
 
 import {
+  ProductStatus,
+} from "../types/product.types";
+
+
+import {
   useProductsStore,
 } from "../store/products.store";
 
 
 
-
-export function ProductStats(){
-
+export function ProductStats() {
 
 
   const products =
-
     useProductsStore(
-
-      (state)=>
-
+      (state) =>
         state.products,
-
     );
 
 
 
-
   const total =
-
     products.length;
 
 
 
   const active =
-
     products.filter(
-
-      product =>
-
-        product.status === "active",
-
+      (product) =>
+        product.status === ProductStatus.ACTIVE,
     ).length;
 
 
 
   const inactive =
-
     products.filter(
-
-      product =>
-
-        product.status === "inactive",
-
+      (product) =>
+        product.status === ProductStatus.INACTIVE,
     ).length;
 
 
 
   const lowStock =
-
     products.filter(
-
-      product =>
-
+      (product) =>
         product.inventory.stockQuantity <= 5,
-
     ).length;
-
-
-
 
 
 
   const cards = [
 
     {
-
-      title:"Total Products",
-
-      value:total,
-
+      title:
+        "Total Products",
+      value:
+        total,
     },
 
 
     {
-
-      title:"Active",
-
-      value:active,
-
+      title:
+        "Active",
+      value:
+        active,
     },
 
 
     {
-
-      title:"Inactive",
-
-      value:inactive,
-
+      title:
+        "Inactive",
+      value:
+        inactive,
     },
 
 
     {
-
-      title:"Low Stock",
-
-      value:lowStock,
-
+      title:
+        "Low Stock",
+      value:
+        lowStock,
     },
-
 
   ];
 
 
 
-
-
-
   return (
 
-    <div
-
-      className="
-      grid
-      grid-cols-4
-      gap-4
-      "
-
-    >
+    <div className="grid grid-cols-4 gap-4">
 
 
       {
-
         cards.map(
-
-          (card)=>(
-
+          (card) => (
 
             <div
 
               key={card.title}
 
-              className="
-              border
-              rounded
-              p-4
-              "
+              className="border rounded p-4"
 
             >
-
 
               <p className="text-sm">
 
@@ -161,35 +119,22 @@ export function ProductStats(){
               </p>
 
 
-
-              <p
-
-                className="
-                text-2xl
-                font-semibold
-                "
-
-              >
+              <p className="text-2xl font-semibold">
 
                 {card.value}
 
               </p>
 
 
-
             </div>
 
-
-          )
-
+          ),
         )
-
       }
 
 
     </div>
 
   );
-
 
 }

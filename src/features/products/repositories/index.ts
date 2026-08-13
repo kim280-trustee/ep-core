@@ -1,3 +1,9 @@
-export * from "./product.repository";
-export * from "./in-memory-product.repository";
-export * from "./repository.provider";
+export {
+  productRepository,
+  type IProductRepository,
+} from "./product.repository";
+
+
+export {
+  productRepositoryProvider,
+} from "./repository.provider";

@@ -1,513 +1,295 @@
-/**
- * ============================================================
- * E&P Technologies
- * E&P Smart POS
- * Products Module
- * ------------------------------------------------------------
- * In Memory Product Repository
- * ============================================================
- */
-
-
-import {
-  v4 as uuid,
-} from "uuid";
-
-
 import type {
-
+  CreateProductInput,
   Product,
-
-  CreateProductDto,
-
-  UpdateProductDto,
-
+  ProductListParams,
+  ProductListResult,
+  UpdateProductInput,
 } from "../types/product.types";
-
 
 import {
-
   ProductStatus,
-
   ProductType,
-
 } from "../types/product.types";
 
-
 import type {
-
   IProductRepository,
-
 } from "./product.repository";
 
 
+class InMemoryProductRepository
+  implements IProductRepository {
+
+
+  private products: Product[] = [];
 
 
 
+  async findAll(
+    tenantId: string,
+    params: ProductListParams = {},
+  ): Promise<ProductListResult> {
 
-export class InMemoryProductRepository
+    const page =
+      params.page ?? 1;
 
-implements IProductRepository {
-
-
-
-  private readonly products =
-
-    new Map<string, Product>();
-
-
+    const limit =
+      params.limit ?? 20;
 
 
-
-
-
-  findAll():Product[]{
-
-
-    return Array.from(
-
-      this.products.values(),
-
-    );
-
-
-  }
-
-
-
-
-
-
-
-  findById(
-
-    id:string,
-
-  ):Product | undefined {
-
-
-    return this.products.get(
-
-      id,
-
-    );
-
-
-  }
-
-
-
-
-
-
-
-  findBySku(
-
-    sku:string,
-
-  ):Product | undefined {
-
-
-    return this.findAll()
-
-      .find(
-
+    const filtered =
+      this.products.filter(
         product =>
-
-          product.identifiers.sku === sku,
-
+          product.tenantId === tenantId,
       );
 
 
+    const start =
+      (page - 1) * limit;
+
+
+    return {
+      data:
+        filtered.slice(
+          start,
+          start + limit,
+        ),
+
+      total:
+        filtered.length,
+
+      page,
+
+      limit,
+    };
   }
 
 
 
+  async findById(
+    tenantId: string,
+    id: string,
+  ): Promise<Product | null> {
 
 
-
-
-  findByBarcode(
-
-    barcode:string,
-
-  ):Product | undefined {
-
-
-    return this.findAll()
-
-      .find(
-
+    return (
+      this.products.find(
         product =>
-
-          product.identifiers.barcode === barcode,
-
-      );
-
-
-  }
-
-
-
-
-
-
-
-  existsBySku(
-
-    sku:string,
-
-  ):boolean {
-
-
-    return this.findBySku(sku)
-
-      !== undefined;
-
+          product.tenantId === tenantId &&
+          product.id === id,
+      )
+      ?? null
+    );
 
   }
 
 
 
 
-
-
-
-  existsByBarcode(
-
-    barcode:string,
-
-  ):boolean {
-
-
-    return this.findByBarcode(barcode)
-
-      !== undefined;
-
-
-  }
-
-
-
-
-
-
-
-  create(
-
-    tenantId:string,
-
-    storeId:string,
-
-    data:CreateProductDto,
-
-  ):Product {
+  async create(
+    input: CreateProductInput,
+  ): Promise<Product> {
 
 
     const now =
-
-      new Date().toISOString();
-
-
+      new Date()
+        .toISOString();
 
 
-
-    const product:Product = {
+    const product: Product = {
 
 
       id:
-
-        uuid(),
-
+        crypto.randomUUID(),
 
 
-      tenantId,
+      tenantId:
+        input.tenantId,
 
 
-
-      storeId,
-
+      storeId:
+        input.storeId,
 
 
       name:
-
-        data.name,
-
+        input.name,
 
 
-      description:
+      sku:
+        input.sku,
 
-        data.description ?? null,
 
+      barcode:
+        input.barcode,
+
+
+      identifiers:{
+        sku:
+          input.sku,
+
+        barcode:
+          input.barcode,
+      },
+
+
+      pricing:{
+        costPrice:
+          input.costPrice,
+
+        sellingPrice:
+          input.sellingPrice,
+
+        currency:
+          input.currency ?? "THB",
+      },
+
+
+      tax:{},
+
+
+      inventory:{
+        stockQuantity:0,
+      },
+
+
+      productType:
+        input.productType
+        ??
+        ProductType.PRODUCT,
 
 
       type:
-
-        data.type ?? ProductType.PRODUCT,
-
-
-
-      identifiers: {
-
-
-        sku:
-
-          data.identifiers.sku,
-
-
-
-        barcode:
-
-          data.identifiers.barcode ?? null,
-
-
-      },
-
-
-
-      pricing: {
-
-
-        costPrice:
-
-          data.pricing.costPrice,
-
-
-
-        sellingPrice:
-
-          data.pricing.sellingPrice,
-
-
-
-        currency:
-
-          data.pricing.currency,
-
-
-      },
-
-
-
-      tax:
-
-        data.tax ?? {
-
-
-          taxId:null,
-
-
-          taxRate:0,
-
-
-        },
-
-
-
-      inventory:
-
-        data.inventory ?? {
-
-
-          trackInventory:false,
-
-
-          stockQuantity:0,
-
-
-        },
-
-
-
-      categoryId:
-
-        data.categoryId ?? null,
-
-
-
-      brandId:
-
-        data.brandId ?? null,
-
-
-
-      unitId:
-
-        data.unitId ?? null,
-
-
-
-      imageUrl:
-
-        data.imageUrl ?? null,
-
+        input.productType
+        ??
+        ProductType.PRODUCT,
 
 
       status:
-
+        input.status
+        ??
         ProductStatus.ACTIVE,
 
 
+      costPrice:
+        input.costPrice,
+
+
+      sellingPrice:
+        input.sellingPrice,
+
+
+      trackInventory:
+        input.trackInventory
+        ??
+        true,
+
+
+      description:
+        input.description,
+
+
+      categoryId:
+        input.categoryId,
+
+
+      brandId:
+        input.brandId,
+
+
+      unitId:
+        input.unitId,
+
+
+      taxId:
+        input.taxId,
+
+
+      imageUrl:
+        input.imageUrl,
+
 
       createdAt:
-
         now,
-
 
 
       updatedAt:
-
         now,
-
 
     };
 
 
-
-
-
-    this.products.set(
-
-      product.id,
-
-      product,
-
-    );
-
-
-
+    this.products.push(product);
 
 
     return product;
 
-
   }
 
 
 
 
 
-
-
-
-  update(
-
+  async update(
+    tenantId:string,
     id:string,
-
-    updates:UpdateProductDto,
-
-  ):Product | undefined {
+    input:UpdateProductInput,
+  ):Promise<Product>{
 
 
-    const existing =
+    const index =
+      this.products.findIndex(
+        product =>
+          product.tenantId === tenantId &&
+          product.id === id,
+      );
 
-      this.products.get(id);
 
+    if(index === -1){
 
-
-
-
-    if(!existing){
-
-      return undefined;
+      throw new Error(
+        "Product not found",
+      );
 
     }
 
 
+    const updated:Product={
 
+      ...this.products[index],
 
-
-
-
-    const updated:Product = {
-
-
-      ...existing,
-
-
-
-      ...updates,
-
-
-
-      identifiers: {
-
-
-        ...existing.identifiers,
-
-
-        ...updates.identifiers,
-
-
-      },
-
-
-
-      pricing: {
-
-
-        ...existing.pricing,
-
-
-        ...updates.pricing,
-
-
-      },
-
-
-
-      tax: {
-
-
-        ...existing.tax,
-
-
-        ...updates.tax,
-
-
-      },
-
-
-
-      inventory: {
-
-
-        ...existing.inventory,
-
-
-        ...updates.inventory,
-
-
-      },
-
+      ...input,
 
 
       updatedAt:
-
-        new Date().toISOString(),
-
+        new Date()
+        .toISOString(),
 
     };
 
 
-
-
-
-
-    this.products.set(
-
-      id,
-
-      updated,
-
-    );
-
-
-
+    this.products[index]=updated;
 
 
     return updated;
 
+  }
+
+
+
+
+  async delete(
+    tenantId:string,
+    id:string,
+  ):Promise<void>{
+
+
+    this.products =
+      this.products.filter(
+        product =>
+          !(
+            product.tenantId===tenantId &&
+            product.id===id
+          ),
+      );
 
   }
 
@@ -515,25 +297,28 @@ implements IProductRepository {
 
 
 
+  async search(
+    tenantId:string,
+    search:string,
+  ):Promise<Product[]>{
 
 
-
-  delete(
-
-    id:string,
-
-  ):boolean {
+    const value =
+      search.toLowerCase();
 
 
-    return this.products.delete(
-
-      id,
-
+    return this.products.filter(
+      product =>
+        product.tenantId===tenantId &&
+        product.name
+        .toLowerCase()
+        .includes(value),
     );
 
-
   }
 
-
-
 }
+
+
+export const inMemoryProductRepository =
+  new InMemoryProductRepository();

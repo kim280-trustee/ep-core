@@ -1,191 +1,109 @@
-/**
+﻿/**
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
  * Taxes Module
- * ------------------------------------------------------------
+ *
  * Taxes Hook
  * ============================================================
  */
 
-
 import {
-
   useEffect,
-
 } from "react";
 
-
 import {
-
   useTaxStore,
-
 } from "../store/tax.store";
 
-
 import type {
-
   CreateTaxDto,
-
   UpdateTaxDto,
-
 } from "../types/tax.types";
 
+import {
+  storeContext,
+} from "@/core/store/store.context";
 
-
-
-
-
-
-export function useTaxes(){
-
-
-
-
+export function useTaxes() {
 
   const {
-
-
     taxes,
-
-
     loadTaxes,
-
-
-    createTax: createTaxStore,
-
-
-    updateTax: updateTaxStore,
-
-
-    deleteTax: deleteTaxStore,
-
-
-
+    createTax:
+      createTaxStore,
+    updateTax:
+      updateTaxStore,
+    deleteTax:
+      deleteTaxStore,
   } = useTaxStore();
 
+  const context =
+    storeContext.getStore();
 
+  const tenantId =
+    context?.tenantId ?? "";
 
+  const storeId =
+    context?.storeId ?? "";
 
+  useEffect(() => {
 
+    if (tenantId) {
+     loadTaxes();
+    }
 
-
-
-  useEffect(()=>{
-
-
-    loadTaxes();
-
-
-  },[loadTaxes]);
-
-
-
-
-
-
-
-
+  }, [
+    tenantId,
+    loadTaxes,
+  ]);
 
   function createTax(
+    input: CreateTaxDto,
+  ) {
 
-    input:CreateTaxDto,
+    if (!tenantId || !storeId) {
+      throw new Error(
+        "Store context is not initialized.",
+      );
+    }
 
-  ){
-
-
-
-    createTaxStore(
-
+    return createTaxStore(
       input,
-
-      "default-tenant",
-
-      "default-store",
-
+      tenantId,
+      storeId,
     );
-
-
   }
-
-
-
-
-
-
-
-
 
   function updateTaxById(
+    id: string,
+    updates: UpdateTaxDto,
+  ) {
 
-    id:string,
-
-    updates:UpdateTaxDto,
-
-  ){
-
-
-
-    updateTaxStore(
-
-      id,
-
-      updates,
-
-    );
-
-
+    return updateTaxStore(
+  id,
+  updates,
+);
   }
-
-
-
-
-
-
-
-
 
   function deleteTax(
+    id: string,
+  ) {
 
-    id:string,
-
-  ){
-
-
-
-    deleteTaxStore(
-
-      id,
-
-    );
-
-
+    return deleteTaxStore(
+  id,
+);
   }
-
-
-
-
-
-
-
-
 
   return {
 
-
     taxes,
-
 
     createTax,
 
-
     updateTaxById,
-
 
     deleteTax,
 
-
   };
-
-
 }

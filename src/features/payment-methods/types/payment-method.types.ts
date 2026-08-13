@@ -68,3 +68,4 @@ export interface CreatePaymentMethodDto {
 export type UpdatePaymentMethodDto =
 
   Partial<CreatePaymentMethodDto>;
+export type PaymentMethodFormData = CreatePaymentMethodDto;

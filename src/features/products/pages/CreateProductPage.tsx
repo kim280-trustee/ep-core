@@ -1,4 +1,4 @@
-/**
+ /**
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
@@ -11,52 +11,69 @@ import {
   ProductForm,
 } from "../components/ProductForm";
 
+import type {
+  ProductFormValues,
+} from "../schemas/product.schema";
 
 
 
 
-export function CreateProductPage(){
+export function CreateProductPage() {
+
+
+  const handleCreate =
+    (
+      values: ProductFormValues,
+    ) => {
+
+      console.log(
+        "Create Product:",
+        values,
+      );
+
+    };
 
 
 
-return (
+  return (
+
+    <div
+
+      className="
+      flex
+      flex-col
+      gap-6
+      "
+
+    >
 
 
-<div
+      <h1
 
-className="
-flex
-flex-col
-gap-6
-"
+        className="
+        text-2xl
+        font-semibold
+        "
 
->
+      >
 
+        Create Product
 
-<h1
-
-className="
-text-2xl
-font-semibold
-"
-
->
-
-Create Product
-
-</h1>
-
+      </h1>
 
 
 
-<ProductForm />
+      <ProductForm
+
+        onSubmit={
+          handleCreate
+        }
+
+      />
 
 
-</div>
+    </div>
 
-
-);
-
-
+  );
 
 }

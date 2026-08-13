@@ -1,202 +1,106 @@
+﻿/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Brands Module
+ *
+ * Production Brand Table
+ * ============================================================
+ */
+
 import type {
-
   Brand,
-
 } from "../types/brand.types";
 
+interface BrandTableProps {
+  brands: Brand[];
 
-import {
-
-  BrandStatusBadge,
-
-} from "./BrandStatusBadge";
-
-
-
-
-
-
-interface Props {
-
-
-  brands:Brand[];
-
-
-  onDelete:
-
-    (
-
-      id:string,
-
-    )=>void;
-
-
+  onDelete: (
+    id: string,
+  ) => void;
 }
 
-
-
-
-
-
-
-
 export function BrandTable({
-
   brands,
-
   onDelete,
+}: BrandTableProps) {
 
-}:Props){
-
-
+  if (brands.length === 0) {
+    return (
+      <div className="rounded-lg border p-6 text-center">
+        <p className="text-gray-500">
+          No brands found.
+        </p>
+      </div>
+    );
+  }
 
   return (
+    <div className="overflow-x-auto rounded-lg border">
+      <table className="w-full border-collapse">
 
+        <thead>
+          <tr className="border-b bg-gray-50 text-left">
 
+            <th className="px-4 py-3 font-semibold">
+              Name
+            </th>
 
-    <div
+            <th className="px-4 py-3 font-semibold">
+              Description
+            </th>
 
-      className="
+            <th className="px-4 py-3 font-semibold">
+              Status
+            </th>
 
-      border
+            <th className="px-4 py-3 text-right font-semibold">
+              Actions
+            </th>
 
-      rounded
+          </tr>
+        </thead>
 
-      overflow-hidden
+        <tbody>
+          {brands.map((brand) => (
+            <tr
+              key={brand.id}
+              className="border-b last:border-b-0"
+            >
 
-      "
-
-    >
-
-
-
-
-      {
-
-        brands.map(brand=>(
-
-
-          <div
-
-
-            key={brand.id}
-
-
-
-            className="
-
-            flex
-
-            justify-between
-
-            items-center
-
-            p-3
-
-            border-b
-
-            "
-
-          >
-
-
-
-
-            <div>
-
-
-              <p className="font-medium">
-
+              <td className="px-4 py-3">
                 {brand.name}
+              </td>
 
-              </p>
+              <td className="px-4 py-3">
+                {brand.description || "—"}
+              </td>
 
+              <td className="px-4 py-3">
+                <span className="inline-flex rounded-full px-2 py-1 text-xs font-medium">
+                  {String(brand.status)}
+                </span>
+              </td>
 
+              <td className="px-4 py-3">
+                <div className="flex justify-end gap-2">
 
-              {
+                  <button
+                    type="button"
+                    onClick={() => onDelete(brand.id)}
+                    className="rounded border px-3 py-1 text-sm"
+                  >
+                    Delete
+                  </button>
 
-                brand.description &&
+                </div>
+              </td>
 
-                <p className="text-sm">
+            </tr>
+          ))}
+        </tbody>
 
-                  {brand.description}
-
-                </p>
-
-              }
-
-
-
-            </div>
-
-
-
-
-
-
-
-            <div className="flex gap-4 items-center">
-
-
-
-              <BrandStatusBadge
-
-                status={brand.status}
-
-              />
-
-
-
-
-
-              <button
-
-
-                onClick={
-
-                  ()=>onDelete(
-
-                    brand.id,
-
-                  )
-
-                }
-
-
-                className="text-red-600"
-
-
-              >
-
-                Delete
-
-
-              </button>
-
-
-
-
-            </div>
-
-
-
-
-
-          </div>
-
-
-        ))
-
-      }
-
-
-
-
-
+      </table>
     </div>
-
-
   );
-
-
 }

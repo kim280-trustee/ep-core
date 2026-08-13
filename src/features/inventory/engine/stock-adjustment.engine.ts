@@ -61,14 +61,10 @@ export class StockAdjustmentEngine {
         record.warehouseId,
 
 
-      type:
-
-        difference > 0
-
-          ? "ADJUSTMENT_IN"
-
-          : "ADJUSTMENT_OUT",
-
+      movementType:
+  difference > 0
+    ? "ADJUSTMENT_IN"
+    : "ADJUSTMENT_OUT",
 
       quantity:
 

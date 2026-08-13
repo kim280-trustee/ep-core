@@ -6,368 +6,118 @@
  * ============================================================
  */
 
-
-import {
-  create,
-} from "zustand";
-
-
-import {
-  productService,
-} from "../services/product.service";
-
+import { create } from "zustand";
 
 import type {
   Product,
-  UpdateProductDto,
+  ProductFilters,
 } from "../types/product.types";
 
 
-import {
-  ProductStatus,
-} from "../types/product.types";
-
-
-
-
-
-interface ProductsStore {
-
+interface ProductStore {
 
   products: Product[];
 
-
-  search:string;
-
-
-  statusFilter: ProductStatus | "ALL";
+  filters: ProductFilters;
 
 
-
-  loadProducts():void;
-
-
-  addProduct(
-    product:Product,
-  ):void;
+  setProducts:
+  (
+    products: Product[],
+  ) => void;
 
 
-
-  updateProduct(
-    productOrId: Product | string,
-    updates?: UpdateProductDto,
-  ):void;
-
+  loadProducts:
+  (
+    products?: Product[],
+  ) => void;
 
 
-  deleteProduct(
-    id:string,
-  ):void;
+  setFilters:
+  (
+    filters: ProductFilters,
+  ) => void;
 
 
-
-  duplicateProduct(
-    product:Product,
-  ):void;
-
-
-
-  setSearch(
-    value:string,
-  ):void;
+  updateFilters:
+  (
+    filters: Partial<ProductFilters>,
+  ) => void;
 
 
-
-  setStatusFilter(
-    value:ProductStatus | "ALL",
-  ):void;
-
-
+  clearFilters:
+  () => void;
 
 }
 
 
 
+export const useProductStore =
+create<ProductStore>((set) => ({
+
+  products: [],
+
+  filters: {},
+
+
+  setProducts:
+  (
+    products,
+  ) =>
+  set({
+    products,
+  }),
 
 
 
+  loadProducts:
+  (
+    products = [],
+  ) =>
+  set({
+    products,
+  }),
+
+
+
+  setFilters:
+  (
+    filters,
+  ) =>
+  set({
+    filters,
+  }),
+
+
+
+  updateFilters:
+  (
+    filters,
+  ) =>
+  set(
+    (state)=>({
+
+      filters:{
+        ...state.filters,
+        ...filters,
+      },
+
+    }),
+  ),
+
+
+
+  clearFilters:
+  () =>
+  set({
+
+    filters:{},
+
+  }),
+
+
+}));
 
 
 export const useProductsStore =
-
-create<ProductsStore>((set)=>({
-
-
-
-
-products:[],
-
-
-
-search:"",
-
-
-
-statusFilter:"ALL",
-
-
-
-
-
-
-
-loadProducts(){
-
-
-set({
-
-products:
-
-productService.getProducts(),
-
-});
-
-
-},
-
-
-
-
-
-
-
-addProduct(product){
-
-
-
-set((state)=>({
-
-
-products:[
-
-...state.products,
-
-product,
-
-],
-
-
-}));
-
-
-},
-
-
-
-
-
-
-
-updateProduct(
-
-productOrId,
-
-updates,
-
-){
-
-
-
-let updatedProduct:Product | undefined;
-
-
-
-if(typeof productOrId === "string"){
-
-
-
-updatedProduct =
-
-productService.updateProduct(
-
-productOrId,
-
-updates ?? {},
-
-);
-
-
-
-}
-
-else {
-
-
-
-updatedProduct =
-
-productService.updateProduct(
-
-productOrId.id,
-
-productOrId,
-
-);
-
-
-
-}
-
-
-
-
-
-if(!updatedProduct){
-
-return;
-
-}
-
-
-
-
-
-
-
-set((state)=>({
-
-
-products:
-
-state.products.map(
-
-item =>
-
-item.id === updatedProduct!.id
-
-?
-
-updatedProduct!
-
-:
-
-item,
-
-),
-
-
-}));
-
-
-
-},
-
-
-
-
-
-
-
-deleteProduct(id){
-
-
-
-productService.deleteProduct(
-
-id,
-
-);
-
-
-
-set({
-
-products:
-
-productService.getProducts(),
-
-});
-
-
-
-},
-
-
-
-
-
-
-
-duplicateProduct(product){
-
-
-
-const duplicate =
-
-productService.duplicateProduct(
-
-product,
-
-);
-
-
-
-
-set((state)=>({
-
-
-products:[
-
-...state.products,
-
-duplicate,
-
-],
-
-
-}));
-
-
-
-},
-
-
-
-
-
-
-
-setSearch(value){
-
-
-
-set({
-
-search:value,
-
-});
-
-
-},
-
-
-
-
-
-
-
-setStatusFilter(value){
-
-
-
-set({
-
-statusFilter:value,
-
-});
-
-
-},
-
-
-
-
-
-
-
-}));
+useProductStore;

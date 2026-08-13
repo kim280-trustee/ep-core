@@ -6,87 +6,72 @@
  * ============================================================
  */
 
-
 import {
-
-useParams,
-
+  useParams,
 } from "react-router-dom";
 
-
 import {
-
-ProductForm,
-
+  ProductForm,
 } from "../components/ProductForm";
 
 
+export function EditProductPage() {
+
+  const {
+    id,
+  } = useParams();
 
 
+  const handleSubmit = (
+    values: any,
+  ) => {
+
+    console.log(
+      "Update product:",
+      id,
+      values,
+    );
+
+  };
 
 
-export function EditProductPage(){
+  return (
+
+    <div
+      className="
+      flex
+      flex-col
+      gap-6
+      "
+    >
+
+      <h1
+        className="
+        text-2xl
+        font-semibold
+        "
+      >
+        Edit Product
+      </h1>
 
 
+      <ProductForm
 
-const {
+        defaultValues={{
+          name: "",
+          sku: "",
+          currency: "THB",
+        }}
 
-id,
+        onSubmit={
+          handleSubmit
+        }
 
-}=useParams();
-
-
-
-
-
-
-return (
-
-
-<div
-
-className="
-flex
-flex-col
-gap-6
-"
-
->
+      />
 
 
+    </div>
 
-<h1
-
-className="
-text-2xl
-font-semibold
-"
-
->
-
-Edit Product
-
-</h1>
-
-
-
-
-
-
-<ProductForm
-
-productId={id}
-
-/>
-
-
-
-
-</div>
-
-
-);
-
-
+  );
 
 }

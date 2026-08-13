@@ -1,121 +1,28 @@
-import type {
-  RouteObject,
-} from "react-router-dom";
-
-
-import {
-  AppLayout,
-} from "../../../app/layout";
-
-
-import {
-  ProductsPage,
-} from "../pages/ProductsPage";
-
-
-import {
-  CreateProductPage,
-} from "../pages/CreateProductPage";
-
-
-import {
-  EditProductPage,
-} from "../pages/EditProductPage";
-
-
-import {
-  ProductDetailsPage,
-} from "../pages/ProductDetailsPage";
-
-
-
-
-
-export const productRoutes:RouteObject[]=[
-
-
-
-{
-
-path:"/products",
-
-element:(
-
-<AppLayout>
-
-<ProductsPage />
-
-</AppLayout>
-
-),
-
-
-},
-
-
-
-
-
-{
-
-path:"/products/create",
-
-element:(
-
-<AppLayout>
-
-<CreateProductPage />
-
-</AppLayout>
-
-),
-
-
-},
-
-
-
-
-
-{
-
-path:"/products/edit/:id",
-
-element:(
-
-<AppLayout>
-
-<EditProductPage />
-
-</AppLayout>
-
-),
-
-
-},
-
-
-
-
-
-{
-
-path:"/products/:id",
-
-element:(
-
-<AppLayout>
-
-<ProductDetailsPage />
-
-</AppLayout>
-
-),
-
-
-},
-
-
-
-
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Product Routes
+ * ============================================================
+ */
+
+import type { RouteObject } from "react-router-dom";
+
+import { ProductsPage } from "../pages/ProductsPage";
+import { ProductDetailsPage } from "../pages/ProductDetailsPage";
+import { ProductEditPage } from "../pages/ProductEditPage";
+
+export const productRoutes: RouteObject[] = [
+  {
+    path: "products",
+    element: <ProductsPage />,
+  },
+  {
+    path: "products/:id",
+    element: <ProductDetailsPage />,
+  },
+  {
+    path: "products/:id/edit",
+    element: <ProductEditPage />,
+  },
 ];

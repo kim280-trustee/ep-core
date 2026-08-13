@@ -1,134 +1,61 @@
-/**
- * ============================================================
- * E&P Technologies
- * E&P Smart POS
- * Create Brand Page
- * ============================================================
- */
-
-
 import {
-
   useNavigate,
-
 } from "react-router-dom";
 
-
 import {
-
   BrandForm,
-
 } from "../components/BrandForm";
 
-
 import {
-
   brandService,
-
 } from "../services/brand.service";
 
+import {
+  storeContext,
+} from "../../../core/store/store.context";
 
-
-
-
-
-
-
-export function CreateBrandPage(){
-
-
-
+export function CreateBrandPage() {
   const navigate =
-
     useNavigate();
 
-
-
-
-
-
-
   function handleSubmit(
-
-    data:Parameters<
-
+    data: Parameters<
       typeof brandService.createBrand
-
     >[2],
+  ) {
+    const context =
+      storeContext.getStore();
 
-  ){
-
-
+    if (!context) {
+      throw new Error(
+        "Store context is not initialized.",
+      );
+    }
 
     brandService.createBrand(
-
-      "default-tenant",
-
-      "default-store",
-
+      context.tenantId,
+      context.storeId,
       data,
-
     );
 
-
-
-
     navigate("/brands");
-
-
   }
 
-
-
-
-
-
-
   return (
-
-
     <div className="p-6">
-
-
-
       <h1
-
         className="
-
-        text-2xl
-
-        font-bold
-
-        mb-6
-
+          text-2xl
+          font-bold
+          mb-6
         "
-
       >
-
         Create Brand
-
-
       </h1>
 
-
-
-
-
-
       <BrandForm
-
         onSubmit={handleSubmit}
-
       />
-
-
-
-
-
     </div>
-
-
   );
-
-
 }

@@ -1,118 +1,104 @@
-/**
- * ============================================================
- * E&P Technologies
- * E&P Smart POS
- * Product Toolbar
- * ============================================================
- */
-
+// src/features/products/components/ProductToolbar.tsx
 
 import {
+  Search,
+} from "lucide-react";
+
+
+import type {
   ProductFilters,
-} from "./ProductFilters";
-
-
-import {
-  ProductSearch,
-} from "./ProductSearch";
-
-
-import {
   ProductStatus,
 } from "../types/product.types";
 
 
-
-
 interface ProductToolbarProps {
 
+  filters: ProductFilters;
 
-  search: string;
-
-
-  onSearchChange: (
-
-    value:string,
-
-  )=>void;
-
-
-
-  status:
-
-    ProductStatus | "ALL";
-
-
-
-  onStatusChange:
-
+  updateFilters:
     (
-
-      value: ProductStatus | "ALL",
-
-    )=>void;
-
+      filters: Partial<ProductFilters>,
+    ) => void;
 
 }
 
 
 
-
-
 export function ProductToolbar({
-
-  search,
-
-  onSearchChange,
-
-  status,
-
-  onStatusChange,
-
-}:ProductToolbarProps){
-
+  filters,
+  updateFilters,
+}: ProductToolbarProps) {
 
 
   return (
+    <div className="flex flex-col gap-4 rounded-xl border bg-white p-4 md:flex-row md:items-center">
 
 
-    <div
+      <div className="relative flex-1">
 
-      className="
-      flex
-      gap-4
-      "
-
-    >
+        <Search
+          className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+          size={18}
+        />
 
 
+        <input
+          value={
+            filters.search ?? ""
+          }
 
-      <ProductSearch
+          onChange={
+            (event) =>
+              updateFilters({
+                search:
+                  event.target.value,
+              })
+          }
 
-        value={search}
+          placeholder="Search products..."
+          className="w-full rounded-lg border py-2 pl-10 pr-3"
+        />
 
-        onChange={onSearchChange}
-
-      />
-
-
+      </div>
 
 
 
-      <ProductFilters
+      <select
+        value={
+          filters.status ?? "ALL"
+        }
 
-        status={status}
+        onChange={
+          (event) =>
+            updateFilters({
+              status:
+                event.target.value === "ALL"
+                  ? undefined
+                  : event.target.value as ProductStatus,
+            })
+        }
 
-        onChange={onStatusChange}
+        className="rounded-lg border px-3 py-2"
+      >
 
-      />
+        <option value="ALL">
+          All Status
+        </option>
 
+
+        <option value="ACTIVE">
+          Active
+        </option>
+
+
+        <option value="INACTIVE">
+          Inactive
+        </option>
+
+
+      </select>
 
 
     </div>
-
-
   );
-
-
 }

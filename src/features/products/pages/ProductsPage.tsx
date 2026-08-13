@@ -6,10 +6,14 @@
  * ============================================================
  */
 
+import {
+  useMemo,
+} from "react";
+
 
 import {
-  useEffect,
-} from "react";
+  ProductToolbar,
+} from "../components/ProductToolbar";
 
 
 import {
@@ -18,219 +22,244 @@ import {
 
 
 import {
-  ProductSearch,
-} from "../components/ProductSearch";
+  ProductForm,
+} from "../components/ProductForm";
 
 
 import {
-  ProductFilters,
-} from "../components/ProductFilters";
+  useProducts,
+} from "../hooks/useProduct";
 
 
 import {
-  ProductStats,
-} from "../components/ProductStats";
+  useCreateProduct,
+} from "../hooks/useProductMutations";
 
 
 import {
-  useProductsStore,
+  useProductStore,
 } from "../store/products.store";
 
 
+import {
+  useAuth,
+} from "@/core/auth";
+
+
+import type {
+  CreateProductInput,
+} from "../types/product.types";
+
+
+import type {
+  ProductFormValues,
+} from "../schemas/product.schema";
 
 
 
-export function ProductsPage(){
+export function ProductsPage() {
+
+
+  const {
+    user,
+  } =
+    useAuth();
 
 
 
-  const loadProducts =
+  const tenantId =
+    user?.tenantId ?? "";
 
-    useProductsStore(
 
-      (state)=>
 
-        state.loadProducts,
+  const {
+    filters,
+    updateFilters,
+  } =
+    useProductStore();
 
+
+
+  const {
+    data,
+    isLoading,
+  } =
+    useProducts({
+
+      tenantId,
+
+      filters,
+
+    });
+
+
+
+  const createProduct =
+    useCreateProduct(
+      tenantId,
     );
 
 
 
-
-
-  const search =
-
-    useProductsStore(
-
-      (state)=>
-
-        state.search,
-
+  const products =
+    useMemo(
+      () =>
+        data?.data ?? [],
+      [
+        data,
+      ],
     );
 
 
 
+  async function handleCreate(
+    values: ProductFormValues,
+  ) {
 
 
-  const setSearch =
+    const input:
+      CreateProductInput =
+    {
 
-    useProductsStore(
+      tenantId,
 
-      (state)=>
 
-        state.setSearch,
+      name:
+        values.name,
 
+
+      sku:
+        values.sku,
+
+
+      currency:
+        values.currency,
+
+
+      productType:
+        values.productType,
+
+
+      status:
+        values.status,
+
+
+      costPrice:
+        values.costPrice,
+
+
+      sellingPrice:
+        values.sellingPrice,
+
+
+      trackInventory:
+        values.trackInventory,
+
+
+      barcode:
+        values.barcode ?? undefined,
+
+
+      description:
+        values.description ?? undefined,
+
+
+      categoryId:
+        values.categoryId ?? undefined,
+
+
+      brandId:
+        values.brandId ?? undefined,
+
+
+      unitId:
+        values.unitId ?? undefined,
+
+
+      taxId:
+        values.taxId ?? undefined,
+
+
+      imageUrl:
+        values.imageUrl ?? undefined,
+
+
+    };
+
+
+    await createProduct.mutateAsync(
+      input,
     );
 
 
+  }
 
 
 
+  if (!tenantId) {
 
-  const statusFilter =
+    return (
 
-    useProductsStore(
+      <div>
 
-      (state)=>
+        Loading tenant...
 
-        state.statusFilter,
-
-    );
-
-
-
-
-
-
-  const setStatusFilter =
-
-    useProductsStore(
-
-      (state)=>
-
-        state.setStatusFilter,
+      </div>
 
     );
 
-
-
-
-
-
-
-
-  useEffect(()=>{
-
-
-    loadProducts();
-
-
-
-  },[loadProducts]);
-
-
-
-
+  }
 
 
 
   return (
 
-
-    <div
-
-      className="
-      flex
-      flex-col
-      gap-6
-      "
-
-    >
+    <div className="space-y-6">
 
 
+      <ProductToolbar
 
+        filters={
+          filters
+        }
 
-      <h1
+        updateFilters={
+          updateFilters
+        }
 
-        className="
-        text-2xl
-        font-semibold
-        "
-
-      >
-
-        Products
-
-
-      </h1>
+      />
 
 
 
+      <ProductForm
+
+        onSubmit={
+          handleCreate
+        }
+
+        loading={
+          createProduct.isPending
+        }
+
+      />
 
 
 
+      <ProductTable
 
-      <ProductStats />
+        products={
+          products
+        }
 
+        loading={
+          isLoading
+        }
 
-
-
-
-
-
-      <div
-
-        className="
-        flex
-        gap-4
-        "
-
-      >
-
-
-
-        <ProductSearch
-
-          value={search}
-
-          onChange={setSearch}
-
-        />
-
-
-
-
-
-
-        <ProductFilters
-
-          status={statusFilter}
-
-          onChange={setStatusFilter}
-
-        />
-
-
-
-      </div>
-
-
-
-
-
-
-
-
-      <ProductTable />
-
-
-
+      />
 
 
     </div>
 
-
   );
-
 
 }

@@ -1,53 +1,63 @@
+ /**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Inventory Movement Engine
+ * ============================================================
+ */
+
 import type {
   InventoryRecord,
 } from "../types/inventory-record.types";
 
 
-export type InventoryMovementType =
+export interface InventoryMovementInput {
 
-  | "PURCHASE_RECEIPT"
+  inventoryId?: string;
 
-  | "SALE"
+  productId: string;
 
-  | "RETURN"
+  warehouseId?: string;
 
-  | "TRANSFER"
+  quantity: number;
 
-  | "ADJUSTMENT_IN"
+  movementType: string;
 
-  | "ADJUSTMENT_OUT";
+  previousQuantity?: number;
+
+  newQuantity?: number;
+
+  referenceId?: string;
+
+  notes?: string;
+
+}
 
 
 
 export interface InventoryMovement {
 
-
   id: string;
 
+  inventoryId?: string;
 
   productId: string;
 
-
-  warehouseId: string;
-
-
-  type: InventoryMovementType;
-
+  warehouseId?: string;
 
   quantity: number;
 
+  movementType: string;
 
-  previousQuantity: number;
+  previousQuantity?: number;
 
-
-  newQuantity: number;
-
+  newQuantity?: number;
 
   referenceId?: string;
 
+  notes?: string;
 
   createdAt: string;
-
 
 }
 
@@ -56,112 +66,44 @@ export interface InventoryMovement {
 class InventoryMovementEngine {
 
 
-
   increase(
-
     record: InventoryRecord,
-
     quantity: number,
-
   ): InventoryRecord {
-
-
-    if (quantity <= 0) {
-
-      throw new Error(
-        "Quantity must be greater than zero.",
-      );
-
-    }
-
-
 
     return {
 
-
       ...record,
 
-
       quantityOnHand:
-
         record.quantityOnHand + quantity,
 
 
-
       availableQuantity:
-
         record.availableQuantity + quantity,
-
-
-
-      lastMovementAt:
-
-        new Date().toISOString(),
-
 
     };
 
   }
-
 
 
 
 
   decrease(
-
     record: InventoryRecord,
-
     quantity: number,
-
   ): InventoryRecord {
-
-
-    if (quantity <= 0) {
-
-      throw new Error(
-        "Quantity must be greater than zero.",
-      );
-
-    }
-
-
-
-    if (
-
-      record.availableQuantity < quantity
-
-    ) {
-
-      throw new Error(
-        "Insufficient available stock.",
-      );
-
-    }
-
-
 
     return {
 
-
       ...record,
 
-
       quantityOnHand:
-
         record.quantityOnHand - quantity,
 
 
-
       availableQuantity:
-
         record.availableQuantity - quantity,
-
-
-
-      lastMovementAt:
-
-        new Date().toISOString(),
-
 
     };
 
@@ -170,19 +112,14 @@ class InventoryMovementEngine {
 
 
 
-
   createMovement(
-
-    input: Omit<InventoryMovement, "id" | "createdAt">,
-
+    input: InventoryMovementInput,
   ): InventoryMovement {
 
 
     return {
 
-
       id:
-
         crypto.randomUUID(),
 
 
@@ -190,19 +127,16 @@ class InventoryMovementEngine {
 
 
       createdAt:
-
-        new Date().toISOString(),
-
+        new Date()
+          .toISOString(),
 
     };
 
   }
-
 
 }
 
 
 
 export const inventoryMovementEngine =
-
-  new InventoryMovementEngine();
+new InventoryMovementEngine();

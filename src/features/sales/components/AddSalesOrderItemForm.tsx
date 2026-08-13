@@ -1,40 +1,86 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Add Sales Order Item Form
+ * ============================================================
+ */
+
 import {
   useState,
 } from "react";
-
 
 import {
   useSalesOrders,
 } from "../hooks/useSalesOrders";
 
+import {
+  ProductSelector,
+} from "./ProductSelector";
+
+import {
+  useProductsStore,
+} from "@/features/products";
 
 
 export default function AddSalesOrderItemForm() {
 
 
   const {
-
     orders,
-
     addItem,
-
   } = useSalesOrders();
 
 
 
-  const [orderId, setOrderId] = useState("");
-
-  const [productId, setProductId] = useState("");
-
-  const [quantity, setQuantity] = useState(1);
-
-  const [unitPrice, setUnitPrice] = useState(0);
+  const products =
+    useProductsStore(
+      (state) => state.products,
+    );
 
 
+
+  const [orderId, setOrderId] =
+    useState("");
+
+
+
+  const [productId, setProductId] =
+    useState("");
+
+
+
+  const [quantity, setQuantity] =
+    useState(1);
 
 
 
   function handleSubmit() {
+
+
+    const product =
+      products.find(
+        (item) =>
+          item.id === productId,
+      );
+
+
+
+    if (!product) {
+
+      alert(
+        "Please select a product",
+      );
+
+      return;
+
+    }
+
+
+
+    const taxRate =
+      product.tax?.taxRate ?? 0;
+
 
 
     addItem(
@@ -44,40 +90,34 @@ export default function AddSalesOrderItemForm() {
       {
 
         id:
-
           crypto.randomUUID(),
 
 
         salesOrderId:
-
           orderId,
 
 
-        productId,
+        productId:
+          product.id,
 
 
         quantity,
 
 
-        unitPrice,
+        unitPrice:
+          product.pricing.sellingPrice,
 
 
         discountAmount:
-
           0,
 
 
-        taxRate:
-
-          0,
+        taxRate,
 
 
         lineTotal:
-
           quantity *
-
-          unitPrice,
-
+          product.pricing.sellingPrice,
 
       },
 
@@ -89,24 +129,24 @@ export default function AddSalesOrderItemForm() {
 
     setQuantity(1);
 
-    setUnitPrice(0);
-
-
   }
-
 
 
 
 
   return (
 
-    <div>
+    <div
+      className="
+      flex
+      flex-col
+      gap-4
+      "
+    >
 
 
       <h2>
-
         Add Sales Item
-
       </h2>
 
 
@@ -115,46 +155,36 @@ export default function AddSalesOrderItemForm() {
 
         value={orderId}
 
-        onChange={(e) =>
-
+        onChange={(e)=>
           setOrderId(
-
             e.target.value,
-
           )
-
         }
+
+        className="border p-2 rounded"
 
       >
 
         <option value="">
-
           Select Order
-
         </option>
 
 
-
         {
+          orders.map(
+            (order)=> (
 
-          orders.map((order) => (
+              <option
+                key={order.id}
+                value={order.id}
+              >
 
+                {order.orderNumber}
 
-            <option
+              </option>
 
-              key={order.id}
-
-              value={order.id}
-
-            >
-
-              {order.orderNumber}
-
-            </option>
-
-
-          ))
-
+            ),
+          )
         }
 
 
@@ -162,85 +192,48 @@ export default function AddSalesOrderItemForm() {
 
 
 
-
-      <input
-
-        placeholder="Product ID"
+      <ProductSelector
 
         value={productId}
 
-        onChange={(e) =>
-
-          setProductId(
-
-            e.target.value,
-
-          )
-
-        }
+        onChange={setProductId}
 
       />
-
 
 
 
       <input
 
         type="number"
-
-        placeholder="Quantity"
 
         value={quantity}
 
-        onChange={(e) =>
+        min={1}
 
+        onChange={(e)=>
           setQuantity(
-
             Number(
-
               e.target.value,
-
             ),
-
           )
-
         }
 
-      />
-
-
-
-
-      <input
-
-        type="number"
-
-        placeholder="Unit Price"
-
-        value={unitPrice}
-
-        onChange={(e) =>
-
-          setUnitPrice(
-
-            Number(
-
-              e.target.value,
-
-            ),
-
-          )
-
-        }
+        className="border p-2 rounded"
 
       />
-
 
 
 
       <button
 
         onClick={handleSubmit}
+
+        className="
+        bg-blue-600
+        text-white
+        p-2
+        rounded
+        "
 
       >
 

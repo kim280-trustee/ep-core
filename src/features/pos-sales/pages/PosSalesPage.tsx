@@ -1,29 +1,55 @@
 import {
+  useEffect,
+  useState,
+} from "react";
+
+import {
   ProductSearch,
 } from "../components/ProductSearch";
-
 
 import {
   Cart,
 } from "../components/Cart";
 
-
 import {
   CheckoutPanel,
 } from "../components/CheckoutPanel";
-
 
 import {
   productService,
 } from "../../products/services/product.service";
 
+import type {
+  Product,
+} from "../../products/types/product.types";
 
 
 export function PosSalesPage() {
 
 
-  const products =
-    productService.getProducts();
+  const [products, setProducts] =
+    useState<Product[]>([]);
+
+
+  useEffect(() => {
+
+    async function loadProducts() {
+
+      const result =
+        await productService.getProducts(
+          "",
+        );
+
+      setProducts(
+  result.data,
+);
+
+    }
+
+
+    loadProducts();
+
+  }, []);
 
 
 
@@ -51,9 +77,7 @@ export function PosSalesPage() {
 
 
           <ProductSearch
-
             products={products}
-
           />
 
 

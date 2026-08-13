@@ -71,10 +71,8 @@ export class StockTransferEngine {
         source.warehouseId,
 
 
-      type:
-
-        "TRANSFER",
-
+      movementType:
+  "TRANSFER",
 
       quantity,
 

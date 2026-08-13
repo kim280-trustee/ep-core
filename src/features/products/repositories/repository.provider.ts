@@ -1,25 +1,9 @@
-/**
- * ============================================================
- * E&P Technologies
- * E&P Smart POS
- * Product Repository Provider
- * ============================================================
- */
-
-
 import {
-  InMemoryProductRepository,
-} from "./in-memory-product.repository";
-
-
-import type {
-  IProductRepository,
+  productRepository,
+  type IProductRepository,
 } from "./product.repository";
 
 
-
-export const productRepository:
-
+export const productRepositoryProvider:
   IProductRepository =
-
-    new InMemoryProductRepository();
+    productRepository;

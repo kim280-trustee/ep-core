@@ -6,130 +6,61 @@
  * ============================================================
  */
 
-
 import {
   useCategoriesStore,
 } from "../store/categories.store";
 
-
-
-
-
-export function useCategories(){
-
-
+export function useCategories() {
 
   const categories =
-
     useCategoriesStore(
-
-      state => state.categories,
-
+      (state) =>
+        state.categories,
     );
-
-
-
-
 
   const search =
-
     useCategoriesStore(
-
-      state => state.search,
-
+      (state) =>
+        state.search,
     );
-
-
-
-
 
   const loadCategories =
-
     useCategoriesStore(
-
-      state => state.loadCategories,
-
+      (state) =>
+        state.loadCategories,
     );
-
-
-
-
 
   const createCategory =
-
     useCategoriesStore(
-
-      state => state.createCategory,
-
+      (state) =>
+        state.createCategory,
     );
-
-
-
-
 
   const updateCategory =
-
     useCategoriesStore(
-
-      state => state.updateCategory,
-
+      (state) =>
+        state.updateCategory,
     );
-
-
-
-
 
   const deleteCategory =
-
     useCategoriesStore(
-
-      state => state.deleteCategory,
-
+      (state) =>
+        state.deleteCategory,
     );
-
-
-
-
 
   const setSearch =
-
     useCategoriesStore(
-
-      state => state.setSearch,
-
+      (state) =>
+        state.setSearch,
     );
 
-
-
-
-
-
-
   return {
-
-
     categories,
-
-
     search,
-
-
     loadCategories,
-
-
     createCategory,
-
-
     updateCategory,
-
-
     deleteCategory,
-
-
     setSearch,
-
-
   };
-
-
 }

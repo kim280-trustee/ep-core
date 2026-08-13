@@ -1,4 +1,5 @@
 import {
+  useCallback,
   useState,
 } from "react";
 
@@ -15,13 +16,13 @@ export function useInventory() {
     inventoryService.getInventory(),
   );
 
-  function refresh() {
+  const refresh = useCallback(() => {
 
     setInventory(
       inventoryService.getInventory(),
     );
 
-  }
+  }, []);
 
   return {
 

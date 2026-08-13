@@ -1,24 +1,42 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Dashboard Store
+ * ============================================================
+ */
+
 import {
   create,
 } from "zustand";
 
+
 import {
-  dashboardEngine,
-} from "../engine";
+  dashboardService,
+} from "../services";
+
 
 import type {
   DashboardSummary,
 } from "../types";
 
-interface DashboardState {
+
+
+interface DashboardStore {
+
 
   summary: DashboardSummary;
 
-  loadDashboard: () => void;
+
+  loadDashboard: () => Promise<void>;
+
 
 }
 
-const emptySummary: DashboardSummary = {
+
+
+const defaultSummary: DashboardSummary = {
+
 
   totalSales: 0,
 
@@ -36,24 +54,33 @@ const emptySummary: DashboardSummary = {
 
   totalSuppliers: 0,
 
+
 };
 
+
+
 export const useDashboardStore =
+create<DashboardStore>((set) => ({
 
-create<DashboardState>((set) => ({
 
-  summary: emptySummary,
+  summary: defaultSummary,
 
-  loadDashboard: () => {
+
+  loadDashboard: async () => {
+
+
+    const summary =
+      await dashboardService.getSummary();
+
 
     set({
 
-      summary:
-
-        dashboardEngine.getDashboard(),
+      summary,
 
     });
 
+
   },
+
 
 }));

@@ -8,6 +8,9 @@
  * ============================================================
  */
 
+import type {
+  ProductFormValues,
+} from "../schemas/product.schema";
 
 import {
   z,
@@ -256,9 +259,4 @@ export const createProductSchema =
 
 
 export type CreateProductFormData =
-
-  z.infer<
-
-    typeof createProductSchema
-
-  >;
+  ProductFormValues;

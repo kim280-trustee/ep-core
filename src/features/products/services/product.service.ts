@@ -7,217 +7,103 @@
  */
 
 import {
-  productRepository,
-} from "../repositories";
-
-import {
-  createProductSchema,
-} from "../validation/product.schema";
+  productRepositoryProvider,
+} from "../repositories/repository.provider";
 
 import type {
   Product,
-  CreateProductDto,
-  UpdateProductDto,
+  CreateProductInput,
+  UpdateProductInput,
+  ProductFilters,
+  ProductListResult,
 } from "../types/product.types";
 
-import {
-  ProductStatus,
-  ProductType,
-} from "../types/product.types";
+export const productService = {
 
-class ProductService {
-
-  getProducts(): Product[] {
-
-    return productRepository.findAll();
-
-  }
-
-  getProductById(
-    id: string,
-  ): Product | undefined {
-
-    return productRepository.findById(id);
-
-  }
-
-  getActiveProducts(): Product[] {
-
-    return this.getProducts().filter(
-      product =>
-        product.status === ProductStatus.ACTIVE,
-    );
-
-  }
-
-  getInactiveProducts(): Product[] {
-
-    return this.getProducts().filter(
-      product =>
-        product.status === ProductStatus.INACTIVE,
-    );
-
-  }
-
-  getProductStats() {
-
-    const products = this.getProducts();
-
-    return {
-
-      total: products.length,
-
-      active: products.filter(
-        p => p.status === ProductStatus.ACTIVE,
-      ).length,
-
-      inactive: products.filter(
-        p => p.status === ProductStatus.INACTIVE,
-      ).length,
-
-    };
-
-  }
-
-  createProduct(
+  async getProducts(
     tenantId: string,
-    storeId: string,
-    input: CreateProductDto,
-  ): Product {
+    filters?: ProductFilters,
+  ): Promise<ProductListResult> {
 
-    const validated =
-      createProductSchema.parse(input);
-
-    return productRepository.create(
-
+    return productRepositoryProvider.findAll(
       tenantId,
-
-      storeId,
-
       {
-
-        name: validated.name,
-
-        description:
-          validated.description ?? null,
-
-        type:
-          validated.type ?? ProductType.PRODUCT,
-
-        identifiers: {
-
-          sku:
-            validated.identifiers.sku,
-
-          barcode:
-            validated.identifiers.barcode ?? null,
-
-        },
-
-        pricing:
-          validated.pricing,
-
-        tax:
-          validated.tax ?? {
-
-            taxId: null,
-
-            taxRate: 0,
-
-          },
-
-        inventory:
-          validated.inventory ?? {
-
-            trackInventory: false,
-
-            stockQuantity: 0,
-
-          },
-
-        categoryId:
-          validated.categoryId ?? null,
-
-        brandId:
-          validated.brandId ?? null,
-
-        unitId:
-          validated.unitId ?? null,
-
-        imageUrl:
-          validated.imageUrl ?? null,
-
+        filters,
       },
-
     );
 
-  }
+  },
 
-  updateProduct(
+  async getProduct(
+    tenantId: string,
     id: string,
-    updates: UpdateProductDto,
-  ): Product | undefined {
+  ): Promise<Product | null> {
 
-    return productRepository.update(
+    return productRepositoryProvider.findById(
+      tenantId,
       id,
-      updates,
     );
 
-  }
+  },
 
-  toggleStatus(
-    product: Product,
-  ): Product {
-
-    return {
-
-      ...product,
-
-      status:
-        product.status === ProductStatus.ACTIVE
-          ? ProductStatus.INACTIVE
-          : ProductStatus.ACTIVE,
-
-      updatedAt:
-        new Date().toISOString(),
-
-    };
-
-  }
-
-  duplicateProduct(
-    product: Product,
-  ): Product {
-
-    return {
-
-      ...product,
-
-      id:
-        crypto.randomUUID(),
-
-      name:
-        `${product.name} Copy`,
-
-      createdAt:
-        new Date().toISOString(),
-
-      updatedAt:
-        new Date().toISOString(),
-
-    };
-
-  }
-
-  deleteProduct(
+  async getProductById(
+    tenantId: string,
     id: string,
-  ): boolean {
+  ): Promise<Product | null> {
 
-    return productRepository.delete(id);
+    return productRepositoryProvider.findById(
+      tenantId,
+      id,
+    );
 
-  }
+  },
 
-}
+  async createProduct(
+    input: CreateProductInput,
+  ): Promise<Product> {
 
-export const productService =
-  new ProductService();
+    return productRepositoryProvider.create(
+      input,
+    );
+
+  },
+
+  async updateProduct(
+    tenantId: string,
+    id: string,
+    input: UpdateProductInput,
+  ): Promise<Product> {
+
+    return productRepositoryProvider.update(
+      tenantId,
+      id,
+      input,
+    );
+
+  },
+
+  async deleteProduct(
+    tenantId: string,
+    id: string,
+  ): Promise<void> {
+
+    return productRepositoryProvider.delete(
+      tenantId,
+      id,
+    );
+
+  },
+
+  async searchProducts(
+    tenantId: string,
+    query: string,
+  ): Promise<Product[]> {
+
+    return productRepositoryProvider.search(
+      tenantId,
+      query,
+    );
+
+  },
+
+};

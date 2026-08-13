@@ -57,7 +57,6 @@ import {
 } from "../../../features/payment-methods/services/payment-method.service";
 
 
-
 import {
   DEFAULT_SEED,
 } from "./seed.constants";
@@ -66,7 +65,6 @@ import {
 import type {
   SeedOptions,
 } from "./seed.types";
-
 
 
 import {
@@ -86,7 +84,7 @@ import {
 
 import {
   sampleProducts,
-} from "..//sample-data/products";
+} from "../sample-data/products";
 
 
 import {
@@ -123,353 +121,211 @@ import {
 class SeedService {
 
 
-
-  seed(
-
+  async seed(
     options: Partial<SeedOptions> = {},
-
   ) {
-
 
 
     const config = {
 
-
       ...DEFAULT_SEED,
 
-
       ...options,
-
 
     };
 
 
 
     sampleCategories.forEach(
-
-      category => {
-
+      (category)=>{
 
         categoryService.createCategory(
-
           category,
-
           config.tenantId,
-
           config.storeId,
-
         );
 
+      },
+    );
+
+
+
+    sampleBrands.forEach(
+      (brand)=>{
+
+        brandService.createBrand(
+          config.tenantId,
+          config.storeId,
+          brand,
+        );
 
       },
-
     );
 
-
-
-   sampleBrands.forEach(
-
-  brand => {
-
-
-    brandService.createBrand(
-
-      config.tenantId,
-
-      config.storeId,
-
-      brand,
-
-    );
-
-
-  },
-
-);
 
 
     sampleUnits.forEach(
-
-      unit => {
-
+      (unit)=>{
 
         unitService.createUnit(
-
           unit,
-
           config.tenantId,
-
           config.storeId,
-
         );
 
-
       },
-
     );
 
 
 
     sampleWarehouses.forEach(
-
-      warehouse => {
-
+      (warehouse)=>{
 
         warehouseService.createWarehouse(
-
           config.tenantId,
-
           config.storeId,
-
           warehouse,
-
         );
 
-
       },
-
     );
 
 
 
     sampleCustomers.forEach(
-
-      customer => {
-
+      (customer)=>{
 
         customerService.createCustomer(
-
           customer,
-
           config.tenantId,
-
           config.storeId,
-
         );
 
-
       },
-
     );
 
 
 
     sampleSuppliers.forEach(
-
-      supplier => {
-
+      (supplier)=>{
 
         supplierService.createSupplier(
-
           supplier,
-
           config.tenantId,
-
           config.storeId,
-
         );
 
-
       },
-
     );
-        sampleTaxes.forEach(
 
-      tax => {
 
+
+    sampleTaxes.forEach(
+      (tax)=>{
 
         taxService.createTax(
-
           config.tenantId,
-
           config.storeId,
-
           tax,
-
         );
 
-
       },
-
     );
 
 
 
     samplePaymentMethods.forEach(
-
-      method => {
-
+      (method)=>{
 
         paymentMethodService.createPaymentMethod(
-
           config.tenantId,
-
           config.storeId,
-
           method,
-
         );
 
-
       },
-
     );
 
 
 
     sampleProducts.forEach(
+      (product)=>{
 
-      product => {
 
+        productService.createProduct({
 
+          tenantId:
+            config.tenantId,
 
-        productService.createProduct(
 
-          config.tenantId,
+          storeId:
+            config.storeId,
 
-          config.storeId,
 
-          {
+          name:
+            product.name,
 
 
-            name:
+          sku:
+            product.sku,
 
-              product.name,
 
+          barcode:
+            product.barcode ?? undefined,
 
 
-            description:
+          description:
+            product.description ?? undefined,
 
-              product.description ?? null,
 
+          costPrice:
+            product.costPrice,
 
 
-            identifiers: {
+          sellingPrice:
+            product.sellingPrice,
 
 
-              sku:
+          currency:
+            product.currency ?? "THB",
 
-                product.sku,
 
+          trackInventory:
+            product.trackInventory,
 
 
-              barcode:
+          categoryId:
+            product.categoryId ?? undefined,
 
-                product.barcode ?? null,
 
+          brandId:
+            product.brandId ?? undefined,
 
-            },
 
+          unitId:
+            product.unitId ?? undefined,
 
 
-            pricing: {
+          imageUrl:
+            product.imageUrl ?? undefined,
 
 
-              costPrice:
-
-                product.costPrice,
-
-
-
-              sellingPrice:
-
-                product.sellingPrice,
-
-
-
-              currency:
-
-                product.currency,
-
-
-            },
-
-
-
-            tax: {
-
-
-              taxId:
-
-                null,
-
-
-
-              taxRate:
-
-                0,
-
-
-            },
-
-
-
-            inventory: {
-
-
-              trackInventory:
-
-                product.trackInventory,
-
-
-
-              stockQuantity:
-
-                product.stockQuantity,
-
-
-            },
-
-
-
-            categoryId:
-
-              product.categoryId ?? null,
-
-
-
-            brandId:
-
-              product.brandId ?? null,
-
-
-
-            unitId:
-
-              product.unitId ?? null,
-
-
-
-            imageUrl:
-
-              product.imageUrl ?? null,
-
-
-          },
-
-        );
+        });
 
 
       },
-
     );
 
 
 
     sampleInventory.forEach(
-
-      record => {
-
+      (record)=>{
 
         inventoryService.createInventoryRecord(
-
           record,
-
         );
 
-
       },
-
     );
 
 
@@ -481,5 +337,4 @@ class SeedService {
 
 
 export const seedService =
-
   new SeedService();

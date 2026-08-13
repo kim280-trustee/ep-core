@@ -8,36 +8,31 @@
  * ============================================================
  */
 
+import {
+  ReceiveStockForm,
+} from "../components/ReceiveStockForm";
 
 import {
   useEffect,
 } from "react";
 
-
 import {
   useInventory,
 } from "../hooks/useInventory";
-
 
 import {
   useInventoryStore,
 } from "../store/inventory.store";
 
-
 import {
   InventoryToolbar,
 } from "../components/InventoryToolbar";
-
 
 import {
   InventoryTable,
 } from "../components/InventoryTable";
 
-
-
-
 export function InventoryPage() {
-
 
   const {
 
@@ -47,9 +42,6 @@ export function InventoryPage() {
 
   } = useInventory();
 
-
-
-
   const {
 
     records,
@@ -58,60 +50,31 @@ export function InventoryPage() {
 
   } = useInventoryStore();
 
+  useEffect(() => {
 
+    refresh();
 
+  }, [refresh]);
 
+  useEffect(() => {
 
-  useEffect(
-
-    () => {
-
-      refresh();
-
-    },
-
-    [
-
-      refresh,
-
-    ],
-
-  );
-
-
-
-
-
-  useEffect(
-
-    () => {
-
-      setRecords(
-
-        inventory,
-
-      );
-
-    },
-
-    [
+    setRecords(
 
       inventory,
 
-      setRecords,
+    );
 
-    ],
+  }, [
 
-  );
+    inventory,
 
+    setRecords,
 
-
-
+  ]);
 
   return (
 
     <div className="p-6">
-
 
       <InventoryToolbar
 
@@ -119,7 +82,7 @@ export function InventoryPage() {
 
       />
 
-
+<ReceiveStockForm />
 
       <InventoryTable
 
@@ -127,10 +90,8 @@ export function InventoryPage() {
 
       />
 
-
     </div>
 
   );
-
 
 }
