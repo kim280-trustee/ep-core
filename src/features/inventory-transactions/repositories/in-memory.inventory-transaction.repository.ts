@@ -2,7 +2,6 @@ import type {
   InventoryTransaction,
 } from "../types/inventory-transaction.types";
 
-
 import type {
   InventoryTransactionRepository,
 } from "./inventory-transaction.repository";
@@ -16,67 +15,74 @@ implements InventoryTransactionRepository {
     InventoryTransaction[] = [];
 
 
+  async findAll(
+    tenantId: string,
+  ): Promise<InventoryTransaction[]> {
 
-  findAll() {
-
-    return this.transactions;
-
-  }
-
-
-
-  findById(
-    id: string,
-  ) {
-
-    return this.transactions.find(
+    return this.transactions.filter(
       (transaction) =>
-        transaction.id === id,
+        transaction.tenantId === tenantId,
     );
 
   }
 
 
+  async findById(
+    tenantId: string,
+    id: string,
+  ): Promise<InventoryTransaction | null> {
 
-  findByProduct(
+    return (
+      this.transactions.find(
+        (transaction) =>
+          transaction.tenantId === tenantId &&
+          transaction.id === id,
+      ) ??
+      null
+    );
+
+  }
+
+
+  async findByProduct(
+    tenantId: string,
     productId: string,
-  ) {
+  ): Promise<InventoryTransaction[]> {
 
     return this.transactions.filter(
       (transaction) =>
+        transaction.tenantId === tenantId &&
         transaction.productId === productId,
     );
 
   }
 
 
-
-  findByWarehouse(
+  async findByWarehouse(
+    tenantId: string,
     warehouseId: string,
-  ) {
+  ): Promise<InventoryTransaction[]> {
 
     return this.transactions.filter(
       (transaction) =>
+        transaction.tenantId === tenantId &&
         transaction.warehouseId === warehouseId,
     );
 
   }
 
 
-
-  create(
+  async create(
     transaction: InventoryTransaction,
-  ) {
+  ): Promise<InventoryTransaction> {
 
     this.transactions.push(
       transaction,
     );
 
-
     return transaction;
 
   }
-
 
 }
 

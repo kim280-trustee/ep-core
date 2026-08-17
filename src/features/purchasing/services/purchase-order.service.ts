@@ -184,7 +184,7 @@ class PurchaseOrderService {
 
   }
 
-  receive(
+  async receive(
     orderId: string,
   ) {
 
@@ -201,10 +201,7 @@ class PurchaseOrderService {
 
     }
 
-    const updated =
-      purchaseReceivingEngine.receive(
-        order,
-      );
+    const updated = await purchaseReceivingEngine.receive(order);
 
     return purchaseOrderRepository.update(
       order.id,

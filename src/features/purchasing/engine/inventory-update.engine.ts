@@ -8,57 +8,36 @@ import {
 
 export class InventoryUpdateEngine {
 
-  receive(
+  async receive(
     order: PurchaseOrder,
-  ): void {
+  ): Promise<void> {
 
     for (const item of order.items) {
 
-      const record =
-        inventoryService.getInventoryRecord(
-
-          item.productId,
-
-          order.warehouseId,
-
-        );
-
-      if (!record) {
-
-        throw new Error(
-
-          `Inventory record not found for product ${item.productId}.`,
-
-        );
-
-      }
-
       const quantity =
-
         item.quantityOrdered -
-
         item.quantityReceived;
 
       if (quantity <= 0) {
-
         continue;
-
       }
 
-      inventoryService.increaseStock(
+      const record =
+        await inventoryService.getInventoryRecord(
+          order.tenantId,
+          item.productId,
+          order.warehouseId,
+        );
 
-        record,
+      if (!record) {
+        throw new Error(
+          `Inventory record not found for product ${item.productId}.`,
+        );
+      }
 
-        quantity,
-
-        item.unitCost,
-
-      );
-
+      await inventoryService.increaseStock(record, quantity, item.unitCost);
     }
-
   }
-
 }
 
 export const inventoryUpdateEngine =

@@ -1,487 +1,244 @@
-import {
-  inventoryContext,
-} from "../repositories/inventory-context";
-
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Inventory Service
+ * ============================================================
+ */
 
 import type {
   InventoryRecord,
 } from "../types/inventory-record.types";
 
-
 import {
-  inventoryMovementEngine,
-} from "../engine";
-
+  supabaseInventoryRepository,
+} from "../repositories/supabase.inventory.repository";
 
 
 class InventoryService {
 
 
+  async getInventory(
+    tenantId: string,
+  ): Promise<InventoryRecord[]> {
 
-  getInventory() {
-
-    return inventoryContext.repository.findAll();
-
-  }
-
-
-
-
-
-  getInventoryRecord(
-
-    productId: string,
-
-    warehouseId: string,
-
-  ) {
-
-
-    return inventoryContext.repository
-
-      .findByProductAndWarehouse(
-
-        productId,
-
-        warehouseId,
-
-      );
-
-
-  }
-
-
-
-
-
-  createInventoryRecord(
-
-    record: InventoryRecord,
-
-  ) {
-
-
-    return inventoryContext.repository.create(
-
-      record,
-
+    return (
+      supabaseInventoryRepository.findAllAsync(
+        tenantId,
+      )
     );
 
+  }
+
+
+  async getInventoryRecord(
+    tenantId: string,
+    productId: string,
+    warehouseId: string,
+  ): Promise<InventoryRecord | null> {
+
+    return (
+      supabaseInventoryRepository
+        .findByProductAndWarehouseAsync(
+          tenantId,
+          productId,
+          warehouseId,
+        )
+    );
 
   }
 
 
+  async getInventoryByProduct(
+    tenantId: string,
+    productId: string,
+  ): Promise<InventoryRecord[]> {
+
+    return (
+      supabaseInventoryRepository
+        .findByProductAsync(
+          tenantId,
+          productId,
+        )
+    );
+
+  }
 
 
+  async getInventoryByWarehouse(
+    tenantId: string,
+    warehouseId: string,
+  ): Promise<InventoryRecord[]> {
 
-  increaseStock(
+    return (
+      supabaseInventoryRepository
+        .findByWarehouseAsync(
+          tenantId,
+          warehouseId,
+        )
+    );
 
+  }
+
+
+  async createInventoryRecord(
     record: InventoryRecord,
+  ): Promise<InventoryRecord> {
 
+    return (
+      supabaseInventoryRepository
+        .createAsync(
+          record,
+        )
+    );
+
+  }
+
+
+  async increaseStock(
+    record: InventoryRecord,
     quantity: number,
-
     incomingCost: number,
+  ): Promise<InventoryRecord> {
 
-  ) {
+    if (quantity <= 0) {
 
-
-
-    const updatedRecord =
-
-      inventoryMovementEngine.increase(
-
-        record,
-
-        quantity,
-
+      throw new Error(
+        "Stock quantity must be greater than zero.",
       );
 
+    }
 
 
-    const currentStockValue =
+    const currentQuantity =
+      record.quantityOnHand;
 
-      record.quantityOnHand *
-
+    const currentAverageCost =
       record.averageCost;
 
 
-
-    const incomingStockValue =
-
-      quantity *
-
-      incomingCost;
-
-
-
-    const totalQuantity =
-
-      updatedRecord.quantityOnHand;
-
-
-
-    const averageCost =
-
-      totalQuantity === 0
-
-        ? 0
-
-        :
-
-        (
-
-          currentStockValue +
-
-          incomingStockValue
-
-        )
-
-        /
-
-        totalQuantity;
-
-
-
-    return inventoryContext.repository.update(
-
-      record.id,
-
-      {
-
-
-        quantityOnHand:
-
-          updatedRecord.quantityOnHand,
-
-
-        availableQuantity:
-
-          updatedRecord.availableQuantity,
-
-
-        averageCost,
-
-
-        lastMovementAt:
-
-          new Date().toISOString(),
-
-
-      },
-
-    );
-
-
-  }
-
-
-
-
-
-  decreaseStock(
-
-    record: InventoryRecord,
-
-    quantity: number,
-
-  ) {
-
-
-
-    const updatedRecord =
-
-      inventoryMovementEngine.decrease(
-
-        record,
-
-        quantity,
-
-      );
-
-
-
-    return inventoryContext.repository.update(
-
-      record.id,
-
-      {
-
-
-        quantityOnHand:
-
-          updatedRecord.quantityOnHand,
-
-
-        availableQuantity:
-
-          updatedRecord.availableQuantity,
-
-
-        lastMovementAt:
-
-          new Date().toISOString(),
-
-
-      },
-
-    );
-
-
-  }
-
-
-
-
-
-  reserveStock(
-
-    record: InventoryRecord,
-
-    quantity: number,
-
-  ) {
-
-
-
-    if (quantity <= 0) {
-
-      throw new Error(
-
-        "Reservation quantity must be greater than zero.",
-
-      );
-
-    }
-
-
-
-    const reservedQuantity =
-
-      record.reservedQuantity +
-
+    const newQuantity =
+      currentQuantity +
       quantity;
 
 
-
-    if (
-
-      reservedQuantity >
-
-      record.quantityOnHand
-
-    ) {
-
-      throw new Error(
-
-        "Cannot reserve more than available stock.",
-
-      );
-
-    }
+    const newAverageCost =
+      newQuantity === 0
+        ? incomingCost
+        : (
+            (
+              currentQuantity *
+              currentAverageCost
+            ) +
+            (
+              quantity *
+              incomingCost
+            )
+          ) /
+          newQuantity;
 
 
+    return (
+      supabaseInventoryRepository
+        .updateAsync(
 
-    return inventoryContext.repository.update(
+          record.tenantId,
 
-      record.id,
+          record.id,
 
-      {
+          {
 
+            quantityOnHand:
+              newQuantity,
 
-        reservedQuantity,
+            averageCost:
+              newAverageCost,
 
+            lastMovementAt:
+              new Date().toISOString(),
 
-        availableQuantity:
+          },
 
-          record.quantityOnHand -
-
-          reservedQuantity,
-
-
-      },
-
+        )
     );
-
 
   }
 
 
-
-
-
-  releaseReservedStock(
-
+  async decreaseStock(
     record: InventoryRecord,
-
     quantity: number,
-
-  ) {
-
-
+  ): Promise<InventoryRecord> {
 
     if (quantity <= 0) {
 
       throw new Error(
-
-        "Release quantity must be greater than zero.",
-
+        "Stock quantity must be greater than zero.",
       );
 
     }
 
 
+    if (
+      record.availableQuantity <
+      quantity
+    ) {
 
-    const reservedQuantity =
-
-      Math.max(
-
-        0,
-
-        record.reservedQuantity -
-
-        quantity,
-
+      throw new Error(
+        "Insufficient available stock.",
       );
 
+    }
 
 
-    return inventoryContext.repository.update(
-
-      record.id,
-
-      {
-
-
-        reservedQuantity,
-
-
-        availableQuantity:
-
-          record.quantityOnHand -
-
-          reservedQuantity,
-
-
-      },
-
-    );
-
-
-  }
-
-
-
-
-
-  getProductStock(
-
-    productId: string,
-
-  ) {
-
-
-    return inventoryContext.repository
-
-      .findByProduct(
-
-        productId,
-
-      );
-
-
-  }
-
-
-
-
-
-  getWarehouseInventory(
-
-    warehouseId: string,
-
-  ) {
-
-
-    return inventoryContext.repository
-
-      .findByWarehouse(
-
-        warehouseId,
-
-      );
-
-
-  }
-
-
-
-
-
-  getAvailableStock(
-
-    productId: string,
-
-  ) {
-
-
-
-    return this.getProductStock(
-
-      productId,
-
-    )
-
-    .reduce(
-
-      (
-
-        total,
-
-        record,
-
-      ) =>
-
-
-        total +
-
-        record.availableQuantity,
-
-
-      0,
-
-    );
-
-
-  }
-
-
-
-
-
-  getInventoryValue(
-
-    record: InventoryRecord,
-
-  ) {
+    const newQuantity =
+      record.quantityOnHand -
+      quantity;
 
 
     return (
+      supabaseInventoryRepository
+        .updateAsync(
 
-      record.quantityOnHand *
+          record.tenantId,
 
-      record.averageCost
+          record.id,
 
+          {
+
+            quantityOnHand:
+              newQuantity,
+
+            lastMovementAt:
+              new Date().toISOString(),
+
+          },
+
+        )
     );
-
 
   }
 
 
+  async updateInventory(
+    tenantId: string,
+    id: string,
+    updates: Partial<InventoryRecord>,
+  ): Promise<InventoryRecord> {
+
+    return (
+      supabaseInventoryRepository
+        .updateAsync(
+          tenantId,
+          id,
+          updates,
+        )
+    );
+
+  }
 
 }
 
 
-
 export const inventoryService =
-
   new InventoryService();

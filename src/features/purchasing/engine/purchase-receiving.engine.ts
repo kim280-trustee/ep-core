@@ -14,30 +14,55 @@ import {
   receivingValidationEngine,
 } from "./receiving-validation.engine";
 
+
 export class PurchaseReceivingEngine {
 
-  receive(
+
+  async receive(
     order: PurchaseOrder,
-  ): PurchaseOrder {
+  ): Promise<PurchaseOrder> {
+
 
     receivingValidationEngine.validate(
       order,
     );
 
-    const items = order.items.map(
-      (item) =>
-        this.receiveItem(
+
+    const items: PurchaseOrderItem[] =
+      [];
+
+
+    for (
+      const item of order.items
+    ) {
+
+      const receivedItem =
+        await this.receiveItem(
+
           order,
+
           item,
-        ),
-    );
+
+        );
+
+
+      items.push(
+        receivedItem,
+      );
+
+    }
+
 
     const completed =
       items.every(
+
         (item) =>
+
           item.quantityReceived >=
           item.quantityOrdered,
+
       );
+
 
     return {
 
@@ -45,9 +70,10 @@ export class PurchaseReceivingEngine {
 
       items,
 
-      status: completed
-        ? "RECEIVED"
-        : "PARTIALLY_RECEIVED",
+      status:
+        completed
+          ? "RECEIVED"
+          : "PARTIALLY_RECEIVED",
 
       updatedAt:
         new Date().toISOString(),
@@ -56,38 +82,57 @@ export class PurchaseReceivingEngine {
 
   }
 
-  private receiveItem(
+
+  private async receiveItem(
+
     order: PurchaseOrder,
+
     item: PurchaseOrderItem,
-  ): PurchaseOrderItem {
+
+  ): Promise<PurchaseOrderItem> {
+
 
     const remaining =
+
       item.quantityOrdered -
+
       item.quantityReceived;
+
 
     if (
       remaining <= 0
     ) {
+
       return item;
+
     }
+
 
     const record =
-      inventoryService.getInventoryRecord(
+      await inventoryService.getInventoryRecord(
+
+        order.tenantId,
+
         item.productId,
+
         order.warehouseId,
+
       );
+
 
     if (!record) {
+
       throw new Error(
+
         `Inventory record not found for product ${item.productId}.`,
+
       );
+
     }
 
-    inventoryService.increaseStock(
-      record,
-      remaining,
-      item.unitCost,
-    );
+
+    await inventoryService.increaseStock(record, remaining, item.unitCost);
+
 
     return {
 
@@ -101,6 +146,7 @@ export class PurchaseReceivingEngine {
   }
 
 }
+
 
 export const purchaseReceivingEngine =
   new PurchaseReceivingEngine();

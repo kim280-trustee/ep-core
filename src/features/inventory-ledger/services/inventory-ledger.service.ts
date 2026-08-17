@@ -2,121 +2,87 @@ import {
   inventoryTransactionService,
 } from "../../inventory-transactions/services/inventory-transaction.service";
 
-
 import type {
   InventoryLedgerEntry,
 } from "../types/inventory-ledger.types";
 
 
-
 class InventoryLedgerService {
 
 
+  async getLedger(): Promise<InventoryLedgerEntry[]> {
 
-  getLedger(): InventoryLedgerEntry[] {
+    const transactions =
+      await inventoryTransactionService.getTransactions();
 
+    return transactions.map(
+      (transaction) => ({
 
-    return inventoryTransactionService
+        id:
+          transaction.id,
 
-      .getTransactions()
+        productId:
+          transaction.productId,
 
-      .map(
+        warehouseId:
+          transaction.warehouseId,
 
-        (transaction) => ({
+        movementType:
+          transaction.movementType,
 
+        quantity:
+          transaction.quantity,
 
-          id:
-            transaction.id,
+        unitCost:
+          transaction.unitCost,
 
+        referenceType:
+          transaction.referenceType,
 
-          productId:
-            transaction.productId,
+        referenceId:
+          transaction.referenceId,
 
+        createdAt:
+          transaction.createdAt,
 
-          warehouseId:
-            transaction.warehouseId,
-
-
-          movementType:
-            transaction.movementType,
-
-
-          quantity:
-            transaction.quantity,
-
-
-          unitCost:
-            transaction.unitCost,
-
-
-          referenceType:
-            transaction.referenceType,
-
-
-          referenceId:
-            transaction.referenceId,
-
-
-          createdAt:
-            transaction.createdAt,
-
-
-        }),
-
-      );
+      }),
+    );
 
   }
 
 
-
-
-
-  getProductLedger(
-
+  async getProductLedger(
     productId: string,
+  ): Promise<InventoryLedgerEntry[]> {
 
-  ) {
+    const ledger =
+      await this.getLedger();
 
-
-    return this.getLedger()
-
-      .filter(
-
-        (entry) =>
-
-          entry.productId === productId,
-
-      );
+    return ledger.filter(
+      (entry) =>
+        entry.productId ===
+        productId,
+    );
 
   }
 
 
-
-
-
-  getWarehouseLedger(
-
+  async getWarehouseLedger(
     warehouseId: string,
+  ): Promise<InventoryLedgerEntry[]> {
 
-  ) {
+    const ledger =
+      await this.getLedger();
 
-
-    return this.getLedger()
-
-      .filter(
-
-        (entry) =>
-
-          entry.warehouseId === warehouseId,
-
-      );
+    return ledger.filter(
+      (entry) =>
+        entry.warehouseId ===
+        warehouseId,
+    );
 
   }
-
-
 
 }
-
 
 
 export const inventoryLedgerService =

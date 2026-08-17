@@ -8,6 +8,11 @@ import {
 } from "../pages/InventoryHistoryPage";
 
 
+import {
+  SellStockPage,
+} from "../pages/SellStockPage";
+
+
 export const inventoryRoutes = [
 
   {
@@ -19,6 +24,12 @@ export const inventoryRoutes = [
   {
     path: "/inventory/history",
     element: <InventoryHistoryPage />,
+  },
+
+
+  {
+    path: "/inventory/sell",
+    element: <SellStockPage />,
   },
 
 ];

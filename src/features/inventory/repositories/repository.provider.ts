@@ -1,8 +1,21 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Inventory Repository Provider
+ * ============================================================
+ */
+
 import {
-  inMemoryInventoryRepository,
-} from "./in-memory.inventory.repository";
+  supabaseInventoryRepository,
+} from "./supabase.inventory.repository";
 
+import {
+  supabaseInventoryTransactionRepository,
+} from "./supabase.inventory-transaction.repository";
 
-export const inventoryRepository =
+export const inventoryRepositoryProvider =
+  supabaseInventoryRepository;
 
-  inMemoryInventoryRepository;
+export const inventoryTransactionRepositoryProvider =
+  supabaseInventoryTransactionRepository;

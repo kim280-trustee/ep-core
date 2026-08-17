@@ -1,15 +1,8 @@
 import {
-  inMemoryInventoryTransactionRepository,
-} from "./in-memory.inventory-transaction.repository";
-
-
+  supabaseInventoryTransactionRepository,
+} from "./supabase.inventory-transaction.repository";
 
 export const inventoryTransactionContext = {
-
-
   repository:
-
-    inMemoryInventoryTransactionRepository,
-
-
+    supabaseInventoryTransactionRepository,
 };

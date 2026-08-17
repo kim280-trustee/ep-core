@@ -1,52 +1,95 @@
 import {
+  useCallback,
+  useEffect,
   useState,
 } from "react";
-
 
 import {
   inventoryLedgerService,
 } from "../services/inventory-ledger.service";
 
+import type {
+  InventoryLedgerEntry,
+} from "../types/inventory-ledger.types";
 
 
 export function useInventoryLedger() {
 
+  const [
+    ledger,
+    setLedger,
+  ] = useState<InventoryLedgerEntry[]>([]);
 
   const [
+    loading,
+    setLoading,
+  ] = useState(false);
 
-    ledger,
-
-    setLedger,
-
-  ] = useState(
-
-    inventoryLedgerService.getLedger(),
-
-  );
+  const [
+    error,
+    setError,
+  ] = useState<string | null>(null);
 
 
+  const refresh =
+    useCallback(
+      async () => {
 
-  function refresh() {
+        setLoading(true);
 
+        setError(null);
 
-    setLedger(
+        try {
 
-      inventoryLedgerService.getLedger(),
+          const result =
+            await inventoryLedgerService.getLedger();
 
+          setLedger(result);
+
+        } catch (error) {
+
+          console.error(
+            "Failed to load inventory ledger:",
+            error,
+          );
+
+          setLedger([]);
+
+          setError(
+            error instanceof Error
+              ? error.message
+              : "Unable to load inventory ledger.",
+          );
+
+        } finally {
+
+          setLoading(false);
+
+        }
+
+      },
+      [],
     );
 
-  }
 
+  useEffect(() => {
+
+    void refresh();
+
+  }, [
+    refresh,
+  ]);
 
 
   return {
 
-
     ledger,
 
+    loading,
+
+    error,
 
     refresh,
-
 
   };
 

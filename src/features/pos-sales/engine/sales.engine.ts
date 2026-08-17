@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   PaymentEntry,
 } from "./payment/payment.engine";
 
@@ -6,64 +6,43 @@ import type {
   SaleItem,
 } from "../types";
 
-
 import {
   checkoutEngine,
 } from "./checkout/checkout.engine";
-
 
 import {
   receiptEngine,
 } from "./receipt/receipt.engine";
 
-
 import {
   inventoryService,
 } from "../../inventory/services/inventory.service";
 
-
 import {
   inventoryTransactionService,
-} from "../../inventory/services/inventory-transaction.service";
-
+} from "../../inventory-transactions/services/inventory-transaction.service";
 
 
 export class SalesEngine {
 
 
-  processSale(
-
+  async processSale(
     items: SaleItem[],
-
-   payments: PaymentEntry[],
-
+    payments: PaymentEntry[],
     warehouseId: string,
-
     tenantId: string,
-
     storeId: string,
-
     discountRate = 0,
-
     taxRate = 0,
-
   ) {
 
-
     const checkout =
-
-     checkoutEngine.checkout(
-
-  items,
-
-  payments,
-
-  discountRate,
-
-  taxRate,
-
-);
-
+      checkoutEngine.checkout(
+        items,
+        payments,
+        discountRate,
+        taxRate,
+      );
 
 
     if (!checkout.completed) {
@@ -73,7 +52,6 @@ export class SalesEngine {
         success: false,
 
         message:
-
           "Payment incomplete",
 
         checkout,
@@ -83,26 +61,20 @@ export class SalesEngine {
     }
 
 
-
     const transactionId =
-
       crypto.randomUUID();
 
 
-
-    for (const item of items) {
-
+    for (
+      const item of items
+    ) {
 
       const inventoryRecord =
-
-        inventoryService.getInventoryRecord(
-
+        await inventoryService.getInventoryRecord(
+          tenantId,
           item.productId,
-
           warehouseId,
-
         );
-
 
 
       if (!inventoryRecord) {
@@ -112,7 +84,6 @@ export class SalesEngine {
           success: false,
 
           message:
-
             `Inventory record missing for ${item.productId}`,
 
         };
@@ -120,13 +91,9 @@ export class SalesEngine {
       }
 
 
-
       if (
-
         inventoryRecord.availableQuantity <
-
         item.quantity
-
       ) {
 
         return {
@@ -134,7 +101,6 @@ export class SalesEngine {
           success: false,
 
           message:
-
             `Insufficient stock for ${item.productId}`,
 
         };
@@ -142,90 +108,52 @@ export class SalesEngine {
       }
 
 
-
-      const beforeQuantity =
-
-        inventoryRecord.quantityOnHand;
-
-
-
-      inventoryService.decreaseStock(
-
+      await inventoryService.decreaseStock(
         inventoryRecord,
-
         item.quantity,
-
       );
 
 
-
-      const afterQuantity =
-
-        beforeQuantity -
-
-        item.quantity;
-
-
-
-      inventoryTransactionService.createTransaction({
-
-        id:
-
-          crypto.randomUUID(),
+      await inventoryTransactionService.createTransaction({
 
         tenantId,
 
         storeId,
 
-        warehouseId,
-
         productId:
-
           item.productId,
 
-        type:
+        warehouseId,
 
+        movementType:
           "SALE",
 
         quantity:
-
           -item.quantity,
 
-        beforeQuantity,
+        unitCost:
+          inventoryRecord.averageCost,
 
-        afterQuantity,
+        referenceType:
+          "SALE",
 
         referenceId:
-
           transactionId,
 
-        note:
-
+        notes:
           "Sale transaction",
 
-        createdAt:
-
-          new Date().toISOString(),
-
       });
-
 
     }
 
 
-
     const receipt =
-
       receiptEngine.generate(
-
         checkout.items,
-
         checkout.pricing,
-
         checkout.payment,
-
       );
-
 
 
     return {
@@ -240,14 +168,10 @@ export class SalesEngine {
 
     };
 
-
   }
-
 
 }
 
 
-
 export const salesEngine =
-
   new SalesEngine();

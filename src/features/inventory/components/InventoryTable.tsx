@@ -1,3 +1,7 @@
+import {
+  useProductsStore,
+} from "@/features/products";
+
 import type {
   InventoryRecord,
 } from "../types/inventory-record.types";
@@ -12,6 +16,12 @@ export function InventoryTable({
   records,
 }: InventoryTableProps) {
 
+  const products =
+    useProductsStore(
+      (state) =>
+        state.products,
+    );
+
   return (
 
     <table className="w-full border border-collapse">
@@ -20,15 +30,25 @@ export function InventoryTable({
 
         <tr>
 
-          <th className="border p-2">Product</th>
+          <th className="border p-2 text-left">
+            Product
+          </th>
 
-          <th className="border p-2">Warehouse</th>
+          <th className="border p-2 text-left">
+            Warehouse
+          </th>
 
-          <th className="border p-2">On Hand</th>
+          <th className="border p-2 text-right">
+            On Hand
+          </th>
 
-          <th className="border p-2">Available</th>
+          <th className="border p-2 text-right">
+            Available
+          </th>
 
-          <th className="border p-2">Average Cost</th>
+          <th className="border p-2 text-right">
+            Average Cost
+          </th>
 
         </tr>
 
@@ -38,43 +58,56 @@ export function InventoryTable({
 
         {records.map(
 
-          (record) => (
+          (record) => {
 
-            <tr key={record.id}>
+            const product =
+              products.find(
+                (item) =>
+                  item.id ===
+                  record.productId,
+              );
 
-              <td className="border p-2">
+            return (
 
-                {record.productId}
+              <tr key={record.id}>
 
-              </td>
+                <td className="border p-2">
 
-              <td className="border p-2">
+                  {product
+                    ? `${product.name} (${product.identifiers.sku})`
+                    : record.productId}
 
-                {record.warehouseId}
+                </td>
 
-              </td>
+                <td className="border p-2">
 
-              <td className="border p-2">
+                  {record.warehouseId}
 
-                {record.quantityOnHand}
+                </td>
 
-              </td>
+                <td className="border p-2 text-right">
 
-              <td className="border p-2">
+                  {record.quantityOnHand}
 
-                {record.availableQuantity}
+                </td>
 
-              </td>
+                <td className="border p-2 text-right">
 
-              <td className="border p-2">
+                  {record.availableQuantity}
 
-                {record.averageCost}
+                </td>
 
-              </td>
+                <td className="border p-2 text-right">
 
-            </tr>
+                  {record.averageCost}
 
-          ),
+                </td>
+
+              </tr>
+
+            );
+
+          },
 
         )}
 

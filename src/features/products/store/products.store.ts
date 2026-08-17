@@ -13,6 +13,14 @@ import type {
   ProductFilters,
 } from "../types/product.types";
 
+import {
+  productService,
+} from "../services/product.service";
+
+import {
+  storeContext,
+} from "@/core/store/store.context";
+
 
 interface ProductStore {
 
@@ -20,104 +28,211 @@ interface ProductStore {
 
   filters: ProductFilters;
 
+  loading: boolean;
 
-  setProducts:
-  (
+  error: string | null;
+
+  setProducts(
     products: Product[],
-  ) => void;
+  ): void;
 
-
-  loadProducts:
-  (
+  loadProducts(
     products?: Product[],
-  ) => void;
+  ): Promise<void>;
 
-
-  setFilters:
-  (
+  setFilters(
     filters: ProductFilters,
-  ) => void;
+  ): void;
 
-
-  updateFilters:
-  (
+  updateFilters(
     filters: Partial<ProductFilters>,
-  ) => void;
+  ): void;
 
-
-  clearFilters:
-  () => void;
+  clearFilters(): void;
 
 }
 
 
-
 export const useProductStore =
-create<ProductStore>((set) => ({
+  create<ProductStore>((set) => ({
 
-  products: [],
+    products: [],
 
-  filters: {},
+    filters: {},
 
+    loading: false,
 
-  setProducts:
-  (
-    products,
-  ) =>
-  set({
-    products,
-  }),
+    error: null,
 
 
+    setProducts(
+      products,
+    ) {
 
-  loadProducts:
-  (
-    products = [],
-  ) =>
-  set({
-    products,
-  }),
+      set({
 
+        products,
 
+        error: null,
 
-  setFilters:
-  (
-    filters,
-  ) =>
-  set({
-    filters,
-  }),
+      });
+
+    },
 
 
+    async loadProducts(
+      products,
+    ) {
 
-  updateFilters:
-  (
-    filters,
-  ) =>
-  set(
-    (state)=>({
+      if (products) {
 
-      filters:{
-        ...state.filters,
-        ...filters,
-      },
+        set({
 
-    }),
-  ),
+          products,
 
+          loading: false,
 
+          error: null,
 
-  clearFilters:
-  () =>
-  set({
+        });
 
-    filters:{},
+        return;
 
-  }),
+      }
 
 
-}));
+      const context =
+        storeContext.getStore();
+
+
+      if (!context?.tenantId) {
+
+        set({
+
+          products: [],
+
+          loading: false,
+
+          error:
+            "Tenant context is not initialized.",
+
+        });
+
+        return;
+
+      }
+
+
+      set({
+
+        loading: true,
+
+        error: null,
+
+      });
+
+
+      try {
+
+        const filters =
+          useProductStore
+            .getState()
+            .filters;
+
+
+        const result =
+          await productService.getProducts(
+
+            context.tenantId,
+
+            filters,
+
+          );
+
+
+        set({
+
+          products:
+            result.data,
+
+          loading: false,
+
+          error: null,
+
+        });
+
+      } catch (error) {
+
+        console.error(
+          "Failed to load products:",
+          error,
+        );
+
+
+        set({
+
+          products: [],
+
+          loading: false,
+
+          error:
+            error instanceof Error
+              ? error.message
+              : "Unable to load products.",
+
+        });
+
+      }
+
+    },
+
+
+    setFilters(
+      filters,
+    ) {
+
+      set({
+
+        filters,
+
+      });
+
+    },
+
+
+    updateFilters(
+      filters,
+    ) {
+
+      set(
+        (state) => ({
+
+          filters: {
+
+            ...state.filters,
+
+            ...filters,
+
+          },
+
+        }),
+      );
+
+    },
+
+
+    clearFilters() {
+
+      set({
+
+        filters: {},
+
+      });
+
+    },
+
+  }));
 
 
 export const useProductsStore =
-useProductStore;
+  useProductStore;

@@ -5,28 +5,31 @@ import type {
 
 export interface InventoryTransactionRepository {
 
-
-  findAll(): InventoryTransaction[];
+  findAll(
+    tenantId: string,
+  ): Promise<InventoryTransaction[]>;
 
 
   findById(
+    tenantId: string,
     id: string,
-  ): InventoryTransaction | undefined;
+  ): Promise<InventoryTransaction | null>;
 
 
   findByProduct(
+    tenantId: string,
     productId: string,
-  ): InventoryTransaction[];
+  ): Promise<InventoryTransaction[]>;
 
 
   findByWarehouse(
+    tenantId: string,
     warehouseId: string,
-  ): InventoryTransaction[];
+  ): Promise<InventoryTransaction[]>;
 
 
   create(
     transaction: InventoryTransaction,
-  ): InventoryTransaction;
-
+  ): Promise<InventoryTransaction>;
 
 }

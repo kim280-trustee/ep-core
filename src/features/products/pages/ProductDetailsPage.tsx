@@ -6,19 +6,45 @@
  * ============================================================
  */
 
-import { Link, useParams } from "react-router-dom";
+import {
+  useState,
+} from "react";
+
+import {
+  Link,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 
 import { useProduct } from "../hooks/useProduct";
+
 import { ProductStatusBadge } from "../components/ProductStatusBadge";
+
+import { productService } from "../services/product.service";
 
 import { useAuth } from "@/core/auth";
 
 export function ProductDetailsPage() {
-  const { id } = useParams<{ id: string }>();
-  const { user } = useAuth();
+  const { id } =
+    useParams<{ id: string }>();
 
-  const tenantId = user?.tenantId ?? "";
-  const productId = id ?? "";
+  const navigate =
+    useNavigate();
+
+  const { user } =
+    useAuth();
+
+  const tenantId =
+    user?.tenantId ?? "";
+
+  const productId =
+    id ?? "";
+
+  const [deleting, setDeleting] =
+    useState(false);
+
+  const [deleteError, setDeleteError] =
+    useState<string | null>(null);
 
   const {
     data: product,
@@ -28,6 +54,60 @@ export function ProductDetailsPage() {
     tenantId,
     productId,
   );
+
+  async function handleDelete() {
+    if (!product) {
+      return;
+    }
+
+    if (!tenantId) {
+      setDeleteError(
+        "Unable to delete product because the store tenant could not be identified.",
+      );
+
+      return;
+    }
+
+    const confirmed =
+      window.confirm(
+        `Delete "${product.name}"?\n\nThis action cannot be undone.`,
+      );
+
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      setDeleting(true);
+
+      setDeleteError(null);
+
+      await productService.deleteProduct(
+        tenantId,
+        product.id,
+      );
+
+      navigate(
+        "/products",
+        {
+          replace: true,
+        },
+      );
+    } catch (err) {
+      console.error(
+        "ProductDetailsPage.handleDelete:",
+        err,
+      );
+
+      setDeleteError(
+        err instanceof Error
+          ? err.message
+          : "Unable to delete product.",
+      );
+    } finally {
+      setDeleting(false);
+    }
+  }
 
   if (isLoading) {
     return (
@@ -89,7 +169,8 @@ export function ProductDetailsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-start justify-between rounded-xl border bg-white p-6">
+      {/* Header */}
+      <div className="flex flex-col gap-4 rounded-xl border bg-white p-6 md:flex-row md:items-start md:justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">
             {product.name}
@@ -100,24 +181,41 @@ export function ProductDetailsPage() {
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-  <div className="flex items-center gap-3">
-  <ProductStatusBadge
-    status={product.status}
-  />
+        <div className="flex flex-wrap items-center gap-3">
+          <ProductStatusBadge
+            status={product.status}
+          />
 
-  <Link
-    to={`/products/${product.id}/edit`}
-    className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
-  >
-    Edit Product
-  </Link>
-</div>
+          <Link
+            to={`/products/${product.id}/edit`}
+            className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+          >
+            Edit Product
+          </Link>
 
-  
-</div>
+          <button
+            type="button"
+            onClick={handleDelete}
+            disabled={deleting}
+            className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {deleting
+              ? "Deleting..."
+              : "Delete Product"}
+          </button>
+        </div>
       </div>
 
+      {/* Delete Error */}
+      {deleteError && (
+        <div className="rounded-xl border border-red-200 bg-red-50 p-4">
+          <p className="text-sm font-medium text-red-700">
+            {deleteError}
+          </p>
+        </div>
+      )}
+
+      {/* Product Information */}
       <div className="rounded-xl border bg-white p-6">
         <h2 className="text-lg font-semibold text-gray-900">
           Product Information
@@ -186,6 +284,7 @@ export function ProductDetailsPage() {
         </div>
       </div>
 
+      {/* Pricing */}
       <div className="rounded-xl border bg-white p-6">
         <h2 className="text-lg font-semibold text-gray-900">
           Pricing
@@ -198,7 +297,8 @@ export function ProductDetailsPage() {
             </p>
 
             <p className="mt-1 text-xl font-semibold">
-              {currency} {costPrice.toFixed(2)}
+              {currency}{" "}
+              {costPrice.toFixed(2)}
             </p>
           </div>
 
@@ -208,12 +308,14 @@ export function ProductDetailsPage() {
             </p>
 
             <p className="mt-1 text-xl font-semibold">
-              {currency} {sellingPrice.toFixed(2)}
+              {currency}{" "}
+              {sellingPrice.toFixed(2)}
             </p>
           </div>
         </div>
       </div>
 
+      {/* Inventory */}
       <div className="rounded-xl border bg-white p-6">
         <h2 className="text-lg font-semibold text-gray-900">
           Inventory
@@ -244,6 +346,7 @@ export function ProductDetailsPage() {
         </div>
       </div>
 
+      {/* Additional Information */}
       <div className="rounded-xl border bg-white p-6">
         <h2 className="text-lg font-semibold text-gray-900">
           Additional Information

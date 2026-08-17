@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
@@ -22,12 +22,17 @@ import {
 } from "@/core/store/store.context";
 
 import {
+  inventoryTransactionService,
+} from "@/features/inventory-transactions";
+
+import {
   inventoryService,
 } from "../services/inventory.service";
 
 import {
   useInventoryStore,
 } from "../store/inventory.store";
+
 
 export function ReceiveStockForm() {
 
@@ -37,11 +42,13 @@ export function ReceiveStockForm() {
         state.products,
     );
 
+
   const loadProducts =
     useProductsStore(
       (state) =>
         state.loadProducts,
     );
+
 
   const setRecords =
     useInventoryStore(
@@ -49,32 +56,45 @@ export function ReceiveStockForm() {
         state.setRecords,
     );
 
+
   const [
     productId,
     setProductId,
   ] = useState("");
+
 
   const [
     quantity,
     setQuantity,
   ] = useState(0);
 
+
   const [
     cost,
     setCost,
   ] = useState(0);
+
 
   const [
     message,
     setMessage,
   ] = useState("");
 
+
+  const [
+    submitting,
+    setSubmitting,
+  ] = useState(false);
+
+
   useEffect(() => {
 
     if (
       products.length === 0
     ) {
-      loadProducts();
+
+      void loadProducts();
+
     }
 
   }, [
@@ -82,113 +102,138 @@ export function ReceiveStockForm() {
     loadProducts,
   ]);
 
-  function handleSubmit() {
+
+  async function handleSubmit() {
+
+    setMessage("");
+
 
     const context =
       storeContext.getStore();
 
+
     if (!context) {
+
       setMessage(
         "Store context is not initialized.",
       );
 
       return;
+
     }
+
 
     if (!productId) {
+
       setMessage(
-        "Please select a product",
+        "Please select a product.",
       );
 
       return;
+
     }
+
 
     if (quantity <= 0) {
+
       setMessage(
-        "Quantity must be greater than zero",
+        "Quantity must be greater than zero.",
       );
 
       return;
+
     }
 
-    /*
-     * The current inventory service expects
-     * a warehouse ID. Until warehouse selection
-     * is implemented in this form, use the
-     * active store ID as the contextual scope.
-     *
-     * This removes the hardcoded default warehouse.
-     */
-    const warehouseId =
-      context.storeId;
 
-    const existing =
-      inventoryService.getInventoryRecord(
-        productId,
-        warehouseId,
+    if (cost < 0) {
+
+      setMessage(
+        "Cost cannot be negative.",
       );
 
-    if (existing) {
+      return;
 
-      inventoryService.increaseStock(
-        existing,
+    }
+
+
+    setSubmitting(true);
+
+
+    try {
+
+      const warehouseId =
+        context.storeId;
+
+
+      await inventoryTransactionService.receiveStock(
+
+        productId,
+
+        warehouseId,
+
         quantity,
+
         cost,
+
+        undefined,
+
+        "Stock received",
+
       );
 
-    } else {
 
-      inventoryService.createInventoryRecord({
-
-        id:
-          crypto.randomUUID(),
-
-        tenantId:
+      const updatedInventory =
+        await inventoryService.getInventory(
           context.tenantId,
+        );
 
-        productId,
 
-        warehouseId,
+      setRecords(
+        updatedInventory,
+      );
 
-        quantityOnHand:
-          quantity,
 
-        reservedQuantity:
-          0,
+      setMessage(
+        "Stock received successfully.",
+      );
 
-        availableQuantity:
-          quantity,
 
-        averageCost:
-          cost,
+      setQuantity(0);
 
-        minimumStockLevel:
-          0,
+      setCost(0);
 
-        createdAt:
-          new Date().toISOString(),
+      setProductId("");
 
-        updatedAt:
-          new Date().toISOString(),
 
-      });
+    } catch (error) {
+
+      console.error(
+        "Failed to receive stock:",
+        error,
+      );
+
+
+      setMessage(
+
+        error instanceof Error
+
+          ? error.message
+
+          : "Unable to receive stock.",
+
+      );
+
+    } finally {
+
+      setSubmitting(false);
 
     }
 
-    setRecords(
-      inventoryService.getInventory(),
-    );
-
-    setMessage(
-      "Stock received successfully",
-    );
-
-    setQuantity(0);
-    setCost(0);
-    setProductId("");
   }
 
+
   return (
+
     <div
       className="
         border
@@ -204,9 +249,11 @@ export function ReceiveStockForm() {
         Receive Stock
       </h2>
 
+
       <label>
         Product
       </label>
+
 
       <select
         value={productId}
@@ -220,31 +267,42 @@ export function ReceiveStockForm() {
           rounded
           p-2
         "
+        disabled={submitting}
       >
 
         <option value="">
           Select Product
         </option>
 
+
         {products.map(
           (product) => (
+
             <option
               key={product.id}
               value={product.id}
             >
+
               {product.name}
+
               {" ("}
+
               {product.identifiers.sku}
+
               {")"}
+
             </option>
+
           ),
         )}
 
       </select>
 
+
       <label>
         Quantity
       </label>
+
 
       <input
         type="number"
@@ -262,11 +320,14 @@ export function ReceiveStockForm() {
           rounded
           p-2
         "
+        disabled={submitting}
       />
+
 
       <label>
         Cost Per Unit
       </label>
+
 
       <input
         type="number"
@@ -284,27 +345,42 @@ export function ReceiveStockForm() {
           rounded
           p-2
         "
+        disabled={submitting}
       />
+
 
       <button
         type="button"
-        onClick={handleSubmit}
+        onClick={() => {
+          void handleSubmit();
+        }}
+        disabled={submitting}
         className="
           bg-black
           text-white
           rounded
           p-2
+          disabled:opacity-50
         "
       >
-        Receive Stock
+
+        {submitting
+          ? "Receiving..."
+          : "Receive Stock"}
+
       </button>
 
+
       {message && (
+
         <p>
           {message}
         </p>
+
       )}
 
     </div>
+
   );
+
 }
