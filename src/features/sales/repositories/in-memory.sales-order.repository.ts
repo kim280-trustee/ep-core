@@ -1,90 +1,67 @@
+﻿import type {
+  SalesOrderRepository,
+} from "./sales-order.repository";
+
 import type {
   SalesOrder,
 } from "../types/sales-order.types";
 
 
-import type {
-  SalesOrderRepository,
-} from "./sales-order.repository";
-
-
-
 class InMemorySalesOrderRepository
-
-implements SalesOrderRepository {
-
-
+  implements SalesOrderRepository {
 
   private orders: SalesOrder[] = [];
 
 
+  async findAll(
+    tenantId: string,
+  ): Promise<SalesOrder[]> {
 
-  findAll() {
-
-    return this.orders;
+    return this.orders.filter(
+      (order) =>
+        order.tenantId === tenantId,
+    );
 
   }
 
 
-
-
-
-  findById(
+  async findById(
+    tenantId: string,
     id: string,
-  ) {
+  ): Promise<SalesOrder | undefined> {
 
     return this.orders.find(
-
       (order) =>
-
+        order.tenantId === tenantId &&
         order.id === id,
-
     );
 
   }
 
 
-
-
-
-  create(
+  async create(
     order: SalesOrder,
-  ) {
+  ): Promise<SalesOrder> {
 
-    this.orders.push(
-
-      order,
-
-    );
-
+    this.orders.push(order);
 
     return order;
 
   }
 
 
-
-
-
-  update(
-
+  async update(
+    tenantId: string,
     id: string,
-
     updates: Partial<SalesOrder>,
-
-  ) {
-
+  ): Promise<SalesOrder | undefined> {
 
     const index =
-
       this.orders.findIndex(
-
         (order) =>
-
+          order.tenantId === tenantId &&
           order.id === id,
-
       );
-
 
 
     if (index === -1) {
@@ -94,30 +71,28 @@ implements SalesOrderRepository {
     }
 
 
-
-    this.orders[index] = {
+    const updatedOrder: SalesOrder = {
 
       ...this.orders[index],
 
       ...updates,
 
       updatedAt:
-
         new Date().toISOString(),
 
     };
 
 
+    this.orders[index] =
+      updatedOrder;
 
-    return this.orders[index];
+
+    return updatedOrder;
 
   }
-
 
 }
 
 
-
 export const inMemorySalesOrderRepository =
-
   new InMemorySalesOrderRepository();

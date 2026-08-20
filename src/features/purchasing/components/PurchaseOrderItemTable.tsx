@@ -3,13 +3,11 @@ import type {
 } from "../types/purchase-order-item.types";
 
 
-
 interface PurchaseOrderItemTableProps {
 
   items: PurchaseOrderItem[];
 
 }
-
 
 
 export function PurchaseOrderItemTable({
@@ -32,11 +30,9 @@ export function PurchaseOrderItemTable({
   }
 
 
-
   return (
 
     <table>
-
 
       <thead>
 
@@ -71,73 +67,43 @@ export function PurchaseOrderItemTable({
       </thead>
 
 
-
       <tbody>
 
-
         {items.map((item) => (
-
 
           <tr
             key={item.id}
           >
 
-
             <td>
-
               {item.productId}
-
             </td>
 
-
-
             <td>
-
-              {item.quantityOrdered}
-
+              {item.quantity}
             </td>
 
-
-
             <td>
-
-              {item.quantityReceived}
-
+              {item.receivedQuantity}
             </td>
 
-
-
             <td>
-
               {item.unitCost}
-
             </td>
 
-
-
             <td>
-
               {item.taxRate}
-
             </td>
-
-
 
             <td>
-
               {item.lineTotal}
-
             </td>
-
 
           </tr>
 
-
         ))}
 
-
       </tbody>
-
 
     </table>
 

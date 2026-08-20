@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
@@ -49,7 +49,7 @@ export default function DashboardPage() {
           </p>
 
           <p className="mt-2 text-2xl font-bold">
-            ?{summary.totalRevenue}
+            THB {summary.totalRevenue.toFixed(2)}
           </p>
 
         </div>
@@ -75,7 +75,7 @@ export default function DashboardPage() {
           </p>
 
           <p className="mt-2 text-2xl font-bold">
-            ?{summary.inventoryValue}
+            THB {summary.inventoryValue.toFixed(2)}
           </p>
 
         </div>
@@ -88,7 +88,7 @@ export default function DashboardPage() {
           </p>
 
           <p className="mt-2 text-2xl font-bold">
-            ?{summary.totalProfit}
+            THB {summary.totalProfit.toFixed(2)}
           </p>
 
         </div>
@@ -139,3 +139,4 @@ export default function DashboardPage() {
   );
 
 }
+

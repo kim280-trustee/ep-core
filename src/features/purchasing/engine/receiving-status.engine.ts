@@ -2,7 +2,9 @@ import type {
   PurchaseOrder,
 } from "../types/purchase-order.types";
 
+
 export class ReceivingStatusEngine {
+
 
   updateStatus(
     order: PurchaseOrder,
@@ -11,17 +13,19 @@ export class ReceivingStatusEngine {
     const completed =
       order.items.every(
         (item) =>
-          item.quantityReceived >=
-          item.quantityOrdered,
+          item.receivedQuantity >=
+          item.quantity,
       );
+
 
     return {
 
       ...order,
 
-      status: completed
-        ? "RECEIVED"
-        : "PARTIALLY_RECEIVED",
+      status:
+        completed
+          ? "RECEIVED"
+          : "PARTIALLY_RECEIVED",
 
       updatedAt:
         new Date().toISOString(),
@@ -31,6 +35,7 @@ export class ReceivingStatusEngine {
   }
 
 }
+
 
 export const receivingStatusEngine =
   new ReceivingStatusEngine();

@@ -3,7 +3,6 @@ import type {
 } from "../types/purchase-order-item.types";
 
 
-
 interface PurchaseTotals {
 
   subtotal: number;
@@ -15,77 +14,43 @@ interface PurchaseTotals {
 }
 
 
-
 class PurchaseOrderCalculationEngine {
 
 
-
   calculate(
-
     items: PurchaseOrderItem[],
-
   ): PurchaseTotals {
 
+    let subtotal = 0;
+
+    let taxAmount = 0;
 
 
-    const subtotal =
+    for (const item of items) {
 
-      items.reduce(
-
-        (
-
-          total,
-
-          item,
-
-        ) =>
-
-          total +
-
-          item.lineTotal,
-
-        0,
-
-      );
+      const lineSubtotal =
+        item.quantity *
+        item.unitCost;
 
 
+      const lineTax =
+        lineSubtotal *
+        (item.taxRate / 100);
 
 
-    const taxAmount =
-
-      items.reduce(
-
-        (
-
-          total,
-
-          item,
-
-        ) =>
-
-          total +
-
-          (
-
-            item.lineTotal *
-
-            item.taxRate
-
-          ),
-
-        0,
-
-      );
+      subtotal +=
+        lineSubtotal;
 
 
+      taxAmount +=
+        lineTax;
+
+    }
 
 
     const totalAmount =
-
       subtotal +
-
       taxAmount;
-
 
 
     return {
@@ -98,36 +63,33 @@ class PurchaseOrderCalculationEngine {
 
     };
 
-
   }
-
-
 
 
   calculateLineTotal(
-
     item: PurchaseOrderItem,
-
   ): number {
+
+    const lineSubtotal =
+      item.quantity *
+      item.unitCost;
+
+
+    const taxAmount =
+      lineSubtotal *
+      (item.taxRate / 100);
 
 
     return (
-
-      item.quantityOrdered *
-
-      item.unitCost
-
+      lineSubtotal +
+      taxAmount
     );
 
-
   }
-
 
 
 }
 
 
-
 export const purchaseOrderCalculationEngine =
-
   new PurchaseOrderCalculationEngine();

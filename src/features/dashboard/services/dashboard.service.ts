@@ -1,4 +1,4 @@
-/**
+﻿/*
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
@@ -14,11 +14,15 @@ import {
 class DashboardService {
 
 
-  async getSummary() {
+  async getSummary(
+    tenantId: string,
+  ) {
 
 
     return await inMemoryDashboardRepository
-      .getSummary();
+      .getSummary(
+        tenantId,
+      );
 
 
   }
@@ -28,4 +32,4 @@ class DashboardService {
 
 
 export const dashboardService =
-new DashboardService();
+  new DashboardService();

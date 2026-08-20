@@ -6,28 +6,32 @@ import type {
 export interface PurchaseOrderRepository {
 
 
-  findAll(): PurchaseOrder[];
+  findAll(
+    tenantId: string,
+  ): Promise<PurchaseOrder[]>;
 
 
   findById(
+    tenantId: string,
     id: string,
-  ): PurchaseOrder | undefined;
+  ): Promise<PurchaseOrder | undefined>;
 
 
   findBySupplier(
+    tenantId: string,
     supplierId: string,
-  ): PurchaseOrder[];
+  ): Promise<PurchaseOrder[]>;
 
 
   create(
     order: PurchaseOrder,
-  ): PurchaseOrder;
+  ): Promise<PurchaseOrder>;
 
 
   update(
+    tenantId: string,
     id: string,
     updates: Partial<PurchaseOrder>,
-  ): PurchaseOrder | undefined;
-
+  ): Promise<PurchaseOrder | undefined>;
 
 }

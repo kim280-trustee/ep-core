@@ -28,38 +28,32 @@ import {
 } from "../components/PurchaseOrderActions";
 
 
+import type {
+  PurchaseOrderItem,
+} from "../types/purchase-order-item.types";
+
 
 export default function PurchaseOrderDetailsPage() {
 
 
   const {
-
     id,
-
   } = useParams();
 
 
-
   const {
-
     getOrderById,
-
+    addItem,
   } = usePurchaseOrders();
 
 
-
   const order =
-
     id
-
       ? getOrderById(id)
-
       : undefined;
 
 
-
   if (!order) {
-
 
     return (
 
@@ -74,22 +68,32 @@ export default function PurchaseOrderDetailsPage() {
   }
 
 
+  const orderId =
+    order.id;
+
+
+  function handleAddItem(
+    item: PurchaseOrderItem,
+  ) {
+
+    addItem(
+      orderId,
+      item,
+    );
+
+  }
+
 
   return (
 
     <div>
 
-
       <h1>
-
         Purchase Order Details
-
       </h1>
 
 
-
       <div>
-
 
         <p>
 
@@ -100,7 +104,6 @@ export default function PurchaseOrderDetailsPage() {
           {order.orderNumber}
 
         </p>
-
 
 
         <p>
@@ -114,7 +117,6 @@ export default function PurchaseOrderDetailsPage() {
         </p>
 
 
-
         <p>
 
           Warehouse:
@@ -124,7 +126,6 @@ export default function PurchaseOrderDetailsPage() {
           {order.warehouseId}
 
         </p>
-
 
 
         <p>
@@ -137,59 +138,41 @@ export default function PurchaseOrderDetailsPage() {
 
         </p>
 
-
       </div>
 
 
-
-
       <hr />
-
 
 
       <PurchaseOrderActions
-
         order={order}
-
       />
 
 
-
       <hr />
-
 
 
       <PurchaseOrderItemForm
-
-        orderId={order.id}
-
+        purchaseOrderId={orderId}
+        tenantId={order.tenantId}
+        onAddItem={handleAddItem}
       />
 
 
-
       <hr />
-
 
 
       <PurchaseOrderItemTable
-
         items={order.items}
-
       />
-
 
 
       <hr />
 
 
-
       <PurchaseOrderSummary
-
         order={order}
-
       />
-
-
 
     </div>
 

@@ -8,50 +8,42 @@ import type {
 } from "./purchase-order-item.types";
 
 
-
 export interface PurchaseOrder {
-
 
   id: string;
 
-
   tenantId: string;
 
-
-  storeId: string;
-
+  storeId: string | null;
 
   supplierId: string;
 
-
-  warehouseId: string;
-
+  warehouseId: string | null;
 
   orderNumber: string;
 
+  orderDate: string;
+
+  expectedDeliveryDate: string | null;
 
   status: PurchaseOrderStatus;
 
+  currency: string;
 
   items: PurchaseOrderItem[];
 
-
   subtotal: number;
-
 
   taxAmount: number;
 
-
   totalAmount: number;
 
+  notes: string | null;
 
-  notes?: string;
-
+  createdBy: string | null;
 
   createdAt: string;
 
-
   updatedAt: string;
-
 
 }

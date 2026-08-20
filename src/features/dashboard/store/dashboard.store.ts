@@ -1,4 +1,4 @@
-/**
+﻿/*
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
@@ -14,6 +14,11 @@ import {
 import {
   dashboardService,
 } from "../services";
+
+
+import {
+  storeContext,
+} from "@/core/store/store.context";
 
 
 import type {
@@ -60,27 +65,42 @@ const defaultSummary: DashboardSummary = {
 
 
 export const useDashboardStore =
-create<DashboardStore>((set) => ({
+  create<DashboardStore>((set) => ({
 
 
-  summary: defaultSummary,
+    summary: defaultSummary,
 
 
-  loadDashboard: async () => {
+    loadDashboard: async () => {
 
 
-    const summary =
-      await dashboardService.getSummary();
+      const context =
+        storeContext.getStore();
 
 
-    set({
+      if (!context?.tenantId) {
 
-      summary,
+        throw new Error(
+          "Tenant context is not initialized.",
+        );
 
-    });
+      }
 
 
-  },
+      const summary =
+        await dashboardService.getSummary(
+          context.tenantId,
+        );
 
 
-}));
+      set({
+
+        summary,
+
+      });
+
+
+    },
+
+
+  }));

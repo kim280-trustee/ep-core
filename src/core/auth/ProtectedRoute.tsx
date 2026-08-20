@@ -2,16 +2,13 @@ import {
   Navigate,
 } from "react-router-dom";
 
-
 import type {
   ReactNode,
 } from "react";
 
-
 import {
   useAuth,
 } from "./useAuth";
-
 
 
 interface Props {
@@ -21,13 +18,11 @@ interface Props {
 }
 
 
-
 export function ProtectedRoute({
 
   children,
 
 }: Props) {
-
 
   const {
 
@@ -38,15 +33,11 @@ export function ProtectedRoute({
   } = useAuth();
 
 
-
-
-
   if (loading) {
-
 
     return (
 
-      <div>
+      <div className="flex min-h-screen items-center justify-center">
 
         Loading...
 
@@ -57,11 +48,7 @@ export function ProtectedRoute({
   }
 
 
-
-
-
   if (!user) {
-
 
     return (
 
@@ -78,18 +65,6 @@ export function ProtectedRoute({
   }
 
 
-
-
-
-  return (
-
-    <>
-
-      {children}
-
-    </>
-
-  );
-
+  return <>{children}</>;
 
 }

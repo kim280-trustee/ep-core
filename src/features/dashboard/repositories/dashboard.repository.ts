@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
@@ -14,7 +14,9 @@ import type {
 export interface DashboardRepository {
 
 
-  getSummary(): Promise<DashboardSummary>;
+  getSummary(
+    tenantId: string,
+  ): Promise<DashboardSummary>;
 
 
 }

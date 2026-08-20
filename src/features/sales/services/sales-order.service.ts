@@ -1,517 +1,290 @@
-import {
+﻿import {
   salesOrderRepository,
 } from "../repositories";
-
 
 import type {
   SalesOrder,
 } from "../types/sales-order.types";
-
 
 import type {
   SalesOrderItem,
 } from "../types/sales-order-item.types";
 
 
-
 interface CreateSalesOrderInput {
-
 
   tenantId: string;
 
-
   storeId: string;
-
 
   warehouseId: string;
 
-
   customerId?: string;
-
 
   notes?: string;
 
-
 }
-
 
 
 class SalesOrderService {
 
 
-
-  createDraft(
-
+  async createDraft(
     input: CreateSalesOrderInput,
-
-  ) {
-
+  ): Promise<SalesOrder> {
 
     const now =
-
       new Date().toISOString();
-
 
 
     const order: SalesOrder = {
 
-
       id:
-
         crypto.randomUUID(),
 
-
-
       tenantId:
-
         input.tenantId,
 
-
-
       storeId:
-
         input.storeId,
 
-
-
       warehouseId:
-
         input.warehouseId,
 
-
-
       customerId:
-
         input.customerId,
 
-
-
       orderNumber:
-
         `SO-${Date.now()}`,
 
-
-
       status:
-
         "DRAFT",
-
-
 
       items: [],
 
-
-
       subtotal:
-
         0,
-
-
 
       discountAmount:
-
         0,
-
-
 
       taxAmount:
-
         0,
-
-
 
       totalAmount:
-
         0,
 
-
-
       paymentStatus:
-
         "UNPAID",
 
-
-
       notes:
-
         input.notes,
 
-
-
       createdAt:
-
         now,
-
-
 
       updatedAt:
-
         now,
-
 
     };
 
 
-
-    return salesOrderRepository.create(
-
+    return await salesOrderRepository.create(
       order,
-
     );
 
   }
 
 
+  async getOrders(
+    tenantId: string,
+  ): Promise<SalesOrder[]> {
 
-
-
-
-
-  getOrders() {
-
-
-    return salesOrderRepository.findAll();
-
+    return await salesOrderRepository.findAll(
+      tenantId,
+    );
 
   }
 
 
-
-
-
-
-
-  getOrderById(
-
+  async getOrderById(
+    tenantId: string,
     id: string,
+  ): Promise<SalesOrder | undefined> {
 
-  ) {
-
-
-    return salesOrderRepository.findById(
-
+    return await salesOrderRepository.findById(
+      tenantId,
       id,
-
     );
-
 
   }
 
 
-
-
-
-
-
-  update(
-
+  async update(
+    tenantId: string,
     id: string,
-
     updates: Partial<SalesOrder>,
+  ): Promise<SalesOrder | undefined> {
 
-  ) {
-
-
-    return salesOrderRepository.update(
-
+    return await salesOrderRepository.update(
+      tenantId,
       id,
-
       updates,
-
     );
-
 
   }
 
 
-
-
-
-
-
-  addItem(
-
+  async addItem(
+    tenantId: string,
     orderId: string,
-
     item: SalesOrderItem,
-
-  ) {
-
+  ): Promise<SalesOrder | undefined> {
 
     const order =
-
-      salesOrderRepository.findById(
-
+      await salesOrderRepository.findById(
+        tenantId,
         orderId,
-
       );
-
 
 
     if (!order) {
 
-
       throw new Error(
-
         "Sales order not found.",
-
       );
-
 
     }
 
 
-
     const updatedItems = [
-
       ...order.items,
-
       item,
-
     ];
 
 
-
     const totals =
-
       this.calculateTotals(
-
         updatedItems,
-
       );
 
 
-
-    return salesOrderRepository.update(
-
+    return await salesOrderRepository.update(
+      tenantId,
       orderId,
-
       {
-
-
         items:
-
           updatedItems,
 
-
         ...totals,
-
-
       },
-
     );
-
 
   }
 
 
-
-
-
-
-
-  confirm(
-
+  async confirm(
+    tenantId: string,
     orderId: string,
+  ): Promise<SalesOrder | undefined> {
 
-  ) {
-
-
-    return salesOrderRepository.update(
-
+    return await salesOrderRepository.update(
+      tenantId,
       orderId,
-
       {
-
-
         status:
-
           "CONFIRMED",
-
-
       },
-
     );
-
 
   }
 
 
-
-
-
-
-
-  cancel(
-
+  async cancel(
+    tenantId: string,
     orderId: string,
+  ): Promise<SalesOrder | undefined> {
 
-  ) {
-
-
-    return salesOrderRepository.update(
-
+    return await salesOrderRepository.update(
+      tenantId,
       orderId,
-
       {
-
-
         status:
-
           "CANCELLED",
-
-
       },
-
     );
 
-
   }
-
-
-
-
-
 
 
   private calculateTotals(
-
     items: SalesOrderItem[],
-
   ) {
 
-
     const subtotal =
-
       items.reduce(
-
         (
-
           total,
-
           item,
-
         ) =>
-
-
           total +
-
           (
-
             item.quantity *
-
             item.unitPrice
-
           ),
-
-
         0,
-
       );
-
-
-
 
 
     const discountAmount =
-
       items.reduce(
-
         (
-
           total,
-
           item,
-
         ) =>
-
-
           total +
-
           item.discountAmount,
-
-
         0,
-
       );
-
-
-
 
 
     const taxAmount =
-
       items.reduce(
-
         (
-
           total,
-
           item,
-
         ) =>
-
-
           total +
-
           (
-
             item.lineTotal *
-
             (
-
               item.taxRate /
-
               100
-
             )
-
           ),
-
-
         0,
-
       );
-
-
-
 
 
     return {
 
-
       subtotal,
-
-
 
       discountAmount,
 
-
-
       taxAmount,
 
-
-
       totalAmount:
-
         subtotal -
-
         discountAmount +
-
         taxAmount,
-
 
     };
 
-
   }
-
-
 
 }
 
 
-
 export const salesOrderService =
-
   new SalesOrderService();

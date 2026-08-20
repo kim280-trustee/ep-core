@@ -1,8 +1,7 @@
 import {
-  inMemoryPurchaseOrderRepository,
-} from "./in-memory.purchase-order.repository";
+  supabasePurchaseOrderRepository,
+} from "./supabase.purchase-order.repository";
 
 
 export const purchaseOrderRepository =
-
-  inMemoryPurchaseOrderRepository;
+  supabasePurchaseOrderRepository;

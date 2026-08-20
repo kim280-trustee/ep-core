@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   SalesOrder,
 } from "../types/sales-order.types";
 
@@ -6,29 +6,27 @@ import type {
 export interface SalesOrderRepository {
 
 
-  findAll(): SalesOrder[];
-
+  findAll(
+    tenantId: string,
+  ): Promise<SalesOrder[]>;
 
 
   findById(
+    tenantId: string,
     id: string,
-  ): SalesOrder | undefined;
-
+  ): Promise<SalesOrder | undefined>;
 
 
   create(
     order: SalesOrder,
-  ): SalesOrder;
-
+  ): Promise<SalesOrder>;
 
 
   update(
+    tenantId: string,
     id: string,
-
     updates: Partial<SalesOrder>,
-
-  ): SalesOrder | undefined;
-
+  ): Promise<SalesOrder | undefined>;
 
 
 }

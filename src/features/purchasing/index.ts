@@ -15,7 +15,7 @@ export * from "./hooks/usePurchaseOrders";
 export * from "./repositories";
 
 
-export * from "./services/purchase-order.service";
+export * from "./services";
 
 
 export * from "./store/purchase-order.store";

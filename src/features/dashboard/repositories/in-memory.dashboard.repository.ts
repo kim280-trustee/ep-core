@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ============================================================
  * Dashboard Repository
  * ============================================================
@@ -16,12 +16,18 @@ import {
   salesOrderRepository,
 } from "@/features/sales/repositories";
 
+
 class InMemoryDashboardRepository
   implements DashboardRepository {
 
-  async getSummary(): Promise<DashboardSummary> {
+  async getSummary(
+    tenantId: string,
+  ): Promise<DashboardSummary> {
+
     const orders =
-      salesOrderRepository.findAll();
+      await salesOrderRepository.findAll(
+        tenantId,
+      );
 
     const totalSales =
       orders.length;
@@ -29,7 +35,7 @@ class InMemoryDashboardRepository
     const totalRevenue =
       orders.reduce(
         (
-          total,
+          total: number,
           order,
         ) =>
           total +

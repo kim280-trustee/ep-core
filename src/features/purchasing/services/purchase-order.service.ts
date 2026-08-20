@@ -2,40 +2,47 @@ import {
   purchaseOrderRepository,
 } from "../repositories";
 
+
 import {
   purchaseReceivingEngine,
 } from "../engine";
+
 
 import type {
   PurchaseOrder,
 } from "../types/purchase-order.types";
 
+
 import type {
   PurchaseOrderItem,
 } from "../types/purchase-order-item.types";
+
 
 interface CreatePurchaseOrderInput {
 
   tenantId: string;
 
-  storeId: string;
+  storeId: string | null;
 
   supplierId: string;
 
-  warehouseId: string;
+  warehouseId?: string | null;
 
-  notes?: string;
+  notes?: string | null;
 
 }
 
+
 class PurchaseOrderService {
 
-  createDraft(
+
+  async createDraft(
     input: CreatePurchaseOrderInput,
-  ) {
+  ): Promise<PurchaseOrder> {
 
     const now =
       new Date().toISOString();
+
 
     const order: PurchaseOrder = {
 
@@ -52,24 +59,39 @@ class PurchaseOrderService {
         input.supplierId,
 
       warehouseId:
-        input.warehouseId,
+        input.warehouseId ?? null,
 
       orderNumber:
         `PO-${Date.now()}`,
 
+      orderDate:
+        now,
+
+      expectedDeliveryDate:
+        null,
+
       status:
         "DRAFT",
 
+      currency:
+        "THB",
+
       items: [],
 
-      subtotal: 0,
+      subtotal:
+        0,
 
-      taxAmount: 0,
+      taxAmount:
+        0,
 
-      totalAmount: 0,
+      totalAmount:
+        0,
 
       notes:
-        input.notes,
+        input.notes ?? null,
+
+      createdBy:
+        null,
 
       createdAt:
         now,
@@ -79,49 +101,65 @@ class PurchaseOrderService {
 
     };
 
+
     return purchaseOrderRepository.create(
       order,
     );
 
   }
 
-  getOrders() {
 
-    return purchaseOrderRepository.findAll();
+  async getOrders(
+    tenantId: string,
+  ): Promise<PurchaseOrder[]> {
+
+    return purchaseOrderRepository.findAll(
+      tenantId,
+    );
 
   }
 
-  getOrderById(
+
+  async getOrderById(
+    tenantId: string,
     id: string,
-  ) {
+  ): Promise<PurchaseOrder | undefined> {
 
     return purchaseOrderRepository.findById(
+      tenantId,
       id,
     );
 
   }
 
-  update(
+
+  async update(
+    tenantId: string,
     id: string,
     updates: Partial<PurchaseOrder>,
-  ) {
+  ): Promise<PurchaseOrder | undefined> {
 
     return purchaseOrderRepository.update(
+      tenantId,
       id,
       updates,
     );
 
   }
 
-  addItem(
+
+  async addItem(
+    tenantId: string,
     orderId: string,
     item: PurchaseOrderItem,
-  ) {
+  ): Promise<PurchaseOrder | undefined> {
 
     const order =
-      purchaseOrderRepository.findById(
+      await purchaseOrderRepository.findById(
+        tenantId,
         orderId,
       );
+
 
     if (!order) {
 
@@ -131,22 +169,38 @@ class PurchaseOrderService {
 
     }
 
-    order.items.push(
-      item,
-    );
+
+    const updatedOrder: PurchaseOrder = {
+
+      ...order,
+
+      items: [
+        ...order.items,
+        item,
+      ],
+
+      updatedAt:
+        new Date().toISOString(),
+
+    };
+
 
     return purchaseOrderRepository.update(
+      tenantId,
       orderId,
-      order,
+      updatedOrder,
     );
 
   }
 
-  submit(
+
+  async submit(
+    tenantId: string,
     orderId: string,
-  ) {
+  ): Promise<PurchaseOrder | undefined> {
 
     return purchaseOrderRepository.update(
+      tenantId,
       orderId,
       {
         status:
@@ -156,11 +210,14 @@ class PurchaseOrderService {
 
   }
 
-  approve(
+
+  async approve(
+    tenantId: string,
     orderId: string,
-  ) {
+  ): Promise<PurchaseOrder | undefined> {
 
     return purchaseOrderRepository.update(
+      tenantId,
       orderId,
       {
         status:
@@ -170,11 +227,14 @@ class PurchaseOrderService {
 
   }
 
-  cancel(
+
+  async cancel(
+    tenantId: string,
     orderId: string,
-  ) {
+  ): Promise<PurchaseOrder | undefined> {
 
     return purchaseOrderRepository.update(
+      tenantId,
       orderId,
       {
         status:
@@ -184,14 +244,18 @@ class PurchaseOrderService {
 
   }
 
+
   async receive(
+    tenantId: string,
     orderId: string,
-  ) {
+  ): Promise<PurchaseOrder | undefined> {
 
     const order =
-      purchaseOrderRepository.findById(
+      await purchaseOrderRepository.findById(
+        tenantId,
         orderId,
       );
+
 
     if (!order) {
 
@@ -201,9 +265,15 @@ class PurchaseOrderService {
 
     }
 
-    const updated = await purchaseReceivingEngine.receive(order);
+
+    const updated =
+      await purchaseReceivingEngine.receive(
+        order,
+      );
+
 
     return purchaseOrderRepository.update(
+      tenantId,
       order.id,
       updated,
     );
@@ -211,6 +281,7 @@ class PurchaseOrderService {
   }
 
 }
+
 
 export const purchaseOrderService =
   new PurchaseOrderService();

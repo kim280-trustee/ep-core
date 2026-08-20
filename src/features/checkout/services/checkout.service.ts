@@ -1,4 +1,4 @@
-import {
+﻿import {
   salesProcessingEngine,
 } from "../../sales/engine";
 
@@ -23,14 +23,14 @@ import type {
 class CheckoutService {
 
 
-  checkout(
+  async checkout(
     input: CheckoutRequest,
-  ): CheckoutResult {
+  ): Promise<CheckoutResult> {
 
 
     const order =
-
-      salesOrderService.getOrderById(
+      await salesOrderService.getOrderById(
+        input.tenantId,
         input.salesOrderId,
       );
 
@@ -44,49 +44,32 @@ class CheckoutService {
     }
 
 
-
     const completedOrder =
-
       salesProcessingEngine.process(
         order,
       );
 
 
-
-    salesOrderService.update(
-
+    await salesOrderService.update(
+      input.tenantId,
       order.id,
-
       completedOrder,
-
     );
 
 
-
     const payment =
-
       paymentEngine.process(
-
         input.tenantId,
-
         order.id,
-
         input.paymentMethod,
-
         input.paymentAmount,
-
       );
-
 
 
     const completedPayment =
-
       paymentEngine.complete(
-
         payment.id,
-
       );
-
 
 
     if (!completedPayment) {
@@ -98,42 +81,27 @@ class CheckoutService {
     }
 
 
-
     const receipt =
-
       receiptEngine.issue(
-
         input.tenantId,
-
         order.id,
-
         payment.id,
-
         input.paymentAmount,
-
       );
-
 
 
     return {
 
       salesOrderId:
-
         order.id,
 
-
       paymentId:
-
         payment.id,
 
-
       receiptId:
-
         receipt.id,
 
-
       completedAt:
-
         new Date().toISOString(),
 
     };
@@ -145,5 +113,4 @@ class CheckoutService {
 
 
 export const checkoutService =
-
   new CheckoutService();

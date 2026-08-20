@@ -2,13 +2,16 @@ import type {
   PurchaseOrder,
 } from "../types/purchase-order.types";
 
+
 import type {
   PurchaseOrderItem,
 } from "../types/purchase-order-item.types";
 
+
 import {
   inventoryService,
 } from "../../inventory/services/inventory.service";
+
 
 import {
   receivingValidationEngine,
@@ -22,10 +25,18 @@ export class PurchaseReceivingEngine {
     order: PurchaseOrder,
   ): Promise<PurchaseOrder> {
 
-
     receivingValidationEngine.validate(
       order,
     );
+
+
+    if (!order.warehouseId) {
+
+      throw new Error(
+        "Cannot receive purchase order without a warehouse.",
+      );
+
+    }
 
 
     const items: PurchaseOrderItem[] =
@@ -38,11 +49,8 @@ export class PurchaseReceivingEngine {
 
       const receivedItem =
         await this.receiveItem(
-
           order,
-
           item,
-
         );
 
 
@@ -55,12 +63,9 @@ export class PurchaseReceivingEngine {
 
     const completed =
       items.every(
-
         (item) =>
-
-          item.quantityReceived >=
-          item.quantityOrdered,
-
+          item.receivedQuantity >=
+          item.quantity,
       );
 
 
@@ -84,19 +89,13 @@ export class PurchaseReceivingEngine {
 
 
   private async receiveItem(
-
     order: PurchaseOrder,
-
     item: PurchaseOrderItem,
-
   ): Promise<PurchaseOrderItem> {
 
-
     const remaining =
-
-      item.quantityOrdered -
-
-      item.quantityReceived;
+      item.quantity -
+      item.receivedQuantity;
 
 
     if (
@@ -108,38 +107,48 @@ export class PurchaseReceivingEngine {
     }
 
 
+    if (!order.warehouseId) {
+
+      throw new Error(
+        "Cannot receive purchase order without a warehouse.",
+      );
+
+    }
+
+
     const record =
       await inventoryService.getInventoryRecord(
-
         order.tenantId,
-
         item.productId,
-
         order.warehouseId,
-
       );
 
 
     if (!record) {
 
       throw new Error(
-
         `Inventory record not found for product ${item.productId}.`,
-
       );
 
     }
 
 
-    await inventoryService.increaseStock(record, remaining, item.unitCost);
+    await inventoryService.increaseStock(
+      record,
+      remaining,
+      item.unitCost,
+    );
 
 
     return {
 
       ...item,
 
-      quantityReceived:
-        item.quantityOrdered,
+      receivedQuantity:
+        item.quantity,
+
+      updatedAt:
+        new Date().toISOString(),
 
     };
 

@@ -16,7 +16,13 @@ import DashboardPage from "../pages/DashboardPage";
 export const dashboardRoutes: RouteObject[] = [
 
   {
-    path: "/dashboard",
+    index: true,
+
+    element: <DashboardPage />,
+  },
+
+  {
+    path: "dashboard",
 
     element: <DashboardPage />,
   },
