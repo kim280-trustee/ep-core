@@ -1,249 +1,343 @@
-/**
- * ============================================================
- * E&P Technologies
- * E&P Smart POS
- * Add Sales Order Item Form
- * ============================================================
- */
-
-import {
+﻿import {
   useState,
+  type FormEvent,
 } from "react";
+
+import ProductSelector
+  from "./ProductSelector";
 
 import {
   useSalesOrders,
 } from "../hooks/useSalesOrders";
 
-import {
-  ProductSelector,
-} from "./ProductSelector";
+interface AddSalesOrderItemFormProps {
+  salesOrderId: string;
+}
 
-import {
-  useProductsStore,
-} from "@/features/products";
-
-
-export default function AddSalesOrderItemForm() {
-
+export default function AddSalesOrderItemForm({
+  salesOrderId,
+}: AddSalesOrderItemFormProps) {
 
   const {
     orders,
     addItem,
+    loading,
   } = useSalesOrders();
 
-
-
-  const products =
-    useProductsStore(
-      (state) => state.products,
+  const activeOrder =
+    orders.find(
+      (order) =>
+        order.id === salesOrderId &&
+        order.status === "DRAFT",
     );
 
+  const [
+    productId,
+    setProductId,
+  ] = useState("");
 
+  const [
+    quantity,
+    setQuantity,
+  ] = useState("1");
 
-  const [orderId, setOrderId] =
-    useState("");
+  const [
+    unitPrice,
+    setUnitPrice,
+  ] = useState("");
 
+  const [
+    discountAmount,
+    setDiscountAmount,
+  ] = useState("0");
 
+  const [
+    taxRate,
+    setTaxRate,
+  ] = useState("7");
 
-  const [productId, setProductId] =
-    useState("");
+  const [
+    submitting,
+    setSubmitting,
+  ] = useState(false);
 
+  const [
+    error,
+    setError,
+  ] = useState<string | null>(null);
 
+  const [
+    success,
+    setSuccess,
+  ] = useState<string | null>(null);
 
-  const [quantity, setQuantity] =
-    useState(1);
+  async function handleSubmit(
+    event: FormEvent,
+  ) {
+    event.preventDefault();
 
+    setError(null);
+    setSuccess(null);
 
-
-  function handleSubmit() {
-
-
-    const product =
-      products.find(
-        (item) =>
-          item.id === productId,
+    if (!activeOrder) {
+      setError(
+        "Sales order is required.",
       );
-
-
-
-    if (!product) {
-
-      alert(
-        "Please select a product",
-      );
-
       return;
-
     }
 
+    if (!productId.trim()) {
+      setError(
+        "Please select a product.",
+      );
+      return;
+    }
 
+    const parsedQuantity =
+      Number(quantity);
 
-    const taxRate =
-      product.tax?.taxRate ?? 0;
+    const parsedUnitPrice =
+      Number(unitPrice);
 
+    const parsedDiscount =
+      Number(discountAmount || 0);
 
+    const parsedTaxRate =
+      Number(taxRate || 0);
 
-    addItem(
+    if (
+      !Number.isFinite(parsedQuantity) ||
+      parsedQuantity <= 0
+    ) {
+      setError(
+        "Quantity must be greater than zero.",
+      );
+      return;
+    }
 
-      orderId,
+    if (
+      !Number.isFinite(parsedUnitPrice) ||
+      parsedUnitPrice < 0
+    ) {
+      setError(
+        "Unit price must be zero or greater.",
+      );
+      return;
+    }
 
-      {
+    if (
+      !Number.isFinite(parsedDiscount) ||
+      parsedDiscount < 0
+    ) {
+      setError(
+        "Discount must be zero or greater.",
+      );
+      return;
+    }
 
-        id:
-          crypto.randomUUID(),
+    if (
+      !Number.isFinite(parsedTaxRate) ||
+      parsedTaxRate < 0 ||
+      parsedTaxRate > 100
+    ) {
+      setError(
+        "Tax rate must be between 0 and 100.",
+      );
+      return;
+    }
 
+    setSubmitting(true);
 
-        salesOrderId:
-          orderId,
+    try {
+      await addItem(
+        salesOrderId,
+        {
+          productId:
+            productId.trim(),
 
+          quantity:
+            parsedQuantity,
 
-        productId:
-          product.id,
+          unitPrice:
+            parsedUnitPrice,
 
+          discountAmount:
+            parsedDiscount,
 
-        quantity,
+          taxRate:
+            parsedTaxRate,
+        },
+      );
 
+      setSuccess(
+        "Item added to the sales order.",
+      );
 
-        unitPrice:
-          product.pricing.sellingPrice,
+      /*
+       * Reset the form after a successful
+       * add so another product can be added
+       * to the SAME sales order.
+       */
+      setProductId("");
+      setQuantity("1");
+      setUnitPrice("");
+      setDiscountAmount("0");
+      setTaxRate("7");
 
-
-        discountAmount:
-          0,
-
-
-        taxRate,
-
-
-        lineTotal:
-          quantity *
-          product.pricing.sellingPrice,
-
-      },
-
-    );
-
-
-
-    setProductId("");
-
-    setQuantity(1);
-
+    } catch (error) {
+      setError(
+        error instanceof Error
+          ? error.message
+          : "Failed to add item.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   }
 
-
-
-
   return (
-
-    <div
-      className="
-      flex
-      flex-col
-      gap-4
-      "
-    >
-
-
-      <h2>
-        Add Sales Item
+    <div>
+      <h2 className="text-lg font-semibold">
+        Add Sale Item
       </h2>
 
+      {activeOrder && (
+        <div className="mt-3 rounded border bg-gray-50 p-3 text-sm">
+          <div className="font-medium">
+            Active Sales Order
+          </div>
 
+          <div className="mt-1">
+            {activeOrder.orderNumber}
+          </div>
 
-      <select
+          <div className="mt-1 text-gray-600">
+            Items:{" "}
+            {activeOrder.items?.length ?? 0}
+          </div>
+        </div>
+      )}
 
-        value={orderId}
+      {!activeOrder && (
+        <div className="mt-3 rounded border bg-gray-50 p-3 text-sm text-gray-600">
+          Create a sales order first.
+        </div>
+      )}
 
-        onChange={(e)=>
-          setOrderId(
-            e.target.value,
-          )
-        }
+      {error && (
+        <div className="mt-3 rounded border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
 
-        className="border p-2 rounded"
+      {success && (
+        <div className="mt-3 rounded border border-green-200 bg-green-50 p-3 text-sm text-green-700">
+          {success}
+        </div>
+      )}
 
+      <form
+        onSubmit={handleSubmit}
+        className="mt-4 space-y-4"
       >
+        <ProductSelector
+          value={productId}
+          onChange={setProductId}
+          onPriceChange={setUnitPrice}
+        />
 
-        <option value="">
-          Select Order
-        </option>
+        <div>
+          <label className="mb-1 block text-sm font-medium">
+            Quantity
+          </label>
 
+          <input
+            type="number"
+            min="1"
+            step="1"
+            value={quantity}
+            onChange={(event) =>
+              setQuantity(
+                event.target.value,
+              )
+            }
+            className="w-full rounded border p-2"
+          />
+        </div>
 
-        {
-          orders.map(
-            (order)=> (
+        <div>
+          <label className="mb-1 block text-sm font-medium">
+            Unit Price
+          </label>
 
-              <option
-                key={order.id}
-                value={order.id}
-              >
+          <input
+            type="number"
+            min="0"
+            step="0.01"
+            value={unitPrice}
+            onChange={(event) =>
+              setUnitPrice(
+                event.target.value,
+              )
+            }
+            className="w-full rounded border p-2"
+          />
+        </div>
 
-                {order.orderNumber}
+        <div>
+          <label className="mb-1 block text-sm font-medium">
+            Discount
+          </label>
 
-              </option>
+          <input
+            type="number"
+            min="0"
+            step="0.01"
+            value={discountAmount}
+            onChange={(event) =>
+              setDiscountAmount(
+                event.target.value,
+              )
+            }
+            className="w-full rounded border p-2"
+          />
+        </div>
 
-            ),
-          )
-        }
+        <div>
+          <label className="mb-1 block text-sm font-medium">
+            Tax Rate (%)
+          </label>
 
+          <input
+            type="number"
+            min="0"
+            max="100"
+            step="0.01"
+            value={taxRate}
+            onChange={(event) =>
+              setTaxRate(
+                event.target.value,
+              )
+            }
+            className="w-full rounded border p-2"
+          />
+        </div>
 
-      </select>
-
-
-
-      <ProductSelector
-
-        value={productId}
-
-        onChange={setProductId}
-
-      />
-
-
-
-      <input
-
-        type="number"
-
-        value={quantity}
-
-        min={1}
-
-        onChange={(e)=>
-          setQuantity(
-            Number(
-              e.target.value,
-            ),
-          )
-        }
-
-        className="border p-2 rounded"
-
-      />
-
-
-
-      <button
-
-        onClick={handleSubmit}
-
-        className="
-        bg-blue-600
-        text-white
-        p-2
-        rounded
-        "
-
-      >
-
-        Add Item
-
-      </button>
-
-
+        <button
+          type="submit"
+          disabled={
+            loading ||
+            submitting ||
+            !activeOrder ||
+            !productId
+          }
+          className="rounded bg-black px-5 py-2 text-white disabled:opacity-50"
+        >
+          {submitting
+            ? "Adding..."
+            : "Add Item"}
+        </button>
+      </form>
     </div>
-
   );
-
 }

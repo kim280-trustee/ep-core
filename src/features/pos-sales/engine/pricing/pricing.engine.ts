@@ -1,88 +1,77 @@
 import type {
   SaleItem,
-} from "../../types";
-
+} from "../../types/sale-item.types";
 
 export interface PricingSummary {
-
   subtotal: number;
 
   discountAmount: number;
 
+  taxableAmount: number;
+
   taxAmount: number;
 
-  total: number;
-
+  totalAmount: number;
 }
 
-
 export class PricingEngine {
-
-
   calculate(
-
     items: SaleItem[],
-
-    discountRate = 0,
-
-    taxRate = 0,
-
   ): PricingSummary {
-
-
     const subtotal =
       items.reduce(
-
-        (sum, item) =>
-          sum + item.lineTotal,
-
+        (
+          total,
+          item,
+        ) =>
+          total +
+          item.quantity *
+            item.unitPrice,
         0,
-
       );
 
-
-
     const discountAmount =
-      subtotal *
-      discountRate;
-
-
+      items.reduce(
+        (
+          total,
+          item,
+        ) =>
+          total +
+          item.discountAmount,
+        0,
+      );
 
     const taxableAmount =
-      subtotal -
-      discountAmount;
-
-
+      Math.max(
+        0,
+        subtotal -
+          discountAmount,
+      );
 
     const taxAmount =
-      taxableAmount *
-      taxRate;
+      items.reduce(
+        (
+          total,
+          item,
+        ) =>
+          total +
+          (item.taxAmount ?? 0),
+        0,
+      );
 
-
-
-    const total =
+    const totalAmount =
       taxableAmount +
       taxAmount;
 
-
-
     return {
-
       subtotal,
-
       discountAmount,
-
+      taxableAmount,
       taxAmount,
-
-      total,
-
+      totalAmount,
     };
-
   }
-
-
 }
-
 
 export const pricingEngine =
   new PricingEngine();

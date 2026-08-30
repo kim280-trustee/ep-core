@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ============================================================
  * E&P Technologies
  * Smart POS
@@ -6,37 +6,29 @@
  * ============================================================
  */
 
-
 import type {
-
   CreateWarehouseDto,
-
   UpdateWarehouseDto,
-
 } from "../types/warehouse.types";
 
 
 import {
-
   warehouseRepository,
-
 } from "../repositories/repository.provider";
-
 
 
 export const warehouseService = {
 
 
-  getWarehouses() {
+  async getWarehouses() {
 
     return warehouseRepository.findAll();
 
   },
 
 
-
-  getWarehouseById(
-    id:string,
+  async getWarehouseById(
+    id: string,
   ) {
 
     return warehouseRepository.findById(
@@ -46,17 +38,11 @@ export const warehouseService = {
   },
 
 
-
-  createWarehouse(
-
-    tenantId:string,
-
-    storeId:string,
-
-    warehouse:CreateWarehouseDto,
-
+  async createWarehouse(
+    tenantId: string,
+    storeId: string,
+    warehouse: CreateWarehouseDto,
   ) {
-
 
     return warehouseRepository.create({
 
@@ -71,38 +57,27 @@ export const warehouseService = {
   },
 
 
-
-  updateWarehouse(
-
-    id:string,
-
-    warehouse:UpdateWarehouseDto,
-
+  async updateWarehouse(
+    id: string,
+    warehouse: UpdateWarehouseDto,
   ) {
 
-
     return warehouseRepository.update(
-
       id,
-
       warehouse,
-
     );
 
   },
 
 
-
-  deleteWarehouse(
-    id:string,
+  async deleteWarehouse(
+    id: string,
   ) {
-
 
     return warehouseRepository.delete(
       id,
     );
 
   },
-
 
 };

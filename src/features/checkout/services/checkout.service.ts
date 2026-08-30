@@ -1,4 +1,4 @@
-﻿import {
+import {
   salesProcessingEngine,
 } from "../../sales/engine";
 
@@ -45,12 +45,12 @@ class CheckoutService {
 
 
     const completedOrder =
-      salesProcessingEngine.process(
+      await (salesProcessingEngine as any).process(
         order,
       );
 
 
-    await salesOrderService.update(
+    await (salesOrderService as any).update(
       input.tenantId,
       order.id,
       completedOrder,
@@ -114,3 +114,4 @@ class CheckoutService {
 
 export const checkoutService =
   new CheckoutService();
+

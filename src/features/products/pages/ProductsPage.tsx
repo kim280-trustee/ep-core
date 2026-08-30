@@ -28,7 +28,7 @@ import {
 
 import {
   useProducts,
-} from "../hooks/useProduct";
+} from "../hooks/useProducts";
 
 
 import {
@@ -263,3 +263,4 @@ export function ProductsPage() {
   );
 
 }
+

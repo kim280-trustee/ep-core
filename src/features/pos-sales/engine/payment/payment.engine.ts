@@ -1,102 +1,93 @@
-export type PaymentMethod =
+﻿export type PaymentMethod =
   | "CASH"
-  | "QR"
   | "CARD"
-  | "TRANSFER";
-
+  | "TRANSFER"
+  | "QR"
+  | "OTHER";
 
 export interface PaymentEntry {
-
   method: PaymentMethod;
 
   amount: number;
-
 }
 
-
 export interface PaymentResult {
+  totalAmount: number;
 
-  payments: PaymentEntry[];
+  paidAmount: number;
 
-  paid: number;
+  remainingAmount: number;
 
-  balance: number;
-
-  change: number;
+  changeAmount: number;
 
   completed: boolean;
 
+  payments: PaymentEntry[];
 }
-
-
 
 export class PaymentEngine {
-
-
   process(
-
-    total: number,
-
+    totalAmount: number,
     payments: PaymentEntry[],
-
   ): PaymentResult {
+    if (
+      !Number.isFinite(
+        totalAmount,
+      ) ||
+      totalAmount < 0
+    ) {
+      throw new Error(
+        "Invalid sale total.",
+      );
+    }
 
-
-    const paid =
-      payments.reduce(
-
-        (sum,payment)=>
-          sum + payment.amount,
-
-        0,
-
+    const validPayments =
+      payments.filter(
+        (payment) =>
+          Number.isFinite(
+            payment.amount,
+          ) &&
+          payment.amount > 0,
       );
 
+    const paidAmount =
+      validPayments.reduce(
+        (
+          total,
+          payment,
+        ) =>
+          total +
+          payment.amount,
+        0,
+      );
 
-
-    const balance =
+    const remainingAmount =
       Math.max(
-
-        total - paid,
-
         0,
-
+        totalAmount -
+          paidAmount,
       );
 
-
-
-    const change =
+    const changeAmount =
       Math.max(
-
-        paid - total,
-
         0,
-
+        paidAmount -
+          totalAmount,
       );
-
-
 
     return {
-
-      payments,
-
-      paid,
-
-      balance,
-
-      change,
-
+      totalAmount,
+      paidAmount,
+      remainingAmount,
+      changeAmount,
       completed:
-        paid >= total,
-
+        paidAmount >=
+        totalAmount,
+      payments:
+        validPayments,
     };
-
-
   }
-
-
 }
-
 
 export const paymentEngine =
   new PaymentEngine();

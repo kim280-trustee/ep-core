@@ -1,163 +1,276 @@
-import {
-  useForm,
-} from "react-hook-form";
+﻿import {
+  useEffect,
+  useState,
+} from "react";
 
 
-import {
-  zodResolver,
-} from "@hookform/resolvers/zod";
+import type {
+  CreateWarehouseDto,
+} from "../types/warehouse.types";
 
 
-import {
-
-  warehouseSchema,
-
-  type WarehouseFormInput,
-
-} from "../validators/warehouse.schema";
-
+export type WarehouseFormInput =
+  CreateWarehouseDto;
 
 
 interface WarehouseFormProps {
 
+  defaultValues?:
+    Partial<WarehouseFormInput>;
 
-  defaultValues?: Partial<WarehouseFormInput>;
-
-
-  onSubmit(
-    data: WarehouseFormInput,
-  ): void;
-
+  onSubmit:
+    (
+      data: WarehouseFormInput,
+    ) => void | Promise<void>;
 
 }
 
 
-
-export function WarehouseForm(
-
-  {
-    defaultValues,
-
-    onSubmit,
-
-  }: WarehouseFormProps
-
-) {
+export function WarehouseForm({
+  defaultValues,
+  onSubmit,
+}: WarehouseFormProps) {
 
 
-  const {
+  const [
+    form,
+    setForm,
+  ] =
+    useState<WarehouseFormInput>({
 
-    register,
+      code:
+        defaultValues?.code ?? "",
 
-    handleSubmit,
+      name:
+        defaultValues?.name ?? "",
 
-  } =
-    useForm<WarehouseFormInput>({
+      address:
+        defaultValues?.address ?? "",
 
-      resolver:
+      city:
+        defaultValues?.city ?? "",
 
-        zodResolver(
-          warehouseSchema,
-        ),
+      province:
+        defaultValues?.province ?? "",
 
+      postalCode:
+        defaultValues?.postalCode ?? "",
 
-      defaultValues,
+      country:
+        defaultValues?.country ?? "Thailand",
+
+      phone:
+        defaultValues?.phone ?? "",
+
+      managerName:
+        defaultValues?.managerName ?? "",
 
     });
 
+
+  const [
+    submitting,
+    setSubmitting,
+  ] = useState(false);
+
+
+  useEffect(() => {
+
+    setForm({
+
+      code:
+        defaultValues?.code ?? "",
+
+      name:
+        defaultValues?.name ?? "",
+
+      address:
+        defaultValues?.address ?? "",
+
+      city:
+        defaultValues?.city ?? "",
+
+      province:
+        defaultValues?.province ?? "",
+
+      postalCode:
+        defaultValues?.postalCode ?? "",
+
+      country:
+        defaultValues?.country ?? "Thailand",
+
+      phone:
+        defaultValues?.phone ?? "",
+
+      managerName:
+        defaultValues?.managerName ?? "",
+
+    });
+
+  }, [
+    defaultValues,
+  ]);
+
+
+  function updateField(
+    field:
+      keyof WarehouseFormInput,
+    value: string,
+  ) {
+
+    setForm(
+      current => ({
+
+        ...current,
+
+        [field]:
+          value,
+
+      }),
+    );
+
+  }
+
+
+  async function handleSubmit(
+    event:
+      React.FormEvent<HTMLFormElement>,
+  ) {
+
+    event.preventDefault();
+
+
+    if (submitting) {
+
+      return;
+
+    }
+
+
+    if (
+      !form.code.trim()
+      ||
+      !form.name.trim()
+    ) {
+
+      return;
+
+    }
+
+
+    setSubmitting(true);
+
+
+    try {
+
+      await onSubmit({
+
+        ...form,
+
+        code:
+          form.code.trim(),
+
+        name:
+          form.name.trim(),
+
+        address:
+          form.address.trim(),
+
+        city:
+          form.city.trim(),
+
+        province:
+          form.province.trim(),
+
+        postalCode:
+          form.postalCode.trim(),
+
+        country:
+          form.country.trim(),
+
+        phone:
+          form.phone?.trim() || undefined,
+
+        managerName:
+          form.managerName?.trim() || undefined,
+
+      });
+
+    } finally {
+
+      setSubmitting(false);
+
+    }
+
+  }
 
 
   return (
 
     <form
-
       onSubmit={
-        handleSubmit(
-          onSubmit,
-        )
+        handleSubmit
       }
-
     >
 
+      <div>
 
-      <input
+        <label>
+          Warehouse Code
+        </label>
 
-        {...register("code")}
+        <input
+          value={
+            form.code
+          }
+          onChange={
+            event =>
+              updateField(
+                "code",
+                event.target.value,
+              )
+          }
+          required
+        />
 
-        placeholder="Warehouse Code"
-
-      />
-
-
-      <input
-
-        {...register("name")}
-
-        placeholder="Warehouse Name"
-
-      />
-
-
-      <input
-
-        {...register("address")}
-
-        placeholder="Address"
-
-      />
+      </div>
 
 
-      <input
+      <div>
 
-        {...register("city")}
+        <label>
+          Warehouse Name
+        </label>
 
-        placeholder="City"
+        <input
+          value={
+            form.name
+          }
+          onChange={
+            event =>
+              updateField(
+                "name",
+                event.target.value,
+              )
+          }
+          required
+        />
 
-      />
-
-
-      <input
-
-        {...register("province")}
-
-        placeholder="Province"
-
-      />
-
-
-      <input
-
-        {...register("postalCode")}
-
-        placeholder="Postal Code"
-
-      />
+      </div>
 
 
-      <input
+      <button
+        type="submit"
+        disabled={
+          submitting
+        }
+      >
 
-        {...register("country")}
-
-        placeholder="Country"
-
-      />
-
-
-      <input
-
-        {...register("phone")}
-
-        placeholder="Phone"
-
-      />
-
-
-      <button>
-
-        Save Warehouse
+        {submitting
+          ? "Saving..."
+          : "Save Warehouse"}
 
       </button>
-
 
     </form>
 

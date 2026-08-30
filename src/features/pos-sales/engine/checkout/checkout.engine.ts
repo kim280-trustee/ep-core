@@ -1,89 +1,65 @@
-import type {
+﻿import type {
   SaleItem,
-} from "../../types";
-
-
-import {
-  pricingEngine,
-} from "../pricing/pricing.engine";
-
+} from "../../types/sale-item.types";
 
 import {
   paymentEngine,
+  type PaymentEntry,
+  type PaymentResult,
 } from "../payment/payment.engine";
 
+import {
+  pricingEngine,
+  type PricingSummary,
+} from "../pricing/pricing.engine";
 
-import type {
-  PaymentEntry,
-} from "../payment/payment.engine";
+export interface CheckoutResult {
+  pricing: PricingSummary;
 
+  payment: PaymentResult;
 
+  completed: boolean;
+}
 
 export class CheckoutEngine {
-
-
-  checkout(
-
+  process(
     items: SaleItem[],
-
     payments: PaymentEntry[],
-
-    discountRate = 0,
-
-    taxRate = 0,
-
-  ) {
-
+  ): CheckoutResult {
+    if (
+      items.length === 0
+    ) {
+      throw new Error(
+        "Cannot checkout an empty cart.",
+      );
+    }
 
     const pricing =
       pricingEngine.calculate(
-
         items,
-
-        discountRate,
-
-        taxRate,
-
       );
-
-
 
     const payment =
       paymentEngine.process(
-
-        pricing.total,
-
+        pricing.totalAmount,
         payments,
-
       );
 
-
+    if (
+      !payment.completed
+    ) {
+      throw new Error(
+        "Payment incomplete.",
+      );
+    }
 
     return {
-
-
-      items,
-
-
       pricing,
-
-
       payment,
-
-
-      completed:
-        payment.completed,
-
-
+      completed: true,
     };
-
-
   }
-
-
 }
-
-
 
 export const checkoutEngine =
   new CheckoutEngine();

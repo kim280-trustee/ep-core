@@ -1,12 +1,6 @@
-/**
- * ============================================================
- * E&P Technologies
- * E&P Smart POS
- * Product Validation Schema
- * ============================================================
- */
-
-import { z } from "zod";
+import {
+  z,
+} from "zod";
 
 import {
   ProductStatus,
@@ -18,108 +12,99 @@ export const createProductSchema =
   z.object({
 
     name:
-      z.string()
+      z
+        .string()
         .min(
           2,
-          "Product name must have at least 2 characters",
-        ),
-
-    sku:
-      z.string()
-        .min(
-          1,
-          "SKU is required",
-        ),
-
-    barcode:
-      z.string()
-        .nullable()
-        .optional(),
+          "Product name must contain at least 2 characters",
+        )
+        .max(150),
 
     description:
-      z.string()
-        .nullable()
+      z
+        .string()
+        .max(500)
         .optional(),
-
-    currency:
-      z.string()
-        .min(
-          3,
-          "Currency is required",
-        )
-        .default("THB"),
 
     productType:
       z.nativeEnum(
         ProductType,
       ),
 
+    sku:
+      z
+        .string()
+        .min(3)
+        .max(50),
+
+    barcode:
+      z
+        .string()
+        .max(100)
+        .optional(),
+
+    categoryId:
+      z
+        .string()
+        .optional(),
+
+    brandId:
+      z
+        .string()
+        .optional(),
+
+    unitId:
+      z
+        .string()
+        .min(1),
+
+    taxId:
+      z
+        .string()
+        .optional(),
+
+    costPrice:
+      z
+        .number()
+        .min(0),
+
+    sellingPrice:
+      z
+        .number()
+        .min(0),
+
+    currency:
+      z
+        .string()
+        .length(3),
+
     status:
       z.nativeEnum(
         ProductStatus,
       ),
 
-    costPrice:
-      z.number()
-        .min(
-          0,
-          "Cost price cannot be negative",
-        ),
-
-    sellingPrice:
-      z.number()
-        .min(
-          0,
-          "Selling price cannot be negative",
-        ),
-
     trackInventory:
-      z.boolean(),
-
-    categoryId:
-      z.string()
-        .nullable()
-        .optional(),
-
-    brandId:
-      z.string()
-        .nullable()
-        .optional(),
-
-    unitId:
-      z.string()
-        .nullable()
-        .optional(),
-
-    taxId:
-      z.string()
-        .nullable()
-        .optional(),
+      z
+        .boolean(),
 
     imageUrl:
-      z.string()
-        .nullable()
+      z
+        .string()
+        .url()
         .optional(),
 
   });
 
 
-/**
- * Input accepted by the schema.
- *
- * Fields with defaults may be optional
- * before Zod parsing.
- */
+export const productSchema =
+  createProductSchema;
+
+
 export type ProductFormInput =
-  z.input<
+  z.infer<
     typeof createProductSchema
   >;
 
 
-/**
- * Final validated form values.
- */
 export type ProductFormValues =
-  z.output<
-    typeof createProductSchema
-  >;
+  ProductFormInput;

@@ -1,48 +1,39 @@
-import type {
+﻿import type {
   Supplier,
 } from "../types/supplier.types";
-
 
 
 export interface ISupplierRepository {
 
 
-  findAll(): Supplier[];
-
+  findAll(
+    tenantId: string,
+    storeId?: string,
+  ): Promise<Supplier[]>;
 
 
   findById(
-
-    id:string,
-
-  ): Supplier | undefined;
-
+    tenantId: string,
+    id: string,
+  ): Promise<Supplier | undefined>;
 
 
   create(
-
-    supplier:Supplier,
-
-  ):Supplier;
-
+    supplier: Supplier,
+  ): Promise<Supplier>;
 
 
   update(
-
-    id:string,
-
-    updates:Partial<Supplier>,
-
-  ):Supplier | undefined;
-
+    tenantId: string,
+    id: string,
+    updates: Partial<Supplier>,
+  ): Promise<Supplier | undefined>;
 
 
   delete(
-
-    id:string,
-
-  ):boolean;
-
+    tenantId: string,
+    id: string,
+  ): Promise<boolean>;
 
 
 }

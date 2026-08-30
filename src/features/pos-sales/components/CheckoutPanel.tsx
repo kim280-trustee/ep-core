@@ -1,33 +1,22 @@
-import {
+﻿import {
   useState,
 } from "react";
-
 
 import {
   usePosSalesStore,
 } from "../store/pos-sales.store";
 
-
 import {
-  saleService,
-} from "../services/sale.service";
-
-
-import {
-  paymentEngine,
-} from "../../payments/engine/payment.engine";
-
+  useSalesOrders,
+} from "@/features/sales/hooks/useSalesOrders";
 
 
 export function CheckoutPanel() {
-
 
   const [
     message,
     setMessage,
   ] = useState("");
-
-
 
   const items =
     usePosSalesStore(
@@ -35,13 +24,11 @@ export function CheckoutPanel() {
         state.items,
     );
 
-
   const tenantId =
     usePosSalesStore(
       (state) =>
         state.tenantId,
     );
-
 
   const storeId =
     usePosSalesStore(
@@ -49,20 +36,11 @@ export function CheckoutPanel() {
         state.storeId,
     );
 
-
   const warehouseId =
     usePosSalesStore(
       (state) =>
         state.warehouseId,
     );
-
-
-  const customerId =
-    usePosSalesStore(
-      (state) =>
-        state.customerId,
-    );
-
 
   const clearCart =
     usePosSalesStore(
@@ -70,14 +48,11 @@ export function CheckoutPanel() {
         state.clearCart,
     );
 
-
-
   const subtotal =
     usePosSalesStore(
       (state) =>
         state.getSubtotal(),
     );
-
 
   const tax =
     usePosSalesStore(
@@ -85,46 +60,54 @@ export function CheckoutPanel() {
         state.getTaxAmount(),
     );
 
-
   const total =
     usePosSalesStore(
       (state) =>
         state.getTotal(),
     );
 
+  const {
+    createDraft,
+    addItem,
+    confirmOrder,
+    processOrder,
+    completeOrder,
+  } = useSalesOrders();
 
 
+  async function completeSale() {
 
-  function completeSale() {
-
+    setMessage("");
 
     try {
 
-
-      if(items.length === 0) {
-
+      if (items.length === 0) {
         throw new Error(
           "Cart is empty.",
         );
-
       }
 
+      if (!tenantId) {
+        throw new Error(
+          "Tenant is required.",
+        );
+      }
 
+      if (!storeId) {
+        throw new Error(
+          "Store is required.",
+        );
+      }
 
-      if(!warehouseId) {
-
+      if (!warehouseId) {
         throw new Error(
           "Warehouse is required.",
         );
-
       }
 
 
-
-
-      const sale =
-
-        saleService.createSale({
+      const draft =
+        await createDraft({
 
           tenantId,
 
@@ -132,177 +115,130 @@ export function CheckoutPanel() {
 
           warehouseId,
 
-          customerId,
-
         });
 
 
+      let order =
+        draft;
 
 
+      for (const item of items) {
 
+        order =
+          await addItem(
+            order.id,
+            {
+              productId:
+                item.productId,
 
-      items.forEach(
+              quantity:
+                item.quantity,
 
-        (item) => {
+              unitPrice:
+                item.unitPrice,
 
+              discountAmount:
+                item.discountAmount,
 
-          saleService.addItem(
+              taxRate:
+                item.taxRate,
 
-            sale.id,
-
-            item,
-
+            },
           );
 
-
-        },
-
-      );
+      }
 
 
-
-
-
-
-      const payment =
-
-        paymentEngine.process(
-
-          tenantId,
-
-          sale.id,
-
-          "CASH",
-
-          total,
-
+      order =
+        await confirmOrder(
+          order.id,
         );
 
 
+      order =
+        await processOrder(
+          order.id,
+        );
 
 
-
-
-      paymentEngine.complete(
-
-        payment.id,
-
-      );
-
-
-
-
-
-
-      saleService.completeSale(
-
-        sale.id,
-
-      );
-
-
-
-
+      order =
+        await completeOrder(
+          order.id,
+        );
 
 
       clearCart();
 
 
-
-
       setMessage(
-
-        "Sale completed successfully.",
-
+        `Sale completed: ${order.orderNumber}`,
       );
 
+    } catch (error) {
 
-    }
-
-    catch(error) {
-
+      console.error(
+        "POS sale failed:",
+        error,
+      );
 
       setMessage(
-
         error instanceof Error
-
           ? error.message
-
           : "Sale failed.",
-
       );
 
-
     }
-
 
   }
-
-
 
 
   return (
 
     <div className="rounded border p-4">
 
-
       <h2 className="font-medium">
         Checkout
       </h2>
 
 
-
       <div className="mt-4 space-y-2">
-
 
         <p>
           Subtotal: {subtotal}
         </p>
 
-
         <p>
           Tax: {tax}
         </p>
-
 
         <p className="font-semibold">
           Total: {total}
         </p>
 
-
       </div>
 
 
-
-
       <button
-
-        className="mt-4 rounded bg-black px-4 py-2 text-white"
-
-        onClick={completeSale}
-
+        type="button"
+        disabled={
+          items.length === 0
+        }
+        className="mt-4 rounded bg-black px-4 py-2 text-white disabled:opacity-50"
+        onClick={() => {
+          void completeSale();
+        }}
       >
-
         Complete Sale
-
       </button>
 
 
+      {message && (
 
+        <p className="mt-4 text-sm">
+          {message}
+        </p>
 
-      {
-        message && (
-
-          <p className="mt-4 text-sm">
-
-            {message}
-
-          </p>
-
-        )
-      }
-
-
+      )}
 
     </div>
 

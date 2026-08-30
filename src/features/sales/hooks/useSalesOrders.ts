@@ -1,70 +1,115 @@
-import {
+﻿import {
   useEffect,
 } from "react";
-
 
 import {
   useSalesOrderStore,
 } from "../store/sales-order.store";
 
-
-
 export function useSalesOrders() {
 
+  const orders =
+    useSalesOrderStore(
+      (state) =>
+        state.orders,
+    );
 
-  const {
+  const loading =
+    useSalesOrderStore(
+      (state) =>
+        state.loading,
+    );
 
-    orders,
+  const error =
+    useSalesOrderStore(
+      (state) =>
+        state.error,
+    );
 
-    loadOrders,
+  const loadOrders =
+    useSalesOrderStore(
+      (state) =>
+        state.loadOrders,
+    );
 
-    createDraft,
+  const createDraft =
+    useSalesOrderStore(
+      (state) =>
+        state.createDraft,
+    );
 
-    addItem,
+  const addItem =
+    useSalesOrderStore(
+      (state) =>
+        state.addItem,
+    );
 
-    confirmOrder,
+  const confirmOrder =
+    useSalesOrderStore(
+      (state) =>
+        state.confirmOrder,
+    );
 
-    processOrder,
+  const processOrder =
+    useSalesOrderStore(
+      (state) =>
+        state.processOrder,
+    );
 
-    cancelOrder,
+  const completeOrder =
+    useSalesOrderStore(
+      (state) =>
+        state.completeOrder,
+    );
 
-  } = useSalesOrderStore();
+  const cancelOrder =
+    useSalesOrderStore(
+      (state) =>
+        state.cancelOrder,
+    );
 
+  const refundOrder =
+    useSalesOrderStore(
+      (state) =>
+        state.refundOrder,
+    );
 
+  const clearError =
+    useSalesOrderStore(
+      (state) =>
+        state.clearError,
+    );
 
-  useEffect(() => {
-
-    loadOrders();
-
-  }, [loadOrders]);
-
-
+  useEffect(
+    () => {
+      void loadOrders();
+    },
+    [loadOrders],
+  );
 
   return {
-
-
     orders,
 
+    loading,
+
+    error,
 
     loadOrders,
 
-
     createDraft,
-
 
     addItem,
 
-
     confirmOrder,
-
 
     processOrder,
 
+    completeOrder,
 
     cancelOrder,
 
+    refundOrder,
 
+    clearError,
   };
-
-
 }

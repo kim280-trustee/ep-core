@@ -1,41 +1,16 @@
-export type {
-
-  Warehouse,
-
-  CreateWarehouseDto,
-
-  UpdateWarehouseDto,
-
-} from "./types/warehouse.types";
-
-
-
-export {
-
+﻿export {
   warehouseService,
-
 } from "./services/warehouse.service";
 
 
-
 export {
-
-  useWarehouses,
-
-} from "./hooks/useWarehouses";
+  warehouseRepository,
+} from "./repositories/repository.provider";
 
 
-
-export {
-
-  useWarehouseStore,
-
-} from "./store/warehouse.store";
-
-
-
-export {
-
-  warehouseRoutes,
-
-} from "./routes/warehouse.routes";
+export type {
+  Warehouse,
+  WarehouseStatus,
+  CreateWarehouseDto,
+  UpdateWarehouseDto,
+} from "./types/warehouse.types";

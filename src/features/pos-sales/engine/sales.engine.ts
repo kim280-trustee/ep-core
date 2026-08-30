@@ -1,177 +1,98 @@
-﻿import type {
-  PaymentEntry,
-} from "./payment/payment.engine";
-
 import type {
   SaleItem,
-} from "../types";
+} from "../types/sale-item.types";
 
 import {
   checkoutEngine,
 } from "./checkout/checkout.engine";
 
-import {
-  receiptEngine,
-} from "./receipt/receipt.engine";
-
-import {
-  inventoryService,
-} from "../../inventory/services/inventory.service";
-
-import {
-  inventoryTransactionService,
-} from "../../inventory-transactions/services/inventory-transaction.service";
-
-
 export class SalesEngine {
-
-
   async processSale(
     items: SaleItem[],
-    payments: PaymentEntry[],
-    warehouseId: string,
-    tenantId: string,
-    storeId: string,
-    discountRate = 0,
-    taxRate = 0,
+    payments: Parameters<
+      typeof checkoutEngine.process
+    >[1],
   ) {
-
-    const checkout =
-      checkoutEngine.checkout(
-        items,
-        payments,
-        discountRate,
-        taxRate,
+    if (items.length === 0) {
+      throw new Error(
+        "Cannot process an empty sale.",
       );
-
-
-    if (!checkout.completed) {
-
-      return {
-
-        success: false,
-
-        message:
-          "Payment incomplete",
-
-        checkout,
-
-      };
-
     }
 
-
-    const transactionId =
-      crypto.randomUUID();
-
-
-    for (
-      const item of items
-    ) {
-
-      const inventoryRecord =
-        await inventoryService.getInventoryRecord(
-          tenantId,
-          item.productId,
-          warehouseId,
+    for (const item of items) {
+      if (!item.productId) {
+        throw new Error(
+          "Every sale item requires a product.",
         );
-
-
-      if (!inventoryRecord) {
-
-        return {
-
-          success: false,
-
-          message:
-            `Inventory record missing for ${item.productId}`,
-
-        };
-
       }
-
 
       if (
-        inventoryRecord.availableQuantity <
-        item.quantity
+        !Number.isFinite(item.quantity) ||
+        item.quantity <= 0
       ) {
-
-        return {
-
-          success: false,
-
-          message:
-            `Insufficient stock for ${item.productId}`,
-
-        };
-
+        throw new Error(
+          "Sale quantity must be greater than zero.",
+        );
       }
 
-
-      await inventoryService.decreaseStock(
-        inventoryRecord,
-        item.quantity,
-      );
-
-
-      await inventoryTransactionService.createTransaction({
-
-        tenantId,
-
-        storeId,
-
-        productId:
-          item.productId,
-
-        warehouseId,
-
-        movementType:
-          "SALE",
-
-        quantity:
-          -item.quantity,
-
-        unitCost:
-          inventoryRecord.averageCost,
-
-        referenceType:
-          "SALE",
-
-        referenceId:
-          transactionId,
-
-        notes:
-          "Sale transaction",
-
-      });
-
+      if (
+        !Number.isFinite(item.unitPrice) ||
+        item.unitPrice < 0
+      ) {
+        throw new Error(
+          "Sale price must be zero or greater.",
+        );
+      }
     }
 
-
-    const receipt =
-      receiptEngine.generate(
-        checkout.items,
-        checkout.pricing,
-        checkout.payment,
+    const checkout =
+      checkoutEngine.process(
+        items,
+        payments,
       );
 
+    if (!checkout.completed) {
+      throw new Error(
+        "Payment incomplete.",
+      );
+    }
+
+    const payment =
+      checkout.payment;
 
     return {
-
-      success: true,
-
-      transactionId,
-
-      checkout,
-
-      receipt,
-
+      completed: true,
+      items,
+      subtotal:
+        items.reduce(
+          (sum, item) =>
+            sum +
+            item.quantity *
+              item.unitPrice,
+          0,
+        ),
+      taxAmount:
+        items.reduce(
+          (sum, item) =>
+            sum +
+            Number(
+              item.taxAmount ?? 0,
+            ),
+          0,
+        ),
+      totalAmount:
+        items.reduce(
+          (sum, item) =>
+            sum +
+            Number(
+              item.lineTotal ?? 0,
+            ),
+          0,
+        ),
+      payment,
     };
-
   }
-
 }
-
 
 export const salesEngine =
   new SalesEngine();

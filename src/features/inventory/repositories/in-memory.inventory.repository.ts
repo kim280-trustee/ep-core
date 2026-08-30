@@ -2,267 +2,140 @@ import type {
   InventoryRecord,
 } from "../types/inventory-record.types";
 
-
 import type {
   IInventoryRepository,
 } from "./inventory.repository";
 
 
-
 class InMemoryInventoryRepository
-
-implements IInventoryRepository {
-
-
+  implements IInventoryRepository {
 
   private records: InventoryRecord[] = [];
 
 
+  async findAllAsync(
+    tenantId: string,
+  ): Promise<InventoryRecord[]> {
 
-  findAll():
-
-    InventoryRecord[] {
-
-    return [
-      ...this.records,
-    ];
+    return this.records.filter(
+      (record) =>
+        record.tenantId === tenantId,
+    );
 
   }
 
 
-
-
-
-  findById(
-
+  async findByIdAsync(
+    tenantId: string,
     id: string,
+  ): Promise<InventoryRecord | null> {
 
-  ):
-
-    InventoryRecord | undefined {
-
-
-    return this.records.find(
-
-      (record) =>
-
-        record.id === id,
-
+    return (
+      this.records.find(
+        (record) =>
+          record.tenantId === tenantId &&
+          record.id === id,
+      ) ??
+      null
     );
-
 
   }
 
 
-
-
-
-  findByProduct(
-
+  async findByProductAsync(
+    tenantId: string,
     productId: string,
-
-  ):
-
-    InventoryRecord[] {
-
+  ): Promise<InventoryRecord[]> {
 
     return this.records.filter(
-
       (record) =>
-
+        record.tenantId === tenantId &&
         record.productId === productId,
-
     );
-
 
   }
 
 
-
-
-
-  findByWarehouse(
-
+  async findByWarehouseAsync(
+    tenantId: string,
     warehouseId: string,
-
-  ):
-
-    InventoryRecord[] {
-
+  ): Promise<InventoryRecord[]> {
 
     return this.records.filter(
-
       (record) =>
-
+        record.tenantId === tenantId &&
         record.warehouseId === warehouseId,
-
     );
-
 
   }
 
 
-
-
-
-  findByProductAndWarehouse(
-
+  async findByProductAndWarehouseAsync(
+    tenantId: string,
     productId: string,
-
     warehouseId: string,
+  ): Promise<InventoryRecord | null> {
 
-  ):
-
-    InventoryRecord | undefined {
-
-
-    return this.records.find(
-
-      (record) =>
-
-        record.productId === productId &&
-
-        record.warehouseId === warehouseId,
-
+    return (
+      this.records.find(
+        (record) =>
+          record.tenantId === tenantId &&
+          record.productId === productId &&
+          record.warehouseId === warehouseId,
+      ) ??
+      null
     );
-
 
   }
 
 
-
-
-
-  create(
-
+  async createAsync(
     record: InventoryRecord,
+  ): Promise<InventoryRecord> {
 
-  ):
-
-    InventoryRecord {
-
-
-    this.records.push(
-
-      record,
-
-    );
-
+    this.records.push(record);
 
     return record;
 
-
   }
 
 
-
-
-
-  update(
-
+  async updateAsync(
+    tenantId: string,
     id: string,
-
     updates: Partial<InventoryRecord>,
-
-  ):
-
-    InventoryRecord | undefined {
-
-
+  ): Promise<InventoryRecord> {
 
     const index =
-
       this.records.findIndex(
-
         (record) =>
-
+          record.tenantId === tenantId &&
           record.id === id,
-
       );
 
-
-
     if (index === -1) {
-
-      return undefined;
-
+      throw new Error(
+        `Inventory record not found: ${id}`,
+      );
     }
 
-
-
-    const updatedRecord = {
-
-
+    const updatedRecord: InventoryRecord = {
       ...this.records[index],
-
-
       ...updates,
-
-
       updatedAt:
-
         new Date().toISOString(),
-
-
     };
 
-
-
-    this.records[index] = updatedRecord;
-
-
+    this.records[index] =
+      updatedRecord;
 
     return updatedRecord;
 
-
   }
-
-
-
-
-
-  delete(
-
-    id: string,
-
-  ):
-
-    boolean {
-
-
-
-    const initialLength =
-
-      this.records.length;
-
-
-
-    this.records =
-
-      this.records.filter(
-
-        (record) =>
-
-          record.id !== id,
-
-      );
-
-
-
-    return (
-
-      this.records.length !== initialLength
-
-    );
-
-
-  }
-
 
 }
 
 
-
 export const inMemoryInventoryRepository =
-
   new InMemoryInventoryRepository();
+

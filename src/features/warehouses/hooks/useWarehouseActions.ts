@@ -1,38 +1,79 @@
+﻿import {
+  useState,
+} from "react";
+
+
 import {
-
   warehouseService,
-
 } from "../services/warehouse.service";
 
 
-export function useWarehouseActions(){
+export function useWarehouseActions() {
 
 
-  function removeWarehouse(
+  const [
+    loading,
+    setLoading,
+  ] = useState(false);
 
-    id:string,
 
-  ){
+  const [
+    error,
+    setError,
+  ] = useState<Error | null>(null);
 
 
-    return warehouseService.deleteWarehouse(
+  async function removeWarehouse(
+    id: string,
+  ) {
 
-      id,
+    setLoading(true);
 
-    );
+    setError(null);
 
+
+    try {
+
+      return await warehouseService.deleteWarehouse(
+        id,
+      );
+
+    } catch (
+      caughtError
+    ) {
+
+      const nextError =
+        caughtError instanceof Error
+          ? caughtError
+          : new Error(
+              "Failed to delete warehouse.",
+            );
+
+
+      setError(
+        nextError,
+      );
+
+
+      throw nextError;
+
+    } finally {
+
+      setLoading(false);
+
+    }
 
   }
 
 
-
   return {
-
 
     removeWarehouse,
 
+    loading,
+
+    error,
 
   };
-
 
 }

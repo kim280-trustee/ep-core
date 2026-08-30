@@ -1,174 +1,251 @@
-import {
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+﻿import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
+import { storeContext } from "@/core/store/store.context";
 
-import {
-  SupplierForm,
-} from "../components/SupplierForm";
-
-
+import { SupplierForm } from "../components/SupplierForm";
 import {
   supplierService,
 } from "../services/supplier.service";
 
-
 import type {
-  SupplierFormInput,
-} from "../validators/supplier.schema";
-
+  UpdateSupplierDto,
+} from "../types/supplier.types";
 
 
 export function EditSupplierPage() {
 
+  const { id } = useParams<{ id: string }>();
 
-  const navigate =
-    useNavigate();
+  const navigate = useNavigate();
 
+  const [loading, setLoading] =
+    useState(true);
 
-  const {
-    id,
-  } = useParams();
+  
 
+  const [error, setError] =
+    useState("");
 
-
-  const foundSupplier =
-    id
-      ? supplierService.getSupplierById(id)
-      : undefined;
-
+  const [supplier, setSupplier] =
+    useState<any>(null);
 
 
-  if (!foundSupplier) {
+  useEffect(() => {
 
-    return (
+    async function loadSupplier() {
 
-      <div className="p-6">
+      if (!id) {
 
-        Supplier not found
+        setError("Supplier ID is missing.");
+        setLoading(false);
 
-      </div>
+        return;
 
-    );
+      }
 
-  }
+      const context =
+        storeContext.getStore();
+
+      if (!context?.tenantId) {
+
+        setError(
+          "Tenant context is not initialized.",
+        );
+
+        setLoading(false);
+
+        return;
+
+      }
+
+      try {
+
+        setError("");
+
+        const result =
+          await supplierService.getSupplierById(
+            context.tenantId,
+            id,
+          );
+
+        if (!result) {
+
+          setError(
+            "Supplier not found.",
+          );
+
+          return;
+
+        }
+
+        setSupplier(result);
+
+      } catch (err) {
+
+        console.error(
+          "Failed to load supplier:",
+          err,
+        );
+
+        setError(
+          err instanceof Error
+            ? err.message
+            : "Unable to load supplier.",
+        );
+
+      } finally {
+
+        setLoading(false);
+
+      }
+
+    }
+
+    void loadSupplier();
+
+  }, [id]);
 
 
-
-  const supplier = foundSupplier;
-
-
-
-  function handleSubmit(
-
-    data: SupplierFormInput,
-
+  async function handleSubmit(
+    values: UpdateSupplierDto,
   ) {
 
+    if (!id) {
 
-    supplierService.updateSupplier(
+      setError("Supplier ID is missing.");
 
-      supplier.id,
+      return;
 
-      {
+    }
 
-        name:
-          data.name,
+    const context =
+      storeContext.getStore();
 
+    if (!context?.tenantId) {
 
-        contactPerson:
-          data.contactPerson ?? null,
+      setError(
+        "Tenant context is not initialized.",
+      );
 
+      return;
 
-        phone:
-          data.phone ?? null,
+    }
 
+    try {
+      setError("");
 
-        email:
-          data.email ?? null,
+      await supplierService.updateSupplier(
+        context.tenantId,
+        id,
+        values,
+      );
 
+      navigate("/suppliers");
 
-        address:
-          data.address ?? null,
+    } catch (err) {
 
+      console.error(
+        "Failed to update supplier:",
+        err,
+      );
 
-        taxId:
-          data.taxId ?? null,
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Unable to update supplier.",
+      );
 
+    } finally {
 
-        paymentTerms:
-          data.paymentTerms ?? null,
-
-
-      },
-
-    );
-
-
-    navigate("/suppliers");
+    }
 
   }
 
+
+  if (loading) {
+
+    return (
+      <div>
+        Loading supplier...
+      </div>
+    );
+
+  }
+
+
+  if (error && !supplier) {
+
+    return (
+      <div>
+        <h1>Edit Supplier</h1>
+
+        <p>{error}</p>
+
+        <button
+          type="button"
+          onClick={() =>
+            navigate("/suppliers")
+          }
+        >
+          Back to Suppliers
+        </button>
+      </div>
+    );
+
+  }
+
+
+  if (!supplier) {
+
+    return (
+      <div>
+        <h1>Edit Supplier</h1>
+
+        <p>Supplier not found.</p>
+
+        <button
+          type="button"
+          onClick={() =>
+            navigate("/suppliers")
+          }
+        >
+          Back to Suppliers
+        </button>
+      </div>
+    );
+
+  }
 
 
   return (
 
-    <div className="p-6">
+    <div>
 
-
-      <h1 className="text-2xl font-bold mb-6">
-
+      <h1>
         Edit Supplier
-
       </h1>
 
-
+      {error && (
+        <p>
+          {error}
+        </p>
+      )}
 
       <SupplierForm
-
-        defaultValues={{
-
-          name:
-            supplier.name,
-
-
-          contactPerson:
-            supplier.contactPerson ?? undefined,
-
-
-          phone:
-            supplier.phone ?? undefined,
-
-
-          email:
-            supplier.email ?? undefined,
-
-
-          address:
-            supplier.address ?? undefined,
-
-
-          taxId:
-            supplier.taxId ?? undefined,
-
-
-          paymentTerms:
-            supplier.paymentTerms ?? undefined,
-
-
-        }}
-
 
         onSubmit={
           handleSubmit
         }
-
       />
-
 
     </div>
 
   );
 
 }
+
+
+
+
+

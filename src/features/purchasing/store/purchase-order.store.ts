@@ -1,4 +1,4 @@
-import {
+﻿import {
   create,
 } from "zustand";
 
@@ -9,8 +9,8 @@ import {
 
 
 import {
-  purchaseItemEngine,
-} from "../engine";
+  purchaseOrderItemService,
+} from "../services/purchase-order-item.service";
 
 
 import type {
@@ -141,12 +141,34 @@ export const usePurchaseOrderStore =
           );
 
 
+        const hydratedOrders =
+          await Promise.all(
+            orders.map(
+              async (order) => {
+
+                const items =
+                  await purchaseOrderItemService.getItems(
+                    resolved,
+                    order.id,
+                  );
+
+                return {
+                  ...order,
+                  items,
+                };
+
+              },
+            ),
+          );
+
+
         set({
 
           tenantId:
             resolved,
 
-          orders,
+          orders:
+            hydratedOrders,
 
         });
 
@@ -233,13 +255,29 @@ export const usePurchaseOrderStore =
         }
 
 
+        const items =
+          await purchaseOrderItemService.getItems(
+            order.tenantId,
+            id,
+          );
+
+
+        const hydrated = {
+
+          ...updated,
+
+          items,
+
+        };
+
+
         set((state) => ({
 
           orders:
             state.orders.map(
               (item) =>
                 item.id === id
-                  ? updated
+                  ? hydrated
                   : item,
             ),
 
@@ -257,10 +295,9 @@ export const usePurchaseOrderStore =
           get()
             .orders
             .find(
-              (item) =>
-                item.id === orderId,
+              (existingOrder) =>
+                existingOrder.id === orderId,
             );
-
 
         if (!order) {
 
@@ -270,45 +307,48 @@ export const usePurchaseOrderStore =
 
         }
 
-
-        const updated =
-          purchaseItemEngine.addItem(
-            order,
-            item,
-          );
-
-
-        const saved =
-          await purchaseOrderService.update(
-            order.tenantId,
-            orderId,
-            updated,
-          );
-
-
-        if (!saved) {
+        if (order.status !== "DRAFT") {
 
           throw new Error(
-            "Failed to update purchase order.",
+            "Items can only be added to a draft purchase order.",
           );
 
         }
 
+        const saved =
+          await purchaseOrderService.addItem(
+            order.tenantId,
+            orderId,
+            item,
+          );
+
+        if (!saved) {
+
+          throw new Error(
+            "Failed to add purchase order item.",
+          );
+
+        }
 
         set((state) => ({
 
           orders:
             state.orders.map(
-              (existing) =>
-                existing.id === orderId
-                  ? saved
-                  : existing,
+              (existingOrder) =>
+                existingOrder.id === orderId
+                  ? {
+                      ...existingOrder,
+                      items: [
+                        ...(existingOrder.items ?? []),
+                        saved,
+                      ],
+                    }
+                  : existingOrder,
             ),
 
         }));
 
       },
-
 
       submitOrder: async (
         id,
@@ -352,7 +392,11 @@ export const usePurchaseOrderStore =
             state.orders.map(
               (item) =>
                 item.id === id
-                  ? updated
+                  ? {
+                      ...updated,
+                      items:
+                        item.items,
+                    }
                   : item,
             ),
 
@@ -403,7 +447,11 @@ export const usePurchaseOrderStore =
             state.orders.map(
               (item) =>
                 item.id === id
-                  ? updated
+                  ? {
+                      ...updated,
+                      items:
+                        item.items,
+                    }
                   : item,
             ),
 
@@ -454,7 +502,11 @@ export const usePurchaseOrderStore =
             state.orders.map(
               (item) =>
                 item.id === id
-                  ? updated
+                  ? {
+                      ...updated,
+                      items:
+                        item.items,
+                    }
                   : item,
             ),
 
@@ -505,7 +557,11 @@ export const usePurchaseOrderStore =
             state.orders.map(
               (item) =>
                 item.id === id
-                  ? updated
+                  ? {
+                      ...updated,
+                      items:
+                        item.items,
+                    }
                   : item,
             ),
 
@@ -515,3 +571,9 @@ export const usePurchaseOrderStore =
 
     }),
   );
+
+
+
+
+
+

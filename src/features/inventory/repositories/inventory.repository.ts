@@ -1,89 +1,57 @@
+/**
+ * ============================================================
+ * E&P Technologies
+ * E&P Smart POS
+ * Inventory Repository
+ * ============================================================
+ */
+
 import type {
   InventoryRecord,
 } from "../types/inventory-record.types";
 
 
-
 export interface IInventoryRepository {
 
-
-  findAll():
-
-    InventoryRecord[];
-
+  findAllAsync(
+    tenantId: string,
+  ): Promise<InventoryRecord[]>;
 
 
-  findById(
-
+  findByIdAsync(
+    tenantId: string,
     id: string,
-
-  ):
-
-    InventoryRecord | undefined;
+  ): Promise<InventoryRecord | null>;
 
 
-
-  findByProduct(
-
+  findByProductAsync(
+    tenantId: string,
     productId: string,
-
-  ):
-
-    InventoryRecord[];
+  ): Promise<InventoryRecord[]>;
 
 
-
-  findByWarehouse(
-
+  findByWarehouseAsync(
+    tenantId: string,
     warehouseId: string,
-
-  ):
-
-    InventoryRecord[];
+  ): Promise<InventoryRecord[]>;
 
 
-
-  findByProductAndWarehouse(
-
+  findByProductAndWarehouseAsync(
+    tenantId: string,
     productId: string,
-
     warehouseId: string,
-
-  ):
-
-    InventoryRecord | undefined;
+  ): Promise<InventoryRecord | null>;
 
 
-
-  create(
-
+  createAsync(
     record: InventoryRecord,
-
-  ):
-
-    InventoryRecord;
+  ): Promise<InventoryRecord>;
 
 
-
-  update(
-
+  updateAsync(
+    tenantId: string,
     id: string,
-
     updates: Partial<InventoryRecord>,
-
-  ):
-
-    InventoryRecord | undefined;
-
-
-
-  delete(
-
-    id: string,
-
-  ):
-
-    boolean;
-
+  ): Promise<InventoryRecord>;
 
 }

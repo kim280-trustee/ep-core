@@ -1,3 +1,5 @@
+﻿import type { CreatePurchaseOrderItemInput } from "../types/purchase-order-item-input.types";
+import { purchaseOrderItemService } from "./purchase-order-item.service";
 import {
   purchaseOrderRepository,
 } from "../repositories";
@@ -151,8 +153,8 @@ class PurchaseOrderService {
   async addItem(
     tenantId: string,
     orderId: string,
-    item: PurchaseOrderItem,
-  ): Promise<PurchaseOrder | undefined> {
+    input: CreatePurchaseOrderItemInput,
+  ): Promise<PurchaseOrderItem> {
 
     const order =
       await purchaseOrderRepository.findById(
@@ -160,40 +162,23 @@ class PurchaseOrderService {
         orderId,
       );
 
-
     if (!order) {
-
-      throw new Error(
-        "Purchase order not found.",
-      );
-
+      throw new Error("Purchase order not found.");
     }
 
+    if (
+      order.status !== "DRAFT"
+    ) {
+      throw new Error(
+        "Items can only be added to a draft purchase order.",
+      );
+    }
 
-    const updatedOrder: PurchaseOrder = {
+    const item =
+      await purchaseOrderItemService.create(input);
 
-      ...order,
-
-      items: [
-        ...order.items,
-        item,
-      ],
-
-      updatedAt:
-        new Date().toISOString(),
-
-    };
-
-
-    return purchaseOrderRepository.update(
-      tenantId,
-      orderId,
-      updatedOrder,
-    );
-
+    return item;
   }
-
-
   async submit(
     tenantId: string,
     orderId: string,
@@ -266,9 +251,20 @@ class PurchaseOrderService {
     }
 
 
-    const updated =
+    
+    const persistedItems =
+      await purchaseOrderItemService.getItems(
+        tenantId,
+        orderId,
+      );
+
+    const orderWithItems: PurchaseOrder = {
+      ...order,
+      items: persistedItems,
+    };
+const updated =
       await purchaseReceivingEngine.receive(
-        order,
+        orderWithItems,
       );
 
 
@@ -285,3 +281,11 @@ class PurchaseOrderService {
 
 export const purchaseOrderService =
   new PurchaseOrderService();
+
+
+
+
+
+
+
+

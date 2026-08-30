@@ -1,293 +1,284 @@
-﻿import {
-  create,
-} from "zustand";
+import { create } from "zustand";
 
 import type {
   SaleItem,
-} from "../types";
-
-import {
-  storeContext,
-} from "@/core/store/store.context";
+} from "../types/sale-item.types";
 
 interface PosSalesState {
-
-  tenantId: string;
-
-  storeId: string;
-
-  warehouseId?: string;
-
-  customerId?: string;
-
   items: SaleItem[];
 
-  paymentMethod?: string;
+  sales: never[];
 
-  amountPaid: number;
+  tenantId: string;
+  storeId: string;
+  warehouseId: string;
+  customerId?: string;
 
-  setTenant(
-    tenantId: string,
-  ): void;
-
-  setStore(
-    storeId: string,
-  ): void;
-
-  setWarehouse(
-    warehouseId: string,
-  ): void;
-
-  setCustomer(
-    customerId?: string,
-  ): void;
-
-  addItem(
+  addItem: (
     item: SaleItem,
-  ): void;
+  ) => void;
 
-  removeItem(
-    productId: string,
-  ): void;
+  updateItem: (
+    itemId: string,
+    updates: Partial<SaleItem>,
+  ) => void;
 
-  clearCart(): void;
+  removeItem: (
+    itemId: string,
+  ) => void;
 
-  setPayment(
-    method: string,
-    amount: number,
-  ): void;
+  clearCart: () => void;
 
-  getSubtotal(): number;
+  setItems: (
+    items: SaleItem[],
+  ) => void;
 
-  getTaxAmount(): number;
+  setSales: (
+    sales: never[],
+  ) => void;
 
-  getTotal(): number;
+  setContext: (
+    context: {
+      tenantId?: string;
+      storeId?: string;
+      warehouseId?: string;
+      customerId?: string;
+    },
+  ) => void;
+
+  getSubtotal: () => number;
+
+  getTaxAmount: () => number;
+
+  getTotal: () => number;
 }
 
-function getInitialContext() {
+function roundMoney(
+  value: number,
+): number {
+  return Math.round(
+    (value + Number.EPSILON) * 100,
+  ) / 100;
+}
 
-  const context =
-    storeContext.getStore();
+function calculateItem(
+  item: SaleItem,
+): SaleItem {
+  const quantity = Number(item.quantity);
+  const unitPrice = Number(item.unitPrice);
+  const discountAmount = Math.max(
+    0,
+    Number(item.discountAmount ?? 0),
+  );
+  const taxRate = Math.max(
+    0,
+    Number(item.taxRate ?? 0),
+  );
+
+  const subtotal = roundMoney(
+    quantity * unitPrice,
+  );
+
+  const discount = roundMoney(
+    Math.min(
+      discountAmount,
+      subtotal,
+    ),
+  );
+
+  const taxableAmount = roundMoney(
+    subtotal - discount,
+  );
+
+  const taxAmount = roundMoney(
+    taxableAmount *
+      (taxRate / 100),
+  );
+
+  const lineTotal = roundMoney(
+    taxableAmount + taxAmount,
+  );
 
   return {
-    tenantId:
-      context?.tenantId ?? "",
-
-    storeId:
-      context?.storeId ?? "",
+    ...item,
+    quantity,
+    unitPrice,
+    discountAmount: discount,
+    taxRate,
+    taxAmount,
+    lineTotal,
   };
 }
 
 export const usePosSalesStore =
-  create<PosSalesState>(
-    (set, get) => {
+  create<PosSalesState>((set, get) => ({
+    items: [],
 
-      const context =
-        getInitialContext();
+    sales: [],
 
-      return {
+    tenantId: "",
+    storeId: "",
+    warehouseId: "",
+    customerId: undefined,
 
-        tenantId:
-          context.tenantId,
+    addItem: (
+      item,
+    ) =>
+      set((state) => {
+        const calculated =
+          calculateItem(item);
 
-        storeId:
-          context.storeId,
-
-        warehouseId:
-          undefined,
-
-        customerId:
-          undefined,
-
-        items: [],
-
-        paymentMethod:
-          undefined,
-
-        amountPaid:
-          0,
-
-        setTenant(
-          tenantId,
-        ) {
-          set({
-            tenantId,
-          });
-        },
-
-        setStore(
-          storeId,
-        ) {
-          set({
-            storeId,
-          });
-        },
-
-        setWarehouse(
-          warehouseId,
-        ) {
-          set({
-            warehouseId,
-          });
-        },
-
-        setCustomer(
-          customerId,
-        ) {
-          set({
-            customerId,
-          });
-        },
-
-        addItem(
-          item,
-        ) {
-
-          set((state) => {
-
-            const existing =
-              state.items.find(
-                (x) =>
-                  x.productId ===
-                  item.productId,
-              );
-
-            if (existing) {
-
-              return {
-                items:
-                  state.items.map(
-                    (x) =>
-                      x.productId ===
-                      item.productId
-                        ? {
-                            ...x,
-
-                            quantity:
-                              x.quantity +
-                              item.quantity,
-
-                            lineTotal:
-                              (
-                                x.quantity +
-                                item.quantity
-                              ) *
-                              x.unitPrice,
-                          }
-                        : x,
-                  ),
-              };
-
-            }
-
-            return {
-              items: [
-                ...state.items,
-                item,
-              ],
-            };
-
-          });
-        },
-
-        removeItem(
-          productId,
-        ) {
-
-          set((state) => ({
-            items:
-              state.items.filter(
-                (x) =>
-                  x.productId !==
-                  productId,
-              ),
-          }));
-
-        },
-
-        clearCart() {
-
-          set({
-
-            items: [],
-
-            customerId:
-              undefined,
-
-            paymentMethod:
-              undefined,
-
-            amountPaid:
-              0,
-
-          });
-
-        },
-
-        setPayment(
-          method,
-          amount,
-        ) {
-
-          set({
-
-            paymentMethod:
-              method,
-
-            amountPaid:
-              amount,
-
-          });
-
-        },
-
-        getSubtotal() {
-
-          return get()
-            .items
-            .reduce(
-              (
-                sum,
-                item,
-              ) =>
-                sum +
-                item.lineTotal,
-              0,
-            );
-
-        },
-
-        getTaxAmount() {
-
-          return get()
-            .items
-            .reduce(
-              (
-                sum,
-                item,
-              ) =>
-                sum +
-                (
-                  item.lineTotal *
-                  (
-                    item.taxRate /
-                    100
-                  )
-                ),
-              0,
-            );
-
-        },
-
-        getTotal() {
-
-          return (
-            get().getSubtotal() +
-            get().getTaxAmount()
+        const existingIndex =
+          state.items.findIndex(
+            (existing) =>
+              existing.productId ===
+              calculated.productId,
           );
 
-        },
+        if (existingIndex < 0) {
+          return {
+            items: [
+              ...state.items,
+              calculated,
+            ],
+          };
+        }
 
-      };
-    },
-  );
+        const existing =
+          state.items[existingIndex];
+
+        const merged =
+          calculateItem({
+            ...existing,
+
+            quantity:
+              existing.quantity +
+              calculated.quantity,
+
+            discountAmount:
+              existing.discountAmount +
+              calculated.discountAmount,
+          });
+
+        const items =
+          [...state.items];
+
+        items[existingIndex] =
+          merged;
+
+        return {
+          items,
+        };
+      }),
+
+    updateItem: (
+      itemId,
+      updates,
+    ) =>
+      set((state) => ({
+        items:
+          state.items.map(
+            (item) =>
+              item.id === itemId
+                ? calculateItem({
+                    ...item,
+                    ...updates,
+                    id: item.id,
+                    saleId:
+                      item.saleId,
+                  })
+                : item,
+          ),
+      })),
+
+    removeItem: (
+      itemId,
+    ) =>
+      set((state) => ({
+        items:
+          state.items.filter(
+            (item) =>
+              item.id !== itemId,
+          ),
+      })),
+
+    clearCart: () =>
+      set({
+        items: [],
+      }),
+
+    setItems: (
+      items,
+    ) =>
+      set({
+        items:
+          items.map(
+            calculateItem,
+          ),
+      }),
+
+    setSales: (
+      sales,
+    ) =>
+      set({
+        sales,
+      }),
+
+    setContext: (
+      context,
+    ) =>
+      set((state) => ({
+        tenantId:
+          context.tenantId ??
+          state.tenantId,
+
+        storeId:
+          context.storeId ??
+          state.storeId,
+
+        warehouseId:
+          context.warehouseId ??
+          state.warehouseId,
+
+        customerId:
+          context.customerId ??
+          state.customerId,
+      })),
+
+    getSubtotal: () =>
+      roundMoney(
+        get().items.reduce(
+          (sum, item) =>
+            sum +
+            roundMoney(
+              item.quantity *
+                item.unitPrice,
+            ),
+          0,
+        ),
+      ),
+
+    getTaxAmount: () =>
+      roundMoney(
+        get().items.reduce(
+          (sum, item) =>
+            sum +
+            Number(
+              item.taxAmount ?? 0,
+            ),
+          0,
+        ),
+      ),
+
+    getTotal: () =>
+      roundMoney(
+        get().items.reduce(
+          (sum, item) =>
+            sum +
+            Number(
+              item.lineTotal ?? 0,
+            ),
+          0,
+        ),
+      ),
+  }));

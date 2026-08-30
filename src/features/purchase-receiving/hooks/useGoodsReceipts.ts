@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
@@ -115,12 +115,12 @@ export function useGoodsReceipts() {
 
   const create =
     useCallback(
-      (
+      async (
         input: CreateGoodsReceiptInput,
       ) => {
 
         const receipt =
-          goodsReceiptService
+          await goodsReceiptService
             .createReceipt(
               input,
             );
@@ -160,3 +160,9 @@ export function useGoodsReceipts() {
 
   };
 }
+
+
+
+
+
+

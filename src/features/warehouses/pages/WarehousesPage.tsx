@@ -1,16 +1,11 @@
-import {
-  useState,
-} from "react";
-
-
-import {
+﻿import {
   useWarehouses,
 } from "../hooks/useWarehouses";
 
 
 import {
-  WarehouseToolbar,
-} from "../components/WarehouseToolbar";
+  useWarehouseActions,
+} from "../hooks/useWarehouseActions";
 
 
 import {
@@ -18,76 +13,152 @@ import {
 } from "../components/WarehouseTable";
 
 
+import {
+  WarehouseToolbar,
+} from "../components/WarehouseToolbar";
 
-export function WarehousesPage(){
+
+export function WarehousesPage() {
 
 
   const {
-
     warehouses,
-
-  } = useWarehouses();
-
-
-
-  const [
-
-    search,
-
-    setSearch,
-
-  ] = useState("");
+    loading,
+    error,
+    reload,
+  } =
+    useWarehouses();
 
 
+  const {
+    removeWarehouse,
+    loading:
+      deleting,
+    error:
+      deleteError,
+  } =
+    useWarehouseActions();
 
-  const filtered =
 
-    warehouses.filter(
+  async function handleDelete(
+    id: string,
+  ) {
 
-      warehouse =>
+    const confirmed =
+      window.confirm(
+        "Delete this warehouse?",
+      );
 
-        warehouse.name
-          .toLowerCase()
-          .includes(
 
-            search.toLowerCase()
+    if (!confirmed) {
 
-          )
+      return;
+
+    }
+
+
+    await removeWarehouse(
+      id,
+    );
+
+
+    await reload();
+
+  }
+
+
+  if (loading) {
+
+    return (
+
+      <div>
+
+        Loading warehouses...
+
+      </div>
 
     );
 
+  }
+
+
+  if (error) {
+
+    return (
+
+      <div>
+
+        <p>
+          Failed to load warehouses.
+        </p>
+
+
+        <button
+          type="button"
+          onClick={() => {
+            void reload();
+          }}
+        >
+          Try again
+        </button>
+
+      </div>
+
+    );
+
+  }
 
 
   return (
 
     <div>
 
+      <h1>
+        Warehouses
+      </h1>
+
 
       <WarehouseToolbar
 
-        search={
-          search
-        }
-
-        onSearchChange={
-          setSearch
-        }
+        onReload={() => {
+          void reload();
+        }}
 
       />
 
 
-      <WarehouseTable
+      {deleteError && (
 
-        warehouses={
-          filtered
-        }
+        <p>
+          {deleteError.message}
+        </p>
 
-        onDelete={
-          ()=>{}
-        }
+      )}
 
-      />
 
+      {warehouses.length === 0 ? (
+
+        <p>
+          No warehouses found.
+        </p>
+
+      ) : (
+
+        <WarehouseTable
+
+          warehouses={
+            warehouses
+          }
+
+          onDelete={
+            deleting
+              ? undefined
+              : handleDelete
+          }
+
+        />
+
+      )}
 
     </div>
 

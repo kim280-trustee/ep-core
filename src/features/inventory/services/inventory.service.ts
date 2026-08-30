@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
@@ -11,8 +11,8 @@ import type {
 } from "../types/inventory-record.types";
 
 import {
-  supabaseInventoryRepository,
-} from "../repositories/supabase.inventory.repository";
+  inventoryRepository,
+} from "../repositories/repository.provider";
 
 
 class InventoryService {
@@ -22,10 +22,8 @@ class InventoryService {
     tenantId: string,
   ): Promise<InventoryRecord[]> {
 
-    return (
-      supabaseInventoryRepository.findAllAsync(
-        tenantId,
-      )
+    return inventoryRepository.findAllAsync(
+      tenantId,
     );
 
   }
@@ -37,14 +35,12 @@ class InventoryService {
     warehouseId: string,
   ): Promise<InventoryRecord | null> {
 
-    return (
-      supabaseInventoryRepository
-        .findByProductAndWarehouseAsync(
-          tenantId,
-          productId,
-          warehouseId,
-        )
-    );
+    return inventoryRepository
+      .findByProductAndWarehouseAsync(
+        tenantId,
+        productId,
+        warehouseId,
+      );
 
   }
 
@@ -54,13 +50,11 @@ class InventoryService {
     productId: string,
   ): Promise<InventoryRecord[]> {
 
-    return (
-      supabaseInventoryRepository
-        .findByProductAsync(
-          tenantId,
-          productId,
-        )
-    );
+    return inventoryRepository
+      .findByProductAsync(
+        tenantId,
+        productId,
+      );
 
   }
 
@@ -70,13 +64,11 @@ class InventoryService {
     warehouseId: string,
   ): Promise<InventoryRecord[]> {
 
-    return (
-      supabaseInventoryRepository
-        .findByWarehouseAsync(
-          tenantId,
-          warehouseId,
-        )
-    );
+    return inventoryRepository
+      .findByWarehouseAsync(
+        tenantId,
+        warehouseId,
+      );
 
   }
 
@@ -85,11 +77,8 @@ class InventoryService {
     record: InventoryRecord,
   ): Promise<InventoryRecord> {
 
-    return (
-      supabaseInventoryRepository
-        .createAsync(
-          record,
-        )
+    return inventoryRepository.createAsync(
+      record,
     );
 
   }
@@ -116,11 +105,9 @@ class InventoryService {
     const currentAverageCost =
       record.averageCost;
 
-
     const newQuantity =
       currentQuantity +
       quantity;
-
 
     const newAverageCost =
       newQuantity === 0
@@ -138,28 +125,25 @@ class InventoryService {
           newQuantity;
 
 
-    return (
-      supabaseInventoryRepository
-        .updateAsync(
+    return inventoryRepository.updateAsync(
 
-          record.tenantId,
+      record.tenantId,
 
-          record.id,
+      record.id,
 
-          {
+      {
 
-            quantityOnHand:
-              newQuantity,
+        quantityOnHand:
+          newQuantity,
 
-            averageCost:
-              newAverageCost,
+        averageCost:
+          newAverageCost,
 
-            lastMovementAt:
-              new Date().toISOString(),
+        lastMovementAt:
+          new Date().toISOString(),
 
-          },
+      },
 
-        )
     );
 
   }
@@ -196,25 +180,22 @@ class InventoryService {
       quantity;
 
 
-    return (
-      supabaseInventoryRepository
-        .updateAsync(
+    return inventoryRepository.updateAsync(
 
-          record.tenantId,
+      record.tenantId,
 
-          record.id,
+      record.id,
 
-          {
+      {
 
-            quantityOnHand:
-              newQuantity,
+        quantityOnHand:
+          newQuantity,
 
-            lastMovementAt:
-              new Date().toISOString(),
+        lastMovementAt:
+          new Date().toISOString(),
 
-          },
+      },
 
-        )
     );
 
   }
@@ -226,13 +207,14 @@ class InventoryService {
     updates: Partial<InventoryRecord>,
   ): Promise<InventoryRecord> {
 
-    return (
-      supabaseInventoryRepository
-        .updateAsync(
-          tenantId,
-          id,
-          updates,
-        )
+    return inventoryRepository.updateAsync(
+
+      tenantId,
+
+      id,
+
+      updates,
+
     );
 
   }

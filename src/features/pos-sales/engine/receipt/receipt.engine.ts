@@ -1,86 +1,68 @@
 import type {
+  Sale,
+} from "../../types/sale.types";
+
+import type {
   SaleItem,
-} from "../../types";
-
-
-import type {
-  PricingSummary,
-} from "../pricing/pricing.engine";
-
-
-import type {
-  PaymentResult,
-} from "../payment/payment.engine";
-
-
+} from "../../types/sale-item.types";
 
 export interface Receipt {
+  saleId: string;
 
-
-  receiptNo: string;
-
-
-  date: string;
-
+  saleNumber: string;
 
   items: SaleItem[];
 
+  subtotal: number;
 
-  pricing: PricingSummary;
+  discountAmount: number;
 
+  taxAmount: number;
 
-  payment: PaymentResult;
+  totalAmount: number;
 
+  paymentStatus:
+    | "UNPAID"
+    | "PARTIALLY_PAID"
+    | "PAID"
+    | "REFUNDED";
 
+  createdAt: string;
 }
-
-
 
 class ReceiptEngine {
-
-
   generate(
-
-    items: SaleItem[],
-
-    pricing: PricingSummary,
-
-    payment: PaymentResult,
-
+    sale: Sale,
   ): Receipt {
-
-
     return {
+      saleId:
+        sale.id,
 
+      saleNumber:
+        sale.saleNumber,
 
-      receiptNo:
+      items:
+        [...sale.items],
 
-        `RCPT-${Date.now()}`,
+      subtotal:
+        sale.subtotal,
 
+      discountAmount:
+        sale.discountAmount,
 
-      date:
+      taxAmount:
+        sale.taxAmount,
 
-        new Date()
-          .toISOString(),
+      totalAmount:
+        sale.totalAmount,
 
+      paymentStatus: sale.paymentStatus === "PENDING" ? "UNPAID" : sale.paymentStatus === "PAID" ? "PAID" : "REFUNDED",
 
-      items,
-
-
-      pricing,
-
-
-      payment,
-
-
+      createdAt:
+        sale.createdAt,
     };
-
-
   }
-
-
 }
-
 
 export const receiptEngine =
   new ReceiptEngine();

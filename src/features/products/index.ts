@@ -26,3 +26,4 @@ export * from "./components/ProductStats";
 export * from "./pages/ProductsPage";
 export * from "./pages/ProductListPage";
 export * from "./pages/ProductDetailsPage";
+export * from "./hooks/useProducts";

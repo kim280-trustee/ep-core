@@ -1,60 +1,94 @@
 import {
-
   useEffect,
-
+  useState,
 } from "react";
 
 
 import {
-
   warehouseService,
-
 } from "../services/warehouse.service";
 
 
-import {
-
-  useWarehouseStore,
-
-} from "../store/warehouse.store";
+import type {
+  Warehouse,
+} from "../types/warehouse.types";
 
 
 
-export function useWarehouses(){
+export function useWarehouses() {
 
 
-  const {
-
-    warehouses,
-
-    setWarehouses,
-
-  } =
-    useWarehouseStore();
+  const [warehouses, setWarehouses] =
+    useState<Warehouse[]>([]);
 
 
-
-  useEffect(()=>{
-
-
-    setWarehouses(
-
-      warehouseService.getWarehouses(),
-
-    );
+  const [loading, setLoading] =
+    useState(true);
 
 
-  },[setWarehouses]);
+  const [error, setError] =
+    useState<Error | null>(null);
+
+
+
+  async function loadWarehouses() {
+
+    setLoading(true);
+
+    setError(null);
+
+
+    try {
+
+      const result =
+        await warehouseService.getWarehouses();
+
+
+      setWarehouses(
+        result,
+      );
+
+    } catch (
+      caughtError
+    ) {
+
+      setError(
+        caughtError instanceof Error
+          ? caughtError
+          : new Error(
+              "Failed to load warehouses.",
+            ),
+      );
+
+    } finally {
+
+      setLoading(false);
+
+    }
+
+  }
+
+
+
+  useEffect(() => {
+
+    void loadWarehouses();
+
+  }, []);
 
 
 
   return {
 
-
     warehouses,
 
+    loading,
+
+    error,
+
+    reload:
+      loadWarehouses,
 
   };
-
 
 }

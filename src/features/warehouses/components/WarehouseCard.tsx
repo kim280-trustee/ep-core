@@ -1,52 +1,86 @@
+﻿import {
+  Link,
+} from "react-router-dom";
+
+
 import type {
-
   Warehouse,
-
 } from "../types/warehouse.types";
 
 
+interface WarehouseCardProps {
 
-interface Props {
+  warehouse: Warehouse;
 
-  warehouse:Warehouse;
+  onDelete?: (
+    id: string,
+  ) => void;
 
 }
 
 
-
 export function WarehouseCard({
-
   warehouse,
-
-}:Props){
-
+  onDelete,
+}: WarehouseCardProps) {
 
   return (
 
-    <div>
+    <article>
 
-      <h3>
-
+      <h2>
         {warehouse.name}
-
-      </h3>
+      </h2>
 
 
       <p>
-
-        {warehouse.code}
-
+        Code: {warehouse.code}
       </p>
 
 
       <p>
-
-        {warehouse.city}
-
+        Country: {warehouse.country}
       </p>
 
 
-    </div>
+      <p>
+        Status: {warehouse.status}
+      </p>
+
+
+      <Link
+        to={`/warehouses/${warehouse.id}`}
+      >
+        View warehouse
+      </Link>
+
+
+      {" "}
+
+
+      <Link
+        to={`/warehouses/${warehouse.id}/edit`}
+      >
+        Edit
+      </Link>
+
+
+      {onDelete && (
+
+        <button
+          type="button"
+          onClick={() =>
+            onDelete(
+              warehouse.id,
+            )
+          }
+        >
+          Delete
+        </button>
+
+      )}
+
+    </article>
 
   );
 

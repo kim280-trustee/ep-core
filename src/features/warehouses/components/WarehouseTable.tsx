@@ -1,79 +1,128 @@
+﻿import {
+  Link,
+} from "react-router-dom";
+
+
 import type {
   Warehouse,
 } from "../types/warehouse.types";
 
 
-interface Props {
+interface WarehouseTableProps {
 
-  warehouses:Warehouse[];
+  warehouses: Warehouse[];
 
-  onDelete(
-    id:string
-  ):void;
+  onDelete?: (
+    id: string,
+  ) => void;
 
 }
 
 
 export function WarehouseTable({
-
   warehouses,
-
   onDelete,
-
-}:Props){
-
+}: WarehouseTableProps) {
 
   return (
 
-    <div>
+    <table>
 
-      {
-        warehouses.map(
+      <thead>
 
+        <tr>
+
+          <th>
+            Code
+          </th>
+
+          <th>
+            Name
+          </th>
+
+          <th>
+            Status
+          </th>
+
+          <th>
+            Actions
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+        {warehouses.map(
           warehouse => (
 
-            <div
-
+            <tr
               key={
                 warehouse.id
               }
-
             >
 
-              <span>
+              <td>
+                {warehouse.code}
+              </td>
 
+              <td>
                 {warehouse.name}
+              </td>
 
-              </span>
+              <td>
+                {warehouse.status}
+              </td>
 
+              <td>
 
-              <button
-
-                onClick={()=>
-
-
-                  onDelete(
-                    warehouse.id
-                  )
-
-                }
-
-              >
-
-                Delete
-
-              </button>
+                <Link
+                  to={`/warehouses/${warehouse.id}`}
+                >
+                  View
+                </Link>
 
 
-            </div>
+                {" "}
 
-          )
 
-        )
+                <Link
+                  to={`/warehouses/${warehouse.id}/edit`}
+                >
+                  Edit
+                </Link>
 
-      }
 
-    </div>
+                {" "}
+
+
+                {onDelete && (
+
+                  <button
+                    type="button"
+                    onClick={() =>
+                      onDelete(
+                        warehouse.id,
+                      )
+                    }
+                  >
+                    Delete
+                  </button>
+
+                )}
+
+              </td>
+
+            </tr>
+
+          ),
+        )}
+
+      </tbody>
+
+    </table>
 
   );
 

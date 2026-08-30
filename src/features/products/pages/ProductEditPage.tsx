@@ -150,22 +150,22 @@ export function ProductEditPage() {
     sku: product.sku,
 
     barcode:
-      product.barcode,
+      product.barcode ?? undefined,
 
     description:
-      product.description,
+      product.description ?? undefined,
 
     categoryId:
-      product.categoryId,
+      product.categoryId ?? undefined,
 
     brandId:
-      product.brandId,
+      product.brandId ?? undefined,
 
     unitId:
-      product.unitId,
+      product.unitId ?? undefined,
 
     taxId:
-      product.taxId,
+      product.taxId ?? undefined,
 
     productType:
       product.productType,
@@ -186,7 +186,7 @@ export function ProductEditPage() {
       product.trackInventory,
 
     imageUrl:
-      product.imageUrl,
+      product.imageUrl ?? undefined,
   };
 
   return (
@@ -211,3 +211,10 @@ export function ProductEditPage() {
     </div>
   );
 }
+
+
+
+
+
+
+

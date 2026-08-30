@@ -1,0 +1,4735 @@
+﻿============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\pos-sales\engine\cart\cart.engine.ts
+============================================================
+import type {
+  SaleItem,
+} from "../../types/sale-item.types";
+
+export class CartEngine {
+  addItem(
+    cart: SaleItem[],
+    item: SaleItem,
+  ): SaleItem[] {
+    const existingIndex =
+      cart.findIndex(
+        (existing) =>
+          existing.productId ===
+          item.productId,
+      );
+
+    if (existingIndex < 0) {
+      return [
+        ...cart,
+        item,
+      ];
+    }
+
+    const existing =
+      cart[existingIndex];
+
+    const merged: SaleItem = {
+      ...existing,
+      quantity:
+        existing.quantity +
+        item.quantity,
+      discountAmount:
+        existing.discountAmount +
+        item.discountAmount,
+      taxAmount:
+        existing.taxAmount +
+        item.taxAmount,
+      lineTotal:
+        existing.lineTotal +
+        item.lineTotal,
+    };
+
+    const result =
+      [...cart];
+
+    result[existingIndex] =
+      merged;
+
+    return result;
+  }
+
+  updateQuantity(
+    cart: SaleItem[],
+    productId: string,
+    quantity: number,
+  ): SaleItem[] {
+    if (
+      !Number.isFinite(quantity) ||
+      quantity <= 0
+    ) {
+      return cart.filter(
+        (item) =>
+          item.productId !==
+          productId,
+      );
+    }
+
+    return cart.map(
+      (item) => {
+        if (
+          item.productId !==
+          productId
+        ) {
+          return item;
+        }
+
+        const unitAmount =
+          item.unitPrice;
+
+        const discountPerUnit =
+          item.quantity > 0
+            ? item.discountAmount /
+              item.quantity
+            : 0;
+
+        const taxRate =
+          item.taxRate;
+
+        const subtotal =
+          quantity *
+          unitAmount;
+
+        const discountAmount =
+          quantity *
+          discountPerUnit;
+
+        const taxable =
+          Math.max(
+            0,
+            subtotal -
+              discountAmount,
+          );
+
+        const taxAmount =
+          taxable *
+          (taxRate / 100);
+
+        return {
+          ...item,
+          quantity,
+          discountAmount,
+          taxAmount,
+          lineTotal:
+            taxable +
+            taxAmount,
+        };
+      },
+    );
+  }
+
+  removeItem(
+    cart: SaleItem[],
+    productId: string,
+  ): SaleItem[] {
+    return cart.filter(
+      (item) =>
+        item.productId !==
+        productId,
+    );
+  }
+
+  clear(): SaleItem[] {
+    return [];
+  }
+}
+
+export const cartEngine =
+  new CartEngine();
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\pos-sales\engine\checkout\checkout.engine.ts
+============================================================
+import type {
+  SaleItem,
+} from "../../types/sale-item.types";
+
+import {
+  paymentEngine,
+  type PaymentEntry,
+  type PaymentResult,
+} from "../payment/payment.engine";
+
+import {
+  pricingEngine,
+  type PricingSummary,
+} from "../pricing/pricing.engine";
+
+export interface CheckoutResult {
+  pricing: PricingSummary;
+
+  payment: PaymentResult;
+
+  completed: boolean;
+}
+
+export class CheckoutEngine {
+  process(
+    items: SaleItem[],
+    payments: PaymentEntry[],
+  ): CheckoutResult {
+    if (
+      items.length === 0
+    ) {
+      throw new Error(
+        "Cannot checkout an empty cart.",
+      );
+    }
+
+    const pricing =
+      pricingEngine.calculate(
+        items,
+      );
+
+    const payment =
+      paymentEngine.process(
+        pricing.totalAmount,
+        payments,
+      );
+
+    if (
+      !payment.completed
+    ) {
+      throw new Error(
+        "Payment incomplete.",
+      );
+    }
+
+    return {
+      pricing,
+      payment,
+      completed: true,
+    };
+  }
+}
+
+export const checkoutEngine =
+  new CheckoutEngine();
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\pos-sales\engine\index.ts
+============================================================
+export * from "./cart/cart.engine";
+
+export * from "./pricing/pricing.engine";
+
+export * from "./payment/payment.engine";
+
+export * from "./checkout/checkout.engine";
+
+export * from "./receipt/receipt.engine";
+
+export * from "./sales.engine";
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\pos-sales\engine\payment\payment.engine.ts
+============================================================
+export type PaymentMethod =
+  | "CASH"
+  | "CARD"
+  | "TRANSFER"
+  | "QR"
+  | "OTHER";
+
+export interface PaymentEntry {
+  method: PaymentMethod;
+
+  amount: number;
+}
+
+export interface PaymentResult {
+  totalAmount: number;
+
+  paidAmount: number;
+
+  remainingAmount: number;
+
+  changeAmount: number;
+
+  completed: boolean;
+
+  payments: PaymentEntry[];
+}
+
+export class PaymentEngine {
+  process(
+    totalAmount: number,
+    payments: PaymentEntry[],
+  ): PaymentResult {
+    if (
+      !Number.isFinite(
+        totalAmount,
+      ) ||
+      totalAmount < 0
+    ) {
+      throw new Error(
+        "Invalid sale total.",
+      );
+    }
+
+    const validPayments =
+      payments.filter(
+        (payment) =>
+          Number.isFinite(
+            payment.amount,
+          ) &&
+          payment.amount > 0,
+      );
+
+    const paidAmount =
+      validPayments.reduce(
+        (
+          total,
+          payment,
+        ) =>
+          total +
+          payment.amount,
+        0,
+      );
+
+    const remainingAmount =
+      Math.max(
+        0,
+        totalAmount -
+          paidAmount,
+      );
+
+    const changeAmount =
+      Math.max(
+        0,
+        paidAmount -
+          totalAmount,
+      );
+
+    return {
+      totalAmount,
+      paidAmount,
+      remainingAmount,
+      changeAmount,
+      completed:
+        paidAmount >=
+        totalAmount,
+      payments:
+        validPayments,
+    };
+  }
+}
+
+export const paymentEngine =
+  new PaymentEngine();
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\pos-sales\engine\pricing\pricing.engine.ts
+============================================================
+import type {
+  SaleItem,
+} from "../../types/sale-item.types";
+
+export interface PricingSummary {
+  subtotal: number;
+
+  discountAmount: number;
+
+  taxableAmount: number;
+
+  taxAmount: number;
+
+  totalAmount: number;
+}
+
+export class PricingEngine {
+  calculate(
+    items: SaleItem[],
+  ): PricingSummary {
+    const subtotal =
+      items.reduce(
+        (
+          total,
+          item,
+        ) =>
+          total +
+          item.quantity *
+            item.unitPrice,
+        0,
+      );
+
+    const discountAmount =
+      items.reduce(
+        (
+          total,
+          item,
+        ) =>
+          total +
+          item.discountAmount,
+        0,
+      );
+
+    const taxableAmount =
+      Math.max(
+        0,
+        subtotal -
+          discountAmount,
+      );
+
+    const taxAmount =
+      items.reduce(
+        (
+          total,
+          item,
+        ) =>
+          total +
+          item.taxAmount,
+        0,
+      );
+
+    const totalAmount =
+      taxableAmount +
+      taxAmount;
+
+    return {
+      subtotal,
+      discountAmount,
+      taxableAmount,
+      taxAmount,
+      totalAmount,
+    };
+  }
+}
+
+export const pricingEngine =
+  new PricingEngine();
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\pos-sales\engine\receipt\receipt.engine.ts
+============================================================
+import type {
+  Sale,
+} from "../../types/sale.types";
+
+import type {
+  SaleItem,
+} from "../../types/sale-item.types";
+
+export interface Receipt {
+  saleId: string;
+
+  saleNumber: string;
+
+  items: SaleItem[];
+
+  subtotal: number;
+
+  discountAmount: number;
+
+  taxAmount: number;
+
+  totalAmount: number;
+
+  paymentStatus:
+    | "UNPAID"
+    | "PARTIALLY_PAID"
+    | "PAID"
+    | "REFUNDED";
+
+  createdAt: string;
+}
+
+class ReceiptEngine {
+  generate(
+    sale: Sale,
+  ): Receipt {
+    return {
+      saleId:
+        sale.id,
+
+      saleNumber:
+        sale.saleNumber,
+
+      items:
+        [...sale.items],
+
+      subtotal:
+        sale.subtotal,
+
+      discountAmount:
+        sale.discountAmount,
+
+      taxAmount:
+        sale.taxAmount,
+
+      totalAmount:
+        sale.totalAmount,
+
+      paymentStatus:
+        sale.paymentStatus,
+
+      createdAt:
+        sale.createdAt,
+    };
+  }
+}
+
+export const receiptEngine =
+  new ReceiptEngine();
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\pos-sales\engine\sales.engine.ts
+============================================================
+import type {
+  SaleItem,
+} from "../types/sale-item.types";
+
+import {
+  checkoutEngine,
+} from "./checkout/checkout.engine";
+
+import {
+  inventoryService,
+} from "@/features/inventory/services/inventory.service";
+
+import {
+  inventoryTransactionService,
+} from "@/features/inventory-transactions/services/inventory-transaction.service";
+
+
+export class SalesEngine {
+
+  async processSale(
+    items: SaleItem[],
+    payments: Parameters<
+      typeof checkoutEngine.process
+    >[1],
+  ) {
+
+    if (items.length === 0) {
+      throw new Error(
+        "Cannot process an empty sale.",
+      );
+    }
+
+
+    /*
+     * STEP 1
+     * Calculate and validate checkout.
+     */
+
+    const checkout =
+      checkoutEngine.process(
+        items,
+        payments,
+      );
+
+
+    if (!checkout.completed) {
+      throw new Error(
+        "Payment incomplete.",
+      );
+    }
+
+
+    /*
+     * STEP 2
+     * Validate inventory before making
+     * any stock movement.
+     */
+
+    for (const item of items) {
+
+      const inventoryRecord =
+        await inventoryService.getInventoryRecord(
+          item.productId,
+        );
+
+
+      if (!inventoryRecord) {
+        throw new Error(
+          `Inventory record missing for ${item.productId}.`,
+        );
+      }
+
+
+      if (
+        inventoryRecord.availableQuantity <
+        item.quantity
+      ) {
+        throw new Error(
+          `Insufficient stock for ${item.productId}.`,
+        );
+      }
+
+    }
+
+
+    /*
+     * STEP 3
+     * Create the inventory SALE movements.
+     *
+     * This is deliberately performed only
+     * after every item has passed validation.
+     */
+
+    for (const item of items) {
+
+      const inventoryRecord =
+        await inventoryService.getInventoryRecord(
+          item.productId,
+        );
+
+
+      if (!inventoryRecord) {
+        throw new Error(
+          `Inventory record missing for ${item.productId}.`,
+        );
+      }
+
+
+      await inventoryTransactionService.createTransaction({
+
+        id:
+          crypto.randomUUID(),
+
+        tenantId:
+          inventoryRecord.tenantId,
+
+        storeId:
+          inventoryRecord.storeId,
+
+        productId:
+          item.productId,
+
+        warehouseId:
+          inventoryRecord.warehouseId,
+
+        movementType:
+          "SALE",
+
+        quantity:
+          item.quantity,
+
+        unitCost:
+          inventoryRecord.averageCost,
+
+        referenceType:
+          "SALE",
+
+        referenceId:
+          item.saleId,
+
+        notes:
+          "Sale transaction",
+
+      });
+
+    }
+
+
+    /*
+     * STEP 4
+     * Return the completed checkout result.
+     */
+
+    return {
+      completed: true,
+
+      items,
+
+      subtotal:
+        checkout.subtotal,
+
+      taxAmount:
+        checkout.taxAmount,
+
+      totalAmount:
+        checkout.totalAmount,
+
+      payments:
+        checkout.payments,
+
+    };
+
+  }
+
+}
+
+
+export const salesEngine =
+  new SalesEngine();
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\pos-sales\hooks\useSales.ts
+============================================================
+import {
+  useEffect,
+} from "react";
+
+import {
+  saleService,
+} from "../services/sale.service";
+
+import {
+  usePosSalesStore,
+} from "../store/pos-sales.store";
+
+export function useSales() {
+  const sales =
+    usePosSalesStore(
+      (state) => state.sales,
+    );
+
+  const setSales =
+    usePosSalesStore(
+      (state) => state.setSales,
+    );
+
+  useEffect(() => {
+    setSales(
+      saleService.getSales(),
+    );
+  }, [setSales]);
+
+  return {
+    sales,
+
+    createSale:
+      saleService.createSale.bind(
+        saleService,
+      ),
+
+    addItem:
+      saleService.addItem.bind(
+        saleService,
+      ),
+
+    addItems:
+      saleService.addItems.bind(
+        saleService,
+      ),
+
+    completePayment:
+      saleService.completePayment.bind(
+        saleService,
+      ),
+
+    completeSale:
+      saleService.completeSale.bind(
+        saleService,
+      ),
+
+    voidSale:
+      saleService.voidSale.bind(
+        saleService,
+      ),
+
+    getSaleById:
+      saleService.getSaleById.bind(
+        saleService,
+      ),
+  };
+}
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\pos-sales\index.ts
+============================================================
+export * from "./types";
+export * from "./services/sale.service";
+export * from "./repositories";
+export * from "./engine";
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\pos-sales\repositories\index.ts
+============================================================
+export * from "./sale.repository";
+export * from "./in-memory.sale.repository";
+export * from "./repository.provider";
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\pos-sales\repositories\in-memory.sale.repository.ts
+============================================================
+import type {
+  Sale,
+} from "../types/sale.types";
+
+import type {
+  SaleRepository,
+} from "./sale.repository";
+
+class InMemorySaleRepository
+  implements SaleRepository
+{
+  private sales: Sale[] = [];
+
+  findAll(): Sale[] {
+    return this.sales.map(
+      (sale) => ({
+        ...sale,
+        items: sale.items.map(
+          (item) => ({ ...item }),
+        ),
+      }),
+    );
+  }
+
+  findById(
+    id: string,
+  ): Sale | undefined {
+    const sale =
+      this.sales.find(
+        (item) =>
+          item.id === id,
+      );
+
+    if (!sale) {
+      return undefined;
+    }
+
+    return {
+      ...sale,
+      items: sale.items.map(
+        (item) => ({ ...item }),
+      ),
+    };
+  }
+
+  create(
+    sale: Sale,
+  ): Sale {
+    if (
+      this.sales.some(
+        (item) =>
+          item.id === sale.id,
+      )
+    ) {
+      throw new Error(
+        `Sale already exists: ${sale.id}`,
+      );
+    }
+
+    const stored: Sale = {
+      ...sale,
+      items: sale.items.map(
+        (item) => ({ ...item }),
+      ),
+    };
+
+    this.sales.push(stored);
+
+    return {
+      ...stored,
+      items: stored.items.map(
+        (item) => ({ ...item }),
+      ),
+    };
+  }
+
+  update(
+    id: string,
+    updates: Partial<Sale>,
+  ): Sale | undefined {
+    const index =
+      this.sales.findIndex(
+        (sale) =>
+          sale.id === id,
+      );
+
+    if (index < 0) {
+      return undefined;
+    }
+
+    const current =
+      this.sales[index];
+
+    const updated: Sale = {
+      ...current,
+      ...updates,
+      id: current.id,
+      tenantId:
+        current.tenantId,
+      items:
+        updates.items !== undefined
+          ? updates.items.map(
+              (item) => ({ ...item }),
+            )
+          : current.items.map(
+              (item) => ({ ...item }),
+            ),
+      updatedAt:
+        new Date().toISOString(),
+    };
+
+    this.sales[index] = updated;
+
+    return {
+      ...updated,
+      items: updated.items.map(
+        (item) => ({ ...item }),
+      ),
+    };
+  }
+}
+
+export const inMemorySaleRepository =
+  new InMemorySaleRepository();
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\pos-sales\repositories\repository.provider.ts
+============================================================
+import {
+  inMemorySaleRepository,
+} from "./in-memory.sale.repository";
+
+import type {
+  SaleRepository,
+} from "./sale.repository";
+
+let saleRepository: SaleRepository =
+  inMemorySaleRepository;
+
+export function getSaleRepository(): SaleRepository {
+  return saleRepository;
+}
+
+export function setSaleRepository(
+  repository: SaleRepository,
+): void {
+  saleRepository = repository;
+}
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\pos-sales\repositories\sale.repository.ts
+============================================================
+import type {
+  Sale,
+} from "../types/sale.types";
+
+export interface SaleRepository {
+  findAll(): Sale[];
+
+  findById(
+    id: string,
+  ): Sale | undefined;
+
+  create(
+    sale: Sale,
+  ): Sale;
+
+  update(
+    id: string,
+    updates: Partial<Sale>,
+  ): Sale | undefined;
+}
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\pos-sales\services\sale.service.ts
+============================================================
+import {
+  getSaleRepository,
+} from "../repositories";
+
+import type {
+  Sale,
+  SalePaymentStatus,
+} from "../types/sale.types";
+
+import type {
+  SaleItem,
+} from "../types/sale-item.types";
+
+interface CreateSaleInput {
+  tenantId: string;
+  storeId: string;
+  warehouseId: string;
+  customerId?: string;
+  cashierId?: string;
+}
+
+interface SaleTotals {
+  subtotal: number;
+  discountAmount: number;
+  taxAmount: number;
+  totalAmount: number;
+}
+
+function roundMoney(
+  value: number,
+): number {
+  return Math.round(
+    (value + Number.EPSILON) * 100,
+  ) / 100;
+}
+
+function validateItem(
+  item: SaleItem,
+): void {
+  if (!item.productId) {
+    throw new Error(
+      "Sale item product is required.",
+    );
+  }
+
+  if (
+    !Number.isFinite(item.quantity) ||
+    item.quantity <= 0
+  ) {
+    throw new Error(
+      "Sale item quantity must be greater than zero.",
+    );
+  }
+
+  if (
+    !Number.isFinite(item.unitPrice) ||
+    item.unitPrice < 0
+  ) {
+    throw new Error(
+      "Sale item unit price must be zero or greater.",
+    );
+  }
+
+  if (
+    !Number.isFinite(item.discountAmount) ||
+    item.discountAmount < 0
+  ) {
+    throw new Error(
+      "Sale item discount must be zero or greater.",
+    );
+  }
+
+  if (
+    !Number.isFinite(item.taxRate) ||
+    item.taxRate < 0 ||
+    item.taxRate > 100
+  ) {
+    throw new Error(
+      "Sale item tax rate must be between 0 and 100.",
+    );
+  }
+}
+
+class SaleService {
+  createSale(
+    input: CreateSaleInput,
+  ): Sale {
+    if (!input.tenantId) {
+      throw new Error(
+        "Tenant ID is required.",
+      );
+    }
+
+    if (!input.storeId) {
+      throw new Error(
+        "Store ID is required.",
+      );
+    }
+
+    if (!input.warehouseId) {
+      throw new Error(
+        "Warehouse ID is required.",
+      );
+    }
+
+    const now =
+      new Date().toISOString();
+
+    const sale: Sale = {
+      id:
+        crypto.randomUUID(),
+
+      tenantId:
+        input.tenantId,
+
+      storeId:
+        input.storeId,
+
+      warehouseId:
+        input.warehouseId,
+
+      customerId:
+        input.customerId,
+
+      cashierId:
+        input.cashierId,
+
+      saleNumber:
+        `SALE-${Date.now()}-${crypto.randomUUID().slice(0, 8).toUpperCase()}`,
+
+      status:
+        "DRAFT",
+
+      items: [],
+
+      subtotal: 0,
+
+      discountAmount: 0,
+
+      taxAmount: 0,
+
+      totalAmount: 0,
+
+      paymentStatus:
+        "PENDING",
+
+      createdAt:
+        now,
+
+      updatedAt:
+        now,
+    };
+
+    return getSaleRepository()
+      .create(sale);
+  }
+
+  addItem(
+    saleId: string,
+    item: SaleItem,
+  ): Sale | undefined {
+    const sale =
+      this.requireEditableSale(
+        saleId,
+      );
+
+    validateItem(item);
+
+    const normalizedItem =
+      this.calculateItem({
+        ...item,
+        saleId,
+        id:
+          item.id ||
+          crypto.randomUUID(),
+      });
+
+    const existingIndex =
+      sale.items.findIndex(
+        (existing) =>
+          existing.productId ===
+          normalizedItem.productId,
+      );
+
+    const items =
+      [...sale.items];
+
+    if (existingIndex >= 0) {
+      const existing =
+        items[existingIndex];
+
+      const mergedQuantity =
+        existing.quantity +
+        normalizedItem.quantity;
+
+      items[existingIndex] =
+        this.calculateItem({
+          ...existing,
+          quantity:
+            mergedQuantity,
+          discountAmount:
+            existing.discountAmount +
+            normalizedItem.discountAmount,
+        });
+    } else {
+      items.push(
+        normalizedItem,
+      );
+    }
+
+    return getSaleRepository()
+      .update(
+        saleId,
+        {
+          items,
+          ...this.calculateTotals(items),
+        },
+      );
+  }
+
+  addItems(
+    saleId: string,
+    items: SaleItem[],
+  ): Sale | undefined {
+    this.requireEditableSale(
+      saleId,
+    );
+
+    let current =
+      this.getSaleById(saleId);
+
+    if (!current) {
+      throw new Error(
+        "Sale not found.",
+      );
+    }
+
+    for (const item of items) {
+      current =
+        this.addItem(
+          saleId,
+          item,
+        );
+
+      if (!current) {
+        throw new Error(
+          "Unable to update sale.",
+        );
+      }
+    }
+
+    return current;
+  }
+
+  completePayment(
+    saleId: string,
+    paymentMethod: string,
+  ): Sale | undefined {
+    const sale =
+      this.getSaleById(saleId);
+
+    if (!sale) {
+      throw new Error(
+        "Sale not found.",
+      );
+    }
+
+    if (
+      sale.status !== "DRAFT"
+    ) {
+      throw new Error(
+        "Only draft sales can be paid.",
+      );
+    }
+
+    if (
+      sale.items.length === 0
+    ) {
+      throw new Error(
+        "Cannot complete an empty sale.",
+      );
+    }
+
+    if (!paymentMethod.trim()) {
+      throw new Error(
+        "Payment method is required.",
+      );
+    }
+
+    const now =
+      new Date().toISOString();
+
+    return getSaleRepository()
+      .update(
+        saleId,
+        {
+          status:
+            "COMPLETED",
+
+          paymentStatus:
+            "PAID",
+
+          paymentMethod:
+            paymentMethod.trim(),
+
+          completedAt:
+            now,
+        },
+      );
+  }
+
+  completeSale(
+    saleId: string,
+  ): Sale | undefined {
+    const sale =
+      this.getSaleById(saleId);
+
+    if (!sale) {
+      throw new Error(
+        "Sale not found.",
+      );
+    }
+
+    if (
+      sale.status !== "DRAFT"
+    ) {
+      throw new Error(
+        "Only draft sales can be completed.",
+      );
+    }
+
+    if (
+      sale.items.length === 0
+    ) {
+      throw new Error(
+        "Cannot complete an empty sale.",
+      );
+    }
+
+    return getSaleRepository()
+      .update(
+        saleId,
+        {
+          status:
+            "COMPLETED",
+
+          paymentStatus:
+            "PAID",
+
+          completedAt:
+            new Date().toISOString(),
+        },
+      );
+  }
+
+  voidSale(
+    saleId: string,
+  ): Sale | undefined {
+    const sale =
+      this.getSaleById(saleId);
+
+    if (!sale) {
+      throw new Error(
+        "Sale not found.",
+      );
+    }
+
+    if (
+      sale.status === "VOIDED"
+    ) {
+      throw new Error(
+        "Sale is already voided.",
+      );
+    }
+
+    return getSaleRepository()
+      .update(
+        saleId,
+        {
+          status:
+            "VOIDED",
+        },
+      );
+  }
+
+  getSales(): Sale[] {
+    return getSaleRepository()
+      .findAll();
+  }
+
+  getSaleById(
+    id: string,
+  ): Sale | undefined {
+    return getSaleRepository()
+      .findById(id);
+  }
+
+  private requireEditableSale(
+    saleId: string,
+  ): Sale {
+    const sale =
+      this.getSaleById(saleId);
+
+    if (!sale) {
+      throw new Error(
+        "Sale not found.",
+      );
+    }
+
+    if (
+      sale.status !== "DRAFT"
+    ) {
+      throw new Error(
+        "Only draft sales can be modified.",
+      );
+    }
+
+    return sale;
+  }
+
+  private calculateItem(
+    item: SaleItem,
+  ): SaleItem {
+    validateItem(item);
+
+    const subtotal =
+      roundMoney(
+        item.quantity *
+        item.unitPrice,
+      );
+
+    const discountAmount =
+      roundMoney(
+        Math.min(
+          item.discountAmount,
+          subtotal,
+        ),
+      );
+
+    const taxableAmount =
+      roundMoney(
+        subtotal -
+        discountAmount,
+      );
+
+    const taxAmount =
+      roundMoney(
+        taxableAmount *
+        item.taxRate /
+        100,
+      );
+
+    const lineTotal =
+      roundMoney(
+        taxableAmount +
+        taxAmount,
+      );
+
+    return {
+      ...item,
+      discountAmount,
+      taxAmount,
+      lineTotal,
+    };
+  }
+
+  private calculateTotals(
+    items: SaleItem[],
+  ): SaleTotals {
+    let subtotal = 0;
+    let discountAmount = 0;
+    let taxAmount = 0;
+
+    for (const item of items) {
+      const calculated =
+        this.calculateItem(item);
+
+      subtotal =
+        roundMoney(
+          subtotal +
+          calculated.quantity *
+          calculated.unitPrice,
+        );
+
+      discountAmount =
+        roundMoney(
+          discountAmount +
+          calculated.discountAmount,
+        );
+
+      taxAmount =
+        roundMoney(
+          taxAmount +
+          calculated.taxAmount,
+        );
+    }
+
+    return {
+      subtotal,
+
+      discountAmount,
+
+      taxAmount,
+
+      totalAmount:
+        roundMoney(
+          subtotal -
+          discountAmount +
+          taxAmount,
+        ),
+    };
+  }
+}
+
+export const saleService =
+  new SaleService();
+
+export type {
+  CreateSaleInput,
+  SaleTotals,
+};
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\pos-sales\store\pos-sales.store.ts
+============================================================
+import { create } from "zustand";
+
+import type {
+  SaleItem,
+} from "../types/sale-item.types";
+
+interface PosSalesState {
+  items: SaleItem[];
+
+  addItem: (
+    item: SaleItem,
+  ) => void;
+
+  updateItem: (
+    itemId: string,
+    updates: Partial<SaleItem>,
+  ) => void;
+
+  removeItem: (
+    itemId: string,
+  ) => void;
+
+  clearCart: () => void;
+
+  setItems: (
+    items: SaleItem[],
+  ) => void;
+}
+
+export const usePosSalesStore =
+  create<PosSalesState>((set) => ({
+    items: [],
+
+    addItem: (
+      item,
+    ) =>
+      set((state) => {
+        const existingIndex =
+          state.items.findIndex(
+            (existing) =>
+              existing.productId ===
+              item.productId,
+          );
+
+        if (existingIndex < 0) {
+          return {
+            items: [
+              ...state.items,
+              item,
+            ],
+          };
+        }
+
+        const existing =
+          state.items[existingIndex];
+
+        const updated: SaleItem = {
+          ...existing,
+          quantity:
+            existing.quantity +
+            item.quantity,
+          discountAmount:
+            existing.discountAmount +
+            item.discountAmount,
+          taxAmount:
+            existing.taxAmount +
+            item.taxAmount,
+          lineTotal:
+            existing.lineTotal +
+            item.lineTotal,
+        };
+
+        const items =
+          [...state.items];
+
+        items[existingIndex] =
+          updated;
+
+        return {
+          items,
+        };
+      }),
+
+    updateItem: (
+      itemId,
+      updates,
+    ) =>
+      set((state) => ({
+        items:
+          state.items.map(
+            (item) =>
+              item.id === itemId
+                ? {
+                    ...item,
+                    ...updates,
+                    id: item.id,
+                    saleId:
+                      item.saleId,
+                  }
+                : item,
+          ),
+      })),
+
+    removeItem: (
+      itemId,
+    ) =>
+      set((state) => ({
+        items:
+          state.items.filter(
+            (item) =>
+              item.id !== itemId,
+          ),
+      })),
+
+    clearCart: () =>
+      set({
+        items: [],
+      }),
+
+    setItems: (
+      items,
+    ) =>
+      set({
+        items: [...items],
+      }),
+  }));
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\pos-sales\types\index.ts
+============================================================
+export * from "./sale.types";
+export * from "./sale-item.types";
+export * from "./sale-status.types";
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\pos-sales\types\sale.types.ts
+============================================================
+import type {
+  SaleStatus,
+} from "./sale-status.types";
+
+import type {
+  SaleItem,
+} from "./sale-item.types";
+
+export type SalePaymentStatus =
+  | "PENDING"
+  | "PAID"
+  | "REFUNDED";
+
+export interface Sale {
+  id: string;
+
+  tenantId: string;
+
+  storeId: string;
+
+  warehouseId: string;
+
+  customerId?: string;
+
+  cashierId?: string;
+
+  saleNumber: string;
+
+  status: SaleStatus;
+
+  items: SaleItem[];
+
+  subtotal: number;
+
+  discountAmount: number;
+
+  taxAmount: number;
+
+  totalAmount: number;
+
+  paymentStatus: SalePaymentStatus;
+
+  paymentMethod?: string;
+
+  completedAt?: string;
+
+  createdAt: string;
+
+  updatedAt: string;
+}
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\pos-sales\types\sale-item.types.ts
+============================================================
+export interface SaleItem {
+  id: string;
+
+  saleId: string;
+
+  productId: string;
+
+  quantity: number;
+
+  unitPrice: number;
+
+  discountAmount: number;
+
+  taxRate: number;
+
+  taxAmount: number;
+
+  lineTotal: number;
+}
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\pos-sales\types\sale-status.types.ts
+============================================================
+export type SaleStatus =
+  | "DRAFT"
+  | "COMPLETED"
+  | "VOIDED";
+
+export const SALE_STATUS = {
+  DRAFT: "DRAFT",
+  COMPLETED: "COMPLETED",
+  VOIDED: "VOIDED",
+} as const satisfies Record<SaleStatus, SaleStatus>;
+
+export function canCompleteSale(
+  status: SaleStatus,
+): boolean {
+  return status === "DRAFT";
+}
+
+export function canVoidSale(
+  status: SaleStatus,
+): boolean {
+  return (
+    status === "DRAFT" ||
+    status === "COMPLETED"
+  );
+}
+
+export function isTerminalSaleStatus(
+  status: SaleStatus,
+): boolean {
+  return (
+    status === "VOIDED"
+  );
+}
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\sales\engine\index.ts
+============================================================
+export * from "./sales.engine";
+
+export * from "./sales-processing.engine";
+
+export * from "./sales-validation.engine";
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\sales\engine\sales.engine.ts
+============================================================
+import type {
+  SalesOrderItem,
+} from "../types/sales-order-item.types";
+
+export interface SalesCalculationResult {
+  subtotal: number;
+  discountAmount: number;
+  taxAmount: number;
+  totalAmount: number;
+}
+
+function roundMoney(
+  value: number,
+): number {
+  return Number(
+    value.toFixed(2),
+  );
+}
+
+export class SalesEngine {
+
+  calculateItem(
+    item: SalesOrderItem,
+  ): SalesOrderItem {
+
+    if (!item.productId.trim()) {
+      throw new Error(
+        "Product ID is required.",
+      );
+    }
+
+    if (
+      !Number.isFinite(item.quantity) ||
+      item.quantity <= 0
+    ) {
+      throw new Error(
+        "Quantity must be greater than zero.",
+      );
+    }
+
+    if (
+      !Number.isFinite(item.unitPrice) ||
+      item.unitPrice < 0
+    ) {
+      throw new Error(
+        "Unit price must be zero or greater.",
+      );
+    }
+
+    if (
+      !Number.isFinite(
+        item.discountAmount,
+      ) ||
+      item.discountAmount < 0
+    ) {
+      throw new Error(
+        "Discount amount must be zero or greater.",
+      );
+    }
+
+    if (
+      !Number.isFinite(item.taxRate) ||
+      item.taxRate < 0 ||
+      item.taxRate > 100
+    ) {
+      throw new Error(
+        "Tax rate must be between 0 and 100.",
+      );
+    }
+
+    const subtotal =
+      roundMoney(
+        item.quantity *
+          item.unitPrice,
+      );
+
+    const discountAmount =
+      roundMoney(
+        Math.min(
+          item.discountAmount,
+          subtotal,
+        ),
+      );
+
+    const taxableAmount =
+      roundMoney(
+        subtotal -
+          discountAmount,
+      );
+
+    const taxAmount =
+      roundMoney(
+        taxableAmount *
+          (item.taxRate / 100),
+      );
+
+    const lineTotal =
+      roundMoney(
+        taxableAmount +
+          taxAmount,
+      );
+
+    return {
+      ...item,
+
+      discountAmount,
+
+      lineTotal,
+    };
+  }
+
+  calculateOrder(
+    items: SalesOrderItem[],
+  ): SalesCalculationResult {
+
+    if (items.length === 0) {
+      return {
+        subtotal: 0,
+        discountAmount: 0,
+        taxAmount: 0,
+        totalAmount: 0,
+      };
+    }
+
+    let subtotal = 0;
+    let discountAmount = 0;
+    let taxAmount = 0;
+
+    for (const item of items) {
+
+      const calculated =
+        this.calculateItem(item);
+
+      const itemSubtotal =
+        roundMoney(
+          calculated.quantity *
+            calculated.unitPrice,
+        );
+
+      const taxableAmount =
+        roundMoney(
+          itemSubtotal -
+            calculated.discountAmount,
+        );
+
+      subtotal =
+        roundMoney(
+          subtotal +
+            itemSubtotal,
+        );
+
+      discountAmount =
+        roundMoney(
+          discountAmount +
+            calculated.discountAmount,
+        );
+
+      taxAmount =
+        roundMoney(
+          taxAmount +
+            taxableAmount *
+              (
+                calculated.taxRate /
+                100
+              ),
+        );
+    }
+
+    const totalAmount =
+      roundMoney(
+        subtotal -
+          discountAmount +
+          taxAmount,
+      );
+
+    return {
+      subtotal,
+      discountAmount,
+      taxAmount,
+      totalAmount,
+    };
+  }
+}
+
+export const salesEngine =
+  new SalesEngine();
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\sales\engine\sales-processing.engine.ts
+============================================================
+import type {
+  SalesOrder,
+} from "../types/sales-order.types";
+
+export class SalesProcessingEngine {
+
+  canConfirm(
+    order: SalesOrder,
+  ): boolean {
+
+    return (
+      order.status === "DRAFT" &&
+      order.items.length > 0
+    );
+
+  }
+
+
+  canProcess(
+    order: SalesOrder,
+  ): boolean {
+
+    return (
+      order.status === "CONFIRMED" &&
+      order.items.length > 0
+    );
+
+  }
+
+
+  canCancel(
+    order: SalesOrder,
+  ): boolean {
+
+    return (
+      order.status === "DRAFT" ||
+      order.status === "CONFIRMED"
+    );
+
+  }
+
+
+  confirm(
+    order: SalesOrder,
+  ): SalesOrder {
+
+    if (!this.canConfirm(order)) {
+
+      throw new Error(
+        "Only a DRAFT sales order with at least one item can be confirmed.",
+      );
+
+    }
+
+    return {
+      ...order,
+      status: "CONFIRMED",
+      updatedAt:
+        new Date().toISOString(),
+    };
+
+  }
+
+
+  startProcessing(
+    order: SalesOrder,
+  ): SalesOrder {
+
+    if (!this.canProcess(order)) {
+
+      throw new Error(
+        "Only a CONFIRMED sales order with at least one item can be processed.",
+      );
+
+    }
+
+    return {
+      ...order,
+      status: "PROCESSING",
+      updatedAt:
+        new Date().toISOString(),
+    };
+
+  }
+
+
+  complete(
+    order: SalesOrder,
+  ): SalesOrder {
+
+    if (
+      order.status !== "PROCESSING"
+    ) {
+
+      throw new Error(
+        "Only a PROCESSING sales order can be completed.",
+      );
+
+    }
+
+    return {
+      ...order,
+      status: "COMPLETED",
+      paymentStatus:
+        "PAID",
+      updatedAt:
+        new Date().toISOString(),
+    };
+
+  }
+
+
+  cancel(
+    order: SalesOrder,
+  ): SalesOrder {
+
+    if (!this.canCancel(order)) {
+
+      throw new Error(
+        "Only DRAFT or CONFIRMED sales orders can be cancelled.",
+      );
+
+    }
+
+    return {
+      ...order,
+      status: "CANCELLED",
+      updatedAt:
+        new Date().toISOString(),
+    };
+
+  }
+
+}
+
+
+export const salesProcessingEngine =
+  new SalesProcessingEngine();
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\sales\engine\sales-validation.engine.ts
+============================================================
+import type {
+  SalesOrder,
+} from "../types/sales-order.types";
+
+export interface SalesValidationResult {
+  valid: boolean;
+  errors: string[];
+}
+
+export class SalesValidationEngine {
+  validateOrder(
+    order: SalesOrder,
+  ): SalesValidationResult {
+    const errors: string[] = [];
+
+    if (!order.id) {
+      errors.push("Sales order ID is required.");
+    }
+
+    if (!order.tenantId) {
+      errors.push("Tenant ID is required.");
+    }
+
+    if (!order.storeId) {
+      errors.push("Store ID is required.");
+    }
+
+    if (!order.warehouseId) {
+      errors.push("Warehouse ID is required.");
+    }
+
+    if (!order.orderNumber) {
+      errors.push("Order number is required.");
+    }
+
+    if (!Array.isArray(order.items)) {
+      errors.push("Sales order items must be an array.");
+    }
+
+    if (order.items.length === 0) {
+      errors.push(
+        "Sales order must contain at least one item.",
+      );
+    }
+
+    if (
+      !Number.isFinite(order.subtotal) ||
+      order.subtotal < 0
+    ) {
+      errors.push("Subtotal must be a valid non-negative number.");
+    }
+
+    if (
+      !Number.isFinite(order.discountAmount) ||
+      order.discountAmount < 0
+    ) {
+      errors.push(
+        "Discount amount must be a valid non-negative number.",
+      );
+    }
+
+    if (
+      !Number.isFinite(order.taxAmount) ||
+      order.taxAmount < 0
+    ) {
+      errors.push(
+        "Tax amount must be a valid non-negative number.",
+      );
+    }
+
+    if (
+      !Number.isFinite(order.totalAmount) ||
+      order.totalAmount < 0
+    ) {
+      errors.push(
+        "Total amount must be a valid non-negative number.",
+      );
+    }
+
+    for (const item of order.items) {
+      if (!item.id) {
+        errors.push("Every sales order item requires an ID.");
+      }
+
+      if (!item.productId) {
+        errors.push(
+          "Every sales order item requires a product.",
+        );
+      }
+
+      if (
+        !Number.isFinite(item.quantity) ||
+        item.quantity <= 0
+      ) {
+        errors.push(
+          `Invalid quantity for product ${item.productId || "unknown"}.`,
+        );
+      }
+
+      if (
+        !Number.isFinite(item.unitPrice) ||
+        item.unitPrice < 0
+      ) {
+        errors.push(
+          `Invalid unit price for product ${item.productId || "unknown"}.`,
+        );
+      }
+
+      if (
+        !Number.isFinite(item.discountAmount) ||
+        item.discountAmount < 0
+      ) {
+        errors.push(
+          `Invalid discount for product ${item.productId || "unknown"}.`,
+        );
+      }
+
+      if (
+        !Number.isFinite(item.taxRate) ||
+        item.taxRate < 0 ||
+        item.taxRate > 100
+      ) {
+        errors.push(
+          `Invalid tax rate for product ${item.productId || "unknown"}.`,
+        );
+      }
+
+      if (
+        !Number.isFinite(item.lineTotal) ||
+        item.lineTotal < 0
+      ) {
+        errors.push(
+          `Invalid line total for product ${item.productId || "unknown"}.`,
+        );
+      }
+    }
+
+    return {
+      valid: errors.length === 0,
+      errors,
+    };
+  }
+
+  assertValidOrder(
+    order: SalesOrder,
+  ): void {
+    const result =
+      this.validateOrder(order);
+
+    if (!result.valid) {
+      throw new Error(
+        result.errors.join(" "),
+      );
+    }
+  }
+}
+
+export const salesValidationEngine =
+  new SalesValidationEngine();
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\sales\hooks\useSalesOrders.ts
+============================================================
+import {
+  useEffect,
+} from "react";
+
+import {
+  useSalesOrderStore,
+} from "../store/sales-order.store";
+
+export function useSalesOrders() {
+
+  const orders =
+    useSalesOrderStore(
+      (state) =>
+        state.orders,
+    );
+
+  const loading =
+    useSalesOrderStore(
+      (state) =>
+        state.loading,
+    );
+
+  const error =
+    useSalesOrderStore(
+      (state) =>
+        state.error,
+    );
+
+  const loadOrders =
+    useSalesOrderStore(
+      (state) =>
+        state.loadOrders,
+    );
+
+  const createDraft =
+    useSalesOrderStore(
+      (state) =>
+        state.createDraft,
+    );
+
+  const addItem =
+    useSalesOrderStore(
+      (state) =>
+        state.addItem,
+    );
+
+  const confirmOrder =
+    useSalesOrderStore(
+      (state) =>
+        state.confirmOrder,
+    );
+
+  const processOrder =
+    useSalesOrderStore(
+      (state) =>
+        state.processOrder,
+    );
+
+  const completeOrder =
+    useSalesOrderStore(
+      (state) =>
+        state.completeOrder,
+    );
+
+  const cancelOrder =
+    useSalesOrderStore(
+      (state) =>
+        state.cancelOrder,
+    );
+
+  const refundOrder =
+    useSalesOrderStore(
+      (state) =>
+        state.refundOrder,
+    );
+
+  const clearError =
+    useSalesOrderStore(
+      (state) =>
+        state.clearError,
+    );
+
+  useEffect(
+    () => {
+      void loadOrders();
+    },
+    [loadOrders],
+  );
+
+  return {
+    orders,
+
+    loading,
+
+    error,
+
+    loadOrders,
+
+    createDraft,
+
+    addItem,
+
+    confirmOrder,
+
+    processOrder,
+
+    completeOrder,
+
+    cancelOrder,
+
+    refundOrder,
+
+    clearError,
+  };
+}
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\sales\index.ts
+============================================================
+export * from "./types";
+
+export * from "./engine";
+
+export * from "./services/sales-order.service";
+
+export * from "./repositories";
+
+export * from "./store/sales-order.store";
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\sales\repositories\index.ts
+============================================================
+export * from "./sales-order.repository";
+
+export * from "./in-memory.sales-order.repository";
+
+export * from "./repository.provider";
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\sales\repositories\in-memory.sales-order.repository.ts
+============================================================
+import type {
+  SalesOrderRepository,
+} from "./sales-order.repository";
+
+import type {
+  SalesOrder,
+} from "../types/sales-order.types";
+
+
+class InMemorySalesOrderRepository
+  implements SalesOrderRepository {
+
+  private orders: SalesOrder[] = [];
+
+
+  async findAll(
+    tenantId: string,
+  ): Promise<SalesOrder[]> {
+
+    return this.orders.filter(
+      (order) =>
+        order.tenantId === tenantId,
+    );
+
+  }
+
+
+  async findById(
+    tenantId: string,
+    id: string,
+  ): Promise<SalesOrder | undefined> {
+
+    return this.orders.find(
+      (order) =>
+        order.tenantId === tenantId &&
+        order.id === id,
+    );
+
+  }
+
+
+  async create(
+    order: SalesOrder,
+  ): Promise<SalesOrder> {
+
+    this.orders.push(order);
+
+    return order;
+
+  }
+
+
+  async update(
+    tenantId: string,
+    id: string,
+    updates: Partial<SalesOrder>,
+  ): Promise<SalesOrder | undefined> {
+
+    const index =
+      this.orders.findIndex(
+        (order) =>
+          order.tenantId === tenantId &&
+          order.id === id,
+      );
+
+
+    if (index === -1) {
+
+      return undefined;
+
+    }
+
+
+    const updatedOrder: SalesOrder = {
+
+      ...this.orders[index],
+
+      ...updates,
+
+      updatedAt:
+        new Date().toISOString(),
+
+    };
+
+
+    this.orders[index] =
+      updatedOrder;
+
+
+    return updatedOrder;
+
+  }
+
+}
+
+
+export const inMemorySalesOrderRepository =
+  new InMemorySalesOrderRepository();
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\sales\repositories\repository.provider.ts
+============================================================
+import {
+  supabaseSalesOrderRepository,
+} from "./supabase.sales-order.repository";
+
+
+export const salesOrderRepository =
+  supabaseSalesOrderRepository;
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\sales\repositories\sales-order.repository.ts
+============================================================
+import type {
+  SalesOrder,
+} from "../types/sales-order.types";
+
+
+export interface SalesOrderRepository {
+
+
+  findAll(
+    tenantId: string,
+  ): Promise<SalesOrder[]>;
+
+
+  findById(
+    tenantId: string,
+    id: string,
+  ): Promise<SalesOrder | undefined>;
+
+
+  create(
+    order: SalesOrder,
+  ): Promise<SalesOrder>;
+
+
+  update(
+    tenantId: string,
+    id: string,
+    updates: Partial<SalesOrder>,
+  ): Promise<SalesOrder | undefined>;
+
+
+}
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\sales\repositories\supabase.sales-order.repository.ts
+============================================================
+import { supabase } from "@/core/infrastructure/supabase/client";
+
+import type {
+  SalesOrder,
+} from "../types/sales-order.types";
+
+import type {
+  SalesOrderItem,
+} from "../types/sales-order-item.types";
+
+
+interface SalesOrderDatabaseRow {
+
+  id: string;
+
+  tenant_id: string;
+
+  store_id: string | null;
+
+  warehouse_id: string;
+
+  customer_id: string | null;
+
+  order_number: string;
+
+  status: string;
+
+  subtotal: number | string;
+
+  discount_amount: number | string;
+
+  tax_amount: number | string;
+
+  total_amount: number | string;
+
+  payment_status: string;
+
+  notes: string | null;
+
+  created_at: string;
+
+  updated_at: string;
+
+}
+
+
+interface SalesOrderItemDatabaseRow {
+
+  id: string;
+
+  sales_order_id: string;
+
+  product_id: string;
+
+  quantity: number | string;
+
+  unit_price: number | string;
+
+  discount_amount: number | string;
+
+  tax_rate: number | string;
+
+  line_total: number | string;
+
+}
+
+
+function fromDatabaseItem(
+  row: SalesOrderItemDatabaseRow,
+): SalesOrderItem {
+
+  return {
+
+    id:
+      row.id,
+
+    salesOrderId:
+      row.sales_order_id,
+
+    productId:
+      row.product_id,
+
+    quantity:
+      Number(row.quantity),
+
+    unitPrice:
+      Number(row.unit_price),
+
+    discountAmount:
+      Number(row.discount_amount),
+
+    taxRate:
+      Number(row.tax_rate),
+
+    lineTotal:
+      Number(row.line_total),
+
+  };
+
+}
+
+
+function fromDatabaseRow(
+  row: SalesOrderDatabaseRow,
+  items: SalesOrderItem[] = [],
+): SalesOrder {
+
+  return {
+
+    id:
+      row.id,
+
+    tenantId:
+      row.tenant_id,
+
+    storeId:
+      row.store_id ?? "",
+
+    warehouseId:
+      row.warehouse_id,
+
+    customerId:
+      row.customer_id ?? undefined,
+
+    orderNumber:
+      row.order_number,
+
+    status:
+      row.status as SalesOrder["status"],
+
+    items,
+
+    subtotal:
+      Number(row.subtotal),
+
+    discountAmount:
+      Number(row.discount_amount),
+
+    taxAmount:
+      Number(row.tax_amount),
+
+    totalAmount:
+      Number(row.total_amount),
+
+    paymentStatus:
+      row.payment_status as SalesOrder["paymentStatus"],
+
+    notes:
+      row.notes ?? undefined,
+
+    createdAt:
+      row.created_at,
+
+    updatedAt:
+      row.updated_at,
+
+  };
+
+}
+
+
+class SupabaseSalesOrderRepository {
+
+
+  private async loadItems(
+    tenantId: string,
+    orderIds: string[],
+  ): Promise<Map<string, SalesOrderItem[]>> {
+
+    const result =
+      new Map<string, SalesOrderItem[]>();
+
+
+    if (orderIds.length === 0) {
+
+      return result;
+
+    }
+
+
+
+    const {
+      data,
+      error,
+    } =
+      await supabase
+        .from("sales_order_items")
+        .select("*")
+        .in(
+          "sales_order_id",
+          orderIds,
+        )
+        .eq(
+          "tenant_id",
+          tenantId,
+        );
+
+
+    if (error) {
+
+      throw new Error(
+        `SALES ITEMS QUERY FAILED: ${error.message}`,
+      );
+
+    }
+
+
+    if (!data || data.length === 0) {
+
+      return result;
+
+    }
+
+
+    for (const row of data ?? []) {
+
+      const databaseRow =
+        row as SalesOrderItemDatabaseRow;
+
+
+      const item =
+        fromDatabaseItem(
+          databaseRow,
+        );
+
+
+      const salesOrderId =
+        databaseRow.sales_order_id;
+
+
+      const existing =
+        result.get(
+          salesOrderId,
+        ) ?? [];
+
+
+      existing.push(item);
+
+
+      result.set(
+        salesOrderId,
+        existing,
+      );
+
+    }
+
+
+    return result;
+
+  }
+
+
+  async findAll(
+    tenantId: string,
+  ): Promise<SalesOrder[]> {
+
+    const {
+      data,
+      error,
+    } =
+      await supabase
+        .from("sales_orders")
+        .select("*")
+        .eq(
+          "tenant_id",
+          tenantId,
+        )
+        .order(
+          "created_at",
+          {
+            ascending: false,
+          },
+        );
+
+
+    if (error) {
+
+      throw error;
+
+    }
+
+
+    const rows =
+      (data ?? []) as SalesOrderDatabaseRow[];
+
+
+    const itemMap =
+      await this.loadItems(
+        tenantId,
+        rows.map(
+          (row) =>
+            row.id,
+        ),
+      );
+
+
+    return rows.map(
+      (row) =>
+        fromDatabaseRow(
+          row,
+          itemMap.get(row.id) ?? [],
+        ),
+    );
+
+  }
+
+
+  async findById(
+    tenantId: string,
+    id: string,
+  ): Promise<SalesOrder | undefined> {
+
+    const {
+      data,
+      error,
+    } =
+      await supabase
+        .from("sales_orders")
+        .select("*")
+        .eq(
+          "tenant_id",
+          tenantId,
+        )
+        .eq(
+          "id",
+          id,
+        )
+        .maybeSingle();
+
+
+    if (error) {
+
+      throw error;
+
+    }
+
+
+    if (!data) {
+
+      return undefined;
+
+    }
+
+
+    const itemMap =
+      await this.loadItems(
+        tenantId,
+        [
+          id,
+        ],
+      );
+
+
+    return fromDatabaseRow(
+      data as SalesOrderDatabaseRow,
+      itemMap.get(id) ?? [],
+    );
+
+  }
+
+
+  async create(
+    order: SalesOrder,
+  ): Promise<SalesOrder> {
+
+    const {
+      data,
+      error,
+    } =
+      await supabase
+        .from("sales_orders")
+        .insert({
+
+          id:
+            order.id,
+
+          tenant_id:
+            order.tenantId,
+
+          store_id:
+            order.storeId || null,
+
+          warehouse_id:
+            order.warehouseId,
+
+          customer_id:
+            order.customerId ?? null,
+
+          order_number:
+            order.orderNumber,
+
+          status:
+            order.status,
+
+          subtotal:
+            order.subtotal,
+
+          discount_amount:
+            order.discountAmount,
+
+          tax_amount:
+            order.taxAmount,
+
+          total_amount:
+            order.totalAmount,
+
+          payment_status:
+            order.paymentStatus,
+
+          notes:
+            order.notes ?? null,
+
+          created_at:
+            order.createdAt,
+
+          updated_at:
+            order.updatedAt,
+
+        })
+        .select("*")
+        .single();
+
+
+    if (error) {
+
+      throw error;
+
+    }
+
+
+    return fromDatabaseRow(
+      data as SalesOrderDatabaseRow,
+      order.items,
+    );
+
+  }
+
+
+  async update(
+    tenantId: string,
+    id: string,
+    updates: Partial<SalesOrder>,
+  ): Promise<SalesOrder | undefined> {
+
+    const updateData:
+      Record<string, unknown> = {};
+
+
+    if (
+      updates.storeId !== undefined
+    ) {
+
+      updateData.store_id =
+        updates.storeId || null;
+
+    }
+
+
+    if (
+      updates.warehouseId !== undefined
+    ) {
+
+      updateData.warehouse_id =
+        updates.warehouseId;
+
+    }
+
+
+    if (
+      updates.customerId !== undefined
+    ) {
+
+      updateData.customer_id =
+        updates.customerId ?? null;
+
+    }
+
+
+    if (
+      updates.orderNumber !== undefined
+    ) {
+
+      updateData.order_number =
+        updates.orderNumber;
+
+    }
+
+
+    if (
+      updates.status !== undefined
+    ) {
+
+      updateData.status =
+        updates.status;
+
+    }
+
+
+    if (
+      updates.subtotal !== undefined
+    ) {
+
+      updateData.subtotal =
+        updates.subtotal;
+
+    }
+
+
+    if (
+      updates.discountAmount !== undefined
+    ) {
+
+      updateData.discount_amount =
+        updates.discountAmount;
+
+    }
+
+
+    if (
+      updates.taxAmount !== undefined
+    ) {
+
+      updateData.tax_amount =
+        updates.taxAmount;
+
+    }
+
+
+    if (
+      updates.totalAmount !== undefined
+    ) {
+
+      updateData.total_amount =
+        updates.totalAmount;
+
+    }
+
+
+    if (
+      updates.paymentStatus !== undefined
+    ) {
+
+      updateData.payment_status =
+        updates.paymentStatus;
+
+    }
+
+
+    if (
+      updates.notes !== undefined
+    ) {
+
+      updateData.notes =
+        updates.notes ?? null;
+
+    }
+
+
+    updateData.updated_at =
+      new Date().toISOString();
+
+
+    const {
+      data,
+      error,
+    } =
+      await supabase
+        .from("sales_orders")
+        .update(updateData)
+        .eq(
+          "tenant_id",
+          tenantId,
+        )
+        .eq(
+          "id",
+          id,
+        )
+        .select("*")
+        .maybeSingle();
+
+
+    if (error) {
+
+      throw error;
+
+    }
+
+
+    if (!data) {
+
+      return undefined;
+
+    }
+
+
+    /*
+     * Persist only items that are not already
+     * present in Supabase.
+     *
+     * The service supplies the complete order
+     * item array when adding an item.
+     */
+
+    if (
+      updates.items !== undefined
+    ) {
+
+      const {
+        data: existingItems,
+        error: existingItemsError,
+      } =
+        await supabase
+          .from("sales_order_items")
+          .select("id")
+          .eq(
+            "sales_order_id",
+            id,
+          );
+
+
+      if (existingItemsError) {
+
+        throw existingItemsError;
+
+      }
+
+
+      const existingIds =
+        new Set(
+          (existingItems ?? []).map(
+            (item) =>
+              item.id,
+          ),
+        );
+
+
+      const newItems =
+        updates.items.filter(
+          (item) =>
+            !existingIds.has(
+              item.id,
+            ),
+        );
+
+
+      if (
+        newItems.length > 0
+      ) {
+
+        const {
+          error:
+            insertError,
+        } =
+          await supabase
+            .from("sales_order_items")
+            .insert(
+              newItems.map(
+                (item) => ({
+
+                  id:
+                    item.id,
+
+                  sales_order_id:
+                    id,
+
+                  product_id:
+                    item.productId,
+
+                  quantity:
+                    item.quantity,
+
+                  unit_price:
+                    item.unitPrice,
+
+                  discount_amount:
+                    item.discountAmount,
+
+                  tax_rate:
+                    item.taxRate,
+
+                  line_total:
+                    item.lineTotal,
+
+                }),
+              ),
+            );
+
+
+        if (insertError) {
+
+          throw insertError;
+
+        }
+
+
+        /*
+         * Recalculate the order totals from the
+         * complete item collection supplied by
+         * the service.
+         *
+         * This keeps the sales order header
+         * synchronized with its line items.
+         */
+
+        const subtotal =
+          updates.items.reduce(
+            (
+              total,
+              item,
+            ) =>
+              total +
+              (
+                item.quantity *
+                item.unitPrice
+              ),
+            0,
+          );
+
+
+        const discountAmount =
+          updates.items.reduce(
+            (
+              total,
+              item,
+            ) =>
+              total +
+              item.discountAmount,
+            0,
+          );
+
+
+        const taxAmount =
+          updates.items.reduce(
+            (
+              total,
+              item,
+            ) => {
+
+              const lineSubtotal =
+                item.quantity *
+                item.unitPrice;
+
+              const taxableAmount =
+                Math.max(
+                  0,
+                  lineSubtotal -
+                    item.discountAmount,
+                );
+
+              return (
+                total +
+                (
+                  taxableAmount *
+                  (
+                    item.taxRate /
+                    100
+                  )
+                )
+              );
+
+            },
+            0,
+          );
+
+
+        const totalAmount =
+          Math.max(
+            0,
+            subtotal -
+              discountAmount,
+          ) +
+          taxAmount;
+
+
+        const {
+          error:
+            totalsError,
+        } =
+          await supabase
+            .from("sales_orders")
+            .update({
+
+              subtotal,
+
+              discount_amount:
+                discountAmount,
+
+              tax_amount:
+                taxAmount,
+
+              total_amount:
+                totalAmount,
+
+              updated_at:
+                new Date().toISOString(),
+
+            })
+            .eq(
+              "tenant_id",
+              tenantId,
+            )
+            .eq(
+              "id",
+              id,
+            );
+
+
+        if (totalsError) {
+
+          throw totalsError;
+
+        }
+
+      }
+
+    }
+
+
+    const itemMap =
+      await this.loadItems(
+        tenantId,
+        [
+          id,
+        ],
+      );
+
+
+    return fromDatabaseRow(
+      data as SalesOrderDatabaseRow,
+      itemMap.get(id) ?? [],
+    );
+
+  }
+
+}
+
+
+export const supabaseSalesOrderRepository =
+  new SupabaseSalesOrderRepository();
+
+
+
+
+
+
+
+
+
+
+
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\sales\services\sales-order.service.ts
+============================================================
+import {
+  getSalesOrderRepository,
+} from "../repositories";
+
+import type {
+  SalesOrder,
+} from "../types/sales-order.types";
+
+import type {
+  SalesOrderItem,
+} from "../types/sales-order-item.types";
+
+import {
+  canCancelSalesOrder,
+  canConfirmSalesOrder,
+  canProcessSalesOrder,
+  canCompleteSalesOrder,
+  canRefundSalesOrder,
+} from "../types/sales-order-status.types";
+
+import {
+  salesEngine,
+} from "../engine/sales.engine";
+
+interface CreateSalesOrderInput {
+  tenantId: string;
+  storeId: string;
+  warehouseId: string;
+  customerId?: string;
+  notes?: string;
+}
+
+interface AddSalesOrderItemInput {
+  productId: string;
+  quantity: number;
+  unitPrice: number;
+  discountAmount?: number;
+  taxRate?: number;
+}
+
+class SalesOrderService {
+
+  async createDraft(
+    input: CreateSalesOrderInput,
+  ): Promise<SalesOrder> {
+
+    this.requireId(
+      input.tenantId,
+      "Tenant ID",
+    );
+
+    this.requireId(
+      input.storeId,
+      "Store ID",
+    );
+
+    this.requireId(
+      input.warehouseId,
+      "Warehouse ID",
+    );
+
+    const now =
+      new Date().toISOString();
+
+    const order: SalesOrder = {
+      id:
+        crypto.randomUUID(),
+
+      tenantId:
+        input.tenantId,
+
+      storeId:
+        input.storeId,
+
+      warehouseId:
+        input.warehouseId,
+
+      customerId:
+        input.customerId,
+
+      orderNumber:
+        `SO-${Date.now()}-${crypto.randomUUID().slice(0, 8)}`,
+
+      status:
+        "DRAFT",
+
+      items: [],
+
+      subtotal:
+        0,
+
+      discountAmount:
+        0,
+
+      taxAmount:
+        0,
+
+      totalAmount:
+        0,
+
+      paymentStatus:
+        "UNPAID",
+
+      notes:
+        input.notes,
+
+      createdAt:
+        now,
+
+      updatedAt:
+        now,
+    };
+
+    return getSalesOrderRepository()
+      .create(order);
+  }
+
+  async addItem(
+    orderId: string,
+    input: AddSalesOrderItemInput,
+  ): Promise<SalesOrder> {
+
+    const order =
+      await this.getRequiredOrder(
+        orderId,
+      );
+
+    if (order.status !== "DRAFT") {
+      throw new Error(
+        "Items can only be added to a draft sales order.",
+      );
+    }
+
+    const quantity =
+      Number(input.quantity);
+
+    const unitPrice =
+      Number(input.unitPrice);
+
+    const discountAmount =
+      Number(
+        input.discountAmount ?? 0,
+      );
+
+    const taxRate =
+      Number(
+        input.taxRate ?? 0,
+      );
+
+    if (!input.productId.trim()) {
+      throw new Error(
+        "Product ID is required.",
+      );
+    }
+
+    if (
+      !Number.isFinite(quantity) ||
+      quantity <= 0
+    ) {
+      throw new Error(
+        "Quantity must be greater than zero.",
+      );
+    }
+
+    if (
+      !Number.isFinite(unitPrice) ||
+      unitPrice < 0
+    ) {
+      throw new Error(
+        "Unit price must be zero or greater.",
+      );
+    }
+
+    if (
+      !Number.isFinite(discountAmount) ||
+      discountAmount < 0
+    ) {
+      throw new Error(
+        "Discount amount must be zero or greater.",
+      );
+    }
+
+    if (
+      !Number.isFinite(taxRate) ||
+      taxRate < 0 ||
+      taxRate > 100
+    ) {
+      throw new Error(
+        "Tax rate must be between 0 and 100.",
+      );
+    }
+
+    const existingIndex =
+      order.items.findIndex(
+        (item) =>
+          item.productId ===
+          input.productId,
+      );
+
+    let items =
+      [...order.items];
+
+    const itemId =
+      crypto.randomUUID();
+
+    const rawItem: SalesOrderItem = {
+      id:
+        itemId,
+
+      salesOrderId:
+        order.id,
+
+      productId:
+        input.productId,
+
+      quantity,
+
+      unitPrice,
+
+      discountAmount,
+
+      taxRate,
+
+      lineTotal:
+        0,
+    };
+
+    const calculated =
+      salesEngine.calculateItem(
+        rawItem,
+      );
+
+    if (existingIndex === -1) {
+      items.push(
+        calculated,
+      );
+    } else {
+      const existing =
+        items[existingIndex];
+
+      const merged: SalesOrderItem = {
+        ...existing,
+
+        quantity:
+          existing.quantity +
+          calculated.quantity,
+
+        discountAmount:
+          existing.discountAmount +
+          calculated.discountAmount,
+
+        unitPrice:
+          calculated.unitPrice,
+
+        taxRate:
+          calculated.taxRate,
+      };
+
+      items[existingIndex] =
+        salesEngine.calculateItem(
+          merged,
+        );
+    }
+
+    const totals =
+      salesEngine.calculateOrder(
+        items,
+      );
+
+    const updated =
+      await getSalesOrderRepository()
+        .update(
+          order.tenantId,
+          order.id,
+          {
+            items,
+            ...totals,
+          },
+        );
+
+    if (!updated) {
+      throw new Error(
+        "Sales order could not be updated.",
+      );
+    }
+
+    return updated;
+  }
+
+  async confirmOrder(
+    orderId: string,
+  ): Promise<SalesOrder> {
+
+    const order =
+      await this.getRequiredOrder(
+        orderId,
+      );
+
+    if (
+      !canConfirmSalesOrder(
+        order.status,
+      )
+    ) {
+      throw new Error(
+        `Sales order cannot be confirmed from status ${order.status}.`,
+      );
+    }
+
+    if (order.items.length === 0) {
+      throw new Error(
+        "A sales order must contain at least one item before confirmation.",
+      );
+    }
+
+    const totals =
+      salesEngine.calculateOrder(
+        order.items,
+      );
+
+    const updated =
+      await getSalesOrderRepository()
+        .update(
+          order.tenantId,
+          order.id,
+          {
+            status:
+              "CONFIRMED",
+
+            ...totals,
+          },
+        );
+
+    if (!updated) {
+      throw new Error(
+        "Sales order could not be confirmed.",
+      );
+    }
+
+    return updated;
+  }
+
+  async processOrder(
+    orderId: string,
+  ): Promise<SalesOrder> {
+
+    const order =
+      await this.getRequiredOrder(
+        orderId,
+      );
+
+    if (
+      !canProcessSalesOrder(
+        order.status,
+      )
+    ) {
+      throw new Error(
+        `Sales order cannot be processed from status ${order.status}.`,
+      );
+    }
+
+    const updated =
+      await getSalesOrderRepository()
+        .update(
+          order.tenantId,
+          order.id,
+          {
+            status:
+              "PROCESSING",
+          },
+        );
+
+    if (!updated) {
+      throw new Error(
+        "Sales order could not be moved to processing.",
+      );
+    }
+
+    return updated;
+  }
+
+  async completeOrder(
+    orderId: string,
+  ): Promise<SalesOrder> {
+
+    const order =
+      await this.getRequiredOrder(
+        orderId,
+      );
+
+    if (
+      !canCompleteSalesOrder(
+        order.status,
+      )
+    ) {
+      throw new Error(
+        `Sales order cannot be completed from status ${order.status}.`,
+      );
+    }
+
+    const updated =
+      await getSalesOrderRepository()
+        .update(
+          order.tenantId,
+          order.id,
+          {
+            status:
+              "COMPLETED",
+
+            paymentStatus:
+              "PAID",
+          },
+        );
+
+    if (!updated) {
+      throw new Error(
+        "Sales order could not be completed.",
+      );
+    }
+
+    return updated;
+  }
+
+  async cancelOrder(
+    orderId: string,
+  ): Promise<SalesOrder> {
+
+    const order =
+      await this.getRequiredOrder(
+        orderId,
+      );
+
+    if (
+      !canCancelSalesOrder(
+        order.status,
+      )
+    ) {
+      throw new Error(
+        `Sales order cannot be cancelled from status ${order.status}.`,
+      );
+    }
+
+    const updated =
+      await getSalesOrderRepository()
+        .update(
+          order.tenantId,
+          order.id,
+          {
+            status:
+              "CANCELLED",
+          },
+        );
+
+    if (!updated) {
+      throw new Error(
+        "Sales order could not be cancelled.",
+      );
+    }
+
+    return updated;
+  }
+
+  async refundOrder(
+    orderId: string,
+  ): Promise<SalesOrder> {
+
+    const order =
+      await this.getRequiredOrder(
+        orderId,
+      );
+
+    if (
+      !canRefundSalesOrder(
+        order.status,
+      )
+    ) {
+      throw new Error(
+        `Sales order cannot be refunded from status ${order.status}.`,
+      );
+    }
+
+    const updated =
+      await getSalesOrderRepository()
+        .update(
+          order.tenantId,
+          order.id,
+          {
+            status:
+              "REFUNDED",
+          },
+        );
+
+    if (!updated) {
+      throw new Error(
+        "Sales order could not be refunded.",
+      );
+    }
+
+    return updated;
+  }
+
+  async getOrders(
+    tenantId: string,
+  ): Promise<SalesOrder[]> {
+
+    this.requireId(
+      tenantId,
+      "Tenant ID",
+    );
+
+    return getSalesOrderRepository()
+      .findAll(
+        tenantId,
+      );
+  }
+
+  async getOrderById(
+    tenantId: string,
+    orderId: string,
+  ): Promise<SalesOrder | undefined> {
+
+    this.requireId(
+      tenantId,
+      "Tenant ID",
+    );
+
+    this.requireId(
+      orderId,
+      "Sales order ID",
+    );
+
+    return getSalesOrderRepository()
+      .findById(
+        tenantId,
+        orderId,
+      );
+  }
+
+  private async getRequiredOrder(
+    orderId: string,
+  ): Promise<SalesOrder> {
+
+    this.requireId(
+      orderId,
+      "Sales order ID",
+    );
+
+    const context =
+      await this.getContext();
+
+    const order =
+      await getSalesOrderRepository()
+        .findById(
+          context.tenantId,
+          orderId,
+        );
+
+    if (!order) {
+      throw new Error(
+        "Sales order not found.",
+      );
+    }
+
+    if (
+      order.storeId !==
+      context.storeId
+    ) {
+      throw new Error(
+        "Sales order does not belong to the current store.",
+      );
+    }
+
+    return order;
+  }
+
+  private async getContext(): Promise<{
+    tenantId: string;
+    storeId: string;
+  }> {
+
+    const {
+      storeContext,
+    } = await import(
+      "@/core/store/store.context"
+    );
+
+    const context =
+      storeContext.getStore();
+
+    if (!context?.tenantId) {
+      throw new Error(
+        "Tenant context is not initialized.",
+      );
+    }
+
+    if (!context.storeId) {
+      throw new Error(
+        "Store context is not initialized.",
+      );
+    }
+
+    return {
+      tenantId:
+        context.tenantId,
+
+      storeId:
+        context.storeId,
+    };
+  }
+
+  private requireId(
+    value: string,
+    label: string,
+  ): void {
+
+    if (
+      !value ||
+      !value.trim()
+    ) {
+      throw new Error(
+        `${label} is required.`,
+      );
+    }
+  }
+}
+
+export const salesOrderService =
+  new SalesOrderService();
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\sales\store\sales-order.store.ts
+============================================================
+import { create } from "zustand";
+
+import {
+  salesOrderService,
+} from "../services/sales-order.service";
+
+import type {
+  SalesOrder,
+} from "../types/sales-order.types";
+
+import {
+  storeContext,
+} from "@/core/store/store.context";
+
+interface CreateDraftInput {
+  tenantId: string;
+  storeId: string;
+  warehouseId: string;
+  customerId?: string;
+  notes?: string;
+}
+
+interface AddItemInput {
+  productId: string;
+  quantity: number;
+  unitPrice: number;
+  discountAmount?: number;
+  taxRate?: number;
+}
+
+interface SalesOrderState {
+
+  orders: SalesOrder[];
+
+  loading: boolean;
+
+  error: string | null;
+
+  loadOrders: () => Promise<void>;
+
+  createDraft: (
+    input: CreateDraftInput,
+  ) => Promise<SalesOrder>;
+
+  addItem: (
+    orderId: string,
+    input: AddItemInput,
+  ) => Promise<SalesOrder>;
+
+  confirmOrder: (
+    orderId: string,
+  ) => Promise<SalesOrder>;
+
+  processOrder: (
+    orderId: string,
+  ) => Promise<SalesOrder>;
+
+  completeOrder: (
+    orderId: string,
+  ) => Promise<SalesOrder>;
+
+  cancelOrder: (
+    orderId: string,
+  ) => Promise<SalesOrder>;
+
+  refundOrder: (
+    orderId: string,
+  ) => Promise<SalesOrder>;
+
+  clearError: () => void;
+}
+
+export const useSalesOrderStore =
+  create<SalesOrderState>(
+    (set) => ({
+
+      orders: [],
+
+      loading: false,
+
+      error: null,
+
+      loadOrders:
+        async () => {
+
+          const context =
+            storeContext.getStore();
+
+          if (
+            !context?.tenantId ||
+            !context.storeId
+          ) {
+            set({
+              orders: [],
+              error: null,
+            });
+
+            return;
+          }
+
+          set({
+            loading: true,
+            error: null,
+          });
+
+          try {
+
+            const orders =
+              await salesOrderService
+                .getOrders(
+                  context.tenantId,
+                );
+
+            const storeOrders =
+              orders.filter(
+                (order) =>
+                  order.storeId ===
+                  context.storeId,
+              );
+
+            set({
+              orders:
+                storeOrders,
+
+              loading:
+                false,
+
+              error:
+                null,
+            });
+
+          } catch (error) {
+
+            const message =
+              error instanceof Error
+                ? error.message
+                : "Failed to load sales orders.";
+
+            set({
+              loading:
+                false,
+
+              error:
+                message,
+            });
+
+            throw error;
+          }
+        },
+
+      createDraft:
+        async (
+          input,
+        ) => {
+
+          set({
+            loading: true,
+            error: null,
+          });
+
+          try {
+
+            const order =
+              await salesOrderService
+                .createDraft(
+                  input,
+                );
+
+            set(
+              (state) => ({
+                orders: [
+                  order,
+                  ...state.orders,
+                ],
+
+                loading:
+                  false,
+
+                error:
+                  null,
+              }),
+            );
+
+            return order;
+
+          } catch (error) {
+
+            const message =
+              error instanceof Error
+                ? error.message
+                : "Failed to create sales order.";
+
+            set({
+              loading:
+                false,
+
+              error:
+                message,
+            });
+
+            throw error;
+          }
+        },
+
+      addItem:
+        async (
+          orderId,
+          input,
+        ) => {
+
+          set({
+            loading: true,
+            error: null,
+          });
+
+          try {
+
+            const updated =
+              await salesOrderService
+                .addItem(
+                  orderId,
+                  input,
+                );
+
+            set(
+              (state) => ({
+                orders:
+                  state.orders.map(
+                    (order) =>
+                      order.id ===
+                      updated.id
+                        ? updated
+                        : order,
+                  ),
+
+                loading:
+                  false,
+
+                error:
+                  null,
+              }),
+            );
+
+            return updated;
+
+          } catch (error) {
+
+            const message =
+              error instanceof Error
+                ? error.message
+                : "Failed to add sales order item.";
+
+            set({
+              loading:
+                false,
+
+              error:
+                message,
+            });
+
+            throw error;
+          }
+        },
+
+      confirmOrder:
+        async (
+          orderId,
+        ) => {
+
+          set({
+            loading: true,
+            error: null,
+          });
+
+          try {
+
+            const updated =
+              await salesOrderService
+                .confirmOrder(
+                  orderId,
+                );
+
+            set(
+              (state) => ({
+                orders:
+                  state.orders.map(
+                    (order) =>
+                      order.id ===
+                      updated.id
+                        ? updated
+                        : order,
+                  ),
+
+                loading:
+                  false,
+
+                error:
+                  null,
+              }),
+            );
+
+            return updated;
+
+          } catch (error) {
+
+            const message =
+              error instanceof Error
+                ? error.message
+                : "Failed to confirm sales order.";
+
+            set({
+              loading:
+                false,
+
+              error:
+                message,
+            });
+
+            throw error;
+          }
+        },
+
+      processOrder:
+        async (
+          orderId,
+        ) => {
+
+          set({
+            loading: true,
+            error: null,
+          });
+
+          try {
+
+            const updated =
+              await salesOrderService
+                .processOrder(
+                  orderId,
+                );
+
+            set(
+              (state) => ({
+                orders:
+                  state.orders.map(
+                    (order) =>
+                      order.id ===
+                      updated.id
+                        ? updated
+                        : order,
+                  ),
+
+                loading:
+                  false,
+
+                error:
+                  null,
+              }),
+            );
+
+            return updated;
+
+          } catch (error) {
+
+            const message =
+              error instanceof Error
+                ? error.message
+                : "Failed to process sales order.";
+
+            set({
+              loading:
+                false,
+
+              error:
+                message,
+            });
+
+            throw error;
+          }
+        },
+
+      completeOrder:
+        async (
+          orderId,
+        ) => {
+
+          set({
+            loading: true,
+            error: null,
+          });
+
+          try {
+
+            const updated =
+              await salesOrderService
+                .completeOrder(
+                  orderId,
+                );
+
+            set(
+              (state) => ({
+                orders:
+                  state.orders.map(
+                    (order) =>
+                      order.id ===
+                      updated.id
+                        ? updated
+                        : order,
+                  ),
+
+                loading:
+                  false,
+
+                error:
+                  null,
+              }),
+            );
+
+            return updated;
+
+          } catch (error) {
+
+            const message =
+              error instanceof Error
+                ? error.message
+                : "Failed to complete sales order.";
+
+            set({
+              loading:
+                false,
+
+              error:
+                message,
+            });
+
+            throw error;
+          }
+        },
+
+      cancelOrder:
+        async (
+          orderId,
+        ) => {
+
+          set({
+            loading: true,
+            error: null,
+          });
+
+          try {
+
+            const updated =
+              await salesOrderService
+                .cancelOrder(
+                  orderId,
+                );
+
+            set(
+              (state) => ({
+                orders:
+                  state.orders.map(
+                    (order) =>
+                      order.id ===
+                      updated.id
+                        ? updated
+                        : order,
+                  ),
+
+                loading:
+                  false,
+
+                error:
+                  null,
+              }),
+            );
+
+            return updated;
+
+          } catch (error) {
+
+            const message =
+              error instanceof Error
+                ? error.message
+                : "Failed to cancel sales order.";
+
+            set({
+              loading:
+                false,
+
+              error:
+                message,
+            });
+
+            throw error;
+          }
+        },
+
+      refundOrder:
+        async (
+          orderId,
+        ) => {
+
+          set({
+            loading: true,
+            error: null,
+          });
+
+          try {
+
+            const updated =
+              await salesOrderService
+                .refundOrder(
+                  orderId,
+                );
+
+            set(
+              (state) => ({
+                orders:
+                  state.orders.map(
+                    (order) =>
+                      order.id ===
+                      updated.id
+                        ? updated
+                        : order,
+                  ),
+
+                loading:
+                  false,
+
+                error:
+                  null,
+              }),
+            );
+
+            return updated;
+
+          } catch (error) {
+
+            const message =
+              error instanceof Error
+                ? error.message
+                : "Failed to refund sales order.";
+
+            set({
+              loading:
+                false,
+
+              error:
+                message,
+            });
+
+            throw error;
+          }
+        },
+
+      clearError:
+        () =>
+          set({
+            error: null,
+          }),
+    }),
+  );
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\sales\types\index.ts
+============================================================
+export * from "./sales-order.types";
+export * from "./sales-order-item.types";
+export * from "./sales-order-status.types";
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\sales\types\sales-order.types.ts
+============================================================
+import type {
+  SalesOrderStatus,
+} from "./sales-order-status.types";
+
+
+import type {
+  SalesOrderItem,
+} from "./sales-order-item.types";
+
+
+
+export interface SalesOrder {
+
+
+  id: string;
+
+
+  tenantId: string;
+
+
+  storeId: string;
+
+
+  customerId?: string;
+
+
+  warehouseId: string;
+
+
+  orderNumber: string;
+
+
+  status: SalesOrderStatus;
+
+
+  items: SalesOrderItem[];
+
+
+  subtotal: number;
+
+
+  discountAmount: number;
+
+
+  taxAmount: number;
+
+
+  totalAmount: number;
+
+
+  paymentStatus: 
+
+    | "UNPAID"
+
+    | "PARTIALLY_PAID"
+
+    | "PAID";
+
+
+
+  notes?: string;
+
+
+  createdAt: string;
+
+
+  updatedAt: string;
+
+
+}
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\sales\types\sales-order-item.types.ts
+============================================================
+export interface SalesOrderItem {
+  id: string;
+  salesOrderId: string;
+  productId: string;
+  quantity: number;
+  unitPrice: number;
+  discountAmount: number;
+  taxRate: number;
+  lineTotal: number;
+}
+
+
+============================================================
+C:\Users\User\Desktop\Projects\ep-core\src\features\sales\types\sales-order-status.types.ts
+============================================================
+export type SalesOrderStatus =
+  | "DRAFT"
+  | "CONFIRMED"
+  | "PROCESSING"
+  | "COMPLETED"
+  | "CANCELLED"
+  | "REFUNDED";
+
+export const SALES_ORDER_STATUS = {
+  DRAFT: "DRAFT",
+  CONFIRMED: "CONFIRMED",
+  PROCESSING: "PROCESSING",
+  COMPLETED: "COMPLETED",
+  CANCELLED: "CANCELLED",
+  REFUNDED: "REFUNDED",
+} as const satisfies Record<
+  SalesOrderStatus,
+  SalesOrderStatus
+>;
+
+export function canConfirmSalesOrder(
+  status: SalesOrderStatus,
+): boolean {
+  return status === "DRAFT";
+}
+
+export function canProcessSalesOrder(
+  status: SalesOrderStatus,
+): boolean {
+  return status === "CONFIRMED";
+}
+
+export function canCompleteSalesOrder(
+  status: SalesOrderStatus,
+): boolean {
+  return status === "PROCESSING";
+}
+
+export function canCancelSalesOrder(
+  status: SalesOrderStatus,
+): boolean {
+  return (
+    status === "DRAFT" ||
+    status === "CONFIRMED"
+  );
+}
+
+export function canRefundSalesOrder(
+  status: SalesOrderStatus,
+): boolean {
+  return status === "COMPLETED";
+}
+
+export function isTerminalSalesOrderStatus(
+  status: SalesOrderStatus,
+): boolean {
+  return (
+    status === "COMPLETED" ||
+    status === "CANCELLED" ||
+    status === "REFUNDED"
+  );
+}
+
+

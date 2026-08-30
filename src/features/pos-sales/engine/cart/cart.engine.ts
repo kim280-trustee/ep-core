@@ -1,111 +1,137 @@
 import type {
   SaleItem,
-} from "../../types";
+} from "../../types/sale-item.types";
 
 export class CartEngine {
-
   addItem(
     cart: SaleItem[],
     item: SaleItem,
   ): SaleItem[] {
-
-    const existing =
-      cart.find(
-        (cartItem) =>
-          cartItem.productId ===
+    const existingIndex =
+      cart.findIndex(
+        (existing) =>
+          existing.productId ===
           item.productId,
       );
 
-    if (existing) {
-
-      return cart.map(
-        (cartItem) =>
-
-          cartItem.productId ===
-          item.productId
-            ? {
-
-                ...cartItem,
-
-                quantity:
-                  cartItem.quantity +
-                  item.quantity,
-
-                lineTotal:
-                  (cartItem.quantity +
-                    item.quantity) *
-                  cartItem.unitPrice,
-
-              }
-            : cartItem,
-      );
-
+    if (existingIndex < 0) {
+      return [
+        ...cart,
+        item,
+      ];
     }
 
-    return [
+    const existing =
+      cart[existingIndex];
 
-      ...cart,
+    const merged: SaleItem = {
+      ...existing,
+      quantity:
+        existing.quantity +
+        item.quantity,
+      discountAmount:
+        existing.discountAmount +
+        item.discountAmount,
+      taxAmount:
+        (existing.taxAmount ?? 0) + (item.taxAmount ?? 0),
+      lineTotal:
+        existing.lineTotal +
+        item.lineTotal,
+    };
 
-      item,
+    const result =
+      [...cart];
 
-    ];
+    result[existingIndex] =
+      merged;
 
+    return result;
   }
-
-
-
-  removeItem(
-    cart: SaleItem[],
-    itemId: string,
-  ): SaleItem[] {
-
-    return cart.filter(
-      (item) =>
-        item.id !== itemId,
-    );
-
-  }
-
-
 
   updateQuantity(
     cart: SaleItem[],
-    itemId: string,
+    productId: string,
     quantity: number,
   ): SaleItem[] {
+    if (
+      !Number.isFinite(quantity) ||
+      quantity <= 0
+    ) {
+      return cart.filter(
+        (item) =>
+          item.productId !==
+          productId,
+      );
+    }
 
     return cart.map(
-      (item) =>
+      (item) => {
+        if (
+          item.productId !==
+          productId
+        ) {
+          return item;
+        }
 
-        item.id === itemId
+        const unitAmount =
+          item.unitPrice;
 
-          ? {
+        const discountPerUnit =
+          item.quantity > 0
+            ? item.discountAmount /
+              item.quantity
+            : 0;
 
-              ...item,
+        const taxRate =
+          item.taxRate;
 
-              quantity,
+        const subtotal =
+          quantity *
+          unitAmount;
 
-              lineTotal:
-                quantity *
-                item.unitPrice,
+        const discountAmount =
+          quantity *
+          discountPerUnit;
 
-            }
+        const taxable =
+          Math.max(
+            0,
+            subtotal -
+              discountAmount,
+          );
 
-          : item,
+        const taxAmount =
+          taxable *
+          (taxRate / 100);
+
+        return {
+          ...item,
+          quantity,
+          discountAmount,
+          taxAmount,
+          lineTotal:
+            taxable +
+            taxAmount,
+        };
+      },
     );
-
   }
 
-
+  removeItem(
+    cart: SaleItem[],
+    productId: string,
+  ): SaleItem[] {
+    return cart.filter(
+      (item) =>
+        item.productId !==
+        productId,
+    );
+  }
 
   clear(): SaleItem[] {
-
     return [];
-
   }
-
 }
-
 
 export const cartEngine =
   new CartEngine();

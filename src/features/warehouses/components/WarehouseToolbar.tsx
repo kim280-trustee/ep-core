@@ -1,40 +1,42 @@
-interface Props {
+﻿import {
+  Link,
+} from "react-router-dom";
 
-  search:string;
 
-  onSearchChange(
-    value:string
-  ):void;
+interface WarehouseToolbarProps {
+
+  onReload?: () => void;
 
 }
 
 
 export function WarehouseToolbar({
-
-  search,
-
-  onSearchChange,
-
-}:Props){
-
+  onReload,
+}: WarehouseToolbarProps) {
 
   return (
 
-    <input
+    <div>
 
-      value={search}
+      <Link
+        to="/warehouses/create"
+      >
+        Create Warehouse
+      </Link>
 
-      onChange={(e)=>
 
-        onSearchChange(
-          e.target.value
-        )
+      {onReload && (
 
-      }
+        <button
+          type="button"
+          onClick={onReload}
+        >
+          Refresh
+        </button>
 
-      placeholder="Search warehouses"
+      )}
 
-    />
+    </div>
 
   );
 

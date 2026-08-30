@@ -1,466 +1,275 @@
-/**
- * ============================================================
- * E&P Technologies
- * E&P Smart POS
- * Purchase Receiving Module
- * ------------------------------------------------------------
- * Goods Receipt Service
- * ============================================================
- */
-
-
+﻿import { purchaseOrderItemService } from "./purchase-order-item.service";
 import {
-  goodsReceiptRepository,
+  purchaseOrderRepository,
 } from "../repositories";
 
 
 import {
-  inventoryTransactionService,
-} from "../../inventory-transactions/services/inventory-transaction.service";
-
-
-import {
-  eventBus,
-} from "@/core/events";
+  purchaseReceivingEngine,
+} from "../engine";
 
 
 import type {
-  GoodsReceipt,
-} from "../types/goods-receipt.types";
+  PurchaseOrder,
+} from "../types/purchase-order.types";
 
 
 import type {
-  GoodsReceiptItem,
-} from "../types/goods-receipt-item.types";
+  PurchaseOrderItem,
+} from "../types/purchase-order-item.types";
 
 
-
-interface CreateGoodsReceiptInput {
+interface CreatePurchaseOrderInput {
 
   tenantId: string;
 
-  storeId: string;
-
-  purchaseOrderId: string;
+  storeId: string | null;
 
   supplierId: string;
 
-  warehouseId: string;
+  warehouseId?: string | null;
 
-  items: GoodsReceiptItem[];
-
-  receivedBy?: string;
-
-  notes?: string;
+  notes?: string | null;
 
 }
 
 
+class PurchaseOrderService {
 
 
-class GoodsReceiptService {
+  async createDraft(
+    input: CreatePurchaseOrderInput,
+  ): Promise<PurchaseOrder> {
+
+    const now =
+      new Date().toISOString();
 
 
-
-  createReceipt(
-
-    input: CreateGoodsReceiptInput,
-
-  ) {
-
-
-    this.validateItems(
-
-      input.items,
-
-    );
-
-
-
-    const receipt: GoodsReceipt = {
-
+    const order: PurchaseOrder = {
 
       id:
-
         crypto.randomUUID(),
 
-
       tenantId:
-
         input.tenantId,
 
-
       storeId:
-
         input.storeId,
 
-
-      purchaseOrderId:
-
-        input.purchaseOrderId,
-
-
       supplierId:
-
         input.supplierId,
 
-
       warehouseId:
+        input.warehouseId ?? null,
 
-        input.warehouseId,
+      orderNumber:
+        `PO-${Date.now()}`,
 
+      orderDate:
+        now,
 
-      items:
+      expectedDeliveryDate:
+        null,
 
-        input.items,
+      status:
+        "DRAFT",
 
+      currency:
+        "THB",
 
-      receivedDate:
+      items: [],
 
-        new Date().toISOString(),
+      subtotal:
+        0,
 
+      taxAmount:
+        0,
 
-      receivedBy:
-
-        input.receivedBy,
-
+      totalAmount:
+        0,
 
       notes:
+        input.notes ?? null,
 
-        input.notes,
-
+      createdBy:
+        null,
 
       createdAt:
+        now,
 
-        new Date().toISOString(),
-
+      updatedAt:
+        now,
 
     };
 
 
-
-    const savedReceipt =
-
-      goodsReceiptRepository.create(
-
-        receipt,
-
-      );
-
-
-
-    this.createInventoryTransactions(
-
-      savedReceipt,
-
+    return purchaseOrderRepository.create(
+      order,
     );
-
-
-
-    eventBus.publish(
-
-      "GOODS_RECEIPT_CREATED",
-
-      savedReceipt,
-
-    );
-
-
-
-    return savedReceipt;
-
 
   }
 
 
+  async getOrders(
+    tenantId: string,
+  ): Promise<PurchaseOrder[]> {
 
-
-
-
-
-  private validateItems(
-
-    items: GoodsReceiptItem[],
-
-  ) {
-
-
-    if (
-
-      items.length === 0
-
-    ) {
-
-      throw new Error(
-
-        "Goods receipt requires at least one item.",
-
-      );
-
-    }
-
-
-
-    items.forEach(
-
-      (item) => {
-
-
-        if (
-
-          item.quantityReceived <= 0
-
-        ) {
-
-          throw new Error(
-
-            "Received quantity must be greater than zero.",
-
-          );
-
-        }
-
-
-      },
-
+    return purchaseOrderRepository.findAll(
+      tenantId,
     );
 
-
   }
 
 
-
-
-
-
-
-  private createInventoryTransactions(
-
-    receipt: GoodsReceipt,
-
-  ) {
-
-
-    receipt.items.forEach(
-
-      (item) => {
-
-
-        inventoryTransactionService.createTransaction({
-
-
-          tenantId:
-
-            receipt.tenantId,
-
-
-          storeId:
-
-            receipt.storeId,
-
-
-          productId:
-
-            item.productId,
-
-
-          warehouseId:
-
-            receipt.warehouseId,
-
-
-          movementType:
-
-            "PURCHASE_RECEIPT",
-
-
-          quantity:
-
-            item.quantityReceived,
-
-
-          unitCost:
-
-            item.unitCost,
-
-
-          referenceType:
-
-            "GOODS_RECEIPT",
-
-
-          referenceId:
-
-            receipt.id,
-
-
-        });
-
-
-      },
-
-    );
-
-
-  }
-
-
-
-
-
-
-
-  getReceipts() {
-
-    return goodsReceiptRepository.findAll();
-
-  }
-
-
-
-
-
-
-
-  getReceiptById(
-
+  async getOrderById(
+    tenantId: string,
     id: string,
+  ): Promise<PurchaseOrder | undefined> {
 
-  ) {
-
-    return goodsReceiptRepository.findById(
-
+    return purchaseOrderRepository.findById(
+      tenantId,
       id,
-
     );
 
   }
 
 
-
-
-
-
-
-  getReceiptsByPurchaseOrder(
-
-    purchaseOrderId: string,
-
-  ) {
-
-    return goodsReceiptRepository.findByPurchaseOrder(
-
-      purchaseOrderId,
-
-    );
-
-  }
-
-
-
-
-
-
-
-  updateReceipt(
-
+  async update(
+    tenantId: string,
     id: string,
+    updates: Partial<PurchaseOrder>,
+  ): Promise<PurchaseOrder | undefined> {
 
-    updates: Partial<GoodsReceipt>,
-
-  ) {
-
-
-    const receipt =
-
-      this.getReceiptById(
-
-        id,
-
-      );
-
-
-
-    if (!receipt) {
-
-      throw new Error(
-
-        "Goods receipt not found.",
-
-      );
-
-    }
-
-
-
-    return goodsReceiptRepository.update(
-
+    return purchaseOrderRepository.update(
+      tenantId,
       id,
+      updates,
+    );
 
+  }
+
+
+    receipt.items.forEach((item) => {
+      inventoryTransactionService.createTransaction({
+        tenantId: receipt.tenantId,
+        storeId: receipt.storeId,
+        productId: item.productId,
+        warehouseId: receipt.warehouseId,
+        movementType: "PURCHASE_RECEIPT",
+        quantity: item.quantityReceived,
+        unitCost: item.unitCost,
+        referenceType: "GOODS_RECEIPT",
+        referenceId: receipt.id,
+      });
+    });
+  }
+
+  getReceipts()
+  async submit(
+    tenantId: string,
+    orderId: string,
+  ): Promise<PurchaseOrder | undefined> {
+
+    return purchaseOrderRepository.update(
+      tenantId,
+      orderId,
       {
-
-        ...receipt,
-
-        ...updates,
-
+        status:
+          "SUBMITTED",
       },
-
     );
-
 
   }
 
 
+  async approve(
+    tenantId: string,
+    orderId: string,
+  ): Promise<PurchaseOrder | undefined> {
+
+    return purchaseOrderRepository.update(
+      tenantId,
+      orderId,
+      {
+        status:
+          "APPROVED",
+      },
+    );
+
+  }
 
 
+  async cancel(
+    tenantId: string,
+    orderId: string,
+  ): Promise<PurchaseOrder | undefined> {
+
+    return purchaseOrderRepository.update(
+      tenantId,
+      orderId,
+      {
+        status:
+          "CANCELLED",
+      },
+    );
+
+  }
 
 
+  async receive(
+    tenantId: string,
+    orderId: string,
+  ): Promise<PurchaseOrder | undefined> {
 
-  deleteReceipt(
-
-    id: string,
-
-  ) {
-
-
-    const receipt =
-
-      this.getReceiptById(
-
-        id,
-
+    const order =
+      await purchaseOrderRepository.findById(
+        tenantId,
+        orderId,
       );
 
 
-
-    if (!receipt) {
+    if (!order) {
 
       throw new Error(
-
-        "Goods receipt not found.",
-
+        "Purchase order not found.",
       );
 
     }
 
 
+    
+    const persistedItems =
+      await purchaseOrderItemService.getItems(
+        tenantId,
+        orderId,
+      );
 
-    goodsReceiptRepository.delete(
+    const orderWithItems: PurchaseOrder = {
+      ...order,
+      items: persistedItems,
+    };
+const updated =
+      await purchaseReceivingEngine.receive(
+        orderWithItems,
+      );
 
-      id,
 
+    return purchaseOrderRepository.update(
+      tenantId,
+      order.id,
+      updated,
     );
 
-
   }
-
 
 }
 
 
+export const purchaseOrderService =
+  new PurchaseOrderService();
 
 
 
-export const goodsReceiptService =
 
-  new GoodsReceiptService();
+
+

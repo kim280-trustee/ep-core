@@ -174,6 +174,9 @@ class SupabaseInventoryTransactionRepository {
         type:
           transaction.type,
 
+        movement_type:
+          transaction.type,
+
         quantity:
           transaction.quantity,
 
@@ -186,7 +189,7 @@ class SupabaseInventoryTransactionRepository {
         reference_id:
           transaction.referenceId ?? null,
 
-        note:
+        notes:
           transaction.note ?? null,
 
         created_at:
@@ -207,3 +210,5 @@ class SupabaseInventoryTransactionRepository {
 
 export const supabaseInventoryTransactionRepository =
   new SupabaseInventoryTransactionRepository();
+
+

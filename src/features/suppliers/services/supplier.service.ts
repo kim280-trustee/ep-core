@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
@@ -25,9 +25,7 @@ import type {
 } from "../types/supplier.types";
 
 
-
 class SupplierService {
-
 
 
   private generateId(): string {
@@ -37,222 +35,125 @@ class SupplierService {
   }
 
 
+  async getSuppliers(
+    tenantId: string,
+    storeId?: string,
+  ): Promise<Supplier[]> {
 
-
-
-  getSuppliers(): Supplier[] {
-
-    return supplierRepository.findAll();
+    return supplierRepository.findAll(
+      tenantId,
+      storeId,
+    );
 
   }
 
 
-
-
-
-
-
-  getSupplierById(
-    id:string,
-  ):Supplier | undefined {
-
+  async getSupplierById(
+    tenantId: string,
+    id: string,
+  ): Promise<Supplier | undefined> {
 
     return supplierRepository.findById(
+      tenantId,
       id,
     );
 
   }
 
 
-
-
-
-
-
-  createSupplier(
-
-    input:CreateSupplierDto,
-
-    tenantId:string,
-
-    storeId:string,
-
-  ):Supplier {
-
-
+  async createSupplier(
+    input: CreateSupplierDto,
+    tenantId: string,
+    storeId: string,
+  ): Promise<Supplier> {
 
     const now =
-
       new Date().toISOString();
 
 
-
-
-
-    const supplier:Supplier = {
-
+    const supplier: Supplier = {
 
       id:
-
         this.generateId(),
-
-
 
       tenantId,
 
-
-
       storeId,
 
-
-
       name:
-
         input.name,
 
-
-
       contactPerson:
-
         input.contactPerson ?? null,
 
-
-
       phone:
-
         input.phone ?? null,
 
-
-
       email:
-
         input.email ?? null,
 
-
-
       address:
-
         input.address ?? null,
 
-
-
       taxId:
-
         input.taxId ?? null,
 
-
-
       paymentTerms:
-
         input.paymentTerms ?? null,
 
-
-
       status:
-
         SupplierStatus.ACTIVE,
 
-
-
       createdAt:
-
         now,
-
-
 
       updatedAt:
-
         now,
-
-
 
     };
 
 
-
-
-
     return supplierRepository.create(
-
       supplier,
-
     );
-
 
   }
 
 
-
-
-
-
-
-
-
-  updateSupplier(
-
-    id:string,
-
-    updates:UpdateSupplierDto,
-
-  ):Supplier | undefined {
-
-
+  async updateSupplier(
+    tenantId: string,
+    id: string,
+    updates: UpdateSupplierDto,
+  ): Promise<Supplier | undefined> {
 
     return supplierRepository.update(
-
+      tenantId,
       id,
-
       {
-
-
         ...updates,
-
-
         updatedAt:
-
           new Date().toISOString(),
-
-
       },
-
     );
-
 
   }
 
 
-
-
-
-
-
-
-
-  deleteSupplier(
-
-    id:string,
-
-  ):boolean {
-
+  async deleteSupplier(
+    tenantId: string,
+    id: string,
+  ): Promise<boolean> {
 
     return supplierRepository.delete(
-
+      tenantId,
       id,
-
     );
 
-
   }
-
-
-
 
 
 }
 
 
-
 export const supplierService =
-
   new SupplierService();

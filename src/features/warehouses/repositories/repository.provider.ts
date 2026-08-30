@@ -1,7 +1,7 @@
-import {
-  inMemoryWarehouseRepository,
-} from "./in-memory.warehouse.repository";
+﻿import {
+  supabaseWarehouseRepository,
+} from "./supabase.warehouse.repository";
 
 
 export const warehouseRepository =
-  inMemoryWarehouseRepository;
+  supabaseWarehouseRepository;

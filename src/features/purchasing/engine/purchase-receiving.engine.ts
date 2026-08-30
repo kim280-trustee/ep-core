@@ -1,25 +1,21 @@
+﻿import {
+  inventoryTransactionService,
+} from "@/features/inventory-transactions/services/inventory-transaction.service";
+
+import {
+  receivingValidationEngine,
+} from "./receiving-validation.engine";
+
 import type {
   PurchaseOrder,
 } from "../types/purchase-order.types";
-
 
 import type {
   PurchaseOrderItem,
 } from "../types/purchase-order-item.types";
 
 
-import {
-  inventoryService,
-} from "../../inventory/services/inventory.service";
-
-
-import {
-  receivingValidationEngine,
-} from "./receiving-validation.engine";
-
-
-export class PurchaseReceivingEngine {
-
+class PurchaseReceivingEngine {
 
   async receive(
     order: PurchaseOrder,
@@ -63,7 +59,7 @@ export class PurchaseReceivingEngine {
 
     const completed =
       items.every(
-        (item) =>
+        (item: PurchaseOrderItem) =>
           item.receivedQuantity >=
           item.quantity,
       );
@@ -116,27 +112,20 @@ export class PurchaseReceivingEngine {
     }
 
 
-    const record =
-      await inventoryService.getInventoryRecord(
-        order.tenantId,
-        item.productId,
-        order.warehouseId,
-      );
+    await inventoryTransactionService.receiveStock(
 
+      item.productId,
 
-    if (!record) {
+      order.warehouseId,
 
-      throw new Error(
-        `Inventory record not found for product ${item.productId}.`,
-      );
-
-    }
-
-
-    await inventoryService.increaseStock(
-      record,
       remaining,
+
       item.unitCost,
+
+      order.id,
+
+      `Purchase order ${order.orderNumber} received`,
+
     );
 
 

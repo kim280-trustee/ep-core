@@ -1,404 +1,561 @@
-﻿import {
-  create,
-} from "zustand";
-
+﻿import { create } from "zustand";
 
 import {
   salesOrderService,
 } from "../services/sales-order.service";
 
-
-import {
-  salesProcessingEngine,
-} from "../engine";
-
-
 import type {
   SalesOrder,
 } from "../types/sales-order.types";
 
+import {
+  storeContext,
+} from "@/core/store/store.context";
 
-import type {
-  SalesOrderItem,
-} from "../types/sales-order-item.types";
-
-
-interface CreateSalesOrderInput {
-
+interface CreateDraftInput {
   tenantId: string;
-
   storeId: string;
-
   warehouseId: string;
-
   customerId?: string;
-
   notes?: string;
-
 }
 
+interface AddItemInput {
+  productId: string;
+  quantity: number;
+  unitPrice: number;
+  discountAmount?: number;
+  taxRate?: number;
+}
 
 interface SalesOrderState {
 
   orders: SalesOrder[];
 
-  tenantId: string | null;
+  loading: boolean;
 
+  error: string | null;
 
-  loadOrders(
-    tenantId?: string,
-  ): Promise<void>;
+  loadOrders: () => Promise<void>;
 
+  createDraft: (
+    input: CreateDraftInput,
+  ) => Promise<SalesOrder>;
 
-  getOrderById(
-    id: string,
-  ): SalesOrder | undefined;
-
-
-  createDraft(
-    input: CreateSalesOrderInput,
-  ): Promise<SalesOrder>;
-
-
-  addItem(
+  addItem: (
     orderId: string,
-    item: SalesOrderItem,
-  ): Promise<void>;
+    input: AddItemInput,
+  ) => Promise<SalesOrder>;
 
+  confirmOrder: (
+    orderId: string,
+  ) => Promise<SalesOrder>;
 
-  confirmOrder(
-    id: string,
-  ): Promise<void>;
+  processOrder: (
+    orderId: string,
+  ) => Promise<SalesOrder>;
 
+  completeOrder: (
+    orderId: string,
+  ) => Promise<SalesOrder>;
 
-  processOrder(
-    id: string,
-  ): Promise<void>;
+  cancelOrder: (
+    orderId: string,
+  ) => Promise<SalesOrder>;
 
+  refundOrder: (
+    orderId: string,
+  ) => Promise<SalesOrder>;
 
-  cancelOrder(
-    id: string,
-  ): Promise<void>;
-
+  clearError: () => void;
 }
-
-
-function requireTenantId(
-  tenantId: string | null,
-): string {
-
-  if (!tenantId) {
-
-    throw new Error(
-      "Tenant ID is required.",
-    );
-
-  }
-
-  return tenantId;
-
-}
-
 
 export const useSalesOrderStore =
   create<SalesOrderState>(
-    (set, get) => ({
+    (set) => ({
 
       orders: [],
 
-      tenantId: null,
+      loading: false,
 
+      error: null,
 
-      loadOrders: async (
-        tenantId,
-      ) => {
+      loadOrders:
+        async () => {
 
-        const resolvedTenantId =
-          tenantId ??
-          get().tenantId;
+          const context =
+            storeContext.getStore();
 
+          if (
+            !context?.tenantId ||
+            !context.storeId
+          ) {
+            set({
+              orders: [],
+              error: null,
+            });
 
-        const resolved =
-          requireTenantId(
-            resolvedTenantId,
-          );
+            return;
+          }
 
+          set({
+            loading: true,
+            error: null,
+          });
 
-        const orders =
-          await salesOrderService.getOrders(
-            resolved,
-          );
+          try {
 
+            const orders =
+              await salesOrderService
+                .getOrders(
+                  context.tenantId,
+                );
 
-        set({
+            const storeOrders =
+              orders.filter(
+                (order) =>
+                  order.storeId ===
+                  context.storeId,
+              );
 
-          tenantId:
-            resolved,
+            set({
+              orders:
+                storeOrders,
 
-          orders,
+              loading:
+                false,
 
-        });
+              error:
+                null,
+            });
 
-      },
+          } catch (error) {
 
+            const message =
+              error instanceof Error
+                ? error.message
+                : "Failed to load sales orders.";
 
-      getOrderById: (
-        id,
-      ) => {
+            set({
+              loading:
+                false,
 
-        return get()
-          .orders
-          .find(
-            (order) =>
-              order.id === id,
-          );
+              error:
+                message,
+            });
 
-      },
+            throw error;
+          }
+        },
 
+      createDraft:
+        async (
+          input,
+        ) => {
 
-      createDraft: async (
-        input,
-      ) => {
+          set({
+            loading: true,
+            error: null,
+          });
 
-        const order =
-          await salesOrderService.createDraft(
-            input,
-          );
+          try {
 
+            const order =
+              await salesOrderService
+                .createDraft(
+                  input,
+                );
 
-        set((state) => ({
+            set(
+              (state) => ({
+                orders: [
+                  order,
+                  ...state.orders,
+                ],
 
-          tenantId:
-            input.tenantId,
+                loading:
+                  false,
 
-          orders: [
-            ...state.orders,
-            order,
-          ],
-
-        }));
-
-
-        return order;
-
-      },
-
-
-      addItem: async (
-        orderId,
-        item,
-      ) => {
-
-        const order =
-          get()
-            .orders
-            .find(
-              (existing) =>
-                existing.id === orderId,
+                error:
+                  null,
+              }),
             );
 
+            return order;
 
-        if (!order) {
+          } catch (error) {
 
-          throw new Error(
-            "Sales order not found.",
-          );
+            const message =
+              error instanceof Error
+                ? error.message
+                : "Failed to create sales order.";
 
-        }
+            set({
+              loading:
+                false,
 
+              error:
+                message,
+            });
 
-        const updated =
-          await salesOrderService.addItem(
-            order.tenantId,
-            orderId,
-            item,
-          );
+            throw error;
+          }
+        },
 
+      addItem:
+        async (
+          orderId,
+          input,
+        ) => {
 
-        if (!updated) {
+          set({
+            loading: true,
+            error: null,
+          });
 
-          throw new Error(
-            "Failed to update sales order.",
-          );
+          try {
 
-        }
+            const updated =
+              await salesOrderService
+                .addItem(
+                  orderId,
+                  input,
+                );
 
+            set(
+              (state) => ({
+                orders:
+                  state.orders.map(
+                    (order) =>
+                      order.id ===
+                      updated.id
+                        ? updated
+                        : order,
+                  ),
 
-        set((state) => ({
+                loading:
+                  false,
 
-          orders:
-            state.orders.map(
-              (existing) =>
-                existing.id === orderId
-                  ? updated
-                  : existing,
-            ),
-
-        }));
-
-      },
-
-
-      confirmOrder: async (
-        id,
-      ) => {
-
-        const order =
-          get()
-            .orders
-            .find(
-              (existing) =>
-                existing.id === id,
+                error:
+                  null,
+              }),
             );
 
+            return updated;
 
-        if (!order) {
+          } catch (error) {
 
-          throw new Error(
-            "Sales order not found.",
-          );
+            const message =
+              error instanceof Error
+                ? error.message
+                : "Failed to add sales order item.";
 
-        }
+            set({
+              loading:
+                false,
 
+              error:
+                message,
+            });
 
-        const updated =
-          await salesOrderService.confirm(
-            order.tenantId,
-            id,
-          );
+            throw error;
+          }
+        },
 
+      confirmOrder:
+        async (
+          orderId,
+        ) => {
 
-        if (!updated) {
+          set({
+            loading: true,
+            error: null,
+          });
 
-          return;
+          try {
 
-        }
+            const updated =
+              await salesOrderService
+                .confirmOrder(
+                  orderId,
+                );
 
+            set(
+              (state) => ({
+                orders:
+                  state.orders.map(
+                    (order) =>
+                      order.id ===
+                      updated.id
+                        ? updated
+                        : order,
+                  ),
 
-        set((state) => ({
+                loading:
+                  false,
 
-          orders:
-            state.orders.map(
-              (existing) =>
-                existing.id === id
-                  ? updated
-                  : existing,
-            ),
-
-        }));
-
-      },
-
-
-      processOrder: async (
-        id,
-      ) => {
-
-        const order =
-          get()
-            .orders
-            .find(
-              (existing) =>
-                existing.id === id,
+                error:
+                  null,
+              }),
             );
 
+            return updated;
 
-        if (!order) {
+          } catch (error) {
 
-          throw new Error(
-            "Sales order not found.",
-          );
+            const message =
+              error instanceof Error
+                ? error.message
+                : "Failed to confirm sales order.";
 
-        }
+            set({
+              loading:
+                false,
 
+              error:
+                message,
+            });
 
-        const completedOrder =
-          salesProcessingEngine.process(
-            order,
-          );
+            throw error;
+          }
+        },
 
+      processOrder:
+        async (
+          orderId,
+        ) => {
 
-        const updated =
-          await salesOrderService.update(
-            order.tenantId,
-            id,
-            completedOrder,
-          );
+          set({
+            loading: true,
+            error: null,
+          });
 
+          try {
 
-        if (!updated) {
+            const updated =
+              await salesOrderService
+                .processOrder(
+                  orderId,
+                );
 
-          throw new Error(
-            "Failed to process sales order.",
-          );
+            set(
+              (state) => ({
+                orders:
+                  state.orders.map(
+                    (order) =>
+                      order.id ===
+                      updated.id
+                        ? updated
+                        : order,
+                  ),
 
-        }
+                loading:
+                  false,
 
-
-        set((state) => ({
-
-          orders:
-            state.orders.map(
-              (existing) =>
-                existing.id === id
-                  ? updated
-                  : existing,
-            ),
-
-        }));
-
-      },
-
-
-      cancelOrder: async (
-        id,
-      ) => {
-
-        const order =
-          get()
-            .orders
-            .find(
-              (existing) =>
-                existing.id === id,
+                error:
+                  null,
+              }),
             );
 
+            return updated;
 
-        if (!order) {
+          } catch (error) {
 
-          throw new Error(
-            "Sales order not found.",
-          );
+            const message =
+              error instanceof Error
+                ? error.message
+                : "Failed to process sales order.";
 
-        }
+            set({
+              loading:
+                false,
 
+              error:
+                message,
+            });
 
-        const updated =
-          await salesOrderService.cancel(
-            order.tenantId,
-            id,
-          );
+            throw error;
+          }
+        },
 
+      completeOrder:
+        async (
+          orderId,
+        ) => {
 
-        if (!updated) {
+          set({
+            loading: true,
+            error: null,
+          });
 
-          return;
+          try {
 
-        }
+            const updated =
+              await salesOrderService
+                .completeOrder(
+                  orderId,
+                );
 
+            set(
+              (state) => ({
+                orders:
+                  state.orders.map(
+                    (order) =>
+                      order.id ===
+                      updated.id
+                        ? updated
+                        : order,
+                  ),
 
-        set((state) => ({
+                loading:
+                  false,
 
-          orders:
-            state.orders.map(
-              (existing) =>
-                existing.id === id
-                  ? updated
-                  : existing,
-            ),
+                error:
+                  null,
+              }),
+            );
 
-        }));
+            return updated;
 
-      },
+          } catch (error) {
 
+            const message =
+              error instanceof Error
+                ? error.message
+                : "Failed to complete sales order.";
+
+            set({
+              loading:
+                false,
+
+              error:
+                message,
+            });
+
+            throw error;
+          }
+        },
+
+      cancelOrder:
+        async (
+          orderId,
+        ) => {
+
+          set({
+            loading: true,
+            error: null,
+          });
+
+          try {
+
+            const updated =
+              await salesOrderService
+                .cancelOrder(
+                  orderId,
+                );
+
+            set(
+              (state) => ({
+                orders:
+                  state.orders.map(
+                    (order) =>
+                      order.id ===
+                      updated.id
+                        ? updated
+                        : order,
+                  ),
+
+                loading:
+                  false,
+
+                error:
+                  null,
+              }),
+            );
+
+            return updated;
+
+          } catch (error) {
+
+            const message =
+              error instanceof Error
+                ? error.message
+                : "Failed to cancel sales order.";
+
+            set({
+              loading:
+                false,
+
+              error:
+                message,
+            });
+
+            throw error;
+          }
+        },
+
+      refundOrder:
+        async (
+          orderId,
+        ) => {
+
+          set({
+            loading: true,
+            error: null,
+          });
+
+          try {
+
+            const updated =
+              await salesOrderService
+                .refundOrder(
+                  orderId,
+                );
+
+            set(
+              (state) => ({
+                orders:
+                  state.orders.map(
+                    (order) =>
+                      order.id ===
+                      updated.id
+                        ? updated
+                        : order,
+                  ),
+
+                loading:
+                  false,
+
+                error:
+                  null,
+              }),
+            );
+
+            return updated;
+
+          } catch (error) {
+
+            const message =
+              error instanceof Error
+                ? error.message
+                : "Failed to refund sales order.";
+
+            set({
+              loading:
+                false,
+
+              error:
+                message,
+            });
+
+            throw error;
+          }
+        },
+
+      clearError:
+        () =>
+          set({
+            error: null,
+          }),
     }),
   );

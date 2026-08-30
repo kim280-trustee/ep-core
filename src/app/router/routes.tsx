@@ -75,6 +75,9 @@ import {
 import {
   salesRoutes,
 } from "../../features/sales/routes/sales.routes";
+import {
+  posSalesRoutes,
+} from "../../features/pos-sales/routes/pos-sales.routes";
 
 import {
   paymentRoutes,
@@ -142,7 +145,10 @@ export const routes: RouteObject[] = [
 
       ...salesRoutes,
 
-      ...paymentRoutes,
+      
+      ...posSalesRoutes,
+
+...paymentRoutes,
 
       ...receiptRoutes,
 

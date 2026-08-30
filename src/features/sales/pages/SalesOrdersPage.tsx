@@ -1,50 +1,115 @@
-import CreateSalesOrderForm from "../components/CreateSalesOrderForm";
+﻿import {
+  useEffect,
+  useState,
+} from "react";
 
+import CreateSalesOrderForm
+  from "../components/CreateSalesOrderForm";
 
-import SalesOrderList from "../components/SalesOrderList";
+import SalesOrderList
+  from "../components/SalesOrderList";
 
+import AddSalesOrderItemForm
+  from "../components/AddSalesOrderItemForm";
 
-import AddSalesOrderItemForm from "../components/AddSalesOrderItemForm";
-
-
+import {
+  useSalesOrders,
+} from "../hooks/useSalesOrders";
 
 export default function SalesOrdersPage() {
 
+  const {
+    orders,
+  } = useSalesOrders();
+
+  const [
+    activeOrderId,
+    setActiveOrderId,
+  ] = useState("");
+
+  useEffect(() => {
+    if (activeOrderId) {
+      const exists =
+        orders.some(
+          (order) =>
+            order.id === activeOrderId &&
+            order.status === "DRAFT",
+        );
+
+      if (exists) {
+        return;
+      }
+    }
+
+    const latestDraft =
+      orders.find(
+        (order) =>
+          order.status === "DRAFT",
+      );
+
+    if (latestDraft) {
+      setActiveOrderId(
+        latestDraft.id,
+      );
+    }
+  }, [
+    orders,
+    activeOrderId,
+  ]);
+
+  const activeOrder =
+    orders.find(
+      (order) =>
+        order.id === activeOrderId,
+    );
 
   return (
+    <div className="p-6">
 
-    <div>
-
-
-      <h1>
-
+      <h1 className="text-3xl font-bold">
         Sales Management
-
       </h1>
 
+      <div className="mt-6 rounded-lg border bg-white p-5 shadow-sm">
+        <CreateSalesOrderForm />
+      </div>
 
+      {activeOrder && (
+        <div className="mt-6 rounded-lg border bg-white p-5 shadow-sm">
 
-      <CreateSalesOrderForm />
+          <div className="mb-5 rounded border bg-gray-50 p-4">
+            <p className="text-sm text-gray-500">
+              Active Sales Order
+            </p>
 
+            <p className="mt-1 text-xl font-semibold">
+              {activeOrder.orderNumber}
+            </p>
 
+            <p className="mt-1 text-sm text-gray-600">
+              Status: {activeOrder.status}
+            </p>
+          </div>
 
-      <hr />
+          <AddSalesOrderItemForm
+            salesOrderId={activeOrder.id}
+          />
 
+        </div>
+      )}
 
+      {!activeOrder && (
+        <div className="mt-6 rounded-lg border bg-white p-5 shadow-sm">
+          <p className="text-sm text-gray-600">
+            Create a sales order first. The new draft order will automatically become the active order.
+          </p>
+        </div>
+      )}
 
-      <AddSalesOrderItemForm />
-
-
-
-      <hr />
-
-
-
-      <SalesOrderList />
-
+      <div className="mt-6 rounded-lg border bg-white p-5 shadow-sm">
+        <SalesOrderList />
+      </div>
 
     </div>
-
   );
-
 }

@@ -4,6 +4,11 @@ import type {
   SalesOrder,
 } from "../types/sales-order.types";
 
+import type {
+  SalesOrderItem,
+} from "../types/sales-order-item.types";
+
+
 interface SalesOrderDatabaseRow {
 
   id: string;
@@ -39,8 +44,65 @@ interface SalesOrderDatabaseRow {
 }
 
 
+interface SalesOrderItemDatabaseRow {
+
+  id: string;
+
+  sales_order_id: string;
+
+  product_id: string;
+
+  quantity: number | string;
+
+  unit_price: number | string;
+
+  discount_amount: number | string;
+
+  tax_rate: number | string;
+
+  line_total: number | string;
+
+}
+
+
+function fromDatabaseItem(
+  row: SalesOrderItemDatabaseRow,
+): SalesOrderItem {
+
+  return {
+
+    id:
+      row.id,
+
+    salesOrderId:
+      row.sales_order_id,
+
+    productId:
+      row.product_id,
+
+    quantity:
+      Number(row.quantity),
+
+    unitPrice:
+      Number(row.unit_price),
+
+    discountAmount:
+      Number(row.discount_amount),
+
+    taxRate:
+      Number(row.tax_rate),
+
+    lineTotal:
+      Number(row.line_total),
+
+  };
+
+}
+
+
 function fromDatabaseRow(
   row: SalesOrderDatabaseRow,
+  items: SalesOrderItem[] = [],
 ): SalesOrder {
 
   return {
@@ -66,7 +128,7 @@ function fromDatabaseRow(
     status:
       row.status as SalesOrder["status"],
 
-    items: [],
+    items,
 
     subtotal:
       Number(row.subtotal),
@@ -100,6 +162,94 @@ function fromDatabaseRow(
 class SupabaseSalesOrderRepository {
 
 
+  private async loadItems(
+    tenantId: string,
+    orderIds: string[],
+  ): Promise<Map<string, SalesOrderItem[]>> {
+
+    const result =
+      new Map<string, SalesOrderItem[]>();
+
+
+    if (orderIds.length === 0) {
+
+      return result;
+
+    }
+
+
+
+    const {
+      data,
+      error,
+    } =
+      await supabase
+        .from("sales_order_items")
+        .select("*")
+        .in(
+          "sales_order_id",
+          orderIds,
+        )
+        .eq(
+          "tenant_id",
+          tenantId,
+        );
+
+
+    if (error) {
+
+      throw new Error(
+        `SALES ITEMS QUERY FAILED: ${error.message}`,
+      );
+
+    }
+
+
+    if (!data || data.length === 0) {
+
+      return result;
+
+    }
+
+
+    for (const row of data ?? []) {
+
+      const databaseRow =
+        row as SalesOrderItemDatabaseRow;
+
+
+      const item =
+        fromDatabaseItem(
+          databaseRow,
+        );
+
+
+      const salesOrderId =
+        databaseRow.sales_order_id;
+
+
+      const existing =
+        result.get(
+          salesOrderId,
+        ) ?? [];
+
+
+      existing.push(item);
+
+
+      result.set(
+        salesOrderId,
+        existing,
+      );
+
+    }
+
+
+    return result;
+
+  }
+
+
   async findAll(
     tenantId: string,
   ): Promise<SalesOrder[]> {
@@ -130,12 +280,25 @@ class SupabaseSalesOrderRepository {
     }
 
 
-    return (
-      data ?? []
-    ).map(
+    const rows =
+      (data ?? []) as SalesOrderDatabaseRow[];
+
+
+    const itemMap =
+      await this.loadItems(
+        tenantId,
+        rows.map(
+          (row) =>
+            row.id,
+        ),
+      );
+
+
+    return rows.map(
       (row) =>
         fromDatabaseRow(
-          row as SalesOrderDatabaseRow,
+          row,
+          itemMap.get(row.id) ?? [],
         ),
     );
 
@@ -179,8 +342,18 @@ class SupabaseSalesOrderRepository {
     }
 
 
+    const itemMap =
+      await this.loadItems(
+        tenantId,
+        [
+          id,
+        ],
+      );
+
+
     return fromDatabaseRow(
       data as SalesOrderDatabaseRow,
+      itemMap.get(id) ?? [],
     );
 
   }
@@ -257,6 +430,7 @@ class SupabaseSalesOrderRepository {
 
     return fromDatabaseRow(
       data as SalesOrderDatabaseRow,
+      order.items,
     );
 
   }
@@ -419,8 +593,241 @@ class SupabaseSalesOrderRepository {
     }
 
 
+    /*
+     * Persist only items that are not already
+     * present in Supabase.
+     *
+     * The service supplies the complete order
+     * item array when adding an item.
+     */
+
+    if (
+      updates.items !== undefined
+    ) {
+
+      const {
+        data: existingItems,
+        error: existingItemsError,
+      } =
+        await supabase
+          .from("sales_order_items")
+          .select("id")
+          .eq(
+            "sales_order_id",
+            id,
+          );
+
+
+      if (existingItemsError) {
+
+        throw existingItemsError;
+
+      }
+
+
+      const existingIds =
+        new Set(
+          (existingItems ?? []).map(
+            (item) =>
+              item.id,
+          ),
+        );
+
+
+      const newItems =
+        updates.items.filter(
+          (item) =>
+            !existingIds.has(
+              item.id,
+            ),
+        );
+
+
+      if (
+        newItems.length > 0
+      ) {
+
+        const {
+          error:
+            insertError,
+        } =
+          await supabase
+            .from("sales_order_items")
+            .insert(
+              newItems.map(
+                (item) => ({
+
+                  id:
+                    item.id,
+
+                  sales_order_id:
+                    id,
+
+                  product_id:
+                    item.productId,
+
+                  quantity:
+                    item.quantity,
+
+                  unit_price:
+                    item.unitPrice,
+
+                  discount_amount:
+                    item.discountAmount,
+
+                  tax_rate:
+                    item.taxRate,
+
+                  line_total:
+                    item.lineTotal,
+
+                }),
+              ),
+            );
+
+
+        if (insertError) {
+
+          throw insertError;
+
+        }
+
+
+        /*
+         * Recalculate the order totals from the
+         * complete item collection supplied by
+         * the service.
+         *
+         * This keeps the sales order header
+         * synchronized with its line items.
+         */
+
+        const subtotal =
+          updates.items.reduce(
+            (
+              total,
+              item,
+            ) =>
+              total +
+              (
+                item.quantity *
+                item.unitPrice
+              ),
+            0,
+          );
+
+
+        const discountAmount =
+          updates.items.reduce(
+            (
+              total,
+              item,
+            ) =>
+              total +
+              item.discountAmount,
+            0,
+          );
+
+
+        const taxAmount =
+          updates.items.reduce(
+            (
+              total,
+              item,
+            ) => {
+
+              const lineSubtotal =
+                item.quantity *
+                item.unitPrice;
+
+              const taxableAmount =
+                Math.max(
+                  0,
+                  lineSubtotal -
+                    item.discountAmount,
+                );
+
+              return (
+                total +
+                (
+                  taxableAmount *
+                  (
+                    item.taxRate /
+                    100
+                  )
+                )
+              );
+
+            },
+            0,
+          );
+
+
+        const totalAmount =
+          Math.max(
+            0,
+            subtotal -
+              discountAmount,
+          ) +
+          taxAmount;
+
+
+        const {
+          error:
+            totalsError,
+        } =
+          await supabase
+            .from("sales_orders")
+            .update({
+
+              subtotal,
+
+              discount_amount:
+                discountAmount,
+
+              tax_amount:
+                taxAmount,
+
+              total_amount:
+                totalAmount,
+
+              updated_at:
+                new Date().toISOString(),
+
+            })
+            .eq(
+              "tenant_id",
+              tenantId,
+            )
+            .eq(
+              "id",
+              id,
+            );
+
+
+        if (totalsError) {
+
+          throw totalsError;
+
+        }
+
+      }
+
+    }
+
+
+    const itemMap =
+      await this.loadItems(
+        tenantId,
+        [
+          id,
+        ],
+      );
+
+
     return fromDatabaseRow(
       data as SalesOrderDatabaseRow,
+      itemMap.get(id) ?? [],
     );
 
   }
@@ -430,4 +837,14 @@ class SupabaseSalesOrderRepository {
 
 export const supabaseSalesOrderRepository =
   new SupabaseSalesOrderRepository();
+
+
+
+
+
+
+
+
+
+
 

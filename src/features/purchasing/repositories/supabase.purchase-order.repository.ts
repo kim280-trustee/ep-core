@@ -1,4 +1,4 @@
-import { supabase } from "@/core/infrastructure/supabase/client";
+﻿import { supabase } from "@/core/infrastructure/supabase/client";
 
 import type {
   PurchaseOrder,
@@ -18,6 +18,8 @@ interface PurchaseOrderDatabaseRow {
   store_id: string | null;
 
   supplier_id: string;
+
+  warehouse_id: string | null;
 
   order_number: string;
 
@@ -65,7 +67,7 @@ function fromDatabaseRow(
       row.supplier_id,
 
     warehouseId:
-      null,
+      row.warehouse_id,
 
     orderNumber:
       row.order_number,
@@ -272,6 +274,9 @@ class SupabasePurchaseOrderRepository
           supplier_id:
             order.supplierId,
 
+          warehouse_id:
+            order.warehouseId,
+
           order_number:
             order.orderNumber,
 
@@ -353,6 +358,16 @@ class SupabasePurchaseOrderRepository
 
       updateData.supplier_id =
         updates.supplierId;
+
+    }
+
+
+    if (
+      updates.warehouseId !== undefined
+    ) {
+
+      updateData.warehouse_id =
+        updates.warehouseId;
 
     }
 

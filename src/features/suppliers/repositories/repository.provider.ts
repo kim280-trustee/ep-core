@@ -1,11 +1,6 @@
-import {
-
-  inMemorySupplierRepository,
-
-} from "./in-memory.supplier.repository";
-
-
+﻿import {
+  supabaseSupplierRepository,
+} from "./supabase.supplier.repository";
 
 export const supplierRepository =
-
-  inMemorySupplierRepository;
+  supabaseSupplierRepository;

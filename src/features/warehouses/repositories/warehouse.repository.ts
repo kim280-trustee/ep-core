@@ -6,57 +6,41 @@
  * ============================================================
  */
 
-
 import type {
-
   Warehouse,
-
   CreateWarehouseDto,
-
   UpdateWarehouseDto,
-
 } from "../types/warehouse.types";
-
 
 
 export interface WarehouseRepository {
 
 
-  findAll(): Warehouse[];
-
+  findAll(): Promise<Warehouse[]>;
 
 
   findById(
     id: string,
-  ): Warehouse | undefined;
-
+  ): Promise<Warehouse | undefined>;
 
 
   create(
     warehouse: CreateWarehouseDto & {
-
       tenantId: string;
-
       storeId: string;
-
     },
-  ): Warehouse;
-
+  ): Promise<Warehouse>;
 
 
   update(
-
     id: string,
-
     warehouse: UpdateWarehouseDto,
-
-  ): Warehouse | undefined;
-
+  ): Promise<Warehouse | undefined>;
 
 
   delete(
     id: string,
-  ): boolean;
+  ): Promise<boolean>;
 
 
 }

@@ -1,238 +1,171 @@
-/**
- * ============================================================
- * E&P Technologies
- * E&P Smart POS
- * Product Selector
- * ============================================================
- */
-
-
-import {
+﻿import {
   useEffect,
+  useState,
 } from "react";
 
+import {
+  productRepository,
+} from "@/features/products/repositories";
+
+import type {
+  Product,
+} from "@/features/products/types/product.types";
 
 import {
-  useProductsStore,
-} from "@/features/products";
-
-
-
+  storeContext,
+} from "@/core/store/store.context";
 
 interface ProductSelectorProps {
+  value: string;
 
+  onChange:
+    (value: string) => void;
 
-  value?: string;
-
-
-  onChange: (
-    productId: string,
-  ) => void;
-
-
-  disabled?: boolean;
-
-
+  onPriceChange?:
+    (value: string) => void;
 }
 
-
-
-
-
-export function ProductSelector({
-
+export default function ProductSelector({
   value,
-
   onChange,
-
-  disabled = false,
-
+  onPriceChange,
 }: ProductSelectorProps) {
+  const [
+    products,
+    setProducts,
+  ] = useState<Product[]>([]);
 
+  const [
+    loading,
+    setLoading,
+  ] = useState(false);
 
-
-  const products =
-
-    useProductsStore(
-
-      (state) => state.products,
-
-    );
-
-
-
-
-
-  const loadProducts =
-
-    useProductsStore(
-
-      (state) => state.loadProducts,
-
-    );
-
-
-
-
-
+  const [
+    error,
+    setError,
+  ] = useState<string | null>(null);
 
   useEffect(() => {
+    let active = true;
 
+    async function loadProducts() {
+      const context =
+        storeContext.getStore();
 
-    if (
-
-      products.length === 0
-
-    ) {
-
-      loadProducts();
-
-    }
-
-
-  }, [
-
-    products.length,
-
-    loadProducts,
-
-  ]);
-
-
-
-
-
-
-
-  return (
-
-
-
-    <div
-
-      className="
-      flex
-      flex-col
-      gap-2
-      "
-
-    >
-
-
-
-      <label
-
-        className="font-medium"
-
-      >
-
-        Product
-
-
-      </label>
-
-
-
-
-
-
-      <select
-
-
-        value={value ?? ""}
-
-
-        disabled={disabled}
-
-
-        onChange={(e) =>
-
-          onChange(
-
-            e.target.value,
-
-          )
-
+      if (!context?.tenantId) {
+        if (active) {
+          setProducts([]);
         }
 
+        return;
+      }
 
-        className="
-        border
-        rounded
-        p-2
-        w-full
-        "
+      setLoading(true);
+      setError(null);
 
+      try {
+        const result =
+          await productRepository.findAll(
+            context.tenantId,
+          );
 
+        if (active) {
+          setProducts(
+            result.data,
+          );
+        }
+      } catch (error) {
+        console.error(
+          "Failed to load products:",
+          error,
+        );
+
+        if (active) {
+          setProducts([]);
+          setError(
+            error instanceof Error
+              ? error.message
+              : "Failed to load products.",
+          );
+        }
+      } finally {
+        if (active) {
+          setLoading(false);
+        }
+      }
+    }
+
+    void loadProducts();
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  function handleChange(
+    productId: string,
+  ) {
+    onChange(productId);
+
+    const selectedProduct =
+      products.find(
+        (product) =>
+          product.id === productId,
+      );
+
+    if (
+      selectedProduct &&
+      onPriceChange
+    ) {
+      onPriceChange(
+        String(
+          selectedProduct.sellingPrice,
+        ),
+      );
+    }
+  }
+
+  return (
+    <div>
+      <label className="mb-1 block text-sm font-medium">
+        Product
+      </label>
+
+      <select
+        value={value || ""}
+        disabled={loading}
+        onChange={(event) =>
+          handleChange(
+            event.target.value,
+          )
+        }
+        className="w-full rounded border p-2"
       >
-
-
-
-
         <option value="">
-
-          -- Select Product --
-
+          {loading
+            ? "Loading products..."
+            : "Select product"}
         </option>
 
-
-
-
-
-
-        {products.map((product) => (
-
-
-
-          <option
-
-
-            key={product.id}
-
-
-            value={product.id}
-
-
-          >
-
-            {product.name}
-
-            {" - "}
-
-            {product.identifiers.sku}
-
-            {" - "}
-
-            {product.pricing.sellingPrice}
-
-            {" "}
-
-            {product.pricing.currency}
-
-
-
-          </option>
-
-
-
-        ))}
-
-
-
-
-
+        {products.map(
+          (product) => (
+            <option
+              key={product.id}
+              value={product.id}
+            >
+              {product.name}
+              {" - "}
+              {product.sellingPrice}
+            </option>
+          ),
+        )}
       </select>
 
-
-
-
-
+      {error && (
+        <p className="mt-1 text-sm text-red-600">
+          {error}
+        </p>
+      )}
     </div>
-
-
-
   );
-
-
-
 }
