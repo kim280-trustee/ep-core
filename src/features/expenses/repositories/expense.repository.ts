@@ -1,18 +1,31 @@
-import type { Expense } from "../types";
+﻿import type { Expense } from "../types";
 
 export interface ExpenseRepository {
-  findAll(): Expense[];
+  findAll(
+    tenantId: string,
+    storeId: string,
+  ): Promise<Expense[]>;
 
   findById(
+    tenantId: string,
+    storeId: string,
     id: string,
-  ): Expense | undefined;
+  ): Promise<Expense | undefined>;
 
   create(
     expense: Expense,
-  ): Expense;
+  ): Promise<Expense>;
 
   update(
+    tenantId: string,
+    storeId: string,
     id: string,
     updates: Partial<Expense>,
-  ): Expense | undefined;
+  ): Promise<Expense | undefined>;
+
+  delete(
+    tenantId: string,
+    storeId: string,
+    id: string,
+  ): Promise<void>;
 }

@@ -1,4 +1,4 @@
-import { inMemoryExpenseRepository } from "./in-memory.expense.repository";
+﻿import { supabaseExpenseRepository } from "./supabase.expense.repository";
 
 export const expenseRepository =
-  inMemoryExpenseRepository;
+  supabaseExpenseRepository;

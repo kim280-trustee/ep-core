@@ -1,35 +1,51 @@
-import type { Expense } from "../types";
+﻿import type { Expense } from "../types";
 import type { ExpenseRepository } from "./expense.repository";
 
 class InMemoryExpenseRepository implements ExpenseRepository {
   private expenses: Expense[] = [];
 
-  findAll(): Expense[] {
-    return this.expenses;
-  }
-
-  findById(
-    id: string,
-  ): Expense | undefined {
-    return this.expenses.find(
-      (expense) => expense.id === id,
+  async findAll(
+    tenantId: string,
+    storeId: string,
+  ): Promise<Expense[]> {
+    return this.expenses.filter(
+      (expense) =>
+        expense.tenantId === tenantId &&
+        expense.storeId === storeId,
     );
   }
 
-  create(
-    expense: Expense,
-  ): Expense {
-    this.expenses.push(expense);
+  async findById(
+    tenantId: string,
+    storeId: string,
+    id: string,
+  ): Promise<Expense | undefined> {
+    return this.expenses.find(
+      (expense) =>
+        expense.tenantId === tenantId &&
+        expense.storeId === storeId &&
+        expense.id === id,
+    );
+  }
 
+  async create(
+    expense: Expense,
+  ): Promise<Expense> {
+    this.expenses.push(expense);
     return expense;
   }
 
-  update(
+  async update(
+    tenantId: string,
+    storeId: string,
     id: string,
     updates: Partial<Expense>,
-  ): Expense | undefined {
+  ): Promise<Expense | undefined> {
     const index = this.expenses.findIndex(
-      (expense) => expense.id === id,
+      (expense) =>
+        expense.tenantId === tenantId &&
+        expense.storeId === storeId &&
+        expense.id === id,
     );
 
     if (index === -1) {
@@ -39,9 +55,25 @@ class InMemoryExpenseRepository implements ExpenseRepository {
     this.expenses[index] = {
       ...this.expenses[index],
       ...updates,
+      updatedAt: new Date().toISOString(),
     };
 
     return this.expenses[index];
+  }
+
+  async delete(
+    tenantId: string,
+    storeId: string,
+    id: string,
+  ): Promise<void> {
+    this.expenses = this.expenses.filter(
+      (expense) =>
+        !(
+          expense.tenantId === tenantId &&
+          expense.storeId === storeId &&
+          expense.id === id
+        ),
+    );
   }
 }
 

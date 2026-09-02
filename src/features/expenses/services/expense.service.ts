@@ -1,7 +1,9 @@
-import { expenseRepository } from "../repositories";
+﻿import { expenseRepository } from "../repositories";
 
-import type { Expense } from "../types";
-import type { ExpenseCategory } from "../types";
+import type {
+  Expense,
+  ExpenseCategory,
+} from "../types";
 
 export interface CreateExpenseInput {
   tenantId: string;
@@ -14,33 +16,119 @@ export interface CreateExpenseInput {
 }
 
 class ExpenseService {
-  createExpense(
+  async createExpense(
     input: CreateExpenseInput,
-  ): Expense {
+  ): Promise<Expense> {
+    if (!input.tenantId) {
+      throw new Error("Tenant ID is required.");
+    }
+
+    if (!input.storeId) {
+      throw new Error("Store ID is required.");
+    }
+
+    if (!input.category) {
+      throw new Error("Expense category is required.");
+    }
+
+    if (!Number.isFinite(input.amount) || input.amount <= 0) {
+      throw new Error("Expense amount must be greater than zero.");
+    }
+
+    if (!input.currency) {
+      throw new Error("Currency is required.");
+    }
+
+    if (!input.expenseDate) {
+      throw new Error("Expense date is required.");
+    }
+
+    const now =
+      new Date().toISOString();
+
     const expense: Expense = {
-      id: crypto.randomUUID(),
-      tenantId: input.tenantId,
-      storeId: input.storeId,
-      category: input.category,
-      description: input.description,
-      amount: input.amount,
-      currency: input.currency,
-      expenseDate: input.expenseDate,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
+      id:
+        crypto.randomUUID(),
+
+      tenantId:
+        input.tenantId,
+
+      storeId:
+        input.storeId,
+
+      category:
+        input.category,
+
+      description:
+        input.description.trim(),
+
+      amount:
+        input.amount,
+
+      currency:
+        input.currency,
+
+      expenseDate:
+        input.expenseDate,
+
+      createdAt:
+        now,
+
+      updatedAt:
+        now,
     };
 
-    return expenseRepository.create(expense);
+    return expenseRepository.create(
+      expense,
+    );
   }
 
-  getExpenses(): Expense[] {
-    return expenseRepository.findAll();
+  async getExpenses(
+    tenantId: string,
+    storeId: string,
+  ): Promise<Expense[]> {
+    return expenseRepository.findAll(
+      tenantId,
+      storeId,
+    );
   }
 
-  getExpenseById(
+  async getExpenseById(
+    tenantId: string,
+    storeId: string,
     id: string,
-  ): Expense | undefined {
-    return expenseRepository.findById(id);
+  ): Promise<Expense | undefined> {
+    return expenseRepository.findById(
+      tenantId,
+      storeId,
+      id,
+    );
+  }
+
+  async updateExpense(
+    tenantId: string,
+    storeId: string,
+    id: string,
+    updates: Partial<Expense>,
+  ): Promise<Expense | undefined> {
+    return expenseRepository.update(
+      tenantId,
+      storeId,
+      id,
+      updates,
+    );
+  }
+
+  async deleteExpense(
+    tenantId: string,
+    storeId: string,
+    id: string,
+  ): Promise<void> {
+    return expenseRepository.delete(
+      tenantId,
+      storeId,
+      id,
+    );
   }
 }
 
