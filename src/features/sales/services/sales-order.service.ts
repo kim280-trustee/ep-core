@@ -30,6 +30,10 @@ import {
   inventoryService,
 } from "@/features/inventory/services/inventory.service";
 
+import {
+  paymentService,
+} from "@/features/payments/services/payment.service";
+
 interface CreateSalesOrderInput {
   tenantId: string;
   storeId: string;
@@ -52,75 +56,32 @@ class SalesOrderService {
     input: CreateSalesOrderInput,
   ): Promise<SalesOrder> {
 
-    this.requireId(
-      input.tenantId,
-      "Tenant ID",
-    );
+    this.requireId(input.tenantId, "Tenant ID");
+    this.requireId(input.storeId, "Store ID");
+    this.requireId(input.warehouseId, "Warehouse ID");
 
-    this.requireId(
-      input.storeId,
-      "Store ID",
-    );
-
-    this.requireId(
-      input.warehouseId,
-      "Warehouse ID",
-    );
-
-    const now =
-      new Date().toISOString();
+    const now = new Date().toISOString();
 
     const order: SalesOrder = {
-      id:
-        crypto.randomUUID(),
-
-      tenantId:
-        input.tenantId,
-
-      storeId:
-        input.storeId,
-
-      warehouseId:
-        input.warehouseId,
-
-      customerId:
-        input.customerId,
-
-      orderNumber:
-        `SO-${Date.now()}-${crypto.randomUUID().slice(0, 8)}`,
-
-      status:
-        "DRAFT",
-
+      id: crypto.randomUUID(),
+      tenantId: input.tenantId,
+      storeId: input.storeId,
+      warehouseId: input.warehouseId,
+      customerId: input.customerId,
+      orderNumber: `SO-${Date.now()}-${crypto.randomUUID().slice(0, 8)}`,
+      status: "DRAFT",
       items: [],
-
-      subtotal:
-        0,
-
-      discountAmount:
-        0,
-
-      taxAmount:
-        0,
-
-      totalAmount:
-        0,
-
-      paymentStatus:
-        "UNPAID",
-
-      notes:
-        input.notes,
-
-      createdAt:
-        now,
-
-      updatedAt:
-        now,
+      subtotal: 0,
+      discountAmount: 0,
+      taxAmount: 0,
+      totalAmount: 0,
+      paymentStatus: "UNPAID",
+      notes: input.notes,
+      createdAt: now,
+      updatedAt: now,
     };
 
-    return getSalesOrderRepository()
-      .create(order);
+    return getSalesOrderRepository().create(order);
   }
 
   async addItem(
@@ -128,10 +89,7 @@ class SalesOrderService {
     input: AddSalesOrderItemInput,
   ): Promise<SalesOrder> {
 
-    const order =
-      await this.getRequiredOrder(
-        orderId,
-      );
+    const order = await this.getRequiredOrder(orderId);
 
     if (order.status !== "DRAFT") {
       throw new Error(
@@ -139,152 +97,83 @@ class SalesOrderService {
       );
     }
 
-    const quantity =
-      Number(input.quantity);
-
-    const unitPrice =
-      Number(input.unitPrice);
-
-    const discountAmount =
-      Number(
-        input.discountAmount ?? 0,
-      );
-
-    const taxRate =
-      Number(
-        input.taxRate ?? 0,
-      );
+    const quantity = Number(input.quantity);
+    const unitPrice = Number(input.unitPrice);
+    const discountAmount = Number(input.discountAmount ?? 0);
+    const taxRate = Number(input.taxRate ?? 0);
 
     if (!input.productId.trim()) {
-      throw new Error(
-        "Product ID is required.",
-      );
+      throw new Error("Product ID is required.");
     }
 
-    if (
-      !Number.isFinite(quantity) ||
-      quantity <= 0
-    ) {
-      throw new Error(
-        "Quantity must be greater than zero.",
-      );
+    if (!Number.isFinite(quantity) || quantity <= 0) {
+      throw new Error("Quantity must be greater than zero.");
     }
 
-    if (
-      !Number.isFinite(unitPrice) ||
-      unitPrice < 0
-    ) {
-      throw new Error(
-        "Unit price must be zero or greater.",
-      );
+    if (!Number.isFinite(unitPrice) || unitPrice < 0) {
+      throw new Error("Unit price must be zero or greater.");
     }
 
-    if (
-      !Number.isFinite(discountAmount) ||
-      discountAmount < 0
-    ) {
+    if (!Number.isFinite(discountAmount) || discountAmount < 0) {
       throw new Error(
         "Discount amount must be zero or greater.",
       );
     }
 
-    if (
-      !Number.isFinite(taxRate) ||
-      taxRate < 0 ||
-      taxRate > 100
-    ) {
+    if (!Number.isFinite(taxRate) || taxRate < 0 || taxRate > 100) {
       throw new Error(
         "Tax rate must be between 0 and 100.",
       );
     }
 
-    const existingIndex =
-      order.items.findIndex(
-        (item) =>
-          item.productId ===
-          input.productId,
-      );
+    const existingIndex = order.items.findIndex(
+      (item) => item.productId === input.productId,
+    );
 
-    let items =
-      [...order.items];
-
-    const itemId =
-      crypto.randomUUID();
+    const items = [...order.items];
 
     const rawItem: SalesOrderItem = {
-      id:
-        itemId,
-
-      salesOrderId:
-        order.id,
-
-      productId:
-        input.productId,
-
+      id: crypto.randomUUID(),
+      salesOrderId: order.id,
+      productId: input.productId,
       quantity,
-
       unitPrice,
-
       discountAmount,
-
       taxRate,
-
-      lineTotal:
-        0,
+      lineTotal: 0,
     };
 
-    const calculated =
-      salesEngine.calculateItem(
-        rawItem,
-      );
+    const calculated = salesEngine.calculateItem(rawItem);
 
     if (existingIndex === -1) {
-      items.push(
-        calculated,
-      );
+      items.push(calculated);
     } else {
-      const existing =
-        items[existingIndex];
+      const existing = items[existingIndex];
 
       const merged: SalesOrderItem = {
         ...existing,
-
-        quantity:
-          existing.quantity +
-          calculated.quantity,
-
+        quantity: existing.quantity + calculated.quantity,
         discountAmount:
-          existing.discountAmount +
-          calculated.discountAmount,
-
-        unitPrice:
-          calculated.unitPrice,
-
-        taxRate:
-          calculated.taxRate,
+          existing.discountAmount + calculated.discountAmount,
+        unitPrice: calculated.unitPrice,
+        taxRate: calculated.taxRate,
       };
 
       items[existingIndex] =
-        salesEngine.calculateItem(
-          merged,
-        );
+        salesEngine.calculateItem(merged);
     }
 
-    const totals =
-      salesEngine.calculateOrder(
-        items,
-      );
+    const totals = salesEngine.calculateOrder(items);
 
     const updated =
-      await getSalesOrderRepository()
-        .update(
-          order.tenantId,
-          order.id,
-          {
-            items,
-            ...totals,
-          },
-        );
+      await getSalesOrderRepository().update(
+        order.tenantId,
+        order.id,
+        {
+          items,
+          ...totals,
+        },
+      );
 
     if (!updated) {
       throw new Error(
@@ -299,16 +188,9 @@ class SalesOrderService {
     orderId: string,
   ): Promise<SalesOrder> {
 
-    const order =
-      await this.getRequiredOrder(
-        orderId,
-      );
+    const order = await this.getRequiredOrder(orderId);
 
-    if (
-      !canConfirmSalesOrder(
-        order.status,
-      )
-    ) {
+    if (!canConfirmSalesOrder(order.status)) {
       throw new Error(
         `Sales order cannot be confirmed from status ${order.status}.`,
       );
@@ -320,23 +202,17 @@ class SalesOrderService {
       );
     }
 
-    const totals =
-      salesEngine.calculateOrder(
-        order.items,
-      );
+    const totals = salesEngine.calculateOrder(order.items);
 
     const updated =
-      await getSalesOrderRepository()
-        .update(
-          order.tenantId,
-          order.id,
-          {
-            status:
-              "CONFIRMED",
-
-            ...totals,
-          },
-        );
+      await getSalesOrderRepository().update(
+        order.tenantId,
+        order.id,
+        {
+          status: "CONFIRMED",
+          ...totals,
+        },
+      );
 
     if (!updated) {
       throw new Error(
@@ -351,31 +227,22 @@ class SalesOrderService {
     orderId: string,
   ): Promise<SalesOrder> {
 
-    const order =
-      await this.getRequiredOrder(
-        orderId,
-      );
+    const order = await this.getRequiredOrder(orderId);
 
-    if (
-      !canProcessSalesOrder(
-        order.status,
-      )
-    ) {
+    if (!canProcessSalesOrder(order.status)) {
       throw new Error(
         `Sales order cannot be processed from status ${order.status}.`,
       );
     }
 
     const updated =
-      await getSalesOrderRepository()
-        .update(
-          order.tenantId,
-          order.id,
-          {
-            status:
-              "PROCESSING",
-          },
-        );
+      await getSalesOrderRepository().update(
+        order.tenantId,
+        order.id,
+        {
+          status: "PROCESSING",
+        },
+      );
 
     if (!updated) {
       throw new Error(
@@ -390,16 +257,9 @@ class SalesOrderService {
     orderId: string,
   ): Promise<SalesOrder> {
 
-    const order =
-      await this.getRequiredOrder(
-        orderId,
-      );
+    const order = await this.getRequiredOrder(orderId);
 
-    if (
-      !canCompleteSalesOrder(
-        order.status,
-      )
-    ) {
+    if (!canCompleteSalesOrder(order.status)) {
       throw new Error(
         `Sales order cannot be completed from status ${order.status}.`,
       );
@@ -411,13 +271,19 @@ class SalesOrderService {
       );
     }
 
-    /*
-     * Inventory must be deducted exactly once for this sale.
-     *
-     * A completed sales order may be encountered again by the UI,
-     * so check for existing SALE transactions using the sales order
-     * ID before creating any new stock movement.
-     */
+    const paymentSummary =
+      await paymentService.getOrderPaymentSummary(
+        order.tenantId,
+        order.id,
+        order.totalAmount,
+      );
+
+    if (paymentSummary.status !== "PAID") {
+      throw new Error(
+        `Sales order cannot be completed because payment status is ${paymentSummary.status}.`,
+      );
+    }
+
     const existingTransactions =
       await inventoryTransactionService.getTransactions(
         order.tenantId,
@@ -433,23 +299,13 @@ class SalesOrderService {
               transaction.referenceId === order.id,
           )
           .map(
-            (transaction) =>
-              transaction.productId,
+            (transaction) => transaction.productId,
           ),
       );
 
-    /*
-     * Pre-check every item before changing stock.
-     * This prevents a partial deduction when one item does not
-     * have enough available stock.
-     */
     for (const item of order.items) {
 
-      if (
-        existingSaleProductIds.has(
-          item.productId,
-        )
-      ) {
+      if (existingSaleProductIds.has(item.productId)) {
         continue;
       }
 
@@ -494,9 +350,6 @@ class SalesOrderService {
       }
     }
 
-    /*
-     * Deduct stock for every item.
-     */
     for (const item of order.items) {
 
       const productTransactions =
@@ -527,25 +380,18 @@ class SalesOrderService {
     }
 
     const totals =
-      salesEngine.calculateOrder(
-        order.items,
-      );
+      salesEngine.calculateOrder(order.items);
 
     const updated =
-      await getSalesOrderRepository()
-        .update(
-          order.tenantId,
-          order.id,
-          {
-            status:
-              "COMPLETED",
-
-            paymentStatus:
-              "PAID",
-
-            ...totals,
-          },
-        );
+      await getSalesOrderRepository().update(
+        order.tenantId,
+        order.id,
+        {
+          status: "COMPLETED",
+          paymentStatus: paymentSummary.status,
+          ...totals,
+        },
+      );
 
     if (!updated) {
       throw new Error(
@@ -560,31 +406,22 @@ class SalesOrderService {
     orderId: string,
   ): Promise<SalesOrder> {
 
-    const order =
-      await this.getRequiredOrder(
-        orderId,
-      );
+    const order = await this.getRequiredOrder(orderId);
 
-    if (
-      !canCancelSalesOrder(
-        order.status,
-      )
-    ) {
+    if (!canCancelSalesOrder(order.status)) {
       throw new Error(
         `Sales order cannot be cancelled from status ${order.status}.`,
       );
     }
 
     const updated =
-      await getSalesOrderRepository()
-        .update(
-          order.tenantId,
-          order.id,
-          {
-            status:
-              "CANCELLED",
-          },
-        );
+      await getSalesOrderRepository().update(
+        order.tenantId,
+        order.id,
+        {
+          status: "CANCELLED",
+        },
+      );
 
     if (!updated) {
       throw new Error(
@@ -599,31 +436,163 @@ class SalesOrderService {
     orderId: string,
   ): Promise<SalesOrder> {
 
-    const order =
-      await this.getRequiredOrder(
-        orderId,
-      );
+    const order = await this.getRequiredOrder(orderId);
 
-    if (
-      !canRefundSalesOrder(
-        order.status,
-      )
-    ) {
+    if (!canRefundSalesOrder(order.status)) {
       throw new Error(
         `Sales order cannot be refunded from status ${order.status}.`,
       );
     }
 
-    const updated =
-      await getSalesOrderRepository()
-        .update(
-          order.tenantId,
-          order.id,
-          {
-            status:
-              "REFUNDED",
-          },
+    if (order.items.length === 0) {
+      throw new Error(
+        "A completed sales order must contain items before it can be refunded.",
+      );
+    }
+
+    /*
+     * ----------------------------------------------------------
+     * 1. Load the inventory history for this sale.
+     * ----------------------------------------------------------
+     */
+
+    const transactions =
+      await inventoryTransactionService.getTransactions(
+        order.tenantId,
+      );
+
+    /*
+     * ----------------------------------------------------------
+     * 2. Verify that every item either has its original sale
+     *    transaction or has already been returned.
+     *
+     *    This makes the refund recoverable after a partial failure.
+     * ----------------------------------------------------------
+     */
+
+    for (const item of order.items) {
+
+      const alreadyReturned =
+        transactions.some(
+          (transaction) =>
+            transaction.referenceType === "SALE_RETURN" &&
+            transaction.referenceId === order.id &&
+            transaction.productId === item.productId,
         );
+
+      if (alreadyReturned) {
+        continue;
+      }
+
+      const saleTransaction =
+        transactions.find(
+          (transaction) =>
+            transaction.movementType === "SALE" &&
+            transaction.referenceType === "SALE" &&
+            transaction.referenceId === order.id &&
+            transaction.productId === item.productId,
+        );
+
+      if (!saleTransaction) {
+        throw new Error(
+          `Original sale inventory transaction not found for product ${item.productId}.`,
+        );
+      }
+    }
+
+    /*
+     * ----------------------------------------------------------
+     * 3. Return stock.
+     *
+     *    Already returned items are skipped, so retrying a failed
+     *    refund will not double the inventory.
+     * ----------------------------------------------------------
+     */
+
+    for (const item of order.items) {
+
+      const alreadyReturned =
+        transactions.some(
+          (transaction) =>
+            transaction.referenceType === "SALE_RETURN" &&
+            transaction.referenceId === order.id &&
+            transaction.productId === item.productId,
+        );
+
+      if (alreadyReturned) {
+        continue;
+      }
+
+      await inventoryTransactionService.returnStock(
+        item.productId,
+        order.warehouseId,
+        item.quantity,
+        order.id,
+        `Sale refunded: ${order.orderNumber}`,
+      );
+    }
+
+    /*
+     * ----------------------------------------------------------
+     * 4. Load payments.
+     *
+     *    A completed payment is refunded normally.
+     *    A REFUNDED payment is already complete and is skipped.
+     *    This allows recovery if the previous attempt already
+     *    refunded the payment before the order update failed.
+     * ----------------------------------------------------------
+     */
+
+    const payments =
+      await paymentService.getPayments(
+        order.tenantId,
+      );
+
+    const orderPayments =
+      payments.filter(
+        (payment) =>
+          payment.salesOrderId === order.id &&
+          (
+            payment.status === "COMPLETED" ||
+            payment.status === "REFUNDED"
+          ),
+      );
+
+    if (orderPayments.length === 0) {
+      throw new Error(
+        `No completed or refunded payment was found for sales order ${order.orderNumber}.`,
+      );
+    }
+
+    for (const payment of orderPayments) {
+
+      if (payment.status === "REFUNDED") {
+        continue;
+      }
+
+      await paymentService.refundPayment(
+        order.tenantId,
+        payment.id,
+      );
+    }
+
+    /*
+     * ----------------------------------------------------------
+     * 5. Finalize the sales order.
+     *
+     *    The payment status is now explicitly REFUNDED.
+     * ----------------------------------------------------------
+     */
+
+    const updated =
+      await getSalesOrderRepository().update(
+        order.tenantId,
+        order.id,
+        {
+          status: "REFUNDED",
+          paymentStatus: "REFUNDED",
+        },
+      );
 
     if (!updated) {
       throw new Error(
@@ -638,15 +607,11 @@ class SalesOrderService {
     tenantId: string,
   ): Promise<SalesOrder[]> {
 
-    this.requireId(
-      tenantId,
-      "Tenant ID",
-    );
+    this.requireId(tenantId, "Tenant ID");
 
-    return getSalesOrderRepository()
-      .findAll(
-        tenantId,
-      );
+    return getSalesOrderRepository().findAll(
+      tenantId,
+    );
   }
 
   async getOrderById(
@@ -654,52 +619,34 @@ class SalesOrderService {
     orderId: string,
   ): Promise<SalesOrder | undefined> {
 
-    this.requireId(
+    this.requireId(tenantId, "Tenant ID");
+    this.requireId(orderId, "Sales order ID");
+
+    return getSalesOrderRepository().findById(
       tenantId,
-      "Tenant ID",
-    );
-
-    this.requireId(
       orderId,
-      "Sales order ID",
     );
-
-    return getSalesOrderRepository()
-      .findById(
-        tenantId,
-        orderId,
-      );
   }
 
   private async getRequiredOrder(
     orderId: string,
   ): Promise<SalesOrder> {
 
-    this.requireId(
-      orderId,
-      "Sales order ID",
-    );
+    this.requireId(orderId, "Sales order ID");
 
-    const context =
-      await this.getContext();
+    const context = await this.getContext();
 
     const order =
-      await getSalesOrderRepository()
-        .findById(
-          context.tenantId,
-          orderId,
-        );
+      await getSalesOrderRepository().findById(
+        context.tenantId,
+        orderId,
+      );
 
     if (!order) {
-      throw new Error(
-        "Sales order not found.",
-      );
+      throw new Error("Sales order not found.");
     }
 
-    if (
-      order.storeId !==
-      context.storeId
-    ) {
+    if (order.storeId !== context.storeId) {
       throw new Error(
         "Sales order does not belong to the current store.",
       );
@@ -713,14 +660,10 @@ class SalesOrderService {
     storeId: string;
   }> {
 
-    const {
-      storeContext,
-    } = await import(
-      "@/core/store/store.context"
-    );
+    const { storeContext } =
+      await import("@/core/store/store.context");
 
-    const context =
-      storeContext.getStore();
+    const context = storeContext.getStore();
 
     if (!context?.tenantId) {
       throw new Error(
@@ -735,11 +678,8 @@ class SalesOrderService {
     }
 
     return {
-      tenantId:
-        context.tenantId,
-
-      storeId:
-        context.storeId,
+      tenantId: context.tenantId,
+      storeId: context.storeId,
     };
   }
 
@@ -748,16 +688,12 @@ class SalesOrderService {
     label: string,
   ): void {
 
-    if (
-      !value ||
-      !value.trim()
-    ) {
-      throw new Error(
-        `${label} is required.`,
-      );
+    if (!value || !value.trim()) {
+      throw new Error(`${label} is required.`);
     }
   }
 }
 
 export const salesOrderService =
   new SalesOrderService();
+

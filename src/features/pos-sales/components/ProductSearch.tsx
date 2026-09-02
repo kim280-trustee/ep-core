@@ -1,6 +1,7 @@
 ﻿import {
   useState,
   useRef,
+  useEffect,
 } from "react";
 
 import type {
@@ -15,22 +16,23 @@ import {
   usePosSalesStore,
 } from "../store/pos-sales.store";
 
+import {
+  taxEngine,
+} from "../engine/tax.engine";
 
 interface ProductSearchProps {
-
   products: Product[];
-
   tenantId?: string;
-
+  taxRate?: number;
+  taxEnabled?: boolean;
 }
-
 
 export function ProductSearch({
   products,
   tenantId,
+  taxRate,
+  taxEnabled,
 }: ProductSearchProps) {
-
-
   const [
     search,
     setSearch,
@@ -51,6 +53,9 @@ export function ProductSearch({
   const inputRef =
     useRef<HTMLInputElement>(null);
 
+  useEffect(() => {
+    setResults(products);
+  }, [products]);
 
   const addItem =
     usePosSalesStore(
@@ -58,18 +63,62 @@ export function ProductSearch({
         state.addItem,
     );
 
-
   function addProduct(
     product: Product,
   ) {
-
-    const price =
+    const productTaxRate =
       Number(
-        product.pricing.sellingPrice,
+        product.tax?.taxRate ?? 0,
       );
 
-    addItem({
+    const hasProductTaxConfiguration =
+      Boolean(product.taxId);
 
+    const resolvedTax =
+      taxEngine.resolve({
+        productTaxRate,
+        productHasTaxConfiguration:
+          hasProductTaxConfiguration,
+        settings:
+          taxEnabled !== undefined
+            ? {
+                id: "",
+                tenantId:
+                  tenantId ?? "",
+                businessName: "",
+                country: "",
+                currency:
+                  product.pricing.currency,
+                taxEnabled,
+                taxRate:
+                  taxRate ?? 0,
+                invoicePrefix: "",
+                receiptPrefix: "",
+                createdAt: "",
+                updatedAt: "",
+              }
+            : undefined,
+        currency:
+          product.pricing.currency,
+      });
+
+    const price =
+      Math.max(
+        0,
+        Number(
+          product.pricing.sellingPrice,
+        ),
+      );
+
+    const calculatedTax =
+      price *
+      (resolvedTax.rate / 100);
+
+    const lineTotal =
+      price +
+      calculatedTax;
+
+    addItem({
       id:
         crypto.randomUUID(),
 
@@ -92,15 +141,12 @@ export function ProductSearch({
         0,
 
       taxRate:
-        Number(
-          product.tax?.taxRate ?? 0,
-        ),
+        resolvedTax.rate,
 
       taxAmount:
-        0,
+        calculatedTax,
 
-      lineTotal:
-        price,
+      lineTotal,
 
     });
 
@@ -115,51 +161,37 @@ export function ProductSearch({
     );
 
     inputRef.current?.focus();
-
   }
-
 
   async function handleSearch(
     value: string,
   ) {
-
     setSearch(value);
-
     setMessage("");
 
     const query =
       value.trim();
 
     if (!query) {
-
-      setResults(
-        products,
-      );
-
+      setResults(products);
       return;
-
     }
-
 
     const localMatches =
       products.filter(
         (product) => {
-
           const name =
-            product.name
-              .toLowerCase();
+            product.name.toLowerCase();
 
           const sku =
             (
               product.sku ?? ""
-            )
-              .toLowerCase();
+            ).toLowerCase();
 
           const barcode =
             (
               product.barcode ?? ""
-            )
-              .toLowerCase();
+            ).toLowerCase();
 
           const searchValue =
             query.toLowerCase();
@@ -175,15 +207,10 @@ export function ProductSearch({
               searchValue,
             )
           );
-
         },
       );
 
-
-    setResults(
-      localMatches,
-    );
-
+    setResults(localMatches);
 
     if (
       localMatches.length === 1 &&
@@ -192,55 +219,35 @@ export function ProductSearch({
         .toLowerCase() ===
         query.toLowerCase()
     ) {
-
       addProduct(
         localMatches[0],
       );
-
       return;
-
     }
-
 
     if (
       tenantId &&
       localMatches.length === 0
     ) {
-
       try {
-
         const remote =
           await productService.searchProducts(
             tenantId,
             query,
           );
 
-        setResults(
-          remote,
-        );
-
-      } catch (error) {
-
-        console.error(
-          "POS product search failed:",
-          error,
-        );
-
+        setResults(remote);
+      } catch {
         setMessage(
           "Product search failed.",
         );
-
       }
-
     }
-
   }
-
 
   function handleKeyDown(
     event: React.KeyboardEvent<HTMLInputElement>,
   ) {
-
     if (
       event.key !== "Enter"
     ) {
@@ -254,19 +261,16 @@ export function ProductSearch({
       return;
     }
 
-
     const exactBarcode =
       results.find(
         (product) =>
           product.barcode &&
           product.barcode
             .toLowerCase() ===
-          query.toLowerCase(),
+            query.toLowerCase(),
       );
 
-
     if (exactBarcode) {
-
       event.preventDefault();
 
       addProduct(
@@ -274,118 +278,76 @@ export function ProductSearch({
       );
 
       return;
-
     }
-
 
     if (
       results.length === 1
     ) {
-
       event.preventDefault();
 
       addProduct(
         results[0],
       );
-
     }
-
   }
 
-
   return (
-
     <div>
-
       <input
-
         ref={inputRef}
-
         autoFocus
-
         className="w-full rounded border p-2"
-
         placeholder="Scan barcode or search product..."
-
         value={search}
-
-        onChange={
-          (event) =>
-            void handleSearch(
-              event.target.value,
-            )
+        onChange={(event) =>
+          void handleSearch(
+            event.target.value,
+          )
         }
-
         onKeyDown={
           handleKeyDown
         }
-
       />
 
-
       {message && (
-
         <p className="mt-2 text-sm">
           {message}
         </p>
-
       )}
 
-
       <div className="mt-4 space-y-2">
-
         {results.map(
           (product) => (
-
             <button
-
               key={product.id}
-
               type="button"
-
               className="w-full rounded border p-3 text-left"
-
               onClick={() =>
                 addProduct(
                   product,
                 )
               }
-
             >
-
               <div className="font-medium">
                 {product.name}
               </div>
 
               <div className="text-sm text-gray-600">
-
                 {product.pricing.sellingPrice}
-
                 {" "}
-
                 {product.pricing.currency}
-
               </div>
 
               {product.barcode && (
-
                 <div className="text-xs text-gray-500">
-
-                  Barcode: {product.barcode}
-
+                  Barcode:{" "}
+                  {product.barcode}
                 </div>
-
               )}
-
             </button>
-
           ),
         )}
-
       </div>
-
     </div>
-
   );
-
 }

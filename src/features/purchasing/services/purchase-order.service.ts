@@ -1,6 +1,9 @@
 ﻿import {
-  purchaseOrderRepository,
   purchaseOrderItemRepository,
+} from "../repositories";
+
+import {
+  purchaseOrderRepository,
 } from "../repositories";
 
 import {
@@ -74,8 +77,7 @@ class PurchaseOrderService {
       currency:
         "THB",
 
-      items:
-        [],
+      items: [],
 
       subtotal:
         0,
@@ -127,6 +129,7 @@ class PurchaseOrderService {
               tenantId,
               order.id,
             );
+
 
           return {
             ...order,
@@ -250,28 +253,6 @@ class PurchaseOrderService {
 
 
     if (
-      item.tenantId !== tenantId
-    ) {
-
-      throw new Error(
-        "Purchase order item tenant mismatch.",
-      );
-
-    }
-
-
-    if (
-      item.purchaseOrderId !== orderId
-    ) {
-
-      throw new Error(
-        "Purchase order item does not belong to this order.",
-      );
-
-    }
-
-
-    if (
       item.quantity <= 0
     ) {
 
@@ -293,9 +274,61 @@ class PurchaseOrderService {
     }
 
 
-    return purchaseOrderItemRepository.create(
-      item,
-    );
+    const now =
+      new Date().toISOString();
+
+
+    const persistedItem: PurchaseOrderItem = {
+
+      ...item,
+
+      id:
+        item.id || crypto.randomUUID(),
+
+      tenantId:
+        tenantId,
+
+      purchaseOrderId:
+        orderId,
+
+      productId:
+        item.productId,
+
+      receivedQuantity:
+        item.receivedQuantity ?? 0,
+
+      taxRate:
+        item.taxRate ?? 0,
+
+      taxAmount:
+        item.taxAmount ?? 0,
+
+      lineTotal:
+        item.lineTotal ??
+        (
+          item.quantity *
+          item.unitCost
+        ),
+
+      notes:
+        item.notes ?? null,
+
+      createdAt:
+        item.createdAt || now,
+
+      updatedAt:
+        now,
+
+    };
+
+
+    const saved =
+      await purchaseOrderItemRepository.create(
+        persistedItem,
+      );
+
+
+    return saved;
 
   }
 
@@ -372,18 +405,30 @@ class PurchaseOrderService {
     }
 
 
-    const items =
+    const persistedItems =
       await purchaseOrderItemRepository.findAll(
         tenantId,
         orderId,
       );
 
 
+    if (
+      persistedItems.length === 0
+    ) {
+
+      throw new Error(
+        "Purchase order has no persisted items.",
+      );
+
+    }
+
+
     const orderWithItems: PurchaseOrder = {
 
       ...order,
 
-      items,
+      items:
+        persistedItems,
 
     };
 
@@ -394,11 +439,29 @@ class PurchaseOrderService {
       );
 
 
-    return purchaseOrderRepository.update(
-      tenantId,
-      orderId,
-      updated,
-    );
+    const persisted =
+      await purchaseOrderRepository.update(
+        tenantId,
+        order.id,
+        updated,
+      );
+
+
+    if (!persisted) {
+
+      return undefined;
+
+    }
+
+
+    return {
+
+      ...persisted,
+
+      items:
+        persistedItems,
+
+    };
 
   }
 

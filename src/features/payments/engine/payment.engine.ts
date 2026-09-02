@@ -2,94 +2,115 @@ import {
   paymentService,
 } from "../services/payment.service";
 
-
 import type {
   Payment,
   PaymentMethod,
 } from "../types/payment.types";
 
+import {
+  storeContext,
+} from "@/core/store/store.context";
 
-export class PaymentEngine {
+
+class PaymentEngine {
 
 
-  process(
-
+  async process(
     tenantId: string,
-
     salesOrderId: string,
-
     method: PaymentMethod,
-
     amount: number,
+    provider?: string,
+  ): Promise<Payment> {
 
-  ): Payment {
+    return paymentService.createPayment(
+      tenantId,
+      salesOrderId,
+      method,
+      amount,
+      provider,
+    );
+
+  }
 
 
-    if (amount <= 0) {
+  async complete(
+    tenantIdOrPaymentId: string,
+    paymentId?: string,
+  ): Promise<Payment | undefined> {
 
-      throw new Error(
+    let tenantId: string;
+    let id: string;
 
-        "Payment amount must be greater than zero.",
 
-      );
+    if (paymentId) {
+
+      tenantId =
+        tenantIdOrPaymentId;
+
+      id =
+        paymentId;
+
+    } else {
+
+      const context =
+        storeContext.getStore();
+
+
+      if (!context?.tenantId) {
+
+        throw new Error(
+          "Store context is not initialized.",
+        );
+
+      }
+
+
+      tenantId =
+        context.tenantId;
+
+      id =
+        tenantIdOrPaymentId;
 
     }
 
 
-    return paymentService.createPayment(
-
-      tenantId,
-
-      salesOrderId,
-
-      method,
-
-      amount,
-
-    );
-
-  }
-
-
-
-  complete(
-
-    paymentId: string,
-
-    reference?: string,
-
-  ) {
-
     return paymentService.completePayment(
-
-      paymentId,
-
-      reference,
-
+      tenantId,
+      id,
     );
 
   }
 
 
-
-  fail(
-
-    paymentId: string,
-
-  ) {
+  async fail(
+    tenantId: string,
+    id: string,
+  ): Promise<Payment | undefined> {
 
     return paymentService.failPayment(
-
-      paymentId,
-
+      tenantId,
+      id,
     );
 
   }
 
+
+  async refund(
+    tenantId: string,
+    id: string,
+  ): Promise<Payment | undefined> {
+
+    return paymentService.refundPayment(
+      tenantId,
+      id,
+    );
+
+  }
 
 }
 
 
 export const paymentEngine =
-
   new PaymentEngine();
+

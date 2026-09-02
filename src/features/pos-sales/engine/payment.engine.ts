@@ -2,7 +2,9 @@ import type {
   PaymentMethod,
 } from "@/features/payments/types/payment.types";
 
-export type { PaymentMethod };
+export type {
+  PaymentMethod,
+};
 
 export interface PaymentEntry {
   method: PaymentMethod;
@@ -20,8 +22,12 @@ export interface PaymentResult {
   payments: PaymentEntry[];
 }
 
-function roundMoney(value: number): number {
-  return Math.round((value + Number.EPSILON) * 100) / 100;
+function roundMoney(
+  value: number,
+): number {
+  return Math.round(
+    (value + Number.EPSILON) * 100,
+  ) / 100;
 }
 
 export class PaymentEngine {
@@ -41,40 +47,52 @@ export class PaymentEngine {
     const validPayments =
       payments.filter(
         (payment) =>
-          Number.isFinite(payment.amount) &&
+          Number.isFinite(
+            payment.amount,
+          ) &&
           payment.amount > 0,
       );
 
-    const paidAmount = roundMoney(
-      validPayments.reduce(
-        (sum, payment) =>
-          sum + payment.amount,
-        0,
-      ),
-    );
+    const paidAmount =
+      roundMoney(
+        validPayments.reduce(
+          (sum, payment) =>
+            sum + payment.amount,
+          0,
+        ),
+      );
 
-    const remainingAmount = roundMoney(
-      Math.max(
-        0,
-        totalAmount - paidAmount,
-      ),
-    );
+    const remainingAmount =
+      roundMoney(
+        Math.max(
+          0,
+          totalAmount -
+            paidAmount,
+        ),
+      );
 
-    const changeAmount = roundMoney(
-      Math.max(
-        0,
-        paidAmount - totalAmount,
-      ),
-    );
+    const changeAmount =
+      roundMoney(
+        Math.max(
+          0,
+          paidAmount -
+            totalAmount,
+        ),
+      );
 
     return {
-      totalAmount: roundMoney(totalAmount),
+      totalAmount:
+        roundMoney(
+          totalAmount,
+        ),
       paidAmount,
       remainingAmount,
       changeAmount,
       completed:
-        paidAmount >= totalAmount,
-      payments: validPayments,
+        paidAmount >=
+        totalAmount,
+      payments:
+        validPayments,
     };
   }
 }

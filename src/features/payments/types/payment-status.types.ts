@@ -1,5 +1,1 @@
-export type PaymentStatus =
-  | "PENDING"
-  | "PAID"
-  | "FAILED"
-  | "REFUNDED";
+export type { PaymentStatus } from "./payment.types";

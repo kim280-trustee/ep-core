@@ -2,6 +2,7 @@ export type PaymentMethod =
   | "CASH"
   | "CARD"
   | "QR"
+  | "MOBILE_MONEY"
   | "BANK_TRANSFER";
 
 export type PaymentStatus =
@@ -18,6 +19,8 @@ export interface Payment {
   salesOrderId: string;
 
   method: PaymentMethod;
+
+  provider?: string;
 
   amount: number;
 

@@ -1,12 +1,30 @@
 ﻿import {
+  Minus,
+  Plus,
+  Trash2,
+} from "lucide-react";
+
+import {
   usePosSalesStore,
 } from "../store/pos-sales.store";
+
+function formatMoney(
+  value: number,
+): string {
+  return value.toFixed(2);
+}
 
 export function Cart() {
   const items =
     usePosSalesStore(
       (state) =>
         state.items,
+    );
+
+  const updateItem =
+    usePosSalesStore(
+      (state) =>
+        state.updateItem,
     );
 
   const removeItem =
@@ -21,6 +39,12 @@ export function Cart() {
         state.getSubtotal(),
     );
 
+  const discount =
+    usePosSalesStore(
+      (state) =>
+        state.getDiscountAmount(),
+    );
+
   const tax =
     usePosSalesStore(
       (state) =>
@@ -32,6 +56,37 @@ export function Cart() {
       (state) =>
         state.getTotal(),
     );
+
+  function decreaseQuantity(
+    itemId: string,
+    quantity: number,
+  ) {
+    if (quantity <= 1) {
+      removeItem(itemId);
+      return;
+    }
+
+    updateItem(
+      itemId,
+      {
+        quantity:
+          quantity - 1,
+      },
+    );
+  }
+
+  function increaseQuantity(
+    itemId: string,
+    quantity: number,
+  ) {
+    updateItem(
+      itemId,
+      {
+        quantity:
+          quantity + 1,
+      },
+    );
+  }
 
   return (
     <div>
@@ -50,50 +105,137 @@ export function Cart() {
           (item) => (
             <div
               key={item.id}
-              className="flex items-center justify-between rounded border p-3"
+              className="rounded border p-3"
             >
-              <div>
+              <div className="flex items-start justify-between gap-4">
+                <div className="min-w-0">
+                  <p className="font-medium">
+                    {item.productName ??
+                      "Product"}
+                  </p>
+
+                  <p className="text-sm text-gray-600">
+                    {formatMoney(
+                      item.unitPrice,
+                    )}{" "}
+                    each
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  aria-label={`Remove ${item.productName ?? "product"}`}
+                  className="rounded p-1 text-red-600 hover:bg-red-50"
+                  onClick={() =>
+                    removeItem(
+                      item.id,
+                    )
+                  }
+                >
+                  <Trash2
+                    size={18}
+                  />
+                </button>
+              </div>
+
+              <div className="mt-3 flex items-center justify-between gap-4">
+                <div className="flex items-center rounded border">
+                  <button
+                    type="button"
+                    aria-label="Decrease quantity"
+                    className="p-2 hover:bg-gray-50"
+                    onClick={() =>
+                      decreaseQuantity(
+                        item.id,
+                        item.quantity,
+                      )
+                    }
+                  >
+                    <Minus
+                      size={16}
+                    />
+                  </button>
+
+                  <span className="min-w-10 text-center text-sm font-medium">
+                    {item.quantity}
+                  </span>
+
+                  <button
+                    type="button"
+                    aria-label="Increase quantity"
+                    className="p-2 hover:bg-gray-50"
+                    onClick={() =>
+                      increaseQuantity(
+                        item.id,
+                        item.quantity,
+                      )
+                    }
+                  >
+                    <Plus
+                      size={16}
+                    />
+                  </button>
+                </div>
+
                 <p className="font-medium">
-                  {item.productName}
-                </p>
-
-                <p className="text-sm text-gray-600">
-                  {item.quantity} × {item.unitPrice}
-                </p>
-
-                <p className="text-sm text-gray-600">
-                  Line total: {item.lineTotal ?? 0}
+                  {formatMoney(
+                    item.lineTotal,
+                  )}
                 </p>
               </div>
 
-              <button
-                type="button"
-                className="text-sm text-red-600"
-                onClick={() =>
-                  removeItem(
-                    item.id,
-                  )
-                }
-              >
-                Remove
-              </button>
+              {item.discountAmount > 0 && (
+                <p className="mt-2 text-sm text-gray-600">
+                  Discount: -
+                  {formatMoney(
+                    item.discountAmount,
+                  )}
+                </p>
+              )}
             </div>
           ),
         )}
       </div>
 
       <div className="mt-6 border-t pt-4">
-        <p>
-          Subtotal: {subtotal}
-        </p>
+        <div className="flex justify-between">
+          <span>Subtotal</span>
+          <span>
+            {formatMoney(
+              subtotal,
+            )}
+          </span>
+        </div>
 
-        <p>
-          Tax: {tax}
-        </p>
+        {discount > 0 && (
+          <div className="mt-1 flex justify-between text-sm text-gray-600">
+            <span>Discount</span>
+            <span>
+              -
+              {formatMoney(
+                discount,
+              )}
+            </span>
+          </div>
+        )}
 
-        <p className="font-semibold">
-          Total: {total}
-        </p>
+        <div className="mt-1 flex justify-between">
+          <span>Tax</span>
+          <span>
+            {formatMoney(
+              tax,
+            )}
+          </span>
+        </div>
+
+        <div className="mt-2 flex justify-between border-t pt-2 text-lg font-semibold">
+          <span>Total</span>
+          <span>
+            {formatMoney(
+              total,
+            )}
+          </span>
+        </div>
       </div>
     </div>
   );

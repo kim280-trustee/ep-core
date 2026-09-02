@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
@@ -325,10 +325,17 @@ implements InventoryTransactionRepository {
 
           product_id:
             transaction.productId,
-
           type:
-            transaction.movementType,
-
+            transaction.movementType === "SALE_RETURN" ||
+            transaction.movementType === "PURCHASE_RETURN"
+              ? "RETURN"
+              : transaction.movementType === "TRANSFER_IN" ||
+                transaction.movementType === "TRANSFER_OUT"
+                ? "TRANSFER"
+                : transaction.movementType === "ADJUSTMENT_IN" ||
+                  transaction.movementType === "ADJUSTMENT_OUT"
+                  ? "ADJUSTMENT"
+                  : transaction.movementType,
           movement_type:
             transaction.movementType,
 
@@ -389,3 +396,4 @@ implements InventoryTransactionRepository {
 
 export const supabaseInventoryTransactionRepository =
   new SupabaseInventoryTransactionRepository();
+

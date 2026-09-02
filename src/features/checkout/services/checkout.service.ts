@@ -1,4 +1,4 @@
-import {
+﻿import {
   salesProcessingEngine,
 } from "../../sales/engine";
 
@@ -58,7 +58,7 @@ class CheckoutService {
 
 
     const payment =
-      paymentEngine.process(
+      await paymentEngine.process(
         input.tenantId,
         order.id,
         input.paymentMethod,
@@ -67,7 +67,8 @@ class CheckoutService {
 
 
     const completedPayment =
-      paymentEngine.complete(
+      await paymentEngine.complete(
+        input.tenantId,
         payment.id,
       );
 
@@ -114,4 +115,3 @@ class CheckoutService {
 
 export const checkoutService =
   new CheckoutService();
-

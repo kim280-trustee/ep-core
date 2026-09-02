@@ -1,26 +1,31 @@
-import type {
+﻿import type {
   Payment,
 } from "../types/payment.types";
 
 export interface PaymentRepository {
 
-  findAll(): Payment[];
+  findAll(
+    tenantId: string,
+  ): Promise<Payment[]>;
 
   findById(
+    tenantId: string,
     id: string,
-  ): Payment | undefined;
+  ): Promise<Payment | undefined>;
 
   findByOrderId(
+    tenantId: string,
     salesOrderId: string,
-  ): Payment[];
+  ): Promise<Payment[]>;
 
   create(
     payment: Payment,
-  ): Payment;
+  ): Promise<Payment>;
 
   update(
+    tenantId: string,
     id: string,
     updates: Partial<Payment>,
-  ): Payment | undefined;
+  ): Promise<Payment | undefined>;
 
 }

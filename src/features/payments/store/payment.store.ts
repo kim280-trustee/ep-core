@@ -2,16 +2,9 @@ import {
   create,
 } from "zustand";
 
-
-import {
-  paymentEngine,
-} from "../engine/payment.engine";
-
-
 import {
   paymentService,
 } from "../services/payment.service";
-
 
 import type {
   Payment,
@@ -19,172 +12,246 @@ import type {
 } from "../types/payment.types";
 
 
-
-interface PaymentState {
-
+interface PaymentStore {
 
   payments: Payment[];
 
+  loading: boolean;
 
+  error: string | null;
 
-  loadPayments: () => void;
-
-
+  loadPayments: (
+    tenantId: string,
+  ) => Promise<void>;
 
   createPayment: (
-
     tenantId: string,
-
     salesOrderId: string,
-
     method: PaymentMethod,
-
     amount: number,
-
-  ) => void;
-
-
+    provider?: string,
+  ) => Promise<Payment>;
 
   completePayment: (
-
-    paymentId: string,
-
+    tenantId: string,
+    id: string,
     reference?: string,
-
-  ) => void;
-
-
+  ) => Promise<Payment | undefined>;
 
   failPayment: (
+    tenantId: string,
+    id: string,
+  ) => Promise<Payment | undefined>;
 
-    paymentId: string,
-
-  ) => void;
-
+  refundPayment: (
+    tenantId: string,
+    id: string,
+  ) => Promise<Payment | undefined>;
 
 }
 
 
-
 export const usePaymentStore =
+  create<PaymentStore>(
+    (set) => ({
 
-create<PaymentState>((set) => ({
+      payments: [],
 
+      loading: false,
 
-  payments: [],
+      error: null,
 
 
+      loadPayments:
+        async (
+          tenantId,
+        ) => {
 
-  loadPayments: () => {
+          set({
+            loading: true,
+            error: null,
+          });
 
 
-    set({
+          try {
 
-      payments:
+            const payments =
+              await paymentService.getPayments(
+                tenantId,
+              );
 
-        paymentService.getPayments(),
 
-    });
+            set({
+              payments,
+              loading: false,
+            });
 
+          } catch (error) {
 
-  },
+            set({
+              loading: false,
 
+              error:
+                error instanceof Error
+                  ? error.message
+                  : "Failed to load payments.",
+            });
 
+            throw error;
 
-  createPayment: (
+          }
 
-    tenantId,
+        },
 
-    salesOrderId,
 
-    method,
+      createPayment:
+        async (
+          tenantId,
+          salesOrderId,
+          method,
+          amount,
+          provider,
+        ) => {
 
-    amount,
+          const payment =
+            await paymentService.createPayment(
+              tenantId,
+              salesOrderId,
+              method,
+              amount,
+              provider,
+            );
 
-  ) => {
 
+          set(
+            (state) => ({
 
-    paymentEngine.process(
+              payments: [
+                payment,
+                ...state.payments,
+              ],
 
-      tenantId,
+            }),
+          );
 
-      salesOrderId,
 
-      method,
+          return payment;
 
-      amount,
+        },
 
-    );
 
+      completePayment:
+        async (
+          tenantId,
+          id,
+          reference,
+        ) => {
 
-    set({
+          const payment =
+            await paymentService.completePayment(
+              tenantId,
+              id,
+              reference,
+            );
 
-      payments:
 
-        paymentService.getPayments(),
+          if (payment) {
 
-    });
+            set(
+              (state) => ({
 
+                payments:
+                  state.payments.map(
+                    (item) =>
+                      item.id === id
+                        ? payment
+                        : item,
+                  ),
 
-  },
+              }),
+            );
 
+          }
 
 
-  completePayment: (
+          return payment;
 
-    paymentId,
+        },
 
-    reference,
 
-  ) => {
+      failPayment:
+        async (
+          tenantId,
+          id,
+        ) => {
 
+          const payment =
+            await paymentService.failPayment(
+              tenantId,
+              id,
+            );
 
-    paymentEngine.complete(
 
-      paymentId,
+          if (payment) {
 
-      reference,
+            set(
+              (state) => ({
 
-    );
+                payments:
+                  state.payments.map(
+                    (item) =>
+                      item.id === id
+                        ? payment
+                        : item,
+                  ),
 
+              }),
+            );
 
-    set({
+          }
 
-      payments:
 
-        paymentService.getPayments(),
+          return payment;
 
-    });
+        },
 
 
-  },
+      refundPayment:
+        async (
+          tenantId,
+          id,
+        ) => {
 
+          const payment =
+            await paymentService.refundPayment(
+              tenantId,
+              id,
+            );
 
 
-  failPayment: (
+          if (payment) {
 
-    paymentId,
+            set(
+              (state) => ({
 
-  ) => {
+                payments:
+                  state.payments.map(
+                    (item) =>
+                      item.id === id
+                        ? payment
+                        : item,
+                  ),
 
+              }),
+            );
 
-    paymentEngine.fail(
+          }
 
-      paymentId,
 
-    );
+          return payment;
 
+        },
 
-    set({
+    }),
+  );
 
-      payments:
-
-        paymentService.getPayments(),
-
-    });
-
-
-  },
-
-
-}));

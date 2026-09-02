@@ -663,6 +663,9 @@ class SupabaseSalesOrderRepository {
                   sales_order_id:
                     id,
 
+                  tenant_id:
+                    updates.tenantId ?? tenantId,
+
                   product_id:
                     item.productId,
 
@@ -837,6 +840,11 @@ class SupabaseSalesOrderRepository {
 
 export const supabaseSalesOrderRepository =
   new SupabaseSalesOrderRepository();
+
+
+
+
+
 
 
 

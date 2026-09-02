@@ -1,8 +1,6 @@
-import {
-  inMemoryPaymentRepository,
-} from "./in-memory.payment.repository";
-
+﻿import {
+  supabasePaymentRepository,
+} from "./supabase.payment.repository";
 
 export const paymentRepository =
-
-  inMemoryPaymentRepository;
+  supabasePaymentRepository;

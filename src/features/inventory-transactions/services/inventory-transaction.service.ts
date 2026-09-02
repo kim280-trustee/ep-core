@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
@@ -26,7 +26,6 @@ import {
   inventoryTransactionRepository,
 } from "../repositories";
 
-
 export interface CreateInventoryTransactionInput {
 
   tenantId: string;
@@ -52,12 +51,9 @@ export interface CreateInventoryTransactionInput {
   beforeQuantity?: number;
 
   afterQuantity?: number;
-
 }
 
-
 class InventoryTransactionService {
-
 
   private getContext() {
 
@@ -65,17 +61,13 @@ class InventoryTransactionService {
       storeContext.getStore();
 
     if (!context) {
-
       throw new Error(
         "Store context is not initialized.",
       );
-
     }
 
     return context;
-
   }
-
 
   async getTransactions(
     tenantId?: string,
@@ -91,9 +83,7 @@ class InventoryTransactionService {
     return inventoryTransactionRepository.findAll(
       resolvedTenantId,
     );
-
   }
-
 
   async getTransaction(
     id: string,
@@ -111,9 +101,7 @@ class InventoryTransactionService {
       resolvedTenantId,
       id,
     );
-
   }
-
 
   async getProductTransactions(
     productId: string,
@@ -131,118 +119,69 @@ class InventoryTransactionService {
       resolvedTenantId,
       productId,
     );
-
   }
-
 
   async createTransaction(
     input: CreateInventoryTransactionInput,
   ): Promise<InventoryTransaction> {
 
     if (!input.tenantId) {
-
       throw new Error(
         "Tenant ID is required.",
       );
-
     }
 
     if (!input.storeId) {
-
       throw new Error(
         "Store ID is required.",
       );
-
     }
 
     if (!input.productId) {
-
       throw new Error(
         "Product ID is required.",
       );
-
     }
 
     if (!input.warehouseId) {
-
       throw new Error(
         "Warehouse ID is required.",
       );
-
     }
 
     if (input.quantity === 0) {
-
       throw new Error(
         "Transaction quantity cannot be zero.",
       );
-
     }
 
     if (input.unitCost < 0) {
-
       throw new Error(
         "Unit cost cannot be negative.",
       );
-
     }
 
-
     const transaction: InventoryTransaction = {
-
-      id:
-        crypto.randomUUID(),
-
-      tenantId:
-        input.tenantId,
-
-      storeId:
-        input.storeId,
-
-      productId:
-        input.productId,
-
-      warehouseId:
-        input.warehouseId,
-
-      movementType:
-        input.movementType,
-
-      quantity:
-        input.quantity,
-
-      unitCost:
-        input.unitCost,
-
-      beforeQuantity:
-        input.beforeQuantity ??
-        0,
-
-      afterQuantity:
-        input.afterQuantity ??
-        0,
-
-      referenceType:
-        input.referenceType,
-
-      referenceId:
-        input.referenceId,
-
-      notes:
-        input.notes,
-
-      createdAt:
-        new Date().toISOString(),
-
+      id: crypto.randomUUID(),
+      tenantId: input.tenantId,
+      storeId: input.storeId,
+      productId: input.productId,
+      warehouseId: input.warehouseId,
+      movementType: input.movementType,
+      quantity: input.quantity,
+      unitCost: input.unitCost,
+      beforeQuantity: input.beforeQuantity ?? 0,
+      afterQuantity: input.afterQuantity ?? 0,
+      referenceType: input.referenceType,
+      referenceId: input.referenceId,
+      notes: input.notes,
+      createdAt: new Date().toISOString(),
     };
-
 
     return inventoryTransactionRepository.create(
       transaction,
     );
-
   }
-
 
   async receiveStock(
     productId: string,
@@ -256,24 +195,17 @@ class InventoryTransactionService {
     const context =
       this.getContext();
 
-
     if (quantity <= 0) {
-
       throw new Error(
         "Received quantity must be greater than zero.",
       );
-
     }
 
-
     if (incomingCost < 0) {
-
       throw new Error(
         "Incoming cost cannot be negative.",
       );
-
     }
-
 
     let record =
       await inventoryService.getInventoryRecord(
@@ -282,48 +214,25 @@ class InventoryTransactionService {
         warehouseId,
       );
 
-
     const beforeQuantity =
       record?.quantityOnHand ??
       0;
-
 
     if (!record) {
 
       record =
         await inventoryService.createInventoryRecord({
-
-          id:
-            crypto.randomUUID(),
-
-          tenantId:
-            context.tenantId,
-
+          id: crypto.randomUUID(),
+          tenantId: context.tenantId,
           productId,
-
           warehouseId,
-
-          quantityOnHand:
-            quantity,
-
-          reservedQuantity:
-            0,
-
-          availableQuantity:
-            quantity,
-
-          averageCost:
-            incomingCost,
-
-          minimumStockLevel:
-            0,
-
-          createdAt:
-            new Date().toISOString(),
-
-          updatedAt:
-            new Date().toISOString(),
-
+          quantityOnHand: quantity,
+          reservedQuantity: 0,
+          availableQuantity: quantity,
+          averageCost: incomingCost,
+          minimumStockLevel: 0,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
         });
 
     } else {
@@ -334,51 +243,26 @@ class InventoryTransactionService {
           quantity,
           incomingCost,
         );
-
     }
-
 
     const afterQuantity =
       record.quantityOnHand;
 
-
     return this.createTransaction({
-
-      tenantId:
-        context.tenantId,
-
-      storeId:
-        context.storeId,
-
+      tenantId: context.tenantId,
+      storeId: context.storeId,
       productId,
-
       warehouseId,
-
-      movementType:
-        "PURCHASE_RECEIPT",
-
+      movementType: "PURCHASE_RECEIPT",
       quantity,
-
-      unitCost:
-        incomingCost,
-
-      referenceType:
-        "PURCHASE_RECEIPT",
-
+      unitCost: incomingCost,
+      referenceType: "PURCHASE_RECEIPT",
       referenceId,
-
-      notes:
-        note ??
-        "Stock received",
-
+      notes: note ?? "Stock received",
       beforeQuantity,
-
       afterQuantity,
-
     });
-
   }
-
 
   async sellStock(
     productId: string,
@@ -391,15 +275,11 @@ class InventoryTransactionService {
     const context =
       this.getContext();
 
-
     if (quantity <= 0) {
-
       throw new Error(
         "Sale quantity must be greater than zero.",
       );
-
     }
-
 
     const record =
       await inventoryService.getInventoryRecord(
@@ -408,41 +288,28 @@ class InventoryTransactionService {
         warehouseId,
       );
 
-
     if (!record) {
-
       throw new Error(
         `Inventory record not found for product ${productId}.`,
       );
-
     }
 
-
-    if (
-      record.availableQuantity <
-      quantity
-    ) {
-
+    if (record.availableQuantity < quantity) {
       throw new Error(
         `Insufficient stock for product ${productId}.`,
       );
-
     }
-
 
     const beforeQuantity =
       record.quantityOnHand;
 
-
     const unitCost =
       record.averageCost;
-
 
     await inventoryService.decreaseStock(
       record,
       quantity,
     );
-
 
     const updatedRecord =
       await inventoryService.getInventoryRecord(
@@ -451,7 +318,6 @@ class InventoryTransactionService {
         warehouseId,
       );
 
-
     const afterQuantity =
       updatedRecord?.quantityOnHand ??
       Math.max(
@@ -459,44 +325,88 @@ class InventoryTransactionService {
         beforeQuantity - quantity,
       );
 
-
     return this.createTransaction({
-
-      tenantId:
-        context.tenantId,
-
-      storeId:
-        context.storeId,
-
+      tenantId: context.tenantId,
+      storeId: context.storeId,
       productId,
-
       warehouseId,
-
-      movementType:
-        "SALE",
-
-      quantity:
-        quantity,
-
+      movementType: "SALE",
+      quantity,
       unitCost,
-
-      referenceType:
-        "SALE",
-
+      referenceType: "SALE",
       referenceId,
-
-      notes:
-        note ??
-        "Stock sold",
-
+      notes: note ?? "Stock sold",
       beforeQuantity,
-
       afterQuantity,
-
     });
-
   }
 
+  async returnStock(
+    productId: string,
+    warehouseId: string,
+    quantity: number,
+    referenceId?: string,
+    note?: string,
+  ): Promise<InventoryTransaction> {
+
+    const context =
+      this.getContext();
+
+    if (quantity <= 0) {
+      throw new Error(
+        "Returned quantity must be greater than zero.",
+      );
+    }
+
+    const record =
+      await inventoryService.getInventoryRecord(
+        context.tenantId,
+        productId,
+        warehouseId,
+      );
+
+    if (!record) {
+      throw new Error(
+        `Inventory record not found for product ${productId}.`,
+      );
+    }
+
+    const beforeQuantity =
+      record.quantityOnHand;
+
+    const unitCost =
+      record.averageCost;
+
+    const updatedRecord =
+      await inventoryService.increaseStock(
+        record,
+        quantity,
+        unitCost,
+      );
+
+    const afterQuantity =
+      updatedRecord.quantityOnHand;
+
+    return this.createTransaction({
+      tenantId: context.tenantId,
+      storeId: context.storeId,
+      productId,
+      warehouseId,
+
+      // SALE_RETURN is the inventory movement.
+      // The repository maps this to the database type
+      // separately as RETURN.
+      movementType: "SALE_RETURN",
+
+      quantity,
+      unitCost,
+      referenceType: "SALE_RETURN",
+      referenceId,
+      notes: note ?? "Stock returned from refunded sale",
+      beforeQuantity,
+      afterQuantity,
+    });
+  }
 
   async adjustStock(
     productId: string,
@@ -512,15 +422,11 @@ class InventoryTransactionService {
     const context =
       this.getContext();
 
-
     if (quantity === 0) {
-
       throw new Error(
         "Adjustment quantity cannot be zero.",
       );
-
     }
-
 
     const record =
       await inventoryService.getInventoryRecord(
@@ -529,23 +435,17 @@ class InventoryTransactionService {
         warehouseId,
       );
 
-
     if (!record) {
-
       throw new Error(
         `Inventory record not found for product ${productId}.`,
       );
-
     }
-
 
     const beforeQuantity =
       record.quantityOnHand;
 
-
     const unitCost =
       record.averageCost;
-
 
     if (quantity > 0) {
 
@@ -560,26 +460,20 @@ class InventoryTransactionService {
       const decreaseQuantity =
         Math.abs(quantity);
 
-
       if (
         record.availableQuantity <
         decreaseQuantity
       ) {
-
         throw new Error(
           `Insufficient stock for product ${productId}.`,
         );
-
       }
-
 
       await inventoryService.decreaseStock(
         record,
         decreaseQuantity,
       );
-
     }
-
 
     const updatedRecord =
       await inventoryService.getInventoryRecord(
@@ -588,14 +482,12 @@ class InventoryTransactionService {
         warehouseId,
       );
 
-
     const afterQuantity =
       updatedRecord?.quantityOnHand ??
       Math.max(
         0,
         beforeQuantity + quantity,
       );
-
 
     const resolvedMovementType =
       quantity > 0
@@ -606,43 +498,21 @@ class InventoryTransactionService {
           ? "ADJUSTMENT_OUT"
           : movementType;
 
-
     return this.createTransaction({
-
-      tenantId:
-        context.tenantId,
-
-      storeId:
-        context.storeId,
-
+      tenantId: context.tenantId,
+      storeId: context.storeId,
       productId,
-
       warehouseId,
-
-      movementType:
-        resolvedMovementType,
-
+      movementType: resolvedMovementType,
       quantity,
-
       unitCost,
-
-      referenceType:
-        "ADJUSTMENT",
-
+      referenceType: "ADJUSTMENT",
       referenceId,
-
-      notes:
-        note ??
-        "Inventory adjustment",
-
+      notes: note ?? "Inventory adjustment",
       beforeQuantity,
-
       afterQuantity,
-
     });
-
   }
-
 
   async deleteTransaction(
     _id: string,
@@ -651,11 +521,9 @@ class InventoryTransactionService {
     throw new Error(
       "Inventory transactions are immutable and cannot be deleted.",
     );
-
   }
-
 }
-
 
 export const inventoryTransactionService =
   new InventoryTransactionService();
+

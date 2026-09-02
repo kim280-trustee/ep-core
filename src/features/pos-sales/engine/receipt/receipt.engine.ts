@@ -1,17 +1,22 @@
-import type {
-  Sale,
-} from "../../types/sale.types";
+﻿import type {
+  Payment,
+} from "@/features/payments/types/payment.types";
 
 import type {
-  SaleItem,
-} from "../../types/sale-item.types";
+  SalesOrder,
+} from "@/features/sales/types/sales-order.types";
+
+import type {
+  SalesOrderItem,
+} from "@/features/sales/types/sales-order-item.types";
+
 
 export interface Receipt {
   saleId: string;
 
   saleNumber: string;
 
-  items: SaleItem[];
+  items: SalesOrderItem[];
 
   subtotal: number;
 
@@ -27,42 +32,97 @@ export interface Receipt {
     | "PAID"
     | "REFUNDED";
 
+  paymentMethod?: Payment["method"];
+
+  paymentAmount?: number;
+
+  cashReceived?: number;
+
+  changeAmount?: number;
+
+  paymentProvider?: string;
+
+  paymentReference?: string;
+
   createdAt: string;
 }
 
+
 class ReceiptEngine {
+
   generate(
-    sale: Sale,
+    order: SalesOrder,
+    payment?: Payment,
+    cashReceived?: number,
   ): Receipt {
+
+    const paymentAmount =
+      payment?.amount;
+
+    const actualCashReceived =
+      payment?.method === "CASH" &&
+      cashReceived !== undefined
+        ? cashReceived
+        : undefined;
+
+    const changeAmount =
+      actualCashReceived !== undefined
+        ? Math.max(
+            0,
+            actualCashReceived -
+              order.totalAmount,
+          )
+        : undefined;
+
     return {
       saleId:
-        sale.id,
+        order.id,
 
       saleNumber:
-        sale.saleNumber,
+        order.orderNumber,
 
       items:
-        [...sale.items],
+        [...order.items],
 
       subtotal:
-        sale.subtotal,
+        order.subtotal,
 
       discountAmount:
-        sale.discountAmount,
+        order.discountAmount,
 
       taxAmount:
-        sale.taxAmount,
+        order.taxAmount,
 
       totalAmount:
-        sale.totalAmount,
+        order.totalAmount,
 
-      paymentStatus: sale.paymentStatus === "PENDING" ? "UNPAID" : sale.paymentStatus === "PAID" ? "PAID" : "REFUNDED",
+      paymentStatus:
+        order.paymentStatus,
+
+      paymentMethod:
+        payment?.method,
+
+      paymentAmount,
+
+      cashReceived:
+        actualCashReceived,
+
+      changeAmount,
+
+      paymentProvider:
+        payment?.provider,
+
+      paymentReference:
+        payment?.reference,
 
       createdAt:
-        sale.createdAt,
+        order.createdAt,
     };
+
   }
+
 }
+
 
 export const receiptEngine =
   new ReceiptEngine();

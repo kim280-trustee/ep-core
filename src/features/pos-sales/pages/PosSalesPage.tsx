@@ -16,6 +16,14 @@ import {
 } from "../components/CheckoutPanel";
 
 import {
+  SaleHistory,
+} from "../components/SaleHistory";
+
+import {
+  ReceiptView,
+} from "../components/ReceiptView";
+
+import {
   productService,
 } from "../../products/services/product.service";
 
@@ -36,8 +44,32 @@ import type {
 } from "@/features/warehouses/types/warehouse.types";
 
 import {
+  settingsService,
+} from "@/features/settings/services";
+
+import type {
+  CompanySettings,
+} from "@/features/settings/types";
+
+import {
   usePosSalesStore,
 } from "../store/pos-sales.store";
+
+import {
+  receiptEngine,
+} from "../engine";
+
+import type {
+  Receipt,
+} from "../engine";
+
+import type {
+  Payment,
+} from "@/features/payments/types/payment.types";
+
+import type {
+  SalesOrder,
+} from "@/features/sales/types/sales-order.types";
 
 
 export function PosSalesPage() {
@@ -57,8 +89,24 @@ export function PosSalesPage() {
     setWarehouseId,
   ] = useState("");
 
+  const [
+    latestReceipt,
+    setLatestReceipt,
+  ] = useState<Receipt | null>(
+    null,
+  );
+
+  const [
+    settings,
+    setSettings,
+  ] = useState<
+    CompanySettings | undefined
+  >(undefined);
+
+
   const context =
     storeContext.getStore();
+
 
   const setContext =
     usePosSalesStore(
@@ -146,6 +194,16 @@ export function PosSalesPage() {
 
         }
 
+
+        const companySettings =
+          settingsService.getSettings(
+            context.tenantId,
+          );
+
+        setSettings(
+          companySettings,
+        );
+
       } catch (error) {
 
         console.error(
@@ -183,6 +241,26 @@ export function PosSalesPage() {
   }
 
 
+  function handleSaleCompleted(
+    order: SalesOrder,
+    payment: Payment,
+    cashReceived?: number,
+  ) {
+
+    const receipt =
+      receiptEngine.generate(
+        order,
+        payment,
+        cashReceived,
+      );
+
+    setLatestReceipt(
+      receipt,
+    );
+
+  }
+
+
   return (
 
     <div className="p-6">
@@ -198,6 +276,7 @@ export function PosSalesPage() {
           Warehouse
         </label>
 
+
         <select
           value={warehouseId}
           onChange={(event) =>
@@ -211,6 +290,7 @@ export function PosSalesPage() {
           <option value="">
             Select warehouse
           </option>
+
 
           {warehouses.map(
             (warehouse) => (
@@ -238,7 +318,21 @@ export function PosSalesPage() {
             Products
           </h2>
 
-          <ProductSearch products={products} />
+
+          <ProductSearch
+            products={
+              products
+            }
+            tenantId={
+              context?.tenantId
+            }
+            taxRate={
+              settings?.taxRate
+            }
+            taxEnabled={
+              settings?.taxEnabled
+            }
+          />
 
         </div>
 
@@ -254,7 +348,36 @@ export function PosSalesPage() {
 
       <div className="mt-6">
 
-        <CheckoutPanel />
+        <CheckoutPanel
+          onSaleCompleted={
+            handleSaleCompleted
+          }
+        />
+
+      </div>
+
+
+      {latestReceipt && (
+
+        <div className="mt-6">
+
+          <ReceiptView
+            receipt={
+              latestReceipt
+            }
+            products={
+              products
+            }
+          />
+
+        </div>
+
+      )}
+
+
+      <div className="mt-6">
+
+        <SaleHistory />
 
       </div>
 
@@ -263,5 +386,3 @@ export function PosSalesPage() {
   );
 
 }
-
-

@@ -1,4 +1,4 @@
-import { create } from "zustand";
+﻿import { create } from "zustand";
 
 import type {
   SaleItem,
@@ -50,6 +50,8 @@ interface PosSalesState {
 
   getTaxAmount: () => number;
 
+  getDiscountAmount: () => number;
+
   getTotal: () => number;
 }
 
@@ -64,12 +66,21 @@ function roundMoney(
 function calculateItem(
   item: SaleItem,
 ): SaleItem {
-  const quantity = Number(item.quantity);
-  const unitPrice = Number(item.unitPrice);
+  const quantity = Math.max(
+    0,
+    Number(item.quantity),
+  );
+
+  const unitPrice = Math.max(
+    0,
+    Number(item.unitPrice),
+  );
+
   const discountAmount = Math.max(
     0,
     Number(item.discountAmount ?? 0),
   );
+
   const taxRate = Math.max(
     0,
     Number(item.taxRate ?? 0),
@@ -128,6 +139,12 @@ export const usePosSalesStore =
         const calculated =
           calculateItem(item);
 
+        if (
+          calculated.quantity <= 0
+        ) {
+          return state;
+        }
+
         const existingIndex =
           state.items.findIndex(
             (existing) =>
@@ -178,16 +195,25 @@ export const usePosSalesStore =
       set((state) => ({
         items:
           state.items.map(
-            (item) =>
-              item.id === itemId
-                ? calculateItem({
-                    ...item,
-                    ...updates,
-                    id: item.id,
-                    saleId:
-                      item.saleId,
-                  })
-                : item,
+            (item) => {
+              if (
+                item.id !== itemId
+              ) {
+                return item;
+              }
+
+              const next =
+                calculateItem({
+                  ...item,
+                  ...updates,
+                  id: item.id,
+                  saleId: item.saleId,
+                });
+
+              return next.quantity > 0
+                ? next
+                : item;
+            },
           ),
       })),
 
@@ -212,9 +238,12 @@ export const usePosSalesStore =
     ) =>
       set({
         items:
-          items.map(
-            calculateItem,
-          ),
+          items
+            .map(calculateItem)
+            .filter(
+              (item) =>
+                item.quantity > 0,
+            ),
       }),
 
     setSales: (
@@ -241,8 +270,10 @@ export const usePosSalesStore =
           state.warehouseId,
 
         customerId:
-          context.customerId ??
-          state.customerId,
+          context.customerId !==
+          undefined
+            ? context.customerId
+            : state.customerId,
       })),
 
     getSubtotal: () =>
@@ -253,6 +284,18 @@ export const usePosSalesStore =
             roundMoney(
               item.quantity *
                 item.unitPrice,
+            ),
+          0,
+        ),
+      ),
+
+    getDiscountAmount: () =>
+      roundMoney(
+        get().items.reduce(
+          (sum, item) =>
+            sum +
+            Number(
+              item.discountAmount ?? 0,
             ),
           0,
         ),

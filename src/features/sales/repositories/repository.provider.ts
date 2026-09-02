@@ -1,22 +1,16 @@
-﻿import type {
-  SalesOrderRepository,
-} from "./sales-order.repository";
+﻿import {
+  supabaseSalesOrderRepository,
+} from "./supabase.sales-order.repository";
 
-import {
-  inMemorySalesOrderRepository,
-} from "./in-memory.sales-order.repository";
+export const salesOrderRepository =
+  supabaseSalesOrderRepository;
 
-let salesOrderRepository: SalesOrderRepository =
-  inMemorySalesOrderRepository;
-
-export { salesOrderRepository };
-
-export function getSalesOrderRepository(): SalesOrderRepository {
+export function getSalesOrderRepository() {
   return salesOrderRepository;
 }
 
 export function setSalesOrderRepository(
-  repository: SalesOrderRepository,
+  repository: typeof salesOrderRepository,
 ): void {
-  salesOrderRepository = repository;
+  void repository;
 }

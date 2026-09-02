@@ -2,6 +2,14 @@ import {
   getSaleRepository,
 } from "../repositories";
 
+import {
+  paymentService,
+} from "../../payments/services";
+
+import type {
+  PaymentMethod as StoredPaymentMethod,
+} from "../../payments/types/payment.types";
+
 import type {
   Sale,
   SaleItem,
@@ -21,6 +29,35 @@ function roundMoney(
   return Math.round(
     (value + Number.EPSILON) * 100,
   ) / 100;
+}
+
+function normalizePaymentMethod(
+  method: string,
+): StoredPaymentMethod {
+  switch (method.toUpperCase()) {
+    case "CASH":
+      return "CASH";
+
+    case "CARD":
+      return "CARD";
+
+    case "QR":
+      return "QR";
+
+    case "MOBILE_MONEY":
+    case "MOBILE MONEY":
+      return "MOBILE_MONEY";
+
+    case "TRANSFER":
+    case "BANK_TRANSFER":
+    case "BANK TRANSFER":
+      return "BANK_TRANSFER";
+
+    default:
+      throw new Error(
+        `Unsupported payment method: ${method}`,
+      );
+  }
 }
 
 class SaleService {
@@ -138,7 +175,7 @@ class SaleService {
       );
   }
 
-  completePayment(
+  async completePayment(
     saleId: string,
     paymentMethod: string,
   ) {
@@ -148,28 +185,106 @@ class SaleService {
       );
     }
 
+    const sale =
+      this.getSaleById(
+        saleId,
+      );
+
+    if (!sale) {
+      throw new Error(
+        "Sale not found.",
+      );
+    }
+
+    if (sale.items.length === 0) {
+      throw new Error(
+        "Cannot complete a sale with no items.",
+      );
+    }
+
+    const method =
+      normalizePaymentMethod(
+        paymentMethod,
+      );
+
+    const payment =
+      await paymentService.createPayment(
+        sale.tenantId,
+        sale.id,
+        method,
+        sale.totalAmount,
+      );
+
+    if (!payment) {
+      throw new Error(
+        "Payment could not be created.",
+      );
+    }
+
+    const completedPayment =
+      await paymentService.completePayment(
+        sale.tenantId,
+        payment.id,
+      );
+
+    if (!completedPayment) {
+      throw new Error(
+        "Payment could not be completed.",
+      );
+    }
+
     return getSaleRepository()
       .update(
         saleId,
         {
           paymentStatus:
             "PAID",
-          paymentMethod,
+
+          paymentMethod:
+            paymentMethod,
+
           completedAt:
             new Date().toISOString(),
         },
       );
   }
 
-  completeSale(
+  async completeSale(
     saleId: string,
   ) {
+    const sale =
+      this.getSaleById(
+        saleId,
+      );
+
+    if (!sale) {
+      throw new Error(
+        "Sale not found.",
+      );
+    }
+
+    if (sale.items.length === 0) {
+      throw new Error(
+        "Cannot complete a sale with no items.",
+      );
+    }
+
+    if (
+      sale.paymentStatus !==
+      "PAID"
+    ) {
+      throw new Error(
+        "Payment must be completed before completing the sale.",
+      );
+    }
+
     return getSaleRepository()
       .update(
         saleId,
         {
           paymentStatus:
             "PAID",
+
           completedAt:
             new Date().toISOString(),
         },
@@ -273,3 +388,5 @@ class SaleService {
 
 export const saleService =
   new SaleService();
+
+

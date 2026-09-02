@@ -330,19 +330,38 @@ export const usePurchaseOrderStore =
 
         }
 
+        const refreshed =
+          await purchaseOrderService.getOrderById(
+            order.tenantId,
+            orderId,
+          );
+
+        if (!refreshed) {
+
+          throw new Error(
+            "Purchase order could not be reloaded after adding item.",
+          );
+
+        }
+
+        if (
+          !refreshed.items ||
+          refreshed.items.length === 0
+        ) {
+
+          throw new Error(
+            "Purchase order item was not persisted.",
+          );
+
+        }
+
         set((state) => ({
 
           orders:
             state.orders.map(
               (existingOrder) =>
                 existingOrder.id === orderId
-                  ? {
-                      ...existingOrder,
-                      items: [
-                        ...(existingOrder.items ?? []),
-                        saved,
-                      ],
-                    }
+                  ? refreshed
                   : existingOrder,
             ),
 
@@ -571,6 +590,7 @@ export const usePurchaseOrderStore =
 
     }),
   );
+
 
 
 
