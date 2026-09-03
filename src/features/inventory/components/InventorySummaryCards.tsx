@@ -2,74 +2,89 @@ import type {
   InventoryRecord,
 } from "../types/inventory-record.types";
 
-
-interface Props {
-
+interface InventorySummaryCardsProps {
   inventory: InventoryRecord[];
-
 }
-
 
 export function InventorySummaryCards({
   inventory,
-}: Props) {
-
+}: InventorySummaryCardsProps) {
 
   const totalItems =
     inventory.reduce(
-      (total, item) =>
-        total + item.quantityOnHand,
+      (total, record) =>
+        total + record.quantityOnHand,
       0,
     );
-
 
   const inventoryValue =
     inventory.reduce(
-      (total, item) =>
+      (total, record) =>
         total +
-        (
-          item.quantityOnHand *
-          item.averageCost
-        ),
+        record.quantityOnHand *
+        record.averageCost,
       0,
     );
 
+  const lowStockItems =
+    inventory.filter(
+      (record) =>
+        record.quantityOnHand > 0 &&
+        record.quantityOnHand <=
+          record.minimumStockLevel,
+    ).length;
+
+  const outOfStockItems =
+    inventory.filter(
+      (record) =>
+        record.quantityOnHand <= 0,
+    ).length;
+
+  const cards = [
+    {
+      title: "Total Quantity",
+      value: totalItems,
+    },
+    {
+      title: "Inventory Value",
+      value: inventoryValue.toFixed(2),
+    },
+    {
+      title: "Low Stock",
+      value: lowStockItems,
+      className:
+        lowStockItems > 0
+          ? "border-yellow-300 bg-yellow-50"
+          : "",
+    },
+    {
+      title: "Out of Stock",
+      value: outOfStockItems,
+      className:
+        outOfStockItems > 0
+          ? "border-red-300 bg-red-50"
+          : "",
+    },
+  ];
 
   return (
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
 
-    <div className="grid gap-4 md:grid-cols-2">
+      {cards.map((card) => (
+        <div
+          key={card.title}
+          className={`rounded-lg border bg-white p-5 shadow-sm ${card.className ?? ""}`}
+        >
+          <p className="text-sm text-gray-500">
+            {card.title}
+          </p>
 
-      <div className="rounded border p-4">
-
-        <h3>
-          Total Quantity
-        </h3>
-
-        <p className="text-xl">
-
-          {totalItems}
-
-        </p>
-
-      </div>
-
-
-      <div className="rounded border p-4">
-
-        <h3>
-          Inventory Value
-        </h3>
-
-        <p className="text-xl">
-
-          {inventoryValue}
-
-        </p>
-
-      </div>
+          <p className="mt-2 text-2xl font-bold">
+            {card.value}
+          </p>
+        </div>
+      ))}
 
     </div>
-
   );
-
 }

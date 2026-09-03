@@ -1,121 +1,48 @@
-import type {
-  InventoryRecord,
-} from "../types/inventory-record.types";
-
-
-import {
-  inventoryMovementEngine,
-} from "./inventory-movement.engine";
-
-
+import type { InventoryRecord } from "../types/inventory-record.types";
+import { inventoryTransactionService } from "@/features/inventory-transactions/services/inventory-transaction.service";
+import { inventoryService } from "../services/inventory.service";
 
 export class StockAdjustmentEngine {
-
-
-
-  adjust(
-
+  async adjust(
     record: InventoryRecord,
+    quantity: number,
+    movementType: "ADJUSTMENT_IN" | "ADJUSTMENT_OUT" = "ADJUSTMENT_IN",
+    reason?: string,
+  ): Promise<InventoryRecord> {
+    if (quantity === 0) {
+      throw new Error("Adjustment quantity cannot be zero.");
+    }
 
-    newQuantity: number,
+    const signedQuantity =
+      movementType === "ADJUSTMENT_OUT"
+        ? -Math.abs(quantity)
+        : Math.abs(quantity);
 
-  ): InventoryRecord {
+    await inventoryTransactionService.adjustStock(
+      record.productId,
+      record.warehouseId,
+      signedQuantity,
+      movementType,
+      undefined,
+      reason ?? "Inventory adjustment",
+    );
 
-
-    if (newQuantity < 0) {
-
-      throw new Error(
-        "Quantity cannot be negative.",
+    const updatedRecord =
+      await inventoryService.getInventoryRecord(
+        record.tenantId,
+        record.productId,
+        record.warehouseId,
       );
 
+    if (!updatedRecord) {
+      throw new Error(
+        `Inventory record not found for product ${record.productId}.`,
+      );
     }
 
-
-
-    const difference =
-
-      newQuantity -
-
-      record.quantityOnHand;
-
-
-
-    if (difference === 0) {
-
-      return record;
-
-    }
-
-
-
-    inventoryMovementEngine.createMovement({
-
-
-      productId:
-
-        record.productId,
-
-
-      warehouseId:
-
-        record.warehouseId,
-
-
-      movementType:
-  difference > 0
-    ? "ADJUSTMENT_IN"
-    : "ADJUSTMENT_OUT",
-
-      quantity:
-
-        Math.abs(difference),
-
-
-      previousQuantity:
-
-        record.quantityOnHand,
-
-
-      newQuantity,
-
-
-    });
-
-
-
-    return {
-
-
-      ...record,
-
-
-      quantityOnHand:
-
-        newQuantity,
-
-
-      availableQuantity:
-
-        newQuantity -
-
-        record.reservedQuantity,
-
-
-      lastMovementAt:
-
-        new Date().toISOString(),
-
-
-    };
-
-
+    return updatedRecord;
   }
-
-
 }
 
-
-
 export const stockAdjustmentEngine =
-
   new StockAdjustmentEngine();

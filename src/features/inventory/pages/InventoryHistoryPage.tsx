@@ -4,193 +4,122 @@
  * E&P Smart POS
  * Inventory Module
  *
- * Inventory History / Ledger
+ * Inventory History
  * ============================================================
  */
 
-import {
-  useMemo,
-} from "react";
+import { useMemo } from "react";
 
 import {
-  useInventoryTransactions,
-} from "@/features/inventory-transactions/hooks/useInventoryTransactions";
+  useInventoryLedger,
+} from "@/features/inventory-ledger/hooks/useInventoryLedger";
 
 import type {
-  InventoryTransaction,
-} from "@/features/inventory-transactions/types/inventory-transaction.types";
+  InventoryLedgerEntry,
+} from "@/features/inventory-ledger/types/inventory-ledger.types";
 
 
-function formatDate(
-  value: string,
-): string {
+function formatDate(value: string): string {
+  const date = new Date(value);
 
-  const date =
-    new Date(value);
-
-  if (
-    Number.isNaN(
-      date.getTime(),
-    )
-  ) {
-
+  if (Number.isNaN(date.getTime())) {
     return value;
-
   }
 
   return date.toLocaleString();
-
 }
 
 
-function formatMovementType(
-  value: string,
-): string {
-
+function formatMovementType(value: string): string {
   return value
     .replaceAll("_", " ")
     .toLowerCase()
-    .replace(
-      /\b\w/g,
-      (character) =>
-        character.toUpperCase(),
+    .replace(/\b\w/g, (character) =>
+      character.toUpperCase(),
     );
-
 }
 
 
-function formatNumber(
-  value: number,
-): string {
-
-  return value.toLocaleString(
-    undefined,
-    {
-      maximumFractionDigits: 2,
-    },
-  );
-
+function formatNumber(value: number): string {
+  return value.toLocaleString(undefined, {
+    maximumFractionDigits: 2,
+  });
 }
 
-
-/*
- * ------------------------------------------------------------
- * Movement Direction
- * ------------------------------------------------------------
- *
- * Database quantities are always positive.
- *
- * Therefore direction is determined from movementType.
- * ------------------------------------------------------------
- */
 
 function isIncomingMovement(
   movementType: string,
 ): boolean {
-
   return [
-    "PURCHASE_RECEIPT",
-    "RETURN",
     "INITIAL_STOCK",
+    "PURCHASE_RECEIPT",
+    "SALE_RETURN",
+    "TRANSFER_IN",
     "ADJUSTMENT_IN",
-  ].includes(
-    movementType,
-  );
-
+  ].includes(movementType);
 }
 
 
 function isOutgoingMovement(
   movementType: string,
 ): boolean {
-
   return [
     "SALE",
+    "PURCHASE_RETURN",
+    "TRANSFER_OUT",
     "ADJUSTMENT_OUT",
-  ].includes(
-    movementType,
-  );
-
+  ].includes(movementType);
 }
 
 
 export function InventoryHistoryPage() {
 
   const {
-    transactions,
+    ledger,
     loading,
     error,
     refresh,
-  } =
-    useInventoryTransactions();
+  } = useInventoryLedger();
 
 
-  const summary =
-    useMemo(
-      () => {
+  const summary = useMemo(() => {
 
-        let totalIn = 0;
+    let totalIn = 0;
+    let totalOut = 0;
+    let transactionValue = 0;
 
-        let totalOut = 0;
+    for (const transaction of ledger) {
 
-        let transactionValue = 0;
+      const quantity =
+        Math.abs(transaction.quantity);
 
+      if (
+        isIncomingMovement(
+          transaction.movementType,
+        )
+      ) {
+        totalIn += quantity;
+      } else if (
+        isOutgoingMovement(
+          transaction.movementType,
+        )
+      ) {
+        totalOut += quantity;
+      }
 
-        for (
-          const transaction
-          of transactions
-        ) {
+      transactionValue +=
+        quantity *
+        transaction.unitCost;
+    }
 
-          const quantity =
-            Math.abs(
-              transaction.quantity,
-            );
+    return {
+      totalTransactions: ledger.length,
+      totalIn,
+      totalOut,
+      transactionValue,
+    };
 
-
-          if (
-            isIncomingMovement(
-              transaction.movementType,
-            )
-          ) {
-
-            totalIn += quantity;
-
-          } else if (
-            isOutgoingMovement(
-              transaction.movementType,
-            )
-          ) {
-
-            totalOut += quantity;
-
-          }
-
-
-          transactionValue +=
-            quantity *
-            transaction.unitCost;
-
-        }
-
-
-        return {
-
-          totalTransactions:
-            transactions.length,
-
-          totalIn,
-
-          totalOut,
-
-          transactionValue,
-
-        };
-
-      },
-      [
-        transactions,
-      ],
-    );
+  }, [ledger]);
 
 
   return (
@@ -201,15 +130,11 @@ export function InventoryHistoryPage() {
         <div>
 
           <h1 className="text-2xl font-semibold tracking-tight">
-
-            Inventory Ledger
-
+            Inventory History
           </h1>
 
           <p className="mt-1 text-sm text-gray-500">
-
             Complete inventory movement history.
-
           </p>
 
         </div>
@@ -223,24 +148,18 @@ export function InventoryHistoryPage() {
           disabled={loading}
           className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
         >
-
           {loading
             ? "Refreshing..."
             : "Refresh"}
-
         </button>
 
       </div>
 
 
       {error && (
-
         <div className="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-
           {error}
-
         </div>
-
       )}
 
 
@@ -249,17 +168,13 @@ export function InventoryHistoryPage() {
         <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
 
           <p className="text-sm text-gray-500">
-
             Transactions
-
           </p>
 
           <p className="mt-2 text-2xl font-semibold">
-
             {formatNumber(
               summary.totalTransactions,
             )}
-
           </p>
 
         </div>
@@ -268,17 +183,13 @@ export function InventoryHistoryPage() {
         <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
 
           <p className="text-sm text-gray-500">
-
             Stock In
-
           </p>
 
           <p className="mt-2 text-2xl font-semibold text-green-700">
-
             {formatNumber(
               summary.totalIn,
             )}
-
           </p>
 
         </div>
@@ -287,17 +198,13 @@ export function InventoryHistoryPage() {
         <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
 
           <p className="text-sm text-gray-500">
-
             Stock Out
-
           </p>
 
           <p className="mt-2 text-2xl font-semibold text-red-700">
-
             {formatNumber(
               summary.totalOut,
             )}
-
           </p>
 
         </div>
@@ -306,17 +213,13 @@ export function InventoryHistoryPage() {
         <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
 
           <p className="text-sm text-gray-500">
-
             Movement Value
-
           </p>
 
           <p className="mt-2 text-2xl font-semibold">
-
             {formatNumber(
               summary.transactionValue,
             )}
-
           </p>
 
         </div>
@@ -334,59 +237,35 @@ export function InventoryHistoryPage() {
 
               <tr>
 
-                <th
-                  scope="col"
-                  className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500"
-                >
+                <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
                   Date
                 </th>
 
-                <th
-                  scope="col"
-                  className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500"
-                >
+                <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
                   Product
                 </th>
 
-                <th
-                  scope="col"
-                  className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500"
-                >
+                <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
                   Movement
                 </th>
 
-                <th
-                  scope="col"
-                  className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-500"
-                >
+                <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">
                   Quantity
                 </th>
 
-                <th
-                  scope="col"
-                  className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-500"
-                >
+                <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">
                   Unit Cost
                 </th>
 
-                <th
-                  scope="col"
-                  className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-500"
-                >
+                <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">
                   Value
                 </th>
 
-                <th
-                  scope="col"
-                  className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500"
-                >
+                <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
                   Warehouse
                 </th>
 
-                <th
-                  scope="col"
-                  className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500"
-                >
+                <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
                   Reference
                 </th>
 
@@ -397,48 +276,39 @@ export function InventoryHistoryPage() {
 
             <tbody className="divide-y divide-gray-200 bg-white">
 
-              {loading &&
-                transactions.length === 0 && (
+              {loading && ledger.length === 0 && (
+                <tr>
 
-                  <tr>
+                  <td
+                    colSpan={8}
+                    className="px-4 py-10 text-center text-sm text-gray-500"
+                  >
+                    Loading inventory history...
+                  </td>
 
-                    <td
-                      colSpan={8}
-                      className="px-4 py-10 text-center text-sm text-gray-500"
-                    >
-
-                      Loading inventory transactions...
-
-                    </td>
-
-                  </tr>
-
-                )}
+                </tr>
+              )}
 
 
               {!loading &&
                 !error &&
-                transactions.length === 0 && (
-
+                ledger.length === 0 && (
                   <tr>
 
                     <td
                       colSpan={8}
                       className="px-4 py-10 text-center text-sm text-gray-500"
                     >
-
-                      No inventory transactions found.
-
+                      No inventory movements found.
                     </td>
 
                   </tr>
-
                 )}
 
 
-              {transactions.map(
+              {ledger.map(
                 (
-                  transaction: InventoryTransaction,
+                  transaction: InventoryLedgerEntry,
                 ) => {
 
                   const quantity =
@@ -446,37 +316,30 @@ export function InventoryHistoryPage() {
                       transaction.quantity,
                     );
 
-
                   const value =
                     quantity *
                     transaction.unitCost;
-
 
                   const isIncoming =
                     isIncomingMovement(
                       transaction.movementType,
                     );
 
-
                   const isOutgoing =
                     isOutgoingMovement(
                       transaction.movementType,
                     );
 
-
                   return (
-
                     <tr
                       key={transaction.id}
                       className="hover:bg-gray-50"
                     >
 
                       <td className="whitespace-nowrap px-4 py-3 text-sm text-gray-700">
-
                         {formatDate(
                           transaction.createdAt,
                         )}
-
                       </td>
 
 
@@ -485,16 +348,15 @@ export function InventoryHistoryPage() {
                         <div className="max-w-xs">
 
                           <p className="truncate font-medium text-gray-900">
-
-                            {transaction.productId}
-
+                            {transaction.productName ??
+                              transaction.productId}
                           </p>
 
-                          <p className="truncate text-xs text-gray-500">
-
-                            ID: {transaction.productId}
-
-                          </p>
+                          {transaction.productName && (
+                            <p className="truncate text-xs text-gray-500">
+                              ID: {transaction.productId}
+                            </p>
+                          )}
 
                         </div>
 
@@ -512,11 +374,9 @@ export function InventoryHistoryPage() {
                                 : "inline-flex rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-700"
                           }
                         >
-
                           {formatMovementType(
                             transaction.movementType,
                           )}
-
                         </span>
 
                       </td>
@@ -531,7 +391,6 @@ export function InventoryHistoryPage() {
                               : "whitespace-nowrap px-4 py-3 text-right text-sm font-medium text-gray-700"
                         }
                       >
-
                         {isIncoming
                           ? "+"
                           : isOutgoing
@@ -546,49 +405,55 @@ export function InventoryHistoryPage() {
 
 
                       <td className="whitespace-nowrap px-4 py-3 text-right text-sm text-gray-700">
-
                         {formatNumber(
                           transaction.unitCost,
                         )}
-
                       </td>
 
 
                       <td className="whitespace-nowrap px-4 py-3 text-right text-sm font-medium text-gray-900">
-
                         {formatNumber(
                           value,
                         )}
+                      </td>
+
+
+                      <td className="px-4 py-3">
+
+                        <div className="max-w-xs">
+
+                          <p className="truncate font-medium text-gray-900">
+                            {transaction.warehouseName ??
+                              transaction.warehouseId}
+                          </p>
+
+                          {transaction.warehouseName && (
+                            <p className="truncate text-xs text-gray-500">
+                              ID: {transaction.warehouseId}
+                            </p>
+                          )}
+
+                        </div>
 
                       </td>
 
 
-                      <td className="max-w-xs truncate px-4 py-3 text-sm text-gray-600">
-
-                        {transaction.warehouseId}
-
-                      </td>
-
-
-                      <td className="max-w-xs px-4 py-3 text-sm text-gray-600">
+                      <td className="px-4 py-3 text-sm text-gray-600">
 
                         <div>
 
                           <p>
-
-                            {transaction.referenceType ??
-                              "—"}
-
+                            {transaction.referenceType
+                              ? formatMovementType(
+                                  transaction.referenceType,
+                                )
+                              : "-"}
                           </p>
 
                           {transaction.referenceId && (
-
-                            <p className="truncate text-xs text-gray-400">
-
+                            <p className="max-w-48 truncate text-xs text-gray-400">
                               {transaction.referenceId}
-
                             </p>
-
                           )}
 
                         </div>
@@ -596,9 +461,7 @@ export function InventoryHistoryPage() {
                       </td>
 
                     </tr>
-
                   );
-
                 },
               )}
 
@@ -612,5 +475,4 @@ export function InventoryHistoryPage() {
 
     </div>
   );
-
 }

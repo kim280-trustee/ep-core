@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
@@ -30,230 +30,276 @@ import {
 } from "../services/inventory.service";
 
 import {
+  warehouseService,
+} from "@/features/warehouses";
+
+import {
   useInventoryStore,
 } from "../store/inventory.store";
 
+import type {
+  Warehouse,
+} from "@/features/warehouses";
 
-export function ReceiveStockForm() {
+interface ReceiveStockFormProps {
+  initialProductId?: string;
+  initialWarehouseId?: string;
+  initialQuantity?: number;
+  onRestockRequestHandled?: () => void;
+}
 
+export function ReceiveStockForm({
+  initialProductId,
+  initialWarehouseId,
+  initialQuantity,
+  onRestockRequestHandled,
+}: ReceiveStockFormProps) {
   const products =
     useProductsStore(
-      (state) =>
-        state.products,
+      (state) => state.products,
     );
-
 
   const loadProducts =
     useProductsStore(
-      (state) =>
-        state.loadProducts,
+      (state) => state.loadProducts,
     );
-
 
   const setRecords =
     useInventoryStore(
-      (state) =>
-        state.setRecords,
+      (state) => state.setRecords,
     );
 
+  const [
+    warehouses,
+    setWarehouses,
+  ] = useState<Warehouse[]>([]);
 
   const [
     productId,
     setProductId,
-  ] = useState("");
+  ] = useState(
+    initialProductId ?? "",
+  );
 
+  const [
+    warehouseId,
+    setWarehouseId,
+  ] = useState(
+    initialWarehouseId ?? "",
+  );
 
   const [
     quantity,
     setQuantity,
-  ] = useState(0);
-
+  ] = useState(
+    initialQuantity ?? 0,
+  );
 
   const [
     cost,
     setCost,
   ] = useState(0);
 
-
   const [
     message,
     setMessage,
   ] = useState("");
-
 
   const [
     submitting,
     setSubmitting,
   ] = useState(false);
 
-
   useEffect(() => {
-
-    if (
-      products.length === 0
-    ) {
-
+    if (products.length === 0) {
       void loadProducts();
-
     }
-
   }, [
     products.length,
     loadProducts,
   ]);
 
+  useEffect(() => {
+    async function loadWarehouses() {
+      const context =
+        storeContext.getStore();
+
+      if (!context) {
+        return;
+      }
+
+      try {
+        const allWarehouses =
+          await warehouseService.getWarehouses();
+
+        const activeWarehouses =
+          allWarehouses.filter(
+            (warehouse) =>
+              warehouse.tenantId === context.tenantId &&
+              warehouse.storeId === context.storeId &&
+              warehouse.status === "ACTIVE",
+          );
+
+        setWarehouses(activeWarehouses);
+
+        if (
+          !initialWarehouseId &&
+          !warehouseId &&
+          activeWarehouses.length > 0
+        ) {
+          const mainWarehouse =
+            activeWarehouses.find(
+              (warehouse) =>
+                warehouse.code.toUpperCase() === "MAIN",
+            );
+
+          setWarehouseId(
+            mainWarehouse?.id ??
+              activeWarehouses[0].id,
+          );
+        }
+      } catch (error) {
+        console.error(
+          "Failed to load warehouses:",
+          error,
+        );
+
+        setMessage(
+          error instanceof Error
+            ? error.message
+            : "Unable to load warehouses.",
+        );
+      }
+    }
+
+    void loadWarehouses();
+  }, [
+    initialWarehouseId,
+  ]);
+
+  useEffect(() => {
+    if (initialProductId !== undefined) {
+      setProductId(initialProductId);
+    }
+
+    if (initialWarehouseId !== undefined) {
+      setWarehouseId(initialWarehouseId);
+    }
+
+    if (initialQuantity !== undefined) {
+      setQuantity(initialQuantity);
+    }
+
+    if (
+      initialProductId !== undefined ||
+      initialWarehouseId !== undefined ||
+      initialQuantity !== undefined
+    ) {
+      setMessage("");
+    }
+  }, [
+    initialProductId,
+    initialWarehouseId,
+    initialQuantity,
+  ]);
 
   async function handleSubmit() {
-
     setMessage("");
-
 
     const context =
       storeContext.getStore();
 
-
     if (!context) {
-
       setMessage(
         "Store context is not initialized.",
       );
-
       return;
-
     }
 
-
     if (!productId) {
-
       setMessage(
         "Please select a product.",
       );
-
       return;
-
     }
 
+    if (!warehouseId) {
+      setMessage(
+        "Please select a warehouse.",
+      );
+      return;
+    }
 
     if (quantity <= 0) {
-
       setMessage(
         "Quantity must be greater than zero.",
       );
-
       return;
-
     }
 
-
     if (cost < 0) {
-
       setMessage(
         "Cost cannot be negative.",
       );
-
       return;
-
     }
-
 
     setSubmitting(true);
 
-
     try {
-
-      const warehouseId =
-        context.storeId;
-
-
       await inventoryTransactionService.receiveStock(
-
         productId,
-
         warehouseId,
-
         quantity,
-
         cost,
-
         undefined,
-
         "Stock received",
-
       );
-
 
       const updatedInventory =
         await inventoryService.getInventory(
           context.tenantId,
         );
 
-
       setRecords(
         updatedInventory,
       );
-
 
       setMessage(
         "Stock received successfully.",
       );
 
-
       setQuantity(0);
-
       setCost(0);
-
       setProductId("");
 
+      onRestockRequestHandled?.();
 
     } catch (error) {
-
       console.error(
         "Failed to receive stock:",
         error,
       );
 
-
       setMessage(
-
         error instanceof Error
-
           ? error.message
-
           : "Unable to receive stock.",
-
       );
-
     } finally {
-
       setSubmitting(false);
-
     }
-
   }
 
-
   return (
-
-    <div
-      className="
-        border
-        rounded
-        p-4
-        flex
-        flex-col
-        gap-4
-      "
-    >
-
+    <div className="border rounded p-4 flex flex-col gap-4">
       <h2 className="font-semibold">
         Receive Stock
       </h2>
 
-
       <label>
         Product
       </label>
-
 
       <select
         value={productId}
@@ -262,47 +308,71 @@ export function ReceiveStockForm() {
             event.target.value,
           )
         }
-        className="
-          border
-          rounded
-          p-2
-        "
+        className="border rounded p-2"
         disabled={submitting}
       >
-
         <option value="">
           Select Product
         </option>
 
-
         {products.map(
           (product) => (
-
             <option
               key={product.id}
               value={product.id}
             >
-
               {product.name}
-
               {" ("}
-
               {product.identifiers.sku}
-
               {")"}
-
             </option>
-
           ),
         )}
-
       </select>
 
+      <label>
+        Warehouse
+      </label>
+
+      <select
+        value={warehouseId}
+        onChange={(event) =>
+          setWarehouseId(
+            event.target.value,
+          )
+        }
+        className="border rounded p-2"
+        disabled={
+          submitting ||
+          warehouses.length === 0
+        }
+      >
+        <option value="">
+          Select Warehouse
+        </option>
+
+        {warehouses.map(
+          (warehouse) => (
+            <option
+              key={warehouse.id}
+              value={warehouse.id}
+            >
+              {warehouse.name}
+            </option>
+          ),
+        )}
+      </select>
+
+      {warehouses.length === 0 && (
+        <p className="text-sm text-red-600">
+          No active warehouse is available
+          for this store.
+        </p>
+      )}
 
       <label>
         Quantity
       </label>
-
 
       <input
         type="number"
@@ -315,19 +385,13 @@ export function ReceiveStockForm() {
             ),
           )
         }
-        className="
-          border
-          rounded
-          p-2
-        "
+        className="border rounded p-2"
         disabled={submitting}
       />
-
 
       <label>
         Cost Per Unit
       </label>
-
 
       <input
         type="number"
@@ -340,47 +404,31 @@ export function ReceiveStockForm() {
             ),
           )
         }
-        className="
-          border
-          rounded
-          p-2
-        "
+        className="border rounded p-2"
         disabled={submitting}
       />
-
 
       <button
         type="button"
         onClick={() => {
           void handleSubmit();
         }}
-        disabled={submitting}
-        className="
-          bg-black
-          text-white
-          rounded
-          p-2
-          disabled:opacity-50
-        "
+        disabled={
+          submitting ||
+          warehouses.length === 0
+        }
+        className="bg-black text-white rounded p-2 disabled:opacity-50"
       >
-
         {submitting
           ? "Receiving..."
           : "Receive Stock"}
-
       </button>
 
-
       {message && (
-
         <p>
           {message}
         </p>
-
       )}
-
     </div>
-
   );
-
 }

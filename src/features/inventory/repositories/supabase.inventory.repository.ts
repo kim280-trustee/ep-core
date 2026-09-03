@@ -27,6 +27,8 @@ interface InventoryDatabaseRow {
   quantity_on_hand: number | string;
   quantity_reserved: number | string;
   average_cost: number | string;
+  minimum_stock_level: number | string;
+  maximum_stock_level: number | string | null;
   last_movement_at: string | null;
   created_at: string;
   updated_at: string;
@@ -43,17 +45,10 @@ function fromDatabaseRow(
     Number(row.quantity_reserved);
 
   return {
-    id:
-      row.id,
-
-    tenantId:
-      row.tenant_id,
-
-    productId:
-      row.product_id,
-
-    warehouseId:
-      row.warehouse_id,
+    id: row.id,
+    tenantId: row.tenant_id,
+    productId: row.product_id,
+    warehouseId: row.warehouse_id,
 
     quantityOnHand,
 
@@ -67,10 +62,12 @@ function fromDatabaseRow(
       Number(row.average_cost),
 
     minimumStockLevel:
-      0,
+      Number(row.minimum_stock_level),
 
     maximumStockLevel:
-      undefined,
+      row.maximum_stock_level === null
+        ? undefined
+        : Number(row.maximum_stock_level),
 
     lastMovementAt:
       row.last_movement_at ??
@@ -89,17 +86,11 @@ function toDatabaseRow(
 ): Record<string, unknown> {
 
   return {
-    id:
-      record.id,
+    id: record.id,
 
     tenant_id:
       record.tenantId,
 
-    /*
-     * Until a dedicated warehouse/store mapping is introduced,
-     * the active warehouse location is represented by the
-     * warehouseId supplied by the inventory record.
-     */
     store_id:
       record.warehouseId,
 
@@ -117,6 +108,13 @@ function toDatabaseRow(
 
     average_cost:
       record.averageCost,
+
+    minimum_stock_level:
+      record.minimumStockLevel,
+
+    maximum_stock_level:
+      record.maximumStockLevel ??
+      null,
 
     last_movement_at:
       record.lastMovementAt ??
@@ -424,6 +422,23 @@ class SupabaseInventoryRepository
     ) {
       updateData.average_cost =
         updates.averageCost;
+    }
+
+    if (
+      updates.minimumStockLevel !==
+      undefined
+    ) {
+      updateData.minimum_stock_level =
+        updates.minimumStockLevel;
+    }
+
+    if (
+      updates.maximumStockLevel !==
+      undefined
+    ) {
+      updateData.maximum_stock_level =
+        updates.maximumStockLevel ??
+        null;
     }
 
     if (

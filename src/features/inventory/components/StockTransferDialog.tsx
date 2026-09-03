@@ -1,205 +1,259 @@
-import {
-  useState,
-} from "react";
+import { useEffect, useState } from "react";
+import { warehouseService } from "@/features/warehouses/services/warehouse.service";
+import { storeContext } from "@/core/store/store.context";
+import type { Warehouse } from "@/features/warehouses/types/warehouse.types";
 
-import type {
-  StockTransfer,
-} from "../types/stock-transfer.types";
-
-
-interface Props {
-
+interface StockTransferDialogProps {
   productId: string;
-
-  onSubmit: (
-    transfer: StockTransfer,
-  ) => void;
-
+  tenantId: string;
+  fromStoreId: string;
+  sourceWarehouseId: string;
+  transferredBy: string;
+  onSubmit: (transfer: {
+    productId: string;
+    destinationWarehouseId: string;
+    quantity: number;
+    reason?: string;
+  }) => Promise<void>;
   onClose: () => void;
-
 }
-
-
 
 export function StockTransferDialog({
-
   productId,
-
+  tenantId,
+  fromStoreId,
+  sourceWarehouseId,
+  transferredBy: _transferredBy,
   onSubmit,
-
   onClose,
+}: StockTransferDialogProps) {
+  const [warehouses, setWarehouses] = useState<Warehouse[]>([]);
+  const [destinationWarehouseId, setDestinationWarehouseId] =
+    useState("");
+  const [quantity, setQuantity] = useState("");
+  const [reason, setReason] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-}: Props) {
+  useEffect(() => {
+    let active = true;
 
+    async function loadWarehouses() {
+      setLoading(true);
+      setError(null);
 
-  const [
-    quantity,
-    setQuantity,
-  ] = useState(0);
+      try {
+        const result = await warehouseService.getWarehouses();
 
+        const context = storeContext.getStore();
 
-  const [
-    fromStoreId,
-    setFromStoreId,
-  ] = useState("");
+        const currentStoreId =
+          context?.storeId ?? fromStoreId;
 
+        const availableWarehouses = result.filter(
+          (warehouse) =>
+            warehouse.tenantId === tenantId &&
+            warehouse.storeId === currentStoreId &&
+            warehouse.status === "ACTIVE" &&
+            warehouse.id !== sourceWarehouseId,
+        );
 
-  const [
-    toStoreId,
-    setToStoreId,
-  ] = useState("");
+        if (active) {
+          setWarehouses(availableWarehouses);
+        }
+      } catch (caughtError) {
+        if (active) {
+          setError(
+            caughtError instanceof Error
+              ? caughtError.message
+              : "Failed to load warehouses.",
+          );
+        }
+      } finally {
+        if (active) {
+          setLoading(false);
+        }
+      }
+    }
 
+    void loadWarehouses();
 
-
-  function handleSubmit() {
-
-
-    const transfer: StockTransfer = {
-
-      id:
-        crypto.randomUUID(),
-
-
-      tenantId:
-        "default",
-
-
-      fromStoreId,
-
-
-      toStoreId,
-
-
-      productId,
-
-
-      quantity,
-
-
-      status:
-        "PENDING",
-
-
-      transferredBy:
-        "system",
-
-
-      transferredAt:
-        new Date().toISOString(),
-
+    return () => {
+      active = false;
     };
+  }, [
+    tenantId,
+    fromStoreId,
+    sourceWarehouseId,
+  ]);
 
+  async function handleSubmit(
+    event: React.FormEvent<HTMLFormElement>,
+  ) {
+    event.preventDefault();
+    setError(null);
 
-    onSubmit(transfer);
+    const parsedQuantity = Number(quantity);
 
+    if (!destinationWarehouseId) {
+      setError("Please select a destination warehouse.");
+      return;
+    }
+
+    if (
+      !Number.isFinite(parsedQuantity) ||
+      parsedQuantity <= 0
+    ) {
+      setError(
+        "Transfer quantity must be greater than zero.",
+      );
+      return;
+    }
+
+    setSaving(true);
+
+    try {
+      await onSubmit({
+        productId,
+        destinationWarehouseId,
+        quantity: parsedQuantity,
+        reason: reason.trim() || undefined,
+      });
+
+      setQuantity("");
+      setReason("");
+    } catch (caughtError) {
+      setError(
+        caughtError instanceof Error
+          ? caughtError.message
+          : "Failed to transfer stock.",
+      );
+    } finally {
+      setSaving(false);
+    }
   }
 
-
-
   return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-md space-y-4 rounded-lg bg-white p-6 shadow-xl"
+      >
+        <div>
+          <h2 className="text-lg font-semibold">
+            Stock Transfer
+          </h2>
 
-    <div className="rounded border p-4 space-y-4">
+          <p className="mt-1 text-sm text-gray-600">
+            Move stock from this warehouse to another
+            active warehouse in the same store.
+          </p>
+        </div>
 
+        {error && (
+          <div className="rounded border border-red-300 bg-red-50 p-3 text-sm text-red-700">
+            {error}
+          </div>
+        )}
 
-      <h2 className="text-lg font-semibold">
+        <div>
+          <label className="mb-1 block text-sm font-medium">
+            Select destination warehouse
+          </label>
 
-        Stock Transfer
+          <select
+            value={destinationWarehouseId}
+            onChange={(event) =>
+              setDestinationWarehouseId(
+                event.target.value,
+              )
+            }
+            disabled={
+              loading ||
+              saving ||
+              warehouses.length === 0
+            }
+            className="w-full rounded border px-3 py-2"
+          >
+            <option value="">
+              {loading
+                ? "Loading warehouses..."
+                : warehouses.length === 0
+                  ? "No other warehouses available"
+                  : "Select warehouse"}
+            </option>
 
-      </h2>
+            {warehouses.map((warehouse) => (
+              <option
+                key={warehouse.id}
+                value={warehouse.id}
+              >
+                {warehouse.name} ({warehouse.code})
+              </option>
+            ))}
+          </select>
+        </div>
 
+        <div>
+          <label className="mb-1 block text-sm font-medium">
+            Quantity
+          </label>
 
+          <input
+            type="number"
+            min="0.01"
+            step="0.01"
+            value={quantity}
+            onChange={(event) =>
+              setQuantity(event.target.value)
+            }
+            disabled={saving}
+            className="w-full rounded border px-3 py-2"
+          />
+        </div>
 
-      <input
+        <div>
+          <label className="mb-1 block text-sm font-medium">
+            Reason
+          </label>
 
-        placeholder="From store"
+          <input
+            type="text"
+            value={reason}
+            onChange={(event) =>
+              setReason(event.target.value)
+            }
+            disabled={saving}
+            className="w-full rounded border px-3 py-2"
+            placeholder="Optional"
+          />
+        </div>
 
-        value={fromStoreId}
+        <div className="flex justify-end gap-2">
+          <button
+            type="button"
+            onClick={onClose}
+            disabled={saving}
+            className="rounded border px-4 py-2"
+          >
+            Cancel
+          </button>
 
-        onChange={(e) =>
-          setFromStoreId(
-            e.target.value,
-          )
-        }
-
-        className="border p-2"
-
-      />
-
-
-
-      <input
-
-        placeholder="To store"
-
-        value={toStoreId}
-
-        onChange={(e) =>
-          setToStoreId(
-            e.target.value,
-          )
-        }
-
-        className="border p-2"
-
-      />
-
-
-
-      <input
-
-        type="number"
-
-        placeholder="Quantity"
-
-        value={quantity}
-
-        onChange={(e) =>
-          setQuantity(
-            Number(e.target.value),
-          )
-        }
-
-        className="border p-2"
-
-      />
-
-
-
-      <div className="flex gap-2">
-
-
-        <button
-
-          onClick={handleSubmit}
-
-          className="border px-4 py-2"
-
-        >
-
-          Transfer
-
-        </button>
-
-
-
-        <button
-
-          onClick={onClose}
-
-          className="border px-4 py-2"
-
-        >
-
-          Cancel
-
-        </button>
-
-
-      </div>
-
-
+          <button
+            type="submit"
+            disabled={
+              saving ||
+              loading ||
+              warehouses.length === 0
+            }
+            className="rounded bg-black px-4 py-2 text-white disabled:opacity-50"
+          >
+            {saving ? "Transferring..." : "Transfer"}
+          </button>
+        </div>
+      </form>
     </div>
-
   );
-
 }
+
