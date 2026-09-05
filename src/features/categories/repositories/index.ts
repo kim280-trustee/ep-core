@@ -1,5 +1,2 @@
-export * from "./category.repository";
-
-export * from "./in-memory.category.repository";
-
-export * from "./repository.provider";
+﻿export { categoryRepository } from "./category.repository";
+export type { ICategoryRepository } from "./category.repository";

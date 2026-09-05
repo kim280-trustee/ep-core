@@ -1,30 +1,61 @@
+﻿import {
+  useEffect,
+  useState,
+} from "react";
+
 import {
   useNavigate,
   useParams,
 } from "react-router-dom";
 
-import {
-  CategoryForm,
-} from "../components/CategoryForm";
+import { CategoryForm } from "../components/CategoryForm";
+import { categoryService } from "../services/category.service";
 
-import {
-  categoryService,
-} from "../services/category.service";
+import type { Category } from "../types/category.types";
 
-import {
-  storeContext,
-} from "../../../core/store/store.context";
+import { storeContext } from "../../../core/store/store.context";
 
 export function EditCategoryPage() {
-  const navigate =
-    useNavigate();
+  const navigate = useNavigate();
+  const { id } = useParams();
 
-  const {
-    id,
-  } = useParams();
+  const context = storeContext.getStore();
 
-  const context =
-    storeContext.getStore();
+  const [category, setCategory] =
+    useState<Category | null>(null);
+
+  const [loading, setLoading] =
+    useState(true);
+
+  useEffect(() => {
+    let mounted = true;
+
+    async function load() {
+      if (!context || !id) {
+        if (mounted) {
+          setLoading(false);
+        }
+        return;
+      }
+
+      const result =
+        await categoryService.getCategoryById(
+          context.tenantId,
+          id
+        );
+
+      if (mounted) {
+        setCategory(result);
+        setLoading(false);
+      }
+    }
+
+    void load();
+
+    return () => {
+      mounted = false;
+    };
+  }, [context?.tenantId, id]);
 
   if (!context) {
     return (
@@ -34,18 +65,15 @@ export function EditCategoryPage() {
     );
   }
 
-  const tenantId =
-    context.tenantId;
+  if (loading) {
+    return (
+      <div className="p-6">
+        Loading category...
+      </div>
+    );
+  }
 
-  const foundCategory =
-    id
-      ? categoryService.getCategoryById(
-          tenantId,
-          id,
-        )
-      : undefined;
-
-  if (!foundCategory) {
+  if (!category) {
     return (
       <div className="p-6">
         Category not found
@@ -53,54 +81,30 @@ export function EditCategoryPage() {
     );
   }
 
-  const category =
-    foundCategory;
-
-  function handleSubmit(
-    data: Parameters<
-      typeof categoryService.createCategory
-    >[0],
-  ) {
-    categoryService.updateCategory(
-      tenantId,
-      category.id,
-      {
-        name:
-          data.name,
-
-        description:
-          data.description,
-      },
-    );
-
-    navigate(
-      "/categories",
-    );
-  }
-
   return (
     <div className="p-6">
-      <h1
-        className="
-          text-2xl
-          font-bold
-          mb-6
-        "
-      >
+      <h1 className="text-2xl font-bold mb-6">
         Edit Category
       </h1>
 
       <CategoryForm
         defaultValues={{
-          name:
-            category.name,
-
-          description:
-            category.description,
+          name: category.name,
+          description: category.description,
         }}
-        onSubmit={
-          handleSubmit
-        }
+        onSubmit={async (data) => {
+          await categoryService.updateCategory(
+            context.tenantId,
+            context.storeId,
+            category.id,
+            {
+              name: data.name,
+              description: data.description,
+            }
+          );
+
+          navigate("/categories");
+        }}
       />
     </div>
   );

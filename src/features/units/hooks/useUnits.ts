@@ -21,6 +21,7 @@ import {
 } from "@/core/store/store.context";
 
 export function useUnits() {
+
   const {
     units,
     loadUnits,
@@ -39,9 +40,14 @@ export function useUnits() {
     context?.storeId ?? "";
 
   useEffect(() => {
+
     if (tenantId && storeId) {
-      loadUnits();
+      loadUnits(
+        tenantId,
+        storeId,
+      );
     }
+
   }, [
     tenantId,
     storeId,
@@ -53,6 +59,7 @@ export function useUnits() {
       typeof createUnitStore
     >[0],
   ) {
+
     if (!tenantId || !storeId) {
       throw new Error(
         "Store context is not initialized.",
@@ -64,26 +71,47 @@ export function useUnits() {
       tenantId,
       storeId,
     );
+
   }
 
   function updateUnitById(
     id: string,
     updates: Parameters<
       typeof updateUnitStore
-    >[1],
+    >[3],
   ) {
+
+    if (!tenantId || !storeId) {
+      throw new Error(
+        "Store context is not initialized.",
+      );
+    }
+
     return updateUnitStore(
+      tenantId,
+      storeId,
       id,
       updates,
     );
+
   }
 
   function deleteUnit(
     id: string,
   ) {
+
+    if (!tenantId || !storeId) {
+      throw new Error(
+        "Store context is not initialized.",
+      );
+    }
+
     return deleteUnitStore(
+      tenantId,
+      storeId,
       id,
     );
+
   }
 
   return {

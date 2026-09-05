@@ -1,24 +1,5 @@
-/**
- * ============================================================
- * E&P Technologies
- * E&P Smart POS
- * Categories Module
- *
- * Category Business Service
- * ============================================================
- */
-
-import {
-  categoryRepository,
-} from "../repositories";
-
-import {
-  categorySchema,
-} from "../validators/category.schema";
-
-import {
-  CategoryStatus,
-} from "../types/category.types";
+﻿import { categoryRepository } from "../repositories/category.repository";
+import { categorySchema } from "../validators/category.schema";
 
 import type {
   Category,
@@ -26,188 +7,165 @@ import type {
   UpdateCategoryDto,
 } from "../types/category.types";
 
-class CategoryService {
+import { CategoryStatus } from "../types/category.types";
 
-  private generateId(): string {
-    return crypto.randomUUID();
-  }
+function generateId(): string {
+  return crypto.randomUUID();
+}
 
-  getCategories(
+export const categoryService = {
+
+  async getCategories(
     tenantId: string,
-  ): Category[] {
-    return categoryRepository.findAll(
+    storeId: string
+  ): Promise<Category[]> {
+    return await categoryRepository.findAll(
       tenantId,
+      storeId
     );
-  }
+  },
 
-  getCategoryById(
+  async getCategoryById(
     tenantId: string,
-    id: string,
-  ): Category | undefined {
-    return categoryRepository.findById(
+    id: string
+  ): Promise<Category | null> {
+    return await categoryRepository.findById(
       tenantId,
-      id,
+      id
     );
-  }
+  },
 
-  createCategory(
-    input: CreateCategoryDto,
+  async createCategory(
+    data: CreateCategoryDto,
     tenantId: string,
-    storeId: string,
-  ): Category {
-
-    if (!tenantId) {
-      throw new Error(
-        "Tenant ID is required.",
-      );
+    storeId: string
+  ): Promise<Category> {
+    if (!tenantId || !storeId) {
+      throw new Error("Tenant and store are required.");
     }
 
-    if (!storeId) {
-      throw new Error(
-        "Store ID is required.",
-      );
-    }
+    const parsed = categorySchema.parse(data);
 
-    const validated =
-      categorySchema.parse(input);
+    const categories = await categoryRepository.findAll(
+      tenantId,
+      storeId
+    );
 
-    const categories =
-      categoryRepository.findAll(
-        tenantId,
-      );
-
-    const duplicate =
-      categories.find(
-        (category) =>
-          category.storeId === storeId &&
-          category.name
-            .trim()
-            .toLowerCase() ===
-            validated.name
-              .trim()
-              .toLowerCase(),
-      );
+    const duplicate = categories.find(
+      (category) =>
+        category.name.trim().toLowerCase() ===
+        parsed.name.trim().toLowerCase()
+    );
 
     if (duplicate) {
-      throw new Error(
-        "Category with this name already exists.",
-      );
+      throw new Error("A category with this name already exists.");
     }
 
-    const now =
-      new Date().toISOString();
+    const now = new Date().toISOString();
 
     const category: Category = {
-      id: this.generateId(),
+      id: generateId(),
       tenantId,
       storeId,
-      name: validated.name.trim(),
-      description:
-        validated.description?.trim() ??
-        null,
-      parentId:
-        validated.parentId ?? null,
-      status:
-        CategoryStatus.ACTIVE,
+      name: parsed.name.trim(),
+      description: parsed.description ?? null,
+      parentId: parsed.parentId ?? null,
+      status: CategoryStatus.ACTIVE,
       createdAt: now,
       updatedAt: now,
     };
 
-    return categoryRepository.create(
-      category,
-    );
-  }
+    return await categoryRepository.create(category);
+  },
 
-  updateCategory(
+  async updateCategory(
     tenantId: string,
+    storeId: string,
     id: string,
-    updates: UpdateCategoryDto,
-  ): Category | undefined {
-
-    if (!tenantId) {
-      throw new Error(
-        "Tenant ID is required.",
-      );
-    }
-
-    const existing =
-      categoryRepository.findById(
-        tenantId,
-        id,
-      );
+    updates: UpdateCategoryDto
+  ): Promise<Category> {
+    const existing = await categoryRepository.findById(
+      tenantId,
+      id
+    );
 
     if (!existing) {
-      return undefined;
+      throw new Error("Category not found.");
     }
 
-    let validatedName:
-      string | undefined;
-
-    if (updates.name !== undefined) {
-      validatedName =
-        categorySchema.parse({
-          name: updates.name,
-        }).name;
+    if (existing.storeId !== storeId) {
+      throw new Error("Category does not belong to the selected store.");
     }
 
-    if (validatedName !== undefined) {
+    const parsed = categorySchema.partial().parse(updates);
+    const parsedName = parsed.name;
 
-      const duplicate =
-        categoryRepository
-          .findAll(tenantId)
-          .find(
-            (category) =>
-              category.id !== id &&
-              category.storeId ===
-                existing.storeId &&
-              category.name
-                .trim()
-                .toLowerCase() ===
-                validatedName!
-                  .trim()
-                  .toLowerCase(),
-          );
+    const categories = await categoryRepository.findAll(
+      tenantId,
+      storeId
+    );
+
+    if (parsedName !== undefined) {
+      const duplicate = categories.find(
+        (category) =>
+          category.id !== id &&
+          category.name.trim().toLowerCase() ===
+          parsedName.trim().toLowerCase()
+      );
 
       if (duplicate) {
-        throw new Error(
-          "Category with this name already exists.",
-        );
+        throw new Error("A category with this name already exists.");
       }
     }
 
-    return categoryRepository.update(
-      tenantId,
-      id,
-      {
-        ...updates,
-        ...(validatedName !== undefined
-          ? {
-              name: validatedName,
-            }
-          : {}),
-        updatedAt:
-          new Date().toISOString(),
-      },
-    );
-  }
+    const updateData: Partial<Category> = {};
 
-  deleteCategory(
-    tenantId: string,
-    id: string,
-  ): boolean {
-
-    if (!tenantId) {
-      throw new Error(
-        "Tenant ID is required.",
-      );
+    if (parsedName !== undefined) {
+      updateData.name = parsedName.trim();
     }
 
-    return categoryRepository.delete(
-      tenantId,
-      id,
-    );
-  }
-}
+    if (parsed.description !== undefined) {
+      updateData.description = parsed.description ?? null;
+    }
 
-export const categoryService =
-  new CategoryService();
+    if (parsed.parentId !== undefined) {
+      updateData.parentId = parsed.parentId ?? null;
+    }
+
+    if (updates.status !== undefined) {
+      updateData.status = updates.status;
+    }
+
+    return await categoryRepository.update(
+      tenantId,
+      storeId,
+      id,
+      updateData
+    );
+  },
+
+  async deleteCategory(
+    tenantId: string,
+    storeId: string,
+    id: string
+  ): Promise<void> {
+    const existing = await categoryRepository.findById(
+      tenantId,
+      id
+    );
+
+    if (!existing) {
+      throw new Error("Category not found.");
+    }
+
+    if (existing.storeId !== storeId) {
+      throw new Error("Category does not belong to the selected store.");
+    }
+
+    await categoryRepository.delete(
+      tenantId,
+      storeId,
+      id
+    );
+  },
+};

@@ -1,8 +1,7 @@
-/**
+﻿/**
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
- * Categories Module
  *
  * In Memory Category Repository
  * ============================================================
@@ -12,13 +11,8 @@ import type {
   Category,
 } from "../types/category.types";
 
-import type {
-  ICategoryRepository,
-} from "./category.repository";
+class InMemoryCategoryRepository {
 
-class InMemoryCategoryRepository
-  implements ICategoryRepository
-{
   private categories: Category[] = [];
 
   findAll(
@@ -45,7 +39,6 @@ class InMemoryCategoryRepository
     category: Category,
   ): Category {
     this.categories.push(category);
-
     return category;
   }
 
@@ -54,6 +47,7 @@ class InMemoryCategoryRepository
     id: string,
     updates: Partial<Category>,
   ): Category | undefined {
+
     const index =
       this.categories.findIndex(
         (category) =>
@@ -83,7 +77,8 @@ class InMemoryCategoryRepository
         new Date().toISOString(),
     };
 
-    this.categories[index] = updated;
+    this.categories[index] =
+      updated;
 
     return updated;
   }
@@ -92,6 +87,7 @@ class InMemoryCategoryRepository
     tenantId: string,
     id: string,
   ): boolean {
+
     const index =
       this.categories.findIndex(
         (category) =>

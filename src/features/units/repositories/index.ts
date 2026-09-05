@@ -1,5 +1,2 @@
-export * from "./unit.repository";
-
-export * from "./in-memory.unit.repository";
-
-export * from "./repository.provider";
+﻿export { unitRepository } from "./unit.repository";
+export type { IUnitRepository } from "./unit.repository";

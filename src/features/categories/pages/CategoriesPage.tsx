@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
@@ -22,12 +22,10 @@ import {
   storeContext,
 } from "../../../core/store/store.context";
 
-
 export function CategoriesPage() {
 
   const navigate =
     useNavigate();
-
 
   const {
     categories,
@@ -38,55 +36,41 @@ export function CategoriesPage() {
   } =
     useCategoriesStore();
 
-
   const context =
     storeContext.getStore();
-
 
   const tenantId =
     context?.tenantId ?? "";
 
+  const storeId =
+    context?.storeId ?? "";
 
-  /*
-   * Load categories.
-   *
-   * The hook must always be called,
-   * even when store context is unavailable.
-   */
   useEffect(() => {
 
-    if (!tenantId) {
+    if (!tenantId || !storeId) {
       return;
     }
 
     loadCategories(
       tenantId,
+      storeId,
     );
 
   }, [
     loadCategories,
     tenantId,
+    storeId,
   ]);
 
-
-  /*
-   * Store context is required for
-   * category operations.
-   */
   if (!context) {
 
     return (
-
       <div className="p-6">
-
         Store context is not initialized.
-
       </div>
-
     );
 
   }
-
 
   const filteredCategories =
     categories.filter(
@@ -95,33 +79,23 @@ export function CategoriesPage() {
         const searchTerm =
           search.toLowerCase();
 
-
         return (
-
           category.name
             .toLowerCase()
-            .includes(
-              searchTerm,
-            )
-
+            .includes(searchTerm)
           ||
-
           (
             category.description ??
             ""
           )
             .toLowerCase()
-            .includes(
-              searchTerm,
-            )
-
+            .includes(searchTerm)
         );
 
       },
     );
 
-
-  function handleDelete(
+  async function handleDelete(
     id: string,
   ) {
 
@@ -130,25 +104,21 @@ export function CategoriesPage() {
         "Are you sure you want to delete this category?",
       );
 
-
     if (!confirmed) {
       return;
     }
 
-
-    deleteCategory(
+    await deleteCategory(
       tenantId,
+      storeId,
       id,
     );
 
   }
 
-
   return (
 
     <div className="p-6">
-
-      {/* Header */}
 
       <div
         className="
@@ -183,7 +153,6 @@ export function CategoriesPage() {
 
         </div>
 
-
         <button
           type="button"
           onClick={() =>
@@ -207,9 +176,6 @@ export function CategoriesPage() {
 
       </div>
 
-
-      {/* Search */}
-
       <div className="mb-6">
 
         <input
@@ -220,9 +186,7 @@ export function CategoriesPage() {
               event.target.value,
             )
           }
-          placeholder="
-            Search categories...
-          "
+          placeholder="Search categories..."
           className="
             w-full
             max-w-md
@@ -239,9 +203,6 @@ export function CategoriesPage() {
         />
 
       </div>
-
-
-      {/* Empty State */}
 
       {filteredCategories.length === 0 ? (
 
@@ -279,8 +240,6 @@ export function CategoriesPage() {
         </div>
 
       ) : (
-
-        /* Category Table */
 
         <div
           className="
@@ -348,7 +307,6 @@ export function CategoriesPage() {
 
             </thead>
 
-
             <tbody>
 
               {filteredCategories.map(
@@ -373,7 +331,6 @@ export function CategoriesPage() {
                       {category.name}
                     </td>
 
-
                     <td
                       className="
                         px-4
@@ -386,7 +343,6 @@ export function CategoriesPage() {
                         "—"
                       }
                     </td>
-
 
                     <td
                       className="
@@ -423,7 +379,6 @@ export function CategoriesPage() {
                         >
                           Edit
                         </button>
-
 
                         <button
                           type="button"

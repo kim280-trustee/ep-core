@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
@@ -7,186 +7,170 @@
  */
 
 import {
+  useEffect,
+  useState,
+} from "react";
+
+import {
   useNavigate,
   useParams,
 } from "react-router-dom";
-
 
 import {
   UnitForm,
 } from "../components/UnitForm";
 
-
 import {
   useUnits,
 } from "../hooks/useUnits";
 
+import {
+  unitService,
+} from "../services/unit.service";
 
+import {
+  storeContext,
+} from "../../../core/store/store.context";
 
 export function EditUnitPage() {
 
-
   const navigate =
     useNavigate();
-
-
 
   const {
     id,
   } = useParams();
 
-
-
-
   const {
-
-    units,
-
     updateUnitById,
-
   } =
-  useUnits();
+    useUnits();
 
+  const context =
+    storeContext.getStore();
 
+  const tenantId =
+    context?.tenantId ?? "";
 
+  const [unit, setUnit] =
+    useState<
+      Awaited<
+        ReturnType<
+          typeof unitService.getUnitById
+        >
+      >
+    >(null);
 
+  const [loading, setLoading] =
+    useState(true);
 
-  const existingUnit =
+  useEffect(() => {
 
-    units.find(
+    let active = true;
 
-      (item) =>
+    async function load() {
 
-        item.id === id,
+      if (!tenantId || !id) {
+        if (active) {
+          setLoading(false);
+        }
+        return;
+      }
 
-    );
+      const result =
+        await unitService.getUnitById(
+          tenantId,
+          id,
+        );
 
+      if (active) {
+        setUnit(result);
+        setLoading(false);
+      }
 
+    }
 
+    void load();
 
+    return () => {
+      active = false;
+    };
 
-  if (!existingUnit) {
+  }, [
+    tenantId,
+    id,
+  ]);
 
+  if (loading) {
 
     return (
-
       <div className="p-6">
-
-        Unit not found
-
+        Loading unit...
       </div>
-
     );
 
   }
 
+  if (!unit) {
 
+    return (
+      <div className="p-6">
+        Unit not found
+      </div>
+    );
 
+  }
 
-
-  const unit = existingUnit;
-
-
-
-
-
-  function handleSubmit(
-
+  async function handleSubmit(
     data: Parameters<
       typeof updateUnitById
     >[1],
-
   ) {
 
+    const unitId = unit?.id;
 
-    updateUnitById(
+    if (!unitId) {
+      return;
+    }
 
-      unit.id,
-
-      {
-
-
-        name:
-          data.name,
-
-
-        symbol:
-          data.symbol,
-
-
-        description:
-          data.description ?? null,
-
-
-      },
-
+    await updateUnitById(
+      unitId,
+      data,
     );
-
-
 
     navigate("/units");
 
-
   }
-
-
-
-
 
   return (
 
     <div className="p-6">
 
-
       <h1
-
         className="
+          mb-6
           text-2xl
           font-bold
-          mb-6
         "
-
       >
-
         Edit Unit
-
       </h1>
 
-
-
-
-
       <UnitForm
-
-
         defaultValues={{
-
-
           name:
             unit.name,
-
-
           symbol:
             unit.symbol,
-
-
           description:
-            unit.description ?? undefined,
-
-
+            unit.description ??
+            undefined,
         }}
-
-
-
         onSubmit={handleSubmit}
-
-
       />
-
 
     </div>
 
   );
-
-
 }
+

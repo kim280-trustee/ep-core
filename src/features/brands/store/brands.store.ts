@@ -1,274 +1,107 @@
-/**
- * ============================================================
- * E&P Technologies
- * E&P Smart POS
- * Brands Store
- * ============================================================
- */
+﻿import { create } from "zustand";
 
-
-import {
-
-  create,
-
-} from "zustand";
-
-
-
-import {
-
-  brandService,
-
-} from "../services/brand.service";
-
-
+import { brandService } from "../services/brand.service";
 
 import type {
-
   Brand,
-
   CreateBrandDto,
-
   UpdateBrandDto,
-
 } from "../types/brand.types";
 
-
-
-
-
-
-
 interface BrandsStore {
+  brands: Brand[];
+  search: string;
 
-
-  brands:Brand[];
-
-
-  search:string;
-
-
-
-
-  loadBrands():void;
-
-
+  loadBrands(
+    tenantId: string,
+    storeId: string
+  ): Promise<void>;
 
   createBrand(
-
-    input:CreateBrandDto,
-
-    tenantId:string,
-
-    storeId:string,
-
-  ):void;
-
-
-
+    input: CreateBrandDto,
+    tenantId: string,
+    storeId: string
+  ): Promise<void>;
 
   updateBrand(
-
-    id:string,
-
-    updates:UpdateBrandDto,
-
-  ):void;
-
-
-
+    tenantId: string,
+    storeId: string,
+    id: string,
+    updates: UpdateBrandDto
+  ): Promise<void>;
 
   deleteBrand(
+    tenantId: string,
+    storeId: string,
+    id: string
+  ): Promise<void>;
 
-    id:string,
-
-  ):void;
-
-
-
-
-  setSearch(
-
-    value:string,
-
-  ):void;
-
-
-
+  setSearch(value: string): void;
 }
 
+export const useBrandsStore = create<BrandsStore>((set) => ({
 
+  brands: [],
 
+  search: "",
 
-
-
-
-export const useBrandsStore =
-
-create<BrandsStore>((set)=>({
-
-
-
-  brands:[],
-
-
-
-  search:"",
-
-
-
-
-
-
-
-  loadBrands(){
-
-
-    set({
-
-      brands:
-
-        brandService.getBrands(),
-
-    });
-
-
-  },
-
-
-
-
-
-
-
-  createBrand(
-
-    input,
-
-    tenantId,
-
-    storeId,
-
-  ){
-
-
-
-    brandService.createBrand(
-
+  async loadBrands(tenantId, storeId) {
+    const brands = await brandService.getBrands(
       tenantId,
+      storeId
+    );
 
-      storeId,
+    set({ brands });
+  },
 
+  async createBrand(input, tenantId, storeId) {
+    await brandService.createBrand(
       input,
-
+      tenantId,
+      storeId
     );
 
+    const brands = await brandService.getBrands(
+      tenantId,
+      storeId
+    );
 
-
-    set({
-
-      brands:
-
-        brandService.getBrands(),
-
-    });
-
-
+    set({ brands });
   },
 
-
-
-
-
-
-
-  updateBrand(
-
-    id,
-
-    updates,
-
-  ){
-
-
-
-    brandService.updateBrand(
-
+  async updateBrand(tenantId, storeId, id, updates) {
+    await brandService.updateBrand(
+      tenantId,
+      storeId,
       id,
-
-      updates,
-
+      updates
     );
 
-
-
-    set({
-
-      brands:
-
-        brandService.getBrands(),
-
-    });
-
-
-  },
-
-
-
-
-
-
-
-  deleteBrand(
-
-    id,
-
-  ){
-
-
-
-    brandService.deleteBrand(
-
-      id,
-
+    const brands = await brandService.getBrands(
+      tenantId,
+      storeId
     );
 
-
-
-    set({
-
-      brands:
-
-        brandService.getBrands(),
-
-    });
-
-
+    set({ brands });
   },
 
+  async deleteBrand(tenantId, storeId, id) {
+    await brandService.deleteBrand(
+      tenantId,
+      storeId,
+      id
+    );
 
+    const brands = await brandService.getBrands(
+      tenantId,
+      storeId
+    );
 
-
-
-
-
-  setSearch(
-
-    value,
-
-  ){
-
-
-
-    set({
-
-      search:value,
-
-    });
-
-
+    set({ brands });
   },
 
-
+  setSearch(value) {
+    set({ search: value });
+  },
 
 }));

@@ -1,18 +1,6 @@
-/**
- * ============================================================
- * E&P Technologies
- * E&P Smart POS
- * Categories Store
- * ============================================================
- */
+﻿import { create } from "zustand";
 
-import {
-  create,
-} from "zustand";
-
-import {
-  categoryService,
-} from "../services/category.service";
+import { categoryService } from "../services/category.service";
 
 import type {
   Category,
@@ -22,117 +10,112 @@ import type {
 
 interface CategoriesStore {
   categories: Category[];
-
   search: string;
 
-  loadCategories: (
+  loadCategories(
     tenantId: string,
-  ) => void;
+    storeId: string
+  ): Promise<void>;
 
-  createCategory: (
+  createCategory(
     input: CreateCategoryDto,
     tenantId: string,
+    storeId: string
+  ): Promise<void>;
+
+  updateCategory(
+    tenantId: string,
     storeId: string,
-  ) => void;
-
-  updateCategory: (
-    tenantId: string,
     id: string,
-    updates: UpdateCategoryDto,
-  ) => void;
+    updates: UpdateCategoryDto
+  ): Promise<void>;
 
-  deleteCategory: (
+  deleteCategory(
     tenantId: string,
-    id: string,
-  ) => void;
+    storeId: string,
+    id: string
+  ): Promise<void>;
 
-  setSearch: (
-    value: string,
-  ) => void;
+  setSearch(value: string): void;
 }
 
 export const useCategoriesStore =
-  create<CategoriesStore>(
-    (set) => ({
+  create<CategoriesStore>((set) => ({
 
-      categories: [],
+    categories: [],
 
-      search: "",
+    search: "",
 
-      loadCategories(
-        tenantId,
-      ) {
-        set({
-          categories:
-            categoryService.getCategories(
-              tenantId,
-            ),
-        });
-      },
+    async loadCategories(tenantId, storeId) {
+      const categories =
+        await categoryService.getCategories(
+          tenantId,
+          storeId
+        );
 
-      createCategory(
+      set({ categories });
+    },
+
+    async createCategory(input, tenantId, storeId) {
+      await categoryService.createCategory(
         input,
         tenantId,
+        storeId
+      );
+
+      const categories =
+        await categoryService.getCategories(
+          tenantId,
+          storeId
+        );
+
+      set({ categories });
+    },
+
+    async updateCategory(
+      tenantId,
+      storeId,
+      id,
+      updates
+    ) {
+      await categoryService.updateCategory(
+        tenantId,
         storeId,
-      ) {
-
-        categoryService.createCategory(
-          input,
-          tenantId,
-          storeId,
-        );
-
-        set({
-          categories:
-            categoryService.getCategories(
-              tenantId,
-            ),
-        });
-      },
-
-      updateCategory(
-        tenantId,
         id,
-        updates,
-      ) {
+        updates
+      );
 
-        categoryService.updateCategory(
+      const categories =
+        await categoryService.getCategories(
           tenantId,
-          id,
-          updates,
+          storeId
         );
 
-        set({
-          categories:
-            categoryService.getCategories(
-              tenantId,
-            ),
-        });
-      },
+      set({ categories });
+    },
 
-      deleteCategory(
+    async deleteCategory(
+      tenantId,
+      storeId,
+      id
+    ) {
+      await categoryService.deleteCategory(
         tenantId,
-        id,
-      ) {
+        storeId,
+        id
+      );
 
-        categoryService.deleteCategory(
+      const categories =
+        await categoryService.getCategories(
           tenantId,
-          id,
+          storeId
         );
 
-        set({
-          categories:
-            categoryService.getCategories(
-              tenantId,
-            ),
-        });
-      },
+      set({ categories });
+    },
 
-      setSearch(value) {
-        set({
-          search: value,
-        });
-      },
+    setSearch(value) {
+      set({ search: value });
+    },
 
-    }),
-  );
+  }));

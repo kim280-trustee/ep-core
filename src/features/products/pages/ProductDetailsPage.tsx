@@ -7,6 +7,7 @@
  */
 
 import {
+  useEffect,
   useState,
 } from "react";
 
@@ -23,6 +24,11 @@ import { ProductStatusBadge } from "../components/ProductStatusBadge";
 import { productService } from "../services/product.service";
 
 import { useAuth } from "@/core/auth";
+import { storeContext } from "@/core/store/store.context";
+
+import { useCategories } from "@/features/categories";
+import { useBrands } from "@/features/brands";
+import { useUnits } from "@/features/units";
 
 export function ProductDetailsPage() {
   const { id } =
@@ -40,6 +46,12 @@ export function ProductDetailsPage() {
   const productId =
     id ?? "";
 
+  const store =
+    storeContext.getStore();
+
+  const storeId =
+    store?.storeId ?? "";
+
   const [deleting, setDeleting] =
     useState(false);
 
@@ -54,6 +66,41 @@ export function ProductDetailsPage() {
     tenantId,
     productId,
   );
+
+  const {
+    categories,
+    loadCategories,
+  } = useCategories();
+
+  const {
+    brands,
+    loadBrands,
+  } = useBrands();
+
+  const {
+    units,
+  } = useUnits();
+
+  useEffect(() => {
+    if (!tenantId || !storeId) {
+      return;
+    }
+
+    loadCategories(
+      tenantId,
+      storeId,
+    );
+
+    loadBrands(
+      tenantId,
+      storeId,
+    );
+  }, [
+    tenantId,
+    storeId,
+    loadCategories,
+    loadBrands,
+  ]);
 
   async function handleDelete() {
     if (!product) {
@@ -166,6 +213,33 @@ export function ProductDetailsPage() {
     Number(
       product.inventory?.stockQuantity ?? 0,
     );
+
+  const categoryName =
+    categories.find(
+      (category) =>
+        category.id === product.categoryId,
+    )?.name ??
+    product.categoryId ??
+    "-";
+
+  const brandName =
+    brands.find(
+      (brand) =>
+        brand.id === product.brandId,
+    )?.name ??
+    product.brandId ??
+    "-";
+
+  const unit =
+    units.find(
+      (item) =>
+        item.id === product.unitId,
+    );
+
+  const unitName =
+    unit
+      ? `${unit.name} (${unit.symbol})`
+      : product.unitId ?? "-";
 
   return (
     <div className="space-y-6">
@@ -370,7 +444,7 @@ export function ProductDetailsPage() {
               </p>
 
               <p className="mt-1">
-                {product.categoryId ?? "-"}
+                {categoryName}
               </p>
             </div>
 
@@ -380,7 +454,7 @@ export function ProductDetailsPage() {
               </p>
 
               <p className="mt-1">
-                {product.brandId ?? "-"}
+                {brandName}
               </p>
             </div>
 
@@ -390,7 +464,7 @@ export function ProductDetailsPage() {
               </p>
 
               <p className="mt-1">
-                {product.unitId ?? "-"}
+                {unitName}
               </p>
             </div>
 
