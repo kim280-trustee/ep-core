@@ -1,124 +1,52 @@
-import type {
-  GoodsReceipt,
-} from "../types/goods-receipt.types";
+import type { GoodsReceipt } from "../types/goods-receipt.types";
+import type { GoodsReceiptRepository } from "./goods-receipt.repository";
 
+class InMemoryGoodsReceiptRepository implements GoodsReceiptRepository {
+  private receipts: GoodsReceipt[] = [];
 
-import type {
-  GoodsReceiptRepository,
-} from "./goods-receipt.repository";
-
-
-class InMemoryGoodsReceiptRepository
-implements GoodsReceiptRepository {
-
-
-  private receipts:
-    GoodsReceipt[] = [];
-
-
-  findAll() {
-
-    return this.receipts;
-
+  async findAll(tenantId: string) {
+    return this.receipts.filter((receipt) => receipt.tenantId === tenantId);
   }
 
-
-  findById(
-    id: string,
-  ) {
-
+  async findById(tenantId: string, id: string) {
     return this.receipts.find(
-
-      (receipt) =>
-
-        receipt.id === id,
-
+      (receipt) => receipt.tenantId === tenantId && receipt.id === id
     );
-
   }
 
-
-  findByPurchaseOrder(
-    purchaseOrderId: string,
-  ) {
-
+  async findByPurchaseOrder(tenantId: string, purchaseOrderId: string) {
     return this.receipts.filter(
-
       (receipt) =>
-
-        receipt.purchaseOrderId === purchaseOrderId,
-
+        receipt.tenantId === tenantId &&
+        receipt.purchaseOrderId === purchaseOrderId
     );
-
   }
 
-
-  create(
-    receipt: GoodsReceipt,
-  ) {
-
-    this.receipts.push(
-      receipt,
-    );
-
+  async create(receipt: GoodsReceipt) {
+    this.receipts.push(receipt);
     return receipt;
-
   }
 
-
-  update(
-    id: string,
-    receipt: GoodsReceipt,
-  ) {
-
-    const index =
-
-      this.receipts.findIndex(
-
-        (item) =>
-
-          item.id === id,
-
-      );
-
+  async update(tenantId: string, id: string, receipt: GoodsReceipt) {
+    const index = this.receipts.findIndex(
+      (item) => item.tenantId === tenantId && item.id === id
+    );
 
     if (index === -1) {
-
-      throw new Error(
-
-        "Goods receipt not found.",
-
-      );
-
+      throw new Error("Goods receipt not found.");
     }
 
-
     this.receipts[index] = receipt;
-
     return receipt;
-
   }
 
-
-  delete(
-    id: string,
-  ) {
-
-    this.receipts =
-
-      this.receipts.filter(
-
-        (receipt) =>
-
-          receipt.id !== id,
-
-      );
-
+  async delete(tenantId: string, id: string) {
+    this.receipts = this.receipts.filter(
+      (receipt) =>
+        !(receipt.tenantId === tenantId && receipt.id === id)
+    );
   }
-
 }
 
-
 export const inMemoryGoodsReceiptRepository =
-
   new InMemoryGoodsReceiptRepository();

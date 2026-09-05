@@ -2,21 +2,13 @@
   create,
 } from "zustand";
 
-
 import {
   purchaseOrderService,
 } from "../services/purchase-order.service";
 
-
-import {
-  purchaseOrderItemService,
-} from "../services/purchase-order-item.service";
-
-
 import type {
   PurchaseOrder,
 } from "../types/purchase-order.types";
-
 
 import type {
   PurchaseOrderItem,
@@ -24,17 +16,12 @@ import type {
 
 
 interface CreatePurchaseOrderInput {
-
   tenantId: string;
-
   storeId: string | null;
-
   supplierId: string;
-
   warehouseId?: string | null;
-
+  currency?: string;
   notes?: string | null;
-
 }
 
 
@@ -44,53 +31,43 @@ interface PurchaseOrderState {
 
   tenantId: string | null;
 
-
   loadOrders(
     tenantId?: string,
   ): Promise<void>;
-
 
   getOrderById(
     id: string,
   ): PurchaseOrder | undefined;
 
-
   createDraft(
     input: CreatePurchaseOrderInput,
   ): Promise<PurchaseOrder>;
-
 
   updateOrder(
     id: string,
     updates: Partial<PurchaseOrder>,
   ): Promise<void>;
 
-
   addItem(
     orderId: string,
     item: PurchaseOrderItem,
   ): Promise<void>;
 
-
   submitOrder(
     id: string,
   ): Promise<void>;
-
 
   approveOrder(
     id: string,
   ): Promise<void>;
 
-
   cancelOrder(
     id: string,
   ): Promise<void>;
 
-
   receiveOrder(
     id: string,
   ): Promise<void>;
-
 }
 
 
@@ -99,15 +76,12 @@ function requireTenantId(
 ): string {
 
   if (!tenantId) {
-
     throw new Error(
       "Tenant ID is required.",
     );
-
   }
 
   return tenantId;
-
 }
 
 
@@ -125,53 +99,22 @@ export const usePurchaseOrderStore =
       ) => {
 
         const resolvedTenantId =
-          tenantId ??
-          get().tenantId;
-
-
-        const resolved =
           requireTenantId(
-            resolvedTenantId,
+            tenantId ??
+            get().tenantId,
           );
-
 
         const orders =
           await purchaseOrderService.getOrders(
-            resolved,
+            resolvedTenantId,
           );
-
-
-        const hydratedOrders =
-          await Promise.all(
-            orders.map(
-              async (order) => {
-
-                const items =
-                  await purchaseOrderItemService.getItems(
-                    resolved,
-                    order.id,
-                  );
-
-                return {
-                  ...order,
-                  items,
-                };
-
-              },
-            ),
-          );
-
 
         set({
-
           tenantId:
-            resolved,
+            resolvedTenantId,
 
-          orders:
-            hydratedOrders,
-
+          orders,
         });
-
       },
 
 
@@ -185,7 +128,6 @@ export const usePurchaseOrderStore =
             (order) =>
               order.id === id,
           );
-
       },
 
 
@@ -198,9 +140,7 @@ export const usePurchaseOrderStore =
             input,
           );
 
-
         set((state) => ({
-
           tenantId:
             input.tenantId,
 
@@ -208,12 +148,9 @@ export const usePurchaseOrderStore =
             ...state.orders,
             order,
           ],
-
         }));
 
-
         return order;
-
       },
 
 
@@ -230,15 +167,11 @@ export const usePurchaseOrderStore =
                 item.id === id,
             );
 
-
         if (!order) {
-
           throw new Error(
             "Purchase order not found.",
           );
-
         }
-
 
         const updated =
           await purchaseOrderService.update(
@@ -247,42 +180,19 @@ export const usePurchaseOrderStore =
             updates,
           );
 
-
         if (!updated) {
-
           return;
-
         }
 
-
-        const items =
-          await purchaseOrderItemService.getItems(
-            order.tenantId,
-            id,
-          );
-
-
-        const hydrated = {
-
-          ...updated,
-
-          items,
-
-        };
-
-
         set((state) => ({
-
           orders:
             state.orders.map(
               (item) =>
                 item.id === id
-                  ? hydrated
+                  ? updated
                   : item,
             ),
-
         }));
-
       },
 
 
@@ -295,24 +205,14 @@ export const usePurchaseOrderStore =
           get()
             .orders
             .find(
-              (existingOrder) =>
-                existingOrder.id === orderId,
+              (existing) =>
+                existing.id === orderId,
             );
 
         if (!order) {
-
           throw new Error(
             "Purchase order not found.",
           );
-
-        }
-
-        if (order.status !== "DRAFT") {
-
-          throw new Error(
-            "Items can only be added to a draft purchase order.",
-          );
-
         }
 
         const saved =
@@ -323,11 +223,9 @@ export const usePurchaseOrderStore =
           );
 
         if (!saved) {
-
           throw new Error(
             "Failed to add purchase order item.",
           );
-
         }
 
         const refreshed =
@@ -337,37 +235,22 @@ export const usePurchaseOrderStore =
           );
 
         if (!refreshed) {
-
           throw new Error(
-            "Purchase order could not be reloaded after adding item.",
+            "Purchase order could not be reloaded.",
           );
-
-        }
-
-        if (
-          !refreshed.items ||
-          refreshed.items.length === 0
-        ) {
-
-          throw new Error(
-            "Purchase order item was not persisted.",
-          );
-
         }
 
         set((state) => ({
-
           orders:
             state.orders.map(
-              (existingOrder) =>
-                existingOrder.id === orderId
+              (existing) =>
+                existing.id === orderId
                   ? refreshed
-                  : existingOrder,
+                  : existing,
             ),
-
         }));
-
       },
+
 
       submitOrder: async (
         id,
@@ -381,15 +264,11 @@ export const usePurchaseOrderStore =
                 item.id === id,
             );
 
-
         if (!order) {
-
           throw new Error(
             "Purchase order not found.",
           );
-
         }
-
 
         const updated =
           await purchaseOrderService.submit(
@@ -397,30 +276,19 @@ export const usePurchaseOrderStore =
             id,
           );
 
-
         if (!updated) {
-
           return;
-
         }
 
-
         set((state) => ({
-
           orders:
             state.orders.map(
               (item) =>
                 item.id === id
-                  ? {
-                      ...updated,
-                      items:
-                        item.items,
-                    }
+                  ? updated
                   : item,
             ),
-
         }));
-
       },
 
 
@@ -436,15 +304,11 @@ export const usePurchaseOrderStore =
                 item.id === id,
             );
 
-
         if (!order) {
-
           throw new Error(
             "Purchase order not found.",
           );
-
         }
-
 
         const updated =
           await purchaseOrderService.approve(
@@ -452,30 +316,19 @@ export const usePurchaseOrderStore =
             id,
           );
 
-
         if (!updated) {
-
           return;
-
         }
 
-
         set((state) => ({
-
           orders:
             state.orders.map(
               (item) =>
                 item.id === id
-                  ? {
-                      ...updated,
-                      items:
-                        item.items,
-                    }
+                  ? updated
                   : item,
             ),
-
         }));
-
       },
 
 
@@ -491,15 +344,11 @@ export const usePurchaseOrderStore =
                 item.id === id,
             );
 
-
         if (!order) {
-
           throw new Error(
             "Purchase order not found.",
           );
-
         }
-
 
         const updated =
           await purchaseOrderService.cancel(
@@ -507,30 +356,19 @@ export const usePurchaseOrderStore =
             id,
           );
 
-
         if (!updated) {
-
           return;
-
         }
 
-
         set((state) => ({
-
           orders:
             state.orders.map(
               (item) =>
                 item.id === id
-                  ? {
-                      ...updated,
-                      items:
-                        item.items,
-                    }
+                  ? updated
                   : item,
             ),
-
         }));
-
       },
 
 
@@ -546,15 +384,11 @@ export const usePurchaseOrderStore =
                 item.id === id,
             );
 
-
         if (!order) {
-
           throw new Error(
             "Purchase order not found.",
           );
-
         }
-
 
         const updated =
           await purchaseOrderService.receive(
@@ -562,38 +396,20 @@ export const usePurchaseOrderStore =
             id,
           );
 
-
         if (!updated) {
-
           return;
-
         }
 
-
         set((state) => ({
-
           orders:
             state.orders.map(
               (item) =>
                 item.id === id
-                  ? {
-                      ...updated,
-                      items:
-                        item.items,
-                    }
+                  ? updated
                   : item,
             ),
-
         }));
-
       },
 
     }),
   );
-
-
-
-
-
-
-

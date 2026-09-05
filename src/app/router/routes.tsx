@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
@@ -71,6 +71,10 @@ import {
 import {
   goodsReceiptRoutes,
 } from "../../features/purchase-receiving/routes/goods-receipt.routes";
+
+import {
+  purchaseReturnRoutes,
+} from "../../features/purchasing/purchase-returns/routes/purchase-return.routes";
 
 import {
   salesRoutes,
@@ -150,6 +154,8 @@ export const routes: RouteObject[] = [
 
       ...goodsReceiptRoutes,
 
+      ...purchaseReturnRoutes,
+
       ...salesRoutes,
 
       ...posSalesRoutes,
@@ -188,3 +194,6 @@ export const routes: RouteObject[] = [
   },
 
 ];
+
+
+

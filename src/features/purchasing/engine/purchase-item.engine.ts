@@ -1,205 +1,87 @@
-import type {
-  PurchaseOrder,
-} from "../types/purchase-order.types";
+﻿import type { PurchaseOrderItem } from "../types/purchase-order-item.types";
+import { purchaseOrderCalculationEngine } from "./purchase-order-calculation.engine";
 
-
-import type {
-  PurchaseOrderItem,
-} from "../types/purchase-order-item.types";
-
-
-import {
-  purchaseOrderCalculationEngine,
-} from "./purchase-order-calculation.engine";
-
-
-export class PurchaseItemEngine {
-
-
+class PurchaseItemEngine {
   addItem(
-    order: PurchaseOrder,
+    items: PurchaseOrderItem[],
     item: PurchaseOrderItem,
-  ): PurchaseOrder {
+  ): PurchaseOrderItem[] {
+    if (item.quantity <= 0) {
+      throw new Error("Quantity must be greater than zero.");
+    }
 
-    const items = [
-      ...order.items,
-      item,
-    ];
+    if (item.unitCost < 0) {
+      throw new Error("Unit cost cannot be negative.");
+    }
 
-
-    return {
-
-      ...order,
-
-      items,
-
-      ...purchaseOrderCalculationEngine.calculate(
-        items,
-      ),
-
-      updatedAt:
-        new Date().toISOString(),
-
-    };
-
+    return [...items, item];
   }
-
 
   removeItem(
-    order: PurchaseOrder,
+    items: PurchaseOrderItem[],
     itemId: string,
-  ): PurchaseOrder {
-
-    const items =
-      order.items.filter(
-        (item) =>
-          item.id !== itemId,
-      );
-
-
-    return {
-
-      ...order,
-
-      items,
-
-      ...purchaseOrderCalculationEngine.calculate(
-        items,
-      ),
-
-      updatedAt:
-        new Date().toISOString(),
-
-    };
-
+  ): PurchaseOrderItem[] {
+    return items.filter((item) => item.id !== itemId);
   }
-
 
   updateQuantity(
-    order: PurchaseOrder,
+    items: PurchaseOrderItem[],
     itemId: string,
     quantity: number,
-  ): PurchaseOrder {
-
+  ): PurchaseOrderItem[] {
     if (quantity <= 0) {
-
-      throw new Error(
-        "Quantity must be greater than zero.",
-      );
-
+      throw new Error("Quantity must be greater than zero.");
     }
 
+    return items.map((item) => {
+      if (item.id !== itemId) {
+        return item;
+      }
 
-    const items =
-      order.items.map(
-        (item) => {
+      const calculated =
+        purchaseOrderCalculationEngine.calculateLine({
+          ...item,
+          quantity,
+        });
 
-          if (
-            item.id !== itemId
-          ) {
-
-            return item;
-
-          }
-
-
-          return {
-
-            ...item,
-
-            quantity,
-
-            lineTotal:
-              quantity *
-              item.unitCost,
-
-          };
-
-        },
-      );
-
-
-    return {
-
-      ...order,
-
-      items,
-
-      ...purchaseOrderCalculationEngine.calculate(
-        items,
-      ),
-
-      updatedAt:
-        new Date().toISOString(),
-
-    };
-
+      return {
+        ...item,
+        quantity,
+        taxAmount: calculated.taxAmount,
+        lineTotal: calculated.lineTotal,
+      };
+    });
   }
-
 
   updateUnitCost(
-    order: PurchaseOrder,
+    items: PurchaseOrderItem[],
     itemId: string,
     unitCost: number,
-  ): PurchaseOrder {
-
+  ): PurchaseOrderItem[] {
     if (unitCost < 0) {
-
-      throw new Error(
-        "Unit cost cannot be negative.",
-      );
-
+      throw new Error("Unit cost cannot be negative.");
     }
 
+    return items.map((item) => {
+      if (item.id !== itemId) {
+        return item;
+      }
 
-    const items =
-      order.items.map(
-        (item) => {
+      const calculated =
+        purchaseOrderCalculationEngine.calculateLine({
+          ...item,
+          unitCost,
+        });
 
-          if (
-            item.id !== itemId
-          ) {
-
-            return item;
-
-          }
-
-
-          return {
-
-            ...item,
-
-            unitCost,
-
-            lineTotal:
-              item.quantity *
-              unitCost,
-
-          };
-
-        },
-      );
-
-
-    return {
-
-      ...order,
-
-      items,
-
-      ...purchaseOrderCalculationEngine.calculate(
-        items,
-      ),
-
-      updatedAt:
-        new Date().toISOString(),
-
-    };
-
+      return {
+        ...item,
+        unitCost,
+        taxAmount: calculated.taxAmount,
+        lineTotal: calculated.lineTotal,
+      };
+    });
   }
-
 }
-
 
 export const purchaseItemEngine =
   new PurchaseItemEngine();

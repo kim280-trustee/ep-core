@@ -1,51 +1,16 @@
-/**
- * ============================================================
- * E&P Technologies
- * E&P Smart POS
- * Purchase Receiving Module
- * ------------------------------------------------------------
- * Repository Provider
- * ============================================================
- */
-
-
-import type {
-  GoodsReceiptRepository,
-} from "./goods-receipt.repository";
-
-
-import {
-  inMemoryGoodsReceiptRepository,
-} from "./in-memory.goods-receipt.repository";
-
-
+﻿import type { GoodsReceiptRepository } from "./goods-receipt.repository";
+import { supabaseGoodsReceiptRepository } from "./supabase.goods-receipt.repository";
 
 let repository: GoodsReceiptRepository =
-
-  inMemoryGoodsReceiptRepository;
-
-
-
-
+  supabaseGoodsReceiptRepository;
 
 export function getGoodsReceiptRepository():
-
-GoodsReceiptRepository {
-
+  GoodsReceiptRepository {
   return repository;
-
 }
 
-
-
-
-
 export function setGoodsReceiptRepository(
-
   implementation: GoodsReceiptRepository,
-
 ): void {
-
   repository = implementation;
-
 }

@@ -1,31 +1,17 @@
-import type {
-  GoodsReceipt,
-} from "../types/goods-receipt.types";
-
+import type { GoodsReceipt } from "../types/goods-receipt.types";
 
 export interface GoodsReceiptRepository {
-
-  findAll(): GoodsReceipt[];
-
-  findById(
-    id: string,
-  ): GoodsReceipt | undefined;
-
+  findAll(tenantId: string): Promise<GoodsReceipt[]>;
+  findById(tenantId: string, id: string): Promise<GoodsReceipt | undefined>;
   findByPurchaseOrder(
-    purchaseOrderId: string,
-  ): GoodsReceipt[];
-
-  create(
-    receipt: GoodsReceipt,
-  ): GoodsReceipt;
-
+    tenantId: string,
+    purchaseOrderId: string
+  ): Promise<GoodsReceipt[]>;
+  create(receipt: GoodsReceipt): Promise<GoodsReceipt>;
   update(
+    tenantId: string,
     id: string,
-    receipt: GoodsReceipt,
-  ): GoodsReceipt;
-
-  delete(
-    id: string,
-  ): void;
-
+    receipt: GoodsReceipt
+  ): Promise<GoodsReceipt>;
+  delete(tenantId: string, id: string): Promise<void>;
 }
