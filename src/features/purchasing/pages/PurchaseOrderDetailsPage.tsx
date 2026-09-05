@@ -1,5 +1,6 @@
 ﻿import {
   useEffect,
+  useState,
 } from "react";
 
 import {
@@ -34,6 +35,14 @@ import {
   storeContext,
 } from "@/core/store/store.context";
 
+import {
+  supplierService,
+} from "@/features/suppliers/services/supplier.service";
+
+import {
+  warehouseService,
+} from "@/features/warehouses/services/warehouse.service";
+
 
 export default function PurchaseOrderDetailsPage() {
 
@@ -47,6 +56,19 @@ export default function PurchaseOrderDetailsPage() {
     addItem,
   } = usePurchaseOrders();
 
+
+  const [
+    supplierName,
+    setSupplierName,
+  ] = useState("Loading...");
+
+
+  const [
+    warehouseName,
+    setWarehouseName,
+  ] = useState("Loading...");
+
+
   useEffect(() => {
 
     const context =
@@ -56,7 +78,7 @@ export default function PurchaseOrderDetailsPage() {
       context?.tenantId
     ) {
 
-      loadOrders(
+      void loadOrders(
         context.tenantId,
       );
 
@@ -74,6 +96,115 @@ export default function PurchaseOrderDetailsPage() {
             item.id === id,
         )
       : undefined;
+
+
+  useEffect(() => {
+
+    let cancelled = false;
+
+    async function loadRelatedNames() {
+
+      if (!order) {
+        return;
+      }
+
+      const context =
+        storeContext.getStore();
+
+      if (!context?.tenantId) {
+        return;
+      }
+
+
+      setSupplierName("Loading...");
+      setWarehouseName("Loading...");
+
+
+      try {
+
+        const supplier =
+          await supplierService.getSupplierById(
+            context.tenantId,
+            order.supplierId,
+          );
+
+
+        if (!cancelled) {
+
+          setSupplierName(
+            supplier?.name ??
+            "Unknown Supplier",
+          );
+
+        }
+
+
+        if (order.warehouseId) {
+
+          const warehouse =
+            await warehouseService.getWarehouseById(
+              order.warehouseId,
+            );
+
+
+          if (!cancelled) {
+
+            setWarehouseName(
+              warehouse?.name ??
+              "Unknown Warehouse",
+            );
+
+          }
+
+        } else if (!cancelled) {
+
+          setWarehouseName(
+            "Not assigned",
+          );
+
+        }
+
+      } catch (error) {
+
+        console.error(
+          "Failed to load purchase order related names:",
+          error,
+        );
+
+
+        if (!cancelled) {
+
+          setSupplierName(
+            "Unknown Supplier",
+          );
+
+          setWarehouseName(
+            order.warehouseId
+              ? "Unknown Warehouse"
+              : "Not assigned",
+          );
+
+        }
+
+      }
+
+    }
+
+
+    void loadRelatedNames();
+
+
+    return () => {
+
+      cancelled = true;
+
+    };
+
+  }, [
+    order?.id,
+    order?.supplierId,
+    order?.warehouseId,
+  ]);
 
 
   if (!order) {
@@ -95,11 +226,11 @@ export default function PurchaseOrderDetailsPage() {
     order.id;
 
 
-  function handleAddItem(
+  async function handleAddItem(
     item: PurchaseOrderItem,
   ) {
 
-    void addItem(
+    await addItem(
       orderId,
       item,
     );
@@ -128,14 +259,14 @@ export default function PurchaseOrderDetailsPage() {
         <p>
           Supplier:
           {" "}
-          {order.supplierId}
+          {supplierName}
         </p>
 
 
         <p>
           Warehouse:
           {" "}
-          {order.warehouseId ?? "Not assigned"}
+          {warehouseName}
         </p>
 
 
@@ -160,11 +291,13 @@ export default function PurchaseOrderDetailsPage() {
 
 
       {order.status === "DRAFT" && (
+
         <PurchaseOrderItemForm
           purchaseOrderId={orderId}
           tenantId={order.tenantId}
           onAddItem={handleAddItem}
         />
+
       )}
 
 
@@ -173,6 +306,7 @@ export default function PurchaseOrderDetailsPage() {
 
       <PurchaseOrderItemTable
         items={order.items}
+        tenantId={order.tenantId}
       />
 
 

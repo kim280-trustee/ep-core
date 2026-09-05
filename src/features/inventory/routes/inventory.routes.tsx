@@ -1,4 +1,4 @@
-import {
+﻿import {
   InventoryPage,
 } from "../pages/InventoryPage";
 
@@ -9,10 +9,6 @@ import {
 import {
   SellStockPage,
 } from "../pages/SellStockPage";
-
-import {
-  InventoryLedgerPage,
-} from "../../inventory-ledger/pages/InventoryLedgerPage";
 
 
 export const inventoryRoutes = [
@@ -34,7 +30,7 @@ export const inventoryRoutes = [
 
   {
     path: "/inventory/ledger",
-    element: <InventoryLedgerPage />,
+    element: <InventoryHistoryPage />,
   },
 
 ];

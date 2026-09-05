@@ -1,12 +1,20 @@
-import {
+﻿import {
+  useEffect,
   useState,
   type FormEvent,
 } from "react";
 
-
 import type {
   PurchaseOrderItem,
 } from "../types/purchase-order-item.types";
+
+import {
+  useProductSearch,
+} from "@/features/products/hooks/useProductSearch";
+
+import {
+  storeContext,
+} from "@/core/store/store.context";
 
 
 interface PurchaseOrderItemFormProps {
@@ -19,7 +27,7 @@ interface PurchaseOrderItemFormProps {
 
   onAddItem: (
     item: PurchaseOrderItem,
-  ) => void;
+  ) => void | Promise<void>;
 
   onCancel?: () => void;
 
@@ -34,43 +42,146 @@ export function PurchaseOrderItemForm({
   onCancel,
 }: PurchaseOrderItemFormProps) {
 
+  const context =
+    storeContext.getStore();
+
+  const effectiveTenantId =
+    tenantId ||
+    context?.tenantId ||
+    "";
 
   const [
-    productId,
-    setProductId,
+    productSearch,
+    setProductSearch,
+  ] = useState("");
+
+  const [
+    selectedProductId,
+    setSelectedProductId,
   ] = useState(
     initialProductId,
   );
 
+  const [
+    selectedProductName,
+    setSelectedProductName,
+  ] = useState("");
 
   const [
     quantity,
     setQuantity,
   ] = useState("");
 
-
   const [
     unitCost,
     setUnitCost,
   ] = useState("");
-
 
   const [
     taxRate,
     setTaxRate,
   ] = useState("0");
 
-
   const [
     notes,
     setNotes,
   ] = useState("");
 
-
   const [
     error,
     setError,
   ] = useState("");
+
+  const [
+    adding,
+    setAdding,
+  ] = useState(false);
+
+
+  const {
+    data: products = [],
+    isLoading: productsLoading,
+    isError: productsError,
+  } =
+    useProductSearch(
+      effectiveTenantId,
+      productSearch,
+    );
+
+
+  useEffect(() => {
+
+    if (!selectedProductId) {
+      return;
+    }
+
+    const selected =
+      products.find(
+        product =>
+          product.id ===
+          selectedProductId,
+      );
+
+    if (!selected) {
+      return;
+    }
+
+    setSelectedProductName(
+      selected.name,
+    );
+
+  }, [
+    products,
+    selectedProductId,
+  ]);
+
+
+  function handleProductSearchChange(
+    value: string,
+  ) {
+
+    setProductSearch(value);
+
+    setSelectedProductId("");
+
+    setSelectedProductName("");
+
+    setError("");
+
+  }
+
+
+  function handleSelectProduct(
+    product: typeof products[number],
+  ) {
+
+    setSelectedProductId(
+      product.id,
+    );
+
+    setSelectedProductName(
+      product.name,
+    );
+
+    setProductSearch(
+      product.name,
+    );
+
+    setUnitCost(
+      String(
+        product.costPrice ?? 0,
+      ),
+    );
+
+    setTaxRate(
+      String(
+        product.tax?.taxRate ?? 0,
+      ),
+    );
+
+    setError("");
+
+  }
 
 
   function handleSubmit(
@@ -82,10 +193,10 @@ export function PurchaseOrderItemForm({
     setError("");
 
 
-    if (!productId.trim()) {
+    if (!selectedProductId) {
 
       setError(
-        "Product is required.",
+        "Please select a product from the search results.",
       );
 
       return;
@@ -171,12 +282,13 @@ export function PurchaseOrderItemForm({
       id:
         crypto.randomUUID(),
 
-      tenantId,
+      tenantId:
+        tenantId,
 
       purchaseOrderId,
 
       productId:
-        productId.trim(),
+        selectedProductId,
 
       quantity:
         parsedQuantity,
@@ -206,20 +318,48 @@ export function PurchaseOrderItemForm({
     };
 
 
-    onAddItem(item);
+    setAdding(true);
 
 
-    setProductId(
-      initialProductId,
-    );
+    Promise.resolve(
+      onAddItem(item),
+    )
+      .then(() => {
 
-    setQuantity("");
+        setProductSearch("");
 
-    setUnitCost("");
+        setSelectedProductId("");
 
-    setTaxRate("0");
+        setSelectedProductName("");
 
-    setNotes("");
+        setQuantity("");
+
+        setUnitCost("");
+
+        setTaxRate("0");
+
+        setNotes("");
+
+      })
+      .catch((caughtError) => {
+
+        console.error(
+          "Failed to add purchase order item:",
+          caughtError,
+        );
+
+        setError(
+          caughtError instanceof Error
+            ? caughtError.message
+            : "Failed to add purchase order item.",
+        );
+
+      })
+      .finally(() => {
+
+        setAdding(false);
+
+      });
 
   }
 
@@ -234,7 +374,7 @@ export function PurchaseOrderItemForm({
       <div>
 
         <label
-          htmlFor="purchase-product-id"
+          htmlFor="purchase-product-search"
           className="block text-sm font-medium"
         >
           Product
@@ -242,17 +382,103 @@ export function PurchaseOrderItemForm({
 
 
         <input
-          id="purchase-product-id"
+          id="purchase-product-search"
           type="text"
-          value={productId}
+          value={productSearch}
           onChange={(event) =>
-            setProductId(
+            handleProductSearchChange(
               event.target.value,
             )
           }
-          placeholder="Product ID"
+          placeholder="Search product name, SKU, or barcode"
+          autoComplete="off"
           className="mt-1 w-full rounded border px-3 py-2"
         />
+
+
+        {productsLoading && (
+          <p className="mt-1 text-sm text-gray-500">
+            Searching products...
+          </p>
+        )}
+
+
+        {productsError && (
+          <p className="mt-1 text-sm text-red-600">
+            Unable to search products.
+          </p>
+        )}
+
+
+        {!selectedProductId &&
+          productSearch.trim().length > 0 &&
+          !productsLoading &&
+          products.length === 0 &&
+          !productsError && (
+
+            <p className="mt-1 text-sm text-gray-500">
+              No matching products found.
+            </p>
+
+          )}
+
+
+        {!selectedProductId &&
+          products.length > 0 && (
+
+            <div className="mt-1 max-h-48 overflow-y-auto rounded border bg-white">
+
+              {products.map(
+                (product) => (
+
+                  <button
+                    key={product.id}
+                    type="button"
+                    onClick={() =>
+                      handleSelectProduct(
+                        product,
+                      )
+                    }
+                    className="block w-full border-b px-3 py-2 text-left last:border-b-0 hover:bg-gray-100"
+                  >
+
+                    <div className="font-medium">
+                      {product.name}
+                    </div>
+
+                    <div className="text-xs text-gray-500">
+
+                      SKU:
+                      {" "}
+                      {product.sku}
+
+                      {" • "}
+
+                      Cost:
+                      {" "}
+                      {product.costPrice}
+
+                    </div>
+
+                  </button>
+
+                ),
+              )}
+
+            </div>
+
+          )}
+
+
+        {selectedProductId && (
+          <p className="mt-1 text-sm text-green-700">
+
+            Selected:
+            {" "}
+            {selectedProductName}
+
+          </p>
+        )}
 
       </div>
 
@@ -376,9 +602,15 @@ export function PurchaseOrderItemForm({
 
         <button
           type="submit"
-          className="rounded bg-blue-600 px-4 py-2 text-white"
+          disabled={
+            adding ||
+            !selectedProductId
+          }
+          className="rounded bg-blue-600 px-4 py-2 text-white disabled:opacity-50"
         >
-          Add Item
+          {adding
+            ? "Adding..."
+            : "Add Item"}
         </button>
 
 

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
@@ -168,7 +168,7 @@ class InventoryTransactionService {
       productId: input.productId,
       warehouseId: input.warehouseId,
       movementType: input.movementType,
-      quantity: input.quantity,
+      quantity: Math.abs(input.quantity),
       unitCost: input.unitCost,
       beforeQuantity: input.beforeQuantity ?? 0,
       afterQuantity: input.afterQuantity ?? 0,
@@ -526,4 +526,9 @@ class InventoryTransactionService {
 
 export const inventoryTransactionService =
   new InventoryTransactionService();
+
+
+
+
+
 

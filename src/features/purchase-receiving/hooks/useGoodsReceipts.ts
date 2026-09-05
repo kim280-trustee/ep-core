@@ -1,168 +1,57 @@
-﻿/**
- * ============================================================
- * E&P Technologies
- * E&P Smart POS
- * Purchase Receiving Module
- * ------------------------------------------------------------
- * Goods Receipt Hooks
- * ============================================================
- */
-
-import {
-  useCallback,
-  useState,
-} from "react";
-
-
-import {
-  goodsReceiptService,
-} from "../services/goods-receipt.service";
-
-
-import type {
-  GoodsReceipt,
-} from "../types/goods-receipt.types";
-
+import { useCallback, useState } from "react";
+import { goodsReceiptService } from "../services/goods-receipt.service";
+import type { GoodsReceipt } from "../types/goods-receipt.types";
 
 type CreateGoodsReceiptInput =
-  Parameters<
-    typeof goodsReceiptService.createReceipt
-  >[0];
-
+  Parameters<typeof goodsReceiptService.createReceipt>[0];
 
 export function useGoodsReceipts() {
+  const [receipts, setReceipts] = useState<GoodsReceipt[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const [
-    receipts,
-    setReceipts,
-  ] =
-    useState<GoodsReceipt[]>([]);
+  const loadReceipts = useCallback(async (tenantId: string) => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await goodsReceiptService.getReceipts(tenantId);
+      setReceipts(data);
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Unable to load goods receipts."
+      );
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
+  const getById = useCallback(
+    (tenantId: string, id: string) =>
+      goodsReceiptService.getReceiptById(tenantId, id),
+    []
+  );
 
-  const [
-    loading,
-    setLoading,
-  ] =
-    useState(false);
+  const create = useCallback(
+    async (input: CreateGoodsReceiptInput) => {
+      const receipt =
+        await goodsReceiptService.createReceipt(input);
 
+      setReceipts((current) => [...current, receipt]);
 
-  const [
-    error,
-    setError,
-  ] =
-    useState<string | null>(null);
-
-
-  const loadReceipts =
-    useCallback(
-      () => {
-
-        try {
-
-          setLoading(true);
-
-          setError(null);
-
-
-          const data =
-            goodsReceiptService.getReceipts();
-
-
-          setReceipts(
-            data,
-          );
-
-
-        } catch (err) {
-
-          setError(
-
-            err instanceof Error
-
-              ? err.message
-
-              : "Unable to load receipts",
-
-          );
-
-
-        } finally {
-
-          setLoading(false);
-
-        }
-
-      },
-      [],
-    );
-
-
-  const getById =
-    useCallback(
-      (
-        id: string,
-      ) => {
-
-        return goodsReceiptService
-          .getReceiptById(
-            id,
-          );
-
-      },
-      [],
-    );
-
-
-  const create =
-    useCallback(
-      async (
-        input: CreateGoodsReceiptInput,
-      ) => {
-
-        const receipt =
-          await goodsReceiptService
-            .createReceipt(
-              input,
-            );
-
-
-        setReceipts(
-          current => [
-            ...current,
-            receipt,
-          ],
-        );
-
-
-        return receipt;
-
-      },
-      [],
-    );
-
+      return receipt;
+    },
+    []
+  );
 
   return {
-
     receipts,
-
     loading,
-
     error,
-
     loadReceipts,
-
-    refresh:
-      loadReceipts,
-
+    refresh: loadReceipts,
     getById,
-
     create,
-
   };
 }
-
-
-
-
-
-

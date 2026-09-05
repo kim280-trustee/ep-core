@@ -1,12 +1,10 @@
 ﻿import {
   purchaseOrderItemRepository,
-} from "../repositories";
-
-import {
   purchaseOrderRepository,
 } from "../repositories";
 
 import {
+  purchaseOrderCalculationEngine,
   purchaseReceivingEngine,
 } from "../engine";
 
@@ -20,33 +18,98 @@ import type {
 
 
 interface CreatePurchaseOrderInput {
-
   tenantId: string;
-
   storeId: string | null;
-
   supplierId: string;
-
   warehouseId?: string | null;
-
+  currency?: string;
   notes?: string | null;
-
 }
 
 
 class PurchaseOrderService {
+
+  private async hydrate(
+    tenantId: string,
+    order: PurchaseOrder,
+  ): Promise<PurchaseOrder> {
+
+    const items =
+      await purchaseOrderItemRepository.findAll(
+        tenantId,
+        order.id,
+      );
+
+    return {
+      ...order,
+      items,
+    };
+  }
+
+
+  private validateCurrency(
+    currency: string,
+  ): string {
+
+    const normalized =
+      currency.trim().toUpperCase();
+
+    if (!normalized) {
+      throw new Error(
+        "Currency is required.",
+      );
+    }
+
+    return normalized;
+  }
+
+
+  private calculateOrder(
+    order: PurchaseOrder,
+    items: PurchaseOrderItem[],
+  ): PurchaseOrder {
+
+    const totals =
+      purchaseOrderCalculationEngine.calculate(
+        items,
+      );
+
+    return {
+      ...order,
+      items,
+      subtotal: totals.subtotal,
+      taxAmount: totals.taxAmount,
+      totalAmount: totals.totalAmount,
+      updatedAt: new Date().toISOString(),
+    };
+  }
 
 
   async createDraft(
     input: CreatePurchaseOrderInput,
   ): Promise<PurchaseOrder> {
 
+    if (!input.tenantId) {
+      throw new Error(
+        "Tenant ID is required.",
+      );
+    }
+
+    if (!input.supplierId) {
+      throw new Error(
+        "Supplier is required.",
+      );
+    }
+
     const now =
       new Date().toISOString();
 
+    const currency =
+      this.validateCurrency(
+        input.currency ?? "THB",
+      );
 
     const order: PurchaseOrder = {
-
       id:
         crypto.randomUUID(),
 
@@ -74,8 +137,7 @@ class PurchaseOrderService {
       status:
         "DRAFT",
 
-      currency:
-        "THB",
+      currency,
 
       items: [],
 
@@ -99,14 +161,11 @@ class PurchaseOrderService {
 
       updatedAt:
         now,
-
     };
-
 
     return purchaseOrderRepository.create(
       order,
     );
-
   }
 
 
@@ -119,27 +178,15 @@ class PurchaseOrderService {
         tenantId,
       );
 
-
     return Promise.all(
       orders.map(
-        async (order) => {
-
-          const items =
-            await purchaseOrderItemRepository.findAll(
-              tenantId,
-              order.id,
-            );
-
-
-          return {
-            ...order,
-            items,
-          };
-
-        },
+        (order) =>
+          this.hydrate(
+            tenantId,
+            order,
+          ),
       ),
     );
-
   }
 
 
@@ -154,29 +201,14 @@ class PurchaseOrderService {
         id,
       );
 
-
     if (!order) {
-
       return undefined;
-
     }
 
-
-    const items =
-      await purchaseOrderItemRepository.findAll(
-        tenantId,
-        id,
-      );
-
-
-    return {
-
-      ...order,
-
-      items,
-
-    };
-
+    return this.hydrate(
+      tenantId,
+      order,
+    );
   }
 
 
@@ -186,36 +218,56 @@ class PurchaseOrderService {
     updates: Partial<PurchaseOrder>,
   ): Promise<PurchaseOrder | undefined> {
 
+    const existing =
+      await purchaseOrderRepository.findById(
+        tenantId,
+        id,
+      );
+
+    if (!existing) {
+      return undefined;
+    }
+
+    const allowedStatuses =
+      new Set([
+        "DRAFT",
+        "SUBMITTED",
+        "APPROVED",
+        "PARTIALLY_RECEIVED",
+        "RECEIVED",
+        "CANCELLED",
+      ]);
+
+    if (
+      updates.status &&
+      !allowedStatuses.has(
+        updates.status,
+      )
+    ) {
+      throw new Error(
+        "Invalid purchase order status.",
+      );
+    }
+
     const updated =
       await purchaseOrderRepository.update(
         tenantId,
         id,
-        updates,
+        {
+          ...updates,
+          updatedAt:
+            new Date().toISOString(),
+        },
       );
-
 
     if (!updated) {
-
       return undefined;
-
     }
 
-
-    const items =
-      await purchaseOrderItemRepository.findAll(
-        tenantId,
-        id,
-      );
-
-
-    return {
-
-      ...updated,
-
-      items,
-
-    };
-
+    return this.hydrate(
+      tenantId,
+      updated,
+    );
   }
 
 
@@ -231,59 +283,66 @@ class PurchaseOrderService {
         orderId,
       );
 
-
     if (!order) {
-
       throw new Error(
         "Purchase order not found.",
       );
-
     }
 
-
-    if (
-      order.status !== "DRAFT"
-    ) {
-
+    if (order.status !== "DRAFT") {
       throw new Error(
         "Items can only be added to a draft purchase order.",
       );
-
     }
 
+    if (!item.productId) {
+      throw new Error(
+        "Product is required.",
+      );
+    }
 
-    if (
-      item.quantity <= 0
-    ) {
-
+    if (item.quantity <= 0) {
       throw new Error(
         "Purchase order item quantity must be greater than zero.",
       );
-
     }
 
-
-    if (
-      item.unitCost < 0
-    ) {
-
+    if (item.unitCost < 0) {
       throw new Error(
         "Purchase order item unit cost cannot be negative.",
       );
-
     }
 
+    if (item.taxRate < 0) {
+      throw new Error(
+        "Purchase order item tax rate cannot be negative.",
+      );
+    }
 
     const now =
       new Date().toISOString();
 
+    const taxRate =
+      item.taxRate ?? 0;
+
+    const lineSubtotal =
+      item.quantity *
+      item.unitCost;
+
+    const taxAmount =
+      lineSubtotal *
+      (taxRate / 100);
+
+    const lineTotal =
+      lineSubtotal +
+      taxAmount;
 
     const persistedItem: PurchaseOrderItem = {
-
       ...item,
 
       id:
-        item.id || crypto.randomUUID(),
+        item.id ||
+        crypto.randomUUID(),
 
       tenantId:
         tenantId,
@@ -291,24 +350,14 @@ class PurchaseOrderService {
       purchaseOrderId:
         orderId,
 
-      productId:
-        item.productId,
-
       receivedQuantity:
-        item.receivedQuantity ?? 0,
+        0,
 
-      taxRate:
-        item.taxRate ?? 0,
+      taxRate,
 
-      taxAmount:
-        item.taxAmount ?? 0,
+      taxAmount,
 
-      lineTotal:
-        item.lineTotal ??
-        (
-          item.quantity *
-          item.unitCost
-        ),
+      lineTotal,
 
       notes:
         item.notes ?? null,
@@ -318,18 +367,47 @@ class PurchaseOrderService {
 
       updatedAt:
         now,
-
     };
-
 
     const saved =
       await purchaseOrderItemRepository.create(
         persistedItem,
       );
 
+    const items =
+      await purchaseOrderItemRepository.findAll(
+        tenantId,
+        orderId,
+      );
+
+    const recalculated =
+      this.calculateOrder(
+        {
+          ...order,
+          items,
+        },
+        items,
+      );
+
+    await purchaseOrderRepository.update(
+      tenantId,
+      orderId,
+      {
+        subtotal:
+          recalculated.subtotal,
+
+        taxAmount:
+          recalculated.taxAmount,
+
+        totalAmount:
+          recalculated.totalAmount,
+
+        updatedAt:
+          recalculated.updatedAt,
+      },
+    );
 
     return saved;
-
   }
 
 
@@ -337,6 +415,30 @@ class PurchaseOrderService {
     tenantId: string,
     orderId: string,
   ): Promise<PurchaseOrder | undefined> {
+
+    const order =
+      await this.getOrderById(
+        tenantId,
+        orderId,
+      );
+
+    if (!order) {
+      throw new Error(
+        "Purchase order not found.",
+      );
+    }
+
+    if (order.status !== "DRAFT") {
+      throw new Error(
+        "Only draft purchase orders can be submitted.",
+      );
+    }
+
+    if (order.items.length === 0) {
+      throw new Error(
+        "A purchase order must contain at least one item before submission.",
+      );
+    }
 
     return this.update(
       tenantId,
@@ -346,7 +448,6 @@ class PurchaseOrderService {
           "SUBMITTED",
       },
     );
-
   }
 
 
@@ -354,6 +455,36 @@ class PurchaseOrderService {
     tenantId: string,
     orderId: string,
   ): Promise<PurchaseOrder | undefined> {
+
+    const order =
+      await this.getOrderById(
+        tenantId,
+        orderId,
+      );
+
+    if (!order) {
+      throw new Error(
+        "Purchase order not found.",
+      );
+    }
+
+    if (order.status !== "SUBMITTED") {
+      throw new Error(
+        "Only submitted purchase orders can be approved.",
+      );
+    }
+
+    if (order.items.length === 0) {
+      throw new Error(
+        "A purchase order must contain at least one item before approval.",
+      );
+    }
+
+    if (!order.warehouseId) {
+      throw new Error(
+        "A warehouse is required before approving a purchase order.",
+      );
+    }
 
     return this.update(
       tenantId,
@@ -363,7 +494,6 @@ class PurchaseOrderService {
           "APPROVED",
       },
     );
-
   }
 
 
@@ -371,6 +501,28 @@ class PurchaseOrderService {
     tenantId: string,
     orderId: string,
   ): Promise<PurchaseOrder | undefined> {
+
+    const order =
+      await this.getOrderById(
+        tenantId,
+        orderId,
+      );
+
+    if (!order) {
+      throw new Error(
+        "Purchase order not found.",
+      );
+    }
+
+    if (
+      order.status !== "DRAFT" &&
+      order.status !== "SUBMITTED" &&
+      order.status !== "APPROVED"
+    ) {
+      throw new Error(
+        "This purchase order cannot be cancelled.",
+      );
+    }
 
     return this.update(
       tenantId,
@@ -380,7 +532,6 @@ class PurchaseOrderService {
           "CANCELLED",
       },
     );
-
   }
 
 
@@ -390,83 +541,93 @@ class PurchaseOrderService {
   ): Promise<PurchaseOrder | undefined> {
 
     const order =
-      await purchaseOrderRepository.findById(
+      await this.getOrderById(
         tenantId,
         orderId,
       );
 
-
     if (!order) {
-
       throw new Error(
         "Purchase order not found.",
       );
-
     }
-
-
-    const persistedItems =
-      await purchaseOrderItemRepository.findAll(
-        tenantId,
-        orderId,
-      );
-
 
     if (
-      persistedItems.length === 0
+      order.status !== "APPROVED" &&
+      order.status !== "PARTIALLY_RECEIVED"
     ) {
-
       throw new Error(
-        "Purchase order has no persisted items.",
+        "Only approved or partially received purchase orders can be received.",
       );
-
     }
 
-
-    const orderWithItems: PurchaseOrder = {
-
-      ...order,
-
-      items:
-        persistedItems,
-
-    };
-
+    if (!order.warehouseId) {
+      throw new Error(
+        "A warehouse is required before receiving goods.",
+      );
+    }
 
     const updated =
       await purchaseReceivingEngine.receive(
-        orderWithItems,
+        order,
       );
 
+    for (
+      const item of updated.items
+    ) {
+      await purchaseOrderItemRepository.update(
+        tenantId,
+        item.id,
+        {
+          receivedQuantity:
+            item.receivedQuantity,
+
+          updatedAt:
+            item.updatedAt,
+        },
+      );
+    }
+
+    const totals =
+      purchaseOrderCalculationEngine.calculate(
+        updated.items,
+      );
 
     const persisted =
       await purchaseOrderRepository.update(
         tenantId,
-        order.id,
-        updated,
+        orderId,
+        {
+          status:
+            updated.status,
+
+          subtotal:
+            totals.subtotal,
+
+          taxAmount:
+            totals.taxAmount,
+
+          totalAmount:
+            totals.totalAmount,
+
+          updatedAt:
+            updated.updatedAt,
+        },
       );
 
-
     if (!persisted) {
-
       return undefined;
-
     }
 
-
     return {
-
       ...persisted,
-
       items:
-        persistedItems,
-
+        updated.items,
     };
-
   }
-
 }
 
 
 export const purchaseOrderService =
   new PurchaseOrderService();
+

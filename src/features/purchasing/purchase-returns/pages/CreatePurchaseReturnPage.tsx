@@ -1,29 +1,18 @@
-﻿import {
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
-
+﻿import { useEffect, useMemo, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { usePurchaseOrderStore } from "@/features/purchasing/store/purchase-order.store";
-import { useSearchParams } from "react-router-dom";
 import { storeContext } from "@/core/store/store.context";
 import { productService } from "@/features/products/services/product.service";
 import { supplierService } from "@/features/suppliers/services/supplier.service";
 import { warehouseService } from "@/features/warehouses/services/warehouse.service";
-import { goodsReceiptService } from "../services/goods-receipt.service";
+import { purchaseReturnService } from "../services/purchase-return.service";
+import type { PurchaseReturn } from "../types";
 
-export default function CreateGoodsReceiptPage() {
+export default function CreatePurchaseReturnPage() {
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const requestedPurchaseOrderId = searchParams.get("purchaseOrderId");
-
-  const purchaseOrders = usePurchaseOrderStore(
-    (state) => state.orders,
-  );
-
-  const loadPurchaseOrders = usePurchaseOrderStore(
-    (state) => state.loadOrders,
-  );
-
+  const purchaseOrders = usePurchaseOrderStore((state) => state.orders);
+  const loadPurchaseOrders = usePurchaseOrderStore((state) => state.loadOrders);
   const context = storeContext.getStore();
 
   const [purchaseOrderId, setPurchaseOrderId] = useState(
@@ -31,34 +20,31 @@ export default function CreateGoodsReceiptPage() {
   );
   const [purchaseOrderItemId, setPurchaseOrderItemId] = useState("");
   const [quantity, setQuantity] = useState(0);
+  const [reason, setReason] = useState("");
   const [message, setMessage] = useState("");
   const [supplierName, setSupplierName] = useState("");
   const [warehouseName, setWarehouseName] = useState("");
-  const [productNames, setProductNames] =
-    useState<Record<string, string>>({});
+  const [productNames, setProductNames] = useState<Record<string, string>>({});
+  const [existingReturns, setExistingReturns] = useState<PurchaseReturn[]>([]);
 
-    useEffect(() => {
-    if (!requestedPurchaseOrderId) return;
+  useEffect(() => {
+    if (!context?.tenantId) return;
 
-    const requestedOrder = purchaseOrders.find(
-      order => order.id === requestedPurchaseOrderId
-    );
+    void loadPurchaseOrders(context.tenantId);
 
-    if (requestedOrder) {
-      setPurchaseOrderId(requestedPurchaseOrderId);
-    }
-  }, [requestedPurchaseOrderId, purchaseOrders]);
-useEffect(() => {
-    if (context?.tenantId) {
-      void loadPurchaseOrders(context.tenantId);
-    }
+    void purchaseReturnService
+      .getReturns(context.tenantId)
+      .then(setExistingReturns)
+      .catch((error) =>
+        console.error("Failed to load purchase returns:", error),
+      );
   }, [context?.tenantId, loadPurchaseOrders]);
 
-  const receivableOrders = useMemo(
+  const returnableOrders = useMemo(
     () =>
       purchaseOrders.filter(
         (order) =>
-          order.status === "APPROVED" ||
+          order.status === "RECEIVED" ||
           order.status === "PARTIALLY_RECEIVED",
       ),
     [purchaseOrders],
@@ -68,17 +54,45 @@ useEffect(() => {
     (order) => order.id === purchaseOrderId,
   );
 
-  const receivableItems = useMemo(
+  const returnedByItem = useMemo(() => {
+    const map = new Map<string, number>();
+
+    for (const purchaseReturn of existingReturns) {
+      if (
+        purchaseReturn.status === "CANCELLED" ||
+        purchaseReturn.purchaseOrderId !== purchaseOrderId
+      ) {
+        continue;
+      }
+
+      for (const item of purchaseReturn.items) {
+        map.set(
+          item.purchaseOrderItemId,
+          (map.get(item.purchaseOrderItemId) ?? 0) + item.quantity,
+        );
+      }
+    }
+
+    return map;
+  }, [existingReturns, purchaseOrderId]);
+
+  const returnableItems = useMemo(
     () =>
-      selectedOrder?.items.filter(
-        (item) => item.receivedQuantity < item.quantity,
-      ) ?? [],
-    [selectedOrder],
+      selectedOrder?.items.filter((item) => {
+        const alreadyReturned = returnedByItem.get(item.id) ?? 0;
+        return item.receivedQuantity - alreadyReturned > 0;
+      }) ?? [],
+    [selectedOrder, returnedByItem],
   );
 
-  const selectedItem = receivableItems.find(
+  const selectedItem = returnableItems.find(
     (item) => item.id === purchaseOrderItemId,
   );
+
+  const returnableQuantity = selectedItem
+    ? selectedItem.receivedQuantity -
+      (returnedByItem.get(selectedItem.id) ?? 0)
+    : 0;
 
   useEffect(() => {
     let cancelled = false;
@@ -87,6 +101,7 @@ useEffect(() => {
       if (!selectedOrder || !context?.tenantId) {
         setSupplierName("");
         setWarehouseName("");
+        setProductNames({});
         return;
       }
 
@@ -102,19 +117,36 @@ useEffect(() => {
             )
           : undefined;
 
-        if (!cancelled) {
-          setSupplierName(
-            supplier?.name ?? "Unknown Supplier",
-          );
+        const products = await Promise.all(
+          returnableItems.map(async (item) => {
+            try {
+              const product = await productService.getProductById(
+                context.tenantId,
+                item.productId,
+              );
 
-          setWarehouseName(
-            warehouse?.name ?? "Unknown Warehouse",
-          );
-        }
+              return [
+                item.productId,
+                product
+                  ? `${product.name} — SKU: ${product.sku}`
+                  : "Unknown Product",
+              ] as const;
+            } catch {
+              return [item.productId, "Unknown Product"] as const;
+            }
+          }),
+        );
+
+        if (cancelled) return;
+
+        setSupplierName(supplier?.name ?? "Unknown Supplier");
+        setWarehouseName(warehouse?.name ?? "Unknown Warehouse");
+        setProductNames(Object.fromEntries(products));
       } catch {
         if (!cancelled) {
           setSupplierName("Unknown Supplier");
           setWarehouseName("Unknown Warehouse");
+          setProductNames({});
         }
       }
     }
@@ -129,54 +161,7 @@ useEffect(() => {
     selectedOrder?.id,
     selectedOrder?.supplierId,
     selectedOrder?.warehouseId,
-  ]);
-
-  useEffect(() => {
-    let cancelled = false;
-
-    async function loadProducts() {
-      if (!context?.tenantId || !selectedOrder) {
-        setProductNames({});
-        return;
-      }
-
-      const entries = await Promise.all(
-        receivableItems.map(async (item) => {
-          try {
-            const product = await productService.getProductById(
-              context.tenantId,
-              item.productId,
-            );
-
-            return [
-              item.productId,
-              product
-                ? `${product.name} — SKU: ${product.sku}`
-                : "Unknown Product",
-            ] as const;
-          } catch {
-            return [
-              item.productId,
-              "Unknown Product",
-            ] as const;
-          }
-        }),
-      );
-
-      if (!cancelled) {
-        setProductNames(Object.fromEntries(entries));
-      }
-    }
-
-    void loadProducts();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [
-    context?.tenantId,
-    selectedOrder?.id,
-    receivableItems,
+    returnableItems,
   ]);
 
   async function handleSubmit() {
@@ -208,70 +193,63 @@ useEffect(() => {
     }
 
     if (quantity <= 0) {
-      setMessage("Quantity must be greater than zero.");
+      setMessage("Return quantity must be greater than zero.");
       return;
     }
 
-    const remaining =
-      selectedItem.quantity -
-      selectedItem.receivedQuantity;
-
-    if (quantity > remaining) {
+    if (quantity > returnableQuantity) {
       setMessage(
-        `Only ${remaining} units remain to be received.`,
+        `Only ${returnableQuantity} units are available for return.`,
       );
       return;
     }
 
     try {
-      const receipt = await goodsReceiptService.createReceipt({
-        tenantId: context.tenantId,
-        storeId: context.storeId,
-        purchaseOrderId: selectedOrder.id,
-        supplierId: selectedOrder.supplierId,
-        warehouseId: selectedOrder.warehouseId,
-        items: [
-          {
-            id: crypto.randomUUID(),
-            purchaseOrderItemId: selectedItem.id,
-            productId: selectedItem.productId,
-            quantityReceived: quantity,
-            unitCost: selectedItem.unitCost,
-          },
-        ],
-      });
+      const purchaseReturn =
+        await purchaseReturnService.createReturn({
+          tenantId: context.tenantId,
+          storeId: context.storeId,
+          purchaseOrderId: selectedOrder.id,
+          supplierId: selectedOrder.supplierId,
+          warehouseId: selectedOrder.warehouseId,
+          reason: reason.trim() || null,
+          items: [
+            {
+              purchaseOrderItemId: selectedItem.id,
+              productId: selectedItem.productId,
+              quantity,
+              unitCost: selectedItem.unitCost,
+              reason: reason.trim() || null,
+            },
+          ],
+        });
 
       setMessage(
-        `${receipt.receiptNumber} created successfully. Stock updated.`,
+        `${purchaseReturn.returnNumber} completed successfully. Inventory was reduced.`,
       );
 
-      setPurchaseOrderId("");
-      setPurchaseOrderItemId("");
-      setQuantity(0);
-
-      await loadPurchaseOrders(context.tenantId);
+      navigate(
+        `/purchasing/returns/${purchaseReturn.id}`,
+      );
     } catch (error) {
       console.error(
-        "Failed to create goods receipt:",
+        "Failed to create purchase return:",
         error,
       );
 
       setMessage(
         error instanceof Error
           ? error.message
-          : "Unable to receive stock.",
+          : "Unable to create purchase return.",
       );
     }
   }
 
   return (
     <div>
-      <h1>Create Goods Receipt</h1>
+      <h1>Create Purchase Return</h1>
 
-      <p>
-        Receive part or all of the remaining stock on an
-        approved purchase order.
-      </p>
+      <p>Return received goods to the supplier.</p>
 
       <div>
         <label>Purchase Order</label>
@@ -282,12 +260,13 @@ useEffect(() => {
             setPurchaseOrderId(event.target.value);
             setPurchaseOrderItemId("");
             setQuantity(0);
+            setReason("");
             setMessage("");
           }}
         >
           <option value="">Select Purchase Order</option>
 
-          {receivableOrders.map((order) => (
+          {returnableOrders.map((order) => (
             <option key={order.id} value={order.id}>
               {order.orderNumber} — {order.status}
             </option>
@@ -316,15 +295,16 @@ useEffect(() => {
         >
           <option value="">Select Item</option>
 
-          {receivableItems.map((item) => {
-            const remaining =
-              item.quantity - item.receivedQuantity;
+          {returnableItems.map((item) => {
+            const available =
+              item.receivedQuantity -
+              (returnedByItem.get(item.id) ?? 0);
 
             return (
               <option key={item.id} value={item.id}>
                 {productNames[item.productId] ?? "Unknown Product"}
-                {" — Remaining: "}
-                {remaining}
+                {" — Returnable: "}
+                {available}
                 {" — Cost: "}
                 {item.unitCost}
               </option>
@@ -334,25 +314,16 @@ useEffect(() => {
       </div>
 
       {selectedItem && (
-        <p>
-          Remaining quantity:{" "}
-          {selectedItem.quantity -
-            selectedItem.receivedQuantity}
-        </p>
+        <p>Available for return: {returnableQuantity}</p>
       )}
 
       <div>
-        <label>Quantity to Receive</label>
+        <label>Quantity to Return</label>
 
         <input
           type="number"
           min="1"
-          max={
-            selectedItem
-              ? selectedItem.quantity -
-                selectedItem.receivedQuantity
-              : undefined
-          }
+          max={returnableQuantity || undefined}
           value={quantity}
           onChange={(event) =>
             setQuantity(Number(event.target.value))
@@ -361,20 +332,26 @@ useEffect(() => {
         />
       </div>
 
+      <div>
+        <label>Return Reason</label>
+
+        <textarea
+          value={reason}
+          onChange={(event) => setReason(event.target.value)}
+          placeholder="Optional reason for return"
+        />
+      </div>
+
       <button
         type="button"
         onClick={handleSubmit}
         disabled={!selectedItem || quantity <= 0}
       >
-        Create Goods Receipt
+        Complete Purchase Return
       </button>
 
       {message && <p>{message}</p>}
     </div>
   );
 }
-
-
-
-
 

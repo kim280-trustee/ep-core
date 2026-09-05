@@ -1,4 +1,4 @@
-export * from "./components/PurchaseOrderActions";
+﻿export * from "./components/PurchaseOrderActions";
 export * from "./components/PurchaseOrderItemForm";
 export * from "./components/PurchaseOrderItemTable";
 export * from "./components/PurchaseOrderStatusBadge";
@@ -27,3 +27,6 @@ export * from "./types/purchase-order-status.types";
 
 
 export * from "./routes/purchasing.routes";
+export * from "./purchase-returns";
+export * from "./purchase-returns/routes/purchase-return.routes";
+

@@ -1,3 +1,9 @@
+﻿import {
+  useEffect,
+  useState,
+} from "react";
+
+
 import {
   useNavigate,
 } from "react-router-dom";
@@ -11,6 +17,12 @@ import type {
 import {
   PurchaseOrderStatusBadge,
 } from "./PurchaseOrderStatusBadge";
+
+
+import {
+  supplierService,
+} from "@/features/suppliers/services/supplier.service";
+
 
 
 interface PurchaseOrderTableProps {
@@ -30,6 +42,86 @@ export function PurchaseOrderTable({
 
   const navigate = useNavigate();
 
+
+  const [
+    supplierNames,
+    setSupplierNames,
+  ] = useState<Record<string, string>>({});
+
+
+  useEffect(() => {
+
+    let cancelled = false;
+
+
+    async function loadSupplierNames() {
+
+      if (orders.length === 0) {
+
+        setSupplierNames({});
+
+        return;
+
+      }
+
+
+      const tenantId =
+        orders[0].tenantId;
+
+
+      try {
+
+        const suppliers =
+          await supplierService.getSuppliers(
+            tenantId,
+          );
+
+
+        if (cancelled) {
+
+          return;
+
+        }
+
+
+        const names:
+          Record<string, string> = {};
+
+
+        for (
+          const supplier of suppliers
+        ) {
+
+          names[supplier.id] =
+            supplier.name;
+
+        }
+
+
+        setSupplierNames(names);
+
+      } catch (error) {
+
+        console.error(
+          "Failed to load purchase order suppliers:",
+          error,
+        );
+
+      }
+
+    }
+
+
+    void loadSupplierNames();
+
+
+    return () => {
+
+      cancelled = true;
+
+    };
+
+  }, [orders]);
 
 
   return (
@@ -129,7 +221,10 @@ export function PurchaseOrderTable({
 
                   <td>
 
-                    {order.supplierId}
+                    {supplierNames[
+                      order.supplierId
+                    ] ??
+                      order.supplierId}
 
                   </td>
 
@@ -186,3 +281,4 @@ export function PurchaseOrderTable({
   );
 
 }
+

@@ -25,48 +25,56 @@ class PurchaseReceivingEngine {
       order,
     );
 
-
     if (!order.warehouseId) {
-
       throw new Error(
         "Cannot receive purchase order without a warehouse.",
       );
-
     }
-
 
     const items: PurchaseOrderItem[] =
       [];
-
 
     for (
       const item of order.items
     ) {
 
-      const receivedItem =
-        await this.receiveItem(
-          order,
-          item,
-        );
+      const remaining =
+        item.quantity -
+        item.receivedQuantity;
 
+      if (remaining <= 0) {
+        items.push(item);
+        continue;
+      }
 
-      items.push(
-        receivedItem,
+      await inventoryTransactionService.receiveStock(
+        item.productId,
+        order.warehouseId,
+        remaining,
+        item.unitCost,
+        order.id,
+        `Purchase order ${order.orderNumber} received`,
       );
 
-    }
+      items.push({
+        ...item,
 
+        receivedQuantity:
+          item.quantity,
+
+        updatedAt:
+          new Date().toISOString(),
+      });
+    }
 
     const completed =
       items.every(
-        (item: PurchaseOrderItem) =>
+        (item) =>
           item.receivedQuantity >=
           item.quantity,
       );
 
-
     return {
-
       ...order,
 
       items,
@@ -78,71 +86,8 @@ class PurchaseReceivingEngine {
 
       updatedAt:
         new Date().toISOString(),
-
     };
-
   }
-
-
-  private async receiveItem(
-    order: PurchaseOrder,
-    item: PurchaseOrderItem,
-  ): Promise<PurchaseOrderItem> {
-
-    const remaining =
-      item.quantity -
-      item.receivedQuantity;
-
-
-    if (
-      remaining <= 0
-    ) {
-
-      return item;
-
-    }
-
-
-    if (!order.warehouseId) {
-
-      throw new Error(
-        "Cannot receive purchase order without a warehouse.",
-      );
-
-    }
-
-
-    await inventoryTransactionService.receiveStock(
-
-      item.productId,
-
-      order.warehouseId,
-
-      remaining,
-
-      item.unitCost,
-
-      order.id,
-
-      `Purchase order ${order.orderNumber} received`,
-
-    );
-
-
-    return {
-
-      ...item,
-
-      receivedQuantity:
-        item.quantity,
-
-      updatedAt:
-        new Date().toISOString(),
-
-    };
-
-  }
-
 }
 
 

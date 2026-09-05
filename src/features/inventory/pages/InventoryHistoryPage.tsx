@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
@@ -348,15 +348,10 @@ export function InventoryHistoryPage() {
                         <div className="max-w-xs">
 
                           <p className="truncate font-medium text-gray-900">
-                            {transaction.productName ??
-                              transaction.productId}
+                            {transaction.productId}
                           </p>
 
-                          {transaction.productName && (
-                            <p className="truncate text-xs text-gray-500">
-                              ID: {transaction.productId}
-                            </p>
-                          )}
+                          
 
                         </div>
 
@@ -423,15 +418,10 @@ export function InventoryHistoryPage() {
                         <div className="max-w-xs">
 
                           <p className="truncate font-medium text-gray-900">
-                            {transaction.warehouseName ??
-                              transaction.warehouseId}
+                            {transaction.warehouseId}
                           </p>
 
-                          {transaction.warehouseName && (
-                            <p className="truncate text-xs text-gray-500">
-                              ID: {transaction.warehouseId}
-                            </p>
-                          )}
+                          
 
                         </div>
 
@@ -476,3 +466,6 @@ export function InventoryHistoryPage() {
     </div>
   );
 }
+
+
+
