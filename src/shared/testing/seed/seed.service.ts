@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
@@ -6,335 +6,254 @@
  * ============================================================
  */
 
-
 import {
   productService,
 } from "../../../features/products/services/product.service";
-
 
 import {
   inventoryService,
 } from "../../../features/inventory/services/inventory.service";
 
-
 import {
   categoryService,
 } from "../../../features/categories/services/category.service";
-
 
 import {
   brandService,
 } from "../../../features/brands/services/brand.service";
 
-
 import {
   unitService,
 } from "../../../features/units/services/unit.service";
-
 
 import {
   customerService,
 } from "../../../features/customers/services/customer.service";
 
-
 import {
   supplierService,
 } from "../../../features/suppliers/services/supplier.service";
-
 
 import {
   warehouseService,
 } from "../../../features/warehouses/services/warehouse.service";
 
-
 import {
   taxService,
 } from "../../../features/taxes/services/tax.service";
-
 
 import {
   paymentMethodService,
 } from "../../../features/payment-methods/services/payment-method.service";
 
-
 import {
   DEFAULT_SEED,
 } from "./seed.constants";
-
 
 import type {
   SeedOptions,
 } from "./seed.types";
 
-
 import {
   sampleCategories,
 } from "../sample-data/categories";
-
 
 import {
   sampleBrands,
 } from "../sample-data/brands";
 
-
 import {
   sampleUnits,
 } from "../sample-data/units";
-
 
 import {
   sampleProducts,
 } from "../sample-data/products";
 
-
 import {
   sampleInventory,
 } from "../sample-data/inventory";
-
 
 import {
   sampleCustomers,
 } from "../sample-data/customers";
 
-
 import {
   sampleSuppliers,
 } from "../sample-data/suppliers";
-
 
 import {
   sampleWarehouses,
 } from "../sample-data/warehouses";
 
-
 import {
   sampleTaxes,
 } from "../sample-data/taxes";
-
 
 import {
   samplePaymentMethods,
 } from "../sample-data/payment-methods";
 
-
-
 class SeedService {
-
 
   async seed(
     options: Partial<SeedOptions> = {},
   ) {
 
-
     const config = {
-
       ...DEFAULT_SEED,
-
       ...options,
-
     };
 
+    for (const category of sampleCategories) {
 
+      await categoryService.createCategory(
+        category,
+        config.tenantId,
+        config.storeId,
+      );
 
-    sampleCategories.forEach(
-      (category)=>{
+    }
 
-        categoryService.createCategory(
-          category,
-          config.tenantId,
-          config.storeId,
-        );
+    for (const brand of sampleBrands) {
 
-      },
-    );
+      await brandService.createBrand(
+        brand,
+        config.tenantId,
+        config.storeId,
+      );
 
+    }
 
+    for (const unit of sampleUnits) {
 
-    sampleBrands.forEach(
-      (brand)=>{
+      await unitService.createUnit(
+        unit,
+        config.tenantId,
+        config.storeId,
+      );
 
-        brandService.createBrand(
-          config.tenantId,
-          config.storeId,
-          brand,
-        );
+    }
 
-      },
-    );
+    for (const warehouse of sampleWarehouses) {
 
+      await warehouseService.createWarehouse(
+        config.tenantId,
+        config.storeId,
+        warehouse,
+      );
 
+    }
 
-    sampleUnits.forEach(
-      (unit)=>{
+    for (const customer of sampleCustomers) {
 
-        unitService.createUnit(
-          unit,
-          config.tenantId,
-          config.storeId,
-        );
+      await customerService.createCustomer(
+        customer,
+        config.tenantId,
+        config.storeId,
+      );
 
-      },
-    );
+    }
 
+    for (const supplier of sampleSuppliers) {
 
+      await supplierService.createSupplier(
+        supplier,
+        config.tenantId,
+        config.storeId,
+      );
 
-    sampleWarehouses.forEach(
-      (warehouse)=>{
+    }
 
-        warehouseService.createWarehouse(
-          config.tenantId,
-          config.storeId,
-          warehouse,
-        );
+    for (const tax of sampleTaxes) {
 
-      },
-    );
+      await taxService.createTax(
+        config.tenantId,
+        config.storeId,
+        tax,
+      );
 
+    }
 
+    for (
+      const method of samplePaymentMethods
+    ) {
 
-    sampleCustomers.forEach(
-      (customer)=>{
-
-        customerService.createCustomer(
-          customer,
-          config.tenantId,
-          config.storeId,
-        );
-
-      },
-    );
-
-
-
-    sampleSuppliers.forEach(
-      (supplier)=>{
-
-        supplierService.createSupplier(
-          supplier,
-          config.tenantId,
-          config.storeId,
-        );
-
-      },
-    );
-
-
-
-    sampleTaxes.forEach(
-      (tax)=>{
-
-        taxService.createTax(
-          config.tenantId,
-          config.storeId,
-          tax,
-        );
-
-      },
-    );
-
-
-
-    samplePaymentMethods.forEach(
-      (method)=>{
-
-        paymentMethodService.createPaymentMethod(
+      await paymentMethodService
+        .createPaymentMethod(
           config.tenantId,
           config.storeId,
           method,
         );
 
-      },
-    );
+    }
 
+    for (const product of sampleProducts) {
 
+      await productService.createProduct({
 
-    sampleProducts.forEach(
-      (product)=>{
+        tenantId:
+          config.tenantId,
 
+        storeId:
+          config.storeId,
 
-        productService.createProduct({
+        name:
+          product.name,
 
-          tenantId:
-            config.tenantId,
+        sku:
+          product.sku,
 
+        barcode:
+          product.barcode ??
+          undefined,
 
-          storeId:
-            config.storeId,
+        description:
+          product.description ??
+          undefined,
 
+        costPrice:
+          product.costPrice,
 
-          name:
-            product.name,
+        sellingPrice:
+          product.sellingPrice,
 
+        currency:
+          product.currency ??
+          "THB",
 
-          sku:
-            product.sku,
+        trackInventory:
+          product.trackInventory,
 
+        categoryId:
+          product.categoryId ??
+          undefined,
 
-          barcode:
-            product.barcode ?? undefined,
+        brandId:
+          product.brandId ??
+          undefined,
 
+        unitId:
+          product.unitId ??
+          undefined,
 
-          description:
-            product.description ?? undefined,
+        imageUrl:
+          product.imageUrl ??
+          undefined,
 
+      });
 
-          costPrice:
-            product.costPrice,
+    }
 
+    for (const record of sampleInventory) {
 
-          sellingPrice:
-            product.sellingPrice,
+      await inventoryService.createInventoryRecord(
+        record,
+      );
 
-
-          currency:
-            product.currency ?? "THB",
-
-
-          trackInventory:
-            product.trackInventory,
-
-
-          categoryId:
-            product.categoryId ?? undefined,
-
-
-          brandId:
-            product.brandId ?? undefined,
-
-
-          unitId:
-            product.unitId ?? undefined,
-
-
-          imageUrl:
-            product.imageUrl ?? undefined,
-
-
-        });
-
-
-      },
-    );
-
-
-
-    sampleInventory.forEach(
-      (record)=>{
-
-        inventoryService.createInventoryRecord(
-          record,
-        );
-
-      },
-    );
-
-
+    }
   }
-
-
 }
-
-
 
 export const seedService =
   new SeedService();

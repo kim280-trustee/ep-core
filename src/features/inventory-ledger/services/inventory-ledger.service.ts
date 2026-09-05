@@ -2,6 +2,18 @@ import {
   inventoryTransactionService,
 } from "../../inventory-transactions/services/inventory-transaction.service";
 
+import {
+  productService,
+} from "../../products";
+
+import {
+  warehouseService,
+} from "../../warehouses";
+
+import {
+  storeContext,
+} from "@/core/store/store.context";
+
 import type {
   InventoryLedgerEntry,
 } from "../types/inventory-ledger.types";
@@ -9,43 +21,134 @@ import type {
 
 class InventoryLedgerService {
 
-
   async getLedger(): Promise<InventoryLedgerEntry[]> {
 
+    const context =
+      storeContext.getStore();
+
+    if (!context?.tenantId) {
+      return [];
+    }
+
     const transactions =
-      await inventoryTransactionService.getTransactions();
+      await inventoryTransactionService.getTransactions(
+        context.tenantId,
+      );
+
+    const productIds = [
+      ...new Set(
+        transactions.map(
+          (transaction) =>
+            transaction.productId,
+        ),
+      ),
+    ];
+
+    const warehouseIds = [
+      ...new Set(
+        transactions.map(
+          (transaction) =>
+            transaction.warehouseId,
+        ),
+      ),
+    ];
+
+    const products =
+      await Promise.all(
+        productIds.map(
+          async (productId) => {
+            const product =
+              await productService.getProduct(
+                context.tenantId,
+                productId,
+              );
+
+            return [
+              productId,
+              product,
+            ] as const;
+          },
+        ),
+      );
+
+    const warehouses =
+      await Promise.all(
+        warehouseIds.map(
+          async (warehouseId) => {
+            const warehouse =
+              await warehouseService.getWarehouseById(
+                warehouseId,
+              );
+
+            return [
+              warehouseId,
+              warehouse,
+            ] as const;
+          },
+        ),
+      );
+
+    const productMap =
+      new Map(
+        products,
+      );
+
+    const warehouseMap =
+      new Map(
+        warehouses,
+      );
 
     return transactions.map(
-      (transaction) => ({
+      (transaction) => {
 
-        id:
-          transaction.id,
+        const product =
+          productMap.get(
+            transaction.productId,
+          );
 
-        productId:
-          transaction.productId,
+        const warehouse =
+          warehouseMap.get(
+            transaction.warehouseId,
+          );
 
-        warehouseId:
-          transaction.warehouseId,
+        return {
 
-        movementType:
-          transaction.movementType,
+          id:
+            transaction.id,
 
-        quantity:
-          transaction.quantity,
+          productId:
+            transaction.productId,
 
-        unitCost:
-          transaction.unitCost,
+          productName:
+            product?.name,
 
-        referenceType:
-          transaction.referenceType,
+          warehouseId:
+            transaction.warehouseId,
 
-        referenceId:
-          transaction.referenceId,
+          warehouseName:
+            warehouse?.name,
 
-        createdAt:
-          transaction.createdAt,
+          movementType:
+            transaction.movementType,
 
-      }),
+          quantity:
+            transaction.quantity,
+
+          unitCost:
+            transaction.unitCost,
+
+          referenceType:
+            transaction.referenceType,
+
+          referenceId:
+            transaction.referenceId,
+
+          createdAt:
+            transaction.createdAt,
+
+        };
+
+      },
     );
 
   }

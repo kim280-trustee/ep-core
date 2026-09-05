@@ -1,17 +1,7 @@
-﻿import {
-  useNavigate,
-} from "react-router-dom";
-
-
-import {
-  WarehouseForm,
-} from "../components/WarehouseForm";
-
-
-import {
-  warehouseService,
-} from "../services/warehouse.service";
-
+import { useNavigate } from "react-router-dom";
+import { WarehouseForm } from "../components/WarehouseForm";
+import { warehouseService } from "../services/warehouse.service";
+import { storeContext } from "@/core/store/store.context";
 
 type WarehouseFormData =
   Parameters<
@@ -22,76 +12,30 @@ type WarehouseFormData =
     >
   >[0];
 
-
 export function CreateWarehousePage() {
+  const navigate = useNavigate();
 
+  async function handleSubmit(data: WarehouseFormData) {
+    const context = storeContext.getStore();
 
-  const navigate =
-    useNavigate();
-
-
-  async function handleSubmit(
-    data: WarehouseFormData,
-  ) {
-
-    /*
-     * Tenant context will be supplied by the
-     * authenticated application context.
-     *
-     * For the current Production V1 warehouse
-     * database contract, the authenticated tenant
-     * is the warehouse owner.
-     */
-
-    const tenantId =
-      localStorage.getItem(
-        "tenantId",
-      );
-
-
-    const storeId =
-      localStorage.getItem(
-        "storeId",
-      );
-
-
-    if (!tenantId) {
-
+    if (!context) {
       throw new Error(
-        "Tenant context is not available.",
+        "Store context is not initialized.",
       );
-
     }
 
-
     await warehouseService.createWarehouse(
-
-      tenantId,
-
-      storeId ?? tenantId,
-
+      context.tenantId,
+      context.storeId,
       data,
-
     );
 
-
-    navigate(
-      "/warehouses",
-    );
-
+    navigate("/warehouses");
   }
 
-
   return (
-
     <WarehouseForm
-
-      onSubmit={
-        handleSubmit
-      }
-
+      onSubmit={handleSubmit}
     />
-
   );
-
 }
