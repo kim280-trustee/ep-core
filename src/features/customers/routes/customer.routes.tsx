@@ -1,81 +1,42 @@
-import type {
-  RouteObject,
-} from "react-router-dom";
-
-
-import {
-  AppLayout,
-} from "../../../app/layout";
-
-
 import {
   CustomersPage,
 } from "../pages/CustomersPage";
 
-
 import {
   CreateCustomerPage,
 } from "../pages/CreateCustomerPage";
-
 
 import {
   EditCustomerPage,
 } from "../pages/EditCustomerPage";
 
 
-
-export const customerRoutes: RouteObject[] = [
-
+export const customerRoutes = [
 
   {
+    path:
+      "/customers",
 
-    path: "/customers",
-
-    element: (
-
-      <AppLayout>
-
-        <CustomersPage />
-
-      </AppLayout>
-
-    ),
-
+    element:
+      <CustomersPage />,
   },
 
 
   {
+    path:
+      "/customers/create",
 
-    path: "/customers/create",
-
-    element: (
-
-      <AppLayout>
-
-        <CreateCustomerPage />
-
-      </AppLayout>
-
-    ),
-
+    element:
+      <CreateCustomerPage />,
   },
 
 
   {
+    path:
+      "/customers/:id/edit",
 
-    path: "/customers/edit/:id",
-
-    element: (
-
-      <AppLayout>
-
-        <EditCustomerPage />
-
-      </AppLayout>
-
-    ),
-
+    element:
+      <EditCustomerPage />,
   },
-
 
 ];
