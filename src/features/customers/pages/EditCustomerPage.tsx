@@ -1,116 +1,124 @@
 import {
+  useEffect,
+  useState,
+} from "react";
+
+import {
   useNavigate,
   useParams,
 } from "react-router-dom";
-
 
 import {
   CustomerForm,
 } from "../components/CustomerForm";
 
-
 import {
-  customerService,
-} from "../services/customer.service";
+  useCustomers,
+} from "../hooks/useCustomers";
 
+import type {
+  Customer,
+} from "../types/customer.types";
+
+import type {
+  CustomerFormInput,
+} from "../validators/customer.schema";
 
 
 export function EditCustomerPage() {
 
-
   const navigate =
     useNavigate();
-
 
   const {
     id,
   } = useParams();
 
+  const {
+    customers,
+    updateCustomer,
+  } = useCustomers();
+
+  const [
+    customer,
+    setCustomer,
+  ] =
+    useState<Customer>();
 
 
-  const foundCustomer =
-    id
-      ? customerService.getCustomerById(id)
-      : undefined;
+  useEffect(
+    () => {
+
+      if (!id) {
+        return;
+      }
+
+      const found =
+        customers.find(
+          (item) =>
+            item.id === id,
+        );
+
+      setCustomer(found);
+
+    },
+    [
+      customers,
+      id,
+    ],
+  );
 
 
-
-  if (!foundCustomer) {
+  if (!id || !customer) {
 
     return (
-
-      <div
-        className="p-6"
-      >
-
+      <div className="p-6">
         Customer not found
-
       </div>
-
     );
 
   }
 
 
+  const customerId =
+    id;
 
-  const customer = foundCustomer;
 
-
-
-  function handleSubmit(
-
-    data: Parameters<
-      typeof customerService.createCustomer
-    >[0],
-
+  async function handleSubmit(
+    data: CustomerFormInput,
   ) {
 
-
-    customerService.updateCustomer(
-
-      customer.id,
-
+    await updateCustomer(
+      customerId,
       {
-
         name:
           data.name,
-
 
         phone:
           data.phone,
 
-
         email:
           data.email,
-
 
         address:
           data.address,
 
-
         customerType:
           data.customerType,
 
-
         creditLimit:
           data.creditLimit,
-
       },
-
     );
-
 
     navigate("/customers");
 
   }
 
 
-
   return (
 
-    <div
-      className="p-6"
-    >
+    <div className="p-6">
 
       <h1
         className="
@@ -119,11 +127,8 @@ export function EditCustomerPage() {
           mb-6
         "
       >
-
         Edit Customer
-
       </h1>
-
 
 
       <CustomerForm
@@ -133,33 +138,28 @@ export function EditCustomerPage() {
           name:
             customer.name,
 
-
           phone:
             customer.phone,
-
 
           email:
             customer.email,
 
-
           address:
             customer.address,
 
-
           customerType:
             customer.customerType,
-
 
           creditLimit:
             customer.creditLimit,
 
         }}
 
-
-        onSubmit={handleSubmit}
+        onSubmit={
+          handleSubmit
+        }
 
       />
-
 
     </div>
 
