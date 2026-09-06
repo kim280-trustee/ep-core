@@ -8,11 +8,9 @@
  * ============================================================
  */
 
-
 import type {
   CustomerStatus,
 } from "./customer-status.types";
-
 
 
 export type CustomerType =
@@ -21,46 +19,72 @@ export type CustomerType =
   | "retail";
 
 
-
 export interface Customer {
-
 
   id: string;
 
-
   tenantId: string;
-
 
   storeId: string;
 
-
   name: string;
-
 
   customerType: CustomerType;
 
-
   phone: string | null;
-
 
   email: string | null;
 
-
   address: string | null;
-
 
   taxNumber: string | null;
 
-
   creditLimit: number | null;
-
 
   status: CustomerStatus;
 
-
   createdAt: string;
 
-
   updatedAt: string;
+
+}
+
+
+export interface CreateCustomerDto {
+
+  name: string;
+
+  customerType: CustomerType;
+
+  phone?: string | null;
+
+  email?: string | null;
+
+  address?: string | null;
+
+  taxNumber?: string | null;
+
+  creditLimit?: number | null;
+
+}
+
+
+export interface UpdateCustomerDto {
+
+  name?: string;
+
+  customerType?: CustomerType;
+
+  phone?: string | null;
+
+  email?: string | null;
+
+  address?: string | null;
+
+  taxNumber?: string | null;
+
+  creditLimit?: number | null;
+
+  status?: CustomerStatus;
 
 }

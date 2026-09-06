@@ -2,46 +2,49 @@ import type {
   Customer,
 } from "../types/customer.types";
 
-
 import type {
   ICustomerRepository,
 } from "./customer.repository";
 
 
-
 class InMemoryCustomerRepository
   implements ICustomerRepository {
-
-
 
   private customers: Customer[] = [];
 
 
+  async findAll(
+    tenantId: string,
+    storeId?: string,
+  ): Promise<Customer[]> {
 
-  findAll(): Customer[] {
-
-    return this.customers;
+    return this.customers.filter(
+      (customer) =>
+        customer.tenantId === tenantId &&
+        (!storeId ||
+          customer.storeId === storeId),
+    );
 
   }
 
 
-
-  findById(
+  async findById(
+    tenantId: string,
     id: string,
-  ): Customer | undefined {
+  ): Promise<Customer | undefined> {
 
     return this.customers.find(
       (customer) =>
+        customer.tenantId === tenantId &&
         customer.id === id,
     );
 
   }
 
 
-
-  create(
+  async create(
     customer: Customer,
-  ): Customer {
+  ): Promise<Customer> {
 
     this.customers.push(
       customer,
@@ -52,19 +55,18 @@ class InMemoryCustomerRepository
   }
 
 
-
-  update(
+  async update(
+    tenantId: string,
     id: string,
     updates: Partial<Customer>,
-  ): Customer | undefined {
-
+  ): Promise<Customer | undefined> {
 
     const index =
       this.customers.findIndex(
         (customer) =>
+          customer.tenantId === tenantId &&
           customer.id === id,
       );
-
 
 
     if (index === -1) {
@@ -74,8 +76,7 @@ class InMemoryCustomerRepository
     }
 
 
-
-    this.customers[index] = {
+    const updated: Customer = {
 
       ...this.customers[index],
 
@@ -87,47 +88,42 @@ class InMemoryCustomerRepository
     };
 
 
+    this.customers[index] =
+      updated;
 
-    return this.customers[index];
+
+    return updated;
 
   }
 
 
-
-  delete(
+  async delete(
+    tenantId: string,
     id: string,
-  ): boolean {
+  ): Promise<boolean> {
+
+    const originalLength =
+      this.customers.length;
 
 
-    const index =
-      this.customers.findIndex(
+    this.customers =
+      this.customers.filter(
         (customer) =>
-          customer.id === id,
+          !(
+            customer.tenantId === tenantId &&
+            customer.id === id
+          ),
       );
 
 
-
-    if (index === -1) {
-
-      return false;
-
-    }
-
-
-
-    this.customers.splice(
-      index,
-      1,
+    return (
+      this.customers.length <
+      originalLength
     );
-
-
-    return true;
 
   }
 
-
 }
-
 
 
 export const inMemoryCustomerRepository =

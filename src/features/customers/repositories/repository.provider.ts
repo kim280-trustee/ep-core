@@ -1,7 +1,7 @@
 import {
-  inMemoryCustomerRepository,
-} from "./in-memory.customer.repository";
+  supabaseCustomerRepository,
+} from "./supabase.customer.repository";
 
 
 export const customerRepository =
-  inMemoryCustomerRepository;
+  supabaseCustomerRepository;

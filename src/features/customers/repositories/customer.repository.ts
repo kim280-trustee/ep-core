@@ -5,31 +5,33 @@ import type {
 
 export interface ICustomerRepository {
 
-
-  findAll(): Customer[];
+  findAll(
+    tenantId: string,
+    storeId?: string,
+  ): Promise<Customer[]>;
 
 
   findById(
+    tenantId: string,
     id: string,
-  ): Customer | undefined;
-
+  ): Promise<Customer | undefined>;
 
 
   create(
     customer: Customer,
-  ): Customer;
-
+  ): Promise<Customer>;
 
 
   update(
+    tenantId: string,
     id: string,
     updates: Partial<Customer>,
-  ): Customer | undefined;
-
+  ): Promise<Customer | undefined>;
 
 
   delete(
+    tenantId: string,
     id: string,
-  ): boolean;
+  ): Promise<boolean>;
 
 }

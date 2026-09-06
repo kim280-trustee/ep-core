@@ -8,204 +8,142 @@
  * ============================================================
  */
 
-
 import {
   customerRepository,
 } from "../repositories";
 
 
+
+
+
 import type {
   Customer,
+  CreateCustomerDto,
+  UpdateCustomerDto,
 } from "../types/customer.types";
-
-
-import type {
-  CustomerFormInput,
-} from "../validators/customer.schema";
-
 
 
 class CustomerService {
 
 
-
-  generateId(): string {
+  private generateId(): string {
 
     return crypto.randomUUID();
 
   }
 
 
+  async getCustomers(
+    tenantId: string,
+    storeId?: string,
+  ): Promise<Customer[]> {
 
-
-
-  getCustomers(): Customer[] {
-
-    return customerRepository.findAll();
-
-  }
-
-
-
-
-
-  getCustomerById(
-
-    id: string,
-
-  ): Customer | undefined {
-
-    return customerRepository.findById(
-
-      id,
-
+    return customerRepository.findAll(
+      tenantId,
+      storeId,
     );
 
   }
 
 
-
-
-
-  createCustomer(
-
-    input: CustomerFormInput,
-
+  async getCustomerById(
     tenantId: string,
+    id: string,
+  ): Promise<Customer | undefined> {
 
+    return customerRepository.findById(
+      tenantId,
+      id,
+    );
+
+  }
+
+
+  async createCustomer(
+    input: CreateCustomerDto,
+    tenantId: string,
     storeId: string,
-
-  ): Customer {
-
+  ): Promise<Customer> {
 
     const now =
       new Date().toISOString();
 
 
-
     const customer: Customer = {
-
 
       id:
         this.generateId(),
 
-
-
       tenantId,
 
-
-
       storeId,
-
-
 
       name:
         input.name,
 
-
-
       customerType:
         input.customerType,
-
-
 
       phone:
         input.phone ?? null,
 
-
-
       email:
         input.email ?? null,
-
-
 
       address:
         input.address ?? null,
 
-
-
       taxNumber:
         input.taxNumber ?? null,
-
-
 
       creditLimit:
         input.creditLimit ?? null,
 
-
-
-      status:
-        "active",
-
-
+      status: "active",
 
       createdAt:
         now,
 
-
-
       updatedAt:
         now,
-
 
     };
 
 
-
     return customerRepository.create(
-
       customer,
-
     );
 
   }
 
 
-
-
-
-  updateCustomer(
-
+  async updateCustomer(
+    tenantId: string,
     id: string,
-
-    updates: Partial<Customer>,
-
-  ): Customer | undefined {
-
+    updates: UpdateCustomerDto,
+  ): Promise<Customer | undefined> {
 
     return customerRepository.update(
-
+      tenantId,
       id,
-
       {
-
         ...updates,
-
-
         updatedAt:
           new Date().toISOString(),
-
       },
-
     );
 
   }
 
 
-
-
-
-  deleteCustomer(
-
+  async deleteCustomer(
+    tenantId: string,
     id: string,
-
-  ): boolean {
-
+  ): Promise<boolean> {
 
     return customerRepository.delete(
-
+      tenantId,
       id,
-
     );
 
   }
@@ -214,9 +152,6 @@ class CustomerService {
 }
 
 
-
-
-
 export const customerService =
-
   new CustomerService();
+

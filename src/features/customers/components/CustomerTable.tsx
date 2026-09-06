@@ -138,7 +138,7 @@ export function CustomerTable({
 
                 <Link
 
-                  to={`/customers/edit/${customer.id}`}
+                  to={`/customers/${customer.id}/edit`}
 
                   className="underline"
 
