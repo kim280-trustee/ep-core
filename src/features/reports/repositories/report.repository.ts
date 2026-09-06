@@ -1,4 +1,4 @@
-import { salesOrderService } from "@/features/sales/services/sales-order.service";
+﻿import { salesOrderService } from "@/features/sales/services/sales-order.service";
 import { purchaseOrderService } from "@/features/purchasing/services/purchase-order.service";
 import { expenseService } from "@/features/expenses/services/expense.service";
 import { inventoryService } from "@/features/inventory/services/inventory.service";
@@ -97,7 +97,7 @@ export class DomainReportRepository
       ),
 
       Promise.resolve(
-        customerService.getCustomers(),
+        customerService.getCustomers(filter.tenantId),
       ),
 
       Promise.resolve(
@@ -715,3 +715,4 @@ export class DomainReportRepository
 
 export const reportRepository =
   new DomainReportRepository();
+
