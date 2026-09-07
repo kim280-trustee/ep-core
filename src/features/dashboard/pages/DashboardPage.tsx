@@ -55,16 +55,16 @@ export default function DashboardPage() {
 
   if (loading) {
     return (
-      <div className="space-y-5">
-        <div className="h-28 animate-pulse rounded-2xl bg-white shadow-sm" />
+      <div className="space-y-6">
+        <div className="h-48 animate-pulse rounded-3xl bg-slate-900" />
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {Array.from({ length: 4 }).map((_, index) => (
-            <div key={index} className="h-36 animate-pulse rounded-2xl bg-white shadow-sm" />
+            <div key={index} className="h-40 animate-pulse rounded-2xl bg-white shadow-sm" />
           ))}
         </div>
-        <div className="grid gap-5 lg:grid-cols-2">
-          <div className="h-80 animate-pulse rounded-2xl bg-white shadow-sm" />
-          <div className="h-80 animate-pulse rounded-2xl bg-white shadow-sm" />
+        <div className="grid gap-4 lg:grid-cols-2">
+          <div className="h-36 animate-pulse rounded-2xl bg-white shadow-sm" />
+          <div className="h-36 animate-pulse rounded-2xl bg-white shadow-sm" />
         </div>
       </div>
     );
@@ -91,79 +91,100 @@ export default function DashboardPage() {
   });
 
   return (
-    <div className="space-y-6">
-      <section className="overflow-hidden rounded-2xl bg-slate-900 px-6 py-7 text-white shadow-sm sm:px-8">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-          <div>
-            <p className="text-sm font-medium text-slate-300">{today}</p>
-            <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+    <div className="space-y-8 pb-4">
+      <section className="relative overflow-hidden rounded-3xl bg-slate-950 px-6 py-8 text-white shadow-xl sm:px-8 lg:px-10 lg:py-10">
+        <div className="absolute right-0 top-0 h-64 w-64 translate-x-1/3 -translate-y-1/3 rounded-full bg-white/5" />
+        <div className="absolute bottom-0 right-24 h-32 w-32 translate-y-1/2 rounded-full bg-white/[0.03]" />
+
+        <div className="relative flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-3xl">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-slate-300">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              Store overview
+            </div>
+            <p className="text-sm font-medium text-slate-400">{today}</p>
+            <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
               {getGreeting()}, {data.businessName}
             </h1>
-            <p className="mt-2 max-w-2xl text-sm text-slate-300">
-              Here&apos;s what&apos;s happening in your store today.
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300 sm:text-base">
+              Here&apos;s what&apos;s happening in your store today. Monitor performance, handle what needs attention, and keep business moving.
             </p>
           </div>
+
           <Link
             to="/sales"
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-bold text-slate-900 shadow-sm transition hover:bg-slate-100"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-bold text-slate-950 shadow-lg transition hover:bg-slate-100 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-slate-950"
           >
             <ShoppingCart size={18} />
             New Sale
+            <ArrowRight size={17} />
           </Link>
         </div>
       </section>
 
-      <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <MetricCard
-          title="Today&apos;s Sales"
-          value={formatMoney(summary.todaySales, currency)}
-          icon={<CircleDollarSign size={21} />}
-          tone="blue"
-          detail="Completed sales today"
-        />
-        <MetricCard
-          title="Today&apos;s Profit"
-          value={formatMoney(summary.todayProfit, currency)}
-          icon={<CircleDollarSign size={21} />}
-          tone="green"
-          detail="Sales less cost of goods"
-        />
-        <MetricCard
-          title="Transactions"
-          value={String(summary.todayTransactions)}
-          icon={<ShoppingCart size={21} />}
-          tone="purple"
-          detail="Completed today"
-        />
-        <MetricCard
-          title="Inventory Value"
-          value={formatMoney(summary.inventoryValue, currency)}
-          icon={<Boxes size={21} />}
-          tone="orange"
-          detail="Current stock value"
-        />
+      <section>
+        <SectionHeading eyebrow="Today at a glance" title="Business performance" />
+        <div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <MetricCard
+            title="Today&apos;s Sales"
+            value={formatMoney(summary.todaySales, currency)}
+            icon={<CircleDollarSign size={21} />}
+            tone="blue"
+            detail="Completed sales today"
+          />
+          <MetricCard
+            title="Today&apos;s Profit"
+            value={formatMoney(summary.todayProfit, currency)}
+            icon={<CircleDollarSign size={21} />}
+            tone="green"
+            detail="Sales less cost of goods"
+          />
+          <MetricCard
+            title="Transactions"
+            value={String(summary.todayTransactions)}
+            icon={<ShoppingCart size={21} />}
+            tone="purple"
+            detail="Completed today"
+          />
+          <MetricCard
+            title="Inventory Value"
+            value={formatMoney(summary.inventoryValue, currency)}
+            icon={<Boxes size={21} />}
+            tone="orange"
+            detail="Current stock value"
+          />
+        </div>
       </section>
 
-      <section className="grid gap-4 sm:grid-cols-2">
-        <AttentionCard
-          title="Low Stock"
-          value={summary.lowStockItems}
-          description={
-            summary.lowStockItems === 0
-              ? "All stock levels look good"
-              : "Products need attention"
-          }
-          icon={<AlertTriangle size={22} />}
-          href="#inventory-alerts"
-          alert={summary.lowStockItems > 0}
+      <section>
+        <SectionHeading
+          eyebrow="Action center"
+          title="Needs your attention"
+          description="Start with the items that need action in your store."
         />
-        <AttentionCard
-          title="Pending Purchase Orders"
-          value={summary.pendingPurchaseOrders}
-          description="Orders awaiting receipt"
-          icon={<Truck size={22} />}
-          href="#pending-orders"
-        />
+        <div className="mt-4 grid gap-4 lg:grid-cols-2">
+          <AttentionCard
+            title="Low Stock"
+            value={summary.lowStockItems}
+            description={
+              summary.lowStockItems === 0
+                ? "All stock levels look good"
+                : "Products need attention"
+            }
+            actionLabel="View inventory"
+            icon={<AlertTriangle size={22} />}
+            href="#inventory-alerts"
+            alert={summary.lowStockItems > 0}
+          />
+          <AttentionCard
+            title="Pending Purchase Orders"
+            value={summary.pendingPurchaseOrders}
+            description="Orders awaiting receipt"
+            actionLabel="View purchasing"
+            icon={<Truck size={22} />}
+            href="#pending-orders"
+          />
+        </div>
       </section>
 
       <section className="grid gap-5 lg:grid-cols-2">
@@ -174,11 +195,17 @@ export default function DashboardPage() {
           actionHref="/sales"
         >
           {data.recentSales.length === 0 ? (
-            <EmptyState text="No completed sales yet." />
+            <EmptyState
+              icon={<ShoppingCart size={20} />}
+              title="No completed sales yet"
+              text="Start your first sale to see today&apos;s activity here."
+              actionLabel="Start a sale"
+              actionHref="/sales"
+            />
           ) : (
             <div className="divide-y divide-slate-100">
               {data.recentSales.map((sale) => (
-                <div key={sale.id} className="flex items-center justify-between gap-4 px-5 py-4">
+                <div key={sale.id} className="flex items-center justify-between gap-4 px-5 py-4 transition hover:bg-slate-50">
                   <div className="flex min-w-0 items-center gap-3">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
                       <ShoppingCart size={18} />
@@ -187,9 +214,7 @@ export default function DashboardPage() {
                       <p className="truncate text-sm font-semibold text-slate-900">
                         {formatReference(sale.orderNumber, "SO")}
                       </p>
-                      <p className="mt-1 text-xs text-slate-500">
-                        {formatDate(sale.createdAt)}
-                      </p>
+                      <p className="mt-1 text-xs text-slate-500">{formatDate(sale.createdAt)}</p>
                     </div>
                   </div>
                   <p className="shrink-0 text-sm font-bold text-slate-900">
@@ -209,11 +234,17 @@ export default function DashboardPage() {
           id="pending-orders"
         >
           {data.pendingPurchaseOrders.length === 0 ? (
-            <EmptyState text="No pending purchase orders." />
+            <EmptyState
+              icon={<Truck size={20} />}
+              title="No pending purchase orders"
+              text="There are no approved orders waiting for receipt."
+              actionLabel="View purchasing"
+              actionHref="/purchasing"
+            />
           ) : (
             <div className="divide-y divide-slate-100">
               {data.pendingPurchaseOrders.map((order) => (
-                <div key={order.id} className="flex items-center justify-between gap-4 px-5 py-4">
+                <div key={order.id} className="flex items-center justify-between gap-4 px-5 py-4 transition hover:bg-slate-50">
                   <div className="flex min-w-0 items-center gap-3">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-purple-50 text-purple-600">
                       <Truck size={18} />
@@ -245,19 +276,19 @@ export default function DashboardPage() {
           actionHref="/inventory"
         >
           {data.lowStockProducts.length === 0 ? (
-            <div className="flex items-center gap-3 px-5 py-8">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
-                <Boxes size={18} />
+            <div className="flex flex-col items-center gap-3 px-5 py-10 text-center sm:flex-row sm:text-left">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600">
+                <Boxes size={20} />
               </div>
               <div>
-                <p className="text-sm font-semibold text-slate-900">Stock levels look healthy</p>
+                <p className="text-sm font-bold text-slate-900">Stock levels look healthy</p>
                 <p className="mt-1 text-xs text-slate-500">No products are currently below their minimum level.</p>
               </div>
             </div>
           ) : (
             <div className="divide-y divide-slate-100">
               {data.lowStockProducts.map((product) => (
-                <div key={`${product.productId}-${product.warehouseName}`} className="flex flex-col gap-3 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+                <div key={`${product.productId}-${product.warehouseName}`} className="flex flex-col gap-4 px-5 py-4 transition hover:bg-slate-50 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex min-w-0 items-center gap-3">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-50 text-amber-600">
                       <AlertTriangle size={18} />
@@ -267,13 +298,13 @@ export default function DashboardPage() {
                       <p className="mt-1 text-xs text-slate-500">{product.warehouseName}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-6 sm:text-right">
+                  <div className="flex items-center gap-8 sm:text-right">
                     <div>
-                      <p className="text-xs text-slate-500">Current</p>
+                      <p className="text-[11px] font-medium uppercase tracking-wide text-slate-400">Current</p>
                       <p className="mt-1 text-sm font-bold text-amber-600">{product.quantityOnHand}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-500">Minimum</p>
+                      <p className="text-[11px] font-medium uppercase tracking-wide text-slate-400">Minimum</p>
                       <p className="mt-1 text-sm font-semibold text-slate-700">{product.minimumStockLevel}</p>
                     </div>
                   </div>
@@ -285,17 +316,53 @@ export default function DashboardPage() {
       </section>
 
       <section>
-        <div className="mb-3">
-          <p className="text-xs font-semibold uppercase tracking-wider text-blue-600">Quick actions</p>
-          <h2 className="mt-1 text-lg font-bold text-slate-900">Get things done</h2>
-        </div>
-        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-          <QuickAction label="New Sale" description="Start a customer sale" icon={<ShoppingCart size={19} />} href="/sales" primary />
-          <QuickAction label="Add Product" description="Add a new product" icon={<PackagePlus size={19} />} href="/products" />
-          <QuickAction label="Receive Stock" description="Receive incoming goods" icon={<ArrowDownToLine size={19} />} href="/purchase-receiving" />
-          <QuickAction label="Create Purchase Order" description="Order stock from a supplier" icon={<Truck size={19} />} href="/purchasing/create" />
+        <SectionHeading eyebrow="Quick actions" title="Get things done" description="Start the task you need without searching through the menu." />
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          <QuickAction
+            label="New Sale"
+            description="Start a customer sale"
+            icon={<ShoppingCart size={20} />}
+            href="/sales"
+            primary
+          />
+          <QuickAction
+            label="Add Product"
+            description="Add a new product"
+            icon={<PackagePlus size={20} />}
+            href="/products"
+          />
+          <QuickAction
+            label="Receive Stock"
+            description="Receive incoming goods"
+            icon={<ArrowDownToLine size={20} />}
+            href="/purchase-receiving"
+          />
+          <QuickAction
+            label="Create Purchase Order"
+            description="Order stock from a supplier"
+            icon={<Truck size={20} />}
+            href="/purchasing/create"
+          />
         </div>
       </section>
+    </div>
+  );
+}
+
+function SectionHeading({
+  eyebrow,
+  title,
+  description,
+}: {
+  eyebrow: string;
+  title: string;
+  description?: string;
+}) {
+  return (
+    <div>
+      <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-600">{eyebrow}</p>
+      <h2 className="mt-1 text-xl font-bold tracking-tight text-slate-950">{title}</h2>
+      {description && <p className="mt-1 text-sm text-slate-500">{description}</p>}
     </div>
   );
 }
@@ -316,12 +383,12 @@ function MetricCard({
   const tones = {
     blue: "bg-blue-50 text-blue-600",
     green: "bg-emerald-50 text-emerald-600",
-    purple: "bg-purple-50 text-purple-600",
+    purple: "bg-violet-50 text-violet-600",
     orange: "bg-orange-50 text-orange-600",
   };
 
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+    <div className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md">
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <p className="text-sm font-medium text-slate-500">{title}</p>
@@ -340,6 +407,7 @@ function AttentionCard({
   title,
   value,
   description,
+  actionLabel,
   icon,
   href,
   alert = false,
@@ -347,6 +415,7 @@ function AttentionCard({
   title: string;
   value: number;
   description: string;
+  actionLabel: string;
   icon: ReactNode;
   href: string;
   alert?: boolean;
@@ -354,23 +423,24 @@ function AttentionCard({
   return (
     <a
       href={href}
-      className={`group flex items-center justify-between rounded-2xl border bg-white p-5 shadow-sm transition hover:shadow-md ${
+      className={`group flex min-h-28 items-center justify-between gap-5 rounded-2xl border bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md ${
         alert ? "border-amber-200 hover:border-amber-300" : "border-slate-200 hover:border-blue-200"
       }`}
     >
-      <div className="flex items-center gap-4">
-        <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${alert ? "bg-amber-50 text-amber-600" : "bg-blue-50 text-blue-600"}`}>
+      <div className="flex min-w-0 items-center gap-4">
+        <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${alert ? "bg-amber-50 text-amber-600" : "bg-blue-50 text-blue-600"}`}>
           {icon}
         </div>
-        <div>
-          <p className="text-sm font-semibold text-slate-900">{title}</p>
+        <div className="min-w-0">
+          <p className="text-sm font-bold text-slate-900">{title}</p>
           <p className="mt-1 text-xs text-slate-500">{description}</p>
+          <span className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-blue-600">
+            {actionLabel}
+            <ArrowRight size={13} className="transition group-hover:translate-x-0.5" />
+          </span>
         </div>
       </div>
-      <div className="flex items-center gap-3">
-        <span className={`text-2xl font-bold ${alert ? "text-amber-600" : "text-slate-900"}`}>{value}</span>
-        <ArrowRight size={18} className="text-slate-400 transition group-hover:translate-x-1" />
-      </div>
+      <span className={`shrink-0 text-3xl font-bold tracking-tight ${alert ? "text-amber-600" : "text-slate-950"}`}>{value}</span>
     </a>
   );
 }
@@ -392,13 +462,13 @@ function DashboardSection({
 }) {
   return (
     <section id={id} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-      <div className="flex items-center justify-between gap-4 border-b border-slate-100 px-5 py-4">
+      <div className="flex items-start justify-between gap-4 border-b border-slate-100 px-5 py-4">
         <div>
           <h2 className="text-sm font-bold text-slate-900">{title}</h2>
           <p className="mt-1 text-xs text-slate-500">{description}</p>
         </div>
         {actionLabel && actionHref && (
-          <Link to={actionHref} className="hidden shrink-0 items-center gap-1 text-xs font-semibold text-blue-600 hover:text-blue-700 sm:inline-flex">
+          <Link to={actionHref} className="inline-flex shrink-0 items-center gap-1 rounded-lg px-2 py-1 text-xs font-bold text-blue-600 transition hover:bg-blue-50 hover:text-blue-700">
             {actionLabel}
             <ArrowRight size={14} />
           </Link>
@@ -425,24 +495,50 @@ function QuickAction({
   return (
     <Link
       to={href}
-      className={`group flex min-h-[92px] items-center gap-3 rounded-2xl border p-4 transition ${
+      className={`group flex min-h-24 items-center gap-4 rounded-2xl border p-4 transition duration-200 hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 ${
         primary
-          ? "border-slate-900 bg-slate-900 text-white shadow-sm hover:bg-slate-800"
-          : "border-slate-200 bg-white text-slate-900 shadow-sm hover:border-blue-200 hover:shadow-md"
+          ? "border-slate-950 bg-slate-950 text-white shadow-md hover:bg-slate-800"
+          : "border-slate-200 bg-white text-slate-900 shadow-sm hover:border-slate-300"
       }`}
     >
-      <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${primary ? "bg-white/10 text-white" : "bg-slate-100 text-slate-600 group-hover:bg-blue-50 group-hover:text-blue-600"}`}>
+      <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${primary ? "bg-white/10 text-white" : "bg-slate-100 text-slate-700"}`}>
         {icon}
       </div>
-      <div className="min-w-0">
+      <div className="min-w-0 flex-1">
         <p className="text-sm font-bold">{label}</p>
         <p className={`mt-1 text-xs ${primary ? "text-slate-300" : "text-slate-500"}`}>{description}</p>
       </div>
-      <ArrowRight size={18} className={`ml-auto shrink-0 transition group-hover:translate-x-1 ${primary ? "text-slate-300" : "text-slate-400"}`} />
+      <ArrowRight size={18} className={`shrink-0 transition duration-200 group-hover:translate-x-1 ${primary ? "text-slate-300" : "text-slate-400"}`} />
     </Link>
   );
 }
 
-function EmptyState({ text }: { text: string }) {
-  return <div className="px-5 py-10 text-center text-sm text-slate-500">{text}</div>;
+function EmptyState({
+  icon,
+  title,
+  text,
+  actionLabel,
+  actionHref,
+}: {
+  icon: ReactNode;
+  title: string;
+  text: string;
+  actionLabel?: string;
+  actionHref?: string;
+}) {
+  return (
+    <div className="flex flex-col items-center px-5 py-9 text-center">
+      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-500">
+        {icon}
+      </div>
+      <p className="mt-3 text-sm font-bold text-slate-900">{title}</p>
+      <p className="mt-1 max-w-sm text-xs leading-5 text-slate-500">{text}</p>
+      {actionLabel && actionHref && (
+        <Link to={actionHref} className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-3.5 py-2 text-xs font-bold text-white transition hover:bg-slate-800">
+          {actionLabel}
+          <ArrowRight size={13} />
+        </Link>
+      )}
+    </div>
+  );
 }
