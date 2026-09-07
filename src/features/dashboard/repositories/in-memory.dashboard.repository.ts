@@ -82,13 +82,6 @@ class InMemoryDashboardRepository
         : Promise.resolve([]),
     ]);
 
-    const productCostById = new Map(
-      productsResult.data.map((product) => [
-        product.id,
-        Number(product.costPrice ?? product.pricing.costPrice ?? 0),
-      ]),
-    );
-
     const completedOrders = orders.filter(
       (order) =>
         order.status === "COMPLETED" &&
