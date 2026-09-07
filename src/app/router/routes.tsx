@@ -1,3 +1,4 @@
+﻿import { reportsRoutes } from "@/features/reports/routes";
 /**
  * ============================================================
  * E&P Technologies
@@ -125,7 +126,7 @@ export const routes: RouteObject[] = [
 
     element: <ProtectedLayout />,
 
-    children: [
+    children: [...reportsRoutes,
 
       // Dashboard
       ...dashboardRoutes,
@@ -202,6 +203,7 @@ export const routes: RouteObject[] = [
   },
 
 ];
+
 
 
 

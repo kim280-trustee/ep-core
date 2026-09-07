@@ -1,5 +1,8 @@
-export * from "./dashboard.repository";
+import { inMemoryDashboardRepository } from "./in-memory.dashboard.repository";
 
-export * from "./in-memory.dashboard.repository";
+export const dashboardRepository =
+  inMemoryDashboardRepository;
 
-export * from "./repository.provider";
+export type {
+  DashboardRepository,
+} from "./dashboard.repository";

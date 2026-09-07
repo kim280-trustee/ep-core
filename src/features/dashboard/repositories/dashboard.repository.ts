@@ -1,22 +1,8 @@
-﻿/**
- * ============================================================
- * E&P Technologies
- * E&P Smart POS
- * Dashboard Repository
- * ============================================================
- */
-
-import type {
-  DashboardSummary,
-} from "../types";
-
+import type { DashboardData } from "../types";
 
 export interface DashboardRepository {
-
-
-  getSummary(
+  getDashboardData(
     tenantId: string,
-  ): Promise<DashboardSummary>;
-
-
+    storeId: string,
+  ): Promise<DashboardData>;
 }

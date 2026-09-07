@@ -1,1 +1,1 @@
-export * from "./dashboard.service";
+export { dashboardService } from "./dashboard.service";

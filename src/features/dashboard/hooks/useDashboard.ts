@@ -1,50 +1,34 @@
-/**
- * ============================================================
- * E&P Technologies
- * E&P Smart POS
- * Dashboard Hook
- * ============================================================
- */
-
-import {
-  useEffect,
-} from "react";
-
-import {
-  useDashboardStore,
-} from "../store/dashboard.store";
-
+import { useEffect } from "react";
+import { useDashboardStore } from "../store/dashboard.store";
 
 export function useDashboard() {
-
-
-  const summary =
+  const data =
     useDashboardStore(
-      (state) =>
-        state.summary,
+      (state) => state.data,
     );
 
+  const loading =
+    useDashboardStore(
+      (state) => state.loading,
+    );
+
+  const error =
+    useDashboardStore(
+      (state) => state.error,
+    );
 
   const loadDashboard =
     useDashboardStore(
-      (state) =>
-        state.loadDashboard,
+      (state) => state.loadDashboard,
     );
 
-
-
   useEffect(() => {
-
-    loadDashboard();
-
+    void loadDashboard();
   }, [loadDashboard]);
 
-
-
   return {
-
-    summary,
-
+    data,
+    loading,
+    error,
   };
-
 }

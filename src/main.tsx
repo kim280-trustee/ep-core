@@ -19,7 +19,7 @@ import {
 
 import App from "./App";
 
-import "./index.css";
+import "./styles/index.css";
 
 ReactDOM.createRoot(
   document.getElementById("root")!,

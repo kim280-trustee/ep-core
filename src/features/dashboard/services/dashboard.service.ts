@@ -1,35 +1,17 @@
-﻿/*
- * ============================================================
- * E&P Technologies
- * E&P Smart POS
- * Dashboard Service
- * ============================================================
- */
-
-import {
-  inMemoryDashboardRepository,
-} from "../repositories";
-
+import { dashboardRepository } from "../repositories";
+import type { DashboardData } from "../types";
 
 class DashboardService {
-
-
-  async getSummary(
+  async getDashboardData(
     tenantId: string,
-  ) {
-
-
-    return await inMemoryDashboardRepository
-      .getSummary(
-        tenantId,
-      );
-
-
+    storeId: string,
+  ): Promise<DashboardData> {
+    return dashboardRepository.getDashboardData(
+      tenantId,
+      storeId,
+    );
   }
-
-
 }
-
 
 export const dashboardService =
   new DashboardService();
