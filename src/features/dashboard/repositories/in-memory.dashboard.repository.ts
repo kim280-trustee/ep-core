@@ -108,14 +108,20 @@ class InMemoryDashboardRepository
     const totalCostOfSales = inventoryTransactions
       .filter(
         (transaction) =>
-          transaction.movementType === "SALE" &&
+          (transaction.movementType === "SALE" ||
+            transaction.movementType === "SALE_RETURN") &&
           (!storeId || transaction.storeId === storeId),
       )
       .reduce(
-        (total, transaction) =>
-          total +
-          Math.abs(Number(transaction.quantity) || 0) *
-          (Number(transaction.unitCost) || 0),
+        (total, transaction) => {
+          const cost =
+            Math.abs(Number(transaction.quantity) || 0) *
+            (Number(transaction.unitCost) || 0);
+
+          return transaction.movementType === "SALE_RETURN"
+            ? total - cost
+            : total + cost;
+        },
         0,
       );
 
