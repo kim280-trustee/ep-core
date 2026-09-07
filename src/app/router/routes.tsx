@@ -108,6 +108,10 @@ import {
   settingsRoutes,
 } from "../../features/settings/routes/settings.routes";
 
+import {
+  reportsRoutes,
+} from "../../features/reports/routes/reports.routes";
+
 
 export const routes: RouteObject[] = [
 
@@ -167,6 +171,10 @@ export const routes: RouteObject[] = [
 
       // Expenses
       ...expenseRoutes,
+
+
+      // Reports
+      ...reportsRoutes,
 
 
       // System
