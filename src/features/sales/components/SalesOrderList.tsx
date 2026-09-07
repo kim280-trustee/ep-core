@@ -1,4 +1,17 @@
 ﻿import {
+  useEffect,
+  useState,
+} from "react";
+
+import {
+  productRepositoryProvider,
+} from "@/features/products/repositories";
+
+import {
+  storeContext,
+} from "@/core/store/store.context";
+
+import {
   useSalesOrders,
 } from "../hooks/useSalesOrders";
 
@@ -13,6 +26,87 @@ export default function SalesOrderList() {
     cancelOrder,
     refundOrder,
   } = useSalesOrders();
+
+  const [
+    productNames,
+    setProductNames,
+  ] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadProductNames() {
+      const tenantId =
+        storeContext.getStore()?.tenantId;
+
+      if (!tenantId) {
+        return;
+      }
+
+      const productIds = Array.from(
+        new Set(
+          orders.flatMap((order) =>
+            (order.items ?? []).map(
+              (item) => item.productId,
+            ),
+          ),
+        ),
+      );
+
+      const missingProductIds =
+        productIds.filter(
+          (productId) =>
+            !productNames[productId],
+        );
+
+      if (missingProductIds.length === 0) {
+        return;
+      }
+
+      try {
+        const products = await Promise.all(
+          missingProductIds.map(
+            (productId) =>
+              productRepositoryProvider.findById(
+                tenantId,
+                productId,
+              ),
+          ),
+        );
+
+        if (cancelled) {
+          return;
+        }
+
+        const names: Record<string, string> = {};
+
+        products.forEach((product, index) => {
+          const productId =
+            missingProductIds[index];
+
+          if (product) {
+            names[productId] =
+              product.name;
+          }
+        });
+
+        if (Object.keys(names).length > 0) {
+          setProductNames((current) => ({
+            ...current,
+            ...names,
+          }));
+        }
+      } catch {
+        // Keep the sales list usable if product lookup fails.
+      }
+    }
+
+    void loadProductNames();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [orders, productNames]);
 
   async function handleConfirm(orderId: string) {
     try {
@@ -219,7 +313,7 @@ export default function SalesOrderList() {
                         className="flex justify-between text-sm text-gray-600"
                       >
                         <span>
-                          {item.quantity} × {item.unitPrice}
+                          {item.quantity} × {productNames[item.productId] ?? "Product"}
                         </span>
 
                         <span>
