@@ -17,8 +17,8 @@ import {
 } from "@/features/sales/repositories";
 
 import {
-  purchaseOrderRepository,
-} from "@/features/purchasing/repositories";
+  purchaseOrderService,
+} from "@/features/purchasing/services/purchase-order.service";
 
 import {
   customerRepository,
@@ -63,7 +63,7 @@ class InMemoryDashboardRepository
       expenses,
     ] = await Promise.all([
       salesOrderRepository.findAll(tenantId),
-      purchaseOrderRepository.findAll(tenantId),
+      purchaseOrderService.getOrders(tenantId),
       customerRepository.findAll(tenantId),
       supplierRepository.findAll(tenantId),
       inventoryRepository.findAllAsync(tenantId),
