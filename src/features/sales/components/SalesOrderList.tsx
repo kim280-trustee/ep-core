@@ -1,5 +1,6 @@
-﻿import {
+import {
   useEffect,
+  useState,
 } from "react";
 
 import {
@@ -41,17 +42,17 @@ export default function SalesOrderList() {
   const [
     productNames,
     setProductNames,
-  ] = React.useState<Record<string, string>>({});
+  ] = useState<Record<string, string>>({});
 
   const [
     payingOrderId,
     setPayingOrderId,
-  ] = React.useState<string | null>(null);
+  ] = useState<string | null>(null);
 
   const [
     paymentError,
     setPaymentError,
-  ] = React.useState<string | null>(null);
+  ] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
