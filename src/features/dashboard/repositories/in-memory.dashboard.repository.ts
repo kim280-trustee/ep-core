@@ -36,6 +36,17 @@ import {
   productRepositoryProvider,
 } from "@/features/products/repositories";
 
+import {
+  expenseService,
+} from "@/features/expenses/services/expense.service";
+
+import {
+  inventoryTransactionService,
+} from "@/features/inventory-transactions/services/inventory-transaction.service";
+
+import {
+  storeContext,
+} from "@/core/store/store.context";
 
 class InMemoryDashboardRepository
   implements DashboardRepository {
@@ -43,6 +54,9 @@ class InMemoryDashboardRepository
   async getSummary(
     tenantId: string,
   ): Promise<DashboardSummary> {
+    const context = storeContext.getStore();
+    const storeId = context?.storeId;
+
     const [
       orders,
       purchaseOrders,
@@ -50,6 +64,8 @@ class InMemoryDashboardRepository
       suppliers,
       inventory,
       productsResult,
+      inventoryTransactions,
+      expenses,
     ] = await Promise.all([
       salesOrderRepository.findAll(tenantId),
       purchaseOrderRepository.findAll(tenantId),
@@ -60,6 +76,10 @@ class InMemoryDashboardRepository
         page: 1,
         limit: 10000,
       }),
+      inventoryTransactionService.getTransactions(tenantId),
+      storeId
+        ? expenseService.getExpenses(tenantId, storeId)
+        : Promise.resolve([]),
     ]);
 
     const productCostById = new Map(
@@ -69,35 +89,62 @@ class InMemoryDashboardRepository
       ]),
     );
 
-    const totalSales = orders.reduce(
+    const completedOrders = orders.filter(
+      (order) =>
+        order.status === "COMPLETED" &&
+        (!storeId || order.storeId === storeId),
+    );
+
+    const receivedPurchaseOrders = purchaseOrders.filter(
+      (order) =>
+        (order.status === "RECEIVED" ||
+          order.status === "PARTIALLY_RECEIVED") &&
+        (!storeId || order.storeId === storeId),
+    );
+
+    const totalSales = completedOrders.reduce(
       (total, order) =>
         total + Number(order.totalAmount ?? 0),
       0,
     );
 
-    const totalPurchases = purchaseOrders.reduce(
-      (total, order) =>
-        total + Number(order.totalAmount ?? 0),
-      0,
-    );
-
-    const totalCostOfSales = orders.reduce(
+    const totalPurchases = receivedPurchaseOrders.reduce(
       (total, order) =>
         total +
         order.items.reduce(
           (itemTotal, item) =>
             itemTotal +
-            Number(item.quantity ?? 0) *
-            Number(productCostById.get(item.productId) ?? 0),
+            Math.max(0, Number(item.receivedQuantity) || 0) *
+            (Number(item.unitCost) || 0),
           0,
         ),
+      0,
+    );
+
+    const totalCostOfSales = inventoryTransactions
+      .filter(
+        (transaction) =>
+          transaction.movementType === "SALE" &&
+          (!storeId || transaction.storeId === storeId),
+      )
+      .reduce(
+        (total, transaction) =>
+          total +
+          Math.abs(Number(transaction.quantity) || 0) *
+          (Number(transaction.unitCost) || 0),
+        0,
+      );
+
+    const totalExpenses = expenses.reduce(
+      (total, expense) =>
+        total + Number(expense.amount ?? 0),
       0,
     );
 
     const totalRevenue = totalSales;
 
     const totalProfit =
-      totalRevenue - totalCostOfSales;
+      totalRevenue - totalCostOfSales - totalExpenses;
 
     const inventoryValue = inventory.reduce(
       (total, record) =>
