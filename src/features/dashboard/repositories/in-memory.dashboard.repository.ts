@@ -1,166 +1,238 @@
-/**
+﻿/**
  * ============================================================
  * Dashboard Repository
  * ============================================================
  */
 
+import type { DashboardRepository } from "./dashboard.repository";
 import type {
-  DashboardRepository,
-} from "./dashboard.repository";
-
-import type {
-  DashboardSummary,
+  DashboardData,
+  DashboardLowStockProduct,
+  DashboardPendingPurchaseOrder,
+  DashboardRecentSale,
 } from "../types";
 
-import {
-  salesOrderRepository,
-} from "@/features/sales/repositories";
+import { salesOrderService } from "@/features/sales/services/sales-order.service";
+import { purchaseOrderService } from "@/features/purchasing/services/purchase-order.service";
+import { inventoryService } from "@/features/inventory/services/inventory.service";
+import { inventoryTransactionService } from "@/features/inventory-transactions/services/inventory-transaction.service";
+import { productService } from "@/features/products/services/product.service";
+import { warehouseService } from "@/features/warehouses/services/warehouse.service";
+import { settingsService } from "@/features/settings/services/settings.service";
 
-import {
-  purchaseOrderService,
-} from "@/features/purchasing/services/purchase-order.service";
+function localDateKey(value: string): string {
+  const date = new Date(value);
 
-import {
-  customerRepository,
-} from "@/features/customers/repositories";
+  if (Number.isNaN(date.getTime())) {
+    return "";
+  }
 
-import {
-  supplierRepository,
-} from "@/features/suppliers/repositories";
+  return [
+    date.getFullYear(),
+    String(date.getMonth() + 1).padStart(2, "0"),
+    String(date.getDate()).padStart(2, "0"),
+  ].join("-");
+}
 
-import {
-  inventoryRepository,
-} from "@/features/inventory/repositories";
+function isToday(value: string): boolean {
+  return localDateKey(value) === localDateKey(new Date().toISOString());
+}
 
-import {
-  expenseService,
-} from "@/features/expenses/services/expense.service";
-
-import {
-  inventoryTransactionService,
-} from "@/features/inventory-transactions/services/inventory-transaction.service";
-
-import {
-  storeContext,
-} from "@/core/store/store.context";
-
-class InMemoryDashboardRepository
-  implements DashboardRepository {
-
-  async getSummary(
+class InMemoryDashboardRepository implements DashboardRepository {
+  async getDashboardData(
     tenantId: string,
-  ): Promise<DashboardSummary> {
-    const context = storeContext.getStore();
-    const storeId = context?.storeId;
-
+    storeId: string,
+  ): Promise<DashboardData> {
     const [
       orders,
       purchaseOrders,
-      customers,
-      suppliers,
       inventory,
       inventoryTransactions,
-      expenses,
+      productsResult,
+      warehouses,
     ] = await Promise.all([
-      salesOrderRepository.findAll(tenantId),
+      salesOrderService.getOrders(tenantId),
       purchaseOrderService.getOrders(tenantId),
-      customerRepository.findAll(tenantId),
-      supplierRepository.findAll(tenantId),
-      inventoryRepository.findAllAsync(tenantId),
+      inventoryService.getInventory(tenantId),
       inventoryTransactionService.getTransactions(tenantId),
-      storeId
-        ? expenseService.getExpenses(tenantId, storeId)
-        : Promise.resolve([]),
+      productService.getProducts(tenantId),
+      warehouseService.getWarehouses(),
     ]);
 
-    const completedOrders = orders.filter(
+    const storeWarehouseIds = new Set(
+      warehouses
+        .filter(
+          (warehouse) =>
+            warehouse.tenantId === tenantId &&
+            warehouse.storeId === storeId,
+        )
+        .map((warehouse) => warehouse.id),
+    );
+
+    const storeOrders = orders.filter(
+      (order) => order.storeId === storeId,
+    );
+
+    const storePurchaseOrders = purchaseOrders.filter(
+      (order) => order.storeId === storeId,
+    );
+
+    const storeInventory = inventory.filter(
+      (record) => storeWarehouseIds.has(record.warehouseId),
+    );
+
+    const todayCompletedSales = storeOrders.filter(
       (order) =>
         order.status === "COMPLETED" &&
-        (!storeId || order.storeId === storeId),
+        isToday(order.createdAt),
     );
 
-    const receivedPurchaseOrders = purchaseOrders.filter(
-      (order) =>
-        (order.status === "RECEIVED" ||
-          order.status === "PARTIALLY_RECEIVED") &&
-        (!storeId || order.storeId === storeId),
-    );
-
-    const totalSales = completedOrders.reduce(
+    const todaySales = todayCompletedSales.reduce(
       (total, order) =>
         total + Number(order.totalAmount ?? 0),
       0,
     );
 
-    const totalPurchases = receivedPurchaseOrders.reduce(
-      (total, order) =>
+    const todayTransactions = todayCompletedSales.length;
+
+    const saleTransactions = inventoryTransactions.filter(
+      (transaction) =>
+        transaction.movementType === "SALE" &&
+        transaction.referenceType === "SALE" &&
+        storeWarehouseIds.has(transaction.warehouseId) &&
+        isToday(transaction.createdAt),
+    );
+
+    const todayCostOfSales = saleTransactions.reduce(
+      (total, transaction) =>
         total +
-        order.items.reduce(
-          (itemTotal, item) =>
-            itemTotal +
-            Math.max(0, Number(item.receivedQuantity) || 0) *
-            (Number(item.unitCost) || 0),
-          0,
-        ),
+        Math.abs(Number(transaction.quantity) || 0) *
+          (Number(transaction.unitCost) || 0),
       0,
     );
 
-    const totalCostOfSales = inventoryTransactions
-      .filter(
-        (transaction) =>
-          (transaction.movementType === "SALE" ||
-            transaction.movementType === "SALE_RETURN") &&
-          (!storeId || transaction.storeId === storeId),
-      )
-      .reduce(
-        (total, transaction) => {
-          const cost =
-            Math.abs(Number(transaction.quantity) || 0) *
-            (Number(transaction.unitCost) || 0);
+    const todayProfit = todaySales - todayCostOfSales;
 
-          return transaction.movementType === "SALE_RETURN"
-            ? total - cost
-            : total + cost;
-        },
-        0,
-      );
-
-    const totalExpenses = expenses.reduce(
-      (total, expense) =>
-        total + Number(expense.amount ?? 0),
-      0,
-    );
-
-    const totalRevenue = totalSales;
-
-    const totalProfit =
-      totalRevenue - totalCostOfSales - totalExpenses;
-
-    const inventoryValue = inventory.reduce(
+    const inventoryValue = storeInventory.reduce(
       (total, record) =>
         total +
         Number(record.quantityOnHand ?? 0) *
-        Number(record.averageCost ?? 0),
+          Number(record.averageCost ?? 0),
       0,
     );
 
-    const lowStockItems = inventory.filter(
+    const lowStockRecords = storeInventory.filter(
       (record) =>
         Number(record.availableQuantity ?? 0) <=
         Number(record.minimumStockLevel ?? 0),
-    ).length;
+    );
+
+    const lowStockItems = lowStockRecords.length;
+
+    const pendingPurchaseOrders = storePurchaseOrders.filter(
+      (order) =>
+        order.status === "APPROVED" ||
+        order.status === "PARTIALLY_RECEIVED",
+    );
+
+    const productMap = new Map<string, ProductLike>();
+
+    for (const product of productsResult.data) {
+      productMap.set(product.id, {
+        id: product.id,
+        name: product.name,
+      });
+    }
+
+    const warehouseMap = new Map<string, string>();
+
+    for (const warehouse of warehouses) {
+      warehouseMap.set(warehouse.id, warehouse.name);
+    }
+
+    const recentSales: DashboardRecentSale[] =
+      todayCompletedSales
+        .slice()
+        .sort(
+          (a, b) =>
+            new Date(b.createdAt).getTime() -
+            new Date(a.createdAt).getTime(),
+        )
+        .slice(0, 10)
+        .map((order) => ({
+          id: order.id,
+          orderNumber: order.orderNumber,
+          totalAmount: Number(order.totalAmount ?? 0),
+          createdAt: order.createdAt,
+        }));
+
+    const lowStockProducts: DashboardLowStockProduct[] =
+      lowStockRecords
+        .slice(0, 10)
+        .map((record) => ({
+          productId: record.productId,
+          productName:
+            productMap.get(record.productId)?.name ??
+            "Unknown Product",
+          quantityOnHand: Number(record.quantityOnHand ?? 0),
+          minimumStockLevel: Number(
+            record.minimumStockLevel ?? 0,
+          ),
+          warehouseName:
+            warehouseMap.get(record.warehouseId) ??
+            "Unknown Warehouse",
+        }));
+
+    const pendingPurchaseOrderData: DashboardPendingPurchaseOrder[] =
+      pendingPurchaseOrders
+        .slice()
+        .sort(
+          (a, b) =>
+            new Date(b.createdAt).getTime() -
+            new Date(a.createdAt).getTime(),
+        )
+        .slice(0, 10)
+        .map((order) => ({
+          id: order.id,
+          orderNumber: order.orderNumber,
+          status: order.status,
+          totalAmount: Number(order.totalAmount ?? 0),
+          currency: order.currency,
+        }));
+
+    const settings = settingsService.getSettings(tenantId);
+
+    const currency =
+      settings?.currency ??
+      pendingPurchaseOrderData[0]?.currency ??
+      "THB";
+
+    const businessName =
+      settings?.businessName ??
+      "Smart POS";
 
     return {
-      totalSales,
-      totalPurchases,
-      totalRevenue,
-      totalProfit,
-      inventoryValue,
-      lowStockItems,
-      totalCustomers: customers.length,
-      totalSuppliers: suppliers.length,
+      summary: {
+        todaySales,
+        todayProfit,
+        todayTransactions,
+        inventoryValue,
+        lowStockItems,
+        pendingPurchaseOrders: pendingPurchaseOrders.length,
+      },
+      currency,
+      businessName,
+      recentSales,
+      lowStockProducts,
+      pendingPurchaseOrders:
+        pendingPurchaseOrderData,
     };
   }
+}
+
+interface ProductLike {
+  id: string;
+  name: string;
 }
 
 export const inMemoryDashboardRepository =

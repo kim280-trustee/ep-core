@@ -1,5 +1,4 @@
-﻿import { reportsRoutes } from "@/features/reports/routes";
-/**
+﻿/**
  * ============================================================
  * E&P Technologies
  * E&P Smart POS
@@ -203,6 +202,7 @@ export const routes: RouteObject[] = [
   },
 
 ];
+
 
 
 
