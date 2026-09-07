@@ -33,10 +33,6 @@ import {
 } from "@/features/inventory/repositories";
 
 import {
-  productRepositoryProvider,
-} from "@/features/products/repositories";
-
-import {
   expenseService,
 } from "@/features/expenses/services/expense.service";
 
@@ -63,7 +59,6 @@ class InMemoryDashboardRepository
       customers,
       suppliers,
       inventory,
-      productsResult,
       inventoryTransactions,
       expenses,
     ] = await Promise.all([
@@ -72,10 +67,6 @@ class InMemoryDashboardRepository
       customerRepository.findAll(tenantId),
       supplierRepository.findAll(tenantId),
       inventoryRepository.findAllAsync(tenantId),
-      productRepositoryProvider.findAll(tenantId, {
-        page: 1,
-        limit: 10000,
-      }),
       inventoryTransactionService.getTransactions(tenantId),
       storeId
         ? expenseService.getExpenses(tenantId, storeId)
