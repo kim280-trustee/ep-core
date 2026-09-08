@@ -19,11 +19,14 @@ import {
   useCustomers,
 } from "../hooks/useCustomers";
 
+import { useTranslation } from "@/core/i18n/useTranslation";
+
 export function CustomersPage() {
   const {
     customers,
     removeCustomer,
   } = useCustomers();
+  const { t } = useTranslation();
 
   const [search, setSearch] = useState("");
 
@@ -46,27 +49,27 @@ export function CustomersPage() {
             <div>
               <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-blue-200">
                 <Users className="h-3.5 w-3.5" />
-                Customer management
+                {t("customers.customerManagement")}
               </div>
               <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
-                Customers
+                {t("customers.title")}
               </h1>
               <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
-                Manage your customer list, customer types, and contact details from one place.
+                {t("customers.customerManagement")}
               </p>
             </div>
 
             <div className="grid grid-cols-3 gap-2 sm:gap-3">
               <div className="rounded-2xl bg-white/10 px-4 py-3">
-                <p className="text-xs text-slate-300">Total</p>
+                <p className="text-xs text-slate-300">{t("common.total")}</p>
                 <p className="mt-1 text-xl font-bold">{customers.length}</p>
               </div>
               <div className="rounded-2xl bg-white/10 px-4 py-3">
-                <p className="text-xs text-slate-300">Regular</p>
+                <p className="text-xs text-slate-300">{t("customers.regular")}</p>
                 <p className="mt-1 text-xl font-bold">{regularCustomers}</p>
               </div>
               <div className="rounded-2xl bg-white/10 px-4 py-3">
-                <p className="text-xs text-slate-300">Wholesale</p>
+                <p className="text-xs text-slate-300">{t("customers.wholesale")}</p>
                 <p className="mt-1 text-xl font-bold">{wholesaleCustomers}</p>
               </div>
             </div>
@@ -81,8 +84,8 @@ export function CustomersPage() {
         <div className="flex items-center gap-2 text-sm text-slate-500">
           <UserRound className="h-4 w-4" />
           {search
-            ? `${filteredCustomers.length} customer${filteredCustomers.length === 1 ? "" : "s"} match your search`
-            : `${customers.length} customer${customers.length === 1 ? "" : "s"} in this store`}
+            ? `${filteredCustomers.length} ${t("customers.title").toLowerCase()}`
+            : `${customers.length} ${t("customers.title").toLowerCase()}`}
         </div>
 
         <CustomerTable
