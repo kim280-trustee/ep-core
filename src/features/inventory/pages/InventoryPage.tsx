@@ -71,17 +71,14 @@ export function InventoryPage() {
     const normalizedSearch = search.trim().toLowerCase();
     return records.filter((record) => {
       if (warehouseId && record.warehouseId !== warehouseId) return false;
-
       const stockStatus =
         record.quantityOnHand <= 0
           ? "Out of Stock"
           : record.quantityOnHand <= record.minimumStockLevel
             ? "Low Stock"
             : "Healthy";
-
       if (status && stockStatus !== status) return false;
       if (!normalizedSearch) return true;
-
       const product = products.find((item) => item.id === record.productId);
       const productName = product?.name?.toLowerCase() ?? "";
       const sku = product?.identifiers?.sku?.toLowerCase() ?? "";
@@ -142,7 +139,7 @@ export function InventoryPage() {
       {!loading && !error && (
         <>
           <div className="text-sm text-gray-500">
-            {t("inventory.showingRecords", { filtered: filteredRecords.length, total: records.length })}
+            {t("inventory.showingRecords")}: {filteredRecords.length} / {records.length}
           </div>
           <InventoryTable records={filteredRecords} warehouses={warehouses} onChanged={refresh} />
         </>
