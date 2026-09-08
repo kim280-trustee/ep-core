@@ -85,11 +85,13 @@ export default function PurchaseOrderDetailsPage() {
     return <div className="min-h-full bg-slate-100 p-6"><div className="mx-auto max-w-5xl rounded-3xl border border-slate-200 bg-white p-8 shadow-sm"><p className="text-sm text-slate-500">Loading Purchase Order...</p></div></div>;
   }
 
+  const currentOrder = order;
+
   async function handleAddItem(item: PurchaseOrderItem) {
-    await addItem(order.id, item);
+    await addItem(currentOrder.id, item);
   }
 
-  const canAddItems = order.status === "DRAFT";
+  const canAddItems = currentOrder.status === "DRAFT";
 
   return (
     <div className="min-h-full bg-slate-100 p-4 sm:p-6">
@@ -106,31 +108,31 @@ export default function PurchaseOrderDetailsPage() {
               </div>
               <div className="rounded-2xl border border-white/10 bg-white/10 px-5 py-4 backdrop-blur">
                 <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Order Number</p>
-                <p className="mt-1 text-lg font-bold text-white">{order.orderNumber}</p>
-                <span className={`mt-3 inline-flex rounded-full px-3 py-1 text-xs font-bold ring-1 ${statusClasses(order.status)}`}>{order.status.replaceAll("_", " ")}</span>
+                <p className="mt-1 text-lg font-bold text-white">{currentOrder.orderNumber}</p>
+                <span className={`mt-3 inline-flex rounded-full px-3 py-1 text-xs font-bold ring-1 ${statusClasses(currentOrder.status)}`}>{currentOrder.status.replaceAll("_", " ")}</span>
               </div>
             </div>
           </div>
           <div className="grid border-t border-white/10 bg-white/5 sm:grid-cols-2 lg:grid-cols-3">
             <div className="flex items-center gap-3 px-6 py-4 sm:px-8"><Truck className="h-5 w-5 text-blue-400" /><div><p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Supplier</p><p className="mt-1 font-semibold text-white">{supplierName}</p></div></div>
             <div className="flex items-center gap-3 px-6 py-4 sm:px-8"><Warehouse className="h-5 w-5 text-blue-400" /><div><p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Warehouse</p><p className="mt-1 font-semibold text-white">{warehouseName}</p></div></div>
-            <div className="flex items-center gap-3 px-6 py-4 sm:px-8"><Package className="h-5 w-5 text-blue-400" /><div><p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Products</p><p className="mt-1 font-semibold text-white">{order.items.length} {order.items.length === 1 ? "item" : "items"}</p></div></div>
+            <div className="flex items-center gap-3 px-6 py-4 sm:px-8"><Package className="h-5 w-5 text-blue-400" /><div><p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Products</p><p className="mt-1 font-semibold text-white">{currentOrder.items.length} {currentOrder.items.length === 1 ? "item" : "items"}</p></div></div>
           </div>
         </section>
 
         <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
           <div className="mb-5"><p className="text-xs font-bold uppercase tracking-wider text-blue-600">Workflow</p><h2 className="mt-1 text-xl font-bold text-slate-900">Move this order forward</h2><p className="mt-1 text-sm text-slate-500">The highlighted step shows the next action available for this order.</p></div>
           <div className="grid gap-3 md:grid-cols-4">
-            {workflow.map(([number, title, description]) => { const active = isWorkflowActive(number, order); return <div key={number} className={`rounded-2xl border p-4 transition ${active ? "border-blue-300 bg-blue-50 shadow-sm" : "border-slate-200 bg-slate-50"}`}><div className="flex items-start gap-3"><span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold ${active ? "bg-blue-600 text-white" : "bg-white text-slate-600 ring-1 ring-slate-200"}`}>{number}</span><div><p className="font-semibold text-slate-900">{title}</p><p className="mt-1 text-xs leading-5 text-slate-500">{description}</p></div></div></div>; })}
+            {workflow.map(([number, title, description]) => { const active = isWorkflowActive(number, currentOrder); return <div key={number} className={`rounded-2xl border p-4 transition ${active ? "border-blue-300 bg-blue-50 shadow-sm" : "border-slate-200 bg-slate-50"}`}><div className="flex items-start gap-3"><span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold ${active ? "bg-blue-600 text-white" : "bg-white text-slate-600 ring-1 ring-slate-200"}`}>{number}</span><div><p className="font-semibold text-slate-900">{title}</p><p className="mt-1 text-xs leading-5 text-slate-500">{description}</p></div></div></div>; })}
           </div>
-          <div className="mt-5 rounded-xl border border-slate-200 bg-slate-50 p-4"><PurchaseOrderActions order={order} /></div>
+          <div className="mt-5 rounded-xl border border-slate-200 bg-slate-50 p-4"><PurchaseOrderActions order={currentOrder} /></div>
         </section>
 
-        {canAddItems && <section className="rounded-2xl border border-blue-200 bg-white p-5 shadow-sm sm:p-6"><div className="mb-5 flex items-start gap-3"><div className="rounded-xl bg-blue-50 p-2.5 text-blue-600"><Package className="h-5 w-5" /></div><div><p className="text-xs font-bold uppercase tracking-wider text-blue-600">Step 1</p><h2 className="mt-1 text-xl font-bold text-slate-900">Add Products</h2><p className="mt-1 text-sm text-slate-500">Search for a product, enter the quantity and cost, then add it to this order.</p></div></div><PurchaseOrderItemForm purchaseOrderId={order.id} tenantId={order.tenantId} onAddItem={handleAddItem} /></section>}
+        {canAddItems && <section className="rounded-2xl border border-blue-200 bg-white p-5 shadow-sm sm:p-6"><div className="mb-5 flex items-start gap-3"><div className="rounded-xl bg-blue-50 p-2.5 text-blue-600"><Package className="h-5 w-5" /></div><div><p className="text-xs font-bold uppercase tracking-wider text-blue-600">Step 1</p><h2 className="mt-1 text-xl font-bold text-slate-900">Add Products</h2><p className="mt-1 text-sm text-slate-500">Search for a product, enter the quantity and cost, then add it to this order.</p></div></div><PurchaseOrderItemForm purchaseOrderId={currentOrder.id} tenantId={currentOrder.tenantId} onAddItem={handleAddItem} /></section>}
 
-        <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"><div className="mb-5 flex items-end justify-between gap-4"><div><h2 className="text-xl font-bold text-slate-900">Ordered Products</h2><p className="mt-1 text-sm text-slate-500">Products and quantities included in this purchase order.</p></div><span className="hidden rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600 sm:inline-flex">{order.items.length} {order.items.length === 1 ? "item" : "items"}</span></div><PurchaseOrderItemTable items={order.items} tenantId={order.tenantId} /></section>
+        <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"><div className="mb-5 flex items-end justify-between gap-4"><div><h2 className="text-xl font-bold text-slate-900">Ordered Products</h2><p className="mt-1 text-sm text-slate-500">Products and quantities included in this purchase order.</p></div><span className="hidden rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600 sm:inline-flex">{currentOrder.items.length} {currentOrder.items.length === 1 ? "item" : "items"}</span></div><PurchaseOrderItemTable items={currentOrder.items} tenantId={currentOrder.tenantId} /></section>
 
-        <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"><PurchaseOrderSummary order={order} /></section>
+        <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"><PurchaseOrderSummary order={currentOrder} /></section>
       </div>
     </div>
   );
