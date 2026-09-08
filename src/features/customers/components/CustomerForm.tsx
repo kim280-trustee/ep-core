@@ -26,29 +26,29 @@ export function CustomerForm({ defaultValues, onSubmit }: CustomerFormProps) {
           <label className="mb-2 block text-sm font-semibold text-slate-700">{t("customers.customerName")}</label>
           <div className="relative">
             <UserRound className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-            <input {...register("name")} placeholder={t("customers.enterCustomerName")} className={`${inputClassName} pl-10`} />
+            <input {...register("name")} placeholder={t("customers.customerName")} className={`${inputClassName} pl-10`} />
           </div>
           {errors.name && <p className="mt-1.5 text-sm text-red-600">{errors.name.message}</p>}
         </div>
         <div>
-          <label className="mb-2 block text-sm font-semibold text-slate-700">{t("common.phone")}</label>
+          <label className="mb-2 block text-sm font-semibold text-slate-700">{t("customers.phone")}</label>
           <div className="relative">
             <Phone className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-            <input {...register("phone")} placeholder={t("customers.phoneNumber")} className={`${inputClassName} pl-10`} />
+            <input {...register("phone")} placeholder={t("customers.phone")} className={`${inputClassName} pl-10`} />
           </div>
         </div>
         <div>
-          <label className="mb-2 block text-sm font-semibold text-slate-700">{t("common.email")}</label>
+          <label className="mb-2 block text-sm font-semibold text-slate-700">{t("customers.email")}</label>
           <div className="relative">
             <Mail className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-            <input type="email" {...register("email")} placeholder={t("customers.emailAddress")} className={`${inputClassName} pl-10`} />
+            <input type="email" {...register("email")} placeholder={t("customers.email")} className={`${inputClassName} pl-10`} />
           </div>
         </div>
         <div className="lg:col-span-2">
-          <label className="mb-2 block text-sm font-semibold text-slate-700">{t("common.address")}</label>
+          <label className="mb-2 block text-sm font-semibold text-slate-700">{t("common.description")}</label>
           <div className="relative">
             <MapPin className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-slate-400" />
-            <textarea {...register("address")} placeholder={t("customers.customerAddress")} rows={3} className={`${inputClassName} h-auto resize-none py-3 pl-10`} />
+            <textarea {...register("address")} placeholder={t("common.description")} rows={3} className={`${inputClassName} h-auto resize-none py-3 pl-10`} />
           </div>
         </div>
         <div>
@@ -60,7 +60,7 @@ export function CustomerForm({ defaultValues, onSubmit }: CustomerFormProps) {
           </select>
         </div>
         <div>
-          <label className="mb-2 block text-sm font-semibold text-slate-700">{t("customers.creditLimit")}</label>
+          <label className="mb-2 block text-sm font-semibold text-slate-700">{t("common.price")}</label>
           <div className="relative">
             <CreditCard className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
             <input type="number" {...register("creditLimit", { valueAsNumber: true })} placeholder="0" className={`${inputClassName} pl-10`} />
