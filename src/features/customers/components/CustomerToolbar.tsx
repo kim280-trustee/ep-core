@@ -6,6 +6,7 @@ import {
   Search,
   UserPlus,
 } from "lucide-react";
+import { useTranslation } from "@/core/i18n/useTranslation";
 
 interface CustomerToolbarProps {
   search: string;
@@ -16,6 +17,8 @@ export function CustomerToolbar({
   search,
   onSearchChange,
 }: CustomerToolbarProps) {
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:flex-row sm:items-center">
       <div className="relative flex-1">
@@ -25,8 +28,8 @@ export function CustomerToolbar({
           onChange={(event) =>
             onSearchChange(event.target.value)
           }
-          placeholder="Search customers..."
-          aria-label="Search customers"
+          placeholder={t("common.search")}
+          aria-label={t("common.search")}
           className="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 pl-10 pr-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100"
         />
       </div>
@@ -36,7 +39,7 @@ export function CustomerToolbar({
         className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-200"
       >
         <UserPlus className="h-4 w-4" />
-        Add Customer
+        {t("customers.addCustomer")}
       </Link>
     </div>
   );
