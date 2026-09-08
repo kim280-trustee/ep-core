@@ -1,4 +1,5 @@
 ﻿import type { ChangeEvent } from "react";
+import { useTranslation } from "@/core/i18n/useTranslation";
 
 interface InventoryFiltersProps {
   search: string;
@@ -22,6 +23,8 @@ export function InventoryFilters({
   onWarehouseChange,
   onStatusChange,
 }: InventoryFiltersProps) {
+  const { t } = useTranslation();
+
   const handleSearch = (
     event: ChangeEvent<HTMLInputElement>,
   ) => {
@@ -35,7 +38,7 @@ export function InventoryFilters({
           htmlFor="inventory-search"
           className="mb-1 block text-sm font-medium"
         >
-          Search
+          {t("common.search")}
         </label>
 
         <input
@@ -43,7 +46,7 @@ export function InventoryFilters({
           type="text"
           value={search}
           onChange={handleSearch}
-          placeholder="Product name or SKU"
+          placeholder={t("inventory.searchProductSku")}
           className="w-full rounded border px-3 py-2"
         />
       </div>
@@ -53,7 +56,7 @@ export function InventoryFilters({
           htmlFor="inventory-warehouse"
           className="mb-1 block text-sm font-medium"
         >
-          Warehouse
+          {t("inventory.warehouse")}
         </label>
 
         <select
@@ -64,7 +67,7 @@ export function InventoryFilters({
           }
           className="w-full rounded border px-3 py-2"
         >
-          <option value="">All Warehouses</option>
+          <option value="">{t("inventory.allWarehouses")}</option>
 
           {warehouses.map((warehouse) => (
             <option
@@ -82,7 +85,7 @@ export function InventoryFilters({
           htmlFor="inventory-status"
           className="mb-1 block text-sm font-medium"
         >
-          Stock Status
+          {t("inventory.stockStatus")}
         </label>
 
         <select
@@ -93,11 +96,11 @@ export function InventoryFilters({
           }
           className="w-full rounded border px-3 py-2"
         >
-          <option value="">All Statuses</option>
-          <option value="Healthy">Healthy</option>
-          <option value="Low Stock">Low Stock</option>
+          <option value="">{t("inventory.allStatuses")}</option>
+          <option value="Healthy">{t("inventory.healthy")}</option>
+          <option value="Low Stock">{t("inventory.lowStock")}</option>
           <option value="Out of Stock">
-            Out of Stock
+            {t("inventory.outOfStock")}
           </option>
         </select>
       </div>
