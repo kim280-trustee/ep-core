@@ -10,12 +10,12 @@ import { useTranslation } from "@/core/i18n/useTranslation";
 
 export default function GoodsReceiptsPage() {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const context = storeContext.getStore();
   const { receipts, loadReceipts, loading, error } = useGoodsReceipts();
-  const [supplierNames, setSupplierNames] = useState<Record<string,string>>({});
-  const [warehouseNames, setWarehouseNames] = useState<Record<string,string>>({});
-  const [purchaseOrderNumbers, setPurchaseOrderNumbers] = useState<Record<string,string>>({});
+  const [supplierNames, setSupplierNames] = useState<Record<string, string>>({});
+  const [warehouseNames, setWarehouseNames] = useState<Record<string, string>>({});
+  const [purchaseOrderNumbers, setPurchaseOrderNumbers] = useState<Record<string, string>>({});
 
   useEffect(() => { if (context?.tenantId) void loadReceipts(context.tenantId); }, [context?.tenantId, loadReceipts]);
   useEffect(() => {
@@ -38,7 +38,12 @@ export default function GoodsReceiptsPage() {
     return () => { cancelled = true; };
   }, [receipts, context?.tenantId]);
 
-  const formatReceivedDate = (value: string) => { const date = new Date(value); return Number.isNaN(date.getTime()) ? value : new Intl.DateTimeFormat(undefined, { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" }).format(date); };
+  const formatReceivedDate = (value: string) => {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return value;
+    const locale = language === "th" ? "th-TH" : language === "sw" ? "sw-KE" : "en-US";
+    return new Intl.DateTimeFormat(locale, { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" }).format(date);
+  };
 
   return <div className="min-h-screen bg-slate-100 px-4 py-6 sm:px-6 lg:px-8"><div className="mx-auto max-w-7xl space-y-6">
     <section className="overflow-hidden rounded-3xl bg-slate-950 text-white shadow-xl"><div className="relative px-6 py-8 sm:px-8 sm:py-10"><div className="relative flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"><div className="max-w-2xl"><div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-600"><PackageCheck className="h-5 w-5" /></div><p className="mb-2 text-sm font-semibold uppercase tracking-[0.18em] text-blue-300">{t("receiving.title")}</p><h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{t("receiving.goodsReceipts")}</h1><p className="mt-3 max-w-xl text-sm leading-6 text-slate-300 sm:text-base">{t("receiving.receivedProducts")}</p></div><button type="button" onClick={() => navigate("/purchase-receiving/create")} className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-500"><Plus className="h-4 w-4" />{t("receiving.createGoodsReceipt")}<ArrowRight className="h-4 w-4" /></button></div></div></section>
