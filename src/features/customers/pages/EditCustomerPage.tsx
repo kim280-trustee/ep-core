@@ -25,10 +25,10 @@ export function EditCustomerPage() {
         <div className="mx-auto max-w-4xl rounded-2xl border border-slate-200 bg-white p-10 text-center shadow-sm">
           <UserRound className="mx-auto h-10 w-10 text-slate-300" />
           <h1 className="mt-4 text-lg font-semibold text-slate-900">
-            {t("customers.customerNotFound")}
+            {t("customers.noCustomers")}
           </h1>
           <p className="mt-1 text-sm text-slate-500">
-            {t("customers.customerNotFoundDescription")}
+            {t("customers.customerManagement")}
           </p>
           <button
             type="button"
