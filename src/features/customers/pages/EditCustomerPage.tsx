@@ -44,6 +44,8 @@ export function EditCustomerPage() {
   }
 
   async function handleSubmit(data: CustomerFormInput) {
+    if (!customerId) return;
+
     await updateCustomer(customerId, {
       name: data.name,
       phone: data.phone,
