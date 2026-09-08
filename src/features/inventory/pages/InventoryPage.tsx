@@ -19,6 +19,7 @@ import { useInventoryStore } from "../store/inventory.store";
 
 import { useProductsStore } from "@/features/products";
 import { warehouseService } from "@/features/warehouses";
+import { useTranslation } from "@/core/i18n/useTranslation";
 
 import type { InventoryRecord } from "../types/inventory-record.types";
 
@@ -29,209 +30,89 @@ interface RestockRequest {
 }
 
 export function InventoryPage() {
-  const {
-    inventory,
-    loading,
-    error,
-    refresh,
-  } = useInventory();
+  const { inventory, loading, error, refresh } = useInventory();
+  const { records, setRecords } = useInventoryStore();
+  const products = useProductsStore((state) => state.products);
+  const loadProducts = useProductsStore((state) => state.loadProducts);
+  const { t } = useTranslation();
 
-  const {
-    records,
-    setRecords,
-  } = useInventoryStore();
-
-  const products = useProductsStore(
-    (state) => state.products,
-  );
-
-  const loadProducts = useProductsStore(
-    (state) => state.loadProducts,
-  );
-
-  const [warehouses, setWarehouses] =
-    useState<
-      Array<{
-        id: string;
-        name: string;
-      }>
-    >([]);
-
-  const [search, setSearch] =
-    useState("");
-
-  const [warehouseId, setWarehouseId] =
-    useState("");
-
-  const [status, setStatus] =
-    useState("");
-
-  const [
-    restockRequest,
-    setRestockRequest,
-  ] = useState<RestockRequest | null>(null);
-
-  const receiveStockRef =
-    useRef<HTMLDivElement | null>(null);
+  const [warehouses, setWarehouses] = useState<Array<{ id: string; name: string }>>([]);
+  const [search, setSearch] = useState("");
+  const [warehouseId, setWarehouseId] = useState("");
+  const [status, setStatus] = useState("");
+  const [restockRequest, setRestockRequest] = useState<RestockRequest | null>(null);
+  const receiveStockRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setRecords(inventory);
-  }, [
-    inventory,
-    setRecords,
-  ]);
+  }, [inventory, setRecords]);
 
   useEffect(() => {
-    if (products.length === 0) {
-      void loadProducts();
-    }
-  }, [
-    products.length,
-    loadProducts,
-  ]);
+    if (products.length === 0) void loadProducts();
+  }, [products.length, loadProducts]);
 
   useEffect(() => {
     async function loadWarehouses() {
       try {
-        const result =
-          await warehouseService.getWarehouses();
-
+        const result = await warehouseService.getWarehouses();
         setWarehouses(
           result
-            .filter(
-              (warehouse) =>
-                warehouse.status === "ACTIVE",
-            )
-            .map((warehouse) => ({
-              id: warehouse.id,
-              name: warehouse.name,
-            })),
+            .filter((warehouse) => warehouse.status === "ACTIVE")
+            .map((warehouse) => ({ id: warehouse.id, name: warehouse.name })),
         );
       } catch (error) {
-        console.error(
-          "Failed to load warehouses:",
-          error,
-        );
+        console.error("Failed to load warehouses:", error);
       }
     }
-
     void loadWarehouses();
   }, []);
 
   const filteredRecords = useMemo(() => {
-    const normalizedSearch =
-      search.trim().toLowerCase();
-
+    const normalizedSearch = search.trim().toLowerCase();
     return records.filter((record) => {
-      if (
-        warehouseId &&
-        record.warehouseId !== warehouseId
-      ) {
-        return false;
-      }
+      if (warehouseId && record.warehouseId !== warehouseId) return false;
 
       const stockStatus =
         record.quantityOnHand <= 0
           ? "Out of Stock"
-          : record.quantityOnHand <=
-              record.minimumStockLevel
+          : record.quantityOnHand <= record.minimumStockLevel
             ? "Low Stock"
             : "Healthy";
 
-      if (
-        status &&
-        stockStatus !== status
-      ) {
-        return false;
-      }
+      if (status && stockStatus !== status) return false;
+      if (!normalizedSearch) return true;
 
-      if (!normalizedSearch) {
-        return true;
-      }
-
-      const product =
-        products.find(
-          (item) =>
-            item.id === record.productId,
-        );
-
-      const productName =
-        product?.name?.toLowerCase() ?? "";
-
-      const sku =
-        product?.identifiers?.sku?.toLowerCase() ?? "";
-
-      return (
-        productName.includes(
-          normalizedSearch,
-        ) ||
-        sku.includes(
-          normalizedSearch,
-        )
-      );
+      const product = products.find((item) => item.id === record.productId);
+      const productName = product?.name?.toLowerCase() ?? "";
+      const sku = product?.identifiers?.sku?.toLowerCase() ?? "";
+      return productName.includes(normalizedSearch) || sku.includes(normalizedSearch);
     });
-  }, [
-    records,
-    products,
-    search,
-    warehouseId,
-    status,
-  ]);
+  }, [records, products, search, warehouseId, status]);
 
-  const handleRestock = (
-    record: InventoryRecord,
-    quantity: number,
-  ) => {
-    setRestockRequest({
-      productId: record.productId,
-      warehouseId: record.warehouseId,
-      quantity,
-    });
-
+  const handleRestock = (record: InventoryRecord, quantity: number) => {
+    setRestockRequest({ productId: record.productId, warehouseId: record.warehouseId, quantity });
     window.setTimeout(() => {
-      receiveStockRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      receiveStockRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 0);
   };
 
   return (
     <div className="space-y-6 p-6">
-      <InventoryToolbar
-        onRefresh={() => {
-          void refresh();
-        }}
-      />
+      <InventoryToolbar onRefresh={() => void refresh()} />
 
       {!loading && !error && (
         <>
-          <InventorySummaryCards
-            inventory={records}
-          />
-
-          <InventoryValuationSummary
-            records={records}
-          />
-
-          <InventoryStockAlerts
-            records={records}
-          />
-
-          <InventoryReplenishmentSuggestions
-            records={records}
-            onRestock={handleRestock}
-          />
-
+          <InventorySummaryCards inventory={records} />
+          <InventoryValuationSummary records={records} />
+          <InventoryStockAlerts records={records} />
+          <InventoryReplenishmentSuggestions records={records} onRestock={handleRestock} />
           <InventoryFilters
             search={search}
             warehouseId={warehouseId}
             status={status}
             warehouses={warehouses}
             onSearchChange={setSearch}
-            onWarehouseChange={
-              setWarehouseId
-            }
+            onWarehouseChange={setWarehouseId}
             onStatusChange={setStatus}
           />
         </>
@@ -239,45 +120,21 @@ export function InventoryPage() {
 
       <div ref={receiveStockRef}>
         <ReceiveStockForm
-          initialProductId={
-            restockRequest?.productId
-          }
-          initialWarehouseId={
-            restockRequest?.warehouseId
-          }
-          initialQuantity={
-            restockRequest?.quantity
-          }
-          onRestockRequestHandled={() =>
-            setRestockRequest(null)
-          }
+          initialProductId={restockRequest?.productId}
+          initialWarehouseId={restockRequest?.warehouseId}
+          initialQuantity={restockRequest?.quantity}
+          onRestockRequestHandled={() => setRestockRequest(null)}
         />
       </div>
 
-      {loading && (
-        <div className="rounded border p-4">
-          Loading inventory...
-        </div>
-      )}
+      {loading && <div className="rounded border p-4">{t("inventory.loading")}</div>}
 
       {error && (
         <div className="rounded border p-4 text-red-600">
-          <p className="font-semibold">
-            Unable to load inventory
-          </p>
-
-          <p className="mt-1">
-            {error}
-          </p>
-
-          <button
-            type="button"
-            onClick={() => {
-              void refresh();
-            }}
-            className="mt-3 rounded border px-4 py-2"
-          >
-            Try Again
+          <p className="font-semibold">{t("inventory.unableToLoad")}</p>
+          <p className="mt-1">{error}</p>
+          <button type="button" onClick={() => void refresh()} className="mt-3 rounded border px-4 py-2">
+            {t("common.tryAgain")}
           </button>
         </div>
       )}
@@ -285,17 +142,9 @@ export function InventoryPage() {
       {!loading && !error && (
         <>
           <div className="text-sm text-gray-500">
-            Showing{" "}
-            {filteredRecords.length}{" "}
-            of {records.length}{" "}
-            inventory records.
+            {t("inventory.showingRecords", { filtered: filteredRecords.length, total: records.length })}
           </div>
-
-          <InventoryTable
-            records={filteredRecords}
-            warehouses={warehouses}
-            onChanged={refresh}
-          />
+          <InventoryTable records={filteredRecords} warehouses={warehouses} onChanged={refresh} />
         </>
       )}
     </div>
