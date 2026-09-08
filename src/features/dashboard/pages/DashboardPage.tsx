@@ -460,9 +460,9 @@ function MetricCard({
   return (
     <div className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md">
       <div className="flex items-start justify-between gap-4">
-        <div className="min-w-0">
+        <div className="min-w-0 flex-1">
           <p className="text-sm font-medium text-slate-500">{title}</p>
-          <p className="mt-3 truncate text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
+          <p className="mt-3 text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
             {value}
           </p>
         </div>
@@ -497,38 +497,20 @@ function AttentionCard({
   alert?: boolean;
 }) {
   return (
-    <div
-      className={`rounded-2xl border bg-white p-5 shadow-sm transition hover:shadow-md ${
-        alert ? "border-amber-200" : "border-slate-200"
-      }`}
-    >
+    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
       <div className="flex items-start justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <div
-            className={`flex h-11 w-11 items-center justify-center rounded-xl ${
-              alert
-                ? "bg-amber-50 text-amber-600"
-                : "bg-blue-50 text-blue-600"
-            }`}
-          >
-            {icon}
-          </div>
-
-          <div>
-            <p className="text-sm font-semibold text-slate-900">{title}</p>
-            <p className="mt-1 text-xs text-slate-500">{description}</p>
-          </div>
+        <div>
+          <p className="text-sm font-medium text-slate-500">{title}</p>
+          <p className={`mt-2 text-3xl font-bold ${alert ? "text-amber-600" : "text-slate-950"}`}>
+            {value}
+          </p>
+          <p className="mt-1 text-sm text-slate-500">{description}</p>
         </div>
-
-        <p className="text-3xl font-bold tracking-tight text-slate-950">
-          {value}
-        </p>
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-slate-600">
+          {icon}
+        </div>
       </div>
-
-      <a
-        href={href}
-        className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-blue-600 transition hover:text-blue-700"
-      >
+      <a href={href} className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-blue-600 hover:text-blue-700">
         {actionLabel}
         <ArrowRight size={15} />
       </a>
@@ -552,26 +534,45 @@ function DashboardSection({
   children: ReactNode;
 }) {
   return (
-    <div
-      id={id}
-      className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
-    >
+    <div id={id} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
       <div className="flex items-start justify-between gap-4 border-b border-slate-100 px-5 py-4">
         <div>
-          <h2 className="text-base font-bold text-slate-950">{title}</h2>
+          <h3 className="text-base font-bold text-slate-950">{title}</h3>
           <p className="mt-1 text-xs text-slate-500">{description}</p>
         </div>
-
-        <Link
-          to={actionHref}
-          className="inline-flex shrink-0 items-center gap-1 text-xs font-bold text-blue-600 transition hover:text-blue-700"
-        >
+        <Link to={actionHref} className="shrink-0 text-xs font-semibold text-blue-600 hover:text-blue-700">
           {actionLabel}
-          <ArrowRight size={14} />
         </Link>
       </div>
-
       {children}
+    </div>
+  );
+}
+
+function EmptyState({
+  icon,
+  title,
+  text,
+  actionLabel,
+  actionHref,
+}: {
+  icon: ReactNode;
+  title: string;
+  text: string;
+  actionLabel: string;
+  actionHref: string;
+}) {
+  return (
+    <div className="flex flex-col items-center px-5 py-10 text-center">
+      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-600">
+        {icon}
+      </div>
+      <p className="mt-4 text-sm font-bold text-slate-900">{title}</p>
+      <p className="mt-1 max-w-sm text-xs leading-5 text-slate-500">{text}</p>
+      <Link to={actionHref} className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-blue-600 hover:text-blue-700">
+        {actionLabel}
+        <ArrowRight size={15} />
+      </Link>
     </div>
   );
 }
@@ -592,86 +593,27 @@ function QuickAction({
   return (
     <Link
       to={href}
-      className={`group relative flex min-h-[112px] items-center gap-4 overflow-hidden rounded-2xl border p-4 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+      className={`group rounded-2xl border p-4 transition hover:-translate-y-0.5 hover:shadow-sm ${
         primary
-          ? "border-blue-600 bg-blue-600 text-white hover:bg-blue-700"
-          : "border-blue-200 bg-white text-slate-900 hover:border-blue-400 hover:bg-blue-50"
+          ? "border-blue-600 bg-blue-600 text-white"
+          : "border-slate-200 bg-white text-slate-900 hover:border-slate-300"
       }`}
     >
-      <span
-        className={`absolute inset-y-0 left-0 w-1 ${
-          primary ? "bg-white/40" : "bg-blue-500"
-        }`}
-      />
-
-      <div
-        className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition ${
-          primary
-            ? "bg-white/15 text-white"
-            : "bg-blue-50 text-blue-600 group-hover:bg-blue-100"
-        }`}
-      >
-        {icon}
-      </div>
-
-      <div className="min-w-0 flex-1">
-        <p
-          className={`text-sm font-bold ${
-            primary ? "text-white" : "text-slate-950"
+      <div className="flex items-start gap-3">
+        <div
+          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${
+            primary ? "bg-white/15" : "bg-slate-100 text-slate-700"
           }`}
         >
-          {label}
-        </p>
-
-        <p
-          className={`mt-1 text-xs leading-5 ${
-            primary ? "text-blue-100" : "text-slate-500"
-          }`}
-        >
-          {description}
-        </p>
+          {icon}
+        </div>
+        <div className="min-w-0">
+          <p className="text-sm font-bold">{label}</p>
+          <p className={`mt-1 text-xs leading-5 ${primary ? "text-blue-100" : "text-slate-500"}`}>
+            {description}
+          </p>
+        </div>
       </div>
-
-      <ArrowRight
-        size={18}
-        className={`shrink-0 transition-transform duration-200 group-hover:translate-x-1 ${
-          primary ? "text-white" : "text-blue-500"
-        }`}
-      />
     </Link>
-  );
-}
-
-function EmptyState({
-  icon,
-  title,
-  text,
-  actionLabel,
-  actionHref,
-}: {
-  icon: ReactNode;
-  title: string;
-  text: string;
-  actionLabel: string;
-  actionHref: string;
-}) {
-  return (
-    <div className="flex flex-col items-center px-5 py-10 text-center">
-      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-500">
-        {icon}
-      </div>
-
-      <p className="mt-3 text-sm font-bold text-slate-900">{title}</p>
-
-      <p className="mt-1 max-w-sm text-xs leading-5 text-slate-500">{text}</p>
-
-      <Link
-        to={actionHref}
-        className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-blue-600 transition hover:text-blue-700"
-      >
-        {actionLabel}
-        <ArrowRight size={15} />
-      </Link>
-    </div>
   );
 }
