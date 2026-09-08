@@ -151,7 +151,8 @@ class InMemoryDashboardRepository implements DashboardRepository {
     }
 
     const recentSales: DashboardRecentSale[] =
-      todayCompletedSales
+      storeOrders
+        .filter((order) => order.status === "COMPLETED")
         .slice()
         .sort(
           (a, b) =>
