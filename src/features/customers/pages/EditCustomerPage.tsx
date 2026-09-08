@@ -21,8 +21,10 @@ export function EditCustomerPage() {
 
   if (!id || !customer) return <div className="min-h-full bg-slate-100 p-4 sm:p-6"><div className="mx-auto max-w-4xl rounded-2xl border border-slate-200 bg-white p-10 text-center shadow-sm"><UserRound className="mx-auto h-10 w-10 text-slate-300" /><h1 className="mt-4 text-lg font-semibold text-slate-900">{t("customers.customerNotFound")}</h1><p className="mt-1 text-sm text-slate-500">{t("customers.customerNotFoundDescription")}</p><button type="button" onClick={() => navigate("/customers")} className="mt-5 inline-flex h-10 items-center gap-2 rounded-xl bg-blue-600 px-4 text-sm font-semibold text-white transition hover:bg-blue-700"><ArrowLeft className="h-4 w-4" />{t("common.back")}</button></div></div>;
 
+  const customerId = id;
+
   async function handleSubmit(data: CustomerFormInput) {
-    await updateCustomer(id, { name: data.name, phone: data.phone, email: data.email, address: data.address, customerType: data.customerType, creditLimit: data.creditLimit });
+    await updateCustomer(customerId, { name: data.name, phone: data.phone, email: data.email, address: data.address, customerType: data.customerType, creditLimit: data.creditLimit });
     navigate("/customers");
   }
 
