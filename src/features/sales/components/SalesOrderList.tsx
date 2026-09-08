@@ -1,4 +1,4 @@
-import {
+﻿import {
   useEffect,
   useState,
 } from "react";
@@ -27,7 +27,11 @@ import type {
   SalesOrder,
 } from "../types/sales-order.types";
 
+import { useTranslation } from "@/core/i18n/useTranslation";
+
 export default function SalesOrderList() {
+  const { t } = useTranslation();
+
   const {
     orders,
     loading,
@@ -142,7 +146,7 @@ export default function SalesOrderList() {
       storeContext.getStore()?.tenantId;
 
     if (!tenantId) {
-      setPaymentError("Store context is not available.");
+      setPaymentError(t("sales.storeContextUnavailable"));
       return;
     }
 
@@ -180,7 +184,7 @@ export default function SalesOrderList() {
       setPaymentError(
         err instanceof Error
           ? err.message
-          : "Payment could not be completed.",
+          : t("sales.paymentCouldNotBeCompleted"),
       );
     } finally {
       setPayingOrderId(null);
@@ -190,7 +194,7 @@ export default function SalesOrderList() {
   if (loading && orders.length === 0) {
     return (
       <div className="rounded border bg-white p-4">
-        Loading sales orders...
+        {t("sales.loadingSalesOrders")}
       </div>
     );
   }
@@ -198,7 +202,7 @@ export default function SalesOrderList() {
   return (
     <div>
       <h2 className="text-lg font-semibold">
-        Sales Orders
+        {t("sales.salesOrders")}
       </h2>
 
       {error && (
@@ -215,7 +219,7 @@ export default function SalesOrderList() {
 
       {orders.length === 0 ? (
         <div className="mt-4 rounded border bg-gray-50 p-4 text-sm text-gray-600">
-          No sales orders found.
+          {t("sales.noSalesOrders")}
         </div>
       ) : (
         <div className="mt-4 space-y-3">
@@ -231,15 +235,20 @@ export default function SalesOrderList() {
                   </div>
 
                   <div className="mt-1 text-sm text-gray-600">
-                    Status: <span className="font-medium">{order.status}</span>
+                    {t("common.status")}:{" "}
+                    <span className="font-medium">
+                      {order.status}
+                    </span>
                   </div>
 
                   <div className="mt-1 text-sm text-gray-600">
-                    Items: {order.items?.length ?? 0}
+                    {t("sales.items")}:{" "}
+                    {order.items?.length ?? 0}
                   </div>
 
                   <div className="mt-1 text-sm font-medium">
-                    Total: {order.totalAmount}
+                    {t("common.total")}:{" "}
+                    {order.totalAmount}
                   </div>
                 </div>
 
@@ -252,15 +261,16 @@ export default function SalesOrderList() {
                         onClick={() => void handleConfirm(order.id)}
                         className="rounded bg-black px-4 py-2 text-sm text-white disabled:opacity-50"
                       >
-                        Confirm
+                        {t("common.confirm")}
                       </button>
+
                       <button
                         type="button"
                         disabled={loading}
                         onClick={() => void handleCancel(order.id)}
                         className="rounded border px-4 py-2 text-sm disabled:opacity-50"
                       >
-                        Cancel
+                        {t("common.cancel")}
                       </button>
                     </>
                   )}
@@ -273,15 +283,16 @@ export default function SalesOrderList() {
                         onClick={() => void handleProcess(order.id)}
                         className="rounded bg-black px-4 py-2 text-sm text-white disabled:opacity-50"
                       >
-                        Process Sale
+                        {t("sales.processSale")}
                       </button>
+
                       <button
                         type="button"
                         disabled={loading}
                         onClick={() => void handleCancel(order.id)}
                         className="rounded border px-4 py-2 text-sm disabled:opacity-50"
                       >
-                        Cancel
+                        {t("common.cancel")}
                       </button>
                     </>
                   )}
@@ -290,19 +301,28 @@ export default function SalesOrderList() {
                     <>
                       <button
                         type="button"
-                        disabled={loading || payingOrderId === order.id}
+                        disabled={
+                          loading ||
+                          payingOrderId === order.id
+                        }
                         onClick={() => void handlePayment(order)}
                         className="rounded bg-green-600 px-4 py-2 text-sm text-white disabled:opacity-50"
                       >
-                        {payingOrderId === order.id ? "Processing Payment..." : "Pay & Complete Sale"}
+                        {payingOrderId === order.id
+                          ? t("sales.processingPayment")
+                          : t("sales.payAndCompleteSale")}
                       </button>
+
                       <button
                         type="button"
-                        disabled={loading || payingOrderId === order.id}
+                        disabled={
+                          loading ||
+                          payingOrderId === order.id
+                        }
                         onClick={() => void handleCancel(order.id)}
                         className="rounded border px-4 py-2 text-sm disabled:opacity-50"
                       >
-                        Cancel
+                        {t("common.cancel")}
                       </button>
                     </>
                   )}
@@ -314,23 +334,30 @@ export default function SalesOrderList() {
                       onClick={() => void handleRefund(order.id)}
                       className="rounded border px-4 py-2 text-sm disabled:opacity-50"
                     >
-                      Refund
+                      {t("sales.refund")}
                     </button>
                   )}
 
                   {order.status === "CANCELLED" && (
-                    <span className="rounded bg-gray-100 px-3 py-2 text-sm text-gray-600">Cancelled</span>
+                    <span className="rounded bg-gray-100 px-3 py-2 text-sm text-gray-600">
+                      {t("status.cancelled")}
+                    </span>
                   )}
 
                   {order.status === "REFUNDED" && (
-                    <span className="rounded bg-gray-100 px-3 py-2 text-sm text-gray-600">Refunded</span>
+                    <span className="rounded bg-gray-100 px-3 py-2 text-sm text-gray-600">
+                      {t("sales.refunded")}
+                    </span>
                   )}
                 </div>
               </div>
 
               {order.items && order.items.length > 0 && (
                 <div className="mt-4 border-t pt-3">
-                  <div className="text-sm font-medium">Sale Items</div>
+                  <div className="text-sm font-medium">
+                    {t("sales.saleItems")}
+                  </div>
+
                   <div className="mt-2 space-y-1">
                     {order.items.map((item) => (
                       <div
@@ -338,9 +365,14 @@ export default function SalesOrderList() {
                         className="flex justify-between gap-4 text-sm text-gray-600"
                       >
                         <span>
-                          {item.quantity} × {productNames[item.productId] ?? "Product"}
+                          {item.quantity} ×{" "}
+                          {productNames[item.productId] ??
+                            t("sales.product")}
                         </span>
-                        <span>{item.lineTotal}</span>
+
+                        <span>
+                          {item.lineTotal}
+                        </span>
                       </div>
                     ))}
                   </div>

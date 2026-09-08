@@ -19,7 +19,11 @@ import type {
   Warehouse,
 } from "@/features/warehouses/types/warehouse.types";
 
+import { useTranslation } from "@/core/i18n/useTranslation";
+
 export default function CreateSalesOrderForm() {
+  const { t } = useTranslation();
+
   const {
     createDraft,
   } = useSalesOrders();
@@ -89,7 +93,7 @@ export default function CreateSalesOrderForm() {
       setError(
         error instanceof Error
           ? error.message
-          : "Failed to load warehouses.",
+          : t("sales.failedToLoadWarehouses"),
       );
     }
   }
@@ -105,30 +109,22 @@ export default function CreateSalesOrderForm() {
     setError(null);
 
     if (!context?.tenantId) {
-      setError(
-        "Tenant context is not initialized.",
-      );
+      setError(t("sales.tenantContextNotInitialized"));
       return;
     }
 
     if (!context.storeId) {
-      setError(
-        "Store context is not initialized.",
-      );
+      setError(t("sales.storeContextNotInitialized"));
       return;
     }
 
     if (!warehouseName.trim()) {
-      setError(
-        "Warehouse name is required.",
-      );
+      setError(t("sales.warehouseNameRequired"));
       return;
     }
 
     if (!warehouseCode.trim()) {
-      setError(
-        "Warehouse code is required.",
-      );
+      setError(t("sales.warehouseCodeRequired"));
       return;
     }
 
@@ -178,7 +174,7 @@ export default function CreateSalesOrderForm() {
       setError(
         error instanceof Error
           ? error.message
-          : "Failed to create warehouse.",
+          : t("sales.failedToCreateWarehouse"),
       );
     } finally {
       setCreatingWarehouse(false);
@@ -189,23 +185,17 @@ export default function CreateSalesOrderForm() {
     setError(null);
 
     if (!context?.tenantId) {
-      setError(
-        "Tenant context is not initialized.",
-      );
+      setError(t("sales.tenantContextNotInitialized"));
       return;
     }
 
     if (!context.storeId) {
-      setError(
-        "Store context is not initialized.",
-      );
+      setError(t("sales.storeContextNotInitialized"));
       return;
     }
 
     if (!warehouseId) {
-      setError(
-        "Please select a warehouse.",
-      );
+      setError(t("sales.selectWarehouse"));
       return;
     }
 
@@ -230,7 +220,7 @@ export default function CreateSalesOrderForm() {
       setError(
         error instanceof Error
           ? error.message
-          : "Failed to create sales order.",
+          : t("sales.failedToCreateOrder"),
       );
     } finally {
       setLoading(false);
@@ -240,12 +230,12 @@ export default function CreateSalesOrderForm() {
   return (
     <div>
       <h2 className="text-lg font-semibold">
-        Create Sales Order
+        {t("sales.createSalesOrder")}
       </h2>
 
       <p className="mt-1 text-sm text-gray-600">
-        Business:{" "}
-        {context?.name ?? "Not initialized"}
+        {t("sales.business")}:{" "}
+        {context?.name ?? t("sales.notInitialized")}
       </p>
 
       {error && (
@@ -256,7 +246,7 @@ export default function CreateSalesOrderForm() {
 
       <div className="mt-4">
         <label className="mb-1 block text-sm font-medium">
-          Warehouse
+          {t("sales.warehouse")}
         </label>
 
         <select
@@ -270,7 +260,7 @@ export default function CreateSalesOrderForm() {
           className="w-full rounded border p-2"
         >
           <option value="">
-            Select warehouse
+            {t("sales.selectWarehouse")}
           </option>
 
           {warehouses.map(
@@ -289,12 +279,12 @@ export default function CreateSalesOrderForm() {
       {warehouses.length === 0 && (
         <div className="mt-4 rounded border bg-gray-50 p-4">
           <p className="text-sm text-gray-600">
-            No warehouse found for this store.
+            {t("sales.noWarehouseFound")}
           </p>
 
           <div className="mt-3 grid gap-3 md:grid-cols-2">
             <input
-              placeholder="Warehouse code"
+              placeholder={t("sales.warehouseCode")}
               value={warehouseCode}
               onChange={(event) =>
                 setWarehouseCode(
@@ -305,7 +295,7 @@ export default function CreateSalesOrderForm() {
             />
 
             <input
-              placeholder="Warehouse name"
+              placeholder={t("sales.warehouseName")}
               value={warehouseName}
               onChange={(event) =>
                 setWarehouseName(
@@ -329,8 +319,8 @@ export default function CreateSalesOrderForm() {
             className="mt-3 rounded bg-gray-800 px-4 py-2 text-sm text-white disabled:opacity-50"
           >
             {creatingWarehouse
-              ? "Creating..."
-              : "Create Warehouse"}
+              ? t("sales.creating")
+              : t("sales.createWarehouse")}
           </button>
         </div>
       )}
@@ -347,8 +337,8 @@ export default function CreateSalesOrderForm() {
         className="mt-5 rounded bg-black px-5 py-2 text-white disabled:opacity-50"
       >
         {loading
-          ? "Creating..."
-          : "Create Order"}
+          ? t("sales.creating")
+          : t("sales.createOrder")}
       </button>
     </div>
   );

@@ -16,7 +16,10 @@ import {
   useSalesOrders,
 } from "../hooks/useSalesOrders";
 
+import { useTranslation } from "../../../core/i18n/useTranslation";
+
 export default function SalesOrdersPage() {
+  const { t } = useTranslation();
 
   const {
     orders,
@@ -65,9 +68,8 @@ export default function SalesOrdersPage() {
 
   return (
     <div className="p-6">
-
       <h1 className="text-3xl font-bold">
-        Sales Management
+        {t("sales.title")}
       </h1>
 
       <div className="mt-6 rounded-lg border bg-white p-5 shadow-sm">
@@ -76,10 +78,9 @@ export default function SalesOrdersPage() {
 
       {activeOrder && (
         <div className="mt-6 rounded-lg border bg-white p-5 shadow-sm">
-
           <div className="mb-5 rounded border bg-gray-50 p-4">
             <p className="text-sm text-gray-500">
-              Active Sales Order
+              {t("sales.activeSalesOrder")}
             </p>
 
             <p className="mt-1 text-xl font-semibold">
@@ -87,21 +88,20 @@ export default function SalesOrdersPage() {
             </p>
 
             <p className="mt-1 text-sm text-gray-600">
-              Status: {activeOrder.status}
+              {t("common.status")}: {activeOrder.status}
             </p>
           </div>
 
           <AddSalesOrderItemForm
             salesOrderId={activeOrder.id}
           />
-
         </div>
       )}
 
       {!activeOrder && (
         <div className="mt-6 rounded-lg border bg-white p-5 shadow-sm">
           <p className="text-sm text-gray-600">
-            Create a sales order first. The new draft order will automatically become the active order.
+            {t("sales.createOrderFirst")}
           </p>
         </div>
       )}
@@ -109,7 +109,6 @@ export default function SalesOrdersPage() {
       <div className="mt-6 rounded-lg border bg-white p-5 shadow-sm">
         <SalesOrderList />
       </div>
-
     </div>
   );
 }

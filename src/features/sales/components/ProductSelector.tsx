@@ -15,14 +15,12 @@ import {
   storeContext,
 } from "@/core/store/store.context";
 
+import { useTranslation } from "@/core/i18n/useTranslation";
+
 interface ProductSelectorProps {
   value: string;
-
-  onChange:
-    (value: string) => void;
-
-  onPriceChange?:
-    (value: string) => void;
+  onChange: (value: string) => void;
+  onPriceChange?: (value: string) => void;
 }
 
 export default function ProductSelector({
@@ -30,20 +28,16 @@ export default function ProductSelector({
   onChange,
   onPriceChange,
 }: ProductSelectorProps) {
-  const [
-    products,
-    setProducts,
-  ] = useState<Product[]>([]);
+  const { t } = useTranslation();
 
-  const [
-    loading,
-    setLoading,
-  ] = useState(false);
+  const [products, setProducts] =
+    useState<Product[]>([]);
 
-  const [
-    error,
-    setError,
-  ] = useState<string | null>(null);
+  const [loading, setLoading] =
+    useState(false);
+
+  const [error, setError] =
+    useState<string | null>(null);
 
   useEffect(() => {
     let active = true;
@@ -56,7 +50,6 @@ export default function ProductSelector({
         if (active) {
           setProducts([]);
         }
-
         return;
       }
 
@@ -70,9 +63,7 @@ export default function ProductSelector({
           );
 
         if (active) {
-          setProducts(
-            result.data,
-          );
+          setProducts(result.data);
         }
       } catch (error) {
         console.error(
@@ -82,10 +73,11 @@ export default function ProductSelector({
 
         if (active) {
           setProducts([]);
+
           setError(
             error instanceof Error
               ? error.message
-              : "Failed to load products.",
+              : t("sales.failedToLoadProducts"),
           );
         }
       } finally {
@@ -102,9 +94,7 @@ export default function ProductSelector({
     };
   }, []);
 
-  function handleChange(
-    productId: string,
-  ) {
+  function handleChange(productId: string) {
     onChange(productId);
 
     const selectedProduct =
@@ -118,9 +108,7 @@ export default function ProductSelector({
       onPriceChange
     ) {
       onPriceChange(
-        String(
-          selectedProduct.sellingPrice,
-        ),
+        String(selectedProduct.sellingPrice),
       );
     }
   }
@@ -128,37 +116,31 @@ export default function ProductSelector({
   return (
     <div>
       <label className="mb-1 block text-sm font-medium">
-        Product
+        {t("sales.product")}
       </label>
 
       <select
         value={value || ""}
         disabled={loading}
         onChange={(event) =>
-          handleChange(
-            event.target.value,
-          )
+          handleChange(event.target.value)
         }
         className="w-full rounded border p-2"
       >
         <option value="">
           {loading
-            ? "Loading products..."
-            : "Select product"}
+            ? t("sales.loadingProducts")
+            : t("sales.selectProduct")}
         </option>
 
-        {products.map(
-          (product) => (
-            <option
-              key={product.id}
-              value={product.id}
-            >
-              {product.name}
-              {" - "}
-              {product.sellingPrice}
-            </option>
-          ),
-        )}
+        {products.map((product) => (
+          <option
+            key={product.id}
+            value={product.id}
+          >
+            {product.name} - {product.sellingPrice}
+          </option>
+        ))}
       </select>
 
       {error && (

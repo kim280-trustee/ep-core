@@ -1,106 +1,87 @@
-import type {
-  SettingsRepository,
-} from "./settings.repository";
+﻿import type { SettingsRepository } from "./settings.repository";
+import type { CompanySettings } from "../types";
 
+const STORAGE_KEY = "ep-core-company-settings";
 
-import type {
-  CompanySettings,
-} from "../types";
+class InMemorySettingsRepository implements SettingsRepository {
+  private settings: CompanySettings[] = this.loadFromStorage();
 
+  private loadFromStorage(): CompanySettings[] {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
 
+      if (!stored) {
+        return [];
+      }
 
-class InMemorySettingsRepository
+      const parsed = JSON.parse(stored);
 
-implements SettingsRepository {
-
-
-
-  private settings:
-
-    CompanySettings[] = [];
-
-
-
-
-
-  getSettings(
-
-    tenantId: string,
-
-  ) {
-
-
-    return this.settings.find(
-
-      (item) =>
-
-        item.tenantId === tenantId,
-
-    );
-
-
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
   }
 
+  private persist() {
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(this.settings),
+    );
+  }
 
-
-
-
-  saveSettings(
-
-    settings: CompanySettings,
-
-  ) {
-
-
-    const existing =
-
-      this.settings.find(
-
-        (item) =>
-
-          item.id === settings.id,
-
-      );
-
-
+  getSettings(tenantId: string): CompanySettings {
+    const existing = this.settings.find(
+      (item) => item.tenantId === tenantId,
+    );
 
     if (existing) {
-
-
-      Object.assign(
-
-        existing,
-
-        settings,
-
-      );
-
-
       return existing;
-
-
     }
 
+    const now = new Date().toISOString();
 
+    const defaults: CompanySettings = {
+      id: crypto.randomUUID(),
+      tenantId,
+      businessName: "My Business",
+      country: "Thailand",
+      currency: "THB",
+      language: "en",
+      taxEnabled: true,
+      taxRate: 7,
+      invoicePrefix: "INV",
+      receiptPrefix: "REC",
+      createdAt: now,
+      updatedAt: now,
+    };
 
-    this.settings.push(
+    this.settings.push(defaults);
+    this.persist();
 
-      settings,
-
-    );
-
-
-    return settings;
-
-
+    return defaults;
   }
 
+  saveSettings(settings: CompanySettings): CompanySettings {
+    const existingIndex = this.settings.findIndex(
+      (item) => item.id === settings.id,
+    );
 
+    const updatedSettings: CompanySettings = {
+      ...settings,
+      updatedAt: new Date().toISOString(),
+    };
 
+    if (existingIndex >= 0) {
+      this.settings[existingIndex] = updatedSettings;
+    } else {
+      this.settings.push(updatedSettings);
+    }
+
+    this.persist();
+
+    return updatedSettings;
+  }
 }
 
-
-
 export const inMemorySettingsRepository =
-
   new InMemorySettingsRepository();

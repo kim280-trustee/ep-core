@@ -1,15 +1,22 @@
+﻿import { useSyncExternalStore } from "react";
+
 import {
   translate,
   setLanguage,
-  type Language,
+  getLanguage,
+  subscribeToLanguage,
 } from "./i18n";
 
 export function useTranslation() {
+  const language = useSyncExternalStore(
+    subscribeToLanguage,
+    getLanguage,
+    getLanguage,
+  );
+
   return {
     t: translate,
-
-    changeLanguage:
-      (language: Language) =>
-        setLanguage(language),
+    language,
+    changeLanguage: setLanguage,
   };
 }

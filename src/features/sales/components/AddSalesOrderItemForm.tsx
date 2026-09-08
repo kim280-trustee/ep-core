@@ -10,6 +10,8 @@ import {
   useSalesOrders,
 } from "../hooks/useSalesOrders";
 
+import { useTranslation } from "@/core/i18n/useTranslation";
+
 interface AddSalesOrderItemFormProps {
   salesOrderId: string;
 }
@@ -17,6 +19,7 @@ interface AddSalesOrderItemFormProps {
 export default function AddSalesOrderItemForm({
   salesOrderId,
 }: AddSalesOrderItemFormProps) {
+  const { t } = useTranslation();
 
   const {
     orders,
@@ -80,16 +83,12 @@ export default function AddSalesOrderItemForm({
     setSuccess(null);
 
     if (!activeOrder) {
-      setError(
-        "Sales order is required.",
-      );
+      setError(t("sales.salesOrderRequired"));
       return;
     }
 
     if (!productId.trim()) {
-      setError(
-        "Please select a product.",
-      );
+      setError(t("sales.selectProduct"));
       return;
     }
 
@@ -109,9 +108,7 @@ export default function AddSalesOrderItemForm({
       !Number.isFinite(parsedQuantity) ||
       parsedQuantity <= 0
     ) {
-      setError(
-        "Quantity must be greater than zero.",
-      );
+      setError(t("sales.quantityGreaterThanZero"));
       return;
     }
 
@@ -119,9 +116,7 @@ export default function AddSalesOrderItemForm({
       !Number.isFinite(parsedUnitPrice) ||
       parsedUnitPrice < 0
     ) {
-      setError(
-        "Unit price must be zero or greater.",
-      );
+      setError(t("sales.unitPriceZeroOrGreater"));
       return;
     }
 
@@ -129,9 +124,7 @@ export default function AddSalesOrderItemForm({
       !Number.isFinite(parsedDiscount) ||
       parsedDiscount < 0
     ) {
-      setError(
-        "Discount must be zero or greater.",
-      );
+      setError(t("sales.discountZeroOrGreater"));
       return;
     }
 
@@ -140,9 +133,7 @@ export default function AddSalesOrderItemForm({
       parsedTaxRate < 0 ||
       parsedTaxRate > 100
     ) {
-      setError(
-        "Tax rate must be between 0 and 100.",
-      );
+      setError(t("sales.taxRateBetweenZeroAnd100"));
       return;
     }
 
@@ -170,14 +161,9 @@ export default function AddSalesOrderItemForm({
       );
 
       setSuccess(
-        "Item added to the sales order.",
+        t("sales.itemAdded"),
       );
 
-      /*
-       * Reset the form after a successful
-       * add so another product can be added
-       * to the SAME sales order.
-       */
       setProductId("");
       setQuantity("1");
       setUnitPrice("");
@@ -188,7 +174,7 @@ export default function AddSalesOrderItemForm({
       setError(
         error instanceof Error
           ? error.message
-          : "Failed to add item.",
+          : t("sales.failedToAddItem"),
       );
     } finally {
       setSubmitting(false);
@@ -198,13 +184,13 @@ export default function AddSalesOrderItemForm({
   return (
     <div>
       <h2 className="text-lg font-semibold">
-        Add Sale Item
+        {t("sales.addSaleItem")}
       </h2>
 
       {activeOrder && (
         <div className="mt-3 rounded border bg-gray-50 p-3 text-sm">
           <div className="font-medium">
-            Active Sales Order
+            {t("sales.activeSalesOrder")}
           </div>
 
           <div className="mt-1">
@@ -212,7 +198,7 @@ export default function AddSalesOrderItemForm({
           </div>
 
           <div className="mt-1 text-gray-600">
-            Items:{" "}
+            {t("sales.items")}:{" "}
             {activeOrder.items?.length ?? 0}
           </div>
         </div>
@@ -220,7 +206,7 @@ export default function AddSalesOrderItemForm({
 
       {!activeOrder && (
         <div className="mt-3 rounded border bg-gray-50 p-3 text-sm text-gray-600">
-          Create a sales order first.
+          {t("sales.createOrderFirst")}
         </div>
       )}
 
@@ -248,7 +234,7 @@ export default function AddSalesOrderItemForm({
 
         <div>
           <label className="mb-1 block text-sm font-medium">
-            Quantity
+            {t("sales.quantity")}
           </label>
 
           <input
@@ -267,7 +253,7 @@ export default function AddSalesOrderItemForm({
 
         <div>
           <label className="mb-1 block text-sm font-medium">
-            Unit Price
+            {t("sales.unitPrice")}
           </label>
 
           <input
@@ -286,7 +272,7 @@ export default function AddSalesOrderItemForm({
 
         <div>
           <label className="mb-1 block text-sm font-medium">
-            Discount
+            {t("sales.discount")}
           </label>
 
           <input
@@ -305,7 +291,7 @@ export default function AddSalesOrderItemForm({
 
         <div>
           <label className="mb-1 block text-sm font-medium">
-            Tax Rate (%)
+            {t("sales.taxRate")}
           </label>
 
           <input
@@ -334,8 +320,8 @@ export default function AddSalesOrderItemForm({
           className="rounded bg-black px-5 py-2 text-white disabled:opacity-50"
         >
           {submitting
-            ? "Adding..."
-            : "Add Item"}
+            ? t("sales.adding")
+            : t("sales.addItem")}
         </button>
       </form>
     </div>
