@@ -2,183 +2,125 @@ import {
   Link,
 } from "react-router-dom";
 
+import {
+  Pencil,
+  Trash2,
+  Users,
+} from "lucide-react";
 
 import type {
   Customer,
 } from "../types/customer.types";
 
-
 interface CustomerTableProps {
-
   customers: Customer[];
-
-  onDelete: (
-    id: string,
-  ) => void;
-
+  onDelete: (id: string) => void;
 }
 
-
+function customerTypeLabel(type: Customer["customerType"]) {
+  if (type === "wholesale") return "Wholesale";
+  if (type === "retail") return "Retail";
+  return "Regular";
+}
 
 export function CustomerTable({
-
   customers,
-
   onDelete,
-
 }: CustomerTableProps) {
-
-
   if (customers.length === 0) {
-
     return (
-
-      <div
-        className="
-          border
-          rounded
-          p-8
-          text-center
-        "
-      >
-
-        No customers found.
-
+      <div className="rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-14 text-center shadow-sm">
+        <Users className="mx-auto h-10 w-10 text-slate-300" />
+        <h3 className="mt-4 text-base font-semibold text-slate-900">
+          No customers found
+        </h3>
+        <p className="mt-1 text-sm text-slate-500">
+          Try a different search or add your first customer.
+        </p>
       </div>
-
     );
-
   }
 
-
-
   return (
-
-    <table
-      className="
-        w-full
-        border-collapse
-      "
-    >
-
-      <thead>
-
-        <tr
-          className="border-b"
-        >
-
-          <th className="text-left p-3">
-            Name
-          </th>
-
-
-          <th className="text-left p-3">
-            Phone
-          </th>
-
-
-          <th className="text-left p-3">
-            Type
-          </th>
-
-
-          <th className="text-left p-3">
-            Actions
-          </th>
-
-
-        </tr>
-
-      </thead>
-
-
-
-      <tbody>
-
-        {customers.map(
-
-          (customer) => (
-
-            <tr
-
-              key={customer.id}
-
-              className="border-b"
-
-            >
-
-              <td className="p-3">
-
-                {customer.name}
-
-              </td>
-
-
-              <td className="p-3">
-
-                {customer.phone || "-"}
-
-              </td>
-
-
-              <td className="p-3">
-
-                {customer.customerType}
-
-              </td>
-
-
-              <td
-                className="
-                  p-3
-                  flex
-                  gap-3
-                "
-              >
-
-                <Link
-
-                  to={`/customers/${customer.id}/edit`}
-
-                  className="underline"
-
-                >
-
-                  Edit
-
-                </Link>
-
-
-
-                <button
-
-                  onClick={() =>
-                    onDelete(customer.id)
-                  }
-
-                  className="text-red-600"
-
-                >
-
-                  Delete
-
-                </button>
-
-
-              </td>
-
-
+    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[680px] border-collapse">
+          <thead>
+            <tr className="border-b border-slate-200 bg-slate-50">
+              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">
+                Customer
+              </th>
+              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">
+                Phone
+              </th>
+              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">
+                Type
+              </th>
+              <th className="px-5 py-4 text-right text-xs font-semibold uppercase tracking-wide text-slate-500">
+                Actions
+              </th>
             </tr>
+          </thead>
 
-          ),
+          <tbody className="divide-y divide-slate-100">
+            {customers.map((customer) => (
+              <tr
+                key={customer.id}
+                className="transition hover:bg-slate-50"
+              >
+                <td className="px-5 py-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-50 text-sm font-bold text-blue-700">
+                      {customer.name.charAt(0).toUpperCase()}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="truncate font-semibold text-slate-900">
+                        {customer.name}
+                      </p>
+                      {customer.email && (
+                        <p className="truncate text-xs text-slate-500">
+                          {customer.email}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </td>
 
-        )}
+                <td className="px-5 py-4 text-sm text-slate-600">
+                  {customer.phone || "Not provided"}
+                </td>
 
-      </tbody>
+                <td className="px-5 py-4">
+                  <span className="inline-flex rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700">
+                    {customerTypeLabel(customer.customerType)}
+                  </span>
+                </td>
 
+                <td className="px-5 py-4">
+                  <div className="flex justify-end gap-2">
+                    <Link
+                      to={`/customers/${customer.id}/edit`}
+                      className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-slate-200 px-3 text-sm font-medium text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                    >
+                      <Pencil className="h-3.5 w-3.5" />
+                      Edit
+                    </Link>
 
-    </table>
-
+                    <button
+                      type="button"
+                      onClick={() => onDelete(customer.id)}
+                      className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-red-100 px-3 text-sm font-medium text-red-600 transition hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-100"
+                    >
+                      <Trash2 className="h-3.5 w-3.5" />
+                      Delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
-
 }
