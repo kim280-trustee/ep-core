@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ============================================================
  * Dashboard Repository
  * ============================================================
@@ -95,15 +95,23 @@ class InMemoryDashboardRepository implements DashboardRepository {
 
     const todayTransactions = todayCompletedSales.length;
 
-    const saleTransactions = inventoryTransactions.filter(
+    // COGS must be tied to the same completed sales as today's revenue.
+    // Inventory transactions use the sales order ID as referenceId, so
+    // transaction timestamps cannot create a separate day boundary.
+    const todayCompletedSaleIds = new Set(
+      todayCompletedSales.map((order) => order.id),
+    );
+
+    const todaySaleTransactions = inventoryTransactions.filter(
       (transaction) =>
         transaction.movementType === "SALE" &&
         transaction.referenceType === "SALE" &&
-        storeWarehouseIds.has(transaction.warehouseId) &&
-        isToday(transaction.createdAt),
+        transaction.referenceId !== undefined &&
+        todayCompletedSaleIds.has(transaction.referenceId) &&
+        storeWarehouseIds.has(transaction.warehouseId),
     );
 
-    const todayCostOfSales = saleTransactions.reduce(
+    const todayCostOfSales = todaySaleTransactions.reduce(
       (total, transaction) =>
         total +
         Math.abs(Number(transaction.quantity) || 0) *
