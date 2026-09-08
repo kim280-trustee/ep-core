@@ -27,6 +27,8 @@ export function AppLayout({ children }: Props) {
 
     if (settings?.language === "th") {
       changeLanguage("th");
+    } else if (settings?.language === "sw") {
+      changeLanguage("sw");
     } else {
       changeLanguage("en");
     }
