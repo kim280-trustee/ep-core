@@ -70,7 +70,7 @@ export function ExpenseForm({ initialValues, submitting = false, error, submitLa
         <div className="space-y-2"><label htmlFor="expense-currency" className="block text-sm font-medium">{t("common.currency")}</label><input id="expense-currency" type="text" value={currency} onChange={(event) => setCurrency(event.target.value.toUpperCase())} disabled={submitting} placeholder="THB" className="w-full rounded border px-3 py-2 uppercase" /></div>
       </div>
       <div className="space-y-2"><label htmlFor="expense-date" className="block text-sm font-medium">{t("common.date")}</label><input id="expense-date" type="date" value={expenseDate} onChange={(event) => setExpenseDate(event.target.value)} disabled={submitting} className="w-full rounded border px-3 py-2" /></div>
-      <div className="flex gap-3"><button type="submit" disabled={submitting} className="rounded border px-4 py-2 text-sm">{submitting ? t("expenses.saving") : submitLabel ?? t("expenses.saveExpense")}</button><button type="button" onClick={onCancel} disabled={submitting} className="rounded border px-4 py-2 text-sm">{t("common.cancel")}</button></div>
+      <div className="flex gap-3"><button type="submit" disabled={submitting} className="rounded border px-4 py-2 text-sm">{submitting ? t("common.loading") : submitLabel ?? t("expenses.saveExpense")}</button><button type="button" onClick={onCancel} disabled={submitting} className="rounded border px-4 py-2 text-sm">{t("common.cancel")}</button></div>
     </form>
   );
 }
