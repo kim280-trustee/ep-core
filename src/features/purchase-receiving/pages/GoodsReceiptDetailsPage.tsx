@@ -15,7 +15,7 @@ export default function GoodsReceiptDetailsPage() {
   const { id } = useParams();
   const { getById } = useGoodsReceipts();
   const context = storeContext.getStore();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
 
   const [receipt, setReceipt] = useState<GoodsReceipt>();
   const [supplierName, setSupplierName] = useState(t("common.loading"));
@@ -93,7 +93,14 @@ export default function GoodsReceiptDetailsPage() {
 
   const totalReceivedQuantity = receipt.items.reduce((sum, item) => sum + Number(item.quantityReceived), 0);
   const totalValue = receipt.items.reduce((sum, item) => sum + Number(item.lineTotal), 0);
-  const formattedDate = new Date(receipt.receivedDate).toLocaleString();
+  const dateLocale = language === "th" ? "th-TH" : language === "sw" ? "sw-KE" : "en-US";
+  const formattedDate = new Intl.DateTimeFormat(dateLocale, {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(new Date(receipt.receivedDate));
 
   return (
     <div className="min-h-screen bg-slate-100 px-4 py-8 sm:px-6">
