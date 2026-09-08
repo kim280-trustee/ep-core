@@ -2,235 +2,148 @@ import {
   useForm,
 } from "react-hook-form";
 
-
 import {
   zodResolver,
 } from "@hookform/resolvers/zod";
 
+import {
+  CreditCard,
+  Mail,
+  MapPin,
+  Phone,
+  UserRound,
+} from "lucide-react";
 
 import {
   customerSchema,
 } from "../validators/customer.schema";
 
-
 import type {
   CustomerFormInput,
 } from "../validators/customer.schema";
 
-
-
 interface CustomerFormProps {
-
   defaultValues?: Partial<CustomerFormInput>;
-
-
-  onSubmit: (
-    data: CustomerFormInput,
-  ) => void;
-
+  onSubmit: (data: CustomerFormInput) => void;
 }
 
-
+const inputClassName =
+  "h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100";
 
 export function CustomerForm({
-
   defaultValues,
-
   onSubmit,
-
 }: CustomerFormProps) {
-
-
-
   const {
-
     register,
-
     handleSubmit,
-
-    formState: {
-      errors,
-    },
-
+    formState: { errors },
   } = useForm<CustomerFormInput>({
-
-    resolver:
-      zodResolver(customerSchema),
-
-
+    resolver: zodResolver(customerSchema),
     defaultValues,
-
   });
 
-
-
   return (
-
-    <form
-
-      onSubmit={
-        handleSubmit(onSubmit)
-      }
-
-      className="
-        space-y-4
-        max-w-xl
-      "
-
-    >
-
-      <input
-
-        {...register("name")}
-
-        placeholder="Customer name"
-
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
-
-      />
-
-
-
-      {errors.name && (
-
-        <p className="text-red-600">
-
-          {errors.name.message}
-
-        </p>
-
-      )}
-
-
-
-      <input
-
-        {...register("phone")}
-
-        placeholder="Phone"
-
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
-
-      />
-
-
-
-      <input
-
-        {...register("email")}
-
-        placeholder="Email"
-
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
-
-      />
-
-
-
-      <textarea
-
-        {...register("address")}
-
-        placeholder="Address"
-
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
-
-      />
-
-
-
-      <select
-
-        {...register("customerType")}
-
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
-
-      >
-
-        <option value="regular">
-          Regular
-        </option>
-
-
-        <option value="wholesale">
-          Wholesale
-        </option>
-
-
-      </select>
-
-
-
-      <input
-
-        type="number"
-
-        {...register(
-          "creditLimit",
-          {
-            valueAsNumber: true,
-          },
-        )}
-
-        placeholder="Credit limit"
-
-        className="
-          border
-          rounded
-          p-2
-          w-full
-        "
-
-      />
-
-
-
-      <button
-
-        type="submit"
-
-        className="
-          bg-black
-          text-white
-          px-5
-          py-2
-          rounded
-        "
-
-      >
-
-        Save Customer
-
-      </button>
-
-
+    <form onSubmit={handleSubmit(onSubmit)} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+      <div className="grid gap-6 lg:grid-cols-2">
+        <div className="lg:col-span-2">
+          <label className="mb-2 block text-sm font-semibold text-slate-700">
+            Customer name
+          </label>
+          <div className="relative">
+            <UserRound className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+            <input
+              {...register("name")}
+              placeholder="Enter customer name"
+              className={`${inputClassName} pl-10`}
+            />
+          </div>
+          {errors.name && (
+            <p className="mt-1.5 text-sm text-red-600">
+              {errors.name.message}
+            </p>
+          )}
+        </div>
+
+        <div>
+          <label className="mb-2 block text-sm font-semibold text-slate-700">
+            Phone
+          </label>
+          <div className="relative">
+            <Phone className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+            <input
+              {...register("phone")}
+              placeholder="Phone number"
+              className={`${inputClassName} pl-10`}
+            />
+          </div>
+        </div>
+
+        <div>
+          <label className="mb-2 block text-sm font-semibold text-slate-700">
+            Email
+          </label>
+          <div className="relative">
+            <Mail className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+            <input
+              type="email"
+              {...register("email")}
+              placeholder="Email address"
+              className={`${inputClassName} pl-10`}
+            />
+          </div>
+        </div>
+
+        <div className="lg:col-span-2">
+          <label className="mb-2 block text-sm font-semibold text-slate-700">
+            Address
+          </label>
+          <div className="relative">
+            <MapPin className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-slate-400" />
+            <textarea
+              {...register("address")}
+              placeholder="Customer address"
+              rows={3}
+              className={`${inputClassName} h-auto resize-none py-3 pl-10`}
+            />
+          </div>
+        </div>
+
+        <div>
+          <label className="mb-2 block text-sm font-semibold text-slate-700">
+            Customer type
+          </label>
+          <select {...register("customerType")} className={inputClassName}>
+            <option value="regular">Regular</option>
+            <option value="retail">Retail</option>
+            <option value="wholesale">Wholesale</option>
+          </select>
+        </div>
+
+        <div>
+          <label className="mb-2 block text-sm font-semibold text-slate-700">
+            Credit limit
+          </label>
+          <div className="relative">
+            <CreditCard className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+            <input
+              type="number"
+              {...register("creditLimit", { valueAsNumber: true })}
+              placeholder="0"
+              className={`${inputClassName} pl-10`}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-6 flex justify-end border-t border-slate-100 pt-5">
+        <button
+          type="submit"
+          className="inline-flex h-11 items-center justify-center rounded-xl bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-200"
+        >
+          Save Customer
+        </button>
+      </div>
     </form>
-
   );
-
 }
