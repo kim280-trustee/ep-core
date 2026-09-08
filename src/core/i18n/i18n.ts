@@ -1,8 +1,7 @@
 ﻿import { en } from "./locales/en";
 import { th } from "./locales/th";
-import { sw } from "./locales/sw";
 
-export const languages = { en, th, sw };
+export const languages = { en, th };
 export type Language = keyof typeof languages;
 
 let currentLanguage: Language = "en";
@@ -61,8 +60,7 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "products.productTypeProduct": "Product",
     "products.productTypeService": "Service",
     "products.pricing": "Pricing",
-    "products.additionalInformation": "Additional Information",
-    "settings.swahili": "Swahili",
+    "products.additionalInformation": "Additional Information"
   },
   th: {
     "customers.customerNotFound": "ไม่พบลูกค้า",
@@ -116,12 +114,8 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "products.productTypeProduct": "สินค้า",
     "products.productTypeService": "บริการ",
     "products.pricing": "ราคา",
-    "products.additionalInformation": "ข้อมูลเพิ่มเติม",
-    "settings.swahili": "ภาษาสวาฮีลี",
-  },
-  sw: {
-    "settings.swahili": "Kiswahili",
-  },
+    "products.additionalInformation": "ข้อมูลเพิ่มเติม"
+  }
 };
 
 export function setLanguage(language: Language) {
