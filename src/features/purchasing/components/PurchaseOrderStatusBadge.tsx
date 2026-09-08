@@ -1,6 +1,7 @@
 import type {
   PurchaseOrderStatus,
 } from "../types/purchase-order-status.types";
+import { useTranslation } from "../../core/i18n/useTranslation";
 
 
 interface PurchaseOrderStatusBadgeProps {
@@ -16,6 +17,7 @@ export function PurchaseOrderStatusBadge({
 
 }: PurchaseOrderStatusBadgeProps) {
 
+  const { t } = useTranslation();
 
   const styles = {
 
@@ -39,6 +41,14 @@ export function PurchaseOrderStatusBadge({
 
   };
 
+  const labels: Record<PurchaseOrderStatus, string> = {
+    DRAFT: t("purchasing.draft"),
+    SUBMITTED: t("purchasing.submitted"),
+    APPROVED: t("purchasing.approved"),
+    PARTIALLY_RECEIVED: t("purchasing.partiallyReceived"),
+    RECEIVED: t("purchasing.received"),
+    CANCELLED: t("purchasing.cancelled"),
+  };
 
 
   return (
@@ -60,7 +70,7 @@ export function PurchaseOrderStatusBadge({
 
     >
 
-      {status}
+      {labels[status]}
 
     </span>
 
