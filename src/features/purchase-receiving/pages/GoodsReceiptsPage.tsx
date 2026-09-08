@@ -41,7 +41,7 @@ export default function GoodsReceiptsPage() {
   const formatReceivedDate = (value: string) => {
     const date = new Date(value);
     if (Number.isNaN(date.getTime())) return value;
-    const locale = language === "th" ? "th-TH" : language === "sw" ? "sw-KE" : "en-US";
+    const locale = language === "th" ? "th-TH" : "en-US";
     return new Intl.DateTimeFormat(locale, { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" }).format(date);
   };
 
