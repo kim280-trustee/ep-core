@@ -13,11 +13,13 @@ interface CustomerFormProps {
 const inputClassName = "h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100";
 
 export function CustomerForm({ defaultValues, onSubmit }: CustomerFormProps) {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const { register, handleSubmit, formState: { errors } } = useForm<CustomerFormInput>({
     resolver: zodResolver(customerSchema),
     defaultValues,
   });
+  const addressLabel = language === "th" ? "ที่อยู่" : "Address";
+  const creditLimitLabel = language === "th" ? "วงเงินเครดิต" : "Credit Limit";
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
@@ -45,10 +47,10 @@ export function CustomerForm({ defaultValues, onSubmit }: CustomerFormProps) {
           </div>
         </div>
         <div className="lg:col-span-2">
-          <label className="mb-2 block text-sm font-semibold text-slate-700">{t("common.description")}</label>
+          <label className="mb-2 block text-sm font-semibold text-slate-700">{addressLabel}</label>
           <div className="relative">
             <MapPin className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-slate-400" />
-            <textarea {...register("address")} placeholder={t("common.description")} rows={3} className={`${inputClassName} h-auto resize-none py-3 pl-10`} />
+            <textarea {...register("address")} placeholder={addressLabel} rows={3} className={`${inputClassName} h-auto resize-none py-3 pl-10`} />
           </div>
         </div>
         <div>
@@ -60,7 +62,7 @@ export function CustomerForm({ defaultValues, onSubmit }: CustomerFormProps) {
           </select>
         </div>
         <div>
-          <label className="mb-2 block text-sm font-semibold text-slate-700">{t("common.price")}</label>
+          <label className="mb-2 block text-sm font-semibold text-slate-700">{creditLimitLabel}</label>
           <div className="relative">
             <CreditCard className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
             <input type="number" {...register("creditLimit", { valueAsNumber: true })} placeholder="0" className={`${inputClassName} pl-10`} />
