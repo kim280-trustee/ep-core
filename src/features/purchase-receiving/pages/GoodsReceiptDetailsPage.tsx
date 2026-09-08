@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { ArrowLeft, ClipboardCheck, Package, Warehouse as WarehouseIcon } from "lucide-react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGoodsReceipts } from "../hooks/useGoodsReceipts";
 import { supplierService } from "@/features/suppliers/services/supplier.service";
 import { warehouseService } from "@/features/warehouses/services/warehouse.service";
@@ -9,6 +10,7 @@ import { storeContext } from "@/core/store/store.context";
 import type { GoodsReceipt } from "../types/goods-receipt.types";
 
 export default function GoodsReceiptDetailsPage() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const { getById } = useGoodsReceipts();
   const context = storeContext.getStore();
@@ -16,88 +18,45 @@ export default function GoodsReceiptDetailsPage() {
   const [receipt, setReceipt] = useState<GoodsReceipt>();
   const [supplierName, setSupplierName] = useState("Loading...");
   const [warehouseName, setWarehouseName] = useState("Loading...");
-  const [purchaseOrderNumber, setPurchaseOrderNumber] =
-    useState("Loading...");
-  const [productNames, setProductNames] =
-    useState<Record<string, string>>({});
+  const [purchaseOrderNumber, setPurchaseOrderNumber] = useState("Loading...");
+  const [productNames, setProductNames] = useState<Record<string, string>>({});
 
   useEffect(() => {
     let cancelled = false;
-
     async function loadReceipt() {
       if (!id || !context?.tenantId) return;
-
       const data = await getById(context.tenantId, id);
-
-      if (!cancelled) {
-        setReceipt(data);
-      }
+      if (!cancelled) setReceipt(data);
     }
-
     void loadReceipt();
-
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, [id, context?.tenantId, getById]);
 
   useEffect(() => {
     let cancelled = false;
-
     async function loadNames() {
       if (!receipt) return;
-
       try {
         const [supplier, warehouse, order] = await Promise.all([
-          supplierService.getSupplierById(
-            receipt.tenantId,
-            receipt.supplierId,
-          ),
-          warehouseService.getWarehouseById(
-            receipt.warehouseId,
-          ),
-          purchaseOrderRepository.findById(
-            receipt.tenantId,
-            receipt.purchaseOrderId,
-          ),
+          supplierService.getSupplierById(receipt.tenantId, receipt.supplierId),
+          warehouseService.getWarehouseById(receipt.warehouseId),
+          purchaseOrderRepository.findById(receipt.tenantId, receipt.purchaseOrderId),
         ]);
-
         if (!cancelled) {
-          setSupplierName(
-            supplier?.name ?? "Unknown Supplier",
-          );
-
-          setWarehouseName(
-            warehouse?.name ?? "Unknown Warehouse",
-          );
-
-          setPurchaseOrderNumber(
-            order?.orderNumber ?? "Unknown Purchase Order",
-          );
+          setSupplierName(supplier?.name ?? "Unknown Supplier");
+          setWarehouseName(warehouse?.name ?? "Unknown Warehouse");
+          setPurchaseOrderNumber(order?.orderNumber ?? "Unknown Purchase Order");
         }
-
         const names: Record<string, string> = {};
-
-        await Promise.all(
-          receipt.items.map(async (item) => {
-            try {
-              const product =
-                await productService.getProductById(
-                  receipt.tenantId,
-                  item.productId,
-                );
-
-              names[item.productId] =
-                product?.name ?? "Unknown Product";
-            } catch {
-              names[item.productId] = "Unknown Product";
-            }
-          }),
-        );
-
-        if (!cancelled) {
-          setProductNames(names);
-        }
+        await Promise.all(receipt.items.map(async (item) => {
+          try {
+            const product = await productService.getProductById(receipt.tenantId, item.productId);
+            names[item.productId] = product?.name ?? "Unknown Product";
+          } catch {
+            names[item.productId] = "Unknown Product";
+          }
+        }));
+        if (!cancelled) setProductNames(names);
       } catch {
         if (!cancelled) {
           setSupplierName("Unknown Supplier");
@@ -106,80 +65,126 @@ export default function GoodsReceiptDetailsPage() {
         }
       }
     }
-
     void loadNames();
-
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, [receipt?.id]);
 
   if (!receipt) {
     return (
-      <div>
-        <h1>Goods Receipt</h1>
-        <p>Goods receipt not found.</p>
+      <div className="min-h-screen bg-slate-100 px-4 py-8 sm:px-6">
+        <div className="mx-auto max-w-5xl">
+          <div className="rounded-3xl bg-slate-950 p-8 text-white shadow-xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-300">Purchase Receiving</p>
+            <h1 className="mt-2 text-3xl font-bold tracking-tight">Goods Receipt</h1>
+            <p className="mt-2 text-sm text-slate-300">The requested goods receipt could not be found.</p>
+          </div>
+          <div className="mt-6 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+            <p className="text-sm text-slate-600">Goods receipt not found.</p>
+            <button type="button" onClick={() => navigate("/purchase-receiving")} className="mt-5 inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+              <ArrowLeft className="h-4 w-4" /> Back to Goods Receipts
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
 
+  const totalReceivedQuantity = receipt.items.reduce((sum, item) => sum + Number(item.quantityReceived), 0);
+  const totalValue = receipt.items.reduce((sum, item) => sum + Number(item.lineTotal), 0);
+  const formattedDate = new Date(receipt.receivedDate).toLocaleString();
+
   return (
-    <div>
-      <h1>Goods Receipt Details</h1>
+    <div className="min-h-screen bg-slate-100 px-4 py-8 sm:px-6">
+      <div className="mx-auto max-w-6xl">
+        <section className="overflow-hidden rounded-3xl bg-slate-950 text-white shadow-xl">
+          <div className="p-6 sm:p-8">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-300">Purchase Receiving</p>
+                <div className="mt-2 flex flex-wrap items-center gap-3">
+                  <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{receipt.receiptNumber}</h1>
+                  <span className="rounded-full bg-emerald-400/15 px-3 py-1 text-xs font-bold uppercase tracking-wide text-emerald-300 ring-1 ring-emerald-400/20">Received</span>
+                </div>
+                <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">Stock received against purchase order {purchaseOrderNumber}.</p>
+              </div>
+              <button type="button" onClick={() => navigate("/purchase-receiving")} className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <ArrowLeft className="h-4 w-4" /> Goods Receipts
+              </button>
+            </div>
+            <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                ["Purchase Order", purchaseOrderNumber],
+                ["Supplier", supplierName],
+                ["Warehouse", warehouseName],
+                ["Received", formattedDate],
+              ].map(([label, value]) => (
+                <div key={label} className="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">{label}</p>
+                  <p className="mt-2 truncate font-semibold text-white">{value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-      <div>
-        <p>
-          Receipt Number: {receipt.receiptNumber}
-        </p>
+        <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_280px]">
+          <section className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
+            <div className="border-b border-slate-200 px-5 py-5 sm:px-6">
+              <div className="flex items-center gap-3">
+                <div className="rounded-xl bg-blue-50 p-2.5 text-blue-600"><ClipboardCheck className="h-5 w-5" /></div>
+                <div>
+                  <h2 className="text-lg font-bold text-slate-950">Received Products</h2>
+                  <p className="text-sm text-slate-500">Products and quantities added to inventory by this receipt.</p>
+                </div>
+              </div>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="min-w-full text-left text-sm">
+                <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
+                  <tr>
+                    <th className="px-5 py-3.5 font-semibold sm:px-6">Product</th>
+                    <th className="px-5 py-3.5 text-right font-semibold">Quantity</th>
+                    <th className="px-5 py-3.5 text-right font-semibold">Unit Cost</th>
+                    <th className="px-5 py-3.5 text-right font-semibold sm:px-6">Total</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {receipt.items.map((item) => (
+                    <tr key={item.id} className="transition hover:bg-slate-50/80">
+                      <td className="px-5 py-4 sm:px-6">
+                        <div className="flex items-center gap-3">
+                          <div className="rounded-lg bg-slate-100 p-2 text-slate-500"><Package className="h-4 w-4" /></div>
+                          <span className="font-semibold text-slate-900">{productNames[item.productId] ?? "Loading..."}</span>
+                        </div>
+                      </td>
+                      <td className="px-5 py-4 text-right font-medium text-slate-700">{item.quantityReceived}</td>
+                      <td className="px-5 py-4 text-right text-slate-600">{item.unitCost}</td>
+                      <td className="px-5 py-4 text-right font-semibold text-slate-900 sm:px-6">{item.lineTotal}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
 
-        <p>
-          Purchase Order: {purchaseOrderNumber}
-        </p>
-
-        <p>
-          Supplier: {supplierName}
-        </p>
-
-        <p>
-          Warehouse: {warehouseName}
-        </p>
-
-        <p>
-          Date: {receipt.receivedDate}
-        </p>
+          <aside className="space-y-4">
+            <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Receipt Summary</p>
+              <div className="mt-4 space-y-4">
+                <div><p className="text-sm text-slate-500">Products received</p><p className="mt-1 text-2xl font-bold text-slate-950">{receipt.items.length}</p></div>
+                <div className="border-t border-slate-100 pt-4"><p className="text-sm text-slate-500">Units received</p><p className="mt-1 text-xl font-bold text-slate-950">{totalReceivedQuantity}</p></div>
+                <div className="border-t border-slate-100 pt-4"><p className="text-sm text-slate-500">Receipt value</p><p className="mt-1 text-xl font-bold text-blue-600">{totalValue.toFixed(2)}</p></div>
+              </div>
+            </div>
+            <div className="rounded-2xl bg-slate-950 p-5 text-white shadow-sm">
+              <div className="flex items-start gap-3">
+                <div className="rounded-xl bg-blue-500/15 p-2.5 text-blue-300"><WarehouseIcon className="h-5 w-5" /></div>
+                <div><p className="font-semibold">Inventory updated</p><p className="mt-1 text-sm leading-5 text-slate-400">The quantities recorded on this goods receipt have been posted to {warehouseName}.</p></div>
+              </div>
+            </div>
+          </aside>
+        </div>
       </div>
-
-      <hr />
-
-      <h2>Received Products</h2>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Unit Cost</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {receipt.items.map((item) => (
-            <tr key={item.id}>
-              <td>
-                {productNames[item.productId] ??
-                  "Loading..."}
-              </td>
-
-              <td>{item.quantityReceived}</td>
-
-              <td>{item.unitCost}</td>
-
-              <td>{item.lineTotal}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
     </div>
   );
 }
