@@ -78,10 +78,10 @@ export default function GoodsReceiptDetailsPage() {
           <div className="rounded-3xl bg-slate-950 p-8 text-white shadow-xl">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-300">{t("navigation.purchasing")}</p>
             <h1 className="mt-2 text-3xl font-bold tracking-tight">{t("receiving.goodsReceipt")}</h1>
-            <p className="mt-2 text-sm text-slate-300">{t("receiving.receiptNotFoundDescription")}</p>
+            <p className="mt-2 text-sm text-slate-300">{t("receiving.noGoodsReceipts")}</p>
           </div>
           <div className="mt-6 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-            <p className="text-sm text-slate-600">{t("receiving.receiptNotFound")}</p>
+            <p className="text-sm text-slate-600">{t("receiving.noGoodsReceipts")}</p>
             <button type="button" onClick={() => navigate("/purchase-receiving")} className="mt-5 inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
               <ArrowLeft className="h-4 w-4" /> {t("common.back")} {t("receiving.goodsReceipts")}
             </button>
@@ -107,7 +107,7 @@ export default function GoodsReceiptDetailsPage() {
                   <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{receipt.receiptNumber}</h1>
                   <span className="rounded-full bg-emerald-400/15 px-3 py-1 text-xs font-bold uppercase tracking-wide text-emerald-300 ring-1 ring-emerald-400/20">{t("receiving.received")}</span>
                 </div>
-                <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">{t("receiving.stockReceivedAgainstOrder")} {purchaseOrderNumber}.</p>
+                <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">{t("receiving.inventoryUpdated")}: {purchaseOrderNumber}.</p>
               </div>
               <button type="button" onClick={() => navigate("/purchase-receiving")} className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <ArrowLeft className="h-4 w-4" /> {t("receiving.goodsReceipts")}
@@ -136,7 +136,7 @@ export default function GoodsReceiptDetailsPage() {
                 <div className="rounded-xl bg-blue-50 p-2.5 text-blue-600"><ClipboardCheck className="h-5 w-5" /></div>
                 <div>
                   <h2 className="text-lg font-bold text-slate-950">{t("receiving.receivedProducts")}</h2>
-                  <p className="text-sm text-slate-500">{t("receiving.receivedProductsDescription")}</p>
+                  <p className="text-sm text-slate-500">{t("receiving.receivedProducts")}</p>
                 </div>
               </div>
             </div>
@@ -144,7 +144,7 @@ export default function GoodsReceiptDetailsPage() {
               <table className="min-w-full text-left text-sm">
                 <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
                   <tr>
-                    <th className="px-5 py-3.5 font-semibold sm:px-6">{t("common.product")}</th>
+                    <th className="px-5 py-3.5 font-semibold sm:px-6">{t("inventory.product")}</th>
                     <th className="px-5 py-3.5 text-right font-semibold">{t("common.quantity")}</th>
                     <th className="px-5 py-3.5 text-right font-semibold">{t("receiving.unitCost")}</th>
                     <th className="px-5 py-3.5 text-right font-semibold sm:px-6">{t("common.total")}</th>
@@ -153,12 +153,7 @@ export default function GoodsReceiptDetailsPage() {
                 <tbody className="divide-y divide-slate-100">
                   {receipt.items.map((item) => (
                     <tr key={item.id} className="transition hover:bg-slate-50/80">
-                      <td className="px-5 py-4 sm:px-6">
-                        <div className="flex items-center gap-3">
-                          <div className="rounded-lg bg-slate-100 p-2 text-slate-500"><Package className="h-4 w-4" /></div>
-                          <span className="font-semibold text-slate-900">{productNames[item.productId] ?? t("common.loading")}</span>
-                        </div>
-                      </td>
+                      <td className="px-5 py-4 sm:px-6"><div className="flex items-center gap-3"><div className="rounded-lg bg-slate-100 p-2 text-slate-500"><Package className="h-4 w-4" /></div><span className="font-semibold text-slate-900">{productNames[item.productId] ?? t("common.loading")}</span></div></td>
                       <td className="px-5 py-4 text-right font-medium text-slate-700">{item.quantityReceived}</td>
                       <td className="px-5 py-4 text-right text-slate-600">{item.unitCost}</td>
                       <td className="px-5 py-4 text-right font-semibold text-slate-900 sm:px-6">{item.lineTotal}</td>
@@ -171,18 +166,15 @@ export default function GoodsReceiptDetailsPage() {
 
           <aside className="space-y-4">
             <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{t("receiving.receiptSummary")}</p>
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{t("receiving.goodsReceipt")}</p>
               <div className="mt-4 space-y-4">
-                <div><p className="text-sm text-slate-500">{t("receiving.productsReceived")}</p><p className="mt-1 text-2xl font-bold text-slate-950">{receipt.items.length}</p></div>
-                <div className="border-t border-slate-100 pt-4"><p className="text-sm text-slate-500">{t("receiving.unitsReceived")}</p><p className="mt-1 text-xl font-bold text-slate-950">{totalReceivedQuantity}</p></div>
-                <div className="border-t border-slate-100 pt-4"><p className="text-sm text-slate-500">{t("receiving.receiptValue")}</p><p className="mt-1 text-xl font-bold text-blue-600">{totalValue.toFixed(2)}</p></div>
+                <div><p className="text-sm text-slate-500">{t("receiving.receivedProducts")}</p><p className="mt-1 text-2xl font-bold text-slate-950">{receipt.items.length}</p></div>
+                <div className="border-t border-slate-100 pt-4"><p className="text-sm text-slate-500">{t("receiving.receivedQuantity")}</p><p className="mt-1 text-xl font-bold text-slate-950">{totalReceivedQuantity}</p></div>
+                <div className="border-t border-slate-100 pt-4"><p className="text-sm text-slate-500">{t("common.total")}</p><p className="mt-1 text-xl font-bold text-blue-600">{totalValue.toFixed(2)}</p></div>
               </div>
             </div>
             <div className="rounded-2xl bg-slate-950 p-5 text-white shadow-sm">
-              <div className="flex items-start gap-3">
-                <div className="rounded-xl bg-blue-500/15 p-2.5 text-blue-300"><WarehouseIcon className="h-5 w-5" /></div>
-                <div><p className="font-semibold">{t("receiving.inventoryUpdated")}</p><p className="mt-1 text-sm leading-5 text-slate-400">{t("receiving.inventoryUpdatedDescription")} {warehouseName}.</p></div>
-              </div>
+              <div className="flex items-start gap-3"><div className="rounded-xl bg-blue-500/15 p-2.5 text-blue-300"><WarehouseIcon className="h-5 w-5" /></div><div><p className="font-semibold">{t("receiving.inventoryUpdated")}</p><p className="mt-1 text-sm leading-5 text-slate-400">{t("receiving.inventoryUpdated")} — {warehouseName}.</p></div></div>
             </div>
           </aside>
         </div>
