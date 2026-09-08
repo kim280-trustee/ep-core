@@ -43,8 +43,10 @@ export function EditCustomerPage() {
     );
   }
 
+  const editableCustomer = customer;
+
   async function handleSubmit(data: CustomerFormInput) {
-    await updateCustomer(customer.id, {
+    await updateCustomer(editableCustomer.id, {
       name: data.name,
       phone: data.phone,
       email: data.email,
@@ -81,7 +83,7 @@ export function EditCustomerPage() {
               </p>
               <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-sm font-medium text-slate-200">
                 <UserRound className="h-3.5 w-3.5" />
-                {customer.name}
+                {editableCustomer.name}
               </div>
             </div>
           </div>
@@ -89,12 +91,12 @@ export function EditCustomerPage() {
 
         <CustomerForm
           defaultValues={{
-            name: customer.name,
-            phone: customer.phone,
-            email: customer.email,
-            address: customer.address,
-            customerType: customer.customerType,
-            creditLimit: customer.creditLimit,
+            name: editableCustomer.name,
+            phone: editableCustomer.phone,
+            email: editableCustomer.email,
+            address: editableCustomer.address,
+            customerType: editableCustomer.customerType,
+            creditLimit: editableCustomer.creditLimit,
           }}
           onSubmit={handleSubmit}
         />
