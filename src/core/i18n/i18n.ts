@@ -53,6 +53,7 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "products.productTypeService": "Service",
     "products.pricing": "Pricing",
     "products.additionalInformation": "Additional Information",
+    "settings.swahili": "Swahili",
   },
   th: {
     "customers.customerNotFound": "ไม่พบลูกค้า",
@@ -98,6 +99,10 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "products.productTypeService": "บริการ",
     "products.pricing": "ราคา",
     "products.additionalInformation": "ข้อมูลเพิ่มเติม",
+    "settings.swahili": "ภาษาสวาฮีลี",
+  },
+  sw: {
+    "settings.swahili": "Kiswahili",
   },
 };
 
