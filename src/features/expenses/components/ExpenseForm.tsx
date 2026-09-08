@@ -15,8 +15,21 @@ interface ExpenseFormProps {
 
 const categories: ExpenseCategory[] = ["RENT", "SALARY", "ELECTRICITY", "WATER", "INTERNET", "TRANSPORT", "MARKETING", "OFFICE_SUPPLIES", "MAINTENANCE", "OTHER"];
 
+const thaiCategoryLabels: Record<ExpenseCategory, string> = {
+  RENT: "ค่าเช่า",
+  SALARY: "เงินเดือน",
+  ELECTRICITY: "ค่าไฟฟ้า",
+  WATER: "ค่าน้ำ",
+  INTERNET: "ค่าอินเทอร์เน็ต",
+  TRANSPORT: "ค่าขนส่ง",
+  MARKETING: "การตลาด",
+  OFFICE_SUPPLIES: "อุปกรณ์สำนักงาน",
+  MAINTENANCE: "ค่าบำรุงรักษา",
+  OTHER: "อื่นๆ",
+};
+
 export function ExpenseForm({ initialValues, submitting = false, error, submitLabel, onSubmit, onCancel }: ExpenseFormProps) {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const [category, setCategory] = useState<ExpenseCategory>(initialValues?.category ?? "OTHER");
   const [description, setDescription] = useState(initialValues?.description ?? "");
   const [amount, setAmount] = useState(initialValues?.amount !== undefined ? String(initialValues.amount) : "");
@@ -45,10 +58,12 @@ export function ExpenseForm({ initialValues, submitting = false, error, submitLa
   }
 
   const formError = validationError ?? error;
+  const categoryLabel = (item: ExpenseCategory) => language === "th" ? thaiCategoryLabels[item] : item.replaceAll("_", " ");
+
   return (
     <form onSubmit={handleSubmit} className="space-y-6 rounded border p-6">
       {formError && <div className="rounded border border-red-300 bg-red-50 p-3 text-sm text-red-700">{formError}</div>}
-      <div className="space-y-2"><label htmlFor="expense-category" className="block text-sm font-medium">{t("expenses.category")}</label><select id="expense-category" value={category} onChange={(event) => setCategory(event.target.value as ExpenseCategory)} disabled={submitting} className="w-full rounded border px-3 py-2">{categories.map((item) => <option key={item} value={item}>{item.replaceAll("_", " ")}</option>)}</select></div>
+      <div className="space-y-2"><label htmlFor="expense-category" className="block text-sm font-medium">{t("expenses.category")}</label><select id="expense-category" value={category} onChange={(event) => setCategory(event.target.value as ExpenseCategory)} disabled={submitting} className="w-full rounded border px-3 py-2">{categories.map((item) => <option key={item} value={item}>{categoryLabel(item)}</option>)}</select></div>
       <div className="space-y-2"><label htmlFor="expense-description" className="block text-sm font-medium">{t("common.description")}</label><input id="expense-description" type="text" value={description} onChange={(event) => setDescription(event.target.value)} disabled={submitting} placeholder={t("common.description")} className="w-full rounded border px-3 py-2" /></div>
       <div className="grid gap-4 md:grid-cols-2">
         <div className="space-y-2"><label htmlFor="expense-amount" className="block text-sm font-medium">{t("expenses.amount")}</label><input id="expense-amount" type="number" min="0" step="0.01" value={amount} onChange={(event) => setAmount(event.target.value)} disabled={submitting} placeholder="0.00" className="w-full rounded border px-3 py-2" /></div>
