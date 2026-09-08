@@ -93,7 +93,7 @@ export default function GoodsReceiptDetailsPage() {
 
   const totalReceivedQuantity = receipt.items.reduce((sum, item) => sum + Number(item.quantityReceived), 0);
   const totalValue = receipt.items.reduce((sum, item) => sum + Number(item.lineTotal), 0);
-  const dateLocale = language === "th" ? "th-TH" : language === "sw" ? "sw-KE" : "en-US";
+  const dateLocale = language === "th" ? "th-TH" : "en-US";
   const formattedDate = new Intl.DateTimeFormat(dateLocale, {
     day: "2-digit",
     month: "short",
