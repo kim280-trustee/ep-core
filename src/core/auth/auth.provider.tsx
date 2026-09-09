@@ -74,38 +74,96 @@ export function AuthProvider({
           .single();
 
 
-      if (profile) {
-
-        setUser({
-
-          id:
-            profile.id,
-
-          authUserId:
-            profile.auth_user_id,
-
-          tenantId:
-            profile.tenant_id,
-
-          name:
-            profile.name,
-
-          email:
-            profile.email,
-
-          role:
-            profile.role ?? "STAFF",
-
-          createdAt:
-            profile.created_at,
-
-        });
-
-      } else {
+      if (!profile) {
 
         setUser(null);
+        setLoading(false);
+
+        return;
 
       }
+
+
+      const {
+        data: userRole,
+      } =
+        await supabase
+
+          .from("user_roles")
+
+          .select("role_id")
+
+          .eq(
+            "user_id",
+            profile.id,
+          )
+
+          .limit(1)
+
+          .maybeSingle();
+
+
+      let role: User["role"] = "STAFF";
+
+
+      if (userRole?.role_id) {
+
+        const {
+          data: roleRecord,
+        } =
+          await supabase
+
+            .from("roles")
+
+            .select("name")
+
+            .eq(
+              "id",
+              userRole.role_id,
+            )
+
+            .eq(
+              "tenant_id",
+              profile.tenant_id,
+            )
+
+            .maybeSingle();
+
+
+        if (
+          roleRecord?.name === "OWNER" ||
+          roleRecord?.name === "MANAGER" ||
+          roleRecord?.name === "STAFF"
+        ) {
+          role = roleRecord.name;
+        }
+
+      }
+
+
+      setUser({
+
+        id:
+          profile.id,
+
+        authUserId:
+          profile.auth_user_id,
+
+        tenantId:
+          profile.tenant_id,
+
+        name:
+          profile.name,
+
+        email:
+          profile.email,
+
+        role,
+
+        createdAt:
+          profile.created_at,
+
+      });
 
 
       setLoading(false);
