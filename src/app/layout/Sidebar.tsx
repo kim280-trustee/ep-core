@@ -1,10 +1,11 @@
-﻿import {
+import {
   BarChart3,
   Boxes,
   ChevronDown,
   ClipboardList,
   FileText,
   LayoutDashboard,
+  LogOut,
   Package,
   Receipt,
   Settings as SettingsIcon,
@@ -15,6 +16,7 @@
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "../../core/i18n/useTranslation";
+import { useAuth } from "../../core/auth/useAuth";
 
 type NavItem = {
   labelKey: string;
@@ -109,6 +111,7 @@ function NavigationGroup({
 
 export function Sidebar() {
   const { t } = useTranslation();
+  const { user, logout } = useAuth();
 
   return (
     <aside className="flex min-h-screen flex-col bg-white">
@@ -147,9 +150,7 @@ export function Sidebar() {
           items={businessItems}
           t={t}
         />
-      </div>
-
-      <div className="border-t border-slate-200 p-3">
+      </div>      <div className="border-t border-slate-200 p-3">
         <NavLink
           to="/settings"
           className={({ isActive }) =>
@@ -164,8 +165,27 @@ export function Sidebar() {
           <SettingsIcon size={18} />
           <span>{t("navigation.settings")}</span>
         </NavLink>
+
+        {user && (
+          <div className="mt-2 border-t border-slate-100 pt-2">
+            <div className="mb-2 px-3 py-2">
+              <p className="truncate text-sm font-semibold text-slate-900">{user.name}</p>
+              <p className="truncate text-xs text-slate-400">{user.email}</p>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => void logout()}
+              className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-slate-600 transition hover:bg-red-50 hover:text-red-600"
+            >
+              <LogOut size={18} />
+              <span>Logout</span>
+            </button>
+          </div>
+        )}
       </div>
     </aside>
   );
 }
+
 
