@@ -2,6 +2,10 @@ import { supabase } from "@/core/database";
 
 import type { PermissionCode } from "./authorization.types";
 
+type PermissionRow = {
+  permission_code: string;
+};
+
 export async function loadUserPermissions(
   _authUserId: string,
 ): Promise<PermissionCode[]> {
@@ -11,9 +15,9 @@ export async function loadUserPermissions(
     throw error;
   }
 
-  return (data ?? [])
-    .map((permission) => permission.permission_code)
-    .filter((code): code is PermissionCode => isPermissionCode(code));
+  return (data as PermissionRow[] | null ?? [])
+    .map((permission: PermissionRow) => permission.permission_code)
+    .filter((code: string): code is PermissionCode => isPermissionCode(code));
 }
 
 function isPermissionCode(code: string): code is PermissionCode {
