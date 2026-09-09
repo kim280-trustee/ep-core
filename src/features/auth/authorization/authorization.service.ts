@@ -3,65 +3,16 @@ import { supabase } from "@/core/database";
 import type { PermissionCode } from "./authorization.types";
 
 export async function loadUserPermissions(
-  authUserId: string,
+  _authUserId: string,
 ): Promise<PermissionCode[]> {
-  const { data: profile, error: profileError } = await supabase
-    .from("users")
-    .select("id")
-    .eq("auth_user_id", authUserId)
-    .single();
+  const { data, error } = await supabase.rpc("get_current_user_permissions");
 
-  if (profileError || !profile) {
-    throw profileError ?? new Error("User profile not found");
+  if (error) {
+    throw error;
   }
 
-  const { data: userRoles, error: rolesError } = await supabase
-    .from("user_roles")
-    .select("role_id")
-    .eq("user_id", profile.id);
-
-  if (rolesError) {
-    throw rolesError;
-  }
-
-  const roleIds = (userRoles ?? []).map((userRole) => userRole.role_id);
-
-  if (roleIds.length === 0) {
-    return [];
-  }
-
-  const { data: rolePermissions, error: permissionsError } = await supabase
-    .from("role_permissions")
-    .select("permission_id")
-    .in("role_id", roleIds);
-
-  if (permissionsError) {
-    throw permissionsError;
-  }
-
-  const permissionIds = [
-    ...new Set(
-      (rolePermissions ?? []).map(
-        (rolePermission) => rolePermission.permission_id,
-      ),
-    ),
-  ];
-
-  if (permissionIds.length === 0) {
-    return [];
-  }
-
-  const { data: permissions, error: permissionError } = await supabase
-    .from("permissions")
-    .select("code")
-    .in("id", permissionIds);
-
-  if (permissionError) {
-    throw permissionError;
-  }
-
-  return (permissions ?? [])
-    .map((permission) => permission.code)
+  return (data ?? [])
+    .map((permission) => permission.permission_code)
     .filter((code): code is PermissionCode => isPermissionCode(code));
 }
 
