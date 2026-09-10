@@ -125,7 +125,7 @@ export const routes: RouteObject[] = [
 
     element: <ProtectedLayout />,
 
-    children: [...reportsRoutes,
+    children: [
 
       // Dashboard
       ...dashboardRoutes,
