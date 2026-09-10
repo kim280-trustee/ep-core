@@ -26,6 +26,27 @@ import {
   inventoryTransactionRepository,
 } from "../repositories";
 
+function createInventoryTransactionId(): string {
+  if (
+    typeof crypto !== "undefined" &&
+    typeof crypto.randomUUID === "function"
+  ) {
+    return crypto.randomUUID();
+  }
+
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+    /[xy]/g,
+    (character) => {
+      const random = Math.random() * 16 | 0;
+      const value =
+        character === "x"
+          ? random
+          : (random & 0x3) | 0x8;
+
+      return value.toString(16);
+    },
+  );
+}
 export interface CreateInventoryTransactionInput {
 
   tenantId: string;
@@ -162,7 +183,7 @@ class InventoryTransactionService {
     }
 
     const transaction: InventoryTransaction = {
-      id: crypto.randomUUID(),
+      id: createInventoryTransactionId(),
       tenantId: input.tenantId,
       storeId: input.storeId,
       productId: input.productId,
@@ -222,7 +243,7 @@ class InventoryTransactionService {
 
       record =
         await inventoryService.createInventoryRecord({
-          id: crypto.randomUUID(),
+          id: createInventoryTransactionId(),
           tenantId: context.tenantId,
           productId,
           warehouseId,
@@ -526,6 +547,8 @@ class InventoryTransactionService {
 
 export const inventoryTransactionService =
   new InventoryTransactionService();
+
+
 
 
 

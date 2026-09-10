@@ -23,6 +23,27 @@ interface CreateSaleInput {
   cashierId?: string;
 }
 
+function createSaleId(): string {
+  if (
+    typeof crypto !== "undefined" &&
+    typeof crypto.randomUUID === "function"
+  ) {
+    return crypto.randomUUID();
+  }
+
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+    /[xy]/g,
+    (character) => {
+      const random = Math.random() * 16 | 0;
+      const value =
+        character === "x"
+          ? random
+          : (random & 0x3) | 0x8;
+
+      return value.toString(16);
+    },
+  );
+}
 function roundMoney(
   value: number,
 ): number {
@@ -69,7 +90,7 @@ class SaleService {
 
     const sale: Sale = {
       id:
-        crypto.randomUUID(),
+        createSaleId(),
 
       tenantId:
         input.tenantId,
@@ -87,7 +108,7 @@ class SaleService {
         input.cashierId,
 
       saleNumber:
-        `SALE-${Date.now()}-${crypto.randomUUID().slice(0, 8)}`,
+        `SALE-${Date.now()}-${createSaleId().slice(0, 8)}`,
 
       status:
         "COMPLETED",
@@ -388,5 +409,6 @@ class SaleService {
 
 export const saleService =
   new SaleService();
+
 
 

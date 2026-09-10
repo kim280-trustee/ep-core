@@ -54,3 +54,4 @@ export function AppLayout({ children }: Props) {
     </div>
   );
 }
+

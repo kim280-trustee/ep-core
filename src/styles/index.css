@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss" source("../");
 
 html,
 body,
@@ -7,9 +7,7 @@ body,
   width: 100%;
 }
 
-body {
-  margin: 0;
-  background: #f8fafc;
+html {
   font-family:
     Inter,
     system-ui,
@@ -17,4 +15,16 @@ body {
     BlinkMacSystemFont,
     "Segoe UI",
     sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }

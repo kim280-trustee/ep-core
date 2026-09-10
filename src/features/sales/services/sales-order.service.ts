@@ -1,4 +1,4 @@
-import {
+﻿import {
   getSalesOrderRepository,
 } from "../repositories";
 
@@ -50,6 +50,32 @@ interface AddSalesOrderItemInput {
   taxRate?: number;
 }
 
+function createSalesOrderId(): string {
+  if (
+    typeof crypto !== "undefined" &&
+    typeof crypto.randomUUID === "function"
+  ) {
+    return crypto.randomUUID();
+  }
+
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+    /[xy]/g,
+    (character) => {
+      const random = Math.random() * 16 | 0;
+      const value =
+        character === "x"
+          ? random
+          : (random & 0x3) | 0x8;
+
+      return value.toString(16);
+    },
+  );
+}
+
+function createSalesOrderItemId(): string {
+  return createSalesOrderId();
+}
+
 class SalesOrderService {
 
   async createDraft(
@@ -63,12 +89,12 @@ class SalesOrderService {
     const now = new Date().toISOString();
 
     const order: SalesOrder = {
-      id: crypto.randomUUID(),
+      id: createSalesOrderId(),
       tenantId: input.tenantId,
       storeId: input.storeId,
       warehouseId: input.warehouseId,
       customerId: input.customerId,
-      orderNumber: `SO-${Date.now()}-${crypto.randomUUID().slice(0, 8)}`,
+      orderNumber: `SO-${Date.now()}-${createSalesOrderId().slice(0, 8)}`,
       status: "DRAFT",
       items: [],
       subtotal: 0,
@@ -133,7 +159,7 @@ class SalesOrderService {
     const items = [...order.items];
 
     const rawItem: SalesOrderItem = {
-      id: crypto.randomUUID(),
+      id: createSalesOrderItemId(),
       salesOrderId: order.id,
       productId: input.productId,
       quantity,

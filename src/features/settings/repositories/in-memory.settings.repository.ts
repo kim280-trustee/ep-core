@@ -3,6 +3,17 @@ import type { CompanySettings } from "../types";
 
 const STORAGE_KEY = "ep-core-company-settings";
 
+function createSettingsId(): string {
+  if (
+    typeof crypto !== "undefined" &&
+    typeof crypto.randomUUID === "function"
+  ) {
+    return crypto.randomUUID();
+  }
+
+  return `settings-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+}
+
 class InMemorySettingsRepository implements SettingsRepository {
   private settings: CompanySettings[] = this.loadFromStorage();
 
@@ -41,7 +52,7 @@ class InMemorySettingsRepository implements SettingsRepository {
     const now = new Date().toISOString();
 
     const defaults: CompanySettings = {
-      id: crypto.randomUUID(),
+      id: createSettingsId(),
       tenantId,
       businessName: "My Business",
       country: "Thailand",

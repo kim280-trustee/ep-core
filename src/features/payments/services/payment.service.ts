@@ -1,4 +1,4 @@
-import { paymentRepository } from "../repositories";
+﻿import { paymentRepository } from "../repositories";
 
 import type {
   Payment,
@@ -15,6 +15,28 @@ export interface PaymentSummary {
 
 function roundMoney(value: number): number {
   return Math.round((value + Number.EPSILON) * 100) / 100;
+}
+
+function createPaymentId(): string {
+  if (
+    typeof crypto !== "undefined" &&
+    typeof crypto.randomUUID === "function"
+  ) {
+    return crypto.randomUUID();
+  }
+
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+    /[xy]/g,
+    (character) => {
+      const random = Math.random() * 16 | 0;
+      const value =
+        character === "x"
+          ? random
+          : (random & 0x3) | 0x8;
+
+      return value.toString(16);
+    },
+  );
 }
 
 class PaymentService {
@@ -127,7 +149,7 @@ class PaymentService {
     const now = new Date().toISOString();
 
     const payment: Payment = {
-      id: crypto.randomUUID(),
+      id: createPaymentId(),
       tenantId,
       salesOrderId,
       method,
@@ -217,3 +239,4 @@ class PaymentService {
 
 export const paymentService =
   new PaymentService();
+
