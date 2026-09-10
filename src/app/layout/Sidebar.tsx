@@ -22,10 +22,11 @@ type NavItem = {
   labelKey: string;
   href: string;
   icon: typeof LayoutDashboard;
+  exact?: boolean;
 };
 
 const mainItems: NavItem[] = [
-  { labelKey: "navigation.dashboard", href: "/", icon: LayoutDashboard },
+  { labelKey: "navigation.dashboard", href: "/", icon: LayoutDashboard, exact: true },
   { labelKey: "navigation.sales", href: "/sales", icon: ShoppingCart },
   { labelKey: "navigation.products", href: "/products", icon: Package },
   { labelKey: "navigation.inventory", href: "/inventory", icon: Boxes },
@@ -38,6 +39,7 @@ const purchasingItems: NavItem[] = [
     labelKey: "navigation.purchaseOrders",
     href: "/purchasing",
     icon: ClipboardList,
+    exact: true,
   },
   {
     labelKey: "navigation.goodsReceipts",
@@ -46,7 +48,7 @@ const purchasingItems: NavItem[] = [
   },
   {
     labelKey: "navigation.purchaseReturns",
-    href: "/purchasing/purchase-returns",
+    href: "/purchasing/returns",
     icon: FileText,
   },
 ];
@@ -68,7 +70,7 @@ function NavigationItem({
   return (
     <NavLink
       to={item.href}
-      end={item.href === "/"}
+      end={item.exact === true || item.href === "/"}
       className={({ isActive }) =>
         [
           "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition",
@@ -150,7 +152,9 @@ export function Sidebar() {
           items={businessItems}
           t={t}
         />
-      </div>      <div className="border-t border-slate-200 p-3">
+      </div>
+
+      <div className="border-t border-slate-200 p-3">
         <NavLink
           to="/settings"
           className={({ isActive }) =>
@@ -187,5 +191,3 @@ export function Sidebar() {
     </aside>
   );
 }
-
-
