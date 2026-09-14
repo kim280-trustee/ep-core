@@ -33,19 +33,19 @@ export function AppLayout({ children }: Props) {
   }, [changeLanguage]);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
-      <div className="flex min-h-screen">
-        <aside className="w-64 shrink-0 border-r border-slate-200 bg-white">
+    <div className="min-h-screen w-full overflow-x-hidden bg-slate-50 text-slate-900">
+      <div className="flex min-h-screen w-full">
+        <aside className="hidden w-64 shrink-0 border-r border-slate-200 bg-white lg:block">
           <Sidebar />
         </aside>
 
         <div className="flex min-w-0 flex-1 flex-col">
-          <header className="border-b border-slate-200 bg-white">
+          <header className="w-full border-b border-slate-200 bg-white">
             <Header />
           </header>
 
           <main className="min-w-0 flex-1 bg-slate-50">
-            <div className="mx-auto w-full max-w-[1600px] px-4 py-6 sm:px-6 lg:px-8">
+            <div className="mx-auto w-full min-w-0 max-w-[1600px] px-3 py-4 sm:px-6 sm:py-6 lg:px-8">
               {children}
             </div>
           </main>
@@ -54,4 +54,3 @@ export function AppLayout({ children }: Props) {
     </div>
   );
 }
-
