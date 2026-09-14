@@ -120,7 +120,7 @@ export default function DashboardPage() {
             </div>
 
             <Link
-              to="/sales"
+              to="/pos-sales"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-bold text-slate-950 shadow-lg transition hover:bg-slate-100 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-slate-950"
             >
               <ShoppingCart size={18} />
@@ -675,6 +675,8 @@ function EmptyState({
     </div>
   );
 }
+
+
 
 
 
