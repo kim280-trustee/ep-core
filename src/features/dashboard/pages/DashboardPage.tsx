@@ -136,7 +136,7 @@ export default function DashboardPage() {
             title={t("dashboard.businessPerformance")}
           />
 
-          <div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-4 grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-4">
             <MetricCard
               title={t("dashboard.todaySales")}
               value={formatMoney(summary.todaySales, currency)}
@@ -178,7 +178,7 @@ export default function DashboardPage() {
             description={t("dashboard.needsAttentionDescription")}
           />
 
-          <div className="mt-4 grid gap-4 lg:grid-cols-2">
+          <div className="mt-4 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-2">
             <AttentionCard
               title={t("dashboard.lowStock")}
               value={summary.lowStockItems}
@@ -204,7 +204,7 @@ export default function DashboardPage() {
           </div>
         </section>
 
-        <section className="grid gap-5 lg:grid-cols-2">
+        <section className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-2">
           <DashboardSection
             title={t("dashboard.recentSales")}
             description={t("dashboard.latestCompletedTransactions")}
@@ -224,7 +224,7 @@ export default function DashboardPage() {
                 {data.recentSales.map((sale) => (
                   <div
                     key={sale.id}
-                    className="flex items-center justify-between gap-4 px-5 py-4 transition hover:bg-slate-50"
+                    className="flex flex-col gap-3 px-5 py-4 transition hover:bg-slate-50 sm:flex-row sm:items-center sm:justify-between"
                   >
                     <div className="flex min-w-0 items-center gap-3">
                       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
@@ -241,7 +241,7 @@ export default function DashboardPage() {
                       </div>
                     </div>
 
-                    <p className="shrink-0 text-sm font-bold text-slate-900">
+                    <p className="shrink-0 whitespace-nowrap text-sm font-bold text-slate-900">
                       {formatMoney(sale.totalAmount, currency)}
                     </p>
                   </div>
@@ -270,7 +270,7 @@ export default function DashboardPage() {
                 {data.pendingPurchaseOrders.map((order) => (
                   <div
                     key={order.id}
-                    className="flex items-center justify-between gap-4 px-5 py-4 transition hover:bg-slate-50"
+                    className="flex flex-col gap-3 px-5 py-4 transition hover:bg-slate-50 sm:flex-row sm:items-center sm:justify-between"
                   >
                     <div className="flex min-w-0 items-center gap-3">
                       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-purple-50 text-purple-600">
@@ -290,7 +290,7 @@ export default function DashboardPage() {
                       </div>
                     </div>
 
-                    <p className="shrink-0 text-sm font-bold text-slate-900">
+                    <p className="shrink-0 whitespace-nowrap text-sm font-bold text-slate-900">
                       {formatMoney(order.totalAmount, order.currency)}
                     </p>
                   </div>
@@ -377,7 +377,7 @@ export default function DashboardPage() {
             description={t("dashboard.quickActionsDescription")}
           />
 
-          <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-2 xl:grid-cols-4">
             <QuickAction
               label={t("dashboard.newSale")}
               description={t("dashboard.startCustomerSale")}
@@ -556,7 +556,7 @@ function DashboardSection({
       id={id}
       className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
     >
-      <div className="flex items-start justify-between gap-4 border-b border-slate-100 px-5 py-4">
+      <div className="flex flex-col gap-3 border-b border-slate-100 px-5 py-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h2 className="text-base font-bold text-slate-950">{title}</h2>
           <p className="mt-1 text-xs text-slate-500">{description}</p>
@@ -564,7 +564,7 @@ function DashboardSection({
 
         <Link
           to={actionHref}
-          className="inline-flex shrink-0 items-center gap-1 text-xs font-bold text-blue-600 transition hover:text-blue-700"
+          className="inline-flex w-fit shrink-0 items-center gap-1 whitespace-nowrap text-xs font-bold text-blue-600 transition hover:text-blue-700"
         >
           {actionLabel}
           <ArrowRight size={14} />
@@ -675,5 +675,8 @@ function EmptyState({
     </div>
   );
 }
+
+
+
 
 
