@@ -28,3 +28,10 @@ body {
 *::after {
   box-sizing: border-box;
 }
+
+@media (max-width: 639px) {
+  section.rounded-3xl.border.border-blue-100.bg-blue-50\/70
+    .grid[class*="xl:grid-cols-4"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
