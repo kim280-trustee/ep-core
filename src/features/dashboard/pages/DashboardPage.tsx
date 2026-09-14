@@ -217,7 +217,7 @@ export default function DashboardPage() {
                 title={t("dashboard.noCompletedSales")}
                 text={t("dashboard.startFirstSaleDescription")}
                 actionLabel={t("dashboard.startSale")}
-                actionHref="/sales"
+                actionHref="/pos-sales"
               />
             ) : (
               <div className="divide-y divide-slate-100">
@@ -382,7 +382,7 @@ export default function DashboardPage() {
               label={t("dashboard.newSale")}
               description={t("dashboard.startCustomerSale")}
               icon={<ShoppingCart size={20} />}
-              href="/sales"
+              href="/pos-sales"
               primary
             />
 
@@ -675,6 +675,7 @@ function EmptyState({
     </div>
   );
 }
+
 
 
 
