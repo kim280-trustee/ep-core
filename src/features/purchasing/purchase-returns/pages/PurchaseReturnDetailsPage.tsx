@@ -232,32 +232,32 @@ export default function PurchaseReturnDetailsPage() {
         </div>
 
         <div className="overflow-x-auto">
-          <table className="min-w-full text-sm">
+          <table className="min-w-[760px] w-full text-sm">
             <thead className="bg-slate-50 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">
               <tr>
-                <th className="px-5 py-3 sm:px-6">Product</th>
-                <th className="px-4 py-3 text-right">Quantity</th>
-                <th className="px-4 py-3 text-right">Unit Cost</th>
-                <th className="px-4 py-3 text-right">Total</th>
-                <th className="px-5 py-3 sm:px-6">Reason</th>
+                <th className="min-w-[260px] whitespace-nowrap px-5 py-3 sm:px-6">Product</th>
+                <th className="w-[100px] whitespace-nowrap px-4 py-3 text-right">Quantity</th>
+                <th className="w-[120px] whitespace-nowrap px-4 py-3 text-right">Unit Cost</th>
+                <th className="w-[120px] whitespace-nowrap px-4 py-3 text-right">Total</th>
+                <th className="min-w-[190px] whitespace-nowrap px-5 py-3 sm:px-6">Reason</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
               {purchaseReturn.items.map((item) => (
                 <tr key={item.id} className="align-top hover:bg-slate-50/70">
-                  <td className="px-5 py-4 sm:px-6">
+                  <td className="min-w-[260px] px-5 py-4 sm:px-6">
                     <p className="font-semibold text-slate-950">
                       {productNames[item.productId] ?? "Loading product..."}
                     </p>
                   </td>
                   <td className="px-4 py-4 text-right font-medium text-slate-900">{item.quantity}</td>
-                  <td className="px-4 py-4 text-right text-slate-700">
+                  <td className="px-4 py-4 text-right whitespace-nowrap text-slate-700">
                     {currencyFormatter.format(item.unitCost)}
                   </td>
-                  <td className="px-4 py-4 text-right font-semibold text-slate-950">
+                  <td className="px-4 py-4 text-right whitespace-nowrap font-semibold text-slate-950">
                     {currencyFormatter.format(item.lineTotal)}
                   </td>
-                  <td className="px-5 py-4 text-slate-600 sm:px-6">
+                  <td className="min-w-[190px] px-5 py-4 text-slate-600 sm:px-6">
                     {item.reason ?? purchaseReturn.reason ?? "No reason provided"}
                   </td>
                 </tr>
