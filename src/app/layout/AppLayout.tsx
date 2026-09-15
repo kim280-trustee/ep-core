@@ -23,9 +23,7 @@ export function AppLayout({ children }: Props) {
       return;
     }
 
-    const settings = settingsEngine.getSettings(
-      context.tenantId,
-    );
+    const settings = settingsEngine.getSettings(context.tenantId);
 
     if (settings?.language === "th") {
       changeLanguage("th");
@@ -82,11 +80,10 @@ export function AppLayout({ children }: Props) {
                 className="absolute inset-0 bg-slate-950/40"
               />
 
-              <aside
-                className="relative z-10 h-full w-72 max-w-[85vw] border-r border-slate-200 bg-white shadow-2xl"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <Sidebar />
+              <aside className="relative z-10 flex h-dvh w-72 max-w-[85vw] flex-col overflow-hidden border-r border-slate-200 bg-white shadow-2xl">
+                <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
+                  <Sidebar />
+                </div>
               </aside>
             </div>
           )}
