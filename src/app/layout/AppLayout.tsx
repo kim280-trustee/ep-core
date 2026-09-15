@@ -80,10 +80,8 @@ export function AppLayout({ children }: Props) {
                 className="absolute inset-0 bg-slate-950/40"
               />
 
-              <aside className="relative z-10 flex h-dvh w-72 max-w-[85vw] flex-col overflow-hidden border-r border-slate-200 bg-white shadow-2xl">
-                <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
-                  <Sidebar />
-                </div>
+              <aside className="relative z-10 h-dvh w-72 max-w-[85vw] overflow-hidden border-r border-slate-200 bg-white shadow-2xl">
+                <Sidebar />
               </aside>
             </div>
           )}
