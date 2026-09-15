@@ -29,3 +29,4 @@ export {
 } from "./routes/supplier.routes";
 
 export * from "./credit-ledger";
+export * from "./supplier-payments";
