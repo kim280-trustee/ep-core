@@ -47,6 +47,7 @@ export function SupplierLedgerPage() {
           <p className="text-sm text-gray-500">Supplier credit ledger</p>
         </div>
         <div className="flex flex-wrap gap-2">
+          {hasSupplierCredit && <Link to={`/suppliers/${id}/apply-credit`} className="rounded-lg bg-green-600 px-3 py-2 text-sm font-medium text-white hover:bg-green-700">Apply Credit</Link>}
           <Link to="/suppliers/payments" className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Record Payment</Link>
           <Link to="/suppliers" className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Back</Link>
         </div>
@@ -81,7 +82,7 @@ export function SupplierLedgerPage() {
       <div className="rounded-xl border border-gray-200 bg-white shadow-sm">
         <div className="border-b border-gray-200 p-4">
           <h2 className="font-semibold text-gray-900">Ledger</h2>
-          <p className="mt-1 text-sm text-gray-500">Supplier purchases, payments, and credits</p>
+          <p className="mt-1 text-sm text-gray-500">Supplier purchases, payments, credits, and credit applications</p>
         </div>
         {entries.length === 0 ? (
           <div className="p-4 text-sm text-gray-500">No ledger entries yet.</div>
