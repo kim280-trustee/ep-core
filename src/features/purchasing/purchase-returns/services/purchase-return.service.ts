@@ -1,10 +1,11 @@
-﻿import { getPurchaseReturnRepository } from "../repositories/repository.provider";
+import { getPurchaseReturnRepository } from "../repositories/repository.provider";
 import type { PurchaseReturn, PurchaseReturnItem } from "../types";
 import {
   purchaseOrderRepository,
   purchaseOrderItemRepository,
 } from "../../repositories";
 import { inventoryTransactionService } from "@/features/inventory-transactions/services/inventory-transaction.service";
+import { supplierCreditLedgerService } from "@/features/suppliers/credit-ledger";
 
 export interface CreatePurchaseReturnInput {
   tenantId: string;
@@ -105,14 +106,9 @@ class PurchaseReturnService {
       }
     }
 
-    /*
-     * Validate the complete return before changing inventory.
-     */
     const validatedItems = input.items.map((inputItem) => {
       if (inputItem.quantity <= 0) {
-        throw new Error(
-          "Return quantity must be greater than zero.",
-        );
+        throw new Error("Return quantity must be greater than zero.");
       }
 
       const orderItem = orderItems.find(
@@ -125,9 +121,7 @@ class PurchaseReturnService {
         throw new Error("Purchase order item not found.");
       }
 
-      const alreadyReturned =
-        returnedByItem.get(orderItem.id) ?? 0;
-
+      const alreadyReturned = returnedByItem.get(orderItem.id) ?? 0;
       const remainingReturnable =
         orderItem.receivedQuantity - alreadyReturned;
 
@@ -137,8 +131,7 @@ class PurchaseReturnService {
         );
       }
 
-      const unitCost =
-        inputItem.unitCost ?? orderItem.unitCost;
+      const unitCost = inputItem.unitCost ?? orderItem.unitCost;
 
       if (unitCost < 0) {
         throw new Error("Unit cost cannot be negative.");
@@ -153,21 +146,14 @@ class PurchaseReturnService {
         orderItem,
         quantity: inputItem.quantity,
         unitCost,
-        reason:
-          inputItem.reason ??
-          input.reason ??
-          null,
+        reason: inputItem.reason ?? input.reason ?? null,
       };
     });
 
     const returnId = crypto.randomUUID();
     const now = new Date().toISOString();
-
     const returnItems: PurchaseReturnItem[] = [];
 
-    /*
-     * Inventory is changed only after all items pass validation.
-     */
     for (const item of validatedItems) {
       await inventoryTransactionService.adjustStock(
         item.orderItem.productId,
@@ -211,9 +197,22 @@ class PurchaseReturnService {
       updatedAt: now,
     };
 
-    return getPurchaseReturnRepository().create(value);
+    const createdReturn =
+      await getPurchaseReturnRepository().create(value);
+
+    await supplierCreditLedgerService.recordPurchaseReturn({
+      tenantId: input.tenantId,
+      storeId: input.storeId,
+      supplierId: input.supplierId,
+      referenceType: "PURCHASE_RETURN",
+      referenceId: createdReturn.id,
+      referenceNumber: createdReturn.returnNumber,
+      description: `Supplier credit for purchase return ${createdReturn.returnNumber}`,
+      amount: totalAmount,
+    });
+
+    return createdReturn;
   }
 }
 
 export const purchaseReturnService = new PurchaseReturnService();
-
