@@ -116,8 +116,8 @@ export function Sidebar() {
   const { user, logout } = useAuth();
 
   return (
-    <aside className="flex min-h-screen flex-col bg-white">
-      <div className="border-b border-slate-200 px-5 py-5">
+    <aside className="flex h-full min-h-0 flex-col bg-white">
+      <div className="shrink-0 border-b border-slate-200 px-5 py-5">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-950 text-sm font-black text-white">
             E&P
@@ -134,7 +134,7 @@ export function Sidebar() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-3 py-4">
+      <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-3 py-4">
         <NavigationGroup
           titleKey="navigation.main"
           items={mainItems}
@@ -154,7 +154,7 @@ export function Sidebar() {
         />
       </div>
 
-      <div className="border-t border-slate-200 p-3">
+      <div className="shrink-0 border-t border-slate-200 p-3">
         <NavLink
           to="/settings"
           className={({ isActive }) =>
