@@ -4,6 +4,7 @@
 } from "@/features/purchasing/repositories";
 
 import { inventoryTransactionService } from "@/features/inventory-transactions/services/inventory-transaction.service";
+import { supplierCreditLedgerService } from "@/features/suppliers/credit-ledger";
 
 import {
   getGoodsReceiptRepository,
@@ -132,12 +133,6 @@ class GoodsReceiptService {
       );
     }
 
-    /*
-     * ========================================================
-     * PREVALIDATE EVERYTHING BEFORE TOUCHING INVENTORY
-     * ========================================================
-     */
-
     const plannedReceived =
       new Map<string, number>();
 
@@ -214,12 +209,6 @@ class GoodsReceiptService {
     const now =
       new Date().toISOString();
 
-    /*
-     * ========================================================
-     * APPLY INVENTORY + PO UPDATES
-     * ========================================================
-     */
-
     const receiptItems: GoodsReceiptItem[] =
       [];
 
@@ -250,22 +239,16 @@ class GoodsReceiptService {
         id:
           item.inputItem.id ??
           crypto.randomUUID(),
-
         goodsReceiptId:
           receiptId,
-
         purchaseOrderItemId:
           item.orderItem.id,
-
         productId:
           item.orderItem.productId,
-
         quantityReceived:
           item.quantityReceived,
-
         unitCost:
           item.unitCost,
-
         lineTotal:
           item.lineTotal,
       });
@@ -292,7 +275,6 @@ class GoodsReceiptService {
           completed
             ? "RECEIVED"
             : "PARTIALLY_RECEIVED",
-
         updatedAt: now,
       },
     );
@@ -307,30 +289,43 @@ class GoodsReceiptService {
         input.supplierId,
       warehouseId:
         input.warehouseId,
-
       receiptNumber:
         `GR-${Date.now()}`,
-
       items: receiptItems,
-
       receivedDate: now,
-
       receivedBy:
         input.receivedBy,
-
       notes:
         input.notes,
-
       createdAt: now,
     };
 
-    return getGoodsReceiptRepository().create(
-      receipt,
+    const savedReceipt =
+      await getGoodsReceiptRepository().create(
+        receipt,
+      );
+
+    const receivedValue = receiptItems.reduce(
+      (total, item) => total + item.lineTotal,
+      0,
     );
+
+    if (receivedValue > 0) {
+      await supplierCreditLedgerService.recordPurchase({
+        tenantId: input.tenantId,
+        storeId: input.storeId,
+        supplierId: input.supplierId,
+        amount: receivedValue,
+        referenceType: "GOODS_RECEIPT",
+        referenceId: savedReceipt.id,
+        referenceNumber: savedReceipt.receiptNumber,
+        description: `Goods receipt for ${order.orderNumber}`,
+      });
+    }
+
+    return savedReceipt;
   }
 }
 
 export const goodsReceiptService =
   new GoodsReceiptService();
-
-
