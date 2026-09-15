@@ -21,6 +21,33 @@ import App from "./App";
 
 import "./styles/index.css";
 
+if (
+  typeof crypto !== "undefined" &&
+  typeof crypto.randomUUID !== "function"
+) {
+  Object.defineProperty(
+    crypto,
+    "randomUUID",
+    {
+      value: () =>
+        "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+          /[xy]/g,
+          (character) => {
+            const random =
+              Math.floor(Math.random() * 16);
+
+            const value =
+              character === "x"
+                ? random
+                : (random & 0x3) | 0x8;
+
+            return value.toString(16);
+          },
+        ),
+    },
+  );
+}
+
 ReactDOM.createRoot(
   document.getElementById("root")!,
 ).render(
