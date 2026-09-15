@@ -231,39 +231,54 @@ export default function PurchaseReturnDetailsPage() {
           </p>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="min-w-[760px] w-full text-sm">
-            <thead className="bg-slate-50 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">
-              <tr>
-                <th className="min-w-[260px] whitespace-nowrap px-5 py-3 sm:px-6">Product</th>
-                <th className="w-[100px] whitespace-nowrap px-4 py-3 text-right">Quantity</th>
-                <th className="w-[120px] whitespace-nowrap px-4 py-3 text-right">Unit Cost</th>
-                <th className="w-[120px] whitespace-nowrap px-4 py-3 text-right">Total</th>
-                <th className="min-w-[190px] whitespace-nowrap px-5 py-3 sm:px-6">Reason</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100">
-              {purchaseReturn.items.map((item) => (
-                <tr key={item.id} className="align-top hover:bg-slate-50/70">
-                  <td className="min-w-[260px] px-5 py-4 sm:px-6">
-                    <p className="font-semibold text-slate-950">
-                      {productNames[item.productId] ?? "Loading product..."}
-                    </p>
-                  </td>
-                  <td className="px-4 py-4 text-right font-medium text-slate-900">{item.quantity}</td>
-                  <td className="px-4 py-4 text-right whitespace-nowrap text-slate-700">
-                    {currencyFormatter.format(item.unitCost)}
-                  </td>
-                  <td className="px-4 py-4 text-right whitespace-nowrap font-semibold text-slate-950">
-                    {currencyFormatter.format(item.lineTotal)}
-                  </td>
-                  <td className="min-w-[190px] px-5 py-4 text-slate-600 sm:px-6">
-                    {item.reason ?? purchaseReturn.reason ?? "No reason provided"}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="hidden grid-cols-[minmax(260px,1fr)_100px_120px_120px_minmax(190px,1fr)] items-center gap-4 border-b border-slate-200 bg-slate-50 px-5 py-3 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:grid sm:px-6">
+          <span>Product</span>
+          <span className="text-right">Quantity</span>
+          <span className="text-right">Unit Cost</span>
+          <span className="text-right">Total</span>
+          <span>Reason</span>
+        </div>
+
+        <div className="divide-y divide-slate-100">
+          {purchaseReturn.items.map((item) => (
+            <div
+              key={item.id}
+              className="grid gap-4 px-5 py-5 sm:grid-cols-[minmax(260px,1fr)_100px_120px_120px_minmax(190px,1fr)] sm:items-start sm:px-6"
+            >
+              <div>
+                <p className="text-xs font-medium uppercase tracking-wide text-slate-500 sm:hidden">Product</p>
+                <p className="mt-1 font-semibold text-slate-950">
+                  {productNames[item.productId] ?? "Loading product..."}
+                </p>
+              </div>
+
+              <div className="sm:text-right">
+                <p className="text-xs font-medium uppercase tracking-wide text-slate-500 sm:hidden">Quantity</p>
+                <p className="mt-1 font-medium text-slate-900">{item.quantity}</p>
+              </div>
+
+              <div className="sm:text-right">
+                <p className="text-xs font-medium uppercase tracking-wide text-slate-500 sm:hidden">Unit Cost</p>
+                <p className="mt-1 whitespace-nowrap text-slate-700">
+                  {currencyFormatter.format(item.unitCost)}
+                </p>
+              </div>
+
+              <div className="sm:text-right">
+                <p className="text-xs font-medium uppercase tracking-wide text-slate-500 sm:hidden">Total</p>
+                <p className="mt-1 whitespace-nowrap font-semibold text-slate-950">
+                  {currencyFormatter.format(item.lineTotal)}
+                </p>
+              </div>
+
+              <div>
+                <p className="text-xs font-medium uppercase tracking-wide text-slate-500 sm:hidden">Reason</p>
+                <p className="mt-1 text-slate-600">
+                  {item.reason ?? purchaseReturn.reason ?? "No reason provided"}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
