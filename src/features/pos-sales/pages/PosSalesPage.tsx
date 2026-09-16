@@ -92,7 +92,7 @@ export function PosSalesPage() {
       </div>
       <div className="mt-6 min-w-0"><CheckoutPanel onSaleCompleted={handleSaleCompleted} /></div>
       {latestReceipt && <div className="mt-6 min-w-0 overflow-x-auto"><ReceiptView receipt={latestReceipt} products={products} /></div>}
-      <div className="mt-6 min-w-0"><SaleHistory /></div>
+      <div className="mt-6 min-w-0"><SaleHistory products={products} /></div>
     </div>
   );
 }
