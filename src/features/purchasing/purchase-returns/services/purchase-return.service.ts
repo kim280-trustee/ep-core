@@ -40,13 +40,14 @@ class PurchaseReturnService {
   ): Promise<PurchaseReturn> {
     if (!input.tenantId) throw new Error("Tenant ID is required.");
     if (!input.storeId) throw new Error("Store ID is required.");
-    if (!input.purchaseOrderId) {
-      throw new Error("Purchase order is required.");
-    }
+    if (!input.purchaseOrderId) throw new Error("Purchase order is required.");
     if (!input.supplierId) throw new Error("Supplier is required.");
     if (!input.warehouseId) throw new Error("Warehouse is required.");
-    if (!input.items.length) {
-      throw new Error("Purchase return must contain at least one item.");
+    if (!input.items.length) throw new Error("Purchase return must contain at least one item.");
+
+    const returnReason = input.reason?.trim() ?? "";
+    if (!returnReason) {
+      throw new Error("A return reason is required before completing a purchase return.");
     }
 
     const order = await purchaseOrderRepository.findById(
@@ -56,25 +57,16 @@ class PurchaseReturnService {
 
     if (!order) throw new Error("Purchase order not found.");
 
-    if (
-      order.status !== "RECEIVED" &&
-      order.status !== "PARTIALLY_RECEIVED"
-    ) {
-      throw new Error(
-        "Goods must be received before they can be returned.",
-      );
+    if (order.status !== "RECEIVED" && order.status !== "PARTIALLY_RECEIVED") {
+      throw new Error("Goods must be received before they can be returned.");
     }
 
     if (order.supplierId !== input.supplierId) {
-      throw new Error(
-        "Supplier does not match the purchase order.",
-      );
+      throw new Error("Supplier does not match the purchase order.");
     }
 
     if (order.warehouseId !== input.warehouseId) {
-      throw new Error(
-        "Warehouse does not match the purchase order.",
-      );
+      throw new Error("Warehouse does not match the purchase order.");
     }
 
     const orderItems = await purchaseOrderItemRepository.findAll(
@@ -82,26 +74,21 @@ class PurchaseReturnService {
       input.purchaseOrderId,
     );
 
-    if (!orderItems.length) {
-      throw new Error("Purchase order has no items.");
-    }
+    if (!orderItems.length) throw new Error("Purchase order has no items.");
 
-    const existingReturns =
-      await getPurchaseReturnRepository().findByPurchaseOrder(
-        input.tenantId,
-        input.purchaseOrderId,
-      );
+    const existingReturns = await getPurchaseReturnRepository().findByPurchaseOrder(
+      input.tenantId,
+      input.purchaseOrderId,
+    );
 
     const returnedByItem = new Map<string, number>();
 
     for (const existingReturn of existingReturns) {
       if (existingReturn.status === "CANCELLED") continue;
-
       for (const item of existingReturn.items) {
         returnedByItem.set(
           item.purchaseOrderItemId,
-          (returnedByItem.get(item.purchaseOrderItemId) ?? 0) +
-            item.quantity,
+          (returnedByItem.get(item.purchaseOrderItemId) ?? 0) + item.quantity,
         );
       }
     }
@@ -112,18 +99,13 @@ class PurchaseReturnService {
       }
 
       const orderItem = orderItems.find(
-        (item) =>
-          item.id === inputItem.purchaseOrderItemId &&
-          item.productId === inputItem.productId,
+        (item) => item.id === inputItem.purchaseOrderItemId && item.productId === inputItem.productId,
       );
 
-      if (!orderItem) {
-        throw new Error("Purchase order item not found.");
-      }
+      if (!orderItem) throw new Error("Purchase order item not found.");
 
       const alreadyReturned = returnedByItem.get(orderItem.id) ?? 0;
-      const remainingReturnable =
-        orderItem.receivedQuantity - alreadyReturned;
+      const remainingReturnable = orderItem.receivedQuantity - alreadyReturned;
 
       if (inputItem.quantity > remainingReturnable) {
         throw new Error(
@@ -132,21 +114,16 @@ class PurchaseReturnService {
       }
 
       const unitCost = inputItem.unitCost ?? orderItem.unitCost;
+      if (unitCost < 0) throw new Error("Unit cost cannot be negative.");
 
-      if (unitCost < 0) {
-        throw new Error("Unit cost cannot be negative.");
-      }
-
-      returnedByItem.set(
-        orderItem.id,
-        alreadyReturned + inputItem.quantity,
-      );
+      const itemReason = inputItem.reason?.trim() || returnReason;
+      returnedByItem.set(orderItem.id, alreadyReturned + inputItem.quantity);
 
       return {
         orderItem,
         quantity: inputItem.quantity,
         unitCost,
-        reason: inputItem.reason ?? input.reason ?? null,
+        reason: itemReason,
       };
     });
 
@@ -176,10 +153,7 @@ class PurchaseReturnService {
       });
     }
 
-    const totalAmount = returnItems.reduce(
-      (total, item) => total + item.lineTotal,
-      0,
-    );
+    const totalAmount = returnItems.reduce((total, item) => total + item.lineTotal, 0);
 
     const value: PurchaseReturn = {
       id: returnId,
@@ -192,13 +166,12 @@ class PurchaseReturnService {
       status: "COMPLETED",
       items: returnItems,
       totalAmount,
-      reason: input.reason ?? null,
+      reason: returnReason,
       createdAt: now,
       updatedAt: now,
     };
 
-    const createdReturn =
-      await getPurchaseReturnRepository().create(value);
+    const createdReturn = await getPurchaseReturnRepository().create(value);
 
     await supplierCreditLedgerService.recordPurchaseReturn({
       tenantId: input.tenantId,
