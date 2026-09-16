@@ -60,6 +60,40 @@ export function SuppliersPage() {
     );
 
 
+  async function handleDelete(
+    id: string,
+  ) {
+
+    const supplier =
+      suppliers.find(
+        item => item.id === id,
+      );
+
+
+    if (!supplier) {
+
+      return;
+
+    }
+
+
+    const confirmed =
+      window.confirm(
+        `Are you sure you want to delete ${supplier.name}?`,
+      );
+
+
+    if (!confirmed) {
+
+      return;
+
+    }
+
+
+    await removeSupplier(id);
+
+  }
+
 
   return (
 
@@ -86,7 +120,7 @@ export function SuppliersPage() {
         }
 
         onDelete={
-          removeSupplier
+          handleDelete
         }
 
       />
