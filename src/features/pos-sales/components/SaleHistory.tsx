@@ -1,6 +1,10 @@
-﻿import { useState } from "react";
+import { useRef, useState } from "react";
 import { useSalesOrderStore } from "@/features/sales/store/sales-order.store";
 import type { SalesOrder } from "@/features/sales/types/sales-order.types";
+import type { Product } from "@/features/products/types/product.types";
+import { paymentService } from "@/features/payments/services/payment.service";
+import { receiptEngine } from "../engine";
+import { ReceiptView } from "./ReceiptView";
 
 function formatMoney(value: number): string { return Number(value ?? 0).toFixed(2); }
 function formatDate(value: string): string { const date = new Date(value); return Number.isNaN(date.getTime()) ? value : date.toLocaleString(); }
@@ -11,26 +15,65 @@ function getStatusClass(status: SalesOrder["status"]): string {
   return "bg-gray-100 text-gray-800";
 }
 
-export function SaleHistory() {
+interface SaleHistoryProps {
+  products: Product[];
+}
+
+export function SaleHistory({ products }: SaleHistoryProps) {
   const orders = useSalesOrderStore((state) => state.orders);
   const loading = useSalesOrderStore((state) => state.loading);
   const error = useSalesOrderStore((state) => state.error);
   const loadOrders = useSalesOrderStore((state) => state.loadOrders);
   const refundOrder = useSalesOrderStore((state) => state.refundOrder);
+  const refundInFlightRef = useRef<string | null>(null);
   const [expandedOrderId, setExpandedOrderId] = useState<string | null>(null);
   const [refundingOrderId, setRefundingOrderId] = useState<string | null>(null);
   const [refundError, setRefundError] = useState<string | null>(null);
+  const [receiptOrderId, setReceiptOrderId] = useState<string | null>(null);
+  const [receiptLoading, setReceiptLoading] = useState(false);
+  const [receiptError, setReceiptError] = useState<string | null>(null);
+  const [receipt, setReceipt] = useState<ReturnType<typeof receiptEngine.generate> | null>(null);
   const sales = orders.filter((order) => order.status === "COMPLETED" || order.status === "REFUNDED" || order.status === "CANCELLED");
 
   function toggleOrder(orderId: string) { setExpandedOrderId((current) => current === orderId ? null : orderId); }
-  async function refresh() { try { await loadOrders(); } catch { /* Store already contains the user-facing error. */ } }
+
+  async function refresh() {
+    try { await loadOrders(); } catch { /* Store already contains the user-facing error. */ }
+  }
+
   async function handleRefund(order: SalesOrder) {
-    if (order.status !== "COMPLETED") return;
+    if (order.status !== "COMPLETED" || refundInFlightRef.current === order.id || refundInFlightRef.current !== null) return;
     if (!window.confirm(`Refund sale ${order.orderNumber} for ${formatMoney(order.totalAmount)}? This will return the items to stock and refund the completed payment.`)) return;
-    setRefundError(null); setRefundingOrderId(order.id);
-    try { await refundOrder(order.id); setExpandedOrderId(null); await loadOrders(); }
-    catch (failure) { setRefundError(failure instanceof Error ? failure.message : "The sale could not be refunded."); }
-    finally { setRefundingOrderId(null); }
+    refundInFlightRef.current = order.id;
+    setRefundError(null);
+    setRefundingOrderId(order.id);
+    try {
+      await refundOrder(order.id);
+      setRefundError(null);
+      setExpandedOrderId(null);
+      try { await loadOrders(); } catch { /* A refresh failure must not be reported as a failed refund. */ }
+    } catch (failure) {
+      setRefundError(failure instanceof Error ? failure.message : "The sale could not be refunded.");
+    } finally {
+      refundInFlightRef.current = null;
+      setRefundingOrderId(null);
+    }
+  }
+
+  async function handleViewReceipt(order: SalesOrder) {
+    setReceiptError(null);
+    setReceiptOrderId(order.id);
+    setReceiptLoading(true);
+    try {
+      const payments = await paymentService.getPaymentsForOrder(order.tenantId, order.id);
+      const payment = payments.find((item) => item.status === "COMPLETED" || item.status === "REFUNDED") ?? payments[0];
+      setReceipt(receiptEngine.generate(order, payment));
+    } catch (failure) {
+      setReceipt(null);
+      setReceiptError(failure instanceof Error ? failure.message : "Unable to load the sale receipt.");
+    } finally {
+      setReceiptLoading(false);
+    }
   }
 
   return (
@@ -55,6 +98,7 @@ export function SaleHistory() {
           {sales.map((order) => {
             const expanded = expandedOrderId === order.id;
             const refunding = refundingOrderId === order.id;
+            const showingReceipt = receiptOrderId === order.id;
             return (
               <div key={order.id} className="w-full min-w-0 rounded border">
                 <button type="button" onClick={() => toggleOrder(order.id)} className="w-full min-w-0 p-3 text-left sm:p-4">
@@ -98,12 +142,23 @@ export function SaleHistory() {
                       <div className="mt-2 flex justify-between gap-4 border-t pt-2 font-semibold"><span>Total</span><span className="whitespace-nowrap">{formatMoney(order.totalAmount)}</span></div>
                     </div>
 
-                    {order.status === "COMPLETED" && (
-                      <div className="mt-4 border-t pt-4">
-                        <button type="button" onClick={() => void handleRefund(order)} disabled={refunding || refundingOrderId !== null} className="w-full rounded bg-red-600 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50">
+                    <div className="mt-4 grid gap-3 border-t pt-4 sm:grid-cols-2">
+                      <button type="button" onClick={() => void handleViewReceipt(order)} disabled={receiptLoading && showingReceipt} className="min-h-11 w-full rounded border bg-white px-4 py-2 text-sm font-medium text-gray-800 disabled:opacity-50">
+                        {receiptLoading && showingReceipt ? "Loading Receipt..." : "View Receipt"}
+                      </button>
+                      {order.status === "COMPLETED" && (
+                        <button type="button" onClick={() => void handleRefund(order)} disabled={refunding || refundingOrderId !== null} className="min-h-11 w-full rounded bg-red-600 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50">
                           {refunding ? "Processing Refund..." : "Refund Sale"}
                         </button>
-                        <p className="mt-2 text-center text-xs text-gray-500">The payment will be refunded and the sold stock will be returned.</p>
+                      )}
+                    </div>
+
+                    {order.status === "COMPLETED" && <p className="mt-2 text-center text-xs text-gray-500">The payment will be refunded and the sold stock will be returned.</p>}
+
+                    {showingReceipt && (
+                      <div className="mt-4 border-t pt-4">
+                        {receiptError && <div className="mb-3 rounded border border-red-200 bg-red-50 p-3 text-sm text-red-700">{receiptError}</div>}
+                        {receipt && <ReceiptView receipt={receipt} products={products} />}
                       </div>
                     )}
                   </div>
