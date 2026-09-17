@@ -84,11 +84,17 @@ export default function ReceiptsPage() {
 
       const productIds = Array.from(
         new Set(
-          salesWithReceipts.flatMap((order) =>
-            (order.items ?? []).map(
-              (item) => item.productId,
+          orders
+            .filter(
+              (order) =>
+                order.status === "COMPLETED" ||
+                order.status === "REFUNDED",
+            )
+            .flatMap((order) =>
+              (order.items ?? []).map(
+                (item) => item.productId,
+              ),
             ),
-          ),
         ),
       );
 
@@ -120,7 +126,7 @@ export default function ReceiptsPage() {
     return () => {
       cancelled = true;
     };
-  }, [salesWithReceipts]);
+  }, [orders]);
 
   async function handleViewReceipt(order: SalesOrder) {
     const tenantId =
