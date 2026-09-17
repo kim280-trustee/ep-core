@@ -35,6 +35,11 @@ export function SaleHistory({ products }: SaleHistoryProps) {
   const [receipt, setReceipt] = useState<ReturnType<typeof receiptEngine.generate> | null>(null);
   const sales = orders.filter((order) => order.status === "COMPLETED" || order.status === "REFUNDED" || order.status === "CANCELLED");
 
+  function getProductName(productId: string): string {
+    const product = products.find((item) => item.id === productId);
+    return product?.name ?? `Product ${productId}`;
+  }
+
   function toggleOrder(orderId: string) { setExpandedOrderId((current) => current === orderId ? null : orderId); }
 
   async function refresh() {
@@ -124,7 +129,7 @@ export function SaleHistory({ products }: SaleHistoryProps) {
                       {order.items.map((item) => (
                         <div key={item.id} className="flex min-w-0 items-start justify-between gap-3 text-sm">
                           <div className="min-w-0 flex-1">
-                            <p className="truncate font-medium">Product {item.productId}</p>
+                            <p className="truncate font-medium">{getProductName(item.productId)}</p>
                             <p className="text-gray-600">{item.quantity} × {formatMoney(item.unitPrice)}</p>
                           </div>
                           <div className="shrink-0 text-right">
