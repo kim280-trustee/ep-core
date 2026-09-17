@@ -52,7 +52,6 @@ export function useCustomers() {
           storeContext.getStore();
 
         if (!context?.tenantId) {
-          setCustomers([]);
           return;
         }
 
@@ -71,9 +70,52 @@ export function useCustomers() {
 
   useEffect(
     () => {
-      void refresh();
+      let cancelled = false;
+      let retryTimer: number | undefined;
+
+      const loadWhenContextIsReady = async () => {
+        if (cancelled) return;
+
+        const context = storeContext.getStore();
+
+        if (!context?.tenantId) {
+          retryTimer = window.setTimeout(
+            () => void loadWhenContextIsReady(),
+            250,
+          );
+          return;
+        }
+
+        try {
+          const loaded =
+            await customerService.getCustomers(
+              context.tenantId,
+              context.storeId,
+            );
+
+          if (!cancelled) {
+            setCustomers(loaded);
+          }
+        } catch {
+          if (!cancelled) {
+            retryTimer = window.setTimeout(
+              () => void loadWhenContextIsReady(),
+              500,
+            );
+          }
+        }
+      };
+
+      void loadWhenContextIsReady();
+
+      return () => {
+        cancelled = true;
+        if (retryTimer !== undefined) {
+          window.clearTimeout(retryTimer);
+        }
+      };
     },
-    [refresh],
+    [setCustomers],
   );
 
 
