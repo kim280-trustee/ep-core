@@ -7,6 +7,10 @@ import {
   productRepositoryProvider,
 } from "@/features/products/repositories";
 
+import type {
+  Product,
+} from "@/features/products/types/product.types";
+
 import {
   storeContext,
 } from "@/core/store/store.context";
@@ -17,6 +21,7 @@ import {
 
 import type {
   PaymentMethod,
+  Payment,
 } from "@/features/payments/types/payment.types";
 
 import {
@@ -26,6 +31,9 @@ import {
 import type {
   SalesOrder,
 } from "../types/sales-order.types";
+
+import { receiptEngine } from "@/features/pos-sales/engine";
+import { ReceiptView } from "@/features/pos-sales/components/ReceiptView";
 
 import { useTranslation } from "@/core/i18n/useTranslation";
 
@@ -49,6 +57,11 @@ export default function SalesOrderList() {
   ] = useState<Record<string, string>>({});
 
   const [
+    products,
+    setProducts,
+  ] = useState<Product[]>([]);
+
+  const [
     payingOrderId,
     setPayingOrderId,
   ] = useState<string | null>(null);
@@ -57,6 +70,26 @@ export default function SalesOrderList() {
     paymentError,
     setPaymentError,
   ] = useState<string | null>(null);
+
+  const [
+    receiptOrderId,
+    setReceiptOrderId,
+  ] = useState<string | null>(null);
+
+  const [
+    receiptLoading,
+    setReceiptLoading,
+  ] = useState(false);
+
+  const [
+    receiptError,
+    setReceiptError,
+  ] = useState<string | null>(null);
+
+  const [
+    receipt,
+    setReceipt,
+  ] = useState<ReturnType<typeof receiptEngine.generate> | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -78,7 +111,7 @@ export default function SalesOrderList() {
       );
 
       try {
-        const products = await Promise.all(
+        const loadedProducts = await Promise.all(
           productIds.map((productId) =>
             productRepositoryProvider.findById(
               tenantId,
@@ -90,13 +123,17 @@ export default function SalesOrderList() {
         if (cancelled) return;
 
         const names: Record<string, string> = {};
-        products.forEach((product, index) => {
+        const resolvedProducts: Product[] = [];
+
+        loadedProducts.forEach((product, index) => {
           if (product) {
             names[productIds[index]] = product.name;
+            resolvedProducts.push(product);
           }
         });
 
         setProductNames(names);
+        setProducts(resolvedProducts);
       } catch {
         // Keep the sales list usable if product lookup fails.
       }
@@ -191,6 +228,52 @@ export default function SalesOrderList() {
     }
   }
 
+  async function handleViewReceipt(order: SalesOrder) {
+    const tenantId =
+      storeContext.getStore()?.tenantId;
+
+    setReceiptOrderId(order.id);
+    setReceiptLoading(true);
+    setReceiptError(null);
+    setReceipt(null);
+
+    try {
+      if (!tenantId) {
+        throw new Error(
+          t("sales.storeContextUnavailable"),
+        );
+      }
+
+      const payments =
+        await paymentService.getPaymentsForOrder(
+          tenantId,
+          order.id,
+        );
+
+      const payment: Payment | undefined =
+        payments.find(
+          (item) =>
+            item.status === "COMPLETED" ||
+            item.status === "REFUNDED",
+        ) ?? payments[0];
+
+      setReceipt(
+        receiptEngine.generate(
+          order,
+          payment,
+        ),
+      );
+    } catch (failure) {
+      setReceiptError(
+        failure instanceof Error
+          ? failure.message
+          : "Unable to load the sale receipt.",
+      );
+    } finally {
+      setReceiptLoading(false);
+    }
+  }
+
   if (loading && orders.length === 0) {
     return (
       <div className="rounded border bg-white p-4">
@@ -223,163 +306,195 @@ export default function SalesOrderList() {
         </div>
       ) : (
         <div className="mt-4 space-y-3">
-          {orders.map((order) => (
-            <div
-              key={order.id}
-              className="rounded-lg border bg-white p-4 shadow-sm"
-            >
-              <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                <div>
-                  <div className="font-semibold">
-                    {order.orderNumber}
+          {orders.map((order) => {
+            const showingReceipt =
+              receiptOrderId === order.id;
+
+            return (
+              <div
+                key={order.id}
+                className="rounded-lg border bg-white p-4 shadow-sm"
+              >
+                <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                  <div>
+                    <div className="font-semibold">
+                      {order.orderNumber}
+                    </div>
+
+                    <div className="mt-1 text-sm text-gray-600">
+                      {t("common.status")}:{" "}
+                      <span className="font-medium">
+                        {order.status}
+                      </span>
+                    </div>
+
+                    <div className="mt-1 text-sm text-gray-600">
+                      {t("sales.items")}:{" "}
+                      {order.items?.length ?? 0}
+                    </div>
+
+                    <div className="mt-1 text-sm font-medium">
+                      {t("common.total")}:{" "}
+                      {order.totalAmount}
+                    </div>
                   </div>
 
-                  <div className="mt-1 text-sm text-gray-600">
-                    {t("common.status")}:{" "}
-                    <span className="font-medium">
-                      {order.status}
-                    </span>
-                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {order.status === "DRAFT" && (
+                      <>
+                        <button
+                          type="button"
+                          disabled={loading}
+                          onClick={() => void handleConfirm(order.id)}
+                          className="rounded bg-black px-4 py-2 text-sm text-white disabled:opacity-50"
+                        >
+                          {t("common.confirm")}
+                        </button>
 
-                  <div className="mt-1 text-sm text-gray-600">
-                    {t("sales.items")}:{" "}
-                    {order.items?.length ?? 0}
-                  </div>
+                        <button
+                          type="button"
+                          disabled={loading}
+                          onClick={() => void handleCancel(order.id)}
+                          className="rounded border px-4 py-2 text-sm disabled:opacity-50"
+                        >
+                          {t("common.cancel")}
+                        </button>
+                      </>
+                    )}
 
-                  <div className="mt-1 text-sm font-medium">
-                    {t("common.total")}:{" "}
-                    {order.totalAmount}
-                  </div>
-                </div>
+                    {order.status === "CONFIRMED" && (
+                      <>
+                        <button
+                          type="button"
+                          disabled={loading}
+                          onClick={() => void handleProcess(order.id)}
+                          className="rounded bg-black px-4 py-2 text-sm text-white disabled:opacity-50"
+                        >
+                          {t("sales.processSale")}
+                        </button>
 
-                <div className="flex flex-wrap gap-2">
-                  {order.status === "DRAFT" && (
-                    <>
-                      <button
-                        type="button"
-                        disabled={loading}
-                        onClick={() => void handleConfirm(order.id)}
-                        className="rounded bg-black px-4 py-2 text-sm text-white disabled:opacity-50"
-                      >
-                        {t("common.confirm")}
-                      </button>
+                        <button
+                          type="button"
+                          disabled={loading}
+                          onClick={() => void handleCancel(order.id)}
+                          className="rounded border px-4 py-2 text-sm disabled:opacity-50"
+                        >
+                          {t("common.cancel")}
+                        </button>
+                      </>
+                    )}
 
-                      <button
-                        type="button"
-                        disabled={loading}
-                        onClick={() => void handleCancel(order.id)}
-                        className="rounded border px-4 py-2 text-sm disabled:opacity-50"
-                      >
-                        {t("common.cancel")}
-                      </button>
-                    </>
-                  )}
+                    {order.status === "PROCESSING" && (
+                      <>
+                        <button
+                          type="button"
+                          disabled={
+                            loading ||
+                            payingOrderId === order.id
+                          }
+                          onClick={() => void handlePayment(order)}
+                          className="rounded bg-green-600 px-4 py-2 text-sm text-white disabled:opacity-50"
+                        >
+                          {payingOrderId === order.id
+                            ? t("sales.processingPayment")
+                            : t("sales.payAndCompleteSale")}
+                        </button>
 
-                  {order.status === "CONFIRMED" && (
-                    <>
-                      <button
-                        type="button"
-                        disabled={loading}
-                        onClick={() => void handleProcess(order.id)}
-                        className="rounded bg-black px-4 py-2 text-sm text-white disabled:opacity-50"
-                      >
-                        {t("sales.processSale")}
-                      </button>
+                        <button
+                          type="button"
+                          disabled={
+                            loading ||
+                            payingOrderId === order.id
+                          }
+                          onClick={() => void handleCancel(order.id)}
+                          className="rounded border px-4 py-2 text-sm disabled:opacity-50"
+                        >
+                          {t("common.cancel")}
+                        </button>
+                      </>
+                    )}
 
-                      <button
-                        type="button"
-                        disabled={loading}
-                        onClick={() => void handleCancel(order.id)}
-                        className="rounded border px-4 py-2 text-sm disabled:opacity-50"
-                      >
-                        {t("common.cancel")}
-                      </button>
-                    </>
-                  )}
-
-                  {order.status === "PROCESSING" && (
-                    <>
+                    {(order.status === "COMPLETED" ||
+                      order.status === "REFUNDED") && (
                       <button
                         type="button"
                         disabled={
-                          loading ||
-                          payingOrderId === order.id
+                          receiptLoading && showingReceipt
                         }
-                        onClick={() => void handlePayment(order)}
-                        className="rounded bg-green-600 px-4 py-2 text-sm text-white disabled:opacity-50"
+                        onClick={() => void handleViewReceipt(order)}
+                        className="rounded border bg-white px-4 py-2 text-sm font-medium disabled:opacity-50"
                       >
-                        {payingOrderId === order.id
-                          ? t("sales.processingPayment")
-                          : t("sales.payAndCompleteSale")}
+                        {receiptLoading && showingReceipt
+                          ? "Loading Receipt..."
+                          : "View Receipt"}
                       </button>
+                    )}
 
+                    {order.status === "COMPLETED" && (
                       <button
                         type="button"
-                        disabled={
-                          loading ||
-                          payingOrderId === order.id
-                        }
-                        onClick={() => void handleCancel(order.id)}
+                        disabled={loading}
+                        onClick={() => void handleRefund(order.id)}
                         className="rounded border px-4 py-2 text-sm disabled:opacity-50"
                       >
-                        {t("common.cancel")}
+                        {t("sales.refund")}
                       </button>
-                    </>
-                  )}
+                    )}
 
-                  {order.status === "COMPLETED" && (
-                    <button
-                      type="button"
-                      disabled={loading}
-                      onClick={() => void handleRefund(order.id)}
-                      className="rounded border px-4 py-2 text-sm disabled:opacity-50"
-                    >
-                      {t("sales.refund")}
-                    </button>
-                  )}
-
-                  {order.status === "CANCELLED" && (
-                    <span className="rounded bg-gray-100 px-3 py-2 text-sm text-gray-600">
-                      {t("status.cancelled")}
-                    </span>
-                  )}
-
-                  {order.status === "REFUNDED" && (
-                    <span className="rounded bg-gray-100 px-3 py-2 text-sm text-gray-600">
-                      {t("sales.refunded")}
-                    </span>
-                  )}
-                </div>
-              </div>
-
-              {order.items && order.items.length > 0 && (
-                <div className="mt-4 border-t pt-3">
-                  <div className="text-sm font-medium">
-                    {t("sales.saleItems")}
+                    {order.status === "CANCELLED" && (
+                      <span className="rounded bg-gray-100 px-3 py-2 text-sm text-gray-600">
+                        {t("status.cancelled")}
+                      </span>
+                    )}
                   </div>
+                </div>
 
-                  <div className="mt-2 space-y-1">
-                    {order.items.map((item) => (
-                      <div
-                        key={item.id}
-                        className="flex justify-between gap-4 text-sm text-gray-600"
-                      >
-                        <span>
-                          {item.quantity} ×{" "}
-                          {productNames[item.productId] ??
-                            t("sales.product")}
-                        </span>
+                {order.items && order.items.length > 0 && (
+                  <div className="mt-4 border-t pt-3">
+                    <div className="text-sm font-medium">
+                      {t("sales.saleItems")}
+                    </div>
 
-                        <span>
-                          {item.lineTotal}
-                        </span>
+                    <div className="mt-2 space-y-1">
+                      {order.items.map((item) => (
+                        <div
+                          key={item.id}
+                          className="flex justify-between gap-4 text-sm text-gray-600"
+                        >
+                          <span>
+                            {item.quantity} ×{" "}
+                            {productNames[item.productId] ??
+                              t("sales.product")}
+                          </span>
+
+                          <span>
+                            {item.lineTotal}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {showingReceipt && (
+                  <div className="mt-4 border-t pt-4">
+                    {receiptError && (
+                      <div className="mb-3 rounded border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+                        {receiptError}
                       </div>
-                    ))}
+                    )}
+
+                    {receipt && (
+                      <ReceiptView
+                        receipt={receipt}
+                        products={products}
+                      />
+                    )}
                   </div>
-                </div>
-              )}
-            </div>
-          ))}
+                )}
+              </div>
+            );
+          })}
         </div>
       )}
     </div>
