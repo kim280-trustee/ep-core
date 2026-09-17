@@ -5,6 +5,7 @@ import {
   purchaseOrderItemRepository,
 } from "../../repositories";
 import { inventoryTransactionService } from "@/features/inventory-transactions/services/inventory-transaction.service";
+import { inventoryService } from "@/features/inventory/services/inventory.service";
 import { supplierCreditLedgerService } from "@/features/suppliers/credit-ledger";
 
 export interface CreatePurchaseReturnInput {
@@ -93,13 +94,22 @@ class PurchaseReturnService {
       }
     }
 
-    const validatedItems = input.items.map((inputItem) => {
+    const validatedItems = [] as Array<{
+      orderItem: (typeof orderItems)[number];
+      quantity: number;
+      unitCost: number;
+      reason: string;
+    }>;
+
+    for (const inputItem of input.items) {
       if (inputItem.quantity <= 0) {
         throw new Error("Return quantity must be greater than zero.");
       }
 
       const orderItem = orderItems.find(
-        (item) => item.id === inputItem.purchaseOrderItemId && item.productId === inputItem.productId,
+        (item) =>
+          item.id === inputItem.purchaseOrderItemId &&
+          item.productId === inputItem.productId,
       );
 
       if (!orderItem) throw new Error("Purchase order item not found.");
@@ -113,19 +123,32 @@ class PurchaseReturnService {
         );
       }
 
-      const unitCost = inputItem.unitCost ?? orderItem.unitCost;
+      const inventoryRecord = await inventoryService.getInventoryRecord(
+        input.tenantId,
+        inputItem.productId,
+        input.warehouseId,
+      );
+
+      if (!inventoryRecord) {
+        throw new Error("Inventory record not found for the returned product.");
+      }
+
+      // V1 uses the current weighted-average inventory cost for supplier returns.
+      // This keeps the return valuation aligned with the inventory adjustment transaction.
+      const unitCost = Number(inventoryRecord.averageCost ?? 0);
+
       if (unitCost < 0) throw new Error("Unit cost cannot be negative.");
 
       const itemReason = inputItem.reason?.trim() || returnReason;
       returnedByItem.set(orderItem.id, alreadyReturned + inputItem.quantity);
 
-      return {
+      validatedItems.push({
         orderItem,
         quantity: inputItem.quantity,
         unitCost,
         reason: itemReason,
-      };
-    });
+      });
+    }
 
     const returnId = crypto.randomUUID();
     const now = new Date().toISOString();
@@ -153,7 +176,10 @@ class PurchaseReturnService {
       });
     }
 
-    const totalAmount = returnItems.reduce((total, item) => total + item.lineTotal, 0);
+    const totalAmount = returnItems.reduce(
+      (total, item) => total + item.lineTotal,
+      0,
+    );
 
     const value: PurchaseReturn = {
       id: returnId,
