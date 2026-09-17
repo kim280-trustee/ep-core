@@ -272,7 +272,7 @@ export default function AddSalesOrderItemForm({
 
         <div>
           <label className="mb-1 block text-sm font-medium">
-            {t("sales.discount")}
+            {t("common.discount")}
           </label>
 
           <input
@@ -291,7 +291,7 @@ export default function AddSalesOrderItemForm({
 
         <div>
           <label className="mb-1 block text-sm font-medium">
-            {t("sales.taxRate")}
+            Tax Rate (%)
           </label>
 
           <input
