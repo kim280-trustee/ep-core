@@ -68,6 +68,12 @@ export const productService = {
 
   },
 
+  async createProducts(
+    inputs: CreateProductInput[],
+  ): Promise<Product[]> {
+    return productRepositoryProvider.createMany(inputs);
+  },
+
   async updateProduct(
     tenantId: string,
     id: string,

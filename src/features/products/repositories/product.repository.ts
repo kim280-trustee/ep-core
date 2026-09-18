@@ -39,6 +39,10 @@ export interface IProductRepository {
     input: CreateProductInput,
   ): Promise<Product>;
 
+  createMany(
+    inputs: CreateProductInput[],
+  ): Promise<Product[]>;
+
   update(
     tenantId: string,
     id: string,
@@ -568,6 +572,20 @@ class ProductRepository
     return fromDatabaseRow(
       data as ProductDatabaseRow,
     );
+  }
+
+  async createMany(
+    inputs: CreateProductInput[],
+  ): Promise<Product[]> {
+    if (inputs.length === 0) return [];
+    const created: Product[] = [];
+    for (let index = 0; index < inputs.length; index += 250) {
+      const chunk = inputs.slice(index, index + 250).map(toDatabaseRow);
+      const { data, error } = await supabase.from(TABLE).insert(chunk).select("*");
+      if (error) throw new Error(`Failed to import products: ${error.message}`);
+      created.push(...(data ?? []).map((row) => fromDatabaseRow(row as ProductDatabaseRow)));
+    }
+    return created;
   }
 
   async update(
