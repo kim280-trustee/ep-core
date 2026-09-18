@@ -14,7 +14,11 @@ export function ProductImportPage(){
   const {user}=useAuth();const tenantId=user?.tenantId??"";
   const [existing,setExisting]=useState<Product[]>([]);const [mode,setMode]=useState<"catalog"|"supplier">("catalog");const [preview,setPreview]=useState<ImportPreviewRow[]>([]);const [fileName,setFileName]=useState("");const [loading,setLoading]=useState(false);const [message,setMessage]=useState("");const [error,setError]=useState("");
   const storeId=storeContext.getStore()?.storeId??null;const currency=useSettingsStore(s=>s.settings?.currency??"THB");
-  useEffect(()=>{if(!tenantId)return;useSettingsStore.getState().loadSettings(tenantId);void productService.getProducts(tenantId,{}).then(r=>setExisting(r.data)).catch(e=>setError(e instanceof Error?e.message:"Could not load existing products."));},[tenantId]);
+  useEffect(() => {
+    if (!tenantId) return;
+    void useSettingsStore.getState().loadSettings(tenantId);
+    void productService.getProducts(tenantId, {}).then((result) => setExisting(result.data)).catch((loadError) => setError(loadError instanceof Error ? loadError.message : "Could not load existing products."));
+  }, [tenantId]);
   const stats=useMemo(()=>({total:preview.length,valid:preview.filter(r=>!r.error).length,matched:preview.filter(r=>!r.error&&r.match).length,newProducts:preview.filter(r=>!r.error&&!r.match).length,errors:preview.filter(r=>Boolean(r.error)).length}),[preview]);
   async function handleFile(file?:File){if(!file)return;setLoading(true);setError("");setMessage("");setFileName(file.name);try{setPreview(buildPreview(normalizeImportedRows(await parseProductFile(file)),existing));}catch(e){setPreview([]);setError(e instanceof Error?e.message:"Could not read the file.");}finally{setLoading(false);}}
   async function importProducts(){
