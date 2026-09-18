@@ -63,8 +63,7 @@ export function normalizeImportedRows(raw:Record<string,unknown>[]):ImportedProd
     const name=text(mapped.name);
     return {
       rowNumber:index+2,name,sku:text(mapped.sku)||sku(name,index+2),barcode:text(mapped.barcode)||undefined,
-      category:text(mapped.category)||undefined,brand:text(mapped.brand)||undefined,unit:text(mapped.unit)||undefined,
-      unitSymbol:text(mapped.unitSymbol)||undefined,costPrice:num(mapped.costPrice),sellingPrice:num(mapped.sellingPrice),
+      category:text(mapped.category)||undefined,brand:text(mapped.brand)||undefined,costPrice:num(mapped.costPrice),sellingPrice:num(mapped.sellingPrice),
       description:text(mapped.description)||undefined,trackInventory:bool(mapped.trackInventory),
     };
   });

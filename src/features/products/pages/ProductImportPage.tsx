@@ -37,8 +37,7 @@ export function ProductImportPage(){
         if(row.category&&!categoryId){await createCategory({name:row.category.trim()},tenantId,storeId??"");categoryId=useCategoriesStore.getState().categories.find(x=>x.status==="active"&&x.name.trim().toLowerCase()===row.category!.trim().toLowerCase())?.id;if(categoryId)categoryMap.set(row.category.trim().toLowerCase(),categoryId);}
         let brandId=row.brand?brandMap.get(row.brand.trim().toLowerCase()):undefined;
         if(row.brand&&!brandId){await createBrand({name:row.brand.trim()},tenantId,storeId??"");brandId=useBrandsStore.getState().brands.find(x=>x.status==="active"&&x.name.trim().toLowerCase()===row.brand!.trim().toLowerCase())?.id;if(brandId)brandMap.set(row.brand.trim().toLowerCase(),brandId);}
-        const unitId = undefined;
-        inputs.push(toCreateInput(row,tenantId,storeId,currency,unitId,categoryId,brandId));
+        inputs.push(toCreateInput(row,tenantId,storeId,currency,undefined,categoryId,brandId));
       }
       if(!inputs.length){setMessage("No new products need to be imported. Existing matches were skipped.");return;}
       const created=await productService.createProducts(inputs);setMessage(`Imported ${created.length} products successfully. Existing matches were skipped.`);
