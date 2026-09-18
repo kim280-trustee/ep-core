@@ -41,7 +41,7 @@ create table if not exists public.organization_memberships (
   constraint organization_memberships_role_fk
     foreign key (tenant_id, role_id)
     references public.roles(tenant_id, id)
-    on delete set null,
+    on delete restrict,
   constraint organization_memberships_user_org_key
     unique (organization_id, user_id)
 );
