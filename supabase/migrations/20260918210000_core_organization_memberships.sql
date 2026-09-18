@@ -1,6 +1,9 @@
 -- E&P Core: organization and membership foundation
 -- Additive only. Does not alter existing POS tables, tenant semantics, or user_roles authorization.
 
+alter table public.users add constraint users_tenant_id_id_key unique (tenant_id, id);
+alter table public.roles add constraint roles_tenant_id_id_key unique (tenant_id, id);
+
 create table if not exists public.organizations (
   id uuid primary key default gen_random_uuid(),
   tenant_id uuid not null references public.tenants(id) on delete cascade,
