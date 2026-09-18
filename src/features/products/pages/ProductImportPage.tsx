@@ -43,7 +43,7 @@ export function ProductImportPage(){
       }
       if(!inputs.length){setMessage("No new products need to be imported. Existing matches were skipped.");return;}
       const created=await productService.createProducts(inputs);setMessage(`Imported ${created.length} products successfully. Existing matches were skipped.`);
-      const refreshed=await productService.getProducts(tenantId,{});setExisting(refreshed.data);
+      const refreshed=await productService.getProducts(tenantId, {});setExisting(refreshed.data);
     }catch(e){setError(e instanceof Error?e.message:"Import failed.");}finally{setLoading(false);}
   }
   return <div className="space-y-6"><div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><div><h1 className="text-2xl font-bold">Product Import</h1><p className="text-sm text-gray-500">Import a catalog or analyse a supplier product list without retyping every item.</p></div><div className="flex flex-wrap gap-2"><Link to="/products" className="rounded-lg border px-4 py-2">Back to Products</Link><button type="button" onClick={downloadTemplate} className="rounded-lg border px-4 py-2">Download Template</button></div></div>
