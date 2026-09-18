@@ -1,4 +1,3 @@
-import * as XLSX from "xlsx";
 import type { CreateProductInput, Product } from "../types/product.types";
 import { ProductStatus, ProductType } from "../types/product.types";
 
@@ -22,12 +21,41 @@ const num=(v:unknown)=>{const n=Number(text(v).replace(/,/g,""));return Number.i
 const bool=(v:unknown)=>{const x=text(v).toLowerCase();return !x||!["false","0","no","n","inactive"].includes(x);};
 const sku=(name:string,row:number)=>`IMP-${(text(name).toUpperCase().replace(/[^A-Z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,36)||"PRODUCT")}-${String(row).padStart(4,"0")}`;
 
-export async function parseProductFile(file:File):Promise<Record<string,unknown>[]>{
-  const workbook=XLSX.read(await file.arrayBuffer(),{cellDates:false});
-  const sheet=workbook.Sheets[workbook.SheetNames[0]];
-  if(!sheet) throw new Error("The uploaded file does not contain a worksheet.");
-  return XLSX.utils.sheet_to_json<Record<string,unknown>>(sheet,{defval:""});
+export async function parseProductFile(file: File): Promise<Record<string, unknown>[]> {
+  const text = await file.text();
+  const lines = text.split(/\r?\n/).filter((line) => line.trim().length > 0);
+  if (lines.length === 0) return [];
+
+  const parseCsvLine = (line: string): string[] => {
+    const values: string[] = [];
+    let value = "";
+    let quoted = false;
+    for (let index = 0; index < line.length; index += 1) {
+      const char = line[index];
+      const next = line[index + 1];
+      if (char === '"' && quoted && next === '"') {
+        value += '"';
+        index += 1;
+      } else if (char === '"') {
+        quoted = !quoted;
+      } else if (char === "," && !quoted) {
+        values.push(value.trim());
+        value = "";
+      } else {
+        value += char;
+      }
+    }
+    values.push(value.trim());
+    return values;
+  };
+
+  const headers = parseCsvLine(lines[0]).map((header) => header.replace(/^\uFEFF/, ""));
+  return lines.slice(1).map((line) => {
+    const values = parseCsvLine(line);
+    return Object.fromEntries(headers.map((header, index) => [header, values[index] ?? ""]));
+  });
 }
+
 export function normalizeImportedRows(raw:Record<string,unknown>[]):ImportedProductRow[]{
   return raw.map((row,index)=>{
     const mapped:Record<string,unknown>={};
@@ -56,7 +84,16 @@ export function toCreateInput(row:ImportedProductRow,tenantId:string,storeId:str
   return {tenantId,storeId:storeId||undefined,name:row.name,sku:row.sku,barcode:row.barcode,description:row.description,categoryId,brandId,unitId,
     productType:ProductType.PRODUCT,status:ProductStatus.ACTIVE,costPrice:row.costPrice,sellingPrice:row.sellingPrice,currency,trackInventory:row.trackInventory};
 }
-export function downloadTemplate():void{
-  const sheet=XLSX.utils.json_to_sheet([{"Product Name":"Mama Tom Yum 55g",SKU:"MAMA-TY-55",Barcode:"8851876001012",Category:"Instant Noodles",Brand:"Mama",Unit:"Piece","Unit Symbol":"pcs","Cost Price":6,"Selling Price":8,Description:"Mama Tom Yum instant noodles 55g","Track Inventory":true}]);
-  const workbook=XLSX.utils.book_new();XLSX.utils.book_append_sheet(workbook,sheet,"Products");XLSX.writeFile(workbook,"ep-product-import-template.xlsx");
+export function downloadTemplate(): void {
+  const csv = [
+    "Product Name,SKU,Barcode,Category,Brand,Unit,Unit Symbol,Cost Price,Selling Price,Description,Track Inventory",
+    "Mama Tom Yum 55g,MAMA-TY-55,8851876001012,Instant Noodles,Mama,Piece,pcs,6,8,Mama Tom Yum instant noodles 55g,true",
+  ].join("\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = "ep-product-import-template.csv";
+  anchor.click();
+  URL.revokeObjectURL(url);
 }
