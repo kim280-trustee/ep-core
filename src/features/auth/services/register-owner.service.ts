@@ -200,6 +200,10 @@ console.log(
         user,
       );
 
+    // Registration creates the account but does not keep the new user signed in.
+    // The user must explicitly sign in after registration.
+    await supabase.auth.signOut();
+
 
 
 
