@@ -77,12 +77,13 @@ class InMemoryDashboardRepository implements DashboardRepository {
      * datasets for their feature pages, but the dashboard only needs a small
      * slice of each dataset.
      *
-     * This keeps the existing repository architecture/frozen feature flows
-     * unchanged while avoiding:
-     *   - every historical sales order + every sales line item
-     *   - every historical inventory transaction
-     *   - every historical purchase order
-     *   - every product record
+     * The reads are deliberately staged:
+     * 1. Independent store/sales/PO reads run together.
+     * 2. Inventory and today's sale-cost reads run together.
+     * 3. Product-name lookup runs only after low-stock IDs are known.
+     *
+     * This preserves the existing feature architecture while minimizing
+     * both database volume and avoidable request latency.
      */
 
     const todayStart = startOfTodayIso();
@@ -163,23 +164,48 @@ class InMemoryDashboardRepository implements DashboardRepository {
     const pendingPurchaseOrderRows =
       (pendingPurchaseOrdersResult.data ?? []) as PurchaseOrderRow[];
 
-    const inventoryResult =
+    const todaySaleIds =
+      todaySales.map((sale) => sale.id);
+
+    const [
+      inventoryResult,
+      inventoryTransactionResult,
+    ] = await Promise.all([
       storeWarehouseIds.length === 0
-        ? { data: [], error: null }
-        : await supabase
+        ? Promise.resolve({ data: [], error: null })
+        : supabase
             .from("inventory")
             .select(
               "product_id,warehouse_id,quantity_on_hand,quantity_reserved,average_cost,minimum_stock_level",
             )
             .eq("tenant_id", tenantId)
-            .in("warehouse_id", storeWarehouseIds);
+            .in("warehouse_id", storeWarehouseIds),
+
+      todaySaleIds.length === 0
+        ? Promise.resolve({ data: [], error: null })
+        : supabase
+            .from("inventory_transactions")
+            .select("reference_id,quantity,unit_cost")
+            .eq("tenant_id", tenantId)
+            .eq("store_id", storeId)
+            .eq("movement_type", "SALE")
+            .eq("reference_type", "SALE")
+            .in("reference_id", todaySaleIds),
+    ]);
 
     if (inventoryResult.error) {
       throw inventoryResult.error;
     }
 
+    if (inventoryTransactionResult.error) {
+      throw inventoryTransactionResult.error;
+    }
+
     const inventory =
       (inventoryResult.data ?? []) as InventoryRow[];
+
+    const todaySaleTransactions =
+      (inventoryTransactionResult.data ?? []) as InventoryTransactionRow[];
 
     const lowStockRecords = inventory.filter(
       (record) => {
@@ -237,28 +263,6 @@ class InMemoryDashboardRepository implements DashboardRepository {
     for (const warehouse of warehouses) {
       warehouseMap.set(warehouse.id, warehouse.name);
     }
-
-    const todaySaleIds =
-      todaySales.map((sale) => sale.id);
-
-    const inventoryTransactionResult =
-      todaySaleIds.length === 0
-        ? { data: [], error: null }
-        : await supabase
-            .from("inventory_transactions")
-            .select("reference_id,quantity,unit_cost")
-            .eq("tenant_id", tenantId)
-            .eq("store_id", storeId)
-            .eq("movement_type", "SALE")
-            .eq("reference_type", "SALE")
-            .in("reference_id", todaySaleIds);
-
-    if (inventoryTransactionResult.error) {
-      throw inventoryTransactionResult.error;
-    }
-
-    const todaySaleTransactions =
-      (inventoryTransactionResult.data ?? []) as InventoryTransactionRow[];
 
     const todaySalesTotal =
       todaySales.reduce(
