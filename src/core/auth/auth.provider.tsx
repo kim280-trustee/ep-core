@@ -195,13 +195,11 @@ export function AuthProvider({
     const {
       data,
     } =
-      supabase.auth.onAuthStateChange(
-        () => {
-
-          void loadUser();
-
-        },
-      );
+      supabase.auth.onAuthStateChange(() => {
+        window.setTimeout(() => {
+          if (mounted) void loadUser();
+        }, 0);
+      });
 
 
     return () => {
