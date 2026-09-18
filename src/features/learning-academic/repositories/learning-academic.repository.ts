@@ -1,3 +1,4 @@
+import type { Database } from "@/core/database/database.types";
 import { supabase } from "@/core/infrastructure/supabase/client";
 import type {
   LearningAcademicYear,
@@ -25,59 +26,59 @@ export interface LearningAcademicRepository {
   listClassSubjects(organizationId: string, classGroupId: string): Promise<LearningClassSubject[]>;
 }
 
-const mapCountry = (r: any): LearningCountry => ({
+const mapCountry = (r: CountryRow): LearningCountry => ({
   id: r.id, code: r.code, name: r.name, nativeName: r.native_name ?? null,
   status: r.status, createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
-const mapSystem = (r: any): LearningEducationSystem => ({
+const mapSystem = (r: SystemRow): LearningEducationSystem => ({
   id: r.id, countryId: r.country_id, code: r.code, name: r.name,
   description: r.description ?? null, status: r.status,
   createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
-const mapCurriculum = (r: any): LearningCurriculum => ({
+const mapCurriculum = (r: CurriculumRow): LearningCurriculum => ({
   id: r.id, educationSystemId: r.education_system_id, code: r.code, name: r.name,
   version: r.version ?? null, description: r.description ?? null, status: r.status,
   createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
-const mapSubject = (r: any): LearningSubject => ({
+const mapSubject = (r: SubjectRow): LearningSubject => ({
   id: r.id, code: r.code, name: r.name, description: r.description ?? null,
   status: r.status, createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
-const mapCurriculumSubject = (r: any): LearningCurriculumSubject => ({
+const mapCurriculumSubject = (r: CurriculumSubjectRow): LearningCurriculumSubject => ({
   id: r.id, curriculumId: r.curriculum_id, subjectId: r.subject_id,
   code: r.code ?? null, name: r.name ?? null, status: r.status,
   createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
-const mapGrade = (r: any): LearningGradeLevel => ({
+const mapGrade = (r: GradeRow): LearningGradeLevel => ({
   id: r.id, curriculumId: r.curriculum_id, code: r.code, name: r.name,
   sequenceNo: r.sequence_no, description: r.description ?? null, status: r.status,
   createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
-const mapYear = (r: any): LearningAcademicYear => ({
+const mapYear = (r: AcademicYearRow): LearningAcademicYear => ({
   id: r.id, organizationId: r.organization_id, curriculumId: r.curriculum_id,
   name: r.name, code: r.code, startsOn: r.starts_on, endsOn: r.ends_on,
   status: r.status, createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
-const mapTerm = (r: any): LearningTerm => ({
+const mapTerm = (r: TermRow): LearningTerm => ({
   id: r.id, organizationId: r.organization_id, academicYearId: r.academic_year_id,
   name: r.name, code: r.code, sequenceNo: r.sequence_no, startsOn: r.starts_on,
   endsOn: r.ends_on, status: r.status, createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
-const mapClassGroup = (r: any): LearningClassGroup => ({
+const mapClassGroup = (r: ClassGroupRow): LearningClassGroup => ({
   id: r.id, organizationId: r.organization_id, academicYearId: r.academic_year_id,
   curriculumId: r.curriculum_id, gradeLevelId: r.grade_level_id, code: r.code,
   name: r.name, status: r.status, createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
-const mapClassSubject = (r: any): LearningClassSubject => ({
+const mapClassSubject = (r: ClassSubjectRow): LearningClassSubject => ({
   id: r.id, organizationId: r.organization_id, classGroupId: r.class_group_id,
   subjectId: r.subject_id, status: r.status, createdAt: r.created_at, updatedAt: r.updated_at,
 });
