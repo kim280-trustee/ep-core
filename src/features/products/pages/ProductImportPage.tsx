@@ -1,20 +1,20 @@
 import { useEffect,useMemo,useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
-import { useCategories, useCategoriesStore } from "@/features/categories";
-import { useBrands, useBrandsStore } from "@/features/brands";
+import { useCategoriesStore } from "@/features/categories";
+import { useBrandsStore } from "@/features/brands";
 
 import { useSettingsStore } from "@/features/settings/store/settings.store";
 import { storeContext } from "@/core/store/store.context";
 import { productService } from "../services/product.service";
 import { buildPreview,downloadTemplate,normalizeImportedRows,parseProductFile,toCreateInput,type ImportPreviewRow } from "../utils/product-import.utils";
-import type { Product } from "../types/product.types";
+import type { CreateProductInput, Product } from "../types/product.types";
 
 export function ProductImportPage(){
   const {user}=useAuth();
   const tenantId=user?.tenantId??"";
-  const { createCategory } = useCategories();
-  const { createBrand } = useBrands();
+  const createCategory = useCategoriesStore((state) => state.createCategory);
+  const createBrand = useBrandsStore((state) => state.createBrand);
   const [existing,setExisting]=useState<Product[]>([]);const [mode,setMode]=useState<"catalog"|"supplier">("catalog");const [preview,setPreview]=useState<ImportPreviewRow[]>([]);const [fileName,setFileName]=useState("");const [loading,setLoading]=useState(false);const [message,setMessage]=useState("");const [error,setError]=useState("");
   const storeId=storeContext.getStore()?.storeId??null;const currency=useSettingsStore(s=>s.settings?.currency??"THB");
   useEffect(() => {
@@ -31,7 +31,7 @@ export function ProductImportPage(){
       if(mode==="supplier"){setMessage(`Supplier list analysed: ${stats.matched} existing products and ${stats.newProducts} new products detected. Existing products are ready to be matched into a purchase workflow.`);return;}
       const categoryMap=new Map(useCategoriesStore.getState().categories.filter(x=>x.status==="active").map(x=>[x.name.trim().toLowerCase(),x.id]));
       const brandMap=new Map(useBrandsStore.getState().brands.filter(x=>x.status==="active").map(x=>[x.name.trim().toLowerCase(),x.id]));
-      const inputs=[];
+      const inputs: CreateProductInput[] = [];
       for(const row of preview.filter(x=>!x.error&&!x.match)){
         let categoryId=row.category?categoryMap.get(row.category.trim().toLowerCase()):undefined;
         if(row.category&&!categoryId){await createCategory({name:row.category.trim()},tenantId,storeId??"");categoryId=useCategoriesStore.getState().categories.find(x=>x.status==="active"&&x.name.trim().toLowerCase()===row.category!.trim().toLowerCase())?.id;if(categoryId)categoryMap.set(row.category.trim().toLowerCase(),categoryId);}

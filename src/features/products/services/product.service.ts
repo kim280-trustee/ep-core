@@ -24,14 +24,7 @@ export const productService = {
     tenantId: string,
     filters?: ProductFilters,
   ): Promise<ProductListResult> {
-
-    return productRepositoryProvider.findAll(
-      tenantId,
-      {
-        filters,
-      },
-    );
-
+    return productRepositoryProvider.findAll(tenantId, { filters });
   },
 
   async getAllProducts(tenantId: string): Promise<Product[]> {

@@ -19,14 +19,12 @@ import { useTranslation } from "@/core/i18n/useTranslation";
 import type { CreateProductInput } from "../types/product.types";
 import type { ProductFormValues } from "../schemas/product.schema";
 import { Link } from "react-router-dom";
-import { storeContext } from "@/core/store/store.context";
 import { useSettingsStore } from "@/features/settings/store/settings.store";
 
 export function ProductsPage() {
   const { user } = useAuth();
   const { t } = useTranslation();
   const tenantId = user?.tenantId ?? "";
-  const storeId = storeContext.getStore()?.storeId ?? null;
   const settings = useSettingsStore((state) => state.settings);
 
   useEffect(() => {
@@ -42,7 +40,6 @@ export function ProductsPage() {
   async function handleCreate(values: ProductFormValues) {
     const input: CreateProductInput = {
       tenantId,
-      storeId: storeId ?? undefined,
       name: values.name,
       sku: values.sku,
       currency: settings?.currency ?? values.currency ?? "THB",
