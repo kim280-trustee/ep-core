@@ -84,7 +84,8 @@ create table if not exists public.learning_content_items (
   metadata jsonb not null default '{}'::jsonb,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
-  unique(organization_id, code)
+  unique(organization_id, code),
+  constraint learning_content_items_published_review_check check (status <> 'published' or reviewed_by is not null)
 );
 
 create table if not exists public.learning_content_versions (
@@ -100,7 +101,8 @@ create table if not exists public.learning_content_versions (
   published_at timestamptz,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
-  unique(content_item_id, version_no)
+  unique(content_item_id, version_no),
+  constraint learning_content_versions_published_review_check check (status <> 'published' or (reviewed_by is not null and published_at is not null))
 );
 
 create table if not exists public.learning_content_objectives (
@@ -144,7 +146,7 @@ create policy learning_objective_prerequisites_read on public.learning_objective
 create policy learning_objective_alignments_read on public.learning_objective_alignments for select to authenticated using (true);
 
 create policy learning_content_items_read on public.learning_content_items for select to authenticated using (
-  status = 'published'
+  (organization_id is null and status = 'published')
   or (organization_id is not null and public.is_organization_member(organization_id))
 );
 create policy learning_content_items_insert on public.learning_content_items for insert to authenticated with check (
@@ -162,7 +164,7 @@ create policy learning_content_versions_read on public.learning_content_versions
   exists (
     select 1 from public.learning_content_items ci
     where ci.id = content_item_id
-      and (ci.status = 'published' or (ci.organization_id is not null and public.is_organization_member(ci.organization_id)))
+      and ((ci.organization_id is null and ci.status = 'published') or (ci.organization_id is not null and public.is_organization_member(ci.organization_id)))
   )
 );
 create policy learning_content_versions_insert on public.learning_content_versions for insert to authenticated with check (
