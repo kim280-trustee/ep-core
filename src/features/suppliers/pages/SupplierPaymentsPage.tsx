@@ -1,4 +1,5 @@
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import type { FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { storeContext } from "@/core/store/store.context";
 import { useSuppliers } from "../hooks/useSuppliers";
@@ -167,3 +168,5 @@ export function SupplierPaymentsPage() {
     </div>
   );
 }
+
+

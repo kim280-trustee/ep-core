@@ -1,4 +1,5 @@
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import type { FormEvent } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { storeContext } from "@/core/store/store.context";
 import { purchaseOrderRepository } from "@/features/purchasing/repositories";
@@ -160,3 +161,5 @@ export function ApplySupplierCreditPage() {
     </div>
   );
 }
+
+
