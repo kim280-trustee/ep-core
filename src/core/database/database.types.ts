@@ -471,6 +471,460 @@ export type Database = {
           },
         ]
       }
+      learning_academic_years: {
+        Row: {
+          code: string
+          created_at: string
+          curriculum_id: string
+          ends_on: string
+          id: string
+          name: string
+          organization_id: string
+          starts_on: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          curriculum_id: string
+          ends_on: string
+          id?: string
+          name: string
+          organization_id: string
+          starts_on: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          curriculum_id?: string
+          ends_on?: string
+          id?: string
+          name?: string
+          organization_id?: string
+          starts_on?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "academic_year_curriculum_fk"
+            columns: ["curriculum_id"]
+            isOneToOne: false
+            referencedRelation: "learning_curricula"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "academic_year_org_fk"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_class_groups: {
+        Row: {
+          academic_year_id: string
+          code: string
+          created_at: string
+          curriculum_id: string
+          grade_level_id: string
+          id: string
+          name: string
+          organization_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          academic_year_id: string
+          code: string
+          created_at?: string
+          curriculum_id: string
+          grade_level_id: string
+          id?: string
+          name: string
+          organization_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          academic_year_id?: string
+          code?: string
+          created_at?: string
+          curriculum_id?: string
+          grade_level_id?: string
+          id?: string
+          name?: string
+          organization_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "class_curriculum_fk"
+            columns: ["curriculum_id", "grade_level_id"]
+            isOneToOne: false
+            referencedRelation: "learning_grade_levels"
+            referencedColumns: ["curriculum_id", "id"]
+          },
+          {
+            foreignKeyName: "class_grade_fk"
+            columns: ["grade_level_id"]
+            isOneToOne: false
+            referencedRelation: "learning_grade_levels"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "class_year_curriculum_fk"
+            columns: ["academic_year_id", "curriculum_id"]
+            isOneToOne: false
+            referencedRelation: "learning_academic_years"
+            referencedColumns: ["id", "curriculum_id"]
+          },
+          {
+            foreignKeyName: "class_year_org_fk"
+            columns: ["organization_id", "academic_year_id"]
+            isOneToOne: false
+            referencedRelation: "learning_academic_years"
+            referencedColumns: ["organization_id", "id"]
+          },
+        ]
+      }
+      learning_class_subjects: {
+        Row: {
+          class_group_id: string
+          created_at: string
+          id: string
+          organization_id: string
+          status: string
+          subject_id: string
+          updated_at: string
+        }
+        Insert: {
+          class_group_id: string
+          created_at?: string
+          id?: string
+          organization_id: string
+          status?: string
+          subject_id: string
+          updated_at?: string
+        }
+        Update: {
+          class_group_id?: string
+          created_at?: string
+          id?: string
+          organization_id?: string
+          status?: string
+          subject_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "class_subject_org_fk"
+            columns: ["organization_id", "class_group_id"]
+            isOneToOne: false
+            referencedRelation: "learning_class_groups"
+            referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_class_subjects_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "learning_subjects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_countries: {
+        Row: {
+          code: string
+          created_at: string
+          id: string
+          name: string
+          native_name: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          id?: string
+          name: string
+          native_name?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          id?: string
+          name?: string
+          native_name?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      learning_curricula: {
+        Row: {
+          code: string
+          created_at: string
+          description: string | null
+          education_system_id: string
+          id: string
+          name: string
+          status: string
+          updated_at: string
+          version: string | null
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          description?: string | null
+          education_system_id: string
+          id?: string
+          name: string
+          status?: string
+          updated_at?: string
+          version?: string | null
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          description?: string | null
+          education_system_id?: string
+          id?: string
+          name?: string
+          status?: string
+          updated_at?: string
+          version?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_curricula_education_system_id_fkey"
+            columns: ["education_system_id"]
+            isOneToOne: false
+            referencedRelation: "learning_education_systems"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_curriculum_subjects: {
+        Row: {
+          code: string | null
+          created_at: string
+          curriculum_id: string
+          id: string
+          name: string | null
+          status: string
+          subject_id: string
+          updated_at: string
+        }
+        Insert: {
+          code?: string | null
+          created_at?: string
+          curriculum_id: string
+          id?: string
+          name?: string | null
+          status?: string
+          subject_id: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string | null
+          created_at?: string
+          curriculum_id?: string
+          id?: string
+          name?: string | null
+          status?: string
+          subject_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "curriculum_subject_curriculum_fk"
+            columns: ["curriculum_id"]
+            isOneToOne: false
+            referencedRelation: "learning_curricula"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_curriculum_subjects_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "learning_subjects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_education_systems: {
+        Row: {
+          code: string
+          country_id: string
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          country_id: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          country_id?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_education_systems_country_id_fkey"
+            columns: ["country_id"]
+            isOneToOne: false
+            referencedRelation: "learning_countries"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_grade_levels: {
+        Row: {
+          code: string
+          created_at: string
+          curriculum_id: string
+          description: string | null
+          id: string
+          name: string
+          sequence_no: number
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          curriculum_id: string
+          description?: string | null
+          id?: string
+          name: string
+          sequence_no: number
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          curriculum_id?: string
+          description?: string | null
+          id?: string
+          name?: string
+          sequence_no?: number
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "grade_curriculum_fk"
+            columns: ["curriculum_id"]
+            isOneToOne: false
+            referencedRelation: "learning_curricula"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_subjects: {
+        Row: {
+          code: string
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      learning_terms: {
+        Row: {
+          academic_year_id: string
+          code: string
+          created_at: string
+          ends_on: string
+          id: string
+          name: string
+          organization_id: string
+          sequence_no: number
+          starts_on: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          academic_year_id: string
+          code: string
+          created_at?: string
+          ends_on: string
+          id?: string
+          name: string
+          organization_id: string
+          sequence_no: number
+          starts_on: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          academic_year_id?: string
+          code?: string
+          created_at?: string
+          ends_on?: string
+          id?: string
+          name?: string
+          organization_id?: string
+          sequence_no?: number
+          starts_on?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "term_org_year_fk"
+            columns: ["organization_id", "academic_year_id"]
+            isOneToOne: false
+            referencedRelation: "learning_academic_years"
+            referencedColumns: ["organization_id", "id"]
+          },
+        ]
+      }
       organization_memberships: {
         Row: {
           created_at: string
