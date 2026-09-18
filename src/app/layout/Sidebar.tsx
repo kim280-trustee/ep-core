@@ -61,9 +61,11 @@ const businessItems: NavItem[] = [
 function NavigationItem({
   item,
   t,
+  onNavigate,
 }: {
   item: NavItem;
   t: (key: string) => string;
+  onNavigate?: () => void;
 }) {
   const Icon = item.icon;
 
@@ -71,6 +73,7 @@ function NavigationItem({
     <NavLink
       to={item.href}
       end={item.exact === true || item.href === "/"}
+      onClick={onNavigate}
       className={({ isActive }) =>
         [
           "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition",
@@ -90,10 +93,12 @@ function NavigationGroup({
   titleKey,
   items,
   t,
+  onNavigate,
 }: {
   titleKey: string;
   items: NavItem[];
   t: (key: string) => string;
+  onNavigate?: () => void;
 }) {
   return (
     <div className="mt-6">
@@ -104,14 +109,14 @@ function NavigationGroup({
 
       <nav className="space-y-1">
         {items.map((item) => (
-          <NavigationItem key={item.href} item={item} t={t} />
+          <NavigationItem key={item.href} item={item} t={t} onNavigate={onNavigate} />
         ))}
       </nav>
     </div>
   );
 }
 
-export function Sidebar() {
+export function Sidebar({ onNavigate }: { onNavigate?: () => void } = {}) {
   const { t } = useTranslation();
   const { user, logout } = useAuth();
 
@@ -139,24 +144,28 @@ export function Sidebar() {
           titleKey="navigation.main"
           items={mainItems}
           t={t}
+          onNavigate={onNavigate}
         />
 
         <NavigationGroup
           titleKey="navigation.purchasing"
           items={purchasingItems}
           t={t}
+          onNavigate={onNavigate}
         />
 
         <NavigationGroup
           titleKey="navigation.business"
           items={businessItems}
           t={t}
+          onNavigate={onNavigate}
         />
       </div>
 
       <div className="shrink-0 border-t border-slate-200 p-3">
         <NavLink
           to="/settings"
+          onClick={onNavigate}
           className={({ isActive }) =>
             [
               "flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold transition",
