@@ -20,8 +20,7 @@
     "react-router-dom": "^7.18.1",
     "uuid": "^14.0.1",
     "zod": "^4.4.3",
-    "zustand": "^5.0.14",
-    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
+    "zustand": "^5.0.14"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
