@@ -20,7 +20,7 @@ const key=(v:unknown)=>text(v).toLowerCase().replace(/[^a-z0-9]+/g,"");
 const header=(v:unknown)=>text(v).toLowerCase().replace(/[_-]+/g," ").replace(/\s+/g," ");
 const num=(v:unknown)=>{const n=Number(text(v).replace(/,/g,""));return Number.isFinite(n)?n:0;};
 const bool=(v:unknown)=>{const x=text(v).toLowerCase();return !x||!["false","0","no","n","inactive"].includes(x);};
-const sku=(name:string,row:number)=>`IMP-${text(name).toUpperCase().replace(/[^A-Z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,36)||"PRODUCT"-${String(row).padStart(4,"0")}`;
+const sku=(name:string,row:number)=>`IMP-${(text(name).toUpperCase().replace(/[^A-Z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,36)||"PRODUCT")}-${String(row).padStart(4,"0")}`;
 
 export async function parseProductFile(file:File):Promise<Record<string,unknown>[]>{
   const workbook=XLSX.read(await file.arrayBuffer(),{cellDates:false});
@@ -41,7 +41,6 @@ export function normalizeImportedRows(raw:Record<string,unknown>[]):ImportedProd
     };
   });
 }
-export function buildPreview(rows:ImportedProductRow,existing:Product[]):ImportPreviewRow[];
 export function buildPreview(rows:ImportedProductRow[],existing:Product[]):ImportPreviewRow[]{
   const bySku=new Map(existing.map(p=>[key(p.sku),p]));
   const byBarcode=new Map(existing.filter(p=>p.barcode).map(p=>[key(p.barcode),p]));
