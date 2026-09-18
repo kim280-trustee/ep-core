@@ -202,7 +202,7 @@ create policy learning_content_objectives_read on public.learning_content_object
   exists (
     select 1 from public.learning_content_items ci
     where ci.id = content_item_id
-      and (ci.status = 'published' or (ci.organization_id is not null and public.is_organization_member(ci.organization_id)))
+      and ((ci.organization_id is null and ci.status = 'published') or (ci.organization_id is not null and public.is_organization_member(ci.organization_id)))
   )
 );
 create policy learning_content_objectives_insert on public.learning_content_objectives for insert to authenticated with check (
