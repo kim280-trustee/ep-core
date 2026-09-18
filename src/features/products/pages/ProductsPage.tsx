@@ -10,6 +10,7 @@ import { useEffect, useMemo } from "react";
 import { ProductToolbar } from "../components/ProductToolbar";
 import { ProductTable } from "../components/ProductTable";
 import { ProductForm } from "../components/ProductForm";
+import { QuickProductForm } from "../components/QuickProductForm";
 import { useProducts } from "../hooks/useProducts";
 import { useCreateProduct } from "../hooks/useProductMutations";
 import { useProductStore } from "../store/products.store";
@@ -72,8 +73,18 @@ export function ProductsPage() {
         <div><h1 className="text-2xl font-bold">Products</h1><p className="text-sm text-gray-500">Add products one at a time, or import hundreds at once.</p></div>
         <Link to="/products/import" className="rounded-lg bg-blue-600 px-4 py-2 text-center text-sm font-medium text-white hover:bg-blue-700">Import Products</Link>
       </div>
+      <QuickProductForm tenantId={tenantId} />
+
+      <details className="rounded-xl border bg-white">
+        <summary className="cursor-pointer px-5 py-4 text-sm font-semibold text-gray-800">
+          Full Product Details
+        </summary>
+        <div className="border-t p-1">
+          <ProductForm onSubmit={handleCreate} loading={createProduct.isPending} />
+        </div>
+      </details>
+
       <ProductToolbar filters={filters} updateFilters={updateFilters} />
-      <ProductForm onSubmit={handleCreate} loading={createProduct.isPending} />
       <ProductTable products={products} loading={isLoading} />
     </div>
   );
