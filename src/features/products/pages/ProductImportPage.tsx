@@ -11,7 +11,8 @@ import { buildPreview,downloadTemplate,normalizeImportedRows,parseProductFile,to
 import type { Product } from "../types/product.types";
 
 export function ProductImportPage(){
-  const {user}=useAuth();const tenantId=user?.tenantId??"";
+  const {user}=useAuth();
+  const tenantId=user?.tenantId??"";
   const [existing,setExisting]=useState<Product[]>([]);const [mode,setMode]=useState<"catalog"|"supplier">("catalog");const [preview,setPreview]=useState<ImportPreviewRow[]>([]);const [fileName,setFileName]=useState("");const [loading,setLoading]=useState(false);const [message,setMessage]=useState("");const [error,setError]=useState("");
   const storeId=storeContext.getStore()?.storeId??null;const currency=useSettingsStore(s=>s.settings?.currency??"THB");
   useEffect(() => {
