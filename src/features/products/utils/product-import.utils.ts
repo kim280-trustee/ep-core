@@ -2,15 +2,14 @@ import type { CreateProductInput, Product } from "../types/product.types";
 import { ProductStatus, ProductType } from "../types/product.types";
 
 export interface ImportedProductRow {
-  rowNumber:number; name:string; sku:string; barcode?:string; category?:string; brand?:string; unit?:string; unitSymbol?:string;
+  rowNumber:number; name:string; sku:string; barcode?:string; category?:string; brand?:string;
   costPrice:number; sellingPrice:number; description?:string; trackInventory:boolean;
 }
 export interface ImportPreviewRow extends ImportedProductRow { match:Product|null; error?:string; }
 
 const aliases:Record<string,string>={
   product:"name",productname:"name","product name":"name",name:"name",sku:"sku",code:"sku",barcode:"barcode",
-  category:"category",brand:"brand",unit:"unit",units:"unit",unitsymbol:"unitSymbol","unit symbol":"unitSymbol",
-  cost:"costPrice",costprice:"costPrice","cost price":"costPrice",selling:"sellingPrice",price:"sellingPrice",
+  category:"category",brand:"brand",cost:"costPrice",costprice:"costPrice","cost price":"costPrice",selling:"sellingPrice",price:"sellingPrice",
   sellingprice:"sellingPrice","selling price":"sellingPrice",description:"description",inventory:"trackInventory",
   trackinventory:"trackInventory","track inventory":"trackInventory",
 };
@@ -81,14 +80,14 @@ export function buildPreview(rows:ImportedProductRow[],existing:Product[]):Impor
     return {...row,match};
   });
 }
-export function toCreateInput(row:ImportedProductRow,tenantId:string,storeId:string|null,currency:string,unitId:string,categoryId?:string,brandId?:string):CreateProductInput{
+export function toCreateInput(row:ImportedProductRow,tenantId:string,storeId:string|null,currency:string,unitId?:string,categoryId?:string,brandId?:string):CreateProductInput{
   return {tenantId,storeId:storeId||undefined,name:row.name,sku:row.sku,barcode:row.barcode,description:row.description,categoryId,brandId,unitId,
     productType:ProductType.PRODUCT,status:ProductStatus.ACTIVE,costPrice:row.costPrice,sellingPrice:row.sellingPrice,currency,trackInventory:row.trackInventory};
 }
 export function downloadTemplate(): void {
   const csv = [
-    "Product Name,SKU,Barcode,Category,Brand,Unit,Unit Symbol,Cost Price,Selling Price,Description,Track Inventory",
-    "Mama Tom Yum 55g,MAMA-TY-55,8851876001012,Instant Noodles,Mama,Piece,pcs,6,8,Mama Tom Yum instant noodles 55g,true",
+    "Product Name,SKU,Barcode,Category,Brand,Cost Price,Selling Price,Description,Track Inventory",
+    "Mama Tom Yum 55g,MAMA-TY-55,8851876001012,Instant Noodles,Mama,6,8,Mama Tom Yum instant noodles 55g,true",
   ].join("\n");
   const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
   const url = URL.createObjectURL(blob);
