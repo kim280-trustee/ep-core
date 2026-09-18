@@ -13,6 +13,17 @@ import type {
   LearningTerm,
 } from "../types/learning-academic.types";
 
+type CountryRow = Database["public"]["Tables"]["learning_countries"]["Row"];
+type SystemRow = Database["public"]["Tables"]["learning_education_systems"]["Row"];
+type CurriculumRow = Database["public"]["Tables"]["learning_curricula"]["Row"];
+type SubjectRow = Database["public"]["Tables"]["learning_subjects"]["Row"];
+type CurriculumSubjectRow = Database["public"]["Tables"]["learning_curriculum_subjects"]["Row"];
+type GradeRow = Database["public"]["Tables"]["learning_grade_levels"]["Row"];
+type AcademicYearRow = Database["public"]["Tables"]["learning_academic_years"]["Row"];
+type TermRow = Database["public"]["Tables"]["learning_terms"]["Row"];
+type ClassGroupRow = Database["public"]["Tables"]["learning_class_groups"]["Row"];
+type ClassSubjectRow = Database["public"]["Tables"]["learning_class_subjects"]["Row"];
+
 export interface LearningAcademicRepository {
   listCountries(): Promise<LearningCountry[]>;
   listEducationSystems(countryId?: string): Promise<LearningEducationSystem[]>;
