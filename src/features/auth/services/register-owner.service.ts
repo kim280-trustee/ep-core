@@ -73,38 +73,6 @@ class RegisterOwnerService {
 
     }
 
-const {
-  data: sessionData,
-} =
-await supabase.auth.getSession();
-
-
-console.log(
-  "SIGNUP USER:",
-  authData.user.id,
-);
-
-
-console.log(
-  "SESSION AFTER SIGNUP:",
-  sessionData.session,
-);
-
-
-
-    console.log(
-      "AUTH USER:",
-      authData.user,
-    );
-
-
-    console.log(
-      "SESSION:",
-      authData.session,
-    );
-
-
-
 
 
     const tenant: Tenant = {
