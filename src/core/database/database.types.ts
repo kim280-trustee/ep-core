@@ -1383,6 +1383,74 @@ export type Database = {
           },
         ]
       }
+      learning_mastery_events: {
+        Row: {
+          attempt_id: string | null
+          created_at: string
+          evidence: Json
+          id: string
+          new_score: number
+          objective_id: string
+          organization_id: string | null
+          previous_score: number | null
+          student_user_id: string
+          tenant_id: string
+        }
+        Insert: {
+          attempt_id?: string | null
+          created_at?: string
+          evidence?: Json
+          id?: string
+          new_score: number
+          objective_id: string
+          organization_id?: string | null
+          previous_score?: number | null
+          student_user_id: string
+          tenant_id: string
+        }
+        Update: {
+          attempt_id?: string | null
+          created_at?: string
+          evidence?: Json
+          id?: string
+          new_score?: number
+          objective_id?: string
+          organization_id?: string | null
+          previous_score?: number | null
+          student_user_id?: string
+          tenant_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_mastery_events_attempt_id_fkey"
+            columns: ["attempt_id"]
+            isOneToOne: false
+            referencedRelation: "learning_attempts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_mastery_events_objective_id_fkey"
+            columns: ["objective_id"]
+            isOneToOne: false
+            referencedRelation: "learning_objectives"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_mastery_events_tenant_id_organization_id_fkey"
+            columns: ["tenant_id", "organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_mastery_events_tenant_id_student_user_id_fkey"
+            columns: ["tenant_id", "student_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+        ]
+      }
       learning_objective_alignments: {
         Row: {
           created_at: string
@@ -1727,6 +1795,99 @@ export type Database = {
           },
         ]
       }
+      learning_recommendations: {
+        Row: {
+          assessment_id: string | null
+          completed_at: string | null
+          content_item_id: string | null
+          created_at: string
+          expires_at: string | null
+          generated_at: string
+          id: string
+          objective_id: string | null
+          organization_id: string | null
+          priority: number
+          reason: Json
+          recommendation_type: string
+          status: string
+          student_user_id: string
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          assessment_id?: string | null
+          completed_at?: string | null
+          content_item_id?: string | null
+          created_at?: string
+          expires_at?: string | null
+          generated_at?: string
+          id?: string
+          objective_id?: string | null
+          organization_id?: string | null
+          priority?: number
+          reason?: Json
+          recommendation_type: string
+          status?: string
+          student_user_id: string
+          tenant_id: string
+          updated_at?: string
+        }
+        Update: {
+          assessment_id?: string | null
+          completed_at?: string | null
+          content_item_id?: string | null
+          created_at?: string
+          expires_at?: string | null
+          generated_at?: string
+          id?: string
+          objective_id?: string | null
+          organization_id?: string | null
+          priority?: number
+          reason?: Json
+          recommendation_type?: string
+          status?: string
+          student_user_id?: string
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_recommendations_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: false
+            referencedRelation: "learning_assessments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_recommendations_content_item_id_fkey"
+            columns: ["content_item_id"]
+            isOneToOne: false
+            referencedRelation: "learning_content_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_recommendations_objective_id_fkey"
+            columns: ["objective_id"]
+            isOneToOne: false
+            referencedRelation: "learning_objectives"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_recommendations_tenant_id_organization_id_fkey"
+            columns: ["tenant_id", "organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_recommendations_tenant_id_student_user_id_fkey"
+            columns: ["tenant_id", "student_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+        ]
+      }
       learning_skills: {
         Row: {
           code: string
@@ -1765,6 +1926,79 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "learning_subjects"
             referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_student_mastery: {
+        Row: {
+          attempts_count: number
+          confidence_score: number
+          correct_count: number
+          created_at: string
+          id: string
+          last_assessed_at: string | null
+          mastery_score: number
+          next_review_at: string | null
+          objective_id: string
+          organization_id: string | null
+          state: string
+          student_user_id: string
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          attempts_count?: number
+          confidence_score?: number
+          correct_count?: number
+          created_at?: string
+          id?: string
+          last_assessed_at?: string | null
+          mastery_score?: number
+          next_review_at?: string | null
+          objective_id: string
+          organization_id?: string | null
+          state?: string
+          student_user_id: string
+          tenant_id: string
+          updated_at?: string
+        }
+        Update: {
+          attempts_count?: number
+          confidence_score?: number
+          correct_count?: number
+          created_at?: string
+          id?: string
+          last_assessed_at?: string | null
+          mastery_score?: number
+          next_review_at?: string | null
+          objective_id?: string
+          organization_id?: string | null
+          state?: string
+          student_user_id?: string
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_student_mastery_objective_id_fkey"
+            columns: ["objective_id"]
+            isOneToOne: false
+            referencedRelation: "learning_objectives"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_student_mastery_tenant_id_organization_id_fkey"
+            columns: ["tenant_id", "organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_student_mastery_tenant_id_student_user_id_fkey"
+            columns: ["tenant_id", "student_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
           },
         ]
       }
