@@ -1,11 +1,8 @@
 import { useEffect,useMemo,useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
-import { useCategories } from "@/features/categories";
 import { useCategoriesStore } from "@/features/categories/store/categories.store";
-import { useBrands } from "@/features/brands";
 import { useBrandsStore } from "@/features/brands/store/brands.store";
-import { useUnits } from "@/features/units";
 import { useUnitsStore } from "@/features/units/store/units.store";
 import { useSettingsStore } from "@/features/settings/store/settings.store";
 import { storeContext } from "@/core/store/store.context";
@@ -14,7 +11,7 @@ import { buildPreview,downloadTemplate,normalizeImportedRows,parseProductFile,to
 import type { Product } from "../types/product.types";
 
 export function ProductImportPage(){
-  const {user}=useAuth();const tenantId=user?.tenantId??"";const {createCategory}=useCategories();const {createBrand}=useBrands();const {createUnit}=useUnits();
+  const {user}=useAuth();const tenantId=user?.tenantId??"";
   const [existing,setExisting]=useState<Product[]>([]);const [mode,setMode]=useState<"catalog"|"supplier">("catalog");const [preview,setPreview]=useState<ImportPreviewRow[]>([]);const [fileName,setFileName]=useState("");const [loading,setLoading]=useState(false);const [message,setMessage]=useState("");const [error,setError]=useState("");
   const storeId=storeContext.getStore()?.storeId??null;const currency=useSettingsStore(s=>s.settings?.currency??"THB");
   useEffect(()=>{if(!tenantId)return;useSettingsStore.getState().loadSettings(tenantId);void productService.getProducts(tenantId,{}).then(r=>setExisting(r.data)).catch(e=>setError(e instanceof Error?e.message:"Could not load existing products."));},[tenantId]);
