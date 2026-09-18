@@ -73,7 +73,6 @@ export function ProductsPage() {
         <div><h1 className="text-2xl font-bold">Products</h1><p className="text-sm text-gray-500">Add products one at a time, or import hundreds at once.</p></div>
         <Link to="/products/import" className="rounded-lg bg-blue-600 px-4 py-2 text-center text-sm font-medium text-white hover:bg-blue-700">Import Products</Link>
       </div>
-      <QuickProductForm tenantId={tenantId} />
       <ProductToolbar filters={filters} updateFilters={updateFilters} />
       <ProductForm onSubmit={handleCreate} loading={createProduct.isPending} />
       <ProductTable products={products} loading={isLoading} />
