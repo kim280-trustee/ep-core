@@ -10,7 +10,6 @@ import { useEffect, useMemo } from "react";
 import { ProductToolbar } from "../components/ProductToolbar";
 import { ProductTable } from "../components/ProductTable";
 import { ProductForm } from "../components/ProductForm";
-import { QuickProductForm } from "../components/QuickProductForm";
 import { useProducts } from "../hooks/useProducts";
 import { useCreateProduct } from "../hooks/useProductMutations";
 import { useProductStore } from "../store/products.store";
