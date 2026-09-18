@@ -638,6 +638,189 @@ export type Database = {
           },
         ]
       }
+      learning_content_items: {
+        Row: {
+          code: string
+          content_type: string
+          created_at: string
+          created_by: string
+          id: string
+          language_code: string
+          metadata: Json
+          organization_id: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: string
+          title: string
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          code: string
+          content_type: string
+          created_at?: string
+          created_by: string
+          id?: string
+          language_code?: string
+          metadata?: Json
+          organization_id?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          code?: string
+          content_type?: string
+          created_at?: string
+          created_by?: string
+          id?: string
+          language_code?: string
+          metadata?: Json
+          organization_id?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_content_items_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_content_items_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_content_items_reviewed_by_fkey"
+            columns: ["reviewed_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_content_items_updated_by_fkey"
+            columns: ["updated_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_content_objectives: {
+        Row: {
+          content_item_id: string
+          created_at: string
+          objective_id: string
+          sequence_no: number
+        }
+        Insert: {
+          content_item_id: string
+          created_at?: string
+          objective_id: string
+          sequence_no?: number
+        }
+        Update: {
+          content_item_id?: string
+          created_at?: string
+          objective_id?: string
+          sequence_no?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_content_objectives_content_item_id_fkey"
+            columns: ["content_item_id"]
+            isOneToOne: false
+            referencedRelation: "learning_content_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_content_objectives_objective_id_fkey"
+            columns: ["objective_id"]
+            isOneToOne: false
+            referencedRelation: "learning_objectives"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_content_versions: {
+        Row: {
+          body: Json
+          change_summary: string | null
+          content_item_id: string
+          created_at: string
+          created_by: string
+          id: string
+          published_at: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: string
+          updated_at: string
+          version_no: number
+        }
+        Insert: {
+          body?: Json
+          change_summary?: string | null
+          content_item_id: string
+          created_at?: string
+          created_by: string
+          id?: string
+          published_at?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+          updated_at?: string
+          version_no: number
+        }
+        Update: {
+          body?: Json
+          change_summary?: string | null
+          content_item_id?: string
+          created_at?: string
+          created_by?: string
+          id?: string
+          published_at?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+          updated_at?: string
+          version_no?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_content_versions_content_item_id_fkey"
+            columns: ["content_item_id"]
+            isOneToOne: false
+            referencedRelation: "learning_content_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_content_versions_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_content_versions_reviewed_by_fkey"
+            columns: ["reviewed_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       learning_countries: {
         Row: {
           code: string
@@ -845,6 +1028,182 @@ export type Database = {
           },
         ]
       }
+      learning_objective_alignments: {
+        Row: {
+          created_at: string
+          curriculum_id: string
+          grade_level_id: string
+          id: string
+          notes: string | null
+          objective_id: string
+          required: boolean
+          sequence_no: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          curriculum_id: string
+          grade_level_id: string
+          id?: string
+          notes?: string | null
+          objective_id: string
+          required?: boolean
+          sequence_no?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          curriculum_id?: string
+          grade_level_id?: string
+          id?: string
+          notes?: string | null
+          objective_id?: string
+          required?: boolean
+          sequence_no?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_objective_alignments_curriculum_id_fkey"
+            columns: ["curriculum_id"]
+            isOneToOne: false
+            referencedRelation: "learning_curricula"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_objective_alignments_curriculum_id_grade_level_id_fkey"
+            columns: ["curriculum_id", "grade_level_id"]
+            isOneToOne: false
+            referencedRelation: "learning_grade_levels"
+            referencedColumns: ["curriculum_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_objective_alignments_objective_id_fkey"
+            columns: ["objective_id"]
+            isOneToOne: false
+            referencedRelation: "learning_objectives"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_objective_prerequisites: {
+        Row: {
+          created_at: string
+          objective_id: string
+          prerequisite_objective_id: string
+        }
+        Insert: {
+          created_at?: string
+          objective_id: string
+          prerequisite_objective_id: string
+        }
+        Update: {
+          created_at?: string
+          objective_id?: string
+          prerequisite_objective_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_objective_prerequisites_objective_id_fkey"
+            columns: ["objective_id"]
+            isOneToOne: false
+            referencedRelation: "learning_objectives"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_objective_prerequisites_prerequisite_objective_id_fkey"
+            columns: ["prerequisite_objective_id"]
+            isOneToOne: false
+            referencedRelation: "learning_objectives"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_objectives: {
+        Row: {
+          code: string
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          sequence_no: number
+          status: string
+          topic_id: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          sequence_no?: number
+          status?: string
+          topic_id: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          sequence_no?: number
+          status?: string
+          topic_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_objectives_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "learning_topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_skills: {
+        Row: {
+          code: string
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          status: string
+          subject_id: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          status?: string
+          subject_id: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          status?: string
+          subject_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_skills_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "learning_subjects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       learning_subjects: {
         Row: {
           code: string
@@ -922,6 +1281,50 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "learning_academic_years"
             referencedColumns: ["organization_id", "id"]
+          },
+        ]
+      }
+      learning_topics: {
+        Row: {
+          code: string
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          sequence_no: number
+          skill_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          sequence_no?: number
+          skill_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          sequence_no?: number
+          skill_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_topics_skill_id_fkey"
+            columns: ["skill_id"]
+            isOneToOne: false
+            referencedRelation: "learning_skills"
+            referencedColumns: ["id"]
           },
         ]
       }
