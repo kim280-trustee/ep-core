@@ -8,6 +8,7 @@ import { useCategoriesStore } from "@/features/categories/store/categories.store
 import { useBrands } from "@/features/brands";
 import { useBrandsStore } from "@/features/brands/store/brands.store";
 import { useUnits } from "@/features/units";
+import { useUnitsStore } from "@/features/units/store/units.store";
 import { storeContext } from "@/core/store/store.context";
 import { useTranslation } from "@/core/i18n/useTranslation";
 
@@ -17,7 +18,7 @@ interface ProductFormProps {
   loading?: boolean;
 }
 
-type QuickCreateType = "category" | "brand" | null;
+type QuickCreateType = "category" | "brand" | "unit" | null;
 
 export function ProductForm({ defaultValues, onSubmit = () => {}, loading = false }: ProductFormProps) {
   const { t } = useTranslation();
@@ -43,7 +44,7 @@ export function ProductForm({ defaultValues, onSubmit = () => {}, loading = fals
 
   const { categories, loadCategories, createCategory } = useCategories();
   const { brands, loadBrands, createBrand } = useBrands();
-  const { units } = useUnits();
+  const { units, createUnit } = useUnits();
 
   const [quickCreateType, setQuickCreateType] = useState<QuickCreateType>(null);
   const [quickCreateName, setQuickCreateName] = useState("");
@@ -128,7 +129,7 @@ export function ProductForm({ defaultValues, onSubmit = () => {}, loading = fals
         }
 
         setQuickCreateError("Category was created, but could not be selected automatically.");
-      } else {
+      } else if (quickCreateType === "brand") {
         const existing = brands.find(
           (brand) =>
             brand.status === "active" &&
@@ -158,6 +159,46 @@ export function ProductForm({ defaultValues, onSubmit = () => {}, loading = fals
         }
 
         setQuickCreateError("Brand was created, but could not be selected automatically.");
+      } else {
+        const existing = units.find(
+          (unit) =>
+            unit.status === "active" &&
+            unit.name.trim().toLowerCase() === name.toLowerCase(),
+        );
+
+        if (existing) {
+          setValue("unitId", existing.id, { shouldValidate: true });
+          closeQuickCreate();
+          return;
+        }
+
+        const symbol = window.prompt(
+          "Enter unit symbol (for example: box, kg, btl):",
+          name.toLowerCase(),
+        );
+
+        if (!symbol?.trim()) {
+          setQuickCreateError("Please enter a unit symbol.");
+          return;
+        }
+
+        await createUnit({ name, symbol: symbol.trim() });
+
+        const created = useUnitsStore
+          .getState()
+          .units.find(
+            (unit) =>
+              unit.status === "active" &&
+              unit.name.trim().toLowerCase() === name.toLowerCase(),
+          );
+
+        if (created) {
+          setValue("unitId", created.id, { shouldValidate: true });
+          closeQuickCreate();
+          return;
+        }
+
+        setQuickCreateError("Unit was created, but could not be selected automatically.");
       }
     } catch (error) {
       setQuickCreateError(
@@ -224,7 +265,12 @@ export function ProductForm({ defaultValues, onSubmit = () => {}, loading = fals
         </div>
 
         <div>
-          <label className={labelClass}>{t("products.unit")}</label>
+          <div className="mb-1 flex items-center justify-between">
+            <label className="block text-sm font-medium text-gray-700">{t("products.unit")}</label>
+            <button type="button" onClick={() => openQuickCreate("unit")} className="text-sm font-medium text-blue-600 hover:text-blue-700">
+              + New
+            </button>
+          </div>
           <select {...register("unitId")} className={fieldClass}>
             <option value="">{t("products.unit")}</option>
             {units
@@ -234,12 +280,6 @@ export function ProductForm({ defaultValues, onSubmit = () => {}, loading = fals
               ))}
           </select>
           {errors.unitId && <p className={errorClass}>{errors.unitId.message}</p>}
-        </div>
-
-        <div>
-          <label className={labelClass}>{t("products.currency")}</label>
-          <input {...register("currency")} placeholder={t("products.currency")} className={fieldClass} />
-          {errors.currency && <p className={errorClass}>{errors.currency.message}</p>}
         </div>
 
         <div>
@@ -279,7 +319,7 @@ export function ProductForm({ defaultValues, onSubmit = () => {}, loading = fals
           <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl">
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-lg font-semibold">
-                Create {quickCreateType === "category" ? "Category" : "Brand"}
+                Create {quickCreateType === "category" ? "Category" : quickCreateType === "brand" ? "Brand" : "Unit"}
               </h2>
               <button type="button" onClick={closeQuickCreate} disabled={quickCreateLoading} className="text-xl text-gray-500 hover:text-gray-700">
                 ×
@@ -287,7 +327,7 @@ export function ProductForm({ defaultValues, onSubmit = () => {}, loading = fals
             </div>
 
             <label className={labelClass}>
-              {quickCreateType === "category" ? "Category Name" : "Brand Name"}
+              {quickCreateType === "category" ? "Category Name" : quickCreateType === "brand" ? "Brand Name" : "Unit Name"}
             </label>
             <input
               autoFocus
@@ -299,7 +339,7 @@ export function ProductForm({ defaultValues, onSubmit = () => {}, loading = fals
                   void handleQuickCreate();
                 }
               }}
-              placeholder={"Enter " + quickCreateType + " name"}
+              placeholder={"Enter " + (quickCreateType === "unit" ? "unit" : quickCreateType) + " name"}
               className={fieldClass}
               disabled={quickCreateLoading}
             />
