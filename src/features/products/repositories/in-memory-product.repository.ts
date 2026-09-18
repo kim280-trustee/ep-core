@@ -228,6 +228,12 @@ class InMemoryProductRepository
 
 
 
+  async createMany(inputs: CreateProductInput[]): Promise<Product[]> {
+    const created: Product[] = [];
+    for (const input of inputs) created.push(await this.create(input));
+    return created;
+  }
+
   async update(
     tenantId:string,
     id:string,

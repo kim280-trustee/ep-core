@@ -17,7 +17,7 @@ export function ProductImportPage(){
   const {user}=useAuth();const tenantId=user?.tenantId??"";const {createCategory}=useCategories();const {createBrand}=useBrands();const {createUnit}=useUnits();
   const [existing,setExisting]=useState<Product[]>([]);const [mode,setMode]=useState<"catalog"|"supplier">("catalog");const [preview,setPreview]=useState<ImportPreviewRow[]>([]);const [fileName,setFileName]=useState("");const [loading,setLoading]=useState(false);const [message,setMessage]=useState("");const [error,setError]=useState("");
   const storeId=storeContext.getStore()?.storeId??null;const currency=useSettingsStore(s=>s.settings?.currency??"THB");
-  useEffect(()=>{if(!tenantId)return;useSettingsStore.getState().loadSettings(tenantId);void productService.getProducts(tenantId,{page:1,limit:10000,filters:{}}).then(r=>setExisting(r.data)).catch(e=>setError(e instanceof Error?e.message:"Could not load existing products."));},[tenantId]);
+  useEffect(()=>{if(!tenantId)return;useSettingsStore.getState().loadSettings(tenantId);void productService.getProducts(tenantId,{}).then(r=>setExisting(r.data)).catch(e=>setError(e instanceof Error?e.message:"Could not load existing products."));},[tenantId]);
   const stats=useMemo(()=>({total:preview.length,valid:preview.filter(r=>!r.error).length,matched:preview.filter(r=>!r.error&&r.match).length,newProducts:preview.filter(r=>!r.error&&!r.match).length,errors:preview.filter(r=>Boolean(r.error)).length}),[preview]);
   async function handleFile(file?:File){if(!file)return;setLoading(true);setError("");setMessage("");setFileName(file.name);try{setPreview(buildPreview(normalizeImportedRows(await parseProductFile(file)),existing));}catch(e){setPreview([]);setError(e instanceof Error?e.message:"Could not read the file.");}finally{setLoading(false);}}
   async function importProducts(){
@@ -41,7 +41,7 @@ export function ProductImportPage(){
       }
       if(!inputs.length){setMessage("No new products need to be imported. Existing matches were skipped.");return;}
       const created=await productService.createProducts(inputs);setMessage(`Imported ${created.length} products successfully. Existing matches were skipped.`);
-      const refreshed=await productService.getProducts(tenantId,{page:1,limit:10000,filters:{}});setExisting(refreshed.data);
+      const refreshed=await productService.getProducts(tenantId,{});setExisting(refreshed.data);
     }catch(e){setError(e instanceof Error?e.message:"Import failed.");}finally{setLoading(false);}
   }
   return <div className="space-y-6"><div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><div><h1 className="text-2xl font-bold">Product Import</h1><p className="text-sm text-gray-500">Import a catalog or analyse a supplier product list without retyping every item.</p></div><div className="flex flex-wrap gap-2"><Link to="/products" className="rounded-lg border px-4 py-2">Back to Products</Link><button type="button" onClick={downloadTemplate} className="rounded-lg border px-4 py-2">Download Template</button></div></div>
