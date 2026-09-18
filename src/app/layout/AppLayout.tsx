@@ -81,7 +81,7 @@ export function AppLayout({ children }: Props) {
               />
 
               <aside className="relative z-10 h-dvh w-72 max-w-[85vw] overflow-y-auto overscroll-contain border-r border-slate-200 bg-white shadow-2xl">
-                <Sidebar />
+                <Sidebar onNavigate={() => setMobileMenuOpen(false)} />
               </aside>
             </div>
           )}
