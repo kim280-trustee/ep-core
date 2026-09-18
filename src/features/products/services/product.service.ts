@@ -34,6 +34,11 @@ export const productService = {
 
   },
 
+  async getAllProducts(tenantId: string): Promise<Product[]> {
+    const result = await productRepositoryProvider.findAll(tenantId, { page: 1, limit: 10000 });
+    return result.data;
+  },
+
   async getProduct(
     tenantId: string,
     id: string,
