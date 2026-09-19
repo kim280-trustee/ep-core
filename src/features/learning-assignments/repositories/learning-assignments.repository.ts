@@ -18,6 +18,28 @@ export const learningAssignmentsRepository = {
     const {data,error}=await supabase.from("learning_assignments").select("*").eq("status","published").order("due_at",{ascending:true,nullsFirst:false});
     if(error) throw error; return (data??[]).map(mapA);
   },
+  async getStudentAssignment(assignmentId:string,studentUserId:string) {
+    const [assignments,items,progress] = await Promise.all([
+      this.listStudentAssignments(),
+      this.listItems(assignmentId),
+      this.listProgress(studentUserId),
+    ]);
+    const assignment=assignments.find((item)=>item.id===assignmentId);
+    if(!assignment) throw new Error("Assignment is not available to this student.");
+    return { assignment, items, progress:progress.find((item)=>item.assignmentId===assignmentId) ?? null };
+  },
+  async startForStudent(assignmentId:string,studentUserId:string) {
+    const {data:targets,error:targetError}=await supabase.from("learning_assignment_targets").select("*").eq("assignment_id",assignmentId).eq("status","active");
+    if(targetError) throw targetError;
+    const target=(targets??[]).find((item)=>item.student_user_id===studentUserId) ?? (targets??[]).find((item)=>item.class_group_id!==null);
+    if(!target) throw new Error("No active assignment target was found for this student.");
+    return this.ensureProgress({
+      organizationId:target.organization_id,
+      assignmentId,
+      assignmentTargetId:target.id,
+      studentUserId,
+    }).then((progress)=>progress.status==="not_started" ? this.updateProgress(progress.id,"in_progress") : progress);
+  },
   async listAssignmentsForClass(classGroupId:string) {
     const {data:targets,error}=await supabase.from("learning_assignment_targets").select("assignment_id").eq("class_group_id",classGroupId).eq("status","active");
     if(error) throw error; const ids=[...new Set((targets??[]).map(x=>x.assignment_id))]; if(!ids.length)return [];
