@@ -58,6 +58,10 @@ export const learningAssignmentsRepository = {
     const {data,error}=await supabase.from("learning_assignment_progress").select("*").eq("student_user_id",studentUserId).order("last_activity_at",{ascending:false,nullsFirst:false});
     if(error) throw error; return (data??[]).map(mapP);
   },
+  async listProgressForAssignment(assignmentId:string) {
+    const {data,error}=await supabase.from("learning_assignment_progress").select("*").eq("assignment_id",assignmentId).order("last_activity_at",{ascending:false,nullsFirst:false});
+    if(error) throw error; return (data??[]).map(mapP);
+  },
   async createAssignment(input:LearningAssignmentInput) {
     const {data,error}=await supabase.from("learning_assignments").insert({
       tenant_id:input.tenantId,organization_id:input.organizationId,class_subject_id:input.classSubjectId??null,code:input.code,title:input.title,
@@ -82,6 +86,10 @@ export const learningAssignmentsRepository = {
       organization_id:input.organizationId,assignment_id:input.assignmentId,assignment_target_id:input.assignmentTargetId,
       student_user_id:input.studentUserId,
     },{onConflict:"assignment_target_id,student_user_id"}).select("*").single(); if(error)throw error; return mapP(data);
+  },
+  async updateAssignmentStatus(id:string,status:LearningAssignment["status"]) {
+    const {data,error}=await supabase.from("learning_assignments").update({status}).eq("id",id).select("*").single();
+    if(error) throw error; return mapA(data);
   },
   async updateProgress(id:string,status:LearningAssignmentProgress["status"]) {
     const now=new Date().toISOString();
