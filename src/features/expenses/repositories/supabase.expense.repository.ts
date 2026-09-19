@@ -1,3 +1,5 @@
+import type { Database } from "@/core/database/database.types";
+
 ﻿import {
   supabase,
 } from "@/core/infrastructure/supabase/client";
@@ -216,7 +218,7 @@ implements ExpenseRepository {
   ): Promise<Expense | undefined> {
 
     const updateData:
-      Record<string, unknown> = {};
+      Database["public"]["Tables"]["expenses"]["Update"] = {};
 
     if (
       updates.category !== undefined

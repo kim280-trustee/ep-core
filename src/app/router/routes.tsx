@@ -112,6 +112,14 @@ import {
   reportsRoutes,
 } from "../../features/reports/routes/reports.routes";
 
+import {
+  learningDashboardRoutes,
+} from "../../features/learning-dashboard";
+
+import {
+  learningTeacherRoutes,
+} from "../../features/learning-teacher";
+
 
 export const routes: RouteObject[] = [
 
@@ -129,6 +137,10 @@ export const routes: RouteObject[] = [
 
       // Dashboard
       ...dashboardRoutes,
+
+      // Learning
+      ...learningDashboardRoutes,
+      ...learningTeacherRoutes,
 
 
       // Master Data
