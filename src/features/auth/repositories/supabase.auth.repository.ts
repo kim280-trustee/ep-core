@@ -210,7 +210,7 @@ implements AuthRepository {
         data.id,
 
       authUserId:
-        data.auth_user_id ?? user.authUserId,
+        data.auth_user_id,
 
       tenantId:
         data.tenant_id,
