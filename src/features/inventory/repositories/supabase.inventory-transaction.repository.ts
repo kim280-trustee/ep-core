@@ -6,6 +6,7 @@
  * ============================================================
  */
 
+import type { Database } from "@/core/database/database.types";
 import { supabase } from "@/core/infrastructure/supabase/client";
 
 import type {
@@ -16,20 +17,8 @@ import type {
 const TABLE =
   "inventory_transactions";
 
-interface InventoryTransactionDatabaseRow {
-  id: string;
-  tenant_id: string;
-  store_id: string | null;
-  warehouse_id: string;
-  product_id: string;
-  type: string;
-  quantity: number | string;
-  before_quantity: number | string;
-  after_quantity: number | string;
-  reference_id: string | null;
-  notes: string | null;
-  created_at: string;
-}
+type InventoryTransactionDatabaseRow =
+  Database["public"]["Tables"]["inventory_transactions"]["Row"];
 
 function fromDatabaseRow(
   row: InventoryTransactionDatabaseRow,
