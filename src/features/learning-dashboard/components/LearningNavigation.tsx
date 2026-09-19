@@ -1,4 +1,4 @@
-import { BookOpen, Compass, LayoutDashboard, Target, TrendingUp } from "lucide-react";
+import { BookOpen, Compass, LayoutDashboard, TrendingUp } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const items = [
