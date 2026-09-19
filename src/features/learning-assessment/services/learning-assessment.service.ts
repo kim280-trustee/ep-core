@@ -7,6 +7,7 @@ export const learningAssessmentService={
  addQuestionObjective:(input:Parameters<typeof learningAssessmentRepository.addQuestionObjective>[0])=>learningAssessmentRepository.addQuestionObjective(input),
  createAssessment:(input:LearningAssessmentInsert&{createdBy:string})=>learningAssessmentRepository.createAssessment(input),
  addAssessmentQuestion:(input:Parameters<typeof learningAssessmentRepository.addAssessmentQuestion>[0])=>learningAssessmentRepository.addAssessmentQuestion(input),
+ publishQuestion:(id:string,reviewerId:string)=>learningAssessmentRepository.publishQuestion(id,reviewerId),publishAssessment:(id:string,reviewerId:string)=>learningAssessmentRepository.publishAssessment(id,reviewerId),
  updateQuestionStatus:(id:string,status:Parameters<typeof learningAssessmentRepository.updateQuestionStatus>[1],reviewerId?:string)=>learningAssessmentRepository.updateQuestionStatus(id,status,reviewerId),
  updateAssessmentStatus:(id:string,status:Parameters<typeof learningAssessmentRepository.updateAssessmentStatus>[1],reviewerId?:string)=>learningAssessmentRepository.updateAssessmentStatus(id,status,reviewerId),
  createAttempt:(input:Parameters<typeof learningAssessmentRepository.createAttempt>[0])=>learningAssessmentRepository.createAttempt(input),
