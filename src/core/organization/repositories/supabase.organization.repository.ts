@@ -3,21 +3,12 @@
  */
 
 import { supabase } from "@/core/infrastructure/supabase/client";
+import type { Database } from "@/core/database/database.types";
 import type { Organization } from "../types/organization.types";
 import type { OrganizationRepository } from "./organization.repository";
 
-type OrganizationRow = {
-  id: string;
-  tenant_id: string;
-  name: string;
-  code: string;
-  country: string;
-  currency: string;
-  timezone: string;
-  status: string;
-  created_at: string;
-  updated_at: string;
-};
+type OrganizationRow = Database["public"]["Tables"]["organizations"]["Row"];
+type OrganizationUpdate = Database["public"]["Tables"]["organizations"]["Update"];
 
 function fromRow(row: OrganizationRow): Organization {
   return {
@@ -76,14 +67,15 @@ export class SupabaseOrganizationRepository implements OrganizationRepository {
   }
 
   async update(id: string, updates: Partial<Organization>): Promise<Organization | undefined> {
-    const updateData: Record<string, unknown> = {};
+    const updateData: OrganizationUpdate = {
+      updated_at: new Date().toISOString(),
+    };
     if (updates.name !== undefined) updateData.name = updates.name;
     if (updates.code !== undefined) updateData.code = updates.code;
     if (updates.country !== undefined) updateData.country = updates.country;
     if (updates.currency !== undefined) updateData.currency = updates.currency;
     if (updates.timezone !== undefined) updateData.timezone = updates.timezone;
     if (updates.status !== undefined) updateData.status = updates.status;
-    updateData.updated_at = new Date().toISOString();
 
     const { data, error } = await supabase
       .from("organizations")
