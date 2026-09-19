@@ -28,7 +28,7 @@ export interface LearningContentRepository {
 
 const mapSkill = (r: SkillRow): LearningSkill => ({
   id: r.id, subjectId: r.subject_id, code: r.code, name: r.name, description: r.description,
-  status: r.status, createdAt: r.created_at, updatedAt: r.updated_at,
+  status: r.status as LearningKnowledgeStatus, createdAt: r.created_at, updatedAt: r.updated_at,
 });
 const mapTopic = (r: TopicRow): LearningTopic => ({
   id: r.id, skillId: r.skill_id, code: r.code, name: r.name, description: r.description,
