@@ -50,11 +50,11 @@ export default function CreateTeacherAssignmentPage() {
         classGroupId: selected.classGroup.id,
         dueAt: dueAt ? new Date(dueAt).toISOString() : null,
       });
-      return learningAssignmentsService.updateAssignmentStatus(assignment.id, "published");
+      return assignment;
     },
     onSuccess: (assignment) => {
       void queryClient.invalidateQueries({ queryKey: ["learning"] });
-      navigate("/teacher/classes/" + classGroupId);
+      navigate("/teacher/authoring?assignmentId=" + assignment.id);
       return assignment;
     },
     onError: (mutationError: Error) => setError(mutationError.message),
@@ -75,7 +75,7 @@ export default function CreateTeacherAssignmentPage() {
         <Field label="Title"><input required value={title} onChange={(event) => setTitle(event.target.value)} placeholder="Present Simple Practice" className="input" /></Field>
         <Field label="Description"><textarea value={description} onChange={(event) => setDescription(event.target.value)} rows={4} placeholder="Instructions or a short description for students." className="input" /></Field>
         {error && <div className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}</div>}
-        <button disabled={createMutation.isPending} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white disabled:opacity-50">{createMutation.isPending ? "Publishing..." : <><CheckCircle2 size={17} />Create & Publish</>}</button>
+        <button disabled={createMutation.isPending} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white disabled:opacity-50">{createMutation.isPending ? "Creating draft..." : <><CheckCircle2 size={17} />Create & Publish</>}</button>
       </form>
     </div>
   );
