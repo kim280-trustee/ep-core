@@ -1,9 +1,10 @@
-import { LayoutDashboard, PlusCircle } from "lucide-react";
+import { BookOpen, LayoutDashboard, PlusCircle } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const items = [
   { to: "/teacher", label: "Teacher Dashboard", icon: LayoutDashboard },
   { to: "/teacher/assignments/new", label: "Create Assignment", icon: PlusCircle },
+  { to: "/teacher/authoring", label: "Authoring", icon: BookOpen },
 ];
 
 export function TeacherNavigation() {
