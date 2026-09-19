@@ -1,4 +1,4 @@
-import { BookOpen, LayoutDashboard, PlusCircle } from "lucide-react";
+import { LayoutDashboard, PlusCircle } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const items = [
