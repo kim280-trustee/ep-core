@@ -1,3 +1,5 @@
+import type { Database } from "@/core/database/database.types";
+
 ﻿import { supabase } from "@/core/infrastructure/supabase/client";
 import type { Unit } from "../types/unit.types";
 
@@ -14,7 +16,7 @@ export interface IUnitRepository {
   delete(tenantId: string, storeId: string, id: string): Promise<void>;
 }
 
-function mapUnit(row: Record<string, unknown>): Unit {
+function mapUnit(row: Database["public"]["Tables"]["units"]["Update"]): Unit {
   return {
     id: row.id as string,
     tenantId: row.tenant_id as string,
@@ -75,7 +77,7 @@ export const unitRepository: IUnitRepository = {
   },
 
   async update(tenantId, storeId, id, updates) {
-    const payload: Record<string, unknown> = {
+    const payload: Database["public"]["Tables"]["units"]["Update"] = {
       updated_at: new Date().toISOString(),
     };
 
