@@ -45,13 +45,13 @@ const mapCountry = (r: CountryRow): LearningCountry => ({
 
 const mapSystem = (r: SystemRow): LearningEducationSystem => ({
   id: r.id, countryId: r.country_id, code: r.code, name: r.name,
-  description: r.description ?? null, status: r.status,
+  description: r.description ?? null, status: r.status as AcademicCatalogStatus,
   createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
 const mapCurriculum = (r: CurriculumRow): LearningCurriculum => ({
   id: r.id, educationSystemId: r.education_system_id, code: r.code, name: r.name,
-  version: r.version ?? null, description: r.description ?? null, status: r.status as AcademicCatalogStatus,
+  version: r.version ?? null, description: r.description ?? null, status: r.status as CurriculumStatus,
   createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
@@ -62,20 +62,20 @@ const mapSubject = (r: SubjectRow): LearningSubject => ({
 
 const mapCurriculumSubject = (r: CurriculumSubjectRow): LearningCurriculumSubject => ({
   id: r.id, curriculumId: r.curriculum_id, subjectId: r.subject_id,
-  code: r.code ?? null, name: r.name ?? null, status: r.status,
+  code: r.code ?? null, name: r.name ?? null, status: r.status as AcademicCatalogStatus,
   createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
 const mapGrade = (r: GradeRow): LearningGradeLevel => ({
   id: r.id, curriculumId: r.curriculum_id, code: r.code, name: r.name,
-  sequenceNo: r.sequence_no, description: r.description ?? null, status: r.status,
+  sequenceNo: r.sequence_no, description: r.description ?? null, status: r.status as AcademicCatalogStatus,
   createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
 const mapYear = (r: AcademicYearRow): LearningAcademicYear => ({
   id: r.id, organizationId: r.organization_id, curriculumId: r.curriculum_id,
   name: r.name, code: r.code, startsOn: r.starts_on, endsOn: r.ends_on,
-  status: r.status, createdAt: r.created_at, updatedAt: r.updated_at,
+  status: r.status as AcademicPeriodStatus, createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
 const mapTerm = (r: TermRow): LearningTerm => ({
