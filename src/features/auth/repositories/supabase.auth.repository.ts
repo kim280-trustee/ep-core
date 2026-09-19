@@ -140,7 +140,7 @@ implements AuthRepository {
         data.id,
 
       authUserId:
-        data.auth_user_id ?? user.authUserId,
+        data.auth_user_id,
 
       tenantId:
         data.tenant_id,
@@ -195,7 +195,7 @@ implements AuthRepository {
 
 
 
-    if (error || !data) {
+    if (error || !data || !data.auth_user_id) {
 
       return undefined;
 
