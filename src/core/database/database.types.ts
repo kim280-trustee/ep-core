@@ -1,1 +1,3818 @@
-{"types":"export type Json =\n  | string\n  | number\n  | boolean\n  | null\n  | { [key: string]: Json | undefined }\n  | Json[]\n\nexport type Database = {\n  // Allows to automatically instantiate createClient with right options\n  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)\n  __InternalSupabase: {\n    PostgrestVersion: \"14.5\"\n  }\n  public: {\n    Tables: {\n      brands: {\n        Row: {\n          code: string | null\n          created_at: string\n          description: string | null\n          id: string\n          logo_url: string | null\n          name: string\n          status: string\n          store_id: string\n          tenant_id: string\n          updated_at: string\n        }\n        Insert: {\n          code?: string | null\n          created_at?: string\n          description?: string | null\n          id?: string\n          logo_url?: string | null\n          name: string\n          status?: string\n          store_id: string\n          tenant_id: string\n          updated_at?: string\n        }\n        Update: {\n          code?: string | null\n          created_at?: string\n          description?: string | null\n          id?: string\n          logo_url?: string | null\n          name?: string\n          status?: string\n          store_id?: string\n          tenant_id?: string\n          updated_at?: string\n        }\n        Relationships: []\n      }\n      categories: {\n        Row: {\n          created_at: string\n          description: string | null\n          id: string\n          name: string\n          parent_id: string | null\n          status: string\n          store_id: string\n          tenant_id: string\n          updated_at: string\n        }\n        Insert: {\n          created_at?: string\n          description?: string | null\n          id?: string\n          name: string\n          parent_id?: string | null\n          status?: string\n          store_id: string\n          tenant_id: string\n          updated_at?: string\n        }\n        Update: {\n          created_at?: string\n          description?: string | null\n          id?: string\n          name?: string\n          parent_id?: string | null\n          status?: string\n          store_id?: string\n          tenant_id?: string\n          updated_at?: string\n        }\n        Relationships: []\n      }\n      company_settings: {\n        Row: {\n          business_name: string\n          created_at: string | null\n          id: string\n          invoice_prefix: string | null\n          receipt_prefix: string | null\n          tax_enabled: boolean | null\n          tax_rate: number | null\n          tenant_id: string\n          updated_at: string | null\n        }\n        Insert: {\n          business_name: string\n          created_at?: string | null\n          id?: string\n          invoice_prefix?: string | null\n          receipt_prefix?: string | null\n          tax_enabled?: boolean | null\n          tax_rate?: number | null\n          tenant_id: string\n          updated_at?: string | null\n        }\n        Update: {\n          business_name?: string\n          created_at?: string | null\n          id?: string\n          invoice_prefix?: string | null\n          receipt_prefix?: string | null\n          tax_enabled?: boolean | null\n          tax_rate?: number | null\n          tenant_id?: string\n          updated_at?: string | null\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"company_settings_tenant_id_fkey\"\n            columns: [\"tenant_id\"]\n            isOneToOne: false\n            referencedRelation: \"tenants\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      customers: {\n        Row: {\n          address: string | null\n          created_at: string\n          credit_limit: number | null\n          customer_type: string\n          email: string | null\n          id: string\n          name: string\n          phone: string | null\n          status: string\n          store_id: string\n          tax_number: string | null\n          tenant_id: string\n          updated_at: string\n        }\n        Insert: {\n          address?: string | null\n          created_at?: string\n          credit_limit?: number | null\n          customer_type?: string\n          email?: string | null\n          id?: string\n          name: string\n          phone?: string | null\n          status?: string\n          store_id: string\n          tax_number?: string | null\n          tenant_id: string\n          updated_at?: string\n        }\n        Update: {\n          address?: string | null\n          created_at?: string\n          credit_limit?: number | null\n          customer_type?: string\n          email?: string | null\n          id?: string\n          name?: string\n          phone?: string | null\n          status?: string\n          store_id?: string\n          tax_number?: string | null\n          tenant_id?: string\n          updated_at?: string\n        }\n        Relationships: []\n      }\n      expenses: {\n        Row: {\n          amount: number\n          category: string\n          created_at: string\n          currency: string\n          description: string\n          expense_date: string\n          id: string\n          store_id: string\n          tenant_id: string\n          updated_at: string\n        }\n        Insert: {\n          amount: number\n          category: string\n          created_at: string\n          currency: string\n          description: string\n          expense_date: string\n          id: string\n          store_id: string\n          tenant_id: string\n          updated_at: string\n        }\n        Update: {\n          amount?: number\n          category?: string\n          created_at?: string\n          currency?: string\n          description?: string\n          expense_date?: string\n          id?: string\n          store_id?: string\n          tenant_id?: string\n          updated_at?: string\n        }\n        Relationships: []\n      }\n      goods_receipt_items: {\n        Row: {\n          created_at: string\n          goods_receipt_id: string\n          id: string\n          line_total: number\n          product_id: string\n          purchase_order_item_id: string\n          quantity_received: number\n          tenant_id: string\n          unit_cost: number\n        }\n        Insert: {\n          created_at?: string\n          goods_receipt_id: string\n          id?: string\n          line_total?: number\n          product_id: string\n          purchase_order_item_id: string\n          quantity_received: number\n          tenant_id: string\n          unit_cost?: number\n        }\n        Update: {\n          created_at?: string\n          goods_receipt_id?: string\n          id?: string\n          line_total?: number\n          product_id?: string\n          purchase_order_item_id?: string\n          quantity_received?: number\n          tenant_id?: string\n          unit_cost?: number\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"goods_receipt_items_goods_receipt_id_fkey\"\n            columns: [\"goods_receipt_id\"]\n            isOneToOne: false\n            referencedRelation: \"goods_receipts\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"goods_receipt_items_product_id_fkey\"\n            columns: [\"product_id\"]\n            isOneToOne: false\n            referencedRelation: \"products\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"goods_receipt_items_purchase_order_item_id_fkey\"\n            columns: [\"purchase_order_item_id\"]\n            isOneToOne: false\n            referencedRelation: \"purchase_order_items\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      goods_receipts: {\n        Row: {\n          created_at: string\n          id: string\n          notes: string | null\n          purchase_order_id: string\n          received_by: string | null\n          received_date: string\n          store_id: string\n          supplier_id: string\n          tenant_id: string\n          warehouse_id: string\n        }\n        Insert: {\n          created_at?: string\n          id?: string\n          notes?: string | null\n          purchase_order_id: string\n          received_by?: string | null\n          received_date?: string\n          store_id: string\n          supplier_id: string\n          tenant_id: string\n          warehouse_id: string\n        }\n        Update: {\n          created_at?: string\n          id?: string\n          notes?: string | null\n          purchase_order_id?: string\n          received_by?: string | null\n          received_date?: string\n          store_id?: string\n          supplier_id?: string\n          tenant_id?: string\n          warehouse_id?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"goods_receipts_purchase_order_id_fkey\"\n            columns: [\"purchase_order_id\"]\n            isOneToOne: false\n            referencedRelation: \"purchase_orders\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"goods_receipts_supplier_id_fkey\"\n            columns: [\"supplier_id\"]\n            isOneToOne: false\n            referencedRelation: \"suppliers\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"goods_receipts_warehouse_id_fkey\"\n            columns: [\"warehouse_id\"]\n            isOneToOne: false\n            referencedRelation: \"warehouses\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      inventory: {\n        Row: {\n          average_cost: number\n          created_at: string\n          id: string\n          last_movement_at: string | null\n          maximum_stock_level: number | null\n          minimum_stock_level: number\n          product_id: string\n          quantity_on_hand: number\n          quantity_reserved: number\n          store_id: string\n          tenant_id: string\n          updated_at: string\n          warehouse_id: string\n        }\n        Insert: {\n          average_cost?: number\n          created_at?: string\n          id?: string\n          last_movement_at?: string | null\n          maximum_stock_level?: number | null\n          minimum_stock_level?: number\n          product_id: string\n          quantity_on_hand?: number\n          quantity_reserved?: number\n          store_id: string\n          tenant_id: string\n          updated_at?: string\n          warehouse_id: string\n        }\n        Update: {\n          average_cost?: number\n          created_at?: string\n          id?: string\n          last_movement_at?: string | null\n          maximum_stock_level?: number | null\n          minimum_stock_level?: number\n          product_id?: string\n          quantity_on_hand?: number\n          quantity_reserved?: number\n          store_id?: string\n          tenant_id?: string\n          updated_at?: string\n          warehouse_id?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"inventory_product_id_fkey\"\n            columns: [\"product_id\"]\n            isOneToOne: false\n            referencedRelation: \"products\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"inventory_warehouse_id_fkey\"\n            columns: [\"warehouse_id\"]\n            isOneToOne: false\n            referencedRelation: \"warehouses\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      inventory_transactions: {\n        Row: {\n          after_quantity: number\n          before_quantity: number\n          created_at: string\n          id: string\n          movement_type: string\n          notes: string | null\n          product_id: string\n          quantity: number\n          reference_id: string | null\n          reference_type: string | null\n          store_id: string | null\n          tenant_id: string\n          type: string\n          unit_cost: number\n          warehouse_id: string\n        }\n        Insert: {\n          after_quantity?: number\n          before_quantity?: number\n          created_at?: string\n          id?: string\n          movement_type: string\n          notes?: string | null\n          product_id: string\n          quantity: number\n          reference_id?: string | null\n          reference_type?: string | null\n          store_id?: string | null\n          tenant_id: string\n          type?: string\n          unit_cost?: number\n          warehouse_id: string\n        }\n        Update: {\n          after_quantity?: number\n          before_quantity?: number\n          created_at?: string\n          id?: string\n          movement_type?: string\n          notes?: string | null\n          product_id?: string\n          quantity?: number\n          reference_id?: string | null\n          reference_type?: string | null\n          store_id?: string | null\n          tenant_id?: string\n          type?: string\n          unit_cost?: number\n          warehouse_id?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"inventory_transactions_product_id_fkey\"\n            columns: [\"product_id\"]\n            isOneToOne: false\n            referencedRelation: \"products\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"inventory_transactions_warehouse_id_fkey\"\n            columns: [\"warehouse_id\"]\n            isOneToOne: false\n            referencedRelation: \"warehouses\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      learning_academic_years: {\n        Row: {\n          code: string\n          created_at: string\n          curriculum_id: string\n          ends_on: string\n          id: string\n          name: string\n          organization_id: string\n          starts_on: string\n          status: string\n          updated_at: string\n        }\n        Insert: {\n          code: string\n          created_at?: string\n          curriculum_id: string\n          ends_on: string\n          id?: string\n          name: string\n          organization_id: string\n          starts_on: string\n          status?: string\n          updated_at?: string\n        }\n        Update: {\n          code?: string\n          created_at?: string\n          curriculum_id?: string\n          ends_on?: string\n          id?: string\n          name?: string\n          organization_id?: string\n          starts_on?: string\n          status?: string\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"academic_year_curriculum_fk\"\n            columns: [\"curriculum_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_curricula\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"academic_year_org_fk\"\n            columns: [\"organization_id\"]\n            isOneToOne: false\n            referencedRelation: \"organizations\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      learning_activity_events: {\n        Row: {\n          activity_type: string\n          assessment_id: string | null\n          assignment_id: string | null\n          content_item_id: string | null\n          id: string\n          metadata: Json\n          objective_id: string | null\n          occurred_at: string\n          organization_id: string | null\n          session_id: string | null\n          student_user_id: string\n          tenant_id: string\n        }\n        Insert: {\n          activity_type: string\n          assessment_id?: string | null\n          assignment_id?: string | null\n          content_item_id?: string | null\n          id?: string\n          metadata?: Json\n          objective_id?: string | null\n          occurred_at?: string\n          organization_id?: string | null\n          session_id?: string | null\n          student_user_id: string\n          tenant_id: string\n        }\n        Update: {\n          activity_type?: string\n          assessment_id?: string | null\n          assignment_id?: string | null\n          content_item_id?: string | null\n          id?: string\n          metadata?: Json\n          objective_id?: string | null\n          occurred_at?: string\n          organization_id?: string | null\n          session_id?: string | null\n          student_user_id?: string\n          tenant_id?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_activity_events_assessment_id_fkey\"\n            columns: [\"assessment_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_assessments\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_activity_events_assignment_id_fkey\"\n            columns: [\"assignment_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_assignments\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_activity_events_content_item_id_fkey\"\n            columns: [\"content_item_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_content_items\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_activity_events_objective_id_fkey\"\n            columns: [\"objective_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_objectives\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_activity_events_session_id_fkey\"\n            columns: [\"session_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_sessions\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_activity_events_tenant_id_organization_id_fkey\"\n            columns: [\"tenant_id\", \"organization_id\"]\n            isOneToOne: false\n            referencedRelation: \"organizations\"\n            referencedColumns: [\"tenant_id\", \"id\"]\n          },\n          {\n            foreignKeyName: \"learning_activity_events_tenant_id_student_user_id_fkey\"\n            columns: [\"tenant_id\", \"student_user_id\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"tenant_id\", \"id\"]\n          },\n        ]\n      }\n      learning_assessment_questions: {\n        Row: {\n          assessment_id: string\n          created_at: string\n          id: string\n          points: number\n          question_version_id: string\n          required: boolean\n          sequence_no: number\n        }\n        Insert: {\n          assessment_id: string\n          created_at?: string\n          id?: string\n          points?: number\n          question_version_id: string\n          required?: boolean\n          sequence_no: number\n        }\n        Update: {\n          assessment_id?: string\n          created_at?: string\n          id?: string\n          points?: number\n          question_version_id?: string\n          required?: boolean\n          sequence_no?: number\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_assessment_questions_assessment_id_fkey\"\n            columns: [\"assessment_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_assessments\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_assessment_questions_question_version_id_fkey\"\n            columns: [\"question_version_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_question_versions\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      learning_assessment_results: {\n        Row: {\n          attempt_id: string\n          created_at: string\n          evaluated_at: string\n          id: string\n          max_score: number | null\n          organization_id: string | null\n          passed: boolean | null\n          percentage: number | null\n          score: number | null\n          student_user_id: string\n          summary: Json\n          updated_at: string\n        }\n        Insert: {\n          attempt_id: string\n          created_at?: string\n          evaluated_at?: string\n          id?: string\n          max_score?: number | null\n          organization_id?: string | null\n          passed?: boolean | null\n          percentage?: number | null\n          score?: number | null\n          student_user_id: string\n          summary?: Json\n          updated_at?: string\n        }\n        Update: {\n          attempt_id?: string\n          created_at?: string\n          evaluated_at?: string\n          id?: string\n          max_score?: number | null\n          organization_id?: string | null\n          passed?: boolean | null\n          percentage?: number | null\n          score?: number | null\n          student_user_id?: string\n          summary?: Json\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_assessment_results_attempt_id_fkey\"\n            columns: [\"attempt_id\"]\n            isOneToOne: true\n            referencedRelation: \"learning_attempts\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_assessment_results_organization_id_fkey\"\n            columns: [\"organization_id\"]\n            isOneToOne: false\n            referencedRelation: \"organizations\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_assessment_results_student_user_id_fkey\"\n            columns: [\"student_user_id\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      learning_assessments: {\n        Row: {\n          assessment_type: string\n          code: string\n          created_at: string\n          created_by: string\n          curriculum_id: string | null\n          description: string | null\n          grade_level_id: string | null\n          id: string\n          language_code: string\n          organization_id: string | null\n          published_at: string | null\n          reviewed_at: string | null\n          reviewed_by: string | null\n          status: string\n          title: string\n          updated_at: string\n          updated_by: string | null\n        }\n        Insert: {\n          assessment_type: string\n          code: string\n          created_at?: string\n          created_by: string\n          curriculum_id?: string | null\n          description?: string | null\n          grade_level_id?: string | null\n          id?: string\n          language_code?: string\n          organization_id?: string | null\n          published_at?: string | null\n          reviewed_at?: string | null\n          reviewed_by?: string | null\n          status?: string\n          title: string\n          updated_at?: string\n          updated_by?: string | null\n        }\n        Update: {\n          assessment_type?: string\n          code?: string\n          created_at?: string\n          created_by?: string\n          curriculum_id?: string | null\n          description?: string | null\n          grade_level_id?: string | null\n          id?: string\n          language_code?: string\n          organization_id?: string | null\n          published_at?: string | null\n          reviewed_at?: string | null\n          reviewed_by?: string | null\n          status?: string\n          title?: string\n          updated_at?: string\n          updated_by?: string | null\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_assessments_created_by_fkey\"\n            columns: [\"created_by\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_assessments_curriculum_id_fkey\"\n            columns: [\"curriculum_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_curricula\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_assessments_grade_curriculum_fk\"\n            columns: [\"curriculum_id\", \"grade_level_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_grade_levels\"\n            referencedColumns: [\"curriculum_id\", \"id\"]\n          },\n          {\n            foreignKeyName: \"learning_assessments_organization_id_fkey\"\n            columns: [\"organization_id\"]\n            isOneToOne: false\n            referencedRelation: \"organizations\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_assessments_reviewed_by_fkey\"\n            columns: [\"reviewed_by\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_assessments_updated_by_fkey\"\n            columns: [\"updated_by\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      learning_assignment_items: {\n        Row: {\n          assessment_id: string | null\n          assignment_id: string\n          content_item_id: string | null\n          created_at: string\n          id: string\n          item_type: string\n          organization_id: string\n          required: boolean\n          sequence_no: number\n        }\n        Insert: {\n          assessment_id?: string | null\n          assignment_id: string\n          content_item_id?: string | null\n          created_at?: string\n          id?: string\n          item_type: string\n          organization_id: string\n          required?: boolean\n          sequence_no: number\n        }\n        Update: {\n          assessment_id?: string | null\n          assignment_id?: string\n          content_item_id?: string | null\n          created_at?: string\n          id?: string\n          item_type?: string\n          organization_id?: string\n          required?: boolean\n          sequence_no?: number\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_assignment_items_assessment_id_fkey\"\n            columns: [\"assessment_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_assessments\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_assignment_items_content_item_id_fkey\"\n            columns: [\"content_item_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_content_items\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_assignment_items_organization_id_assignment_id_fkey\"\n            columns: [\"organization_id\", \"assignment_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_assignments\"\n            referencedColumns: [\"organization_id\", \"id\"]\n          },\n        ]\n      }\n      learning_assignment_progress: {\n        Row: {\n          assignment_id: string\n          assignment_target_id: string\n          completed_at: string | null\n          created_at: string\n          id: string\n          last_activity_at: string | null\n          organization_id: string\n          started_at: string | null\n          status: string\n          student_user_id: string\n          updated_at: string\n        }\n        Insert: {\n          assignment_id: string\n          assignment_target_id: string\n          completed_at?: string | null\n          created_at?: string\n          id?: string\n          last_activity_at?: string | null\n          organization_id: string\n          started_at?: string | null\n          status?: string\n          student_user_id: string\n          updated_at?: string\n        }\n        Update: {\n          assignment_id?: string\n          assignment_target_id?: string\n          completed_at?: string | null\n          created_at?: string\n          id?: string\n          last_activity_at?: string | null\n          organization_id?: string\n          started_at?: string | null\n          status?: string\n          student_user_id?: string\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_assignment_progress_assignment_target_id_fkey\"\n            columns: [\"assignment_target_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_assignment_targets\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_assignment_progress_org_student_fk\"\n            columns: [\"organization_id\", \"student_user_id\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"tenant_id\", \"id\"]\n          },\n          {\n            foreignKeyName: \"learning_assignment_progress_org_target_fk\"\n            columns: [\"organization_id\", \"assignment_target_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_assignment_targets\"\n            referencedColumns: [\"organization_id\", \"id\"]\n          },\n          {\n            foreignKeyName: \"learning_assignment_progress_organization_id_assignment_id_fkey\"\n            columns: [\"organization_id\", \"assignment_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_assignments\"\n            referencedColumns: [\"organization_id\", \"id\"]\n          },\n          {\n            foreignKeyName: \"learning_assignment_progress_student_user_id_fkey\"\n            columns: [\"student_user_id\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      learning_assignment_targets: {\n        Row: {\n          assignment_id: string\n          class_group_id: string | null\n          created_at: string\n          due_at: string | null\n          id: string\n          organization_id: string\n          status: string\n          student_user_id: string | null\n          target_type: string\n          tenant_id: string\n          updated_at: string\n        }\n        Insert: {\n          assignment_id: string\n          class_group_id?: string | null\n          created_at?: string\n          due_at?: string | null\n          id?: string\n          organization_id: string\n          status?: string\n          student_user_id?: string | null\n          target_type: string\n          tenant_id: string\n          updated_at?: string\n        }\n        Update: {\n          assignment_id?: string\n          class_group_id?: string | null\n          created_at?: string\n          due_at?: string | null\n          id?: string\n          organization_id?: string\n          status?: string\n          student_user_id?: string | null\n          target_type?: string\n          tenant_id?: string\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_assignment_targets_class_group_id_fkey\"\n            columns: [\"class_group_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_class_groups\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_assignment_targets_org_class_fk\"\n            columns: [\"organization_id\", \"class_group_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_class_groups\"\n            referencedColumns: [\"organization_id\", \"id\"]\n          },\n          {\n            foreignKeyName: \"learning_assignment_targets_organization_id_assignment_id_fkey\"\n            columns: [\"organization_id\", \"assignment_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_assignments\"\n            referencedColumns: [\"organization_id\", \"id\"]\n          },\n          {\n            foreignKeyName: \"learning_assignment_targets_tenant_assignment_fk\"\n            columns: [\"tenant_id\", \"assignment_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_assignments\"\n            referencedColumns: [\"tenant_id\", \"id\"]\n          },\n          {\n            foreignKeyName: \"learning_assignment_targets_tenant_student_fk\"\n            columns: [\"tenant_id\", \"student_user_id\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"tenant_id\", \"id\"]\n          },\n        ]\n      }\n      learning_assignments: {\n        Row: {\n          available_from: string | null\n          class_subject_id: string | null\n          code: string\n          created_at: string\n          created_by: string\n          description: string | null\n          due_at: string | null\n          id: string\n          instructions: Json\n          max_attempts: number | null\n          organization_id: string\n          status: string\n          tenant_id: string\n          title: string\n          updated_at: string\n          updated_by: string | null\n        }\n        Insert: {\n          available_from?: string | null\n          class_subject_id?: string | null\n          code: string\n          created_at?: string\n          created_by: string\n          description?: string | null\n          due_at?: string | null\n          id?: string\n          instructions?: Json\n          max_attempts?: number | null\n          organization_id: string\n          status?: string\n          tenant_id: string\n          title: string\n          updated_at?: string\n          updated_by?: string | null\n        }\n        Update: {\n          available_from?: string | null\n          class_subject_id?: string | null\n          code?: string\n          created_at?: string\n          created_by?: string\n          description?: string | null\n          due_at?: string | null\n          id?: string\n          instructions?: Json\n          max_attempts?: number | null\n          organization_id?: string\n          status?: string\n          tenant_id?: string\n          title?: string\n          updated_at?: string\n          updated_by?: string | null\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_assignments_organization_id_class_subject_id_fkey\"\n            columns: [\"organization_id\", \"class_subject_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_class_subjects\"\n            referencedColumns: [\"organization_id\", \"id\"]\n          },\n          {\n            foreignKeyName: \"learning_assignments_tenant_id_created_by_fkey\"\n            columns: [\"tenant_id\", \"created_by\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"tenant_id\", \"id\"]\n          },\n          {\n            foreignKeyName: \"learning_assignments_tenant_id_organization_id_fkey\"\n            columns: [\"tenant_id\", \"organization_id\"]\n            isOneToOne: false\n            referencedRelation: \"organizations\"\n            referencedColumns: [\"tenant_id\", \"id\"]\n          },\n          {\n            foreignKeyName: \"learning_assignments_tenant_id_updated_by_fkey\"\n            columns: [\"tenant_id\", \"updated_by\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"tenant_id\", \"id\"]\n          },\n        ]\n      }\n      learning_attempt_answers: {\n        Row: {\n          answer: Json\n          assessment_question_id: string\n          attempt_id: string\n          awarded_points: number | null\n          created_at: string\n          evaluated_at: string | null\n          evaluation_status: string\n          feedback: Json | null\n          id: string\n          is_correct: boolean | null\n          updated_at: string\n        }\n        Insert: {\n          answer?: Json\n          assessment_question_id: string\n          attempt_id: string\n          awarded_points?: number | null\n          created_at?: string\n          evaluated_at?: string | null\n          evaluation_status?: string\n          feedback?: Json | null\n          id?: string\n          is_correct?: boolean | null\n          updated_at?: string\n        }\n        Update: {\n          answer?: Json\n          assessment_question_id?: string\n          attempt_id?: string\n          awarded_points?: number | null\n          created_at?: string\n          evaluated_at?: string | null\n          evaluation_status?: string\n          feedback?: Json | null\n          id?: string\n          is_correct?: boolean | null\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_attempt_answers_assessment_question_id_fkey\"\n            columns: [\"assessment_question_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_assessment_questions\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_attempt_answers_attempt_id_fkey\"\n            columns: [\"attempt_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_attempts\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      learning_attempts: {\n        Row: {\n          assessment_id: string\n          attempt_number: number\n          created_at: string\n          id: string\n          max_score: number | null\n          organization_id: string | null\n          percentage: number | null\n          previous_attempt_id: string | null\n          score: number | null\n          started_at: string\n          status: string\n          student_user_id: string\n          submitted_at: string | null\n          tenant_id: string\n          updated_at: string\n        }\n        Insert: {\n          assessment_id: string\n          attempt_number: number\n          created_at?: string\n          id?: string\n          max_score?: number | null\n          organization_id?: string | null\n          percentage?: number | null\n          previous_attempt_id?: string | null\n          score?: number | null\n          started_at?: string\n          status?: string\n          student_user_id: string\n          submitted_at?: string | null\n          tenant_id: string\n          updated_at?: string\n        }\n        Update: {\n          assessment_id?: string\n          attempt_number?: number\n          created_at?: string\n          id?: string\n          max_score?: number | null\n          organization_id?: string | null\n          percentage?: number | null\n          previous_attempt_id?: string | null\n          score?: number | null\n          started_at?: string\n          status?: string\n          student_user_id?: string\n          submitted_at?: string | null\n          tenant_id?: string\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_attempts_assessment_id_fkey\"\n            columns: [\"assessment_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_assessments\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_attempts_previous_attempt_id_fkey\"\n            columns: [\"previous_attempt_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_attempts\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_attempts_tenant_id_organization_id_fkey\"\n            columns: [\"tenant_id\", \"organization_id\"]\n            isOneToOne: false\n            referencedRelation: \"organizations\"\n            referencedColumns: [\"tenant_id\", \"id\"]\n          },\n          {\n            foreignKeyName: \"learning_attempts_tenant_id_student_user_id_fkey\"\n            columns: [\"tenant_id\", \"student_user_id\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"tenant_id\", \"id\"]\n          },\n        ]\n      }\n      learning_class_groups: {\n        Row: {\n          academic_year_id: string\n          code: string\n          created_at: string\n          curriculum_id: string\n          grade_level_id: string\n          id: string\n          name: string\n          organization_id: string\n          status: string\n          updated_at: string\n        }\n        Insert: {\n          academic_year_id: string\n          code: string\n          created_at?: string\n          curriculum_id: string\n          grade_level_id: string\n          id?: string\n          name: string\n          organization_id: string\n          status?: string\n          updated_at?: string\n        }\n        Update: {\n          academic_year_id?: string\n          code?: string\n          created_at?: string\n          curriculum_id?: string\n          grade_level_id?: string\n          id?: string\n          name?: string\n          organization_id?: string\n          status?: string\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"class_curriculum_fk\"\n            columns: [\"curriculum_id\", \"grade_level_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_grade_levels\"\n            referencedColumns: [\"curriculum_id\", \"id\"]\n          },\n          {\n            foreignKeyName: \"class_grade_fk\"\n            columns: [\"grade_level_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_grade_levels\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"class_year_curriculum_fk\"\n            columns: [\"academic_year_id\", \"curriculum_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_academic_years\"\n            referencedColumns: [\"id\", \"curriculum_id\"]\n          },\n          {\n            foreignKeyName: \"class_year_org_fk\"\n            columns: [\"organization_id\", \"academic_year_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_academic_years\"\n            referencedColumns: [\"organization_id\", \"id\"]\n          },\n        ]\n      }\n      learning_class_memberships: {\n        Row: {\n          class_group_id: string\n          created_at: string\n          id: string\n          joined_at: string | null\n          membership_type: string\n          organization_id: string\n          status: string\n          tenant_id: string\n          updated_at: string\n          user_id: string\n        }\n        Insert: {\n          class_group_id: string\n          created_at?: string\n          id?: string\n          joined_at?: string | null\n          membership_type: string\n          organization_id: string\n          status?: string\n          tenant_id: string\n          updated_at?: string\n          user_id: string\n        }\n        Update: {\n          class_group_id?: string\n          created_at?: string\n          id?: string\n          joined_at?: string | null\n          membership_type?: string\n          organization_id?: string\n          status?: string\n          tenant_id?: string\n          updated_at?: string\n          user_id?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_class_memberships_organization_id_class_group_id_fkey\"\n            columns: [\"organization_id\", \"class_group_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_class_groups\"\n            referencedColumns: [\"organization_id\", \"id\"]\n          },\n          {\n            foreignKeyName: \"learning_class_memberships_tenant_id_organization_id_fkey\"\n            columns: [\"tenant_id\", \"organization_id\"]\n            isOneToOne: false\n            referencedRelation: \"organizations\"\n            referencedColumns: [\"tenant_id\", \"id\"]\n          },\n          {\n            foreignKeyName: \"learning_class_memberships_tenant_id_user_id_fkey\"\n            columns: [\"tenant_id\", \"user_id\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"tenant_id\", \"id\"]\n          },\n        ]\n      }\n      learning_class_subjects: {\n        Row: {\n          class_group_id: string\n          created_at: string\n          id: string\n          organization_id: string\n          status: string\n          subject_id: string\n          updated_at: string\n        }\n        Insert: {\n          class_group_id: string\n          created_at?: string\n          id?: string\n          organization_id: string\n          status?: string\n          subject_id: string\n          updated_at?: string\n        }\n        Update: {\n          class_group_id?: string\n          created_at?: string\n          id?: string\n          organization_id?: string\n          status?: string\n          subject_id?: string\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"class_subject_org_fk\"\n            columns: [\"organization_id\", \"class_group_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_class_groups\"\n            referencedColumns: [\"organization_id\", \"id\"]\n          },\n          {\n            foreignKeyName: \"learning_class_subjects_subject_id_fkey\"\n            columns: [\"subject_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_subjects\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      learning_content_items: {\n        Row: {\n          code: string\n          content_type: string\n          created_at: string\n          created_by: string\n          id: string\n          language_code: string\n          metadata: Json\n          organization_id: string | null\n          reviewed_at: string | null\n          reviewed_by: string | null\n          status: string\n          title: string\n          updated_at: string\n          updated_by: string | null\n        }\n        Insert: {\n          code: string\n          content_type: string\n          created_at?: string\n          created_by: string\n          id?: string\n          language_code?: string\n          metadata?: Json\n          organization_id?: string | null\n          reviewed_at?: string | null\n          reviewed_by?: string | null\n          status?: string\n          title: string\n          updated_at?: string\n          updated_by?: string | null\n        }\n        Update: {\n          code?: string\n          content_type?: string\n          created_at?: string\n          created_by?: string\n          id?: string\n          language_code?: string\n          metadata?: Json\n          organization_id?: string | null\n          reviewed_at?: string | null\n          reviewed_by?: string | null\n          status?: string\n          title?: string\n          updated_at?: string\n          updated_by?: string | null\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_content_items_created_by_fkey\"\n            columns: [\"created_by\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_content_items_organization_id_fkey\"\n            columns: [\"organization_id\"]\n            isOneToOne: false\n            referencedRelation: \"organizations\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_content_items_reviewed_by_fkey\"\n            columns: [\"reviewed_by\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_content_items_updated_by_fkey\"\n            columns: [\"updated_by\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      learning_content_objectives: {\n        Row: {\n          content_item_id: string\n          created_at: string\n          objective_id: string\n          sequence_no: number\n        }\n        Insert: {\n          content_item_id: string\n          created_at?: string\n          objective_id: string\n          sequence_no?: number\n        }\n        Update: {\n          content_item_id?: string\n          created_at?: string\n          objective_id?: string\n          sequence_no?: number\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_content_objectives_content_item_id_fkey\"\n            columns: [\"content_item_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_content_items\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_content_objectives_objective_id_fkey\"\n            columns: [\"objective_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_objectives\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      learning_content_versions: {\n        Row: {\n          body: Json\n          change_summary: string | null\n          content_item_id: string\n          created_at: string\n          created_by: string\n          id: string\n          published_at: string | null\n          reviewed_at: string | null\n          reviewed_by: string | null\n          status: string\n          updated_at: string\n          version_no: number\n        }\n        Insert: {\n          body?: Json\n          change_summary?: string | null\n          content_item_id: string\n          created_at?: string\n          created_by: string\n          id?: string\n          published_at?: string | null\n          reviewed_at?: string | null\n          reviewed_by?: string | null\n          status?: string\n          updated_at?: string\n          version_no: number\n        }\n        Update: {\n          body?: Json\n          change_summary?: string | null\n          content_item_id?: string\n          created_at?: string\n          created_by?: string\n          id?: string\n          published_at?: string | null\n          reviewed_at?: string | null\n          reviewed_by?: string | null\n          status?: string\n          updated_at?: string\n          version_no?: number\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_content_versions_content_item_id_fkey\"\n            columns: [\"content_item_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_content_items\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_content_versions_created_by_fkey\"\n            columns: [\"created_by\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_content_versions_reviewed_by_fkey\"\n            columns: [\"reviewed_by\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      learning_countries: {\n        Row: {\n          code: string\n          created_at: string\n          id: string\n          name: string\n          native_name: string | null\n          status: string\n          updated_at: string\n        }\n        Insert: {\n          code: string\n          created_at?: string\n          id?: string\n          name: string\n          native_name?: string | null\n          status?: string\n          updated_at?: string\n        }\n        Update: {\n          code?: string\n          created_at?: string\n          id?: string\n          name?: string\n          native_name?: string | null\n          status?: string\n          updated_at?: string\n        }\n        Relationships: []\n      }\n      learning_curricula: {\n        Row: {\n          code: string\n          created_at: string\n          description: string | null\n          education_system_id: string\n          id: string\n          name: string\n          status: string\n          updated_at: string\n          version: string | null\n        }\n        Insert: {\n          code: string\n          created_at?: string\n          description?: string | null\n          education_system_id: string\n          id?: string\n          name: string\n          status?: string\n          updated_at?: string\n          version?: string | null\n        }\n        Update: {\n          code?: string\n          created_at?: string\n          description?: string | null\n          education_system_id?: string\n          id?: string\n          name?: string\n          status?: string\n          updated_at?: string\n          version?: string | null\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_curricula_education_system_id_fkey\"\n            columns: [\"education_system_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_education_systems\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      learning_curriculum_subjects: {\n        Row: {\n          code: string | null\n          created_at: string\n          curriculum_id: string\n          id: string\n          name: string | null\n          status: string\n          subject_id: string\n          updated_at: string\n        }\n        Insert: {\n          code?: string | null\n          created_at?: string\n          curriculum_id: string\n          id?: string\n          name?: string | null\n          status?: string\n          subject_id: string\n          updated_at?: string\n        }\n        Update: {\n          code?: string | null\n          created_at?: string\n          curriculum_id?: string\n          id?: string\n          name?: string | null\n          status?: string\n          subject_id?: string\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"curriculum_subject_curriculum_fk\"\n            columns: [\"curriculum_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_curricula\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_curriculum_subjects_subject_id_fkey\"\n            columns: [\"subject_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_subjects\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      learning_education_systems: {\n        Row: {\n          code: string\n          country_id: string\n          created_at: string\n          description: string | null\n          id: string\n          name: string\n          status: string\n          updated_at: string\n        }\n        Insert: {\n          code: string\n          country_id: string\n          created_at?: string\n          description?: string | null\n          id?: string\n          name: string\n          status?: string\n          updated_at?: string\n        }\n        Update: {\n          code?: string\n          country_id?: string\n          created_at?: string\n          description?: string | null\n          id?: string\n          name?: string\n          status?: string\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_education_systems_country_id_fkey\"\n            columns: [\"country_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_countries\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      learning_grade_levels: {\n        Row: {\n          code: string\n          created_at: string\n          curriculum_id: string\n          description: string | null\n          id: string\n          name: string\n          sequence_no: number\n          status: string\n          updated_at: string\n        }\n        Insert: {\n          code: string\n          created_at?: string\n          curriculum_id: string\n          description?: string | null\n          id?: string\n          name: string\n          sequence_no: number\n          status?: string\n          updated_at?: string\n        }\n        Update: {\n          code?: string\n          created_at?: string\n          curriculum_id?: string\n          description?: string | null\n          id?: string\n          name?: string\n          sequence_no?: number\n          status?: string\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"grade_curriculum_fk\"\n            columns: [\"curriculum_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_curricula\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      learning_mastery_events: {\n        Row: {\n          attempt_id: string | null\n          created_at: string\n          evidence: Json\n          id: string\n          new_score: number\n          objective_id: string\n          organization_id: string | null\n          previous_score: number | null\n          student_user_id: string\n          tenant_id: string\n        }\n        Insert: {\n          attempt_id?: string | null\n          created_at?: string\n          evidence?: Json\n          id?: string\n          new_score: number\n          objective_id: string\n          organization_id?: string | null\n          previous_score?: number | null\n          student_user_id: string\n          tenant_id: string\n        }\n        Update: {\n          attempt_id?: string | null\n          created_at?: string\n          evidence?: Json\n          id?: string\n          new_score?: number\n          objective_id?: string\n          organization_id?: string | null\n          previous_score?: number | null\n          student_user_id?: string\n          tenant_id?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_mastery_events_attempt_id_fkey\"\n            columns: [\"attempt_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_attempts\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_mastery_events_objective_id_fkey\"\n            columns: [\"objective_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_objectives\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_mastery_events_tenant_id_organization_id_fkey\"\n            columns: [\"tenant_id\", \"organization_id\"]\n            isOneToOne: false\n            referencedRelation: \"organizations\"\n            referencedColumns: [\"tenant_id\", \"id\"]\n          },\n          {\n            foreignKeyName: \"learning_mastery_events_tenant_id_student_user_id_fkey\"\n            columns: [\"tenant_id\", \"student_user_id\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"tenant_id\", \"id\"]\n          },\n        ]\n      }\n      learning_objective_alignments: {\n        Row: {\n          created_at: string\n          curriculum_id: string\n          grade_level_id: string\n          id: string\n          notes: string | null\n          objective_id: string\n          required: boolean\n          sequence_no: number\n          updated_at: string\n        }\n        Insert: {\n          created_at?: string\n          curriculum_id: string\n          grade_level_id: string\n          id?: string\n          notes?: string | null\n          objective_id: string\n          required?: boolean\n          sequence_no?: number\n          updated_at?: string\n        }\n        Update: {\n          created_at?: string\n          curriculum_id?: string\n          grade_level_id?: string\n          id?: string\n          notes?: string | null\n          objective_id?: string\n          required?: boolean\n          sequence_no?: number\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_objective_alignments_curriculum_id_fkey\"\n            columns: [\"curriculum_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_curricula\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_objective_alignments_curriculum_id_grade_level_id_fkey\"\n            columns: [\"curriculum_id\", \"grade_level_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_grade_levels\"\n            referencedColumns: [\"curriculum_id\", \"id\"]\n          },\n          {\n            foreignKeyName: \"learning_objective_alignments_objective_id_fkey\"\n            columns: [\"objective_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_objectives\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      learning_objective_prerequisites: {\n        Row: {\n          created_at: string\n          objective_id: string\n          prerequisite_objective_id: string\n        }\n        Insert: {\n          created_at?: string\n          objective_id: string\n          prerequisite_objective_id: string\n        }\n        Update: {\n          created_at?: string\n          objective_id?: string\n          prerequisite_objective_id?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_objective_prerequisites_objective_id_fkey\"\n            columns: [\"objective_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_objectives\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_objective_prerequisites_prerequisite_objective_id_fkey\"\n            columns: [\"prerequisite_objective_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_objectives\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      learning_objectives: {\n        Row: {\n          code: string\n          created_at: string\n          description: string | null\n          id: string\n          name: string\n          sequence_no: number\n          status: string\n          topic_id: string\n          updated_at: string\n        }\n        Insert: {\n          code: string\n          created_at?: string\n          description?: string | null\n          id?: string\n          name: string\n          sequence_no?: number\n          status?: string\n          topic_id: string\n          updated_at?: string\n        }\n        Update: {\n          code?: string\n          created_at?: string\n          description?: string | null\n          id?: string\n          name?: string\n          sequence_no?: number\n          status?: string\n          topic_id?: string\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_objectives_topic_id_fkey\"\n            columns: [\"topic_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_topics\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      learning_question_evaluation_keys: {\n        Row: {\n          created_at: string\n          evaluation_key: Json\n          question_version_id: string\n          scoring_rules: Json\n          updated_at: string\n        }\n        Insert: {\n          created_at?: string\n          evaluation_key?: Json\n          question_version_id: string\n          scoring_rules?: Json\n          updated_at?: string\n        }\n        Update: {\n          created_at?: string\n          evaluation_key?: Json\n          question_version_id?: string\n          scoring_rules?: Json\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_question_evaluation_keys_question_version_id_fkey\"\n            columns: [\"question_version_id\"]\n            isOneToOne: true\n            referencedRelation: \"learning_question_versions\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      learning_question_objectives: {\n        Row: {\n          created_at: string\n          objective_id: string\n          question_version_id: string\n          weight: number\n        }\n        Insert: {\n          created_at?: string\n          objective_id: string\n          question_version_id: string\n          weight?: number\n        }\n        Update: {\n          created_at?: string\n          objective_id?: string\n          question_version_id?: string\n          weight?: number\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_question_objectives_objective_id_fkey\"\n            columns: [\"objective_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_objectives\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_question_objectives_question_version_id_fkey\"\n            columns: [\"question_version_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_question_versions\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      learning_question_versions: {\n        Row: {\n          configuration: Json\n          created_at: string\n          created_by: string\n          explanation: Json | null\n          id: string\n          prompt: Json\n          published_at: string | null\n          question_id: string\n          reviewed_at: string | null\n          reviewed_by: string | null\n          updated_at: string\n          version_no: number\n        }\n        Insert: {\n          configuration?: Json\n          created_at?: string\n          created_by: string\n          explanation?: Json | null\n          id?: string\n          prompt?: Json\n          published_at?: string | null\n          question_id: string\n          reviewed_at?: string | null\n          reviewed_by?: string | null\n          updated_at?: string\n          version_no: number\n        }\n        Update: {\n          configuration?: Json\n          created_at?: string\n          created_by?: string\n          explanation?: Json | null\n          id?: string\n          prompt?: Json\n          published_at?: string | null\n          question_id?: string\n          reviewed_at?: string | null\n          reviewed_by?: string | null\n          updated_at?: string\n          version_no?: number\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_question_versions_created_by_fkey\"\n            columns: [\"created_by\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_question_versions_question_id_fkey\"\n            columns: [\"question_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_questions\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_question_versions_reviewed_by_fkey\"\n            columns: [\"reviewed_by\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      learning_questions: {\n        Row: {\n          code: string\n          created_at: string\n          created_by: string\n          id: string\n          language_code: string\n          organization_id: string | null\n          question_type: string\n          reviewed_at: string | null\n          reviewed_by: string | null\n          status: string\n          updated_at: string\n          updated_by: string | null\n        }\n        Insert: {\n          code: string\n          created_at?: string\n          created_by: string\n          id?: string\n          language_code?: string\n          organization_id?: string | null\n          question_type: string\n          reviewed_at?: string | null\n          reviewed_by?: string | null\n          status?: string\n          updated_at?: string\n          updated_by?: string | null\n        }\n        Update: {\n          code?: string\n          created_at?: string\n          created_by?: string\n          id?: string\n          language_code?: string\n          organization_id?: string | null\n          question_type?: string\n          reviewed_at?: string | null\n          reviewed_by?: string | null\n          status?: string\n          updated_at?: string\n          updated_by?: string | null\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_questions_created_by_fkey\"\n            columns: [\"created_by\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_questions_organization_id_fkey\"\n            columns: [\"organization_id\"]\n            isOneToOne: false\n            referencedRelation: \"organizations\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_questions_reviewed_by_fkey\"\n            columns: [\"reviewed_by\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_questions_updated_by_fkey\"\n            columns: [\"updated_by\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      learning_recommendations: {\n        Row: {\n          assessment_id: string | null\n          completed_at: string | null\n          content_item_id: string | null\n          created_at: string\n          expires_at: string | null\n          generated_at: string\n          id: string\n          objective_id: string | null\n          organization_id: string | null\n          priority: number\n          reason: Json\n          recommendation_type: string\n          status: string\n          student_user_id: string\n          tenant_id: string\n          updated_at: string\n        }\n        Insert: {\n          assessment_id?: string | null\n          completed_at?: string | null\n          content_item_id?: string | null\n          created_at?: string\n          expires_at?: string | null\n          generated_at?: string\n          id?: string\n          objective_id?: string | null\n          organization_id?: string | null\n          priority?: number\n          reason?: Json\n          recommendation_type: string\n          status?: string\n          student_user_id: string\n          tenant_id: string\n          updated_at?: string\n        }\n        Update: {\n          assessment_id?: string | null\n          completed_at?: string | null\n          content_item_id?: string | null\n          created_at?: string\n          expires_at?: string | null\n          generated_at?: string\n          id?: string\n          objective_id?: string | null\n          organization_id?: string | null\n          priority?: number\n          reason?: Json\n          recommendation_type?: string\n          status?: string\n          student_user_id?: string\n          tenant_id?: string\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_recommendations_assessment_id_fkey\"\n            columns: [\"assessment_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_assessments\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_recommendations_content_item_id_fkey\"\n            columns: [\"content_item_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_content_items\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_recommendations_objective_id_fkey\"\n            columns: [\"objective_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_objectives\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_recommendations_tenant_id_organization_id_fkey\"\n            columns: [\"tenant_id\", \"organization_id\"]\n            isOneToOne: false\n            referencedRelation: \"organizations\"\n            referencedColumns: [\"tenant_id\", \"id\"]\n          },\n          {\n            foreignKeyName: \"learning_recommendations_tenant_id_student_user_id_fkey\"\n            columns: [\"tenant_id\", \"student_user_id\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"tenant_id\", \"id\"]\n          },\n        ]\n      }\n      learning_sessions: {\n        Row: {\n          context_id: string | null\n          context_type: string\n          created_at: string\n          ended_at: string | null\n          id: string\n          metadata: Json\n          organization_id: string | null\n          started_at: string\n          student_user_id: string\n          tenant_id: string\n        }\n        Insert: {\n          context_id?: string | null\n          context_type: string\n          created_at?: string\n          ended_at?: string | null\n          id?: string\n          metadata?: Json\n          organization_id?: string | null\n          started_at?: string\n          student_user_id: string\n          tenant_id: string\n        }\n        Update: {\n          context_id?: string | null\n          context_type?: string\n          created_at?: string\n          ended_at?: string | null\n          id?: string\n          metadata?: Json\n          organization_id?: string | null\n          started_at?: string\n          student_user_id?: string\n          tenant_id?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_sessions_tenant_id_organization_id_fkey\"\n            columns: [\"tenant_id\", \"organization_id\"]\n            isOneToOne: false\n            referencedRelation: \"organizations\"\n            referencedColumns: [\"tenant_id\", \"id\"]\n          },\n          {\n            foreignKeyName: \"learning_sessions_tenant_id_student_user_id_fkey\"\n            columns: [\"tenant_id\", \"student_user_id\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"tenant_id\", \"id\"]\n          },\n        ]\n      }\n      learning_skills: {\n        Row: {\n          code: string\n          created_at: string\n          description: string | null\n          id: string\n          name: string\n          status: string\n          subject_id: string\n          updated_at: string\n        }\n        Insert: {\n          code: string\n          created_at?: string\n          description?: string | null\n          id?: string\n          name: string\n          status?: string\n          subject_id: string\n          updated_at?: string\n        }\n        Update: {\n          code?: string\n          created_at?: string\n          description?: string | null\n          id?: string\n          name?: string\n          status?: string\n          subject_id?: string\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_skills_subject_id_fkey\"\n            columns: [\"subject_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_subjects\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      learning_student_mastery: {\n        Row: {\n          attempts_count: number\n          confidence_score: number\n          correct_count: number\n          created_at: string\n          id: string\n          last_assessed_at: string | null\n          mastery_score: number\n          next_review_at: string | null\n          objective_id: string\n          organization_id: string | null\n          state: string\n          student_user_id: string\n          tenant_id: string\n          updated_at: string\n        }\n        Insert: {\n          attempts_count?: number\n          confidence_score?: number\n          correct_count?: number\n          created_at?: string\n          id?: string\n          last_assessed_at?: string | null\n          mastery_score?: number\n          next_review_at?: string | null\n          objective_id: string\n          organization_id?: string | null\n          state?: string\n          student_user_id: string\n          tenant_id: string\n          updated_at?: string\n        }\n        Update: {\n          attempts_count?: number\n          confidence_score?: number\n          correct_count?: number\n          created_at?: string\n          id?: string\n          last_assessed_at?: string | null\n          mastery_score?: number\n          next_review_at?: string | null\n          objective_id?: string\n          organization_id?: string | null\n          state?: string\n          student_user_id?: string\n          tenant_id?: string\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_student_mastery_objective_id_fkey\"\n            columns: [\"objective_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_objectives\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"learning_student_mastery_tenant_id_organization_id_fkey\"\n            columns: [\"tenant_id\", \"organization_id\"]\n            isOneToOne: false\n            referencedRelation: \"organizations\"\n            referencedColumns: [\"tenant_id\", \"id\"]\n          },\n          {\n            foreignKeyName: \"learning_student_mastery_tenant_id_student_user_id_fkey\"\n            columns: [\"tenant_id\", \"student_user_id\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"tenant_id\", \"id\"]\n          },\n        ]\n      }\n      learning_subjects: {\n        Row: {\n          code: string\n          created_at: string\n          description: string | null\n          id: string\n          name: string\n          status: string\n          updated_at: string\n        }\n        Insert: {\n          code: string\n          created_at?: string\n          description?: string | null\n          id?: string\n          name: string\n          status?: string\n          updated_at?: string\n        }\n        Update: {\n          code?: string\n          created_at?: string\n          description?: string | null\n          id?: string\n          name?: string\n          status?: string\n          updated_at?: string\n        }\n        Relationships: []\n      }\n      learning_terms: {\n        Row: {\n          academic_year_id: string\n          code: string\n          created_at: string\n          ends_on: string\n          id: string\n          name: string\n          organization_id: string\n          sequence_no: number\n          starts_on: string\n          status: string\n          updated_at: string\n        }\n        Insert: {\n          academic_year_id: string\n          code: string\n          created_at?: string\n          ends_on: string\n          id?: string\n          name: string\n          organization_id: string\n          sequence_no: number\n          starts_on: string\n          status?: string\n          updated_at?: string\n        }\n        Update: {\n          academic_year_id?: string\n          code?: string\n          created_at?: string\n          ends_on?: string\n          id?: string\n          name?: string\n          organization_id?: string\n          sequence_no?: number\n          starts_on?: string\n          status?: string\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"term_org_year_fk\"\n            columns: [\"organization_id\", \"academic_year_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_academic_years\"\n            referencedColumns: [\"organization_id\", \"id\"]\n          },\n        ]\n      }\n      learning_topics: {\n        Row: {\n          code: string\n          created_at: string\n          description: string | null\n          id: string\n          name: string\n          sequence_no: number\n          skill_id: string\n          status: string\n          updated_at: string\n        }\n        Insert: {\n          code: string\n          created_at?: string\n          description?: string | null\n          id?: string\n          name: string\n          sequence_no?: number\n          skill_id: string\n          status?: string\n          updated_at?: string\n        }\n        Update: {\n          code?: string\n          created_at?: string\n          description?: string | null\n          id?: string\n          name?: string\n          sequence_no?: number\n          skill_id?: string\n          status?: string\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"learning_topics_skill_id_fkey\"\n            columns: [\"skill_id\"]\n            isOneToOne: false\n            referencedRelation: \"learning_skills\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      organization_memberships: {\n        Row: {\n          created_at: string\n          id: string\n          organization_id: string\n          role_id: string | null\n          status: string\n          tenant_id: string\n          updated_at: string\n          user_id: string\n        }\n        Insert: {\n          created_at?: string\n          id?: string\n          organization_id: string\n          role_id?: string | null\n          status?: string\n          tenant_id: string\n          updated_at?: string\n          user_id: string\n        }\n        Update: {\n          created_at?: string\n          id?: string\n          organization_id?: string\n          role_id?: string | null\n          status?: string\n          tenant_id?: string\n          updated_at?: string\n          user_id?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"organization_memberships_org_fk\"\n            columns: [\"tenant_id\", \"organization_id\"]\n            isOneToOne: false\n            referencedRelation: \"organizations\"\n            referencedColumns: [\"tenant_id\", \"id\"]\n          },\n          {\n            foreignKeyName: \"organization_memberships_role_fk\"\n            columns: [\"tenant_id\", \"role_id\"]\n            isOneToOne: false\n            referencedRelation: \"roles\"\n            referencedColumns: [\"tenant_id\", \"id\"]\n          },\n          {\n            foreignKeyName: \"organization_memberships_tenant_id_fkey\"\n            columns: [\"tenant_id\"]\n            isOneToOne: false\n            referencedRelation: \"tenants\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"organization_memberships_user_fk\"\n            columns: [\"tenant_id\", \"user_id\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"tenant_id\", \"id\"]\n          },\n        ]\n      }\n      organizations: {\n        Row: {\n          code: string\n          country: string\n          created_at: string\n          currency: string\n          id: string\n          name: string\n          status: string\n          tenant_id: string\n          timezone: string\n          updated_at: string\n        }\n        Insert: {\n          code: string\n          country: string\n          created_at?: string\n          currency: string\n          id?: string\n          name: string\n          status?: string\n          tenant_id: string\n          timezone: string\n          updated_at?: string\n        }\n        Update: {\n          code?: string\n          country?: string\n          created_at?: string\n          currency?: string\n          id?: string\n          name?: string\n          status?: string\n          tenant_id?: string\n          timezone?: string\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"organizations_tenant_id_fkey\"\n            columns: [\"tenant_id\"]\n            isOneToOne: false\n            referencedRelation: \"tenants\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      payments: {\n        Row: {\n          amount: number\n          created_at: string\n          id: string\n          method: string\n          provider: string | null\n          reference: string | null\n          sales_order_id: string\n          status: string\n          tenant_id: string\n          updated_at: string\n        }\n        Insert: {\n          amount: number\n          created_at: string\n          id: string\n          method: string\n          provider?: string | null\n          reference?: string | null\n          sales_order_id: string\n          status?: string\n          tenant_id: string\n          updated_at: string\n        }\n        Update: {\n          amount?: number\n          created_at?: string\n          id?: string\n          method?: string\n          provider?: string | null\n          reference?: string | null\n          sales_order_id?: string\n          status?: string\n          tenant_id?: string\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"payments_sales_order_id_fkey\"\n            columns: [\"sales_order_id\"]\n            isOneToOne: false\n            referencedRelation: \"sales_orders\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      permissions: {\n        Row: {\n          code: string\n          created_at: string | null\n          description: string | null\n          id: string\n        }\n        Insert: {\n          code: string\n          created_at?: string | null\n          description?: string | null\n          id?: string\n        }\n        Update: {\n          code?: string\n          created_at?: string | null\n          description?: string | null\n          id?: string\n        }\n        Relationships: []\n      }\n      products: {\n        Row: {\n          barcode: string | null\n          brand_id: string | null\n          category_id: string | null\n          cost_price: number\n          created_at: string\n          currency: string\n          description: string | null\n          id: string\n          image_url: string | null\n          name: string\n          product_type: string\n          selling_price: number\n          sku: string\n          status: string\n          store_id: string | null\n          tax_id: string | null\n          tenant_id: string\n          track_inventory: boolean\n          unit_id: string | null\n          updated_at: string\n        }\n        Insert: {\n          barcode?: string | null\n          brand_id?: string | null\n          category_id?: string | null\n          cost_price?: number\n          created_at?: string\n          currency?: string\n          description?: string | null\n          id?: string\n          image_url?: string | null\n          name: string\n          product_type?: string\n          selling_price?: number\n          sku: string\n          status?: string\n          store_id?: string | null\n          tax_id?: string | null\n          tenant_id: string\n          track_inventory?: boolean\n          unit_id?: string | null\n          updated_at?: string\n        }\n        Update: {\n          barcode?: string | null\n          brand_id?: string | null\n          category_id?: string | null\n          cost_price?: number\n          created_at?: string\n          currency?: string\n          description?: string | null\n          id?: string\n          image_url?: string | null\n          name?: string\n          product_type?: string\n          selling_price?: number\n          sku?: string\n          status?: string\n          store_id?: string | null\n          tax_id?: string | null\n          tenant_id?: string\n          track_inventory?: boolean\n          unit_id?: string | null\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"products_tenant_id_fkey\"\n            columns: [\"tenant_id\"]\n            isOneToOne: false\n            referencedRelation: \"tenants\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      purchase_order_items: {\n        Row: {\n          created_at: string\n          id: string\n          line_total: number\n          notes: string | null\n          product_id: string\n          purchase_order_id: string\n          quantity: number\n          received_quantity: number\n          tax_amount: number\n          tax_rate: number\n          tenant_id: string\n          unit_cost: number\n          updated_at: string\n        }\n        Insert: {\n          created_at?: string\n          id?: string\n          line_total?: number\n          notes?: string | null\n          product_id: string\n          purchase_order_id: string\n          quantity?: number\n          received_quantity?: number\n          tax_amount?: number\n          tax_rate?: number\n          tenant_id: string\n          unit_cost?: number\n          updated_at?: string\n        }\n        Update: {\n          created_at?: string\n          id?: string\n          line_total?: number\n          notes?: string | null\n          product_id?: string\n          purchase_order_id?: string\n          quantity?: number\n          received_quantity?: number\n          tax_amount?: number\n          tax_rate?: number\n          tenant_id?: string\n          unit_cost?: number\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"purchase_order_items_product_id_fkey\"\n            columns: [\"product_id\"]\n            isOneToOne: false\n            referencedRelation: \"products\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"purchase_order_items_purchase_order_id_fkey\"\n            columns: [\"purchase_order_id\"]\n            isOneToOne: false\n            referencedRelation: \"purchase_orders\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      purchase_orders: {\n        Row: {\n          created_at: string\n          created_by: string | null\n          currency: string\n          expected_delivery_date: string | null\n          id: string\n          notes: string | null\n          order_date: string\n          order_number: string\n          status: string\n          store_id: string | null\n          subtotal: number\n          supplier_id: string\n          tax_amount: number\n          tenant_id: string\n          total_amount: number\n          updated_at: string\n          warehouse_id: string | null\n        }\n        Insert: {\n          created_at?: string\n          created_by?: string | null\n          currency?: string\n          expected_delivery_date?: string | null\n          id?: string\n          notes?: string | null\n          order_date?: string\n          order_number: string\n          status?: string\n          store_id?: string | null\n          subtotal?: number\n          supplier_id: string\n          tax_amount?: number\n          tenant_id: string\n          total_amount?: number\n          updated_at?: string\n          warehouse_id?: string | null\n        }\n        Update: {\n          created_at?: string\n          created_by?: string | null\n          currency?: string\n          expected_delivery_date?: string | null\n          id?: string\n          notes?: string | null\n          order_date?: string\n          order_number?: string\n          status?: string\n          store_id?: string | null\n          subtotal?: number\n          supplier_id?: string\n          tax_amount?: number\n          tenant_id?: string\n          total_amount?: number\n          updated_at?: string\n          warehouse_id?: string | null\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"purchase_orders_supplier_id_fkey\"\n            columns: [\"supplier_id\"]\n            isOneToOne: false\n            referencedRelation: \"suppliers\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      purchase_return_items: {\n        Row: {\n          created_at: string\n          id: string\n          line_total: number\n          product_id: string\n          purchase_order_item_id: string\n          purchase_return_id: string\n          quantity: number\n          reason: string | null\n          tenant_id: string\n          unit_cost: number\n        }\n        Insert: {\n          created_at?: string\n          id?: string\n          line_total?: number\n          product_id: string\n          purchase_order_item_id: string\n          purchase_return_id: string\n          quantity: number\n          reason?: string | null\n          tenant_id: string\n          unit_cost?: number\n        }\n        Update: {\n          created_at?: string\n          id?: string\n          line_total?: number\n          product_id?: string\n          purchase_order_item_id?: string\n          purchase_return_id?: string\n          quantity?: number\n          reason?: string | null\n          tenant_id?: string\n          unit_cost?: number\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"purchase_return_items_product_id_fkey\"\n            columns: [\"product_id\"]\n            isOneToOne: false\n            referencedRelation: \"products\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"purchase_return_items_purchase_order_item_id_fkey\"\n            columns: [\"purchase_order_item_id\"]\n            isOneToOne: false\n            referencedRelation: \"purchase_order_items\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"purchase_return_items_purchase_return_id_fkey\"\n            columns: [\"purchase_return_id\"]\n            isOneToOne: false\n            referencedRelation: \"purchase_returns\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      purchase_returns: {\n        Row: {\n          created_at: string\n          id: string\n          purchase_order_id: string\n          reason: string | null\n          return_number: string\n          status: string\n          store_id: string\n          supplier_id: string\n          tenant_id: string\n          total_amount: number\n          updated_at: string\n          warehouse_id: string\n        }\n        Insert: {\n          created_at?: string\n          id?: string\n          purchase_order_id: string\n          reason?: string | null\n          return_number: string\n          status?: string\n          store_id: string\n          supplier_id: string\n          tenant_id: string\n          total_amount?: number\n          updated_at?: string\n          warehouse_id: string\n        }\n        Update: {\n          created_at?: string\n          id?: string\n          purchase_order_id?: string\n          reason?: string | null\n          return_number?: string\n          status?: string\n          store_id?: string\n          supplier_id?: string\n          tenant_id?: string\n          total_amount?: number\n          updated_at?: string\n          warehouse_id?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"purchase_returns_purchase_order_id_fkey\"\n            columns: [\"purchase_order_id\"]\n            isOneToOne: false\n            referencedRelation: \"purchase_orders\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"purchase_returns_supplier_id_fkey\"\n            columns: [\"supplier_id\"]\n            isOneToOne: false\n            referencedRelation: \"suppliers\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"purchase_returns_warehouse_id_fkey\"\n            columns: [\"warehouse_id\"]\n            isOneToOne: false\n            referencedRelation: \"warehouses\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      role_permissions: {\n        Row: {\n          id: string\n          permission_id: string\n          role_id: string\n        }\n        Insert: {\n          id?: string\n          permission_id: string\n          role_id: string\n        }\n        Update: {\n          id?: string\n          permission_id?: string\n          role_id?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"role_permissions_permission_id_fkey\"\n            columns: [\"permission_id\"]\n            isOneToOne: false\n            referencedRelation: \"permissions\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"role_permissions_role_id_fkey\"\n            columns: [\"role_id\"]\n            isOneToOne: false\n            referencedRelation: \"roles\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      roles: {\n        Row: {\n          created_at: string | null\n          id: string\n          name: string\n          tenant_id: string | null\n        }\n        Insert: {\n          created_at?: string | null\n          id?: string\n          name: string\n          tenant_id?: string | null\n        }\n        Update: {\n          created_at?: string | null\n          id?: string\n          name?: string\n          tenant_id?: string | null\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"roles_tenant_id_fkey\"\n            columns: [\"tenant_id\"]\n            isOneToOne: false\n            referencedRelation: \"tenants\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      sales_order_items: {\n        Row: {\n          created_at: string\n          discount_amount: number\n          id: string\n          line_total: number\n          product_id: string\n          quantity: number\n          sales_order_id: string\n          tax_rate: number\n          tenant_id: string\n          unit_price: number\n          updated_at: string\n        }\n        Insert: {\n          created_at?: string\n          discount_amount?: number\n          id?: string\n          line_total?: number\n          product_id: string\n          quantity: number\n          sales_order_id: string\n          tax_rate?: number\n          tenant_id: string\n          unit_price?: number\n          updated_at?: string\n        }\n        Update: {\n          created_at?: string\n          discount_amount?: number\n          id?: string\n          line_total?: number\n          product_id?: string\n          quantity?: number\n          sales_order_id?: string\n          tax_rate?: number\n          tenant_id?: string\n          unit_price?: number\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"sales_order_items_product_id_fkey\"\n            columns: [\"product_id\"]\n            isOneToOne: false\n            referencedRelation: \"products\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"sales_order_items_sales_order_id_fkey\"\n            columns: [\"sales_order_id\"]\n            isOneToOne: false\n            referencedRelation: \"sales_orders\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      sales_orders: {\n        Row: {\n          created_at: string\n          customer_id: string | null\n          discount_amount: number\n          id: string\n          notes: string | null\n          order_number: string\n          payment_status: string\n          status: string\n          store_id: string | null\n          subtotal: number\n          tax_amount: number\n          tenant_id: string\n          total_amount: number\n          updated_at: string\n          warehouse_id: string\n        }\n        Insert: {\n          created_at?: string\n          customer_id?: string | null\n          discount_amount?: number\n          id?: string\n          notes?: string | null\n          order_number: string\n          payment_status?: string\n          status?: string\n          store_id?: string | null\n          subtotal?: number\n          tax_amount?: number\n          tenant_id: string\n          total_amount?: number\n          updated_at?: string\n          warehouse_id: string\n        }\n        Update: {\n          created_at?: string\n          customer_id?: string | null\n          discount_amount?: number\n          id?: string\n          notes?: string | null\n          order_number?: string\n          payment_status?: string\n          status?: string\n          store_id?: string | null\n          subtotal?: number\n          tax_amount?: number\n          tenant_id?: string\n          total_amount?: number\n          updated_at?: string\n          warehouse_id?: string\n        }\n        Relationships: []\n      }\n      supplier_credit_ledger: {\n        Row: {\n          created_at: string\n          credit: number\n          debit: number\n          description: string | null\n          entry_type: string\n          id: string\n          reference_id: string | null\n          reference_number: string | null\n          reference_type: string | null\n          store_id: string\n          supplier_id: string\n          tenant_id: string\n        }\n        Insert: {\n          created_at?: string\n          credit?: number\n          debit?: number\n          description?: string | null\n          entry_type: string\n          id?: string\n          reference_id?: string | null\n          reference_number?: string | null\n          reference_type?: string | null\n          store_id: string\n          supplier_id: string\n          tenant_id: string\n        }\n        Update: {\n          created_at?: string\n          credit?: number\n          debit?: number\n          description?: string | null\n          entry_type?: string\n          id?: string\n          reference_id?: string | null\n          reference_number?: string | null\n          reference_type?: string | null\n          store_id?: string\n          supplier_id?: string\n          tenant_id?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"supplier_credit_ledger_supplier_id_fkey\"\n            columns: [\"supplier_id\"]\n            isOneToOne: false\n            referencedRelation: \"suppliers\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      supplier_payments: {\n        Row: {\n          amount: number\n          created_at: string\n          id: string\n          method: string\n          notes: string | null\n          paid_at: string\n          payment_number: string\n          reference: string | null\n          status: string\n          store_id: string\n          supplier_id: string\n          tenant_id: string\n          updated_at: string\n        }\n        Insert: {\n          amount: number\n          created_at?: string\n          id?: string\n          method: string\n          notes?: string | null\n          paid_at?: string\n          payment_number: string\n          reference?: string | null\n          status?: string\n          store_id: string\n          supplier_id: string\n          tenant_id: string\n          updated_at?: string\n        }\n        Update: {\n          amount?: number\n          created_at?: string\n          id?: string\n          method?: string\n          notes?: string | null\n          paid_at?: string\n          payment_number?: string\n          reference?: string | null\n          status?: string\n          store_id?: string\n          supplier_id?: string\n          tenant_id?: string\n          updated_at?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"supplier_payments_supplier_id_fkey\"\n            columns: [\"supplier_id\"]\n            isOneToOne: false\n            referencedRelation: \"suppliers\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      suppliers: {\n        Row: {\n          address: string | null\n          contact_person: string | null\n          created_at: string\n          email: string | null\n          id: string\n          name: string\n          payment_terms: string | null\n          phone: string | null\n          status: string\n          store_id: string\n          tax_id: string | null\n          tenant_id: string\n          updated_at: string\n        }\n        Insert: {\n          address?: string | null\n          contact_person?: string | null\n          created_at?: string\n          email?: string | null\n          id?: string\n          name: string\n          payment_terms?: string | null\n          phone?: string | null\n          status?: string\n          store_id: string\n          tax_id?: string | null\n          tenant_id: string\n          updated_at?: string\n        }\n        Update: {\n          address?: string | null\n          contact_person?: string | null\n          created_at?: string\n          email?: string | null\n          id?: string\n          name?: string\n          payment_terms?: string | null\n          phone?: string | null\n          status?: string\n          store_id?: string\n          tax_id?: string | null\n          tenant_id?: string\n          updated_at?: string\n        }\n        Relationships: []\n      }\n      tenants: {\n        Row: {\n          country: string\n          created_at: string | null\n          currency: string\n          id: string\n          name: string\n        }\n        Insert: {\n          country: string\n          created_at?: string | null\n          currency: string\n          id?: string\n          name: string\n        }\n        Update: {\n          country?: string\n          created_at?: string | null\n          currency?: string\n          id?: string\n          name?: string\n        }\n        Relationships: []\n      }\n      units: {\n        Row: {\n          created_at: string\n          description: string | null\n          id: string\n          name: string\n          status: string\n          store_id: string\n          symbol: string\n          tenant_id: string\n          updated_at: string\n        }\n        Insert: {\n          created_at?: string\n          description?: string | null\n          id?: string\n          name: string\n          status?: string\n          store_id: string\n          symbol: string\n          tenant_id: string\n          updated_at?: string\n        }\n        Update: {\n          created_at?: string\n          description?: string | null\n          id?: string\n          name?: string\n          status?: string\n          store_id?: string\n          symbol?: string\n          tenant_id?: string\n          updated_at?: string\n        }\n        Relationships: []\n      }\n      user_roles: {\n        Row: {\n          id: string\n          role_id: string\n          user_id: string\n        }\n        Insert: {\n          id?: string\n          role_id: string\n          user_id: string\n        }\n        Update: {\n          id?: string\n          role_id?: string\n          user_id?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"user_roles_role_id_fkey\"\n            columns: [\"role_id\"]\n            isOneToOne: false\n            referencedRelation: \"roles\"\n            referencedColumns: [\"id\"]\n          },\n          {\n            foreignKeyName: \"user_roles_user_id_fkey\"\n            columns: [\"user_id\"]\n            isOneToOne: false\n            referencedRelation: \"users\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      users: {\n        Row: {\n          auth_user_id: string | null\n          created_at: string | null\n          email: string\n          id: string\n          name: string\n          tenant_id: string\n        }\n        Insert: {\n          auth_user_id?: string | null\n          created_at?: string | null\n          email: string\n          id?: string\n          name: string\n          tenant_id: string\n        }\n        Update: {\n          auth_user_id?: string | null\n          created_at?: string | null\n          email?: string\n          id?: string\n          name?: string\n          tenant_id?: string\n        }\n        Relationships: [\n          {\n            foreignKeyName: \"users_tenant_id_fkey\"\n            columns: [\"tenant_id\"]\n            isOneToOne: false\n            referencedRelation: \"tenants\"\n            referencedColumns: [\"id\"]\n          },\n        ]\n      }\n      warehouses: {\n        Row: {\n          address: string\n          city: string\n          code: string\n          country: string\n          created_at: string\n          description: string | null\n          id: string\n          is_active: boolean\n          is_default: boolean\n          manager_name: string | null\n          name: string\n          phone: string | null\n          postal_code: string\n          province: string\n          store_id: string\n          tenant_id: string\n          updated_at: string\n        }\n        Insert: {\n          address?: string\n          city?: string\n          code: string\n          country?: string\n          created_at?: string\n          description?: string | null\n          id?: string\n          is_active?: boolean\n          is_default?: boolean\n          manager_name?: string | null\n          name: string\n          phone?: string | null\n          postal_code?: string\n          province?: string\n          store_id: string\n          tenant_id: string\n          updated_at?: string\n        }\n        Update: {\n          address?: string\n          city?: string\n          code?: string\n          country?: string\n          created_at?: string\n          description?: string | null\n          id?: string\n          is_active?: boolean\n          is_default?: boolean\n          manager_name?: string | null\n          name?: string\n          phone?: string | null\n          postal_code?: string\n          province?: string\n          store_id?: string\n          tenant_id?: string\n          updated_at?: string\n        }\n        Relationships: []\n      }\n    }\n    Views: {\n      [_ in never]: never\n    }\n    Functions: {\n      get_current_user_permissions: {\n        Args: never\n        Returns: {\n          permission_code: string\n        }[]\n      }\n      get_current_user_tenant_id: { Args: never; Returns: string }\n      has_permission: { Args: { permission_code: string }; Returns: boolean }\n      is_organization_member: {\n        Args: { target_organization_id: string }\n        Returns: boolean\n      }\n    }\n    Enums: {\n      [_ in never]: never\n    }\n    CompositeTypes: {\n      [_ in never]: never\n    }\n  }\n}\n\ntype DatabaseWithoutInternals = Omit<Database, \"__InternalSupabase\">\n\ntype DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, \"public\">]\n\nexport type Tables<\n  DefaultSchemaTableNameOrOptions extends\n    | keyof (DefaultSchema[\"Tables\"] & DefaultSchema[\"Views\"])\n    | { schema: keyof DatabaseWithoutInternals },\n  TableName extends (DefaultSchemaTableNameOrOptions extends {\n    schema: keyof DatabaseWithoutInternals\n  }\n    ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions[\"schema\"]][\"Tables\"] &\n        DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions[\"schema\"]][\"Views\"])\n    : never) = never,\n> = DefaultSchemaTableNameOrOptions extends {\n  schema: keyof DatabaseWithoutInternals\n}\n  ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions[\"schema\"]][\"Tables\"] &\n      DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions[\"schema\"]][\"Views\"])[TableName] extends {\n      Row: infer R\n    }\n    ? R\n    : never\n  : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema[\"Tables\"] &\n        DefaultSchema[\"Views\"])\n    ? (DefaultSchema[\"Tables\"] &\n        DefaultSchema[\"Views\"])[DefaultSchemaTableNameOrOptions] extends {\n        Row: infer R\n      }\n      ? R\n      : never\n    : never\n\nexport type TablesInsert<\n  DefaultSchemaTableNameOrOptions extends\n    | keyof DefaultSchema[\"Tables\"]\n    | { schema: keyof DatabaseWithoutInternals },\n  TableName extends (DefaultSchemaTableNameOrOptions extends {\n    schema: keyof DatabaseWithoutInternals\n  }\n    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions[\"schema\"]][\"Tables\"]\n    : never) = never,\n> = DefaultSchemaTableNameOrOptions extends {\n  schema: keyof DatabaseWithoutInternals\n}\n  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions[\"schema\"]][\"Tables\"][TableName] extends {\n      Insert: infer I\n    }\n    ? I\n    : never\n  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema[\"Tables\"]\n    ? DefaultSchema[\"Tables\"][DefaultSchemaTableNameOrOptions] extends {\n        Insert: infer I\n      }\n      ? I\n      : never\n    : never\n\nexport type TablesUpdate<\n  DefaultSchemaTableNameOrOptions extends\n    | keyof DefaultSchema[\"Tables\"]\n    | { schema: keyof DatabaseWithoutInternals },\n  TableName extends (DefaultSchemaTableNameOrOptions extends {\n    schema: keyof DatabaseWithoutInternals\n  }\n    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions[\"schema\"]][\"Tables\"]\n    : never) = never,\n> = DefaultSchemaTableNameOrOptions extends {\n  schema: keyof DatabaseWithoutInternals\n}\n  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions[\"schema\"]][\"Tables\"][TableName] extends {\n      Update: infer U\n    }\n    ? U\n    : never\n  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema[\"Tables\"]\n    ? DefaultSchema[\"Tables\"][DefaultSchemaTableNameOrOptions] extends {\n        Update: infer U\n      }\n      ? U\n      : never\n    : never\n\nexport type Enums<\n  DefaultSchemaEnumNameOrOptions extends\n    | keyof DefaultSchema[\"Enums\"]\n    | { schema: keyof DatabaseWithoutInternals },\n  EnumName extends (DefaultSchemaEnumNameOrOptions extends {\n    schema: keyof DatabaseWithoutInternals\n  }\n    ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions[\"schema\"]][\"Enums\"]\n    : never) = never,\n> = DefaultSchemaEnumNameOrOptions extends {\n  schema: keyof DatabaseWithoutInternals\n}\n  ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions[\"schema\"]][\"Enums\"][EnumName]\n  : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema[\"Enums\"]\n    ? DefaultSchema[\"Enums\"][DefaultSchemaEnumNameOrOptions]\n    : never\n\nexport type CompositeTypes<\n  PublicCompositeTypeNameOrOptions extends\n    | keyof DefaultSchema[\"CompositeTypes\"]\n    | { schema: keyof DatabaseWithoutInternals },\n  CompositeTypeName extends (PublicCompositeTypeNameOrOptions extends {\n    schema: keyof DatabaseWithoutInternals\n  }\n    ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions[\"schema\"]][\"CompositeTypes\"]\n    : never) = never,\n> = PublicCompositeTypeNameOrOptions extends {\n  schema: keyof DatabaseWithoutInternals\n}\n  ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions[\"schema\"]][\"CompositeTypes\"][CompositeTypeName]\n  : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema[\"CompositeTypes\"]\n    ? DefaultSchema[\"CompositeTypes\"][PublicCompositeTypeNameOrOptions]\n    : never\n\nexport const Constants = {\n  public: {\n    Enums: {},\n  },\n} as const\n"}
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[]
+
+export type Database = {
+  // Allows to automatically instantiate createClient with right options
+  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
+  __InternalSupabase: {
+    PostgrestVersion: "14.5"
+  }
+  public: {
+    Tables: {
+      brands: {
+        Row: {
+          code: string | null
+          created_at: string
+          description: string | null
+          id: string
+          logo_url: string | null
+          name: string
+          status: string
+          store_id: string
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          code?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          logo_url?: string | null
+          name: string
+          status?: string
+          store_id: string
+          tenant_id: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          logo_url?: string | null
+          name?: string
+          status?: string
+          store_id?: string
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      categories: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          parent_id: string | null
+          status: string
+          store_id: string
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          parent_id?: string | null
+          status?: string
+          store_id: string
+          tenant_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          parent_id?: string | null
+          status?: string
+          store_id?: string
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      company_settings: {
+        Row: {
+          business_name: string
+          created_at: string | null
+          id: string
+          invoice_prefix: string | null
+          receipt_prefix: string | null
+          tax_enabled: boolean | null
+          tax_rate: number | null
+          tenant_id: string
+          updated_at: string | null
+        }
+        Insert: {
+          business_name: string
+          created_at?: string | null
+          id?: string
+          invoice_prefix?: string | null
+          receipt_prefix?: string | null
+          tax_enabled?: boolean | null
+          tax_rate?: number | null
+          tenant_id: string
+          updated_at?: string | null
+        }
+        Update: {
+          business_name?: string
+          created_at?: string | null
+          id?: string
+          invoice_prefix?: string | null
+          receipt_prefix?: string | null
+          tax_enabled?: boolean | null
+          tax_rate?: number | null
+          tenant_id?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "company_settings_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      customers: {
+        Row: {
+          address: string | null
+          created_at: string
+          credit_limit: number | null
+          customer_type: string
+          email: string | null
+          id: string
+          name: string
+          phone: string | null
+          status: string
+          store_id: string
+          tax_number: string | null
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          credit_limit?: number | null
+          customer_type?: string
+          email?: string | null
+          id?: string
+          name: string
+          phone?: string | null
+          status?: string
+          store_id: string
+          tax_number?: string | null
+          tenant_id: string
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          credit_limit?: number | null
+          customer_type?: string
+          email?: string | null
+          id?: string
+          name?: string
+          phone?: string | null
+          status?: string
+          store_id?: string
+          tax_number?: string | null
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      expenses: {
+        Row: {
+          amount: number
+          category: string
+          created_at: string
+          currency: string
+          description: string
+          expense_date: string
+          id: string
+          store_id: string
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          amount: number
+          category: string
+          created_at: string
+          currency: string
+          description: string
+          expense_date: string
+          id: string
+          store_id: string
+          tenant_id: string
+          updated_at: string
+        }
+        Update: {
+          amount?: number
+          category?: string
+          created_at?: string
+          currency?: string
+          description?: string
+          expense_date?: string
+          id?: string
+          store_id?: string
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      goods_receipt_items: {
+        Row: {
+          created_at: string
+          goods_receipt_id: string
+          id: string
+          line_total: number
+          product_id: string
+          purchase_order_item_id: string
+          quantity_received: number
+          tenant_id: string
+          unit_cost: number
+        }
+        Insert: {
+          created_at?: string
+          goods_receipt_id: string
+          id?: string
+          line_total?: number
+          product_id: string
+          purchase_order_item_id: string
+          quantity_received: number
+          tenant_id: string
+          unit_cost?: number
+        }
+        Update: {
+          created_at?: string
+          goods_receipt_id?: string
+          id?: string
+          line_total?: number
+          product_id?: string
+          purchase_order_item_id?: string
+          quantity_received?: number
+          tenant_id?: string
+          unit_cost?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "goods_receipt_items_goods_receipt_id_fkey"
+            columns: ["goods_receipt_id"]
+            isOneToOne: false
+            referencedRelation: "goods_receipts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "goods_receipt_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "goods_receipt_items_purchase_order_item_id_fkey"
+            columns: ["purchase_order_item_id"]
+            isOneToOne: false
+            referencedRelation: "purchase_order_items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      goods_receipts: {
+        Row: {
+          created_at: string
+          id: string
+          notes: string | null
+          purchase_order_id: string
+          received_by: string | null
+          received_date: string
+          store_id: string
+          supplier_id: string
+          tenant_id: string
+          warehouse_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          notes?: string | null
+          purchase_order_id: string
+          received_by?: string | null
+          received_date?: string
+          store_id: string
+          supplier_id: string
+          tenant_id: string
+          warehouse_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          notes?: string | null
+          purchase_order_id?: string
+          received_by?: string | null
+          received_date?: string
+          store_id?: string
+          supplier_id?: string
+          tenant_id?: string
+          warehouse_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "goods_receipts_purchase_order_id_fkey"
+            columns: ["purchase_order_id"]
+            isOneToOne: false
+            referencedRelation: "purchase_orders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "goods_receipts_supplier_id_fkey"
+            columns: ["supplier_id"]
+            isOneToOne: false
+            referencedRelation: "suppliers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "goods_receipts_warehouse_id_fkey"
+            columns: ["warehouse_id"]
+            isOneToOne: false
+            referencedRelation: "warehouses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      inventory: {
+        Row: {
+          average_cost: number
+          created_at: string
+          id: string
+          last_movement_at: string | null
+          maximum_stock_level: number | null
+          minimum_stock_level: number
+          product_id: string
+          quantity_on_hand: number
+          quantity_reserved: number
+          store_id: string
+          tenant_id: string
+          updated_at: string
+          warehouse_id: string
+        }
+        Insert: {
+          average_cost?: number
+          created_at?: string
+          id?: string
+          last_movement_at?: string | null
+          maximum_stock_level?: number | null
+          minimum_stock_level?: number
+          product_id: string
+          quantity_on_hand?: number
+          quantity_reserved?: number
+          store_id: string
+          tenant_id: string
+          updated_at?: string
+          warehouse_id: string
+        }
+        Update: {
+          average_cost?: number
+          created_at?: string
+          id?: string
+          last_movement_at?: string | null
+          maximum_stock_level?: number | null
+          minimum_stock_level?: number
+          product_id?: string
+          quantity_on_hand?: number
+          quantity_reserved?: number
+          store_id?: string
+          tenant_id?: string
+          updated_at?: string
+          warehouse_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "inventory_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "inventory_warehouse_id_fkey"
+            columns: ["warehouse_id"]
+            isOneToOne: false
+            referencedRelation: "warehouses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      inventory_transactions: {
+        Row: {
+          after_quantity: number
+          before_quantity: number
+          created_at: string
+          id: string
+          movement_type: string
+          notes: string | null
+          product_id: string
+          quantity: number
+          reference_id: string | null
+          reference_type: string | null
+          store_id: string | null
+          tenant_id: string
+          type: string
+          unit_cost: number
+          warehouse_id: string
+        }
+        Insert: {
+          after_quantity?: number
+          before_quantity?: number
+          created_at?: string
+          id?: string
+          movement_type: string
+          notes?: string | null
+          product_id: string
+          quantity: number
+          reference_id?: string | null
+          reference_type?: string | null
+          store_id?: string | null
+          tenant_id: string
+          type?: string
+          unit_cost?: number
+          warehouse_id: string
+        }
+        Update: {
+          after_quantity?: number
+          before_quantity?: number
+          created_at?: string
+          id?: string
+          movement_type?: string
+          notes?: string | null
+          product_id?: string
+          quantity?: number
+          reference_id?: string | null
+          reference_type?: string | null
+          store_id?: string | null
+          tenant_id?: string
+          type?: string
+          unit_cost?: number
+          warehouse_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "inventory_transactions_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "inventory_transactions_warehouse_id_fkey"
+            columns: ["warehouse_id"]
+            isOneToOne: false
+            referencedRelation: "warehouses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_academic_years: {
+        Row: {
+          code: string
+          created_at: string
+          curriculum_id: string
+          ends_on: string
+          id: string
+          name: string
+          organization_id: string
+          starts_on: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          curriculum_id: string
+          ends_on: string
+          id?: string
+          name: string
+          organization_id: string
+          starts_on: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          curriculum_id?: string
+          ends_on?: string
+          id?: string
+          name?: string
+          organization_id?: string
+          starts_on?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "academic_year_curriculum_fk"
+            columns: ["curriculum_id"]
+            isOneToOne: false
+            referencedRelation: "learning_curricula"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "academic_year_org_fk"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_activity_events: {
+        Row: {
+          activity_type: string
+          assessment_id: string | null
+          assignment_id: string | null
+          content_item_id: string | null
+          id: string
+          metadata: Json
+          objective_id: string | null
+          occurred_at: string
+          organization_id: string | null
+          session_id: string | null
+          student_user_id: string
+          tenant_id: string
+        }
+        Insert: {
+          activity_type: string
+          assessment_id?: string | null
+          assignment_id?: string | null
+          content_item_id?: string | null
+          id?: string
+          metadata?: Json
+          objective_id?: string | null
+          occurred_at?: string
+          organization_id?: string | null
+          session_id?: string | null
+          student_user_id: string
+          tenant_id: string
+        }
+        Update: {
+          activity_type?: string
+          assessment_id?: string | null
+          assignment_id?: string | null
+          content_item_id?: string | null
+          id?: string
+          metadata?: Json
+          objective_id?: string | null
+          occurred_at?: string
+          organization_id?: string | null
+          session_id?: string | null
+          student_user_id?: string
+          tenant_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_activity_events_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: false
+            referencedRelation: "learning_assessments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_activity_events_assignment_id_fkey"
+            columns: ["assignment_id"]
+            isOneToOne: false
+            referencedRelation: "learning_assignments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_activity_events_content_item_id_fkey"
+            columns: ["content_item_id"]
+            isOneToOne: false
+            referencedRelation: "learning_content_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_activity_events_objective_id_fkey"
+            columns: ["objective_id"]
+            isOneToOne: false
+            referencedRelation: "learning_objectives"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_activity_events_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "learning_sessions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_activity_events_tenant_id_organization_id_fkey"
+            columns: ["tenant_id", "organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_activity_events_tenant_id_student_user_id_fkey"
+            columns: ["tenant_id", "student_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+        ]
+      }
+      learning_assessment_questions: {
+        Row: {
+          assessment_id: string
+          created_at: string
+          id: string
+          points: number
+          question_version_id: string
+          required: boolean
+          sequence_no: number
+        }
+        Insert: {
+          assessment_id: string
+          created_at?: string
+          id?: string
+          points?: number
+          question_version_id: string
+          required?: boolean
+          sequence_no: number
+        }
+        Update: {
+          assessment_id?: string
+          created_at?: string
+          id?: string
+          points?: number
+          question_version_id?: string
+          required?: boolean
+          sequence_no?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_assessment_questions_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: false
+            referencedRelation: "learning_assessments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_assessment_questions_question_version_id_fkey"
+            columns: ["question_version_id"]
+            isOneToOne: false
+            referencedRelation: "learning_question_versions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_assessment_results: {
+        Row: {
+          attempt_id: string
+          created_at: string
+          evaluated_at: string
+          id: string
+          max_score: number | null
+          organization_id: string | null
+          passed: boolean | null
+          percentage: number | null
+          score: number | null
+          student_user_id: string
+          summary: Json
+          updated_at: string
+        }
+        Insert: {
+          attempt_id: string
+          created_at?: string
+          evaluated_at?: string
+          id?: string
+          max_score?: number | null
+          organization_id?: string | null
+          passed?: boolean | null
+          percentage?: number | null
+          score?: number | null
+          student_user_id: string
+          summary?: Json
+          updated_at?: string
+        }
+        Update: {
+          attempt_id?: string
+          created_at?: string
+          evaluated_at?: string
+          id?: string
+          max_score?: number | null
+          organization_id?: string | null
+          passed?: boolean | null
+          percentage?: number | null
+          score?: number | null
+          student_user_id?: string
+          summary?: Json
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_assessment_results_attempt_id_fkey"
+            columns: ["attempt_id"]
+            isOneToOne: true
+            referencedRelation: "learning_attempts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_assessment_results_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_assessment_results_student_user_id_fkey"
+            columns: ["student_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_assessments: {
+        Row: {
+          assessment_type: string
+          code: string
+          created_at: string
+          created_by: string
+          curriculum_id: string | null
+          description: string | null
+          grade_level_id: string | null
+          id: string
+          language_code: string
+          organization_id: string | null
+          published_at: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: string
+          title: string
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          assessment_type: string
+          code: string
+          created_at?: string
+          created_by: string
+          curriculum_id?: string | null
+          description?: string | null
+          grade_level_id?: string | null
+          id?: string
+          language_code?: string
+          organization_id?: string | null
+          published_at?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          assessment_type?: string
+          code?: string
+          created_at?: string
+          created_by?: string
+          curriculum_id?: string | null
+          description?: string | null
+          grade_level_id?: string | null
+          id?: string
+          language_code?: string
+          organization_id?: string | null
+          published_at?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_assessments_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_assessments_curriculum_id_fkey"
+            columns: ["curriculum_id"]
+            isOneToOne: false
+            referencedRelation: "learning_curricula"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_assessments_grade_curriculum_fk"
+            columns: ["curriculum_id", "grade_level_id"]
+            isOneToOne: false
+            referencedRelation: "learning_grade_levels"
+            referencedColumns: ["curriculum_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_assessments_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_assessments_reviewed_by_fkey"
+            columns: ["reviewed_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_assessments_updated_by_fkey"
+            columns: ["updated_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_assignment_items: {
+        Row: {
+          assessment_id: string | null
+          assignment_id: string
+          content_item_id: string | null
+          created_at: string
+          id: string
+          item_type: string
+          organization_id: string
+          required: boolean
+          sequence_no: number
+        }
+        Insert: {
+          assessment_id?: string | null
+          assignment_id: string
+          content_item_id?: string | null
+          created_at?: string
+          id?: string
+          item_type: string
+          organization_id: string
+          required?: boolean
+          sequence_no: number
+        }
+        Update: {
+          assessment_id?: string | null
+          assignment_id?: string
+          content_item_id?: string | null
+          created_at?: string
+          id?: string
+          item_type?: string
+          organization_id?: string
+          required?: boolean
+          sequence_no?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_assignment_items_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: false
+            referencedRelation: "learning_assessments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_assignment_items_content_item_id_fkey"
+            columns: ["content_item_id"]
+            isOneToOne: false
+            referencedRelation: "learning_content_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_assignment_items_organization_id_assignment_id_fkey"
+            columns: ["organization_id", "assignment_id"]
+            isOneToOne: false
+            referencedRelation: "learning_assignments"
+            referencedColumns: ["organization_id", "id"]
+          },
+        ]
+      }
+      learning_assignment_progress: {
+        Row: {
+          assignment_id: string
+          assignment_target_id: string
+          completed_at: string | null
+          created_at: string
+          id: string
+          last_activity_at: string | null
+          organization_id: string
+          started_at: string | null
+          status: string
+          student_user_id: string
+          updated_at: string
+        }
+        Insert: {
+          assignment_id: string
+          assignment_target_id: string
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          last_activity_at?: string | null
+          organization_id: string
+          started_at?: string | null
+          status?: string
+          student_user_id: string
+          updated_at?: string
+        }
+        Update: {
+          assignment_id?: string
+          assignment_target_id?: string
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          last_activity_at?: string | null
+          organization_id?: string
+          started_at?: string | null
+          status?: string
+          student_user_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_assignment_progress_assignment_target_id_fkey"
+            columns: ["assignment_target_id"]
+            isOneToOne: false
+            referencedRelation: "learning_assignment_targets"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_assignment_progress_org_student_fk"
+            columns: ["organization_id", "student_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_assignment_progress_org_target_fk"
+            columns: ["organization_id", "assignment_target_id"]
+            isOneToOne: false
+            referencedRelation: "learning_assignment_targets"
+            referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_assignment_progress_organization_id_assignment_id_fkey"
+            columns: ["organization_id", "assignment_id"]
+            isOneToOne: false
+            referencedRelation: "learning_assignments"
+            referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_assignment_progress_student_user_id_fkey"
+            columns: ["student_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_assignment_targets: {
+        Row: {
+          assignment_id: string
+          class_group_id: string | null
+          created_at: string
+          due_at: string | null
+          id: string
+          organization_id: string
+          status: string
+          student_user_id: string | null
+          target_type: string
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          assignment_id: string
+          class_group_id?: string | null
+          created_at?: string
+          due_at?: string | null
+          id?: string
+          organization_id: string
+          status?: string
+          student_user_id?: string | null
+          target_type: string
+          tenant_id: string
+          updated_at?: string
+        }
+        Update: {
+          assignment_id?: string
+          class_group_id?: string | null
+          created_at?: string
+          due_at?: string | null
+          id?: string
+          organization_id?: string
+          status?: string
+          student_user_id?: string | null
+          target_type?: string
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_assignment_targets_class_group_id_fkey"
+            columns: ["class_group_id"]
+            isOneToOne: false
+            referencedRelation: "learning_class_groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_assignment_targets_org_class_fk"
+            columns: ["organization_id", "class_group_id"]
+            isOneToOne: false
+            referencedRelation: "learning_class_groups"
+            referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_assignment_targets_organization_id_assignment_id_fkey"
+            columns: ["organization_id", "assignment_id"]
+            isOneToOne: false
+            referencedRelation: "learning_assignments"
+            referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_assignment_targets_tenant_assignment_fk"
+            columns: ["tenant_id", "assignment_id"]
+            isOneToOne: false
+            referencedRelation: "learning_assignments"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_assignment_targets_tenant_student_fk"
+            columns: ["tenant_id", "student_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+        ]
+      }
+      learning_assignments: {
+        Row: {
+          available_from: string | null
+          class_subject_id: string | null
+          code: string
+          created_at: string
+          created_by: string
+          description: string | null
+          due_at: string | null
+          id: string
+          instructions: Json
+          max_attempts: number | null
+          organization_id: string
+          status: string
+          tenant_id: string
+          title: string
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          available_from?: string | null
+          class_subject_id?: string | null
+          code: string
+          created_at?: string
+          created_by: string
+          description?: string | null
+          due_at?: string | null
+          id?: string
+          instructions?: Json
+          max_attempts?: number | null
+          organization_id: string
+          status?: string
+          tenant_id: string
+          title: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          available_from?: string | null
+          class_subject_id?: string | null
+          code?: string
+          created_at?: string
+          created_by?: string
+          description?: string | null
+          due_at?: string | null
+          id?: string
+          instructions?: Json
+          max_attempts?: number | null
+          organization_id?: string
+          status?: string
+          tenant_id?: string
+          title?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_assignments_organization_id_class_subject_id_fkey"
+            columns: ["organization_id", "class_subject_id"]
+            isOneToOne: false
+            referencedRelation: "learning_class_subjects"
+            referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_assignments_tenant_id_created_by_fkey"
+            columns: ["tenant_id", "created_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_assignments_tenant_id_organization_id_fkey"
+            columns: ["tenant_id", "organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_assignments_tenant_id_updated_by_fkey"
+            columns: ["tenant_id", "updated_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+        ]
+      }
+      learning_attempt_answers: {
+        Row: {
+          answer: Json
+          assessment_question_id: string
+          attempt_id: string
+          awarded_points: number | null
+          created_at: string
+          evaluated_at: string | null
+          evaluation_status: string
+          feedback: Json | null
+          id: string
+          is_correct: boolean | null
+          updated_at: string
+        }
+        Insert: {
+          answer?: Json
+          assessment_question_id: string
+          attempt_id: string
+          awarded_points?: number | null
+          created_at?: string
+          evaluated_at?: string | null
+          evaluation_status?: string
+          feedback?: Json | null
+          id?: string
+          is_correct?: boolean | null
+          updated_at?: string
+        }
+        Update: {
+          answer?: Json
+          assessment_question_id?: string
+          attempt_id?: string
+          awarded_points?: number | null
+          created_at?: string
+          evaluated_at?: string | null
+          evaluation_status?: string
+          feedback?: Json | null
+          id?: string
+          is_correct?: boolean | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_attempt_answers_assessment_question_id_fkey"
+            columns: ["assessment_question_id"]
+            isOneToOne: false
+            referencedRelation: "learning_assessment_questions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_attempt_answers_attempt_id_fkey"
+            columns: ["attempt_id"]
+            isOneToOne: false
+            referencedRelation: "learning_attempts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_attempts: {
+        Row: {
+          assessment_id: string
+          attempt_number: number
+          created_at: string
+          id: string
+          max_score: number | null
+          organization_id: string | null
+          percentage: number | null
+          previous_attempt_id: string | null
+          score: number | null
+          started_at: string
+          status: string
+          student_user_id: string
+          submitted_at: string | null
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          assessment_id: string
+          attempt_number: number
+          created_at?: string
+          id?: string
+          max_score?: number | null
+          organization_id?: string | null
+          percentage?: number | null
+          previous_attempt_id?: string | null
+          score?: number | null
+          started_at?: string
+          status?: string
+          student_user_id: string
+          submitted_at?: string | null
+          tenant_id: string
+          updated_at?: string
+        }
+        Update: {
+          assessment_id?: string
+          attempt_number?: number
+          created_at?: string
+          id?: string
+          max_score?: number | null
+          organization_id?: string | null
+          percentage?: number | null
+          previous_attempt_id?: string | null
+          score?: number | null
+          started_at?: string
+          status?: string
+          student_user_id?: string
+          submitted_at?: string | null
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_attempts_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: false
+            referencedRelation: "learning_assessments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_attempts_previous_attempt_id_fkey"
+            columns: ["previous_attempt_id"]
+            isOneToOne: false
+            referencedRelation: "learning_attempts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_attempts_tenant_id_organization_id_fkey"
+            columns: ["tenant_id", "organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_attempts_tenant_id_student_user_id_fkey"
+            columns: ["tenant_id", "student_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+        ]
+      }
+      learning_class_groups: {
+        Row: {
+          academic_year_id: string
+          code: string
+          created_at: string
+          curriculum_id: string
+          grade_level_id: string
+          id: string
+          name: string
+          organization_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          academic_year_id: string
+          code: string
+          created_at?: string
+          curriculum_id: string
+          grade_level_id: string
+          id?: string
+          name: string
+          organization_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          academic_year_id?: string
+          code?: string
+          created_at?: string
+          curriculum_id?: string
+          grade_level_id?: string
+          id?: string
+          name?: string
+          organization_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "class_curriculum_fk"
+            columns: ["curriculum_id", "grade_level_id"]
+            isOneToOne: false
+            referencedRelation: "learning_grade_levels"
+            referencedColumns: ["curriculum_id", "id"]
+          },
+          {
+            foreignKeyName: "class_grade_fk"
+            columns: ["grade_level_id"]
+            isOneToOne: false
+            referencedRelation: "learning_grade_levels"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "class_year_curriculum_fk"
+            columns: ["academic_year_id", "curriculum_id"]
+            isOneToOne: false
+            referencedRelation: "learning_academic_years"
+            referencedColumns: ["id", "curriculum_id"]
+          },
+          {
+            foreignKeyName: "class_year_org_fk"
+            columns: ["organization_id", "academic_year_id"]
+            isOneToOne: false
+            referencedRelation: "learning_academic_years"
+            referencedColumns: ["organization_id", "id"]
+          },
+        ]
+      }
+      learning_class_memberships: {
+        Row: {
+          class_group_id: string
+          created_at: string
+          id: string
+          joined_at: string | null
+          membership_type: string
+          organization_id: string
+          status: string
+          tenant_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          class_group_id: string
+          created_at?: string
+          id?: string
+          joined_at?: string | null
+          membership_type: string
+          organization_id: string
+          status?: string
+          tenant_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          class_group_id?: string
+          created_at?: string
+          id?: string
+          joined_at?: string | null
+          membership_type?: string
+          organization_id?: string
+          status?: string
+          tenant_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_class_memberships_organization_id_class_group_id_fkey"
+            columns: ["organization_id", "class_group_id"]
+            isOneToOne: false
+            referencedRelation: "learning_class_groups"
+            referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_class_memberships_tenant_id_organization_id_fkey"
+            columns: ["tenant_id", "organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_class_memberships_tenant_id_user_id_fkey"
+            columns: ["tenant_id", "user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+        ]
+      }
+      learning_class_subjects: {
+        Row: {
+          class_group_id: string
+          created_at: string
+          id: string
+          organization_id: string
+          status: string
+          subject_id: string
+          updated_at: string
+        }
+        Insert: {
+          class_group_id: string
+          created_at?: string
+          id?: string
+          organization_id: string
+          status?: string
+          subject_id: string
+          updated_at?: string
+        }
+        Update: {
+          class_group_id?: string
+          created_at?: string
+          id?: string
+          organization_id?: string
+          status?: string
+          subject_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "class_subject_org_fk"
+            columns: ["organization_id", "class_group_id"]
+            isOneToOne: false
+            referencedRelation: "learning_class_groups"
+            referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_class_subjects_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "learning_subjects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_content_items: {
+        Row: {
+          code: string
+          content_type: string
+          created_at: string
+          created_by: string
+          id: string
+          language_code: string
+          metadata: Json
+          organization_id: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: string
+          title: string
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          code: string
+          content_type: string
+          created_at?: string
+          created_by: string
+          id?: string
+          language_code?: string
+          metadata?: Json
+          organization_id?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          code?: string
+          content_type?: string
+          created_at?: string
+          created_by?: string
+          id?: string
+          language_code?: string
+          metadata?: Json
+          organization_id?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_content_items_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_content_items_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_content_items_reviewed_by_fkey"
+            columns: ["reviewed_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_content_items_updated_by_fkey"
+            columns: ["updated_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_content_objectives: {
+        Row: {
+          content_item_id: string
+          created_at: string
+          objective_id: string
+          sequence_no: number
+        }
+        Insert: {
+          content_item_id: string
+          created_at?: string
+          objective_id: string
+          sequence_no?: number
+        }
+        Update: {
+          content_item_id?: string
+          created_at?: string
+          objective_id?: string
+          sequence_no?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_content_objectives_content_item_id_fkey"
+            columns: ["content_item_id"]
+            isOneToOne: false
+            referencedRelation: "learning_content_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_content_objectives_objective_id_fkey"
+            columns: ["objective_id"]
+            isOneToOne: false
+            referencedRelation: "learning_objectives"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_content_versions: {
+        Row: {
+          body: Json
+          change_summary: string | null
+          content_item_id: string
+          created_at: string
+          created_by: string
+          id: string
+          published_at: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: string
+          updated_at: string
+          version_no: number
+        }
+        Insert: {
+          body?: Json
+          change_summary?: string | null
+          content_item_id: string
+          created_at?: string
+          created_by: string
+          id?: string
+          published_at?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+          updated_at?: string
+          version_no: number
+        }
+        Update: {
+          body?: Json
+          change_summary?: string | null
+          content_item_id?: string
+          created_at?: string
+          created_by?: string
+          id?: string
+          published_at?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+          updated_at?: string
+          version_no?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_content_versions_content_item_id_fkey"
+            columns: ["content_item_id"]
+            isOneToOne: false
+            referencedRelation: "learning_content_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_content_versions_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_content_versions_reviewed_by_fkey"
+            columns: ["reviewed_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_countries: {
+        Row: {
+          code: string
+          created_at: string
+          id: string
+          name: string
+          native_name: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          id?: string
+          name: string
+          native_name?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          id?: string
+          name?: string
+          native_name?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      learning_curricula: {
+        Row: {
+          code: string
+          created_at: string
+          description: string | null
+          education_system_id: string
+          id: string
+          name: string
+          status: string
+          updated_at: string
+          version: string | null
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          description?: string | null
+          education_system_id: string
+          id?: string
+          name: string
+          status?: string
+          updated_at?: string
+          version?: string | null
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          description?: string | null
+          education_system_id?: string
+          id?: string
+          name?: string
+          status?: string
+          updated_at?: string
+          version?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_curricula_education_system_id_fkey"
+            columns: ["education_system_id"]
+            isOneToOne: false
+            referencedRelation: "learning_education_systems"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_curriculum_subjects: {
+        Row: {
+          code: string | null
+          created_at: string
+          curriculum_id: string
+          id: string
+          name: string | null
+          status: string
+          subject_id: string
+          updated_at: string
+        }
+        Insert: {
+          code?: string | null
+          created_at?: string
+          curriculum_id: string
+          id?: string
+          name?: string | null
+          status?: string
+          subject_id: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string | null
+          created_at?: string
+          curriculum_id?: string
+          id?: string
+          name?: string | null
+          status?: string
+          subject_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "curriculum_subject_curriculum_fk"
+            columns: ["curriculum_id"]
+            isOneToOne: false
+            referencedRelation: "learning_curricula"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_curriculum_subjects_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "learning_subjects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_education_systems: {
+        Row: {
+          code: string
+          country_id: string
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          country_id: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          country_id?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_education_systems_country_id_fkey"
+            columns: ["country_id"]
+            isOneToOne: false
+            referencedRelation: "learning_countries"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_grade_levels: {
+        Row: {
+          code: string
+          created_at: string
+          curriculum_id: string
+          description: string | null
+          id: string
+          name: string
+          sequence_no: number
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          curriculum_id: string
+          description?: string | null
+          id?: string
+          name: string
+          sequence_no: number
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          curriculum_id?: string
+          description?: string | null
+          id?: string
+          name?: string
+          sequence_no?: number
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "grade_curriculum_fk"
+            columns: ["curriculum_id"]
+            isOneToOne: false
+            referencedRelation: "learning_curricula"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_mastery_events: {
+        Row: {
+          attempt_id: string | null
+          created_at: string
+          evidence: Json
+          id: string
+          new_score: number
+          objective_id: string
+          organization_id: string | null
+          previous_score: number | null
+          student_user_id: string
+          tenant_id: string
+        }
+        Insert: {
+          attempt_id?: string | null
+          created_at?: string
+          evidence?: Json
+          id?: string
+          new_score: number
+          objective_id: string
+          organization_id?: string | null
+          previous_score?: number | null
+          student_user_id: string
+          tenant_id: string
+        }
+        Update: {
+          attempt_id?: string | null
+          created_at?: string
+          evidence?: Json
+          id?: string
+          new_score?: number
+          objective_id?: string
+          organization_id?: string | null
+          previous_score?: number | null
+          student_user_id?: string
+          tenant_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_mastery_events_attempt_id_fkey"
+            columns: ["attempt_id"]
+            isOneToOne: false
+            referencedRelation: "learning_attempts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_mastery_events_objective_id_fkey"
+            columns: ["objective_id"]
+            isOneToOne: false
+            referencedRelation: "learning_objectives"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_mastery_events_tenant_id_organization_id_fkey"
+            columns: ["tenant_id", "organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_mastery_events_tenant_id_student_user_id_fkey"
+            columns: ["tenant_id", "student_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+        ]
+      }
+      learning_objective_alignments: {
+        Row: {
+          created_at: string
+          curriculum_id: string
+          grade_level_id: string
+          id: string
+          notes: string | null
+          objective_id: string
+          required: boolean
+          sequence_no: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          curriculum_id: string
+          grade_level_id: string
+          id?: string
+          notes?: string | null
+          objective_id: string
+          required?: boolean
+          sequence_no?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          curriculum_id?: string
+          grade_level_id?: string
+          id?: string
+          notes?: string | null
+          objective_id?: string
+          required?: boolean
+          sequence_no?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_objective_alignments_curriculum_id_fkey"
+            columns: ["curriculum_id"]
+            isOneToOne: false
+            referencedRelation: "learning_curricula"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_objective_alignments_curriculum_id_grade_level_id_fkey"
+            columns: ["curriculum_id", "grade_level_id"]
+            isOneToOne: false
+            referencedRelation: "learning_grade_levels"
+            referencedColumns: ["curriculum_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_objective_alignments_objective_id_fkey"
+            columns: ["objective_id"]
+            isOneToOne: false
+            referencedRelation: "learning_objectives"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_objective_prerequisites: {
+        Row: {
+          created_at: string
+          objective_id: string
+          prerequisite_objective_id: string
+        }
+        Insert: {
+          created_at?: string
+          objective_id: string
+          prerequisite_objective_id: string
+        }
+        Update: {
+          created_at?: string
+          objective_id?: string
+          prerequisite_objective_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_objective_prerequisites_objective_id_fkey"
+            columns: ["objective_id"]
+            isOneToOne: false
+            referencedRelation: "learning_objectives"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_objective_prerequisites_prerequisite_objective_id_fkey"
+            columns: ["prerequisite_objective_id"]
+            isOneToOne: false
+            referencedRelation: "learning_objectives"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_objectives: {
+        Row: {
+          code: string
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          sequence_no: number
+          status: string
+          topic_id: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          sequence_no?: number
+          status?: string
+          topic_id: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          sequence_no?: number
+          status?: string
+          topic_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_objectives_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "learning_topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_question_evaluation_keys: {
+        Row: {
+          created_at: string
+          evaluation_key: Json
+          question_version_id: string
+          scoring_rules: Json
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          evaluation_key?: Json
+          question_version_id: string
+          scoring_rules?: Json
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          evaluation_key?: Json
+          question_version_id?: string
+          scoring_rules?: Json
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_question_evaluation_keys_question_version_id_fkey"
+            columns: ["question_version_id"]
+            isOneToOne: true
+            referencedRelation: "learning_question_versions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_question_objectives: {
+        Row: {
+          created_at: string
+          objective_id: string
+          question_version_id: string
+          weight: number
+        }
+        Insert: {
+          created_at?: string
+          objective_id: string
+          question_version_id: string
+          weight?: number
+        }
+        Update: {
+          created_at?: string
+          objective_id?: string
+          question_version_id?: string
+          weight?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_question_objectives_objective_id_fkey"
+            columns: ["objective_id"]
+            isOneToOne: false
+            referencedRelation: "learning_objectives"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_question_objectives_question_version_id_fkey"
+            columns: ["question_version_id"]
+            isOneToOne: false
+            referencedRelation: "learning_question_versions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_question_versions: {
+        Row: {
+          configuration: Json
+          created_at: string
+          created_by: string
+          explanation: Json | null
+          id: string
+          prompt: Json
+          published_at: string | null
+          question_id: string
+          reviewed_at: string | null
+          reviewed_by: string | null
+          updated_at: string
+          version_no: number
+        }
+        Insert: {
+          configuration?: Json
+          created_at?: string
+          created_by: string
+          explanation?: Json | null
+          id?: string
+          prompt?: Json
+          published_at?: string | null
+          question_id: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          updated_at?: string
+          version_no: number
+        }
+        Update: {
+          configuration?: Json
+          created_at?: string
+          created_by?: string
+          explanation?: Json | null
+          id?: string
+          prompt?: Json
+          published_at?: string | null
+          question_id?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          updated_at?: string
+          version_no?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_question_versions_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_question_versions_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "learning_questions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_question_versions_reviewed_by_fkey"
+            columns: ["reviewed_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_questions: {
+        Row: {
+          code: string
+          created_at: string
+          created_by: string
+          id: string
+          language_code: string
+          organization_id: string | null
+          question_type: string
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: string
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          created_by: string
+          id?: string
+          language_code?: string
+          organization_id?: string | null
+          question_type: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          created_by?: string
+          id?: string
+          language_code?: string
+          organization_id?: string | null
+          question_type?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_questions_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_questions_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_questions_reviewed_by_fkey"
+            columns: ["reviewed_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_questions_updated_by_fkey"
+            columns: ["updated_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_recommendations: {
+        Row: {
+          assessment_id: string | null
+          completed_at: string | null
+          content_item_id: string | null
+          created_at: string
+          expires_at: string | null
+          generated_at: string
+          id: string
+          objective_id: string | null
+          organization_id: string | null
+          priority: number
+          reason: Json
+          recommendation_type: string
+          status: string
+          student_user_id: string
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          assessment_id?: string | null
+          completed_at?: string | null
+          content_item_id?: string | null
+          created_at?: string
+          expires_at?: string | null
+          generated_at?: string
+          id?: string
+          objective_id?: string | null
+          organization_id?: string | null
+          priority?: number
+          reason?: Json
+          recommendation_type: string
+          status?: string
+          student_user_id: string
+          tenant_id: string
+          updated_at?: string
+        }
+        Update: {
+          assessment_id?: string | null
+          completed_at?: string | null
+          content_item_id?: string | null
+          created_at?: string
+          expires_at?: string | null
+          generated_at?: string
+          id?: string
+          objective_id?: string | null
+          organization_id?: string | null
+          priority?: number
+          reason?: Json
+          recommendation_type?: string
+          status?: string
+          student_user_id?: string
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_recommendations_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: false
+            referencedRelation: "learning_assessments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_recommendations_content_item_id_fkey"
+            columns: ["content_item_id"]
+            isOneToOne: false
+            referencedRelation: "learning_content_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_recommendations_objective_id_fkey"
+            columns: ["objective_id"]
+            isOneToOne: false
+            referencedRelation: "learning_objectives"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_recommendations_tenant_id_organization_id_fkey"
+            columns: ["tenant_id", "organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_recommendations_tenant_id_student_user_id_fkey"
+            columns: ["tenant_id", "student_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+        ]
+      }
+      learning_sessions: {
+        Row: {
+          context_id: string | null
+          context_type: string
+          created_at: string
+          ended_at: string | null
+          id: string
+          metadata: Json
+          organization_id: string | null
+          started_at: string
+          student_user_id: string
+          tenant_id: string
+        }
+        Insert: {
+          context_id?: string | null
+          context_type: string
+          created_at?: string
+          ended_at?: string | null
+          id?: string
+          metadata?: Json
+          organization_id?: string | null
+          started_at?: string
+          student_user_id: string
+          tenant_id: string
+        }
+        Update: {
+          context_id?: string | null
+          context_type?: string
+          created_at?: string
+          ended_at?: string | null
+          id?: string
+          metadata?: Json
+          organization_id?: string | null
+          started_at?: string
+          student_user_id?: string
+          tenant_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_sessions_tenant_id_organization_id_fkey"
+            columns: ["tenant_id", "organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_sessions_tenant_id_student_user_id_fkey"
+            columns: ["tenant_id", "student_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+        ]
+      }
+      learning_skills: {
+        Row: {
+          code: string
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          status: string
+          subject_id: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          status?: string
+          subject_id: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          status?: string
+          subject_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_skills_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "learning_subjects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_student_mastery: {
+        Row: {
+          attempts_count: number
+          confidence_score: number
+          correct_count: number
+          created_at: string
+          id: string
+          last_assessed_at: string | null
+          mastery_score: number
+          next_review_at: string | null
+          objective_id: string
+          organization_id: string | null
+          state: string
+          student_user_id: string
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          attempts_count?: number
+          confidence_score?: number
+          correct_count?: number
+          created_at?: string
+          id?: string
+          last_assessed_at?: string | null
+          mastery_score?: number
+          next_review_at?: string | null
+          objective_id: string
+          organization_id?: string | null
+          state?: string
+          student_user_id: string
+          tenant_id: string
+          updated_at?: string
+        }
+        Update: {
+          attempts_count?: number
+          confidence_score?: number
+          correct_count?: number
+          created_at?: string
+          id?: string
+          last_assessed_at?: string | null
+          mastery_score?: number
+          next_review_at?: string | null
+          objective_id?: string
+          organization_id?: string | null
+          state?: string
+          student_user_id?: string
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_student_mastery_objective_id_fkey"
+            columns: ["objective_id"]
+            isOneToOne: false
+            referencedRelation: "learning_objectives"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_student_mastery_tenant_id_organization_id_fkey"
+            columns: ["tenant_id", "organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_student_mastery_tenant_id_student_user_id_fkey"
+            columns: ["tenant_id", "student_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+        ]
+      }
+      learning_subjects: {
+        Row: {
+          code: string
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      learning_terms: {
+        Row: {
+          academic_year_id: string
+          code: string
+          created_at: string
+          ends_on: string
+          id: string
+          name: string
+          organization_id: string
+          sequence_no: number
+          starts_on: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          academic_year_id: string
+          code: string
+          created_at?: string
+          ends_on: string
+          id?: string
+          name: string
+          organization_id: string
+          sequence_no: number
+          starts_on: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          academic_year_id?: string
+          code?: string
+          created_at?: string
+          ends_on?: string
+          id?: string
+          name?: string
+          organization_id?: string
+          sequence_no?: number
+          starts_on?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "term_org_year_fk"
+            columns: ["organization_id", "academic_year_id"]
+            isOneToOne: false
+            referencedRelation: "learning_academic_years"
+            referencedColumns: ["organization_id", "id"]
+          },
+        ]
+      }
+      learning_topics: {
+        Row: {
+          code: string
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          sequence_no: number
+          skill_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          sequence_no?: number
+          skill_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          sequence_no?: number
+          skill_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_topics_skill_id_fkey"
+            columns: ["skill_id"]
+            isOneToOne: false
+            referencedRelation: "learning_skills"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      organization_memberships: {
+        Row: {
+          created_at: string
+          id: string
+          organization_id: string
+          role_id: string | null
+          status: string
+          tenant_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          organization_id: string
+          role_id?: string | null
+          status?: string
+          tenant_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          organization_id?: string
+          role_id?: string | null
+          status?: string
+          tenant_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "organization_memberships_org_fk"
+            columns: ["tenant_id", "organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "organization_memberships_role_fk"
+            columns: ["tenant_id", "role_id"]
+            isOneToOne: false
+            referencedRelation: "roles"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "organization_memberships_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "organization_memberships_user_fk"
+            columns: ["tenant_id", "user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+        ]
+      }
+      organizations: {
+        Row: {
+          code: string
+          country: string
+          created_at: string
+          currency: string
+          id: string
+          name: string
+          status: string
+          tenant_id: string
+          timezone: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          country: string
+          created_at?: string
+          currency: string
+          id?: string
+          name: string
+          status?: string
+          tenant_id: string
+          timezone: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          country?: string
+          created_at?: string
+          currency?: string
+          id?: string
+          name?: string
+          status?: string
+          tenant_id?: string
+          timezone?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "organizations_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      payments: {
+        Row: {
+          amount: number
+          created_at: string
+          id: string
+          method: string
+          provider: string | null
+          reference: string | null
+          sales_order_id: string
+          status: string
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          amount: number
+          created_at: string
+          id: string
+          method: string
+          provider?: string | null
+          reference?: string | null
+          sales_order_id: string
+          status?: string
+          tenant_id: string
+          updated_at: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          id?: string
+          method?: string
+          provider?: string | null
+          reference?: string | null
+          sales_order_id?: string
+          status?: string
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_sales_order_id_fkey"
+            columns: ["sales_order_id"]
+            isOneToOne: false
+            referencedRelation: "sales_orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      permissions: {
+        Row: {
+          code: string
+          created_at: string | null
+          description: string | null
+          id: string
+        }
+        Insert: {
+          code: string
+          created_at?: string | null
+          description?: string | null
+          id?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string | null
+          description?: string | null
+          id?: string
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          barcode: string | null
+          brand_id: string | null
+          category_id: string | null
+          cost_price: number
+          created_at: string
+          currency: string
+          description: string | null
+          id: string
+          image_url: string | null
+          name: string
+          product_type: string
+          selling_price: number
+          sku: string
+          status: string
+          store_id: string | null
+          tax_id: string | null
+          tenant_id: string
+          track_inventory: boolean
+          unit_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          barcode?: string | null
+          brand_id?: string | null
+          category_id?: string | null
+          cost_price?: number
+          created_at?: string
+          currency?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          name: string
+          product_type?: string
+          selling_price?: number
+          sku: string
+          status?: string
+          store_id?: string | null
+          tax_id?: string | null
+          tenant_id: string
+          track_inventory?: boolean
+          unit_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          barcode?: string | null
+          brand_id?: string | null
+          category_id?: string | null
+          cost_price?: number
+          created_at?: string
+          currency?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          name?: string
+          product_type?: string
+          selling_price?: number
+          sku?: string
+          status?: string
+          store_id?: string | null
+          tax_id?: string | null
+          tenant_id?: string
+          track_inventory?: boolean
+          unit_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "products_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      purchase_order_items: {
+        Row: {
+          created_at: string
+          id: string
+          line_total: number
+          notes: string | null
+          product_id: string
+          purchase_order_id: string
+          quantity: number
+          received_quantity: number
+          tax_amount: number
+          tax_rate: number
+          tenant_id: string
+          unit_cost: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          line_total?: number
+          notes?: string | null
+          product_id: string
+          purchase_order_id: string
+          quantity?: number
+          received_quantity?: number
+          tax_amount?: number
+          tax_rate?: number
+          tenant_id: string
+          unit_cost?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          line_total?: number
+          notes?: string | null
+          product_id?: string
+          purchase_order_id?: string
+          quantity?: number
+          received_quantity?: number
+          tax_amount?: number
+          tax_rate?: number
+          tenant_id?: string
+          unit_cost?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "purchase_order_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "purchase_order_items_purchase_order_id_fkey"
+            columns: ["purchase_order_id"]
+            isOneToOne: false
+            referencedRelation: "purchase_orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      purchase_orders: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          currency: string
+          expected_delivery_date: string | null
+          id: string
+          notes: string | null
+          order_date: string
+          order_number: string
+          status: string
+          store_id: string | null
+          subtotal: number
+          supplier_id: string
+          tax_amount: number
+          tenant_id: string
+          total_amount: number
+          updated_at: string
+          warehouse_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          expected_delivery_date?: string | null
+          id?: string
+          notes?: string | null
+          order_date?: string
+          order_number: string
+          status?: string
+          store_id?: string | null
+          subtotal?: number
+          supplier_id: string
+          tax_amount?: number
+          tenant_id: string
+          total_amount?: number
+          updated_at?: string
+          warehouse_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          expected_delivery_date?: string | null
+          id?: string
+          notes?: string | null
+          order_date?: string
+          order_number?: string
+          status?: string
+          store_id?: string | null
+          subtotal?: number
+          supplier_id?: string
+          tax_amount?: number
+          tenant_id?: string
+          total_amount?: number
+          updated_at?: string
+          warehouse_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "purchase_orders_supplier_id_fkey"
+            columns: ["supplier_id"]
+            isOneToOne: false
+            referencedRelation: "suppliers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      purchase_return_items: {
+        Row: {
+          created_at: string
+          id: string
+          line_total: number
+          product_id: string
+          purchase_order_item_id: string
+          purchase_return_id: string
+          quantity: number
+          reason: string | null
+          tenant_id: string
+          unit_cost: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          line_total?: number
+          product_id: string
+          purchase_order_item_id: string
+          purchase_return_id: string
+          quantity: number
+          reason?: string | null
+          tenant_id: string
+          unit_cost?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          line_total?: number
+          product_id?: string
+          purchase_order_item_id?: string
+          purchase_return_id?: string
+          quantity?: number
+          reason?: string | null
+          tenant_id?: string
+          unit_cost?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "purchase_return_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "purchase_return_items_purchase_order_item_id_fkey"
+            columns: ["purchase_order_item_id"]
+            isOneToOne: false
+            referencedRelation: "purchase_order_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "purchase_return_items_purchase_return_id_fkey"
+            columns: ["purchase_return_id"]
+            isOneToOne: false
+            referencedRelation: "purchase_returns"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      purchase_returns: {
+        Row: {
+          created_at: string
+          id: string
+          purchase_order_id: string
+          reason: string | null
+          return_number: string
+          status: string
+          store_id: string
+          supplier_id: string
+          tenant_id: string
+          total_amount: number
+          updated_at: string
+          warehouse_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          purchase_order_id: string
+          reason?: string | null
+          return_number: string
+          status?: string
+          store_id: string
+          supplier_id: string
+          tenant_id: string
+          total_amount?: number
+          updated_at?: string
+          warehouse_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          purchase_order_id?: string
+          reason?: string | null
+          return_number?: string
+          status?: string
+          store_id?: string
+          supplier_id?: string
+          tenant_id?: string
+          total_amount?: number
+          updated_at?: string
+          warehouse_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "purchase_returns_purchase_order_id_fkey"
+            columns: ["purchase_order_id"]
+            isOneToOne: false
+            referencedRelation: "purchase_orders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "purchase_returns_supplier_id_fkey"
+            columns: ["supplier_id"]
+            isOneToOne: false
+            referencedRelation: "suppliers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "purchase_returns_warehouse_id_fkey"
+            columns: ["warehouse_id"]
+            isOneToOne: false
+            referencedRelation: "warehouses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      role_permissions: {
+        Row: {
+          id: string
+          permission_id: string
+          role_id: string
+        }
+        Insert: {
+          id?: string
+          permission_id: string
+          role_id: string
+        }
+        Update: {
+          id?: string
+          permission_id?: string
+          role_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "role_permissions_permission_id_fkey"
+            columns: ["permission_id"]
+            isOneToOne: false
+            referencedRelation: "permissions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "role_permissions_role_id_fkey"
+            columns: ["role_id"]
+            isOneToOne: false
+            referencedRelation: "roles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      roles: {
+        Row: {
+          created_at: string | null
+          id: string
+          name: string
+          tenant_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          name: string
+          tenant_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          name?: string
+          tenant_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "roles_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      sales_order_items: {
+        Row: {
+          created_at: string
+          discount_amount: number
+          id: string
+          line_total: number
+          product_id: string
+          quantity: number
+          sales_order_id: string
+          tax_rate: number
+          tenant_id: string
+          unit_price: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          discount_amount?: number
+          id?: string
+          line_total?: number
+          product_id: string
+          quantity: number
+          sales_order_id: string
+          tax_rate?: number
+          tenant_id: string
+          unit_price?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          discount_amount?: number
+          id?: string
+          line_total?: number
+          product_id?: string
+          quantity?: number
+          sales_order_id?: string
+          tax_rate?: number
+          tenant_id?: string
+          unit_price?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sales_order_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "sales_order_items_sales_order_id_fkey"
+            columns: ["sales_order_id"]
+            isOneToOne: false
+            referencedRelation: "sales_orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      sales_orders: {
+        Row: {
+          created_at: string
+          customer_id: string | null
+          discount_amount: number
+          id: string
+          notes: string | null
+          order_number: string
+          payment_status: string
+          status: string
+          store_id: string | null
+          subtotal: number
+          tax_amount: number
+          tenant_id: string
+          total_amount: number
+          updated_at: string
+          warehouse_id: string
+        }
+        Insert: {
+          created_at?: string
+          customer_id?: string | null
+          discount_amount?: number
+          id?: string
+          notes?: string | null
+          order_number: string
+          payment_status?: string
+          status?: string
+          store_id?: string | null
+          subtotal?: number
+          tax_amount?: number
+          tenant_id: string
+          total_amount?: number
+          updated_at?: string
+          warehouse_id: string
+        }
+        Update: {
+          created_at?: string
+          customer_id?: string | null
+          discount_amount?: number
+          id?: string
+          notes?: string | null
+          order_number?: string
+          payment_status?: string
+          status?: string
+          store_id?: string | null
+          subtotal?: number
+          tax_amount?: number
+          tenant_id?: string
+          total_amount?: number
+          updated_at?: string
+          warehouse_id?: string
+        }
+        Relationships: []
+      }
+      supplier_credit_ledger: {
+        Row: {
+          created_at: string
+          credit: number
+          debit: number
+          description: string | null
+          entry_type: string
+          id: string
+          reference_id: string | null
+          reference_number: string | null
+          reference_type: string | null
+          store_id: string
+          supplier_id: string
+          tenant_id: string
+        }
+        Insert: {
+          created_at?: string
+          credit?: number
+          debit?: number
+          description?: string | null
+          entry_type: string
+          id?: string
+          reference_id?: string | null
+          reference_number?: string | null
+          reference_type?: string | null
+          store_id: string
+          supplier_id: string
+          tenant_id: string
+        }
+        Update: {
+          created_at?: string
+          credit?: number
+          debit?: number
+          description?: string | null
+          entry_type?: string
+          id?: string
+          reference_id?: string | null
+          reference_number?: string | null
+          reference_type?: string | null
+          store_id?: string
+          supplier_id?: string
+          tenant_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "supplier_credit_ledger_supplier_id_fkey"
+            columns: ["supplier_id"]
+            isOneToOne: false
+            referencedRelation: "suppliers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      supplier_payments: {
+        Row: {
+          amount: number
+          created_at: string
+          id: string
+          method: string
+          notes: string | null
+          paid_at: string
+          payment_number: string
+          reference: string | null
+          status: string
+          store_id: string
+          supplier_id: string
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          id?: string
+          method: string
+          notes?: string | null
+          paid_at?: string
+          payment_number: string
+          reference?: string | null
+          status?: string
+          store_id: string
+          supplier_id: string
+          tenant_id: string
+          updated_at?: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          id?: string
+          method?: string
+          notes?: string | null
+          paid_at?: string
+          payment_number?: string
+          reference?: string | null
+          status?: string
+          store_id?: string
+          supplier_id?: string
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "supplier_payments_supplier_id_fkey"
+            columns: ["supplier_id"]
+            isOneToOne: false
+            referencedRelation: "suppliers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      suppliers: {
+        Row: {
+          address: string | null
+          contact_person: string | null
+          created_at: string
+          email: string | null
+          id: string
+          name: string
+          payment_terms: string | null
+          phone: string | null
+          status: string
+          store_id: string
+          tax_id: string | null
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          contact_person?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          name: string
+          payment_terms?: string | null
+          phone?: string | null
+          status?: string
+          store_id: string
+          tax_id?: string | null
+          tenant_id: string
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          contact_person?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          name?: string
+          payment_terms?: string | null
+          phone?: string | null
+          status?: string
+          store_id?: string
+          tax_id?: string | null
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      tenants: {
+        Row: {
+          country: string
+          created_at: string | null
+          currency: string
+          id: string
+          name: string
+        }
+        Insert: {
+          country: string
+          created_at?: string | null
+          currency: string
+          id?: string
+          name: string
+        }
+        Update: {
+          country?: string
+          created_at?: string | null
+          currency?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      units: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          status: string
+          store_id: string
+          symbol: string
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          status?: string
+          store_id: string
+          symbol: string
+          tenant_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          status?: string
+          store_id?: string
+          symbol?: string
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role_id: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role_id: string
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_roles_role_id_fkey"
+            columns: ["role_id"]
+            isOneToOne: false
+            referencedRelation: "roles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_roles_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      users: {
+        Row: {
+          auth_user_id: string | null
+          created_at: string | null
+          email: string
+          id: string
+          name: string
+          tenant_id: string
+        }
+        Insert: {
+          auth_user_id?: string | null
+          created_at?: string | null
+          email: string
+          id?: string
+          name: string
+          tenant_id: string
+        }
+        Update: {
+          auth_user_id?: string | null
+          created_at?: string | null
+          email?: string
+          id?: string
+          name?: string
+          tenant_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "users_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      warehouses: {
+        Row: {
+          address: string
+          city: string
+          code: string
+          country: string
+          created_at: string
+          description: string | null
+          id: string
+          is_active: boolean
+          is_default: boolean
+          manager_name: string | null
+          name: string
+          phone: string | null
+          postal_code: string
+          province: string
+          store_id: string
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          address?: string
+          city?: string
+          code: string
+          country?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          is_default?: boolean
+          manager_name?: string | null
+          name: string
+          phone?: string | null
+          postal_code?: string
+          province?: string
+          store_id: string
+          tenant_id: string
+          updated_at?: string
+        }
+        Update: {
+          address?: string
+          city?: string
+          code?: string
+          country?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          is_default?: boolean
+          manager_name?: string | null
+          name?: string
+          phone?: string | null
+          postal_code?: string
+          province?: string
+          store_id?: string
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      get_current_user_permissions: {
+        Args: never
+        Returns: {
+          permission_code: string
+        }[]
+      }
+      get_current_user_tenant_id: { Args: never; Returns: string }
+      has_permission: { Args: { permission_code: string }; Returns: boolean }
+      is_organization_member: {
+        Args: { target_organization_id: string }
+        Returns: boolean
+      }
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
+}
+
+type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">
+
+type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, "public">]
+
+export type Tables<
+  DefaultSchemaTableNameOrOptions extends
+    | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+        DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
+    : never) = never,
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+      DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+      Row: infer R
+    }
+    ? R
+    : never
+  : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])
+    ? (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
+        Row: infer R
+      }
+      ? R
+      : never
+    : never
+
+export type TablesInsert<
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    : never) = never,
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Insert: infer I
+    }
+    ? I
+    : never
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
+        Insert: infer I
+      }
+      ? I
+      : never
+    : never
+
+export type TablesUpdate<
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    : never) = never,
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Update: infer U
+    }
+    ? U
+    : never
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
+        Update: infer U
+      }
+      ? U
+      : never
+    : never
+
+export type Enums<
+  DefaultSchemaEnumNameOrOptions extends
+    | keyof DefaultSchema["Enums"]
+    | { schema: keyof DatabaseWithoutInternals },
+  EnumName extends (DefaultSchemaEnumNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
+    : never) = never,
+> = DefaultSchemaEnumNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
+  : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
+    ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
+    : never
+
+export type CompositeTypes<
+  PublicCompositeTypeNameOrOptions extends
+    | keyof DefaultSchema["CompositeTypes"]
+    | { schema: keyof DatabaseWithoutInternals },
+  CompositeTypeName extends (PublicCompositeTypeNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
+    : never) = never,
+> = PublicCompositeTypeNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
+  : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
+    ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
+    : never
+
+export const Constants = {
+  public: {
+    Enums: {},
+  },
+} as const
