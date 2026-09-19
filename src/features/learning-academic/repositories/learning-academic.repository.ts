@@ -1,6 +1,7 @@
 import type { Database } from "@/core/database/database.types";
 import { supabase } from "@/core/infrastructure/supabase/client";
 import type {
+  AcademicCatalogStatus, CurriculumStatus, AcademicPeriodStatus, ClassGroupStatus,
   LearningAcademicYear,
   LearningClassGroup,
   LearningClassSubject,
@@ -39,7 +40,7 @@ export interface LearningAcademicRepository {
 
 const mapCountry = (r: CountryRow): LearningCountry => ({
   id: r.id, code: r.code, name: r.name, nativeName: r.native_name ?? null,
-  status: r.status, createdAt: r.created_at, updatedAt: r.updated_at,
+  status: r.status as AcademicCatalogStatus, createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
 const mapSystem = (r: SystemRow): LearningEducationSystem => ({
@@ -50,7 +51,7 @@ const mapSystem = (r: SystemRow): LearningEducationSystem => ({
 
 const mapCurriculum = (r: CurriculumRow): LearningCurriculum => ({
   id: r.id, educationSystemId: r.education_system_id, code: r.code, name: r.name,
-  version: r.version ?? null, description: r.description ?? null, status: r.status,
+  version: r.version ?? null, description: r.description ?? null, status: r.status as AcademicCatalogStatus,
   createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
@@ -80,18 +81,18 @@ const mapYear = (r: AcademicYearRow): LearningAcademicYear => ({
 const mapTerm = (r: TermRow): LearningTerm => ({
   id: r.id, organizationId: r.organization_id, academicYearId: r.academic_year_id,
   name: r.name, code: r.code, sequenceNo: r.sequence_no, startsOn: r.starts_on,
-  endsOn: r.ends_on, status: r.status, createdAt: r.created_at, updatedAt: r.updated_at,
+  endsOn: r.ends_on, status: r.status as AcademicPeriodStatus, createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
 const mapClassGroup = (r: ClassGroupRow): LearningClassGroup => ({
   id: r.id, organizationId: r.organization_id, academicYearId: r.academic_year_id,
   curriculumId: r.curriculum_id, gradeLevelId: r.grade_level_id, code: r.code,
-  name: r.name, status: r.status, createdAt: r.created_at, updatedAt: r.updated_at,
+  name: r.name, status: r.status as ClassGroupStatus, createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
 const mapClassSubject = (r: ClassSubjectRow): LearningClassSubject => ({
   id: r.id, organizationId: r.organization_id, classGroupId: r.class_group_id,
-  subjectId: r.subject_id, status: r.status, createdAt: r.created_at, updatedAt: r.updated_at,
+  subjectId: r.subject_id, status: r.status as ClassGroupStatus, createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
 export const learningAcademicRepository: LearningAcademicRepository = {
