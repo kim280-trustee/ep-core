@@ -27,7 +27,7 @@ interface InventoryTransactionDatabaseRow {
   before_quantity: number | string;
   after_quantity: number | string;
   reference_id: string | null;
-  note: string | null;
+  notes: string | null;
   created_at: string;
 }
 
@@ -65,7 +65,7 @@ function fromDatabaseRow(
       row.reference_id ?? undefined,
 
     note:
-      row.note ?? undefined,
+      row.notes ?? undefined,
 
     createdAt:
       row.created_at,
