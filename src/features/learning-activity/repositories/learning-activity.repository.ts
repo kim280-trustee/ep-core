@@ -23,6 +23,11 @@ export const learningActivityRepository = {
       context_type:input.contextType,context_id:input.contextId??null,metadata:(input.metadata??{}) as Json,
     }).select("*").single(); if(error)throw error; return mapS(data);
   },
+  async startForStudent(studentUserId:string,contextType:LearningSessionInput["contextType"],contextId?:string) {
+    const {data:user,error:userError}=await supabase.from("users").select("tenant_id").eq("id",studentUserId).single();
+    if(userError) throw userError;
+    return this.startSession({tenantId:user.tenant_id,studentUserId,contextType,contextId});
+  },
   async endSession(id:string) {
     const {data,error}=await supabase.from("learning_sessions").update({ended_at:new Date().toISOString()}).eq("id",id).is("ended_at",null).select("*").single();
     if(error)throw error; return mapS(data);
