@@ -3,19 +3,12 @@
  */
 
 import { supabase } from "@/core/infrastructure/supabase/client";
+import type { Database } from "@/core/database/database.types";
 import type { OrganizationMembership } from "../types/organization-membership.types";
 import type { OrganizationMembershipRepository } from "./organization-membership.repository";
 
-type MembershipRow = {
-  id: string;
-  tenant_id: string;
-  organization_id: string;
-  user_id: string;
-  role_id: string | null;
-  status: string;
-  created_at: string;
-  updated_at: string;
-};
+type MembershipRow = Database["public"]["Tables"]["organization_memberships"]["Row"];
+type MembershipUpdate = Database["public"]["Tables"]["organization_memberships"]["Update"];
 
 function fromRow(row: MembershipRow): OrganizationMembership {
   return {
@@ -81,12 +74,13 @@ export class SupabaseOrganizationMembershipRepository implements OrganizationMem
   }
 
   async update(id: string, updates: Partial<OrganizationMembership>): Promise<OrganizationMembership | undefined> {
-    const updateData: Record<string, unknown> = {};
+    const updateData: MembershipUpdate = {
+      updated_at: new Date().toISOString(),
+    };
     if (updates.organizationId !== undefined) updateData.organization_id = updates.organizationId;
     if (updates.userId !== undefined) updateData.user_id = updates.userId;
     if (updates.roleId !== undefined) updateData.role_id = updates.roleId;
     if (updates.status !== undefined) updateData.status = updates.status;
-    updateData.updated_at = new Date().toISOString();
 
     const { data, error } = await supabase
       .from("organization_memberships")
