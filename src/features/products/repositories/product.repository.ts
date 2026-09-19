@@ -266,7 +266,7 @@ function toDatabaseUpdate(
   input: UpdateProductInput,
 ): Database["public"]["Tables"]["products"]["Update"] {
   const updateData:
-    Record<string, unknown> = {};
+    Database["public"]["Tables"]["products"]["Update"] = {};
 
   if (input.storeId !== undefined) {
     updateData.store_id =
