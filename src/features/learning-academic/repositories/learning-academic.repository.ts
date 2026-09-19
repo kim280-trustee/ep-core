@@ -57,7 +57,7 @@ const mapCurriculum = (r: CurriculumRow): LearningCurriculum => ({
 
 const mapSubject = (r: SubjectRow): LearningSubject => ({
   id: r.id, code: r.code, name: r.name, description: r.description ?? null,
-  status: r.status, createdAt: r.created_at, updatedAt: r.updated_at,
+  status: r.status as AcademicCatalogStatus, createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
 const mapCurriculumSubject = (r: CurriculumSubjectRow): LearningCurriculumSubject => ({
