@@ -4,4 +4,5 @@ export const learningMasteryService = {
   listMasteryEvents: (studentUserId:string) => learningMasteryRepository.listMasteryEvents(studentUserId),
   listRecommendations: (studentUserId:string) => learningMasteryRepository.listRecommendations(studentUserId),
   completeRecommendation: (id:string) => learningMasteryRepository.completeRecommendation(id),
+  dismissRecommendation: (id:string) => learningMasteryRepository.dismissRecommendation(id),
 };
