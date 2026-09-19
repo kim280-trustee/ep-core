@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState, type ReactNode } from "react";
 import { ArrowLeft, BookOpen, ClipboardCheck, FileQuestion, Plus, Send } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningContentService } from "@/features/learning-content";
 import { learningAssessmentService } from "@/features/learning-assessment";
@@ -26,6 +26,9 @@ export default function TeacherAuthoringPage() {
   const [assessmentType,setAssessmentType]=useState<"quiz"|"test"|"practice">("quiz");
   const [selectedQuestionId,setSelectedQuestionId]=useState("");
   const [assignmentId,setAssignmentId]=useState("");
+  const [selectedContentId,setSelectedContentId]=useState("");
+  const [selectedAssessmentId,setSelectedAssessmentId]=useState("");
+  const [searchParams]=useSearchParams();
   const [message,setMessage]=useState<string|null>(null);
 
   const classes=useQuery({queryKey:["learning","teacher-classes",user?.id],queryFn:()=>learningTeacherService.listTeacherClasses(user!.id),enabled:Boolean(user?.id)});
@@ -34,6 +37,7 @@ export default function TeacherAuthoringPage() {
   const content=useQuery({queryKey:["learning","authoring","content",organizationId],queryFn:()=>learningContentService.listContent(organizationId),enabled:Boolean(organizationId)});
   const questions=useQuery({queryKey:["learning","authoring","questions",organizationId],queryFn:()=>learningAssessmentService.listQuestions(organizationId),enabled:Boolean(organizationId)});
   const assessments=useQuery({queryKey:["learning","authoring","assessments",organizationId],queryFn:()=>learningAssessmentService.listAssessments(organizationId),enabled:Boolean(organizationId)});
+  const assignmentItems=useQuery({queryKey:["learning","authoring","assignment-items",assignmentId],queryFn:()=>learningAssignmentsService.listItems(assignmentId),enabled:Boolean(assignmentId)});
   const skills=useQuery({queryKey:["learning","authoring","skills"],queryFn:()=>learningContentService.listSkills(),enabled:Boolean(user)});
   const topics=useQuery({queryKey:["learning","authoring","topics"],queryFn:()=>learningContentService.listTopics(),enabled:Boolean(user)});
   const objectives=useQuery({queryKey:["learning","authoring","objectives"],queryFn:()=>learningContentService.listObjectives(),enabled:Boolean(user)});
@@ -44,9 +48,11 @@ export default function TeacherAuthoringPage() {
   const publishQuestion=useMutation({mutationFn:(id:string)=>learningAssessmentService.publishQuestion(id,user!.id),onSuccess:()=>{setMessage("Question published.");void qc.invalidateQueries({queryKey:["learning","authoring","questions"]});},onError:(e:Error)=>setMessage(e.message)});
   const createAssessment=useMutation({mutationFn:async()=>{if(!user||!organizationId)throw new Error("Select a teacher class first.");if(!assessmentCode.trim()||!assessmentTitle.trim()||!selectedQuestionId)throw new Error("Assessment code, title, and question are required.");const a=await learningAssessmentService.createAssessment({organizationId,code:assessmentCode.trim().toUpperCase(),title:assessmentTitle.trim(),assessmentType,languageCode:"en",createdBy:user.id});const versions=await learningAssessmentService.listQuestionVersions(selectedQuestionId);const version=versions[0];if(!version)throw new Error("Selected question has no version.");await learningAssessmentService.addAssessmentQuestion({assessmentId:a.id,questionVersionId:version.id,sequenceNo:1,points:1,required:true});return a;},onSuccess:()=>{setMessage("Assessment saved as draft.");void qc.invalidateQueries({queryKey:["learning","authoring","assessments"]});setAssessmentCode("");setAssessmentTitle("");},onError:(e:Error)=>setMessage(e.message)});
   const publishAssessment=useMutation({mutationFn:(id:string)=>learningAssessmentService.publishAssessment(id,user!.id),onSuccess:()=>{setMessage("Assessment published.");void qc.invalidateQueries({queryKey:["learning","authoring","assessments"]});},onError:(e:Error)=>setMessage(e.message)});
+  const addAssignmentItem=useMutation({mutationFn:async(input:{itemType:"content"|"assessment";id:string})=>{if(!assignmentId||!organizationId)throw new Error("Create/select an assignment first.");return learningAssignmentsService.addItem({organizationId,assignmentId,itemType:input.itemType,contentItemId:input.itemType==="content"?input.id:null,assessmentId:input.itemType==="assessment"?input.id:null,sequenceNo:(assignmentItems.data?.length??0)+1,required:true});},onSuccess:()=>{setMessage("Learning item attached to assignment.");setSelectedContentId("");setSelectedAssessmentId("");void assignmentItems.refetch();},onError:(e:Error)=>setMessage(e.message)});
   const publishAssignment=useMutation({mutationFn:async()=>{if(!assignmentId)throw new Error("Enter an assignment ID.");return learningAssignmentsService.publishAssignment(assignmentId);},onSuccess:()=>setMessage("Assignment published after validating its learning items."),onError:(e:Error)=>setMessage(e.message)});
 
   if(!user)return <Panel title="Teacher authoring"><p>Sign in to continue.</p></Panel>;
+  if(!assignmentId && searchParams.get("assignmentId")) setAssignmentId(searchParams.get("assignmentId")!);
   if(classes.isPending)return <div className="h-64 animate-pulse rounded-2xl bg-slate-200"/>;
   if(classes.isError)return <Panel title="Teacher authoring"><p>Teacher classes could not be loaded.</p></Panel>;
 
@@ -67,8 +73,11 @@ export default function TeacherAuthoringPage() {
         <div className="space-y-3"><Field label="Code"><input value={assessmentCode} onChange={e=>setAssessmentCode(e.target.value)} className="input" placeholder="ENG-M1-QZ-001"/></Field><Field label="Title"><input value={assessmentTitle} onChange={e=>setAssessmentTitle(e.target.value)} className="input" placeholder="Present simple quiz"/></Field><Field label="Type"><select value={assessmentType} onChange={e=>setAssessmentType(e.target.value as typeof assessmentType)} className="input"><option value="practice">Practice</option><option value="quiz">Quiz</option><option value="test">Test</option></select></Field><Field label="Question"><select value={selectedQuestionId} onChange={e=>setSelectedQuestionId(e.target.value)} className="input"><option value="">Select question</option>{questions.data?.map(q=><option key={q.id} value={q.id}>{q.code} — {q.status}</option>)}</select></Field><button disabled={!organizationId||createAssessment.isPending} onClick={()=>createAssessment.mutate()} className="btn"><Plus size={16}/>Create draft assessment</button></div>
         <div className="mt-6 space-y-2">{assessments.data?.slice(0,8).map(a=><div key={a.id} className="flex items-center justify-between rounded-xl border border-slate-100 p-3"><div><p className="font-medium">{a.title}</p><p className="text-xs text-slate-500">{a.code} · {a.status}</p></div>{a.status!=="published"&&<button onClick={()=>publishAssessment.mutate(a.id)} className="text-xs font-semibold text-slate-700">Publish</button>}</div>)}</div>
       </Panel>
-      <Panel title="Assignment publishing" icon={<Send size={18}/>}>
-        <p className="text-sm text-slate-600">Assignments must contain at least one content or assessment item, and every attached item must be published before the assignment can be published.</p><Field label="Assignment ID"><input value={assignmentId} onChange={e=>setAssignmentId(e.target.value)} className="input" placeholder="Assignment UUID"/></Field><button disabled={!assignmentId||publishAssignment.isPending} onClick={()=>publishAssignment.mutate()} className="btn"><Send size={16}/>Validate & publish assignment</button>
+      <Panel title="Assignment builder" icon={<Send size={18}/>}>
+        <p className="text-sm text-slate-600">Attach published content or assessments to the draft assignment. Publishing is blocked until at least one valid item is attached.</p><Field label="Assignment ID"><input value={assignmentId} onChange={e=>setAssignmentId(e.target.value)} className="input" placeholder="Assignment UUID"/></Field>
+        <div className="grid gap-3 sm:grid-cols-2"><Field label="Content"><select value={selectedContentId} onChange={e=>setSelectedContentId(e.target.value)} className="input"><option value="">Select content</option>{content.data?.filter(x=>x.status==="published").map(x=><option key={x.id} value={x.id}>{x.title}</option>)}</select></Field><button disabled={!selectedContentId||addAssignmentItem.isPending} onClick={()=>addAssignmentItem.mutate({itemType:"content",id:selectedContentId})} className="btn self-end"><Plus size={16}/>Attach content</button><Field label="Assessment"><select value={selectedAssessmentId} onChange={e=>setSelectedAssessmentId(e.target.value)} className="input"><option value="">Select assessment</option>{assessments.data?.filter(x=>x.status==="published").map(x=><option key={x.id} value={x.id}>{x.title}</option>)}</select></Field><button disabled={!selectedAssessmentId||addAssignmentItem.isPending} onClick={()=>addAssignmentItem.mutate({itemType:"assessment",id:selectedAssessmentId})} className="btn self-end"><Plus size={16}/>Attach assessment</button></div>
+        <div className="mt-4 space-y-2">{assignmentItems.data?.map(i=><div key={i.id} className="rounded-xl bg-slate-50 p-3 text-sm">{i.itemType} · sequence {i.sequenceNo}</div>)}</div>
+        <button disabled={!assignmentId||publishAssignment.isPending} onClick={()=>publishAssignment.mutate()} className="btn mt-4"><Send size={16}/>Validate & publish assignment</button>
       </Panel>
     </div>
     <p className="text-xs text-slate-400">The academic catalog currently contains {skills.data?.length??0} skills, {topics.data?.length??0} topics, and {objectives.data?.length??0} learning objectives.</p>
