@@ -45,4 +45,8 @@ export const learningMasteryRepository = {
     const {data,error}=await supabase.from("learning_recommendations").update({status:"completed",completed_at:new Date().toISOString()}).eq("id",id).select("*").single();
     if(error) throw error; return mapRecommendation(data);
   },
+  async dismissRecommendation(id:string) {
+    const {data,error}=await supabase.from("learning_recommendations").update({status:"dismissed"}).eq("id",id).select("*").single();
+    if(error) throw error; return mapRecommendation(data);
+  },
 };
