@@ -61,7 +61,6 @@ export default function CreateTeacherAssignmentPage() {
   });
 
   if (!user) return <div className="rounded-2xl border border-slate-200 bg-white p-6">Sign in to continue.</div>;
-  if (user.role !== "teacher" && user.role !== "admin" && user.role !== "owner") return <div className="rounded-2xl border border-slate-200 bg-white p-6">Your account does not have access to this workspace.</div>;
   if (classesQuery.isPending) return <div className="h-64 animate-pulse rounded-2xl bg-slate-200" />;
   if (classesQuery.isError) return <div className="rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800">Your teacher classes could not be loaded.</div>;
 
