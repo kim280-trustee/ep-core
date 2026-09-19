@@ -75,7 +75,7 @@ implements AuthRepository {
       currency: data.currency,
 
       createdAt:
-        data.created_at,
+        data.created_at ?? new Date().toISOString(),
 
     };
 
@@ -155,7 +155,7 @@ implements AuthRepository {
         "STAFF",
 
       createdAt:
-        data.created_at,
+        data.created_at ?? new Date().toISOString(),
 
     };
 
@@ -225,7 +225,7 @@ implements AuthRepository {
         "STAFF",
 
       createdAt:
-        data.created_at,
+        data.created_at ?? new Date().toISOString(),
 
     };
 
