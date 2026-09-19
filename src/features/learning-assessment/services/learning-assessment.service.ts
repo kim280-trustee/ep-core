@@ -1,23 +1,14 @@
 import { learningAssessmentRepository } from "../repositories/learning-assessment.repository";
-import type {
-  LearningAssessmentInsert, LearningAttemptAnswerInput, LearningQuestionInsert,
-} from "../types/learning-assessment.types";
-
-export const learningAssessmentService = {
-  listQuestions: (organizationId?: string) => learningAssessmentRepository.listQuestions(organizationId),
-  listQuestionVersions: (questionId: string) => learningAssessmentRepository.listQuestionVersions(questionId),
-  listQuestionObjectives: (questionVersionId: string) => learningAssessmentRepository.listQuestionObjectives(questionVersionId),
-  listAssessments: (organizationId?: string) => learningAssessmentRepository.listAssessments(organizationId),
-  listAssessmentQuestions: (assessmentId: string) => learningAssessmentRepository.listAssessmentQuestions(assessmentId),
-  listAttempts: (studentUserId: string) => learningAssessmentRepository.listAttempts(studentUserId),
-  listAttemptAnswers: (attemptId: string) => learningAssessmentRepository.listAttemptAnswers(attemptId),
-  listResults: (studentUserId: string) => learningAssessmentRepository.listResults(studentUserId),
-  createQuestion: (input: LearningQuestionInsert & { createdBy: string }) => learningAssessmentRepository.createQuestion(input),
-  createAssessment: (input: LearningAssessmentInsert & { createdBy: string }) => learningAssessmentRepository.createAssessment(input),
-  createAttempt: (input: {
-    tenantId: string; organizationId: string | null; assessmentId: string; studentUserId: string;
-    attemptNumber: number; previousAttemptId?: string | null;
-  }) => learningAssessmentRepository.createAttempt(input),
-  saveAnswer: (input: LearningAttemptAnswerInput) => learningAssessmentRepository.saveAnswer(input),
-  submitAttempt: (attemptId: string) => learningAssessmentRepository.submitAttempt(attemptId),
+import type { LearningAssessmentInsert,LearningAttemptAnswerInput,LearningQuestionInsert } from "../types/learning-assessment.types";
+export const learningAssessmentService={
+ listQuestions:(org?:string)=>learningAssessmentRepository.listQuestions(org),listQuestionVersions:(id:string)=>learningAssessmentRepository.listQuestionVersions(id),listQuestionObjectives:(id:string)=>learningAssessmentRepository.listQuestionObjectives(id),listAssessments:(org?:string)=>learningAssessmentRepository.listAssessments(org),listAssessmentQuestions:(id:string)=>learningAssessmentRepository.listAssessmentQuestions(id),listAttempts:(id:string)=>learningAssessmentRepository.listAttempts(id),listAttemptAnswers:(id:string)=>learningAssessmentRepository.listAttemptAnswers(id),listResults:(id:string)=>learningAssessmentRepository.listResults(id),
+ createQuestion:(input:LearningQuestionInsert&{createdBy:string})=>learningAssessmentRepository.createQuestion(input),
+ createQuestionVersion:(input:Parameters<typeof learningAssessmentRepository.createQuestionVersion>[0])=>learningAssessmentRepository.createQuestionVersion(input),
+ addQuestionObjective:(input:Parameters<typeof learningAssessmentRepository.addQuestionObjective>[0])=>learningAssessmentRepository.addQuestionObjective(input),
+ createAssessment:(input:LearningAssessmentInsert&{createdBy:string})=>learningAssessmentRepository.createAssessment(input),
+ addAssessmentQuestion:(input:Parameters<typeof learningAssessmentRepository.addAssessmentQuestion>[0])=>learningAssessmentRepository.addAssessmentQuestion(input),
+ updateQuestionStatus:(id:string,status:Parameters<typeof learningAssessmentRepository.updateQuestionStatus>[1],reviewerId?:string)=>learningAssessmentRepository.updateQuestionStatus(id,status,reviewerId),
+ updateAssessmentStatus:(id:string,status:Parameters<typeof learningAssessmentRepository.updateAssessmentStatus>[1],reviewerId?:string)=>learningAssessmentRepository.updateAssessmentStatus(id,status,reviewerId),
+ createAttempt:(input:Parameters<typeof learningAssessmentRepository.createAttempt>[0])=>learningAssessmentRepository.createAttempt(input),
+ saveAnswer:(input:LearningAttemptAnswerInput)=>learningAssessmentRepository.saveAnswer(input),submitAttempt:(id:string)=>learningAssessmentRepository.submitAttempt(id)
 };
