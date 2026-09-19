@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import type { ReactNode } from "react";
 import { ArrowLeft, CheckCircle2, Clock3, Users } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
@@ -47,6 +48,6 @@ export default function TeacherClassPage() {
   );
 }
 
-function Stat({ icon, label, value }: { icon: React.ReactNode; label: string; value: number }) {
+function Stat({ icon, label, value }: { icon: ReactNode; label: string; value: number }) {
   return <div className="rounded-2xl border border-slate-200 bg-white p-5"><div className="flex items-center gap-2 text-slate-500">{icon}<span className="text-sm">{label}</span></div><p className="mt-2 text-2xl font-bold text-slate-900">{value}</p></div>;
 }
