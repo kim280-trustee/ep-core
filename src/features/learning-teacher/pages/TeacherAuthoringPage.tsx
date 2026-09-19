@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { ArrowLeft, BookOpen, ClipboardCheck, FileQuestion, Plus, Send } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
@@ -52,7 +52,7 @@ export default function TeacherAuthoringPage() {
   const publishAssignment=useMutation({mutationFn:async()=>{if(!assignmentId)throw new Error("Enter an assignment ID.");return learningAssignmentsService.publishAssignment(assignmentId);},onSuccess:()=>setMessage("Assignment published after validating its learning items."),onError:(e:Error)=>setMessage(e.message)});
 
   if(!user)return <Panel title="Teacher authoring"><p>Sign in to continue.</p></Panel>;
-  if(!assignmentId && searchParams.get("assignmentId")) setAssignmentId(searchParams.get("assignmentId")!);
+  useEffect(()=>{const id=searchParams.get("assignmentId");if(id)setAssignmentId(id);},[searchParams]);
   if(classes.isPending)return <div className="h-64 animate-pulse rounded-2xl bg-slate-200"/>;
   if(classes.isError)return <Panel title="Teacher authoring"><p>Teacher classes could not be loaded.</p></Panel>;
 
