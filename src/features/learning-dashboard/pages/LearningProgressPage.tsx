@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import type { ReactNode } from "react";
 import { AlertCircle, Target, TrendingUp } from "lucide-react";
 import { useAuth } from "@/core/auth";
 import { learningMasteryService } from "@/features/learning-mastery";
@@ -56,7 +57,7 @@ export default function LearningProgressPage() {
   );
 }
 
-function Metric({ label, value, icon }: { label: string; value: string; icon: React.ReactNode }) {
+function Metric({ label, value, icon }: { label: string; value: string; icon: ReactNode }) {
   return <div className="rounded-2xl border border-slate-200 bg-white p-5"><div className="flex items-center gap-2 text-slate-500">{icon}<span className="text-sm font-medium">{label}</span></div><p className="mt-3 text-2xl font-bold text-slate-900">{value}</p></div>;
 }
 function ErrorState({ onRetry }: { onRetry: () => void }) {
