@@ -120,7 +120,7 @@ implements RegisterOwnerRepository {
         data.id,
 
       authUserId:
-        data.auth_user_id,
+        data.auth_user_id ?? user.authUserId,
 
       tenantId:
         data.tenant_id,
