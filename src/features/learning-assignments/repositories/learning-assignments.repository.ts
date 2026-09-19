@@ -20,9 +20,9 @@ export const learningAssignmentsRepository = {
   },
   async getStudentAssignment(assignmentId:string,studentUserId:string) {
     const [assignments,items,progress] = await Promise.all([
-      this.listStudentAssignments(),
-      this.listItems(assignmentId),
-      this.listProgress(studentUserId),
+      learningAssignmentsRepository.listStudentAssignments(),
+      learningAssignmentsRepository.listItems(assignmentId),
+      learningAssignmentsRepository.listProgress(studentUserId),
     ]);
     const assignment=assignments.find((item)=>item.id===assignmentId);
     if(!assignment) throw new Error("Assignment is not available to this student.");
@@ -33,7 +33,7 @@ export const learningAssignmentsRepository = {
     if(targetError) throw targetError;
     const target=(targets??[]).find((item)=>item.student_user_id===studentUserId) ?? (targets??[]).find((item)=>item.class_group_id!==null);
     if(!target) throw new Error("No active assignment target was found for this student.");
-    return this.ensureProgress({
+    return learningAssignmentsRepository.ensureProgress({
       organizationId:target.organization_id,
       assignmentId,
       assignmentTargetId:target.id,
