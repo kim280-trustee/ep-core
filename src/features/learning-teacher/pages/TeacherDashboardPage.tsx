@@ -14,9 +14,6 @@ export default function TeacherDashboardPage() {
   });
 
   if (!user) return <Empty text="Sign in to access the teacher workspace." />;
-  if (user.role !== "teacher" && user.role !== "admin" && user.role !== "owner") {
-    return <Empty text="Your account does not have access to the teacher workspace." />;
-  }
   if (query.isPending) return <div className="h-64 animate-pulse rounded-2xl bg-slate-200" />;
   if (query.isError) {
     return (
