@@ -3,7 +3,7 @@ import { supabase } from "@/core/infrastructure/supabase/client";
 import type {
   LearningContentItem, LearningContentObjective, LearningContentVersion,
   LearningObjective, LearningObjectiveAlignment, LearningObjectivePrerequisite,
-  LearningSkill, LearningTopic,
+  LearningSkill, LearningTopic, LearningKnowledgeStatus,
 } from "../types/learning-content.types";
 
 type SkillRow = Database["public"]["Tables"]["learning_skills"]["Row"];
@@ -32,11 +32,11 @@ const mapSkill = (r: SkillRow): LearningSkill => ({
 });
 const mapTopic = (r: TopicRow): LearningTopic => ({
   id: r.id, skillId: r.skill_id, code: r.code, name: r.name, description: r.description,
-  sequenceNo: r.sequence_no, status: r.status, createdAt: r.created_at, updatedAt: r.updated_at,
+  sequenceNo: r.sequence_no, status: r.status as LearningKnowledgeStatus, createdAt: r.created_at, updatedAt: r.updated_at,
 });
 const mapObjective = (r: ObjectiveRow): LearningObjective => ({
   id: r.id, topicId: r.topic_id, code: r.code, name: r.name, description: r.description,
-  sequenceNo: r.sequence_no, status: r.status, createdAt: r.created_at, updatedAt: r.updated_at,
+  sequenceNo: r.sequence_no, status: r.status as LearningKnowledgeStatus, createdAt: r.created_at, updatedAt: r.updated_at,
 });
 const mapPrerequisite = (r: PrerequisiteRow): LearningObjectivePrerequisite => ({
   objectiveId: r.objective_id, prerequisiteObjectiveId: r.prerequisite_objective_id, createdAt: r.created_at,
