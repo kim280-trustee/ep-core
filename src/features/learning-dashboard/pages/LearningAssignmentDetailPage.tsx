@@ -78,7 +78,7 @@ export default function LearningAssignmentDetailPage() {
       <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">Learning items</h2>
         <div className="mt-4 divide-y divide-slate-100">
-          {items.length ? items.map((item, index) => <div key={item.id} className="flex items-center gap-3 py-4 first:pt-0"><Circle size={15} className="shrink-0 text-slate-400" /><div><p className="font-medium text-slate-800">Item {index + 1}: {item.itemType === "assessment" ? "Assessment" : "Learning content"}</p><p className="mt-1 text-xs text-slate-500">{item.required ? "Required" : "Optional"} activity</p></div></div>) : <p className="text-sm text-slate-500">This assignment has no learning items yet.</p>}
+          {items.length ? items.map((item, index) => <div key={item.id} className="flex items-center gap-3 py-4 first:pt-0"><Circle size={15} className="shrink-0 text-slate-400" /><div className="min-w-0 flex-1"><p className="font-medium text-slate-800">Item {index + 1}: {item.itemType === "assessment" ? "Assessment" : "Learning content"}</p><p className="mt-1 text-xs text-slate-500">{item.required ? "Required" : "Optional"} activity</p></div>{item.itemType === "assessment" && item.assessmentId && <Link to={`/learning/assessments/${item.assessmentId}?assignmentId=${id}`} className="shrink-0 rounded-lg bg-slate-900 px-3 py-2 text-xs font-semibold text-white">Open</Link>}</div>) : <p className="text-sm text-slate-500">This assignment has no learning items yet.</p>}
         </div>
       </section>
     </div>
