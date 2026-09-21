@@ -1,6 +1,7 @@
 import { learningAssessmentRepository } from "../repositories/learning-assessment.repository";
 import type { LearningAssessmentInsert,LearningAttemptAnswerInput,LearningQuestionInsert } from "../types/learning-assessment.types";
 export const learningAssessmentService={
+ getAssessment:(id:string)=>learningAssessmentRepository.getAssessment(id),getQuestion:(id:string)=>learningAssessmentRepository.getQuestion(id),getQuestionVersion:(id:string)=>learningAssessmentRepository.getQuestionVersion(id),
  listQuestions:(org?:string)=>learningAssessmentRepository.listQuestions(org),listQuestionVersions:(id:string)=>learningAssessmentRepository.listQuestionVersions(id),listQuestionObjectives:(id:string)=>learningAssessmentRepository.listQuestionObjectives(id),listAssessments:(org?:string)=>learningAssessmentRepository.listAssessments(org),listAssessmentQuestions:(id:string)=>learningAssessmentRepository.listAssessmentQuestions(id),listAttempts:(id:string)=>learningAssessmentRepository.listAttempts(id),listAttemptAnswers:(id:string)=>learningAssessmentRepository.listAttemptAnswers(id),listResults:(id:string)=>learningAssessmentRepository.listResults(id),
  createQuestion:(input:LearningQuestionInsert&{createdBy:string})=>learningAssessmentRepository.createQuestion(input),
  createQuestionVersion:(input:Parameters<typeof learningAssessmentRepository.createQuestionVersion>[0])=>learningAssessmentRepository.createQuestionVersion(input),
