@@ -3684,6 +3684,10 @@ export type Database = {
         Args: { target_organization_id: string }
         Returns: boolean
       }
+      submit_learning_attempt: {
+        Args: { p_attempt_id: string }
+        Returns: Json
+      }
     }
     Enums: {
       [_ in never]: never
