@@ -4,11 +4,13 @@ import LearningAssignmentsPage from "../pages/LearningAssignmentsPage";
 import LearningAssignmentDetailPage from "../pages/LearningAssignmentDetailPage";
 import LearningProgressPage from "../pages/LearningProgressPage";
 import LearningRecommendationsPage from "../pages/LearningRecommendationsPage";
+import LearningAssessmentPage from "../pages/LearningAssessmentPage";
 
 export const learningDashboardRoutes: RouteObject[] = [
   { path: "learning", element: <LearningDashboardPage /> },
   { path: "learning/assignments", element: <LearningAssignmentsPage /> },
   { path: "learning/assignments/:assignmentId", element: <LearningAssignmentDetailPage /> },
+  { path: "learning/assessments/:assessmentId", element: <LearningAssessmentPage /> },
   { path: "learning/progress", element: <LearningProgressPage /> },
   { path: "learning/recommendations", element: <LearningRecommendationsPage /> },
 ];
