@@ -5,6 +5,7 @@ import { Link, useSearchParams, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningAssignmentsService } from "@/features/learning-assignments";
 import { learningAssessmentService } from "@/features/learning-assessment";
+import { learningActivityService } from "@/features/learning-activity";
 
 type Option = { id: string; text: string };
 type QuestionView = {
@@ -39,6 +40,7 @@ export default function LearningAssessmentPage() {
   const assignmentId = searchParams.get("assignmentId") ?? "";
   const queryClient = useQueryClient();
   const [attemptId, setAttemptId] = useState<string | null>(null);
+  const [sessionId, setSessionId] = useState<string | null>(null);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [message, setMessage] = useState<string | null>(null);
 
@@ -111,6 +113,17 @@ export default function LearningAssessmentPage() {
     onSuccess: async (attempt) => {
       setAttemptId(attempt.id);
       setMessage(null);
+      const session = await learningActivityService.startForStudent(user.id, "assessment", assessmentId);
+      setSessionId(session.id);
+      await learningActivityService.logEvent({
+        tenantId: session.tenantId,
+        organizationId: session.organizationId,
+        studentUserId: user.id,
+        sessionId: session.id,
+        activityType: "assessment_started",
+        assessmentId,
+        assignmentId: assignmentId || null,
+      });
       const existingAnswers = await learningAssessmentService.listAttemptAnswers(attempt.id);
       const restored: Record<string, string> = {};
       existingAnswers.forEach((answer) => {
@@ -142,9 +155,49 @@ export default function LearningAssessmentPage() {
     },
     onSuccess: async (attempt) => {
       setMessage(attempt.status === "evaluated" ? "Assessment submitted and evaluated." : "Assessment submitted for evaluation.");
+
+      if (sessionId) {
+        const session = await learningActivityService.listSessions(user.id, 50);
+        const currentSession = session.find((item) => item.id === sessionId);
+        if (currentSession) {
+          await learningActivityService.logEvent({
+            tenantId: currentSession.tenantId,
+            organizationId: currentSession.organizationId,
+            studentUserId: user.id,
+            sessionId,
+            activityType: "assessment_submitted",
+            assessmentId,
+            assignmentId: assignmentId || null,
+          });
+          if (!currentSession.endedAt) await learningActivityService.endSession(sessionId);
+        }
+      }
+
+      if (assignmentId && attempt.status === "evaluated") {
+        const assignment = await learningAssignmentsService.getStudentAssignment(assignmentId, user.id);
+        const requiredItems = assignment.items.filter((item) => item.required);
+        const requiredAssessments = requiredItems.filter((item) => item.itemType === "assessment" && item.assessmentId);
+        const hasUnsupportedRequiredItem = requiredItems.some((item) => item.itemType !== "assessment" || !item.assessmentId);
+
+        if (!hasUnsupportedRequiredItem && requiredAssessments.length > 0) {
+          const attempts = await learningAssessmentService.listAttempts(user.id);
+          const evaluatedAssessmentIds = new Set(
+            attempts.filter((item) => item.status === "evaluated").map((item) => item.assessmentId),
+          );
+          const allRequiredAssessmentsComplete = requiredAssessments.every(
+            (item) => item.assessmentId && evaluatedAssessmentIds.has(item.assessmentId),
+          );
+
+          if (allRequiredAssessmentsComplete && assignment.progress && assignment.progress.status !== "completed") {
+            await learningAssignmentsService.updateProgress(assignment.progress.id, "completed");
+          }
+        }
+      }
+
       await Promise.all([
         queryClient.invalidateQueries({ queryKey: ["learning", "assessment-results", user?.id] }),
         queryClient.invalidateQueries({ queryKey: ["learning", "student-overview", user?.id] }),
+        queryClient.invalidateQueries({ queryKey: ["learning", "assignment", assignmentId, user?.id] }),
       ]);
     },
   });
