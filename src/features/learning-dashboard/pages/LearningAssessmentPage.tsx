@@ -5,7 +5,6 @@ import { Link, useSearchParams, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningAssignmentsService } from "@/features/learning-assignments";
 import { learningAssessmentService } from "@/features/learning-assessment";
-import { LearningNavigation } from "../components/LearningNavigation";
 
 type Option = { id: string; text: string };
 type QuestionView = {
@@ -160,7 +159,6 @@ export default function LearningAssessmentPage() {
 
   return (
     <div className="space-y-6">
-      <LearningNavigation />
       <Link to={assignmentId ? `/learning/assignments/${assignmentId}` : "/learning/assignments"} className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900"><ArrowLeft size={16} /> Back</Link>
       <section className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8">
         <p className="text-sm text-slate-300">Assessment</p>
