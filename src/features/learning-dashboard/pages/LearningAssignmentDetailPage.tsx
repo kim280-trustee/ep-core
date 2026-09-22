@@ -40,7 +40,16 @@ export default function LearningAssignmentDetailPage() {
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["learning", "assignment", id, user?.id] });
       await queryClient.invalidateQueries({ queryKey: ["learning", "student-overview", user?.id] });
-      navigate(`/learning/assignments/${id}`);
+
+      const firstAssessment = (query.data?.items ?? [])
+        .filter((item) => item.itemType === "assessment" && item.assessmentId)
+        .sort((a, b) => a.sequenceNo - b.sequenceNo)[0];
+
+      if (firstAssessment?.assessmentId) {
+        navigate(`/learning/assessments/${firstAssessment.assessmentId}?assignmentId=${id}`);
+      } else {
+        navigate(`/learning/assignments/${id}`);
+      }
     },
   });
 
