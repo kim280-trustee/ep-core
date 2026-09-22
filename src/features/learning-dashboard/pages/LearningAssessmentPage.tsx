@@ -92,7 +92,7 @@ export default function LearningAssessmentPage() {
   const startMutation = useMutation({
     mutationFn: async () => {
       if (!user) throw new Error("You must be signed in.");
-      const attempts = await learningAssessmentService.listAttempts(user.id);
+      const attempts = await learningAssessmentService.listAttempts(student.id);
       const active = attempts.find((attempt) => attempt.assessmentId === assessmentId && attempt.status === "in_progress");
       if (active) return active;
       const maxAttempts = assignmentQuery.data?.assignment.maxAttempts;
@@ -105,20 +105,22 @@ export default function LearningAssessmentPage() {
         tenantId: user.tenantId,
         organizationId: assessmentQuery.data?.organizationId ?? null,
         assessmentId,
-        studentUserId: user.id,
+        studentUserId: student.id,
         attemptNumber: previous ? previous.attemptNumber + 1 : 1,
         previousAttemptId: previous?.id ?? null,
       });
     },
     onSuccess: async (attempt) => {
+      if (!user) throw new Error("You must be signed in.");
+      const student = user;
       setAttemptId(attempt.id);
       setMessage(null);
-      const session = await learningActivityService.startForStudent(user.id, "assessment", assessmentId);
+      const session = await learningActivityService.startForStudent(student.id, "assessment", assessmentId);
       setSessionId(session.id);
       await learningActivityService.logEvent({
         tenantId: session.tenantId,
         organizationId: session.organizationId,
-        studentUserId: user.id,
+        studentUserId: student.id,
         sessionId: session.id,
         activityType: "assessment_started",
         assessmentId,
@@ -156,11 +158,14 @@ export default function LearningAssessmentPage() {
     onSuccess: async (attempt) => {
       setMessage(attempt.status === "evaluated" ? "Assessment submitted and evaluated." : "Assessment submitted for evaluation.");
 
+      if (!user) throw new Error("You must be signed in.");
+      const student = user;
+
       if (sessionId) {
         await learningActivityService.logEvent({
-          tenantId: user.tenantId,
+          tenantId: student.tenantId,
           organizationId: assessmentQuery.data?.organizationId ?? null,
-          studentUserId: user.id,
+          studentUserId: student.id,
           sessionId,
           activityType: "assessment_submitted",
           assessmentId,
@@ -170,13 +175,13 @@ export default function LearningAssessmentPage() {
       }
 
       if (assignmentId && attempt.status === "evaluated") {
-        const assignment = await learningAssignmentsService.getStudentAssignment(assignmentId, user.id);
+        const assignment = await learningAssignmentsService.getStudentAssignment(assignmentId, student.id);
         const requiredItems = assignment.items.filter((item) => item.required);
         const requiredAssessments = requiredItems.filter((item) => item.itemType === "assessment" && item.assessmentId);
         const hasUnsupportedRequiredItem = requiredItems.some((item) => item.itemType !== "assessment" || !item.assessmentId);
 
         if (!hasUnsupportedRequiredItem && requiredAssessments.length > 0) {
-          const attempts = await learningAssessmentService.listAttempts(user.id);
+          const attempts = await learningAssessmentService.listAttempts(student.id);
           const evaluatedAssessmentIds = new Set(
             attempts.filter((item) => item.status === "evaluated").map((item) => item.assessmentId),
           );
