@@ -1,9 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
+﻿import { useQuery } from "@tanstack/react-query";
 import type { ReactNode } from "react";
 import { ArrowLeft, CheckCircle2, Clock3, Users } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
-import { TeacherNavigation } from "../components/TeacherNavigation";
 import { learningTeacherService } from "../services/learning-teacher.service";
 
 export default function TeacherClassPage() {
@@ -22,7 +21,6 @@ export default function TeacherClassPage() {
   const { classInfo, students, assignments } = query.data;
   return (
     <div className="space-y-6">
-      <TeacherNavigation />
       <div><Link to="/teacher" className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900"><ArrowLeft size={16} />Back to classes</Link></div>
       <section className="rounded-2xl bg-slate-900 p-6 text-white">
         <p className="text-sm text-slate-300">{classInfo.classGroup.code}</p>
@@ -51,3 +49,4 @@ export default function TeacherClassPage() {
 function Stat({ icon, label, value }: { icon: ReactNode; label: string; value: number }) {
   return <div className="rounded-2xl border border-slate-200 bg-white p-5"><div className="flex items-center gap-2 text-slate-500">{icon}<span className="text-sm">{label}</span></div><p className="mt-2 text-2xl font-bold text-slate-900">{value}</p></div>;
 }
+

@@ -1,10 +1,9 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+﻿import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AlertCircle, ArrowLeft, CheckCircle2, Circle, Clock3, Play } from "lucide-react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningAssignmentsService } from "@/features/learning-assignments";
 import { learningActivityService } from "@/features/learning-activity";
-import { LearningNavigation } from "../components/LearningNavigation";
 
 function dateLabel(value: string | null) {
   if (!value) return "No due date";
@@ -53,7 +52,6 @@ export default function LearningAssignmentDetailPage() {
   const completed = progress?.status === "completed";
   return (
     <div className="space-y-6">
-      <LearningNavigation />
       <Link to="/learning/assignments" className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900"><ArrowLeft size={16} /> Back to assignments</Link>
       <section className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8">
         <p className="text-sm text-slate-300">Assignment</p>
@@ -84,3 +82,4 @@ export default function LearningAssignmentDetailPage() {
     </div>
   );
 }
+

@@ -1,10 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
+﻿import { useQuery } from "@tanstack/react-query";
 import type { ReactNode } from "react";
 import { AlertCircle, BookOpen, CheckCircle2, Clock3, Target, TrendingUp } from "lucide-react";
 import { useAuth } from "@/core/auth";
 import { learningRuntimeService } from "@/features/learning-runtime";
 import type { LearningAssignmentProgress } from "@/features/learning-assignments";
-import { LearningNavigation } from "../components/LearningNavigation";
 
 function formatDate(value: string | null) {
   if (!value) return "No due date";
@@ -38,7 +37,6 @@ export default function LearningDashboardPage() {
   const dueAssignments = overview.assignments.filter((a) => a.status === "published").slice(0, 5);
 
   return <div className="space-y-6">
-    <LearningNavigation />
     <section className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8"><p className="text-sm font-medium text-slate-300">Student Learning</p><h1 className="mt-1 text-2xl font-bold sm:text-3xl">Welcome back, {user.name || "Student"}</h1><p className="mt-2 max-w-2xl text-sm text-slate-300">Continue your learning, review your progress, and see what should come next.</p></section>
     <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       <Stat icon={<Target size={19} />} label="Mastery" value={averageMastery + "%"} detail={overview.mastery.length + " objectives"} />
@@ -64,3 +62,4 @@ function DashboardCard({ title, icon, children }: { title: string; icon: ReactNo
   return <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6"><div className="mb-5 flex items-center gap-2 text-slate-900"><span className="text-slate-500">{icon}</span><h2 className="text-lg font-semibold">{title}</h2></div>{children}</section>;
 }
 function EmptyState({ text }: { text: string }) { return <div className="rounded-xl bg-slate-50 p-5 text-sm text-slate-500">{text}</div>; }
+

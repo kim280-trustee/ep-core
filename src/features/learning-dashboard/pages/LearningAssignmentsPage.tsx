@@ -1,10 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
+﻿import { useQuery } from "@tanstack/react-query";
 import { AlertCircle, ArrowRight, BookOpen, CheckCircle2, Clock3 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningRuntimeService } from "@/features/learning-runtime";
 import type { LearningAssignmentProgress } from "@/features/learning-assignments";
-import { LearningNavigation } from "../components/LearningNavigation";
 
 function dateLabel(value: string | null) {
   if (!value) return "No due date";
@@ -29,7 +28,6 @@ export default function LearningAssignmentsPage() {
 
   return (
     <div className="space-y-6">
-      <LearningNavigation />
       <section>
         <p className="text-sm font-medium text-slate-500">Student Learning</p>
         <h1 className="mt-1 text-2xl font-bold text-slate-900">Assignments</h1>
@@ -78,3 +76,4 @@ function AssignmentCard({ assignment, progress }: { assignment: (Awaited<ReturnT
 function ErrorState({ onRetry }: { onRetry: () => void }) {
   return <div className="flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800"><AlertCircle size={20} className="mt-0.5 shrink-0" /><div><p className="font-semibold">Assignments could not be loaded.</p><button type="button" onClick={onRetry} className="mt-3 rounded-lg bg-white px-3 py-2 text-sm font-medium shadow-sm">Try again</button></div></div>;
 }
+

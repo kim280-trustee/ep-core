@@ -1,8 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
+﻿import { useQuery } from "@tanstack/react-query";
 import { AlertCircle, BookOpen, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
-import { TeacherNavigation } from "../components/TeacherNavigation";
 import { learningTeacherService } from "../services/learning-teacher.service";
 
 export default function TeacherDashboardPage() {
@@ -26,7 +25,6 @@ export default function TeacherDashboardPage() {
   const classes = query.data;
   return (
     <div className="space-y-6">
-      <TeacherNavigation />
       <section className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8">
         <p className="text-sm font-medium text-slate-300">Teacher Workspace</p>
         <h1 className="mt-1 text-2xl font-bold sm:text-3xl">Your classes</h1>
@@ -55,3 +53,4 @@ export default function TeacherDashboardPage() {
 function Empty({ text }: { text: string }) {
   return <div className="rounded-2xl border border-slate-200 bg-white p-8 text-sm text-slate-600">{text}</div>;
 }
+
