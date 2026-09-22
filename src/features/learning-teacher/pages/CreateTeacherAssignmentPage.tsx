@@ -67,7 +67,7 @@ export default function CreateTeacherAssignmentPage() {
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       <div><Link to="/teacher" className="inline-flex items-center gap-2 text-sm text-slate-500"><ArrowLeft size={16} />Back to teacher workspace</Link></div>
-      <section><p className="text-sm font-medium text-slate-500">Teacher Workspace</p><h1 className="mt-1 text-2xl font-bold text-slate-900">Create assignment</h1><p className="mt-2 text-sm text-slate-500">Create and publish an assignment for an entire class. Content and assessment items can be attached through the learning engine as those authoring tools are added.</p></section>
+      <section><p className="text-sm font-medium text-slate-500">Teacher Workspace</p><h1 className="mt-1 text-2xl font-bold text-slate-900">Create assignment</h1><p className="mt-2 text-sm text-slate-500">Create a draft assignment for an entire class. You can attach learning content and assessments in Authoring before publishing it.</p></section>
       <form onSubmit={(event) => { event.preventDefault(); setError(null); createMutation.mutate(); }} className="space-y-5 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
         <Field label="Class"><select required value={classGroupId} onChange={(event) => { setClassGroupId(event.target.value); setClassSubjectId(""); }} className="input"><option value="">Select a class</option>{classesQuery.data.map((item) => <option key={item.classGroup.id} value={item.classGroup.id}>{item.classGroup.name}</option>)}</select></Field>
         <Field label="Subject"><select value={classSubjectId} onChange={(event) => setClassSubjectId(event.target.value)} className="input" disabled={!selectedClass}><option value="">Optional</option>{selectedClass?.subjects.map((item) => <option key={item.id} value={item.id}>{item.subject.name}</option>)}</select></Field>
@@ -75,7 +75,7 @@ export default function CreateTeacherAssignmentPage() {
         <Field label="Title"><input required value={title} onChange={(event) => setTitle(event.target.value)} placeholder="Present Simple Practice" className="input" /></Field>
         <Field label="Description"><textarea value={description} onChange={(event) => setDescription(event.target.value)} rows={4} placeholder="Instructions or a short description for students." className="input" /></Field>
         {error && <div className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}</div>}
-        <button disabled={createMutation.isPending} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white disabled:opacity-50">{createMutation.isPending ? "Creating draft..." : <><CheckCircle2 size={17} />Create & Publish</>}</button>
+        <button disabled={createMutation.isPending} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white disabled:opacity-50">{createMutation.isPending ? "Creating draft..." : <><CheckCircle2 size={17} />Create draft</>}</button>
       </form>
     </div>
   );
