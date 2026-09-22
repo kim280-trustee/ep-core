@@ -157,20 +157,16 @@ export default function LearningAssessmentPage() {
       setMessage(attempt.status === "evaluated" ? "Assessment submitted and evaluated." : "Assessment submitted for evaluation.");
 
       if (sessionId) {
-        const session = await learningActivityService.listSessions(user.id, 50);
-        const currentSession = session.find((item) => item.id === sessionId);
-        if (currentSession) {
-          await learningActivityService.logEvent({
-            tenantId: currentSession.tenantId,
-            organizationId: currentSession.organizationId,
-            studentUserId: user.id,
-            sessionId,
-            activityType: "assessment_submitted",
-            assessmentId,
-            assignmentId: assignmentId || null,
-          });
-          if (!currentSession.endedAt) await learningActivityService.endSession(sessionId);
-        }
+        await learningActivityService.logEvent({
+          tenantId: user.tenantId,
+          organizationId: assessmentQuery.data?.organizationId ?? null,
+          studentUserId: user.id,
+          sessionId,
+          activityType: "assessment_submitted",
+          assessmentId,
+          assignmentId: assignmentId || null,
+        });
+        await learningActivityService.endSession(sessionId);
       }
 
       if (assignmentId && attempt.status === "evaluated") {
