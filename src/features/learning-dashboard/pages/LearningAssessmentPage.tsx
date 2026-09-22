@@ -92,6 +92,7 @@ export default function LearningAssessmentPage() {
   const startMutation = useMutation({
     mutationFn: async () => {
       if (!user) throw new Error("You must be signed in.");
+      const student = user;
       const attempts = await learningAssessmentService.listAttempts(student.id);
       const active = attempts.find((attempt) => attempt.assessmentId === assessmentId && attempt.status === "in_progress");
       if (active) return active;
