@@ -59,10 +59,7 @@ export function PosSalesPage() {
 
         setWarehouses(available);
 
-        const currentWarehouse = available.find(
-          (warehouse) => warehouse.id === warehouseId,
-        );
-        const firstWarehouse = currentWarehouse ?? available[0];
+        const firstWarehouse = available[0];
 
         if (firstWarehouse) {
           setWarehouseId(firstWarehouse.id);
@@ -76,7 +73,7 @@ export function PosSalesPage() {
     }
 
     void loadData();
-  }, [context?.tenantId, context?.storeId, setContext, warehouseId]);
+  }, [context?.tenantId, context?.storeId, setContext]);
 
   function handleWarehouseChange(value: string) {
     setWarehouseId(value);
