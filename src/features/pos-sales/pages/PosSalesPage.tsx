@@ -34,40 +34,67 @@ export function PosSalesPage() {
   useEffect(() => {
     async function loadData() {
       if (!context?.tenantId || !context.storeId) return;
+
       try {
-        const result = await productService.getProducts(context.tenantId);
-        setProducts(result.data);
-        const available = (await warehouseRepository.findAll()).filter(
+        const [productResult, allWarehouses] = await Promise.all([
+          productService.getAllProducts(context.tenantId),
+          warehouseRepository.findAll(),
+        ]);
+
+        setProducts(productResult);
+
+        const tenantWarehouses = allWarehouses.filter(
           (warehouse) =>
             warehouse.tenantId === context.tenantId &&
-            warehouse.storeId === context.storeId,
+            warehouse.status === "ACTIVE",
         );
+
+        const storeWarehouses = tenantWarehouses.filter(
+          (warehouse) => warehouse.storeId === context.storeId,
+        );
+
+        const available = storeWarehouses.length > 0
+          ? storeWarehouses
+          : tenantWarehouses;
+
         setWarehouses(available);
-        const firstWarehouse = available[0];
+
+        const currentWarehouse = available.find(
+          (warehouse) => warehouse.id === warehouseId,
+        );
+        const firstWarehouse = currentWarehouse ?? available[0];
+
         if (firstWarehouse) {
           setWarehouseId(firstWarehouse.id);
           setContext({ warehouseId: firstWarehouse.id });
         }
+
         setSettings(settingsService.getSettings(context.tenantId));
       } catch (error) {
         console.error("Failed to load POS data:", error);
       }
     }
+
     void loadData();
-  }, [context?.tenantId, context?.storeId, setContext]);
+  }, [context?.tenantId, context?.storeId, setContext, warehouseId]);
 
   function handleWarehouseChange(value: string) {
     setWarehouseId(value);
     setContext({ warehouseId: value });
   }
 
-  function handleSaleCompleted(order: SalesOrder, payment: Payment, cashReceived?: number) {
+  function handleSaleCompleted(
+    order: SalesOrder,
+    payment: Payment,
+    cashReceived?: number,
+  ) {
     setLatestReceipt(receiptEngine.generate(order, payment, cashReceived));
   }
 
   return (
     <div className="w-full min-w-0 p-3 sm:p-6">
       <h1 className="text-2xl font-semibold">POS Sales</h1>
+
       <div className="mt-4 w-full rounded border p-3 sm:p-4">
         <label className="mb-1 block text-sm font-medium">Warehouse</label>
         <select
@@ -77,22 +104,42 @@ export function PosSalesPage() {
         >
           <option value="">Select warehouse</option>
           {warehouses.map((warehouse) => (
-            <option key={warehouse.id} value={warehouse.id}>{warehouse.name}</option>
+            <option key={warehouse.id} value={warehouse.id}>
+              {warehouse.name}
+            </option>
           ))}
         </select>
       </div>
+
       <div className="mt-6 grid min-w-0 grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-6">
         <div className="min-w-0 rounded border p-3 sm:p-4">
           <h2 className="mb-4 font-medium">Products</h2>
-          <ProductSearch products={products} tenantId={context?.tenantId} taxRate={settings?.taxRate} taxEnabled={settings?.taxEnabled} />
+          <ProductSearch
+            products={products}
+            tenantId={context?.tenantId}
+            taxRate={settings?.taxRate}
+            taxEnabled={settings?.taxEnabled}
+          />
         </div>
+
         <div className="min-w-0 rounded border p-3 sm:p-4">
           <Cart />
         </div>
       </div>
-      <div className="mt-6 min-w-0"><CheckoutPanel onSaleCompleted={handleSaleCompleted} /></div>
-      {latestReceipt && <div className="mt-6 min-w-0 overflow-x-auto"><ReceiptView receipt={latestReceipt} products={products} /></div>}
-      <div className="mt-6 min-w-0"><SaleHistory products={products} /></div>
+
+      <div className="mt-6 min-w-0">
+        <CheckoutPanel onSaleCompleted={handleSaleCompleted} />
+      </div>
+
+      {latestReceipt && (
+        <div className="mt-6 min-w-0 overflow-x-auto">
+          <ReceiptView receipt={latestReceipt} products={products} />
+        </div>
+      )}
+
+      <div className="mt-6 min-w-0">
+        <SaleHistory products={products} />
+      </div>
     </div>
   );
 }
