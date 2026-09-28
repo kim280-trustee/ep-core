@@ -527,7 +527,6 @@ class SalesOrderService {
     }
 
     const refundableItems = await this.getRefundableItems(orderId);
-    const selectionMap = new Map(selections.map((selection) => [selection.itemId, selection.quantity]));
     let refundAmount = 0;
 
     for (const selection of selections) {
@@ -567,8 +566,6 @@ class SalesOrderService {
         `Refund amount ${refundAmount.toFixed(2)} exceeds the remaining refundable payment amount of ${refundablePaymentAmount.toFixed(2)}.`,
       );
     }
-
-    const transactions = await inventoryTransactionService.getTransactions(order.tenantId);
 
     for (const selection of selections) {
       const item = order.items.find((candidate) => candidate.id === selection.itemId);
@@ -612,7 +609,12 @@ class SalesOrderService {
     const allItemsRefunded = finalRefundableItems.every((item) => item.remainingQuantity === 0);
     const finalPayments = await paymentService.getPayments(order.tenantId);
     const allPaymentsRefunded = finalPayments
-      .filter((payment) => payment.salesOrderId === order.id && payment.amount > 0)
+      .filter(
+        (payment) =>
+          payment.salesOrderId === order.id &&
+          (payment.status === "COMPLETED" || payment.status === "REFUNDED") &&
+          payment.amount > 0,
+      )
       .every((payment) => payment.status === "REFUNDED");
 
     const updated = await getSalesOrderRepository().update(
