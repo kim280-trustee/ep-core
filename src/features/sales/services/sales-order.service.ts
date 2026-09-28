@@ -547,6 +547,27 @@ class SalesOrderService {
     refundAmount = Math.round((refundAmount + Number.EPSILON) * 100) / 100;
     if (refundAmount <= 0) throw new Error("Refund amount must be greater than zero.");
 
+    const payments = (await paymentService.getPayments(order.tenantId)).filter(
+      (payment) => payment.salesOrderId === order.id && payment.status === "COMPLETED",
+    );
+
+    if (payments.length === 0) {
+      throw new Error(`No completed payment was found for sales order ${order.orderNumber}.`);
+    }
+
+    let refundablePaymentAmount = 0;
+    for (const payment of payments) {
+      const alreadyRefunded = await paymentService.getRefundedAmount(order.tenantId, payment.id);
+      refundablePaymentAmount += Math.max(0, payment.amount - alreadyRefunded);
+    }
+
+    refundablePaymentAmount = Math.round((refundablePaymentAmount + Number.EPSILON) * 100) / 100;
+    if (refundAmount > refundablePaymentAmount) {
+      throw new Error(
+        `Refund amount ${refundAmount.toFixed(2)} exceeds the remaining refundable payment amount of ${refundablePaymentAmount.toFixed(2)}.`,
+      );
+    }
+
     const transactions = await inventoryTransactionService.getTransactions(order.tenantId);
 
     for (const selection of selections) {
@@ -567,14 +588,6 @@ class SalesOrderService {
     }
 
     let remainingRefund = refundAmount;
-    const payments = (await paymentService.getPayments(order.tenantId)).filter(
-      (payment) => payment.salesOrderId === order.id && payment.status === "COMPLETED",
-    );
-
-    if (payments.length === 0) {
-      throw new Error(`No completed payment was found for sales order ${order.orderNumber}.`);
-    }
-
     for (const payment of payments) {
       if (remainingRefund <= 0) break;
       const paymentRefunds = await paymentService.getRefundedAmount(order.tenantId, payment.id);
