@@ -195,6 +195,17 @@ class PaymentService {
     );
   }
 
+  async getRefundedAmount(
+    tenantId: string,
+    id: string,
+  ): Promise<number> {
+    if (!tenantId.trim()) throw new Error("Tenant ID is required.");
+    if (!id.trim()) throw new Error("Payment ID is required.");
+
+    const refunds = await paymentRefundRepository.findByPaymentId(tenantId, id);
+    return roundMoney(refunds.reduce((sum, refund) => sum + refund.amount, 0));
+  }
+
   async refundPaymentAmount(
     tenantId: string,
     id: string,
