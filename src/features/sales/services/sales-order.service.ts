@@ -553,18 +553,7 @@ class SalesOrderService {
       const item = order.items.find((candidate) => candidate.id === selection.itemId);
       if (!item) throw new Error("Refund item not found.");
 
-      const returnedQuantity = transactions
-        .filter(
-          (transaction) =>
-            transaction.movementType === "SALE_RETURN" &&
-            transaction.referenceType === "SALE_RETURN" &&
-            transaction.referenceId === order.id &&
-            transaction.productId === item.productId,
-        )
-        .reduce((sum, transaction) => sum + transaction.quantity, 0);
-
-      const alreadyReturned = Math.min(item.quantity, returnedQuantity);
-      const quantityToReturn = Math.max(0, selection.quantity - Math.max(0, alreadyReturned - (item.quantity - selection.quantity)));
+      const quantityToReturn = selection.quantity;
 
       if (quantityToReturn > 0) {
         await inventoryTransactionService.returnStock(
