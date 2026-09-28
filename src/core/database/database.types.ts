@@ -942,13 +942,6 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "learning_assignment_progress_org_student_fk"
-            columns: ["organization_id", "student_user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["tenant_id", "id"]
-          },
-          {
             foreignKeyName: "learning_assignment_progress_org_target_fk"
             columns: ["organization_id", "assignment_target_id"]
             isOneToOne: false
@@ -2745,6 +2738,36 @@ export type Database = {
           },
         ]
       }
+      payment_refunds: {
+        Row: {
+          amount: number
+          created_at: string
+          id: string
+          payment_id: string
+          reference: string | null
+          sales_order_id: string
+          tenant_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          id: string
+          payment_id: string
+          reference?: string | null
+          sales_order_id: string
+          tenant_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          id?: string
+          payment_id?: string
+          reference?: string | null
+          sales_order_id?: string
+          tenant_id?: string
+        }
+        Relationships: []
+      }
       payments: {
         Row: {
           amount: number
@@ -3684,10 +3707,7 @@ export type Database = {
         Args: { target_organization_id: string }
         Returns: boolean
       }
-      submit_learning_attempt: {
-        Args: { p_attempt_id: string }
-        Returns: Json
-      }
+      submit_learning_attempt: { Args: { p_attempt_id: string }; Returns: Json }
     }
     Enums: {
       [_ in never]: never
