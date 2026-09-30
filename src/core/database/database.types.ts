@@ -3995,6 +3995,35 @@ export type Database = {
         Returns: boolean
       }
       learning_current_user_id: { Args: never; Returns: string }
+      create_learning_manual_gradebook_entry: {
+        Args: {
+          p_category_id?: string
+          p_class_subject_id: string
+          p_description?: string
+          p_max_score: number
+          p_score: number
+          p_student_user_id: string
+          p_term_id: string
+          p_title: string
+        }
+        Returns: string
+      }
+      calculate_learning_term_grade: {
+        Args: {
+          p_class_subject_id: string
+          p_student_user_id: string
+          p_term_id: string
+        }
+        Returns: string
+      }
+      finalize_learning_term_grade: {
+        Args: {
+          p_class_subject_id: string
+          p_student_user_id: string
+          p_term_id: string
+        }
+        Returns: string
+      }
       save_learning_question_evaluation_key: {
         Args: {
           p_evaluation_key: Json
