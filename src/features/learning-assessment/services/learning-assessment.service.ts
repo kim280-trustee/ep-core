@@ -24,6 +24,10 @@ export const learningAssessmentService = {
   listQuestionObjectives: (id: string) =>
     learningAssessmentRepository.listQuestionObjectives(id),
 
+  saveQuestionEvaluationKey: (
+    input: Parameters<typeof learningAssessmentRepository.saveQuestionEvaluationKey>[0],
+  ) => learningAssessmentRepository.saveQuestionEvaluationKey(input),
+
   listAssessments: (org?: string) =>
     learningAssessmentRepository.listAssessments(org),
 
