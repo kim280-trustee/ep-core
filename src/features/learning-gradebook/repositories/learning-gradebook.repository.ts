@@ -15,5 +15,17 @@ export const learningGradebookRepository={
  async listTermGrades(input:{termId:string;classSubjectId?:string;studentUserId?:string}){let q=supabase.from("learning_term_grades").select("*").eq("term_id",input.termId).order("score",{ascending:false});if(input.classSubjectId)q=q.eq("class_subject_id",input.classSubjectId);if(input.studentUserId)q=q.eq("student_user_id",input.studentUserId);const{data,error}=await q;if(error)throw error;return(data??[]).map(mt);},
  async createCategory(input:{organizationId:string;code:string;name:string;description?:string|null;defaultWeight?:number}){const{data,error}=await supabase.from("learning_gradebook_categories").insert({organization_id:input.organizationId,code:input.code,name:input.name,description:input.description??null,default_weight:input.defaultWeight??1}).select("*").single();if(error)throw error;return mc(data);},
  async createEntry(input:Database["public"]["Tables"]["learning_gradebook_entries"]["Insert"]){const{data,error}=await supabase.from("learning_gradebook_entries").insert(input).select("*").single();if(error)throw error;return me(data);},
- async upsertTermGrade(input:Database["public"]["Tables"]["learning_term_grades"]["Insert"]){const{data,error}=await supabase.from("learning_term_grades").upsert(input,{onConflict:"term_id,class_subject_id,student_user_id"}).select("*").single();if(error)throw error;return mt(data);}
+ async upsertTermGrade(input:Database["public"]["Tables"]["learning_term_grades"]["Insert"]){const{data,error}=await supabase.from("learning_term_grades").upsert(input,{onConflict:"term_id,class_subject_id,student_user_id"}).select("*").single();if(error)throw error;return mt(data);},
+ async createManualEntry(input:{termId:string;classSubjectId:string;studentUserId:string;title:string;score:number;maxScore:number;categoryId?:string|null;description?:string|null}){
+   const{data,error}=await supabase.rpc("create_learning_manual_gradebook_entry",{p_term_id:input.termId,p_class_subject_id:input.classSubjectId,p_student_user_id:input.studentUserId,p_title:input.title,p_score:input.score,p_max_score:input.maxScore,p_category_id:input.categoryId??null,p_description:input.description??null});
+   if(error)throw error;return data;
+ },
+ async calculateTermGrade(input:{termId:string;classSubjectId:string;studentUserId:string}){
+   const{data,error}=await supabase.rpc("calculate_learning_term_grade",{p_term_id:input.termId,p_class_subject_id:input.classSubjectId,p_student_user_id:input.studentUserId});
+   if(error)throw error;return data;
+ },
+ async finalizeTermGrade(input:{termId:string;classSubjectId:string;studentUserId:string}){
+   const{data,error}=await supabase.rpc("finalize_learning_term_grade",{p_term_id:input.termId,p_class_subject_id:input.classSubjectId,p_student_user_id:input.studentUserId});
+   if(error)throw error;return data;
+ }
 };
