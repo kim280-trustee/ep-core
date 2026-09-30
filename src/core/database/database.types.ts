@@ -3707,6 +3707,14 @@ export type Database = {
         Args: { target_organization_id: string }
         Returns: boolean
       }
+      save_learning_question_evaluation_key: {
+        Args: {
+          p_evaluation_key: Json
+          p_question_version_id: string
+          p_scoring_rules: Json
+        }
+        Returns: undefined
+      }
       submit_learning_attempt: { Args: { p_attempt_id: string }; Returns: Json }
     }
     Enums: {
