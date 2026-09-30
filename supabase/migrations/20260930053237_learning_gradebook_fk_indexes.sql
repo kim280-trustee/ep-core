@@ -1,0 +1,10 @@
+create index if not exists learning_gradebook_entries_org_term_fk_idx on public.learning_gradebook_entries(organization_id,term_id);
+create index if not exists learning_gradebook_entries_org_class_fk_idx on public.learning_gradebook_entries(organization_id,class_group_id);
+create index if not exists learning_gradebook_entries_org_subject_fk_idx on public.learning_gradebook_entries(organization_id,class_subject_id);
+create index if not exists learning_gradebook_entries_org_category_fk_idx on public.learning_gradebook_entries(organization_id,category_id);
+create index if not exists learning_gradebook_entries_creator_fk_idx on public.learning_gradebook_entries(tenant_id,created_by);
+create index if not exists learning_gradebook_entries_updater_fk_idx on public.learning_gradebook_entries(tenant_id,updated_by);
+create index if not exists learning_term_grades_org_term_fk_idx on public.learning_term_grades(organization_id,term_id);
+create index if not exists learning_term_grades_org_class_fk_idx on public.learning_term_grades(organization_id,class_group_id);
+create index if not exists learning_term_grades_org_subject_fk_idx on public.learning_term_grades(organization_id,class_subject_id);
+create index if not exists learning_term_grades_finalized_by_fk_idx on public.learning_term_grades(tenant_id,finalized_by);
