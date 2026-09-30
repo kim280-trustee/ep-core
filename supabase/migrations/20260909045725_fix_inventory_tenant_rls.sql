@@ -1,0 +1,3 @@
+-- Legacy remote migration history marker.
+-- Live Supabase already contains the effects of 20260909045725_fix_inventory_tenant_rls.
+-- Preserve the historical version without replaying legacy SQL.

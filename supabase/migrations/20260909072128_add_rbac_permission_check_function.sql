@@ -1,0 +1,3 @@
+-- Legacy remote migration history marker.
+-- Live Supabase already contains the effects of 20260909072128_add_rbac_permission_check_function.
+-- Preserve the historical version without replaying legacy SQL.
