@@ -7,4 +7,7 @@ export const learningGradebookService={
  createCategory:(input:Parameters<typeof learningGradebookRepository.createCategory>[0])=>learningGradebookRepository.createCategory(input),
  createEntry:(input:Parameters<typeof learningGradebookRepository.createEntry>[0])=>learningGradebookRepository.createEntry(input),
  upsertTermGrade:(input:Parameters<typeof learningGradebookRepository.upsertTermGrade>[0])=>learningGradebookRepository.upsertTermGrade(input),
+ createManualEntry:(input:Parameters<typeof learningGradebookRepository.createManualEntry>[0])=>learningGradebookRepository.createManualEntry(input),
+ calculateTermGrade:(input:Parameters<typeof learningGradebookRepository.calculateTermGrade>[0])=>learningGradebookRepository.calculateTermGrade(input),
+ finalizeTermGrade:(input:Parameters<typeof learningGradebookRepository.finalizeTermGrade>[0])=>learningGradebookRepository.finalizeTermGrade(input),
 };
