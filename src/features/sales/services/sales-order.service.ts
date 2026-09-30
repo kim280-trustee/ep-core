@@ -1,4 +1,4 @@
-﻿import {
+import {
   getSalesOrderRepository,
 } from "../repositories";
 
@@ -15,7 +15,6 @@ import {
   canConfirmSalesOrder,
   canProcessSalesOrder,
   canCompleteSalesOrder,
-  canRefundSalesOrder,
 } from "../types/sales-order-status.types";
 
 import {

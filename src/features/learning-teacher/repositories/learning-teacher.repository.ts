@@ -28,8 +28,22 @@ export const learningTeacherRepository = {
     if (classGroupsError) throw classGroupsError;
 
     const groupsById = new Map(
-      (classGroups ?? []).map((group) => [group.id, group]),
-    );
+  (classGroups ?? []).map((group) => [
+    group.id,
+    {
+      id: group.id,
+      organizationId: group.organization_id,
+      academicYearId: group.academic_year_id,
+      curriculumId: group.curriculum_id,
+      gradeLevelId: group.grade_level_id,
+      code: group.code,
+      name: group.name,
+      status: group.status as "planned" | "active" | "archived",
+      createdAt: group.created_at,
+      updatedAt: group.updated_at,
+    },
+  ]),
+);
 
     const subjectCache = new Map<string, Awaited<ReturnType<typeof learningAcademicService.listSubjects>>[number]>();
     const subjects = await learningAcademicService.listSubjects();

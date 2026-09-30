@@ -1,9 +1,12 @@
-﻿import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import type { ReactNode } from "react";
+import { Link } from "react-router-dom";
 import { AlertCircle, BookOpen, CheckCircle2, Clock3, Target, TrendingUp } from "lucide-react";
 import { useAuth } from "@/core/auth";
 import { learningRuntimeService } from "@/features/learning-runtime";
+import { learningAssignmentsService } from "@/features/learning-assignments";
 import type { LearningAssignmentProgress } from "@/features/learning-assignments";
+import { LearningNavigation } from "../components/LearningNavigation";
 
 function formatDate(value: string | null) {
   if (!value) return "No due date";
@@ -20,7 +23,30 @@ export default function LearningDashboardPage() {
 
   const query = useQuery({
     queryKey: ["learning", "student-overview", studentUserId],
-    queryFn: () => learningRuntimeService.getStudentOverview(studentUserId),
+    queryFn: async () => {
+      const overview = await learningRuntimeService.getStudentOverview(studentUserId);
+
+      const recommendations = await Promise.all(
+        overview.recommendations.map(async (item) => {
+          if (!item.assessmentId) return { ...item, assignmentId: null };
+
+          const assignment =
+            await learningAssignmentsService.findStudentAssignmentForAssessment(
+              item.assessmentId,
+            );
+
+          return {
+            ...item,
+            assignmentId: assignment?.id ?? null,
+          };
+        }),
+      );
+
+      return {
+        ...overview,
+        recommendations,
+      };
+    },
     enabled: Boolean(studentUserId),
   });
 
@@ -37,6 +63,7 @@ export default function LearningDashboardPage() {
   const dueAssignments = overview.assignments.filter((a) => a.status === "published").slice(0, 5);
 
   return <div className="space-y-6">
+    <LearningNavigation />
     <section className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8"><p className="text-sm font-medium text-slate-300">Student Learning</p><h1 className="mt-1 text-2xl font-bold sm:text-3xl">Welcome back, {user.name || "Student"}</h1><p className="mt-2 max-w-2xl text-sm text-slate-300">Continue your learning, review your progress, and see what should come next.</p></section>
     <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       <Stat icon={<Target size={19} />} label="Mastery" value={averageMastery + "%"} detail={overview.mastery.length + " objectives"} />
@@ -46,7 +73,15 @@ export default function LearningDashboardPage() {
     </section>
     <div className="grid gap-6 lg:grid-cols-2">
       <DashboardCard title="Continue Learning" icon={<BookOpen size={20} />}>{continueItems.length ? <div className="divide-y divide-slate-100">{continueItems.map(({ assignment, progress }) => <div key={progress.id} className="py-4 first:pt-0 last:pb-0"><div className="flex items-start justify-between gap-4"><div><h3 className="font-semibold text-slate-900">{assignment.title}</h3><p className="mt-1 text-sm text-slate-500">{assignment.description || "Continue this assignment."}</p></div><span className="shrink-0 rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium">In progress</span></div></div>)}</div> : <EmptyState text="You have no learning activities in progress yet." />}</DashboardCard>
-      <DashboardCard title="Recommended for You" icon={<Target size={20} />}>{overview.recommendations.length ? <div className="space-y-3">{overview.recommendations.slice(0, 5).map((item) => <div key={item.id} className="rounded-xl border border-slate-200 p-4"><div className="flex items-center justify-between gap-3"><span className="font-medium capitalize text-slate-900">{item.recommendationType}</span><span className="text-xs text-slate-500">Priority {item.priority}</span></div><p className="mt-1 text-sm text-slate-500">{item.objectiveId ? "Learning objective: " + item.objectiveId : "A learning activity selected for you."}</p></div>)}</div> : <EmptyState text="Recommendations will appear as your learning history grows." />}</DashboardCard>
+      <DashboardCard title="Recommended for You" icon={<Target size={20} />}>{overview.recommendations.length ? <div className="space-y-3">{overview.recommendations.slice(0, 5).map((item) => <div key={item.id} className="rounded-xl border border-slate-200 p-4"><div className="flex items-center justify-between gap-3"><span className="font-medium capitalize text-slate-900">{item.recommendationType}</span><span className="text-xs text-slate-500">Priority {item.priority}</span></div><p className="mt-1 text-sm text-slate-500">{item.objectiveId ? "Learning objective: " + item.objectiveId : "A learning activity selected for you."}</p>
+{item.assessmentId && item.assignmentId && (
+  <Link
+    to={`/learning/assignments/${item.assignmentId}/assessments/${item.assessmentId}`}
+    className="mt-3 inline-flex rounded-lg bg-slate-900 px-3 py-2 text-sm font-medium text-white hover:bg-slate-800"
+  >
+    Start assessment
+  </Link>
+)}</div>)}</div> : <EmptyState text="Recommendations will appear as your learning history grows." />}</DashboardCard>
     </div>
     <div className="grid gap-6 lg:grid-cols-2">
       <DashboardCard title="Assignments" icon={<Clock3 size={20} />}>{dueAssignments.length ? <div className="divide-y divide-slate-100">{dueAssignments.map((assignment) => <div key={assignment.id} className="flex items-center justify-between gap-4 py-4 first:pt-0 last:pb-0"><div><p className="font-medium text-slate-900">{assignment.title}</p><p className="mt-1 text-xs text-slate-500">{assignment.dueAt ? "Due " + formatDate(assignment.dueAt) : "No due date"}</p></div><span className="text-xs font-medium capitalize text-slate-500">{assignment.status}</span></div>)}</div> : <EmptyState text="No published assignments are available." />}</DashboardCard>
@@ -62,4 +97,6 @@ function DashboardCard({ title, icon, children }: { title: string; icon: ReactNo
   return <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6"><div className="mb-5 flex items-center gap-2 text-slate-900"><span className="text-slate-500">{icon}</span><h2 className="text-lg font-semibold">{title}</h2></div>{children}</section>;
 }
 function EmptyState({ text }: { text: string }) { return <div className="rounded-xl bg-slate-50 p-5 text-sm text-slate-500">{text}</div>; }
+
+
 

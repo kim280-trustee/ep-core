@@ -3,6 +3,8 @@ import type { ReactNode } from "react";
 import { Menu, X } from "lucide-react";
 
 import { Header } from "./Header";
+import { useLocation } from "react-router-dom";
+import { LearningNavigation } from "@/features/learning-dashboard";
 import { Sidebar } from "./Sidebar";
 import { storeContext } from "../../core/store/store.context";
 import { settingsEngine } from "../../features/settings/engine";
@@ -15,6 +17,8 @@ interface Props {
 export function AppLayout({ children }: Props) {
   const { changeLanguage } = useTranslation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isLearningRoute = location.pathname === "/learning" || location.pathname.startsWith("/learning/");
 
   useEffect(() => {
     const context = storeContext.getStore();
@@ -81,7 +85,13 @@ export function AppLayout({ children }: Props) {
               />
 
               <aside className="relative z-10 h-dvh w-72 max-w-[85vw] overflow-y-auto overscroll-contain border-r border-slate-200 bg-white shadow-2xl">
-                <Sidebar onNavigate={() => setMobileMenuOpen(false)} />
+                {isLearningRoute ? (
+                  <div className="p-4">
+                    <LearningNavigation />
+                  </div>
+                ) : (
+                  <Sidebar onNavigate={() => setMobileMenuOpen(false)} />
+                )}
               </aside>
             </div>
           )}
@@ -96,3 +106,5 @@ export function AppLayout({ children }: Props) {
     </div>
   );
 }
+
+
