@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { FileQuestion, Plus, Search, Send, Sparkles, X } from "lucide-react";
-import { useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningContentService } from "@/features/learning-content";
@@ -42,6 +42,10 @@ export default function QuestionBankPage() {
     queryFn: () => learningTeacherService.listTeacherClasses(user!.id),
     enabled: Boolean(user?.id),
   });
+  useEffect(() => {
+    if (!classGroupId && classes.data?.length) setClassGroupId(classes.data[0].classGroup.id);
+  }, [classGroupId, classes.data]);
+
   const selectedClass = classes.data?.find((x) => x.classGroup.id === classGroupId);
   const organizationId = selectedClass?.membership.organizationId;
 
@@ -219,7 +223,7 @@ export default function QuestionBankPage() {
           <div className="flex items-center justify-between gap-3"><h2 className="font-semibold text-slate-900">{editingQuestionId ? "Create new version" : "Create question"}</h2>{editingQuestionId && <button type="button" onClick={resetForm} className="text-slate-400"><X size={18} /></button>}</div>
           <div className="mt-5 space-y-4">
             <Field label="Question code"><input disabled={Boolean(editingQuestionId)} value={code} onChange={(e) => setCode(e.target.value)} className="input" placeholder="ENG-M1-Q001" /></Field>
-            <Field label="Question type"><select disabled={Boolean(editingQuestionId)} value={questionType} onChange={(e) => setQuestionType(e.target.value as TeacherQuestionType)} className="input">{teacherTypes.map((type) => <option key={type.value} value={type.value}>{type.label}</option>)}</select></Field>
+            <Field label="Question type"><select disabled={Boolean(editingQuestionId)} value={questionType} onChange={(e) => { const next = e.target.value as TeacherQuestionType; setQuestionType(next); setCorrectOption(next === "single_choice" ? "a" : ""); }} className="input">{teacherTypes.map((type) => <option key={type.value} value={type.value}>{type.label}</option>)}</select></Field>
             <Field label="Prompt"><textarea value={prompt} onChange={(e) => setPrompt(e.target.value)} rows={4} className="input" placeholder="Write the learner-facing question..." /></Field>
 
             {questionType === "single_choice" && (
