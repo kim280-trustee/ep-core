@@ -4,6 +4,7 @@ import TeacherDashboardPage from "../pages/TeacherDashboardPage";
 import TeacherClassPage from "../pages/TeacherClassPage";
 import CreateTeacherAssignmentPage from "../pages/CreateTeacherAssignmentPage";
 import TeacherAuthoringPage from "../pages/TeacherAuthoringPage";
+import QuestionBankPage from "../../learning-assessment/pages/QuestionBankPage";
 
 export const learningTeacherRoutes: RouteObject[] = [
   {
@@ -22,6 +23,10 @@ export const learningTeacherRoutes: RouteObject[] = [
       {
         path: "authoring",
         element: <TeacherAuthoringPage />,
+      },
+      {
+        path: "question-bank",
+        element: <QuestionBankPage />,
       },
     ],
   },
