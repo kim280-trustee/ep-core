@@ -1832,6 +1832,196 @@ export type Database = {
           },
         ]
       }
+      learning_gradebook_categories: {
+        Row: {
+          code: string
+          created_at: string
+          default_weight: number
+          description: string | null
+          id: string
+          name: string
+          organization_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          default_weight?: number
+          description?: string | null
+          id?: string
+          name: string
+          organization_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          default_weight?: number
+          description?: string | null
+          id?: string
+          name?: string
+          organization_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_gradebook_categories_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_gradebook_entries: {
+        Row: {
+          assessment_id: string | null
+          assessment_result_id: string | null
+          assignment_id: string | null
+          attempt_id: string | null
+          category_id: string | null
+          class_group_id: string
+          class_subject_id: string
+          created_at: string
+          created_by: string
+          description: string | null
+          id: string
+          included_in_grade: boolean
+          max_score: number
+          notes: Json
+          objective_id: string | null
+          organization_id: string
+          percentage: number | null
+          record_type: string
+          recorded_at: string
+          score: number
+          source_type: string
+          student_user_id: string
+          tenant_id: string
+          term_id: string
+          title: string
+          topic_id: string | null
+          updated_at: string
+          updated_by: string | null
+          weight: number
+        }
+        Insert: {
+          assessment_id?: string | null
+          assessment_result_id?: string | null
+          assignment_id?: string | null
+          attempt_id?: string | null
+          category_id?: string | null
+          class_group_id: string
+          class_subject_id: string
+          created_at?: string
+          created_by: string
+          description?: string | null
+          id?: string
+          included_in_grade?: boolean
+          max_score: number
+          notes?: Json
+          objective_id?: string | null
+          organization_id: string
+          percentage?: number | null
+          record_type: string
+          recorded_at?: string
+          score: number
+          source_type: string
+          student_user_id: string
+          tenant_id: string
+          term_id: string
+          title: string
+          topic_id?: string | null
+          updated_at?: string
+          updated_by?: string | null
+          weight?: number
+        }
+        Update: {
+          assessment_id?: string | null
+          assessment_result_id?: string | null
+          assignment_id?: string | null
+          attempt_id?: string | null
+          category_id?: string | null
+          class_group_id?: string
+          class_subject_id?: string
+          created_at?: string
+          created_by?: string
+          description?: string | null
+          id?: string
+          included_in_grade?: boolean
+          max_score?: number
+          notes?: Json
+          objective_id?: string | null
+          organization_id?: string
+          percentage?: number | null
+          record_type?: string
+          recorded_at?: string
+          score?: number
+          source_type?: string
+          student_user_id?: string
+          tenant_id?: string
+          term_id?: string
+          title?: string
+          topic_id?: string | null
+          updated_at?: string
+          updated_by?: string | null
+          weight?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gradebook_entry_class_subject_fk"
+            columns: ["organization_id", "class_subject_id"]
+            isOneToOne: false
+            referencedRelation: "learning_class_subjects"
+            referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "gradebook_entry_creator_fk"
+            columns: ["tenant_id", "created_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "gradebook_entry_org_category_fk"
+            columns: ["organization_id", "category_id"]
+            isOneToOne: false
+            referencedRelation: "learning_gradebook_categories"
+            referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "gradebook_entry_org_class_fk"
+            columns: ["organization_id", "class_group_id"]
+            isOneToOne: false
+            referencedRelation: "learning_class_groups"
+            referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "gradebook_entry_org_term_fk"
+            columns: ["organization_id", "term_id"]
+            isOneToOne: false
+            referencedRelation: "learning_terms"
+            referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "gradebook_entry_updater_fk"
+            columns: ["tenant_id", "updated_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_gradebook_entries_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       learning_mastery_events: {
         Row: {
           attempt_id: string | null
@@ -2534,6 +2724,99 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      learning_term_grades: {
+        Row: {
+          calculation: Json
+          class_group_id: string
+          class_subject_id: string
+          created_at: string
+          finalized_at: string | null
+          finalized_by: string | null
+          id: string
+          letter_grade: string | null
+          notes: Json
+          organization_id: string
+          score: number
+          status: string
+          student_user_id: string
+          tenant_id: string
+          term_id: string
+          updated_at: string
+        }
+        Insert: {
+          calculation?: Json
+          class_group_id: string
+          class_subject_id: string
+          created_at?: string
+          finalized_at?: string | null
+          finalized_by?: string | null
+          id?: string
+          letter_grade?: string | null
+          notes?: Json
+          organization_id: string
+          score: number
+          status?: string
+          student_user_id: string
+          tenant_id: string
+          term_id: string
+          updated_at?: string
+        }
+        Update: {
+          calculation?: Json
+          class_group_id?: string
+          class_subject_id?: string
+          created_at?: string
+          finalized_at?: string | null
+          finalized_by?: string | null
+          id?: string
+          letter_grade?: string | null
+          notes?: Json
+          organization_id?: string
+          score?: number
+          status?: string
+          student_user_id?: string
+          tenant_id?: string
+          term_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_term_grades_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "term_grade_class_subject_fk"
+            columns: ["organization_id", "class_subject_id"]
+            isOneToOne: false
+            referencedRelation: "learning_class_subjects"
+            referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "term_grade_creator_fk"
+            columns: ["tenant_id", "finalized_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "term_grade_org_class_fk"
+            columns: ["organization_id", "class_group_id"]
+            isOneToOne: false
+            referencedRelation: "learning_class_groups"
+            referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "term_grade_org_term_fk"
+            columns: ["organization_id", "term_id"]
+            isOneToOne: false
+            referencedRelation: "learning_terms"
+            referencedColumns: ["organization_id", "id"]
+          },
+        ]
       }
       learning_terms: {
         Row: {
@@ -3707,6 +3990,11 @@ export type Database = {
         Args: { target_organization_id: string }
         Returns: boolean
       }
+      learning_can_manage_academic_records: {
+        Args: { target_organization_id: string }
+        Returns: boolean
+      }
+      learning_current_user_id: { Args: never; Returns: string }
       save_learning_question_evaluation_key: {
         Args: {
           p_evaluation_key: Json
