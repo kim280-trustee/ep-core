@@ -47,8 +47,8 @@ export default function TeacherGradebookPage() {
   const assessmentColumns = useMemo(() => {
     const map = new Map<string, { id: string; title: string }>();
     for (const entry of entries) {
-      if (entry.recordType !== "assessment") continue;
-      if (!map.has(entry.id)) map.set(entry.id, { id: entry.id, title: entry.title });
+      if (entry.recordType !== "assessment" || !entry.assessmentId) continue;
+      if (!map.has(entry.assessmentId)) map.set(entry.assessmentId, { id: entry.assessmentId, title: entry.title });
     }
     return [...map.values()];
   }, [entries]);
@@ -143,7 +143,7 @@ export default function TeacherGradebookPage() {
                         <p className="text-xs text-slate-500">{student.email}</p>
                       </td>
                       {assessmentColumns.map((column) => {
-                        const entry = studentEntries.find((item) => item.id === column.id);
+                        const entry = studentEntries.find((item) => item.assessmentId === column.id);
                         return (
                           <td key={column.id} className="whitespace-nowrap px-5 py-4 text-slate-700">
                             {entry ? <><span className="font-semibold">{entry.score}/{entry.maxScore}</span><span className="ml-2 text-xs text-slate-500">{Math.round(entry.percentage)}%</span></> : <span className="text-slate-300">—</span>}
