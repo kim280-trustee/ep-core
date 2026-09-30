@@ -19,14 +19,16 @@ export const learningTeacherRepository = {
 
     if (!memberships.length) return [];
 
-    const organizationIds = [...new Set(memberships.map((item) => item.organizationId))];
-    const groupsById = new Map<string, LearningTeacherClass["classGroup"]>();
+    const classGroupIds = [...new Set(memberships.map((item) => item.classGroupId))];
+    const { data: classGroups, error: classGroupsError } = await supabase
+      .from("learning_class_groups")
+      .select("*")
+      .in("id", classGroupIds);
 
-    await Promise.all(
-      organizationIds.map(async (organizationId) => {
-        const groups = await learningAcademicService.listClassGroups(organizationId);
-        groups.forEach((group) => groupsById.set(group.id, group));
-      }),
+    if (classGroupsError) throw classGroupsError;
+
+    const groupsById = new Map(
+      (classGroups ?? []).map((group) => [group.id, group]),
     );
 
     const subjectCache = new Map<string, Awaited<ReturnType<typeof learningAcademicService.listSubjects>>[number]>();
@@ -37,10 +39,12 @@ export const learningTeacherRepository = {
     for (const membership of memberships) {
       const classGroup = groupsById.get(membership.classGroupId);
       if (!classGroup) continue;
+
       const classSubjects = await learningAcademicService.listClassSubjects(
         membership.organizationId,
         membership.classGroupId,
       );
+
       result.push({
         classGroup,
         membership,
