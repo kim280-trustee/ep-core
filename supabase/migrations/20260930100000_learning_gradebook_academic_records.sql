@@ -69,10 +69,6 @@ create table if not exists public.learning_gradebook_entries (
     foreign key (organization_id, category_id)
     references public.learning_gradebook_categories(organization_id, id)
     on delete set null,
-  constraint gradebook_entry_student_membership_fk
-    foreign key (class_group_id, student_user_id)
-    references public.learning_class_memberships(class_group_id, user_id)
-    on delete restrict,
   constraint gradebook_entry_creator_fk
     foreign key (tenant_id, created_by)
     references public.users(tenant_id, id)
@@ -139,10 +135,6 @@ create table if not exists public.learning_term_grades (
     foreign key (organization_id, class_subject_id)
     references public.learning_class_subjects(organization_id, id)
     on delete cascade,
-  constraint term_grade_student_membership_fk
-    foreign key (class_group_id, student_user_id)
-    references public.learning_class_memberships(class_group_id, user_id)
-    on delete restrict,
   constraint term_grade_creator_fk
     foreign key (tenant_id, finalized_by)
     references public.users(tenant_id, id)
