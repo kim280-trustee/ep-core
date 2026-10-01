@@ -4,7 +4,6 @@ import type { FormEvent } from "react";
 import { useMemo, useState } from "react";
 import { useAuth } from "@/core/auth";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useAuth } from "@/core/auth";
 import { learningContentService } from "@/features/learning-content";
 import { learningTeacherService } from "@/features/learning-teacher";
 import type { LearningContentStatus } from "@/features/learning-content";
