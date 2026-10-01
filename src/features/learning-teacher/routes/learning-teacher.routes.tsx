@@ -6,6 +6,7 @@ import CreateTeacherAssignmentPage from "../pages/CreateTeacherAssignmentPage";
 import TeacherAuthoringPage from "../pages/TeacherAuthoringPage";
 import TeacherContentLibraryPage from "@/features/learning-content/pages/TeacherContentLibraryPage";
 import TeacherContentCreatePage from "@/features/learning-content/pages/TeacherContentCreatePage";
+import TeacherContentDetailPage from "@/features/learning-content/pages/TeacherContentDetailPage";
 
 export const learningTeacherRoutes: RouteObject[] = [
   {
@@ -13,26 +14,12 @@ export const learningTeacherRoutes: RouteObject[] = [
     element: <TeacherLayout />,
     children: [
       { index: true, element: <TeacherDashboardPage /> },
-      {
-        path: "content",
-        element: <TeacherContentLibraryPage />,
-      },
-      {
-        path: "content/new",
-        element: <TeacherContentCreatePage />,
-      },
-      {
-        path: "classes/:classGroupId",
-        element: <TeacherClassPage />,
-      },
-      {
-        path: "assignments/new",
-        element: <CreateTeacherAssignmentPage />,
-      },
-      {
-        path: "authoring",
-        element: <TeacherAuthoringPage />,
-      },
+      { path: "content", element: <TeacherContentLibraryPage /> },
+      { path: "content/new", element: <TeacherContentCreatePage /> },
+      { path: "content/:id", element: <TeacherContentDetailPage /> },
+      { path: "classes/:classGroupId", element: <TeacherClassPage /> },
+      { path: "assignments/new", element: <CreateTeacherAssignmentPage /> },
+      { path: "authoring", element: <TeacherAuthoringPage /> },
     ],
   },
 ];
