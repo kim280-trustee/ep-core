@@ -2,9 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, Eye, FileText, Save, Send } from "lucide-react";
 import type { FormEvent } from "react";
 import { useMemo, useState } from "react";
+import { useAuth } from "@/core/auth";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningContentService } from "@/features/learning-content";
+import { learningTeacherService } from "@/features/learning-teacher";
 import type { LearningContentStatus } from "@/features/learning-content";
 
 const statusClasses: Record<LearningContentStatus, string> = {
@@ -19,33 +21,41 @@ export default function TeacherContentDetailPage() {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [body, setBody] = useState("");
+  const [bodyEdited, setBodyEdited] = useState(false);
   const [changeSummary, setChangeSummary] = useState("");
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
   const [publishing, setPublishing] = useState(false);
   const [preview, setPreview] = useState(false);
 
+  const classes = useQuery({
+    queryKey: ["learning", "teacher-classes", user?.id],
+    queryFn: () => learningTeacherService.listTeacherClasses(user!.id),
+    enabled: Boolean(user?.id),
+  });
+  const organizationId = classes.data?.[0]?.membership.organizationId;
+
   const content = useQuery({
     queryKey: ["learning", "content", id],
     queryFn: async () => {
-      const items = await learningContentService.listContent();
+      const items = await learningContentService.listContent(organizationId);
       const item = items.find((candidate) => candidate.id === id);
       if (!item) throw new Error("Content item not found.");
       return item;
     },
-    enabled: Boolean(id),
+    enabled: Boolean(id && organizationId),
   });
 
   const versions = useQuery({
     queryKey: ["learning", "content-versions", id],
     queryFn: () => learningContentService.listContentVersions(id!),
-    enabled: Boolean(id),
+    enabled: Boolean(id && organizationId),
   });
 
   const objectives = useQuery({
     queryKey: ["learning", "content-objectives", id],
     queryFn: () => learningContentService.listContentObjectives(id!),
-    enabled: Boolean(id),
+    enabled: Boolean(id && organizationId),
   });
 
   const latestVersion = versions.data?.[0];
@@ -65,7 +75,7 @@ export default function TeacherContentDetailPage() {
       .join("\n\n");
   }, [latestVersion]);
 
-  const currentBody = body || latestBody;
+  const currentBody = bodyEdited ? body : latestBody;
 
   async function saveVersion(event: FormEvent) {
     event.preventDefault();
@@ -92,6 +102,7 @@ export default function TeacherContentDetailPage() {
         createdBy: user.id,
       });
       setBody("");
+      setBodyEdited(false);
       setChangeSummary("");
       await versions.refetch();
     } catch (err) {
@@ -130,10 +141,10 @@ export default function TeacherContentDetailPage() {
 
   if (!user) return <Message text="Sign in to manage learning content." />;
   if (!id) return <Message text="No content item was selected." />;
-  if (content.isPending || versions.isPending || objectives.isPending) {
+  if (classes.isPending || content.isPending || versions.isPending || objectives.isPending) {
     return <div className="h-96 animate-pulse rounded-2xl bg-slate-200" />;
   }
-  if (content.isError || versions.isError || objectives.isError || !content.data) {
+  if (classes.isError || !organizationId || content.isError || versions.isError || objectives.isError || !content.data) {
     return <Message text="We could not load this content item." />;
   }
 
@@ -215,7 +226,7 @@ export default function TeacherContentDetailPage() {
 
           <textarea
             value={currentBody}
-            onChange={(event) => setBody(event.target.value)}
+            onChange={(event) => { setBodyEdited(true); setBody(event.target.value); }}
             className="input mt-5 min-h-72 w-full resize-y"
             placeholder="Write the learning content..."
             required
