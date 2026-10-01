@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useMemo, useState } from "react";
 import { useAuth } from "@/core/auth";
 import { learningContentService } from "@/features/learning-content";
-import { learningTeacherService } from "../services/learning-teacher.service";
+import { learningTeacherService } from "@/features/learning-teacher";
 import type { LearningContentStatus, LearningContentType } from "@/features/learning-content";
 
 const contentTypes: Array<LearningContentType | "all"> = [
