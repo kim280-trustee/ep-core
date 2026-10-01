@@ -1,4 +1,4 @@
-﻿import type { Database, Json } from "@/core/database/database.types";
+import type { Database, Json } from "@/core/database/database.types";
 import { supabase } from "@/core/infrastructure/supabase/client";
 import type { LearningGradebookCategory,LearningGradebookEntry,LearningTermGrade } from "../types/learning-gradebook.types";
 type CategoryRow=Database["public"]["Tables"]["learning_gradebook_categories"]["Row"];
