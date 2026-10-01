@@ -4,13 +4,16 @@ import { authService, useAuth } from "@/core/auth";
 
 interface LoginLocationState {
   registered?: boolean;
+  from?: string;
 }
 
 export function LoginPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const { refreshUser } = useAuth();
-  const registrationMessage = (location.state as LoginLocationState | null)?.registered;
+  const locationState = location.state as LoginLocationState | null;
+  const registrationMessage = locationState?.registered;
+  const returnTo = locationState?.from;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,7 +31,7 @@ export function LoginPage() {
       if (signInError) throw signInError;
 
       await refreshUser();
-      navigate("/", { replace: true });
+      navigate(returnTo || "/", { replace: true });
     } catch (err) {
       setError(err instanceof Error ? err.message : "Login failed");
     } finally {
