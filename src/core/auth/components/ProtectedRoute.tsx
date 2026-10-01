@@ -3,6 +3,11 @@ import type {
 } from "react";
 
 import {
+  Navigate,
+  useLocation,
+} from "react-router-dom";
+
+import {
   useAuth,
 } from "../hooks/useAuth";
 
@@ -16,9 +21,18 @@ export function ProtectedRoute({
   const {
     isAuthenticated,
   } = useAuth();
+  const location = useLocation();
 
   if (!isAuthenticated) {
-    return null;
+    return (
+      <Navigate
+        to="/login"
+        replace
+        state={{
+          from: `${location.pathname}${location.search}${location.hash}`,
+        }}
+      />
+    );
   }
 
   return children;
