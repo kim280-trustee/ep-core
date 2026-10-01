@@ -234,7 +234,7 @@ function Section({ number, title, description, children, full = false }: { numbe
     <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
       <div className="flex items-center gap-3"><span className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-900 text-sm font-bold text-white">{number}</span><h2 className="text-lg font-semibold text-slate-900">{title}</h2></div>
       <p className="mt-2 text-sm text-slate-500">{description}</p>
-      <div className={\`mt-5 grid gap-4 \${full ? "" : "md:grid-cols-2"}\`}>{children}</div>
+      <div className={`mt-5 grid gap-4 ${full ? "" : "md:grid-cols-2"}`}>{children}</div>
     </section>
   );
 }
