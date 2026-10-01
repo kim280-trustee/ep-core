@@ -2,6 +2,16 @@
 
 export type LearningContentStatus = "draft" | "review" | "published" | "retired";
 
+export interface LearningSubject {
+  id: string;
+  code: string;
+  name: string;
+  description: string | null;
+  status: LearningKnowledgeStatus;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export type LearningContentType =
   | "lesson"
   | "explanation"
