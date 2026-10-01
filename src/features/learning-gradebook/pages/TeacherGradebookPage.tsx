@@ -1,6 +1,6 @@
-import { useMemo, useState } from "react";
+﻿import { useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { ArrowLeft, BookOpen, RefreshCw, Save, Calculator, Lock } from "lucide-react";
+import { ArrowLeft, RefreshCw, Save, Calculator, Lock } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningGradebookService } from "../services/learning-gradebook.service";
@@ -174,7 +174,7 @@ export default function TeacherGradebookPage() {
 
       <section className="rounded-2xl border border-slate-200 bg-white">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 p-5">
-          <div><h2 className="font-semibold text-slate-900">{selectedSubject?.subject.name ?? "Subject"} · {selectedTerm?.name ?? "Term"}</h2><p className="mt-1 text-xs text-slate-500">{entries.length} score records · {termGrades.length} term grades</p></div>
+          <div><h2 className="font-semibold text-slate-900">{selectedSubject?.subject.name ?? "Subject"} Â· {selectedTerm?.name ?? "Term"}</h2><p className="mt-1 text-xs text-slate-500">{entries.length} score records Â· {termGrades.length} term grades</p></div>
           {entriesQuery.isFetching && <RefreshCw size={17} className="animate-spin text-slate-400" />}
         </div>
 
@@ -195,9 +195,9 @@ export default function TeacherGradebookPage() {
                     <td className="sticky left-0 bg-white px-5 py-4"><p className="font-medium text-slate-900">{student.name}</p><p className="text-xs text-slate-500">{student.email}</p></td>
                     {assessmentColumns.map((column) => {
                       const entry = studentEntries.find((item) => item.assessmentId === column.id);
-                      return <td key={column.id} className="whitespace-nowrap px-5 py-4 text-slate-700">{entry ? <><span className="font-semibold">{entry.score}/{entry.maxScore}</span><span className="ml-2 text-xs text-slate-500">{Math.round(entry.percentage)}%</span></> : <span className="text-slate-300">—</span>}</td>;
+                      return <td key={column.id} className="whitespace-nowrap px-5 py-4 text-slate-700">{entry ? <><span className="font-semibold">{entry.score}/{entry.maxScore}</span><span className="ml-2 text-xs text-slate-500">{Math.round(entry.percentage)}%</span></> : <span className="text-slate-300">â€”</span>}</td>;
                     })}
-                    <td className="px-5 py-4">{manual.length ? <div className="space-y-1">{manual.map((entry) => <div key={entry.id} className="text-xs text-slate-600">{entry.title}: <b>{entry.score}/{entry.maxScore}</b></div>)}</div> : <span className="text-slate-300">—</span>}</td>
+                    <td className="px-5 py-4">{manual.length ? <div className="space-y-1">{manual.map((entry) => <div key={entry.id} className="text-xs text-slate-600">{entry.title}: <b>{entry.score}/{entry.maxScore}</b></div>)}</div> : <span className="text-slate-300">â€”</span>}</td>
                     <td className="whitespace-nowrap px-5 py-4">{grade ? <><span className="font-semibold">{grade.score.toFixed(2)}%</span><span className="ml-2 text-xs text-slate-500">{grade.status}</span></> : <span className="text-slate-300">Not calculated</span>}</td>
                     <td className="px-5 py-4"><div className="flex gap-2">{grade?.status === "finalized" ? <span className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500"><Lock size={14} />Finalized</span> : <><button type="button" onClick={() => calculateGrade.mutate(student.membership.userId)} disabled={calculateGrade.isPending} className="inline-flex items-center gap-1 rounded-lg border border-slate-300 px-2.5 py-2 text-xs font-semibold"><Calculator size={14} />Calculate</button>{grade && <button type="button" onClick={() => finalizeGrade.mutate(student.membership.userId)} disabled={finalizeGrade.isPending} className="rounded-lg bg-slate-900 px-2.5 py-2 text-xs font-semibold text-white">Finalize</button>}</>}</div></td>
                   </tr>;
@@ -215,3 +215,4 @@ export default function TeacherGradebookPage() {
 
 function EmptyState({ text }: { text: string }) { return <div className="rounded-2xl border border-slate-200 bg-white p-8 text-sm text-slate-600">{text}</div>; }
 function ErrorState({ onRetry }: { onRetry: () => void }) { return <div className="rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800"><p className="font-semibold">The Gradebook could not be loaded.</p><button type="button" onClick={onRetry} className="mt-3 rounded-lg bg-white px-3 py-2 text-sm">Try again</button></div>; }
+
