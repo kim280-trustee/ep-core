@@ -3,9 +3,10 @@ import { supabase } from "@/core/infrastructure/supabase/client";
 import type {
   LearningContentItem, LearningContentObjective, LearningContentVersion, LearningObjective,
   LearningObjectiveAlignment, LearningObjectivePrerequisite, LearningSkill, LearningTopic, LearningKnowledgeStatus,
-  LearningContentStatus, LearningContentType,
+  LearningContentStatus, LearningContentType, LearningSubject,
 } from "../types/learning-content.types";
 
+type SubjectRow = Database["public"]["Tables"]["learning_subjects"]["Row"];
 type SkillRow = Database["public"]["Tables"]["learning_skills"]["Row"];
 type TopicRow = Database["public"]["Tables"]["learning_topics"]["Row"];
 type ObjectiveRow = Database["public"]["Tables"]["learning_objectives"]["Row"];
@@ -16,6 +17,7 @@ type ContentVersionRow = Database["public"]["Tables"]["learning_content_versions
 type ContentObjectiveRow = Database["public"]["Tables"]["learning_content_objectives"]["Row"];
 
 export interface LearningContentRepository {
+  listSubjects(): Promise<LearningSubject[]>;
   listSkills(subjectId?: string): Promise<LearningSkill[]>;
   listTopics(skillId?: string): Promise<LearningTopic[]>;
   listObjectives(topicId?: string): Promise<LearningObjective[]>;
@@ -31,6 +33,7 @@ export interface LearningContentRepository {
   updateVersionStatus(id: string, status: LearningContentStatus, reviewerId?: string): Promise<LearningContentVersion>;
 }
 
+const mapSubject = (r: SubjectRow): LearningSubject => ({ id:r.id, code:r.code, name:r.name, description:r.description, status:r.status as LearningKnowledgeStatus, createdAt:r.created_at, updatedAt:r.updated_at });
 const mapSkill = (r: SkillRow): LearningSkill => ({ id:r.id, subjectId:r.subject_id, code:r.code, name:r.name, description:r.description, status:r.status as LearningKnowledgeStatus, createdAt:r.created_at, updatedAt:r.updated_at });
 const mapTopic = (r: TopicRow): LearningTopic => ({ id:r.id, skillId:r.skill_id, code:r.code, name:r.name, description:r.description, sequenceNo:r.sequence_no, status:r.status as LearningKnowledgeStatus, createdAt:r.created_at, updatedAt:r.updated_at });
 const mapObjective = (r: ObjectiveRow): LearningObjective => ({ id:r.id, topicId:r.topic_id, code:r.code, name:r.name, description:r.description, sequenceNo:r.sequence_no, status:r.status as LearningKnowledgeStatus, createdAt:r.created_at, updatedAt:r.updated_at });
@@ -41,6 +44,7 @@ const mapContentVersion = (r: ContentVersionRow): LearningContentVersion => ({ i
 const mapContentObjective = (r: ContentObjectiveRow): LearningContentObjective => ({ contentItemId:r.content_item_id, objectiveId:r.objective_id, sequenceNo:r.sequence_no, createdAt:r.created_at });
 
 export const learningContentRepository: LearningContentRepository = {
+  async listSubjects() { const {data,error}=await supabase.from("learning_subjects").select("*").eq("status","active").order("name"); if(error)throw error; return(data??[]).map(mapSubject); },
   async listSkills(subjectId) { let q=supabase.from("learning_skills").select("*").eq("status","active").order("name"); if(subjectId)q=q.eq("subject_id",subjectId); const {data,error}=await q;if(error)throw error;return(data??[]).map(mapSkill); },
   async listTopics(skillId) { let q=supabase.from("learning_topics").select("*").eq("status","active").order("sequence_no");if(skillId)q=q.eq("skill_id",skillId);const{data,error}=await q;if(error)throw error;return(data??[]).map(mapTopic); },
   async listObjectives(topicId) { let q=supabase.from("learning_objectives").select("*").eq("status","active").order("sequence_no");if(topicId)q=q.eq("topic_id",topicId);const{data,error}=await q;if(error)throw error;return(data??[]).map(mapObjective); },
