@@ -133,7 +133,7 @@ export default function TeacherContentLibraryPage() {
           </div>
 
           <Link
-            to="/teacher/authoring"
+            to="/teacher/content/new"
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"
           >
             <Plus size={17} />
