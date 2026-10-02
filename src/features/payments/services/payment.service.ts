@@ -1,9 +1,13 @@
-﻿import { paymentRepository } from "../repositories";
+import {
+  paymentRefundRepository,
+  paymentRepository,
+} from "../repositories";
 
 import type {
   Payment,
   PaymentMethod,
 } from "../types/payment.types";
+import type { PaymentRefund } from "../types/payment-refund.types";
 
 export interface PaymentSummary {
   salesOrderId: string;
@@ -17,7 +21,7 @@ function roundMoney(value: number): number {
   return Math.round((value + Number.EPSILON) * 100) / 100;
 }
 
-function createPaymentId(): string {
+function createId(): string {
   if (
     typeof crypto !== "undefined" &&
     typeof crypto.randomUUID === "function"
@@ -149,7 +153,7 @@ class PaymentService {
     const now = new Date().toISOString();
 
     const payment: Payment = {
-      id: createPaymentId(),
+      id: createId(),
       tenantId,
       salesOrderId,
       method,
@@ -191,9 +195,22 @@ class PaymentService {
     );
   }
 
-  async refundPayment(
+  async getRefundedAmount(
     tenantId: string,
     id: string,
+  ): Promise<number> {
+    if (!tenantId.trim()) throw new Error("Tenant ID is required.");
+    if (!id.trim()) throw new Error("Payment ID is required.");
+
+    const refunds = await paymentRefundRepository.findByPaymentId(tenantId, id);
+    return roundMoney(refunds.reduce((sum, refund) => sum + refund.amount, 0));
+  }
+
+  async refundPaymentAmount(
+    tenantId: string,
+    id: string,
+    amount: number,
+    reference?: string,
   ): Promise<Payment | undefined> {
     if (!tenantId.trim()) {
       throw new Error("Tenant ID is required.");
@@ -203,14 +220,16 @@ class PaymentService {
       throw new Error("Payment ID is required.");
     }
 
-    const payments =
-      await paymentRepository.findAll(
-        tenantId,
+    if (!Number.isFinite(amount) || amount <= 0) {
+      throw new Error(
+        "Refund amount must be greater than zero.",
       );
+    }
 
     const payment =
-      payments.find(
-        (item) => item.id === id,
+      await paymentRepository.findById(
+        tenantId,
+        id,
       );
 
     if (!payment) {
@@ -227,16 +246,143 @@ class PaymentService {
       );
     }
 
-    return paymentRepository.update(
+    const refunds =
+      await paymentRefundRepository.findByPaymentId(
+        tenantId,
+        payment.id,
+      );
+
+    const refundedAmount = roundMoney(
+      refunds.reduce(
+        (sum, refund) =>
+          sum + refund.amount,
+        0,
+      ),
+    );
+
+    const remainingAmount = roundMoney(
+      payment.amount - refundedAmount,
+    );
+
+    if (remainingAmount <= 0) {
+      return paymentRepository.update(
+        tenantId,
+        id,
+        {
+          status: "REFUNDED",
+        },
+      );
+    }
+
+    const refundAmount = roundMoney(amount);
+
+    if (refundAmount > remainingAmount) {
+      throw new Error(
+        `Refund amount cannot exceed the remaining refundable amount of ${remainingAmount.toFixed(2)}.`,
+      );
+    }
+
+    const refund: PaymentRefund = {
+      id: createId(),
+      tenantId,
+      paymentId: payment.id,
+      salesOrderId: payment.salesOrderId,
+      amount: refundAmount,
+      createdAt: new Date().toISOString(),
+      reference: reference?.trim() || undefined,
+    };
+
+    await paymentRefundRepository.create(
+      refund,
+    );
+
+    const newRefundedAmount = roundMoney(
+      refundedAmount + refundAmount,
+    );
+
+    if (newRefundedAmount >= payment.amount) {
+      return paymentRepository.update(
+        tenantId,
+        id,
+        {
+          status: "REFUNDED",
+        },
+      );
+    }
+
+    return paymentRepository.findById(
       tenantId,
       id,
-      {
-        status: "REFUNDED",
-      },
+    );
+  }
+
+  async refundPayment(
+    tenantId: string,
+    id: string,
+  ): Promise<Payment | undefined> {
+    if (!tenantId.trim()) {
+      throw new Error("Tenant ID is required.");
+    }
+
+    if (!id.trim()) {
+      throw new Error("Payment ID is required.");
+    }
+
+    const payment =
+      await paymentRepository.findById(
+        tenantId,
+        id,
+      );
+
+    if (!payment) {
+      throw new Error("Payment not found.");
+    }
+
+    if (payment.status === "REFUNDED") {
+      return payment;
+    }
+
+    if (payment.status !== "COMPLETED") {
+      throw new Error(
+        `Payment cannot be refunded from status ${payment.status}.`,
+      );
+    }
+
+    const refunds =
+      await paymentRefundRepository.findByPaymentId(
+        tenantId,
+        payment.id,
+      );
+
+    const refundedAmount = roundMoney(
+      refunds.reduce(
+        (sum, refund) =>
+          sum + refund.amount,
+        0,
+      ),
+    );
+
+    const remainingAmount = roundMoney(
+      payment.amount - refundedAmount,
+    );
+
+    if (remainingAmount <= 0) {
+      return paymentRepository.update(
+        tenantId,
+        id,
+        {
+          status: "REFUNDED",
+        },
+      );
+    }
+
+    return this.refundPaymentAmount(
+      tenantId,
+      id,
+      remainingAmount,
     );
   }
 }
 
 export const paymentService =
   new PaymentService();
-

@@ -1,3 +1,5 @@
+import type { Database } from "@/core/database/database.types";
+
 import {
   supabase,
 } from "@/core/infrastructure/supabase/client";
@@ -260,7 +262,7 @@ class SupabaseCustomerRepository
   ): Promise<Customer | undefined> {
 
     const updateData:
-      Record<string, unknown> = {};
+      Database["public"]["Tables"]["customers"]["Update"] = {};
 
 
     if (updates.name !== undefined) {

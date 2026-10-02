@@ -8,6 +8,11 @@ import type {
   SalesOrder,
 } from "../types/sales-order.types";
 
+import type {
+  SalesOrderRefundItem,
+  SalesOrderRefundSelection,
+} from "../services/sales-order.service";
+
 import {
   storeContext,
 } from "@/core/store/store.context";
@@ -65,6 +70,15 @@ interface SalesOrderState {
 
   refundOrder: (
     orderId: string,
+  ) => Promise<SalesOrder>;
+
+  getRefundableItems: (
+    orderId: string,
+  ) => Promise<SalesOrderRefundItem[]>;
+
+  refundOrderItems: (
+    orderId: string,
+    selections: SalesOrderRefundSelection[],
   ) => Promise<SalesOrder>;
 
   clearError: () => void;
@@ -548,6 +562,35 @@ export const useSalesOrderStore =
                 message,
             });
 
+            throw error;
+          }
+        },
+
+      getRefundableItems:
+        async (orderId) => {
+          try {
+            return await salesOrderService.getRefundableItems(orderId);
+          } catch (error) {
+            const message = error instanceof Error ? error.message : "Failed to load refundable items.";
+            set({ error: message });
+            throw error;
+          }
+        },
+
+      refundOrderItems:
+        async (orderId, selections) => {
+          set({ loading: true, error: null });
+          try {
+            const updated = await salesOrderService.refundOrderItems(orderId, selections);
+            set((state) => ({
+              orders: state.orders.map((order) => order.id === updated.id ? updated : order),
+              loading: false,
+              error: null,
+            }));
+            return updated;
+          } catch (error) {
+            const message = error instanceof Error ? error.message : "Failed to refund selected items.";
+            set({ loading: false, error: message });
             throw error;
           }
         },

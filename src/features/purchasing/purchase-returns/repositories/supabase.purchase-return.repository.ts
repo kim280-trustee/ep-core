@@ -1,3 +1,5 @@
+import type { Database } from "@/core/database/database.types";
+
 ﻿import { supabase } from "@/core/infrastructure/supabase/client";
 
 import type {
@@ -273,7 +275,7 @@ class SupabasePurchaseReturnRepository
     id: string,
     updates: Partial<PurchaseReturn>,
   ): Promise<PurchaseReturn | undefined> {
-    const databaseUpdates: Record<string, unknown> = {};
+    const databaseUpdates: Database["public"]["Tables"]["purchase_returns"]["Update"] = {};
 
     if (updates.storeId !== undefined) {
       databaseUpdates.store_id = updates.storeId;

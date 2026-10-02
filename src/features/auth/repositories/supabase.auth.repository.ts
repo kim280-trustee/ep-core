@@ -75,7 +75,7 @@ implements AuthRepository {
       currency: data.currency,
 
       createdAt:
-        data.created_at,
+        data.created_at ?? new Date().toISOString(),
 
     };
 
@@ -140,10 +140,10 @@ implements AuthRepository {
         data.id,
 
       authUserId:
-        data.auth_user_id,
+        data.auth_user_id ?? user.authUserId,
 
       tenantId:
-        data.tenant_id,
+        data.tenant_id ?? user.tenantId,
 
       name:
         data.name,
@@ -155,7 +155,7 @@ implements AuthRepository {
         "STAFF",
 
       createdAt:
-        data.created_at,
+        data.created_at ?? new Date().toISOString(),
 
     };
 
@@ -195,7 +195,7 @@ implements AuthRepository {
 
 
 
-    if (error || !data) {
+    if (error || !data || !data.auth_user_id || !data.tenant_id) {
 
       return undefined;
 
@@ -225,7 +225,7 @@ implements AuthRepository {
         "STAFF",
 
       createdAt:
-        data.created_at,
+        data.created_at ?? new Date().toISOString(),
 
     };
 

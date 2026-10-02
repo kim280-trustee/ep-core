@@ -3,6 +3,8 @@ import type {
   Session,
 } from "@supabase/supabase-js";
 
+export type LoginDestination = "/" | "/teacher" | "/learning";
+
 export interface AuthRepository {
   signIn(
     email: string,
@@ -17,4 +19,8 @@ export interface AuthRepository {
   signOut(): Promise<void>;
 
   getSession(): Promise<Session | null>;
+
+  getLoginDestination(
+    authUserId: string,
+  ): Promise<LoginDestination>;
 }

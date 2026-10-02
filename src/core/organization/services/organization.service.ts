@@ -1,87 +1,26 @@
 /**
- * ============================================================
- * E&P Technologies
- * EP Core
  * Organization Service
- * ============================================================
  */
 
+import { supabaseOrganizationRepository } from "../repositories/supabase.organization.repository";
+import type { Organization } from "../types/organization.types";
 
-import {
-  InMemoryOrganizationRepository,
-} from "../repositories";
-
-
-import type {
-  Organization,
-} from "../types/organization.types";
-
-
-
-const organizationRepository =
-  new InMemoryOrganizationRepository();
-
-
+const organizationRepository = supabaseOrganizationRepository;
 
 export const organizationService = {
-
-
-
-  getOrganizations(){
-
+  getOrganizations(): Promise<Organization[]> {
     return organizationRepository.findAll();
-
   },
-
-
-
-  getOrganizationById(
-    id: string,
-  ){
-
-    return organizationRepository.findById(
-      id,
-    );
-
+  getOrganizationById(id: string): Promise<Organization | undefined> {
+    return organizationRepository.findById(id);
   },
-
-
-
-  createOrganization(
-    organization: Organization,
-  ){
-
-    return organizationRepository.create(
-      organization,
-    );
-
+  createOrganization(organization: Organization): Promise<Organization> {
+    return organizationRepository.create(organization);
   },
-
-
-
-  updateOrganization(
-    id: string,
-    data: Partial<Organization>,
-  ){
-
-    return organizationRepository.update(
-      id,
-      data,
-    );
-
+  updateOrganization(id: string, data: Partial<Organization>): Promise<Organization | undefined> {
+    return organizationRepository.update(id, data);
   },
-
-
-
-  deleteOrganization(
-    id: string,
-  ){
-
-    return organizationRepository.delete(
-      id,
-    );
-
+  deleteOrganization(id: string): Promise<void> {
+    return organizationRepository.delete(id);
   },
-
-
 };

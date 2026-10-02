@@ -63,7 +63,7 @@ implements RegisterOwnerRepository {
       currency: data.currency,
 
       createdAt:
-        data.created_at,
+        data.created_at ?? new Date().toISOString(),
 
     };
 
@@ -120,10 +120,10 @@ implements RegisterOwnerRepository {
         data.id,
 
       authUserId:
-        data.auth_user_id,
+        data.auth_user_id ?? user.authUserId,
 
       tenantId:
-        data.tenant_id,
+        data.tenant_id ?? user.tenantId,
 
       name:
         data.name,
@@ -135,7 +135,7 @@ implements RegisterOwnerRepository {
         "OWNER",
 
       createdAt:
-        data.created_at,
+        data.created_at ?? new Date().toISOString(),
 
     };
 

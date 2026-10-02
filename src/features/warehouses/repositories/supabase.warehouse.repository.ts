@@ -1,3 +1,5 @@
+import type { Database } from "@/core/database/database.types";
+
 import {
   supabase,
 } from "@/core/infrastructure/supabase/client";
@@ -171,7 +173,7 @@ implements WarehouseRepository {
     warehouse: UpdateWarehouseDto,
   ): Promise<Warehouse | undefined> {
     const updateData:
-      Record<string, unknown> = {};
+      Database["public"]["Tables"]["warehouses"]["Update"] = {};
 
     if (
       warehouse.name !== undefined
