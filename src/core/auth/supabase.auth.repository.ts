@@ -40,7 +40,7 @@ export class SupabaseAuthRepository
   async signOut(): Promise<void> {
 
     const { error } =
-      await supabase.auth.signOut();
+      await supabase.auth.signOut({ scope: "local" });
 
     if (error) {
       throw error;
