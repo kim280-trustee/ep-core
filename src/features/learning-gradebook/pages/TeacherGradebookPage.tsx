@@ -4,6 +4,7 @@ import { ArrowLeft, RefreshCw, Save, Calculator, Lock } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningGradebookService } from "../services/learning-gradebook.service";
+import { GradebookBulkImportPanel } from "../components/GradebookBulkImportPanel";
 import { learningTeacherService } from "@/features/learning-teacher";
 
 export default function TeacherGradebookPage() {
@@ -172,6 +173,17 @@ export default function TeacherGradebookPage() {
         {addScore.isError && <p className="mt-3 text-sm text-red-700">{(addScore.error as Error).message}</p>}
       </section>
 
+      {selectedTermId && selectedSubjectId && <GradebookBulkImportPanel
+        termId={selectedTermId}
+        classSubjectId={selectedSubjectId}
+        students={students}
+        categories={(categoriesQuery.data ?? []).map((category) => ({ id: category.id, name: category.name }))}
+        onImported={() => {
+          void qc.invalidateQueries({ queryKey: ["learning", "teacher-gradebook-entries"] });
+          void qc.invalidateQueries({ queryKey: ["learning", "teacher-term-grades"] });
+        }}
+      />}
+
       <section className="rounded-2xl border border-slate-200 bg-white">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 p-5">
           <div><h2 className="font-semibold text-slate-900">{selectedSubject?.subject.name ?? "Subject"} · {selectedTerm?.name ?? "Term"}</h2><p className="mt-1 text-xs text-slate-500">{entries.length} score records · {termGrades.length} term grades</p></div>
@@ -198,7 +210,7 @@ export default function TeacherGradebookPage() {
                       return <td key={column.id} className="whitespace-nowrap px-5 py-4 text-slate-700">{entry ? <><span className="font-semibold">{entry.score}/{entry.maxScore}</span><span className="ml-2 text-xs text-slate-500">{Math.round(entry.percentage)}%</span></> : <span className="text-slate-300">—</span>}</td>;
                     })}
                     <td className="px-5 py-4">{manual.length ? <div className="space-y-1">{manual.map((entry) => <div key={entry.id} className="text-xs text-slate-600">{entry.title}: <b>{entry.score}/{entry.maxScore}</b></div>)}</div> : <span className="text-slate-300">—</span>}</td>
-                    <td className="whitespace-nowrap px-5 py-4">{grade ? <><span className="font-semibold">{grade.score.toFixed(2)}%</span><span className="ml-2 text-xs text-slate-500">{grade.status}</span></> : <span className="text-slate-300">Not calculated</span>}</td>
+                    <td className="whitespace-nowrap px-5 py-4">{grade ? <><span className="font-semibold">{grade.score.toFixed(2)}%</span>{grade.letterGrade && <span className="ml-2 rounded-md bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-700">Grade {grade.letterGrade}</span>}<span className="ml-2 text-xs text-slate-500">{grade.status}</span></> : <span className="text-slate-300">Not calculated</span>}</td>
                     <td className="px-5 py-4"><div className="flex gap-2">{grade?.status === "finalized" ? <span className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500"><Lock size={14} />Finalized</span> : <><button type="button" onClick={() => calculateGrade.mutate(student.membership.userId)} disabled={calculateGrade.isPending} className="inline-flex items-center gap-1 rounded-lg border border-slate-300 px-2.5 py-2 text-xs font-semibold"><Calculator size={14} />Calculate</button>{grade && <button type="button" onClick={() => finalizeGrade.mutate(student.membership.userId)} disabled={finalizeGrade.isPending} className="rounded-lg bg-slate-900 px-2.5 py-2 text-xs font-semibold text-white">Finalize</button>}</>}</div></td>
                   </tr>;
                 })}
@@ -208,7 +220,7 @@ export default function TeacherGradebookPage() {
         )}
       </section>
 
-      <p className="text-xs text-slate-400">Term grade formula: weighted average of included gradebook percentages. Letter-grade rules are intentionally not assumed until a grading scale is defined.</p>
+      <p className="text-xs text-slate-400">Term grade: point-based subjects total all included score points divided by all included maximum points; weighted subjects continue using the weighted percentage formula. The configured grading scale converts the percentage to the final grade.</p>
     </div>
   );
 }
