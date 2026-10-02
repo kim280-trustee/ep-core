@@ -34,6 +34,14 @@ class AuthService {
   getSession() {
     return this.repository.getSession();
   }
+
+  getLoginDestination(
+    authUserId: string,
+  ) {
+    return this.repository.getLoginDestination(
+      authUserId,
+    );
+  }
 }
 
 export const authService =
