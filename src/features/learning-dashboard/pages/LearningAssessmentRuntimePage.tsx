@@ -340,6 +340,9 @@ export default function LearningAssessmentRuntimePage() {
   const { assessment: currentAssessment, questions } = assessmentQuery.data;
   const maxAttempts = assignmentQuery.data.assignment.maxAttempts;
   const attemptsRemaining = maxAttempts === null ? null : Math.max(maxAttempts - existingAttempts.length, 0);
+  const latestEvaluatedAttempt = [...existingAttempts]
+    .filter((attempt) => attempt.status === "evaluated")
+    .sort((a, b) => b.attemptNumber - a.attemptNumber)[0];
 
   if (submittedAttempt) {
     return (
@@ -385,6 +388,71 @@ export default function LearningAssessmentRuntimePage() {
               Back to assignment
             </Link>
 
+            <Link
+              to="/learning/progress"
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700"
+            >
+              View progress
+            </Link>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  if (!started && attemptsRemaining === 0) {
+    return (
+      <div className="space-y-6">
+        <LearningNavigation />
+
+        <Link
+          to={`/learning/assignments/${id}`}
+          className="inline-flex items-center gap-2 text-sm font-medium text-slate-600"
+        >
+          <ArrowLeft size={16} />
+          Back to assignment
+        </Link>
+
+        <section className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+          <p className="text-sm font-medium text-slate-500">Assessment</p>
+          <h1 className="mt-1 text-2xl font-bold text-slate-900">
+            {currentAssessment.title}
+          </h1>
+          <p className="mt-2 text-sm text-slate-600">
+            You have used all available attempts for this assessment.
+          </p>
+
+          {latestEvaluatedAttempt && (
+            <div className="mt-6 grid gap-4 sm:grid-cols-3">
+              <div>
+                <p className="text-sm text-slate-500">Latest score</p>
+                <p className="mt-1 text-2xl font-bold text-slate-900">
+                  {latestEvaluatedAttempt.score ?? 0} / {latestEvaluatedAttempt.maxScore ?? 0}
+                </p>
+              </div>
+              <div>
+                <p className="text-sm text-slate-500">Percentage</p>
+                <p className="mt-1 text-2xl font-bold text-slate-900">
+                  {latestEvaluatedAttempt.percentage ?? 0}%
+                </p>
+              </div>
+              <div>
+                <p className="text-sm text-slate-500">Attempts used</p>
+                <p className="mt-1 text-2xl font-bold text-slate-900">
+                  {existingAttempts.length}
+                </p>
+              </div>
+            </div>
+          )}
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              to={`/learning/assignments/${id}`}
+              className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white"
+            >
+              <ArrowLeft size={17} />
+              Back to assignment
+            </Link>
             <Link
               to="/learning/progress"
               className="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700"
