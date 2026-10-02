@@ -4,6 +4,7 @@ import {
 
 import type {
   AuthRepository,
+  LoginDestination,
 } from "./auth.repository";
 
 import type {
@@ -53,5 +54,42 @@ export class SupabaseAuthRepository
     } = await supabase.auth.getSession();
 
     return data.session;
+  }
+
+  async getLoginDestination(
+    authUserId: string,
+  ): Promise<LoginDestination> {
+
+    const { data: profile, error: profileError } =
+      await supabase
+        .from("users")
+        .select("id")
+        .eq("auth_user_id", authUserId)
+        .single();
+
+    if (profileError || !profile) {
+      return "/";
+    }
+
+    const { data: memberships, error: membershipError } =
+      await supabase
+        .from("learning_class_memberships")
+        .select("membership_type")
+        .eq("user_id", profile.id)
+        .eq("status", "active");
+
+    if (membershipError || !memberships?.length) {
+      return "/";
+    }
+
+    if (memberships.some((membership) => membership.membership_type === "teacher")) {
+      return "/teacher";
+    }
+
+    if (memberships.some((membership) => membership.membership_type === "student")) {
+      return "/learning";
+    }
+
+    return "/";
   }
 }
