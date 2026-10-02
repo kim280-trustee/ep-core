@@ -8,6 +8,7 @@ export const learningGradebookService={
  createEntry:(input:Parameters<typeof learningGradebookRepository.createEntry>[0])=>learningGradebookRepository.createEntry(input),
  upsertTermGrade:(input:Parameters<typeof learningGradebookRepository.upsertTermGrade>[0])=>learningGradebookRepository.upsertTermGrade(input),
  createManualEntry:(input:Parameters<typeof learningGradebookRepository.createManualEntry>[0])=>learningGradebookRepository.createManualEntry(input),
+ bulkImportEntries:(input:Parameters<typeof learningGradebookRepository.bulkImportEntries>[0])=>learningGradebookRepository.bulkImportEntries(input),
  calculateTermGrade:(input:Parameters<typeof learningGradebookRepository.calculateTermGrade>[0])=>learningGradebookRepository.calculateTermGrade(input),
  finalizeTermGrade:(input:Parameters<typeof learningGradebookRepository.finalizeTermGrade>[0])=>learningGradebookRepository.finalizeTermGrade(input),
 };
