@@ -29,7 +29,7 @@ export const learningAssignmentsRepository={
   const{data:attempts,error}=await supabase.from("learning_attempts").select("assessment_id").eq("student_user_id",studentUserId).eq("assessment_id",assessmentId);
   if(error)throw error;
   const attemptCount=(attempts??[]).length;
-  for(const assignment of assignments){const items=await learningAssignmentsRepository.listItems(assignment.id);if(!items.some(item=>item.assessmentId===assessmentId))continue;const maxAttempts=assignment.maxAttempts??1;if(attemptCount<maxAttempts)return assignment;}
+  for(const assignment of assignments){const items=await learningAssignmentsRepository.listItems(assignment.id);if(!items.some(item=>item.assessmentId===assessmentId))continue;const maxAttempts=assignment.maxAttempts;if(maxAttempts===null||attemptCount<maxAttempts)return assignment;}
   return null;
 },
 async completeIfReady(assignmentId:string,studentUserId:string){
