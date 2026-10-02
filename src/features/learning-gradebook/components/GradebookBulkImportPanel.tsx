@@ -80,7 +80,7 @@ export function GradebookBulkImportPanel({ termId, classSubjectId, students, cat
 
   return <section className="rounded-2xl border border-slate-200 bg-white p-5">
     <div className="flex items-center gap-2"><Upload size={18} /><h2 className="font-semibold text-slate-900">Bulk score upload</h2></div>
-    <p className="mt-1 text-sm text-slate-500">Fill the template in Excel, save it as CSV, send it to the teacher, and she can upload it here. The system validates every student and score before saving.</p>
+    <p className="mt-1 text-sm text-slate-500">Already have scores in a spreadsheet? Download the class template, enter the scores in Excel, save it as CSV, and upload it here. The system validates the students, categories, and scores before saving.</p>
     <div className="mt-4 flex flex-wrap gap-3">
       <button type="button" onClick={downloadTemplate} className="inline-flex items-center gap-2 rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold"><Download size={16} />Download class template</button>
       <label className="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white"><Upload size={16} />Choose CSV<input type="file" accept=".csv,text/csv" className="hidden" onChange={(e) => { const file=e.target.files?.[0]; if(file) void readFile(file); }} /></label>
