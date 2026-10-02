@@ -23,12 +23,18 @@ export function LoginPage() {
     setError("");
 
     try {
-      const { error: signInError } = await authService.signIn(email.trim(), password);
+      const { data, error: signInError } = await authService.signIn(
+        email.trim(),
+        password,
+      );
 
       if (signInError) throw signInError;
+      if (!data.user) throw new Error("Login succeeded but no user session was returned.");
 
       await refreshUser();
-      navigate("/", { replace: true });
+
+      const destination = await authService.getLoginDestination(data.user.id);
+      navigate(destination, { replace: true });
     } catch (err) {
       setError(err instanceof Error ? err.message : "Login failed");
     } finally {
