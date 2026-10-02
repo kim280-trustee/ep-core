@@ -47,7 +47,7 @@ export function LoginPage() {
       <form onSubmit={handleLogin} className="w-full max-w-md space-y-4 rounded-xl border bg-white p-6 shadow-sm">
         <div>
           <h1 className="text-2xl font-bold">Sign In</h1>
-          <p className="mt-1 text-sm text-gray-500">Sign in to your E&P Smart POS account.</p>
+          <p className="mt-1 text-sm text-gray-500">Sign in to your E&P Learning account.</p>
         </div>
 
         {registrationMessage && (
