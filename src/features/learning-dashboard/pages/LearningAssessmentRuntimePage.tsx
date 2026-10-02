@@ -155,9 +155,9 @@ export default function LearningAssessmentRuntimePage() {
         throw new Error("Assessment information is unavailable.");
       }
 
-      const maxAttempts = assignmentQuery.data.assignment.maxAttempts ?? 1;
+      const maxAttempts = assignmentQuery.data.assignment.maxAttempts;
 
-      if (existingAttempts.length >= maxAttempts) {
+      if (maxAttempts !== null && existingAttempts.length >= maxAttempts) {
         throw new Error("You have reached the maximum number of attempts.");
       }
 
@@ -338,8 +338,8 @@ export default function LearningAssessmentRuntimePage() {
   }
 
   const { assessment: currentAssessment, questions } = assessmentQuery.data;
-  const maxAttempts = assignmentQuery.data.assignment.maxAttempts ?? 1;
-  const attemptsRemaining = Math.max(maxAttempts - existingAttempts.length, 0);
+  const maxAttempts = assignmentQuery.data.assignment.maxAttempts;
+  const attemptsRemaining = maxAttempts === null ? null : Math.max(maxAttempts - existingAttempts.length, 0);
 
   if (submittedAttempt) {
     return (
@@ -424,7 +424,7 @@ export default function LearningAssessmentRuntimePage() {
               <Clock3 size={16} />
               {questions.length} {questions.length === 1 ? "question" : "questions"}
             </span>
-            <span>{attemptsRemaining} attempt(s) remaining</span>
+            <span>{attemptsRemaining === null ? "Unlimited attempts" : `${attemptsRemaining} attempt(s) remaining`}</span>
           </div>
         </section>
 
