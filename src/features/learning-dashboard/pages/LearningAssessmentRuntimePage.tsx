@@ -4,6 +4,7 @@ import { AlertCircle, ArrowLeft, CheckCircle2, Clock3, Send } from "lucide-react
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningAssignmentsService } from "@/features/learning-assignments";
+import { learningActivityService } from "@/features/learning-activity";
 import { learningAssessmentService } from "@/features/learning-assessment";
 import { LearningNavigation } from "../components/LearningNavigation";
 
@@ -68,6 +69,7 @@ export default function LearningAssessmentRuntimePage() {
     ReturnType<typeof learningAssessmentService.submitAttempt>
   > | null>(null);
   const [started, setStarted] = useState(false);
+  const [sessionId, setSessionId] = useState<string | null>(null);
 
   const id = assignmentId ?? "";
   const assessment = assessmentId ?? "";
@@ -175,10 +177,25 @@ export default function LearningAssessmentRuntimePage() {
         previousAttemptId: previousAttempt?.id ?? null,
       });
 
-      return attempt;
+      const session = await learningActivityService.startForStudent(
+        user.id,
+        "assessment",
+        assessment,
+      );
+      await learningActivityService.logEvent({
+        tenantId: session.tenantId,
+        organizationId: session.organizationId,
+        studentUserId: user.id,
+        sessionId: session.id,
+        activityType: "assessment_started",
+        assessmentId: assessment,
+        assignmentId: id,
+      });
+      return { attempt, session };
     },
-    onSuccess: (attempt) => {
+    onSuccess: ({ attempt, session }) => {
       setAttemptId(attempt.id);
+      setSessionId(session.id);
       setStarted(true);
     },
   });
@@ -227,6 +244,23 @@ export default function LearningAssessmentRuntimePage() {
     },
     onSuccess: async (attempt) => {
       setSubmittedAttempt(attempt);
+      if (sessionId && user?.id) {
+        const session = await learningActivityService.listSessions(user.id);
+        const activeSession = session.find((item) => item.id === sessionId);
+        if (activeSession) {
+          await learningActivityService.logEvent({
+            tenantId: activeSession.tenantId,
+            organizationId: activeSession.organizationId,
+            studentUserId: user.id,
+            sessionId: sessionId,
+            activityType: "assessment_submitted",
+            assessmentId: assessment,
+            assignmentId: id,
+          });
+        }
+        await learningActivityService.endSession(sessionId);
+      }
+      await learningAssignmentsService.completeIfReady(id, user!.id);
       await queryClient.invalidateQueries({
         queryKey: ["learning", "assessment-attempts", assessment, user?.id],
       });
