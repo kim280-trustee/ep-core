@@ -1,8 +1,7 @@
 ﻿import { Navigate, Outlet } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { ProtectedRoute } from "@/core/auth";
+import { ProtectedRoute, useAuth } from "@/core/auth";
 import { TeacherNavigation } from "../components/TeacherNavigation";
-import { useAuth } from "@/core/auth";
 import { learningTeacherService } from "../services/learning-teacher.service";
 
 export default function TeacherLayout() {
