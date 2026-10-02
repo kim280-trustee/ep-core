@@ -33,6 +33,7 @@ export default function LearningDashboardPage() {
           const assignment =
             await learningAssignmentsService.findStudentAssignmentForAssessment(
               item.assessmentId,
+              studentUserId,
             );
 
           return {
@@ -44,7 +45,9 @@ export default function LearningDashboardPage() {
 
       return {
         ...overview,
-        recommendations,
+        recommendations: recommendations.filter(
+          (item) => !item.assessmentId || Boolean(item.assignmentId),
+        ),
       };
     },
     enabled: Boolean(studentUserId),
