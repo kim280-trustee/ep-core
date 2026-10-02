@@ -7,13 +7,42 @@ const mapA=(r:AssignmentRow):LearningAssignment=>({id:r.id,tenantId:r.tenant_id,
 const mapI=(r:ItemRow):LearningAssignmentItem=>({id:r.id,organizationId:r.organization_id,assignmentId:r.assignment_id,itemType:r.item_type as LearningAssignmentItem["itemType"],contentItemId:r.content_item_id,assessmentId:r.assessment_id,sequenceNo:r.sequence_no,required:r.required,createdAt:r.created_at});
 const mapT=(r:TargetRow):LearningAssignmentTarget=>({id:r.id,tenantId:r.tenant_id,organizationId:r.organization_id,assignmentId:r.assignment_id,targetType:r.target_type as LearningAssignmentTarget["targetType"],studentUserId:r.student_user_id,classGroupId:r.class_group_id,dueAt:r.due_at,status:r.status as LearningAssignmentTarget["status"],createdAt:r.created_at,updatedAt:r.updated_at});
 const mapP=(r:ProgressRow):LearningAssignmentProgress=>({id:r.id,organizationId:r.organization_id,assignmentId:r.assignment_id,assignmentTargetId:r.assignment_target_id,studentUserId:r.student_user_id,status:r.status as LearningAssignmentProgress["status"],startedAt:r.started_at,completedAt:r.completed_at,lastActivityAt:r.last_activity_at,createdAt:r.created_at,updatedAt:r.updated_at});
+async function listAccessibleTargets(studentUserId:string){
+  const [{data:directTargets,error:directError},{data:memberships,error:membershipError}]=await Promise.all([
+    supabase.from("learning_assignment_targets").select("*").eq("student_user_id",studentUserId).eq("status","active"),
+    supabase.from("learning_class_memberships").select("class_group_id").eq("user_id",studentUserId).eq("membership_type","student").eq("status","active"),
+  ]);
+  if(directError)throw directError;if(membershipError)throw membershipError;
+  const classGroupIds=[...new Set((memberships??[]).map(row=>row.class_group_id))].filter((v):v is string=>Boolean(v));
+  let classTargets:TargetRow[]=[];
+  if(classGroupIds.length){const{data,error}=await supabase.from("learning_assignment_targets").select("*").in("class_group_id",classGroupIds).eq("status","active");if(error)throw error;classTargets=data??[];}
+  return [...(directTargets??[]),...classTargets].map(mapT);
+}
 export const learningAssignmentsRepository={
- async listStudentAssignments(){const{data,error}=await supabase.from("learning_assignments").select("*").eq("status","published").order("due_at",{ascending:true,nullsFirst:false});if(error)throw error;return(data??[]).map(mapA);},
- async getStudentAssignment(assignmentId:string,studentUserId:string){const[assignments,items,progress]=await Promise.all([learningAssignmentsRepository.listStudentAssignments(),learningAssignmentsRepository.listItems(assignmentId),learningAssignmentsRepository.listProgress(studentUserId)]);const assignment=assignments.find(x=>x.id===assignmentId);if(!assignment)throw new Error("Assignment is not available to this student.");return{assignment,items,progress:progress.find(x=>x.assignmentId===assignmentId)??null};},
- async startForStudent(assignmentId:string,studentUserId:string){const{data:targets,error}=await supabase.from("learning_assignment_targets").select("*").eq("assignment_id",assignmentId).eq("status","active");if(error)throw error;const target=(targets??[]).find(x=>x.student_user_id===studentUserId)??(targets??[]).find(x=>x.class_group_id!==null);if(!target)throw new Error("No active assignment target was found for this student.");return learningAssignmentsRepository.ensureProgress({organizationId:target.organization_id,assignmentId,assignmentTargetId:target.id,studentUserId}).then(p=>p.status==="not_started"?learningAssignmentsRepository.updateProgress(p.id,"in_progress"):p);},
+ async listStudentAssignments(studentUserId:string){const targets=await listAccessibleTargets(studentUserId);const ids=[...new Set(targets.map(target=>target.assignmentId))];if(!ids.length)return[];const{data,error}=await supabase.from("learning_assignments").select("*").eq("status","published").in("id",ids).order("due_at",{ascending:true,nullsFirst:false});if(error)throw error;return(data??[]).map(mapA);},
+ async getStudentAssignment(assignmentId:string,studentUserId:string){const[assignments,items,progress]=await Promise.all([learningAssignmentsRepository.listStudentAssignments(studentUserId),learningAssignmentsRepository.listItems(assignmentId),learningAssignmentsRepository.listProgress(studentUserId)]);const assignment=assignments.find(x=>x.id===assignmentId);if(!assignment)throw new Error("Assignment is not available to this student.");return{assignment,items,progress:progress.find(x=>x.assignmentId===assignmentId)??null};},
+ async startForStudent(assignmentId:string,studentUserId:string){const targets=await listAccessibleTargets(studentUserId);const target=targets.find(x=>x.assignmentId===assignmentId);if(!target)throw new Error("No active assignment target was found for this student.");return learningAssignmentsRepository.ensureProgress({organizationId:target.organization_id,assignmentId,assignmentTargetId:target.id,studentUserId}).then(p=>p.status==="not_started"?learningAssignmentsRepository.updateProgress(p.id,"in_progress"):p);},
  async listAssignmentsForClass(classGroupId:string){const{data:targets,error}=await supabase.from("learning_assignment_targets").select("assignment_id").eq("class_group_id",classGroupId).eq("status","active");if(error)throw error;const ids=[...new Set((targets??[]).map(x=>x.assignment_id))];if(!ids.length)return[];const{data,error:assignmentError}=await supabase.from("learning_assignments").select("*").in("id",ids).order("updated_at",{ascending:false});if(assignmentError)throw assignmentError;return(data??[]).map(mapA);},
  async listItems(id:string){const{data,error}=await supabase.from("learning_assignment_items").select("*").eq("assignment_id",id).order("sequence_no");if(error)throw error;return(data??[]).map(mapI);},
- async findStudentAssignmentForAssessment(assessmentId:string){const assignments=await learningAssignmentsRepository.listStudentAssignments();for(const assignment of assignments){const items=await learningAssignmentsRepository.listItems(assignment.id);if(items.some(item=>item.assessmentId===assessmentId))return assignment;}return null;},
+ async findStudentAssignmentForAssessment(assessmentId:string,studentUserId:string){
+  const assignments=await learningAssignmentsRepository.listStudentAssignments(studentUserId);
+  const{data:attempts,error}=await supabase.from("learning_attempts").select("assessment_id").eq("student_user_id",studentUserId).eq("assessment_id",assessmentId);
+  if(error)throw error;
+  const attemptCount=(attempts??[]).length;
+  for(const assignment of assignments){const items=await learningAssignmentsRepository.listItems(assignment.id);if(!items.some(item=>item.assessmentId===assessmentId))continue;const maxAttempts=assignment.maxAttempts??1;if(attemptCount<maxAttempts)return assignment;}
+  return null;
+},
+async completeIfReady(assignmentId:string,studentUserId:string){
+  const{items,progress}=await learningAssignmentsRepository.getStudentAssignment(assignmentId,studentUserId);
+  if(!progress||progress.status==="completed")return progress;
+  const requiredAssessmentIds=items.filter(item=>item.required&&item.itemType==="assessment").map(item=>item.assessmentId).filter((v):v is string=>Boolean(v));
+  if(!requiredAssessmentIds.length)return progress;
+  const{data:attempts,error}=await supabase.from("learning_attempts").select("assessment_id,status").eq("student_user_id",studentUserId).in("assessment_id",requiredAssessmentIds);
+  if(error)throw error;
+  const evaluated=new Set((attempts??[]).filter(attempt=>attempt.status==="evaluated").map(attempt=>attempt.assessment_id));
+  if(!requiredAssessmentIds.every(id=>evaluated.has(id)))return progress;
+  return learningAssignmentsRepository.updateProgress(progress.id,"completed");
+},
  async listTargets(id:string){const{data,error}=await supabase.from("learning_assignment_targets").select("*").eq("assignment_id",id).eq("status","active");if(error)throw error;return(data??[]).map(mapT);},
  async listProgress(studentUserId:string){const{data,error}=await supabase.from("learning_assignment_progress").select("*").eq("student_user_id",studentUserId).order("last_activity_at",{ascending:false,nullsFirst:false});if(error)throw error;return(data??[]).map(mapP);},
  async listProgressForAssignment(id:string){const{data,error}=await supabase.from("learning_assignment_progress").select("*").eq("assignment_id",id).order("last_activity_at",{ascending:false,nullsFirst:false});if(error)throw error;return(data??[]).map(mapP);},
