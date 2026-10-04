@@ -119,6 +119,27 @@ export default function LearningProgressPage() {
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <h2 className="text-lg font-semibold text-slate-900">Assessment results</h2>
+        <p className="mt-1 text-sm text-slate-500">Scores from completed assessment attempts.</p>
+        <div className="mt-4 divide-y divide-slate-100">
+          {assessmentResults.length ? assessmentResults.slice(0, 20).map((result) => (
+            <div key={result.id} className="flex flex-wrap items-center justify-between gap-4 py-3 first:pt-0">
+              <div>
+                <p className="text-sm font-medium text-slate-800">Assessment attempt</p>
+                <p className="mt-1 text-xs text-slate-500">
+                  Evaluated {new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(new Date(result.evaluatedAt))}
+                </p>
+              </div>
+              <div className="text-right">
+                <p className="text-sm font-bold text-slate-900">{result.score ?? 0} / {result.maxScore ?? 0}</p>
+                <p className="text-xs font-semibold text-slate-500">{result.percentage ?? 0}% · {result.passed ? "Passed" : "Not passed"}</p>
+              </div>
+            </div>
+          )) : <p className="text-sm text-slate-500">No assessment results have been recorded yet.</p>}
+        </div>
+      </section>
+
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">
           Objective mastery
         </h2>
