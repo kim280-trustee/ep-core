@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningAssignmentsService } from "@/features/learning-assignments";
 import { learningActivityService } from "@/features/learning-activity";
+import { learningAssessmentService } from "@/features/learning-assessment";
 import { LearningNavigation } from "../components/LearningNavigation";
 
 function dateLabel(value: string | null) {
