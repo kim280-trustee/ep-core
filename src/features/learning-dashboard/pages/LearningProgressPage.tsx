@@ -25,7 +25,7 @@ export default function LearningProgressPage() {
   const query = useQuery({
     queryKey: ["learning", "progress", id],
     queryFn: async () => {
-      const [mastery, events, assignments, assignmentProgress] = await Promise.all([
+      const [mastery, events, assignments, assignmentProgress, assessmentResults] = await Promise.all([
         learningMasteryService.listStudentMastery(id),
         learningMasteryService.listMasteryEvents(id),
         learningAssignmentsService.listStudentAssignments(),
