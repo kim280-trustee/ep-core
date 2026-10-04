@@ -1,5 +1,3 @@
-import type { Json } from "@/core/database/database.types";
-
 export interface LearningGradebookEntry {
   id: string;
   tenantId: string;
