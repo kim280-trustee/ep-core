@@ -4,7 +4,6 @@ import { Archive, ArrowLeft, RotateCcw, UserPlus } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningAssignmentsService } from "@/features/learning-assignments";
-import { learningEnrollmentService } from "@/features/learning-enrollment";
 import { learningTeacherService } from "../services/learning-teacher.service";
 
 export default function TeacherAssignmentHistoryPage() {
@@ -18,10 +17,10 @@ export default function TeacherAssignmentHistoryPage() {
     queryFn: () => learningTeacherService.listTeacherClasses(user!.id),
     enabled: Boolean(user?.id),
   });
-  const membersQuery = useQuery({
-    queryKey: ["learning","class-members",classGroupId],
-    queryFn: () => learningEnrollmentService.listClassMembers(classGroupId),
-    enabled: Boolean(classGroupId),
+  const classOverviewQuery = useQuery({
+    queryKey: ["learning","teacher-class",user?.id,classGroupId],
+    queryFn: () => learningTeacherService.getClassOverview(user!.id,classGroupId),
+    enabled: Boolean(user?.id && classGroupId),
   });
   const historyQuery = useQuery({
     queryKey: ["learning","assignment-history",classGroupId],
@@ -40,12 +39,12 @@ export default function TeacherAssignmentHistoryPage() {
   });
 
   if (!user) return <div className="rounded-2xl border bg-white p-6">Sign in to continue.</div>;
-  if (classesQuery.isPending || membersQuery.isPending || historyQuery.isPending) return <div className="h-64 animate-pulse rounded-2xl bg-slate-200" />;
-  if (classesQuery.isError || membersQuery.isError || historyQuery.isError) return <div className="rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800">Assignment history could not be loaded.</div>;
+  if (classesQuery.isPending || classOverviewQuery.isPending || historyQuery.isPending) return <div className="h-64 animate-pulse rounded-2xl bg-slate-200" />;
+  if (classesQuery.isError || classOverviewQuery.isError || historyQuery.isError) return <div className="rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800">Assignment history could not be loaded.</div>;
 
   const classInfo = classesQuery.data.find((item) => item.classGroup.id === classGroupId);
   if (!classInfo) return <div className="rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800">You are not assigned to this class.</div>;
-  const students = membersQuery.data.filter((item) => item.membershipType === "student" && item.status === "active");
+  const students = classOverviewQuery.data.students;
   const assignments = historyQuery.data.filter((item) => statusFilter === "all" || item.status === statusFilter);
 
   return <div className="space-y-6">
@@ -69,7 +68,7 @@ export default function TeacherAssignmentHistoryPage() {
           </div>
         </div>
         <div className="mt-4 flex flex-col gap-2 sm:flex-row">
-          <select value={studentByAssignment[assignment.id]??""} onChange={e=>setStudentByAssignment(v=>({...v,[assignment.id]:e.target.value}))} className="min-w-0 flex-1 rounded-xl border px-3 py-2.5 text-sm"><option value="">Select student to give again</option>{students.map(s=><option key={s.userId} value={s.userId}>{s.userId}</option>)}</select>
+          <select value={studentByAssignment[assignment.id]??""} onChange={e=>setStudentByAssignment(v=>({...v,[assignment.id]:e.target.value}))} className="min-w-0 flex-1 rounded-xl border px-3 py-2.5 text-sm"><option value="">Select student to give again</option>{students.map(s=><option key={s.membership.id} value={s.membership.userId}>{s.name}</option>)}</select>
           <button type="button" disabled={!studentByAssignment[assignment.id]||reassignMutation.isPending} onClick={()=>{const studentUserId=studentByAssignment[assignment.id];if(studentUserId)reassignMutation.mutate({id:assignment.id,studentUserId});}} className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-40"><UserPlus size={15}/>Give again</button>
         </div>
       </article>)}</div> : <div className="p-10 text-center text-sm text-slate-500">No assignment history for this class.</div>}
