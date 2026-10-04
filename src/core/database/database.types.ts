@@ -1055,6 +1055,8 @@ export type Database = {
           instructions: Json
           max_attempts: number | null
           organization_id: string
+          parent_assignment_id: string | null
+          lifecycle_type: string
           status: string
           tenant_id: string
           title: string
@@ -1073,6 +1075,8 @@ export type Database = {
           instructions?: Json
           max_attempts?: number | null
           organization_id: string
+          parent_assignment_id?: string | null
+          lifecycle_type?: string
           status?: string
           tenant_id: string
           title: string
@@ -1091,6 +1095,8 @@ export type Database = {
           instructions?: Json
           max_attempts?: number | null
           organization_id?: string
+          parent_assignment_id?: string | null
+          lifecycle_type?: string
           status?: string
           tenant_id?: string
           title?: string
@@ -1125,6 +1131,71 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["tenant_id", "id"]
+          },
+        ]
+      }
+      learning_parent_student_links: {
+        Row: {
+          created_at: string
+          created_by: string
+          id: string
+          organization_id: string
+          parent_user_id: string
+          relationship: string
+          status: string
+          student_user_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          id?: string
+          organization_id: string
+          parent_user_id: string
+          relationship?: string
+          status?: string
+          student_user_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          id?: string
+          organization_id?: string
+          parent_user_id?: string
+          relationship?: string
+          status?: string
+          student_user_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_parent_student_links_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_parent_student_links_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_parent_student_links_parent_user_id_fkey"
+            columns: ["parent_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_parent_student_links_student_user_id_fkey"
+            columns: ["student_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
           },
         ]
       }
