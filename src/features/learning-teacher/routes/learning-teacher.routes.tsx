@@ -11,6 +11,7 @@ import TeacherStudentPerformancePage from "../../learning-gradebook/pages/Teache
 import TeacherGradebookSettingsPage from "../../learning-gradebook/pages/TeacherGradebookSettingsPage";
 import TeacherGradebookReportsPage from "../../learning-gradebook/pages/TeacherGradebookReportsPage";
 import TeacherAssignmentHistoryPage from "../pages/TeacherAssignmentHistoryPage";
+import TeacherParentLinksPage from "../pages/TeacherParentLinksPage";
 
 export const learningTeacherRoutes: RouteObject[] = [
   {
@@ -24,6 +25,7 @@ export const learningTeacherRoutes: RouteObject[] = [
       { path: "authoring", element: <TeacherAuthoringPage /> },
       { path: "question-bank", element: <QuestionBankPage /> },
       { path: "classes/:classGroupId/assignments/history", element: <TeacherAssignmentHistoryPage /> },
+      { path: "classes/:classGroupId/parents", element: <TeacherParentLinksPage /> },
       { path: "classes/:classGroupId/gradebook", element: <TeacherGradebookPage /> },
       { path: "classes/:classGroupId/gradebook/settings", element: <TeacherGradebookSettingsPage /> },
       { path: "classes/:classGroupId/gradebook/reports", element: <TeacherGradebookReportsPage /> },
