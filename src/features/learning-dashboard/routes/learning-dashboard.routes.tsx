@@ -2,6 +2,7 @@ import type { RouteObject } from "react-router-dom";
 import LearningDashboardPage from "../pages/LearningDashboardPage";
 import LearningAssignmentsPage from "../pages/LearningAssignmentsPage";
 import LearningAssignmentDetailPage from "../pages/LearningAssignmentDetailPage";
+import LearningContentRuntimePage from "../pages/LearningContentRuntimePage";
 import LearningAssessmentRuntimePage from "../pages/LearningAssessmentRuntimePage";
 import LearningProgressPage from "../pages/LearningProgressPage";
 import LearningRecommendationsPage from "../pages/LearningRecommendationsPage";
@@ -12,6 +13,10 @@ export const learningDashboardRoutes: RouteObject[] = [
   {
     path: "learning/assignments/:assignmentId",
     element: <LearningAssignmentDetailPage />,
+  },
+  {
+    path: "learning/assignments/:assignmentId/content/:contentId",
+    element: <LearningContentRuntimePage />,
   },
   {
     path: "learning/assignments/:assignmentId/assessments/:assessmentId",
