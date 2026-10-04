@@ -1,14 +1,14 @@
-﻿import { supabase } from "@/core/infrastructure/supabase/client";
-import type { LearningParentOverview, LearningParentStudentLink } from "../types/learning-parent.types";
-
-
+import { supabase } from "@/core/infrastructure/supabase/client";
+import type { LearningParentOverview, LearningParentStudent, LearningParentStudentLink } from "../types/learning-parent.types";
 
 type GradeRow = { class_subject_id:string; term_id:string; score:number|string; letter_grade:string|null; status:string; finalized_at:string|null; };
 type AssignmentRow = { id:string; title:string; due_at:string|null; status:string };
 type ProgressRow = { assignment_id:string; status:string; completed_at:string|null };
-type SubjectRow = { id:string; subject_id:string; };
+type TargetRow = { assignment_id:string; student_user_id:string|null; class_group_id:string|null; status:string; due_at:string|null };
+type SubjectRow = { id:string; subject_id:string };
 type Subject = { id:string; name:string };
 type TermRow = { id:string; name:string };
+type UserRow = { id:string; name:string; email:string; tenant_id:string };
 
 const parentLinks = () => supabase.from("learning_parent_student_links").select("*");
 
@@ -18,27 +18,74 @@ export const learningParentRepository = {
     if(error)throw error;
     return (data??[]).map((row)=>({id:row.id,organizationId:row.organization_id,parentUserId:row.parent_user_id,studentUserId:row.student_user_id,relationship:row.relationship,status:row.status as "active"|"inactive",createdAt:row.created_at,updatedAt:row.updated_at}));
   },
+
+  async listOrganizationUsers(organizationId:string):Promise<LearningParentStudent[]> {
+    const {data:organization,error:organizationError}=await supabase.from("organizations").select("tenant_id").eq("id",organizationId).single();
+    if(organizationError)throw organizationError;
+    const {data,error}=await supabase.from("users").select("id,name,email,tenant_id").eq("tenant_id",organization.tenant_id).order("name");
+    if(error)throw error;
+    return (data??[]).map((row:UserRow)=>({id:row.id,name:row.name,email:row.email}));
+  },
+
+  async listLinks(organizationId:string):Promise<LearningParentStudentLink[]> {
+    const {data,error}=await parentLinks().eq("organization_id",organizationId).order("created_at",{ascending:false});
+    if(error)throw error;
+    return (data??[]).map((row)=>({id:row.id,organizationId:row.organization_id,parentUserId:row.parent_user_id,studentUserId:row.student_user_id,relationship:row.relationship,status:row.status as "active"|"inactive",createdAt:row.created_at,updatedAt:row.updated_at}));
+  },
+
+  async createLink(input:{organizationId:string;parentUserId:string;studentUserId:string;relationship:string;createdBy:string}):Promise<LearningParentStudentLink> {
+    if(input.parentUserId===input.studentUserId)throw new Error("A parent account cannot be linked to itself as a student.");
+    const {data,error}=await supabase.from("learning_parent_student_links").upsert({
+      organization_id:input.organizationId,
+      parent_user_id:input.parentUserId,
+      student_user_id:input.studentUserId,
+      relationship:input.relationship.trim()||"parent",
+      status:"active",
+      created_by:input.createdBy,
+      updated_at:new Date().toISOString(),
+    },{onConflict:"organization_id,parent_user_id,student_user_id"}).select("*").single();
+    if(error)throw error;
+    return {id:data.id,organizationId:data.organization_id,parentUserId:data.parent_user_id,studentUserId:data.student_user_id,relationship:data.relationship,status:data.status as "active"|"inactive",createdAt:data.created_at,updatedAt:data.updated_at};
+  },
+
+  async setLinkStatus(id:string,status:"active"|"inactive"):Promise<LearningParentStudentLink> {
+    const {data,error}=await supabase.from("learning_parent_student_links").update({status,updated_at:new Date().toISOString()}).eq("id",id).select("*").single();
+    if(error)throw error;
+    return {id:data.id,organizationId:data.organization_id,parentUserId:data.parent_user_id,studentUserId:data.student_user_id,relationship:data.relationship,status:data.status as "active"|"inactive",createdAt:data.created_at,updatedAt:data.updated_at};
+  },
+
   async getOverview(studentUserId:string):Promise<LearningParentOverview>{
-    const [{data:student,error:studentError},{data:grades,error:gradeError},{data:progress,error:progressError},{data:mastery,error:masteryError},{data:recommendations,error:recommendationError},{data:comments,error:commentError}]=await Promise.all([
+    const [{data:student,error:studentError},{data:grades,error:gradeError},{data:memberships,error:membershipError},{data:mastery,error:masteryError},{data:recommendations,error:recommendationError},{data:comments,error:commentError}]=await Promise.all([
       supabase.from("users").select("id,name,email").eq("id",studentUserId).single(),
       supabase.from("learning_term_grades").select("class_subject_id,term_id,score,letter_grade,status,finalized_at").eq("student_user_id",studentUserId).eq("status","finalized").order("finalized_at",{ascending:false}),
-      supabase.from("learning_assignment_progress").select("assignment_id,status,completed_at").eq("student_user_id",studentUserId).order("updated_at",{ascending:false}),
+      supabase.from("learning_class_memberships").select("class_group_id").eq("user_id",studentUserId).eq("membership_type","student").eq("status","active"),
       supabase.from("learning_student_mastery").select("objective_id,mastery_score,state").eq("student_user_id",studentUserId).order("mastery_score",{ascending:true}),
       supabase.from("learning_recommendations").select("id").eq("student_user_id",studentUserId).eq("status","active"),
       supabase.from("learning_gradebook_entries").select("comment,recorded_at").eq("student_user_id",studentUserId).not("comment","is",null).order("recorded_at",{ascending:false}).limit(10),
     ]);
-    if(studentError)throw studentError;if(gradeError)throw gradeError;if(progressError)throw progressError;if(masteryError)throw masteryError;if(recommendationError)throw recommendationError;if(commentError)throw commentError;
+    if(studentError)throw studentError;if(gradeError)throw gradeError;if(membershipError)throw membershipError;if(masteryError)throw masteryError;if(recommendationError)throw recommendationError;if(commentError)throw commentError;
 
     const gradeRows=(grades??[]) as GradeRow[];
     const subjectIds=[...new Set(gradeRows.map(x=>x.class_subject_id))];
     const termIds=[...new Set(gradeRows.map(x=>x.term_id))];
-    const assignmentIds=[...new Set(((progress??[]) as ProgressRow[]).map(x=>x.assignment_id))];
-    const [{data:classSubjects,error:classSubjectError},{data:terms,error:termError},{data:assignments,error:assignmentError}]=await Promise.all([
+    const classGroupIds=[...new Set((memberships??[]).map(x=>x.class_group_id).filter((x):x is string=>Boolean(x)))];
+
+    const [{data:classSubjects,error:classSubjectError},{data:terms,error:termError},{data:directTargets,error:directTargetError},{data:classTargets,error:classTargetError}]=await Promise.all([
       subjectIds.length?supabase.from("learning_class_subjects").select("id,subject_id").in("id",subjectIds):Promise.resolve({data:[],error:null}),
       termIds.length?supabase.from("learning_terms").select("id,name").in("id",termIds):Promise.resolve({data:[],error:null}),
-      assignmentIds.length?supabase.from("learning_assignments").select("id,title,due_at,status").in("id",assignmentIds):Promise.resolve({data:[],error:null}),
+      supabase.from("learning_assignment_targets").select("assignment_id,student_user_id,class_group_id,status,due_at").eq("student_user_id",studentUserId).eq("status","active"),
+      classGroupIds.length?supabase.from("learning_assignment_targets").select("assignment_id,student_user_id,class_group_id,status,due_at").in("class_group_id",classGroupIds).eq("status","active"):Promise.resolve({data:[],error:null}),
     ]);
-    if(classSubjectError)throw classSubjectError;if(termError)throw termError;if(assignmentError)throw assignmentError;
+    if(classSubjectError)throw classSubjectError;if(termError)throw termError;if(directTargetError)throw directTargetError;if(classTargetError)throw classTargetError;
+
+    const targets=[...(directTargets??[]),...(classTargets??[])].filter((row,index,array)=>array.findIndex(candidate=>candidate.assignment_id===row.assignment_id&&candidate.student_user_id===row.student_user_id&&candidate.class_group_id===row.class_group_id)===index) as TargetRow[];
+    const assignmentIds=[...new Set(targets.map(x=>x.assignment_id))];
+    const [{data:assignments,error:assignmentError},{data:progress,error:progressError}]=await Promise.all([
+      assignmentIds.length?supabase.from("learning_assignments").select("id,title,due_at,status").in("id",assignmentIds):Promise.resolve({data:[],error:null}),
+      supabase.from("learning_assignment_progress").select("assignment_id,status,completed_at").eq("student_user_id",studentUserId).order("updated_at",{ascending:false}),
+    ]);
+    if(assignmentError)throw assignmentError;if(progressError)throw progressError;
+
     const subjectRef=(classSubjects??[]) as SubjectRow[];
     const subjectRefIds=[...new Set(subjectRef.map(x=>x.subject_id))];
     const {data:subjects,error:subjectsError}=subjectRefIds.length?await supabase.from("learning_subjects").select("id,name").in("id",subjectRefIds):{data:[],error:null};
@@ -47,18 +94,16 @@ export const learningParentRepository = {
     const classSubjectMap=new Map(subjectRef.map(x=>[x.id,x.subject_id]));
     const termMap=new Map(((terms??[]) as TermRow[]).map(x=>[x.id,x.name]));
     const assignmentMap=new Map(((assignments??[]) as AssignmentRow[]).map(x=>[x.id,x]));
-
+    const progressMap=new Map<string,ProgressRow>();
+    for(const row of (progress??[]) as ProgressRow[]) if(!progressMap.has(row.assignment_id)) progressMap.set(row.assignment_id,row);
 
     return {
       student:{id:student.id,name:student.name??"Student",email:student.email},
       subjectGrades:gradeRows.map(row=>({subjectName:subjectMap.get(classSubjectMap.get(row.class_subject_id)??"")??"Subject",score:Number(row.score),grade:row.letter_grade,termName:termMap.get(row.term_id)??"Term",finalizedAt:row.finalized_at})),
-      assignments:((progress??[]) as ProgressRow[]).map(row=>{const assignment=assignmentMap.get(row.assignment_id);return assignment?{id:assignment.id,title:assignment.title,dueAt:assignment.due_at,status:assignment.status,progressStatus:row.status,completedAt:row.completed_at}:null}).filter((x):x is NonNullable<typeof x>=>Boolean(x)),
+      assignments:[...assignmentMap.values()].map(assignment=>{const progress=progressMap.get(assignment.id);const target=targets.find(x=>x.assignment_id===assignment.id);return{id:assignment.id,title:assignment.title,dueAt:target?.due_at??assignment.due_at,status:assignment.status,progressStatus:progress?.status??"not_started",completedAt:progress?.completed_at??null};}).sort((a,b)=>(a.dueAt??"9999").localeCompare(b.dueAt??"9999")),
       mastery:((mastery??[]) as Array<{objective_id:string;mastery_score:number|string;state:string}>).map(row=>({objectiveId:row.objective_id,score:Number(row.mastery_score),state:row.state})),
       comments:((comments??[]) as Array<{comment:string|null}>).map(x=>x.comment).filter((x):x is string=>Boolean(x)),
       recommendations:(recommendations??[]).length,
     };
   },
 };
-
-
-
