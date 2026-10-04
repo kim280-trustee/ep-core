@@ -37,7 +37,7 @@ export const learningMasteryRepository = {
     const {data,error}=await supabase.from("learning_mastery_events").select("*").eq("student_user_id",studentUserId).order("created_at",{ascending:false});
     if(error) throw error; return (data??[]).map(mapEvent);
   },
-  async listObjectives() {\n    const {data,error}=await supabase.from("learning_objectives").select("id,topic_id,code,name,description,sequence_no,status").order("sequence_no");\n    if(error) throw error; return data??[];\n  },\n  async listRecommendations(studentUserId:string) {
+  async listObjectives(objectiveIds?: string[]) {\n    if (!objectiveIds?.length) return [];\n    const {data,error}=await supabase.from("learning_objectives").select("id,topic_id,code,name,description,sequence_no,status").in("id",objectiveIds).order("sequence_no");\n    if(error) throw error; return data??[];\n  },\n  async listRecommendations(studentUserId:string) {
     const {data,error}=await supabase.from("learning_recommendations").select("*").eq("student_user_id",studentUserId).eq("status","active").order("priority",{ascending:false});
     if(error) throw error; return (data??[]).map(mapRecommendation);
   },
