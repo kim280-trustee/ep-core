@@ -107,7 +107,7 @@ export default function LearningContentRuntimePage() {
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["learning", "assignment", id, user?.id] });
-      await queryClient.invalidateQueries({ queryKey: ["learning", "assignments", user?.id] });
+      await queryClient.invalidateQueries({ queryKey: ["learning", "student-overview", user?.id] });
       await queryClient.invalidateQueries({ queryKey: ["learning", "progress", user?.id] });
     },
   });
