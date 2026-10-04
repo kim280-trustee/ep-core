@@ -9,6 +9,7 @@ import QuestionBankPage from "../../learning-assessment/pages/QuestionBankPage";
 import TeacherGradebookPage from "../../learning-gradebook/pages/TeacherGradebookPage";
 import TeacherStudentPerformancePage from "../../learning-gradebook/pages/TeacherStudentPerformancePage";
 import TeacherGradebookSettingsPage from "../../learning-gradebook/pages/TeacherGradebookSettingsPage";
+import TeacherGradebookReportsPage from "../../learning-gradebook/pages/TeacherGradebookReportsPage";
 
 export const learningTeacherRoutes: RouteObject[] = [
   {
@@ -24,6 +25,7 @@ export const learningTeacherRoutes: RouteObject[] = [
       { path: "classes/:classGroupId/gradebook", element: <TeacherGradebookPage /> },
       { path: "classes/:classGroupId/gradebook/:studentUserId", element: <TeacherStudentPerformancePage /> },
       { path: "classes/:classGroupId/gradebook/settings", element: <TeacherGradebookSettingsPage /> },
+      { path: "classes/:classGroupId/gradebook/reports", element: <TeacherGradebookReportsPage /> },
     ],
   },
 ];
