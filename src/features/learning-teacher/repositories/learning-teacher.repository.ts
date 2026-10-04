@@ -104,18 +104,15 @@ export const learningTeacherRepository = {
       }
     }
 
-    const studentGradeScores = new Map<string, number[]>();
+    const studentGradeScores = new Map<string, number>();
     for (const row of gradeRows) {
       for (const grade of row.grades) {
-        const list = studentGradeScores.get(grade.studentUserId) ?? [];
-        list.push(grade.score);
-        studentGradeScores.set(grade.studentUserId, list);
+        studentGradeScores.set(grade.studentUserId, grade.score);
       }
     }
     const attention: LearningTeacherStudentAttention[] = studentIds.map((studentUserId) => {
       const incompleteAssignments = progressByStudent.get(studentUserId) ?? 0;
-      const scores = studentGradeScores.get(studentUserId) ?? [];
-      const averageScore = scores.length ? scores.reduce((sum, value) => sum + value, 0) / scores.length : null;
+      const averageScore = studentGradeScores.get(studentUserId) ?? null;
       const reasons = [];
       if (incompleteAssignments > 0) reasons.push(incompleteAssignments + " incomplete assignment" + (incompleteAssignments === 1 ? "" : "s"));
       if (averageScore !== null && averageScore < 60) reasons.push("current average below 60%");
