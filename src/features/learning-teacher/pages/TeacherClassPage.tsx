@@ -26,6 +26,7 @@ export default function TeacherClassPage() {
         <p className="text-sm text-slate-300">{classInfo.classGroup.code}</p>
         <h1 className="mt-1 text-2xl font-bold">{classInfo.classGroup.name}</h1>
         <p className="mt-2 text-sm text-slate-300">{classInfo.subjects.map((item) => item.subject.name).join(", ") || "No subjects assigned"}</p>
+        <Link to={"/teacher/classes/" + classGroupId + "/gradebook"} className="mt-5 inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100">Open gradebook</Link>
       </section>
       <section className="grid gap-4 sm:grid-cols-3">
         <Stat icon={<Users size={18} />} label="Students" value={students.length} />
