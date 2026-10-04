@@ -145,7 +145,7 @@ export default function LearningAssignmentDetailPage() {
     );
   }
 
-  const { assignment, items, progress, assessmentResults } = query.data;
+  const { assignment, items, progress, assessmentResults = [] } = query.data;
   const completed = progress?.status === "completed";
 
   return (
