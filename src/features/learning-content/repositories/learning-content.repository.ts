@@ -19,7 +19,7 @@ type ContentVersionRow = Database["public"]["Tables"]["learning_content_versions
 type ContentObjectiveRow = Database["public"]["Tables"]["learning_content_objectives"]["Row"];
 
 export interface LearningContentRepository {
-  listSubjects(): Promise<LearningSubject[]>;
+  listSubjects(curriculumId?: string): Promise<LearningSubject[]>;
   listCurricula(): Promise<LearningCurriculum[]>;
   listGradeLevels(curriculumId?: string): Promise<LearningGradeLevel[]>;
   listSkills(subjectId?: string): Promise<LearningSkill[]>;
@@ -50,7 +50,34 @@ const mapContentVersion = (r: ContentVersionRow): LearningContentVersion => ({ i
 const mapContentObjective = (r: ContentObjectiveRow): LearningContentObjective => ({ contentItemId:r.content_item_id, objectiveId:r.objective_id, sequenceNo:r.sequence_no, createdAt:r.created_at });
 
 export const learningContentRepository: LearningContentRepository = {
-  async listSubjects() { const {data,error}=await supabase.from("learning_subjects").select("*").eq("status","active").order("name"); if(error)throw error; return(data??[]).map(mapSubject); },
+  async listSubjects(curriculumId) {
+    if (!curriculumId) {
+      const {data,error}=await supabase.from("learning_subjects").select("*").eq("status","active").order("name");
+      if(error)throw error;
+      return(data??[]).map(mapSubject);
+    }
+
+    const {data:curriculumSubjects,error:curriculumSubjectError}=await supabase
+      .from("learning_curriculum_subjects")
+      .select("subject_id")
+      .eq("curriculum_id",curriculumId)
+      .eq("status","active");
+
+    if(curriculumSubjectError)throw curriculumSubjectError;
+
+    const subjectIds=(curriculumSubjects??[]).map((item)=>item.subject_id);
+    if(!subjectIds.length)return[];
+
+    const {data:subjects,error:subjectError}=await supabase
+      .from("learning_subjects")
+      .select("*")
+      .eq("status","active")
+      .in("id",subjectIds)
+      .order("name");
+
+    if(subjectError)throw subjectError;
+    return(subjects??[]).map(mapSubject);
+  },
   async listCurricula(){const{data,error}=await supabase.from("learning_curricula").select("*").eq("status","active").order("name");if(error)throw error;return(data??[]).map(mapCurriculum);},
   async listGradeLevels(curriculumId){let q=supabase.from("learning_grade_levels").select("*").eq("status","active").order("sequence_no");if(curriculumId)q=q.eq("curriculum_id",curriculumId);const{data,error}=await q;if(error)throw error;return(data??[]).map(mapGradeLevel);},
   async listSkills(subjectId) { let q=supabase.from("learning_skills").select("*").eq("status","active").order("name"); if(subjectId)q=q.eq("subject_id",subjectId); const {data,error}=await q;if(error)throw error;return(data??[]).map(mapSkill); },
