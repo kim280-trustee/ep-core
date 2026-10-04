@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { AlertCircle, BookOpen, CheckCircle2, MessageSquare, Target, TrendingUp } from "lucide-react";
 import { useAuth } from "@/core/auth";
 import { learningParentService } from "../services/learning-parent.service";
+import type { LearningParentOverview } from "../types/learning-parent.types";
 
 export default function ParentProgressPage() {
   const { user } = useAuth();
@@ -27,7 +28,7 @@ export default function ParentProgressPage() {
   </div>;
 }
 
-function ChildCard({child}:{child:Awaited<ReturnType<typeof import("../services/learning-parent.service").learningParentService.getOverview>>}) {
+function ChildCard({child}:{child:LearningParentOverview}) {
   const completed=child.assignments.filter(x=>x.progressStatus==="completed").length;
   const inProgress=child.assignments.filter(x=>x.progressStatus==="in_progress").length;
   const average=child.subjectGrades.length?child.subjectGrades.reduce((s,x)=>s+x.score,0)/child.subjectGrades.length:null;
