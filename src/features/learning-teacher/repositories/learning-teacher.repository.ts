@@ -68,8 +68,10 @@ export const learningTeacherRepository = {
     });
 
     const classStudentIds = new Set(studentIds);
+    const progressByAssignment = new Map<string, Awaited<ReturnType<typeof learningAssignmentsService.listProgressForAssignment>>>();
     const monitors = await Promise.all(assignments.map(async (assignment) => {
       const progress = await learningAssignmentsService.listProgressForAssignment(assignment.id);
+      progressByAssignment.set(assignment.id, progress);
       const studentProgress = progress.filter((item) => classStudentIds.has(item.studentUserId));
       return {
         assignment, studentCount: students.length,
@@ -95,8 +97,7 @@ export const learningTeacherRepository = {
     }));
 
     const progressByStudent = new Map<string, number>();
-    for (const monitor of monitors) {
-      const progress = await learningAssignmentsService.listProgressForAssignment(monitor.assignment.id);
+    for (const progress of progressByAssignment.values()) {
       for (const item of progress) {
         if (!classStudentIds.has(item.studentUserId) || item.status === "completed") continue;
         progressByStudent.set(item.studentUserId, (progressByStudent.get(item.studentUserId) ?? 0) + 1);
