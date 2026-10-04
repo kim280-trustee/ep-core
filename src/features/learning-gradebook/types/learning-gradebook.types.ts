@@ -97,6 +97,7 @@ export interface CreateManualGradebookEntryInput {
 
 export interface UpdateManualGradebookEntryInput {
   categoryId: string | null;
+  includedInGrade: boolean;
   title: string;
   description?: string | null;
   recordType: "manual" | "exam";
