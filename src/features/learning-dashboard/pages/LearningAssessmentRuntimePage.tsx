@@ -4,6 +4,7 @@ import { AlertCircle, ArrowLeft, CheckCircle2, Clock3, Send } from "lucide-react
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningAssignmentsService } from "@/features/learning-assignments";
+import { learningActivityService } from "@/features/learning-activity";
 import { learningAssessmentService } from "@/features/learning-assessment";
 import { LearningNavigation } from "../components/LearningNavigation";
 
