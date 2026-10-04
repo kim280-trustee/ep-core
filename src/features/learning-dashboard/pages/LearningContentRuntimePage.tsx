@@ -1,8 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AlertCircle, ArrowLeft, BookOpen, CheckCircle2 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningAssignmentsService } from "@/features/learning-assignments";
+import { learningActivityService } from "@/features/learning-activity";
 import { learningContentService } from "@/features/learning-content";
 import { LearningNavigation } from "../components/LearningNavigation";
 
@@ -26,6 +27,7 @@ export default function LearningContentRuntimePage() {
   const { assignmentId, contentId } = useParams();
   const id = assignmentId ?? "";
   const content = contentId ?? "";
+  const queryClient = useQueryClient();
 
   const query = useQuery({
     queryKey: ["learning", "assignment-content", id, content, user?.id],
@@ -54,6 +56,29 @@ export default function LearningContentRuntimePage() {
       };
     },
     enabled: Boolean(id && content && user?.id),
+  });
+
+  const completeMutation = useMutation({
+    mutationFn: async () => {
+      if (!user?.id) throw new Error("You must be signed in.");
+      const progress = await learningAssignmentsService.completeContentForStudent(id, content, user.id);
+      const session = await learningActivityService.startForStudent(user.id, "assignment", id);
+      await learningActivityService.logEvent({
+        tenantId: session.tenantId,
+        organizationId: session.organizationId,
+        studentUserId: user.id,
+        sessionId: session.id,
+        activityType: "assignment_completed",
+        contentItemId: content,
+        assignmentId: id,
+      });
+      return progress;
+    },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["learning", "assignment", id, user?.id] });
+      await queryClient.invalidateQueries({ queryKey: ["learning", "assignments", user?.id] });
+      await queryClient.invalidateQueries({ queryKey: ["learning", "progress", user?.id] });
+    },
   });
 
   if (!user) {
@@ -122,6 +147,26 @@ export default function LearningContentRuntimePage() {
             <p className="text-sm text-slate-500">This content version is currently empty.</p>
           )}
         </div>
+      </section>
+
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h2 className="text-lg font-semibold text-slate-900">Complete this activity</h2>
+            <p className="mt-1 text-sm text-slate-500">Mark this required learning activity complete after you finish the lesson.</p>
+          </div>
+          <button
+            type="button"
+            disabled={completeMutation.isPending}
+            onClick={() => completeMutation.mutate()}
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            <CheckCircle2 size={17} />
+            {completeMutation.isPending ? "Saving..." : "Mark as complete"}
+          </button>
+        </div>
+        {completeMutation.isSuccess && <p className="mt-3 text-sm font-medium text-emerald-700">Activity completed. Your assignment progress has been updated.</p>}
+        {completeMutation.isError && <p className="mt-3 text-sm text-red-600">{completeMutation.error instanceof Error ? completeMutation.error.message : "Could not complete this activity."}</p>}
       </section>
 
       <div className="flex flex-wrap gap-3">
