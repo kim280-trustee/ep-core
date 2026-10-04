@@ -91,7 +91,8 @@ export const learningContentRepository: LearningContentRepository = {
       if(!(versions??[]).length)throw new Error("Content needs at least one version before review or publishing.");
 
       const latestVersion=versions[0];
-      const sections=Array.isArray((latestVersion.body as Record<string,unknown>)?.sections)?(latestVersion.body as Record<string,unknown>).sections:[];
+      const rawSections=(latestVersion.body as Record<string,unknown>)?.sections;
+      const sections: unknown[]=Array.isArray(rawSections)?rawSections:[];
       const hasContent=sections.some((section)=>section&&typeof section==="object"&&typeof (section as Record<string,unknown>).body==="string"&&String((section as Record<string,unknown>).body).trim());
       if(!hasContent)throw new Error("The latest content version cannot be empty.");
       if(status==="published"&&current.status!=="review")throw new Error("Content must be in review before it can be published.");
