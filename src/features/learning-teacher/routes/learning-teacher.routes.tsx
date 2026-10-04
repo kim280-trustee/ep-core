@@ -6,6 +6,7 @@ import CreateTeacherAssignmentPage from "../pages/CreateTeacherAssignmentPage";
 import TeacherAuthoringPage from "../pages/TeacherAuthoringPage";
 import QuestionBankPage from "../../learning-assessment/pages/QuestionBankPage";
 import TeacherGradebookPage from "../../learning-gradebook/pages/TeacherGradebookPage";
+import TeacherStudentPerformancePage from "../../learning-gradebook/pages/TeacherStudentPerformancePage";
 
 export const learningTeacherRoutes: RouteObject[] = [
   {
@@ -32,6 +33,10 @@ export const learningTeacherRoutes: RouteObject[] = [
       {
         path: "classes/:classGroupId/gradebook",
         element: <TeacherGradebookPage />,
+      },
+      {
+        path: "classes/:classGroupId/gradebook/:studentUserId",
+        element: <TeacherStudentPerformancePage />,
       },
     ],
   },

@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { ArrowLeft, RefreshCw, Save, Calculator, Lock } from "lucide-react";
+import { ArrowLeft, RefreshCw, Save, Calculator, Lock, UserRound } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningGradebookService } from "../services/learning-gradebook.service";
@@ -211,7 +211,7 @@ export default function TeacherGradebookPage() {
                     })}
                     <td className="px-5 py-4">{manual.length ? <div className="space-y-1">{manual.map((entry) => <div key={entry.id} className="text-xs text-slate-600">{entry.title}: <b>{entry.score}/{entry.maxScore}</b></div>)}</div> : <span className="text-slate-300">—</span>}</td>
                     <td className="whitespace-nowrap px-5 py-4">{grade ? <><span className="font-semibold">{grade.score.toFixed(2)}%</span>{grade.letterGrade && <span className="ml-2 rounded-md bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-700">Grade {grade.letterGrade}</span>}<span className="ml-2 text-xs text-slate-500">{grade.status}</span></> : <span className="text-slate-300">Not calculated</span>}</td>
-                    <td className="px-5 py-4"><div className="flex gap-2">{grade?.status === "finalized" ? <span className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500"><Lock size={14} />Finalized</span> : <><button type="button" onClick={() => calculateGrade.mutate(student.membership.userId)} disabled={calculateGrade.isPending} className="inline-flex items-center gap-1 rounded-lg border border-slate-300 px-2.5 py-2 text-xs font-semibold"><Calculator size={14} />Calculate</button>{grade && <button type="button" onClick={() => finalizeGrade.mutate(student.membership.userId)} disabled={finalizeGrade.isPending} className="rounded-lg bg-slate-900 px-2.5 py-2 text-xs font-semibold text-white">Finalize</button>}</>}</div></td>
+                    <td className="px-5 py-4"><div className="flex flex-wrap gap-2"><Link to={"/teacher/classes/" + classGroupId + "/gradebook/" + student.membership.userId} className="inline-flex items-center gap-1 rounded-lg border border-slate-300 px-2.5 py-2 text-xs font-semibold"><UserRound size={14} />Performance</Link>{{grade?.status === "finalized" ? <span className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500"><Lock size={14} />Finalized</span> : <><button type="button" onClick={() => calculateGrade.mutate(student.membership.userId)} disabled={calculateGrade.isPending} className="inline-flex items-center gap-1 rounded-lg border border-slate-300 px-2.5 py-2 text-xs font-semibold"><Calculator size={14} />Calculate</button>{grade && <button type="button" onClick={() => finalizeGrade.mutate(student.membership.userId)} disabled={finalizeGrade.isPending} className="rounded-lg bg-slate-900 px-2.5 py-2 text-xs font-semibold text-white">Finalize</button>}</>}</div></td>
                   </tr>;
                 })}
               </tbody>
