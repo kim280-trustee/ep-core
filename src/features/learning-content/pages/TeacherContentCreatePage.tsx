@@ -66,7 +66,7 @@ export default function TeacherContentCreatePage() {
   const objectiveAlignments = useQuery({
     queryKey: ["learning", "objective-alignments", objectiveId, curriculumId, gradeLevelId],
     queryFn: () => learningContentService.listAlignments(undefined, curriculumId, gradeLevelId),
-    enabled: Boolean(objectiveId && curriculumId && gradeLevelId),
+    enabled: Boolean(curriculumId && gradeLevelId),
   });
   const objectives = useQuery({
     queryKey: ["learning", "objectives", topicId],
