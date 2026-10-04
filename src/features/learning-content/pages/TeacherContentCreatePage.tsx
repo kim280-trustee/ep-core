@@ -65,7 +65,7 @@ export default function TeacherContentCreatePage() {
   });
   const objectiveAlignments = useQuery({
     queryKey: ["learning", "objective-alignments", objectiveId, curriculumId, gradeLevelId],
-    queryFn: () => learningContentService.listAlignments(objectiveId, curriculumId, gradeLevelId),
+    queryFn: () => learningContentService.listAlignments(undefined, curriculumId, gradeLevelId),
     enabled: Boolean(objectiveId && curriculumId && gradeLevelId),
   });
   const objectives = useQuery({
@@ -80,7 +80,7 @@ export default function TeacherContentCreatePage() {
   });
 
   const alignedObjectiveIds = useMemo(() => new Set((objectiveAlignments.data ?? []).map((item) => item.objectiveId)), [objectiveAlignments.data]);
-  const selectedAlignment = objectiveAlignments.data?.[0];
+  const selectedAlignment = objectiveAlignments.data?.find((item) => item.objectiveId === objectiveId);
   const selectedObjective = useMemo(
     () => objectives.data?.find((item) => item.id === objectiveId),
     [objectives.data, objectiveId],
@@ -227,7 +227,7 @@ export default function TeacherContentCreatePage() {
           <Field label="Learning objective">
             <select value={objectiveId} onChange={(e) => setObjectiveId(e.target.value)} className="input w-full" disabled={!topicId || !gradeLevelId} required>
               <option value="">Select learning objective</option>
-              {(objectives.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
+              {(objectives.data ?? []).filter((item) => !gradeLevelId || alignedObjectiveIds.has(item.id)).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
             </select>
             {selectedObjective?.description && <p className="mt-2 text-xs text-slate-500">{selectedObjective.description}</p>}
             {objectiveId && objectiveAlignments.isPending && <p className="mt-2 text-xs text-slate-500">Checking curriculum alignment...</p>}
