@@ -76,6 +76,7 @@ export default function LearningContentRuntimePage() {
 
       return {
         assignment: result.assignment,
+        progress: result.progress,
         item,
         content: currentContent,
         version: publishedVersion,
@@ -88,7 +89,7 @@ export default function LearningContentRuntimePage() {
   const completeMutation = useMutation({
     mutationFn: async () => {
       if (!user?.id) throw new Error("You must be signed in.");
-      const wasCompleted = assignmentQuery.data?.progress?.status === "completed";
+      const wasCompleted = query.data?.progress?.status === "completed";
       const progress = await learningAssignmentsService.completeContentForStudent(id, content, user.id);
 
       if (!wasCompleted && progress.status === "completed") {
