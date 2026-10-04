@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { AlertCircle, BookOpen, CheckCircle2, MessageSquare, Target, TrendingUp } from "lucide-react";
 import { useState } from "react";
+import type { ReactNode } from "react";
 import { useAuth } from "@/core/auth";
 import { learningParentService } from "../services/learning-parent.service";
 import type { LearningParentOverview } from "../types/learning-parent.types";
@@ -67,4 +68,4 @@ function ChildCard({child,t}:{child:LearningParentOverview;t:typeof copy.en}) {
     {child.recommendations>0&&<div className="border-t border-slate-100 bg-slate-50 px-6 py-4 text-sm text-slate-600">{child.recommendations} {child.recommendations===1?t.recommendation:t.recommendations} {t.available}</div>}
   </section>;
 }
-function Metric({icon,label,value,detail}:{icon:React.ReactNode;label:string;value:string;detail:string}){return <div className="rounded-xl border border-slate-200 p-4"><div className="flex items-center gap-2 text-slate-500">{icon}<span className="text-sm">{label}</span></div><p className="mt-2 text-2xl font-bold text-slate-900">{value}</p><p className="mt-1 text-xs text-slate-500">{detail}</p></div>}
+function Metric({icon,label,value,detail}:{icon:ReactNode;label:string;value:string;detail:string}){return <div className="rounded-xl border border-slate-200 p-4"><div className="flex items-center gap-2 text-slate-500">{icon}<span className="text-sm">{label}</span></div><p className="mt-2 text-2xl font-bold text-slate-900">{value}</p><p className="mt-1 text-xs text-slate-500">{detail}</p></div>}
