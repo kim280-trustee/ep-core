@@ -16,7 +16,15 @@ export default function TeacherClassPage() {
 
   if (!user) return <div className="rounded-2xl border border-slate-200 bg-white p-6">Sign in to continue.</div>;
   if (query.isPending) return <div className="h-64 animate-pulse rounded-2xl bg-slate-200" />;
-  if (query.isError) return <div className="rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800">This class could not be loaded. Check that you are assigned to the class.</div>;
+  if (query.isError) return (
+    <div className="rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800">
+      <p className="font-semibold">This class could not be loaded.</p>
+      <p className="mt-1 text-sm">Check that you are assigned to the class.</p>
+      <p className="mt-3 rounded-lg bg-white/70 p-3 font-mono text-xs text-red-700">
+        {query.error instanceof Error ? query.error.message : "Unknown error"}
+      </p>
+    </div>
+  );
 
   const { classInfo, students, assignments } = query.data;
   return (
