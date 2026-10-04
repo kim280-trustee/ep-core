@@ -1,10 +1,9 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useQueries, useQuery } from "@tanstack/react-query";
 import { ArrowLeft, Lock } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningTeacherService } from "@/features/learning-teacher";
-import { learningAcademicService } from "@/features/learning-academic";
 import { learningGradebookService } from "../services/learning-gradebook.service";
 
 export default function TeacherStudentPerformancePage() {
@@ -23,7 +22,14 @@ export default function TeacherStudentPerformancePage() {
     queryFn: () => learningGradebookService.listTerms(organizationId),
     enabled: Boolean(organizationId),
   });
-  const termId = termsQuery.data?.[0]?.id ?? "";
+  const [selectedTermId, setSelectedTermId] = useState("");
+  const termId = selectedTermId || termsQuery.data?.[0]?.id || "";
+  const categoriesQuery = useQuery({
+    queryKey: ["learning", "performance-categories", organizationId],
+    queryFn: () => learningGradebookService.listCategories(organizationId),
+    enabled: Boolean(organizationId),
+  });
+  const categoryMap = useMemo(() => new Map((categoriesQuery.data ?? []).map((category) => [category.id, category.name])), [categoriesQuery.data]);
   const entryQueries = useQueries({
     queries: subjects.map((subject) => ({
       queryKey: ["learning", "student-performance-entries", termId, subject.id, studentUserId],
@@ -64,13 +70,13 @@ export default function TeacherStudentPerformancePage() {
       groups.set(entry.topicId, current);
     }
     return [...groups.entries()].map(([id, value]) => ({ id, ...value, percentage: value.max > 0 ? value.score / value.max * 100 : 0 })).sort((a, b) => a.percentage - b.percentage);
-  }, [entries]);
+  }, [entries, categoryMap]);
   const categoryRows = useMemo(() => {
     const groups = new Map<string, { name: string; score: number; max: number; count: number }>();
     for (const entry of entries) {
       if (!entry.includedInGrade) continue;
       const key = entry.categoryId ?? "uncategorized";
-      const current = groups.get(key) ?? { name: entry.categoryId ? "Categorized" : "Other", score: 0, max: 0, count: 0 };
+      const current = groups.get(key) ?? { name: entry.categoryId ? (categoryMap.get(entry.categoryId) ?? "Category") : "Other", score: 0, max: 0, count: 0 };
       current.score += entry.score;
       current.max += entry.maxScore;
       current.count += 1;
@@ -95,7 +101,14 @@ export default function TeacherStudentPerformancePage() {
         <p className="text-sm text-slate-300">Student performance</p>
         <h1 className="mt-1 text-2xl font-bold">{student.name}</h1>
         <p className="mt-1 text-sm text-slate-300">{student.email}</p>
-        <p className="mt-3 text-sm text-slate-300">{classQuery.data?.classInfo.classGroup.name} · {selectedTerm?.name ?? "Term"}</p>
+        <p className="mt-3 text-sm text-slate-300">{classQuery.data?.classInfo.classGroup.name}</p>
+      </section>
+      <section className="rounded-2xl border border-slate-200 bg-white p-5">
+        <label className="text-sm font-medium text-slate-700">Term
+          <select value={termId} onChange={(event) => setSelectedTermId(event.target.value)} className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 font-normal text-slate-900">
+            {(termsQuery.data ?? []).map((term) => <option key={term.id} value={term.id}>{term.name}</option>)}
+          </select>
+        </label>
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5">
@@ -126,7 +139,7 @@ export default function TeacherStudentPerformancePage() {
           <table className="min-w-full text-left text-sm">
             <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-4 py-3">Assessment / record</th><th className="px-4 py-3">Category</th><th className="px-4 py-3">Score</th><th className="px-4 py-3">Percentage</th></tr></thead>
             <tbody className="divide-y divide-slate-100">
-              {entries.filter((entry) => entry.includedInGrade).map((entry) => <tr key={entry.id}><td className="px-4 py-3 font-medium">{entry.title}</td><td className="px-4 py-3">{entry.categoryId ? "Categorized" : "Other"}</td><td className="px-4 py-3">{entry.score}/{entry.maxScore}</td><td className="px-4 py-3">{entry.percentage.toFixed(1)}%</td></tr>)}
+              {entries.filter((entry) => entry.includedInGrade).map((entry) => <tr key={entry.id}><td className="px-4 py-3 font-medium">{entry.title}</td><td className="px-4 py-3">{entry.categoryId ? (categoryMap.get(entry.categoryId) ?? "Category") : "Other"}</td><td className="px-4 py-3">{entry.score}/{entry.maxScore}</td><td className="px-4 py-3">{entry.percentage.toFixed(1)}%</td></tr>)}
             </tbody>
           </table>
         </div>
