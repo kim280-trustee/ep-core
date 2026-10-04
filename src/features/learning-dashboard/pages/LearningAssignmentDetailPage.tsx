@@ -264,6 +264,21 @@ export default function LearningAssignmentDetailPage() {
                 );
               }
 
+              if (item.itemType === "content" && item.contentItemId) {
+                return (
+                  <Link
+                    key={item.id}
+                    to={`/learning/assignments/${id}/content/${item.contentItemId}`}
+                    className="flex items-center justify-between gap-4 py-4 transition hover:bg-slate-50 first:pt-0"
+                  >
+                    {itemContent}
+                    <span className="shrink-0 text-sm font-semibold text-slate-900">
+                      Read content →
+                    </span>
+                  </Link>
+                );
+              }
+
               return (
                 <div
                   key={item.id}
