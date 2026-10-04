@@ -67,6 +67,29 @@ export interface LearningObjectivePrerequisite {
   createdAt: string;
 }
 
+export interface LearningCurriculum {
+  id: string;
+  code: string;
+  name: string;
+  version: string | null;
+  description: string | null;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface LearningGradeLevel {
+  id: string;
+  curriculumId: string;
+  code: string;
+  name: string;
+  sequenceNo: number;
+  description: string | null;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface LearningObjectiveAlignment {
   id: string;
   objectiveId: string;
