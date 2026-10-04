@@ -4,6 +4,7 @@ import { AlertCircle, Target, TrendingUp } from "lucide-react";
 import { useAuth } from "@/core/auth";
 import { learningMasteryService } from "@/features/learning-mastery";
 import { learningAssignmentsService } from "@/features/learning-assignments";
+import { learningAssessmentService } from "@/features/learning-assessment";
 
 const stateLabel: Record<string, string> = {
   not_started: "Not started",
@@ -29,8 +30,9 @@ export default function LearningProgressPage() {
         learningMasteryService.listMasteryEvents(id),
         learningAssignmentsService.listStudentAssignments(),
         learningAssignmentsService.listProgress(id),
+        learningAssessmentService.listResults(id),
       ]);
-      return { mastery, events, assignments, assignmentProgress };
+      return { mastery, events, assignments, assignmentProgress, assessmentResults };
     },
     enabled: Boolean(id),
   });
@@ -56,7 +58,7 @@ export default function LearningProgressPage() {
     return <ErrorState onRetry={() => void query.refetch()} />;
   }
 
-  const { mastery, events, assignments, assignmentProgress } = query.data;
+  const { mastery, events, assignments, assignmentProgress, assessmentResults } = query.data;
   const average = mastery.length
     ? Math.round(
         mastery.reduce((sum, item) => sum + item.masteryScore, 0) / mastery.length,
