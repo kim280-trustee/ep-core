@@ -1,3 +1,15 @@
+export interface LearningGradebookCategory {
+  id: string;
+  organizationId: string;
+  code: string;
+  name: string;
+  description: string | null;
+  defaultWeight: number;
+  status: "active" | "inactive" | string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface LearningGradebookEntry {
   id: string;
   tenantId: string;
@@ -60,4 +72,40 @@ export interface LearningGradebookQuery {
   classGroupId: string;
   classSubjectId: string;
   termId: string;
+}
+
+export interface CreateManualGradebookEntryInput {
+  tenantId: string;
+  organizationId: string;
+  termId: string;
+  classGroupId: string;
+  classSubjectId: string;
+  studentUserId: string;
+  categoryId: string | null;
+  title: string;
+  description?: string | null;
+  recordType: "manual" | "exam";
+  score: number;
+  maxScore: number;
+  weight?: number;
+  recordedAt: string;
+  notes?: Record<string, unknown>;
+  comment?: string | null;
+  late?: boolean;
+  createdBy: string;
+}
+
+export interface UpdateManualGradebookEntryInput {
+  categoryId: string | null;
+  title: string;
+  description?: string | null;
+  recordType: "manual" | "exam";
+  score: number;
+  maxScore: number;
+  weight?: number;
+  recordedAt: string;
+  notes?: Record<string, unknown>;
+  comment?: string | null;
+  late?: boolean;
+  updatedBy: string;
 }
