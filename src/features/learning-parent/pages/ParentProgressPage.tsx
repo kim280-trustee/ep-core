@@ -52,7 +52,7 @@ function PortalEmpty({t,language,setLanguage}:{t:typeof copy.en;language:Languag
 function ChildCard({child,t}:{child:LearningParentOverview;t:typeof copy.en}) {
   const completed=child.assignments.filter(x=>x.progressStatus==="completed").length;
   const inProgress=child.assignments.filter(x=>x.progressStatus==="in_progress").length;
-  const average=child.subjectGrades.length?child.subjectGrades.reduce((s,x)=>s+x.score,0)/child.subjectGrades.length:null;
+  const latestBySubject=new Map<string,number>(); for(const grade of child.subjectGrades){if(!latestBySubject.has(grade.subjectName))latestBySubject.set(grade.subjectName,grade.score);} const currentScores=[...latestBySubject.values()]; const average=currentScores.length?currentScores.reduce((s,x)=>s+x,0)/currentScores.length:null;
   const needsReview=child.mastery.filter(x=>x.state==="needs_review"||x.state==="developing").slice(0,5);
   return <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
     <div className="border-b border-slate-100 p-6"><div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><div><h2 className="text-xl font-bold text-slate-900">{child.student.name}</h2><p className="text-sm text-slate-500">{child.student.email}</p></div><div className="rounded-xl bg-slate-50 px-4 py-3 text-sm"><span className="text-slate-500">{t.average}</span><p className="text-xl font-bold text-slate-900">{average===null?t.noGrades:average.toFixed(1)+"%"}</p></div></div></div>
