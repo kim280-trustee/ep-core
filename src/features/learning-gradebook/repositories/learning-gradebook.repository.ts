@@ -58,6 +58,8 @@ type TermGradeRow = {
   override_score: number | string | null;
   override_grade: string | null;
   override_reason: string | null;
+  created_at: string;
+  updated_at: string;
 };
 
 type GradebookQueryBuilder = {
