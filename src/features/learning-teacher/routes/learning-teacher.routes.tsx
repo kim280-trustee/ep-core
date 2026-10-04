@@ -23,9 +23,9 @@ export const learningTeacherRoutes: RouteObject[] = [
       { path: "authoring", element: <TeacherAuthoringPage /> },
       { path: "question-bank", element: <QuestionBankPage /> },
       { path: "classes/:classGroupId/gradebook", element: <TeacherGradebookPage /> },
-      { path: "classes/:classGroupId/gradebook/:studentUserId", element: <TeacherStudentPerformancePage /> },
       { path: "classes/:classGroupId/gradebook/settings", element: <TeacherGradebookSettingsPage /> },
       { path: "classes/:classGroupId/gradebook/reports", element: <TeacherGradebookReportsPage /> },
+      { path: "classes/:classGroupId/gradebook/:studentUserId", element: <TeacherStudentPerformancePage /> },
     ],
   },
 ];
