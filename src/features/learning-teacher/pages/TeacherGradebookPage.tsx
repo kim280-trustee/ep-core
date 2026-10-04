@@ -121,6 +121,7 @@ export default function TeacherGradebookPage() {
     maxScore: "100",
     recordedAt: nowDateTimeLocal(),
     notes: "",
+    includedInGrade: true,
   });
   const [actionError, setActionError] = useState<string | null>(null);
   const [workingEntryId, setWorkingEntryId] = useState<string | null>(null);
