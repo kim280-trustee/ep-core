@@ -10,7 +10,7 @@ type SubjectRow = { id:string; subject_id:string; };
 type Subject = { id:string; name:string };
 type TermRow = { id:string; name:string };
 
-const parentLinks = () => supabase.from("learning_parent_student_links" as never).select("*").overrideTypes<ParentLinkRow[]>();
+const parentLinks = () => supabase.from("learning_parent_student_links").select("*").overrideTypes<ParentLinkRow[]>();
 
 export const learningParentRepository = {
   async listChildren(parentUserId:string):Promise<LearningParentStudentLink[]> {
