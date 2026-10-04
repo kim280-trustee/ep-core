@@ -129,7 +129,9 @@ type GradebookMutationClient = {
 
 const gradebookClient = supabase as unknown as {
   from(table: "learning_gradebook_entries"): GradebookQueryBuilder &
-    ReturnType<GradebookMutationClient["from"]>;
+    ReturnType<GradebookMutationClient["from"]> & {
+    select(columns: string): GradebookQueryBuilder;
+  };
 };
 
 const termGradeClient = supabase as unknown as {
