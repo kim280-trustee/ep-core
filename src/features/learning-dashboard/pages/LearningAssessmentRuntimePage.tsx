@@ -227,6 +227,34 @@ export default function LearningAssessmentRuntimePage() {
     },
     onSuccess: async (attempt) => {
       setSubmittedAttempt(attempt);
+
+      const assessmentResults = await learningAssessmentService.listResults(
+        user!.id,
+      );
+      const submittedResult = assessmentResults.find(
+        (result) => result.attemptId === attempt.id,
+      );
+
+      if (submittedResult) {
+        queryClient.setQueryData(
+          ["learning", "assignment", id, user?.id],
+          (current: {
+            assessmentResults?: typeof assessmentResults;
+          } | undefined) =>
+            current
+              ? {
+                  ...current,
+                  assessmentResults: [
+                    submittedResult,
+                    ...(current.assessmentResults ?? []).filter(
+                      (result) => result.id !== submittedResult.id,
+                    ),
+                  ],
+                }
+              : current,
+        );
+      }
+
       await queryClient.invalidateQueries({
         queryKey: ["learning", "assessment-attempts", assessment, user?.id],
       });
