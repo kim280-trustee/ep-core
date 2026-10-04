@@ -16,6 +16,8 @@ const contentTypes: LearningContentType[] = [
 export default function TeacherContentCreatePage() {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [curriculumId, setCurriculumId] = useState("");
+  const [gradeLevelId, setGradeLevelId] = useState("");
   const [subjectId, setSubjectId] = useState("");
   const [skillId, setSkillId] = useState("");
   const [topicId, setTopicId] = useState("");
@@ -36,6 +38,16 @@ export default function TeacherContentCreatePage() {
   });
   const organizationId = classes.data?.[0]?.membership.organizationId;
 
+  const curricula = useQuery({
+    queryKey: ["learning", "curricula"],
+    queryFn: () => learningContentService.listCurricula(),
+    enabled: Boolean(user?.id),
+  });
+  const gradeLevels = useQuery({
+    queryKey: ["learning", "grade-levels", curriculumId],
+    queryFn: () => learningContentService.listGradeLevels(curriculumId),
+    enabled: Boolean(curriculumId),
+  });
   const subjects = useQuery({
     queryKey: ["learning", "subjects"],
     queryFn: () => learningContentService.listSubjects(),
@@ -51,6 +63,11 @@ export default function TeacherContentCreatePage() {
     queryFn: () => learningContentService.listTopics(skillId),
     enabled: Boolean(skillId),
   });
+  const objectiveAlignments = useQuery({
+    queryKey: ["learning", "objective-alignments", objectiveId, curriculumId, gradeLevelId],
+    queryFn: () => learningContentService.listAlignments(objectiveId, curriculumId, gradeLevelId),
+    enabled: Boolean(objectiveId && curriculumId && gradeLevelId),
+  });
   const objectives = useQuery({
     queryKey: ["learning", "objectives", topicId],
     queryFn: () => learningContentService.listObjectives(topicId),
@@ -62,11 +79,22 @@ export default function TeacherContentCreatePage() {
     enabled: Boolean(organizationId),
   });
 
+  const alignedObjectiveIds = useMemo(() => new Set((objectiveAlignments.data ?? []).map((item) => item.objectiveId)), [objectiveAlignments.data]);
+  const selectedAlignment = objectiveAlignments.data?.[0];
   const selectedObjective = useMemo(
     () => objectives.data?.find((item) => item.id === objectiveId),
     [objectives.data, objectiveId],
   );
 
+  function changeCurriculum(value: string) {
+    setCurriculumId(value);
+    setGradeLevelId("");
+    setObjectiveId("");
+  }
+  function changeGradeLevel(value: string) {
+    setGradeLevelId(value);
+    setObjectiveId("");
+  }
   function changeSubject(value: string) {
     setSubjectId(value);
     setSkillId("");
@@ -96,8 +124,13 @@ export default function TeacherContentCreatePage() {
       setError("Your teacher organization could not be determined.");
       return;
     }
-    if (!subjectId || !skillId || !topicId || !objectiveId || !title.trim() || !code.trim() || !body.trim()) {
+    if (!curriculumId || !gradeLevelId || !subjectId || !skillId || !topicId || !objectiveId || !title.trim() || !code.trim() || !body.trim()) {
       setError("Complete the subject, skill, topic, objective, title, code, and content body.");
+      return;
+    }
+
+    if (!alignedObjectiveIds.has(objectiveId)) {
+      setError("Select a learning objective aligned to the chosen curriculum and grade level.");
       return;
     }
 
@@ -143,8 +176,8 @@ export default function TeacherContentCreatePage() {
   }
 
   if (!user) return <Message text="Sign in to create learning content." />;
-  if (classes.isPending || subjects.isPending) return <div className="h-96 animate-pulse rounded-2xl bg-slate-200" />;
-  if (classes.isError || !organizationId) return <Message text="We could not determine your teacher organization." />;
+  if (classes.isPending || curricula.isPending || subjects.isPending) return <div className="h-96 animate-pulse rounded-2xl bg-slate-200" />;
+  if (classes.isError || curricula.isError || !organizationId) return <Message text="We could not determine your teacher organization." />;
 
   return (
     <div className="mx-auto max-w-4xl space-y-6">
@@ -161,6 +194,18 @@ export default function TeacherContentCreatePage() {
 
       <form onSubmit={saveDraft} className="space-y-6">
         <Section number="1" title="Academic alignment" description="Choose the curriculum structure this material belongs to.">
+          <Field label="Curriculum">
+            <select value={curriculumId} onChange={(e) => changeCurriculum(e.target.value)} className="input w-full" required>
+              <option value="">Select curriculum</option>
+              {(curricula.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
+            </select>
+          </Field>
+          <Field label="Grade level">
+            <select value={gradeLevelId} onChange={(e) => changeGradeLevel(e.target.value)} className="input w-full" disabled={!curriculumId} required>
+              <option value="">Select grade level</option>
+              {(gradeLevels.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
+            </select>
+          </Field>
           <Field label="Subject">
             <select value={subjectId} onChange={(e) => changeSubject(e.target.value)} className="input w-full" required>
               <option value="">Select subject</option>
@@ -180,11 +225,14 @@ export default function TeacherContentCreatePage() {
             </select>
           </Field>
           <Field label="Learning objective">
-            <select value={objectiveId} onChange={(e) => setObjectiveId(e.target.value)} className="input w-full" disabled={!topicId} required>
+            <select value={objectiveId} onChange={(e) => setObjectiveId(e.target.value)} className="input w-full" disabled={!topicId || !gradeLevelId} required>
               <option value="">Select learning objective</option>
               {(objectives.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
             </select>
             {selectedObjective?.description && <p className="mt-2 text-xs text-slate-500">{selectedObjective.description}</p>}
+            {objectiveId && objectiveAlignments.isPending && <p className="mt-2 text-xs text-slate-500">Checking curriculum alignment...</p>}
+            {objectiveId && !objectiveAlignments.isPending && !selectedAlignment && <p className="mt-2 rounded-lg bg-amber-50 p-2 text-xs text-amber-800">This objective is not aligned to the selected curriculum and grade level.</p>}
+            {selectedAlignment && <p className="mt-2 rounded-lg bg-emerald-50 p-2 text-xs text-emerald-800">Aligned to the selected curriculum and grade level{selectedAlignment.required ? " · Required" : ""}{selectedAlignment.notes ? ` · ${selectedAlignment.notes}` : ""}</p>}
           </Field>
         </Section>
 
