@@ -18,13 +18,16 @@ export default function ParentProgressPage() {
   });
 
   if(!user)return <div className="rounded-2xl border bg-white p-6">Sign in to view the parent portal.</div>;
-  if(childrenQuery.isPending || overviewQuery.isPending)return <div className="space-y-4"><div className="h-32 animate-pulse rounded-2xl bg-slate-200"/><div className="h-64 animate-pulse rounded-2xl bg-slate-200"/></div>;
-  if(childrenQuery.isError || overviewQuery.isError)return <div className="flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800"><AlertCircle size={20}/><div><p className="font-semibold">Parent progress could not be loaded.</p><p className="mt-1 text-sm">Only children explicitly linked to your parent account are shown.</p></div></div>;
+  if(childrenQuery.isPending)return <div className="space-y-4"><div className="h-32 animate-pulse rounded-2xl bg-slate-200"/><div className="h-64 animate-pulse rounded-2xl bg-slate-200"/></div>;
+  if(childrenQuery.isError)return <div className="flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800"><AlertCircle size={20}/><div><p className="font-semibold">Parent progress could not be loaded.</p><p className="mt-1 text-sm">Only children explicitly linked to your parent account are shown.</p></div></div>;
+  if(!childrenQuery.data?.length)return <div className="mx-auto max-w-6xl space-y-6"><section className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8"><p className="text-sm font-medium text-slate-300">E&P Learning Parent Portal</p><h1 className="mt-1 text-2xl font-bold">Children&apos;s Progress</h1><p className="mt-2 text-sm text-slate-300">Monitor verified academic results, completed work, strengths, and areas that need attention.</p></section><section className="rounded-2xl border border-dashed bg-white p-10 text-center"><p className="font-semibold text-slate-900">No linked children yet.</p><p className="mt-2 text-sm text-slate-500">A school administrator or teacher must link a child to this parent account before progress can be displayed.</p></section></div>;
+  if(overviewQuery.isPending)return <div className="space-y-4"><div className="h-32 animate-pulse rounded-2xl bg-slate-200"/><div className="h-64 animate-pulse rounded-2xl bg-slate-200"/></div>;
+  if(overviewQuery.isError)return <div className="flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800"><AlertCircle size={20}/><div><p className="font-semibold">Parent progress could not be loaded.</p><p className="mt-1 text-sm">Only children explicitly linked to your parent account are shown.</p></div></div>;
   const children=overviewQuery.data??[];
 
   return <div className="mx-auto max-w-6xl space-y-6">
     <section className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8"><p className="text-sm font-medium text-slate-300">E&P Learning Parent Portal</p><h1 className="mt-1 text-2xl font-bold sm:text-3xl">Children's Progress</h1><p className="mt-2 max-w-2xl text-sm text-slate-300">Monitor verified academic results, completed work, strengths, and areas that need attention.</p></section>
-    {children.length ? <div className="space-y-6">{children.map(child=><ChildCard key={child.student.id} child={child}/>)}</div> : <section className="rounded-2xl border border-dashed bg-white p-10 text-center"><p className="font-semibold text-slate-900">No linked children yet.</p><p className="mt-2 text-sm text-slate-500">A school administrator or teacher must link a child to this parent account before progress can be displayed.</p></section>}
+    <div className="space-y-6">{children.map(child=><ChildCard key={child.student.id} child={child}/>)}</div>
   </div>;
 }
 
