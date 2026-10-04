@@ -290,10 +290,6 @@ export const learningGradebookRepository = {
     assertTitle(input.title);
     assertValidScore(input.score, input.maxScore);
 
-    const percentage = Number(
-      ((input.score / input.maxScore) * 100).toFixed(4),
-    );
-
     const { data, error } = await gradebookClient
       .from("learning_gradebook_entries")
       .insert({
@@ -341,10 +337,6 @@ export const learningGradebookRepository = {
   ) {
     assertTitle(input.title);
     assertValidScore(input.score, input.maxScore);
-
-    const percentage = Number(
-      ((input.score / input.maxScore) * 100).toFixed(4),
-    );
 
     const { data, error } = await gradebookClient
       .from("learning_gradebook_entries")
