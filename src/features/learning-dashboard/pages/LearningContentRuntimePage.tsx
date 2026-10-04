@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AlertCircle, ArrowLeft, BookOpen, CheckCircle2 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
@@ -28,6 +29,32 @@ export default function LearningContentRuntimePage() {
   const id = assignmentId ?? "";
   const content = contentId ?? "";
   const queryClient = useQueryClient();
+
+  useEffect(() => {
+    if (!user?.id || !id || !content) return;
+    let active = true;
+    void (async () => {
+      try {
+        await learningAssignmentsService.startForStudent(id, user.id);
+        const session = await learningActivityService.startForStudent(user.id, "assignment", id);
+        if (!active) return;
+        await learningActivityService.logEvent({
+          tenantId: session.tenantId,
+          organizationId: session.organizationId,
+          studentUserId: user.id,
+          sessionId: session.id,
+          activityType: "content_started",
+          contentItemId: content,
+          assignmentId: id,
+        });
+        await queryClient.invalidateQueries({ queryKey: ["learning", "assignment", id, user.id] });
+        await queryClient.invalidateQueries({ queryKey: ["learning", "progress", user.id] });
+      } catch {
+        // Content loading and completion surface actionable errors; starting activity is best-effort.
+      }
+    })();
+    return () => { active = false; };
+  }, [content, id, queryClient, user?.id]);
 
   const query = useQuery({
     queryKey: ["learning", "assignment-content", id, content, user?.id],
