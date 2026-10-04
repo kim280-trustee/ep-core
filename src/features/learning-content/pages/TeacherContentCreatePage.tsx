@@ -49,9 +49,9 @@ export default function TeacherContentCreatePage() {
     enabled: Boolean(curriculumId),
   });
   const subjects = useQuery({
-    queryKey: ["learning", "subjects"],
-    queryFn: () => learningContentService.listSubjects(),
-    enabled: Boolean(user?.id),
+    queryKey: ["learning", "subjects", curriculumId],
+    queryFn: () => learningContentService.listSubjects(curriculumId),
+    enabled: Boolean(curriculumId),
   });
   const skills = useQuery({
     queryKey: ["learning", "skills", subjectId],
@@ -89,6 +89,9 @@ export default function TeacherContentCreatePage() {
   function changeCurriculum(value: string) {
     setCurriculumId(value);
     setGradeLevelId("");
+    setSubjectId("");
+    setSkillId("");
+    setTopicId("");
     setObjectiveId("");
   }
   function changeGradeLevel(value: string) {
@@ -176,7 +179,7 @@ export default function TeacherContentCreatePage() {
   }
 
   if (!user) return <Message text="Sign in to create learning content." />;
-  if (classes.isPending || curricula.isPending || subjects.isPending) return <div className="h-96 animate-pulse rounded-2xl bg-slate-200" />;
+  if (classes.isPending || curricula.isPending) return <div className="h-96 animate-pulse rounded-2xl bg-slate-200" />;
   if (classes.isError || curricula.isError || !organizationId) return <Message text="We could not determine your teacher organization." />;
 
   return (
@@ -212,9 +215,13 @@ export default function TeacherContentCreatePage() {
           </Field>
           <Field label="Subject">
             <select value={subjectId} onChange={(e) => changeSubject(e.target.value)} className="input w-full" required>
-              <option value="">Select subject</option>
+              <option value="">
+                {subjects.isPending ? "Loading subjects..." : subjects.isError ? "Could not load subjects" : "Select subject"}
+              </option>
               {(subjects.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
             </select>
+            {subjects.isError && <p className="mt-2 rounded-lg bg-red-50 p-2 text-xs text-red-800">{subjects.error instanceof Error ? subjects.error.message : "Could not load subjects."}</p>}
+            {!subjects.isPending && !subjects.isError && curriculumId && !(subjects.data ?? []).length && <p className="mt-2 rounded-lg bg-amber-50 p-2 text-xs text-amber-800">No active subjects are configured for this curriculum.</p>}
           </Field>
           <Field label="Skill">
             <select value={skillId} onChange={(e) => changeSkill(e.target.value)} className="input w-full" required>
