@@ -242,6 +242,26 @@ export default function LearningAssignmentDetailPage() {
         )}
       </section>
 
+      {assessmentResults.length > 0 && (
+        <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+          <h2 className="text-lg font-semibold text-slate-900">Assessment results</h2>
+          <div className="mt-4 space-y-3">
+            {assessmentResults.map((result) => (
+              <div key={result.id} className="flex flex-wrap items-center justify-between gap-3 rounded-xl bg-slate-50 p-4">
+                <div>
+                  <p className="text-sm font-semibold text-slate-800">Assessment submitted</p>
+                  <p className="mt-1 text-xs text-slate-500">Evaluated {dateLabel(result.evaluatedAt)}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-lg font-bold text-slate-900">{result.score ?? 0} / {result.maxScore ?? 0}</p>
+                  <p className="text-xs font-semibold text-slate-500">{result.percentage ?? 0}% · {result.passed ? "Passed" : "Not passed"}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">
           Learning items
