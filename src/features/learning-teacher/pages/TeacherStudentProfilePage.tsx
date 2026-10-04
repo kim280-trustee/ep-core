@@ -62,10 +62,11 @@ export default function TeacherStudentProfilePage() {
     enabled: Boolean(studentUserId),
   });
 
+  const masteryObjectiveIds = (masteryQuery.data ?? []).map((item) => item.objectiveId);
   const objectivesQuery = useQuery({
-    queryKey: ["learning", "teacher-student-profile-objectives"],
-    queryFn: () => learningMasteryService.listObjectives(),
-    enabled: Boolean(studentUserId),
+    queryKey: ["learning", "teacher-student-profile-objectives", masteryObjectiveIds.join(",")],
+    queryFn: () => learningMasteryService.listObjectives(masteryObjectiveIds),
+    enabled: masteryQuery.isSuccess && masteryObjectiveIds.length > 0,
   });
 
   const assignments = classQuery.data?.assignments ?? [];
