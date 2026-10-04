@@ -31,6 +31,7 @@ type ManualGradeFormState = {
   maxScore: string;
   recordedAt: string;
   notes: string;
+  includedInGrade: boolean;
 };
 
 function formatDate(value: string | null) {
@@ -99,6 +100,7 @@ function emptyManualForm(
     maxScore: "100",
     recordedAt: nowDateTimeLocal(),
     notes: "",
+    includedInGrade: true,
   };
 }
 
@@ -288,6 +290,7 @@ export default function TeacherGradebookPage() {
         typeof entry.notes.text === "string"
           ? entry.notes.text
           : entry.comment ?? "",
+      includedInGrade: entry.includedInGrade,
     });
     setFormOpen(true);
   }
@@ -343,6 +346,7 @@ export default function TeacherGradebookPage() {
           score,
           maxScore,
           weight: selectedCategory?.defaultWeight ?? 1,
+          includedInGrade: form.includedInGrade,
           recordedAt: new Date(form.recordedAt).toISOString(),
           notes: form.notes.trim()
             ? { text: form.notes.trim() }
