@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { ArrowLeft, Eye, FileText, Save, Send } from "lucide-react";
+import { ArrowLeft, Eye, FileText, Save, Send, Archive } from "lucide-react";
 import type { FormEvent } from "react";
 import { useMemo, useState } from "react";
 import { useAuth } from "@/core/auth";
@@ -24,7 +24,9 @@ export default function TeacherContentDetailPage() {
   const [changeSummary, setChangeSummary] = useState("");
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
+  const [reviewing, setReviewing] = useState(false);
   const [publishing, setPublishing] = useState(false);
+  const [retiring, setRetiring] = useState(false);
   const [preview, setPreview] = useState(false);
 
   const classes = useQuery({
@@ -75,6 +77,11 @@ export default function TeacherContentDetailPage() {
   }, [latestVersion]);
 
   const currentBody = bodyEdited ? body : latestBody;
+  const item = content.data;
+  const isRetired = item?.status === "retired";
+  const isPublished = item?.status === "published";
+  const isReview = item?.status === "review";
+  const isDraft = item?.status === "draft";
 
   async function saveVersion(event: FormEvent) {
     event.preventDefault();
@@ -82,6 +89,10 @@ export default function TeacherContentDetailPage() {
 
     if (!user?.id || !id || !latestVersion) {
       setError("A current content version is required before saving.");
+      return;
+    }
+    if (isRetired) {
+      setError("Retired content cannot be edited.");
       return;
     }
     if (!currentBody.trim()) {
@@ -100,14 +111,42 @@ export default function TeacherContentDetailPage() {
         changeSummary: changeSummary.trim() || "Updated content",
         createdBy: user.id,
       });
+
+      if (!isDraft) {
+        await learningContentService.updateContentStatus(id, "draft", user.id);
+      }
+
       setBody("");
       setBodyEdited(false);
       setChangeSummary("");
-      await versions.refetch();
+      await Promise.all([versions.refetch(), content.refetch()]);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not save the new version.");
     } finally {
       setSaving(false);
+    }
+  }
+
+  async function submitForReview() {
+    setError("");
+
+    if (!user?.id || !id || !latestVersion) {
+      setError("A content version is required before review.");
+      return;
+    }
+    if (!isDraft) {
+      setError("Only draft content can be submitted for review.");
+      return;
+    }
+
+    setReviewing(true);
+    try {
+      await learningContentService.updateContentStatus(id, "review", user.id);
+      await Promise.all([content.refetch(), versions.refetch()]);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not submit this content for review.");
+    } finally {
+      setReviewing(false);
     }
   }
 
@@ -118,12 +157,8 @@ export default function TeacherContentDetailPage() {
       setError("A content version is required before publishing.");
       return;
     }
-    if (!objectives.data?.length) {
-      setError("Add at least one learning objective before publishing.");
-      return;
-    }
-    if (!latestBody.trim()) {
-      setError("The latest version has no learning content.");
+    if (!isReview) {
+      setError("Content must be in review before it can be published.");
       return;
     }
 
@@ -138,6 +173,29 @@ export default function TeacherContentDetailPage() {
     }
   }
 
+  async function retire() {
+    setError("");
+
+    if (!user?.id || !id) {
+      setError("A content item is required before retiring.");
+      return;
+    }
+    if (!isPublished) {
+      setError("Only published content can be retired.");
+      return;
+    }
+
+    setRetiring(true);
+    try {
+      await learningContentService.updateContentStatus(id, "retired", user.id);
+      await Promise.all([content.refetch(), versions.refetch()]);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not retire this content.");
+    } finally {
+      setRetiring(false);
+    }
+  }
+
   if (!user) return <Message text="Sign in to manage learning content." />;
   if (!id) return <Message text="No content item was selected." />;
   if (classes.isPending || content.isPending || versions.isPending || objectives.isPending) {
@@ -147,8 +205,7 @@ export default function TeacherContentDetailPage() {
     return <Message text="We could not load this content item." />;
   }
 
-  const item = content.data;
-  const isPublished = item.status === "published";
+  const currentItem = content.data;
 
   return (
     <div className="mx-auto max-w-5xl space-y-6">
@@ -166,19 +223,19 @@ export default function TeacherContentDetailPage() {
               <FileText size={18} />
               Teacher Content
             </div>
-            <h1 className="mt-1 text-2xl font-bold text-slate-900">{item.title}</h1>
+            <h1 className="mt-1 text-2xl font-bold text-slate-900">{currentItem.title}</h1>
             <p className="mt-1 text-sm text-slate-500">
-              {item.code} · {item.languageCode.toUpperCase()}
+              {currentItem.code} · {currentItem.languageCode.toUpperCase()}
             </p>
           </div>
         </div>
-        <span className={"inline-flex w-fit rounded-full px-3 py-1.5 text-xs font-semibold " + statusClasses[item.status]}>
-          {item.status[0].toUpperCase() + item.status.slice(1)}
+        <span className={"inline-flex w-fit rounded-full px-3 py-1.5 text-xs font-semibold " + statusClasses[currentItem.status]}>
+          {currentItem.status[0].toUpperCase() + currentItem.status.slice(1)}
         </span>
       </header>
 
       <section className="grid gap-4 md:grid-cols-3">
-        <Info label="Content type" value={label(item.contentType)} />
+        <Info label="Content type" value={label(currentItem.contentType)} />
         <Info label="Current version" value={latestVersion ? String(latestVersion.versionNo) : "None"} />
         <Info label="Learning objectives" value={String(objectives.data?.length ?? 0)} />
       </section>
@@ -196,7 +253,13 @@ export default function TeacherContentDetailPage() {
         </section>
       ) : (
         <section className="rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm text-amber-900">
-          This content has no learning objective. Publishing is blocked until at least one objective is linked.
+          This content has no learning objective. Review and publishing are blocked until at least one objective is linked.
+        </section>
+      )}
+
+      {isRetired && (
+        <section className="rounded-2xl border border-red-200 bg-red-50 p-5 text-sm text-red-800">
+          This content is retired and is no longer available for new publication. Its version history remains available.
         </section>
       )}
 
@@ -205,12 +268,16 @@ export default function TeacherContentDetailPage() {
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <h2 className="text-lg font-semibold text-slate-900">
-                {isPublished ? "Create the next draft version" : "Edit current draft"}
+                {isRetired ? "Version history" : isPublished ? "Create the next draft version" : "Edit current draft"}
               </h2>
               <p className="mt-1 text-sm text-slate-500">
-                {isPublished
-                  ? "Published versions remain historical. Your changes become a new version."
-                  : "Edit the latest learning content and save it as a new version."}
+                {isRetired
+                  ? "Retired content is read-only."
+                  : isPublished
+                    ? "Published versions remain historical. Saving changes creates a new draft version."
+                    : isReview
+                      ? "Saving changes creates a new draft and returns the content to draft status."
+                      : "Edit the latest learning content and save it as a new version."}
               </p>
             </div>
             <button
@@ -223,23 +290,30 @@ export default function TeacherContentDetailPage() {
             </button>
           </div>
 
-          <textarea
-            value={currentBody}
-            onChange={(event) => { setBodyEdited(true); setBody(event.target.value); }}
-            className="input mt-5 min-h-72 w-full resize-y"
-            placeholder="Write the learning content..."
-            required
-          />
+          {!isRetired && (
+            <>
+              <textarea
+                value={currentBody}
+                onChange={(event) => {
+                  setBodyEdited(true);
+                  setBody(event.target.value);
+                }}
+                className="input mt-5 min-h-72 w-full resize-y"
+                placeholder="Write the learning content..."
+                required
+              />
 
-          <label className="mt-4 block">
-            <span className="mb-1.5 block text-sm font-medium text-slate-700">Change summary</span>
-            <input
-              value={changeSummary}
-              onChange={(event) => setChangeSummary(event.target.value)}
-              className="input w-full"
-              placeholder="Describe what changed in this version"
-            />
-          </label>
+              <label className="mt-4 block">
+                <span className="mb-1.5 block text-sm font-medium text-slate-700">Change summary</span>
+                <input
+                  value={changeSummary}
+                  onChange={(event) => setChangeSummary(event.target.value)}
+                  className="input w-full"
+                  placeholder="Describe what changed in this version"
+                />
+              </label>
+            </>
+          )}
 
           {preview && (
             <div className="mt-5 rounded-xl border border-slate-200 bg-slate-50 p-5">
@@ -272,25 +346,54 @@ export default function TeacherContentDetailPage() {
 
         {error && <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">{error}</div>}
 
-        <div className="flex flex-wrap justify-end gap-3">
-          <button
-            type="submit"
-            disabled={saving || !currentBody.trim()}
-            className="inline-flex items-center gap-2 rounded-xl border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-50"
-          >
-            <Save size={17} />
-            {saving ? "Saving..." : "Save New Version"}
-          </button>
-          <button
-            type="button"
-            onClick={() => void publish()}
-            disabled={publishing || !objectives.data?.length || !latestVersion}
-            className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800 disabled:opacity-50"
-          >
-            <Send size={17} />
-            {publishing ? "Publishing..." : "Publish"}
-          </button>
-        </div>
+        {!isRetired && (
+          <div className="flex flex-wrap justify-end gap-3">
+            <button
+              type="submit"
+              disabled={saving || !currentBody.trim()}
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-50"
+            >
+              <Save size={17} />
+              {saving ? "Saving..." : "Save New Version"}
+            </button>
+
+            {isDraft && (
+              <button
+                type="button"
+                onClick={() => void submitForReview()}
+                disabled={reviewing || !latestVersion || !objectives.data?.length}
+                className="inline-flex items-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-amber-700 disabled:opacity-50"
+              >
+                <Send size={17} />
+                {reviewing ? "Submitting..." : "Send for Review"}
+              </button>
+            )}
+
+            {isReview && (
+              <button
+                type="button"
+                onClick={() => void publish()}
+                disabled={publishing || !latestVersion || !objectives.data?.length}
+                className="inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-5 py-2.5 text-sm font-semibold text-white hover:bg-emerald-800 disabled:opacity-50"
+              >
+                <Send size={17} />
+                {publishing ? "Publishing..." : "Publish"}
+              </button>
+            )}
+
+            {isPublished && (
+              <button
+                type="button"
+                onClick={() => void retire()}
+                disabled={retiring}
+                className="inline-flex items-center gap-2 rounded-xl border border-red-300 px-5 py-2.5 text-sm font-semibold text-red-700 hover:bg-red-50 disabled:opacity-50"
+              >
+                <Archive size={17} />
+                {retiring ? "Retiring..." : "Retire"}
+              </button>
+            )}
+          </div>
+        )}
       </form>
 
       <button type="button" onClick={() => navigate("/teacher/content")} className="text-sm font-medium text-slate-500 hover:text-slate-900">
