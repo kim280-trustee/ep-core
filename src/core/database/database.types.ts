@@ -1899,6 +1899,9 @@ export type Database = {
           recorded_at: string
           score: number
           source_type: string
+          status: string
+          comment: string | null
+          late: boolean
           student_user_id: string
           tenant_id: string
           term_id: string
@@ -1930,6 +1933,9 @@ export type Database = {
           recorded_at?: string
           score: number
           source_type: string
+          status: string
+          comment: string | null
+          late: boolean
           student_user_id: string
           tenant_id: string
           term_id: string
@@ -1937,6 +1943,9 @@ export type Database = {
           topic_id?: string | null
           updated_at?: string
           updated_by?: string | null
+          status?: string
+          comment?: string | null
+          late?: boolean
           weight?: number
         }
         Update: {
@@ -1968,6 +1977,9 @@ export type Database = {
           topic_id?: string | null
           updated_at?: string
           updated_by?: string | null
+          status?: string
+          comment?: string | null
+          late?: boolean
           weight?: number
         }
         Relationships: [
@@ -2742,6 +2754,9 @@ export type Database = {
           student_user_id: string
           tenant_id: string
           term_id: string
+          override_score: number | null
+          override_grade: string | null
+          override_reason: string | null
           updated_at: string
         }
         Insert: {
@@ -2760,6 +2775,9 @@ export type Database = {
           student_user_id: string
           tenant_id: string
           term_id: string
+          override_score?: number | null
+          override_grade?: string | null
+          override_reason?: string | null
           updated_at?: string
         }
         Update: {
@@ -3978,6 +3996,32 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      update_learning_manual_gradebook_entry: {
+        Args: {
+          p_category_id?: string
+          p_comment?: string
+          p_entry_id: string
+          p_late?: boolean
+          p_max_score: number
+          p_reason?: string
+          p_score: number
+          p_status?: string
+          p_title: string
+        }
+        Returns: string
+      }
+      delete_learning_manual_gradebook_entry: {
+        Args: { p_entry_id: string; p_reason?: string }
+        Returns: boolean
+      }
+      reopen_learning_term_grade: {
+        Args: { p_class_subject_id: string; p_reason: string; p_student_user_id: string; p_term_id: string }
+        Returns: string
+      }
+      override_learning_term_grade: {
+        Args: { p_class_subject_id: string; p_override_grade: string; p_override_score: number; p_reason: string; p_student_user_id: string; p_term_id: string }
+        Returns: string
+      }
       get_current_user_permissions: {
         Args: never
         Returns: {
