@@ -68,9 +68,12 @@ export const learningTeacherRepository = {
     });
 
     const classStudentIds = new Set(studentIds);
+    const publishedAssignments = assignments.filter((assignment) => assignment.status === "published");
     const progressByAssignment = new Map<string, Awaited<ReturnType<typeof learningAssignmentsService.listProgressForAssignment>>>();
     const monitors = await Promise.all(assignments.map(async (assignment) => {
-      const progress = await learningAssignmentsService.listProgressForAssignment(assignment.id);
+      const progress = assignment.status === "published"
+        ? await learningAssignmentsService.listProgressForAssignment(assignment.id)
+        : [];
       progressByAssignment.set(assignment.id, progress);
       const studentProgress = progress.filter((item) => classStudentIds.has(item.studentUserId));
       return {
