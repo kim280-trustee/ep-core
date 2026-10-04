@@ -59,6 +59,7 @@ export default function LearningAssignmentDetailPage() {
       };
     },
     enabled: Boolean(id && user?.id),
+    refetchOnMount: "always",
   });
 
   const startMutation = useMutation({
