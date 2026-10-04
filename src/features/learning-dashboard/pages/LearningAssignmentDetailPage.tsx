@@ -23,7 +23,40 @@ export default function LearningAssignmentDetailPage() {
 
   const query = useQuery({
     queryKey: ["learning", "assignment", id, user?.id],
-    queryFn: () => learningAssignmentsService.getStudentAssignment(id, user!.id),
+    queryFn: async () => {
+      const result = await learningAssignmentsService.getStudentAssignment(
+        id,
+        user!.id,
+      );
+      const assessmentIds = result.items
+        .filter((item) => item.itemType === "assessment" && item.assessmentId)
+        .map((item) => item.assessmentId as string);
+
+      if (!assessmentIds.length) {
+        return { ...result, assessmentResults: [] };
+      }
+
+      const [attempts, results] = await Promise.all([
+        learningAssessmentService.listAttempts(user!.id),
+        learningAssessmentService.listResults(user!.id),
+      ]);
+      const attemptIds = new Set(
+        attempts
+          .filter((attempt) => assessmentIds.includes(attempt.assessmentId))
+          .map((attempt) => attempt.id),
+      );
+
+      return {
+        ...result,
+        assessmentResults: results
+          .filter((assessmentResult) => attemptIds.has(assessmentResult.attemptId))
+          .sort(
+            (a, b) =>
+              new Date(b.evaluatedAt).getTime() -
+              new Date(a.evaluatedAt).getTime(),
+          ),
+      };
+    },
     enabled: Boolean(id && user?.id),
   });
 
@@ -111,7 +144,7 @@ export default function LearningAssignmentDetailPage() {
     );
   }
 
-  const { assignment, items, progress } = query.data;
+  const { assignment, items, progress, assessmentResults } = query.data;
   const completed = progress?.status === "completed";
 
   return (
