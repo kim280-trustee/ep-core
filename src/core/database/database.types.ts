@@ -4327,6 +4327,22 @@ export type Database = {
         }
         Returns: string
       }
+      reopen_learning_assignment: {
+        Args: { p_assignment_id: string }
+        Returns: string
+      }
+      close_learning_assignment: {
+        Args: { p_assignment_id: string }
+        Returns: string
+      }
+      reassign_learning_assignment: {
+        Args: {
+          p_assignment_id: string
+          p_due_at?: string
+          p_student_user_id: string
+        }
+        Returns: string
+      }
       reopen_learning_term_grade: {
         Args: {
           p_class_subject_id: string
