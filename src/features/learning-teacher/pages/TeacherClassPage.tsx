@@ -29,7 +29,7 @@ export default function TeacherClassPage() {
         <h1 className="mt-1 text-2xl font-bold">{classInfo.classGroup.name}</h1>
         <p className="mt-2 text-sm text-slate-300">{classInfo.subjects.map((item) => item.subject.name).join(", ") || "No subjects assigned"}</p>
         <div className="mt-4 flex flex-wrap gap-2">
-          <Link to={"/teacher/classes/" + classGroupId + "/gradebook"} className="inline-flex rounded-xl bg-white px-4 py-2 text-sm font-semibold text-slate-900">Open Gradebook</Link>
+          <Link to={"/teacher/classes/" + classGroupId + "/gradebook"} className="inline-flex rounded-xl bg-white px-4 py-2 text-sm font-semibold text-slate-900">Open Gradebook</Link><Link to={"/teacher/classes/" + classGroupId + "/assignments/history"} className="inline-flex rounded-xl border border-white/30 px-4 py-2 text-sm font-semibold text-white">Assignment History</Link>
         </div>
       </section>
 
