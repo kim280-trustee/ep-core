@@ -1,6 +1,6 @@
 import { learningContentRepository } from "../repositories/learning-content.repository";
 export const learningContentService={
-  listSubjects:()=>learningContentRepository.listSubjects(),
+  listSubjects:(curriculumId?:string)=>learningContentRepository.listSubjects(curriculumId),
   listCurricula:()=>learningContentRepository.listCurricula(),
   listGradeLevels:(curriculumId?:string)=>learningContentRepository.listGradeLevels(curriculumId),
   listSkills:(subjectId?:string)=>learningContentRepository.listSkills(subjectId),
