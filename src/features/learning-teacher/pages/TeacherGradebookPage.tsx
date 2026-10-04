@@ -81,7 +81,9 @@ function getRecordType(category: LearningGradebookCategory | undefined) {
 
 function getInitialCategoryId(categories: LearningGradebookCategory[]) {
   return (
-    categories.find((category) => category.code !== "assessment")?.id ?? ""
+    categories.find((category) => category.code === "midterm")?.id ??
+    categories.find((category) => category.code !== "assessment")?.id ??
+    ""
   );
 }
 
