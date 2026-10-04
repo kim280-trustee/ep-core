@@ -3,10 +3,12 @@ import { supabase } from "@/core/infrastructure/supabase/client";
 import type {
   LearningContentItem, LearningContentObjective, LearningContentVersion, LearningObjective,
   LearningObjectiveAlignment, LearningObjectivePrerequisite, LearningSkill, LearningTopic, LearningKnowledgeStatus,
-  LearningContentStatus, LearningContentType, LearningSubject,
+  LearningContentStatus, LearningContentType, LearningSubject, LearningCurriculum, LearningGradeLevel,
 } from "../types/learning-content.types";
 
 type SubjectRow = Database["public"]["Tables"]["learning_subjects"]["Row"];
+type CurriculumRow = Database["public"]["Tables"]["learning_curricula"]["Row"];
+type GradeLevelRow = Database["public"]["Tables"]["learning_grade_levels"]["Row"];
 type SkillRow = Database["public"]["Tables"]["learning_skills"]["Row"];
 type TopicRow = Database["public"]["Tables"]["learning_topics"]["Row"];
 type ObjectiveRow = Database["public"]["Tables"]["learning_objectives"]["Row"];
@@ -18,6 +20,8 @@ type ContentObjectiveRow = Database["public"]["Tables"]["learning_content_object
 
 export interface LearningContentRepository {
   listSubjects(): Promise<LearningSubject[]>;
+  listCurricula(): Promise<LearningCurriculum[]>;
+  listGradeLevels(curriculumId?: string): Promise<LearningGradeLevel[]>;
   listSkills(subjectId?: string): Promise<LearningSkill[]>;
   listTopics(skillId?: string): Promise<LearningTopic[]>;
   listObjectives(topicId?: string): Promise<LearningObjective[]>;
@@ -34,6 +38,8 @@ export interface LearningContentRepository {
 }
 
 const mapSubject = (r: SubjectRow): LearningSubject => ({ id:r.id, code:r.code, name:r.name, description:r.description, status:r.status as LearningKnowledgeStatus, createdAt:r.created_at, updatedAt:r.updated_at });
+const mapCurriculum = (r: CurriculumRow): LearningCurriculum => ({ id:r.id, code:r.code, name:r.name, version:r.version, description:r.description, status:r.status, createdAt:r.created_at, updatedAt:r.updated_at });
+const mapGradeLevel = (r: GradeLevelRow): LearningGradeLevel => ({ id:r.id, curriculumId:r.curriculum_id, code:r.code, name:r.name, sequenceNo:r.sequence_no, description:r.description, status:r.status, createdAt:r.created_at, updatedAt:r.updated_at });
 const mapSkill = (r: SkillRow): LearningSkill => ({ id:r.id, subjectId:r.subject_id, code:r.code, name:r.name, description:r.description, status:r.status as LearningKnowledgeStatus, createdAt:r.created_at, updatedAt:r.updated_at });
 const mapTopic = (r: TopicRow): LearningTopic => ({ id:r.id, skillId:r.skill_id, code:r.code, name:r.name, description:r.description, sequenceNo:r.sequence_no, status:r.status as LearningKnowledgeStatus, createdAt:r.created_at, updatedAt:r.updated_at });
 const mapObjective = (r: ObjectiveRow): LearningObjective => ({ id:r.id, topicId:r.topic_id, code:r.code, name:r.name, description:r.description, sequenceNo:r.sequence_no, status:r.status as LearningKnowledgeStatus, createdAt:r.created_at, updatedAt:r.updated_at });
@@ -45,6 +51,8 @@ const mapContentObjective = (r: ContentObjectiveRow): LearningContentObjective =
 
 export const learningContentRepository: LearningContentRepository = {
   async listSubjects() { const {data,error}=await supabase.from("learning_subjects").select("*").eq("status","active").order("name"); if(error)throw error; return(data??[]).map(mapSubject); },
+  async listCurricula(){const{data,error}=await supabase.from("learning_curricula").select("*").eq("status","active").order("name");if(error)throw error;return(data??[]).map(mapCurriculum);},
+  async listGradeLevels(curriculumId){let q=supabase.from("learning_grade_levels").select("*").eq("status","active").order("sequence_no");if(curriculumId)q=q.eq("curriculum_id",curriculumId);const{data,error}=await q;if(error)throw error;return(data??[]).map(mapGradeLevel);},
   async listSkills(subjectId) { let q=supabase.from("learning_skills").select("*").eq("status","active").order("name"); if(subjectId)q=q.eq("subject_id",subjectId); const {data,error}=await q;if(error)throw error;return(data??[]).map(mapSkill); },
   async listTopics(skillId) { let q=supabase.from("learning_topics").select("*").eq("status","active").order("sequence_no");if(skillId)q=q.eq("skill_id",skillId);const{data,error}=await q;if(error)throw error;return(data??[]).map(mapTopic); },
   async listObjectives(topicId) { let q=supabase.from("learning_objectives").select("*").eq("status","active").order("sequence_no");if(topicId)q=q.eq("topic_id",topicId);const{data,error}=await q;if(error)throw error;return(data??[]).map(mapObjective); },
