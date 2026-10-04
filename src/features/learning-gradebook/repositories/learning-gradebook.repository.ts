@@ -60,23 +60,31 @@ type TermGradeRow = {
   override_reason: string | null;
 };
 
-const gradebookClient = supabase as unknown as {
-  from(table: "learning_gradebook_entries"): {
-    select(columns: string): {
-      eq(column: string, value: string): {
-        order(column: string, options?: { ascending?: boolean }): PromiseLike<{ data: GradebookRow[] | null; error: Error | null }>;
-      };
-    };
-  };
+type GradebookQueryBuilder = {
+  eq(column: string, value: string): GradebookQueryBuilder;
+  order(
+    column: string,
+    options?: { ascending?: boolean },
+  ): PromiseLike<{ data: GradebookRow[] | null; error: Error | null }>;
 };
 
+type TermGradeQueryBuilder = {
+  eq(column: string, value: string): TermGradeQueryBuilder;
+  order(
+    column: string,
+    options?: { ascending?: boolean },
+  ): PromiseLike<{ data: TermGradeRow[] | null; error: Error | null }>;
+};
+
+const gradebookClient = supabase as unknown as {
+  from(table: "learning_gradebook_entries"): GradebookQueryBuilder & {
+    select(columns: string): GradebookQueryBuilder;
+  };
+  };
+
 const termGradeClient = supabase as unknown as {
-  from(table: "learning_term_grades"): {
-    select(columns: string): {
-      eq(column: string, value: string): {
-        order(column: string, options?: { ascending?: boolean }): PromiseLike<{ data: TermGradeRow[] | null; error: Error | null }>;
-      };
-    };
+  from(table: "learning_term_grades"): TermGradeQueryBuilder & {
+    select(columns: string): TermGradeQueryBuilder;
   };
 };
 
