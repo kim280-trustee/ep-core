@@ -897,7 +897,6 @@ export default function TeacherGradebookPage() {
                               <button
                                 type="button"
                                 onClick={() => openEditForm(entry)}
-                                disabled={false}
                                 className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-50"
                               >
                                 <Pencil size={14} />
