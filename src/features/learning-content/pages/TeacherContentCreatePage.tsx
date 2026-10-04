@@ -64,7 +64,7 @@ export default function TeacherContentCreatePage() {
     enabled: Boolean(skillId),
   });
   const objectiveAlignments = useQuery({
-    queryKey: ["learning", "objective-alignments", objectiveId, curriculumId, gradeLevelId],
+    queryKey: ["learning", "objective-alignments", curriculumId, gradeLevelId],
     queryFn: () => learningContentService.listAlignments(undefined, curriculumId, gradeLevelId),
     enabled: Boolean(curriculumId && gradeLevelId),
   });
@@ -201,7 +201,7 @@ export default function TeacherContentCreatePage() {
             </select>
           </Field>
           <Field label="Grade level">
-            <select value={gradeLevelId} onChange={(e) => changeGradeLevel(e.target.value)} className="input w-full" disabled={!curriculumId} required>
+            <select value={gradeLevelId} onChange={(e) => changeGradeLevel(e.target.value)} className="input w-full" required>
               <option value="">Select grade level</option>
               {(gradeLevels.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
             </select>
@@ -213,19 +213,19 @@ export default function TeacherContentCreatePage() {
             </select>
           </Field>
           <Field label="Skill">
-            <select value={skillId} onChange={(e) => changeSkill(e.target.value)} className="input w-full" disabled={!subjectId} required>
+            <select value={skillId} onChange={(e) => changeSkill(e.target.value)} className="input w-full" required>
               <option value="">Select skill</option>
               {(skills.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
             </select>
           </Field>
           <Field label="Topic">
-            <select value={topicId} onChange={(e) => changeTopic(e.target.value)} className="input w-full" disabled={!skillId} required>
+            <select value={topicId} onChange={(e) => changeTopic(e.target.value)} className="input w-full" required>
               <option value="">Select topic</option>
               {(topics.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
             </select>
           </Field>
           <Field label="Learning objective">
-            <select value={objectiveId} onChange={(e) => setObjectiveId(e.target.value)} className="input w-full" disabled={!topicId || !gradeLevelId} required>
+            <select value={objectiveId} onChange={(e) => setObjectiveId(e.target.value)} className="input w-full" required>
               <option value="">Select learning objective</option>
               {(objectives.data ?? []).filter((item) => !gradeLevelId || alignedObjectiveIds.has(item.id)).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
             </select>
