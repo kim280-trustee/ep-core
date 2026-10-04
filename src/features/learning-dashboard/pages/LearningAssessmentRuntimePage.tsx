@@ -231,6 +231,12 @@ export default function LearningAssessmentRuntimePage() {
         queryKey: ["learning", "assessment-attempts", assessment, user?.id],
       });
       await queryClient.invalidateQueries({
+        queryKey: ["learning", "assignment", id, user?.id],
+      });
+      await queryClient.invalidateQueries({
+        queryKey: ["learning", "student-overview", user?.id],
+      });
+      await queryClient.invalidateQueries({
         queryKey: ["learning", "student-overview", user?.id],
       });
       await queryClient.invalidateQueries({
