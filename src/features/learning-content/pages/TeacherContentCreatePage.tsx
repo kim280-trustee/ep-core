@@ -202,9 +202,13 @@ export default function TeacherContentCreatePage() {
           </Field>
           <Field label="Grade level">
             <select value={gradeLevelId} onChange={(e) => changeGradeLevel(e.target.value)} className="input w-full" required>
-              <option value="">Select grade level</option>
+              <option value="">
+                {gradeLevels.isPending ? "Loading grade levels..." : gradeLevels.isError ? "Could not load grade levels" : "Select grade level"}
+              </option>
               {(gradeLevels.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
             </select>
+            {gradeLevels.isError && <p className="mt-2 rounded-lg bg-red-50 p-2 text-xs text-red-800">{gradeLevels.error instanceof Error ? gradeLevels.error.message : "Could not load grade levels."}</p>}
+            {!gradeLevels.isPending && !gradeLevels.isError && curriculumId && !(gradeLevels.data ?? []).length && <p className="mt-2 rounded-lg bg-amber-50 p-2 text-xs text-amber-800">No active grade levels are configured for this curriculum.</p>}
           </Field>
           <Field label="Subject">
             <select value={subjectId} onChange={(e) => changeSubject(e.target.value)} className="input w-full" required>
