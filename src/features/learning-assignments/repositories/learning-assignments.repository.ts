@@ -22,7 +22,23 @@ export const learningAssignmentsRepository={
  async listStudentAssignments(studentUserId:string){const targets=await listAccessibleTargets(studentUserId);const ids=[...new Set(targets.map(target=>target.assignmentId))];if(!ids.length)return[];const{data,error}=await supabase.from("learning_assignments").select("*").eq("status","published").in("id",ids).order("due_at",{ascending:true,nullsFirst:false});if(error)throw error;return(data??[]).map(mapA);},
  async getStudentAssignment(assignmentId:string,studentUserId:string){const[assignments,items,progress]=await Promise.all([learningAssignmentsRepository.listStudentAssignments(studentUserId),learningAssignmentsRepository.listItems(assignmentId),learningAssignmentsRepository.listProgress(studentUserId)]);const assignment=assignments.find(x=>x.id===assignmentId);if(!assignment)throw new Error("Assignment is not available to this student.");return{assignment,items,progress:progress.find(x=>x.assignmentId===assignmentId)??null};},
  async startForStudent(assignmentId:string,studentUserId:string){const targets=await listAccessibleTargets(studentUserId);const target=targets.find(x=>x.assignmentId===assignmentId);if(!target)throw new Error("No active assignment target was found for this student.");return learningAssignmentsRepository.ensureProgress({organizationId:target.organizationId,assignmentId,assignmentTargetId:target.id,studentUserId}).then(p=>p.status==="not_started"?learningAssignmentsRepository.updateProgress(p.id,"in_progress"):p);},
- async listAssignmentHistoryForClass(classGroupId:string){const{data:targets,error}=await supabase.from("learning_assignment_targets").select("assignment_id").eq("class_group_id",classGroupId);if(error)throw error;const ids=[...new Set((targets??[]).map(x=>x.assignment_id))];if(!ids.length)return[];const{data,error:assignmentError}=await supabase.from("learning_assignments").select("*").in("id",ids).order("updated_at",{ascending:false});if(assignmentError)throw assignmentError;return(data??[]).map(row=>mapA(row as AssignmentRow & {parent_assignment_id?:string|null;lifecycle_type?:string}));},
+ async listAssignmentHistoryForClass(classGroupId:string){
+  const[{data:targets,error:targetError},{data:classSubjects,error:classSubjectError}]=await Promise.all([
+    supabase.from("learning_assignment_targets").select("assignment_id").eq("class_group_id",classGroupId),
+    supabase.from("learning_class_subjects").select("id").eq("class_group_id",classGroupId),
+  ]);
+  if(targetError)throw targetError;if(classSubjectError)throw classSubjectError;
+  const classSubjectIds=(classSubjects??[]).map(x=>x.id);
+  const ids=new Set((targets??[]).map(x=>x.assignment_id));
+  if(classSubjectIds.length){
+    const{data:subjectAssignments,error}=await supabase.from("learning_assignments").select("id").in("class_subject_id",classSubjectIds);
+    if(error)throw error;(subjectAssignments??[]).forEach(x=>ids.add(x.id));
+  }
+  const assignmentIds=[...ids];if(!assignmentIds.length)return[];
+  const{data,error:assignmentError}=await supabase.from("learning_assignments").select("*").in("id",assignmentIds).order("updated_at",{ascending:false});
+  if(assignmentError)throw assignmentError;
+  return(data??[]).map(row=>mapA(row as AssignmentRow & {parent_assignment_id?:string|null;lifecycle_type?:string}));
+},
 async reopenAssignment(id:string){const{data,error}=await supabase.rpc("reopen_learning_assignment",{p_assignment_id:id});if(error)throw error;const{data:assignment,error:assignmentError}=await supabase.from("learning_assignments").select("*").eq("id",data).single();if(assignmentError)throw assignmentError;return mapA(assignment as AssignmentRow & {parent_assignment_id?:string|null;lifecycle_type?:string});},
 async closeAssignment(id:string){const{data,error}=await supabase.rpc("close_learning_assignment",{p_assignment_id:id});if(error)throw error;const{data:assignment,error:assignmentError}=await supabase.from("learning_assignments").select("*").eq("id",data).single();if(assignmentError)throw assignmentError;return mapA(assignment as AssignmentRow & {parent_assignment_id?:string|null;lifecycle_type?:string});},
 async reassignToStudent(id:string,studentUserId:string,dueAt:string|null){const{data,error}=await supabase.rpc("reassign_learning_assignment",{p_assignment_id:id,p_student_user_id:studentUserId,p_due_at:dueAt});if(error)throw error;const{data:assignment,error:assignmentError}=await supabase.from("learning_assignments").select("*").eq("id",data).single();if(assignmentError)throw assignmentError;const items=await learningAssignmentsRepository.listItems(data);return{assignment:mapA(assignment as AssignmentRow & {parent_assignment_id?:string|null;lifecycle_type?:string}),items};},
