@@ -347,6 +347,7 @@ export const learningGradebookRepository = {
         score: input.score,
         max_score: input.maxScore,
         weight: input.weight ?? 1,
+        included_in_grade: input.includedInGrade,
         recorded_at: input.recordedAt,
         notes: input.notes ?? {},
         updated_by: input.updatedBy,
