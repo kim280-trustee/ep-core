@@ -226,7 +226,44 @@ export default function LearningAssessmentRuntimePage() {
       return learningAssessmentService.submitAttempt(attemptId);
     },
     onSuccess: async (attempt) => {
+      const wasCompleted = assignmentQuery.data?.progress?.status === "completed";
       setSubmittedAttempt(attempt);
+
+      const session = await learningActivityService.startForStudent(
+        user!.id,
+        "assessment",
+        assessment,
+      );
+      await learningActivityService.logEvent({
+        tenantId: session.tenantId,
+        organizationId: session.organizationId,
+        studentUserId: user!.id,
+        sessionId: session.id,
+        activityType: "assessment_submitted",
+        assessmentId: assessment,
+        assignmentId: id,
+      });
+
+      const progress = await learningAssignmentsService.refreshProgressForStudent(
+        id,
+        user!.id,
+      );
+
+      if (!wasCompleted && progress.status === "completed") {
+        const assignmentSession = await learningActivityService.startForStudent(
+          user!.id,
+          "assignment",
+          id,
+        );
+        await learningActivityService.logEvent({
+          tenantId: assignmentSession.tenantId,
+          organizationId: assignmentSession.organizationId,
+          studentUserId: user!.id,
+          sessionId: assignmentSession.id,
+          activityType: "assignment_completed",
+          assignmentId: id,
+        });
+      }
 
       const assessmentResults = await learningAssessmentService.listResults(
         user!.id,
