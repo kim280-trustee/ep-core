@@ -1933,9 +1933,6 @@ export type Database = {
           recorded_at?: string
           score: number
           source_type: string
-          status: string
-          comment: string | null
-          late: boolean
           student_user_id: string
           tenant_id: string
           term_id: string
@@ -2796,6 +2793,9 @@ export type Database = {
           student_user_id?: string
           tenant_id?: string
           term_id?: string
+          override_score?: number | null
+          override_grade?: string | null
+          override_reason?: string | null
           updated_at?: string
         }
         Relationships: [
