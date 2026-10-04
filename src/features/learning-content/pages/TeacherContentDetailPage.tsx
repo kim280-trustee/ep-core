@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { ArrowLeft, Eye, FileText, Save, Send, Archive } from "lucide-react";
+import { ArrowLeft, Eye, FileText, Save, Send, Archive, ClipboardPlus } from "lucide-react";
 import type { FormEvent } from "react";
 import { useMemo, useState } from "react";
 import { useAuth } from "@/core/auth";
@@ -82,6 +82,7 @@ export default function TeacherContentDetailPage() {
   const isPublished = item?.status === "published";
   const isReview = item?.status === "review";
   const isDraft = item?.status === "draft";
+  const canReuse = item?.status === "published";
 
   async function saveVersion(event: FormEvent) {
     event.preventDefault();
