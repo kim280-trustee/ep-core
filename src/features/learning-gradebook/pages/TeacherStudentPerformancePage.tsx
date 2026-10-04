@@ -90,7 +90,6 @@ export default function TeacherStudentPerformancePage() {
   if (classQuery.isError || termsQuery.isError || !student) return <State text="The student performance record could not be loaded." />;
 
   const allLoading = entryQueries.some((query) => query.isPending) || gradeQueries.some((query) => query.isPending);
-  const selectedTerm = termsQuery.data?.find((term) => term.id === termId);
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
