@@ -82,7 +82,6 @@ export default function TeacherContentDetailPage() {
   const isPublished = item?.status === "published";
   const isReview = item?.status === "review";
   const isDraft = item?.status === "draft";
-  const canReuse = item?.status === "published";
 
   async function saveVersion(event: FormEvent) {
     event.preventDefault();
@@ -234,6 +233,24 @@ export default function TeacherContentDetailPage() {
           {currentItem.status[0].toUpperCase() + currentItem.status.slice(1)}
         </span>
       </header>
+
+      {isPublished && (
+        <section className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5 shadow-sm">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h2 className="font-semibold text-emerald-900">Reuse this content</h2>
+              <p className="mt-1 text-sm text-emerald-800">Create a class assignment using this published content.</p>
+            </div>
+            <Link
+              to={"/teacher/assignments/new?contentId=" + currentItem.id}
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-800"
+            >
+              <ClipboardPlus size={17} />
+              Reuse in assignment
+            </Link>
+          </div>
+        </section>
+      )}
 
       <section className="grid gap-4 md:grid-cols-3">
         <Info label="Content type" value={label(currentItem.contentType)} />
