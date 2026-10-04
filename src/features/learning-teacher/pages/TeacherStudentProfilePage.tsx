@@ -69,7 +69,7 @@ export default function TeacherStudentProfilePage() {
     enabled: masteryQuery.isSuccess && masteryObjectiveIds.length > 0,
   });
 
-  const assignments = classQuery.data?.assignments ?? [];
+  const assignments = (classQuery.data?.assignments ?? []).filter((item) => item.assignment.status === "published");
   const assignmentProgressQueries = useQueries({
     queries: assignments.map((item) => ({
       queryKey: ["learning", "student-profile-assignment-progress", item.assignment.id, studentUserId],
