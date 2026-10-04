@@ -1,8 +1,8 @@
-import { supabase } from "@/core/infrastructure/supabase/client";
+﻿import { supabase } from "@/core/infrastructure/supabase/client";
 import type { LearningParentOverview, LearningParentStudentLink } from "../types/learning-parent.types";
 
-type ParentLinkRow = { id:string; organization_id:string; parent_user_id:string; student_user_id:string; relationship:string; status:"active"|"inactive"; created_at:string; updated_at:string };
-type StudentRow = { id:string; name:string|null; email:string };
+
+
 type GradeRow = { class_subject_id:string; term_id:string; score:number|string; letter_grade:string|null; status:string; finalized_at:string|null; };
 type AssignmentRow = { id:string; title:string; due_at:string|null; status:string };
 type ProgressRow = { assignment_id:string; status:string; completed_at:string|null };
@@ -10,13 +10,13 @@ type SubjectRow = { id:string; subject_id:string; };
 type Subject = { id:string; name:string };
 type TermRow = { id:string; name:string };
 
-const parentLinks = () => supabase.from("learning_parent_student_links").select("*").overrideTypes<ParentLinkRow[]>();
+const parentLinks = () => supabase.from("learning_parent_student_links").select("*");
 
 export const learningParentRepository = {
   async listChildren(parentUserId:string):Promise<LearningParentStudentLink[]> {
     const {data,error}=await parentLinks().eq("parent_user_id",parentUserId).eq("status","active");
     if(error)throw error;
-    return (data??[]).map((row)=>({id:row.id,organizationId:row.organization_id,parentUserId:row.parent_user_id,studentUserId:row.student_user_id,relationship:row.relationship,status:row.status,createdAt:row.created_at,updatedAt:row.updated_at}));
+    return (data??[]).map((row)=>({id:row.id,organizationId:row.organization_id,parentUserId:row.parent_user_id,studentUserId:row.student_user_id,relationship:row.relationship,status:row.status as "active"|"inactive",createdAt:row.created_at,updatedAt:row.updated_at}));
   },
   async getOverview(studentUserId:string):Promise<LearningParentOverview>{
     const [{data:student,error:studentError},{data:grades,error:gradeError},{data:progress,error:progressError},{data:mastery,error:masteryError},{data:recommendations,error:recommendationError},{data:comments,error:commentError}]=await Promise.all([
@@ -47,7 +47,7 @@ export const learningParentRepository = {
     const classSubjectMap=new Map(subjectRef.map(x=>[x.id,x.subject_id]));
     const termMap=new Map(((terms??[]) as TermRow[]).map(x=>[x.id,x.name]));
     const assignmentMap=new Map(((assignments??[]) as AssignmentRow[]).map(x=>[x.id,x]));
-    const progressMap=new Map(((progress??[]) as ProgressRow[]).map(x=>[x.assignment_id,x]));
+
 
     return {
       student:{id:student.id,name:student.name??"Student",email:student.email},
@@ -59,3 +59,6 @@ export const learningParentRepository = {
     };
   },
 };
+
+
+
