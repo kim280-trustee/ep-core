@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { AlertCircle, Target, TrendingUp } from "lucide-react";
 import { useAuth } from "@/core/auth";
 import { learningMasteryService } from "@/features/learning-mastery";
+import { learningAssignmentsService } from "@/features/learning-assignments";
 
 const stateLabel: Record<string, string> = {
   not_started: "Not started",
@@ -23,11 +24,13 @@ export default function LearningProgressPage() {
   const query = useQuery({
     queryKey: ["learning", "progress", id],
     queryFn: async () => {
-      const [mastery, events] = await Promise.all([
+      const [mastery, events, assignments, assignmentProgress] = await Promise.all([
         learningMasteryService.listStudentMastery(id),
         learningMasteryService.listMasteryEvents(id),
+        learningAssignmentsService.listStudentAssignments(),
+        learningAssignmentsService.listProgress(id),
       ]);
-      return { mastery, events };
+      return { mastery, events, assignments, assignmentProgress };
     },
     enabled: Boolean(id),
   });
@@ -53,7 +56,7 @@ export default function LearningProgressPage() {
     return <ErrorState onRetry={() => void query.refetch()} />;
   }
 
-  const { mastery, events } = query.data;
+  const { mastery, events, assignments, assignmentProgress } = query.data;
   const average = mastery.length
     ? Math.round(
         mastery.reduce((sum, item) => sum + item.masteryScore, 0) / mastery.length,
@@ -90,6 +93,28 @@ export default function LearningProgressPage() {
           icon={<AlertCircle size={18} />}
         />
       </div>
+
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <h2 className="text-lg font-semibold text-slate-900">Assignment progress</h2>
+        <p className="mt-1 text-sm text-slate-500">Your assigned learning activities and completion status.</p>
+        <div className="mt-4 divide-y divide-slate-100">
+          {assignments.length ? assignments.map((assignment) => {
+            const progressItem = assignmentProgress.find((item) => item.assignmentId === assignment.id);
+            const status = progressItem?.status ?? "not_started";
+            return (
+              <div key={assignment.id} className="flex items-center justify-between gap-4 py-3 first:pt-0">
+                <div>
+                  <p className="text-sm font-medium text-slate-800">{assignment.title}</p>
+                  <p className="mt-1 text-xs text-slate-500">{assignment.code}</p>
+                </div>
+                <span className={`rounded-full px-3 py-1 text-xs font-semibold ${status === "completed" ? "bg-emerald-100 text-emerald-700" : status === "in_progress" ? "bg-amber-100 text-amber-700" : "bg-slate-100 text-slate-700"}`}>
+                  {status === "completed" ? "Completed" : status === "in_progress" ? "In progress" : "Not started"}
+                </span>
+              </div>
+            );
+          }) : <p className="text-sm text-slate-500">No published assignments yet.</p>}
+        </div>
+      </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">
