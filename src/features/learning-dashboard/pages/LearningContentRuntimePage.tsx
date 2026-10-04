@@ -88,17 +88,21 @@ export default function LearningContentRuntimePage() {
   const completeMutation = useMutation({
     mutationFn: async () => {
       if (!user?.id) throw new Error("You must be signed in.");
+      const wasCompleted = assignmentQuery.data?.progress?.status === "completed";
       const progress = await learningAssignmentsService.completeContentForStudent(id, content, user.id);
-      const session = await learningActivityService.startForStudent(user.id, "assignment", id);
-      await learningActivityService.logEvent({
-        tenantId: session.tenantId,
-        organizationId: session.organizationId,
-        studentUserId: user.id,
-        sessionId: session.id,
-        activityType: "assignment_completed",
-        contentItemId: content,
-        assignmentId: id,
-      });
+
+      if (!wasCompleted && progress.status === "completed") {
+        const session = await learningActivityService.startForStudent(user.id, "assignment", id);
+        await learningActivityService.logEvent({
+          tenantId: session.tenantId,
+          organizationId: session.organizationId,
+          studentUserId: user.id,
+          sessionId: session.id,
+          activityType: "assignment_completed",
+          assignmentId: id,
+        });
+      }
+
       return progress;
     },
     onSuccess: async () => {
