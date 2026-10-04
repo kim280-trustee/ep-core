@@ -383,6 +383,7 @@ export const learningGradebookRepository = {
         updated_by: updatedBy,
       })
       .eq("id", entryId)
+      .eq("source_type", "manual")
       .select("*")
       .single();
 
