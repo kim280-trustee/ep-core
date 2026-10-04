@@ -1401,6 +1401,8 @@ export type Database = {
         Row: {
           class_group_id: string
           created_at: string
+          grade_scale_id: string | null
+          grading_method: string
           id: string
           organization_id: string
           status: string
@@ -1410,6 +1412,8 @@ export type Database = {
         Insert: {
           class_group_id: string
           created_at?: string
+          grade_scale_id?: string | null
+          grading_method?: string
           id?: string
           organization_id: string
           status?: string
@@ -1419,6 +1423,8 @@ export type Database = {
         Update: {
           class_group_id?: string
           created_at?: string
+          grade_scale_id?: string | null
+          grading_method?: string
           id?: string
           organization_id?: string
           status?: string
@@ -1432,6 +1438,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "learning_class_groups"
             referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_class_subjects_grade_scale_id_fkey"
+            columns: ["grade_scale_id"]
+            isOneToOne: false
+            referencedRelation: "learning_grade_scales"
+            referencedColumns: ["id"]
           },
           {
             foreignKeyName: "learning_class_subjects_subject_id_fkey"
@@ -1832,6 +1845,133 @@ export type Database = {
           },
         ]
       }
+      learning_grade_scale_rules: {
+        Row: {
+          created_at: string
+          grade: number
+          grade_scale_id: string
+          id: string
+          label: string
+          max_percentage: number
+          min_percentage: number
+          sequence_no: number
+        }
+        Insert: {
+          created_at?: string
+          grade: number
+          grade_scale_id: string
+          id?: string
+          label: string
+          max_percentage: number
+          min_percentage: number
+          sequence_no?: number
+        }
+        Update: {
+          created_at?: string
+          grade?: number
+          grade_scale_id?: string
+          id?: string
+          label?: string
+          max_percentage?: number
+          min_percentage?: number
+          sequence_no?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_grade_scale_rules_grade_scale_id_fkey"
+            columns: ["grade_scale_id"]
+            isOneToOne: false
+            referencedRelation: "learning_grade_scales"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_grade_scales: {
+        Row: {
+          code: string
+          created_at: string
+          id: string
+          name: string
+          organization_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          id?: string
+          name: string
+          organization_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          id?: string
+          name?: string
+          organization_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_grade_scales_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_gradebook_audit_log: {
+        Row: {
+          action: string
+          after_data: Json
+          before_data: Json
+          changed_at: string
+          changed_by: string
+          class_subject_id: string
+          gradebook_entry_id: string | null
+          id: string
+          organization_id: string
+          reason: string | null
+          student_user_id: string
+          term_grade_id: string | null
+          term_id: string
+        }
+        Insert: {
+          action: string
+          after_data?: Json
+          before_data?: Json
+          changed_at?: string
+          changed_by: string
+          class_subject_id: string
+          gradebook_entry_id?: string | null
+          id?: string
+          organization_id: string
+          reason?: string | null
+          student_user_id: string
+          term_grade_id?: string | null
+          term_id: string
+        }
+        Update: {
+          action?: string
+          after_data?: Json
+          before_data?: Json
+          changed_at?: string
+          changed_by?: string
+          class_subject_id?: string
+          gradebook_entry_id?: string | null
+          id?: string
+          organization_id?: string
+          reason?: string | null
+          student_user_id?: string
+          term_grade_id?: string | null
+          term_id?: string
+        }
+        Relationships: []
+      }
       learning_gradebook_categories: {
         Row: {
           code: string
@@ -1885,11 +2025,13 @@ export type Database = {
           category_id: string | null
           class_group_id: string
           class_subject_id: string
+          comment: string | null
           created_at: string
           created_by: string
           description: string | null
           id: string
           included_in_grade: boolean
+          late: boolean
           max_score: number
           notes: Json
           objective_id: string | null
@@ -1900,8 +2042,6 @@ export type Database = {
           score: number
           source_type: string
           status: string
-          comment: string | null
-          late: boolean
           student_user_id: string
           tenant_id: string
           term_id: string
@@ -1919,11 +2059,13 @@ export type Database = {
           category_id?: string | null
           class_group_id: string
           class_subject_id: string
+          comment?: string | null
           created_at?: string
           created_by: string
           description?: string | null
           id?: string
           included_in_grade?: boolean
+          late?: boolean
           max_score: number
           notes?: Json
           objective_id?: string | null
@@ -1933,6 +2075,7 @@ export type Database = {
           recorded_at?: string
           score: number
           source_type: string
+          status?: string
           student_user_id: string
           tenant_id: string
           term_id: string
@@ -1940,9 +2083,6 @@ export type Database = {
           topic_id?: string | null
           updated_at?: string
           updated_by?: string | null
-          status?: string
-          comment?: string | null
-          late?: boolean
           weight?: number
         }
         Update: {
@@ -1953,11 +2093,13 @@ export type Database = {
           category_id?: string | null
           class_group_id?: string
           class_subject_id?: string
+          comment?: string | null
           created_at?: string
           created_by?: string
           description?: string | null
           id?: string
           included_in_grade?: boolean
+          late?: boolean
           max_score?: number
           notes?: Json
           objective_id?: string | null
@@ -1967,6 +2109,7 @@ export type Database = {
           recorded_at?: string
           score?: number
           source_type?: string
+          status?: string
           student_user_id?: string
           tenant_id?: string
           term_id?: string
@@ -1974,9 +2117,6 @@ export type Database = {
           topic_id?: string | null
           updated_at?: string
           updated_by?: string | null
-          status?: string
-          comment?: string | null
-          late?: boolean
           weight?: number
         }
         Relationships: [
@@ -2734,6 +2874,57 @@ export type Database = {
         }
         Relationships: []
       }
+      learning_term_grade_history: {
+        Row: {
+          calculation: Json
+          captured_at: string
+          class_subject_id: string
+          finalized_at: string | null
+          finalized_by: string | null
+          id: string
+          letter_grade: string | null
+          organization_id: string
+          score: number
+          snapshot_reason: string | null
+          status: string
+          student_user_id: string
+          term_grade_id: string
+          term_id: string
+        }
+        Insert: {
+          calculation?: Json
+          captured_at?: string
+          class_subject_id: string
+          finalized_at?: string | null
+          finalized_by?: string | null
+          id?: string
+          letter_grade?: string | null
+          organization_id: string
+          score: number
+          snapshot_reason?: string | null
+          status: string
+          student_user_id: string
+          term_grade_id: string
+          term_id: string
+        }
+        Update: {
+          calculation?: Json
+          captured_at?: string
+          class_subject_id?: string
+          finalized_at?: string | null
+          finalized_by?: string | null
+          id?: string
+          letter_grade?: string | null
+          organization_id?: string
+          score?: number
+          snapshot_reason?: string | null
+          status?: string
+          student_user_id?: string
+          term_grade_id?: string
+          term_id?: string
+        }
+        Relationships: []
+      }
       learning_term_grades: {
         Row: {
           calculation: Json
@@ -2746,14 +2937,14 @@ export type Database = {
           letter_grade: string | null
           notes: Json
           organization_id: string
+          override_grade: string | null
+          override_reason: string | null
+          override_score: number | null
           score: number
           status: string
           student_user_id: string
           tenant_id: string
           term_id: string
-          override_score: number | null
-          override_grade: string | null
-          override_reason: string | null
           updated_at: string
         }
         Insert: {
@@ -2767,14 +2958,14 @@ export type Database = {
           letter_grade?: string | null
           notes?: Json
           organization_id: string
+          override_grade?: string | null
+          override_reason?: string | null
+          override_score?: number | null
           score: number
           status?: string
           student_user_id: string
           tenant_id: string
           term_id: string
-          override_score?: number | null
-          override_grade?: string | null
-          override_reason?: string | null
           updated_at?: string
         }
         Update: {
@@ -2788,14 +2979,14 @@ export type Database = {
           letter_grade?: string | null
           notes?: Json
           organization_id?: string
+          override_grade?: string | null
+          override_reason?: string | null
+          override_score?: number | null
           score?: number
           status?: string
           student_user_id?: string
           tenant_id?: string
           term_id?: string
-          override_score?: number | null
-          override_grade?: string | null
-          override_reason?: string | null
           updated_at?: string
         }
         Relationships: [
@@ -3996,16 +4187,27 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      update_learning_manual_gradebook_entry: {
+      calculate_learning_term_grade: {
+        Args: {
+          p_class_subject_id: string
+          p_student_user_id: string
+          p_term_id: string
+        }
+        Returns: string
+      }
+      create_learning_gradebook_bulk_entries: {
+        Args: { p_class_subject_id: string; p_rows: Json; p_term_id: string }
+        Returns: number
+      }
+      create_learning_manual_gradebook_entry: {
         Args: {
           p_category_id?: string
-          p_comment?: string
-          p_entry_id: string
-          p_late?: boolean
+          p_class_subject_id: string
+          p_description?: string
           p_max_score: number
-          p_reason?: string
           p_score: number
-          p_status?: string
+          p_student_user_id: string
+          p_term_id: string
           p_title: string
         }
         Returns: string
@@ -4014,12 +4216,12 @@ export type Database = {
         Args: { p_entry_id: string; p_reason?: string }
         Returns: boolean
       }
-      reopen_learning_term_grade: {
-        Args: { p_class_subject_id: string; p_reason: string; p_student_user_id: string; p_term_id: string }
-        Returns: string
-      }
-      override_learning_term_grade: {
-        Args: { p_class_subject_id: string; p_override_grade: string; p_override_score: number; p_reason: string; p_student_user_id: string; p_term_id: string }
+      finalize_learning_term_grade: {
+        Args: {
+          p_class_subject_id: string
+          p_student_user_id: string
+          p_term_id: string
+        }
         Returns: string
       }
       get_current_user_permissions: {
@@ -4039,30 +4241,25 @@ export type Database = {
         Returns: boolean
       }
       learning_current_user_id: { Args: never; Returns: string }
-      create_learning_manual_gradebook_entry: {
-        Args: {
-          p_category_id?: string
-          p_class_subject_id: string
-          p_description?: string
-          p_max_score: number
-          p_score: number
-          p_student_user_id: string
-          p_term_id: string
-          p_title: string
-        }
-        Returns: string
+      learning_teacher_can_view_student: {
+        Args: { target_user_id: string }
+        Returns: boolean
       }
-      calculate_learning_term_grade: {
+      override_learning_term_grade: {
         Args: {
           p_class_subject_id: string
+          p_override_grade: string
+          p_override_score: number
+          p_reason: string
           p_student_user_id: string
           p_term_id: string
         }
         Returns: string
       }
-      finalize_learning_term_grade: {
+      reopen_learning_term_grade: {
         Args: {
           p_class_subject_id: string
+          p_reason: string
           p_student_user_id: string
           p_term_id: string
         }
@@ -4077,6 +4274,20 @@ export type Database = {
         Returns: undefined
       }
       submit_learning_attempt: { Args: { p_attempt_id: string }; Returns: Json }
+      update_learning_manual_gradebook_entry: {
+        Args: {
+          p_category_id?: string
+          p_comment?: string
+          p_entry_id: string
+          p_late?: boolean
+          p_max_score: number
+          p_reason?: string
+          p_score: number
+          p_status?: string
+          p_title: string
+        }
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
