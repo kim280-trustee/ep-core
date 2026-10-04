@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   AlertCircle,
@@ -109,6 +109,7 @@ export default function TeacherGradebookPage() {
   const [termId, setTermId] = useState("");
   const [classSubjectId, setClassSubjectId] = useState("");
   const [formOpen, setFormOpen] = useState(false);
+  const formSectionRef = useRef<HTMLElement | null>(null);
   const [editingEntryId, setEditingEntryId] = useState<string | null>(null);
   const [form, setForm] = useState<ManualGradeFormState>({
     studentUserId: "",
@@ -262,6 +263,16 @@ export default function TeacherGradebookPage() {
     setForm(emptyManualForm(students, categories));
     setFormOpen(true);
   }
+
+  useEffect(() => {
+    if (!formOpen) return;
+    requestAnimationFrame(() => {
+      formSectionRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  }, [formOpen]);
 
   function openEditForm(entry: LearningGradebookEntry) {
     setEditingEntryId(entry.id);
@@ -551,7 +562,10 @@ export default function TeacherGradebookPage() {
       )}
 
       {formOpen && (
-        <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <section
+          ref={formSectionRef}
+          className="scroll-mt-6 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6"
+        >
           <div className="flex items-start justify-between gap-4">
             <div>
               <h2 className="text-lg font-semibold text-slate-900">
