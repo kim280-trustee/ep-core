@@ -1,4 +1,4 @@
-import { BookOpen, FileQuestion, LayoutDashboard, LogOut, PlusCircle } from "lucide-react";
+import { BookOpen, FileText, FileQuestion, LayoutDashboard, LogOut, PlusCircle } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "@/core/auth";
@@ -6,6 +6,7 @@ import { useAuth } from "@/core/auth";
 const items = [
   { to: "/teacher", label: "Teacher Dashboard", icon: LayoutDashboard },
   { to: "/teacher/assignments/new", label: "Create Assignment", icon: PlusCircle },
+  { to: "/teacher/content", label: "Content Library", icon: FileText },
   { to: "/teacher/authoring", label: "Authoring", icon: BookOpen },
   { to: "/teacher/question-bank", label: "Question Bank", icon: FileQuestion },
 ];
