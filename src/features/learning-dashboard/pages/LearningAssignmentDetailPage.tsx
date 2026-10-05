@@ -32,15 +32,25 @@ export default function LearningAssignmentDetailPage() {
     mutationFn: async () => {
       if (!user?.id) throw new Error("You must be signed in.");
       const result = await learningAssignmentsService.startForStudent(id, user.id);
-      const session = await learningActivityService.startForStudent(user.id, "assignment", id);
-      await learningActivityService.logEvent({
-        tenantId: session.tenantId,
-        organizationId: session.organizationId,
-        studentUserId: user.id,
-        sessionId: session.id,
-        activityType: "assignment_started",
-        assignmentId: id,
-      });
+
+      // Progress state is the critical operation. Activity logging is telemetry and
+      // must never prevent the student from opening the assignment.
+      void (async () => {
+        try {
+          const session = await learningActivityService.startForStudent(user.id, "assignment", id);
+          await learningActivityService.logEvent({
+            tenantId: session.tenantId,
+            organizationId: session.organizationId,
+            studentUserId: user.id,
+            sessionId: session.id,
+            activityType: "assignment_started",
+            assignmentId: id,
+          });
+        } catch {
+          // Telemetry failure must not block assignment navigation.
+        }
+      })();
+
       return result;
     },
     onSuccess: async () => {
