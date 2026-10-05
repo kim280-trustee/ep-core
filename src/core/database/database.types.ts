@@ -893,6 +893,78 @@ export type Database = {
           },
         ]
       }
+      learning_assignment_lifecycle_events: {
+        Row: {
+          action: string
+          actor_user_id: string
+          assignment_id: string
+          created_at: string
+          id: string
+          metadata: Json
+          organization_id: string
+          parent_assignment_id: string | null
+          target_student_user_id: string | null
+        }
+        Insert: {
+          action: string
+          actor_user_id: string
+          assignment_id: string
+          created_at?: string
+          id?: string
+          metadata?: Json
+          organization_id: string
+          parent_assignment_id?: string | null
+          target_student_user_id?: string | null
+        }
+        Update: {
+          action?: string
+          actor_user_id?: string
+          assignment_id?: string
+          created_at?: string
+          id?: string
+          metadata?: Json
+          organization_id?: string
+          parent_assignment_id?: string | null
+          target_student_user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_assignment_lifecycle_event_target_student_user_id_fkey"
+            columns: ["target_student_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_assignment_lifecycle_events_actor_user_id_fkey"
+            columns: ["actor_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_assignment_lifecycle_events_assignment_id_fkey"
+            columns: ["assignment_id"]
+            isOneToOne: false
+            referencedRelation: "learning_assignments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_assignment_lifecycle_events_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_assignment_lifecycle_events_parent_assignment_id_fkey"
+            columns: ["parent_assignment_id"]
+            isOneToOne: false
+            referencedRelation: "learning_assignments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       learning_assignment_progress: {
         Row: {
           assignment_id: string
@@ -1053,10 +1125,10 @@ export type Database = {
           due_at: string | null
           id: string
           instructions: Json
+          lifecycle_type: string
           max_attempts: number | null
           organization_id: string
           parent_assignment_id: string | null
-          lifecycle_type: string
           status: string
           tenant_id: string
           title: string
@@ -1073,10 +1145,10 @@ export type Database = {
           due_at?: string | null
           id?: string
           instructions?: Json
+          lifecycle_type?: string
           max_attempts?: number | null
           organization_id: string
           parent_assignment_id?: string | null
-          lifecycle_type?: string
           status?: string
           tenant_id: string
           title: string
@@ -1093,10 +1165,10 @@ export type Database = {
           due_at?: string | null
           id?: string
           instructions?: Json
+          lifecycle_type?: string
           max_attempts?: number | null
           organization_id?: string
           parent_assignment_id?: string | null
-          lifecycle_type?: string
           status?: string
           tenant_id?: string
           title?: string
@@ -1110,6 +1182,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "learning_class_subjects"
             referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_assignments_parent_assignment_id_fkey"
+            columns: ["parent_assignment_id"]
+            isOneToOne: false
+            referencedRelation: "learning_assignments"
+            referencedColumns: ["id"]
           },
           {
             foreignKeyName: "learning_assignments_tenant_id_created_by_fkey"
@@ -1131,71 +1210,6 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["tenant_id", "id"]
-          },
-        ]
-      }
-      learning_parent_student_links: {
-        Row: {
-          created_at: string
-          created_by: string
-          id: string
-          organization_id: string
-          parent_user_id: string
-          relationship: string
-          status: string
-          student_user_id: string
-          updated_at: string
-        }
-        Insert: {
-          created_at?: string
-          created_by: string
-          id?: string
-          organization_id: string
-          parent_user_id: string
-          relationship?: string
-          status?: string
-          student_user_id: string
-          updated_at?: string
-        }
-        Update: {
-          created_at?: string
-          created_by?: string
-          id?: string
-          organization_id?: string
-          parent_user_id?: string
-          relationship?: string
-          status?: string
-          student_user_id?: string
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "learning_parent_student_links_created_by_fkey"
-            columns: ["created_by"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "learning_parent_student_links_organization_id_fkey"
-            columns: ["organization_id"]
-            isOneToOne: false
-            referencedRelation: "organizations"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "learning_parent_student_links_parent_user_id_fkey"
-            columns: ["parent_user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "learning_parent_student_links_student_user_id_fkey"
-            columns: ["student_user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
           },
         ]
       }
@@ -2441,6 +2455,148 @@ export type Database = {
             columns: ["topic_id"]
             isOneToOne: false
             referencedRelation: "learning_topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_parent_invitations: {
+        Row: {
+          accepted_at: string | null
+          accepted_by: string | null
+          expires_at: string
+          id: string
+          invited_at: string
+          invited_by: string
+          organization_id: string
+          parent_email: string
+          parent_name: string | null
+          relationship: string
+          status: string
+          student_user_id: string
+          updated_at: string
+        }
+        Insert: {
+          accepted_at?: string | null
+          accepted_by?: string | null
+          expires_at?: string
+          id?: string
+          invited_at?: string
+          invited_by: string
+          organization_id: string
+          parent_email: string
+          parent_name?: string | null
+          relationship?: string
+          status?: string
+          student_user_id: string
+          updated_at?: string
+        }
+        Update: {
+          accepted_at?: string | null
+          accepted_by?: string | null
+          expires_at?: string
+          id?: string
+          invited_at?: string
+          invited_by?: string
+          organization_id?: string
+          parent_email?: string
+          parent_name?: string | null
+          relationship?: string
+          status?: string
+          student_user_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_parent_invitations_accepted_by_fkey"
+            columns: ["accepted_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_parent_invitations_invited_by_fkey"
+            columns: ["invited_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_parent_invitations_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_parent_invitations_student_user_id_fkey"
+            columns: ["student_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_parent_student_links: {
+        Row: {
+          created_at: string
+          created_by: string
+          id: string
+          organization_id: string
+          parent_user_id: string
+          relationship: string
+          status: string
+          student_user_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          id?: string
+          organization_id: string
+          parent_user_id: string
+          relationship?: string
+          status?: string
+          student_user_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          id?: string
+          organization_id?: string
+          parent_user_id?: string
+          relationship?: string
+          status?: string
+          student_user_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_parent_student_links_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_parent_student_links_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_parent_student_links_parent_user_id_fkey"
+            columns: ["parent_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_parent_student_links_student_user_id_fkey"
+            columns: ["student_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
             referencedColumns: ["id"]
           },
         ]
@@ -4258,12 +4414,20 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      accept_learning_parent_invitation: {
+        Args: { p_invitation_id: string }
+        Returns: string
+      }
       calculate_learning_term_grade: {
         Args: {
           p_class_subject_id: string
           p_student_user_id: string
           p_term_id: string
         }
+        Returns: string
+      }
+      close_learning_assignment: {
+        Args: { p_assignment_id: string }
         Returns: string
       }
       create_learning_gradebook_bulk_entries: {
@@ -4280,6 +4444,16 @@ export type Database = {
           p_student_user_id: string
           p_term_id: string
           p_title: string
+        }
+        Returns: string
+      }
+      create_learning_parent_invitation: {
+        Args: {
+          p_organization_id: string
+          p_parent_email: string
+          p_parent_name: string
+          p_relationship?: string
+          p_student_user_id: string
         }
         Returns: string
       }
@@ -4327,20 +4501,16 @@ export type Database = {
         }
         Returns: string
       }
-      reopen_learning_assignment: {
-        Args: { p_assignment_id: string }
-        Returns: string
-      }
-      close_learning_assignment: {
-        Args: { p_assignment_id: string }
-        Returns: string
-      }
       reassign_learning_assignment: {
         Args: {
           p_assignment_id: string
           p_due_at?: string
           p_student_user_id: string
         }
+        Returns: string
+      }
+      reopen_learning_assignment: {
+        Args: { p_assignment_id: string }
         Returns: string
       }
       reopen_learning_term_grade: {
