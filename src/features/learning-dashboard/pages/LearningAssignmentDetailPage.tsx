@@ -32,10 +32,7 @@ export default function LearningAssignmentDetailPage() {
     mutationFn: async () => {
       if (!user?.id) throw new Error("You must be signed in.");
 
-      const result = await learningAssignmentsService.startForStudent(
-        id,
-        user.id,
-      );
+      const result = await learningAssignmentsService.startForStudent(id, user.id);
 
       const session = await learningActivityService.startForStudent(
         user.id,
@@ -54,16 +51,30 @@ export default function LearningAssignmentDetailPage() {
 
       return result;
     },
-    onSuccess: async () => {
+    onSuccess: async (result) => {
       await queryClient.invalidateQueries({
         queryKey: ["learning", "assignment", id, user?.id],
       });
-
       await queryClient.invalidateQueries({
         queryKey: ["learning", "student-overview", user?.id],
       });
 
-      navigate(`/learning/assignments/${id}`);
+      const nextItem = result.items.find((item) => item.itemType === "content" && item.contentItemId)
+        ?? result.items.find((item) => item.itemType === "assessment" && item.assessmentId);
+
+      if (nextItem?.itemType === "content" && nextItem.contentItemId) {
+        navigate(`/learning/assignments/${id}/content/${nextItem.contentItemId}`);
+        return;
+      }
+
+      if (nextItem?.itemType === "assessment" && nextItem.assessmentId) {
+        navigate(`/learning/assignments/${id}/assessments/${nextItem.assessmentId}`);
+        return;
+      }
+
+      await queryClient.invalidateQueries({
+        queryKey: ["learning", "assignment", id, user?.id],
+      });
     },
   });
 
