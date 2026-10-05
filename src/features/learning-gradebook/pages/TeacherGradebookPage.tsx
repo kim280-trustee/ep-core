@@ -45,8 +45,43 @@ export default function TeacherGradebookPage() {
 
   const actionError=[addScore,update,remove,calculate,finalize,override,reopen].find(m=>m.isError)?.error as Error|undefined;
 
-  function exportCsv(){const rows=[["student_id","student_name","email","title","category","status","score","max_score","percentage","included","late","comment"],...entries.map(e=>{const s=students.find(x=>x.membership.userId===e.studentUserId);const c=categoriesQuery.data?.find(x=>x.id===e.categoryId);return[e.studentUserId,s?.name??"",s?.email??"",e.title,c?.name??"",e.status,e.score,e.maxScore,e.percentage.toFixed(2),e.includedInGrade,e.late,e.comment??""]})];const csv="\uFEFF"+rows.map(r=>r.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(",")).join("\r
-");const blob=new Blob([csv],{type:"text/csv;charset=utf-8"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="gradebook-"+selectedTermId+".csv";a.click();URL.revokeObjectURL(url)}
+  function exportCsv() {
+    const rows = [
+      ["student_id","student_name","email","title","category","status","score","max_score","percentage","included","late","comment"],
+      ...entries.map((e) => {
+        const s = students.find((x) => x.membership.userId === e.studentUserId);
+        const category = categoriesQuery.data?.find((x) => x.id === e.categoryId);
+        return [
+          e.studentUserId,
+          s?.name ?? "",
+          s?.email ?? "",
+          e.title,
+          category?.name ?? "",
+          e.status,
+          e.score,
+          e.maxScore,
+          e.percentage.toFixed(2),
+          e.includedInGrade,
+          e.late,
+          e.comment ?? "",
+        ];
+      }),
+    ];
+    const csv =
+      "\uFEFF" +
+      rows
+        .map((row) =>
+          row.map((value) => '"' + String(value).replaceAll('"', '""') + '"').join(","),
+        )
+        .join("\r\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = "gradebook-" + selectedTermId + ".csv";
+    anchor.click();
+    URL.revokeObjectURL(url);
+  }
 
   if(!user)return <EmptyState text="Sign in to access the Gradebook."/>; if(classQuery.isPending||termsQuery.isPending)return <div className="h-64 animate-pulse rounded-2xl bg-slate-200"/>; if(classQuery.isError||termsQuery.isError)return <ErrorState onRetry={refresh}/>;
   const selectedSubject=subjects.find(x=>x.id===selectedSubjectId); const selectedTerm=termsQuery.data?.find(x=>x.id===selectedTermId);
