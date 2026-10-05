@@ -71,8 +71,8 @@ export default function LearningContentRuntimePage() {
       }
 
       const versions = await learningContentService.listContentVersions(content);
-      const publishedVersion = versions.find((version) => version.status === "published") ?? versions[0];
-      if (!publishedVersion) throw new Error("This learning content has no available version.");
+      const publishedVersion = versions.find((version) => version.status === "published");
+      if (!publishedVersion) throw new Error("This learning content has no published version available.");
 
       return {
         assignment: result.assignment,
@@ -139,6 +139,7 @@ export default function LearningContentRuntimePage() {
   }
 
   const { assignment, content: currentContent, version, sections } = query.data;
+  const completed = query.data.progress?.status === "completed";
 
   return (
     <div className="space-y-6">
@@ -189,12 +190,12 @@ export default function LearningContentRuntimePage() {
           </div>
           <button
             type="button"
-            disabled={completeMutation.isPending}
+            disabled={completeMutation.isPending || completed}
             onClick={() => completeMutation.mutate()}
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
           >
             <CheckCircle2 size={17} />
-            {completeMutation.isPending ? "Saving..." : "Mark as complete"}
+            {completed || completeMutation.isSuccess ? "Completed" : completeMutation.isPending ? "Saving..." : "Mark as complete"}
           </button>
         </div>
         {completeMutation.isSuccess && <p className="mt-3 text-sm font-medium text-emerald-700">Activity completed. Your assignment progress has been updated.</p>}

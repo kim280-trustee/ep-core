@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, Eye, FileText, Save, Send, Archive, ClipboardPlus } from "lucide-react";
 import type { FormEvent } from "react";
 import { useMemo, useState } from "react";
@@ -19,6 +19,7 @@ export default function TeacherContentDetailPage() {
   const { id } = useParams<{ id: string }>();
   const { user } = useAuth();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [body, setBody] = useState("");
   const [bodyEdited, setBodyEdited] = useState(false);
   const [changeSummary, setChangeSummary] = useState("");
@@ -119,7 +120,11 @@ export default function TeacherContentDetailPage() {
       setBody("");
       setBodyEdited(false);
       setChangeSummary("");
-      await Promise.all([versions.refetch(), content.refetch()]);
+      await Promise.all([
+        versions.refetch(),
+        content.refetch(),
+        queryClient.invalidateQueries({ queryKey: ["learning", "teacher-content-library", organizationId] }),
+      ]);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not save the new version.");
     } finally {
@@ -142,7 +147,11 @@ export default function TeacherContentDetailPage() {
     setReviewing(true);
     try {
       await learningContentService.updateContentStatus(id, "review", user.id);
-      await Promise.all([content.refetch(), versions.refetch()]);
+      await Promise.all([
+        content.refetch(),
+        versions.refetch(),
+        queryClient.invalidateQueries({ queryKey: ["learning", "teacher-content-library", organizationId] }),
+      ]);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not submit this content for review.");
     } finally {
@@ -165,7 +174,11 @@ export default function TeacherContentDetailPage() {
     setPublishing(true);
     try {
       await learningContentService.updateContentStatus(id, "published", user.id);
-      await Promise.all([content.refetch(), versions.refetch()]);
+      await Promise.all([
+        content.refetch(),
+        versions.refetch(),
+        queryClient.invalidateQueries({ queryKey: ["learning", "teacher-content-library", organizationId] }),
+      ]);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not publish this content.");
     } finally {
@@ -188,7 +201,11 @@ export default function TeacherContentDetailPage() {
     setRetiring(true);
     try {
       await learningContentService.updateContentStatus(id, "retired", user.id);
-      await Promise.all([content.refetch(), versions.refetch()]);
+      await Promise.all([
+        content.refetch(),
+        versions.refetch(),
+        queryClient.invalidateQueries({ queryKey: ["learning", "teacher-content-library", organizationId] }),
+      ]);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not retire this content.");
     } finally {

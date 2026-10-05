@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, BookOpen, Save } from "lucide-react";
 import type { FormEvent, ReactNode } from "react";
 import { useMemo, useState } from "react";
@@ -16,6 +16,7 @@ const contentTypes: LearningContentType[] = [
 export default function TeacherContentCreatePage() {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [curriculumId, setCurriculumId] = useState("");
   const [gradeLevelId, setGradeLevelId] = useState("");
   const [subjectId, setSubjectId] = useState("");
@@ -81,6 +82,10 @@ export default function TeacherContentCreatePage() {
 
   const alignedObjectiveIds = useMemo(() => new Set((objectiveAlignments.data ?? []).map((item) => item.objectiveId)), [objectiveAlignments.data]);
   const selectedAlignment = objectiveAlignments.data?.find((item) => item.objectiveId === objectiveId);
+  const selectedGradeLevel = gradeLevels.data?.find((item) => item.id === gradeLevelId);
+  const selectedSubject = subjects.data?.find((item) => item.id === subjectId);
+  const selectedSkill = skills.data?.find((item) => item.id === skillId);
+  const selectedTopic = topics.data?.find((item) => item.id === topicId);
   const selectedObjective = useMemo(
     () => objectives.data?.find((item) => item.id === objectiveId),
     [objectives.data, objectiveId],
@@ -128,7 +133,22 @@ export default function TeacherContentCreatePage() {
       return;
     }
     if (!curriculumId || !gradeLevelId || !subjectId || !skillId || !topicId || !objectiveId || !title.trim() || !code.trim() || !body.trim()) {
-      setError("Complete the subject, skill, topic, objective, title, code, and content body.");
+      setError("Complete the curriculum, grade, subject, skill, topic, objective, title, code, and content body.");
+      return;
+    }
+    if (title.trim().length < 3 || title.trim().length > 200) {
+      setError("Title must be between 3 and 200 characters.");
+      return;
+    }
+
+    const normalizedCode = code.trim().toUpperCase();
+    if (!/^[A-Z0-9]+(?:-[A-Z0-9]+)*$/.test(normalizedCode)) {
+      setError("Content code may contain only letters, numbers, and single hyphens between segments.");
+      return;
+    }
+
+    if (!selectedGradeLevel || !selectedSubject || !selectedSkill || !selectedTopic || !selectedObjective) {
+      setError("The selected academic alignment is no longer available. Refresh the page and choose the alignment again.");
       return;
     }
 
@@ -137,13 +157,21 @@ export default function TeacherContentCreatePage() {
       return;
     }
 
-    const normalizedCode = code.trim().toUpperCase();
+    if (existingContent.isError) {
+      setError("Content codes could not be checked. Refresh the page and try again.");
+      return;
+    }
+    if (objectiveAlignments.isError) {
+      setError("Curriculum alignment could not be verified. Refresh the page and try again.");
+      return;
+    }
     if ((existingContent.data ?? []).some((item) => item.code.toUpperCase() === normalizedCode)) {
       setError("That content code already exists in this organization. Use a different code.");
       return;
     }
 
     setSaving(true);
+    let createdContentId: string | null = null;
     try {
       const content = await learningContentService.createContent({
         organizationId,
@@ -153,6 +181,7 @@ export default function TeacherContentCreatePage() {
         languageCode,
         createdBy: user.id,
       });
+      createdContentId = content.id;
 
       await learningContentService.createVersion({
         contentItemId: content.id,
@@ -170,8 +199,16 @@ export default function TeacherContentCreatePage() {
         sequenceNo: 1,
       });
 
+      await queryClient.invalidateQueries({ queryKey: ["learning", "teacher-content-library", organizationId] });
       navigate("/teacher/content", { replace: true });
     } catch (err) {
+      if (createdContentId) {
+        try {
+          await learningContentService.deleteContent(createdContentId);
+        } catch {
+          // Preserve the original save error; the item can be recovered from the library if cleanup fails.
+        }
+      }
       setError(err instanceof Error ? err.message : "Could not save the content draft.");
     } finally {
       setSaving(false);
@@ -181,6 +218,9 @@ export default function TeacherContentCreatePage() {
   if (!user) return <Message text="Sign in to create learning content." />;
   if (classes.isPending || curricula.isPending) return <div className="h-96 animate-pulse rounded-2xl bg-slate-200" />;
   if (classes.isError || curricula.isError || !organizationId) return <Message text="We could not determine your teacher organization." />;
+  if (gradeLevels.isError || subjects.isError || skills.isError || topics.isError || objectives.isError) {
+    return <Message text="We could not load the academic alignment options. Refresh the page and try again." />;
+  }
 
   return (
     <div className="mx-auto max-w-4xl space-y-6">

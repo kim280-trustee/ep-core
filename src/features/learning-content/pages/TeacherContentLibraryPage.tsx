@@ -29,7 +29,7 @@ export default function TeacherContentLibraryPage() {
   const [contentType, setContentType] = useState<LearningContentType | "all">("all");
   const classes = useQuery({ queryKey: ["learning", "teacher-classes", user?.id], queryFn: () => learningTeacherService.listTeacherClasses(user!.id), enabled: Boolean(user?.id) });
   const organizationId = classes.data?.[0]?.membership.organizationId;
-  const content = useQuery({ queryKey: ["learning", "teacher-content-library", organizationId], queryFn: () => learningContentService.listContent(organizationId), enabled: Boolean(organizationId) });
+  const content = useQuery({ queryKey: ["learning", "teacher-content-library", organizationId], queryFn: () => learningContentService.listContent(organizationId), enabled: Boolean(organizationId), refetchOnMount: "always" });
   const filteredContent = useMemo(() => {
     const query = search.trim().toLowerCase();
     return (content.data ?? []).filter((item) => (!query || item.title.toLowerCase().includes(query) || item.code.toLowerCase().includes(query)) && (status === "all" || item.status === status) && (contentType === "all" || item.contentType === contentType));
