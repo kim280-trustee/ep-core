@@ -3,6 +3,7 @@ import { AlertCircle, ArrowLeft, CheckCircle2, Circle, Clock3, Play } from "luci
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningAssignmentsService } from "@/features/learning-assignments";
+import { learningAssessmentService } from "@/features/learning-assessment";
 import { learningActivityService } from "@/features/learning-activity";
 import { LearningNavigation } from "../components/LearningNavigation";
 
@@ -23,7 +24,7 @@ export default function LearningAssignmentDetailPage() {
 
   const query = useQuery({
     queryKey: ["learning", "assignment", id, user?.id],
-    queryFn: () => learningAssignmentsService.getStudentAssignment(id, user!.id),
+    queryFn: async () => { const result = await learningAssignmentsService.getStudentAssignment(id, user!.id); const assessmentIds = result.items.filter(i => i.itemType === "assessment" && i.assessmentId).map(i => i.assessmentId as string); if (!assessmentIds.length) return { ...result, assessmentResults: [] }; const [attempts, results] = await Promise.all([learningAssessmentService.listAttempts(user!.id), learningAssessmentService.listResults(user!.id)]); const attemptIds = new Set(attempts.filter(a => assessmentIds.includes(a.assessmentId)).map(a => a.id)); return { ...result, assessmentResults: results.filter(r => attemptIds.has(r.attemptId)).sort((a,b) => new Date(b.evaluatedAt).getTime()-new Date(a.evaluatedAt).getTime()) }; },
     enabled: Boolean(id && user?.id),
   });
 
@@ -111,7 +112,7 @@ export default function LearningAssignmentDetailPage() {
     );
   }
 
-  const { assignment, items, progress } = query.data;
+  const { assignment, items, progress, assessmentResults = [] } = query.data;
   const completed = progress?.status === "completed";
 
   return (
