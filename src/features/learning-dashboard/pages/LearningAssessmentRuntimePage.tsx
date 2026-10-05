@@ -245,13 +245,6 @@ export default function LearningAssessmentRuntimePage() {
     onSuccess: async (attempt) => {
       setSubmittedAttempt(attempt);
 
-      const session = await learningActivityService.startForStudent(user!.id, "assessment", assessment);
-      await learningActivityService.logEvent({ tenantId: session.tenantId, organizationId: session.organizationId, studentUserId: user!.id, sessionId: session.id, activityType: "assessment_submitted", assessmentId: assessment, assignmentId: id });
-      const progress = await learningAssignmentsService.refreshProgressForStudent(id, user!.id);
-      if (progress.status === "completed") {
-        const assignmentSession = await learningActivityService.startForStudent(user!.id, "assignment", id);
-        await learningActivityService.logEvent({ tenantId: assignmentSession.tenantId, organizationId: assignmentSession.organizationId, studentUserId: user!.id, sessionId: assignmentSession.id, activityType: "assignment_completed", assignmentId: id });
-      }
       if (sessionId && user?.id) {
         const session = await learningActivityService.listSessions(user.id);
         const activeSession = session.find((item) => item.id === sessionId);
