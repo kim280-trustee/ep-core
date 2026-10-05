@@ -53,9 +53,7 @@ export default function LearningAssignmentDetailPage() {
 
       return result;
     },
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ["learning", "assignment", id, user?.id] });
-      await queryClient.invalidateQueries({ queryKey: ["learning", "student-overview", user?.id] });
+    onSuccess: () => {
       const nextItem =
         query.data?.items.find((item) => item.itemType === "content" && item.contentItemId) ??
         query.data?.items.find((item) => item.itemType === "assessment" && item.assessmentId);
@@ -66,6 +64,8 @@ export default function LearningAssignmentDetailPage() {
       if (nextItem?.itemType === "assessment" && nextItem.assessmentId) {
         navigate(`/learning/assignments/${id}/assessments/${nextItem.assessmentId}`);
       }
+      void queryClient.invalidateQueries({ queryKey: ["learning", "assignment", id, user?.id] });
+      void queryClient.invalidateQueries({ queryKey: ["learning", "student-overview", user?.id] });
     },
   });
   if (!user) {
