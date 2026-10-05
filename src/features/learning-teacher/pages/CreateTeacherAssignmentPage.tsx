@@ -1,14 +1,17 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState, type ReactNode } from "react";
 import { ArrowLeft, CheckCircle2 } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningAssignmentsService } from "@/features/learning-assignments";
+import { learningContentService } from "@/features/learning-content";
 import { learningTeacherService } from "../services/learning-teacher.service";
 
 export default function CreateTeacherAssignmentPage() {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const contentId = searchParams.get("contentId");
   const queryClient = useQueryClient();
   const [classGroupId, setClassGroupId] = useState("");
   const [classSubjectId, setClassSubjectId] = useState("");
@@ -25,12 +28,17 @@ export default function CreateTeacherAssignmentPage() {
   });
 
   const selectedClass = classesQuery.data?.find((item) => item.classGroup.id === classGroupId);
+  const organizationId = selectedClass?.membership.organizationId;
+  const contentQuery = useQuery({ queryKey: ["learning", "assignment-content", organizationId], queryFn: () => learningContentService.listContent(organizationId), enabled: Boolean(organizationId && contentId) });
+  const selectedContent = contentQuery.data?.find((item) => item.id === contentId);
+  const contentReady = Boolean(selectedContent && selectedContent.status === "published");
 
   const createMutation = useMutation({
     mutationFn: async () => {
       if (!user || !classGroupId || !title.trim() || !code.trim()) throw new Error("Class, title, and code are required.");
       const selected = classesQuery.data?.find((item) => item.classGroup.id === classGroupId);
       if (!selected) throw new Error("Select a class.");
+      if (contentId && !contentReady) throw new Error("The selected learning content must be published before it can be reused.");
       const assignment = await learningAssignmentsService.createAssignment({
         tenantId: selected.membership.tenantId,
         organizationId: selected.membership.organizationId,
@@ -50,6 +58,7 @@ export default function CreateTeacherAssignmentPage() {
         classGroupId: selected.classGroup.id,
         dueAt: dueAt ? new Date(dueAt).toISOString() : null,
       });
+      if (selectedContent) await learningAssignmentsService.addItem({ organizationId: selected.membership.organizationId, assignmentId: assignment.id, itemType: "content", contentItemId: selectedContent.id, sequenceNo: 1, required: true });
       return assignment;
     },
     onSuccess: (assignment) => {
@@ -75,7 +84,7 @@ export default function CreateTeacherAssignmentPage() {
         <Field label="Title"><input required value={title} onChange={(event) => setTitle(event.target.value)} placeholder="Present Simple Practice" className="input" /></Field>
         <Field label="Description"><textarea value={description} onChange={(event) => setDescription(event.target.value)} rows={4} placeholder="Instructions or a short description for students." className="input" /></Field>
         {error && <div className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}</div>}
-        <button disabled={createMutation.isPending} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white disabled:opacity-50">{createMutation.isPending ? "Creating draft..." : <><CheckCircle2 size={17} />Create draft</>}</button>
+        <button disabled={createMutation.isPending || Boolean(contentId && !contentReady)} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white disabled:opacity-50">{createMutation.isPending ? "Creating draft..." : <><CheckCircle2 size={17} />Create draft</>}</button>
       </form>
     </div>
   );
