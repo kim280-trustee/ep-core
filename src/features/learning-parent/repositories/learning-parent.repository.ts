@@ -73,7 +73,7 @@ export const learningParentRepository={
       commentTermIds.length?supabase.from("learning_terms").select("id,name").in("id",commentTermIds):Promise.resolve({data:[],error:null}),
       objectiveIds.length?supabase.from("learning_objectives").select("id,name,description").in("id",objectiveIds):Promise.resolve({data:[],error:null}),
     ]);
-    if(classSubjectError)throw classSubjectError;if(termError)throw termError;if(directTargetError)throw directTargetError;if(classTargetError)throw classTargetError;if(commentSubjectsError)throw commentSubjectsError;if(commentTermsError)throw commentTermsError;if(objectivesError)throw objectivesError;
+    if(classSubjectError)throw classSubjectError;if(termError)throw termError;if(directTargetError)throw directTargetError;if(classTargetError)throw classTargetError;if(commentSubjectsError)throw commentSubjectsError;if(objectivesError)throw objectivesError;
 
     const subjectRefs=[...(classSubjects??[]),...(commentSubjects??[])] as SubjectRef[];
     const uniqueSubjectIds=[...new Set(subjectRefs.map(x=>x.subject_id))];
