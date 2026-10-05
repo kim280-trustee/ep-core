@@ -254,9 +254,30 @@ export default function LearningAssignmentDetailPage() {
               );
 
               if (item.itemType === "assessment" && item.assessmentId) {
-  
+                return (
+                  <Link
+                    key={item.id}
+                    to={`/learning/assignments/${id}/assessments/${item.assessmentId}`}
+                    className="flex items-center justify-between gap-4 py-4 transition hover:bg-slate-50 first:pt-0"
+                  >
+                    {itemContent}
+                  </Link>
+                );
+              }
+
               if (item.itemType === "content" && item.contentItemId) {
                 return (
+                  <Link
+                    key={item.id}
+                    to={`/learning/assignments/${id}/content/${item.contentItemId}`}
+                    className="flex items-center justify-between gap-4 py-4 transition hover:bg-slate-50 first:pt-0"
+                  >
+                    {itemContent}
+                  </Link>
+                );
+              }
+
+              return (
                   <Link
                     key={item.id}
                     to={`/learning/assignments/${id}/content/${item.contentItemId}`}
