@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { LayoutDashboard } from "lucide-react";
-import { AlertCircle, BookOpen, CheckCircle2, Clock3, Target, TrendingUp, Menu, X, LogOut } from "lucide-react";
+import { AlertCircle, BookOpen, CheckCircle2, Clock3, Target, TrendingUp } from "lucide-react";
 import { useAuth } from "@/core/auth";
 import { learningRuntimeService } from "@/features/learning-runtime";
 import { learningAssignmentsService } from "@/features/learning-assignments";
