@@ -1,3 +1,18 @@
+create or replace function public.learning_teacher_can_manage_content_response(p_assignment_id uuid,p_student_user_id uuid)
+returns boolean language sql stable security definer set search_path=''
+as $$
+ select exists(
+  select 1 from public.learning_assignments a
+  join public.learning_class_subjects cs on cs.id=a.class_subject_id
+  join public.learning_class_memberships tm on tm.class_group_id=cs.class_group_id and tm.membership_type='teacher' and tm.status='active'
+  join public.users tu on tu.id=tm.user_id and tu.auth_user_id=auth.uid()
+  join public.learning_class_memberships sm on sm.class_group_id=cs.class_group_id and sm.user_id=p_student_user_id and sm.membership_type='student' and sm.status='active'
+  where a.id=p_assignment_id
+ );
+$$;
+revoke all on function public.learning_teacher_can_manage_content_response(uuid,uuid) from public,anon;
+grant execute on function public.learning_teacher_can_manage_content_response(uuid,uuid) to authenticated;
+
 create or replace function public.grade_learning_content_response(
  p_response_id uuid,
  p_score numeric,
