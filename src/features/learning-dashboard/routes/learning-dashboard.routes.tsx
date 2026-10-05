@@ -7,23 +7,21 @@ import LearningAssessmentRuntimePage from "../pages/LearningAssessmentRuntimePag
 import LearningProgressPage from "../pages/LearningProgressPage";
 import LearningRecommendationsPage from "../pages/LearningRecommendationsPage";
 import LearningContentRuntimePage from "../pages/LearningContentRuntimePage";
+import StudentLayout from "../layouts/StudentLayout";
 
 export const learningDashboardRoutes: RouteObject[] = [
-  { path: "learning", element: <LearningDashboardPage /> },
+  {
+    path: "learning",
+    element: <StudentLayout />,
+    children: [
+      { index: true, element: <LearningDashboardPage /> },
+      { path: "assignments", element: <LearningAssignmentsPage /> },
+      { path: "assignments/:assignmentId", element: <LearningAssignmentDetailPage /> },
+      { path: "assignments/:assignmentId/assessments/:assessmentId", element: <LearningAssessmentRuntimePage /> },
+      { path: "assignments/:assignmentId/content/:contentId", element: <LearningContentRuntimePage /> },
+      { path: "progress", element: <LearningProgressPage /> },
+      { path: "recommendations", element: <LearningRecommendationsPage /> },
+    ],
+  },
   { path: "student", element: <Navigate to="/learning" replace /> },
-  { path: "learning/assignments", element: <LearningAssignmentsPage /> },
-  {
-    path: "learning/assignments/:assignmentId",
-    element: <LearningAssignmentDetailPage />,
-  },
-  {
-    path: "learning/assignments/:assignmentId/assessments/:assessmentId",
-    element: <LearningAssessmentRuntimePage />,
-  },
-  {
-    path: "learning/assignments/:assignmentId/content/:contentId",
-    element: <LearningContentRuntimePage />,
-  },
-  { path: "learning/progress", element: <LearningProgressPage /> },
-  { path: "learning/recommendations", element: <LearningRecommendationsPage /> },
 ];
