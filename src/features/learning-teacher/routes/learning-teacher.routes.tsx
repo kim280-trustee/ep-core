@@ -12,6 +12,9 @@ import TeacherGradebookSettingsPage from "../../learning-gradebook/pages/Teacher
 import TeacherGradebookReportsPage from "../../learning-gradebook/pages/TeacherGradebookReportsPage";
 import TeacherAssignmentHistoryPage from "../pages/TeacherAssignmentHistoryPage";
 import TeacherParentLinksPage from "../pages/TeacherParentLinksPage";
+import TeacherContentLibraryPage from "../../learning-content/pages/TeacherContentLibraryPage";
+import TeacherContentCreatePage from "../../learning-content/pages/TeacherContentCreatePage";
+import TeacherContentDetailPage from "../../learning-content/pages/TeacherContentDetailPage";
 
 export const learningTeacherRoutes: RouteObject[] = [
   {
@@ -23,6 +26,9 @@ export const learningTeacherRoutes: RouteObject[] = [
       { path: "classes/:classGroupId/students/:studentUserId", element: <TeacherStudentProfilePage /> },
       { path: "assignments/new", element: <CreateTeacherAssignmentPage /> },
       { path: "authoring", element: <TeacherAuthoringPage /> },
+      { path: "content", element: <TeacherContentLibraryPage /> },
+      { path: "content/new", element: <TeacherContentCreatePage /> },
+      { path: "content/:id", element: <TeacherContentDetailPage /> },
       { path: "question-bank", element: <QuestionBankPage /> },
       { path: "classes/:classGroupId/assignments/history", element: <TeacherAssignmentHistoryPage /> },
       { path: "classes/:classGroupId/parents", element: <TeacherParentLinksPage /> },
