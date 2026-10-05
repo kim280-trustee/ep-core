@@ -42,3 +42,8 @@ using (
     )
   )
 );
+
+-- The parent-specific SELECT policy duplicated the parent visibility logic in the
+-- main SELECT policy and could participate in RLS recursion through class membership.
+drop policy if exists learning_parent_assignment_targets_view
+  on public.learning_assignment_targets;
