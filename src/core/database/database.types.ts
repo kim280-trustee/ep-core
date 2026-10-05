@@ -4556,6 +4556,15 @@ export type Database = {
         }
         Returns: string
       }
+      grade_learning_content_response: {
+        Args: {
+          p_max_score: number
+          p_response_id: string
+          p_score: number
+          p_teacher_feedback?: string
+        }
+        Returns: string
+      }
       get_current_user_permissions: {
         Args: never
         Returns: {
