@@ -90,6 +90,17 @@ export class SupabaseAuthRepository
       return "/learning";
     }
 
+    const { data: parentLinks } = await supabase
+      .from("learning_parent_student_links")
+      .select("id")
+      .eq("parent_user_id", profile.id)
+      .eq("status", "active")
+      .limit(1);
+
+    if (parentLinks?.length) {
+      return "/parent";
+    }
+
     return "/";
   }
 }
