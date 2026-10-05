@@ -23,7 +23,7 @@ begin
  if auth.uid() is null then raise exception 'Authentication required'; end if;
  select * into v_response from public.learning_content_responses where id=p_response_id for update;
  if not found then raise exception 'Content response not found'; end if;
- if not public.learning_can_manage_academic_records(v_response.organization_id) then raise exception 'Academic record management permission required'; end if;
+ if not public.learning_can_manage_academic_records(v_response.organization_id) and not public.learning_teacher_can_manage_content_response(v_response.assignment_id,v_response.student_user_id) then raise exception 'Teacher or academic record management permission required'; end if;
  if p_score is null or p_max_score is null or p_max_score <= 0 or p_score < 0 or p_score > p_max_score then raise exception 'Score must be between 0 and the maximum score'; end if;
  select * into v_assignment from public.learning_assignments where id=v_response.assignment_id;
  if not found or v_assignment.organization_id <> v_response.organization_id then raise exception 'Assignment not found or organization mismatch'; end if;
