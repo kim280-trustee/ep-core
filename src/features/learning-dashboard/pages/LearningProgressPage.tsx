@@ -28,7 +28,7 @@ export default function LearningProgressPage() {
       const [mastery, events, assignments, assignmentProgress, assessmentResults] = await Promise.all([
         learningMasteryService.listStudentMastery(id),
         learningMasteryService.listMasteryEvents(id),
-        learningAssignmentsService.listStudentAssignments(),
+        learningAssignmentsService.listStudentAssignments(user!.id),
         learningAssignmentsService.listProgress(id),
         learningAssessmentService.listResults(id),
       ]);
