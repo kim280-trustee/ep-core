@@ -1,3 +1,5 @@
+import type { Database } from "@/core/database/database.types";
+
 /**
  * ============================================================
  * E&P Technologies
@@ -83,7 +85,7 @@ function fromDatabaseRow(
 
 function toDatabaseRow(
   record: InventoryRecord,
-): Record<string, unknown> {
+): Database["public"]["Tables"]["inventory"]["Insert"] {
 
   return {
     id: record.id,
@@ -398,7 +400,7 @@ class SupabaseInventoryRepository
   ): Promise<InventoryRecord> {
 
     const updateData:
-      Record<string, unknown> = {};
+      Database["public"]["Tables"]["inventory"]["Update"] = {};
 
     if (
       updates.quantityOnHand !==

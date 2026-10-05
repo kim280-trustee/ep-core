@@ -1,4 +1,4 @@
-﻿import {
+import {
   getSalesOrderRepository,
 } from "../repositories";
 
@@ -15,7 +15,6 @@ import {
   canConfirmSalesOrder,
   canProcessSalesOrder,
   canCompleteSalesOrder,
-  canRefundSalesOrder,
 } from "../types/sales-order-status.types";
 
 import {
@@ -48,6 +47,21 @@ interface AddSalesOrderItemInput {
   unitPrice: number;
   discountAmount?: number;
   taxRate?: number;
+}
+
+export interface SalesOrderRefundItem {
+  itemId: string;
+  productId: string;
+  soldQuantity: number;
+  refundedQuantity: number;
+  remainingQuantity: number;
+  refundableAmount: number;
+  unitRefundAmount: number;
+}
+
+export interface SalesOrderRefundSelection {
+  itemId: string;
+  quantity: number;
 }
 
 function createSalesOrderId(): string {
@@ -458,175 +472,176 @@ class SalesOrderService {
     return updated;
   }
 
+  async getRefundableItems(
+    orderId: string,
+  ): Promise<SalesOrderRefundItem[]> {
+    const order = await this.getRequiredOrder(orderId);
+
+    if (order.status !== "COMPLETED") {
+      return [];
+    }
+
+    const transactions = await inventoryTransactionService.getTransactions(order.tenantId);
+
+    return order.items.map((item) => {
+      const refundedQuantity = transactions
+        .filter(
+          (transaction) =>
+            transaction.movementType === "SALE_RETURN" &&
+            transaction.referenceType === "SALE_RETURN" &&
+            transaction.referenceId === order.id &&
+            transaction.productId === item.productId,
+        )
+        .reduce((sum, transaction) => sum + transaction.quantity, 0);
+
+      const remainingQuantity = Math.max(0, item.quantity - refundedQuantity);
+      const unitRefundAmount = item.quantity > 0 ? item.lineTotal / item.quantity : 0;
+
+      return {
+        itemId: item.id,
+        productId: item.productId,
+        soldQuantity: item.quantity,
+        refundedQuantity,
+        remainingQuantity,
+        refundableAmount: Math.round(unitRefundAmount * remainingQuantity * 100) / 100,
+        unitRefundAmount,
+      };
+    });
+  }
+
+  async refundOrderItems(
+    orderId: string,
+    selections: SalesOrderRefundSelection[],
+  ): Promise<SalesOrder> {
+    const order = await this.getRequiredOrder(orderId);
+
+    if (order.status !== "COMPLETED") {
+      throw new Error(
+        `Sales order cannot be partially refunded from status ${order.status}.`,
+      );
+    }
+
+    if (selections.length === 0) {
+      throw new Error("Select at least one item quantity to refund.");
+    }
+
+    const refundableItems = await this.getRefundableItems(orderId);
+    let refundAmount = 0;
+
+    for (const selection of selections) {
+      const item = refundableItems.find((candidate) => candidate.itemId === selection.itemId);
+      if (!item) throw new Error("Refund item not found.");
+      if (!Number.isInteger(selection.quantity) || selection.quantity <= 0) {
+        throw new Error("Refund quantity must be a whole number greater than zero.");
+      }
+      if (selection.quantity > item.remainingQuantity) {
+        throw new Error(
+          `Refund quantity for ${selection.itemId} cannot exceed ${item.remainingQuantity}.`,
+        );
+      }
+      refundAmount += item.unitRefundAmount * selection.quantity;
+    }
+
+    refundAmount = Math.round((refundAmount + Number.EPSILON) * 100) / 100;
+    if (refundAmount <= 0) throw new Error("Refund amount must be greater than zero.");
+
+    const payments = (await paymentService.getPayments(order.tenantId)).filter(
+      (payment) => payment.salesOrderId === order.id && payment.status === "COMPLETED",
+    );
+
+    if (payments.length === 0) {
+      throw new Error(`No completed payment was found for sales order ${order.orderNumber}.`);
+    }
+
+    let refundablePaymentAmount = 0;
+    for (const payment of payments) {
+      const alreadyRefunded = await paymentService.getRefundedAmount(order.tenantId, payment.id);
+      refundablePaymentAmount += Math.max(0, payment.amount - alreadyRefunded);
+    }
+
+    refundablePaymentAmount = Math.round((refundablePaymentAmount + Number.EPSILON) * 100) / 100;
+    if (refundAmount > refundablePaymentAmount) {
+      throw new Error(
+        `Refund amount ${refundAmount.toFixed(2)} exceeds the remaining refundable payment amount of ${refundablePaymentAmount.toFixed(2)}.`,
+      );
+    }
+
+    for (const selection of selections) {
+      const item = order.items.find((candidate) => candidate.id === selection.itemId);
+      if (!item) throw new Error("Refund item not found.");
+
+      const quantityToReturn = selection.quantity;
+
+      if (quantityToReturn > 0) {
+        await inventoryTransactionService.returnStock(
+          item.productId,
+          order.warehouseId,
+          quantityToReturn,
+          order.id,
+          `Partial sale refund: ${order.orderNumber}`,
+        );
+      }
+    }
+
+    let remainingRefund = refundAmount;
+    for (const payment of payments) {
+      if (remainingRefund <= 0) break;
+      const paymentRefunds = await paymentService.getRefundedAmount(order.tenantId, payment.id);
+      const paymentRemaining = Math.max(0, Math.round((payment.amount - paymentRefunds) * 100) / 100);
+      const amountForPayment = Math.min(paymentRemaining, remainingRefund);
+      if (amountForPayment > 0) {
+        await paymentService.refundPaymentAmount(
+          order.tenantId,
+          payment.id,
+          amountForPayment,
+          `Partial sale refund: ${order.orderNumber}`,
+        );
+        remainingRefund = Math.round((remainingRefund - amountForPayment) * 100) / 100;
+      }
+    }
+
+    if (remainingRefund > 0.01) {
+      throw new Error("The refund could not be fully applied to the completed payment.");
+    }
+
+    const finalRefundableItems = await this.getRefundableItems(orderId);
+    const allItemsRefunded = finalRefundableItems.every((item) => item.remainingQuantity === 0);
+    const finalPayments = await paymentService.getPayments(order.tenantId);
+    const allPaymentsRefunded = finalPayments
+      .filter(
+        (payment) =>
+          payment.salesOrderId === order.id &&
+          (payment.status === "COMPLETED" || payment.status === "REFUNDED") &&
+          payment.amount > 0,
+      )
+      .every((payment) => payment.status === "REFUNDED");
+
+    const updated = await getSalesOrderRepository().update(
+      order.tenantId,
+      order.id,
+      allItemsRefunded && allPaymentsRefunded
+        ? { status: "REFUNDED", paymentStatus: "REFUNDED" }
+        : { status: "COMPLETED" },
+    );
+
+    if (!updated) throw new Error("Sales order could not be updated after refund.");
+    return updated;
+  }
+
   async refundOrder(
     orderId: string,
   ): Promise<SalesOrder> {
-
     const order = await this.getRequiredOrder(orderId);
+    const refundableItems = await this.getRefundableItems(orderId);
+    const selections = refundableItems
+      .filter((item) => item.remainingQuantity > 0)
+      .map((item) => ({ itemId: item.itemId, quantity: item.remainingQuantity }));
 
-    if (!canRefundSalesOrder(order.status)) {
-      throw new Error(
-        `Sales order cannot be refunded from status ${order.status}.`,
-      );
+    if (selections.length === 0) {
+      throw new Error("This sale has no remaining refundable items.");
     }
 
-    if (order.items.length === 0) {
-      throw new Error(
-        "A completed sales order must contain items before it can be refunded.",
-      );
-    }
-
-    /*
-     * ----------------------------------------------------------
-     * 1. Load the inventory history for this sale.
-     * ----------------------------------------------------------
-     */
-
-    const transactions =
-      await inventoryTransactionService.getTransactions(
-        order.tenantId,
-      );
-
-    /*
-     * ----------------------------------------------------------
-     * 2. Verify that every item either has its original sale
-     *    transaction or has already been returned.
-     *
-     *    This makes the refund recoverable after a partial failure.
-     * ----------------------------------------------------------
-     */
-
-    for (const item of order.items) {
-
-      const alreadyReturned =
-        transactions.some(
-          (transaction) =>
-            transaction.referenceType === "SALE_RETURN" &&
-            transaction.referenceId === order.id &&
-            transaction.productId === item.productId,
-        );
-
-      if (alreadyReturned) {
-        continue;
-      }
-
-      const saleTransaction =
-        transactions.find(
-          (transaction) =>
-            transaction.movementType === "SALE" &&
-            transaction.referenceType === "SALE" &&
-            transaction.referenceId === order.id &&
-            transaction.productId === item.productId,
-        );
-
-      if (!saleTransaction) {
-        throw new Error(
-          `Original sale inventory transaction not found for product ${item.productId}.`,
-        );
-      }
-    }
-
-    /*
-     * ----------------------------------------------------------
-     * 3. Return stock.
-     *
-     *    Already returned items are skipped, so retrying a failed
-     *    refund will not double the inventory.
-     * ----------------------------------------------------------
-     */
-
-    for (const item of order.items) {
-
-      const alreadyReturned =
-        transactions.some(
-          (transaction) =>
-            transaction.referenceType === "SALE_RETURN" &&
-            transaction.referenceId === order.id &&
-            transaction.productId === item.productId,
-        );
-
-      if (alreadyReturned) {
-        continue;
-      }
-
-      await inventoryTransactionService.returnStock(
-        item.productId,
-        order.warehouseId,
-        item.quantity,
-        order.id,
-        `Sale refunded: ${order.orderNumber}`,
-      );
-    }
-
-    /*
-     * ----------------------------------------------------------
-     * 4. Load payments.
-     *
-     *    A completed payment is refunded normally.
-     *    A REFUNDED payment is already complete and is skipped.
-     *    This allows recovery if the previous attempt already
-     *    refunded the payment before the order update failed.
-     * ----------------------------------------------------------
-     */
-
-    const payments =
-      await paymentService.getPayments(
-        order.tenantId,
-      );
-
-    const orderPayments =
-      payments.filter(
-        (payment) =>
-          payment.salesOrderId === order.id &&
-          (
-            payment.status === "COMPLETED" ||
-            payment.status === "REFUNDED"
-          ),
-      );
-
-    if (orderPayments.length === 0) {
-      throw new Error(
-        `No completed or refunded payment was found for sales order ${order.orderNumber}.`,
-      );
-    }
-
-    for (const payment of orderPayments) {
-
-      if (payment.status === "REFUNDED") {
-        continue;
-      }
-
-      await paymentService.refundPayment(
-        order.tenantId,
-        payment.id,
-      );
-    }
-
-    /*
-     * ----------------------------------------------------------
-     * 5. Finalize the sales order.
-     *
-     *    The payment status is now explicitly REFUNDED.
-     * ----------------------------------------------------------
-     */
-
-    const updated =
-      await getSalesOrderRepository().update(
-        order.tenantId,
-        order.id,
-        {
-          status: "REFUNDED",
-          paymentStatus: "REFUNDED",
-        },
-      );
-
-    if (!updated) {
-      throw new Error(
-        "Sales order could not be refunded.",
-      );
-    }
-
-    return updated;
+    return this.refundOrderItems(order.id, selections);
   }
 
   async getOrders(

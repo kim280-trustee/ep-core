@@ -1,0 +1,3 @@
+-- Legacy remote migration history marker.
+-- Live Supabase already contains the effects of 20260909051037_fix_sales_orders_policy_role.
+-- Preserve the historical version without replaying legacy SQL.

@@ -1,3 +1,5 @@
+import type { Database } from "@/core/database/database.types";
+
 ﻿import { supabase } from "@/core/infrastructure/supabase/client";
 
 import type {
@@ -339,7 +341,7 @@ class SupabasePurchaseOrderRepository
   ): Promise<PurchaseOrder | undefined> {
 
     const updateData:
-      Record<string, unknown> = {};
+      Database["public"]["Tables"]["purchase_orders"]["Update"] = {};
 
 
     if (

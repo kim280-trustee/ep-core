@@ -1,3 +1,5 @@
+import type { Database } from "@/core/database/database.types";
+
 /**
  * ============================================================
  * E&P Technologies
@@ -203,7 +205,7 @@ function fromDatabaseRow(
 
 function toDatabaseRow(
   input: CreateProductInput,
-): Record<string, unknown> {
+): Database["public"]["Tables"]["products"]["Insert"] {
   return {
     tenant_id:
       input.tenantId,
@@ -262,9 +264,9 @@ function toDatabaseRow(
 
 function toDatabaseUpdate(
   input: UpdateProductInput,
-): Record<string, unknown> {
+): Database["public"]["Tables"]["products"]["Update"] {
   const updateData:
-    Record<string, unknown> = {};
+    Database["public"]["Tables"]["products"]["Update"] = {};
 
   if (input.storeId !== undefined) {
     updateData.store_id =
