@@ -2,6 +2,16 @@
 
 export type LearningContentStatus = "draft" | "review" | "published" | "retired";
 
+export interface LearningSubject {
+  id: string;
+  code: string;
+  name: string;
+  description: string | null;
+  status: LearningKnowledgeStatus;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export type LearningContentType =
   | "lesson"
   | "explanation"
@@ -55,6 +65,29 @@ export interface LearningObjectivePrerequisite {
   objectiveId: string;
   prerequisiteObjectiveId: string;
   createdAt: string;
+}
+
+export interface LearningCurriculum {
+  id: string;
+  code: string;
+  name: string;
+  version: string | null;
+  description: string | null;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface LearningGradeLevel {
+  id: string;
+  curriculumId: string;
+  code: string;
+  name: string;
+  sequenceNo: number;
+  description: string | null;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface LearningObjectiveAlignment {
