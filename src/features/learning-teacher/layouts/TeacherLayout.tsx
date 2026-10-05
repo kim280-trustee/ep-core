@@ -14,7 +14,7 @@ const items = [
 ];
 
 export default function TeacherLayout() {
-  const { user, loading } = useAuth();
+  const { user, loading, logout } = useAuth();
   const navigate = useNavigate();
   const [loggingOut, setLoggingOut] = useState(false);
   const teacherAccess = useQuery({
@@ -34,6 +34,16 @@ export default function TeacherLayout() {
     finally { setLoggingOut(false); }
   };
 
+  const primaryClassId = teacherAccess.data?.[0]?.classGroup.id;
+  const classLinks = primaryClassId ? [
+    { to: "/teacher/classes/"+primaryClassId, label: "Class Overview" },
+    { to: "/teacher/classes/"+primaryClassId+"/assignments/history", label: "Assignment History" },
+    { to: "/teacher/classes/"+primaryClassId+"/parents", label: "Parents" },
+    { to: "/teacher/classes/"+primaryClassId+"/gradebook", label: "Gradebook" },
+    { to: "/teacher/classes/"+primaryClassId+"/gradebook/reports", label: "Gradebook Reports" },
+    { to: "/teacher/classes/"+primaryClassId+"/gradebook/settings", label: "Gradebook Settings" },
+  ] : [];
+
   const linkClass = (active: boolean) => [
     "inline-flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition",
     active ? "bg-slate-900 text-white shadow-sm" : "text-slate-600 hover:bg-slate-100 hover:text-slate-950"
@@ -51,7 +61,7 @@ export default function TeacherLayout() {
             <nav className="mt-6 space-y-1" aria-label="Teacher portal navigation">
               {items.map(({to,label,icon:Icon,end}) => <NavLink key={to} to={to} end={end} className={({isActive}) => linkClass(isActive)}><Icon size={18}/>{label}</NavLink>)}
             </nav>
-            <div className="mt-6 border-t border-slate-200 pt-4">
+            <div className="mt-6 border-t border-slate-200 pt-4"><p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">Academic</p><div className="mt-2 space-y-1">{classLinks.map(item => <NavLink key={item.to} to={item.to} className={({isActive}) => linkClass(isActive)}>{item.label}</NavLink>)}</div></div><div className="mt-6 border-t border-slate-200 pt-4">
               <p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">My Classes</p>
               <div className="mt-2 space-y-1">
                 {teacherAccess.data.slice(0, 8).map(cls => <NavLink key={cls.classGroupId} to={"/teacher/classes/"+cls.classGroupId} className={({isActive}) => linkClass(isActive)}>{cls.className}</NavLink>)}
