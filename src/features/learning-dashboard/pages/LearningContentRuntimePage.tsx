@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AlertCircle, ArrowLeft, BookOpen, CheckCircle2 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
@@ -29,6 +29,7 @@ export default function LearningContentRuntimePage() {
   const id = assignmentId ?? "";
   const content = contentId ?? "";
   const queryClient = useQueryClient();
+  const [responseText, setResponseText] = useState("");
 
   useEffect(() => {
     if (!user?.id || !id || !content) return;
@@ -86,6 +87,31 @@ export default function LearningContentRuntimePage() {
     enabled: Boolean(id && content && user?.id),
   });
 
+  const responseQuery = useQuery({
+    queryKey: ["learning", "content-response", id, content, user?.id],
+    queryFn: () => learningContentService.getStudentResponse(id, content, user!.id),
+    enabled: Boolean(id && content && user?.id),
+  });
+
+  useEffect(() => {
+    if (responseQuery.data) setResponseText(responseQuery.data.responseText);
+  }, [responseQuery.data]);
+
+  const responseMutation = useMutation({
+    mutationFn: async (status: "draft" | "submitted") => {
+      if (!user?.id || !query.data) throw new Error("You must be signed in.");
+      const text = responseText.trim();
+      if (!text) throw new Error("Write your response before saving.");
+      return learningContentService.saveStudentResponse({
+        organizationId: query.data.assignment.organizationId, assignmentId: id, contentItemId: content,
+        contentVersionId: query.data.version.id, studentUserId: user.id, responseText: text, status,
+      });
+    },
+    onSuccess: async (saved) => {
+      await responseQuery.refetch();
+      if (saved.status === "submitted") await completeMutation.mutateAsync();
+    },
+  });
   const completeMutation = useMutation({
     mutationFn: async () => {
       if (!user?.id) throw new Error("You must be signed in.");
@@ -181,26 +207,26 @@ export default function LearningContentRuntimePage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <h2 className="text-lg font-semibold text-slate-900">Complete this activity</h2>
-            <p className="mt-1 text-sm text-slate-500">Mark this required learning activity complete after you finish the lesson.</p>
+      {currentContent.contentType === "writing" ? (
+        <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+          <h2 className="text-lg font-semibold text-slate-900">Your response</h2>
+          <p className="mt-1 text-sm text-slate-500">Write your answer below. You can save a draft and return later.</p>
+          <textarea value={responseText} onChange={e => setResponseText(e.target.value)} disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending} className="input mt-4 min-h-64 w-full resize-y" placeholder="Write your answer here..." />
+          <div className="mt-4 flex flex-wrap items-center gap-3">
+            {responseQuery.data?.status === "submitted" ? <span className="text-sm font-medium text-emerald-700">Response submitted.</span> : <>
+              <button type="button" disabled={!responseText.trim() || responseMutation.isPending} onClick={() => responseMutation.mutate("draft")} className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold disabled:opacity-50">Save draft</button>
+              <button type="button" disabled={!responseText.trim() || responseMutation.isPending} onClick={() => responseMutation.mutate("submitted")} className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{responseMutation.isPending ? "Submitting..." : "Submit response"}</button>
+            </>}
           </div>
-          <button
-            type="button"
-            disabled={completeMutation.isPending}
-            onClick={() => completeMutation.mutate()}
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            <CheckCircle2 size={17} />
-            {completeMutation.isPending ? "Saving..." : "Mark as complete"}
-          </button>
-        </div>
-        {completeMutation.isSuccess && <p className="mt-3 text-sm font-medium text-emerald-700">Activity completed. Your assignment progress has been updated.</p>}
-        {completeMutation.isError && <p className="mt-3 text-sm text-red-600">{completeMutation.error instanceof Error ? completeMutation.error.message : "Could not complete this activity."}</p>}
-      </section>
-
+          {responseMutation.isError && <p className="mt-3 text-sm text-red-600">{responseMutation.error instanceof Error ? responseMutation.error.message : "Could not save your response."}</p>}
+        </section>
+      ) : (
+        <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"><div><h2 className="text-lg font-semibold text-slate-900">Complete this activity</h2><p className="mt-1 text-sm text-slate-500">Mark this required learning activity complete after you finish the lesson.</p></div><button type="button" disabled={completeMutation.isPending} onClick={() => completeMutation.mutate()} className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"><CheckCircle2 size={17} />{completeMutation.isPending ? "Saving..." : "Mark as complete"}</button></div>
+          {completeMutation.isSuccess && <p className="mt-3 text-sm font-medium text-emerald-700">Activity completed. Your assignment progress has been updated.</p>}
+          {completeMutation.isError && <p className="mt-3 text-sm text-red-600">{completeMutation.error instanceof Error ? completeMutation.error.message : "Could not complete this activity."}</p>}
+        </section>
+      )}
       <div className="flex flex-wrap gap-3">
         <Link to={`/learning/assignments/${id}`} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800">
           <ArrowLeft size={17} />Return to assignment
