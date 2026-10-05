@@ -16,4 +16,6 @@ export const learningContentService={
   addObjective:(input:Parameters<typeof learningContentRepository.addObjective>[0])=>learningContentRepository.addObjective(input),
   updateContentStatus:(id:string,status:Parameters<typeof learningContentRepository.updateContentStatus>[1],reviewerId?:string)=>learningContentRepository.updateContentStatus(id,status,reviewerId),
   updateVersionStatus:(id:string,status:Parameters<typeof learningContentRepository.updateVersionStatus>[1],reviewerId?:string)=>learningContentRepository.updateVersionStatus(id,status,reviewerId),
+  getStudentResponse:(assignmentId:string,contentItemId:string,studentUserId:string)=>learningContentRepository.getStudentResponse(assignmentId,contentItemId,studentUserId),
+  saveStudentResponse:(input:Parameters<typeof learningContentRepository.saveStudentResponse>[0])=>learningContentRepository.saveStudentResponse(input),
 };
