@@ -206,8 +206,7 @@ export default function LearningAssignmentDetailPage() {
           Learning items
         </h2>
 
-        <d      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
-        <h2 className="text-lg font-semibold text-slate-900">Learning items</h2>
+
         <div className="mt-4 divide-y divide-slate-100">
           {items.length ? items.map((item, index) => {
             const itemLabel = item.itemType === "assessment" ? "Assessment" : "Learning content";
