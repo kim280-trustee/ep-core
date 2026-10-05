@@ -109,7 +109,7 @@ export default function LearningContentRuntimePage() {
     },
     onSuccess: async (saved) => {
       await responseQuery.refetch();
-      if (saved.status === "submitted") await completeMutation.mutateAsync();
+      if (saved.status === "submitted") await learningAssignmentsService.completeContentForStudent(id, content, user!.id);
     },
   });
   const completeMutation = useMutation({
