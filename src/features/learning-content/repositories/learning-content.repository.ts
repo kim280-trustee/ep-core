@@ -54,6 +54,8 @@ export interface LearningContentRepository {
   updateVersionStatus(id: string, status: LearningContentStatus, reviewerId?: string): Promise<LearningContentVersion>;
   getStudentResponse(assignmentId: string, contentItemId: string, studentUserId: string): Promise<LearningContentResponse | null>;
   saveStudentResponse(input: { organizationId: string; assignmentId: string; contentItemId: string; contentVersionId: string | null; studentUserId: string; responseText: string; status: "draft" | "submitted" }): Promise<LearningContentResponse>;
+  listTeacherResponses(assignmentId: string): Promise<LearningContentResponse[]>;
+  gradeTeacherResponse(input: { responseId: string; score: number; maxScore: number; teacherFeedback?: string | null }): Promise<string>;
 }
 
 const mapSubject = (r: SubjectRow): LearningSubject => ({ id:r.id, code:r.code, name:r.name, description:r.description, status:r.status as LearningKnowledgeStatus, createdAt:r.created_at, updatedAt:r.updated_at });
@@ -150,6 +152,16 @@ export const learningContentRepository: LearningContentRepository = {
     if(!data)return null;
     const r=data as any;
     return {id:r.id,organizationId:r.organization_id,assignmentId:r.assignment_id,contentItemId:r.content_item_id,contentVersionId:r.content_version_id??null,studentUserId:r.student_user_id,responseText:r.response_text,status:r.status,score:r.score===null?null:Number(r.score),maxScore:r.max_score===null?null:Number(r.max_score),teacherFeedback:r.teacher_feedback??null,submittedAt:r.submitted_at??null,createdAt:r.created_at,updatedAt:r.updated_at};
+  },
+  async listTeacherResponses(assignmentId){
+    const {data,error}=await supabase.from("learning_content_responses").select("*").eq("assignment_id",assignmentId).order("submitted_at",{ascending:false});
+    if(error)throw error;
+    return(data??[]).map((r:any)=>({id:r.id,organizationId:r.organization_id,assignmentId:r.assignment_id,contentItemId:r.content_item_id,contentVersionId:r.content_version_id??null,studentUserId:r.student_user_id,responseText:r.response_text,status:r.status,score:r.score===null?null:Number(r.score),maxScore:r.max_score===null?null:Number(r.max_score),teacherFeedback:r.teacher_feedback??null,submittedAt:r.submitted_at??null,createdAt:r.created_at,updatedAt:r.updated_at}));
+  },
+  async gradeTeacherResponse(input){
+    const {data,error}=await supabase.rpc("grade_learning_content_response" as never,{p_response_id:input.responseId,p_score:input.score,p_max_score:input.maxScore,p_teacher_feedback:input.teacherFeedback??null} as never);
+    if(error)throw error;
+    return String(data);
   },
   async saveStudentResponse(input){
     const {data,error}=await supabase.from("learning_content_responses").upsert({organization_id:input.organizationId,assignment_id:input.assignmentId,content_item_id:input.contentItemId,content_version_id:input.contentVersionId,student_user_id:input.studentUserId,response_text:input.responseText,status:input.status,submitted_at:input.status==="submitted"?new Date().toISOString():null},{onConflict:"assignment_id,content_item_id,student_user_id"}).select("*").single();
