@@ -3,6 +3,8 @@ import type { ReactNode } from "react";
 import { AlertCircle, Target, TrendingUp } from "lucide-react";
 import { useAuth } from "@/core/auth";
 import { learningMasteryService } from "@/features/learning-mastery";
+import { learningAssignmentsService } from "@/features/learning-assignments";
+import { learningAssessmentService } from "@/features/learning-assessment";
 
 const stateLabel: Record<string, string> = {
   not_started: "Not started",
@@ -23,11 +25,14 @@ export default function LearningProgressPage() {
   const query = useQuery({
     queryKey: ["learning", "progress", id],
     queryFn: async () => {
-      const [mastery, events] = await Promise.all([
+      const [mastery, events, assignments, assignmentProgress, assessmentResults] = await Promise.all([
         learningMasteryService.listStudentMastery(id),
         learningMasteryService.listMasteryEvents(id),
+        learningAssignmentsService.listStudentAssignments(),
+        learningAssignmentsService.listProgress(id),
+        learningAssessmentService.listResults(id),
       ]);
-      return { mastery, events };
+      return { mastery, events, assignments, assignmentProgress, assessmentResults };
     },
     enabled: Boolean(id),
   });
@@ -53,7 +58,7 @@ export default function LearningProgressPage() {
     return <ErrorState onRetry={() => void query.refetch()} />;
   }
 
-  const { mastery, events } = query.data;
+  const { mastery, events, assignments, assignmentProgress, assessmentResults } = query.data;
   const average = mastery.length
     ? Math.round(
         mastery.reduce((sum, item) => sum + item.masteryScore, 0) / mastery.length,
@@ -90,6 +95,50 @@ export default function LearningProgressPage() {
           icon={<AlertCircle size={18} />}
         />
       </div>
+
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <h2 className="text-lg font-semibold text-slate-900">Assignment progress</h2>
+        <p className="mt-1 text-sm text-slate-500">Your assigned learning activities and completion status.</p>
+        <div className="mt-4 divide-y divide-slate-100">
+          {assignments.length ? assignments.map((assignment) => {
+            const progressItem = assignmentProgress.find((item) => item.assignmentId === assignment.id);
+            const status = progressItem?.status ?? "not_started";
+            return (
+              <div key={assignment.id} className="flex items-center justify-between gap-4 py-3 first:pt-0">
+                <div>
+                  <p className="text-sm font-medium text-slate-800">{assignment.title}</p>
+                  <p className="mt-1 text-xs text-slate-500">{assignment.code}</p>
+                </div>
+                <span className={`rounded-full px-3 py-1 text-xs font-semibold ${status === "completed" ? "bg-emerald-100 text-emerald-700" : status === "in_progress" ? "bg-amber-100 text-amber-700" : "bg-slate-100 text-slate-700"}`}>
+                  {status === "completed" ? "Completed" : status === "in_progress" ? "In progress" : "Not started"}
+                </span>
+              </div>
+            );
+          }) : <p className="text-sm text-slate-500">No published assignments yet.</p>}
+        </div>
+      </section>
+
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <h2 className="text-lg font-semibold text-slate-900">Assessment results</h2>
+        <p className="mt-1 text-sm text-slate-500">Scores from completed assessment attempts.</p>
+        <div className="mt-4 divide-y divide-slate-100">
+          {assessmentResults.length ? assessmentResults.slice(0, 20).map((result) => (
+            <div key={result.id} className="flex flex-wrap items-center justify-between gap-4 py-3 first:pt-0">
+              <div>
+                <p className="text-sm font-medium text-slate-800">Assessment attempt</p>
+                <p className="mt-1 text-xs text-slate-500">
+                  Evaluated {new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(new Date(result.evaluatedAt))}
+                </p>
+              </div>
+              <div className="text-right">
+                <p className="text-sm font-bold text-slate-900">{result.score ?? 0} / {result.maxScore ?? 0}</p>
+                <p className="text-xs font-semibold text-slate-500">{result.percentage ?? 0}% · {result.passed ? "Passed" : "Not passed"}</p>
+              </div>
+            </div>
+          )) : <p className="text-sm text-slate-500">No assessment results have been recorded yet.</p>}
+        </div>
+      </section>
+
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">
