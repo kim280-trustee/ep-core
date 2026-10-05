@@ -54,7 +54,7 @@ export interface LearningContentRepository {
   updateVersionStatus(id: string, status: LearningContentStatus, reviewerId?: string): Promise<LearningContentVersion>;
   getStudentResponse(assignmentId: string, contentItemId: string, studentUserId: string): Promise<LearningContentResponse | null>;
   saveStudentResponse(input: { organizationId: string; assignmentId: string; contentItemId: string; contentVersionId: string | null; studentUserId: string; responseText: string; status: "draft" | "submitted" }): Promise<LearningContentResponse>;
-  listTeacherResponses(assignmentId: string): Promise<LearningContentResponse[]>;
+  listTeacherResponses(assignmentId: string): Promise<(LearningContentResponse & { studentName: string; studentEmail: string | null })[]>;
   gradeTeacherResponse(input: { responseId: string; score: number; maxScore: number; teacherFeedback?: string | null }): Promise<string>;
 }
 
@@ -156,7 +156,13 @@ export const learningContentRepository: LearningContentRepository = {
   async listTeacherResponses(assignmentId){
     const {data,error}=await supabase.from("learning_content_responses").select("*").eq("assignment_id",assignmentId).order("submitted_at",{ascending:false});
     if(error)throw error;
-    return(data??[]).map((r:any)=>({id:r.id,organizationId:r.organization_id,assignmentId:r.assignment_id,contentItemId:r.content_item_id,contentVersionId:r.content_version_id??null,studentUserId:r.student_user_id,responseText:r.response_text,status:r.status,score:r.score===null?null:Number(r.score),maxScore:r.max_score===null?null:Number(r.max_score),teacherFeedback:r.teacher_feedback??null,submittedAt:r.submitted_at??null,createdAt:r.created_at,updatedAt:r.updated_at}));
+    const rows=(data??[]).map((r:any)=>({id:r.id,organizationId:r.organization_id,assignmentId:r.assignment_id,contentItemId:r.content_item_id,contentVersionId:r.content_version_id??null,studentUserId:r.student_user_id,responseText:r.response_text,status:r.status,score:r.score===null?null:Number(r.score),maxScore:r.max_score===null?null:Number(r.max_score),teacherFeedback:r.teacher_feedback??null,submittedAt:r.submitted_at??null,createdAt:r.created_at,updatedAt:r.updated_at}));
+    const ids=[...new Set(rows.map(r=>r.studentUserId))];
+    if(!ids.length)return[];
+    const {data:users,error:userError}=await supabase.from("users").select("id,name,email").in("id",ids);
+    if(userError)throw userError;
+    const byId=new Map((users??[]).map(u=>[u.id,u]));
+    return rows.map(r=>({ ...r, studentName:byId.get(r.studentUserId)?.name??r.studentUserId, studentEmail:byId.get(r.studentUserId)?.email??null }));
   },
   async gradeTeacherResponse(input){
     const {data,error}=await supabase.rpc("grade_learning_content_response" as never,{p_response_id:input.responseId,p_score:input.score,p_max_score:input.maxScore,p_teacher_feedback:input.teacherFeedback??null} as never);
