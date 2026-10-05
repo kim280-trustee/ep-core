@@ -67,6 +67,12 @@ export default function LearningDashboardPage() {
 
   return <div className="space-y-6">
     <LearningNavigation />
+    <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <PortalLink to="/learning/assignments" icon={<BookOpen size={20} />} title="Assignments" text="Open assigned work, continue activities, and submit work." />
+      <PortalLink to="/learning/progress" icon={<TrendingUp size={20} />} title="My Progress" text="Review scores, mastery, completed work, and growth." />
+      <PortalLink to="/learning/recommendations" icon={<Target size={20} />} title="Recommendations" text="See the next activities selected from your learning history." />
+      <PortalLink to="/learning" icon={<LayoutDashboard size={20} />} title="Dashboard" text="Return to your learning overview at any time." />
+    </section>
     <section className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8"><p className="text-sm font-medium text-slate-300">Student Learning</p><h1 className="mt-1 text-2xl font-bold sm:text-3xl">Welcome back, {user.name || "Student"}</h1><p className="mt-2 max-w-2xl text-sm text-slate-300">Continue your learning, review your progress, and see what should come next.</p></section>
     <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       <Stat icon={<Target size={19} />} label="Mastery" value={averageMastery + "%"} detail={overview.mastery.length + " objectives"} />
@@ -98,6 +104,18 @@ function Stat({ icon, label, value, detail }: { icon: ReactNode; label: string; 
 }
 function DashboardCard({ title, icon, children }: { title: string; icon: ReactNode; children: ReactNode }) {
   return <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6"><div className="mb-5 flex items-center gap-2 text-slate-900"><span className="text-slate-500">{icon}</span><h2 className="text-lg font-semibold">{title}</h2></div>{children}</section>;
+}
+function PortalLink({ to, icon, title, text }: { to: string; icon: ReactNode; title: string; text: string }) {
+  return (
+    <Link to={to} className="group rounded-2xl border border-slate-200 bg-white p-5 transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-sm">
+      <div className="flex items-center gap-3 text-slate-900">
+        <span className="rounded-xl bg-slate-100 p-2 text-slate-700">{icon}</span>
+        <h2 className="font-semibold">{title}</h2>
+      </div>
+      <p className="mt-3 text-sm leading-5 text-slate-500">{text}</p>
+      <span className="mt-4 inline-flex text-xs font-semibold text-slate-700 group-hover:underline">Open</span>
+    </Link>
+  );
 }
 function EmptyState({ text }: { text: string }) { return <div className="rounded-xl bg-slate-50 p-5 text-sm text-slate-500">{text}</div>; }
 
