@@ -32,12 +32,12 @@ export default function CreateTeacherAssignmentPage() {
   const organizationId = selectedClass?.membership.organizationId;
 
   const contentQuery = useQuery({
-    queryKey: ["learning", "assignment-content", organizationId],
-    queryFn: () => learningContentService.listContent(organizationId),
+    queryKey: ["learning", "assignment-content", organizationId, contentId],
+    queryFn: () => learningContentService.getContent(contentId!, organizationId),
     enabled: Boolean(organizationId && contentId),
   });
 
-  const selectedContent = contentQuery.data?.find((item) => item.id === contentId);
+  const selectedContent = contentQuery.data;
   const contentReady = Boolean(selectedContent && selectedContent.status === "published");
 
   useEffect(() => {
