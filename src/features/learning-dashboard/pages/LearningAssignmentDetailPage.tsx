@@ -31,15 +31,8 @@ export default function LearningAssignmentDetailPage() {
   const startMutation = useMutation({
     mutationFn: async () => {
       if (!user?.id) throw new Error("You must be signed in.");
-
       const result = await learningAssignmentsService.startForStudent(id, user.id);
-
-      const session = await learningActivityService.startForStudent(
-        user.id,
-        "assignment",
-        id,
-      );
-
+      const session = await learningActivityService.startForStudent(user.id, "assignment", id);
       await learningActivityService.logEvent({
         tenantId: session.tenantId,
         organizationId: session.organizationId,
@@ -48,36 +41,23 @@ export default function LearningAssignmentDetailPage() {
         activityType: "assignment_started",
         assignmentId: id,
       });
-
       return result;
     },
-    onSuccess: async (result) => {
-      await queryClient.invalidateQueries({
-        queryKey: ["learning", "assignment", id, user?.id],
-      });
-      await queryClient.invalidateQueries({
-        queryKey: ["learning", "student-overview", user?.id],
-      });
-
-      const nextItem = result.items.find((item) => item.itemType === "content" && item.contentItemId)
-        ?? result.items.find((item) => item.itemType === "assessment" && item.assessmentId);
-
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["learning", "assignment", id, user?.id] });
+      await queryClient.invalidateQueries({ queryKey: ["learning", "student-overview", user?.id] });
+      const nextItem =
+        query.data?.items.find((item) => item.itemType === "content" && item.contentItemId) ??
+        query.data?.items.find((item) => item.itemType === "assessment" && item.assessmentId);
       if (nextItem?.itemType === "content" && nextItem.contentItemId) {
         navigate(`/learning/assignments/${id}/content/${nextItem.contentItemId}`);
         return;
       }
-
       if (nextItem?.itemType === "assessment" && nextItem.assessmentId) {
         navigate(`/learning/assignments/${id}/assessments/${nextItem.assessmentId}`);
-        return;
       }
-
-      await queryClient.invalidateQueries({
-        queryKey: ["learning", "assignment", id, user?.id],
-      });
     },
   });
-
   if (!user) {
     return (
       <div className="rounded-2xl border border-slate-200 bg-white p-6">
@@ -226,103 +206,34 @@ export default function LearningAssignmentDetailPage() {
           Learning items
         </h2>
 
+        <d      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <h2 className="text-lg font-semibold text-slate-900">Learning items</h2>
         <div className="mt-4 divide-y divide-slate-100">
-          {items.length ? (
-            items.map((item, index) => {
-              const itemLabel =
-                item.itemType === "assessment"
-                  ? "Assessment"
-                  : "Learning content";
-
-              const itemContent = (
-                <>
-                  <div className="flex items-center gap-3">
-                    <Circle
-                      size={15}
-                      className="shrink-0 text-slate-400"
-                    />
-
-                    <div>
-                      <p className="font-medium text-slate-800">
-                        Item {index + 1}: {itemLabel}
-                      </p>
-
-                      <p className="mt-1 text-xs text-slate-500">
-                        {item.required
-                          ? "Required"
-                          : "Optional"}{" "}
-                        activity
-                      </p>
-                    </div>
+          {items.length ? items.map((item, index) => {
+            const itemLabel = item.itemType === "assessment" ? "Assessment" : "Learning content";
+            const itemContent = (
+              <>
+                <div className="flex items-center gap-3">
+                  <Circle size={15} className="shrink-0 text-slate-400" />
+                  <div>
+                    <p className="font-medium text-slate-800">Item {index + 1}: {itemLabel}</p>
+                    <p className="mt-1 text-xs text-slate-500">{item.required ? "Required" : "Optional"} activity</p>
                   </div>
-
-                  {((item.itemType === "assessment" && item.assessmentId) || (item.itemType === "content" && item.contentItemId)) && (
-                    <span className="text-sm font-semibold text-slate-900">
-                      Open 
-                    </span>
-                  )}
-                </>
-              );
-
-              if (item.itemType === "assessment" && item.assessmentId) {
-                return (
-                  <Link
-                    key={item.id}
-                    to={`/learning/assignments/${id}/assessments/${item.assessmentId}`}
-                    className="flex items-center justify-between gap-4 py-4 transition hover:bg-slate-50 first:pt-0"
-                  >
-                    {itemContent}
-                  </Link>
-                );
-              }
-
-              if (item.itemType === "content" && item.contentItemId) {
-                return (
-                  <Link
-                    key={item.id}
-                    to={`/learning/assignments/${id}/content/${item.contentItemId}`}
-                    className="flex items-center justify-between gap-4 py-4 transition hover:bg-slate-50 first:pt-0"
-                  >
-                    {itemContent}
-                  </Link>
-                );
-              }
-
-              return (
-                  <Link
-                    key={item.id}
-                    to={`/learning/assignments/${id}/content/${item.contentItemId}`}
-                    className="flex items-center justify-between gap-4 py-4 transition hover:bg-slate-50 first:pt-0"
-                  >
-                    {itemContent}
-                  </Link>
-                );
-              }
-
-              return (
-                  <Link
-                    key={item.id}
-                    to={`/learning/assignments/${id}/assessments/${item.assessmentId}`}
-                    className="flex items-center justify-between gap-4 py-4 transition hover:bg-slate-50 first:pt-0"
-                  >
-                    {itemContent}
-                  </Link>
-                );
-              }
-
-              return (
-                <div
-                  key={item.id}
-                  className="flex items-center gap-3 py-4 first:pt-0"
-                >
-                  {itemContent}
                 </div>
-              );
-            })
-          ) : (
-            <p className="text-sm text-slate-500">
-              This assignment has no learning items yet.
-            </p>
+                {((item.itemType === "assessment" && item.assessmentId) || (item.itemType === "content" && item.contentItemId)) && (
+                  <span className="text-sm font-semibold text-slate-900">Open →</span>
+                )}
+              </>
+            );
+            if (item.itemType === "assessment" && item.assessmentId) {
+              return <Link key={item.id} to={`/learning/assignments/${id}/assessments/${item.assessmentId}`} className="flex items-center justify-between gap-4 py-4 transition hover:bg-slate-50 first:pt-0">{itemContent}</Link>;
+            }
+            if (item.itemType === "content" && item.contentItemId) {
+              return <Link key={item.id} to={`/learning/assignments/${id}/content/${item.contentItemId}`} className="flex items-center justify-between gap-4 py-4 transition hover:bg-slate-50 first:pt-0">{itemContent}</Link>;
+            }
+            return <div key={item.id} className="flex items-center gap-3 py-4 first:pt-0">{itemContent}</div>;
+          }) : (
+            <p className="text-sm text-slate-500">This assignment has no learning items yet.</p>
           )}
         </div>
       </section>
