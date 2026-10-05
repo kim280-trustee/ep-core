@@ -64,7 +64,7 @@ export const learningParentRepository={
     const recommendationRows=(recommendations??[]) as RecommendationRow[];
     const objectiveIds=[...new Set([...masteryRows.map(x=>x.objective_id),...recommendationRows.map(x=>x.objective_id).filter((x):x is string=>Boolean(x))])];
 
-    const[{data:classSubjects,error:classSubjectError},{data:terms,error:termError},{data:directTargets,error:directTargetError},{data:classTargets,error:classTargetError},{data:commentSubjects,error:commentSubjectsError},{data:commentTerms,error:commentTermsError},{data:objectives,error:objectivesError}]=await Promise.all([
+    const[{data:classSubjects,error:classSubjectError},{data:terms,error:termError},{data:directTargets,error:directTargetError},{data:classTargets,error:classTargetError},{data:commentSubjects,error:commentSubjectsError},{data:objectives,error:objectivesError}]=await Promise.all([
       subjectIds.length?supabase.from("learning_class_subjects").select("id,subject_id").in("id",subjectIds):Promise.resolve({data:[],error:null}),
       termIds.length?supabase.from("learning_terms").select("id,name").in("id",termIds):Promise.resolve({data:[],error:null}),
       supabase.from("learning_assignment_targets").select("assignment_id,student_user_id,class_group_id,status,due_at").eq("student_user_id",studentUserId).eq("status","active"),
