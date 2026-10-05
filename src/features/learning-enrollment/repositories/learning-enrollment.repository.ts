@@ -10,14 +10,25 @@ const map = (r: Row): LearningClassMembership => ({
   status:r.status as LearningClassMembership["status"], joinedAt:r.joined_at, createdAt:r.created_at, updatedAt:r.updated_at,
 });
 
+async function listActiveMemberships(userId: string) {
+  const { data, error } = await supabase.from("learning_class_memberships").select("*").eq("user_id", userId).eq("status", "active").order("created_at");
+  if (error) throw error;
+  return data ?? [];
+}
+
 export const learningEnrollmentRepository = {
   async listClassMembers(classGroupId: string) {
     const { data, error } = await supabase.from("learning_class_memberships").select("*").eq("class_group_id", classGroupId).eq("status","active").order("membership_type").order("created_at");
     if (error) throw error; return (data ?? []).map(map);
   },
   async listUserClasses(userId: string) {
-    const { data, error } = await supabase.from("learning_class_memberships").select("*").eq("user_id", userId).eq("status","active").order("created_at");
-    if (error) throw error; return (data ?? []).map(map);
+    let rows = await listActiveMemberships(userId);
+    if (!rows.length) {
+      const { data: profile, error: profileError } = await supabase.from("users").select("id").eq("auth_user_id", userId).maybeSingle();
+      if (profileError) throw profileError;
+      if (profile?.id && profile.id !== userId) rows = await listActiveMemberships(profile.id);
+    }
+    return rows.map(map);
   },
   async addMember(input: LearningClassMembershipInput) {
     const { data, error } = await supabase.from("learning_class_memberships").insert({
