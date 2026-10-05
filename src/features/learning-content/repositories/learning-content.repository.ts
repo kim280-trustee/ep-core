@@ -35,6 +35,8 @@ export interface LearningContentRepository {
   addObjective(input: { contentItemId: string; objectiveId: string; sequenceNo: number }): Promise<LearningContentObjective>;
   updateContentStatus(id: string, status: LearningContentStatus, reviewerId?: string): Promise<LearningContentItem>;
   updateVersionStatus(id: string, status: LearningContentStatus, reviewerId?: string): Promise<LearningContentVersion>;
+  getStudentResponse(assignmentId: string, contentItemId: string, studentUserId: string): Promise<LearningContentResponse | null>;
+  saveStudentResponse(input: { organizationId: string; assignmentId: string; contentItemId: string; contentVersionId: string | null; studentUserId: string; responseText: string; status: "draft" | "submitted" }): Promise<LearningContentResponse>;
 }
 
 const mapSubject = (r: SubjectRow): LearningSubject => ({ id:r.id, code:r.code, name:r.name, description:r.description, status:r.status as LearningKnowledgeStatus, createdAt:r.created_at, updatedAt:r.updated_at });
@@ -124,6 +126,19 @@ export const learningContentRepository: LearningContentRepository = {
     const{data,error}=await supabase.from("learning_content_items").update(patch).eq("id",id).select("*").single();
     if(error)throw error;
     return mapContentItem(data);
+  },
+  async getStudentResponse(assignmentId,contentItemId,studentUserId){
+    const {data,error}=await supabase.from("learning_content_responses" as never).select("*").eq("assignment_id",assignmentId).eq("content_item_id",contentItemId).eq("student_user_id",studentUserId).maybeSingle();
+    if(error)throw error;
+    if(!data)return null;
+    const r=data as any;
+    return {id:r.id,organizationId:r.organization_id,assignmentId:r.assignment_id,contentItemId:r.content_item_id,contentVersionId:r.content_version_id??null,studentUserId:r.student_user_id,responseText:r.response_text,status:r.status,score:r.score===null?null:Number(r.score),maxScore:r.max_score===null?null:Number(r.max_score),teacherFeedback:r.teacher_feedback??null,submittedAt:r.submitted_at??null,createdAt:r.created_at,updatedAt:r.updated_at};
+  },
+  async saveStudentResponse(input){
+    const {data,error}=await supabase.from("learning_content_responses" as never).upsert({organization_id:input.organizationId,assignment_id:input.assignmentId,content_item_id:input.contentItemId,content_version_id:input.contentVersionId,student_user_id:input.studentUserId,response_text:input.responseText,status:input.status,submitted_at:input.status==="submitted"?new Date().toISOString():null},{onConflict:"assignment_id,content_item_id,student_user_id"}).select("*").single();
+    if(error)throw error;
+    const r=data as any;
+    return {id:r.id,organizationId:r.organization_id,assignmentId:r.assignment_id,contentItemId:r.content_item_id,contentVersionId:r.content_version_id??null,studentUserId:r.student_user_id,responseText:r.response_text,status:r.status,score:r.score===null?null:Number(r.score),maxScore:r.max_score===null?null:Number(r.max_score),teacherFeedback:r.teacher_feedback??null,submittedAt:r.submitted_at??null,createdAt:r.created_at,updatedAt:r.updated_at};
   },
   async updateVersionStatus(id,status,reviewerId){
     const patch:Database["public"]["Tables"]["learning_content_versions"]["Update"]={status};
