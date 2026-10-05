@@ -250,7 +250,6 @@ export default function TeacherContentCreatePage() {
               </option>
               {(gradeLevels.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
             </select>
-            {gradeLevels.isError && <p className="mt-2 rounded-lg bg-red-50 p-2 text-xs text-red-800">{gradeLevels.error instanceof Error ? gradeLevels.error.message : "Could not load grade levels."}</p>}
             {!gradeLevels.isPending && !gradeLevels.isError && curriculumId && !(gradeLevels.data ?? []).length && <p className="mt-2 rounded-lg bg-amber-50 p-2 text-xs text-amber-800">No active grade levels are configured for this curriculum.</p>}
           </Field>
           <Field label="Subject">
@@ -260,7 +259,6 @@ export default function TeacherContentCreatePage() {
               </option>
               {(subjects.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
             </select>
-            {subjects.isError && <p className="mt-2 rounded-lg bg-red-50 p-2 text-xs text-red-800">{subjects.error instanceof Error ? subjects.error.message : "Could not load subjects."}</p>}
             {!subjects.isPending && !subjects.isError && curriculumId && !(subjects.data ?? []).length && <p className="mt-2 rounded-lg bg-amber-50 p-2 text-xs text-amber-800">No active subjects are configured for this curriculum.</p>}
           </Field>
           <Field label="Skill">
