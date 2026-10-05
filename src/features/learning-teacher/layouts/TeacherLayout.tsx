@@ -64,7 +64,7 @@ export default function TeacherLayout() {
             <div className="mt-6 border-t border-slate-200 pt-4"><p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">Academic</p><div className="mt-2 space-y-1">{classLinks.map(item => <NavLink key={item.to} to={item.to} className={({isActive}) => linkClass(isActive)}>{item.label}</NavLink>)}</div></div><div className="mt-6 border-t border-slate-200 pt-4">
               <p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">My Classes</p>
               <div className="mt-2 space-y-1">
-                {teacherAccess.data.slice(0, 8).map(cls => <NavLink key={cls.classGroupId} to={"/teacher/classes/"+cls.classGroupId} className={({isActive}) => linkClass(isActive)}>{cls.className}</NavLink>)}
+                {teacherAccess.data.slice(0, 8).map(cls => <NavLink key={cls.classGroup.id} to={"/teacher/classes/"+cls.classGroup.id} className={({isActive}) => linkClass(isActive)}>{cls.classGroup.name}</NavLink>)}
               </div>
             </div>
             <div className="mt-auto border-t border-slate-200 pt-4">
