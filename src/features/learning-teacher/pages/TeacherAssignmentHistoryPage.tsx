@@ -27,7 +27,8 @@ export default function TeacherAssignmentHistoryPage() {
     queryFn: () => learningAssignmentsService.listAssignmentHistoryForClass(classGroupId),
     enabled: Boolean(classGroupId),
   });
-  const lifecycleQuery = useQuery({queryKey:["learning","assignment-lifecycle-events",classGroupId,historyQuery.data?.map(x=>x.id).join(",")],queryFn:()=>learningAssignmentsService.listLifecycleEventsForAssignments((historyQuery.data??[]).map(x=>x.id)),enabled:Boolean(historyQuery.data?.length)});\n  const statusMutation = useMutation({
+  const lifecycleQuery = useQuery({queryKey:["learning","assignment-lifecycle-events",classGroupId,historyQuery.data?.map(x=>x.id).join(",")],queryFn:()=>learningAssignmentsService.listLifecycleEventsForAssignments((historyQuery.data??[]).map(x=>x.id)),enabled:Boolean(historyQuery.data?.length)});
+  const statusMutation = useMutation({
     mutationFn: ({ id,status }: { id:string; status:"published"|"closed" }) => status==="published"
       ? learningAssignmentsService.reopenAssignment(id)
       : learningAssignmentsService.closeAssignment(id),
@@ -45,7 +46,9 @@ export default function TeacherAssignmentHistoryPage() {
   const classInfo = classesQuery.data.find((item) => item.classGroup.id === classGroupId);
   if (!classInfo) return <div className="rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800">You are not assigned to this class.</div>;
   const students = classOverviewQuery.data.students;
-  const assignments = historyQuery.data.filter((item) => statusFilter === "all" || item.status === statusFilter);\n  const events=lifecycleQuery.data??[];\n  const eventLabels=new Map([["reassigned","Reassigned"],["reopened","Reopened"],["closed","Closed"]]);
+  const assignments = historyQuery.data.filter((item) => statusFilter === "all" || item.status === statusFilter);
+  const events=lifecycleQuery.data??[];
+  const eventLabels=new Map([["reassigned","Reassigned"],["reopened","Reopened"],["closed","Closed"]]);
 
   return <div className="space-y-6">
     <div><Link to={"/teacher/classes/"+classGroupId} className="inline-flex items-center gap-2 text-sm text-slate-500"><ArrowLeft size={16}/>Back to class</Link></div>
