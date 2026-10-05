@@ -9,6 +9,7 @@ export const learningContentService={
   listPrerequisites:(objectiveId:string)=>learningContentRepository.listPrerequisites(objectiveId),
   listAlignments:(objectiveId?:string,curriculumId?:string,gradeLevelId?:string)=>learningContentRepository.listAlignments(objectiveId,curriculumId,gradeLevelId),
   listContent:(organizationId?:string)=>learningContentRepository.listContent(organizationId),
+  getContent:(id:string,organizationId?:string)=>learningContentRepository.getContent(id,organizationId),
   listContentVersions:(id:string)=>learningContentRepository.listContentVersions(id),
   listContentObjectives:(id:string)=>learningContentRepository.listContentObjectives(id),
   createContent:(input:Parameters<typeof learningContentRepository.createContent>[0])=>learningContentRepository.createContent(input),
