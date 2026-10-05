@@ -78,15 +78,15 @@ export class SupabaseAuthRepository
         .eq("user_id", profile.id)
         .eq("status", "active");
 
-    if (membershipError || !memberships?.length) {
+    if (membershipError) {
       return "/";
     }
 
-    if (memberships.some((membership) => membership.membership_type === "teacher")) {
+    if (memberships?.some((membership) => membership.membership_type === "teacher")) {
       return "/teacher";
     }
 
-    if (memberships.some((membership) => membership.membership_type === "student")) {
+    if (memberships?.some((membership) => membership.membership_type === "student")) {
       return "/learning";
     }
 
