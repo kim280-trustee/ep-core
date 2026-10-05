@@ -55,7 +55,7 @@ on public.learning_content_responses for select to authenticated
 using (
   student_user_id = public.learning_current_user_id()
   or student_user_id in (select private.learning_parent_student_ids())
-  or public.is_organization_member(organization_id)
+  or public.learning_can_manage_academic_records(organization_id)
 );
 
 drop policy if exists learning_content_responses_student_insert on public.learning_content_responses;
@@ -70,12 +70,12 @@ drop policy if exists learning_content_responses_student_update on public.learni
 create policy learning_content_responses_student_update
 on public.learning_content_responses for update to authenticated
 using (
-  student_user_id = public.learning_current_user_id()
-  or public.is_organization_member(organization_id)
+  (student_user_id = public.learning_current_user_id() and status = 'draft')
+  or public.learning_can_manage_academic_records(organization_id)
 )
 with check (
-  student_user_id = public.learning_current_user_id()
-  or public.is_organization_member(organization_id)
+  (student_user_id = public.learning_current_user_id() and status in ('draft','submitted'))
+  or public.learning_can_manage_academic_records(organization_id)
 );
 
 create index if not exists idx_learning_content_responses_student
