@@ -16,6 +16,7 @@ revoke all on function public.learning_teacher_can_manage_content_response(uuid,
 grant execute on function public.learning_teacher_can_manage_content_response(uuid,uuid) to authenticated;
 
 drop policy if exists learning_content_responses_student_select on public.learning_content_responses;
+drop policy if exists learning_content_responses_select on public.learning_content_responses;
 create policy learning_content_responses_select on public.learning_content_responses for select using (
  student_user_id=learning_current_user_id()
  or student_user_id in (select private.learning_parent_student_ids())
@@ -24,6 +25,7 @@ create policy learning_content_responses_select on public.learning_content_respo
 );
 
 drop policy if exists learning_content_responses_student_update on public.learning_content_responses;
+drop policy if exists learning_content_responses_update on public.learning_content_responses;
 create policy learning_content_responses_update on public.learning_content_responses for update using (
  (student_user_id=learning_current_user_id() and status='draft')
  or learning_can_manage_academic_records(organization_id)
