@@ -165,7 +165,7 @@ export const learningContentRepository: LearningContentRepository = {
     return rows.map(r=>({ ...r, studentName:byId.get(r.studentUserId)?.name??r.studentUserId, studentEmail:byId.get(r.studentUserId)?.email??null }));
   },
   async gradeTeacherResponse(input){
-    const {data,error}=await supabase.rpc("grade_learning_content_response" as never,{p_response_id:input.responseId,p_score:input.score,p_max_score:input.maxScore,p_teacher_feedback:input.teacherFeedback??null} as never);
+    const {data,error}=await supabase.rpc("grade_learning_content_response",{p_response_id:input.responseId,p_score:input.score,p_max_score:input.maxScore,p_teacher_feedback:input.teacherFeedback??""});
     if(error)throw error;
     return String(data);
   },
