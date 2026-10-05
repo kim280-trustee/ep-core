@@ -43,4 +43,4 @@ export interface LearningAssignmentTargetInput {
 export interface LearningAssignmentProgressInput {
   organizationId:string; assignmentId:string; assignmentTargetId:string; studentUserId:string;
 }
-export type LearningAssignmentJson = Json;
+export interface LearningAssignmentLifecycleEvent { id:string; assignmentId:string; parentAssignmentId:string|null; action:"reopened"|"closed"|"reassigned"; actorUserId:string; targetStudentUserId:string|null; metadata:Record<string,unknown>; createdAt:string; }\nexport type LearningAssignmentJson = Json;
