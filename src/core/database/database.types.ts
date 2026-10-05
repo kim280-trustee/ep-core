@@ -1656,6 +1656,93 @@ export type Database = {
           },
         ]
       }
+      learning_content_responses: {
+        Row: {
+          assignment_id: string
+          content_item_id: string
+          content_version_id: string | null
+          created_at: string
+          id: string
+          max_score: number | null
+          organization_id: string
+          response_text: string
+          score: number | null
+          status: string
+          student_user_id: string
+          submitted_at: string | null
+          teacher_feedback: string | null
+          updated_at: string
+        }
+        Insert: {
+          assignment_id: string
+          content_item_id: string
+          content_version_id?: string | null
+          created_at?: string
+          id?: string
+          max_score?: number | null
+          organization_id: string
+          response_text?: string
+          score?: number | null
+          status?: string
+          student_user_id: string
+          submitted_at?: string | null
+          teacher_feedback?: string | null
+          updated_at?: string
+        }
+        Update: {
+          assignment_id?: string
+          content_item_id?: string
+          content_version_id?: string | null
+          created_at?: string
+          id?: string
+          max_score?: number | null
+          organization_id?: string
+          response_text?: string
+          score?: number | null
+          status?: string
+          student_user_id?: string
+          submitted_at?: string | null
+          teacher_feedback?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_content_responses_assignment_id_fkey"
+            columns: ["assignment_id"]
+            isOneToOne: false
+            referencedRelation: "learning_assignments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_content_responses_content_item_id_fkey"
+            columns: ["content_item_id"]
+            isOneToOne: false
+            referencedRelation: "learning_content_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_content_responses_content_version_id_fkey"
+            columns: ["content_version_id"]
+            isOneToOne: false
+            referencedRelation: "learning_content_versions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_content_responses_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_content_responses_student_user_id_fkey"
+            columns: ["student_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       learning_content_versions: {
         Row: {
           body: Json
