@@ -7,7 +7,6 @@ import { useAuth } from "@/core/auth";
 import { learningRuntimeService } from "@/features/learning-runtime";
 import { learningAssignmentsService } from "@/features/learning-assignments";
 import type { LearningAssignmentProgress } from "@/features/learning-assignments";
-import { LearningNavigation } from "../components/LearningNavigation";
 
 function formatDate(value: string | null) {
   if (!value) return "No due date";
@@ -67,7 +66,6 @@ export default function LearningDashboardPage() {
   const dueAssignments = overview.assignments.filter((a) => a.status === "published").slice(0, 5);
 
   return <div className="space-y-6">
-    <LearningNavigation />
     <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
       <PortalLink to="/learning/assignments" icon={<BookOpen size={20} />} title="Assignments" text="Open assigned work, continue activities, and submit work." />
       <PortalLink to="/learning/progress" icon={<TrendingUp size={20} />} title="My Progress" text="Review scores, mastery, completed work, and growth." />
