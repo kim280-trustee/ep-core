@@ -128,7 +128,7 @@ export const learningContentRepository: LearningContentRepository = {
     return mapContentItem(data);
   },
   async getStudentResponse(assignmentId,contentItemId,studentUserId){
-    const {data,error}=await supabase.from("learning_content_responses" as never).select("*").eq("assignment_id",assignmentId).eq("content_item_id",contentItemId).eq("student_user_id",studentUserId).maybeSingle();
+    const {data,error}=await supabase.from("learning_content_responses").select("*").eq("assignment_id",assignmentId).eq("content_item_id",contentItemId).eq("student_user_id",studentUserId).maybeSingle();
     if(error)throw error;
     if(!data)return null;
     const r=data as any;
