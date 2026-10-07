@@ -49,7 +49,7 @@ export default function TeacherDashboardPage() {
         {classes.length ? (
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {classes.map((item) => (
-              <article key={item.classGroup.id} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <article key={item.classGroup.id} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm shadow-sm">
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">{item.classGroup.code}</p>
@@ -111,7 +111,7 @@ export default function TeacherDashboardPage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">Pilot Testing</p>
@@ -149,7 +149,7 @@ function DashboardTool({
   action: string;
 }) {
   return (
-    <Link to={to} className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-slate-300 hover:shadow-md">
+    <Link to={to} className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm shadow-sm transition hover:border-slate-300 hover:shadow-md">
       <div className="flex items-start justify-between gap-3">
         <div className="rounded-xl bg-slate-100 p-2.5 text-slate-700">
           <Icon size={20} />
