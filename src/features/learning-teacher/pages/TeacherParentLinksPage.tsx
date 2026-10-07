@@ -70,26 +70,26 @@ export default function TeacherParentLinksPage() {
       <p className="mt-2 max-w-2xl text-sm text-slate-300">Connect a parent account to a student. Parents only see academic information for children explicitly linked to their account.</p>
     </section>
 
-    <section className="rounded-2xl border border-slate-200 bg-white p-5">
+    <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
       <div className="flex items-center gap-2"><Mail size={18}/><h2 className="text-lg font-semibold">Invite a parent</h2></div>
       <p className="mt-1 text-sm text-slate-500">Send a secure Supabase invitation to a new parent account. The parent is linked to the selected student after accepting.</p>
       <div className="mt-4 grid gap-4 md:grid-cols-4">
         <label className="text-sm"><span className="mb-1 block font-medium">Parent email</span><input type="email" value={inviteEmail} onChange={e=>setInviteEmail(e.target.value)} className="w-full rounded-xl border border-slate-300 px-3 py-2" placeholder="parent@example.com"/></label>
         <label className="text-sm"><span className="mb-1 block font-medium">Parent name</span><input value={inviteName} onChange={e=>setInviteName(e.target.value)} className="w-full rounded-xl border border-slate-300 px-3 py-2" placeholder="Parent name"/></label>
         <label className="text-sm"><span className="mb-1 block font-medium">Student</span><select value={inviteStudentId} onChange={e=>setInviteStudentId(e.target.value)} className="w-full rounded-xl border border-slate-300 px-3 py-2"><option value="">Select student</option>{students.map(x=><option key={x.membership.userId} value={x.membership.userId}>{x.name} · {x.email}</option>)}</select></label>
-        <div className="flex items-end"><button disabled={!inviteEmail.trim()||!inviteStudentId||inviteMutation.isPending} onClick={()=>inviteMutation.mutate()} className="w-full rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white disabled:opacity-40">{inviteMutation.isPending?"Sending...":"Send invitation"}</button></div>
+        <div className="flex items-end"><button disabled={!inviteEmail.trim()||!inviteStudentId||inviteMutation.isPending} onClick={()=>inviteMutation.mutate()} className="w-full rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 disabled:opacity-40">{inviteMutation.isPending?"Sending...":"Send invitation"}</button></div>
       </div>
       {inviteMutation.isSuccess&&<p className="mt-3 text-sm text-emerald-700">Invitation sent. The parent can use the email link to finish account setup.</p>}
     </section>
 
-    <section className="rounded-2xl border border-slate-200 bg-white p-5">
+    <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
       <div className="flex items-center gap-2"><Link2 size={18}/><h2 className="text-lg font-semibold">Link a parent</h2></div>
       <p className="mt-1 text-sm text-slate-500">The parent must already have an E&P Learning user account. Account creation/invitation should remain an authenticated admin action.</p>
       {error&&<div className="mt-4 rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-800">{error}</div>}
       <div className="mt-4 grid gap-4 md:grid-cols-3">
         <label className="text-sm"><span className="mb-1 block font-medium">Parent account</span><select value={parentUserId} onChange={e=>setParentUserId(e.target.value)} className="w-full rounded-xl border border-slate-300 px-3 py-2"><option value="">Select parent</option>{parentCandidates.map(x=><option key={x.id} value={x.id}>{x.name} · {x.email}</option>)}</select></label>
         <label className="text-sm"><span className="mb-1 block font-medium">Student</span><select value={studentUserId} onChange={e=>setStudentUserId(e.target.value)} className="w-full rounded-xl border border-slate-300 px-3 py-2"><option value="">Select student</option>{students.map(x=><option key={x.membership.userId} value={x.membership.userId}>{x.name} · {x.email}</option>)}</select></label>
-        <label className="text-sm"><span className="mb-1 block font-medium">Relationship</span><input value={relationship} onChange={e=>setRelationship(e.target.value)} className="w-full rounded-xl border border-slate-300 px-3 py-2" placeholder="parent"/><button disabled={!canSave} onClick={()=>saveMutation.mutate()} className="mt-3 rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-40">{saveMutation.isPending?"Saving...":"Link parent"}</button></label>
+        <label className="text-sm"><span className="mb-1 block font-medium">Relationship</span><input value={relationship} onChange={e=>setRelationship(e.target.value)} className="w-full rounded-xl border border-slate-300 px-3 py-2" placeholder="parent"/><button disabled={!canSave} onClick={()=>saveMutation.mutate()} className="mt-3 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-40">{saveMutation.isPending?"Saving...":"Link parent"}</button></label>
       </div>
     </section>
 
