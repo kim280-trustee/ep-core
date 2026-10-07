@@ -72,7 +72,7 @@ export default function LearningContentRuntimePage() {
       }
 
       const versions = await learningContentService.listContentVersions(content);
-      const publishedVersion = versions.find((version) => version.status === "published") ?? versions[0];
+      const publishedVersion = versions.find((version) => version.status === "published");
       if (!publishedVersion) throw new Error("This learning content has no available version.");
 
       return {
