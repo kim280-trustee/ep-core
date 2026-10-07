@@ -125,5 +125,5 @@ export default function TeacherAuthoringPage() {
     <p className="text-xs text-slate-400">The academic catalog currently contains {skills.data?.length??0} skills, {topics.data?.length??0} topics, and {objectives.data?.length??0} learning objectives.</p>
   </div>;
 }
-function Panel({title,icon,children}:{title:string;icon?:ReactNode;children:ReactNode}){return <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"><h2 className="flex items-center gap-2 font-semibold text-slate-900">{icon}{title}</h2><div className="mt-4">{children}</div></section>}
+function Panel({title,icon,children}:{title:string;icon?:ReactNode;children:ReactNode}){return <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm shadow-sm"><h2 className="flex items-center gap-2 font-semibold text-slate-900">{icon}{title}</h2><div className="mt-4">{children}</div></section>}
 function Field({label,children}:{label:string;children:ReactNode}){return <label className="block space-y-2"><span className="text-sm font-medium text-slate-700">{label}</span>{children}</label>}
