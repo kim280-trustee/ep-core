@@ -182,7 +182,7 @@ export default function QuestionBankPage() {
           <h1 className="mt-2 text-2xl font-bold text-slate-900">Question Bank</h1>
           <p className="mt-1 text-sm text-slate-500">Create reusable, versioned questions with secure answer keys.</p>
         </div>
-        <button type="button" onClick={resetForm} className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold"><Plus size={16} /> New question</button>
+        <button type="button" onClick={resetForm} className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800"><Plus size={16} /> New question</button>
       </div>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5">
@@ -197,9 +197,9 @@ export default function QuestionBankPage() {
 
       {message && <div className="rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-700">{message}</div>}
 
-      <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr]">
+      <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
         <section className="rounded-2xl border border-slate-200 bg-white p-5">
-          <div className="flex items-center justify-between gap-3"><h2 className="flex items-center gap-2 font-semibold"><FileQuestion size={18} /> Question library</h2><span className="text-xs text-slate-500">{filteredQuestions.length} shown</span></div>
+          <div className="flex items-start justify-between gap-3"><div><h2 className="flex items-center gap-2 font-semibold text-slate-900"><FileQuestion size={18} /> Question library</h2><p className="mt-1 text-xs text-slate-500">Find a question or prepare a new version.</p></div><span className="text-xs text-slate-500">{filteredQuestions.length} shown</span></div>
           <div className="mt-4 grid gap-2 sm:grid-cols-[1fr_auto_auto]">
             <label className="relative"><Search size={16} className="absolute left-3 top-2.5 text-slate-400" /><input value={search} onChange={(e) => setSearch(e.target.value)} className="w-full rounded-xl border border-slate-300 py-2 pl-9 pr-3 text-sm" placeholder="Search code or type" /></label>
             <select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} className="rounded-xl border border-slate-300 px-3 py-2 text-sm"><option value="">All types</option>{teacherTypes.map((type) => <option key={type.value} value={type.value}>{type.label}</option>)}</select>
@@ -228,9 +228,9 @@ export default function QuestionBankPage() {
 
             {questionType === "single_choice" && (
               <div className="space-y-3">
-                <div className="flex items-center justify-between"><span className="text-sm font-medium text-slate-700">Answer options</span><button type="button" onClick={addChoice} className="text-xs font-semibold">Add option</button></div>
+                <div className="flex items-center justify-between"><div><span className="text-sm font-medium text-slate-700">Answer options</span><p className="mt-0.5 text-xs text-slate-500">Choose the correct answer using the radio button.</p></div><button type="button" onClick={addChoice} className="inline-flex items-center gap-1 rounded-lg border border-slate-200 px-2.5 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"><Plus size={14} /> Add option</button></div>
                 {choices.map((choice, index) => <div key={choice.key} className="flex items-center gap-2"><input type="radio" name="correct-option" checked={correctOption === choice.key} onChange={() => setCorrectOption(choice.key)} /><span className="w-5 text-sm font-semibold">{choice.key.toUpperCase()}</span><input value={choice.label} onChange={(e) => updateChoice(index, e.target.value)} className="input flex-1" placeholder="Answer option" /><button type="button" onClick={() => removeChoice(index)} className="rounded-lg p-2 text-slate-400 hover:bg-slate-50"><X size={16} /></button></div>)}
-                <p className="text-xs text-slate-500">Select the radio button beside the correct answer.</p>
+                
               </div>
             )}
 
@@ -241,7 +241,7 @@ export default function QuestionBankPage() {
             <Field label="Learning objective"><select value={objectiveId} onChange={(e) => setObjectiveId(e.target.value)} className="input"><option value="">Select objective</option>{objectives.data?.map((objective) => <option key={objective.id} value={objective.id}>{objective.code} — {objective.name}</option>)}</select></Field>
             <Field label="Explanation (optional)"><textarea value={explanation} onChange={(e) => setExplanation(e.target.value)} rows={3} className="input" placeholder="Explain the answer after submission..." /></Field>
 
-            <button type="button" disabled={!organizationId || createMutation.isPending} onClick={() => createMutation.mutate()} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50"><Sparkles size={16} />{createMutation.isPending ? "Saving..." : editingQuestionId ? "Save new version" : "Save draft"}</button>
+            <div className="flex items-center justify-between gap-3 border-t border-slate-100 pt-4"><p className="text-xs text-slate-500">Save as a draft, then publish when it is ready.</p><button type="button" disabled={!organizationId || createMutation.isPending} onClick={() => createMutation.mutate()} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 disabled:opacity-50"><Sparkles size={16} />{createMutation.isPending ? "Saving..." : editingQuestionId ? "Save new version" : "Save draft"}</button></div>
           </div>
         </section>
       </div>
