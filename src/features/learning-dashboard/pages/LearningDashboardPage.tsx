@@ -66,13 +66,7 @@ export default function LearningDashboardPage() {
   const dueAssignments = overview.assignments.filter((a) => a.status === "published").slice(0, 5);
 
   return <div className="space-y-6">
-    <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-      <PortalLink to="/learning/assignments" icon={<BookOpen size={20} />} title="Assignments" text="Open assigned work, continue activities, and submit work." />
-      <PortalLink to="/learning/progress" icon={<TrendingUp size={20} />} title="My Progress" text="Review scores, mastery, completed work, and growth." />
-      <PortalLink to="/learning/recommendations" icon={<Target size={20} />} title="Recommendations" text="See the next activities selected from your learning history." />
-      <PortalLink to="/learning" icon={<LayoutDashboard size={20} />} title="Dashboard" text="Return to your learning overview at any time." />
-    </section>
-    <section className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8"><p className="text-sm font-medium text-slate-300">Student Learning</p><h1 className="mt-1 text-2xl font-bold sm:text-3xl">Welcome back, {user.name || "Student"}</h1><p className="mt-2 max-w-2xl text-sm text-slate-300">Continue your learning, review your progress, and see what should come next.</p></section>
+    <section className="rounded-2xl bg-slate-900 p-6 text-white shadow-sm sm:p-8"><div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between"><div><p className="text-sm font-medium text-slate-300">Student Learning</p><h1 className="mt-1 text-2xl font-bold sm:text-3xl">Welcome back, {user.name || "Student"}</h1><p className="mt-2 max-w-2xl text-sm text-slate-300">Continue your learning, review your progress, and see what should come next.</p></div>{continueItems.length > 0 && <Link to={`/learning/assignments/${continueItems[0].assignment.id}`} className="inline-flex w-fit items-center rounded-lg bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100">Continue learning</Link>}</div></section>
     <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       <Stat icon={<Target size={19} />} label="Mastery" value={averageMastery + "%"} detail={overview.mastery.length + " objectives"} />
       <Stat icon={<BookOpen size={19} />} label="Assignments" value={String(overview.assignments.length)} detail={inProgress.length + " in progress"} />
@@ -99,10 +93,10 @@ export default function LearningDashboardPage() {
 }
 
 function Stat({ icon, label, value, detail }: { icon: ReactNode; label: string; value: string; detail: string }) {
-  return <div className="rounded-2xl border border-slate-200 bg-white p-5"><div className="flex items-center gap-2 text-slate-500">{icon}<span className="text-sm font-medium">{label}</span></div><p className="mt-3 text-2xl font-bold text-slate-900">{value}</p><p className="mt-1 text-xs text-slate-500">{detail}</p></div>;
+  return <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"><div className="flex items-center gap-2 text-slate-500">{icon}<span className="text-sm font-medium">{label}</span></div><p className="mt-3 text-2xl font-bold text-slate-900">{value}</p><p className="mt-1 text-xs text-slate-500">{detail}</p></div>;
 }
 function DashboardCard({ title, icon, children }: { title: string; icon: ReactNode; children: ReactNode }) {
-  return <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6"><div className="mb-5 flex items-center gap-2 text-slate-900"><span className="text-slate-500">{icon}</span><h2 className="text-lg font-semibold">{title}</h2></div>{children}</section>;
+  return <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"><div className="mb-5 flex items-center gap-2 text-slate-900"><span className="text-slate-500">{icon}</span><h2 className="text-lg font-semibold">{title}</h2></div>{children}</section>;
 }
 function PortalLink({ to, icon, title, text }: { to: string; icon: ReactNode; title: string; text: string }) {
   return (
