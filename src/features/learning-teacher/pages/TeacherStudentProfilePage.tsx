@@ -136,7 +136,7 @@ export default function TeacherStudentProfilePage() {
         <Stat icon={<CheckCircle2 size={18} />} label="Current scored subjects" value={currentGrades.filter((row) => row.grade).length} />
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5">
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <label className="text-sm font-medium text-slate-700">Term
           <select value={termId} onChange={(event) => setSelectedTermId(event.target.value)} className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 font-normal text-slate-900">
             {(termsQuery.data ?? []).map((term) => <option key={term.id} value={term.id}>{term.name}</option>)}
@@ -144,7 +144,7 @@ export default function TeacherStudentProfilePage() {
         </label>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5">
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <h2 className="font-semibold text-slate-900">Current term subjects</h2>
         <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {currentGrades.map((row) => (
@@ -157,7 +157,7 @@ export default function TeacherStudentProfilePage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5">
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <h2 className="font-semibold text-slate-900">Assignment completion</h2>
         <div className="mt-4 space-y-3">
           {studentAssignments.length ? studentAssignments.map((item) => (
@@ -169,7 +169,7 @@ export default function TeacherStudentProfilePage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5">
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <h2 className="font-semibold text-slate-900">Topic mastery</h2>
         <p className="mt-1 text-sm text-slate-500">Objectives are ordered from lowest to highest mastery so areas needing support are visible first.</p>
         <div className="mt-4 space-y-3">
@@ -185,7 +185,7 @@ export default function TeacherStudentProfilePage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5">
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <div className="flex items-center gap-2"><Lock size={17} /><h2 className="font-semibold text-slate-900">Historical term grades</h2></div>
         <div className="mt-4 overflow-x-auto">
           {historyRows.length ? <table className="min-w-full text-left text-sm"><thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-4 py-3">Term</th><th className="px-4 py-3">Subject</th><th className="px-4 py-3">Score</th><th className="px-4 py-3">Status</th></tr></thead><tbody className="divide-y divide-slate-100">{historyRows.map((row) => <tr key={row.key}><td className="px-4 py-3">{row.term}</td><td className="px-4 py-3 font-medium">{row.subject}</td><td className="px-4 py-3">{row.grade?.score.toFixed(2)}%</td><td className="px-4 py-3">{row.grade?.status}</td></tr>)}</tbody></table> : <p className="text-sm text-slate-500">No historical term grades have been recorded.</p>}
@@ -198,6 +198,6 @@ export default function TeacherStudentProfilePage() {
 }
 
 function Stat({ icon, label, value }: { icon: React.ReactNode; label: string; value: number }) {
-  return <div className="rounded-2xl border border-slate-200 bg-white p-5"><div className="flex items-center gap-2 text-slate-500">{icon}<span className="text-sm">{label}</span></div><p className="mt-2 text-2xl font-bold text-slate-900">{value}</p></div>;
+  return <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"><div className="flex items-center gap-2 text-slate-500">{icon}<span className="text-sm">{label}</span></div><p className="mt-2 text-2xl font-bold text-slate-900">{value}</p></div>;
 }
 function State({ text }: { text: string }) { return <div className="rounded-2xl border border-slate-200 bg-white p-8 text-sm text-slate-600">{text}</div>; }
