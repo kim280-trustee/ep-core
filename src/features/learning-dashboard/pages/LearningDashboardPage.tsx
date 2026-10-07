@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { LayoutDashboard } from "lucide-react";
 import { AlertCircle, BookOpen, CheckCircle2, Clock3, Target, TrendingUp } from "lucide-react";
 import { useAuth } from "@/core/auth";
 import { learningRuntimeService } from "@/features/learning-runtime";
@@ -97,18 +96,6 @@ function Stat({ icon, label, value, detail }: { icon: ReactNode; label: string; 
 }
 function DashboardCard({ title, icon, children }: { title: string; icon: ReactNode; children: ReactNode }) {
   return <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"><div className="mb-5 flex items-center gap-2 text-slate-900"><span className="text-slate-500">{icon}</span><h2 className="text-lg font-semibold">{title}</h2></div>{children}</section>;
-}
-function PortalLink({ to, icon, title, text }: { to: string; icon: ReactNode; title: string; text: string }) {
-  return (
-    <Link to={to} className="group rounded-2xl border border-slate-200 bg-white p-5 transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-sm">
-      <div className="flex items-center gap-3 text-slate-900">
-        <span className="rounded-xl bg-slate-100 p-2 text-slate-700">{icon}</span>
-        <h2 className="font-semibold">{title}</h2>
-      </div>
-      <p className="mt-3 text-sm leading-5 text-slate-500">{text}</p>
-      <span className="mt-4 inline-flex text-xs font-semibold text-slate-700 group-hover:underline">Open</span>
-    </Link>
-  );
 }
 function EmptyState({ text }: { text: string }) { return <div className="rounded-xl bg-slate-50 p-5 text-sm text-slate-500">{text}</div>; }
 
