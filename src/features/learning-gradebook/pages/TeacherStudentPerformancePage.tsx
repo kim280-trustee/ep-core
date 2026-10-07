@@ -102,7 +102,7 @@ export default function TeacherStudentPerformancePage() {
         <p className="mt-1 text-sm text-slate-300">{student.email}</p>
         <p className="mt-3 text-sm text-slate-300">{classQuery.data?.classInfo.classGroup.name}</p>
       </section>
-      <section className="rounded-2xl border border-slate-200 bg-white p-5">
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <label className="text-sm font-medium text-slate-700">Term
           <select value={termId} onChange={(event) => setSelectedTermId(event.target.value)} className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 font-normal text-slate-900">
             {(termsQuery.data ?? []).map((term) => <option key={term.id} value={term.id}>{term.name}</option>)}
@@ -110,7 +110,7 @@ export default function TeacherStudentPerformancePage() {
         </label>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5">
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <h2 className="font-semibold text-slate-900">Subject performance</h2>
         <p className="mt-1 text-sm text-slate-500">Term grades across the subjects assigned to this class.</p>
         <div className="mt-4 overflow-x-auto">
@@ -123,7 +123,7 @@ export default function TeacherStudentPerformancePage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5">
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <h2 className="font-semibold text-slate-900">Topic performance</h2>
         <p className="mt-1 text-sm text-slate-500">Only included grade records are counted; historical attempts remain preserved separately.</p>
         {allLoading ? <div className="mt-4 h-24 animate-pulse rounded-xl bg-slate-100" /> : topicRows.length ? (
@@ -131,7 +131,7 @@ export default function TeacherStudentPerformancePage() {
         ) : <p className="mt-4 text-sm text-slate-500">No topic-linked scores have been recorded for this term.</p>}
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5">
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <h2 className="font-semibold text-slate-900">Category performance</h2>
         <p className="mt-1 text-sm text-slate-500">Included scores grouped by the configured gradebook categories.</p>
         <div className="mt-4 overflow-x-auto">
@@ -144,7 +144,7 @@ export default function TeacherStudentPerformancePage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5">
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <h2 className="font-semibold text-slate-900">Assessment & category breakdown</h2>
         <p className="mt-1 text-sm text-slate-500">Included records only; excluded attempts are retained for audit history.</p>
         <div className="mt-4 overflow-x-auto">
@@ -157,7 +157,7 @@ export default function TeacherStudentPerformancePage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5">
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <div className="flex items-center gap-2"><Lock size={17} /><h2 className="font-semibold text-slate-900">Historical term grades</h2></div>
         <p className="mt-1 text-sm text-slate-500">Finalized grades are snapshots and are not silently overwritten by later calculations.</p>
         <div className="mt-4 space-y-2">{grades.length ? grades.map((grade) => <div key={grade.id} className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 p-4"><div><p className="font-medium">{subjectMap.get(grade.classSubjectId) ?? "Subject"}</p><p className="text-xs text-slate-500">{grade.finalizedAt ? "Finalized " + new Date(grade.finalizedAt).toLocaleString() : "Draft"}</p></div><p className="font-semibold">{grade.score.toFixed(2)}% · {grade.status}</p></div>) : <p className="text-sm text-slate-500">No term-grade snapshots yet.</p>}</div>
