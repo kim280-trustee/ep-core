@@ -96,7 +96,7 @@ export default function LearningProgressPage() {
         />
       </div>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">Assignment progress</h2>
         <p className="mt-1 text-sm text-slate-500">Your assigned learning activities and completion status.</p>
         <div className="mt-4 divide-y divide-slate-100">
@@ -238,7 +238,7 @@ function Metric({
   icon: ReactNode;
 }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5">
+    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
       <div className="flex items-center gap-2 text-slate-500">
         {icon}
         <span className="text-sm font-medium">{label}</span>
