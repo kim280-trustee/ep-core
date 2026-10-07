@@ -1,16 +1,31 @@
-import { BookOpen, FileQuestion, FileText, LayoutDashboard, LogOut, PlusCircle } from "lucide-react";
+import { BookOpen, ClipboardList, FileQuestion, FileText, LayoutDashboard, LogOut, PlusCircle } from "lucide-react";
 import { Navigate, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ProtectedRoute, useAuth } from "@/core/auth";
 import { learningTeacherService } from "../services/learning-teacher.service";
 
-const items = [
-  { to: "/teacher", label: "Dashboard", icon: LayoutDashboard, end: true },
-  { to: "/teacher/assignments/new", label: "Create Assignment", icon: PlusCircle },
-  { to: "/teacher/content", label: "Content Library", icon: FileText },
-  { to: "/teacher/authoring", label: "Authoring", icon: BookOpen },
-  { to: "/teacher/question-bank", label: "Question Bank", icon: FileQuestion },
+const navigationGroups = [
+  {
+    label: null,
+    items: [
+      { to: "/teacher", label: "Dashboard", icon: LayoutDashboard, end: true },
+    ],
+  },
+  {
+    label: "Teaching",
+    items: [
+      { to: "/teacher/content", label: "Content Library", icon: FileText },
+      { to: "/teacher/authoring", label: "Authoring", icon: BookOpen },
+      { to: "/teacher/question-bank", label: "Question Bank", icon: FileQuestion },
+    ],
+  },
+  {
+    label: "Assignments",
+    items: [
+      { to: "/teacher/assignments/new", label: "Create Assignment", icon: PlusCircle },
+    ],
+  },
 ];
 
 export default function TeacherLayout() {
@@ -58,29 +73,72 @@ export default function TeacherLayout() {
               <p className="text-lg font-bold text-slate-950">E&P Learning</p>
               <p className="mt-1 text-xs text-slate-500">Teacher Workspace</p>
             </div>
-            <nav className="mt-6 space-y-1" aria-label="Teacher portal navigation">
-              {items.map(({to,label,icon:Icon,end}) => <NavLink key={to} to={to} end={end} className={({isActive}) => linkClass(isActive)}><Icon size={18}/>{label}</NavLink>)}
+
+            <nav className="mt-6 space-y-5" aria-label="Teacher portal navigation">
+              {navigationGroups.map((group) => (
+                <div key={group.label ?? "dashboard"}>
+                  {group.label && <p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">{group.label}</p>}
+                  <div className={group.label ? "mt-2 space-y-1" : "space-y-1"}>
+                    {group.items.map(({ to, label, icon: Icon, end }) => (
+                      <NavLink key={to} to={to} end={end} className={({ isActive }) => linkClass(isActive)}>
+                        <Icon size={18} />
+                        {label}
+                      </NavLink>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </nav>
-            <div className="mt-6 border-t border-slate-200 pt-4"><p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">Academic</p><div className="mt-2 space-y-1">{classLinks.map(item => <NavLink key={item.to} to={item.to} className={({isActive}) => linkClass(isActive)}>{item.label}</NavLink>)}</div></div><div className="mt-6 border-t border-slate-200 pt-4">
-              <p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">My Classes</p>
+
+            <div className="mt-6 border-t border-slate-200 pt-4">
+              <p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">Academic</p>
               <div className="mt-2 space-y-1">
-                {teacherAccess.data.slice(0, 8).map(cls => <NavLink key={cls.classGroup.id} to={"/teacher/classes/"+cls.classGroup.id} className={({isActive}) => linkClass(isActive)}>{cls.classGroup.name}</NavLink>)}
+                {classLinks.map(item => (
+                  <NavLink key={item.to} to={item.to} className={({ isActive }) => linkClass(isActive)}>
+                    {item.label}
+                  </NavLink>
+                ))}
               </div>
             </div>
+
+            <div className="mt-6 border-t border-slate-200 pt-4">
+              <p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">My Classes</p>
+              <div className="mt-2 space-y-1">
+                {teacherAccess.data.slice(0, 8).map(cls => (
+                  <NavLink key={cls.classGroup.id} to={"/teacher/classes/"+cls.classGroup.id} className={({ isActive }) => linkClass(isActive)}>
+                    {cls.classGroup.name}
+                  </NavLink>
+                ))}
+              </div>
+            </div>
+
             <div className="mt-auto border-t border-slate-200 pt-4">
               <p className="truncate px-3 text-xs text-slate-500">{user.email || ""}</p>
-              <button type="button" onClick={() => void handleLogout()} disabled={loggingOut} className="mt-3 inline-flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-100 disabled:opacity-50"><LogOut size={18}/>{loggingOut ? "Signing out..." : "Logout"}</button>
+              <button type="button" onClick={() => void handleLogout()} disabled={loggingOut} className="mt-3 inline-flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-100 disabled:opacity-50">
+                <LogOut size={18}/>
+                {loggingOut ? "Signing out..." : "Logout"}
+              </button>
             </div>
           </aside>
 
           <main className="min-w-0 flex-1">
             <div className="border-b border-slate-200 bg-white px-4 py-3 lg:hidden">
               <div className="flex items-center justify-between gap-3">
-                <div><p className="font-bold text-slate-950">E&P Learning</p><p className="text-xs text-slate-500">Teacher Workspace</p></div>
-                <button type="button" onClick={() => void handleLogout()} disabled={loggingOut} className="rounded-xl border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-600 disabled:opacity-50">{loggingOut ? "Signing out..." : "Logout"}</button>
+                <div>
+                  <p className="font-bold text-slate-950">E&P Learning</p>
+                  <p className="text-xs text-slate-500">Teacher Workspace</p>
+                </div>
+                <button type="button" onClick={() => void handleLogout()} disabled={loggingOut} className="rounded-xl border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-600 disabled:opacity-50">
+                  {loggingOut ? "Signing out..." : "Logout"}
+                </button>
               </div>
               <nav className="mt-3 flex gap-2 overflow-x-auto pb-1" aria-label="Teacher mobile navigation">
-                {items.map(({to,label,icon:Icon,end}) => <NavLink key={to} to={to} end={end} className={({isActive}) => "inline-flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold "+(isActive ? "bg-slate-900 text-white" : "text-slate-600 ring-1 ring-inset ring-slate-200")}><Icon size={16}/>{label}</NavLink>)}
+                {navigationGroups.flatMap(group => group.items).map(({ to, label, icon: Icon, end }) => (
+                  <NavLink key={to} to={to} end={end} className={({ isActive }) => "inline-flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold "+(isActive ? "bg-slate-900 text-white" : "text-slate-600 ring-1 ring-inset ring-slate-200")}>
+                    <Icon size={16}/>
+                    {label}
+                  </NavLink>
+                ))}
               </nav>
             </div>
             <div className="p-4 sm:p-6 lg:p-8"><Outlet /></div>
