@@ -9,6 +9,7 @@ export const learningGradebookService={
  updateCategory:(input:Parameters<typeof learningGradebookRepository.updateCategory>[0])=>learningGradebookRepository.updateCategory(input),
  createEntry:(input:Parameters<typeof learningGradebookRepository.createEntry>[0])=>learningGradebookRepository.createEntry(input),
  updateManualEntry:(input:Parameters<typeof learningGradebookRepository.updateManualEntry>[0])=>learningGradebookRepository.updateManualEntry(input),
+ setEntryIncludedInGrade:(entryId:string,includedInGrade:boolean,updatedBy:string)=>learningGradebookRepository.setEntryIncludedInGrade(entryId,includedInGrade,updatedBy),
  deleteManualEntry:(entryId:string,reason?:string)=>learningGradebookRepository.deleteManualEntry(entryId,reason),
  reopenTermGrade:(input:Parameters<typeof learningGradebookRepository.reopenTermGrade>[0])=>learningGradebookRepository.reopenTermGrade(input),
  overrideTermGrade:(input:Parameters<typeof learningGradebookRepository.overrideTermGrade>[0])=>learningGradebookRepository.overrideTermGrade(input),
