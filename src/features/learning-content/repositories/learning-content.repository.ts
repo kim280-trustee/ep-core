@@ -45,6 +45,8 @@ export interface LearningContentRepository {
   listPrerequisites(objectiveId: string): Promise<LearningObjectivePrerequisite[]>;
   listAlignments(objectiveId?: string, curriculumId?: string, gradeLevelId?: string): Promise<LearningObjectiveAlignment[]>;
   listContent(organizationId?: string): Promise<LearningContentItem[]>;
+  getContent(id: string, organizationId?: string): Promise<LearningContentItem>;
+  deleteContent(id: string): Promise<void>;
   listContentVersions(contentItemId: string): Promise<LearningContentVersion[]>;
   listContentObjectives(contentItemId: string): Promise<LearningContentObjective[]>;
   createContent(input: { organizationId: string; code: string; title: string; contentType: LearningContentType; languageCode: string; createdBy: string }): Promise<LearningContentItem>;
@@ -93,6 +95,8 @@ export const learningContentRepository: LearningContentRepository = {
   async listPrerequisites(objectiveId){const{data,error}=await supabase.from("learning_objective_prerequisites").select("*").eq("objective_id",objectiveId);if(error)throw error;return(data??[]).map(mapPrerequisite);},
   async listAlignments(objectiveId,curriculumId,gradeLevelId){let q=supabase.from("learning_objective_alignments").select("*").order("sequence_no");if(objectiveId)q=q.eq("objective_id",objectiveId);if(curriculumId)q=q.eq("curriculum_id",curriculumId);if(gradeLevelId)q=q.eq("grade_level_id",gradeLevelId);const{data,error}=await q;if(error)throw error;return(data??[]).map(mapAlignment);},
   async listContent(organizationId){let q=supabase.from("learning_content_items").select("*").order("updated_at",{ascending:false});if(organizationId)q=q.eq("organization_id",organizationId);const{data,error}=await q;if(error)throw error;return(data??[]).map(mapContentItem);},
+  async getContent(id,organizationId){let q=supabase.from("learning_content_items").select("*").eq("id",id);if(organizationId)q=q.eq("organization_id",organizationId);const{data,error}=await q.maybeSingle();if(error)throw error;if(!data)throw new Error("Content item not found.");return mapContentItem(data);},
+  async deleteContent(id){const{error}=await supabase.from("learning_content_items").delete().eq("id",id);if(error)throw error;},
   async listContentVersions(contentItemId){const{data,error}=await supabase.from("learning_content_versions").select("*").eq("content_item_id",contentItemId).order("version_no",{ascending:false});if(error)throw error;return(data??[]).map(mapContentVersion);},
   async listContentObjectives(contentItemId){const{data,error}=await supabase.from("learning_content_objectives").select("*").eq("content_item_id",contentItemId).order("sequence_no");if(error)throw error;return(data??[]).map(mapContentObjective);},
   async createContent(input){const{data,error}=await supabase.from("learning_content_items").insert({organization_id:input.organizationId,code:input.code,title:input.title,content_type:input.contentType,language_code:input.languageCode,created_by:input.createdBy}).select("*").single();if(error)throw error;return mapContentItem(data);},
