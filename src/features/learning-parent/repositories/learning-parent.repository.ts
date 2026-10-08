@@ -1,4 +1,4 @@
-import { supabase } from "@/core/infrastructure/supabase/client";
+﻿import { supabase } from "@/core/infrastructure/supabase/client";
 import type { LearningParentOverview, LearningParentStudent, LearningParentStudentLink } from "../types/learning-parent.types";
 
 type GradeRow={class_subject_id:string;term_id:string;score:number|string;letter_grade:string|null;status:string;finalized_at:string|null};
@@ -64,7 +64,7 @@ export const learningParentRepository={
     const recommendationRows=(recommendations??[]) as RecommendationRow[];
     const objectiveIds=[...new Set([...masteryRows.map(x=>x.objective_id),...recommendationRows.map(x=>x.objective_id).filter((x):x is string=>Boolean(x))])];
 
-    const[{data:classSubjects,error:classSubjectError},{data:terms,error:termError},{data:directTargets,error:directTargetError},{data:classTargets,error:classTargetError},{data:commentSubjects,error:commentSubjectsError},{data:objectives,error:objectivesError}]=await Promise.all([
+    const[{data:classSubjects,error:classSubjectError},{data:terms,error:termError},{data:directTargets,error:directTargetError},{data:classTargets,error:classTargetError},{data:commentSubjects,error:commentSubjectsError},{error:commentTermsError},{data:objectives,error:objectivesError}]=await Promise.all([
       subjectIds.length?supabase.from("learning_class_subjects").select("id,subject_id").in("id",subjectIds):Promise.resolve({data:[],error:null}),
       termIds.length?supabase.from("learning_terms").select("id,name").in("id",termIds):Promise.resolve({data:[],error:null}),
       supabase.from("learning_assignment_targets").select("assignment_id,student_user_id,class_group_id,status,due_at").eq("student_user_id",studentUserId).eq("status","active"),
@@ -73,7 +73,7 @@ export const learningParentRepository={
       commentTermIds.length?supabase.from("learning_terms").select("id,name").in("id",commentTermIds):Promise.resolve({data:[],error:null}),
       objectiveIds.length?supabase.from("learning_objectives").select("id,name,description").in("id",objectiveIds):Promise.resolve({data:[],error:null}),
     ]);
-    if(classSubjectError)throw classSubjectError;if(termError)throw termError;if(directTargetError)throw directTargetError;if(classTargetError)throw classTargetError;if(commentSubjectsError)throw commentSubjectsError;if(objectivesError)throw objectivesError;
+    if(classSubjectError)throw classSubjectError;if(termError)throw termError;if(directTargetError)throw directTargetError;if(classTargetError)throw classTargetError;if(commentSubjectsError)throw commentSubjectsError;if(commentTermsError)throw commentTermsError;if(objectivesError)throw objectivesError;
 
     const subjectRefs=[...(classSubjects??[]),...(commentSubjects??[])] as SubjectRef[];
     const uniqueSubjectIds=[...new Set(subjectRefs.map(x=>x.subject_id))];
