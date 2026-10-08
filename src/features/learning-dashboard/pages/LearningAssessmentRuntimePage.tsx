@@ -69,6 +69,7 @@ export default function LearningAssessmentRuntimePage() {
     ReturnType<typeof learningAssessmentService.submitAttempt>
   > | null>(null);
   const [started, setStarted] = useState(false);
+  const [sessionId, setSessionId] = useState<string | null>(null);
 
   const id = assignmentId ?? "";
   const assessment = assessmentId ?? "";
@@ -154,9 +155,9 @@ export default function LearningAssessmentRuntimePage() {
         throw new Error("Assessment information is unavailable.");
       }
 
-      const maxAttempts = assignmentQuery.data.assignment.maxAttempts ?? 1;
+      const maxAttempts = assignmentQuery.data.assignment.maxAttempts;
 
-      if (existingAttempts.length >= maxAttempts) {
+      if (maxAttempts !== null && existingAttempts.length >= maxAttempts) {
         throw new Error("You have reached the maximum number of attempts.");
       }
 
@@ -176,10 +177,25 @@ export default function LearningAssessmentRuntimePage() {
         previousAttemptId: previousAttempt?.id ?? null,
       });
 
-      return attempt;
+      const session = await learningActivityService.startForStudent(
+        user.id,
+        "assessment",
+        assessment,
+      );
+      await learningActivityService.logEvent({
+        tenantId: session.tenantId,
+        organizationId: session.organizationId,
+        studentUserId: user.id,
+        sessionId: session.id,
+        activityType: "assessment_started",
+        assessmentId: assessment,
+        assignmentId: id,
+      });
+      return { attempt, session };
     },
-    onSuccess: (attempt) => {
+    onSuccess: ({ attempt, session }) => {
       setAttemptId(attempt.id);
+      setSessionId(session.id);
       setStarted(true);
     },
   });
@@ -227,80 +243,26 @@ export default function LearningAssessmentRuntimePage() {
       return learningAssessmentService.submitAttempt(attemptId);
     },
     onSuccess: async (attempt) => {
-      const wasCompleted = assignmentQuery.data?.progress?.status === "completed";
       setSubmittedAttempt(attempt);
-
-      const session = await learningActivityService.startForStudent(
-        user!.id,
-        "assessment",
-        assessment,
-      );
-      await learningActivityService.logEvent({
-        tenantId: session.tenantId,
-        organizationId: session.organizationId,
-        studentUserId: user!.id,
-        sessionId: session.id,
-        activityType: "assessment_submitted",
-        assessmentId: assessment,
-        assignmentId: id,
-      });
-
-      const progress = await learningAssignmentsService.refreshProgressForStudent(
-        id,
-        user!.id,
-      );
-
-      if (!wasCompleted && progress.status === "completed") {
-        const assignmentSession = await learningActivityService.startForStudent(
-          user!.id,
-          "assignment",
-          id,
-        );
-        await learningActivityService.logEvent({
-          tenantId: assignmentSession.tenantId,
-          organizationId: assignmentSession.organizationId,
-          studentUserId: user!.id,
-          sessionId: assignmentSession.id,
-          activityType: "assignment_completed",
-          assignmentId: id,
-        });
+      if (sessionId && user?.id) {
+        const session = await learningActivityService.listSessions(user.id);
+        const activeSession = session.find((item) => item.id === sessionId);
+        if (activeSession) {
+          await learningActivityService.logEvent({
+            tenantId: activeSession.tenantId,
+            organizationId: activeSession.organizationId,
+            studentUserId: user.id,
+            sessionId: sessionId,
+            activityType: "assessment_submitted",
+            assessmentId: assessment,
+            assignmentId: id,
+          });
+        }
+        await learningActivityService.endSession(sessionId);
       }
-
-      const assessmentResults = await learningAssessmentService.listResults(
-        user!.id,
-      );
-      const submittedResult = assessmentResults.find(
-        (result) => result.attemptId === attempt.id,
-      );
-
-      if (submittedResult) {
-        queryClient.setQueryData(
-          ["learning", "assignment", id, user?.id],
-          (current: {
-            assessmentResults?: typeof assessmentResults;
-          } | undefined) =>
-            current
-              ? {
-                  ...current,
-                  assessmentResults: [
-                    submittedResult,
-                    ...(current.assessmentResults ?? []).filter(
-                      (result) => result.id !== submittedResult.id,
-                    ),
-                  ],
-                }
-              : current,
-        );
-      }
-
+      await learningAssignmentsService.completeIfReady(id, user!.id);
       await queryClient.invalidateQueries({
         queryKey: ["learning", "assessment-attempts", assessment, user?.id],
-      });
-      await queryClient.invalidateQueries({
-        queryKey: ["learning", "assignment", id, user?.id],
-      });
-      await queryClient.invalidateQueries({
-        queryKey: ["learning", "student-overview", user?.id],
       });
       await queryClient.invalidateQueries({
         queryKey: ["learning", "student-overview", user?.id],
@@ -376,8 +338,11 @@ export default function LearningAssessmentRuntimePage() {
   }
 
   const { assessment: currentAssessment, questions } = assessmentQuery.data;
-  const maxAttempts = assignmentQuery.data.assignment.maxAttempts ?? 1;
-  const attemptsRemaining = Math.max(maxAttempts - existingAttempts.length, 0);
+  const maxAttempts = assignmentQuery.data.assignment.maxAttempts;
+  const attemptsRemaining = maxAttempts === null ? null : Math.max(maxAttempts - existingAttempts.length, 0);
+  const latestEvaluatedAttempt = [...existingAttempts]
+    .filter((attempt) => attempt.status === "evaluated")
+    .sort((a, b) => b.attemptNumber - a.attemptNumber)[0];
 
   if (submittedAttempt) {
     return (
@@ -435,6 +400,71 @@ export default function LearningAssessmentRuntimePage() {
     );
   }
 
+  if (!started && attemptsRemaining === 0) {
+    return (
+      <div className="space-y-6">
+        <LearningNavigation />
+
+        <Link
+          to={`/learning/assignments/${id}`}
+          className="inline-flex items-center gap-2 text-sm font-medium text-slate-600"
+        >
+          <ArrowLeft size={16} />
+          Back to assignment
+        </Link>
+
+        <section className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+          <p className="text-sm font-medium text-slate-500">Assessment</p>
+          <h1 className="mt-1 text-2xl font-bold text-slate-900">
+            {currentAssessment.title}
+          </h1>
+          <p className="mt-2 text-sm text-slate-600">
+            You have used all available attempts for this assessment.
+          </p>
+
+          {latestEvaluatedAttempt && (
+            <div className="mt-6 grid gap-4 sm:grid-cols-3">
+              <div>
+                <p className="text-sm text-slate-500">Latest score</p>
+                <p className="mt-1 text-2xl font-bold text-slate-900">
+                  {latestEvaluatedAttempt.score ?? 0} / {latestEvaluatedAttempt.maxScore ?? 0}
+                </p>
+              </div>
+              <div>
+                <p className="text-sm text-slate-500">Percentage</p>
+                <p className="mt-1 text-2xl font-bold text-slate-900">
+                  {latestEvaluatedAttempt.percentage ?? 0}%
+                </p>
+              </div>
+              <div>
+                <p className="text-sm text-slate-500">Attempts used</p>
+                <p className="mt-1 text-2xl font-bold text-slate-900">
+                  {existingAttempts.length}
+                </p>
+              </div>
+            </div>
+          )}
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              to={`/learning/assignments/${id}`}
+              className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white"
+            >
+              <ArrowLeft size={17} />
+              Back to assignment
+            </Link>
+            <Link
+              to="/learning/progress"
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700"
+            >
+              View progress
+            </Link>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
   if (!started) {
     return (
       <div className="space-y-6">
@@ -462,7 +492,7 @@ export default function LearningAssessmentRuntimePage() {
               <Clock3 size={16} />
               {questions.length} {questions.length === 1 ? "question" : "questions"}
             </span>
-            <span>{attemptsRemaining} attempt(s) remaining</span>
+            <span>{attemptsRemaining === null ? "Unlimited attempts" : `${attemptsRemaining} attempt(s) remaining`}</span>
           </div>
         </section>
 

@@ -12,6 +12,10 @@ import {
   AuthContext,
 } from "./auth.context";
 
+import {
+  authService,
+} from "./auth.service";
+
 import type {
   User,
 } from "@/features/auth/types";
@@ -112,8 +116,9 @@ export function AuthProvider({
   }, [loadUser]);
 
   const logout = useCallback(async () => {
-    await supabase.auth.signOut();
+    await authService.signOut();
     setUser(null);
+    setLoading(false);
   }, []);
 
   return (

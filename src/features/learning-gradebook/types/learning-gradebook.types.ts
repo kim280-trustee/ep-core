@@ -1,3 +1,8 @@
+export type LearningGradebookRecordType = "assessment" | "assignment" | "exam" | "manual";
+export type LearningGradebookSourceType = "assessment_result" | "assignment" | "manual";
+export type LearningGradebookEntryStatus = "graded" | "missing" | "absent" | "excused" | "pending";
+export type LearningTermGradeStatus = "draft" | "finalized";
+
 export interface LearningGradebookCategory {
   id: string;
   organizationId: string;
@@ -5,7 +10,7 @@ export interface LearningGradebookCategory {
   name: string;
   description: string | null;
   defaultWeight: number;
-  status: "active" | "inactive" | string;
+  status: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -21,8 +26,8 @@ export interface LearningGradebookEntry {
   categoryId: string | null;
   title: string;
   description: string | null;
-  recordType: "assessment" | "assignment" | "exam" | "manual" | string;
-  sourceType: "assessment_result" | "assignment" | "manual" | string;
+  recordType: LearningGradebookRecordType;
+  sourceType: LearningGradebookSourceType;
   assignmentId: string | null;
   assessmentId: string | null;
   attemptId: string | null;
@@ -31,18 +36,18 @@ export interface LearningGradebookEntry {
   objectiveId: string | null;
   score: number;
   maxScore: number;
-  percentage: number | null;
+  percentage: number;
   weight: number;
   includedInGrade: boolean;
+  status: LearningGradebookEntryStatus;
+  comment: string | null;
+  late: boolean;
   recordedAt: string;
   notes: Record<string, unknown>;
   createdBy: string;
   updatedBy: string | null;
   createdAt: string;
   updatedAt: string;
-  status: string;
-  comment: string | null;
-  late: boolean;
 }
 
 export interface LearningTermGrade {
@@ -55,16 +60,16 @@ export interface LearningTermGrade {
   studentUserId: string;
   score: number;
   letterGrade: string | null;
-  status: "draft" | "finalized" | string;
+  status: LearningTermGradeStatus;
   calculation: Record<string, unknown>;
+  overrideScore: number | null;
+  overrideGrade: string | null;
+  overrideReason: string | null;
   finalizedAt: string | null;
   finalizedBy: string | null;
   notes: Record<string, unknown>;
   createdAt: string;
   updatedAt: string;
-  overrideScore: number | null;
-  overrideGrade: string | null;
-  overrideReason: string | null;
 }
 
 export interface LearningGradebookQuery {

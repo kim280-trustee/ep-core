@@ -6,7 +6,7 @@ import { learningMasteryService } from "@/features/learning-mastery";
 export const learningRuntimeService = {
   async getStudentOverview(studentUserId:string) {
     const [assignments,progress,mastery,recommendations,recentActivity]=await Promise.all([
-      learningAssignmentsService.listStudentAssignments(),
+      learningAssignmentsService.listStudentAssignments(studentUserId),
       learningAssignmentsService.listProgress(studentUserId),
       learningMasteryService.listStudentMastery(studentUserId),
       learningMasteryService.listRecommendations(studentUserId),

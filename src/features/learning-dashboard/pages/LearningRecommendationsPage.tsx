@@ -16,11 +16,11 @@ export default function LearningRecommendationsPage() {
     queryKey: ["learning", "recommendations", id],
     queryFn: async () => {
       const recommendations = await learningMasteryService.listRecommendations(id);
-      return Promise.all(recommendations.map(async (item) => {
+      return (await Promise.all(recommendations.map(async (item) => {
         if (!item.assessmentId) return { ...item, assignmentId: null };
-        const assignment = await learningAssignmentsService.findStudentAssignmentForAssessment(item.assessmentId);
+        const assignment = await learningAssignmentsService.findStudentAssignmentForAssessment(item.assessmentId, id);
         return { ...item, assignmentId: assignment?.id ?? null };
-      }));
+      }))).filter((item) => !item.assessmentId || Boolean(item.assignmentId));
     },
     enabled: Boolean(id),
   });

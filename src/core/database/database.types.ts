@@ -893,6 +893,78 @@ export type Database = {
           },
         ]
       }
+      learning_assignment_lifecycle_events: {
+        Row: {
+          action: string
+          actor_user_id: string
+          assignment_id: string
+          created_at: string
+          id: string
+          metadata: Json
+          organization_id: string
+          parent_assignment_id: string | null
+          target_student_user_id: string | null
+        }
+        Insert: {
+          action: string
+          actor_user_id: string
+          assignment_id: string
+          created_at?: string
+          id?: string
+          metadata?: Json
+          organization_id: string
+          parent_assignment_id?: string | null
+          target_student_user_id?: string | null
+        }
+        Update: {
+          action?: string
+          actor_user_id?: string
+          assignment_id?: string
+          created_at?: string
+          id?: string
+          metadata?: Json
+          organization_id?: string
+          parent_assignment_id?: string | null
+          target_student_user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_assignment_lifecycle_event_target_student_user_id_fkey"
+            columns: ["target_student_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_assignment_lifecycle_events_actor_user_id_fkey"
+            columns: ["actor_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_assignment_lifecycle_events_assignment_id_fkey"
+            columns: ["assignment_id"]
+            isOneToOne: false
+            referencedRelation: "learning_assignments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_assignment_lifecycle_events_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_assignment_lifecycle_events_parent_assignment_id_fkey"
+            columns: ["parent_assignment_id"]
+            isOneToOne: false
+            referencedRelation: "learning_assignments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       learning_assignment_progress: {
         Row: {
           assignment_id: string
@@ -1053,8 +1125,10 @@ export type Database = {
           due_at: string | null
           id: string
           instructions: Json
+          lifecycle_type: string
           max_attempts: number | null
           organization_id: string
+          parent_assignment_id: string | null
           status: string
           tenant_id: string
           title: string
@@ -1071,8 +1145,10 @@ export type Database = {
           due_at?: string | null
           id?: string
           instructions?: Json
+          lifecycle_type?: string
           max_attempts?: number | null
           organization_id: string
+          parent_assignment_id?: string | null
           status?: string
           tenant_id: string
           title: string
@@ -1089,8 +1165,10 @@ export type Database = {
           due_at?: string | null
           id?: string
           instructions?: Json
+          lifecycle_type?: string
           max_attempts?: number | null
           organization_id?: string
+          parent_assignment_id?: string | null
           status?: string
           tenant_id?: string
           title?: string
@@ -1104,6 +1182,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "learning_class_subjects"
             referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_assignments_parent_assignment_id_fkey"
+            columns: ["parent_assignment_id"]
+            isOneToOne: false
+            referencedRelation: "learning_assignments"
+            referencedColumns: ["id"]
           },
           {
             foreignKeyName: "learning_assignments_tenant_id_created_by_fkey"
@@ -1401,6 +1486,8 @@ export type Database = {
         Row: {
           class_group_id: string
           created_at: string
+          grade_scale_id: string | null
+          grading_method: string
           id: string
           organization_id: string
           status: string
@@ -1410,6 +1497,8 @@ export type Database = {
         Insert: {
           class_group_id: string
           created_at?: string
+          grade_scale_id?: string | null
+          grading_method?: string
           id?: string
           organization_id: string
           status?: string
@@ -1419,6 +1508,8 @@ export type Database = {
         Update: {
           class_group_id?: string
           created_at?: string
+          grade_scale_id?: string | null
+          grading_method?: string
           id?: string
           organization_id?: string
           status?: string
@@ -1432,6 +1523,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "learning_class_groups"
             referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_class_subjects_grade_scale_id_fkey"
+            columns: ["grade_scale_id"]
+            isOneToOne: false
+            referencedRelation: "learning_grade_scales"
+            referencedColumns: ["id"]
           },
           {
             foreignKeyName: "learning_class_subjects_subject_id_fkey"
@@ -1832,6 +1930,332 @@ export type Database = {
           },
         ]
       }
+      learning_grade_scale_rules: {
+        Row: {
+          created_at: string
+          grade: number
+          grade_scale_id: string
+          id: string
+          label: string
+          max_percentage: number
+          min_percentage: number
+          sequence_no: number
+        }
+        Insert: {
+          created_at?: string
+          grade: number
+          grade_scale_id: string
+          id?: string
+          label: string
+          max_percentage: number
+          min_percentage: number
+          sequence_no?: number
+        }
+        Update: {
+          created_at?: string
+          grade?: number
+          grade_scale_id?: string
+          id?: string
+          label?: string
+          max_percentage?: number
+          min_percentage?: number
+          sequence_no?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_grade_scale_rules_grade_scale_id_fkey"
+            columns: ["grade_scale_id"]
+            isOneToOne: false
+            referencedRelation: "learning_grade_scales"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_grade_scales: {
+        Row: {
+          code: string
+          created_at: string
+          id: string
+          name: string
+          organization_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          id?: string
+          name: string
+          organization_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          id?: string
+          name?: string
+          organization_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_grade_scales_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_gradebook_audit_log: {
+        Row: {
+          action: string
+          after_data: Json
+          before_data: Json
+          changed_at: string
+          changed_by: string
+          class_subject_id: string
+          gradebook_entry_id: string | null
+          id: string
+          organization_id: string
+          reason: string | null
+          student_user_id: string
+          term_grade_id: string | null
+          term_id: string
+        }
+        Insert: {
+          action: string
+          after_data?: Json
+          before_data?: Json
+          changed_at?: string
+          changed_by: string
+          class_subject_id: string
+          gradebook_entry_id?: string | null
+          id?: string
+          organization_id: string
+          reason?: string | null
+          student_user_id: string
+          term_grade_id?: string | null
+          term_id: string
+        }
+        Update: {
+          action?: string
+          after_data?: Json
+          before_data?: Json
+          changed_at?: string
+          changed_by?: string
+          class_subject_id?: string
+          gradebook_entry_id?: string | null
+          id?: string
+          organization_id?: string
+          reason?: string | null
+          student_user_id?: string
+          term_grade_id?: string | null
+          term_id?: string
+        }
+        Relationships: []
+      }
+      learning_gradebook_categories: {
+        Row: {
+          code: string
+          created_at: string
+          default_weight: number
+          description: string | null
+          id: string
+          name: string
+          organization_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          default_weight?: number
+          description?: string | null
+          id?: string
+          name: string
+          organization_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          default_weight?: number
+          description?: string | null
+          id?: string
+          name?: string
+          organization_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_gradebook_categories_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_gradebook_entries: {
+        Row: {
+          assessment_id: string | null
+          assessment_result_id: string | null
+          assignment_id: string | null
+          attempt_id: string | null
+          category_id: string | null
+          class_group_id: string
+          class_subject_id: string
+          comment: string | null
+          created_at: string
+          created_by: string
+          description: string | null
+          id: string
+          included_in_grade: boolean
+          late: boolean
+          max_score: number
+          notes: Json
+          objective_id: string | null
+          organization_id: string
+          percentage: number | null
+          record_type: string
+          recorded_at: string
+          score: number
+          source_type: string
+          status: string
+          student_user_id: string
+          tenant_id: string
+          term_id: string
+          title: string
+          topic_id: string | null
+          updated_at: string
+          updated_by: string | null
+          weight: number
+        }
+        Insert: {
+          assessment_id?: string | null
+          assessment_result_id?: string | null
+          assignment_id?: string | null
+          attempt_id?: string | null
+          category_id?: string | null
+          class_group_id: string
+          class_subject_id: string
+          comment?: string | null
+          created_at?: string
+          created_by: string
+          description?: string | null
+          id?: string
+          included_in_grade?: boolean
+          late?: boolean
+          max_score: number
+          notes?: Json
+          objective_id?: string | null
+          organization_id: string
+          percentage?: number | null
+          record_type: string
+          recorded_at?: string
+          score: number
+          source_type: string
+          status?: string
+          student_user_id: string
+          tenant_id: string
+          term_id: string
+          title: string
+          topic_id?: string | null
+          updated_at?: string
+          updated_by?: string | null
+          weight?: number
+        }
+        Update: {
+          assessment_id?: string | null
+          assessment_result_id?: string | null
+          assignment_id?: string | null
+          attempt_id?: string | null
+          category_id?: string | null
+          class_group_id?: string
+          class_subject_id?: string
+          comment?: string | null
+          created_at?: string
+          created_by?: string
+          description?: string | null
+          id?: string
+          included_in_grade?: boolean
+          late?: boolean
+          max_score?: number
+          notes?: Json
+          objective_id?: string | null
+          organization_id?: string
+          percentage?: number | null
+          record_type?: string
+          recorded_at?: string
+          score?: number
+          source_type?: string
+          status?: string
+          student_user_id?: string
+          tenant_id?: string
+          term_id?: string
+          title?: string
+          topic_id?: string | null
+          updated_at?: string
+          updated_by?: string | null
+          weight?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gradebook_entry_class_subject_fk"
+            columns: ["organization_id", "class_subject_id"]
+            isOneToOne: false
+            referencedRelation: "learning_class_subjects"
+            referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "gradebook_entry_creator_fk"
+            columns: ["tenant_id", "created_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "gradebook_entry_org_category_fk"
+            columns: ["organization_id", "category_id"]
+            isOneToOne: false
+            referencedRelation: "learning_gradebook_categories"
+            referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "gradebook_entry_org_class_fk"
+            columns: ["organization_id", "class_group_id"]
+            isOneToOne: false
+            referencedRelation: "learning_class_groups"
+            referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "gradebook_entry_org_term_fk"
+            columns: ["organization_id", "term_id"]
+            isOneToOne: false
+            referencedRelation: "learning_terms"
+            referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "gradebook_entry_updater_fk"
+            columns: ["tenant_id", "updated_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_gradebook_entries_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       learning_mastery_events: {
         Row: {
           attempt_id: string | null
@@ -2031,6 +2455,148 @@ export type Database = {
             columns: ["topic_id"]
             isOneToOne: false
             referencedRelation: "learning_topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_parent_invitations: {
+        Row: {
+          accepted_at: string | null
+          accepted_by: string | null
+          expires_at: string
+          id: string
+          invited_at: string
+          invited_by: string
+          organization_id: string
+          parent_email: string
+          parent_name: string | null
+          relationship: string
+          status: string
+          student_user_id: string
+          updated_at: string
+        }
+        Insert: {
+          accepted_at?: string | null
+          accepted_by?: string | null
+          expires_at?: string
+          id?: string
+          invited_at?: string
+          invited_by: string
+          organization_id: string
+          parent_email: string
+          parent_name?: string | null
+          relationship?: string
+          status?: string
+          student_user_id: string
+          updated_at?: string
+        }
+        Update: {
+          accepted_at?: string | null
+          accepted_by?: string | null
+          expires_at?: string
+          id?: string
+          invited_at?: string
+          invited_by?: string
+          organization_id?: string
+          parent_email?: string
+          parent_name?: string | null
+          relationship?: string
+          status?: string
+          student_user_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_parent_invitations_accepted_by_fkey"
+            columns: ["accepted_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_parent_invitations_invited_by_fkey"
+            columns: ["invited_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_parent_invitations_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_parent_invitations_student_user_id_fkey"
+            columns: ["student_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_parent_student_links: {
+        Row: {
+          created_at: string
+          created_by: string
+          id: string
+          organization_id: string
+          parent_user_id: string
+          relationship: string
+          status: string
+          student_user_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          id?: string
+          organization_id: string
+          parent_user_id: string
+          relationship?: string
+          status?: string
+          student_user_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          id?: string
+          organization_id?: string
+          parent_user_id?: string
+          relationship?: string
+          status?: string
+          student_user_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_parent_student_links_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_parent_student_links_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_parent_student_links_parent_user_id_fkey"
+            columns: ["parent_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_parent_student_links_student_user_id_fkey"
+            columns: ["student_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
             referencedColumns: ["id"]
           },
         ]
@@ -2534,6 +3100,159 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      learning_term_grade_history: {
+        Row: {
+          calculation: Json
+          captured_at: string
+          class_subject_id: string
+          finalized_at: string | null
+          finalized_by: string | null
+          id: string
+          letter_grade: string | null
+          organization_id: string
+          score: number
+          snapshot_reason: string | null
+          status: string
+          student_user_id: string
+          term_grade_id: string
+          term_id: string
+        }
+        Insert: {
+          calculation?: Json
+          captured_at?: string
+          class_subject_id: string
+          finalized_at?: string | null
+          finalized_by?: string | null
+          id?: string
+          letter_grade?: string | null
+          organization_id: string
+          score: number
+          snapshot_reason?: string | null
+          status: string
+          student_user_id: string
+          term_grade_id: string
+          term_id: string
+        }
+        Update: {
+          calculation?: Json
+          captured_at?: string
+          class_subject_id?: string
+          finalized_at?: string | null
+          finalized_by?: string | null
+          id?: string
+          letter_grade?: string | null
+          organization_id?: string
+          score?: number
+          snapshot_reason?: string | null
+          status?: string
+          student_user_id?: string
+          term_grade_id?: string
+          term_id?: string
+        }
+        Relationships: []
+      }
+      learning_term_grades: {
+        Row: {
+          calculation: Json
+          class_group_id: string
+          class_subject_id: string
+          created_at: string
+          finalized_at: string | null
+          finalized_by: string | null
+          id: string
+          letter_grade: string | null
+          notes: Json
+          organization_id: string
+          override_grade: string | null
+          override_reason: string | null
+          override_score: number | null
+          score: number
+          status: string
+          student_user_id: string
+          tenant_id: string
+          term_id: string
+          updated_at: string
+        }
+        Insert: {
+          calculation?: Json
+          class_group_id: string
+          class_subject_id: string
+          created_at?: string
+          finalized_at?: string | null
+          finalized_by?: string | null
+          id?: string
+          letter_grade?: string | null
+          notes?: Json
+          organization_id: string
+          override_grade?: string | null
+          override_reason?: string | null
+          override_score?: number | null
+          score: number
+          status?: string
+          student_user_id: string
+          tenant_id: string
+          term_id: string
+          updated_at?: string
+        }
+        Update: {
+          calculation?: Json
+          class_group_id?: string
+          class_subject_id?: string
+          created_at?: string
+          finalized_at?: string | null
+          finalized_by?: string | null
+          id?: string
+          letter_grade?: string | null
+          notes?: Json
+          organization_id?: string
+          override_grade?: string | null
+          override_reason?: string | null
+          override_score?: number | null
+          score?: number
+          status?: string
+          student_user_id?: string
+          tenant_id?: string
+          term_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_term_grades_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "term_grade_class_subject_fk"
+            columns: ["organization_id", "class_subject_id"]
+            isOneToOne: false
+            referencedRelation: "learning_class_subjects"
+            referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "term_grade_creator_fk"
+            columns: ["tenant_id", "finalized_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "term_grade_org_class_fk"
+            columns: ["organization_id", "class_group_id"]
+            isOneToOne: false
+            referencedRelation: "learning_class_groups"
+            referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "term_grade_org_term_fk"
+            columns: ["organization_id", "term_id"]
+            isOneToOne: false
+            referencedRelation: "learning_terms"
+            referencedColumns: ["organization_id", "id"]
+          },
+        ]
       }
       learning_terms: {
         Row: {
@@ -3695,6 +4414,61 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      accept_learning_parent_invitation: {
+        Args: { p_invitation_id: string }
+        Returns: string
+      }
+      calculate_learning_term_grade: {
+        Args: {
+          p_class_subject_id: string
+          p_student_user_id: string
+          p_term_id: string
+        }
+        Returns: string
+      }
+      close_learning_assignment: {
+        Args: { p_assignment_id: string }
+        Returns: string
+      }
+      create_learning_gradebook_bulk_entries: {
+        Args: { p_class_subject_id: string; p_rows: Json; p_term_id: string }
+        Returns: number
+      }
+      create_learning_manual_gradebook_entry: {
+        Args: {
+          p_category_id?: string
+          p_class_subject_id: string
+          p_description?: string
+          p_max_score: number
+          p_score: number
+          p_student_user_id: string
+          p_term_id: string
+          p_title: string
+        }
+        Returns: string
+      }
+      create_learning_parent_invitation: {
+        Args: {
+          p_organization_id: string
+          p_parent_email: string
+          p_parent_name: string
+          p_relationship?: string
+          p_student_user_id: string
+        }
+        Returns: string
+      }
+      delete_learning_manual_gradebook_entry: {
+        Args: { p_entry_id: string; p_reason?: string }
+        Returns: boolean
+      }
+      finalize_learning_term_grade: {
+        Args: {
+          p_class_subject_id: string
+          p_student_user_id: string
+          p_term_id: string
+        }
+        Returns: string
+      }
       get_current_user_permissions: {
         Args: never
         Returns: {
@@ -3707,7 +4481,70 @@ export type Database = {
         Args: { target_organization_id: string }
         Returns: boolean
       }
+      learning_can_manage_academic_records: {
+        Args: { target_organization_id: string }
+        Returns: boolean
+      }
+      learning_current_user_id: { Args: never; Returns: string }
+      learning_teacher_can_view_student: {
+        Args: { target_user_id: string }
+        Returns: boolean
+      }
+      override_learning_term_grade: {
+        Args: {
+          p_class_subject_id: string
+          p_override_grade: string
+          p_override_score: number
+          p_reason: string
+          p_student_user_id: string
+          p_term_id: string
+        }
+        Returns: string
+      }
+      reassign_learning_assignment: {
+        Args: {
+          p_assignment_id: string
+          p_due_at?: string
+          p_student_user_id: string
+        }
+        Returns: string
+      }
+      reopen_learning_assignment: {
+        Args: { p_assignment_id: string }
+        Returns: string
+      }
+      reopen_learning_term_grade: {
+        Args: {
+          p_class_subject_id: string
+          p_reason: string
+          p_student_user_id: string
+          p_term_id: string
+        }
+        Returns: string
+      }
+      save_learning_question_evaluation_key: {
+        Args: {
+          p_evaluation_key: Json
+          p_question_version_id: string
+          p_scoring_rules: Json
+        }
+        Returns: undefined
+      }
       submit_learning_attempt: { Args: { p_attempt_id: string }; Returns: Json }
+      update_learning_manual_gradebook_entry: {
+        Args: {
+          p_category_id?: string
+          p_comment?: string
+          p_entry_id: string
+          p_late?: boolean
+          p_max_score: number
+          p_reason?: string
+          p_score: number
+          p_status?: string
+          p_title: string
+        }
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never

@@ -34,6 +34,7 @@ import { reportsRoutes } from "../../features/reports/routes/reports.routes";
 
 import { learningDashboardRoutes } from "../../features/learning-dashboard";
 import { learningTeacherRoutes } from "../../features/learning-teacher";
+import { learningParentRoutes } from "../../features/learning-parent";
 
 export const routes: RouteObject[] = [
   ...authRoutes,
@@ -68,6 +69,7 @@ export const routes: RouteObject[] = [
 
   ...learningDashboardRoutes,
   ...learningTeacherRoutes,
+  ...learningParentRoutes,
 
   {
     path: "*",

@@ -1,6 +1,7 @@
 import type { Json } from "@/core/database/database.types";
 
 export type LearningAssignmentStatus = "draft" | "published" | "closed" | "archived";
+export type LearningAssignmentLifecycleType = "original" | "reassigned" | "reopened";
 export type LearningAssignmentItemType = "content" | "assessment";
 export type LearningAssignmentTargetType = "student" | "class";
 export type LearningAssignmentTargetStatus = "active" | "removed";
@@ -10,7 +11,7 @@ export interface LearningAssignment {
   id:string; tenantId:string; organizationId:string; classSubjectId:string|null; code:string; title:string;
   description:string|null; status:LearningAssignmentStatus; availableFrom:string|null; dueAt:string|null;
   maxAttempts:number|null; instructions:Record<string,unknown>; createdBy:string; updatedBy:string|null;
-  createdAt:string; updatedAt:string;
+  createdAt:string; updatedAt:string; parentAssignmentId:string|null; lifecycleType:LearningAssignmentLifecycleType;
 }
 export interface LearningAssignmentItem {
   id:string; organizationId:string; assignmentId:string; itemType:LearningAssignmentItemType;
@@ -42,4 +43,5 @@ export interface LearningAssignmentTargetInput {
 export interface LearningAssignmentProgressInput {
   organizationId:string; assignmentId:string; assignmentTargetId:string; studentUserId:string;
 }
+export interface LearningAssignmentLifecycleEvent { id:string; assignmentId:string; parentAssignmentId:string|null; action:"reopened"|"closed"|"reassigned"; actorUserId:string; targetStudentUserId:string|null; metadata:Record<string,unknown>; createdAt:string; }
 export type LearningAssignmentJson = Json;
