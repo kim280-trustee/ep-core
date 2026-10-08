@@ -261,7 +261,28 @@ export default function LearningAssessmentRuntimePage() {
         }
         await learningActivityService.endSession(sessionId);
       }
-      await learningAssignmentsService.completeIfReady(id, user!.id);
+      const wasCompleted = assignmentQuery.data?.progress?.status === "completed";
+      const progress = await learningAssignmentsService.refreshProgressForStudent(
+        id,
+        user!.id,
+      );
+
+      if (!wasCompleted && progress.status === "completed") {
+        const assignmentSession = await learningActivityService.startForStudent(
+          user!.id,
+          "assignment",
+          id,
+        );
+        await learningActivityService.logEvent({
+          tenantId: assignmentSession.tenantId,
+          organizationId: assignmentSession.organizationId,
+          studentUserId: user!.id,
+          sessionId: assignmentSession.id,
+          activityType: "assignment_completed",
+          assignmentId: id,
+        });
+      }
+
       await queryClient.invalidateQueries({
         queryKey: ["learning", "assessment-attempts", assessment, user?.id],
       });
