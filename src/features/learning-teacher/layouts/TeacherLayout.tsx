@@ -39,8 +39,29 @@ export default function TeacherLayout() {
     staleTime: 60_000,
   });
 
-  if (loading || teacherAccess.isPending) return <div className="min-h-screen bg-slate-50 p-6"><div className="mx-auto h-24 max-w-7xl animate-pulse rounded-2xl bg-slate-200" /></div>;
-  if (!user || teacherAccess.isError || !teacherAccess.data?.length) return <Navigate to="/login" replace />;
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-slate-50 p-6">
+        <div className="mx-auto h-24 max-w-7xl animate-pulse rounded-2xl bg-slate-200" />
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (teacherAccess.isPending) {
+    return (
+      <div className="min-h-screen bg-slate-50 p-6">
+        <div className="mx-auto h-24 max-w-7xl animate-pulse rounded-2xl bg-slate-200" />
+      </div>
+    );
+  }
+
+  if (teacherAccess.isError || !teacherAccess.data?.length) {
+    return <Navigate to="/login" replace />;
+  }
 
   const handleLogout = async () => {
     if (loggingOut) return;
