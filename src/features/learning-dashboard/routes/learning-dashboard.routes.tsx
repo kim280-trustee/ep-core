@@ -1,5 +1,6 @@
 import type { RouteObject } from "react-router-dom";
 import { Navigate } from "react-router-dom";
+import { ProtectedRoute } from "@/core/auth";
 import LearningDashboardPage from "../pages/LearningDashboardPage";
 import LearningAssignmentsPage from "../pages/LearningAssignmentsPage";
 import LearningAssignmentDetailPage from "../pages/LearningAssignmentDetailPage";
@@ -12,7 +13,11 @@ import StudentLayout from "../layouts/StudentLayout";
 export const learningDashboardRoutes: RouteObject[] = [
   {
     path: "learning",
-    element: <StudentLayout />,
+    element: (
+      <ProtectedRoute>
+        <StudentLayout />
+      </ProtectedRoute>
+    ),
     children: [
       { index: true, element: <LearningDashboardPage /> },
       { path: "assignments", element: <LearningAssignmentsPage /> },
