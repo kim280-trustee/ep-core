@@ -19,7 +19,6 @@ export class SupabaseAuthRepository
     email: string,
     password: string,
   ): Promise<AuthResponse> {
-
     return await supabase.auth.signInWithPassword({
       email,
       password,
@@ -30,7 +29,6 @@ export class SupabaseAuthRepository
     email: string,
     password: string,
   ): Promise<AuthResponse> {
-
     return await supabase.auth.signUp({
       email,
       password,
@@ -38,9 +36,7 @@ export class SupabaseAuthRepository
   }
 
   async signOut(): Promise<void> {
-
-    const { error } =
-      await supabase.auth.signOut({ scope: "local" });
+    const { error } = await supabase.auth.signOut({ scope: "local" });
 
     if (error) {
       throw error;
@@ -48,38 +44,31 @@ export class SupabaseAuthRepository
   }
 
   async getSession(): Promise<Session | null> {
-
-    const {
-      data,
-    } = await supabase.auth.getSession();
-
+    const { data } = await supabase.auth.getSession();
     return data.session;
   }
 
   async getLoginDestination(
     authUserId: string,
   ): Promise<LoginDestination> {
-
-    const { data: profile, error: profileError } =
-      await supabase
-        .from("users")
-        .select("id")
-        .eq("auth_user_id", authUserId)
-        .single();
+    const { data: profile, error: profileError } = await supabase
+      .from("users")
+      .select("id")
+      .eq("auth_user_id", authUserId)
+      .maybeSingle();
 
     if (profileError || !profile) {
-      return "/";
+      return null;
     }
 
-    const { data: memberships, error: membershipError } =
-      await supabase
-        .from("learning_class_memberships")
-        .select("membership_type")
-        .eq("user_id", profile.id)
-        .eq("status", "active");
+    const { data: memberships, error: membershipError } = await supabase
+      .from("learning_class_memberships")
+      .select("membership_type")
+      .eq("user_id", profile.id)
+      .eq("status", "active");
 
     if (membershipError) {
-      return "/";
+      return null;
     }
 
     if (memberships?.some((membership) => membership.membership_type === "teacher")) {
@@ -90,17 +79,21 @@ export class SupabaseAuthRepository
       return "/learning";
     }
 
-    const { data: parentLinks } = await supabase
+    const { data: parentLinks, error: parentError } = await supabase
       .from("learning_parent_student_links")
       .select("id")
       .eq("parent_user_id", profile.id)
       .eq("status", "active")
       .limit(1);
 
+    if (parentError) {
+      return null;
+    }
+
     if (parentLinks?.length) {
       return "/parent";
     }
 
-    return "/";
+    return null;
   }
 }
