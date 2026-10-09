@@ -1,107 +1,101 @@
 import {
   useCallback,
   useEffect,
+  useRef,
   useState,
 } from "react";
 
-import {
-  supabase,
-} from "../database";
-
-import {
-  AuthContext,
-} from "./auth.context";
-
-import {
-  authService,
-} from "./auth.service";
-
-import type {
-  User,
-} from "@/features/auth/types";
+import { supabase } from "../database";
+import { AuthContext } from "./auth.context";
+import { authService } from "./auth.service";
+import type { User } from "@/features/auth/types";
 
 interface Props {
   children: React.ReactNode;
 }
 
-export function AuthProvider({
-  children,
-}: Props) {
+export function AuthProvider({ children }: Props) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const loadRequestId = useRef(0);
 
   const loadUser = useCallback(async () => {
-    const { data } = await supabase.auth.getSession();
+    const requestId = ++loadRequestId.current;
 
-    if (!data.session) {
-      setUser(null);
-      setLoading(false);
-      return;
-    }
+    try {
+      const { data } = await supabase.auth.getSession();
+      if (requestId !== loadRequestId.current) return;
 
-    const authUser = data.session.user;
+      if (!data.session) {
+        setUser(null);
+        return;
+      }
 
-    const { data: profile } = await supabase
-      .from("users")
-      .select("*")
-      .eq("auth_user_id", authUser.id)
-      .single();
+      const authUser = data.session.user;
+      const { data: profile } = await supabase
+        .from("users")
+        .select("*")
+        .eq("auth_user_id", authUser.id)
+        .single();
 
-    if (!profile) {
-      setUser(null);
-      setLoading(false);
-      return;
-    }
+      if (requestId !== loadRequestId.current) return;
 
-    const { data: userRole } = await supabase
-      .from("user_roles")
-      .select("role_id")
-      .eq("user_id", profile.id)
-      .limit(1)
-      .maybeSingle();
+      if (!profile) {
+        setUser(null);
+        return;
+      }
 
-    let role: User["role"] = "STAFF";
-
-    if (userRole?.role_id) {
-      const { data: roleRecord } = await supabase
-        .from("roles")
-        .select("name")
-        .eq("id", userRole.role_id)
-        .eq("tenant_id", profile.tenant_id)
+      const { data: userRole } = await supabase
+        .from("user_roles")
+        .select("role_id")
+        .eq("user_id", profile.id)
+        .limit(1)
         .maybeSingle();
 
-      if (
-        roleRecord?.name === "OWNER" ||
-        roleRecord?.name === "MANAGER" ||
-        roleRecord?.name === "STAFF"
-      ) {
-        role = roleRecord.name;
+      if (requestId !== loadRequestId.current) return;
+
+      let role: User["role"] = "STAFF";
+
+      if (userRole?.role_id) {
+        const { data: roleRecord } = await supabase
+          .from("roles")
+          .select("name")
+          .eq("id", userRole.role_id)
+          .eq("tenant_id", profile.tenant_id)
+          .maybeSingle();
+
+        if (requestId !== loadRequestId.current) return;
+
+        if (
+          roleRecord?.name === "OWNER" ||
+          roleRecord?.name === "MANAGER" ||
+          roleRecord?.name === "STAFF"
+        ) {
+          role = roleRecord.name;
+        }
+      }
+
+      if (requestId !== loadRequestId.current) return;
+
+      setUser({
+        id: profile.id,
+        authUserId: authUser.id,
+        tenantId: profile.tenant_id,
+        name: profile.name,
+        email: profile.email,
+        role,
+        createdAt: profile.created_at ?? new Date().toISOString(),
+      });
+    } finally {
+      if (requestId === loadRequestId.current) {
+        setLoading(false);
       }
     }
-
-    setUser({
-      id: profile.id,
-      authUserId: authUser.id,
-      tenantId: profile.tenant_id,
-      name: profile.name,
-      email: profile.email,
-      role,
-      createdAt: profile.created_at ?? new Date().toISOString(),
-    });
-
-    setLoading(false);
   }, []);
 
   useEffect(() => {
     let mounted = true;
-
-    const initialize = async () => {
-      if (mounted) {
-        await loadUser();
-      }
-    };
-
-    void initialize();
+    void loadUser();
 
     const { data } = supabase.auth.onAuthStateChange(() => {
       window.setTimeout(() => {
@@ -111,12 +105,14 @@ export function AuthProvider({
 
     return () => {
       mounted = false;
+      loadRequestId.current += 1;
       data.subscription.unsubscribe();
     };
   }, [loadUser]);
 
   const logout = useCallback(async () => {
     await authService.signOut();
+    loadRequestId.current += 1;
     setUser(null);
     setLoading(false);
   }, []);
