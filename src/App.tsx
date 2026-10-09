@@ -8,51 +8,68 @@ function App() {
 
   useEffect(() => {
     let active = true;
+    let requestId = 0;
 
     const loadContext = async () => {
+      const currentRequestId = ++requestId;
+      storeContext.clearStore();
       setContextReady(false);
 
-      const {
-        data: { user: authUser },
-      } = await supabase.auth.getUser();
+      try {
+        const {
+          data: { user: authUser },
+          error: authError,
+        } = await supabase.auth.getUser();
 
-      if (!authUser) {
-        storeContext.clearStore();
-        if (active) setContextReady(true);
-        return;
+        if (!active || currentRequestId !== requestId) return;
+
+        if (authError || !authUser) {
+          storeContext.clearStore();
+          setContextReady(true);
+          return;
+        }
+
+        const { data: user, error } = await supabase
+          .from("users")
+          .select("tenant_id")
+          .eq("auth_user_id", authUser.id)
+          .single();
+
+        if (!active || currentRequestId !== requestId) return;
+
+        if (error || !user) {
+          storeContext.clearStore();
+          setContextReady(true);
+          return;
+        }
+
+        const { data: tenant, error: tenantError } = await supabase
+          .from("tenants")
+          .select("id, name")
+          .eq("id", user.tenant_id)
+          .single();
+
+        if (!active || currentRequestId !== requestId) return;
+
+        if (tenantError || !tenant) {
+          storeContext.clearStore();
+          setContextReady(true);
+          return;
+        }
+
+        storeContext.setStore({
+          tenantId: tenant.id,
+          storeId: tenant.id,
+          name: tenant.name,
+        });
+
+        setContextReady(true);
+      } catch {
+        if (active && currentRequestId === requestId) {
+          storeContext.clearStore();
+          setContextReady(true);
+        }
       }
-
-      const { data: user, error } = await supabase
-        .from("users")
-        .select("tenant_id")
-        .eq("auth_user_id", authUser.id)
-        .single();
-
-      if (error || !user) {
-        storeContext.clearStore();
-        if (active) setContextReady(true);
-        return;
-      }
-
-      const { data: tenant, error: tenantError } = await supabase
-        .from("tenants")
-        .select("id, name")
-        .eq("id", user.tenant_id)
-        .single();
-
-      if (tenantError || !tenant) {
-        storeContext.clearStore();
-        if (active) setContextReady(true);
-        return;
-      }
-
-      storeContext.setStore({
-        tenantId: tenant.id,
-        storeId: tenant.id,
-        name: tenant.name,
-      });
-
-      if (active) setContextReady(true);
     };
 
     void loadContext();
@@ -65,6 +82,7 @@ function App() {
 
     return () => {
       active = false;
+      requestId += 1;
       subscription.unsubscribe();
     };
   }, []);
