@@ -17,12 +17,13 @@ export const supabase = createClient<Database>(
   supabaseAnonKey,
   {
     auth: {
+      storageKey: "ep-learning-auth-token",
       persistSession: true,
       autoRefreshToken: true,
       detectSessionInUrl: true,
     },
     db: { schema: "public" },
-    global: { headers: { "X-Client-Info": "ep-smart-pos" } },
+    global: { headers: { "X-Client-Info": "ep-learning" } },
   },
 );
 
