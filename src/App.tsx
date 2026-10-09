@@ -13,7 +13,6 @@ function App() {
     const loadContext = async () => {
       const currentRequestId = ++requestId;
       storeContext.clearStore();
-      setContextReady(false);
 
       try {
         const {
