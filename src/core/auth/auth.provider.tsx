@@ -86,6 +86,10 @@ export function AuthProvider({ children }: Props) {
         role,
         createdAt: profile.created_at ?? new Date().toISOString(),
       });
+    } catch {
+      if (requestId === loadRequestId.current) {
+        setUser(null);
+      }
     } finally {
       if (requestId === loadRequestId.current) {
         setLoading(false);
