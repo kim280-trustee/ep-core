@@ -174,7 +174,12 @@ export const learningContentRepository: LearningContentRepository = {
     return String(data);
   },
   async saveStudentResponse(input){
-    const {data,error}=await supabase.from("learning_content_responses").upsert({organization_id:input.organizationId,assignment_id:input.assignmentId,content_item_id:input.contentItemId,content_version_id:input.contentVersionId,student_user_id:input.studentUserId,response_text:input.responseText,status:input.status,submitted_at:input.status==="submitted"?new Date().toISOString():null},{onConflict:"assignment_id,content_item_id,student_user_id"}).select("*").single();
+    const submittedAt=input.status==="submitted"?new Date().toISOString():null;
+    const {error:insertError}=await supabase.from("learning_content_responses").upsert({organization_id:input.organizationId,assignment_id:input.assignmentId,content_item_id:input.contentItemId,content_version_id:input.contentVersionId,student_user_id:input.studentUserId,response_text:input.responseText,status:input.status,submitted_at:submittedAt},{onConflict:"assignment_id,content_item_id,student_user_id",ignoreDuplicates:true});
+    if(insertError)throw insertError;
+    const existing=await learningContentRepository.getStudentResponse(input.assignmentId,input.contentItemId,input.studentUserId);
+    if(!existing)throw new Error("The student response could not be loaded after saving.");
+    const {data,error}=await supabase.from("learning_content_responses").update({response_text:input.responseText,status:input.status,submitted_at:submittedAt}).eq("id",existing.id).select("*").single();
     if(error)throw error;
     const r=data as any;
     return {id:r.id,organizationId:r.organization_id,assignmentId:r.assignment_id,contentItemId:r.content_item_id,contentVersionId:r.content_version_id??null,studentUserId:r.student_user_id,responseText:r.response_text,status:r.status,score:r.score===null?null:Number(r.score),maxScore:r.max_score===null?null:Number(r.max_score),teacherFeedback:r.teacher_feedback??null,submittedAt:r.submitted_at??null,createdAt:r.created_at,updatedAt:r.updated_at};
