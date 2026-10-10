@@ -62,7 +62,7 @@ begin
       and ai.item_type = 'content'
       and ai.required = true
       and ai.organization_id = v_assignment.organization_id
-      and ci.organization_id = v_assignment.organization_id
+      and (ci.organization_id is null or ci.organization_id = v_assignment.organization_id)
       and ci.status = 'published'
       and exists (
         select 1 from public.learning_content_versions cv
