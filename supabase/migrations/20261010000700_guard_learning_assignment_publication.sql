@@ -66,6 +66,8 @@ begin
 end;
 $function$;
 
+revoke all on function private.guard_learning_assignment_publication() from public, anon, authenticated;
+
 drop trigger if exists learning_assignments_publication_guard on public.learning_assignments;
 create trigger learning_assignments_publication_guard
 before insert or update of status on public.learning_assignments
