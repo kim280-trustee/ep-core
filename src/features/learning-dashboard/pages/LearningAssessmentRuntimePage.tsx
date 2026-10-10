@@ -616,6 +616,7 @@ export default function LearningAssessmentRuntimePage() {
                   >
                     <input
                       type="radio"
+                      disabled={submitMutation.isPending || Boolean(submittedAttempt)}
                       name={question.assessmentQuestionId}
                       value={option.key}
                       checked={answers[question.assessmentQuestionId] === option.key}
@@ -640,6 +641,7 @@ export default function LearningAssessmentRuntimePage() {
               <div className="mt-5">
                 <input
                   type="text"
+                  disabled={submitMutation.isPending || Boolean(submittedAttempt)}
                   value={answers[question.assessmentQuestionId] ?? ""}
                   onChange={(event) =>
                     setAnswers((current) => ({
