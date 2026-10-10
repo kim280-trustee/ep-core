@@ -639,28 +639,7 @@ export default function LearningAssessmentRuntimePage() {
               </div>
             )}
 
-            {question.questionType === "short_answer" && (
-              <div className="mt-5">
-                <input
-                  type="text"
-                  disabled={submitMutation.isPending || Boolean(submittedAttempt)}
-                  value={answers[question.assessmentQuestionId] ?? ""}
-                  onChange={(event) =>
-                    setAnswers((current) => ({
-                      ...current,
-                      [question.assessmentQuestionId]: event.target.value,
-                    }))
-                  }
-                  onBlur={(event) => {
-                    if (event.target.value) {
-                      void persistAnswer(question.assessmentQuestionId, event.target.value);
-                    }
-                  }}
-                  className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-slate-500"
-                  placeholder="Enter your answer"
-                />
-              </div>
-            )}
+}
           </section>
         ))}
       </div>
