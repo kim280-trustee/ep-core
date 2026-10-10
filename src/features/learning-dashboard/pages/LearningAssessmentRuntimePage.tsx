@@ -70,6 +70,7 @@ export default function LearningAssessmentRuntimePage() {
   > | null>(null);
   const [started, setStarted] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
+  const [pendingAnswerSaves, setPendingAnswerSaves] = useState(0);
 
   const id = assignmentId ?? "";
   const assessment = assessmentId ?? "";
@@ -230,6 +231,17 @@ export default function LearningAssessmentRuntimePage() {
       });
     },
   });
+
+  const persistAnswer = async (questionId: string, value: string) => {
+    setPendingAnswerSaves((count) => count + 1);
+    try {
+      await saveAnswerMutation.mutateAsync({ questionId, value });
+    } catch {
+      // The mutation error is shown below; keep the rejection handled here.
+    } finally {
+      setPendingAnswerSaves((count) => Math.max(0, count - 1));
+    }
+  };
 
   const submitMutation = useMutation({
     mutationFn: async () => {
@@ -613,10 +625,7 @@ export default function LearningAssessmentRuntimePage() {
                           ...current,
                           [question.assessmentQuestionId]: value,
                         }));
-                        void saveAnswerMutation.mutateAsync({
-                          questionId: question.assessmentQuestionId,
-                          value,
-                        });
+                        void persistAnswer(question.assessmentQuestionId, value);
                       }}
                     />
                     <span className="text-sm text-slate-700">
@@ -640,10 +649,7 @@ export default function LearningAssessmentRuntimePage() {
                   }
                   onBlur={(event) => {
                     if (event.target.value) {
-                      void saveAnswerMutation.mutateAsync({
-                        questionId: question.assessmentQuestionId,
-                        value: event.target.value,
-                      });
+                      void persistAnswer(question.assessmentQuestionId, event.target.value);
                     }
                   }}
                   className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-slate-500"
@@ -658,7 +664,7 @@ export default function LearningAssessmentRuntimePage() {
       <section className="sticky bottom-4 rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-lg backdrop-blur">
         <button
           type="button"
-          disabled={submitMutation.isPending}
+          disabled={submitMutation.isPending || pendingAnswerSaves > 0 || saveAnswerMutation.isError}
           onClick={() => submitMutation.mutate()}
           className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
         >
@@ -666,6 +672,11 @@ export default function LearningAssessmentRuntimePage() {
           {submitMutation.isPending ? "Submitting..." : "Submit assessment"}
         </button>
 
+        {saveAnswerMutation.isError && (
+          <p className="mt-3 text-sm text-red-600">
+            {saveAnswerMutation.error instanceof Error ? saveAnswerMutation.error.message : "Your latest answer could not be saved. Change or reselect the answer to try again."}
+          </p>
+        )}
         {submitMutation.isError && (
           <p className="mt-3 text-sm text-red-600">
             {submitMutation.error instanceof Error
