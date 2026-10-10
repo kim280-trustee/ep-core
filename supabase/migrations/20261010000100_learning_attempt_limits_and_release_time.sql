@@ -83,8 +83,7 @@ begin
   select count(*)::integer into v_count from public.learning_attempts la
   where la.assessment_id = new.assessment_id
     and la.student_user_id = new.student_user_id
-    and (la.assignment_id = new.assignment_id or la.assignment_id is null)
-    and la.status <> 'abandoned';
+    and (la.assignment_id = new.assignment_id or la.assignment_id is null);
 
   if v_limit is not null and v_count >= v_limit then
     raise exception 'You have reached the maximum number of attempts';
