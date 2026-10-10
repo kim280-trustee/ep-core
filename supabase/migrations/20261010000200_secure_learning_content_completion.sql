@@ -211,6 +211,10 @@ begin
     raise exception 'Required assignment activities must be completed before marking this assignment complete';
   end if;
 
+  new.started_at := coalesce(new.started_at, now());
+  new.completed_at := coalesce(new.completed_at, now());
+  new.last_activity_at := coalesce(new.last_activity_at, now());
+
   return new;
 end;
 $function$;
