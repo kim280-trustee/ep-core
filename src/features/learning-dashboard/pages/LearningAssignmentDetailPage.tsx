@@ -5,7 +5,6 @@ import { useAuth } from "@/core/auth";
 import { learningAssignmentsService } from "@/features/learning-assignments";
 import { learningAssessmentService } from "@/features/learning-assessment";
 import { learningActivityService } from "@/features/learning-activity";
-import { LearningNavigation } from "../components/LearningNavigation";
 
 function dateLabel(value: string | null) {
   if (!value) return "No due date";
@@ -118,7 +117,6 @@ export default function LearningAssignmentDetailPage() {
 
   return (
     <div className="space-y-6">
-      <LearningNavigation />
 
       <Link
         to="/learning/assignments"
