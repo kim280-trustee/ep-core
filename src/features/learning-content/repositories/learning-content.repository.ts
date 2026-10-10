@@ -104,7 +104,7 @@ export const learningContentRepository: LearningContentRepository = {
   async addObjective(input){const{data,error}=await supabase.from("learning_content_objectives").insert({content_item_id:input.contentItemId,objective_id:input.objectiveId,sequence_no:input.sequenceNo}).select("*").single();if(error)throw error;return mapContentObjective(data);},
   async updateContentStatus(id,status,_reviewerId){
     const rpcClient=supabase as unknown as {
-      rpc:(name:string,args:Record<string,unknown>)=>Promise<{data:ItemRow|null;error:{message:string}|null}>
+      rpc:(name:string,args:Record<string,unknown>)=>Promise<{data:ContentItemRow|null;error:{message:string}|null}>
     };
     const{data,error}=await rpcClient.rpc("transition_learning_content_status",{
       p_content_item_id:id,
@@ -149,12 +149,16 @@ export const learningContentRepository: LearningContentRepository = {
     const r=data as any;
     return {id:r.id,organizationId:r.organization_id,assignmentId:r.assignment_id,contentItemId:r.content_item_id,contentVersionId:r.content_version_id??null,studentUserId:r.student_user_id,responseText:r.response_text,status:r.status,score:r.score===null?null:Number(r.score),maxScore:r.max_score===null?null:Number(r.max_score),teacherFeedback:r.teacher_feedback??null,submittedAt:r.submitted_at??null,createdAt:r.created_at,updatedAt:r.updated_at};
   },
-  async updateVersionStatus(id,status,reviewerId){
-    const patch:Database["public"]["Tables"]["learning_content_versions"]["Update"]={status};
-    if(reviewerId){patch.reviewed_by=reviewerId;patch.reviewed_at=new Date().toISOString();}
-    if(status==="published")patch.published_at=new Date().toISOString();
-    const{data,error}=await supabase.from("learning_content_versions").update(patch).eq("id",id).select("*").single();
-    if(error)throw error;
+  async updateVersionStatus(id,status,_reviewerId){
+    const rpcClient=supabase as unknown as {
+      rpc:(name:string,args:Record<string,unknown>)=>Promise<{data:ContentVersionRow|null;error:{message:string}|null}>
+    };
+    const{data,error}=await rpcClient.rpc("transition_learning_content_version_status",{
+      p_content_version_id:id,
+      p_status:status,
+    });
+    if(error)throw new Error(error.message);
+    if(!data)throw new Error("Content-version transition returned no version record.");
     return mapContentVersion(data);
   },
 };
