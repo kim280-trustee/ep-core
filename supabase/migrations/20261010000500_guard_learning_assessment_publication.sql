@@ -54,7 +54,7 @@ $function$;
 
 drop trigger if exists learning_assessments_publication_guard on public.learning_assessments;
 create trigger learning_assessments_publication_guard
-before insert or update on public.learning_assessments
+before insert or update of status on public.learning_assessments
 for each row execute function private.guard_learning_assessment_publication();
 
 commit;
