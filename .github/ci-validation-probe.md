@@ -1,1 +1,1 @@
-Temporary CI trigger for current Learning branch validation; remove after checks.
+Temporary CI trigger for the current Learning branch; remove after validation.
