@@ -81,7 +81,7 @@ export default function LearningProgressPage() {
       <div className="grid gap-4 sm:grid-cols-3">
         <Metric
           label="Average mastery"
-          value={`${average}%`}
+          value={mastery.length ? `${average}%` : "—"}
           icon={<Target size={18} />}
         />
         <Metric
