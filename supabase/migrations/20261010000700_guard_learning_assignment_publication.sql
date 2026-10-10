@@ -38,7 +38,7 @@ begin
             select 1
             from public.learning_content_items ci
             where ci.id = ai.content_item_id
-              and ci.organization_id = new.organization_id
+              and (ci.organization_id is null or ci.organization_id = new.organization_id)
               and ci.status = 'published'
               and exists (
                 select 1 from public.learning_content_versions cv
