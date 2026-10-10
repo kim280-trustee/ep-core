@@ -38,7 +38,7 @@ export default function TeacherAuthoringPage() {
   const content=useQuery({queryKey:["learning","authoring","content",organizationId],queryFn:()=>learningContentService.listContent(organizationId),enabled:Boolean(organizationId)});
   const questions=useQuery({queryKey:["learning","authoring","questions",organizationId],queryFn:()=>learningAssessmentService.listQuestions(organizationId),enabled:Boolean(organizationId)});
   const assessments=useQuery({queryKey:["learning","authoring","assessments",organizationId],queryFn:()=>learningAssessmentService.listAssessments(organizationId),enabled:Boolean(organizationId)});
-  const teacherAssignments=useQuery({queryKey:["learning","authoring","assignments",classGroupId],queryFn:()=>learningAssignmentsService.listAssignmentsForClass(classGroupId),enabled:Boolean(classGroupId)});
+  const teacherAssignments=useQuery({queryKey:["learning","authoring","assignments",classGroupId],queryFn:()=>learningAssignmentsService.listAssignmentHistoryForClass(classGroupId),enabled:Boolean(classGroupId)});
   const allTeacherAssignments=useQuery({queryKey:["learning","authoring","all-assignments",classes.data?.map(item=>item.classGroup.id)],queryFn:async()=>Promise.all((classes.data??[]).map(async item=>({classGroupId:item.classGroup.id,assignments:await learningAssignmentsService.listAssignmentHistoryForClass(item.classGroup.id)}))),enabled:Boolean(classes.data?.length)});
   const assignmentItems=useQuery({queryKey:["learning","authoring","assignment-items",assignmentId],queryFn:()=>learningAssignmentsService.listItems(assignmentId),enabled:Boolean(assignmentId)});
   const draftAssignments=teacherAssignments.data?.filter(a=>a.status==="draft")??[];
