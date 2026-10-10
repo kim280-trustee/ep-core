@@ -40,7 +40,7 @@ begin
     raise exception 'You do not have permission to manage this content';
   end if;
 
-  if p_status not in ('draft', 'review', 'published', 'retired') then
+  if p_status is null or p_status not in ('draft', 'review', 'published', 'retired') then
     raise exception 'Unsupported content status';
   end if;
 
