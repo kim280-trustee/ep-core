@@ -1,6 +1,41 @@
 -- Enforce assessment attempt limits and release times in the database.
 begin;
 
+alter table public.learning_attempts
+  add column if not exists assignment_id uuid references public.learning_assignments(id) on delete set null;
+
+create index if not exists learning_attempts_assignment_student_idx
+  on public.learning_attempts(assignment_id, student_user_id, assessment_id);
+
+-- Backfill only when an attempt maps unambiguously to one targeted assignment.
+with candidate_assignments as (
+  select la.id as attempt_id, min(a.id::text)::uuid as assignment_id, count(distinct a.id) as assignment_count
+  from public.learning_attempts la
+  join public.learning_assignment_items ai on ai.assessment_id = la.assessment_id
+  join public.learning_assignments a on a.id = ai.assignment_id
+    and a.status = 'published'
+  join public.learning_assignment_targets t on t.assignment_id = a.id
+    and t.status = 'active'
+    and (
+      t.student_user_id = la.student_user_id
+      or exists (
+        select 1 from public.learning_class_memberships cm
+        where cm.class_group_id = t.class_group_id
+          and cm.user_id = la.student_user_id
+          and cm.membership_type = 'student'
+          and cm.status = 'active'
+      )
+    )
+  where la.assignment_id is null
+  group by la.id
+)
+update public.learning_attempts la
+set assignment_id = ca.assignment_id
+from candidate_assignments ca
+where ca.attempt_id = la.id
+  and ca.assignment_count = 1;
+
+
 create or replace function private.enforce_learning_attempt_limits()
 returns trigger
 language plpgsql
@@ -20,6 +55,9 @@ begin
   if v_user_id is null or new.student_user_id <> v_user_id then
     raise exception 'You cannot start another student''s assessment attempt';
   end if;
+  if new.assignment_id is null then
+    raise exception 'An assignment is required to start an assessment attempt';
+  end if;
 
   perform 1 from public.learning_assessments a
   where a.id = new.assessment_id and a.status = 'published'
@@ -29,26 +67,23 @@ begin
   if not exists (
     select 1 from public.learning_assignment_items ai
     join public.learning_assignments a on a.id = ai.assignment_id
-    where ai.assessment_id = new.assessment_id
+    where ai.assignment_id = new.assignment_id
+      and ai.assessment_id = new.assessment_id
       and a.status = 'published'
       and (a.available_from is null or a.available_from <= now())
       and private.learning_student_has_assignment_target(a.id, new.student_user_id)
   ) then
-    raise exception 'No released assignment is available for this assessment';
+    raise exception 'This assessment is not available in the selected assignment';
   end if;
 
-  select min(a.max_attempts) into v_limit
-  from public.learning_assignment_items ai
-  join public.learning_assignments a on a.id = ai.assignment_id
-  where ai.assessment_id = new.assessment_id
-    and a.status = 'published'
-    and (a.available_from is null or a.available_from <= now())
-    and a.max_attempts is not null
-    and private.learning_student_has_assignment_target(a.id, new.student_user_id);
+  select a.max_attempts into v_limit
+  from public.learning_assignments a
+  where a.id = new.assignment_id;
 
   select count(*)::integer into v_count from public.learning_attempts la
   where la.assessment_id = new.assessment_id
     and la.student_user_id = new.student_user_id
+    and (la.assignment_id = new.assignment_id or la.assignment_id is null)
     and la.status <> 'abandoned';
 
   if v_limit is not null and v_count >= v_limit then
