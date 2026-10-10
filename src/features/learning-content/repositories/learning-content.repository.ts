@@ -102,52 +102,16 @@ export const learningContentRepository: LearningContentRepository = {
   async createContent(input){const{data,error}=await supabase.from("learning_content_items").insert({organization_id:input.organizationId,code:input.code,title:input.title,content_type:input.contentType,language_code:input.languageCode,created_by:input.createdBy}).select("*").single();if(error)throw error;return mapContentItem(data);},
   async createVersion(input){const{data,error}=await supabase.from("learning_content_versions").insert({content_item_id:input.contentItemId,version_no:input.versionNo,body:input.body as Json,change_summary:input.changeSummary??null,created_by:input.createdBy}).select("*").single();if(error)throw error;return mapContentVersion(data);},
   async addObjective(input){const{data,error}=await supabase.from("learning_content_objectives").insert({content_item_id:input.contentItemId,objective_id:input.objectiveId,sequence_no:input.sequenceNo}).select("*").single();if(error)throw error;return mapContentObjective(data);},
-  async updateContentStatus(id,status,reviewerId){
-    const {data:current,error:currentError}=await supabase.from("learning_content_items").select("*").eq("id",id).single();
-    if(currentError)throw currentError;
-
-    if(status==="review"||status==="published"){
-      const {data:objectives,error:objectiveError}=await supabase.from("learning_content_objectives").select("objective_id").eq("content_item_id",id);
-      if(objectiveError)throw objectiveError;
-      if(!(objectives??[]).length)throw new Error("Content needs at least one learning objective before review or publishing.");
-
-      const {data:versions,error:versionError}=await supabase.from("learning_content_versions").select("id,version_no,body,status").eq("content_item_id",id).order("version_no",{ascending:false});
-      if(versionError)throw versionError;
-      if(!(versions??[]).length)throw new Error("Content needs at least one version before review or publishing.");
-
-      const latestVersion=versions[0];
-      const rawSections=(latestVersion.body as Record<string,unknown>)?.sections;
-      const sections: unknown[]=Array.isArray(rawSections)?rawSections:[];
-      const hasContent=sections.some((section)=>section&&typeof section==="object"&&typeof (section as Record<string,unknown>).body==="string"&&String((section as Record<string,unknown>).body).trim());
-      if(!hasContent)throw new Error("The latest content version cannot be empty.");
-      if(status==="published"&&current.status!=="review")throw new Error("Content must be in review before it can be published.");
-      const now=new Date().toISOString();
-      const versionPatch:Database["public"]["Tables"]["learning_content_versions"]["Update"]={status};
-      if(reviewerId){versionPatch.reviewed_by=reviewerId;versionPatch.reviewed_at=now;}
-      if(status==="published")versionPatch.published_at=now;
-      const{error:versionUpdateError}=await supabase.from("learning_content_versions").update(versionPatch).eq("id",latestVersion.id);
-      if(versionUpdateError)throw versionUpdateError;
-    } else if(status==="draft"){
-      const{data:versions,error:versionError}=await supabase.from("learning_content_versions").select("id").eq("content_item_id",id).order("version_no",{ascending:false}).limit(1);
-      if(versionError)throw versionError;
-      if(versions?.[0]){
-        const{error:versionUpdateError}=await supabase.from("learning_content_versions").update({status:"draft"}).eq("id",versions[0].id);
-        if(versionUpdateError)throw versionUpdateError;
-      }
-    } else if(status==="retired"){
-      const{data:versions,error:versionError}=await supabase.from("learning_content_versions").select("id").eq("content_item_id",id).order("version_no",{ascending:false}).limit(1);
-      if(versionError)throw versionError;
-      if(versions?.[0]){
-        const now=new Date().toISOString();
-        const{error:versionUpdateError}=await supabase.from("learning_content_versions").update({status:"retired",reviewed_by:reviewerId??null,reviewed_at:reviewerId?now:null}).eq("id",versions[0].id);
-        if(versionUpdateError)throw versionUpdateError;
-      }
-    }
-
-    const patch:Database["public"]["Tables"]["learning_content_items"]["Update"]={status};
-    if(reviewerId){patch.reviewed_by=reviewerId;patch.reviewed_at=new Date().toISOString();}
-    const{data,error}=await supabase.from("learning_content_items").update(patch).eq("id",id).select("*").single();
-    if(error)throw error;
+  async updateContentStatus(id,status,_reviewerId){
+    const rpcClient=supabase as unknown as {
+      rpc:(name:string,args:Record<string,unknown>)=>Promise<{data:ItemRow|null;error:{message:string}|null}>
+    };
+    const{data,error}=await rpcClient.rpc("transition_learning_content_status",{
+      p_content_item_id:id,
+      p_status:status,
+    });
+    if(error)throw new Error(error.message);
+    if(!data)throw new Error("Content status transition returned no content record.");
     return mapContentItem(data);
   },
   async getStudentResponse(assignmentId,contentItemId,studentUserId){
