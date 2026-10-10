@@ -40,7 +40,7 @@ revoke update (id, organization_id, assignment_id, content_item_id, content_vers
 
 grant insert (organization_id, assignment_id, content_item_id, content_version_id, student_user_id, response_text, status, submitted_at)
   on table public.learning_content_responses to authenticated;
-grant update (organization_id, assignment_id, content_item_id, content_version_id, student_user_id, response_text, status, submitted_at)
+grant update (response_text, status, submitted_at)
   on table public.learning_content_responses to authenticated;
 
 drop policy if exists learning_content_responses_insert on public.learning_content_responses;
