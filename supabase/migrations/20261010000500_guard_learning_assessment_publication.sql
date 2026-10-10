@@ -28,7 +28,6 @@ begin
     where aq.assessment_id = new.id
       and (
         q.status <> 'published'
-        or qv.status <> 'published'
         or qv.published_at is null
         or q.question_type not in ('single_choice', 'true_false')
         or coalesce(ek.scoring_rules->>'method', '') <> 'exact_option'
