@@ -119,7 +119,7 @@ CREATE OR REPLACE FUNCTION public.grade_learning_content_response(p_response_id 
  RETURNS uuid
  LANGUAGE plpgsql
  SECURITY DEFINER
- SET search_path TO 'public', 'private'
+ SET search_path TO ''
 AS $function$
 declare
  v_response public.learning_content_responses%rowtype;
