@@ -6,7 +6,6 @@ import { useAuth } from "@/core/auth";
 import { learningAssignmentsService } from "@/features/learning-assignments";
 import { learningActivityService } from "@/features/learning-activity";
 import { learningAssessmentService } from "@/features/learning-assessment";
-import { LearningNavigation } from "../components/LearningNavigation";
 
 type QuestionDisplay = {
   id: string;
@@ -404,7 +403,6 @@ export default function LearningAssessmentRuntimePage() {
   if (submittedAttempt) {
     return (
       <div className="space-y-6">
-        <LearningNavigation />
 
         <section className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8">
           <CheckCircle2 size={28} />
@@ -460,7 +458,6 @@ export default function LearningAssessmentRuntimePage() {
   if (!started && attemptsRemaining === 0) {
     return (
       <div className="space-y-6">
-        <LearningNavigation />
 
         <Link
           to={`/learning/assignments/${id}`}
@@ -525,7 +522,6 @@ export default function LearningAssessmentRuntimePage() {
   if (!started) {
     return (
       <div className="space-y-6">
-        <LearningNavigation />
 
         <Link
           to={`/learning/assignments/${id}`}
@@ -577,7 +573,6 @@ export default function LearningAssessmentRuntimePage() {
 
   return (
     <div className="space-y-6">
-      <LearningNavigation />
 
       <section className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8">
         <p className="text-sm text-slate-300">Assessment attempt</p>
