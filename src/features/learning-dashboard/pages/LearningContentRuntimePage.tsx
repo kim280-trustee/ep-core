@@ -109,9 +109,7 @@ export default function LearningContentRuntimePage() {
     },
     onSuccess: async (saved) => {
       if (saved.status === "submitted") {
-        const item = query.data?.items.find((candidate) =>
-          candidate.itemType === "content" && candidate.contentItemId === content
-        );
+        const item = query.data?.item;
         if (item?.required) {
           await learningAssignmentsService.completeContentForStudent(id, content, user!.id);
         }
