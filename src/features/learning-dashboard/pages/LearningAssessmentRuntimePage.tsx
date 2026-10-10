@@ -256,20 +256,24 @@ export default function LearningAssessmentRuntimePage() {
       setSubmittedAttempt(attempt);
 
       if (sessionId && user?.id) {
-        const session = await learningActivityService.listSessions(user.id);
-        const activeSession = session.find((item) => item.id === sessionId);
-        if (activeSession) {
-          await learningActivityService.logEvent({
-            tenantId: activeSession.tenantId,
-            organizationId: activeSession.organizationId,
-            studentUserId: user.id,
-            sessionId: sessionId,
-            activityType: "assessment_submitted",
-            assessmentId: assessment,
-            assignmentId: id,
-          });
+        try {
+          const session = await learningActivityService.listSessions(user.id);
+          const activeSession = session.find((item) => item.id === sessionId);
+          if (activeSession) {
+            await learningActivityService.logEvent({
+              tenantId: activeSession.tenantId,
+              organizationId: activeSession.organizationId,
+              studentUserId: user.id,
+              sessionId,
+              activityType: "assessment_submitted",
+              assessmentId: assessment,
+              assignmentId: id,
+            });
+          }
+          await learningActivityService.endSession(sessionId);
+        } catch {
+          // Submission has succeeded; telemetry failures must not hide the result.
         }
-        await learningActivityService.endSession(sessionId);
       }
       const wasCompleted = assignmentQuery.data?.progress?.status === "completed";
       const progress = await learningAssignmentsService.refreshProgressForStudent(
@@ -278,19 +282,23 @@ export default function LearningAssessmentRuntimePage() {
       );
 
       if (!wasCompleted && progress.status === "completed") {
-        const assignmentSession = await learningActivityService.startForStudent(
-          user!.id,
-          "assignment",
-          id,
-        );
-        await learningActivityService.logEvent({
-          tenantId: assignmentSession.tenantId,
-          organizationId: assignmentSession.organizationId,
-          studentUserId: user!.id,
-          sessionId: assignmentSession.id,
-          activityType: "assignment_completed",
-          assignmentId: id,
-        });
+        try {
+          const assignmentSession = await learningActivityService.startForStudent(
+            user!.id,
+            "assignment",
+            id,
+          );
+          await learningActivityService.logEvent({
+            tenantId: assignmentSession.tenantId,
+            organizationId: assignmentSession.organizationId,
+            studentUserId: user!.id,
+            sessionId: assignmentSession.id,
+            activityType: "assignment_completed",
+            assignmentId: id,
+          });
+        } catch {
+          // Completion is persisted separately; its activity event is best-effort.
+        }
       }
 
       await queryClient.invalidateQueries({
