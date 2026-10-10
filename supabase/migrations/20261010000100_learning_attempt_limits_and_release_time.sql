@@ -136,6 +136,8 @@ begin
 end;
 $function$;
 
+revoke all on function private.enforce_learning_attempt_limits() from public, anon, authenticated;
+
 drop trigger if exists learning_attempts_enforce_limits on public.learning_attempts;
 create trigger learning_attempts_enforce_limits
 before insert on public.learning_attempts
