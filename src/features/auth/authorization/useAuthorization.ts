@@ -22,7 +22,7 @@ export function useAuthorization(): AuthorizationState & {
     setLoading(true);
 
     try {
-      const nextPermissions = await loadUserPermissions(user.authUserId);
+      const nextPermissions = await loadUserPermissions();
       setPermissions(nextPermissions);
     } catch {
       setPermissions([]);
@@ -32,11 +32,13 @@ export function useAuthorization(): AuthorizationState & {
   }, [user]);
 
   useEffect(() => {
-    if (authLoading) {
-      return;
-    }
+    if (authLoading) return;
 
-    void loadPermissions();
+    const timer = window.setTimeout(() => {
+      void loadPermissions();
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, [authLoading, loadPermissions]);
 
   const hasPermission = useCallback(

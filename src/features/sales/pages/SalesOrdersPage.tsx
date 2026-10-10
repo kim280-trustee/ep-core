@@ -1,7 +1,4 @@
-﻿import {
-  useEffect,
-  useState,
-} from "react";
+﻿
 
 import CreateSalesOrderForm
   from "../components/CreateSalesOrderForm";
@@ -25,46 +22,7 @@ export default function SalesOrdersPage() {
     orders,
   } = useSalesOrders();
 
-  const [
-    activeOrderId,
-    setActiveOrderId,
-  ] = useState("");
-
-  useEffect(() => {
-    if (activeOrderId) {
-      const exists =
-        orders.some(
-          (order) =>
-            order.id === activeOrderId &&
-            order.status === "DRAFT",
-        );
-
-      if (exists) {
-        return;
-      }
-    }
-
-    const latestDraft =
-      orders.find(
-        (order) =>
-          order.status === "DRAFT",
-      );
-
-    if (latestDraft) {
-      setActiveOrderId(
-        latestDraft.id,
-      );
-    }
-  }, [
-    orders,
-    activeOrderId,
-  ]);
-
-  const activeOrder =
-    orders.find(
-      (order) =>
-        order.id === activeOrderId,
-    );
+  const activeOrder = orders.find((order) => order.status === "DRAFT");
 
   return (
     <div className="p-6">

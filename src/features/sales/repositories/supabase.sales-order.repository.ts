@@ -1,6 +1,6 @@
 import type { Database } from "@/core/database/database.types";
 
-﻿import { supabase } from "@/core/infrastructure/supabase/client";
+import { supabase } from "@/core/infrastructure/supabase/client";
 
 import type {
   SalesOrder,

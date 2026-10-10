@@ -15,7 +15,6 @@ export function SupplierLedgerPage() {
 
   useEffect(() => {
     if (!context?.tenantId || !context.storeId || !id) {
-      setLoading(false);
       return;
     }
 
@@ -33,6 +32,7 @@ export function SupplierLedgerPage() {
       .finally(() => setLoading(false));
   }, [context?.tenantId, context?.storeId, id]);
 
+  if (!context?.tenantId || !context.storeId || !id) return <div className="p-6 text-sm text-red-700">Store or supplier context is not initialized.</div>;
   if (loading) return <div className="p-6 text-sm text-gray-500">Loading supplier ledger...</div>;
 
   const currentBalance = balance?.balance ?? 0;

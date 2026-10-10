@@ -14,7 +14,7 @@ export function InventoryStockAlerts({ records }: InventoryStockAlertsProps) {
 
   useEffect(() => {
     const warehouseIds = [...new Set(records.map((record) => record.warehouseId))];
-    if (warehouseIds.length === 0) { setWarehouseNames({}); return; }
+    if (warehouseIds.length === 0) return;
     let cancelled = false;
     const loadWarehouses = async () => {
       const entries = await Promise.all(warehouseIds.map(async (warehouseId) => {

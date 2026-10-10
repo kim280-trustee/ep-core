@@ -12,15 +12,7 @@ export function useReports(filter: ReportFilter | null) {
     if (!filter?.tenantId) return;
 
     void load(filter);
-  }, [
-    filter?.tenantId,
-    filter?.storeId,
-    filter?.warehouseId,
-    filter?.currency,
-    filter?.dateRange?.from,
-    filter?.dateRange?.to,
-    load,
-  ]);
+  }, [filter, load]);
 
   return {
     summary,

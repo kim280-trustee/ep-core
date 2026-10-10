@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+﻿import { useState } from "react";
 import type { ExpenseCategory } from "../types";
 import type { ExpenseFormInput } from "../validators/expense.schema";
 import { expenseSchema } from "../validators/expense.schema";
@@ -36,15 +36,6 @@ export function ExpenseForm({ initialValues, submitting = false, error, submitLa
   const [currency, setCurrency] = useState(initialValues?.currency ?? "THB");
   const [expenseDate, setExpenseDate] = useState(initialValues?.expenseDate ? initialValues.expenseDate.slice(0, 10) : new Date().toISOString().slice(0, 10));
   const [validationError, setValidationError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (!initialValues) return;
-    setCategory(initialValues.category ?? "OTHER");
-    setDescription(initialValues.description ?? "");
-    setAmount(initialValues.amount !== undefined ? String(initialValues.amount) : "");
-    setCurrency(initialValues.currency ?? "THB");
-    setExpenseDate(initialValues.expenseDate ? initialValues.expenseDate.slice(0, 10) : new Date().toISOString().slice(0, 10));
-  }, [initialValues]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();

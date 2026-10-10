@@ -69,7 +69,7 @@ export default function GoodsReceiptDetailsPage() {
     }
     void loadNames();
     return () => { cancelled = true; };
-  }, [receipt?.id, t]);
+  }, [receipt, t]);
 
   if (!receipt) {
     return (

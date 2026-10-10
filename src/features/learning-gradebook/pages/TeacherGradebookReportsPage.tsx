@@ -54,8 +54,8 @@ export default function TeacherGradebookReportsPage() {
     enabled: Boolean(term?.id && subject?.id),
   });
 
-  const students = classQ.data?.students ?? [];
-  const grades = gradesQ.data ?? [];
+  const students = useMemo(() => classQ.data?.students ?? [], [classQ.data?.students]);
+  const grades = useMemo(() => gradesQ.data ?? [], [gradesQ.data]);
 
   const rows = useMemo<ReportRow[]>(
     () =>
@@ -75,21 +75,17 @@ export default function TeacherGradebookReportsPage() {
 
   const visibleGrades = rows.flatMap((row) => (row.grade ? [row.grade] : []));
   const finalizedGrades = visibleGrades.filter((grade) => grade.status === "finalized");
-  const rankByStudentId = useMemo(() => {
-    const ranked = rows
-      .filter((row) => row.grade?.status === "finalized")
-      .sort((a, b) => (b.grade?.score ?? -1) - (a.grade?.score ?? -1));
-    return new Map(ranked.map((row, index) => [row.student.membership.userId, index + 1]));
-  }, [rows]);
+  const rankedRows = rows
+    .filter((row) => row.grade?.status === "finalized")
+    .sort((a, b) => (b.grade?.score ?? -1) - (a.grade?.score ?? -1));
+  const rankByStudentId = new Map(rankedRows.map((row, index) => [row.student.membership.userId, index + 1]));
 
-  const distribution = useMemo(() => {
-    const counts = new Map<string, number>();
-    for (const row of rows) {
-      const label = row.grade?.letterGrade ?? "Ungraded";
-      counts.set(label, (counts.get(label) ?? 0) + 1);
-    }
-    return [...counts.entries()];
-  }, [rows]);
+  const counts = new Map<string, number>();
+  for (const row of rows) {
+    const label = row.grade?.letterGrade ?? "Ungraded";
+    counts.set(label, (counts.get(label) ?? 0) + 1);
+  }
+  const distribution = [...counts.entries()];
 
   const finalizedAverage = finalizedGrades.length
     ? finalizedGrades.reduce((sum, grade) => sum + grade.score, 0) / finalizedGrades.length

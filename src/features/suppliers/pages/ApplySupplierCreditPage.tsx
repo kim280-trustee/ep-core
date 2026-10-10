@@ -22,7 +22,6 @@ export function ApplySupplierCreditPage() {
 
   useEffect(() => {
     if (!context?.tenantId || !context.storeId || !supplierId) {
-      setLoading(false);
       return;
     }
 
@@ -86,6 +85,7 @@ export function ApplySupplierCreditPage() {
     }
   }
 
+  if (!context?.tenantId || !context.storeId || !supplierId) return <div className="p-6 text-sm text-red-700">Store or supplier context is not initialized.</div>;
   if (loading) return <div className="p-6 text-sm text-gray-500">Loading supplier credit...</div>;
 
   return (

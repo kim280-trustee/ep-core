@@ -1,6 +1,6 @@
 import type { Database } from "@/core/database/database.types";
 
-﻿import {
+import {
   supabase,
 } from "@/core/infrastructure/supabase/client";
 

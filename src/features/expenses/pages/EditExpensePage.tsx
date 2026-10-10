@@ -20,7 +20,7 @@ export function EditExpensePage() {
 
   useEffect(() => {
     async function load() {
-      if (!context || !id) { setLoading(false); return; }
+      if (!context?.tenantId || !context.storeId || !id) { setLoading(false); return; }
       try {
         setLoading(true); setError(null);
         setExpense(await getExpenseById(context.tenantId, context.storeId, id));

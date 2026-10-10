@@ -93,7 +93,12 @@ export default function LearningContentRuntimePage() {
   });
 
   useEffect(() => {
-    if (responseQuery.data) setResponseText(responseQuery.data.responseText);
+    if (!responseQuery.data) return;
+    const nextResponseText = responseQuery.data.responseText;
+    const timer = window.setTimeout(() => {
+      setResponseText(nextResponseText);
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, [responseQuery.data]);
 
   const responseMutation = useMutation({

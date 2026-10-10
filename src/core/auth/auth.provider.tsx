@@ -99,7 +99,9 @@ export function AuthProvider({ children }: Props) {
 
   useEffect(() => {
     let mounted = true;
-    void loadUser();
+    const initialLoad = window.setTimeout(() => {
+      if (mounted) void loadUser();
+    }, 0);
 
     const { data } = supabase.auth.onAuthStateChange(() => {
       window.setTimeout(() => {
@@ -109,6 +111,7 @@ export function AuthProvider({ children }: Props) {
 
     return () => {
       mounted = false;
+      window.clearTimeout(initialLoad);
       loadRequestId.current += 1;
       data.subscription.unsubscribe();
     };

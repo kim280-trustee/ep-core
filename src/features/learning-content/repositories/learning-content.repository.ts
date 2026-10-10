@@ -17,6 +17,25 @@ type AlignmentRow = Database["public"]["Tables"]["learning_objective_alignments"
 type ContentItemRow = Database["public"]["Tables"]["learning_content_items"]["Row"];
 type ContentVersionRow = Database["public"]["Tables"]["learning_content_versions"]["Row"];
 type ContentObjectiveRow = Database["public"]["Tables"]["learning_content_objectives"]["Row"];
+type ContentResponseRow = Database["public"]["Tables"]["learning_content_responses"]["Row"];
+
+const mapContentResponse = (r: ContentResponseRow): LearningContentResponse => ({
+  id: r.id,
+  organizationId: r.organization_id,
+  assignmentId: r.assignment_id,
+  contentItemId: r.content_item_id,
+  contentVersionId: r.content_version_id,
+  studentUserId: r.student_user_id,
+  responseText: r.response_text,
+  status: r.status as LearningContentResponse["status"],
+  score: r.score === null ? null : Number(r.score),
+  maxScore: r.max_score === null ? null : Number(r.max_score),
+  teacherFeedback: r.teacher_feedback,
+  submittedAt: r.submitted_at,
+  createdAt: r.created_at,
+  updatedAt: r.updated_at,
+});
+
 
 export interface LearningContentResponse {
   id: string;
@@ -103,6 +122,8 @@ export const learningContentRepository: LearningContentRepository = {
   async createVersion(input){const{data,error}=await supabase.from("learning_content_versions").insert({content_item_id:input.contentItemId,version_no:input.versionNo,body:input.body as Json,change_summary:input.changeSummary??null,created_by:input.createdBy}).select("*").single();if(error)throw error;return mapContentVersion(data);},
   async addObjective(input){const{data,error}=await supabase.from("learning_content_objectives").insert({content_item_id:input.contentItemId,objective_id:input.objectiveId,sequence_no:input.sequenceNo}).select("*").single();if(error)throw error;return mapContentObjective(data);},
   async updateContentStatus(id,status,_reviewerId){
+    // The database RPC derives the reviewer from auth.uid(); caller-supplied identity is not trusted.
+    void _reviewerId;
     const rpcClient=supabase as unknown as {
       rpc:(name:string,args:Record<string,unknown>)=>Promise<{data:ContentItemRow|null;error:{message:string}|null}>
     };
@@ -118,13 +139,12 @@ export const learningContentRepository: LearningContentRepository = {
     const {data,error}=await supabase.from("learning_content_responses").select("*").eq("assignment_id",assignmentId).eq("content_item_id",contentItemId).eq("student_user_id",studentUserId).maybeSingle();
     if(error)throw error;
     if(!data)return null;
-    const r=data as any;
-    return {id:r.id,organizationId:r.organization_id,assignmentId:r.assignment_id,contentItemId:r.content_item_id,contentVersionId:r.content_version_id??null,studentUserId:r.student_user_id,responseText:r.response_text,status:r.status,score:r.score===null?null:Number(r.score),maxScore:r.max_score===null?null:Number(r.max_score),teacherFeedback:r.teacher_feedback??null,submittedAt:r.submitted_at??null,createdAt:r.created_at,updatedAt:r.updated_at};
+    return mapContentResponse(data);
   },
   async listTeacherResponses(assignmentId){
     const {data,error}=await supabase.from("learning_content_responses").select("*").eq("assignment_id",assignmentId).order("submitted_at",{ascending:false});
     if(error)throw error;
-    const rows=(data??[]).map((r:any)=>({id:r.id,organizationId:r.organization_id,assignmentId:r.assignment_id,contentItemId:r.content_item_id,contentVersionId:r.content_version_id??null,studentUserId:r.student_user_id,responseText:r.response_text,status:r.status,score:r.score===null?null:Number(r.score),maxScore:r.max_score===null?null:Number(r.max_score),teacherFeedback:r.teacher_feedback??null,submittedAt:r.submitted_at??null,createdAt:r.created_at,updatedAt:r.updated_at}));
+    const rows = (data ?? []).map(mapContentResponse);
     const ids=[...new Set(rows.map(r=>r.studentUserId))];
     if(!ids.length)return[];
     const {data:users,error:userError}=await supabase.from("users").select("id,name,email").in("id",ids);
@@ -146,10 +166,11 @@ export const learningContentRepository: LearningContentRepository = {
     if(existing.status==="submitted"){if(input.status==="submitted")return existing;throw new Error("This response has already been submitted and cannot be edited.");}
     const {data,error}=await supabase.from("learning_content_responses").update({response_text:input.responseText,status:input.status,submitted_at:submittedAt,updated_at:new Date().toISOString()}).eq("id",existing.id).select("*").single();
     if(error)throw error;
-    const r=data as any;
-    return {id:r.id,organizationId:r.organization_id,assignmentId:r.assignment_id,contentItemId:r.content_item_id,contentVersionId:r.content_version_id??null,studentUserId:r.student_user_id,responseText:r.response_text,status:r.status,score:r.score===null?null:Number(r.score),maxScore:r.max_score===null?null:Number(r.max_score),teacherFeedback:r.teacher_feedback??null,submittedAt:r.submitted_at??null,createdAt:r.created_at,updatedAt:r.updated_at};
+    return mapContentResponse(data);
   },
   async updateVersionStatus(id,status,_reviewerId){
+    // The database RPC derives the reviewer from auth.uid(); caller-supplied identity is not trusted.
+    void _reviewerId;
     const rpcClient=supabase as unknown as {
       rpc:(name:string,args:Record<string,unknown>)=>Promise<{data:ContentVersionRow|null;error:{message:string}|null}>
     };

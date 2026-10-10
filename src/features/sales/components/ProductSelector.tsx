@@ -92,7 +92,7 @@ export default function ProductSelector({
     return () => {
       active = false;
     };
-  }, []);
+  }, [t]);
 
   function handleChange(productId: string) {
     onChange(productId);

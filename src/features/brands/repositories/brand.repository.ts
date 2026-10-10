@@ -1,5 +1,5 @@
 import type { Database } from "@/core/database/database.types";
-﻿import { supabase } from "@/core/infrastructure/supabase/client";
+import { supabase } from "@/core/infrastructure/supabase/client";
 import type { Brand } from "../types/brand.types";
 
 export interface IBrandRepository {

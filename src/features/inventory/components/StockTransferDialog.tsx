@@ -23,7 +23,6 @@ export function StockTransferDialog({
   tenantId,
   fromStoreId,
   sourceWarehouseId,
-  transferredBy: _transferredBy,
   onSubmit,
   onClose,
 }: StockTransferDialogProps) {
