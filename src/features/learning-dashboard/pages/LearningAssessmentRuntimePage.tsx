@@ -592,7 +592,7 @@ export default function LearningAssessmentRuntimePage() {
               </span>
             </div>
 
-            {question.questionType === "single_choice" && (
+            {(question.questionType === "single_choice" || question.questionType === "true_false") && (
               <div className="mt-5 space-y-3">
                 {question.options.map((option) => (
                   <label
@@ -624,7 +624,7 @@ export default function LearningAssessmentRuntimePage() {
               </div>
             )}
 
-            {question.questionType !== "single_choice" && (
+            {question.questionType === "short_answer" && (
               <div className="mt-5">
                 <input
                   type="text"
