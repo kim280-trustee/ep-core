@@ -77,6 +77,8 @@ with check (
           select 1 from public.learning_content_versions cv
           where cv.id = learning_content_responses.content_version_id
             and cv.content_item_id = learning_content_responses.content_item_id
+            and cv.status = 'published'
+            and cv.published_at is not null
         )
       )
   )
@@ -111,6 +113,8 @@ with check (
           select 1 from public.learning_content_versions cv
           where cv.id = learning_content_responses.content_version_id
             and cv.content_item_id = learning_content_responses.content_item_id
+            and cv.status = 'published'
+            and cv.published_at is not null
         )
       )
   )
