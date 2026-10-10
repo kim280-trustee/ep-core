@@ -46,7 +46,8 @@ begin
               and cm.status = 'active'
           )
         )
-    );
+    )
+  for update of a;
 
   if not found then
     raise exception 'This assignment is not available to the current student';
