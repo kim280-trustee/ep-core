@@ -71,6 +71,8 @@ begin
     where ai.assignment_id = new.assignment_id
       and ai.assessment_id = new.assessment_id
       and a.status = 'published'
+      and a.tenant_id = new.tenant_id
+      and a.organization_id is not distinct from new.organization_id
       and (a.available_from is null or a.available_from <= now())
       and private.learning_student_has_assignment_target(a.id, new.student_user_id)
   ) then
