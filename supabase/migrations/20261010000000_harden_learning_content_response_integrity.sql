@@ -34,9 +34,9 @@ revoke all on function public.learning_teacher_can_manage_content_response(uuid,
 grant execute on function public.learning_teacher_can_manage_content_response(uuid, uuid) to authenticated;
 
 
-revoke insert, update on table public.learning_content_responses from authenticated;
-revoke insert (id, organization_id, assignment_id, content_item_id, content_version_id, student_user_id, response_text, status, score, max_score, teacher_feedback, submitted_at, created_at, updated_at) on table public.learning_content_responses from authenticated;
-revoke update (id, organization_id, assignment_id, content_item_id, content_version_id, student_user_id, response_text, status, score, max_score, teacher_feedback, submitted_at, created_at, updated_at) on table public.learning_content_responses from authenticated;
+revoke insert, update on table public.learning_content_responses from public, anon, authenticated;
+revoke insert (id, organization_id, assignment_id, content_item_id, content_version_id, student_user_id, response_text, status, score, max_score, teacher_feedback, submitted_at, created_at, updated_at) on table public.learning_content_responses from public, anon, authenticated;
+revoke update (id, organization_id, assignment_id, content_item_id, content_version_id, student_user_id, response_text, status, score, max_score, teacher_feedback, submitted_at, created_at, updated_at) on table public.learning_content_responses from public, anon, authenticated;
 
 grant insert (organization_id, assignment_id, content_item_id, content_version_id, student_user_id, response_text, status, submitted_at)
   on table public.learning_content_responses to authenticated;
