@@ -53,7 +53,7 @@ begin
           and not exists (
             select 1 from public.learning_assessments a
             where a.id = ai.assessment_id
-              and a.organization_id = new.organization_id
+              and (a.organization_id is null or a.organization_id = new.organization_id)
               and a.status = 'published'
           )
         )
