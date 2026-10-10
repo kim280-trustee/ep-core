@@ -24,7 +24,7 @@ export function ExpensesPage() {
   const { expenses, loading, error, refresh, deleteExpense } = useExpenses();
   const [search, setSearch] = useState("");
   const context = storeContext.getStore();
-  useEffect(() => { if (context) void refresh(context.tenantId, context.storeId); }, [context?.tenantId, context?.storeId, refresh]);
+  useEffect(() => { if (context?.tenantId && context.storeId) void refresh(context.tenantId, context.storeId); }, [context?.tenantId, context?.storeId, refresh]);
   const filteredExpenses = useMemo(() => { const term = search.trim().toLowerCase(); if (!term) return expenses; return expenses.filter((expense) => expense.description.toLowerCase().includes(term) || expense.category.toLowerCase().includes(term)); }, [expenses, search]);
   const totalExpenses = filteredExpenses.reduce((total, expense) => total + expense.amount, 0);
   const categoryLabel = (category: ExpenseCategory) => language === "th" ? thaiCategoryLabels[category] : category.replaceAll("_", " ");

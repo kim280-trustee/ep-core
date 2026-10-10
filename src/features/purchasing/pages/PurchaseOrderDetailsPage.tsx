@@ -64,7 +64,7 @@ export default function PurchaseOrderDetailsPage() {
     }
     void loadRelatedNames();
     return () => { cancelled = true; };
-  }, [order?.id, order?.supplierId, order?.warehouseId, t]);
+  }, [order, t]);
 
   if (!order) return <div className="min-h-full bg-slate-100 p-6"><div className="mx-auto max-w-5xl rounded-3xl border border-slate-200 bg-white p-8 shadow-sm"><p className="text-sm text-slate-500">{t("purchasing.purchaseOrder")}</p></div></div>;
 

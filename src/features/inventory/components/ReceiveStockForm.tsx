@@ -50,13 +50,16 @@ export function ReceiveStockForm({ initialProductId, initialWarehouseId, initial
       }
     }
     void loadWarehouses();
-  }, [initialWarehouseId, t]);
+  }, [initialWarehouseId, warehouseId, t]);
 
   useEffect(() => {
-    if (initialProductId !== undefined) setProductId(initialProductId);
-    if (initialWarehouseId !== undefined) setWarehouseId(initialWarehouseId);
-    if (initialQuantity !== undefined) setQuantity(initialQuantity);
-    if (initialProductId !== undefined || initialWarehouseId !== undefined || initialQuantity !== undefined) setMessage("");
+    const timer = window.setTimeout(() => {
+      if (initialProductId !== undefined) setProductId(initialProductId);
+      if (initialWarehouseId !== undefined) setWarehouseId(initialWarehouseId);
+      if (initialQuantity !== undefined) setQuantity(initialQuantity);
+      if (initialProductId !== undefined || initialWarehouseId !== undefined || initialQuantity !== undefined) setMessage("");
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, [initialProductId, initialWarehouseId, initialQuantity]);
 
   async function handleSubmit() {

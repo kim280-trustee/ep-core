@@ -9,6 +9,7 @@ import {
 } from "../services/supplier.service";
 
 import type {
+  Supplier,
   UpdateSupplierDto,
 } from "../types/supplier.types";
 
@@ -28,7 +29,7 @@ export function EditSupplierPage() {
     useState("");
 
   const [supplier, setSupplier] =
-    useState<any>(null);
+    useState<Supplier | null>(null);
 
 
   useEffect(() => {
@@ -155,8 +156,6 @@ export function EditSupplierPage() {
           ? err.message
           : "Unable to update supplier.",
       );
-
-    } finally {
 
     }
 

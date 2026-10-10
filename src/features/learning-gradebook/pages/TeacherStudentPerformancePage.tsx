@@ -15,7 +15,7 @@ export default function TeacherStudentPerformancePage() {
     enabled: Boolean(user?.id && classGroupId),
   });
   const organizationId = classQuery.data?.classInfo.membership.organizationId ?? "";
-  const subjects = classQuery.data?.classInfo.subjects ?? [];
+  const subjects = useMemo(() => classQuery.data?.classInfo.subjects ?? [], [classQuery.data?.classInfo.subjects]);
   const student = classQuery.data?.students.find((item) => item.membership.userId === studentUserId);
   const termsQuery = useQuery({
     queryKey: ["learning", "performance-terms", organizationId],

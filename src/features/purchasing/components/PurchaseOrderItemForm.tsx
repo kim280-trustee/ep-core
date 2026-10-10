@@ -1,5 +1,4 @@
 import {
-  useEffect,
   useState,
   type FormEvent,
 } from "react";
@@ -39,7 +38,6 @@ export function PurchaseOrderItemForm({
   const effectiveTenantId = tenantId || context?.tenantId || "";
   const [productSearch, setProductSearch] = useState("");
   const [selectedProductId, setSelectedProductId] = useState(initialProductId);
-  const [selectedProductName, setSelectedProductName] = useState("");
   const [quantity, setQuantity] = useState("");
   const [unitCost, setUnitCost] = useState("");
   const [taxRate, setTaxRate] = useState("0");
@@ -53,23 +51,16 @@ export function PurchaseOrderItemForm({
     isError: productsError,
   } = useProductSearch(effectiveTenantId, productSearch);
 
-  useEffect(() => {
-    if (!selectedProductId) return;
-    const selected = products.find((product) => product.id === selectedProductId);
-    if (!selected) return;
-    setSelectedProductName(selected.name);
-  }, [products, selectedProductId]);
+  const selectedProductName = selectedProductId ? products.find((product) => product.id === selectedProductId)?.name ?? productSearch : "";
 
   function handleProductSearchChange(value: string) {
     setProductSearch(value);
     setSelectedProductId("");
-    setSelectedProductName("");
     setError("");
   }
 
   function handleSelectProduct(product: typeof products[number]) {
     setSelectedProductId(product.id);
-    setSelectedProductName(product.name);
     setProductSearch(product.name);
     setUnitCost(String(product.costPrice ?? 0));
     setTaxRate(String(product.tax?.taxRate ?? 0));
@@ -129,7 +120,6 @@ export function PurchaseOrderItemForm({
       .then(() => {
         setProductSearch("");
         setSelectedProductId("");
-        setSelectedProductName("");
         setQuantity("");
         setUnitCost("");
         setTaxRate("0");

@@ -75,7 +75,8 @@ export function ProductSearch({
     useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    setResults(products);
+    const timer = window.setTimeout(() => setResults(products), 0);
+    return () => window.clearTimeout(timer);
   }, [products]);
 
   const addItem =

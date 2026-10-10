@@ -1,4 +1,5 @@
 ﻿import {
+  useCallback,
   useEffect,
   useState,
 } from "react";
@@ -51,7 +52,7 @@ export default function CreateSalesOrderForm() {
   const [error, setError] =
     useState<string | null>(null);
 
-  async function loadWarehouses() {
+  const loadWarehouses = useCallback(async () => {
     if (
       !context?.tenantId ||
       !context.storeId
@@ -96,14 +97,12 @@ export default function CreateSalesOrderForm() {
           : t("sales.failedToLoadWarehouses"),
       );
     }
-  }
+  }, [context?.tenantId, context?.storeId, t]);
 
   useEffect(() => {
-    void loadWarehouses();
-  }, [
-    context?.tenantId,
-    context?.storeId,
-  ]);
+    const timer = window.setTimeout(() => void loadWarehouses(), 0);
+    return () => window.clearTimeout(timer);
+  }, [loadWarehouses]);
 
   async function handleCreateWarehouse() {
     setError(null);

@@ -1,4 +1,5 @@
 import {
+  useCallback,
   useEffect,
   useState,
 } from "react";
@@ -31,7 +32,7 @@ export function useWarehouses() {
 
 
 
-  async function loadWarehouses() {
+  const loadWarehouses = useCallback(async () => {
 
     setLoading(true);
 
@@ -66,15 +67,12 @@ export function useWarehouses() {
 
     }
 
-  }
-
-
+  }, []);
 
   useEffect(() => {
-
-    void loadWarehouses();
-
-  }, []);
+    const timer = window.setTimeout(() => void loadWarehouses(), 0);
+    return () => window.clearTimeout(timer);
+  }, [loadWarehouses]);
 
 
 

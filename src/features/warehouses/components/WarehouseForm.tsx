@@ -1,7 +1,4 @@
-import {
-  useEffect,
-  useState,
-} from "react";
+import { useState } from "react";
 
 import type {
   CreateWarehouseDto,
@@ -53,31 +50,6 @@ export function WarehouseForm({
     submitting,
     setSubmitting,
   ] = useState(false);
-
-  useEffect(() => {
-    setForm({
-      code:
-        defaultValues?.code ?? "",
-      name:
-        defaultValues?.name ?? "",
-      address:
-        defaultValues?.address ?? "",
-      city:
-        defaultValues?.city ?? "",
-      province:
-        defaultValues?.province ?? "",
-      postalCode:
-        defaultValues?.postalCode ?? "",
-      country:
-        defaultValues?.country ?? "Thailand",
-      phone:
-        defaultValues?.phone ?? "",
-      managerName:
-        defaultValues?.managerName ?? "",
-    });
-  }, [
-    defaultValues,
-  ]);
 
   function updateField(
     field:

@@ -73,12 +73,12 @@ export function useInventoryTransactions() {
 
 
   useEffect(() => {
+    const timer = window.setTimeout(() => {
+      void refresh();
+    }, 0);
 
-    void refresh();
-
-  }, [
-    refresh,
-  ]);
+    return () => window.clearTimeout(timer);
+  }, [refresh]);
 
 
   return {

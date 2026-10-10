@@ -6,9 +6,7 @@ type PermissionRow = {
   permission_code: string;
 };
 
-export async function loadUserPermissions(
-  _authUserId: string,
-): Promise<PermissionCode[]> {
+export async function loadUserPermissions(): Promise<PermissionCode[]> {
   const { data, error } = await supabase.rpc("get_current_user_permissions");
 
   if (error) {

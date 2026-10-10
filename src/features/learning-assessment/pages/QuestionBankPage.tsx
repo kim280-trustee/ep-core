@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { FileQuestion, Plus, Search, Send, Sparkles, X } from "lucide-react";
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningContentService } from "@/features/learning-content";
@@ -42,11 +42,8 @@ export default function QuestionBankPage() {
     queryFn: () => learningTeacherService.listTeacherClasses(user!.id),
     enabled: Boolean(user?.id),
   });
-  useEffect(() => {
-    if (!classGroupId && classes.data?.length) setClassGroupId(classes.data[0].classGroup.id);
-  }, [classGroupId, classes.data]);
-
-  const selectedClass = classes.data?.find((x) => x.classGroup.id === classGroupId);
+  const activeClassGroupId = classGroupId || classes.data?.[0]?.classGroup.id || "";
+  const selectedClass = classes.data?.find((x) => x.classGroup.id === activeClassGroupId);
   const organizationId = selectedClass?.membership.organizationId;
 
   const questions = useQuery({
@@ -188,7 +185,7 @@ export default function QuestionBankPage() {
       <section className="rounded-2xl border border-slate-200 bg-white p-5">
         <label className="block max-w-xl space-y-2">
           <span className="text-sm font-medium text-slate-700">Teacher class</span>
-          <select value={classGroupId} onChange={(e) => setClassGroupId(e.target.value)} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm">
+          <select value={activeClassGroupId} onChange={(e) => setClassGroupId(e.target.value)} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm">
             <option value="">Select a class</option>
             {classes.data?.map((item) => <option key={item.classGroup.id} value={item.classGroup.id}>{item.classGroup.name}</option>)}
           </select>

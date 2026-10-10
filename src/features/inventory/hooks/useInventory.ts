@@ -109,9 +109,11 @@ export function useInventory() {
 
 
   useEffect(() => {
+    const timer = window.setTimeout(() => {
+      void refresh();
+    }, 0);
 
-    void refresh();
-
+    return () => window.clearTimeout(timer);
   }, [refresh]);
 
 

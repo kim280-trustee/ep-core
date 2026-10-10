@@ -183,9 +183,8 @@ export default function CreatePurchaseReturnPage() {
     };
   }, [
     context?.tenantId,
-    selectedOrder?.id,
-    selectedOrder?.supplierId,
-    selectedOrder?.warehouseId,
+    context?.storeId,
+    selectedOrder,
     returnableItems,
   ]);
 

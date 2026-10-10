@@ -142,7 +142,7 @@ class SupabaseInventoryRepository
   findById(
     _id: string,
   ): InventoryRecord | undefined {
-    throw new Error(
+    void _id; throw new Error(
       "findById() must be accessed through the async Supabase inventory service.",
     );
   }
@@ -150,7 +150,7 @@ class SupabaseInventoryRepository
   findByProduct(
     _productId: string,
   ): InventoryRecord[] {
-    throw new Error(
+    void _productId; throw new Error(
       "findByProduct() must be accessed through the async Supabase inventory service.",
     );
   }
@@ -158,7 +158,7 @@ class SupabaseInventoryRepository
   findByWarehouse(
     _warehouseId: string,
   ): InventoryRecord[] {
-    throw new Error(
+    void _warehouseId; throw new Error(
       "findByWarehouse() must be accessed through the async Supabase inventory service.",
     );
   }
@@ -167,7 +167,7 @@ class SupabaseInventoryRepository
     _productId: string,
     _warehouseId: string,
   ): InventoryRecord | undefined {
-    throw new Error(
+    void _productId; void _warehouseId; throw new Error(
       "Synchronous inventory repository access is no longer supported.",
     );
   }
@@ -175,7 +175,7 @@ class SupabaseInventoryRepository
   create(
     _record: InventoryRecord,
   ): InventoryRecord {
-    throw new Error(
+    void _record; throw new Error(
       "Synchronous inventory repository access is no longer supported.",
     );
   }
@@ -184,7 +184,7 @@ class SupabaseInventoryRepository
     _id: string,
     _updates: Partial<InventoryRecord>,
   ): InventoryRecord | undefined {
-    throw new Error(
+    void _id; void _updates; throw new Error(
       "Synchronous inventory repository access is no longer supported.",
     );
   }
@@ -192,7 +192,7 @@ class SupabaseInventoryRepository
   delete(
     _id: string,
   ): boolean {
-    throw new Error(
+    void _id; throw new Error(
       "Inventory records should not be synchronously deleted.",
     );
   }

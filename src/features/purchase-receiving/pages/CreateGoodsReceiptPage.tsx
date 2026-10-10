@@ -24,7 +24,6 @@ import { useTranslation } from "@/core/i18n/useTranslation";
 
 export default function CreateGoodsReceiptPage() {
   const [searchParams] = useSearchParams();
-  const requestedPurchaseOrderId = searchParams.get("purchaseOrderId");
   const { t } = useTranslation();
 
   const purchaseOrders = usePurchaseOrderStore((state) => state.orders);
@@ -38,12 +37,6 @@ export default function CreateGoodsReceiptPage() {
   const [supplierName, setSupplierName] = useState("");
   const [warehouseName, setWarehouseName] = useState("");
   const [productNames, setProductNames] = useState<Record<string, string>>({});
-
-  useEffect(() => {
-    if (!requestedPurchaseOrderId) return;
-    const requestedOrder = purchaseOrders.find((order) => order.id === requestedPurchaseOrderId);
-    if (requestedOrder) setPurchaseOrderId(requestedPurchaseOrderId);
-  }, [requestedPurchaseOrderId, purchaseOrders]);
 
   useEffect(() => {
     if (context?.tenantId) void loadPurchaseOrders(context.tenantId);
@@ -85,7 +78,7 @@ export default function CreateGoodsReceiptPage() {
     }
     void loadNames();
     return () => { cancelled = true; };
-  }, [context?.tenantId, selectedOrder?.id, selectedOrder?.supplierId, selectedOrder?.warehouseId, t]);
+  }, [context?.tenantId, selectedOrder, t]);
 
   useEffect(() => {
     let cancelled = false;
@@ -108,7 +101,7 @@ export default function CreateGoodsReceiptPage() {
     }
     void loadProducts();
     return () => { cancelled = true; };
-  }, [context?.tenantId, selectedOrder?.id, receivableItems, t]);
+  }, [context?.tenantId, selectedOrder, receivableItems, t]);
 
   async function handleSubmit() {
     setMessage("");

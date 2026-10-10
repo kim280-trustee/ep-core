@@ -26,6 +26,5 @@ jobs:
         run: npm ci
       - name: TypeScript and production build
         run: npm run build
-      - name: Repository-wide lint (existing backlog)
-        continue-on-error: true
+      - name: Repository-wide lint
         run: npm run lint

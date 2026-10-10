@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+
 import { useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, Pencil, UserRound } from "lucide-react";
 import { CustomerForm } from "../components/CustomerForm";
@@ -12,12 +12,7 @@ export function EditCustomerPage() {
   const { id: customerId } = useParams<{ id: string }>();
   const { t } = useTranslation();
   const { customers, updateCustomer } = useCustomers();
-  const [customer, setCustomer] = useState<Customer>();
-
-  useEffect(() => {
-    if (!customerId) return;
-    setCustomer(customers.find((item) => item.id === customerId));
-  }, [customers, customerId]);
+  const customer: Customer | undefined = customers.find((item) => item.id === customerId);
 
   if (!customerId || !customer) {
     return (

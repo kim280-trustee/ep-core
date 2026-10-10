@@ -31,7 +31,7 @@ export function EditCategoryPage() {
     let mounted = true;
 
     async function load() {
-      if (!context || !id) {
+      if (!context?.tenantId || !id) {
         if (mounted) {
           setLoading(false);
         }

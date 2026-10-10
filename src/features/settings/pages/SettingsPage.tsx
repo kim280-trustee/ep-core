@@ -18,8 +18,12 @@ export default function SettingsPage() {
 
   useEffect(() => {
     if (!settings) return;
-    setForm({ businessName: settings.businessName, country: settings.country, currency: settings.currency, language: settings.language, taxEnabled: settings.taxEnabled, taxRate: settings.taxRate, invoicePrefix: settings.invoicePrefix, receiptPrefix: settings.receiptPrefix });
-    changeLanguage(settings.language === "th" ? "th" : "en");
+    const currentSettings = settings;
+    const timer = window.setTimeout(() => {
+      setForm({ businessName: currentSettings.businessName, country: currentSettings.country, currency: currentSettings.currency, language: currentSettings.language, taxEnabled: currentSettings.taxEnabled, taxRate: currentSettings.taxRate, invoicePrefix: currentSettings.invoicePrefix, receiptPrefix: currentSettings.receiptPrefix });
+    }, 0);
+    changeLanguage(currentSettings.language === "th" ? "th" : "en");
+    return () => window.clearTimeout(timer);
   }, [settings, changeLanguage]);
 
   function updateField<K extends keyof CompanySettings>(field: K, value: CompanySettings[K]) {

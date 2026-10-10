@@ -538,7 +538,7 @@ class InventoryTransactionService {
   async deleteTransaction(
     _id: string,
   ): Promise<void> {
-
+    void _id;
     throw new Error(
       "Inventory transactions are immutable and cannot be deleted.",
     );

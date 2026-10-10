@@ -21,7 +21,7 @@ export default function TeacherStudentProfilePage() {
 
   const student = classQuery.data?.students.find((item) => item.membership.userId === studentUserId);
   const organizationId = classQuery.data?.classInfo.membership.organizationId ?? "";
-  const subjects = classQuery.data?.classInfo.subjects ?? [];
+  const subjects = useMemo(() => classQuery.data?.classInfo.subjects ?? [], [classQuery.data?.classInfo.subjects]);
 
   const termsQuery = useQuery({
     queryKey: ["learning", "teacher-student-profile-terms", organizationId],

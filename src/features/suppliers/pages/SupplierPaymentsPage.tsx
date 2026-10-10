@@ -36,8 +36,6 @@ export function SupplierPaymentsPage() {
 
   useEffect(() => {
     if (!context?.tenantId || !context.storeId) {
-      setPayments([]);
-      setLoading(false);
       return;
     }
 
@@ -87,6 +85,8 @@ export function SupplierPaymentsPage() {
 
   const supplierName = (id: string) =>
     suppliers.find((supplier) => supplier.id === id)?.name ?? "Unknown supplier";
+
+  if (!context?.tenantId || !context.storeId) return <div className="p-6 text-sm text-red-700">Store context is not initialized.</div>;
 
   return (
     <div className="space-y-6 p-4 sm:p-6">
