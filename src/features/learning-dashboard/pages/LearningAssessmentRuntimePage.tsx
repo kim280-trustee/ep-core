@@ -97,6 +97,9 @@ export default function LearningAssessmentRuntimePage() {
 
       const assessmentQuestions =
         await learningAssessmentService.listAssessmentQuestions(assessment);
+      const questionRows = await learningAssessmentService.listQuestions(
+        current.organizationId ?? undefined,
+      );
 
       const questions = await Promise.all(
         assessmentQuestions.map(async (assessmentQuestion) => {
@@ -104,17 +107,15 @@ export default function LearningAssessmentRuntimePage() {
             await learningAssessmentService.getQuestionVersion(
               assessmentQuestion.questionVersionId,
             );
-
-          const questionRows = await learningAssessmentService.listQuestions(
-            current.organizationId ?? undefined,
-          );
-
           const question = questionRows.find(
             (item) => item.id === version.questionId,
           );
 
           if (!question) {
             throw new Error("A question could not be loaded.");
+          }
+          if (question.questionType !== "single_choice" && question.questionType !== "true_false") {
+            throw new Error("This assessment contains a question type that is not supported yet. Please contact your teacher.");
           }
 
           const prompt = textFromJson(version.prompt);
