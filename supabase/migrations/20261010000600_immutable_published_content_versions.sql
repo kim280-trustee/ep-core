@@ -1,7 +1,7 @@
 -- Published learning-content versions are immutable.
 begin;
 
-revoke update on table public.learning_content_versions from authenticated;
+revoke update on table public.learning_content_versions from public, anon, authenticated;
 grant update (status, reviewed_by, reviewed_at, published_at, updated_at)
   on table public.learning_content_versions to authenticated;
 
