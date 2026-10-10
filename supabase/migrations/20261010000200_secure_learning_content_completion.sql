@@ -217,7 +217,7 @@ $function$;
 
 drop trigger if exists learning_assignment_progress_completion_guard on public.learning_assignment_progress;
 create trigger learning_assignment_progress_completion_guard
-before insert or update of status on public.learning_assignment_progress
+before insert or update on public.learning_assignment_progress
 for each row execute function private.guard_learning_assignment_progress_completion();
 
 commit;
