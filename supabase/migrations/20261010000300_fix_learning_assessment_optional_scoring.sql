@@ -179,6 +179,7 @@ begin
     if v_answer.question_type in ('single_choice', 'true_false')
        and v_key is not null
        and coalesce(v_rules->>'method', '') = 'exact_option'
+       and v_key ? 'correct_option_id'
     then
       v_correct :=
         (v_answer.answer->>'option_id')
