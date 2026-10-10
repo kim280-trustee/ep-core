@@ -179,6 +179,7 @@ export const learningContentRepository: LearningContentRepository = {
     if(insertError)throw insertError;
     const existing=await learningContentRepository.getStudentResponse(input.assignmentId,input.contentItemId,input.studentUserId);
     if(!existing)throw new Error("The student response could not be loaded after saving.");
+    if(existing.status==="submitted"){if(input.status==="submitted")return existing;throw new Error("This response has already been submitted and cannot be edited.");}
     const {data,error}=await supabase.from("learning_content_responses").update({response_text:input.responseText,status:input.status,submitted_at:submittedAt}).eq("id",existing.id).select("*").single();
     if(error)throw error;
     const r=data as any;
