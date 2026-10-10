@@ -92,6 +92,74 @@ begin
     );
   end if;
 
+  -- Update existing progress in the same transaction as the completion evidence.
+  update public.learning_assignment_progress p
+  set
+    status = case
+      when not exists (
+        select 1
+        from public.learning_assignment_items ai
+        where ai.assignment_id = p_assignment_id
+          and ai.required = true
+          and (
+            (ai.item_type = 'content' and not exists (
+              select 1 from public.learning_activity_events e
+              where e.assignment_id = p_assignment_id
+                and e.content_item_id = ai.content_item_id
+                and e.student_user_id = v_user_id
+                and e.activity_type = 'content_viewed'
+                and e.metadata->>'completion' = 'completed'
+            ))
+            or
+            (ai.item_type = 'assessment' and not exists (
+              select 1
+              from public.learning_attempts la
+              join public.learning_assessment_results ar on ar.attempt_id = la.id
+              where la.assignment_id = p_assignment_id
+                and la.assessment_id = ai.assessment_id
+                and la.student_user_id = v_user_id
+                and la.status = 'evaluated'
+            ))
+          )
+      ) then 'completed'
+      when p.status = 'not_started' then 'in_progress'
+      else p.status
+    end,
+    started_at = coalesce(p.started_at, now()),
+    completed_at = case
+      when not exists (
+        select 1
+        from public.learning_assignment_items ai
+        where ai.assignment_id = p_assignment_id
+          and ai.required = true
+          and (
+            (ai.item_type = 'content' and not exists (
+              select 1 from public.learning_activity_events e
+              where e.assignment_id = p_assignment_id
+                and e.content_item_id = ai.content_item_id
+                and e.student_user_id = v_user_id
+                and e.activity_type = 'content_viewed'
+                and e.metadata->>'completion' = 'completed'
+            ))
+            or
+            (ai.item_type = 'assessment' and not exists (
+              select 1
+              from public.learning_attempts la
+              join public.learning_assessment_results ar on ar.attempt_id = la.id
+              where la.assignment_id = p_assignment_id
+                and la.assessment_id = ai.assessment_id
+                and la.student_user_id = v_user_id
+                and la.status = 'evaluated'
+            ))
+          )
+      ) then coalesce(p.completed_at, now())
+      else p.completed_at
+    end,
+    last_activity_at = now()
+  where p.assignment_id = p_assignment_id
+    and p.student_user_id = v_user_id
+    and p.status <> 'completed';
+
   return jsonb_build_object('completed', true, 'assignment_id', p_assignment_id, 'content_item_id', p_content_item_id);
 end;
 $function$;
