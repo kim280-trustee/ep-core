@@ -142,12 +142,13 @@ export default function LearningAssessmentRuntimePage() {
     enabled: Boolean(assessment && user?.id),
   });
 
-  const existingAttempts = useMemo(
-    () =>
-      (attemptsQuery.data ?? []).filter(
-        (attempt) => attempt.assessmentId === assessment && (!attempt.assignmentId || attempt.assignmentId === id),
-      ),
+  const allAssessmentAttempts = useMemo(
+    () => (attemptsQuery.data ?? []).filter((attempt) => attempt.assessmentId === assessment),
     [attemptsQuery.data, assessment],
+  );
+  const existingAttempts = useMemo(
+    () => allAssessmentAttempts.filter((attempt) => !attempt.assignmentId || attempt.assignmentId === id),
+    [allAssessmentAttempts, id],
   );
 
   const startMutation = useMutation({
@@ -167,8 +168,8 @@ export default function LearningAssessmentRuntimePage() {
       }
 
       const previousAttempt =
-        existingAttempts.length > 0
-          ? [...existingAttempts].sort(
+        allAssessmentAttempts.length > 0
+          ? [...allAssessmentAttempts].sort(
               (a, b) => b.attemptNumber - a.attemptNumber,
             )[0]
           : null;
