@@ -46,6 +46,7 @@ declare
   v_user_id uuid;
   v_count integer;
   v_limit integer;
+  v_next_attempt_number integer;
 begin
   if (select auth.uid()) is null then
     raise exception 'Authentication is required';
@@ -88,7 +89,16 @@ begin
   if v_limit is not null and v_count >= v_limit then
     raise exception 'You have reached the maximum number of attempts';
   end if;
-  if new.attempt_number <> v_count + 1 then
+
+  -- Attempt numbers are unique per student and assessment, even if the same
+  -- assessment is reused by multiple assignments.
+  select coalesce(max(la.attempt_number), 0) + 1
+  into v_next_attempt_number
+  from public.learning_attempts la
+  where la.assessment_id = new.assessment_id
+    and la.student_user_id = new.student_user_id;
+
+  if new.attempt_number <> v_next_attempt_number then
     raise exception 'Attempt number is out of date; refresh and try again';
   end if;
   return new;
