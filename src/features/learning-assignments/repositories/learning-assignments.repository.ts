@@ -52,10 +52,9 @@ async listAssignmentsForClass(classGroupId:string){const{data:targets,error}=awa
  async listItems(id:string){const{data,error}=await supabase.from("learning_assignment_items").select("*").eq("assignment_id",id).order("sequence_no");if(error)throw error;return(data??[]).map(mapI);},
  async findStudentAssignmentForAssessment(assessmentId:string,studentUserId:string){
   const assignments=await learningAssignmentsRepository.listStudentAssignments(studentUserId);
-  const{data:attempts,error}=await supabase.from("learning_attempts").select("assessment_id").eq("student_user_id",studentUserId).eq("assessment_id",assessmentId);
+  const{data:attempts,error}=await supabase.from("learning_attempts").select("*").eq("student_user_id",studentUserId).eq("assessment_id",assessmentId);
   if(error)throw error;
-  const attemptCount=(attempts??[]).length;
-  for(const assignment of assignments){const items=await learningAssignmentsRepository.listItems(assignment.id);if(!items.some(item=>item.assessmentId===assessmentId))continue;const maxAttempts=assignment.maxAttempts;if(maxAttempts===null||attemptCount<maxAttempts)return assignment;}
+  for(const assignment of assignments){const items=await learningAssignmentsRepository.listItems(assignment.id);if(!items.some(item=>item.assessmentId===assessmentId))continue;const attemptCount=(attempts??[]).filter(attempt=>{const linkedAssignmentId=(attempt as typeof attempt & {assignment_id?:string|null}).assignment_id;return !linkedAssignmentId||linkedAssignmentId===assignment.id;}).length;const maxAttempts=assignment.maxAttempts;if(maxAttempts===null||attemptCount<maxAttempts)return assignment;}
   return null;
 },
 async completeIfReady(assignmentId:string,studentUserId:string){
