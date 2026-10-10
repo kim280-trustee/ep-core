@@ -41,7 +41,7 @@ begin
   end if;
 
   if v_item.organization_id is null
-     or not public.is_organization_member(v_item.organization_id) then
+     or not public.learning_can_manage_academic_records(v_item.organization_id) then
     raise exception 'You do not have permission to manage this content';
   end if;
 
