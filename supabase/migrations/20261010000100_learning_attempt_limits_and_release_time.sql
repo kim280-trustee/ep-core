@@ -74,6 +74,7 @@ begin
     where aq.assessment_id = new.assessment_id
       and (
         q.status <> 'published'
+        or (q.organization_id is not null and q.organization_id is distinct from (select a.organization_id from public.learning_assessments a where a.id = new.assessment_id))
         or qv.published_at is null
         or q.question_type not in ('single_choice', 'true_false')
         or coalesce(ek.scoring_rules->>'method', '') <> 'exact_option'
