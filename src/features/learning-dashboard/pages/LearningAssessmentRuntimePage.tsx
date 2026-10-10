@@ -145,7 +145,7 @@ export default function LearningAssessmentRuntimePage() {
   const existingAttempts = useMemo(
     () =>
       (attemptsQuery.data ?? []).filter(
-        (attempt) => attempt.assessmentId === assessment,
+        (attempt) => attempt.assessmentId === assessment && (!attempt.assignmentId || attempt.assignmentId === id),
       ),
     [attemptsQuery.data, assessment],
   );
@@ -176,6 +176,7 @@ export default function LearningAssessmentRuntimePage() {
       const attempt = await learningAssessmentService.createAttempt({
         tenantId: user.tenantId,
         organizationId: assignmentQuery.data.assignment.organizationId,
+        assignmentId: id,
         assessmentId: assessment,
         studentUserId: user.id,
         attemptNumber: (previousAttempt?.attemptNumber ?? 0) + 1,
