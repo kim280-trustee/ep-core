@@ -69,14 +69,33 @@ export const learningTeacherRepository = {
 
     const classStudentIds = new Set(studentIds);
     const progressByAssignment = new Map<string, Awaited<ReturnType<typeof learningAssignmentsService.listProgressForAssignment>>>();
+    const targetedStudentIdsByAssignment = new Map<string, Set<string>>();
     const monitors = await Promise.all(assignments.map(async (assignment) => {
-      const progress = assignment.status === "published"
-        ? await learningAssignmentsService.listProgressForAssignment(assignment.id)
-        : [];
+      let progress: Awaited<ReturnType<typeof learningAssignmentsService.listProgressForAssignment>> = [];
+      let targets: Awaited<ReturnType<typeof learningAssignmentsService.listTargets>> = [];
+
+      if (assignment.status === "published") {
+        [progress, targets] = await Promise.all([
+          learningAssignmentsService.listProgressForAssignment(assignment.id),
+          learningAssignmentsService.listTargets(assignment.id),
+        ]);
+      }
+
+      const targetedStudentIds = new Set<string>();
+      for (const target of targets) {
+        if (target.targetType === "student" && target.studentUserId && classStudentIds.has(target.studentUserId)) {
+          targetedStudentIds.add(target.studentUserId);
+        } else if (target.targetType === "class" && target.classGroupId === classGroupId) {
+          for (const studentId of classStudentIds) targetedStudentIds.add(studentId);
+        }
+      }
+
       progressByAssignment.set(assignment.id, progress);
-      const studentProgress = progress.filter((item) => classStudentIds.has(item.studentUserId));
+      targetedStudentIdsByAssignment.set(assignment.id, targetedStudentIds);
+      const studentProgress = progress.filter((item) => targetedStudentIds.has(item.studentUserId));
       return {
-        assignment, studentCount: students.length,
+        assignment,
+        studentCount: assignment.status === "published" ? targetedStudentIds.size : students.length,
         startedCount: studentProgress.filter((item) => item.status !== "not_started").length,
         completedCount: studentProgress.filter((item) => item.status === "completed").length,
         overdueCount: studentProgress.filter((item) => item.status === "overdue").length,
@@ -99,10 +118,15 @@ export const learningTeacherRepository = {
     }));
 
     const progressByStudent = new Map<string, number>();
-    for (const progress of progressByAssignment.values()) {
-      for (const item of progress) {
-        if (!classStudentIds.has(item.studentUserId) || item.status === "completed") continue;
-        progressByStudent.set(item.studentUserId, (progressByStudent.get(item.studentUserId) ?? 0) + 1);
+    for (const [assignmentId, targetedStudentIds] of targetedStudentIdsByAssignment) {
+      const progress = progressByAssignment.get(assignmentId) ?? [];
+      const completedStudentIds = new Set(
+        progress.filter((item) => item.status === "completed").map((item) => item.studentUserId),
+      );
+
+      for (const studentUserId of targetedStudentIds) {
+        if (completedStudentIds.has(studentUserId)) continue;
+        progressByStudent.set(studentUserId, (progressByStudent.get(studentUserId) ?? 0) + 1);
       }
     }
 
