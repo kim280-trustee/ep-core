@@ -63,9 +63,9 @@ async completeIfReady(assignmentId:string,studentUserId:string){
   if(!progress||progress.status==="completed")return progress;
   const requiredAssessmentIds=items.filter(item=>item.required&&item.itemType==="assessment").map(item=>item.assessmentId).filter((v):v is string=>Boolean(v));
   if(!requiredAssessmentIds.length)return progress;
-  const{data:attempts,error}=await supabase.from("learning_attempts").select("assessment_id,status").eq("student_user_id",studentUserId).in("assessment_id",requiredAssessmentIds);
+  const{data:attempts,error}=await supabase.from("learning_attempts").select("*").eq("student_user_id",studentUserId).in("assessment_id",requiredAssessmentIds);
   if(error)throw error;
-  const evaluated=new Set((attempts??[]).filter(attempt=>attempt.status==="evaluated").map(attempt=>attempt.assessment_id));
+  const evaluated=new Set((attempts??[]).filter(attempt=>attempt.status==="evaluated"&&(attempt as typeof attempt & {assignment_id?:string|null}).assignment_id===assignmentId).map(attempt=>attempt.assessment_id));
   if(!requiredAssessmentIds.every(id=>evaluated.has(id)))return progress;
   return learningAssignmentsRepository.updateProgress(progress.id,"completed");
 },
