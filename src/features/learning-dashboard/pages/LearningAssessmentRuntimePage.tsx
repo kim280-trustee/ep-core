@@ -86,8 +86,13 @@ export default function LearningAssessmentRuntimePage() {
       const assessmentRows = await learningAssessmentService.listAssessments();
       const current = assessmentRows.find((item) => item.id === assessment);
 
-      if (!current) {
+      if (!current || current.status !== "published") {
         throw new Error("This assessment is not available.");
+      }
+
+      const assignment = await learningAssignmentsService.getStudentAssignment(id, user!.id);
+      if (!assignment.items.some((item) => item.itemType === "assessment" && item.assessmentId === assessment)) {
+        throw new Error("This assessment is not part of the selected assignment.");
       }
 
       const assessmentQuestions =
@@ -177,25 +182,30 @@ export default function LearningAssessmentRuntimePage() {
         previousAttemptId: previousAttempt?.id ?? null,
       });
 
-      const session = await learningActivityService.startForStudent(
-        user.id,
-        "assessment",
-        assessment,
-      );
-      await learningActivityService.logEvent({
-        tenantId: session.tenantId,
-        organizationId: session.organizationId,
-        studentUserId: user.id,
-        sessionId: session.id,
-        activityType: "assessment_started",
-        assessmentId: assessment,
-        assignmentId: id,
-      });
+      let session: Awaited<ReturnType<typeof learningActivityService.startForStudent>> | null = null;
+      try {
+        session = await learningActivityService.startForStudent(
+          user.id,
+          "assessment",
+          assessment,
+        );
+        await learningActivityService.logEvent({
+          tenantId: session.tenantId,
+          organizationId: session.organizationId,
+          studentUserId: user.id,
+          sessionId: session.id,
+          activityType: "assessment_started",
+          assessmentId: assessment,
+          assignmentId: id,
+        });
+      } catch {
+        // Activity telemetry must not strand an already-created assessment attempt.
+      }
       return { attempt, session };
     },
     onSuccess: ({ attempt, session }) => {
       setAttemptId(attempt.id);
-      setSessionId(session.id);
+      setSessionId(session?.id ?? null);
       setStarted(true);
     },
   });
