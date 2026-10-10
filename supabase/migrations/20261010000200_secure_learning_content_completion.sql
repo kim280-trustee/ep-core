@@ -110,6 +110,65 @@ with check (
   and metadata->>'completion' is distinct from 'completed'
 );
 
+-- Prevent students from changing the identity of a progress row.
+revoke update on table public.learning_assignment_progress from authenticated;
+grant update (status, started_at, completed_at, last_activity_at)
+  on table public.learning_assignment_progress to authenticated;
+
+drop policy if exists learning_assignment_progress_insert on public.learning_assignment_progress;
+create policy learning_assignment_progress_insert
+on public.learning_assignment_progress for insert to authenticated
+with check (
+  student_user_id = (select u.id from public.users u where u.auth_user_id = (select auth.uid()))
+  and status = 'not_started'
+  and exists (
+    select 1
+    from public.learning_assignment_targets t
+    join public.learning_assignments a on a.id = t.assignment_id
+    where t.id = assignment_target_id
+      and t.assignment_id = learning_assignment_progress.assignment_id
+      and t.organization_id = learning_assignment_progress.organization_id
+      and t.status = 'active'
+      and a.status = 'published'
+      and (a.available_from is null or a.available_from <= now())
+      and private.learning_student_has_assignment_target(a.id, learning_assignment_progress.student_user_id)
+  )
+);
+
+drop policy if exists learning_assignment_progress_update on public.learning_assignment_progress;
+create policy learning_assignment_progress_update
+on public.learning_assignment_progress for update to authenticated
+using (
+  student_user_id = (select u.id from public.users u where u.auth_user_id = (select auth.uid()))
+  and exists (
+    select 1
+    from public.learning_assignment_targets t
+    join public.learning_assignments a on a.id = t.assignment_id
+    where t.id = learning_assignment_progress.assignment_target_id
+      and t.assignment_id = learning_assignment_progress.assignment_id
+      and t.organization_id = learning_assignment_progress.organization_id
+      and t.status = 'active'
+      and a.status = 'published'
+      and (a.available_from is null or a.available_from <= now())
+      and private.learning_student_has_assignment_target(a.id, learning_assignment_progress.student_user_id)
+  )
+)
+with check (
+  student_user_id = (select u.id from public.users u where u.auth_user_id = (select auth.uid()))
+  and exists (
+    select 1
+    from public.learning_assignment_targets t
+    join public.learning_assignments a on a.id = t.assignment_id
+    where t.id = learning_assignment_progress.assignment_target_id
+      and t.assignment_id = learning_assignment_progress.assignment_id
+      and t.organization_id = learning_assignment_progress.organization_id
+      and t.status = 'active'
+      and a.status = 'published'
+      and (a.available_from is null or a.available_from <= now())
+      and private.learning_student_has_assignment_target(a.id, learning_assignment_progress.student_user_id)
+  )
+);
+
 -- Prevent direct progress writes from declaring completion without evidence for
 -- every required item. The RPC above is the only supported source for content evidence.
 create or replace function private.guard_learning_assignment_progress_completion()
