@@ -287,6 +287,8 @@ begin
 end;
 $function$;
 
+revoke all on function private.guard_learning_assignment_progress_completion() from public, anon, authenticated;
+
 drop trigger if exists learning_assignment_progress_completion_guard on public.learning_assignment_progress;
 create trigger learning_assignment_progress_completion_guard
 before insert or update on public.learning_assignment_progress
