@@ -639,7 +639,6 @@ export default function LearningAssessmentRuntimePage() {
               </div>
             )}
 
-}
           </section>
         ))}
       </div>
