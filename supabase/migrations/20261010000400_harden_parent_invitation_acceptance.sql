@@ -4,7 +4,7 @@ CREATE OR REPLACE FUNCTION public.accept_learning_parent_invitation(p_invitation
  RETURNS uuid
  LANGUAGE plpgsql
  SECURITY DEFINER
- SET search_path TO 'public', 'private'
+ SET search_path TO ''
 AS $function$
 declare
   v_auth_user_id uuid;
