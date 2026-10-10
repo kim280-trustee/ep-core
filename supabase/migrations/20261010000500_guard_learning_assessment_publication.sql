@@ -28,6 +28,7 @@ begin
     where aq.assessment_id = new.id
       and (
         q.status <> 'published'
+        or (q.organization_id is not null and q.organization_id is distinct from new.organization_id)
         or qv.published_at is null
         or q.question_type not in ('single_choice', 'true_false')
         or coalesce(ek.scoring_rules->>'method', '') <> 'exact_option'
