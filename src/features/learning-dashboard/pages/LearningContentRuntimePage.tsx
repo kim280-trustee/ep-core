@@ -108,11 +108,20 @@ export default function LearningContentRuntimePage() {
       });
     },
     onSuccess: async (saved) => {
-      await responseQuery.refetch();
       if (saved.status === "submitted") {
-        await learningAssignmentsService.completeContentForStudent(id, content, user!.id);
+        const item = query.data?.items.find((candidate) =>
+          candidate.itemType === "content" && candidate.contentItemId === content
+        );
+        if (item?.required) {
+          await learningAssignmentsService.completeContentForStudent(id, content, user!.id);
+        }
         void queryClient.invalidateQueries({ queryKey: ["learning", "assignment", id, user?.id] });
         void queryClient.invalidateQueries({ queryKey: ["learning", "progress", user?.id] });
+      }
+      try {
+        await responseQuery.refetch();
+      } catch {
+        // The response was saved; a refetch failure must not report the save as failed.
       }
     },
   });
