@@ -59,6 +59,7 @@ create policy learning_content_responses_student_insert
 on public.learning_content_responses for insert to authenticated
 with check (
   student_user_id = (select u.id from public.users u where u.auth_user_id = (select auth.uid()))
+  and (status <> 'submitted' or length(btrim(response_text)) > 0)
   and private.learning_student_has_assignment_target(assignment_id, student_user_id)
   and exists (
     select 1 from public.learning_assignment_items ai
@@ -91,6 +92,7 @@ with check (
   (
     student_user_id = (select u.id from public.users u where u.auth_user_id = (select auth.uid()))
     and status in ('draft', 'submitted')
+    and (status <> 'submitted' or length(btrim(response_text)) > 0)
     and private.learning_student_has_assignment_target(assignment_id, student_user_id)
     and exists (
       select 1
@@ -137,6 +139,7 @@ begin
  select * into v_response from public.learning_content_responses where id=p_response_id for update;
  if not found then raise exception 'Content response not found'; end if;
  if v_response.status <> 'submitted' then raise exception 'Only submitted content responses can be graded'; end if;
+ if length(btrim(v_response.response_text)) = 0 then raise exception 'A non-empty student response is required before grading'; end if;
  if not public.learning_can_manage_academic_records(v_response.organization_id) and not public.learning_teacher_can_manage_content_response(v_response.assignment_id,v_response.student_user_id) then raise exception 'Teacher or academic record management permission required'; end if;
  if p_score is null or p_max_score is null or p_max_score <= 0 or p_score < 0 or p_score > p_max_score then raise exception 'Score must be between 0 and the maximum score'; end if;
  select * into v_assignment from public.learning_assignments where id=v_response.assignment_id;
