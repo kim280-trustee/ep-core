@@ -86,3 +86,25 @@ Gamification must reward verified learning activity rather than opening pages or
 ## Working rule
 
 The feature register is not a license to start every roadmap item. First verify the V1 workflow and the current implementation. For each deferred capability, inspect the active branch, migrations, services, and RLS policies before labeling it absent or planning new schema. Then implement one prioritized slice at a time and verify it end to end.
+
+
+## Findings from the 2026-10-10 pilot UI walkthrough
+
+These are observations from the teacher pages shared during manual testing. They are not substitutes for repository or database verification.
+
+| Observation | Action |
+|---|---|
+| The pilot workflow's Student step is not clickable. | Improve the step so it either navigates to an existing valid student route or clearly instructs the teacher to switch to the student account. Do not add a made-up route or expose student access through teacher navigation without a security review. |
+| Gradebook summary shows a 90.0% record average, while the visible finalized term grade is 95.00% and visible individual scores include 90/100 and 80/100. | Audit the calculation path before changing code. Confirm which records/categories are included, category weights, excluded or missing records, term-grade formula, rounding, and whether the summary average and finalized term grade intentionally measure different sets of records. Add a regression test for the confirmed rule. |
+| Gradebook includes CSV template download, upload, export, filters, finalized state, and reopen control. | Test import validation, export/filter consistency, finalized-grade protections, reopen reason requirements, and audit history with controlled test records. |
+| Assignment History contains multiple drafts and published assignments; lifecycle event panels report no events. | Verify that lifecycle events are created for actions that have occurred, and that “no events” is accurate rather than a persistence or query defect. Preserve historical attempts and results. |
+| Content Library shows draft, retired, and published materials, including temporary/test content. | Confirm status filters and ensure only eligible published versions are available to students/assignments. Keep test/retired content distinguishable; do not delete records solely to clean up the view. |
+| Parent links are available in teacher navigation. | Verify guardian linkage, access restrictions, and what a parent can actually view before describing the parent portal as launch-ready. |
+
+### Immediate verification order
+
+1. Inspect the active branch's gradebook calculation and finalization/reopen code, related services/repositories, schema/migrations, and tests.
+2. Reconcile the displayed 90.0% summary and 95.00% finalized term grade against the actual records and configured calculation rules. Do not assume the difference is a bug until the definitions are known.
+3. Inspect assignment lifecycle event writes and reads.
+4. Inspect the pilot workflow's Student step and implement a safe, truthful navigation/help affordance using existing routes.
+5. Build and run focused tests; then verify the affected pages using authenticated teacher/student accounts.
