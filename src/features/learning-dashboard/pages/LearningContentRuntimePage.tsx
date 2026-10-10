@@ -123,15 +123,19 @@ export default function LearningContentRuntimePage() {
       const progress = await learningAssignmentsService.completeContentForStudent(id, content, user.id);
 
       if (!wasCompleted && progress.status === "completed") {
-        const session = await learningActivityService.startForStudent(user.id, "assignment", id);
-        await learningActivityService.logEvent({
-          tenantId: session.tenantId,
-          organizationId: session.organizationId,
-          studentUserId: user.id,
-          sessionId: session.id,
-          activityType: "assignment_completed",
-          assignmentId: id,
-        });
+        try {
+          const session = await learningActivityService.startForStudent(user.id, "assignment", id);
+          await learningActivityService.logEvent({
+            tenantId: session.tenantId,
+            organizationId: session.organizationId,
+            studentUserId: user.id,
+            sessionId: session.id,
+            activityType: "assignment_completed",
+            assignmentId: id,
+          });
+        } catch {
+          // Completion is persisted; assignment activity telemetry is best-effort.
+        }
       }
 
       return progress;
