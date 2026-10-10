@@ -68,7 +68,7 @@ $function$;
 
 drop trigger if exists learning_assignments_publication_guard on public.learning_assignments;
 create trigger learning_assignments_publication_guard
-before insert or update on public.learning_assignments
+before insert or update of status on public.learning_assignments
 for each row execute function private.guard_learning_assignment_publication();
 
 commit;
