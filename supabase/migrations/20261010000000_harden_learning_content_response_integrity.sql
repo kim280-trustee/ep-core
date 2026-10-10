@@ -89,32 +89,35 @@ using (
   or public.learning_teacher_can_manage_content_response(assignment_id, student_user_id)
 )
 with check (
+  (status <> 'submitted' or length(btrim(response_text)) > 0)
+  and (
   (
-    student_user_id = (select u.id from public.users u where u.auth_user_id = (select auth.uid()))
-    and status in ('draft', 'submitted')
-    and (status <> 'submitted' or length(btrim(response_text)) > 0)
-    and private.learning_student_has_assignment_target(assignment_id, student_user_id)
-    and exists (
-      select 1
-      from public.learning_assignment_items ai
-      join public.learning_assignments a on a.id = ai.assignment_id
-      where ai.assignment_id = learning_content_responses.assignment_id
-        and ai.content_item_id = learning_content_responses.content_item_id
-        and ai.item_type = 'content'
-        and ai.organization_id = learning_content_responses.organization_id
-        and a.organization_id = learning_content_responses.organization_id
-        and (
-          learning_content_responses.content_version_id is null
-          or exists (
-            select 1 from public.learning_content_versions cv
-            where cv.id = learning_content_responses.content_version_id
-              and cv.content_item_id = learning_content_responses.content_item_id
+      student_user_id = (select u.id from public.users u where u.auth_user_id = (select auth.uid()))
+      and status in ('draft', 'submitted')
+      and (status <> 'submitted' or length(btrim(response_text)) > 0)
+      and private.learning_student_has_assignment_target(assignment_id, student_user_id)
+      and exists (
+        select 1
+        from public.learning_assignment_items ai
+        join public.learning_assignments a on a.id = ai.assignment_id
+        where ai.assignment_id = learning_content_responses.assignment_id
+          and ai.content_item_id = learning_content_responses.content_item_id
+          and ai.item_type = 'content'
+          and ai.organization_id = learning_content_responses.organization_id
+          and a.organization_id = learning_content_responses.organization_id
+          and (
+            learning_content_responses.content_version_id is null
+            or exists (
+              select 1 from public.learning_content_versions cv
+              where cv.id = learning_content_responses.content_version_id
+                and cv.content_item_id = learning_content_responses.content_item_id
+            )
           )
-        )
+      )
     )
+    or public.learning_can_manage_academic_records(organization_id)
+    or public.learning_teacher_can_manage_content_response(assignment_id, student_user_id)
   )
-  or public.learning_can_manage_academic_records(organization_id)
-  or public.learning_teacher_can_manage_content_response(assignment_id, student_user_id)
 );
 
 CREATE OR REPLACE FUNCTION public.grade_learning_content_response(p_response_id uuid, p_score numeric, p_max_score numeric, p_teacher_feedback text DEFAULT NULL::text)
