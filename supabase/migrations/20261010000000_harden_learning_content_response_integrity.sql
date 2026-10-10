@@ -1,6 +1,38 @@
 -- Harden student content-response writes and grading.
 -- Reconcile grading with the current implementation while protecting scores/feedback.
 begin;
+create or replace function public.learning_teacher_can_manage_content_response(
+  p_assignment_id uuid,
+  p_student_user_id uuid
+)
+returns boolean
+language sql
+stable
+security definer
+set search_path = ''
+as $function$
+  select exists (
+    select 1
+    from public.learning_assignments a
+    join public.learning_class_subjects cs on cs.id = a.class_subject_id
+    join public.learning_class_memberships tm
+      on tm.class_group_id = cs.class_group_id
+      and tm.membership_type = 'teacher'
+      and tm.status = 'active'
+    join public.users tu on tu.id = tm.user_id
+      and tu.auth_user_id = (select auth.uid())
+    join public.learning_class_memberships sm
+      on sm.class_group_id = cs.class_group_id
+      and sm.user_id = p_student_user_id
+      and sm.membership_type = 'student'
+      and sm.status = 'active'
+    where a.id = p_assignment_id
+  );
+$function$;
+
+revoke all on function public.learning_teacher_can_manage_content_response(uuid, uuid) from public, anon;
+grant execute on function public.learning_teacher_can_manage_content_response(uuid, uuid) to authenticated;
+
 
 revoke insert, update on table public.learning_content_responses from authenticated;
 revoke insert (id, organization_id, assignment_id, content_item_id, content_version_id, student_user_id, response_text, status, score, max_score, teacher_feedback, submitted_at, created_at, updated_at) on table public.learning_content_responses from authenticated;
@@ -10,6 +42,16 @@ grant insert (organization_id, assignment_id, content_item_id, content_version_i
   on table public.learning_content_responses to authenticated;
 grant update (organization_id, assignment_id, content_item_id, content_version_id, student_user_id, response_text, status, submitted_at)
   on table public.learning_content_responses to authenticated;
+
+drop policy if exists learning_content_responses_insert on public.learning_content_responses;
+drop policy if exists learning_content_responses_select on public.learning_content_responses;
+create policy learning_content_responses_select
+on public.learning_content_responses for select to authenticated
+using (
+  student_user_id = public.learning_current_user_id()
+  or public.learning_can_manage_academic_records(organization_id)
+  or public.learning_teacher_can_manage_content_response(assignment_id, student_user_id)
+);
 
 drop policy if exists learning_content_responses_insert on public.learning_content_responses;
 drop policy if exists learning_content_responses_student_insert on public.learning_content_responses;
@@ -43,7 +85,7 @@ on public.learning_content_responses for update to authenticated
 using (
   (student_user_id = public.learning_current_user_id() and status = 'draft')
   or public.learning_can_manage_academic_records(organization_id)
-  or public.learning_can_manage_academic_records(organization_id)
+  or public.learning_teacher_can_manage_content_response(assignment_id, student_user_id)
 )
 with check (
   (
@@ -51,25 +93,26 @@ with check (
     and status in ('draft', 'submitted')
     and private.learning_student_has_assignment_target(assignment_id, student_user_id)
     and exists (
-      select 1 from public.learning_assignment_items ai
+      select 1
+      from public.learning_assignment_items ai
       join public.learning_assignments a on a.id = ai.assignment_id
       where ai.assignment_id = learning_content_responses.assignment_id
         and ai.content_item_id = learning_content_responses.content_item_id
         and ai.item_type = 'content'
         and ai.organization_id = learning_content_responses.organization_id
         and a.organization_id = learning_content_responses.organization_id
-      and (
-        learning_content_responses.content_version_id is null
-        or exists (
-          select 1 from public.learning_content_versions cv
-          where cv.id = learning_content_responses.content_version_id
-            and cv.content_item_id = learning_content_responses.content_item_id
+        and (
+          learning_content_responses.content_version_id is null
+          or exists (
+            select 1 from public.learning_content_versions cv
+            where cv.id = learning_content_responses.content_version_id
+              and cv.content_item_id = learning_content_responses.content_item_id
+          )
         )
-      )
     )
   )
   or public.learning_can_manage_academic_records(organization_id)
-  or public.learning_can_manage_academic_records(organization_id)
+  or public.learning_teacher_can_manage_content_response(assignment_id, student_user_id)
 );
 
 CREATE OR REPLACE FUNCTION public.grade_learning_content_response(p_response_id uuid, p_score numeric, p_max_score numeric, p_teacher_feedback text DEFAULT NULL::text)
