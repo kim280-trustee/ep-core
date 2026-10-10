@@ -94,4 +94,35 @@ as $function$
   );
 $function$;
 
+create or replace function private.learning_assessment_visible_to_student(p_assessment_id uuid)
+returns boolean
+language sql
+stable
+security definer
+set search_path to ''
+as $function$
+  select exists (
+    select 1
+    from public.learning_assessments a
+    join public.learning_assignment_items ai on ai.assessment_id = a.id
+    join public.learning_assignments ass on ass.id = ai.assignment_id
+    join public.learning_assignment_targets t on t.assignment_id = ass.id
+    where a.id = p_assessment_id
+      and a.status = 'published'
+      and ass.status = 'published'
+      and (ass.available_from is null or ass.available_from <= now())
+      and t.status = 'active'
+      and (
+        t.student_user_id = (select u.id from public.users u where u.auth_user_id = (select auth.uid()))
+        or exists (
+          select 1 from public.learning_class_memberships cm
+          where cm.class_group_id = t.class_group_id
+            and cm.user_id = (select u.id from public.users u where u.auth_user_id = (select auth.uid()))
+            and cm.membership_type = 'student'
+            and cm.status = 'active'
+        )
+      )
+  );
+$function$;
+
 commit;
