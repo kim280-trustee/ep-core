@@ -69,6 +69,8 @@ with check (
       and ai.item_type = 'content'
       and ai.organization_id = learning_content_responses.organization_id
       and a.organization_id = learning_content_responses.organization_id
+          and a.status = 'published'
+          and (a.available_from is null or a.available_from <= now())
       and (
         learning_content_responses.content_version_id is null
         or exists (
@@ -105,6 +107,8 @@ with check (
           and ai.item_type = 'content'
           and ai.organization_id = learning_content_responses.organization_id
           and a.organization_id = learning_content_responses.organization_id
+          and a.status = 'published'
+          and (a.available_from is null or a.available_from <= now())
           and (
             learning_content_responses.content_version_id is null
             or exists (
