@@ -111,7 +111,7 @@ with check (
 );
 
 -- Prevent students from changing the identity of a progress row.
-revoke update on table public.learning_assignment_progress from authenticated;
+revoke update on table public.learning_assignment_progress from public, anon, authenticated;
 grant update (status, started_at, completed_at, last_activity_at)
   on table public.learning_assignment_progress to authenticated;
 
