@@ -48,7 +48,7 @@ drop policy if exists learning_content_responses_select on public.learning_conte
 create policy learning_content_responses_select
 on public.learning_content_responses for select to authenticated
 using (
-  student_user_id = public.learning_current_user_id()
+  student_user_id = (select u.id from public.users u where u.auth_user_id = (select auth.uid()))
   or public.learning_can_manage_academic_records(organization_id)
   or public.learning_teacher_can_manage_content_response(assignment_id, student_user_id)
 );
@@ -58,7 +58,7 @@ drop policy if exists learning_content_responses_student_insert on public.learni
 create policy learning_content_responses_student_insert
 on public.learning_content_responses for insert to authenticated
 with check (
-  student_user_id = public.learning_current_user_id()
+  student_user_id = (select u.id from public.users u where u.auth_user_id = (select auth.uid()))
   and private.learning_student_has_assignment_target(assignment_id, student_user_id)
   and exists (
     select 1 from public.learning_assignment_items ai
@@ -83,13 +83,13 @@ drop policy if exists learning_content_responses_update on public.learning_conte
 create policy learning_content_responses_update
 on public.learning_content_responses for update to authenticated
 using (
-  (student_user_id = public.learning_current_user_id() and status = 'draft')
+  (student_user_id = (select u.id from public.users u where u.auth_user_id = (select auth.uid())) and status = 'draft')
   or public.learning_can_manage_academic_records(organization_id)
   or public.learning_teacher_can_manage_content_response(assignment_id, student_user_id)
 )
 with check (
   (
-    student_user_id = public.learning_current_user_id()
+    student_user_id = (select u.id from public.users u where u.auth_user_id = (select auth.uid()))
     and status in ('draft', 'submitted')
     and private.learning_student_has_assignment_target(assignment_id, student_user_id)
     and exists (
