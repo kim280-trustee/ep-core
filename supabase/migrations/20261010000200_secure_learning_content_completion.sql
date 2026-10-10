@@ -202,6 +202,7 @@ begin
           from public.learning_attempts la
           join public.learning_assessment_results ar on ar.attempt_id = la.id
           where la.assessment_id = ai.assessment_id
+            and la.assignment_id = new.assignment_id
             and la.student_user_id = new.student_user_id
             and la.status = 'evaluated'
         ))
