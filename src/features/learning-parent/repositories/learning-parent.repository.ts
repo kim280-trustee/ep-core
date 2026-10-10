@@ -41,7 +41,7 @@ export const learningParentRepository={
   async inviteParent(input:{organizationId:string;parentEmail:string;parentName:string;studentUserId:string;relationship:string}){
     const{data,error}=await supabase.functions.invoke("invite-parent",{body:input});if(error)throw error;if(data?.error)throw new Error(data.error);return data as{invitationId:string;sent:boolean};
   },
-  async acceptInvitation(invitationId:string){const{data,error}=await supabase.rpc("accept_learning_parent_invitation",{p_invitation_id:invitationId});if(error)throw error;return data as string;},
+  async acceptInvitation(invitationId:string){const{data,error}=await supabase.rpc("accept_learning_parent_invitation",{p_invitation_id:invitationId});if(error)throw error;if(typeof data!=="string"||!data)throw new Error("This invitation has expired or is no longer active.");return data as string;},
   async getOverview(studentUserId:string):Promise<LearningParentOverview>{
     const[{data:student,error:studentError},{data:grades,error:gradeError},{data:memberships,error:membershipError},{data:mastery,error:masteryError},{data:recommendations,error:recommendationError},{data:comments,error:commentError}]=await Promise.all([
       supabase.from("users").select("id,name,email").eq("id",studentUserId).single(),
