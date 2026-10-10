@@ -41,7 +41,7 @@ export interface LearningAssessmentQuestion {
   required: boolean; createdAt: string;
 }
 export interface LearningAttempt {
-  id: string; tenantId: string; organizationId: string | null; assessmentId: string; studentUserId: string;
+  id: string; tenantId: string; organizationId: string | null; assignmentId?: string | null; assessmentId: string; studentUserId: string;
   attemptNumber: number; previousAttemptId: string | null; status: LearningAttemptStatus;
   startedAt: string; submittedAt: string | null; score: number | null; maxScore: number | null;
   percentage: number | null; createdAt: string; updatedAt: string;
