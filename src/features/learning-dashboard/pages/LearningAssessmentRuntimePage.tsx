@@ -291,12 +291,14 @@ export default function LearningAssessmentRuntimePage() {
         }
       }
       const wasCompleted = assignmentQuery.data?.progress?.status === "completed";
-      const progress = await learningAssignmentsService.refreshProgressForStudent(
-        id,
-        user!.id,
-      );
+      let progress: Awaited<ReturnType<typeof learningAssignmentsService.refreshProgressForStudent>> | null = null;
+      try {
+        progress = await learningAssignmentsService.refreshProgressForStudent(id, user!.id);
+      } catch {
+        // The assessment result is already saved; progress refresh can be retried later.
+      }
 
-      if (!wasCompleted && progress.status === "completed") {
+      if (!wasCompleted && progress?.status === "completed") {
         try {
           const assignmentSession = await learningActivityService.startForStudent(
             user!.id,
