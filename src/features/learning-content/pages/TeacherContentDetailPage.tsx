@@ -15,7 +15,35 @@ export default function TeacherContentDetailPage(){
  const versions=useQuery({queryKey:["learning","content-versions",id],queryFn:()=>learningContentService.listContentVersions(id!),enabled:Boolean(id&&org)});const objectives=useQuery({queryKey:["learning","content-objectives",id],queryFn:()=>learningContentService.listContentObjectives(id!),enabled:Boolean(id&&org)});const latest=versions.data?.[0];
  const latestBody=useMemo(()=>{if(!latest?.body)return"";const sections=Array.isArray(latest.body.sections)?latest.body.sections:[];return sections.map(s=>s&&typeof s==="object"&&typeof(s as Record<string,unknown>).body==="string"?(s as Record<string,string>).body:"").filter(Boolean).join("\n\n")},[latest]);const current=edited?body:latestBody;const item=content.data;const retired=item?.status==="retired";const published=item?.status==="published";const review=item?.status==="review";const draft=item?.status==="draft";
  async function saveVersion(e:FormEvent){e.preventDefault();setError("");if(!user?.id||!id||!latest){setError("A current content version is required before saving.");return}if(retired){setError("Retired content cannot be edited.");return}if(!current.trim()){setError("Learning content cannot be empty.");return}setSaving(true);try{await learningContentService.createVersion({contentItemId:id,versionNo:latest.versionNo+1,body:{sections:[{type:"text",title:"Content",body:current.trim()}]},changeSummary:summary.trim()||"Updated content",createdBy:user.id});setBody("");setEdited(false);setSummary("");await Promise.all([versions.refetch(),content.refetch()])}catch(err){setError(err instanceof Error?err.message:"Could not save the new version.")}finally{setSaving(false)}}
- async function setStatus(status:LearningContentStatus){setError("");if(!user?.id||!id||!latest){setError("A content version is required.");return}try{if(status==="review"){setReviewing(true)}else if(status==="published"){setPublishing(true)}else{setRetiring(true)}if(published&&status==="review"&&latest.status==="published"){const draft=await learningContentService.createVersion({contentItemId:id,versionNo:latest.versionNo+1,body:latest.body,changeSummary:"Submitted for review",createdBy:user.id});await learningContentService.updateVersionStatus(draft.id,"review",user.id)}else if(published&&(status==="review"||status==="published")){if(latest.status==="published"&&status==="published")return;await learningContentService.updateVersionStatus(latest.id,status,user.id)}else{await learningContentService.updateContentStatus(id,status,user.id)}await Promise.all([content.refetch(),versions.refetch()])}catch(err){setError(err instanceof Error?err.message:`Could not change content status to ${status}.`)}finally{setReviewing(false);setPublishing(false);setRetiring(false)}}
+ async function setStatus(status:LearningContentStatus){
+  setError("");
+  if(!user?.id||!id||!latest){setError("A content version is required.");return}
+  try{
+    if(status==="review")setReviewing(true);
+    else if(status==="published")setPublishing(true);
+    else setRetiring(true);
+
+    if(status==="published"){
+      if(latest.status!=="published")await learningContentService.updateVersionStatus(latest.id,"published",user.id);
+      if(!published)await learningContentService.updateContentStatus(id,"published",user.id);
+    }else if(status==="review"){
+      if(published&&latest.status==="published"){
+        const draft=await learningContentService.createVersion({contentItemId:id,versionNo:latest.versionNo+1,body:latest.body,changeSummary:"Submitted for review",createdBy:user.id});
+        await learningContentService.updateVersionStatus(draft.id,"review",user.id);
+      }else{
+        if(latest.status!=="review")await learningContentService.updateVersionStatus(latest.id,"review",user.id);
+        if(!published)await learningContentService.updateContentStatus(id,"review",user.id);
+      }
+    }else{
+      await learningContentService.updateContentStatus(id,status,user.id);
+    }
+    await Promise.all([content.refetch(),versions.refetch()]);
+  }catch(err){
+    setError(err instanceof Error?err.message:`Could not change content status to ${status}.`);
+  }finally{
+    setReviewing(false);setPublishing(false);setRetiring(false);
+  }
+}
  if(!user)return <Message text="Sign in to manage learning content."/>;if(!id)return <Message text="No content item was selected."/>;if(classes.isPending||content.isPending||versions.isPending||objectives.isPending)return <div className="h-96 animate-pulse rounded-2xl bg-slate-200"/>;if(classes.isError||!org||content.isError||versions.isError||objectives.isError||!item)return <Message text="We could not load this content item."/>
  return <div className="mx-auto max-w-5xl space-y-6"><header className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between"><div className="flex items-start gap-3"><Link to="/teacher/content" className="rounded-lg p-2 text-slate-500 hover:bg-slate-100"><ArrowLeft size={19}/></Link><div><div className="flex items-center gap-2 text-sm font-medium text-slate-500"><FileText size={18}/>Teacher Content</div><h1 className="mt-1 text-2xl font-bold text-slate-900">{item.title}</h1><p className="mt-1 text-sm text-slate-500">{item.code} · {item.languageCode.toUpperCase()}</p></div></div><span className={"inline-flex w-fit rounded-full px-3 py-1.5 text-xs font-semibold "+statusClasses[item.status]}>{item.status[0].toUpperCase()+item.status.slice(1)}</span></header>
  {published&&<section className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5"><h2 className="font-semibold text-emerald-900">Reuse this content</h2><p className="mt-1 text-sm text-emerald-800">Create a class assignment using this published content.</p><Link to={"/teacher/assignments/new?contentId="+item.id} className="mt-3 inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white"><ClipboardPlus size={17}/>Reuse in assignment</Link></section>}
