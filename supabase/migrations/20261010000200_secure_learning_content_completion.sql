@@ -167,6 +167,53 @@ $function$;
 revoke all on function public.complete_learning_assignment_content(uuid, uuid) from public;
 grant execute on function public.complete_learning_assignment_content(uuid, uuid) to authenticated;
 
+-- A submitted writing response is completion evidence in the same transaction.
+create or replace function private.complete_required_content_response()
+returns trigger
+language plpgsql
+security definer
+set search_path = ''
+as $function$
+declare
+  v_current_user_id uuid;
+begin
+  if new.status <> 'submitted' then
+    return new;
+  end if;
+
+  select u.id into v_current_user_id
+  from public.users u
+  where u.auth_user_id = (select auth.uid());
+
+  -- Teacher grading updates must not impersonate the student who authored the response.
+  if v_current_user_id is null or v_current_user_id is distinct from new.student_user_id then
+    return new;
+  end if;
+
+  if exists (
+    select 1
+    from public.learning_assignment_items ai
+    join public.learning_assignments a on a.id = ai.assignment_id
+    where ai.assignment_id = new.assignment_id
+      and ai.content_item_id = new.content_item_id
+      and ai.item_type = 'content'
+      and ai.required = true
+      and a.status = 'published'
+      and (a.available_from is null or a.available_from <= now())
+  ) then
+    perform public.complete_learning_assignment_content(new.assignment_id, new.content_item_id);
+  end if;
+
+  return new;
+end;
+$function$;
+
+revoke all on function private.complete_required_content_response() from public, anon, authenticated;
+drop trigger if exists learning_content_response_completion on public.learning_content_responses;
+create trigger learning_content_response_completion
+after insert or update on public.learning_content_responses
+for each row execute function private.complete_required_content_response();
+
 -- Students may log activity, but cannot forge the completion marker directly.
 drop policy if exists learning_activity_events_insert on public.learning_activity_events;
 create policy learning_activity_events_insert
