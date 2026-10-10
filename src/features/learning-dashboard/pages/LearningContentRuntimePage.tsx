@@ -6,7 +6,6 @@ import { useAuth } from "@/core/auth";
 import { learningAssignmentsService } from "@/features/learning-assignments";
 import { learningActivityService } from "@/features/learning-activity";
 import { learningContentService } from "@/features/learning-content";
-import { LearningNavigation } from "../components/LearningNavigation";
 
 function textSections(body: Record<string, unknown>) {
   const raw = body.sections;
@@ -183,7 +182,7 @@ export default function LearningContentRuntimePage() {
 
   return (
     <div className="space-y-6">
-      <LearningNavigation />
+
       <Link to={`/learning/assignments/${id}`} className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900">
         <ArrowLeft size={16} />Back to assignment
       </Link>
