@@ -59,7 +59,7 @@ export default function TeacherLearningAnalyticsPage() {
 
   const students = classQuery.data?.students ?? [];
   const grades = gradesQuery.data ?? [];
-  const includedEntries = entries.filter((entry) => entry.includedInGrade && entry.status === "graded");
+  const includedEntries = useMemo(() => entries.filter((entry) => entry.includedInGrade && entry.status === "graded"), [entries]);
   const classAverage = includedEntries.length
     ? includedEntries.reduce((sum, entry) => sum + entry.percentage, 0) / includedEntries.length
     : null;
@@ -68,7 +68,7 @@ export default function TeacherLearningAnalyticsPage() {
     ? finalized.reduce((sum, grade) => sum + grade.score, 0) / finalized.length
     : null;
   const needsAttention = finalized.filter((grade) => grade.score < 50).length;
-  const topicNameById = new Map((topicsQuery.data ?? []).map((topic) => [topic.id, topic.name]));
+  const topicNameById = useMemo(() => new Map((topicsQuery.data ?? []).map((topic) => [topic.id, topic.name])), [topicsQuery.data]);
   const topicMetrics = useMemo(() => {
     const grouped = new Map<string, number[]>();
     for (const entry of includedEntries) {
