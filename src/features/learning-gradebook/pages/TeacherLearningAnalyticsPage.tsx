@@ -93,7 +93,7 @@ export default function TeacherLearningAnalyticsPage() {
   if (classQuery.isError || termsQuery.isError) {
     return <ErrorState message="Class analytics could not be loaded. Check class access and academic term configuration." />;
   }
-  if (!selectedTerm || !subjects.length) {
+  if (!selectedTerm || !selectedSubject || !subjects.length) {
     return <section className="space-y-3 rounded-2xl border bg-white p-6">
       <Link to={`/teacher/classes/${classGroupId}/gradebook`} className="inline-flex items-center gap-2 text-sm text-slate-600"><ArrowLeft size={16} /> Back to Gradebook</Link>
       <h1 className="text-xl font-bold">Analytics setup is incomplete</h1>
