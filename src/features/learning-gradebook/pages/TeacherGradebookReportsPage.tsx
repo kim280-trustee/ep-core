@@ -170,7 +170,7 @@ export default function TeacherGradebookReportsPage() {
         >
           <ArrowLeft size={16} /> Back to Gradebook
         </Link>
-        <div className="flex gap-2">
+        <div className="flex gap-2"><Link to={`/teacher/classes/${classGroupId}/analytics`} className="rounded-xl border px-3 py-2 text-sm font-semibold">Learning analytics</Link>
           <button type="button" onClick={() => window.print()} className="rounded-xl border px-3 py-2 text-sm font-semibold">
             <Printer size={15} className="mr-1 inline" /> Print
           </button>
