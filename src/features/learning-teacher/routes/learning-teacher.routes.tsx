@@ -10,6 +10,7 @@ import TeacherGradebookPage from "../../learning-gradebook/pages/TeacherGradeboo
 import TeacherStudentPerformancePage from "../../learning-gradebook/pages/TeacherStudentPerformancePage";
 import TeacherGradebookSettingsPage from "../../learning-gradebook/pages/TeacherGradebookSettingsPage";
 import TeacherGradebookReportsPage from "../../learning-gradebook/pages/TeacherGradebookReportsPage";
+import TeacherLearningAnalyticsPage from "../../learning-gradebook/pages/TeacherLearningAnalyticsPage";
 import TeacherAssignmentHistoryPage from "../pages/TeacherAssignmentHistoryPage";
 import TeacherParentLinksPage from "../pages/TeacherParentLinksPage";
 import TeacherContentLibraryPage from "../../learning-content/pages/TeacherContentLibraryPage";
@@ -36,6 +37,7 @@ export const learningTeacherRoutes: RouteObject[] = [
       { path: "classes/:classGroupId/gradebook", element: <TeacherGradebookPage /> },
       { path: "classes/:classGroupId/gradebook/settings", element: <TeacherGradebookSettingsPage /> },
       { path: "classes/:classGroupId/gradebook/reports", element: <TeacherGradebookReportsPage /> },
+      { path: "classes/:classGroupId/analytics", element: <TeacherLearningAnalyticsPage /> },
       { path: "classes/:classGroupId/gradebook/:studentUserId", element: <TeacherStudentPerformancePage /> },
       { path: "assignments/:assignmentId/responses", element: <TeacherContentResponsesPage /> },
     ],
