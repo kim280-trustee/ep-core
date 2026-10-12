@@ -70,12 +70,10 @@ export default function LearningProgressPage() {
 
   return (
     <div className="space-y-7">
-      <section>
-        <p className="text-sm font-medium text-slate-500">Student Learning</p>
-        <h1 className="mt-1 text-3xl font-black tracking-tight text-slate-900">Progress</h1>
-        <p className="mt-2 text-sm text-slate-500">
-          See how your learning objectives are developing over time.
-        </p>
+      <section className="rounded-[2rem] bg-gradient-to-br from-sky-500 via-cyan-500 to-teal-400 px-6 py-7 text-white shadow-xl shadow-sky-100 sm:px-8 sm:py-9">
+        <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-white/80">YOUR GROWTH STORY</p>
+        <h1 className="mt-2 text-3xl font-black tracking-tight sm:text-4xl">Look how far you’ve come!</h1>
+        <p className="mt-2 max-w-xl text-sm leading-6 text-white/90 sm:text-base">See how your learning objectives are developing over time.</p>
       </section>
 
       <div className="grid gap-4 sm:grid-cols-3">
