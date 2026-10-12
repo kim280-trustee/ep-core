@@ -65,9 +65,7 @@ export default function StudentLayout() {
           <nav className="space-y-2" aria-label="Student portal navigation">
             {items.map(({ to, label, icon: Icon, end }) => (
               <NavLink key={to} to={to} end={end} className={({ isActive }) => navigationClass(isActive)}>
-                <span className={`flex h-9 w-9 items-center justify-center rounded-xl ${"bg-white/15"}`}>
-                  <Icon size={19} />
-                </span>
+                <Icon size={19} />
                 {label}
               </NavLink>
             ))}
