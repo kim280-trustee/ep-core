@@ -11,7 +11,6 @@ import {
   CheckCircle2,
   Clock3,
   Compass,
-  Flame,
   Sparkles,
   Star,
   Target,
@@ -21,7 +20,6 @@ import {
 import { useAuth } from "@/core/auth";
 import { learningRuntimeService } from "@/features/learning-runtime";
 import { learningAssignmentsService } from "@/features/learning-assignments";
-import type { LearningAssignmentProgress } from "@/features/learning-assignments";
 
 function formatDate(value: string | null) {
   if (!value) return "No due date";
@@ -73,7 +71,7 @@ export default function LearningDashboardPage() {
   const completed = overview.progress.filter((p) => p.status === "completed");
   const averageMastery = overview.mastery.length ? Math.round(overview.mastery.reduce((sum, item) => sum + item.masteryScore, 0) / overview.mastery.length) : 0;
   const assignmentsById = new Map(overview.assignments.map((a) => [a.id, a]));
-  const continueItems = inProgress.map((p) => ({ progress: p, assignment: assignmentsById.get(p.assignmentId) })).filter((x): x is { progress: LearningAssignmentProgress; assignment: NonNullable<typeof x.assignment> } => Boolean(x.assignment)).slice(0, 4);
+  const continueItems = inProgress.flatMap((progress) => { const assignment = assignmentsById.get(progress.assignmentId); return assignment ? [{ progress, assignment }] : []; }).slice(0, 4);
   const dueAssignments = overview.assignments.filter((a) => a.status === "published").slice(0, 5);
   const completedAssignmentIds = new Set(completed.map((item) => item.assignmentId));
   const reminderCutoff = now === null ? 0 : now + 7 * 24 * 60 * 60 * 1000;
@@ -104,7 +102,7 @@ export default function LearningDashboardPage() {
     </section>
 
     <section aria-label="Your learning summary" className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-      <Stat icon={<Target size={20} />} label="Skill mastery" value={averageMastery + "%"} detail={overview.mastery.length + " learning objectives"} tone="violet" />
+      <Stat icon={<Target size={20} />} label="Skill mastery" value={overview.mastery.length ? averageMastery + "%" : "—"} detail={overview.mastery.length + " learning objectives"} tone="violet" />
       <Stat icon={<BookOpen size={20} />} label="My assignments" value={String(overview.assignments.length)} detail={inProgress.length + " in progress"} tone="blue" />
       <Stat icon={<CheckCircle2 size={20} />} label="Completed" value={String(completed.length)} detail="completed activities" tone="mint" />
       <Stat icon={<TrendingUp size={20} />} label="Recommended" value={String(overview.recommendations.length)} detail="next steps for you" tone="peach" />
