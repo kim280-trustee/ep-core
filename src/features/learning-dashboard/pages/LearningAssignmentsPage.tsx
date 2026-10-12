@@ -27,10 +27,14 @@ export default function LearningAssignmentsPage() {
   const progressByAssignment = new Map(progress.map((item) => [item.assignmentId, item]));
 
   return (
-    <div className="space-y-6">
-      <section className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-        <div><span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1.5 text-xs font-extrabold text-violet-50"><Sparkles size={14} /> YOUR NEXT ADVENTURE</span><h1 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">My learning</h1><p className="mt-2 max-w-xl text-sm leading-6 text-violet-100 sm:text-base">Every activity is a chance to discover something new. Pick up where you left off.</p></div>
-        <span className="w-fit rounded-full bg-white px-4 py-2 text-sm font-extrabold text-violet-700 shadow-sm">{assignments.length} {assignments.length === 1 ? "assignment" : "assignments"}</span>
+    <div className="space-y-7">
+      <section className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-500 px-6 py-7 text-white shadow-xl shadow-violet-200 sm:px-8 sm:py-9">
+        <div className="pointer-events-none absolute -right-5 -top-8 h-40 w-40 rounded-full border-[18px] border-white/10" />
+        <div className="pointer-events-none absolute bottom-[-3rem] right-24 h-28 w-28 rounded-full bg-amber-300/20" />
+        <div className="relative flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div><span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1.5 text-xs font-extrabold text-violet-50"><Sparkles size={14} /> YOUR NEXT ADVENTURE</span><h1 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">My learning</h1><p className="mt-2 max-w-xl text-sm leading-6 text-violet-100 sm:text-base">Every activity is a chance to discover something new. Pick up where you left off.</p></div>
+          <span className="w-fit rounded-full bg-white px-4 py-2 text-sm font-extrabold text-violet-700 shadow-sm">{assignments.length} {assignments.length === 1 ? "assignment" : "assignments"}</span>
+        </div>
       </section>
       {assignments.length ? (
         <div className="grid gap-5 xl:grid-cols-2">
