@@ -126,10 +126,10 @@ export default function LearningAssignmentDetailPage() {
         Back to assignments
       </Link>
 
-      <section className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8">
+      <section className="rounded-[2rem] bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-500 p-6 text-white shadow-xl shadow-violet-100 sm:p-8">
         <p className="text-sm text-slate-300">Assignment</p>
 
-        <h1 className="mt-1 text-2xl font-bold sm:text-3xl">
+        <h1 className="mt-1 text-3xl font-black tracking-tight sm:text-4xl">
           {assignment.title}
         </h1>
 
@@ -152,7 +152,7 @@ export default function LearningAssignmentDetailPage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+      <section className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">
           Your progress
         </h2>
@@ -183,7 +183,7 @@ export default function LearningAssignmentDetailPage() {
           type="button"
           disabled={startMutation.isPending || completed}
           onClick={() => startMutation.mutate()}
-          className="mt-5 inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
+          className="mt-5 inline-flex items-center gap-2 rounded-2xl bg-violet-600 px-4 py-3 text-sm font-extrabold text-white shadow-md shadow-violet-200 transition hover:bg-violet-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {completed ? (
             <CheckCircle2 size={17} />
@@ -209,7 +209,7 @@ export default function LearningAssignmentDetailPage() {
         )}
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+      <section className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">
           Learning items
         </h2>
