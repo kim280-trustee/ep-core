@@ -69,10 +69,10 @@ export default function LearningProgressPage() {
   ).length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-7">
       <section>
         <p className="text-sm font-medium text-slate-500">Student Learning</p>
-        <h1 className="mt-1 text-2xl font-bold text-slate-900">Progress</h1>
+        <h1 className="mt-1 text-3xl font-black tracking-tight text-slate-900">Progress</h1>
         <p className="mt-2 text-sm text-slate-500">
           See how your learning objectives are developing over time.
         </p>
@@ -96,7 +96,7 @@ export default function LearningProgressPage() {
         />
       </div>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+      <section className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">Assignment progress</h2>
         <p className="mt-1 text-sm text-slate-500">Your assigned learning activities and completion status.</p>
         <div className="mt-4 divide-y divide-slate-100">
@@ -118,7 +118,7 @@ export default function LearningProgressPage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+      <section className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">Assessment results</h2>
         <p className="mt-1 text-sm text-slate-500">Scores from completed assessment attempts.</p>
         <div className="mt-4 divide-y divide-slate-100">
@@ -140,7 +140,7 @@ export default function LearningProgressPage() {
       </section>
 
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+      <section className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">
           Objective mastery
         </h2>
@@ -159,7 +159,7 @@ export default function LearningProgressPage() {
                 </div>
                 <div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-100">
                   <div
-                    className="h-full rounded-full bg-slate-900"
+                    className="h-full rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500"
                     style={{
                       width: `${Math.max(0, Math.min(100, item.masteryScore))}%`,
                     }}
@@ -176,7 +176,7 @@ export default function LearningProgressPage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+      <section className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">
           Assessment history
         </h2>
@@ -238,26 +238,26 @@ function Metric({
   icon: ReactNode;
 }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+    <div className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)]">
       <div className="flex items-center gap-2 text-slate-500">
         {icon}
         <span className="text-sm font-medium">{label}</span>
       </div>
-      <p className="mt-3 text-2xl font-bold text-slate-900">{value}</p>
+      <p className="mt-3 text-3xl font-black text-violet-700">{value}</p>
     </div>
   );
 }
 
 function ErrorState({ onRetry }: { onRetry: () => void }) {
   return (
-    <div className="flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800">
+    <div className="flex items-start gap-3 rounded-[1.75rem] border border-rose-200 bg-rose-50 p-5 text-rose-800">
       <AlertCircle size={20} />
       <div>
         <p className="font-semibold">Progress could not be loaded.</p>
         <button
           type="button"
           onClick={onRetry}
-          className="mt-3 rounded-lg bg-white px-3 py-2 text-sm font-medium shadow-sm"
+          className="mt-3 rounded-2xl bg-white px-4 py-2.5 text-sm font-bold shadow-sm transition hover:bg-rose-100"
         >
           Try again
         </button>
