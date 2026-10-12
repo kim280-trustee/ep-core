@@ -17,4 +17,7 @@ export interface StudentGamificationSummary {
   assessedQuizzes: number;
   badges: LearningBadge[];
   evidenceCount: number;
+  currentStreakDays: number;
+  todayActivities: number;
+  dailyGoalActivities: number;
 }
