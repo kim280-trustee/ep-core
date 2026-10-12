@@ -17,6 +17,7 @@ const mapReward = (row: RewardRow): LearningRewardLedgerEntry => ({
   id: row.id,
   tenantId: row.tenant_id,
   organizationId: row.organization_id,
+  classGroupId: row.class_group_id,
   studentUserId: row.student_user_id,
   eventType: row.event_type as LearningRewardEventType,
   sourceType: row.source_type as LearningRewardSourceType,
@@ -33,6 +34,17 @@ export const learningRewardsRepository = {
       .from("learning_reward_ledger")
       .select("*")
       .eq("student_user_id", studentUserId)
+      .order("occurred_at", { ascending: false });
+
+    if (error) throw error;
+    return (data ?? []).map(mapReward);
+  },
+
+  async listClassLedger(classGroupId: string): Promise<LearningRewardLedgerEntry[]> {
+    const { data, error } = await supabase
+      .from("learning_reward_ledger")
+      .select("*")
+      .eq("class_group_id", classGroupId)
       .order("occurred_at", { ascending: false });
 
     if (error) throw error;

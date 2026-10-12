@@ -1,11 +1,12 @@
 import { useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { AlertCircle, ArrowLeft, BarChart3, BookOpen, Target, Users } from "lucide-react";
+import { AlertCircle, ArrowLeft, BarChart3, BookOpen, Target, Trophy, Users } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningGradebookService } from "../services/learning-gradebook.service";
 import { learningTeacherService } from "@/features/learning-teacher";
+import { learningRewardsService } from "@/features/learning-rewards";
 
 export default function TeacherLearningAnalyticsPage() {
   const { user } = useAuth();
@@ -59,6 +60,28 @@ export default function TeacherLearningAnalyticsPage() {
   });
 
   const students = classQuery.data?.students ?? [];
+  const leaderboardQuery = useQuery({
+    queryKey: ["learning", "teacher-class-reward-standings", user?.id, classGroupId],
+    queryFn: () => learningRewardsService.listClassLedger(classGroupId),
+    enabled: Boolean(user?.id && classGroupId && classQuery.isSuccess),
+  });
+  const leaderboardRows = useMemo(() => {
+    const totals = new Map<string, number>();
+    const completed = new Map<string, number>();
+    for (const entry of leaderboardQuery.data ?? []) {
+      if (entry.eventType !== "assignment_completed" || entry.classGroupId !== classGroupId) continue;
+      totals.set(entry.studentUserId, (totals.get(entry.studentUserId) ?? 0) + entry.xpDelta);
+      completed.set(entry.studentUserId, (completed.get(entry.studentUserId) ?? 0) + 1);
+    }
+    return students
+      .map((student) => ({
+        studentUserId: student.membership.userId,
+        name: student.name,
+        xp: totals.get(student.membership.userId) ?? 0,
+        completedAssignments: completed.get(student.membership.userId) ?? 0,
+      }))
+      .sort((a, b) => b.xp - a.xp || a.name.localeCompare(b.name));
+  }, [classGroupId, leaderboardQuery.data, students]);
   const grades = gradesQuery.data ?? [];
   const includedEntries = useMemo(() => entries.filter((entry) => entry.includedInGrade && entry.status === "graded"), [entries]);
   const classAverage = includedEntries.length
@@ -132,6 +155,35 @@ export default function TeacherLearningAnalyticsPage() {
       <Metric icon={<BookOpen size={18} />} label="Recorded grade items" value={String(includedEntries.length)} detail="Graded and included in calculations" />
       <Metric icon={<BarChart3 size={18} />} label="Recorded-item average" value={classAverage === null ? "—" : classAverage.toFixed(1) + "%"} detail="Mean of included item percentages" />
       <Metric icon={<Target size={18} />} label="Finalized grades below 50%" value={String(needsAttention)} detail={finalized.length + " finalized grade(s)"} />
+    </section>
+    <section className="rounded-2xl border bg-white p-5 sm:p-6" aria-labelledby="class-reward-standings-heading">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h2 id="class-reward-standings-heading" className="flex items-center gap-2 text-lg font-semibold text-slate-900"><Trophy size={20} /> Class challenge standings</h2>
+          <p className="mt-1 text-sm text-slate-500">Teacher-only rankings based on verified XP from assignments targeted to this class.</p>
+        </div>
+        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">Teacher view</span>
+      </div>
+      <p className="mt-2 text-xs text-slate-500">Assessment XP and rewards from assignments targeted to other classes are excluded from these standings. Students cannot view classmates' scores.</p>
+      {leaderboardQuery.isPending ? (
+        <div className="mt-4 h-24 animate-pulse rounded-xl bg-slate-100" />
+      ) : leaderboardQuery.isError ? (
+        <p role="alert" className="mt-4 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">Class standings could not be loaded. Verify your teacher access and reward-ledger migration status.</p>
+      ) : !(leaderboardQuery.data ?? []).length ? (
+        <p className="mt-4 rounded-xl border border-dashed p-5 text-sm text-slate-500">No class assignment XP has been recorded yet. Standings appear after students complete assignments targeted to this class.</p>
+      ) : (
+        <div className="mt-4 overflow-x-auto">
+          <table className="w-full min-w-[420px] text-left text-sm">
+            <thead><tr className="border-b text-xs uppercase tracking-wide text-slate-500"><th className="px-3 py-3">Rank</th><th className="px-3 py-3">Student</th><th className="px-3 py-3 text-right">Completed</th><th className="px-3 py-3 text-right">Class XP</th></tr></thead>
+            <tbody>{leaderboardRows.map((student, index) => <tr key={student.studentUserId} className="border-b last:border-0">
+              <td className="px-3 py-3 font-semibold text-slate-500">#{index + 1}</td>
+              <td className="px-3 py-3 font-medium text-slate-900">{student.name}</td>
+              <td className="px-3 py-3 text-right text-slate-600">{student.completedAssignments}</td>
+              <td className="px-3 py-3 text-right font-bold text-slate-900">{student.xp}</td>
+            </tr>)}</tbody>
+          </table>
+        </div>
+      )}
     </section>
     <section className="rounded-2xl border bg-white p-5 sm:p-6">
       <div className="flex flex-wrap items-start justify-between gap-3">

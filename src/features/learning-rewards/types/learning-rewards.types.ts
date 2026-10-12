@@ -6,6 +6,7 @@ export interface LearningRewardLedgerEntry {
   id: string;
   tenantId: string;
   organizationId: string | null;
+  classGroupId: string | null;
   studentUserId: string;
   eventType: LearningRewardEventType;
   sourceType: LearningRewardSourceType;
