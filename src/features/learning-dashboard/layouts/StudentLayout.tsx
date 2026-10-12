@@ -23,13 +23,17 @@ export default function StudentLayout() {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
   const [loggingOut, setLoggingOut] = useState(false);
+  const [logoutError, setLogoutError] = useState<string | null>(null);
 
   const handleLogout = async () => {
     if (loggingOut) return;
     setLoggingOut(true);
+    setLogoutError(null);
     try {
       await logout();
       navigate("/login", { replace: true });
+    } catch (error) {
+      setLogoutError(error instanceof Error ? error.message : "Could not sign out. Please try again.");
     } finally {
       setLoggingOut(false);
     }
@@ -88,6 +92,7 @@ export default function StudentLayout() {
         </aside>
 
         <main className="min-w-0 flex-1 pb-24 lg:pb-0">
+          {logoutError && <div role="alert" className="mx-4 mt-4 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-semibold text-rose-800 sm:mx-6 lg:mx-9">{logoutError}</div>}
           <header className="student-mobile-header sticky top-0 z-30 border-b border-violet-100/80 bg-white/90 px-4 py-3 backdrop-blur-xl lg:hidden">
             <div className="flex items-center justify-between gap-3">
               <NavLink to="/learning" className="flex min-w-0 items-center gap-2.5">
