@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import type { ReactNode } from "react";
 import { BookOpen, CheckCircle2, Medal, RefreshCw, Sparkles, Target, Trophy } from "lucide-react";
 import { useAuth } from "@/core/auth";
 import { learningGamificationService } from "../services/learning-gamification.service";
@@ -82,7 +83,7 @@ export default function StudentGamificationCard() {
   );
 }
 
-function RewardStat({ icon, label, value, tone }: { icon: React.ReactNode; label: string; value: number; tone: "peach" | "blue" | "mint" }) {
+function RewardStat({ icon, label, value, tone }: { icon: ReactNode; label: string; value: number; tone: "peach" | "blue" | "mint" }) {
   const tones = {
     peach: "bg-orange-50 text-orange-700",
     blue: "bg-sky-50 text-sky-700",
