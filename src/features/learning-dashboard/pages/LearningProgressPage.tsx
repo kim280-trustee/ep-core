@@ -129,8 +129,8 @@ export default function LearningProgressPage() {
                 </p>
               </div>
               <div className="text-right">
-                <p className="text-sm font-bold text-slate-900">{result.score ?? 0} / {result.maxScore ?? 0}</p>
-                <p className="text-xs font-semibold text-slate-500">{result.percentage ?? 0}% · {result.passed ? "Passed" : "Not passed"}</p>
+                <p className="text-sm font-bold text-slate-900">{result.score == null || result.maxScore == null ? "Score pending" : `${result.score} / ${result.maxScore}`}</p>
+                <p className="text-xs font-semibold text-slate-500">{result.percentage == null ? "Percentage pending" : `${result.percentage}%`} · {result.passed == null ? "Awaiting review" : result.passed ? "Passed" : "Not passed"}</p>
               </div>
             </div>
           )) : <p className="text-sm text-slate-500">No assessment results have been recorded yet.</p>}
