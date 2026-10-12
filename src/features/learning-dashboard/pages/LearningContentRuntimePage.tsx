@@ -192,18 +192,18 @@ export default function LearningContentRuntimePage() {
         <ArrowLeft size={16} />Back to assignment
       </Link>
 
-      <section className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8">
+      <section className="rounded-[2rem] bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-500 p-6 text-white shadow-xl shadow-violet-100 sm:p-8">
         <div className="flex items-start gap-4">
           <span className="rounded-xl bg-white/10 p-3"><BookOpen size={22} /></span>
           <div>
             <p className="text-sm text-slate-300">Learning content</p>
-            <h1 className="mt-1 text-2xl font-bold sm:text-3xl">{currentContent.title}</h1>
+            <h1 className="mt-1 text-3xl font-black tracking-tight sm:text-4xl">{currentContent.title}</h1>
             <p className="mt-2 text-sm text-slate-300">{currentContent.code} · {currentContent.contentType}</p>
           </div>
         </div>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-8">
+      <section className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-8">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Assignment</p>
@@ -227,7 +227,7 @@ export default function LearningContentRuntimePage() {
       </section>
 
       {currentContent.contentType === "writing" ? (
-        <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <section className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-6">
           <h2 className="text-lg font-semibold text-slate-900">Your response</h2>
           <p className="mt-1 text-sm text-slate-500">Write your answer below. You can save a draft and return later.</p>
           <textarea value={responseText} onChange={e => setResponseText(e.target.value)} disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending} className="input mt-4 min-h-64 w-full resize-y" placeholder="Write your answer here..." />
@@ -240,8 +240,8 @@ export default function LearningContentRuntimePage() {
           {responseMutation.isError && <p className="mt-3 text-sm text-red-600">{responseMutation.error instanceof Error ? responseMutation.error.message : "Could not save your response."}</p>}
         </section>
       ) : (
-        <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"><div><h2 className="text-lg font-semibold text-slate-900">Complete this activity</h2><p className="mt-1 text-sm text-slate-500">Mark this required learning activity complete after you finish the lesson.</p></div><button type="button" disabled={completeMutation.isPending} onClick={() => completeMutation.mutate()} className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"><CheckCircle2 size={17} />{completeMutation.isPending ? "Saving..." : "Mark as complete"}</button></div>
+        <section className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"><div><h2 className="text-lg font-semibold text-slate-900">Complete this activity</h2><p className="mt-1 text-sm text-slate-500">Mark this required learning activity complete after you finish the lesson.</p></div><button type="button" disabled={completeMutation.isPending} onClick={() => completeMutation.mutate()} className="inline-flex items-center justify-center gap-2 rounded-2xl bg-violet-600 px-4 py-3 text-sm font-extrabold text-white shadow-md shadow-violet-200 transition hover:bg-violet-700 disabled:cursor-not-allowed disabled:opacity-50"><CheckCircle2 size={17} />{completeMutation.isPending ? "Saving..." : "Mark as complete"}</button></div>
           {completeMutation.isSuccess && <p className="mt-3 text-sm font-medium text-emerald-700">Activity completed. Your assignment progress has been updated.</p>}
           {completeMutation.isError && <p className="mt-3 text-sm text-red-600">{completeMutation.error instanceof Error ? completeMutation.error.message : "Could not complete this activity."}</p>}
         </section>
