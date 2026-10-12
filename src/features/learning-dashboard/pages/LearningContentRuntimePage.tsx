@@ -233,14 +233,21 @@ export default function LearningContentRuntimePage() {
         <section className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-6">
           <h2 className="text-lg font-semibold text-slate-900">Your response</h2>
           <p className="mt-1 text-sm text-slate-500">Write your answer below. You can save a draft and return later.</p>
-          <textarea value={responseText} onChange={e => setResponseText(e.target.value)} disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending} className="input mt-4 min-h-64 w-full resize-y" placeholder="Write your answer here..." />
+          {responseQuery.isPending && <p className="mt-3 text-sm text-slate-500">Loading your saved response…</p>}
+          {responseQuery.isError && (
+            <div role="alert" className="mt-3 rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-800">
+              <p>Your saved response could not be loaded. Editing is paused to protect any work you have already submitted.</p>
+              <button type="button" onClick={() => void responseQuery.refetch()} className="mt-3 rounded-xl bg-white px-4 py-2.5 font-bold shadow-sm hover:bg-rose-100">Try again</button>
+            </div>
+          )}
+          <textarea value={responseText} onChange={e => setResponseText(e.target.value)} disabled={responseQuery.isPending || responseQuery.isError || responseQuery.data?.status === "submitted" || responseMutation.isPending} className="input mt-4 min-h-64 w-full resize-y disabled:cursor-not-allowed disabled:bg-slate-50" placeholder="Write your answer here..." />
           <div className="mt-4 flex flex-wrap items-center gap-3">
             {responseQuery.data?.status === "submitted" ? <span className="text-sm font-medium text-emerald-700">Response submitted.</span> : <>
-              <button type="button" disabled={!responseText.trim() || responseMutation.isPending} onClick={() => responseMutation.mutate("draft")} className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold disabled:opacity-50">Save draft</button>
-              <button type="button" disabled={!responseText.trim() || responseMutation.isPending} onClick={() => responseMutation.mutate("submitted")} className="rounded-2xl bg-violet-600 px-4 py-2.5 text-sm font-extrabold text-white shadow-md shadow-violet-200 transition disabled:opacity-50">{responseMutation.isPending ? "Submitting..." : "Submit response"}</button>
+              <button type="button" disabled={responseQuery.isPending || responseQuery.isError || !responseText.trim() || responseMutation.isPending} onClick={() => responseMutation.mutate("draft")} className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold disabled:opacity-50">Save draft</button>
+              <button type="button" disabled={responseQuery.isPending || responseQuery.isError || !responseText.trim() || responseMutation.isPending} onClick={() => responseMutation.mutate("submitted")} className="rounded-2xl bg-violet-600 px-4 py-2.5 text-sm font-extrabold text-white shadow-md shadow-violet-200 transition disabled:opacity-50">{responseMutation.isPending ? "Submitting..." : "Submit response"}</button>
             </>}
           </div>
-          {responseMutation.isError && <p className="mt-3 text-sm text-red-600">{responseMutation.error instanceof Error ? responseMutation.error.message : "Could not save your response."}</p>}
+          {responseMutation.isError && <p role="alert" className="mt-3 text-sm text-red-600">{responseMutation.error instanceof Error ? responseMutation.error.message : "Could not save your response."}</p>}
         </section>
       ) : (
         <section className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-6">
