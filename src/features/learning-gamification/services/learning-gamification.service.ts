@@ -55,7 +55,7 @@ function buildBadges(completedLessons: number, assessedQuizzes: number, evidence
 export const learningGamificationService = {
   async getStudentSummary(studentUserId: string): Promise<StudentGamificationSummary> {
     const [activityEvents, attempts, results] = await Promise.all([
-      learningActivityService.listRecentEvents(studentUserId, 1000),
+      learningActivityService.listValidatedContentCompletions(studentUserId),
       learningAssessmentService.listAttempts(studentUserId),
       learningAssessmentService.listResults(studentUserId),
     ]);
