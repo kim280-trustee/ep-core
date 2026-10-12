@@ -2990,6 +2990,70 @@ export type Database = {
           },
         ]
       }
+      learning_reward_ledger: {
+        Row: {
+          created_at: string
+          event_type: string
+          id: string
+          metadata: Json
+          occurred_at: string
+          organization_id: string | null
+          source_id: string
+          source_type: string
+          student_user_id: string
+          tenant_id: string
+          xp_delta: number
+        }
+        Insert: {
+          created_at?: string
+          event_type: string
+          id?: string
+          metadata?: Json
+          occurred_at?: string
+          organization_id?: string | null
+          source_id: string
+          source_type: string
+          student_user_id: string
+          tenant_id: string
+          xp_delta: number
+        }
+        Update: {
+          created_at?: string
+          event_type?: string
+          id?: string
+          metadata?: Json
+          occurred_at?: string
+          organization_id?: string | null
+          source_id?: string
+          source_type?: string
+          student_user_id?: string
+          tenant_id?: string
+          xp_delta?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_reward_ledger_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_reward_ledger_tenant_id_organization_id_fkey"
+            columns: ["tenant_id", "organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_reward_ledger_tenant_id_student_user_id_fkey"
+            columns: ["tenant_id", "student_user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+        ]
+      }
       learning_sessions: {
         Row: {
           context_id: string | null
