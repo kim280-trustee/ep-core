@@ -84,7 +84,7 @@ export default function TeacherStudentProfilePage() {
     })),
   });
 
-  const targetedAssignments = assignments.filter((item, index) =>
+  const targetedAssignments = assignments.filter((_, index) =>
     (assignmentTargetQueries[index]?.data ?? []).some((target) =>
       target.status === "active" && (
         (target.targetType === "student" && target.studentUserId === studentUserId) ||
