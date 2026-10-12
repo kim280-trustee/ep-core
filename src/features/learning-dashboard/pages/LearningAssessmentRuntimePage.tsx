@@ -532,7 +532,7 @@ export default function LearningAssessmentRuntimePage() {
         </Link>
 
         <section className="rounded-[2rem] bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-500 p-6 text-white shadow-xl shadow-violet-100 sm:p-8">
-          <p className="text-sm text-slate-300">Assessment</p>
+          <p className="text-sm font-bold text-white/85">Assessment</p>
           <h1 className="mt-1 text-3xl font-black tracking-tight sm:text-4xl">
             {currentAssessment.title}
           </h1>
