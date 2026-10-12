@@ -363,7 +363,9 @@ export default function LearningAssessmentRuntimePage() {
     );
   }
 
-  if (assignmentQuery.isError || assessmentQuery.isError) {
+  const loadError = assignmentQuery.error ?? assessmentQuery.error ?? attemptsQuery.error;
+
+  if (assignmentQuery.isError || assessmentQuery.isError || attemptsQuery.isError) {
     return (
       <div className="space-y-4">
         <Link
@@ -379,14 +381,21 @@ export default function LearningAssessmentRuntimePage() {
           <div>
             <p className="font-semibold">This assessment could not be loaded.</p>
             <p className="mt-1 text-sm">
-              It may not be available to your account.
+              {loadError instanceof Error
+                ? loadError.message
+                : "Assessment information or attempt history could not be loaded. Please retry before starting."}
             </p>
-
-            {assessmentQuery.error instanceof Error && (
-              <pre className="mt-3 whitespace-pre-wrap rounded-lg bg-red-100 p-3 text-xs">
-                {assessmentQuery.error.message}
-              </pre>
-            )}
+            <button
+              type="button"
+              onClick={() => void Promise.all([
+                assignmentQuery.refetch(),
+                assessmentQuery.refetch(),
+                attemptsQuery.refetch(),
+              ])}
+              className="mt-3 rounded-2xl bg-white px-4 py-2.5 text-sm font-bold shadow-sm transition hover:bg-rose-100"
+            >
+              Try again
+            </button>
           </div>
         </div>
       </div>
