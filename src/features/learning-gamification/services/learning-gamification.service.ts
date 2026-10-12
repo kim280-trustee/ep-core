@@ -11,6 +11,29 @@ function isValidatedContentCompletion(event: LearningActivityEvent) {
     && Boolean(event.contentItemId);
 }
 
+function localDateKey(value: string | Date) {
+  const date = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(date.getTime())) return null;
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
+
+function getCurrentStreakDays(activeDays: Set<string>, now = new Date()) {
+  const today = localDateKey(now);
+  if (!today) return 0;
+  const cursor = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  if (!activeDays.has(today)) cursor.setDate(cursor.getDate() - 1);
+  const firstCandidate = localDateKey(cursor);
+  if (!firstCandidate || !activeDays.has(firstCandidate)) return 0;
+
+  let streak = 0;
+  while (true) {
+    const key = localDateKey(cursor);
+    if (!key || !activeDays.has(key)) return streak;
+    streak += 1;
+    cursor.setDate(cursor.getDate() - 1);
+  }
+}
+
 function buildBadges(completedLessons: number, assessedQuizzes: number, evidenceCount: number): LearningBadge[] {
   return [
     {
@@ -74,6 +97,24 @@ export const learningGamificationService = {
     ).size;
 
     const evidenceCount = completedLessons + assessedQuizzes;
+    const now = new Date();
+    const todayKey = localDateKey(now);
+    const validatedCompletionDates = activityEvents
+      .filter(isValidatedContentCompletion)
+      .filter((event) => event.contentItemId && event.occurredAt)
+      .map((event) => ({ itemId: event.contentItemId!, day: localDateKey(event.occurredAt) }))
+      .filter((entry): entry is { itemId: string; day: string } => Boolean(entry.day));
+    const resultByAttempt = new Map(results.map((result: LearningAssessmentResult) => [result.attemptId, result]));
+    const evaluatedAttempts = attempts.filter((attempt: LearningAttempt) => attempt.status === "evaluated" && resultByAttempt.has(attempt.id));
+    const activeDays = new Set<string>([
+      ...validatedCompletionDates.map((entry) => entry.day),
+      ...evaluatedAttempts.map((attempt) => localDateKey(resultByAttempt.get(attempt.id)!.evaluatedAt)).filter((day): day is string => Boolean(day)),
+    ]);
+    const todayLessonIds = new Set(validatedCompletionDates.filter((entry) => entry.day === todayKey).map((entry) => entry.itemId));
+    const todayAssessmentIds = new Set(evaluatedAttempts.filter((attempt) => localDateKey(resultByAttempt.get(attempt.id)!.evaluatedAt) === todayKey).map((attempt) => attempt.id));
+    const todayActivities = todayLessonIds.size + todayAssessmentIds.size;
+    const currentStreakDays = getCurrentStreakDays(activeDays, now);
+    const dailyGoalActivities = 3;
     const xp = completedLessons * 10 + assessedQuizzes * 25;
     const level = Math.floor(xp / 100) + 1;
     const currentLevelXp = xp % 100;
@@ -86,6 +127,9 @@ export const learningGamificationService = {
       completedLessons,
       assessedQuizzes,
       evidenceCount,
+      currentStreakDays,
+      todayActivities,
+      dailyGoalActivities,
       badges: buildBadges(completedLessons, assessedQuizzes, evidenceCount),
     };
   },
