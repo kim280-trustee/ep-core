@@ -9,6 +9,23 @@ const mapS=(r:SessionRow):LearningSession=>({id:r.id,tenantId:r.tenant_id,organi
 const mapE=(r:EventRow):LearningActivityEvent=>({id:r.id,tenantId:r.tenant_id,organizationId:r.organization_id,studentUserId:r.student_user_id,sessionId:r.session_id,activityType:r.activity_type as LearningActivityEvent["activityType"],contentItemId:r.content_item_id,assessmentId:r.assessment_id,assignmentId:r.assignment_id,objectiveId:r.objective_id,metadata:rec(r.metadata),occurredAt:r.occurred_at});
 
 export const learningActivityRepository = {
+  async listValidatedContentCompletions(studentUserId:string) {
+    const pageSize=500;
+    const rows:EventRow[]=[];
+    for(let offset=0;;offset+=pageSize){
+      const {data,error}=await supabase.from("learning_activity_events").select("*")
+        .eq("student_user_id",studentUserId)
+        .eq("activity_type","content_viewed")
+        .contains("metadata",{completion:"completed",source:"validated_completion_rpc"})
+        .order("occurred_at",{ascending:false})
+        .range(offset,offset+pageSize-1);
+      if(error)throw error;
+      const page=data??[];
+      rows.push(...page);
+      if(page.length<pageSize)break;
+    }
+    return rows.map(mapE);
+  },
   async listRecentEvents(studentUserId:string,limit=20) {
     const {data,error}=await supabase.from("learning_activity_events").select("*").eq("student_user_id",studentUserId).order("occurred_at",{ascending:false}).limit(limit);
     if(error)throw error; return (data??[]).map(mapE);

@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - paul/integrate-edna-content
+      - "paul/**"
   pull_request:
     branches:
       - paul/integrate-edna-content

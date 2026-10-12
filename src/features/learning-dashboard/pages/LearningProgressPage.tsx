@@ -18,6 +18,12 @@ function isCorrectionEvent(event: { evidence: Record<string, unknown> }) {
   return event.evidence["type"] === "pilot_data_correction";
 }
 
+function evaluatedAtLabel(value: string) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "Evaluation date unavailable";
+  return new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(date);
+}
+
 export default function LearningProgressPage() {
   const { user } = useAuth();
   const id = user?.id ?? "";
@@ -39,7 +45,7 @@ export default function LearningProgressPage() {
 
   if (!user) {
     return (
-      <div className="rounded-2xl border border-slate-200 bg-white p-6">
+      <div className="rounded-[1.75rem] border border-violet-100 bg-white p-6 shadow-sm">
         Sign in to view your progress.
       </div>
     );
@@ -69,13 +75,11 @@ export default function LearningProgressPage() {
   ).length;
 
   return (
-    <div className="space-y-6">
-      <section>
-        <p className="text-sm font-medium text-slate-500">Student Learning</p>
-        <h1 className="mt-1 text-2xl font-bold text-slate-900">Progress</h1>
-        <p className="mt-2 text-sm text-slate-500">
-          See how your learning objectives are developing over time.
-        </p>
+    <div className="space-y-7">
+      <section className="rounded-[2rem] bg-gradient-to-br from-sky-500 via-cyan-500 to-teal-400 px-6 py-7 text-white shadow-xl shadow-sky-100 sm:px-8 sm:py-9">
+        <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-white/80">YOUR GROWTH STORY</p>
+        <h1 className="mt-2 text-3xl font-black tracking-tight sm:text-4xl">Look how far you’ve come!</h1>
+        <p className="mt-2 max-w-xl text-sm leading-6 text-white/90 sm:text-base">See how your learning objectives are developing over time.</p>
       </section>
 
       <div className="grid gap-4 sm:grid-cols-3">
@@ -96,21 +100,29 @@ export default function LearningProgressPage() {
         />
       </div>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+      <section className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">Assignment progress</h2>
         <p className="mt-1 text-sm text-slate-500">Your assigned learning activities and completion status.</p>
         <div className="mt-4 divide-y divide-slate-100">
           {assignments.length ? assignments.map((assignment) => {
             const progressItem = assignmentProgress.find((item) => item.assignmentId === assignment.id);
-            const status = progressItem?.status ?? "not_started";
+            const dueAt = assignment.dueAt ? Date.parse(assignment.dueAt) : Number.NaN;
+            const isOverdue = progressItem?.status !== "completed" && (
+              progressItem?.status === "overdue" || (Number.isFinite(dueAt) && dueAt < Date.now())
+            );
+            const status = progressItem?.status === "completed"
+              ? "completed"
+              : isOverdue
+                ? "overdue"
+                : progressItem?.status ?? "not_started";
             return (
               <div key={assignment.id} className="flex items-center justify-between gap-4 py-3 first:pt-0">
                 <div>
                   <p className="text-sm font-medium text-slate-800">{assignment.title}</p>
                   <p className="mt-1 text-xs text-slate-500">{assignment.code}</p>
                 </div>
-                <span className={`rounded-full px-3 py-1 text-xs font-semibold ${status === "completed" ? "bg-emerald-100 text-emerald-700" : status === "in_progress" ? "bg-amber-100 text-amber-700" : "bg-slate-100 text-slate-700"}`}>
-                  {status === "completed" ? "Completed" : status === "in_progress" ? "In progress" : "Not started"}
+                <span className={`rounded-full px-3 py-1 text-xs font-semibold ${status === "completed" ? "bg-emerald-100 text-emerald-700" : status === "overdue" ? "bg-rose-100 text-rose-700" : status === "in_progress" ? "bg-amber-100 text-amber-700" : "bg-slate-100 text-slate-700"}`}>
+                  {status === "completed" ? "Completed" : status === "overdue" ? "Overdue" : status === "in_progress" ? "In progress" : "Not started"}
                 </span>
               </div>
             );
@@ -118,7 +130,7 @@ export default function LearningProgressPage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+      <section className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">Assessment results</h2>
         <p className="mt-1 text-sm text-slate-500">Scores from completed assessment attempts.</p>
         <div className="mt-4 divide-y divide-slate-100">
@@ -127,12 +139,12 @@ export default function LearningProgressPage() {
               <div>
                 <p className="text-sm font-medium text-slate-800">Assessment attempt</p>
                 <p className="mt-1 text-xs text-slate-500">
-                  Evaluated {new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(new Date(result.evaluatedAt))}
+                  Evaluated {evaluatedAtLabel(result.evaluatedAt)}
                 </p>
               </div>
               <div className="text-right">
-                <p className="text-sm font-bold text-slate-900">{result.score ?? 0} / {result.maxScore ?? 0}</p>
-                <p className="text-xs font-semibold text-slate-500">{result.percentage ?? 0}% · {result.passed ? "Passed" : "Not passed"}</p>
+                <p className="text-sm font-bold text-slate-900">{result.score == null || result.maxScore == null ? "Score pending" : `${result.score} / ${result.maxScore}`}</p>
+                <p className="text-xs font-semibold text-slate-500">{result.percentage == null ? "Percentage pending" : `${result.percentage}%`} · {result.passed == null ? "Awaiting review" : result.passed ? "Passed" : "Not passed"}</p>
               </div>
             </div>
           )) : <p className="text-sm text-slate-500">No assessment results have been recorded yet.</p>}
@@ -140,7 +152,7 @@ export default function LearningProgressPage() {
       </section>
 
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+      <section className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">
           Objective mastery
         </h2>
@@ -159,7 +171,7 @@ export default function LearningProgressPage() {
                 </div>
                 <div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-100">
                   <div
-                    className="h-full rounded-full bg-slate-900"
+                    className="h-full rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500"
                     style={{
                       width: `${Math.max(0, Math.min(100, item.masteryScore))}%`,
                     }}
@@ -176,13 +188,12 @@ export default function LearningProgressPage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+      <section className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">
-          Assessment history
+          Learning history
         </h2>
         <p className="mt-1 text-sm text-slate-500">
-          Your assessment evidence is retained as part of your learning
-          history.
+          Recorded changes to your mastery and assessment evidence.
         </p>
 
         <div className="mt-4 divide-y divide-slate-100">
@@ -238,26 +249,26 @@ function Metric({
   icon: ReactNode;
 }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+    <div className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)]">
       <div className="flex items-center gap-2 text-slate-500">
         {icon}
         <span className="text-sm font-medium">{label}</span>
       </div>
-      <p className="mt-3 text-2xl font-bold text-slate-900">{value}</p>
+      <p className="mt-3 text-3xl font-black text-violet-700">{value}</p>
     </div>
   );
 }
 
 function ErrorState({ onRetry }: { onRetry: () => void }) {
   return (
-    <div className="flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800">
+    <div className="flex items-start gap-3 rounded-[1.75rem] border border-rose-200 bg-rose-50 p-5 text-rose-800">
       <AlertCircle size={20} />
       <div>
         <p className="font-semibold">Progress could not be loaded.</p>
         <button
           type="button"
           onClick={onRetry}
-          className="mt-3 rounded-lg bg-white px-3 py-2 text-sm font-medium shadow-sm"
+          className="mt-3 rounded-2xl bg-white px-4 py-2.5 text-sm font-bold shadow-sm transition hover:bg-rose-100"
         >
           Try again
         </button>

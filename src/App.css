@@ -182,3 +182,38 @@
     border-right-color: var(--border);
   }
 }
+
+
+/* Student experience design system */
+.student-experience {
+  background-image:
+    radial-gradient(ellipse at 12% 0%, rgba(221, 214, 254, 0.48), transparent 32rem),
+    radial-gradient(ellipse at 100% 22%, rgba(251, 207, 232, 0.28), transparent 28rem);
+}
+.student-experience .student-page-shell {
+  animation: student-page-enter 320ms ease-out both;
+}
+.student-experience .student-nav-link {
+  min-height: 52px;
+}
+.student-experience .student-brand,
+.student-experience .student-nav-link,
+.student-experience .student-bottom-nav a {
+  text-decoration: none;
+}
+.student-experience button,
+.student-experience a {
+  -webkit-tap-highlight-color: transparent;
+}
+.student-experience :is(button, a, input, textarea, select):focus-visible {
+  outline: 3px solid rgba(139, 92, 246, 0.6);
+  outline-offset: 3px;
+}
+@keyframes student-page-enter {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .student-experience .student-page-shell { animation: none; }
+  .student-experience * { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+}

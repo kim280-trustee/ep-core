@@ -159,7 +159,7 @@ export default function LearningContentRuntimePage() {
   });
 
   if (!user) {
-    return <div className="rounded-2xl border border-slate-200 bg-white p-6">Sign in to view this learning content.</div>;
+    return <div className="rounded-[1.75rem] border border-violet-100 bg-white p-6 shadow-sm">Sign in to view this learning content.</div>;
   }
 
   if (query.isPending) {
@@ -172,11 +172,14 @@ export default function LearningContentRuntimePage() {
         <Link to={`/learning/assignments/${id}`} className="inline-flex items-center gap-2 text-sm font-medium text-slate-600">
           <ArrowLeft size={16} />Back to assignment
         </Link>
-        <div className="flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800">
+        <div className="flex items-start gap-3 rounded-[1.75rem] border border-rose-200 bg-rose-50 p-5 text-rose-800">
           <AlertCircle size={20} className="mt-0.5 shrink-0" />
           <div>
             <p className="font-semibold">This learning content could not be loaded.</p>
             <p className="mt-1 text-sm">{query.error instanceof Error ? query.error.message : "The content is not available to your account."}</p>
+            <button type="button" onClick={() => void query.refetch()} className="mt-3 rounded-2xl bg-white px-4 py-2.5 text-sm font-bold shadow-sm transition hover:bg-rose-100">
+              Try again
+            </button>
           </div>
         </div>
       </div>
@@ -192,18 +195,18 @@ export default function LearningContentRuntimePage() {
         <ArrowLeft size={16} />Back to assignment
       </Link>
 
-      <section className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8">
+      <section className="rounded-[2rem] bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-500 p-6 text-white shadow-xl shadow-violet-100 sm:p-8">
         <div className="flex items-start gap-4">
           <span className="rounded-xl bg-white/10 p-3"><BookOpen size={22} /></span>
           <div>
-            <p className="text-sm text-slate-300">Learning content</p>
-            <h1 className="mt-1 text-2xl font-bold sm:text-3xl">{currentContent.title}</h1>
-            <p className="mt-2 text-sm text-slate-300">{currentContent.code} · {currentContent.contentType}</p>
+            <p className="text-sm font-bold text-white/85">Learning content</p>
+            <h1 className="mt-1 text-3xl font-black tracking-tight sm:text-4xl">{currentContent.title}</h1>
+            <p className="mt-2 text-sm text-white/85">{currentContent.code} · {currentContent.contentType}</p>
           </div>
         </div>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-8">
+      <section className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-8">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Assignment</p>
@@ -227,27 +230,34 @@ export default function LearningContentRuntimePage() {
       </section>
 
       {currentContent.contentType === "writing" ? (
-        <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <section className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-6">
           <h2 className="text-lg font-semibold text-slate-900">Your response</h2>
           <p className="mt-1 text-sm text-slate-500">Write your answer below. You can save a draft and return later.</p>
-          <textarea value={responseText} onChange={e => setResponseText(e.target.value)} disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending} className="input mt-4 min-h-64 w-full resize-y" placeholder="Write your answer here..." />
+          {responseQuery.isPending && <p className="mt-3 text-sm text-slate-500">Loading your saved response…</p>}
+          {responseQuery.isError && (
+            <div role="alert" className="mt-3 rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-800">
+              <p>Your saved response could not be loaded. Editing is paused to protect any work you have already submitted.</p>
+              <button type="button" onClick={() => void responseQuery.refetch()} className="mt-3 rounded-xl bg-white px-4 py-2.5 font-bold shadow-sm hover:bg-rose-100">Try again</button>
+            </div>
+          )}
+          <textarea value={responseText} onChange={e => setResponseText(e.target.value)} disabled={responseQuery.isPending || responseQuery.isError || responseQuery.data?.status === "submitted" || responseMutation.isPending} className="input mt-4 min-h-64 w-full resize-y disabled:cursor-not-allowed disabled:bg-slate-50" placeholder="Write your answer here..." />
           <div className="mt-4 flex flex-wrap items-center gap-3">
             {responseQuery.data?.status === "submitted" ? <span className="text-sm font-medium text-emerald-700">Response submitted.</span> : <>
-              <button type="button" disabled={!responseText.trim() || responseMutation.isPending} onClick={() => responseMutation.mutate("draft")} className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold disabled:opacity-50">Save draft</button>
-              <button type="button" disabled={!responseText.trim() || responseMutation.isPending} onClick={() => responseMutation.mutate("submitted")} className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{responseMutation.isPending ? "Submitting..." : "Submit response"}</button>
+              <button type="button" disabled={responseQuery.isPending || responseQuery.isError || !responseText.trim() || responseMutation.isPending} onClick={() => responseMutation.mutate("draft")} className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold disabled:opacity-50">Save draft</button>
+              <button type="button" disabled={responseQuery.isPending || responseQuery.isError || !responseText.trim() || responseMutation.isPending} onClick={() => responseMutation.mutate("submitted")} className="rounded-2xl bg-violet-600 px-4 py-2.5 text-sm font-extrabold text-white shadow-md shadow-violet-200 transition disabled:opacity-50">{responseMutation.isPending ? "Submitting..." : "Submit response"}</button>
             </>}
           </div>
-          {responseMutation.isError && <p className="mt-3 text-sm text-red-600">{responseMutation.error instanceof Error ? responseMutation.error.message : "Could not save your response."}</p>}
+          {responseMutation.isError && <p role="alert" className="mt-3 text-sm text-red-600">{responseMutation.error instanceof Error ? responseMutation.error.message : "Could not save your response."}</p>}
         </section>
       ) : (
-        <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"><div><h2 className="text-lg font-semibold text-slate-900">Complete this activity</h2><p className="mt-1 text-sm text-slate-500">Mark this required learning activity complete after you finish the lesson.</p></div><button type="button" disabled={completeMutation.isPending} onClick={() => completeMutation.mutate()} className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"><CheckCircle2 size={17} />{completeMutation.isPending ? "Saving..." : "Mark as complete"}</button></div>
+        <section className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"><div><h2 className="text-lg font-semibold text-slate-900">Complete this activity</h2><p className="mt-1 text-sm text-slate-500">Mark this required learning activity complete after you finish the lesson.</p></div><button type="button" disabled={completeMutation.isPending} onClick={() => completeMutation.mutate()} className="inline-flex items-center justify-center gap-2 rounded-2xl bg-violet-600 px-4 py-3 text-sm font-extrabold text-white shadow-md shadow-violet-200 transition hover:bg-violet-700 disabled:cursor-not-allowed disabled:opacity-50"><CheckCircle2 size={17} />{completeMutation.isPending ? "Saving..." : "Mark as complete"}</button></div>
           {completeMutation.isSuccess && <p className="mt-3 text-sm font-medium text-emerald-700">Activity completed. Your assignment progress has been updated.</p>}
           {completeMutation.isError && <p className="mt-3 text-sm text-red-600">{completeMutation.error instanceof Error ? completeMutation.error.message : "Could not complete this activity."}</p>}
         </section>
       )}
       <div className="flex flex-wrap gap-3">
-        <Link to={`/learning/assignments/${id}`} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800">
+        <Link to={`/learning/assignments/${id}`} className="inline-flex items-center gap-2 rounded-2xl bg-violet-600 px-4 py-2.5 text-sm font-extrabold text-white shadow-md shadow-violet-200 transition hover:bg-violet-700">
           <ArrowLeft size={17} />Return to assignment
         </Link>
       </div>

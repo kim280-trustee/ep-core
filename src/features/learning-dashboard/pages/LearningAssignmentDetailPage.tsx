@@ -8,10 +8,12 @@ import { learningActivityService } from "@/features/learning-activity";
 
 function dateLabel(value: string | null) {
   if (!value) return "No due date";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "Due date unavailable";
   return new Intl.DateTimeFormat(undefined, {
     dateStyle: "medium",
     timeStyle: "short",
-  }).format(new Date(value));
+  }).format(date);
 }
 
 export default function LearningAssignmentDetailPage() {
@@ -69,7 +71,7 @@ export default function LearningAssignmentDetailPage() {
   });
   if (!user) {
     return (
-      <div className="rounded-2xl border border-slate-200 bg-white p-6">
+      <div className="rounded-[1.75rem] border border-violet-100 bg-white p-6 shadow-sm">
         Sign in to view this assignment.
       </div>
     );
@@ -95,7 +97,7 @@ export default function LearningAssignmentDetailPage() {
           Back to assignments
         </Link>
 
-        <div className="flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800">
+        <div className="flex items-start gap-3 rounded-[1.75rem] border border-rose-200 bg-rose-50 p-5 text-rose-800">
           <AlertCircle size={20} />
 
           <div>
@@ -104,8 +106,15 @@ export default function LearningAssignmentDetailPage() {
             </p>
 
             <p className="mt-1 text-sm">
-              It may not be available to your account.
+              {query.error instanceof Error ? query.error.message : "It may not be available to your account."}
             </p>
+            <button
+              type="button"
+              onClick={() => void query.refetch()}
+              className="mt-3 rounded-2xl bg-white px-4 py-2.5 text-sm font-bold shadow-sm transition hover:bg-rose-100"
+            >
+              Try again
+            </button>
           </div>
         </div>
       </div>
@@ -126,19 +135,19 @@ export default function LearningAssignmentDetailPage() {
         Back to assignments
       </Link>
 
-      <section className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8">
-        <p className="text-sm text-slate-300">Assignment</p>
+      <section className="rounded-[2rem] bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-500 p-6 text-white shadow-xl shadow-violet-100 sm:p-8">
+        <p className="text-sm font-bold text-white/85">Assignment</p>
 
-        <h1 className="mt-1 text-2xl font-bold sm:text-3xl">
+        <h1 className="mt-1 text-3xl font-black tracking-tight sm:text-4xl">
           {assignment.title}
         </h1>
 
-        <p className="mt-2 max-w-2xl text-sm text-slate-300">
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-white/90">
           {assignment.description ||
             "Complete the learning activities in this assignment."}
         </p>
 
-        <div className="mt-5 flex flex-wrap gap-4 text-sm text-slate-300">
+        <div className="mt-5 flex flex-wrap gap-4 text-sm font-semibold text-white/90">
           <span className="inline-flex items-center gap-2">
             <Clock3 size={16} />
             {assignment.dueAt
@@ -152,7 +161,7 @@ export default function LearningAssignmentDetailPage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+      <section className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">
           Your progress
         </h2>
@@ -183,7 +192,7 @@ export default function LearningAssignmentDetailPage() {
           type="button"
           disabled={startMutation.isPending || completed}
           onClick={() => startMutation.mutate()}
-          className="mt-5 inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
+          className="mt-5 inline-flex items-center gap-2 rounded-2xl bg-violet-600 px-4 py-3 text-sm font-extrabold text-white shadow-md shadow-violet-200 transition hover:bg-violet-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {completed ? (
             <CheckCircle2 size={17} />
@@ -209,7 +218,7 @@ export default function LearningAssignmentDetailPage() {
         )}
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+      <section className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">
           Learning items
         </h2>

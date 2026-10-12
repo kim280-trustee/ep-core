@@ -348,7 +348,7 @@ export default function LearningAssessmentRuntimePage() {
 
   if (!user) {
     return (
-      <div className="rounded-2xl border border-slate-200 bg-white p-6">
+      <div className="rounded-[1.75rem] border border-violet-100 bg-white p-6 shadow-sm">
         Sign in to take this assessment.
       </div>
     );
@@ -363,7 +363,9 @@ export default function LearningAssessmentRuntimePage() {
     );
   }
 
-  if (assignmentQuery.isError || assessmentQuery.isError) {
+  const loadError = assignmentQuery.error ?? assessmentQuery.error ?? attemptsQuery.error;
+
+  if (assignmentQuery.isError || assessmentQuery.isError || attemptsQuery.isError) {
     return (
       <div className="space-y-4">
         <Link
@@ -374,19 +376,26 @@ export default function LearningAssessmentRuntimePage() {
           Back to assignment
         </Link>
 
-        <div className="flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800">
+        <div className="flex items-start gap-3 rounded-[1.75rem] border border-rose-200 bg-rose-50 p-5 text-rose-800">
           <AlertCircle size={20} />
           <div>
             <p className="font-semibold">This assessment could not be loaded.</p>
             <p className="mt-1 text-sm">
-              It may not be available to your account.
+              {loadError instanceof Error
+                ? loadError.message
+                : "Assessment information or attempt history could not be loaded. Please retry before starting."}
             </p>
-
-            {assessmentQuery.error instanceof Error && (
-              <pre className="mt-3 whitespace-pre-wrap rounded-lg bg-red-100 p-3 text-xs">
-                {assessmentQuery.error.message}
-              </pre>
-            )}
+            <button
+              type="button"
+              onClick={() => void Promise.all([
+                assignmentQuery.refetch(),
+                assessmentQuery.refetch(),
+                attemptsQuery.refetch(),
+              ])}
+              className="mt-3 rounded-2xl bg-white px-4 py-2.5 text-sm font-bold shadow-sm transition hover:bg-rose-100"
+            >
+              Try again
+            </button>
           </div>
         </div>
       </div>
@@ -404,31 +413,31 @@ export default function LearningAssessmentRuntimePage() {
     return (
       <div className="space-y-6">
 
-        <section className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8">
+        <section className="rounded-[2rem] bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-500 p-6 text-white shadow-xl shadow-violet-100 sm:p-8">
           <CheckCircle2 size={28} />
-          <h1 className="mt-3 text-2xl font-bold">Assessment submitted</h1>
-          <p className="mt-2 text-sm text-slate-300">
+          <h1 className="mt-3 text-3xl font-black tracking-tight">Assessment submitted</h1>
+          <p className="mt-2 text-sm text-white/85">
             Your answers were submitted and evaluated.
           </p>
         </section>
 
-        <section className="rounded-2xl border border-slate-200 bg-white p-6">
+        <section className="rounded-[1.75rem] border border-violet-100 bg-white p-6 shadow-sm">
           <div className="grid gap-4 sm:grid-cols-3">
             <div>
               <p className="text-sm text-slate-500">Score</p>
-              <p className="mt-1 text-2xl font-bold text-slate-900">
+              <p className="mt-1 text-3xl font-black tracking-tight text-slate-900">
                 {submittedAttempt.score ?? 0} / {submittedAttempt.maxScore ?? 0}
               </p>
             </div>
             <div>
               <p className="text-sm text-slate-500">Percentage</p>
-              <p className="mt-1 text-2xl font-bold text-slate-900">
+              <p className="mt-1 text-3xl font-black tracking-tight text-slate-900">
                 {submittedAttempt.percentage ?? 0}%
               </p>
             </div>
             <div>
               <p className="text-sm text-slate-500">Status</p>
-              <p className="mt-1 text-2xl font-bold capitalize text-slate-900">
+              <p className="mt-1 text-3xl font-black tracking-tight capitalize text-slate-900">
                 {submittedAttempt.status.replace("_", " ")}
               </p>
             </div>
@@ -437,7 +446,7 @@ export default function LearningAssessmentRuntimePage() {
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               to={`/learning/assignments/${id}`}
-              className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white"
+              className="inline-flex items-center gap-2 rounded-2xl bg-violet-600 px-4 py-2.5 text-sm font-semibold text-white"
             >
               <ArrowLeft size={17} />
               Back to assignment
@@ -467,9 +476,9 @@ export default function LearningAssessmentRuntimePage() {
           Back to assignment
         </Link>
 
-        <section className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+        <section className="rounded-[1.75rem] border border-violet-100 bg-white p-6 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-8">
           <p className="text-sm font-medium text-slate-500">Assessment</p>
-          <h1 className="mt-1 text-2xl font-bold text-slate-900">
+          <h1 className="mt-1 text-3xl font-black tracking-tight text-slate-900">
             {currentAssessment.title}
           </h1>
           <p className="mt-2 text-sm text-slate-600">
@@ -480,19 +489,19 @@ export default function LearningAssessmentRuntimePage() {
             <div className="mt-6 grid gap-4 sm:grid-cols-3">
               <div>
                 <p className="text-sm text-slate-500">Latest score</p>
-                <p className="mt-1 text-2xl font-bold text-slate-900">
+                <p className="mt-1 text-3xl font-black tracking-tight text-slate-900">
                   {latestEvaluatedAttempt.score ?? 0} / {latestEvaluatedAttempt.maxScore ?? 0}
                 </p>
               </div>
               <div>
                 <p className="text-sm text-slate-500">Percentage</p>
-                <p className="mt-1 text-2xl font-bold text-slate-900">
+                <p className="mt-1 text-3xl font-black tracking-tight text-slate-900">
                   {latestEvaluatedAttempt.percentage ?? 0}%
                 </p>
               </div>
               <div>
                 <p className="text-sm text-slate-500">Attempts used</p>
-                <p className="mt-1 text-2xl font-bold text-slate-900">
+                <p className="mt-1 text-3xl font-black tracking-tight text-slate-900">
                   {existingAttempts.length}
                 </p>
               </div>
@@ -502,7 +511,7 @@ export default function LearningAssessmentRuntimePage() {
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               to={`/learning/assignments/${id}`}
-              className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white"
+              className="inline-flex items-center gap-2 rounded-2xl bg-violet-600 px-4 py-2.5 text-sm font-semibold text-white"
             >
               <ArrowLeft size={17} />
               Back to assignment
@@ -531,16 +540,16 @@ export default function LearningAssessmentRuntimePage() {
           Back to assignment
         </Link>
 
-        <section className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8">
-          <p className="text-sm text-slate-300">Assessment</p>
-          <h1 className="mt-1 text-2xl font-bold sm:text-3xl">
+        <section className="rounded-[2rem] bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-500 p-6 text-white shadow-xl shadow-violet-100 sm:p-8">
+          <p className="text-sm font-bold text-white/85">Assessment</p>
+          <h1 className="mt-1 text-3xl font-black tracking-tight sm:text-4xl">
             {currentAssessment.title}
           </h1>
-          <p className="mt-2 text-sm text-slate-300">
+          <p className="mt-2 text-sm text-white/85">
             {currentAssessment.description || "Complete the assessment and submit your answers."}
           </p>
 
-          <div className="mt-5 flex flex-wrap gap-4 text-sm text-slate-300">
+          <div className="mt-5 flex flex-wrap gap-4 text-sm text-white/85">
             <span className="inline-flex items-center gap-2">
               <Clock3 size={16} />
               {questions.length} {questions.length === 1 ? "question" : "questions"}
@@ -549,12 +558,12 @@ export default function LearningAssessmentRuntimePage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-slate-200 bg-white p-6">
+        <section className="rounded-[1.75rem] border border-violet-100 bg-white p-6 shadow-sm">
           <button
             type="button"
             disabled={startMutation.isPending || attemptsRemaining === 0}
             onClick={() => startMutation.mutate()}
-            className="rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-2xl bg-violet-600 px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
           >
             {startMutation.isPending ? "Starting..." : attemptsRemaining === 0 ? "No attempts remaining" : "Start assessment"}
           </button>
@@ -574,12 +583,12 @@ export default function LearningAssessmentRuntimePage() {
   return (
     <div className="space-y-6">
 
-      <section className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8">
-        <p className="text-sm text-slate-300">Assessment attempt</p>
-        <h1 className="mt-1 text-2xl font-bold sm:text-3xl">
+      <section className="rounded-[2rem] bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-500 p-6 text-white shadow-xl shadow-violet-100 sm:p-8">
+        <p className="text-sm text-white/85">Assessment attempt</p>
+        <h1 className="mt-1 text-3xl font-black tracking-tight sm:text-4xl">
           {currentAssessment.title}
         </h1>
-        <p className="mt-2 text-sm text-slate-300">
+        <p className="mt-2 text-sm text-white/85">
           Answer all required questions before submitting.
         </p>
       </section>
@@ -588,7 +597,7 @@ export default function LearningAssessmentRuntimePage() {
         {questions.map((question, index) => (
           <section
             key={question.assessmentQuestionId}
-            className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6"
+            className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-6"
           >
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -638,12 +647,12 @@ export default function LearningAssessmentRuntimePage() {
         ))}
       </div>
 
-      <section className="sticky bottom-4 rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-lg backdrop-blur">
+      <section className="sticky bottom-4 rounded-[1.5rem] border border-violet-100 bg-white/95 p-4 shadow-lg shadow-violet-100 backdrop-blur">
         <button
           type="button"
           disabled={submitMutation.isPending || pendingAnswerSaves > 0 || saveAnswerMutation.isError}
           onClick={() => submitMutation.mutate()}
-          className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center gap-2 rounded-2xl bg-violet-600 px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
         >
           <Send size={17} />
           {submitMutation.isPending ? "Submitting..." : "Submit assessment"}
