@@ -20,6 +20,7 @@ import {
 import { useAuth } from "@/core/auth";
 import { learningRuntimeService } from "@/features/learning-runtime";
 import { learningAssignmentsService } from "@/features/learning-assignments";
+import { StudentGamificationCard } from "@/features/learning-gamification";
 
 function formatDate(value: string | null) {
   if (!value) return "No due date";
@@ -102,6 +103,8 @@ export default function LearningDashboardPage() {
       <div className="pointer-events-none absolute right-8 top-7 hidden text-[#ffe27a] sm:block"><Star size={25} fill="currentColor" /></div>
       <div className="pointer-events-none absolute bottom-7 right-[42%] hidden text-white/70 sm:block"><Sparkles size={21} /></div>
     </section>
+
+    <StudentGamificationCard />
 
     <section aria-label="Your learning summary" className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
       <Stat icon={<Target size={20} />} label="Skill mastery" value={overview.mastery.length ? averageMastery + "%" : "—"} detail={overview.mastery.length + " learning objectives"} tone="violet" />
