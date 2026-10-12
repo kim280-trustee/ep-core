@@ -1,7 +1,4 @@
-export type LearningRewardEventType =
-  | "assignment_completed"
-  | "assessment_passed"
-;
+export type LearningRewardEventType = "assignment_completed" | "assessment_passed";
 
 export type LearningRewardSourceType = "assignment" | "assessment";
 
