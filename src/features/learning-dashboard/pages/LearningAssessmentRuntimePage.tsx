@@ -348,7 +348,7 @@ export default function LearningAssessmentRuntimePage() {
 
   if (!user) {
     return (
-      <div className="rounded-2xl border border-slate-200 bg-white p-6">
+      <div className="rounded-[1.75rem] border border-violet-100 bg-white p-6 shadow-sm">
         Sign in to take this assessment.
       </div>
     );
@@ -374,7 +374,7 @@ export default function LearningAssessmentRuntimePage() {
           Back to assignment
         </Link>
 
-        <div className="flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800">
+        <div className="flex items-start gap-3 rounded-[1.75rem] border border-rose-200 bg-rose-50 p-5 text-rose-800">
           <AlertCircle size={20} />
           <div>
             <p className="font-semibold">This assessment could not be loaded.</p>
@@ -412,7 +412,7 @@ export default function LearningAssessmentRuntimePage() {
           </p>
         </section>
 
-        <section className="rounded-2xl border border-slate-200 bg-white p-6">
+        <section className="rounded-[1.75rem] border border-violet-100 bg-white p-6 shadow-sm">
           <div className="grid gap-4 sm:grid-cols-3">
             <div>
               <p className="text-sm text-slate-500">Score</p>
@@ -549,7 +549,7 @@ export default function LearningAssessmentRuntimePage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-slate-200 bg-white p-6">
+        <section className="rounded-[1.75rem] border border-violet-100 bg-white p-6 shadow-sm">
           <button
             type="button"
             disabled={startMutation.isPending || attemptsRemaining === 0}
