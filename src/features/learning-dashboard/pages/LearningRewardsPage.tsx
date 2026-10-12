@@ -39,6 +39,14 @@ type RewardBadge = {
   icon: typeof Award;
 };
 
+const REWARD_LEVELS = [
+  { name: "Starter", minXp: 0, description: "Begin your learning journey." },
+  { name: "Explorer", minXp: 100, description: "Build a steady learning habit." },
+  { name: "Achiever", minXp: 250, description: "Turn practice into progress." },
+  { name: "Scholar", minXp: 500, description: "Show consistent learning effort." },
+  { name: "Master", minXp: 1000, description: "Reach the highest current level." },
+] as const;
+
 export default function LearningRewardsPage() {
   const { user } = useAuth();
   const studentId = user?.id ?? "";
@@ -74,6 +82,12 @@ export default function LearningRewardsPage() {
     );
     const masteredObjectives = mastery.filter((item) => item.state === "mastered").length;
     const xp = completedAssignmentIds.size * 20 + passedAssessmentIds.size * 15 + masteredObjectives * 10;
+    const nextLevelIndex = REWARD_LEVELS.findIndex((level) => level.minXp > xp);
+    const currentLevel = REWARD_LEVELS[nextLevelIndex === -1 ? REWARD_LEVELS.length - 1 : nextLevelIndex - 1];
+    const nextLevel = REWARD_LEVELS[nextLevelIndex] ?? null;
+    const levelProgress = nextLevel
+      ? Math.min(100, Math.round(((xp - currentLevel.minXp) / (nextLevel.minXp - currentLevel.minXp)) * 100))
+      : 100;
     const streak = calculateStreak(activity.map((event) => event.occurredAt));
     const badges: RewardBadge[] = [
       {
@@ -109,6 +123,9 @@ export default function LearningRewardsPage() {
     ];
     return {
       xp,
+      currentLevel,
+      nextLevel,
+      levelProgress,
       streak,
       completedCount: completedAssignmentIds.size,
       passedCount: passedAssessmentIds.size,
@@ -150,6 +167,37 @@ export default function LearningRewardsPage() {
         <Metric icon={<Zap size={20} />} label="Learning XP" value={String(rewards.xp)} detail="Earned from recorded learning evidence" />
         <Metric icon={<Flame size={20} />} label="Learning streak" value={`${rewards.streak} ${rewards.streak === 1 ? "day" : "days"}`} detail="Consecutive days with recorded activity" />
         <Metric icon={<Trophy size={20} />} label="Badges unlocked" value={`${rewards.unlockedCount} / ${rewards.badges.length}`} detail="Achievements earned so far" />
+      </section>
+
+      <section aria-labelledby="learning-level-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <p className="text-sm font-medium text-slate-500">Your current level</p>
+            <h2 id="learning-level-heading" className="mt-1 text-xl font-bold text-slate-900">{rewards.currentLevel.name}</h2>
+            <p className="mt-1 text-sm text-slate-600">{rewards.currentLevel.description}</p>
+          </div>
+          <span className="rounded-full bg-amber-100 px-3 py-1 text-sm font-bold text-amber-900">{rewards.xp} XP</span>
+        </div>
+        {rewards.nextLevel ? (
+          <div className="mt-5">
+            <div
+              role="progressbar"
+              aria-label={`Progress to ${rewards.nextLevel.name} level`}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={rewards.levelProgress}
+              className="h-3 overflow-hidden rounded-full bg-slate-100"
+            >
+              <div className="h-full rounded-full bg-amber-500 transition-[width]" style={{ width: `${rewards.levelProgress}%` }} />
+            </div>
+            <div className="mt-2 flex flex-wrap justify-between gap-2 text-sm text-slate-600">
+              <span>{rewards.levelProgress}% to next level</span>
+              <span>{rewards.nextLevel.minXp - rewards.xp} XP to {rewards.nextLevel.name}</span>
+            </div>
+          </div>
+        ) : (
+          <p className="mt-4 text-sm font-medium text-slate-700">You have reached the highest level currently available.</p>
+        )}
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
