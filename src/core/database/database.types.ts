@@ -2992,6 +2992,7 @@ export type Database = {
       }
       learning_reward_ledger: {
         Row: {
+          class_group_id: string | null
           created_at: string
           event_type: string
           id: string
@@ -3005,6 +3006,7 @@ export type Database = {
           xp_delta: number
         }
         Insert: {
+          class_group_id?: string | null
           created_at?: string
           event_type: string
           id?: string
@@ -3018,6 +3020,7 @@ export type Database = {
           xp_delta: number
         }
         Update: {
+          class_group_id?: string | null
           created_at?: string
           event_type?: string
           id?: string
@@ -3044,6 +3047,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "organizations"
             referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_reward_ledger_organization_class_group_fkey"
+            columns: ["organization_id", "class_group_id"]
+            isOneToOne: false
+            referencedRelation: "learning_class_groups"
+            referencedColumns: ["organization_id", "id"]
           },
           {
             foreignKeyName: "learning_reward_ledger_tenant_id_student_user_id_fkey"
