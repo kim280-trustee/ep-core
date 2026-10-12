@@ -198,7 +198,7 @@ export default function LearningContentRuntimePage() {
           <div>
             <p className="text-sm font-bold text-white/85">Learning content</p>
             <h1 className="mt-1 text-3xl font-black tracking-tight sm:text-4xl">{currentContent.title}</h1>
-            <p className="mt-2 text-sm text-slate-300">{currentContent.code} · {currentContent.contentType}</p>
+            <p className="mt-2 text-sm text-white/85">{currentContent.code} · {currentContent.contentType}</p>
           </div>
         </div>
       </section>
