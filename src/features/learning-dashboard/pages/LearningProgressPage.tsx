@@ -18,6 +18,12 @@ function isCorrectionEvent(event: { evidence: Record<string, unknown> }) {
   return event.evidence["type"] === "pilot_data_correction";
 }
 
+function evaluatedAtLabel(value: string) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "Evaluation date unavailable";
+  return new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(date);
+}
+
 export default function LearningProgressPage() {
   const { user } = useAuth();
   const id = user?.id ?? "";
@@ -125,7 +131,7 @@ export default function LearningProgressPage() {
               <div>
                 <p className="text-sm font-medium text-slate-800">Assessment attempt</p>
                 <p className="mt-1 text-xs text-slate-500">
-                  Evaluated {new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(new Date(result.evaluatedAt))}
+                  Evaluated {evaluatedAtLabel(result.evaluatedAt)}
                 </p>
               </div>
               <div className="text-right">
