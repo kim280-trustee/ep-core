@@ -106,15 +106,23 @@ export default function LearningProgressPage() {
         <div className="mt-4 divide-y divide-slate-100">
           {assignments.length ? assignments.map((assignment) => {
             const progressItem = assignmentProgress.find((item) => item.assignmentId === assignment.id);
-            const status = progressItem?.status ?? "not_started";
+            const dueAt = assignment.dueAt ? Date.parse(assignment.dueAt) : Number.NaN;
+            const isOverdue = progressItem?.status !== "completed" && (
+              progressItem?.status === "overdue" || (Number.isFinite(dueAt) && dueAt < Date.now())
+            );
+            const status = progressItem?.status === "completed"
+              ? "completed"
+              : isOverdue
+                ? "overdue"
+                : progressItem?.status ?? "not_started";
             return (
               <div key={assignment.id} className="flex items-center justify-between gap-4 py-3 first:pt-0">
                 <div>
                   <p className="text-sm font-medium text-slate-800">{assignment.title}</p>
                   <p className="mt-1 text-xs text-slate-500">{assignment.code}</p>
                 </div>
-                <span className={`rounded-full px-3 py-1 text-xs font-semibold ${status === "completed" ? "bg-emerald-100 text-emerald-700" : status === "in_progress" ? "bg-amber-100 text-amber-700" : "bg-slate-100 text-slate-700"}`}>
-                  {status === "completed" ? "Completed" : status === "in_progress" ? "In progress" : "Not started"}
+                <span className={`rounded-full px-3 py-1 text-xs font-semibold ${status === "completed" ? "bg-emerald-100 text-emerald-700" : status === "overdue" ? "bg-rose-100 text-rose-700" : status === "in_progress" ? "bg-amber-100 text-amber-700" : "bg-slate-100 text-slate-700"}`}>
+                  {status === "completed" ? "Completed" : status === "overdue" ? "Overdue" : status === "in_progress" ? "In progress" : "Not started"}
                 </span>
               </div>
             );
