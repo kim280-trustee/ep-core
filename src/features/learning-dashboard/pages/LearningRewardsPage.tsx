@@ -1,0 +1,216 @@
+import { useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { Award, BookOpen, Flame, ShieldCheck, Star, Trophy, Zap } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useAuth } from "@/core/auth";
+import { learningActivityService } from "@/features/learning-activity";
+import { learningAssignmentsService } from "@/features/learning-assignments";
+import { learningAssessmentService } from "@/features/learning-assessment";
+import { learningMasteryService } from "@/features/learning-mastery";
+
+function localDayKey(value: Date) {
+  return `${value.getFullYear()}-${String(value.getMonth() + 1).padStart(2, "0")}-${String(value.getDate()).padStart(2, "0")}`;
+}
+
+function calculateStreak(timestamps: string[], now = new Date()) {
+  const activeDays = new Set(timestamps.map((timestamp) => localDayKey(new Date(timestamp))));
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const todayKey = localDayKey(today);
+  const yesterday = new Date(today);
+  yesterday.setDate(yesterday.getDate() - 1);
+  const yesterdayKey = localDayKey(yesterday);
+
+  if (!activeDays.has(todayKey) && !activeDays.has(yesterdayKey)) return 0;
+
+  let streak = 0;
+  const cursor = activeDays.has(todayKey) ? today : yesterday;
+  while (activeDays.has(localDayKey(cursor))) {
+    streak += 1;
+    cursor.setDate(cursor.getDate() - 1);
+  }
+  return streak;
+}
+
+type RewardBadge = {
+  title: string;
+  description: string;
+  unlocked: boolean;
+  icon: typeof Award;
+};
+
+export default function LearningRewardsPage() {
+  const { user } = useAuth();
+  const studentId = user?.id ?? "";
+
+  const query = useQuery({
+    queryKey: ["learning", "rewards", studentId],
+    queryFn: async () => {
+      const [assignments, progress, attempts, results, mastery, activity] = await Promise.all([
+        learningAssignmentsService.listStudentAssignments(studentId),
+        learningAssignmentsService.listProgress(studentId),
+        learningAssessmentService.listAttempts(studentId),
+        learningAssessmentService.listResults(studentId),
+        learningMasteryService.listStudentMastery(studentId),
+        learningActivityService.listRecentEvents(studentId, 250),
+      ]);
+
+      return { assignments, progress, attempts, results, mastery, activity };
+    },
+    enabled: Boolean(studentId),
+  });
+
+  const rewards = useMemo(() => {
+    if (!query.data) return null;
+    const { assignments, progress, attempts, results, mastery, activity } = query.data;
+    const completedAssignmentIds = new Set(
+      progress.filter((item) => item.status === "completed").map((item) => item.assignmentId),
+    );
+    const passedAssessmentIds = new Set(
+      results
+        .filter((result) => result.passed === true)
+        .map((result) => attempts.find((attempt) => attempt.id === result.attemptId)?.assessmentId)
+        .filter((assessmentId): assessmentId is string => Boolean(assessmentId)),
+    );
+    const masteredObjectives = mastery.filter((item) => item.state === "mastered").length;
+    const xp = completedAssignmentIds.size * 20 + passedAssessmentIds.size * 15 + masteredObjectives * 10;
+    const streak = calculateStreak(activity.map((event) => event.occurredAt));
+    const badges: RewardBadge[] = [
+      {
+        title: "First Steps",
+        description: "Complete your first assignment.",
+        unlocked: completedAssignmentIds.size >= 1,
+        icon: BookOpen,
+      },
+      {
+        title: "Assessment Ace",
+        description: "Pass an assessment for the first time.",
+        unlocked: passedAssessmentIds.size >= 1,
+        icon: Star,
+      },
+      {
+        title: "Three-Day Streak",
+        description: "Learn on three consecutive days.",
+        unlocked: streak >= 3,
+        icon: Flame,
+      },
+      {
+        title: "Mastery Builder",
+        description: "Master three learning objectives.",
+        unlocked: masteredObjectives >= 3,
+        icon: ShieldCheck,
+      },
+      {
+        title: "Dedicated Learner",
+        description: "Complete five assignments.",
+        unlocked: completedAssignmentIds.size >= 5,
+        icon: Trophy,
+      },
+    ];
+    return {
+      xp,
+      streak,
+      completedCount: completedAssignmentIds.size,
+      passedCount: passedAssessmentIds.size,
+      masteredObjectives,
+      badges,
+      availableAssignments: assignments.length,
+      unlockedCount: badges.filter((badge) => badge.unlocked).length,
+      recentActivityCount: activity.length,
+    };
+  }, [query.data]);
+
+  if (!user) {
+    return <div className="rounded-2xl border border-slate-200 bg-white p-6">Sign in to view your rewards.</div>;
+  }
+
+  if (query.isPending) {
+    return <div className="space-y-4"><div className="h-36 animate-pulse rounded-2xl bg-slate-200" /><div className="h-56 animate-pulse rounded-2xl bg-slate-200" /></div>;
+  }
+
+  if (query.isError || !rewards) {
+    return (
+      <div className="rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800">
+        <p className="font-semibold">Your rewards could not be loaded.</p>
+        <p className="mt-1 text-sm">Your learning records have not been changed.</p>
+        <button type="button" onClick={() => void query.refetch()} className="mt-3 rounded-lg bg-white px-3 py-2 text-sm font-medium shadow-sm">Try again</button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      <section>
+        <p className="text-sm font-medium text-slate-500">Student Learning</p>
+        <h1 className="mt-1 text-2xl font-bold text-slate-900">Rewards & achievements</h1>
+        <p className="mt-2 text-sm text-slate-500">Every completed assignment, passed assessment, and mastered objective moves your learning forward.</p>
+      </section>
+
+      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <Metric icon={<Zap size={20} />} label="Learning XP" value={String(rewards.xp)} detail="Earned from recorded learning evidence" />
+        <Metric icon={<Flame size={20} />} label="Learning streak" value={`${rewards.streak} ${rewards.streak === 1 ? "day" : "days"}`} detail="Consecutive days with recorded activity" />
+        <Metric icon={<Trophy size={20} />} label="Badges unlocked" value={`${rewards.unlockedCount} / ${rewards.badges.length}`} detail="Achievements earned so far" />
+      </section>
+
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <div className="flex items-center gap-3">
+          <span className="rounded-xl bg-amber-50 p-3 text-amber-700"><Award size={22} /></span>
+          <div>
+            <h2 className="text-lg font-semibold text-slate-900">Your achievement collection</h2>
+            <p className="text-sm text-slate-500">Badges unlock automatically when the underlying learning evidence meets the goal.</p>
+          </div>
+        </div>
+        <div className="mt-5 grid gap-3 sm:grid-cols-2">
+          {rewards.badges.map((badge) => {
+            const Icon = badge.icon;
+            return (
+              <article key={badge.title} className={`flex items-start gap-3 rounded-xl border p-4 ${badge.unlocked ? "border-amber-200 bg-amber-50/60" : "border-slate-200 bg-slate-50"}`}>
+                <span className={`rounded-xl p-2 ${badge.unlocked ? "bg-amber-100 text-amber-800" : "bg-slate-200 text-slate-500"}`}><Icon size={21} /></span>
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h3 className="font-semibold text-slate-900">{badge.title}</h3>
+                    <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${badge.unlocked ? "bg-amber-100 text-amber-800" : "bg-slate-200 text-slate-600"}`}>{badge.unlocked ? "Unlocked" : "Locked"}</span>
+                  </div>
+                  <p className="mt-1 text-sm text-slate-600">{badge.description}</p>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <h2 className="text-lg font-semibold text-slate-900">How XP is earned</h2>
+        <div className="mt-4 divide-y divide-slate-100">
+          <RewardRule title="Assignment completed" points="+20 XP" detail="Counted once per completed assignment." />
+          <RewardRule title="Assessment passed" points="+15 XP" detail="Counted once per distinct assessment passed." />
+          <RewardRule title="Objective mastered" points="+10 XP" detail="Counted once per objective currently marked mastered." />
+        </div>
+        <p className="mt-4 text-xs text-slate-500">XP and badges are currently calculated from your existing learning records. They are not yet a separate, permanently stored reward ledger.</p>
+      </section>
+
+      <section className="grid gap-4 sm:grid-cols-2">
+        <SummaryCard label="Assignments completed" value={String(rewards.completedCount)} detail={`of ${rewards.availableAssignments} currently available assignments`} />
+        <SummaryCard label="Assessments passed" value={String(rewards.passedCount)} detail="Distinct assessments passed" />
+        <SummaryCard label="Objectives mastered" value={String(rewards.masteredObjectives)} detail="From your current mastery records" />
+        <SummaryCard label="Recent learning events" value={String(rewards.recentActivityCount)} detail="Most recent recorded events loaded" />
+      </section>
+
+      <div className="flex flex-wrap gap-3">
+        <Link to="/learning/progress" className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">View learning progress</Link>
+        <Link to="/learning/assignments" className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800">Continue learning</Link>
+      </div>
+    </div>
+  );
+}
+
+function Metric({ icon, label, value, detail }: { icon: React.ReactNode; label: string; value: string; detail: string }) {
+  return <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"><div className="flex items-center gap-2 text-slate-500">{icon}<span className="text-sm font-medium">{label}</span></div><p className="mt-3 text-3xl font-bold text-slate-900">{value}</p><p className="mt-1 text-xs text-slate-500">{detail}</p></div>;
+}
+
+function RewardRule({ title, points, detail }: { title: string; points: string; detail: string }) {
+  return <div className="flex items-start justify-between gap-4 py-3 first:pt-0"><div><p className="text-sm font-semibold text-slate-800">{title}</p><p className="mt-1 text-sm text-slate-500">{detail}</p></div><span className="shrink-0 rounded-full bg-slate-100 px-3 py-1 text-sm font-bold text-slate-700">{points}</span></div>;
+}
+
+function SummaryCard({ label, value, detail }: { label: string; value: string; detail: string }) {
+  return <div className="rounded-2xl border border-slate-200 bg-white p-4"><p className="text-sm text-slate-500">{label}</p><p className="mt-1 text-2xl font-bold text-slate-900">{value}</p><p className="mt-1 text-xs text-slate-500">{detail}</p></div>;
+}
