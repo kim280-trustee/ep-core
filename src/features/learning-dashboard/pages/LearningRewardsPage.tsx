@@ -8,6 +8,7 @@ import { learningActivityService } from "@/features/learning-activity";
 import { learningAssignmentsService } from "@/features/learning-assignments";
 import { learningAssessmentService } from "@/features/learning-assessment";
 import { learningMasteryService } from "@/features/learning-mastery";
+import { learningRewardsService } from "@/features/learning-rewards";
 
 function localDayKey(value: Date) {
   return `${value.getFullYear()}-${String(value.getMonth() + 1).padStart(2, "0")}-${String(value.getDate()).padStart(2, "0")}`;
@@ -54,23 +55,24 @@ export default function LearningRewardsPage() {
   const query = useQuery({
     queryKey: ["learning", "rewards", studentId],
     queryFn: async () => {
-      const [assignments, progress, attempts, results, mastery, activity] = await Promise.all([
+      const [assignments, progress, attempts, results, mastery, activity, rewardLedger] = await Promise.all([
         learningAssignmentsService.listStudentAssignments(studentId),
         learningAssignmentsService.listProgress(studentId),
         learningAssessmentService.listAttempts(studentId),
         learningAssessmentService.listResults(studentId),
         learningMasteryService.listStudentMastery(studentId),
         learningActivityService.listRecentEvents(studentId, 250),
+        learningRewardsService.listStudentLedger(studentId),
       ]);
 
-      return { assignments, progress, attempts, results, mastery, activity };
+      return { assignments, progress, attempts, results, mastery, activity, rewardLedger };
     },
     enabled: Boolean(studentId),
   });
 
   const rewards = useMemo(() => {
     if (!query.data) return null;
-    const { assignments, progress, attempts, results, mastery, activity } = query.data;
+    const { assignments, progress, attempts, results, mastery, activity, rewardLedger } = query.data;
     const completedAssignmentIds = new Set(
       progress.filter((item) => item.status === "completed").map((item) => item.assignmentId),
     );
@@ -81,7 +83,7 @@ export default function LearningRewardsPage() {
         .filter((assessmentId): assessmentId is string => Boolean(assessmentId)),
     );
     const masteredObjectives = mastery.filter((item) => item.state === "mastered").length;
-    const xp = completedAssignmentIds.size * 20 + passedAssessmentIds.size * 15 + masteredObjectives * 10;
+    const xp = rewardLedger.reduce((total, entry) => total + entry.xpDelta, 0);
     const nextLevelIndex = REWARD_LEVELS.findIndex((level) => level.minXp > xp);
     const currentLevel = REWARD_LEVELS[nextLevelIndex === -1 ? REWARD_LEVELS.length - 1 : nextLevelIndex - 1];
     const nextLevel = REWARD_LEVELS[nextLevelIndex] ?? null;
@@ -134,6 +136,7 @@ export default function LearningRewardsPage() {
       availableAssignments: assignments.length,
       unlockedCount: badges.filter((badge) => badge.unlocked).length,
       recentActivityCount: activity.length,
+      rewardEventCount: rewardLedger.length,
     };
   }, [query.data]);
 
@@ -232,9 +235,9 @@ export default function LearningRewardsPage() {
         <div className="mt-4 divide-y divide-slate-100">
           <RewardRule title="Assignment completed" points="+20 XP" detail="Counted once per completed assignment." />
           <RewardRule title="Assessment passed" points="+15 XP" detail="Counted once per distinct assessment passed." />
-          <RewardRule title="Objective mastered" points="+10 XP" detail="Counted once per objective currently marked mastered." />
+          <RewardRule title="Objective mastered" points="Badge progress" detail="Mastery contributes to badges; XP is awarded only for verified assignment completion and assessment passes." />
         </div>
-        <p className="mt-4 text-xs text-slate-500">XP and badges are currently calculated from your existing learning records. They are not yet a separate, permanently stored reward ledger.</p>
+        <p className="mt-4 text-xs text-slate-500">XP is recorded in a protected reward ledger. Badges and streaks still reflect your existing learning records.</p>
       </section>
 
       <section className="grid gap-4 sm:grid-cols-2">
