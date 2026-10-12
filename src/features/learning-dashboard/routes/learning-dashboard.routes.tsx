@@ -7,6 +7,7 @@ import LearningAssignmentDetailPage from "../pages/LearningAssignmentDetailPage"
 import LearningAssessmentRuntimePage from "../pages/LearningAssessmentRuntimePage";
 import LearningProgressPage from "../pages/LearningProgressPage";
 import LearningRecommendationsPage from "../pages/LearningRecommendationsPage";
+import LearningRewardsPage from "../pages/LearningRewardsPage";
 import LearningContentRuntimePage from "../pages/LearningContentRuntimePage";
 import StudentLayout from "../layouts/StudentLayout";
 
@@ -26,6 +27,7 @@ export const learningDashboardRoutes: RouteObject[] = [
       { path: "assignments/:assignmentId/content/:contentId", element: <LearningContentRuntimePage /> },
       { path: "progress", element: <LearningProgressPage /> },
       { path: "recommendations", element: <LearningRecommendationsPage /> },
+      { path: "rewards", element: <LearningRewardsPage /> },
     ],
   },
   { path: "student", element: <Navigate to="/learning" replace /> },
