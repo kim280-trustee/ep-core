@@ -14,6 +14,17 @@ function localDayKey(value: Date) {
   return `${value.getFullYear()}-${String(value.getMonth() + 1).padStart(2, "0")}-${String(value.getDate()).padStart(2, "0")}`;
 }
 
+function getCurrentWeekStart(now = new Date()) {
+  const start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  start.setDate(start.getDate() - ((start.getDay() + 6) % 7));
+  return start;
+}
+
+function isWithinCurrentWeek(timestamp: string, weekStart: Date, now = new Date()) {
+  const occurredAt = new Date(timestamp);
+  return occurredAt >= weekStart && occurredAt <= now;
+}
+
 function calculateStreak(timestamps: string[], now = new Date()) {
   const activeDays = new Set(timestamps.map((timestamp) => localDayKey(new Date(timestamp))));
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -91,6 +102,47 @@ export default function LearningRewardsPage() {
       ? Math.min(100, Math.round(((xp - currentLevel.minXp) / (nextLevel.minXp - currentLevel.minXp)) * 100))
       : 100;
     const streak = calculateStreak(activity.map((event) => event.occurredAt));
+    const now = new Date();
+    const weekStart = getCurrentWeekStart(now);
+    const thisWeeksRewards = rewardLedger.filter((entry) => isWithinCurrentWeek(entry.occurredAt, weekStart, now));
+    const weeklyCompletedAssignments = new Set(
+      thisWeeksRewards
+        .filter((entry) => entry.eventType === "assignment_completed")
+        .map((entry) => entry.sourceId),
+    ).size;
+    const weeklyPassedAssessments = new Set(
+      thisWeeksRewards
+        .filter((entry) => entry.eventType === "assessment_passed")
+        .map((entry) => entry.sourceId),
+    ).size;
+    const weeklyPracticeDays = new Set(
+      activity
+        .filter((event) => isWithinCurrentWeek(event.occurredAt, weekStart, now))
+        .map((event) => localDayKey(new Date(event.occurredAt))),
+    ).size;
+    const weeklyQuests = [
+      {
+        title: "Finish two assignments",
+        description: "Complete your assigned learning to build momentum.",
+        progress: weeklyCompletedAssignments,
+        target: 2,
+        reward: "Consistency",
+      },
+      {
+        title: "Pass an assessment",
+        description: "Show what you have learned in a quiz or assessment.",
+        progress: weeklyPassedAssessments,
+        target: 1,
+        reward: "Mastery",
+      },
+      {
+        title: "Learn on three days",
+        description: "Short practice sessions count toward your weekly habit.",
+        progress: weeklyPracticeDays,
+        target: 3,
+        reward: "Learning habit",
+      },
+    ];
     const badges: RewardBadge[] = [
       {
         title: "First Steps",
@@ -129,6 +181,7 @@ export default function LearningRewardsPage() {
       nextLevel,
       levelProgress,
       streak,
+      weeklyQuests,
       completedCount: completedAssignmentIds.size,
       passedCount: passedAssessmentIds.size,
       masteredObjectives,
@@ -201,6 +254,41 @@ export default function LearningRewardsPage() {
         ) : (
           <p className="mt-4 text-sm font-medium text-slate-700">You have reached the highest level currently available.</p>
         )}
+      </section>
+
+      <section aria-labelledby="weekly-quests-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <h2 id="weekly-quests-heading" className="text-lg font-semibold text-slate-900">This week's quests</h2>
+            <p className="mt-1 text-sm text-slate-500">Small goals to keep learning moving. Progress resets at the start of each week.</p>
+          </div>
+          <span className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">Weekly challenge</span>
+        </div>
+        <div className="mt-5 grid gap-3 lg:grid-cols-3">
+          {rewards.weeklyQuests.map((quest) => {
+            const progress = Math.min(quest.progress, quest.target);
+            const percent = Math.round((progress / quest.target) * 100);
+            const complete = progress >= quest.target;
+            return (
+              <article key={quest.title} className={`rounded-xl border p-4 ${complete ? "border-emerald-200 bg-emerald-50/60" : "border-slate-200 bg-slate-50"}`}>
+                <div className="flex items-start justify-between gap-2">
+                  <h3 className="font-semibold text-slate-900">{quest.title}</h3>
+                  <span className={`shrink-0 rounded-full px-2 py-0.5 text-xs font-semibold ${complete ? "bg-emerald-100 text-emerald-800" : "bg-white text-slate-600"}`}>
+                    {complete ? "Complete" : "In progress"}
+                  </span>
+                </div>
+                <p className="mt-2 min-h-10 text-sm text-slate-600">{quest.description}</p>
+                <div className="mt-4 h-2 overflow-hidden rounded-full bg-slate-200">
+                  <div className={`h-full rounded-full transition-[width] ${complete ? "bg-emerald-500" : "bg-indigo-500"}`} style={{ width: `${percent}%` }} />
+                </div>
+                <div className="mt-2 flex items-center justify-between gap-2 text-xs text-slate-500">
+                  <span>{progress} / {quest.target}</span>
+                  <span>{quest.reward}</span>
+                </div>
+              </article>
+            );
+          })}
+        </div>
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
