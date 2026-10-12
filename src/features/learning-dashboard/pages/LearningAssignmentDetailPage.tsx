@@ -127,18 +127,18 @@ export default function LearningAssignmentDetailPage() {
       </Link>
 
       <section className="rounded-[2rem] bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-500 p-6 text-white shadow-xl shadow-violet-100 sm:p-8">
-        <p className="text-sm text-slate-300">Assignment</p>
+        <p className="text-sm font-bold text-white/85">Assignment</p>
 
         <h1 className="mt-1 text-3xl font-black tracking-tight sm:text-4xl">
           {assignment.title}
         </h1>
 
-        <p className="mt-2 max-w-2xl text-sm text-slate-300">
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-white/90">
           {assignment.description ||
             "Complete the learning activities in this assignment."}
         </p>
 
-        <div className="mt-5 flex flex-wrap gap-4 text-sm text-slate-300">
+        <div className="mt-5 flex flex-wrap gap-4 text-sm font-semibold text-white/90">
           <span className="inline-flex items-center gap-2">
             <Clock3 size={16} />
             {assignment.dueAt
