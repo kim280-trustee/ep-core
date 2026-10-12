@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import type { ReactNode } from "react";
-import { BookOpen, CheckCircle2, Medal, RefreshCw, Sparkles, Target, Trophy } from "lucide-react";
+import { BookOpen, CheckCircle2, Flame, Medal, RefreshCw, Sparkles, Target, Trophy } from "lucide-react";
 import { useAuth } from "@/core/auth";
 import { learningGamificationService } from "../services/learning-gamification.service";
 import type { LearningBadge } from "../types/learning-gamification.types";
@@ -64,6 +64,18 @@ export default function StudentGamificationCard() {
         <RewardStat icon={<BookOpen size={18} />} label="Lessons completed" value={summary.completedLessons} tone="peach" />
         <RewardStat icon={<Target size={18} />} label="Assessments finished" value={summary.assessedQuizzes} tone="blue" />
         <RewardStat icon={<Medal size={18} />} label="Badges earned" value={earnedBadges.length} tone="mint" />
+      </div>
+
+      <div className="grid gap-3 px-5 pt-1 sm:grid-cols-2 sm:px-6">
+        <div className="flex items-center gap-3 rounded-2xl border border-orange-100 bg-orange-50 p-4">
+          <span className="rounded-xl bg-white p-2.5 text-orange-600"><Flame size={20} /></span>
+          <div><p className="text-2xl font-black text-slate-800">{summary.currentStreakDays} {summary.currentStreakDays === 1 ? "day" : "days"}</p><p className="text-xs font-semibold text-slate-500">Current learning streak</p></div>
+        </div>
+        <div className="rounded-2xl border border-emerald-100 bg-emerald-50 p-4">
+          <div className="flex items-center justify-between gap-3"><p className="font-extrabold text-slate-800">Today’s mini quest</p><span className="text-xs font-extrabold text-emerald-700">{Math.min(summary.todayActivities, summary.dailyGoalActivities)}/{summary.dailyGoalActivities}</span></div>
+          <p className="mt-1 text-xs text-slate-600">Complete {summary.dailyGoalActivities} learning activities to reach today’s goal.</p>
+          <div className="mt-3 h-2 overflow-hidden rounded-full bg-white"><div className="h-full rounded-full bg-emerald-500" style={{ width: `${Math.min(summary.todayActivities / summary.dailyGoalActivities * 100, 100)}%` }} /></div>
+        </div>
       </div>
 
       <div className="border-t border-slate-100 px-5 py-5 sm:px-6">
