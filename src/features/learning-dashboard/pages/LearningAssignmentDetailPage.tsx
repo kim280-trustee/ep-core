@@ -106,8 +106,15 @@ export default function LearningAssignmentDetailPage() {
             </p>
 
             <p className="mt-1 text-sm">
-              It may not be available to your account.
+              {query.error instanceof Error ? query.error.message : "It may not be available to your account."}
             </p>
+            <button
+              type="button"
+              onClick={() => void query.refetch()}
+              className="mt-3 rounded-2xl bg-white px-4 py-2.5 text-sm font-bold shadow-sm transition hover:bg-rose-100"
+            >
+              Try again
+            </button>
           </div>
         </div>
       </div>
