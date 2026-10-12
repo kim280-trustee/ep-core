@@ -69,9 +69,34 @@ export default function TeacherStudentProfilePage() {
     enabled: masteryQuery.isSuccess && masteryObjectiveIds.length > 0,
   });
 
-  const assignments = (classQuery.data?.assignments ?? []).filter((item) => item.assignment.status === "published");
-  const assignmentProgressQueries = useQueries({
+  const assignments = useMemo(
+    () => (classQuery.data?.assignments ?? []).filter((item) => item.assignment.status === "published"),
+    [classQuery.data?.assignments],
+  );
+
+  // A class subject can have assignments targeted at only one student. Do not
+  // show those assignments on every student's profile just because they share a class.
+  const assignmentTargetQueries = useQueries({
     queries: assignments.map((item) => ({
+      queryKey: ["learning", "student-profile-assignment-targets", item.assignment.id],
+      queryFn: () => learningAssignmentsService.listTargets(item.assignment.id),
+      enabled: Boolean(studentUserId && classGroupId),
+    })),
+  });
+
+  const targetedAssignments = assignments.filter((_, index) =>
+    (assignmentTargetQueries[index]?.data ?? []).some((target) =>
+      target.status === "active" && (
+        (target.targetType === "student" && target.studentUserId === studentUserId) ||
+        (target.targetType === "class" && target.classGroupId === classGroupId)
+      ),
+    ),
+  );
+  const assignmentTargetsPending = assignmentTargetQueries.some((query) => query.isPending);
+  const assignmentTargetsError = assignmentTargetQueries.some((query) => query.isError);
+
+  const assignmentProgressQueries = useQueries({
+    queries: targetedAssignments.map((item) => ({
       queryKey: ["learning", "student-profile-assignment-progress", item.assignment.id, studentUserId],
       queryFn: () => learningAssignmentsService.listProgressForAssignment(item.assignment.id),
       enabled: Boolean(studentUserId),
@@ -79,10 +104,10 @@ export default function TeacherStudentProfilePage() {
   });
 
   const studentAssignments = useMemo(() =>
-    assignments.map((item, index) => ({
+    targetedAssignments.map((item, index) => ({
       ...item,
       progress: assignmentProgressQueries[index]?.data?.find((progress) => progress.studentUserId === studentUserId) ?? null,
-    })), [assignments, assignmentProgressQueries, studentUserId]);
+    })), [targetedAssignments, assignmentProgressQueries, studentUserId]);
 
   const currentEntries = currentEntryQueries.flatMap((query) => query.data ?? []);
   const objectiveMap = useMemo(
@@ -160,12 +185,12 @@ export default function TeacherStudentProfilePage() {
       <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <h2 className="font-semibold text-slate-900">Assignment completion</h2>
         <div className="mt-4 space-y-3">
-          {studentAssignments.length ? studentAssignments.map((item) => (
+          {assignmentTargetsError ? <p className="text-sm text-red-600">Could not load assigned work. Refresh the page and try again.</p> : assignmentTargetsPending ? <p className="text-sm text-slate-500">Loading assigned work…</p> : studentAssignments.length ? studentAssignments.map((item) => (
             <div key={item.assignment.id} className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 p-4">
               <div><p className="font-medium text-slate-900">{item.assignment.title}</p><p className="text-xs text-slate-500">{item.assignment.status}</p></div>
               <span className={"rounded-full px-2.5 py-1 text-xs font-semibold " + (item.progress?.status === "completed" ? "bg-slate-900 text-white" : "bg-slate-100 text-slate-700")}>{item.progress?.status ?? "not started"}</span>
             </div>
-          )) : <p className="text-sm text-slate-500">No assignments are attached to this class.</p>}
+          )) : <p className="text-sm text-slate-500">No published assignments are assigned to this student.</p>}
         </div>
       </section>
 
