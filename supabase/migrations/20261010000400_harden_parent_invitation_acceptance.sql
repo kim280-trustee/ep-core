@@ -96,6 +96,6 @@ begin
 
   return v_parent_user_id;
 end;
-$function$
+$function$;
 
 commit;

@@ -203,7 +203,7 @@ begin
  end if;
  return v_entry_id;
 end;
-$function$
+$function$;
 
 
 commit;
