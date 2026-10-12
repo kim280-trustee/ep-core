@@ -176,11 +176,10 @@ export default function LearningProgressPage() {
 
       <section className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">
-          Assessment history
+          Learning history
         </h2>
         <p className="mt-1 text-sm text-slate-500">
-          Your assessment evidence is retained as part of your learning
-          history.
+          Recorded changes to your mastery and assessment evidence.
         </p>
 
         <div className="mt-4 divide-y divide-slate-100">
