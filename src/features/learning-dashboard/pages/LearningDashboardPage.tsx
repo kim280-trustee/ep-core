@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { AlertCircle, BookOpen, CheckCircle2, Clock3, Target, TrendingUp } from "lucide-react";
@@ -17,6 +18,15 @@ function activityLabel(type: string) {
 }
 
 export default function LearningDashboardPage() {
+  const [now, setNow] = useState<number | null>(null);
+  useEffect(() => {
+    const initial = window.setTimeout(() => setNow(Date.now()), 0);
+    const interval = window.setInterval(() => setNow(Date.now()), 60_000);
+    return () => {
+      window.clearTimeout(initial);
+      window.clearInterval(interval);
+    };
+  }, []);
   const { user } = useAuth();
   const studentUserId = user?.id ?? "";
 
@@ -63,6 +73,17 @@ export default function LearningDashboardPage() {
   const assignmentsById = new Map(overview.assignments.map((a) => [a.id, a]));
   const continueItems = inProgress.map((p) => ({ progress: p, assignment: assignmentsById.get(p.assignmentId) })).filter((x): x is { progress: LearningAssignmentProgress; assignment: NonNullable<typeof x.assignment> } => Boolean(x.assignment)).slice(0, 4);
   const dueAssignments = overview.assignments.filter((a) => a.status === "published").slice(0, 5);
+  const completedAssignmentIds = new Set(completed.map((item) => item.assignmentId));
+  const reminderCutoff = now === null ? 0 : now + 7 * 24 * 60 * 60 * 1000;
+  const dueAlerts = now === null ? [] : overview.assignments
+    .filter((assignment) =>
+      assignment.status === "published" &&
+      Boolean(assignment.dueAt) &&
+      !completedAssignmentIds.has(assignment.id) &&
+      new Date(assignment.dueAt!).getTime() <= reminderCutoff
+    )
+    .sort((a, b) => new Date(a.dueAt!).getTime() - new Date(b.dueAt!).getTime())
+    .slice(0, 5);
 
   return <div className="space-y-6">
     <section className="rounded-2xl bg-slate-900 p-6 text-white shadow-sm sm:p-8"><div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between"><div><p className="text-sm font-medium text-slate-300">Student Learning</p><h1 className="mt-1 text-2xl font-bold sm:text-3xl">Welcome back, {user.name || "Student"}</h1><p className="mt-2 max-w-2xl text-sm text-slate-300">Continue your learning, review your progress, and see what should come next.</p></div>{continueItems.length > 0 && <Link to={`/learning/assignments/${continueItems[0].assignment.id}`} className="inline-flex w-fit items-center rounded-lg bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100">Continue learning</Link>}</div></section>
@@ -72,6 +93,15 @@ export default function LearningDashboardPage() {
       <Stat icon={<CheckCircle2 size={19} />} label="Completed" value={String(completed.length)} detail="assignment progress" />
       <Stat icon={<TrendingUp size={19} />} label="Recommendations" value={String(overview.recommendations.length)} detail="ready for you" />
     </section>
+    {dueAlerts.length > 0 && <DashboardCard title="Assignment reminders" icon={<AlertCircle size={20} />}>
+      <div className="space-y-3">{dueAlerts.map((assignment) => {
+        const overdue = now !== null && new Date(assignment.dueAt!).getTime() < now;
+        return <Link key={assignment.id} to={`/learning/assignments/${assignment.id}`} className="flex items-start justify-between gap-4 rounded-xl border border-slate-200 p-4 hover:bg-slate-50">
+          <div><p className="font-medium text-slate-900">{assignment.title}</p><p className="mt-1 text-xs text-slate-500">Due {formatDate(assignment.dueAt)}</p></div>
+          <span className={`shrink-0 rounded-full px-2.5 py-1 text-xs font-semibold ${overdue ? "bg-red-100 text-red-700" : "bg-amber-100 text-amber-700"}`}>{overdue ? "Overdue" : "Due within 7 days"}</span>
+        </Link>;
+      })}</div>
+    </DashboardCard>}
     <div className="grid gap-6 lg:grid-cols-2">
       <DashboardCard title="Continue Learning" icon={<BookOpen size={20} />}>{continueItems.length ? <div className="divide-y divide-slate-100">{continueItems.map(({ assignment, progress }) => <Link key={progress.id} to={`/learning/assignments/${assignment.id}`} className="block rounded-xl py-4 first:pt-0 last:pb-0 hover:bg-slate-50"><div className="flex items-start justify-between gap-4 px-2"><div><h3 className="font-semibold text-slate-900">{assignment.title}</h3><p className="mt-1 text-sm text-slate-500">{assignment.description || "Continue this assignment."}</p></div><span className="shrink-0 rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium">In progress</span></div></Link>)}</div> : <EmptyState text="You have no learning activities in progress yet." />}</DashboardCard>
       <DashboardCard title="Recommended for You" icon={<Target size={20} />}>{overview.recommendations.length ? <div className="space-y-3">{overview.recommendations.slice(0, 5).map((item) => <div key={item.id} className="rounded-xl border border-slate-200 p-4"><div className="flex items-center justify-between gap-3"><span className="font-medium capitalize text-slate-900">{item.recommendationType}</span><span className="text-xs text-slate-500">Priority {item.priority}</span></div><p className="mt-1 text-sm text-slate-500">{item.objectiveId ? "Learning objective: " + item.objectiveId : "A learning activity selected for you."}</p>
