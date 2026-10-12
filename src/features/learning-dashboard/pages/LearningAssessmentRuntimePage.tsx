@@ -406,7 +406,7 @@ export default function LearningAssessmentRuntimePage() {
 
         <section className="rounded-[2rem] bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-500 p-6 text-white shadow-xl shadow-violet-100 sm:p-8">
           <CheckCircle2 size={28} />
-          <h1 className="mt-3 text-2xl font-bold">Assessment submitted</h1>
+          <h1 className="mt-3 text-3xl font-black tracking-tight">Assessment submitted</h1>
           <p className="mt-2 text-sm text-slate-300">
             Your answers were submitted and evaluated.
           </p>
@@ -428,7 +428,7 @@ export default function LearningAssessmentRuntimePage() {
             </div>
             <div>
               <p className="text-sm text-slate-500">Status</p>
-              <p className="mt-1 text-2xl font-bold capitalize text-slate-900">
+              <p className="mt-1 text-3xl font-black tracking-tight capitalize text-slate-900">
                 {submittedAttempt.status.replace("_", " ")}
               </p>
             </div>
@@ -437,7 +437,7 @@ export default function LearningAssessmentRuntimePage() {
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               to={`/learning/assignments/${id}`}
-              className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white"
+              className="inline-flex items-center gap-2 rounded-2xl bg-violet-600 px-4 py-2.5 text-sm font-semibold text-white"
             >
               <ArrowLeft size={17} />
               Back to assignment
@@ -502,7 +502,7 @@ export default function LearningAssessmentRuntimePage() {
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               to={`/learning/assignments/${id}`}
-              className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white"
+              className="inline-flex items-center gap-2 rounded-2xl bg-violet-600 px-4 py-2.5 text-sm font-semibold text-white"
             >
               <ArrowLeft size={17} />
               Back to assignment
@@ -554,7 +554,7 @@ export default function LearningAssessmentRuntimePage() {
             type="button"
             disabled={startMutation.isPending || attemptsRemaining === 0}
             onClick={() => startMutation.mutate()}
-            className="rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-2xl bg-violet-600 px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
           >
             {startMutation.isPending ? "Starting..." : attemptsRemaining === 0 ? "No attempts remaining" : "Start assessment"}
           </button>
@@ -643,7 +643,7 @@ export default function LearningAssessmentRuntimePage() {
           type="button"
           disabled={submitMutation.isPending || pendingAnswerSaves > 0 || saveAnswerMutation.isError}
           onClick={() => submitMutation.mutate()}
-          className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center gap-2 rounded-2xl bg-violet-600 px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
         >
           <Send size={17} />
           {submitMutation.isPending ? "Submitting..." : "Submit assessment"}
