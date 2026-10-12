@@ -8,10 +8,12 @@ import { learningActivityService } from "@/features/learning-activity";
 
 function dateLabel(value: string | null) {
   if (!value) return "No due date";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "Due date unavailable";
   return new Intl.DateTimeFormat(undefined, {
     dateStyle: "medium",
     timeStyle: "short",
-  }).format(new Date(value));
+  }).format(date);
 }
 
 export default function LearningAssignmentDetailPage() {
