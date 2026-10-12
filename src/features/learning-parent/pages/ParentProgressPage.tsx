@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { AlertCircle, BookOpen, MessageSquare, Target, TrendingUp } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { useAuth } from "@/core/auth";
 import { learningParentService } from "../services/learning-parent.service";
@@ -16,6 +16,12 @@ type Copy=typeof copy[Language];
 export default function ParentProgressPage() {
   const { user } = useAuth();
   const [language,setLanguage]=useState<Language>("en");
+  const [now,setNow]=useState<number|null>(null);
+  useEffect(()=>{
+    const initial=window.setTimeout(()=>setNow(Date.now()),0);
+    const interval=window.setInterval(()=>setNow(Date.now()),60_000);
+    return ()=>{window.clearTimeout(initial);window.clearInterval(interval);};
+  },[]);
   const t=copy[language];
   const childrenQuery = useQuery({
     queryKey:["learning","parent","children",user?.id],
@@ -38,7 +44,7 @@ export default function ParentProgressPage() {
 
   return <div className="mx-auto max-w-6xl space-y-6">
     <PortalHeader t={t} language={language} setLanguage={setLanguage}/>
-    <div className="space-y-6">{children.map(child=><ChildCard key={child.student.id} child={child} t={t}/>)}</div>
+    <div className="space-y-6">{children.map(child=><ChildCard key={child.student.id} child={child} t={t} now={now}/>)}</div>
   </div>;
 }
 
@@ -50,17 +56,17 @@ function PortalEmpty({t,language,setLanguage}:{t:Copy;language:Language;setLangu
   return <div className="mx-auto max-w-6xl space-y-6"><PortalHeader t={t} language={language} setLanguage={setLanguage}/><section className="rounded-2xl border border-dashed bg-white p-10 text-center"><p className="font-semibold text-slate-900">{t.none}</p><p className="mt-2 text-sm text-slate-500">{t.noneHelp}</p></section></div>;
 }
 
-function ChildCard({child,t}:{child:LearningParentOverview;t:Copy}) {
+function ChildCard({child,t,now}:{child:LearningParentOverview;t:Copy;now:number|null}) {
   const completed=child.assignments.filter(x=>x.progressStatus==="completed").length;
   const inProgress=child.assignments.filter(x=>x.progressStatus==="in_progress").length;
   const latestBySubject=new Map<string,number>(); for(const grade of child.subjectGrades){if(!latestBySubject.has(grade.subjectName))latestBySubject.set(grade.subjectName,grade.score);} const currentScores=[...latestBySubject.values()]; const average=currentScores.length?currentScores.reduce((s,x)=>s+x,0)/currentScores.length:null;
   const needsReview=child.mastery.filter(x=>x.state==="needs_review"||x.state==="developing").slice(0,5);
-  const reminderCutoff=Date.now()+7*24*60*60*1000;
-  const dueAlerts=child.assignments.filter(item=>item.dueAt&&item.progressStatus!=="completed"&&new Date(item.dueAt).getTime()<=reminderCutoff).sort((a,b)=>new Date(a.dueAt!).getTime()-new Date(b.dueAt!).getTime()).slice(0,5);
+  const reminderCutoff=now===null?0:now+7*24*60*60*1000;
+  const dueAlerts=now===null?[]:child.assignments.filter(item=>item.dueAt&&item.progressStatus!=="completed"&&new Date(item.dueAt).getTime()<=reminderCutoff).sort((a,b)=>new Date(a.dueAt!).getTime()-new Date(b.dueAt!).getTime()).slice(0,5);
   return <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
     <div className="border-b border-slate-100 p-6"><div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><div><h2 className="text-xl font-bold text-slate-900">{child.student.name}</h2><p className="text-sm text-slate-500">{child.student.email}</p></div><div className="rounded-xl bg-slate-50 px-4 py-3 text-sm"><span className="text-slate-500">{t.average}</span><p className="text-xl font-bold text-slate-900">{average===null?t.noGrades:average.toFixed(1)+"%"}</p></div></div></div>
     <div className="grid gap-4 p-6 sm:grid-cols-2 lg:grid-cols-4"><Metric icon={<BookOpen size={18}/>} label={t.assignments} value={String(child.assignments.length)} detail={completed+" "+t.completed+" · "+inProgress+" "+t.inProgress}/><Metric icon={<TrendingUp size={18}/>} label={t.subjects} value={String(new Set(child.subjectGrades.map(grade => grade.subjectName)).size)} detail={t.finalized}/><Metric icon={<Target size={18}/>} label={t.objectives} value={String(child.mastery.length)} detail={needsReview.length+" "+t.attention}/><Metric icon={<MessageSquare size={18}/>} label={t.comments} value={String(child.comments.length)} detail={t.recent}/></div>
-    {dueAlerts.length>0&&<section className="border-t border-amber-100 bg-amber-50 p-6"><h3 className="text-lg font-semibold text-slate-900">{t.reminders}</h3><div className="mt-3 grid gap-3 sm:grid-cols-2">{dueAlerts.map(item=>{const overdue=new Date(item.dueAt!).getTime()<Date.now();return <div key={item.id} className="rounded-xl border border-amber-200 bg-white p-4"><div className="flex items-start justify-between gap-3"><p className="font-medium text-slate-800">{item.title}</p><span className={`shrink-0 rounded-full px-2 py-1 text-xs font-semibold ${overdue?"bg-red-100 text-red-700":"bg-amber-100 text-amber-700"}`}>{overdue?t.overdue:t.dueSoon}</span></div><p className="mt-2 text-xs text-slate-500">{t.due} {new Date(item.dueAt!).toLocaleDateString()}</p></div>;})}</div></section>}
+    {dueAlerts.length>0&&<section className="border-t border-amber-100 bg-amber-50 p-6"><h3 className="text-lg font-semibold text-slate-900">{t.reminders}</h3><div className="mt-3 grid gap-3 sm:grid-cols-2">{dueAlerts.map(item=>{const overdue=now!==null&&new Date(item.dueAt!).getTime()<now;return <div key={item.id} className="rounded-xl border border-amber-200 bg-white p-4"><div className="flex items-start justify-between gap-3"><p className="font-medium text-slate-800">{item.title}</p><span className={`shrink-0 rounded-full px-2 py-1 text-xs font-semibold ${overdue?"bg-red-100 text-red-700":"bg-amber-100 text-amber-700"}`}>{overdue?t.overdue:t.dueSoon}</span></div><p className="mt-2 text-xs text-slate-500">{t.due} {new Date(item.dueAt!).toLocaleDateString()}</p></div>;})}</div></section>}
     <div className="grid gap-6 p-6 lg:grid-cols-2">
       <section><h3 className="text-lg font-semibold text-slate-900">{t.performance}</h3><div className="mt-3 divide-y">{child.subjectGrades.slice(0,10).map((grade,i)=><div key={grade.termName+"-"+grade.subjectName+"-"+i} className="flex items-center justify-between gap-4 py-3"><div><p className="font-medium text-slate-800">{grade.subjectName}</p><p className="text-xs text-slate-500">{grade.termName} · {grade.finalizedAt?new Date(grade.finalizedAt).toLocaleDateString():""}</p></div><div className="text-right"><p className="font-semibold text-slate-900">{grade.score.toFixed(1)}%</p><p className="text-xs text-slate-500">{grade.grade??"—"}</p></div></div>)}</div></section>
       <section><h3 className="text-lg font-semibold text-slate-900">{t.strengths}</h3>{child.mastery.length?<div className="mt-3 space-y-3">{child.mastery.slice(0,6).map(item=><div key={item.objectiveId} className="rounded-xl border border-slate-200 p-3"><div className="flex justify-between gap-3 text-sm"><span className="font-medium text-slate-700">{item.objectiveName}</span><span className="font-semibold">{Math.round(item.score)}% · {item.state.replaceAll("_"," ")}</span></div><div className="mt-2 h-2 rounded-full bg-slate-100"><div className="h-full rounded-full bg-slate-900" style={{width:Math.max(0,Math.min(100,item.score))+"%"}}/></div></div>)}</div>:<p className="mt-3 text-sm text-slate-500">{t.masteryEmpty}</p>}</section>
