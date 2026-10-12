@@ -1,4 +1,4 @@
--- Persist learning rewards from authoritative completion, assessment, and mastery records.
+-- Persist learning rewards from authoritative assignment completion and assessment results.
 begin;
 
 create table public.learning_reward_ledger (
@@ -27,6 +27,9 @@ create index learning_reward_ledger_student_time_idx
   on public.learning_reward_ledger(student_user_id, occurred_at desc);
 create index learning_reward_ledger_org_time_idx
   on public.learning_reward_ledger(organization_id, occurred_at desc);
+
+-- Mastery state is read-only to clients; trusted database routines remain responsible for updates.
+revoke insert, update, delete on table public.learning_student_mastery from public, anon, authenticated;
 
 alter table public.learning_reward_ledger enable row level security;
 revoke all on public.learning_reward_ledger from anon, authenticated;
