@@ -558,6 +558,6 @@ begin
     'percentage', v_percentage
   );
 end;
-$function$
+$function$;
 
 commit;
