@@ -235,9 +235,9 @@ export default function LearningRewardsPage() {
         <div className="mt-4 divide-y divide-slate-100">
           <RewardRule title="Assignment completed" points="+20 XP" detail="Counted once per completed assignment." />
           <RewardRule title="Assessment passed" points="+15 XP" detail="Counted once per distinct assessment passed." />
-          <RewardRule title="Objective mastered" points="+10 XP" detail="Counted once per objective currently marked mastered." />
+          <RewardRule title="Objective mastered" points="Badge progress" detail="Mastery contributes to badges; XP is awarded only for verified assignment completion and assessment passes." />
         </div>
-        <p className="mt-4 text-xs text-slate-500">XP and badges are currently calculated from your existing learning records. They are not yet a separate, permanently stored reward ledger.</p>
+        <p className="mt-4 text-xs text-slate-500">XP is recorded in a protected reward ledger. Badges and streaks still reflect your existing learning records.</p>
       </section>
 
       <section className="grid gap-4 sm:grid-cols-2">
