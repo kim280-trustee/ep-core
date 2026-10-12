@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { AlertCircle, ArrowRight, BookOpen, CheckCircle2, Clock3, Search, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -7,6 +7,14 @@ import { learningRuntimeService } from "@/features/learning-runtime";
 import type { LearningAssignmentProgress } from "@/features/learning-assignments";
 
 type AssignmentFilter = "all" | "not_started" | "in_progress" | "completed" | "overdue";
+type StudentAssignment = Awaited<ReturnType<typeof learningRuntimeService.getStudentOverview>>["assignments"][number];
+
+function assignmentStatus(assignment: StudentAssignment, progress: LearningAssignmentProgress | undefined, now: number): LearningAssignmentProgress["status"] {
+  const status = progress?.status ?? "not_started";
+  if (status === "completed" || !assignment.dueAt) return status;
+  const dueAt = new Date(assignment.dueAt).getTime();
+  return Number.isFinite(dueAt) && dueAt < now ? "overdue" : status;
+}
 
 const filters: { value: AssignmentFilter; label: string }[] = [
   { value: "all", label: "All" },
@@ -28,6 +36,11 @@ export default function LearningAssignmentsPage() {
   const studentUserId = user?.id ?? "";
   const [search, setSearch] = useState("");
   const [activeFilter, setActiveFilter] = useState<AssignmentFilter>("all");
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => {
+    const interval = window.setInterval(() => setNow(Date.now()), 60_000);
+    return () => window.clearInterval(interval);
+  }, []);
   const query = useQuery({
     queryKey: ["learning", "student-overview", studentUserId],
     queryFn: () => learningRuntimeService.getStudentOverview(studentUserId),
@@ -41,7 +54,7 @@ export default function LearningAssignmentsPage() {
   const filteredAssignments = useMemo(() => {
     const normalizedSearch = search.trim().toLocaleLowerCase();
     return (query.data?.assignments ?? []).filter((assignment) => {
-      const status = progressByAssignment.get(assignment.id)?.status ?? "not_started";
+      const status = assignmentStatus(assignment, progressByAssignment.get(assignment.id), now);
       const matchesStatus = activeFilter === "all" || status === activeFilter;
       const searchableText = [assignment.title, assignment.description, assignment.code]
         .filter(Boolean)
@@ -49,7 +62,7 @@ export default function LearningAssignmentsPage() {
         .toLocaleLowerCase();
       return matchesStatus && (!normalizedSearch || searchableText.includes(normalizedSearch));
     });
-  }, [activeFilter, progressByAssignment, query.data?.assignments, search]);
+  }, [activeFilter, now, progressByAssignment, query.data?.assignments, search]);
 
   if (!user) return <div className="rounded-[1.75rem] border border-violet-100 bg-white p-6 shadow-sm">Sign in to view your assignments.</div>;
   if (query.isPending) return <div className="space-y-4" aria-label="Loading assignments"><div className="h-10 w-72 animate-pulse rounded-xl bg-slate-200" /><div className="h-40 animate-pulse rounded-2xl bg-slate-200" /></div>;
@@ -58,7 +71,7 @@ export default function LearningAssignmentsPage() {
   const { assignments } = query.data;
   const countByStatus = (status: AssignmentFilter) => status === "all"
     ? assignments.length
-    : assignments.filter((assignment) => (progressByAssignment.get(assignment.id)?.status ?? "not_started") === status).length;
+    : assignments.filter((assignment) => assignmentStatus(assignment, progressByAssignment.get(assignment.id), now) === status).length;
 
   return (
     <div className="space-y-7">
@@ -92,7 +105,7 @@ export default function LearningAssignmentsPage() {
           {filteredAssignments.length ? (
             <div className="grid gap-5 xl:grid-cols-2">
               {filteredAssignments.map((assignment) => (
-                <AssignmentCard key={assignment.id} assignment={assignment} progress={progressByAssignment.get(assignment.id)} />
+                <AssignmentCard key={assignment.id} assignment={assignment} status={assignmentStatus(assignment, progressByAssignment.get(assignment.id), now)} />
               ))}
             </div>
           ) : (
@@ -111,8 +124,7 @@ export default function LearningAssignmentsPage() {
   );
 }
 
-function AssignmentCard({ assignment, progress }: { assignment: (Awaited<ReturnType<typeof learningRuntimeService.getStudentOverview>>)["assignments"][number]; progress?: LearningAssignmentProgress }) {
-  const status = progress?.status ?? "not_started";
+function AssignmentCard({ assignment, status }: { assignment: StudentAssignment; status: LearningAssignmentProgress["status"] }) {
   const statusText = status === "in_progress" ? "In progress" : status === "completed" ? "Completed" : status === "overdue" ? "Overdue" : "Not started";
   const statusClass = status === "completed" ? "bg-emerald-100 text-emerald-700" : status === "overdue" ? "bg-rose-100 text-rose-700" : status === "in_progress" ? "bg-amber-100 text-amber-800" : "bg-slate-100 text-slate-600";
   const Icon = status === "completed" ? CheckCircle2 : Clock3;
