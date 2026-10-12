@@ -19,7 +19,7 @@ export default function LearningAssignmentsPage() {
     enabled: Boolean(studentUserId),
   });
 
-  if (!user) return <div className="rounded-2xl border border-slate-200 bg-white p-6">Sign in to view your assignments.</div>;
+  if (!user) return <div className="rounded-[1.75rem] border border-violet-100 bg-white p-6 shadow-sm">Sign in to view your assignments.</div>;
   if (query.isPending) return <div className="space-y-4"><div className="h-10 w-72 animate-pulse rounded-xl bg-slate-200" /><div className="h-40 animate-pulse rounded-2xl bg-slate-200" /></div>;
   if (query.isError) return <ErrorState onRetry={() => void query.refetch()} />;
 
