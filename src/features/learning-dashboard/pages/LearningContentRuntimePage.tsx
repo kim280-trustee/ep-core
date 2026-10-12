@@ -196,7 +196,7 @@ export default function LearningContentRuntimePage() {
         <div className="flex items-start gap-4">
           <span className="rounded-xl bg-white/10 p-3"><BookOpen size={22} /></span>
           <div>
-            <p className="text-sm text-slate-300">Learning content</p>
+            <p className="text-sm font-bold text-white/85">Learning content</p>
             <h1 className="mt-1 text-3xl font-black tracking-tight sm:text-4xl">{currentContent.title}</h1>
             <p className="mt-2 text-sm text-slate-300">{currentContent.code} · {currentContent.contentType}</p>
           </div>
