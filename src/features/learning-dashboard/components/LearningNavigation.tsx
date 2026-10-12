@@ -1,4 +1,4 @@
-import { BookOpen, Compass, LayoutDashboard, LogOut, TrendingUp } from "lucide-react";
+import { BookOpen, Compass, LayoutDashboard, LogOut, Sparkles, TrendingUp } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "@/core/auth";
@@ -27,7 +27,7 @@ export function LearningNavigation() {
   };
 
   return (
-    <header className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+    <header className="rounded-[1.75rem] border border-violet-100 bg-white p-4 shadow-sm">
       <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
         <div className="min-w-0">
           <p className="text-sm font-bold text-slate-950">E&P Learning</p>
