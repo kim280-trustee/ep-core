@@ -159,3 +159,4 @@ where r.passed is true
 order by a.student_user_id, a.assessment_id, r.evaluated_at asc
 on conflict (student_user_id, event_type, source_type, source_id) do nothing;
 
+commit;
