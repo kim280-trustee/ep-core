@@ -177,6 +177,9 @@ export default function LearningContentRuntimePage() {
           <div>
             <p className="font-semibold">This learning content could not be loaded.</p>
             <p className="mt-1 text-sm">{query.error instanceof Error ? query.error.message : "The content is not available to your account."}</p>
+            <button type="button" onClick={() => void query.refetch()} className="mt-3 rounded-2xl bg-white px-4 py-2.5 text-sm font-bold shadow-sm transition hover:bg-rose-100">
+              Try again
+            </button>
           </div>
         </div>
       </div>
