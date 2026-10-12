@@ -346,6 +346,8 @@ export default function LearningAssessmentRuntimePage() {
     };
   }, [started, attemptId, submittedAttempt]);
 
+  const loadError = assignmentQuery.error ?? assessmentQuery.error ?? attemptsQuery.error;
+
   if (!user) {
     return (
       <div className="rounded-2xl border border-slate-200 bg-white p-6">
@@ -363,7 +365,7 @@ export default function LearningAssessmentRuntimePage() {
     );
   }
 
-  if (assignmentQuery.isError || assessmentQuery.isError) {
+  if (assignmentQuery.isError || assessmentQuery.isError || attemptsQuery.isError) {
     return (
       <div className="space-y-4">
         <Link
@@ -379,14 +381,27 @@ export default function LearningAssessmentRuntimePage() {
           <div>
             <p className="font-semibold">This assessment could not be loaded.</p>
             <p className="mt-1 text-sm">
-              It may not be available to your account.
+              {attemptsQuery.isError
+                ? "Attempt history could not be loaded. We cannot safely verify your remaining attempts until it is available."
+                : "It may not be available to your account."}
             </p>
 
-            {assessmentQuery.error instanceof Error && (
+            {loadError instanceof Error && (
               <pre className="mt-3 whitespace-pre-wrap rounded-lg bg-red-100 p-3 text-xs">
-                {assessmentQuery.error.message}
+                {loadError.message}
               </pre>
             )}
+            <button
+              type="button"
+              onClick={() => {
+                void assignmentQuery.refetch();
+                void assessmentQuery.refetch();
+                void attemptsQuery.refetch();
+              }}
+              className="mt-3 rounded-lg bg-white px-3 py-2 text-sm font-medium shadow-sm"
+            >
+              Try again
+            </button>
           </div>
         </div>
       </div>
@@ -552,12 +567,18 @@ export default function LearningAssessmentRuntimePage() {
         <section className="rounded-2xl border border-slate-200 bg-white p-6">
           <button
             type="button"
-            disabled={startMutation.isPending || attemptsRemaining === 0}
+            disabled={startMutation.isPending || attemptsRemaining === 0 || questions.length === 0}
             onClick={() => startMutation.mutate()}
             className="rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {startMutation.isPending ? "Starting..." : attemptsRemaining === 0 ? "No attempts remaining" : "Start assessment"}
+            {startMutation.isPending ? "Starting..." : questions.length === 0 ? "No questions available" : attemptsRemaining === 0 ? "No attempts remaining" : "Start assessment"}
           </button>
+
+          {questions.length === 0 && (
+            <p className="mt-3 text-sm text-amber-700">
+              This assessment has no available questions, so it cannot be started yet. Please contact your teacher.
+            </p>
+          )}
 
           {startMutation.isError && (
             <p className="mt-3 text-sm text-red-600">
