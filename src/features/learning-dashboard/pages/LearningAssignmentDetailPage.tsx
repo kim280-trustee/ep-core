@@ -69,7 +69,7 @@ export default function LearningAssignmentDetailPage() {
   });
   if (!user) {
     return (
-      <div className="rounded-2xl border border-slate-200 bg-white p-6">
+      <div className="rounded-[1.75rem] border border-violet-100 bg-white p-6 shadow-sm">
         Sign in to view this assignment.
       </div>
     );
@@ -95,7 +95,7 @@ export default function LearningAssignmentDetailPage() {
           Back to assignments
         </Link>
 
-        <div className="flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800">
+        <div className="flex items-start gap-3 rounded-[1.75rem] border border-rose-200 bg-rose-50 p-5 text-rose-800">
           <AlertCircle size={20} />
 
           <div>
