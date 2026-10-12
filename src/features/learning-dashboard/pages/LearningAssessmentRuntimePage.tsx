@@ -404,7 +404,7 @@ export default function LearningAssessmentRuntimePage() {
     return (
       <div className="space-y-6">
 
-        <section className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8">
+        <section className="rounded-[2rem] bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-500 p-6 text-white shadow-xl shadow-violet-100 sm:p-8">
           <CheckCircle2 size={28} />
           <h1 className="mt-3 text-2xl font-bold">Assessment submitted</h1>
           <p className="mt-2 text-sm text-slate-300">
@@ -416,13 +416,13 @@ export default function LearningAssessmentRuntimePage() {
           <div className="grid gap-4 sm:grid-cols-3">
             <div>
               <p className="text-sm text-slate-500">Score</p>
-              <p className="mt-1 text-2xl font-bold text-slate-900">
+              <p className="mt-1 text-3xl font-black tracking-tight text-slate-900">
                 {submittedAttempt.score ?? 0} / {submittedAttempt.maxScore ?? 0}
               </p>
             </div>
             <div>
               <p className="text-sm text-slate-500">Percentage</p>
-              <p className="mt-1 text-2xl font-bold text-slate-900">
+              <p className="mt-1 text-3xl font-black tracking-tight text-slate-900">
                 {submittedAttempt.percentage ?? 0}%
               </p>
             </div>
@@ -467,9 +467,9 @@ export default function LearningAssessmentRuntimePage() {
           Back to assignment
         </Link>
 
-        <section className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+        <section className="rounded-[1.75rem] border border-violet-100 bg-white p-6 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-8">
           <p className="text-sm font-medium text-slate-500">Assessment</p>
-          <h1 className="mt-1 text-2xl font-bold text-slate-900">
+          <h1 className="mt-1 text-3xl font-black tracking-tight text-slate-900">
             {currentAssessment.title}
           </h1>
           <p className="mt-2 text-sm text-slate-600">
@@ -480,19 +480,19 @@ export default function LearningAssessmentRuntimePage() {
             <div className="mt-6 grid gap-4 sm:grid-cols-3">
               <div>
                 <p className="text-sm text-slate-500">Latest score</p>
-                <p className="mt-1 text-2xl font-bold text-slate-900">
+                <p className="mt-1 text-3xl font-black tracking-tight text-slate-900">
                   {latestEvaluatedAttempt.score ?? 0} / {latestEvaluatedAttempt.maxScore ?? 0}
                 </p>
               </div>
               <div>
                 <p className="text-sm text-slate-500">Percentage</p>
-                <p className="mt-1 text-2xl font-bold text-slate-900">
+                <p className="mt-1 text-3xl font-black tracking-tight text-slate-900">
                   {latestEvaluatedAttempt.percentage ?? 0}%
                 </p>
               </div>
               <div>
                 <p className="text-sm text-slate-500">Attempts used</p>
-                <p className="mt-1 text-2xl font-bold text-slate-900">
+                <p className="mt-1 text-3xl font-black tracking-tight text-slate-900">
                   {existingAttempts.length}
                 </p>
               </div>
@@ -531,9 +531,9 @@ export default function LearningAssessmentRuntimePage() {
           Back to assignment
         </Link>
 
-        <section className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8">
+        <section className="rounded-[2rem] bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-500 p-6 text-white shadow-xl shadow-violet-100 sm:p-8">
           <p className="text-sm text-slate-300">Assessment</p>
-          <h1 className="mt-1 text-2xl font-bold sm:text-3xl">
+          <h1 className="mt-1 text-3xl font-black tracking-tight sm:text-4xl">
             {currentAssessment.title}
           </h1>
           <p className="mt-2 text-sm text-slate-300">
@@ -574,9 +574,9 @@ export default function LearningAssessmentRuntimePage() {
   return (
     <div className="space-y-6">
 
-      <section className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8">
+      <section className="rounded-[2rem] bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-500 p-6 text-white shadow-xl shadow-violet-100 sm:p-8">
         <p className="text-sm text-slate-300">Assessment attempt</p>
-        <h1 className="mt-1 text-2xl font-bold sm:text-3xl">
+        <h1 className="mt-1 text-3xl font-black tracking-tight sm:text-4xl">
           {currentAssessment.title}
         </h1>
         <p className="mt-2 text-sm text-slate-300">
@@ -588,7 +588,7 @@ export default function LearningAssessmentRuntimePage() {
         {questions.map((question, index) => (
           <section
             key={question.assessmentQuestionId}
-            className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6"
+            className="rounded-[1.75rem] border border-violet-100 bg-white p-5 shadow-[0_8px_28px_rgba(76,29,149,0.06)] sm:p-6"
           >
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -638,7 +638,7 @@ export default function LearningAssessmentRuntimePage() {
         ))}
       </div>
 
-      <section className="sticky bottom-4 rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-lg backdrop-blur">
+      <section className="sticky bottom-4 rounded-[1.5rem] border border-violet-100 bg-white/95 p-4 shadow-lg shadow-violet-100 backdrop-blur">
         <button
           type="button"
           disabled={submitMutation.isPending || pendingAnswerSaves > 0 || saveAnswerMutation.isError}
