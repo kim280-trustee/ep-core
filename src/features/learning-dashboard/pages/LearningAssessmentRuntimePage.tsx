@@ -407,7 +407,7 @@ export default function LearningAssessmentRuntimePage() {
         <section className="rounded-[2rem] bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-500 p-6 text-white shadow-xl shadow-violet-100 sm:p-8">
           <CheckCircle2 size={28} />
           <h1 className="mt-3 text-3xl font-black tracking-tight">Assessment submitted</h1>
-          <p className="mt-2 text-sm text-slate-300">
+          <p className="mt-2 text-sm text-white/85">
             Your answers were submitted and evaluated.
           </p>
         </section>
@@ -536,11 +536,11 @@ export default function LearningAssessmentRuntimePage() {
           <h1 className="mt-1 text-3xl font-black tracking-tight sm:text-4xl">
             {currentAssessment.title}
           </h1>
-          <p className="mt-2 text-sm text-slate-300">
+          <p className="mt-2 text-sm text-white/85">
             {currentAssessment.description || "Complete the assessment and submit your answers."}
           </p>
 
-          <div className="mt-5 flex flex-wrap gap-4 text-sm text-slate-300">
+          <div className="mt-5 flex flex-wrap gap-4 text-sm text-white/85">
             <span className="inline-flex items-center gap-2">
               <Clock3 size={16} />
               {questions.length} {questions.length === 1 ? "question" : "questions"}
@@ -575,11 +575,11 @@ export default function LearningAssessmentRuntimePage() {
     <div className="space-y-6">
 
       <section className="rounded-[2rem] bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-500 p-6 text-white shadow-xl shadow-violet-100 sm:p-8">
-        <p className="text-sm text-slate-300">Assessment attempt</p>
+        <p className="text-sm text-white/85">Assessment attempt</p>
         <h1 className="mt-1 text-3xl font-black tracking-tight sm:text-4xl">
           {currentAssessment.title}
         </h1>
-        <p className="mt-2 text-sm text-slate-300">
+        <p className="mt-2 text-sm text-white/85">
           Answer all required questions before submitting.
         </p>
       </section>
