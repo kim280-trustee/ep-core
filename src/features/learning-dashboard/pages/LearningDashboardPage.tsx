@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { AlertCircle, BookOpen, CheckCircle2, Clock3, Target, TrendingUp } from "lucide-react";
@@ -17,6 +18,15 @@ function activityLabel(type: string) {
 }
 
 export default function LearningDashboardPage() {
+  const [now, setNow] = useState<number | null>(null);
+  useEffect(() => {
+    const initial = window.setTimeout(() => setNow(Date.now()), 0);
+    const interval = window.setInterval(() => setNow(Date.now()), 60_000);
+    return () => {
+      window.clearTimeout(initial);
+      window.clearInterval(interval);
+    };
+  }, []);
   const { user } = useAuth();
   const studentUserId = user?.id ?? "";
 
@@ -64,8 +74,8 @@ export default function LearningDashboardPage() {
   const continueItems = inProgress.map((p) => ({ progress: p, assignment: assignmentsById.get(p.assignmentId) })).filter((x): x is { progress: LearningAssignmentProgress; assignment: NonNullable<typeof x.assignment> } => Boolean(x.assignment)).slice(0, 4);
   const dueAssignments = overview.assignments.filter((a) => a.status === "published").slice(0, 5);
   const completedAssignmentIds = new Set(completed.map((item) => item.assignmentId));
-  const reminderCutoff = Date.now() + 7 * 24 * 60 * 60 * 1000;
-  const dueAlerts = overview.assignments
+  const reminderCutoff = now === null ? 0 : now + 7 * 24 * 60 * 60 * 1000;
+  const dueAlerts = now === null ? [] : overview.assignments
     .filter((assignment) =>
       assignment.status === "published" &&
       Boolean(assignment.dueAt) &&
@@ -85,7 +95,7 @@ export default function LearningDashboardPage() {
     </section>
     {dueAlerts.length > 0 && <DashboardCard title="Assignment reminders" icon={<AlertCircle size={20} />}>
       <div className="space-y-3">{dueAlerts.map((assignment) => {
-        const overdue = new Date(assignment.dueAt!).getTime() < Date.now();
+        const overdue = now !== null && new Date(assignment.dueAt!).getTime() < now;
         return <Link key={assignment.id} to={`/learning/assignments/${assignment.id}`} className="flex items-start justify-between gap-4 rounded-xl border border-slate-200 p-4 hover:bg-slate-50">
           <div><p className="font-medium text-slate-900">{assignment.title}</p><p className="mt-1 text-xs text-slate-500">Due {formatDate(assignment.dueAt)}</p></div>
           <span className={`shrink-0 rounded-full px-2.5 py-1 text-xs font-semibold ${overdue ? "bg-red-100 text-red-700" : "bg-amber-100 text-amber-700"}`}>{overdue ? "Overdue" : "Due within 7 days"}</span>
