@@ -6,8 +6,8 @@ create table public.learning_reward_ledger (
   tenant_id uuid not null,
   organization_id uuid,
   student_user_id uuid not null,
-  event_type text not null check (event_type in ('assignment_completed', 'assessment_passed', 'objective_mastered')),
-  source_type text not null check (source_type in ('assignment', 'assessment', 'objective')),
+  event_type text not null check (event_type in ('assignment_completed', 'assessment_passed')),
+  source_type text not null check (source_type in ('assignment', 'assessment')),
   source_id uuid not null,
   xp_delta integer not null check (xp_delta > 0),
   metadata jsonb not null default '{}'::jsonb,
@@ -20,7 +20,6 @@ create table public.learning_reward_ledger (
   check (
     (event_type = 'assignment_completed' and source_type = 'assignment' and xp_delta = 20)
     or (event_type = 'assessment_passed' and source_type = 'assessment' and xp_delta = 15)
-    or (event_type = 'objective_mastered' and source_type = 'objective' and xp_delta = 10)
   )
 );
 
@@ -114,38 +113,8 @@ begin
 end;
 $function$;
 
-create or replace function private.award_learning_mastery_reward()
-returns trigger
-language plpgsql
-security definer
-set search_path = ''
-as $function$
-begin
-  if new.state <> 'mastered' then
-    return new;
-  end if;
-
-  if tg_op = 'UPDATE' and old.state = 'mastered' then
-    return new;
-  end if;
-
-  insert into public.learning_reward_ledger (
-    tenant_id, organization_id, student_user_id,
-    event_type, source_type, source_id, xp_delta, metadata, occurred_at
-  ) values (
-    new.tenant_id, new.organization_id, new.student_user_id,
-    'objective_mastered', 'objective', new.objective_id, 10,
-    jsonb_build_object('source', 'learning_student_mastery'), coalesce(new.last_assessed_at, now())
-  )
-  on conflict (student_user_id, event_type, source_type, source_id) do nothing;
-
-  return new;
-end;
-$function$;
-
 revoke all on function private.award_learning_assignment_reward() from public, anon, authenticated;
 revoke all on function private.award_learning_assessment_reward() from public, anon, authenticated;
-revoke all on function private.award_learning_mastery_reward() from public, anon, authenticated;
 
 create trigger learning_reward_assignment_completed
   after insert or update of status on public.learning_assignment_progress
@@ -159,11 +128,7 @@ create trigger learning_reward_assessment_passed
   when (new.passed is true)
   execute function private.award_learning_assessment_reward();
 
-create trigger learning_reward_objective_mastered
-  after insert or update of state on public.learning_student_mastery
-  for each row
-  when (new.state = 'mastered')
-  execute function private.award_learning_mastery_reward();
+-- Mastery XP is intentionally deferred until mastery state is written only by a trusted path.
 
 -- Backfill current qualifying records once, with the same idempotency keys used by triggers.
 insert into public.learning_reward_ledger (
@@ -191,14 +156,3 @@ where r.passed is true
 order by a.student_user_id, a.assessment_id, r.evaluated_at asc
 on conflict (student_user_id, event_type, source_type, source_id) do nothing;
 
-insert into public.learning_reward_ledger (
-  tenant_id, organization_id, student_user_id, event_type, source_type, source_id, xp_delta, metadata, occurred_at
-)
-select m.tenant_id, m.organization_id, m.student_user_id,
-       'objective_mastered', 'objective', m.objective_id, 10,
-       jsonb_build_object('source', 'backfill'), coalesce(m.last_assessed_at, m.updated_at, now())
-from public.learning_student_mastery m
-where m.state = 'mastered'
-on conflict (student_user_id, event_type, source_type, source_id) do nothing;
-
-commit;
