@@ -47,7 +47,7 @@ export default function TeacherLearningAnalyticsPage() {
     enabled: Boolean(selectedTerm?.id && selectedSubject?.id),
   });
 
-  const entries = entriesQuery.data ?? [];
+  const entries = useMemo(() => entriesQuery.data ?? [], [entriesQuery.data]);
   const topicIds = useMemo(
     () => [...new Set(entries.map((entry) => entry.topicId).filter((id): id is string => Boolean(id)))],
     [entries],
