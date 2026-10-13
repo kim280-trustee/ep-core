@@ -281,7 +281,7 @@ begin
     else
       select coalesce(sum(l.xp_delta),0)::integer into v_progress
       from public.learning_reward_ledger l
-      where l.student_user_id=v_student and l.class_group_id=v_class
+      where l.student_user_id=v_student and l.organization_id=v_org
         and l.event_type<>'challenge_completed'
         and l.occurred_at between v_challenge.starts_at and v_challenge.ends_at;
     end if;
