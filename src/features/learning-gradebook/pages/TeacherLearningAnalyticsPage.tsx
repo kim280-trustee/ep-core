@@ -59,7 +59,7 @@ export default function TeacherLearningAnalyticsPage() {
     enabled: entriesQuery.isSuccess,
   });
 
-  const students = classQuery.data?.students ?? [];
+  const students = useMemo(() => classQuery.data?.students ?? [], [classQuery.data?.students]);
   const leaderboardQuery = useQuery({
     queryKey: ["learning", "teacher-class-reward-standings", user?.id, classGroupId],
     queryFn: () => learningRewardsService.listClassLedger(classGroupId),
