@@ -210,7 +210,7 @@ export default function LearningRewardsPage() {
       <section>
         <p className="text-sm font-medium text-slate-500">Student Learning</p>
         <h1 className="mt-1 text-2xl font-bold text-slate-900">Rewards & achievements</h1>
-        <p className="mt-2 text-sm text-slate-500">Every completed assignment, passed assessment, and mastered objective moves your learning forward.</p>
+        <p className="mt-2 text-sm text-slate-500">Earn XP for completing assignments, passing assessments, and mastering learning objectives.</p>
       </section>
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -317,7 +317,7 @@ export default function LearningRewardsPage() {
         <div className="mt-4 divide-y divide-slate-100">
           <RewardRule title="Assignment completed" points="+20 XP" detail="Counted once per completed assignment." />
           <RewardRule title="Assessment passed" points="+15 XP" detail="Counted once per distinct assessment passed." />
-          <RewardRule title="Objective mastered" points="Badge progress" detail="Mastery contributes to badges; XP is awarded only for verified assignment completion and assessment passes." />
+          <RewardRule title="Objective mastered" points="+10 XP" detail="Awarded once when an objective first reaches verified mastered status." />
         </div>
         <p className="mt-4 text-xs text-slate-500">XP is recorded in a protected reward ledger. Badges and streaks still reflect your existing learning records.</p>
       </section>
@@ -334,13 +334,14 @@ export default function LearningRewardsPage() {
           <ul className="mt-4 divide-y divide-slate-100">
             {rewards.recentRewards.map((entry) => {
               const assignment = entry.eventType === "assignment_completed";
+              const mastery = entry.eventType === "objective_mastered";
               return (
                 <li key={entry.id} className="flex items-center gap-3 py-3 first:pt-0 last:pb-0">
-                  <span className={`rounded-xl p-2 ${assignment ? "bg-sky-50 text-sky-700" : "bg-amber-50 text-amber-700"}`}>
-                    {assignment ? <BookOpen size={18} aria-hidden="true" /> : <Star size={18} aria-hidden="true" />}
+                  <span className={`rounded-xl p-2 ${assignment ? "bg-sky-50 text-sky-700" : mastery ? "bg-emerald-50 text-emerald-700" : "bg-amber-50 text-amber-700"}`}>
+                    {assignment ? <BookOpen size={18} aria-hidden="true" /> : mastery ? <ShieldCheck size={18} aria-hidden="true" /> : <Star size={18} aria-hidden="true" />}
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="font-medium text-slate-900">{assignment ? "Assignment completed" : "Assessment passed"}</p>
+                    <p className="font-medium text-slate-900">{assignment ? "Assignment completed" : mastery ? "Objective mastered" : "Assessment passed"}</p>
                     <p className="mt-0.5 text-xs text-slate-500">
                       {new Date(entry.occurredAt).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" })}
                     </p>
@@ -351,7 +352,7 @@ export default function LearningRewardsPage() {
             })}
           </ul>
         ) : (
-          <p className="mt-4 rounded-xl bg-slate-50 p-4 text-sm text-slate-600">Your XP activity will appear here after you complete an assignment or pass an assessment.</p>
+          <p className="mt-4 rounded-xl bg-slate-50 p-4 text-sm text-slate-600">Your XP activity appears here after you complete an assignment, pass an assessment, or master an objective.</p>
         )}
       </section>
 
