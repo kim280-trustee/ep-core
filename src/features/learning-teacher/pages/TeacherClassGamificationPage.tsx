@@ -173,7 +173,7 @@ export default function TeacherClassGamificationPage() {
       ) : rosterQuery.isPending || ledgerQuery.isPending || challengesQuery.isPending ? (
         <p className="mt-4 text-sm text-slate-500">Loading student progress…</p>
       ) : (() => {
-        const now = Date.now();
+        const now = new Date().getTime();
         const activeChallenges = (challengesQuery.data ?? []).filter(challenge =>
           challenge.status === "active"
           && new Date(challenge.starts_at).getTime() <= now
