@@ -2,11 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { AlertCircle, BookOpen, CheckCircle2, Clock3, Target, TrendingUp, Zap } from "lucide-react";
+import { AlertCircle, BookOpen, CheckCircle2, Clock3, Flame, Target, TrendingUp, Zap } from "lucide-react";
 import { useAuth } from "@/core/auth";
 import { learningRuntimeService } from "@/features/learning-runtime";
+import { learningActivityService } from "@/features/learning-activity";
 import { learningAssignmentsService } from "@/features/learning-assignments";
-import { LEARNING_REWARD_LEVELS, learningRewardsService } from "@/features/learning-rewards";
+import { calculateLearningStreak, LEARNING_REWARD_LEVELS, learningRewardsService } from "@/features/learning-rewards";
 import type { LearningAssignmentProgress } from "@/features/learning-assignments";
 
 function formatDate(value: string | null) {
@@ -70,12 +71,21 @@ export default function LearningDashboardPage() {
     enabled: Boolean(studentUserId),
   });
 
+  const activityQuery = useQuery({
+    queryKey: ["learning", "dashboard-reward-activity", studentUserId],
+    queryFn: () => learningActivityService.listRecentEvents(studentUserId, 250),
+    enabled: Boolean(studentUserId),
+  });
+
   if (!user) return <div className="rounded-2xl border border-slate-200 bg-white p-6">Sign in to view your learning dashboard.</div>;
   if (query.isPending) return <div className="space-y-4"><div className="h-28 animate-pulse rounded-2xl bg-slate-200" /><div className="grid gap-4 md:grid-cols-2"><div className="h-52 animate-pulse rounded-2xl bg-slate-200" /><div className="h-52 animate-pulse rounded-2xl bg-slate-200" /></div></div>;
   if (query.isError) return <div className="flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800"><AlertCircle className="mt-0.5 shrink-0" size={20} /><div><p className="font-semibold">We could not load your learning dashboard.</p><p className="mt-1 text-sm">Please try again. Your learning data has not been changed.</p><button type="button" onClick={() => void query.refetch()} className="mt-3 rounded-lg bg-white px-3 py-2 text-sm font-medium shadow-sm">Try again</button></div></div>;
 
   const overview = query.data;
   const rewardXp = (rewardsQuery.data ?? []).reduce((total, entry) => total + entry.xpDelta, 0);
+  const learningStreak = activityQuery.isSuccess
+    ? calculateLearningStreak(activityQuery.data.map((event) => event.occurredAt))
+    : null;
   const currentRewardLevel = [...LEARNING_REWARD_LEVELS].reverse().find((level) => rewardXp >= level.minXp) ?? LEARNING_REWARD_LEVELS[0];
   const nextRewardLevel = LEARNING_REWARD_LEVELS.find((level) => level.minXp > rewardXp);
   const rewardLevelProgress = nextRewardLevel
@@ -117,7 +127,13 @@ export default function LearningDashboardPage() {
             <p className="mt-1 text-sm text-slate-600">{currentRewardLevel.description}</p>
           </div>
         </div>
-        <Link to="/learning/rewards" className="inline-flex items-center rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800">View rewards</Link>
+        <div className="flex flex-wrap items-center gap-3">
+          {learningStreak !== null && <div className="inline-flex items-center gap-2 rounded-xl border border-orange-200 bg-orange-50 px-3 py-2 text-sm font-semibold text-orange-800" aria-label={`Current learning streak: ${learningStreak} days`}>
+            <Flame size={18} aria-hidden="true" />
+            <span>{learningStreak} {learningStreak === 1 ? "day" : "days"} streak</span>
+          </div>}
+          <Link to="/learning/rewards" className="inline-flex items-center rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800">View rewards</Link>
+        </div>
       </div>
       {nextRewardLevel ? <div className="mt-5">
         <div role="progressbar" aria-label={`Progress to ${nextRewardLevel.name} level`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={rewardLevelProgress} className="h-2.5 overflow-hidden rounded-full bg-amber-100">
