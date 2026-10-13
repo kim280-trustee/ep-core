@@ -101,6 +101,15 @@ export default function LearningRewardsPage() {
     });
     const weekStart = getCurrentWeekStart(now);
     const thisWeeksRewards = rewardLedger.filter((entry) => isWithinCurrentWeek(entry.occurredAt, weekStart, now));
+    const previousWeekStart = new Date(weekStart);
+    previousWeekStart.setDate(previousWeekStart.getDate() - 7);
+    const previousWeeksRewards = rewardLedger.filter((entry) => {
+      const occurredAt = new Date(entry.occurredAt);
+      return occurredAt >= previousWeekStart && occurredAt < weekStart;
+    });
+    const weeklyXp = thisWeeksRewards.reduce((total, entry) => total + entry.xpDelta, 0);
+    const previousWeekXp = previousWeeksRewards.reduce((total, entry) => total + entry.xpDelta, 0);
+    const weeklyXpChange = weeklyXp - previousWeekXp;
     const weeklyCompletedAssignments = new Set(
       thisWeeksRewards
         .filter((entry) => entry.eventType === "assignment_completed")
@@ -202,6 +211,9 @@ export default function LearningRewardsPage() {
       nextLevel,
       levelProgress,
       streak,
+      weeklyXp,
+      previousWeekXp,
+      weeklyXpChange,
       activityCalendar,
       weeklyQuests,
       completedCount: completedAssignmentIds.size,
@@ -242,8 +254,9 @@ export default function LearningRewardsPage() {
         <p className="mt-2 text-sm text-slate-500">Earn XP for completing assignments, passing assessments, and mastering learning objectives.</p>
       </section>
 
-      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Metric icon={<Zap size={20} />} label="Learning XP" value={String(rewards.xp)} detail="Earned from recorded learning evidence" />
+        <Metric icon={<Star size={20} />} label="XP this week" value={String(rewards.weeklyXp)} detail={`${rewards.weeklyXpChange >= 0 ? "+" : ""}${rewards.weeklyXpChange} XP compared with last week`} />
         <Metric icon={<Flame size={20} />} label="Learning streak" value={`${rewards.streak} ${rewards.streak === 1 ? "day" : "days"}`} detail="Consecutive days with recorded activity" />
         <Metric icon={<Trophy size={20} />} label="Badges unlocked" value={`${rewards.unlockedCount} / ${rewards.badges.length}`} detail="Achievements earned so far" />
       </section>
