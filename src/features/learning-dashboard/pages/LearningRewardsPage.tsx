@@ -336,13 +336,14 @@ export default function LearningRewardsPage() {
               const assignment = entry.eventType === "assignment_completed";
               const mastery = entry.eventType === "objective_mastered";
               const weeklyQuest = entry.eventType === "weekly_quest_completed";
+              const streakMilestone = entry.eventType === "streak_milestone";
               return (
                 <li key={entry.id} className="flex items-center gap-3 py-3 first:pt-0 last:pb-0">
-                  <span className={`rounded-xl p-2 ${assignment ? "bg-sky-50 text-sky-700" : mastery ? "bg-emerald-50 text-emerald-700" : weeklyQuest ? "bg-violet-50 text-violet-700" : "bg-amber-50 text-amber-700"}`}>
-                    {assignment ? <BookOpen size={18} aria-hidden="true" /> : mastery ? <ShieldCheck size={18} aria-hidden="true" /> : weeklyQuest ? <Award size={18} aria-hidden="true" /> : <Star size={18} aria-hidden="true" />}
+                  <span className={`rounded-xl p-2 ${assignment ? "bg-sky-50 text-sky-700" : mastery ? "bg-emerald-50 text-emerald-700" : weeklyQuest ? "bg-violet-50 text-violet-700" : streakMilestone ? "bg-rose-50 text-rose-700" : "bg-amber-50 text-amber-700"}`}>
+                    {assignment ? <BookOpen size={18} aria-hidden="true" /> : mastery ? <ShieldCheck size={18} aria-hidden="true" /> : weeklyQuest ? <Award size={18} aria-hidden="true" /> : streakMilestone ? <Flame size={18} aria-hidden="true" /> : <Star size={18} aria-hidden="true" />}
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="font-medium text-slate-900">{assignment ? "Assignment completed" : mastery ? "Objective mastered" : weeklyQuest ? "Weekly quest completed" : "Assessment passed"}</p>
+                    <p className="font-medium text-slate-900">{assignment ? "Assignment completed" : mastery ? "Objective mastered" : weeklyQuest ? "Weekly quest completed" : streakMilestone ? `${Number(entry.metadata.milestone_days) || 0}-day streak milestone` : "Assessment passed"}</p>
                     <p className="mt-0.5 text-xs text-slate-500">
                       {new Date(entry.occurredAt).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" })}
                     </p>
