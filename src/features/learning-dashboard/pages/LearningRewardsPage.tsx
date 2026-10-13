@@ -550,8 +550,7 @@ export default function LearningRewardsPage() {
         <div className="flex items-center gap-2"><Trophy size={20} className="text-indigo-700"/><h2 id="class-challenges-heading" className="text-lg font-semibold text-slate-900">Class challenges</h2></div>
         <p className="mt-1 text-sm text-slate-500">Shared goals set by your teacher. Meet the target during the challenge period to earn the bonus XP.</p>
         {shopQuery.isPending ? <p className="mt-3 text-sm text-slate-500">Loading challenges…</p> : shopQuery.isError ? <p className="mt-3 text-sm text-red-700">Challenges could not be loaded.</p> : (() => {
-          const now = Date.now();
-          const activeChallenges = (shopQuery.data?.challenges ?? []).filter(challenge => challenge.status === "active" && new Date(challenge.ends_at).getTime() >= now && new Date(challenge.starts_at).getTime() <= now);
+          const activeChallenges = (shopQuery.data?.challenges ?? []).filter(challenge => challenge.status === "active");
           return activeChallenges.length ? <div className="mt-4 grid gap-3 sm:grid-cols-2">{activeChallenges.map(challenge => {
             const matchingRewards = query.data?.rewardLedger.filter(entry => entry.eventType === "challenge_completed" && entry.sourceId === challenge.id) ?? [];
             const completed = matchingRewards.length > 0;
