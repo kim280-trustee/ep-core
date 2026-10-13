@@ -22,6 +22,16 @@ function textSections(body: Record<string, unknown>) {
   });
 }
 
+
+function mutationErrorMessage(error: unknown, fallback: string) {
+  if (error instanceof Error) return error.message;
+  if (error && typeof error === "object" && "message" in error) {
+    const message = (error as { message?: unknown }).message;
+    if (typeof message === "string") return message;
+  }
+  return fallback;
+}
+
 export default function LearningContentRuntimePage() {
   const { user } = useAuth();
   const { assignmentId, contentId } = useParams();
@@ -275,7 +285,7 @@ export default function LearningContentRuntimePage() {
               <button type="button" disabled={(isFillInActivity ? !fillInComplete : !responseText.trim()) || responseMutation.isPending} onClick={() => responseMutation.mutate("submitted")} className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{responseMutation.isPending ? "Submitting..." : "Submit response"}</button>
             </>}
           </div>
-          {responseMutation.isError && <p className="mt-3 text-sm text-red-600">{responseMutation.error instanceof Error ? responseMutation.error.message : (responseMutation.error && typeof responseMutation.error === "object" && "message" in responseMutation.error && typeof responseMutation.error.message === "string" ? responseMutation.error.message : "Could not save your response.")}</p>}
+          {responseMutation.isError && <p className="mt-3 text-sm text-red-600">{mutationErrorMessage(responseMutation.error, "Could not save your response.")}</p>}
         </section>
       ) : (
         <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
