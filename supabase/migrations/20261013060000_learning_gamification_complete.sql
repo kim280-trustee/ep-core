@@ -301,11 +301,11 @@ begin
   select tenant_id into v_tenant from public.users where id=v_user;
   select coalesce(sum(xp_delta),0) - coalesce((
     select sum(r.cost_xp) from public.learning_reward_redemptions r
-    where r.student_user_id=v_user and r.class_group_id=v_item.class_group_id
+    where r.student_user_id=v_user and r.organization_id=v_item.organization_id
       and r.status in ('requested','approved','fulfilled')
   ),0) into v_balance
   from public.learning_reward_ledger l
-  where l.student_user_id=v_user and l.class_group_id=v_item.class_group_id;
+  where l.student_user_id=v_user and l.organization_id=v_item.organization_id;
   if v_balance<v_item.cost_xp then raise exception 'You do not have enough XP for this reward.'; end if;
   if v_item.quantity_remaining is not null then
     update public.learning_reward_shop_items
