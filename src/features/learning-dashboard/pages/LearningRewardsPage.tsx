@@ -118,6 +118,8 @@ export default function LearningRewardsPage() {
       const weekKey = localDayKey(weekStartForEntry);
       xpByWeek.set(weekKey, (xpByWeek.get(weekKey) ?? 0) + entry.xpDelta);
     });
+    const todayXp = xpByDay.get(localDayKey(now)) ?? 0;
+    const dailyXpGoal = 20;
     const bestXpDay = [...xpByDay.entries()].sort((a, b) => b[1] - a[1])[0] ?? null;
     const bestXpWeek = [...xpByWeek.entries()].sort((a, b) => b[1] - a[1])[0] ?? null;
     const weeklyXp = thisWeeksRewards.reduce((total, entry) => total + entry.xpDelta, 0);
@@ -225,6 +227,8 @@ export default function LearningRewardsPage() {
       levelProgress,
       streak,
       weeklyXp,
+      todayXp,
+      dailyXpGoal,
       bestXpDay,
       bestXpWeek,
       previousWeekXp,
@@ -274,6 +278,25 @@ export default function LearningRewardsPage() {
         <Metric icon={<Star size={20} />} label="XP this week" value={String(rewards.weeklyXp)} detail={`${rewards.weeklyXpChange >= 0 ? "+" : ""}${rewards.weeklyXpChange} XP compared with last week`} />
         <Metric icon={<Flame size={20} />} label="Learning streak" value={`${rewards.streak} ${rewards.streak === 1 ? "day" : "days"}`} detail="Consecutive days with recorded activity" />
         <Metric icon={<Trophy size={20} />} label="Badges unlocked" value={`${rewards.unlockedCount} / ${rewards.badges.length}`} detail="Achievements earned so far" />
+      </section>
+
+      <section aria-labelledby="daily-goal-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <h2 id="daily-goal-heading" className="text-lg font-semibold text-slate-900">Today's learning goal</h2>
+            <p className="mt-1 text-sm text-slate-500">Aim to earn 20 XP from verified learning today. Completing an assignment earns 20 XP.</p>
+          </div>
+          <span className={`rounded-full px-3 py-1 text-xs font-semibold ${rewards.todayXp >= rewards.dailyXpGoal ? "bg-emerald-100 text-emerald-800" : "bg-indigo-50 text-indigo-700"}`}>
+            {rewards.todayXp >= rewards.dailyXpGoal ? "Goal reached" : "Daily target"}
+          </span>
+        </div>
+        <div className="mt-4 h-3 overflow-hidden rounded-full bg-slate-100" role="progressbar" aria-label="Daily XP goal progress" aria-valuemin={0} aria-valuemax={rewards.dailyXpGoal} aria-valuenow={Math.min(rewards.todayXp, rewards.dailyXpGoal)}>
+          <div className={`h-full rounded-full transition-[width] ${rewards.todayXp >= rewards.dailyXpGoal ? "bg-emerald-500" : "bg-indigo-500"}`} style={{ width: `${Math.min(100, Math.round((rewards.todayXp / rewards.dailyXpGoal) * 100))}%` }} />
+        </div>
+        <div className="mt-2 flex flex-wrap justify-between gap-2 text-sm text-slate-600">
+          <span>{rewards.todayXp} / {rewards.dailyXpGoal} XP earned today</span>
+          <span>{rewards.todayXp >= rewards.dailyXpGoal ? "Keep your learning streak going." : `${rewards.dailyXpGoal - rewards.todayXp} XP to go`}</span>
+        </div>
       </section>
 
       <section aria-labelledby="personal-bests-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
