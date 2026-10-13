@@ -29,6 +29,7 @@ export default function LearningContentRuntimePage() {
   const content = contentId ?? "";
   const queryClient = useQueryClient();
   const [responseText, setResponseText] = useState("");
+  const [fillInAnswers, setFillInAnswers] = useState<string[]>([]);
 
   useEffect(() => {
     if (!user?.id || !id || !content) return;
@@ -100,6 +101,17 @@ export default function LearningContentRuntimePage() {
     }, 0);
     return () => window.clearTimeout(timer);
   }, [responseQuery.data]);
+
+  useEffect(() => {
+    if (!responseQuery.data || !query.data) return;
+    const template = query.data.sections.map((section) => section.body).join("\n\n");
+    const parts = template.split(/(?:\\?_){3,}/g);
+    if (parts.length < 2) return;
+    const escapedParts = parts.map((part) => part.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+    const matcher = new RegExp("^" + escapedParts.join("([\\s\\S]*?)") + "$");
+    const match = responseQuery.data.responseText.match(matcher);
+    if (match) setFillInAnswers(match.slice(1));
+  }, [query.data, responseQuery.data]);
 
   const responseMutation = useMutation({
     mutationFn: async (status: "draft" | "submitted") => {
@@ -184,7 +196,16 @@ export default function LearningContentRuntimePage() {
   }
 
   const { assignment, content: currentContent, version, sections } = query.data;
-  const isFillInActivity = sections.some((section) => /_{3,}/.test(section.body));
+  const fillInPattern = /(?:\\?_){3,}/g;
+  const isFillInActivity = sections.some((section) => fillInPattern.test(section.body));
+  fillInPattern.lastIndex = 0;
+  const buildFillInResponse = (answers: string[]) => {
+    let answerIndex = 0;
+    return sections.map((section) => section.body.replace(/(?:\\?_){3,}/g, () => answers[answerIndex++]?.trim() || "____")).join("\n\n");
+  };
+  const fillInBlankCount = sections.reduce((count, section) => count + (section.body.match(/(?:\\?_){3,}/g)?.length ?? 0), 0);
+  const fillInComplete = fillInBlankCount > 0 && Array.from({ length: fillInBlankCount }, (_, index) => fillInAnswers[index]?.trim()).every(Boolean);
+  let renderedBlankIndex = 0;
 
   return (
     <div className="space-y-6">
@@ -219,7 +240,18 @@ export default function LearningContentRuntimePage() {
           {sections.length ? sections.map((section, index) => (
             <article key={`${version.id}-${index}`} className="space-y-2">
               {section.title && <h2 className="text-lg font-semibold text-slate-900">{section.title}</h2>}
-              <div className="whitespace-pre-wrap text-base leading-7 text-slate-700">{section.body}</div>
+              <div className="whitespace-pre-wrap text-base leading-8 text-slate-700">
+                {isFillInActivity ? section.body.split(/((?:\\?_){3,})/g).map((part, partIndex) => {
+                  if (!/(?:\\?_){3,}/.test(part)) return <span key={`${index}-text-${partIndex}`}>{part}</span>;
+                  const answerIndex = renderedBlankIndex++;
+                  return <input key={`${index}-blank-${answerIndex}`} aria-label={`Answer blank ${answerIndex + 1}`} value={fillInAnswers[answerIndex] ?? ""} disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending} onChange={(event) => {
+                    const nextAnswers = [...fillInAnswers];
+                    nextAnswers[answerIndex] = event.target.value;
+                    setFillInAnswers(nextAnswers);
+                    setResponseText(buildFillInResponse(nextAnswers));
+                  }} className="mx-1 inline-block min-w-28 max-w-full rounded-md border border-slate-400 bg-white px-2 py-1 text-slate-900 outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200" placeholder={`Blank ${answerIndex + 1}`} />
+                }) : section.body}
+              </div>
             </article>
           )) : (
             <p className="text-sm text-slate-500">This content version is currently empty.</p>
@@ -229,13 +261,13 @@ export default function LearningContentRuntimePage() {
 
       {currentContent.contentType === "writing" || isFillInActivity ? (
         <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
-          <h2 className="text-lg font-semibold text-slate-900">{isFillInActivity ? "Complete the activity" : "Your response"}</h2>
-          <p className="mt-1 text-sm text-slate-500">{isFillInActivity ? "Type your completed introduction below, replacing each blank with your own information. You can save a draft and return later." : "Write your answer below. You can save a draft and return later."}</p>
-          <textarea value={responseText} onChange={e => setResponseText(e.target.value)} disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending} className="input mt-4 min-h-40 w-full resize-y" placeholder={isFillInActivity ? "Hello, my name is ... I am ... years old. I am from ... I study at ... I like ..." : "Write your answer here..."} />
+          <h2 className="text-lg font-semibold text-slate-900">{isFillInActivity ? "Submit your completed activity" : "Your response"}</h2>
+          <p className="mt-1 text-sm text-slate-500">{isFillInActivity ? "Fill in each blank in the content above, then save or submit your completed introduction." : "Write your answer below. You can save a draft and return later."}</p>
+          {!isFillInActivity && <textarea value={responseText} onChange={e => setResponseText(e.target.value)} disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending} className="input mt-4 min-h-40 w-full resize-y" placeholder="Write your answer here..." />}
           <div className="mt-4 flex flex-wrap items-center gap-3">
             {responseQuery.data?.status === "submitted" ? <span className="text-sm font-medium text-emerald-700">Response submitted.</span> : <>
-              <button type="button" disabled={!responseText.trim() || responseMutation.isPending} onClick={() => responseMutation.mutate("draft")} className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold disabled:opacity-50">Save draft</button>
-              <button type="button" disabled={!responseText.trim() || responseMutation.isPending} onClick={() => responseMutation.mutate("submitted")} className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{responseMutation.isPending ? "Submitting..." : "Submit response"}</button>
+              <button type="button" disabled={(isFillInActivity ? !fillInComplete : !responseText.trim()) || responseMutation.isPending} onClick={() => responseMutation.mutate("draft")} className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold disabled:opacity-50">Save draft</button>
+              <button type="button" disabled={(isFillInActivity ? !fillInComplete : !responseText.trim()) || responseMutation.isPending} onClick={() => responseMutation.mutate("submitted")} className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{responseMutation.isPending ? "Submitting..." : "Submit response"}</button>
             </>}
           </div>
           {responseMutation.isError && <p className="mt-3 text-sm text-red-600">{responseMutation.error instanceof Error ? responseMutation.error.message : "Could not save your response."}</p>}
