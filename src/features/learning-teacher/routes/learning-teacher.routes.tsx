@@ -17,6 +17,7 @@ import TeacherContentLibraryPage from "../../learning-content/pages/TeacherConte
 import TeacherContentCreatePage from "../../learning-content/pages/TeacherContentCreatePage";
 import TeacherContentDetailPage from "../../learning-content/pages/TeacherContentDetailPage";
 import TeacherContentResponsesPage from "../../learning-content/pages/TeacherContentResponsesPage";
+import TeacherClassGamificationPage from "../pages/TeacherClassGamificationPage";
 
 export const learningTeacherRoutes: RouteObject[] = [
   {
@@ -38,6 +39,7 @@ export const learningTeacherRoutes: RouteObject[] = [
       { path: "classes/:classGroupId/gradebook/settings", element: <TeacherGradebookSettingsPage /> },
       { path: "classes/:classGroupId/gradebook/reports", element: <TeacherGradebookReportsPage /> },
       { path: "classes/:classGroupId/analytics", element: <TeacherLearningAnalyticsPage /> },
+      { path: "classes/:classGroupId/gamification", element: <TeacherClassGamificationPage /> },
       { path: "classes/:classGroupId/gradebook/:studentUserId", element: <TeacherStudentPerformancePage /> },
       { path: "assignments/:assignmentId/responses", element: <TeacherContentResponsesPage /> },
     ],
