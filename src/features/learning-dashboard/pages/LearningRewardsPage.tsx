@@ -191,6 +191,7 @@ export default function LearningRewardsPage() {
       unlockedCount: badges.filter((badge) => badge.unlocked).length,
       recentActivityCount: activity.length,
       rewardEventCount: rewardLedger.length,
+      recentRewards: rewardLedger.slice(0, 5),
     };
   }, [query.data]);
 
@@ -327,6 +328,39 @@ export default function LearningRewardsPage() {
           <RewardRule title="Objective mastered" points="Badge progress" detail="Mastery contributes to badges; XP is awarded only for verified assignment completion and assessment passes." />
         </div>
         <p className="mt-4 text-xs text-slate-500">XP is recorded in a protected reward ledger. Badges and streaks still reflect your existing learning records.</p>
+      </section>
+
+      <section aria-labelledby="recent-xp-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <h2 id="recent-xp-heading" className="text-lg font-semibold text-slate-900">Recent XP activity</h2>
+            <p className="mt-1 text-sm text-slate-500">A record of the learning evidence that earned your XP.</p>
+          </div>
+          <span className="rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-800">{rewards.rewardEventCount} total events</span>
+        </div>
+        {rewards.recentRewards.length ? (
+          <ul className="mt-4 divide-y divide-slate-100">
+            {rewards.recentRewards.map((entry) => {
+              const assignment = entry.eventType === "assignment_completed";
+              return (
+                <li key={entry.id} className="flex items-center gap-3 py-3 first:pt-0 last:pb-0">
+                  <span className={`rounded-xl p-2 ${assignment ? "bg-sky-50 text-sky-700" : "bg-amber-50 text-amber-700"}`}>
+                    {assignment ? <BookOpen size={18} aria-hidden="true" /> : <Star size={18} aria-hidden="true" />}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className="font-medium text-slate-900">{assignment ? "Assignment completed" : "Assessment passed"}</p>
+                    <p className="mt-0.5 text-xs text-slate-500">
+                      {new Date(entry.occurredAt).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" })}
+                    </p>
+                  </div>
+                  <span className="shrink-0 font-semibold tabular-nums text-emerald-700">+{entry.xpDelta} XP</span>
+                </li>
+              );
+            })}
+          </ul>
+        ) : (
+          <p className="mt-4 rounded-xl bg-slate-50 p-4 text-sm text-slate-600">Your XP activity will appear here after you complete an assignment or pass an assessment.</p>
+        )}
       </section>
 
       <section className="grid gap-4 sm:grid-cols-2">
