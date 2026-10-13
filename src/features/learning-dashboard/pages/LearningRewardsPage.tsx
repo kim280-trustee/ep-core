@@ -56,6 +56,16 @@ export default function LearningRewardsPage() {
     },
     enabled: Boolean(studentId),
   });
+  const leaderboardQuery = useQuery({
+    queryKey: ["learning", "class-leaderboards", studentId],
+    queryFn: async () => {
+      const memberships = await learningEnrollmentService.listUserClasses(studentId);
+      const classIds = [...new Set(memberships.filter(item => item.membershipType === "student").map(item => item.classGroupId))];
+      const rows = await Promise.all(classIds.map(classGroupId => learningRewardsService.listClassLeaderboard(classGroupId)));
+      return rows.flat();
+    },
+    enabled: Boolean(studentId),
+  });
   const redeemMutation = useMutation({
     mutationFn: (itemId: string) => learningRewardsService.redeemReward(itemId),
     onSuccess: async () => {
@@ -101,6 +111,15 @@ export default function LearningRewardsPage() {
         .filter((assessmentId): assessmentId is string => Boolean(assessmentId)),
     );
     const masteredObjectives = mastery.filter((item) => item.state === "mastered").length;
+    const rewardedAssignmentIds = new Set(rewardLedger.filter((entry) => entry.eventType === "assignment_completed").map((entry) => entry.sourceId));
+    const rewardedAssessmentIds = new Set(rewardLedger.filter((entry) => entry.eventType === "assessment_passed").map((entry) => entry.sourceId));
+    const rewardedObjectiveIds = new Set(rewardLedger.filter((entry) => entry.eventType === "objective_mastered").map((entry) => entry.sourceId));
+    const hasThreeDayStreakMilestone = rewardLedger.some(
+      (entry) => entry.eventType === "streak_milestone" && Number(entry.metadata.milestone_days) >= 3,
+    );
+    const hasSevenDayStreakMilestone = rewardLedger.some(
+      (entry) => entry.eventType === "streak_milestone" && Number(entry.metadata.milestone_days) >= 7,
+    );
     const xp = rewardLedger.reduce((total, entry) => total + entry.xpDelta, 0);
     const nextLevelIndex = LEARNING_REWARD_LEVELS.findIndex((level) => level.minXp > xp);
     const currentLevel = LEARNING_REWARD_LEVELS[nextLevelIndex === -1 ? LEARNING_REWARD_LEVELS.length - 1 : nextLevelIndex - 1];
@@ -178,6 +197,18 @@ export default function LearningRewardsPage() {
         .map((entry) => entry.metadata.quest_code)
         .filter((questCode): questCode is string => typeof questCode === "string" && questCode.length > 0),
     );
+    const questCodesByWeek = new Map<string, Set<string>>();
+    rewardLedger
+      .filter((entry) => entry.eventType === "weekly_quest_completed")
+      .forEach((entry) => {
+        const questCode = entry.metadata.quest_code;
+        const weekStartValue = entry.metadata.week_start;
+        if (typeof questCode !== "string" || typeof weekStartValue !== "string") return;
+        const codes = questCodesByWeek.get(weekStartValue) ?? new Set<string>();
+        codes.add(questCode);
+        questCodesByWeek.set(weekStartValue, codes);
+      });
+    const weeklyChampionUnlocked = [...questCodesByWeek.values()].some((codes) => codes.size >= 3);
     const weeklyQuests = [
       {
         title: "Finish two assignments",
@@ -205,80 +236,80 @@ export default function LearningRewardsPage() {
       {
         title: "First Steps",
         description: "Complete your first assignment.",
-        unlocked: completedAssignmentIds.size >= 1,
-        progress: completedAssignmentIds.size,
+        unlocked: rewardedAssignmentIds.size >= 1,
+        progress: rewardedAssignmentIds.size,
         target: 1,
         icon: BookOpen,
       },
       {
         title: "Assessment Ace",
         description: "Pass an assessment for the first time.",
-        unlocked: passedAssessmentIds.size >= 1,
-        progress: passedAssessmentIds.size,
+        unlocked: rewardedAssessmentIds.size >= 1,
+        progress: rewardedAssessmentIds.size,
         target: 1,
         icon: Star,
       },
       {
         title: "Three-Day Streak",
         description: "Learn on three consecutive days.",
-        unlocked: streak >= 3,
-        progress: streak,
+        unlocked: hasThreeDayStreakMilestone,
+        progress: Math.max(streak, hasThreeDayStreakMilestone ? 3 : 0),
         target: 3,
         icon: Flame,
       },
       {
         title: "Mastery Builder",
         description: "Master three learning objectives.",
-        unlocked: masteredObjectives >= 3,
-        progress: masteredObjectives,
+        unlocked: rewardedObjectiveIds.size >= 3,
+        progress: rewardedObjectiveIds.size,
         target: 3,
         icon: ShieldCheck,
       },
       {
         title: "Dedicated Learner",
         description: "Complete five assignments.",
-        unlocked: completedAssignmentIds.size >= 5,
-        progress: completedAssignmentIds.size,
+        unlocked: rewardedAssignmentIds.size >= 5,
+        progress: rewardedAssignmentIds.size,
         target: 5,
         icon: Trophy,
       },
       {
         title: "Weekly Champion",
         description: "Complete all three weekly quests in one week.",
-        unlocked: completedWeeklyQuestCodes.size >= 3,
-        progress: completedWeeklyQuestCodes.size,
+        unlocked: weeklyChampionUnlocked,
+        progress: Math.max(completedWeeklyQuestCodes.size, weeklyChampionUnlocked ? 3 : 0),
         target: 3,
         icon: Trophy,
       },
       {
         title: "Rising Star",
         description: "Complete ten assignments.",
-        unlocked: completedAssignmentIds.size >= 10,
-        progress: completedAssignmentIds.size,
+        unlocked: rewardedAssignmentIds.size >= 10,
+        progress: rewardedAssignmentIds.size,
         target: 10,
         icon: BookOpen,
       },
       {
         title: "Quiz Champion",
         description: "Pass five distinct assessments.",
-        unlocked: passedAssessmentIds.size >= 5,
-        progress: passedAssessmentIds.size,
+        unlocked: rewardedAssessmentIds.size >= 5,
+        progress: rewardedAssessmentIds.size,
         target: 5,
         icon: Star,
       },
       {
         title: "Mastery Expert",
         description: "Master ten learning objectives.",
-        unlocked: masteredObjectives >= 10,
-        progress: masteredObjectives,
+        unlocked: rewardedObjectiveIds.size >= 10,
+        progress: rewardedObjectiveIds.size,
         target: 10,
         icon: ShieldCheck,
       },
       {
         title: "Week Warrior",
         description: "Learn on seven consecutive days.",
-        unlocked: streak >= 7,
-        progress: streak,
+        unlocked: hasSevenDayStreakMilestone,
+        progress: Math.max(streak, hasSevenDayStreakMilestone ? 7 : 0),
         target: 7,
         icon: Flame,
       },
@@ -550,7 +581,12 @@ export default function LearningRewardsPage() {
         <div className="flex items-center gap-2"><Trophy size={20} className="text-indigo-700"/><h2 id="class-challenges-heading" className="text-lg font-semibold text-slate-900">Class challenges</h2></div>
         <p className="mt-1 text-sm text-slate-500">Shared goals set by your teacher. Meet the target during the challenge period to earn the bonus XP.</p>
         {shopQuery.isPending ? <p className="mt-3 text-sm text-slate-500">Loading challenges…</p> : shopQuery.isError ? <p className="mt-3 text-sm text-red-700">Challenges could not be loaded.</p> : (() => {
-          const activeChallenges = (shopQuery.data?.challenges ?? []).filter(challenge => challenge.status === "active");
+          const now = new Date().getTime();
+          const activeChallenges = (shopQuery.data?.challenges ?? []).filter(challenge =>
+            challenge.status === "active"
+            && new Date(challenge.starts_at).getTime() <= now
+            && new Date(challenge.ends_at).getTime() >= now
+          );
           return activeChallenges.length ? <div className="mt-4 grid gap-3 sm:grid-cols-2">{activeChallenges.map(challenge => {
             const matchingRewards = query.data?.rewardLedger.filter(entry => entry.eventType === "challenge_completed" && entry.sourceId === challenge.id) ?? [];
             const completed = matchingRewards.length > 0;
@@ -560,6 +596,31 @@ export default function LearningRewardsPage() {
             const percent = Math.round((bounded / challenge.target_value) * 100);
             return <article key={challenge.id} className={"rounded-xl border p-4 " + (completed ? "border-emerald-200 bg-emerald-50/50" : "border-slate-200 bg-slate-50")}><div className="flex items-start justify-between gap-2"><h3 className="font-semibold text-slate-900">{challenge.title}</h3><span className="shrink-0 rounded-full bg-white px-2 py-1 text-xs font-semibold text-indigo-700">+{challenge.bonus_xp} XP</span></div><p className="mt-2 text-sm text-slate-600">{challenge.description || (challenge.target_value + " " + challenge.target_type.replaceAll("_"," "))}</p><div className="mt-4 h-2 overflow-hidden rounded-full bg-slate-200" role="progressbar" aria-label={challenge.title + " progress"} aria-valuemin={0} aria-valuemax={challenge.target_value} aria-valuenow={bounded}><div className={"h-full rounded-full " + (completed ? "bg-emerald-500" : "bg-indigo-500")} style={{width:percent+"%"}}/></div><div className="mt-2 flex justify-between gap-2 text-xs text-slate-500"><span>{completed ? "Completed" : bounded + " / " + challenge.target_value}</span><span>Ends {new Date(challenge.ends_at).toLocaleDateString()}</span></div></article>;
           })}</div> : <p className="mt-4 rounded-xl border border-dashed p-5 text-sm text-slate-500">No active class challenges right now.</p>;
+        })()}
+      </section>
+
+      <section aria-labelledby="class-leaderboard-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <div className="flex items-center gap-2"><Trophy size={20} className="text-indigo-700"/><h2 id="class-leaderboard-heading" className="text-lg font-semibold text-slate-900">Class XP standings</h2></div>
+        <p className="mt-1 text-sm text-slate-500">See how your learning XP compares with classmates. Names are shortened to protect student privacy.</p>
+        {leaderboardQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading class standings…</p> : leaderboardQuery.isError ? <p className="mt-4 text-sm text-red-700">Class standings could not be loaded.</p> : (() => {
+          const allRows = leaderboardQuery.data ?? [];
+          const classIds = [...new Set(allRows.map(row => row.class_group_id))];
+          return classIds.length ? <div className="mt-4 grid gap-4 lg:grid-cols-2">{classIds.map(classId => {
+            const rows = allRows.filter(row => row.class_group_id === classId);
+            const visible = rows.slice(0, 5);
+            const own = rows.find(row => row.is_current_user);
+            if (own && !visible.some(row => row.is_current_user)) visible.push(own);
+            return <section key={classId} className="rounded-xl border border-slate-200 p-4" aria-label={rows[0]?.class_name + " XP standings"}>
+              <h3 className="font-semibold text-slate-900">{rows[0]?.class_name ?? "Your class"}</h3>
+              <ol className="mt-3 space-y-2">
+                {visible.map((row, index) => <li key={row.rank + "-" + index} className={"flex items-center gap-3 rounded-lg px-3 py-2 " + (row.is_current_user ? "bg-indigo-50 ring-1 ring-indigo-200" : "bg-slate-50")}>
+                  <span className="w-7 text-sm font-bold tabular-nums text-slate-500">#{row.rank}</span>
+                  <span className="min-w-0 flex-1 truncate text-sm font-medium text-slate-800">{row.display_name}{row.is_current_user ? " (you)" : ""}</span>
+                  <span className="text-sm font-semibold tabular-nums text-indigo-700">{row.xp_total} XP</span>
+                </li>)}
+              </ol>
+            </section>;
+          })}</div> : <p className="mt-4 rounded-xl border border-dashed p-5 text-sm text-slate-500">Class standings will appear when you join a class and earn learning XP.</p>;
         })()}
       </section>
 

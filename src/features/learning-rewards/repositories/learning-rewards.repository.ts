@@ -29,6 +29,95 @@ const mapReward = (row: RewardRow): LearningRewardLedgerEntry => ({
 });
 
 export const learningRewardsRepository = {
+  async getClassContext(classGroupId: string) {
+    const { data: classGroup, error: classError } = await supabase
+      .from("learning_class_groups")
+      .select("id, organization_id, name")
+      .eq("id", classGroupId)
+      .single();
+    if (classError) throw classError;
+
+    const { data: organization, error: organizationError } = await supabase
+      .from("organizations")
+      .select("tenant_id")
+      .eq("id", classGroup.organization_id)
+      .single();
+    if (organizationError) throw organizationError;
+
+    return { ...classGroup, tenant_id: organization.tenant_id };
+  },
+
+  async createClassChallenge(input: {
+    tenantId: string;
+    organizationId: string;
+    classGroupId: string;
+    title: string;
+    description: string;
+    targetType: "assignments_completed" | "xp_earned";
+    targetValue: number;
+    bonusXp: number;
+    endsAt: string;
+    createdBy: string;
+  }) {
+    const { error } = await supabase.from("learning_class_challenges").insert({
+      tenant_id: input.tenantId,
+      organization_id: input.organizationId,
+      class_group_id: input.classGroupId,
+      title: input.title,
+      description: input.description,
+      target_type: input.targetType,
+      target_value: input.targetValue,
+      bonus_xp: input.bonusXp,
+      ends_at: input.endsAt,
+      created_by: input.createdBy,
+    });
+    if (error) throw error;
+  },
+
+  async createShopItem(input: {
+    tenantId: string;
+    organizationId: string;
+    classGroupId: string;
+    name: string;
+    description: string;
+    costXp: number;
+    quantityRemaining: number | null;
+    createdBy: string;
+  }) {
+    const { error } = await supabase.from("learning_reward_shop_items").insert({
+      tenant_id: input.tenantId,
+      organization_id: input.organizationId,
+      class_group_id: input.classGroupId,
+      name: input.name,
+      description: input.description,
+      cost_xp: input.costXp,
+      quantity_remaining: input.quantityRemaining,
+      created_by: input.createdBy,
+    });
+    if (error) throw error;
+  },
+
+  async updateClassChallengeStatus(id: string, status: "active" | "paused" | "ended") {
+    const { error } = await supabase.from("learning_class_challenges")
+      .update({ status, updated_at: new Date().toISOString() })
+      .eq("id", id);
+    if (error) throw error;
+  },
+
+  async updateShopItemStatus(id: string, status: "active" | "inactive") {
+    const { error } = await supabase.from("learning_reward_shop_items")
+      .update({ status, updated_at: new Date().toISOString() })
+      .eq("id", id);
+    if (error) throw error;
+  },
+
+  async listClassLeaderboard(classGroupId: string) {
+    const { data, error } = await supabase.rpc("get_learning_class_leaderboard", {
+      p_class_group_id: classGroupId,
+    });
+    if (error) throw error;
+    return data ?? [];
+  },
   async listStudentLedger(studentUserId: string): Promise<LearningRewardLedgerEntry[]> {
     const { data, error } = await supabase
       .from("learning_reward_ledger")

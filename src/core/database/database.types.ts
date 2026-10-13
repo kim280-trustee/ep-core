@@ -4599,6 +4599,17 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_learning_class_leaderboard: {
+        Args: { p_class_group_id: string }
+        Returns: {
+          class_group_id: string
+          class_name: string
+          display_name: string
+          xp_total: number
+          rank: number
+          is_current_user: boolean
+        }[]
+      }
       redeem_learning_reward: {
         Args: { p_item_id: string }
         Returns: string
