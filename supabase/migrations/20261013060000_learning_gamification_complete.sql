@@ -61,7 +61,7 @@ create table public.learning_reward_redemptions (
   foreign key (tenant_id, organization_id) references public.organizations(tenant_id, id) on delete cascade,
   foreign key (organization_id, class_group_id) references public.learning_class_groups(organization_id, id) on delete cascade,
   foreign key (tenant_id, student_user_id) references public.users(tenant_id, id) on delete cascade,
-  foreign key (tenant_id, reviewed_by) references public.users(tenant_id, id) on delete set null
+  foreign key (tenant_id, reviewed_by) references public.users(tenant_id, id)
 );
 create index learning_reward_redemptions_class_status_idx
   on public.learning_reward_redemptions(class_group_id, status, requested_at desc);
@@ -208,7 +208,10 @@ create policy learning_activity_events_parent_read
 create or replace function private.create_learning_reward_notification()
 returns trigger language plpgsql security definer set search_path = ''
 as $function$
-declare v_title text; v_message text;
+declare
+  v_title text;
+  v_message text;
+  v_count integer;
 begin
   v_title := case new.event_type
     when 'assignment_completed' then 'Assignment completed'
@@ -219,6 +222,25 @@ begin
     when 'challenge_completed' then 'Class challenge completed'
     else 'Learning reward earned' end;
   v_message := '+' || new.xp_delta::text || ' XP earned. Keep up your learning progress.';
+  if new.event_type='assignment_completed' then
+    select count(*)::integer into v_count from public.learning_reward_ledger
+    where student_user_id=new.student_user_id and event_type='assignment_completed';
+    if v_count=1 then v_title:='Badge unlocked: First Steps';
+    elsif v_count=5 then v_title:='Badge unlocked: Dedicated Learner'; end if;
+  elsif new.event_type='assessment_passed' then
+    select count(*)::integer into v_count from public.learning_reward_ledger
+    where student_user_id=new.student_user_id and event_type='assessment_passed';
+    if v_count=1 then v_title:='Badge unlocked: Assessment Ace'; end if;
+  elsif new.event_type='objective_mastered' then
+    select count(*)::integer into v_count from public.learning_reward_ledger
+    where student_user_id=new.student_user_id and event_type='objective_mastered';
+    if v_count=3 then v_title:='Badge unlocked: Mastery Builder'; end if;
+  elsif new.event_type='streak_milestone' and (new.metadata->>'milestone_days')::integer=3 then
+    v_title:='Badge unlocked: Three-Day Streak';
+  end if;
+  if v_title like 'Badge unlocked:%' then
+    v_message := v_message || ' You also unlocked an achievement badge.';
+  end if;
   insert into public.learning_reward_notifications(tenant_id,organization_id,student_user_id,reward_ledger_id,title,message)
   values(new.tenant_id,new.organization_id,new.student_user_id,new.id,v_title,v_message)
   on conflict(student_user_id,reward_ledger_id) do nothing;
