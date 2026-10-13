@@ -190,7 +190,7 @@ export default function LearningContentRuntimePage() {
   fillInPattern.lastIndex = 0;
   const buildFillInResponse = (answers: string[]) => {
     let answerIndex = 0;
-    return sections.map((section) => section.body.replace(/(?:\\?_){3,}/g, () => answers[answerIndex++]?.trim() || "____")).join("\\n\\n");
+    return sections.map((section) => section.body.replace(/(?:\\?_){3,}/g, () => answers[answerIndex++]?.trim() || "____")).join("\n\n");
   };
   let renderedBlankIndex = 0;
 
@@ -228,7 +228,7 @@ export default function LearningContentRuntimePage() {
             <article key={`${version.id}-${index}`} className="space-y-2">
               {section.title && <h2 className="text-lg font-semibold text-slate-900">{section.title}</h2>}
               <div className="whitespace-pre-wrap text-base leading-8 text-slate-700">
-                {isFillInActivity ? section.body.split(/((?:\\\\?_){3,})/g).map((part, partIndex) => {
+                {isFillInActivity ? section.body.split(/((?:\\?_){3,})/g).map((part, partIndex) => {
                   if (!/(?:\\?_){3,}/.test(part)) return <span key={`${index}-text-${partIndex}`}>{part}</span>;
                   const answerIndex = renderedBlankIndex++;
                   return <input key={`${index}-blank-${answerIndex}`} aria-label={`Answer blank ${answerIndex + 1}`} value={fillInAnswers[answerIndex] ?? ""} disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending} onChange={(event) => {
