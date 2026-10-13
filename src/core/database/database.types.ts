@@ -3064,6 +3064,30 @@ export type Database = {
           },
         ]
       }
+      learning_class_challenges: {
+        Row: { id: string; tenant_id: string; organization_id: string; class_group_id: string; title: string; description: string; target_type: string; target_value: number; bonus_xp: number; starts_at: string; ends_at: string; status: string; created_by: string; created_at: string; updated_at: string }
+        Insert: { id?: string; tenant_id: string; organization_id: string; class_group_id: string; title: string; description?: string; target_type: string; target_value: number; bonus_xp?: number; starts_at?: string; ends_at: string; status?: string; created_by: string; created_at?: string; updated_at?: string }
+        Update: { title?: string; description?: string; target_type?: string; target_value?: number; bonus_xp?: number; starts_at?: string; ends_at?: string; status?: string; updated_at?: string }
+        Relationships: []
+      }
+      learning_reward_shop_items: {
+        Row: { id: string; tenant_id: string; organization_id: string; class_group_id: string; name: string; description: string; cost_xp: number; quantity_remaining: number | null; status: string; created_by: string; created_at: string; updated_at: string }
+        Insert: { id?: string; tenant_id: string; organization_id: string; class_group_id: string; name: string; description?: string; cost_xp: number; quantity_remaining?: number | null; status?: string; created_by: string; created_at?: string; updated_at?: string }
+        Update: { name?: string; description?: string; cost_xp?: number; quantity_remaining?: number | null; status?: string; updated_at?: string }
+        Relationships: []
+      }
+      learning_reward_redemptions: {
+        Row: { id: string; tenant_id: string; organization_id: string; class_group_id: string; item_id: string; student_user_id: string; cost_xp: number; status: string; requested_at: string; reviewed_by: string | null; reviewed_at: string | null; review_note: string | null }
+        Insert: { id?: string; tenant_id: string; organization_id: string; class_group_id: string; item_id: string; student_user_id: string; cost_xp: number; status?: string; requested_at?: string; reviewed_by?: string | null; reviewed_at?: string | null; review_note?: string | null }
+        Update: { status?: string; reviewed_by?: string | null; reviewed_at?: string | null; review_note?: string | null }
+        Relationships: []
+      }
+      learning_reward_notifications: {
+        Row: { id: string; tenant_id: string; organization_id: string | null; student_user_id: string; reward_ledger_id: string; title: string; message: string; created_at: string; read_at: string | null }
+        Insert: { id?: string; tenant_id: string; organization_id?: string | null; student_user_id: string; reward_ledger_id: string; title: string; message: string; created_at?: string; read_at?: string | null }
+        Update: { read_at?: string | null }
+        Relationships: []
+      }
       learning_sessions: {
         Row: {
           context_id: string | null
@@ -4575,6 +4599,14 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      redeem_learning_reward: {
+        Args: { p_item_id: string }
+        Returns: string
+      }
+      review_learning_reward_redemption: {
+        Args: { p_redemption_id: string; p_decision: string; p_note?: string | null }
+        Returns: undefined
+      }
       accept_learning_parent_invitation: {
         Args: { p_invitation_id: string }
         Returns: string

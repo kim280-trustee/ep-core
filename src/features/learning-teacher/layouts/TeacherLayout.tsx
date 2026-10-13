@@ -78,6 +78,7 @@ export default function TeacherLayout() {
     { to: "/teacher/classes/"+primaryClassId+"/gradebook", label: "Gradebook" },
     { to: "/teacher/classes/"+primaryClassId+"/gradebook/reports", label: "Gradebook Reports" },
     { to: "/teacher/classes/"+primaryClassId+"/gradebook/settings", label: "Gradebook Settings" },
+    { to: "/teacher/classes/"+primaryClassId+"/gamification", label: "Class Gamification" },
   ] : [];
 
   const linkClass = (active: boolean) => [
