@@ -184,6 +184,7 @@ export default function LearningContentRuntimePage() {
   }
 
   const { assignment, content: currentContent, version, sections } = query.data;
+  const isFillInActivity = sections.some((section) => /_{3,}/.test(section.body));
 
   return (
     <div className="space-y-6">
@@ -226,11 +227,11 @@ export default function LearningContentRuntimePage() {
         </div>
       </section>
 
-      {currentContent.contentType === "writing" ? (
+      {currentContent.contentType === "writing" || isFillInActivity ? (
         <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
-          <h2 className="text-lg font-semibold text-slate-900">Your response</h2>
-          <p className="mt-1 text-sm text-slate-500">Write your answer below. You can save a draft and return later.</p>
-          <textarea value={responseText} onChange={e => setResponseText(e.target.value)} disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending} className="input mt-4 min-h-64 w-full resize-y" placeholder="Write your answer here..." />
+          <h2 className="text-lg font-semibold text-slate-900">{isFillInActivity ? "Complete the activity" : "Your response"}</h2>
+          <p className="mt-1 text-sm text-slate-500">{isFillInActivity ? "Type your completed introduction below, replacing each blank with your own information. You can save a draft and return later." : "Write your answer below. You can save a draft and return later."}</p>
+          <textarea value={responseText} onChange={e => setResponseText(e.target.value)} disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending} className="input mt-4 min-h-40 w-full resize-y" placeholder={isFillInActivity ? "Hello, my name is ... I am ... years old. I am from ... I study at ... I like ..." : "Write your answer here..."} />
           <div className="mt-4 flex flex-wrap items-center gap-3">
             {responseQuery.data?.status === "submitted" ? <span className="text-sm font-medium text-emerald-700">Response submitted.</span> : <>
               <button type="button" disabled={!responseText.trim() || responseMutation.isPending} onClick={() => responseMutation.mutate("draft")} className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold disabled:opacity-50">Save draft</button>
