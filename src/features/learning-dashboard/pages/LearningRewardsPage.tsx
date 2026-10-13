@@ -79,6 +79,26 @@ export default function LearningRewardsPage() {
       : 100;
     const streak = calculateLearningStreak(activity.map((event) => event.occurredAt));
     const now = new Date();
+    const calendarEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    calendarEnd.setDate(calendarEnd.getDate() + (6 - calendarEnd.getDay()));
+    const calendarStart = new Date(calendarEnd);
+    calendarStart.setDate(calendarStart.getDate() - 34);
+    const activityByDay = new Map<string, number>();
+    activity.forEach((event) => {
+      const dayKey = localDayKey(new Date(event.occurredAt));
+      activityByDay.set(dayKey, (activityByDay.get(dayKey) ?? 0) + 1);
+    });
+    const activityCalendar = Array.from({ length: 35 }, (_, index) => {
+      const date = new Date(calendarStart);
+      date.setDate(calendarStart.getDate() + index);
+      const key = localDayKey(date);
+      return {
+        key,
+        date,
+        count: activityByDay.get(key) ?? 0,
+        isToday: key === localDayKey(now),
+      };
+    });
     const weekStart = getCurrentWeekStart(now);
     const thisWeeksRewards = rewardLedger.filter((entry) => isWithinCurrentWeek(entry.occurredAt, weekStart, now));
     const weeklyCompletedAssignments = new Set(
@@ -182,6 +202,7 @@ export default function LearningRewardsPage() {
       nextLevel,
       levelProgress,
       streak,
+      activityCalendar,
       weeklyQuests,
       completedCount: completedAssignmentIds.size,
       passedCount: passedAssessmentIds.size,
@@ -225,6 +246,45 @@ export default function LearningRewardsPage() {
         <Metric icon={<Zap size={20} />} label="Learning XP" value={String(rewards.xp)} detail="Earned from recorded learning evidence" />
         <Metric icon={<Flame size={20} />} label="Learning streak" value={`${rewards.streak} ${rewards.streak === 1 ? "day" : "days"}`} detail="Consecutive days with recorded activity" />
         <Metric icon={<Trophy size={20} />} label="Badges unlocked" value={`${rewards.unlockedCount} / ${rewards.badges.length}`} detail="Achievements earned so far" />
+      </section>
+
+      <section aria-labelledby="learning-activity-calendar-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <h2 id="learning-activity-calendar-heading" className="text-lg font-semibold text-slate-900">Your learning activity</h2>
+            <p className="mt-1 text-sm text-slate-500">A five-week view of recorded learning activity. Keep showing up in small, steady steps.</p>
+          </div>
+          <span className="rounded-full bg-rose-50 px-3 py-1 text-xs font-semibold text-rose-800">{rewards.streak}-day current streak</span>
+        </div>
+        <div className="mt-5 grid grid-cols-7 gap-2" role="group" aria-label="Learning activity calendar for the last five weeks">
+          {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+            <span key={day} className="text-center text-xs font-medium text-slate-500">{day}</span>
+          ))}
+          {rewards.activityCalendar.map((day) => {
+            const intensity = day.count === 0 ? "bg-slate-100" : day.count === 1 ? "bg-emerald-200" : day.count <= 3 ? "bg-emerald-400" : "bg-emerald-700";
+            return (
+              <div
+                key={day.key}
+                title={`${day.date.toLocaleDateString(undefined, { weekday: "long", month: "short", day: "numeric" })}: ${day.count} recorded ${day.count === 1 ? "activity" : "activities"}`}
+                aria-label={`${day.date.toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" })}: ${day.count} recorded ${day.count === 1 ? "activity" : "activities"}`}
+                className={`flex aspect-square min-h-8 items-center justify-center rounded-lg border text-xs ${intensity} ${day.isToday ? "border-slate-900 ring-2 ring-slate-300" : "border-transparent"} ${day.count > 0 && day.count <= 3 ? "text-emerald-950" : day.count > 3 ? "text-white" : "text-slate-500"}`}
+              >
+                {day.date.getDate()}
+              </div>
+            );
+          })}
+        </div>
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+          <p className="text-xs text-slate-500">Each square shows the number of recorded learning events for that day.</p>
+          <div className="flex items-center gap-1.5 text-xs text-slate-500" aria-label="Activity intensity legend">
+            <span>Less</span>
+            <span className="h-3 w-3 rounded-sm bg-slate-100" />
+            <span className="h-3 w-3 rounded-sm bg-emerald-200" />
+            <span className="h-3 w-3 rounded-sm bg-emerald-400" />
+            <span className="h-3 w-3 rounded-sm bg-emerald-700" />
+            <span>More</span>
+          </div>
+        </div>
       </section>
 
       <section aria-labelledby="learning-level-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
