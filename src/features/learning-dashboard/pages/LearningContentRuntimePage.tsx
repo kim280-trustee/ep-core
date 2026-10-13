@@ -102,6 +102,24 @@ export default function LearningContentRuntimePage() {
     return () => window.clearTimeout(timer);
   }, [responseQuery.data]);
 
+  useEffect(() => {
+    if (!responseQuery.data || !query.data) return;
+    const template = query.data.sections.map((section) => section.body).join("\n\n");
+    const parts = template.split(/(?:\\?_){3,}/g);
+    if (parts.length < 2) return;
+    const escapedParts = parts.map((part) => part.replace(/[.*+?^${}()|[\]\\]/g, "\\  useEffect(() => {
+    if (!responseQuery.data) return;
+    const nextResponseText = responseQuery.data.responseText;
+    const timer = window.setTimeout(() => {
+      setResponseText(nextResponseText);
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, [responseQuery.data]);"));
+    const matcher = new RegExp("^" + escapedParts.join("([\\s\\S]*?)") + "$");
+    const match = responseQuery.data.responseText.match(matcher);
+    if (match) setFillInAnswers(match.slice(1));
+  }, [query.data, responseQuery.data]);
+
   const responseMutation = useMutation({
     mutationFn: async (status: "draft" | "submitted") => {
       if (!user?.id || !query.data) throw new Error("You must be signed in.");
