@@ -36,11 +36,11 @@ declare
   v_source_id uuid;
 begin
   v_source_id := (
-    substr(md5(p_student_user_id::text || ':' || p_quest_code || ':' || p_week_start::text), 1, 8) || '-' ||
-    substr(md5(p_student_user_id::text || ':' || p_quest_code || ':' || p_week_start::text), 9, 4) || '-' ||
-    substr(md5(p_student_user_id::text || ':' || p_quest_code || ':' || p_week_start::text), 13, 4) || '-' ||
-    substr(md5(p_student_user_id::text || ':' || p_quest_code || ':' || p_week_start::text), 17, 4) || '-' ||
-    substr(md5(p_student_user_id::text || ':' || p_quest_code || ':' || p_week_start::text), 21, 12)
+    substr(md5(p_student_user_id::text || ':' || p_organization_id::text || ':' || p_quest_code || ':' || p_week_start::text), 1, 8) || '-' ||
+    substr(md5(p_student_user_id::text || ':' || p_organization_id::text || ':' || p_quest_code || ':' || p_week_start::text), 9, 4) || '-' ||
+    substr(md5(p_student_user_id::text || ':' || p_organization_id::text || ':' || p_quest_code || ':' || p_week_start::text), 13, 4) || '-' ||
+    substr(md5(p_student_user_id::text || ':' || p_organization_id::text || ':' || p_quest_code || ':' || p_week_start::text), 17, 4) || '-' ||
+    substr(md5(p_student_user_id::text || ':' || p_organization_id::text || ':' || p_quest_code || ':' || p_week_start::text), 21, 12)
   )::uuid;
 
   insert into public.learning_reward_ledger (
