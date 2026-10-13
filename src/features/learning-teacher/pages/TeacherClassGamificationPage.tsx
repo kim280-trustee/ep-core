@@ -25,9 +25,11 @@ export default function TeacherClassGamificationPage() {
   const classQuery = useQuery({
     queryKey: ["learning", "gamification", "class", classGroupId],
     queryFn: async () => {
-      const { data, error } = await supabase.from("learning_class_groups").select("id,organization_id,tenant_id,name").eq("id", classGroupId).single();
+      const { data, error } = await supabase.from("learning_class_groups").select("id,organization_id,name").eq("id", classGroupId).single();
       if (error) throw error;
-      return data;
+      const { data: organization, error: organizationError } = await supabase.from("organizations").select("tenant_id").eq("id", data.organization_id).single();
+      if (organizationError) throw organizationError;
+      return { ...data, tenant_id: organization.tenant_id };
     },
     enabled: Boolean(classGroupId),
   });
