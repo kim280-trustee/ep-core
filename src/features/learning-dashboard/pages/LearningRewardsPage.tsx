@@ -107,6 +107,19 @@ export default function LearningRewardsPage() {
       const occurredAt = new Date(entry.occurredAt);
       return occurredAt >= previousWeekStart && occurredAt < weekStart;
     });
+    const xpByDay = new Map<string, number>();
+    const xpByWeek = new Map<string, number>();
+    rewardLedger.forEach((entry) => {
+      const occurredAt = new Date(entry.occurredAt);
+      const dayKey = localDayKey(occurredAt);
+      xpByDay.set(dayKey, (xpByDay.get(dayKey) ?? 0) + entry.xpDelta);
+      const weekStartForEntry = new Date(occurredAt.getFullYear(), occurredAt.getMonth(), occurredAt.getDate());
+      weekStartForEntry.setDate(weekStartForEntry.getDate() - ((weekStartForEntry.getDay() + 6) % 7));
+      const weekKey = localDayKey(weekStartForEntry);
+      xpByWeek.set(weekKey, (xpByWeek.get(weekKey) ?? 0) + entry.xpDelta);
+    });
+    const bestXpDay = [...xpByDay.entries()].sort((a, b) => b[1] - a[1])[0] ?? null;
+    const bestXpWeek = [...xpByWeek.entries()].sort((a, b) => b[1] - a[1])[0] ?? null;
     const weeklyXp = thisWeeksRewards.reduce((total, entry) => total + entry.xpDelta, 0);
     const previousWeekXp = previousWeeksRewards.reduce((total, entry) => total + entry.xpDelta, 0);
     const weeklyXpChange = weeklyXp - previousWeekXp;
@@ -212,6 +225,8 @@ export default function LearningRewardsPage() {
       levelProgress,
       streak,
       weeklyXp,
+      bestXpDay,
+      bestXpWeek,
       previousWeekXp,
       weeklyXpChange,
       activityCalendar,
@@ -259,6 +274,25 @@ export default function LearningRewardsPage() {
         <Metric icon={<Star size={20} />} label="XP this week" value={String(rewards.weeklyXp)} detail={`${rewards.weeklyXpChange >= 0 ? "+" : ""}${rewards.weeklyXpChange} XP compared with last week`} />
         <Metric icon={<Flame size={20} />} label="Learning streak" value={`${rewards.streak} ${rewards.streak === 1 ? "day" : "days"}`} detail="Consecutive days with recorded activity" />
         <Metric icon={<Trophy size={20} />} label="Badges unlocked" value={`${rewards.unlockedCount} / ${rewards.badges.length}`} detail="Achievements earned so far" />
+      </section>
+
+      <section aria-labelledby="personal-bests-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <div>
+          <h2 id="personal-bests-heading" className="text-lg font-semibold text-slate-900">Your personal bests</h2>
+          <p className="mt-1 text-sm text-slate-500">Your strongest XP days and weeks, based on your recorded reward history.</p>
+        </div>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          <div className="rounded-xl bg-amber-50 p-4">
+            <p className="text-sm font-medium text-amber-900">Best XP day</p>
+            <p className="mt-2 text-2xl font-bold text-slate-900">{rewards.bestXpDay ? `+${rewards.bestXpDay[1]} XP` : "0 XP"}</p>
+            <p className="mt-1 text-sm text-slate-600">{rewards.bestXpDay ? new Date(`${rewards.bestXpDay[0]}T12:00:00`).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" }) : "Earn XP to set your first record."}</p>
+          </div>
+          <div className="rounded-xl bg-indigo-50 p-4">
+            <p className="text-sm font-medium text-indigo-900">Best XP week</p>
+            <p className="mt-2 text-2xl font-bold text-slate-900">{rewards.bestXpWeek ? `+${rewards.bestXpWeek[1]} XP` : "0 XP"}</p>
+            <p className="mt-1 text-sm text-slate-600">{rewards.bestXpWeek ? `Week starting ${new Date(`${rewards.bestXpWeek[0]}T12:00:00`).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" })}` : "Your weekly record will appear here."}</p>
+          </div>
+        </div>
       </section>
 
       <section aria-labelledby="learning-activity-calendar-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
