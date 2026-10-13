@@ -117,18 +117,30 @@ export default function LearningContentRuntimePage() {
       });
     },
     onSuccess: async (saved) => {
-      if (saved.status === "submitted") {
-        const item = query.data?.item;
-        if (item?.required) {
-          await learningAssignmentsService.completeContentForStudent(id, content, user!.id);
-        }
-        void queryClient.invalidateQueries({ queryKey: ["learning", "assignment", id, user?.id] });
-        void queryClient.invalidateQueries({ queryKey: ["learning", "progress", user?.id] });
-      }
+      // Refresh the response immediately after the database save. Completion is a
+      // separate progress operation and must never make a successful submission
+      // look like a failed response save.
       try {
         await responseQuery.refetch();
       } catch {
         // The response was saved; a refetch failure must not report the save as failed.
+      }
+
+      if (saved.status === "submitted") {
+        void queryClient.invalidateQueries({ queryKey: ["learning", "assignment", id, user?.id] });
+        void queryClient.invalidateQueries({ queryKey: ["learning", "progress", user?.id] });
+        const item = query.data?.item;
+        if (item?.required) {
+          try {
+            await learningAssignmentsService.completeContentForStudent(id, content, user!.id);
+          } catch (error) {
+            // Submission has already succeeded. Keep it confirmed rather than
+            // incorrectly showing "Could not save your response" for a progress error.
+            console.error("Student response was submitted, but assignment progress could not be updated.", error);
+          }
+          void queryClient.invalidateQueries({ queryKey: ["learning", "assignment", id, user?.id] });
+          void queryClient.invalidateQueries({ queryKey: ["learning", "progress", user?.id] });
+        }
       }
     },
   });
@@ -263,7 +275,7 @@ export default function LearningContentRuntimePage() {
               <button type="button" disabled={(isFillInActivity ? !fillInComplete : !responseText.trim()) || responseMutation.isPending} onClick={() => responseMutation.mutate("submitted")} className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{responseMutation.isPending ? "Submitting..." : "Submit response"}</button>
             </>}
           </div>
-          {responseMutation.isError && <p className="mt-3 text-sm text-red-600">{responseMutation.error instanceof Error ? responseMutation.error.message : "Could not save your response."}</p>}
+          {responseMutation.isError && <p className="mt-3 text-sm text-red-600">{responseMutation.error instanceof Error ? responseMutation.error.message : (responseMutation.error && typeof responseMutation.error === "object" && "message" in responseMutation.error && typeof responseMutation.error.message === "string" ? responseMutation.error.message : "Could not save your response.")}</p>}
         </section>
       ) : (
         <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
