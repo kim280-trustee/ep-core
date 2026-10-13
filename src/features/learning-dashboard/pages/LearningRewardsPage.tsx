@@ -8,7 +8,7 @@ import { learningActivityService } from "@/features/learning-activity";
 import { learningAssignmentsService } from "@/features/learning-assignments";
 import { learningAssessmentService } from "@/features/learning-assessment";
 import { learningMasteryService } from "@/features/learning-mastery";
-import { LEARNING_REWARD_LEVELS, learningRewardsService } from "@/features/learning-rewards";
+import { calculateLearningStreak, LEARNING_REWARD_LEVELS, learningRewardsService } from "@/features/learning-rewards";
 
 function localDayKey(value: Date) {
   return `${value.getFullYear()}-${String(value.getMonth() + 1).padStart(2, "0")}-${String(value.getDate()).padStart(2, "0")}`;
@@ -25,24 +25,6 @@ function isWithinCurrentWeek(timestamp: string, weekStart: Date, now = new Date(
   return occurredAt >= weekStart && occurredAt <= now;
 }
 
-function calculateStreak(timestamps: string[], now = new Date()) {
-  const activeDays = new Set(timestamps.map((timestamp) => localDayKey(new Date(timestamp))));
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const todayKey = localDayKey(today);
-  const yesterday = new Date(today);
-  yesterday.setDate(yesterday.getDate() - 1);
-  const yesterdayKey = localDayKey(yesterday);
-
-  if (!activeDays.has(todayKey) && !activeDays.has(yesterdayKey)) return 0;
-
-  let streak = 0;
-  const cursor = activeDays.has(todayKey) ? today : yesterday;
-  while (activeDays.has(localDayKey(cursor))) {
-    streak += 1;
-    cursor.setDate(cursor.getDate() - 1);
-  }
-  return streak;
-}
 
 type RewardBadge = {
   title: string;
@@ -95,7 +77,7 @@ export default function LearningRewardsPage() {
     const levelProgress = nextLevel
       ? Math.min(100, Math.round(((xp - currentLevel.minXp) / (nextLevel.minXp - currentLevel.minXp)) * 100))
       : 100;
-    const streak = calculateStreak(activity.map((event) => event.occurredAt));
+    const streak = calculateLearningStreak(activity.map((event) => event.occurredAt));
     const now = new Date();
     const weekStart = getCurrentWeekStart(now);
     const thisWeeksRewards = rewardLedger.filter((entry) => isWithinCurrentWeek(entry.occurredAt, weekStart, now));
