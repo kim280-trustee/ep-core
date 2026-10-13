@@ -613,7 +613,7 @@ export default function LearningRewardsPage() {
             return <section key={classId} className="rounded-xl border border-slate-200 p-4" aria-label={rows[0]?.class_name + " XP standings"}>
               <h3 className="font-semibold text-slate-900">{rows[0]?.class_name ?? "Your class"}</h3>
               <ol className="mt-3 space-y-2">
-                {visible.map(row => <li key={row.rank + "-" + row.display_name + "-" + row.is_current_user} className={"flex items-center gap-3 rounded-lg px-3 py-2 " + (row.is_current_user ? "bg-indigo-50 ring-1 ring-indigo-200" : "bg-slate-50")}>
+                {visible.map((row, index) => <li key={row.rank + "-" + index} className={"flex items-center gap-3 rounded-lg px-3 py-2 " + (row.is_current_user ? "bg-indigo-50 ring-1 ring-indigo-200" : "bg-slate-50")}>
                   <span className="w-7 text-sm font-bold tabular-nums text-slate-500">#{row.rank}</span>
                   <span className="min-w-0 flex-1 truncate text-sm font-medium text-slate-800">{row.display_name}{row.is_current_user ? " (you)" : ""}</span>
                   <span className="text-sm font-semibold tabular-nums text-indigo-700">{row.xp_total} XP</span>
