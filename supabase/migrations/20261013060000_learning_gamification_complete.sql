@@ -181,6 +181,7 @@ create policy learning_reward_notifications_parent_read
   on public.learning_reward_notifications for select to authenticated
   using (exists (select 1 from public.learning_parent_student_links pl
     where pl.student_user_id=learning_reward_notifications.student_user_id
+      and pl.organization_id=learning_reward_notifications.organization_id
       and pl.parent_user_id=public.learning_current_user_id()
       and pl.status='active'));
 create policy learning_reward_notifications_student_update
@@ -192,6 +193,15 @@ create policy learning_reward_ledger_parent_read
   on public.learning_reward_ledger for select to authenticated
   using (exists (select 1 from public.learning_parent_student_links pl
     where pl.student_user_id=learning_reward_ledger.student_user_id
+      and pl.organization_id=learning_reward_ledger.organization_id
+      and pl.parent_user_id=public.learning_current_user_id()
+      and pl.status='active'));
+
+create policy learning_activity_events_parent_read
+  on public.learning_activity_events for select to authenticated
+  using (exists (select 1 from public.learning_parent_student_links pl
+    where pl.student_user_id=learning_activity_events.student_user_id
+      and pl.organization_id=learning_activity_events.organization_id
       and pl.parent_user_id=public.learning_current_user_id()
       and pl.status='active'));
 
