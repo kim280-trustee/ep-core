@@ -555,7 +555,7 @@ export default function LearningRewardsPage() {
           return activeChallenges.length ? <div className="mt-4 grid gap-3 sm:grid-cols-2">{activeChallenges.map(challenge => {
             const matchingRewards = query.data?.rewardLedger.filter(entry => entry.eventType === "challenge_completed" && entry.sourceId === challenge.id) ?? [];
             const completed = matchingRewards.length > 0;
-            const evidence = (query.data?.rewardLedger ?? []).filter(entry => entry.classGroupId === challenge.class_group_id && entry.occurredAt >= challenge.starts_at && entry.occurredAt <= challenge.ends_at);
+            const evidence = (query.data?.rewardLedger ?? []).filter(entry => (challenge.target_type === "assignments_completed" ? entry.classGroupId === challenge.class_group_id : entry.organizationId === challenge.organization_id) && entry.occurredAt >= challenge.starts_at && entry.occurredAt <= challenge.ends_at);
             const progress = challenge.target_type === "assignments_completed" ? new Set(evidence.filter(entry => entry.eventType === "assignment_completed").map(entry => entry.sourceId)).size : evidence.filter(entry => entry.eventType !== "challenge_completed").reduce((sum, entry) => sum + entry.xpDelta, 0);
             const bounded = Math.min(progress, challenge.target_value);
             const percent = Math.round((bounded / challenge.target_value) * 100);
