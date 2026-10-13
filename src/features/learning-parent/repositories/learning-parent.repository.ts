@@ -43,15 +43,16 @@ export const learningParentRepository={
   },
   async acceptInvitation(invitationId:string){const{data,error}=await supabase.rpc("accept_learning_parent_invitation",{p_invitation_id:invitationId});if(error)throw error;if(typeof data!=="string"||!data)throw new Error("This invitation has expired or is no longer active.");return data as string;},
   async getOverview(studentUserId:string):Promise<LearningParentOverview>{
-    const[{data:student,error:studentError},{data:grades,error:gradeError},{data:memberships,error:membershipError},{data:mastery,error:masteryError},{data:recommendations,error:recommendationError},{data:comments,error:commentError}]=await Promise.all([
+    const[{data:student,error:studentError},{data:grades,error:gradeError},{data:memberships,error:membershipError},{data:mastery,error:masteryError},{data:recommendations,error:recommendationError},{data:comments,error:commentError},{data:rewardRows,error:rewardError}]=await Promise.all([
       supabase.from("users").select("id,name,email").eq("id",studentUserId).single(),
       supabase.from("learning_term_grades").select("class_subject_id,term_id,score,letter_grade,status,finalized_at").eq("student_user_id",studentUserId).eq("status","finalized").order("finalized_at",{ascending:false}),
       supabase.from("learning_class_memberships").select("class_group_id").eq("user_id",studentUserId).eq("membership_type","student").eq("status","active"),
       supabase.from("learning_student_mastery").select("objective_id,mastery_score,state").eq("student_user_id",studentUserId).order("mastery_score",{ascending:true}),
       supabase.from("learning_recommendations").select("id,recommendation_type,objective_id,priority,reason,generated_at").eq("student_user_id",studentUserId).eq("status","active").order("priority",{ascending:false}),
       supabase.from("learning_gradebook_entries").select("comment,recorded_at,class_subject_id,term_id").eq("student_user_id",studentUserId).not("comment","is",null).order("recorded_at",{ascending:false}).limit(10),
+      supabase.from("learning_reward_ledger").select("id,event_type,xp_delta,occurred_at").eq("student_user_id",studentUserId).order("occurred_at",{ascending:false}).limit(10),
     ]);
-    if(studentError)throw studentError;if(gradeError)throw gradeError;if(membershipError)throw membershipError;if(masteryError)throw masteryError;if(recommendationError)throw recommendationError;if(commentError)throw commentError;
+    if(studentError)throw studentError;if(gradeError)throw gradeError;if(membershipError)throw membershipError;if(masteryError)throw masteryError;if(recommendationError)throw recommendationError;if(commentError)throw commentError;if(rewardError)throw rewardError;
 
     const gradeRows=(grades??[]) as GradeRow[];
     const classGroupIds=[...new Set((memberships??[]).map(x=>x.class_group_id).filter((x):x is string=>Boolean(x)))];
@@ -104,6 +105,8 @@ export const learningParentRepository={
       mastery:masteryRows.map(row=>{const o=objectiveMap.get(row.objective_id);return{objectiveId:row.objective_id,objectiveName:o?.name??"Learning objective",objectiveDescription:o?.description??null,score:Number(row.mastery_score),state:row.state};}),
       comments:commentRows.map(row=>({text:row.comment??"",recordedAt:row.recorded_at,subjectName:subjectMap.get(commentSubjectMap.get(row.class_subject_id)??"")??null,termName:termMap.get(row.term_id)??null})),
       recommendations:recommendationRows.map(row=>({id:row.id,type:row.recommendation_type,objectiveName:row.objective_id?objectiveMap.get(row.objective_id)?.name??null:null,reason:reasonText(row.reason),priority:row.priority,generatedAt:row.generated_at})),
+      xpTotal:(rewardRows??[]).reduce((sum,row)=>sum+row.xp_delta,0),
+      recentRewards:(rewardRows??[]).slice(0,5).map(row=>({id:row.id,eventType:row.event_type,xpDelta:row.xp_delta,occurredAt:row.occurred_at})),
     };
   },
 };
