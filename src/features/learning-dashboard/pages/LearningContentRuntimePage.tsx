@@ -107,14 +107,7 @@ export default function LearningContentRuntimePage() {
     const template = query.data.sections.map((section) => section.body).join("\n\n");
     const parts = template.split(/(?:\\?_){3,}/g);
     if (parts.length < 2) return;
-    const escapedParts = parts.map((part) => part.replace(/[.*+?^${}()|[\]\\]/g, "\\  useEffect(() => {
-    if (!responseQuery.data) return;
-    const nextResponseText = responseQuery.data.responseText;
-    const timer = window.setTimeout(() => {
-      setResponseText(nextResponseText);
-    }, 0);
-    return () => window.clearTimeout(timer);
-  }, [responseQuery.data]);"));
+    const escapedParts = parts.map((part) => part.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
     const matcher = new RegExp("^" + escapedParts.join("([\\s\\S]*?)") + "$");
     const match = responseQuery.data.responseText.match(matcher);
     if (match) setFillInAnswers(match.slice(1));
