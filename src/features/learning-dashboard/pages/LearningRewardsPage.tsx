@@ -48,6 +48,8 @@ type RewardBadge = {
   title: string;
   description: string;
   unlocked: boolean;
+  progress: number;
+  target: number;
   icon: typeof Award;
 };
 
@@ -141,30 +143,40 @@ export default function LearningRewardsPage() {
         title: "First Steps",
         description: "Complete your first assignment.",
         unlocked: completedAssignmentIds.size >= 1,
+        progress: completedAssignmentIds.size,
+        target: 1,
         icon: BookOpen,
       },
       {
         title: "Assessment Ace",
         description: "Pass an assessment for the first time.",
         unlocked: passedAssessmentIds.size >= 1,
+        progress: passedAssessmentIds.size,
+        target: 1,
         icon: Star,
       },
       {
         title: "Three-Day Streak",
         description: "Learn on three consecutive days.",
         unlocked: streak >= 3,
+        progress: streak,
+        target: 3,
         icon: Flame,
       },
       {
         title: "Mastery Builder",
         description: "Master three learning objectives.",
         unlocked: masteredObjectives >= 3,
+        progress: masteredObjectives,
+        target: 3,
         icon: ShieldCheck,
       },
       {
         title: "Dedicated Learner",
         description: "Complete five assignments.",
         unlocked: completedAssignmentIds.size >= 5,
+        progress: completedAssignmentIds.size,
+        target: 5,
         icon: Trophy,
       },
     ];
@@ -296,6 +308,8 @@ export default function LearningRewardsPage() {
         <div className="mt-5 grid gap-3 sm:grid-cols-2">
           {rewards.badges.map((badge) => {
             const Icon = badge.icon;
+            const progress = Math.min(badge.progress, badge.target);
+            const progressPercent = Math.round((progress / badge.target) * 100);
             return (
               <article key={badge.title} className={`flex items-start gap-3 rounded-xl border p-4 ${badge.unlocked ? "border-amber-200 bg-amber-50/60" : "border-slate-200 bg-slate-50"}`}>
                 <span className={`rounded-xl p-2 ${badge.unlocked ? "bg-amber-100 text-amber-800" : "bg-slate-200 text-slate-500"}`}><Icon size={21} /></span>
@@ -305,6 +319,10 @@ export default function LearningRewardsPage() {
                     <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${badge.unlocked ? "bg-amber-100 text-amber-800" : "bg-slate-200 text-slate-600"}`}>{badge.unlocked ? "Unlocked" : "Locked"}</span>
                   </div>
                   <p className="mt-1 text-sm text-slate-600">{badge.description}</p>
+                  <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-slate-200" role="progressbar" aria-label={`${badge.title} progress`} aria-valuemin={0} aria-valuemax={badge.target} aria-valuenow={progress}>
+                    <div className={`h-full rounded-full ${badge.unlocked ? "bg-amber-500" : "bg-indigo-500"}`} style={{ width: `${progressPercent}%` }} />
+                  </div>
+                  <p className="mt-1 text-xs text-slate-500">{badge.unlocked ? "Goal completed" : `${progress} of ${badge.target} toward this badge`}</p>
                 </div>
               </article>
             );
@@ -318,8 +336,11 @@ export default function LearningRewardsPage() {
           <RewardRule title="Assignment completed" points="+20 XP" detail="Counted once per completed assignment." />
           <RewardRule title="Assessment passed" points="+15 XP" detail="Counted once per distinct assessment passed." />
           <RewardRule title="Objective mastered" points="+10 XP" detail="Awarded once when an objective first reaches verified mastered status." />
+          <RewardRule title="Weekly quest completed" points="+25 XP" detail="Earned once for each weekly quest completed." />
+          <RewardRule title="Three-day streak" points="+20 XP" detail="One-time bonus for learning on three consecutive days." />
+          <RewardRule title="Seven-day streak" points="+50 XP" detail="One-time bonus for learning on seven consecutive days." />
         </div>
-        <p className="mt-4 text-xs text-slate-500">XP is recorded in a protected reward ledger. Badges and streaks still reflect your existing learning records.</p>
+        <p className="mt-4 text-xs text-slate-500">XP is recorded in a protected reward ledger. Badge progress reflects your recorded learning evidence.</p>
       </section>
 
       <section aria-labelledby="recent-xp-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
