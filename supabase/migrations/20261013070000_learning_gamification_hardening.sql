@@ -144,7 +144,7 @@ begin
      and cm.organization_id = ci.organization_id
      and cm.status = 'active'
      and cm.membership_type = 'student'
-    join public.users u on u.id = cm.user_id
+    join public.users u on u.id = cm.user_id and u.tenant_id = cm.tenant_id
     left join public.learning_reward_ledger l
       on l.student_user_id = cm.user_id
      and l.organization_id = ci.organization_id
