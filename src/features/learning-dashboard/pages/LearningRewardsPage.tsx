@@ -46,20 +46,23 @@ export default function LearningRewardsPage() {
     queryFn: async () => {
       const memberships = await learningEnrollmentService.listUserClasses(studentId);
       const classIds = [...new Set(memberships.filter(item => item.membershipType === "student").map(item => item.classGroupId))];
-      const [items, redemptions, notifications, challengesByClass, leaderboardsByClass] = await Promise.all([
+      const [items, redemptions, notifications, challengesByClass] = await Promise.all([
         learningRewardsService.listShopItems(classIds, true),
         learningRewardsService.listStudentRedemptions(studentId),
         learningRewardsService.listNotifications(studentId),
         Promise.all(classIds.map(classGroupId => learningRewardsService.listClassChallenges(classGroupId))),
-        Promise.all(classIds.map(classGroupId => learningRewardsService.listClassLeaderboard(classGroupId))),
       ]);
-      return {
-        items,
-        redemptions,
-        notifications,
-        challenges: challengesByClass.flat(),
-        leaderboards: leaderboardsByClass.flat(),
-      };
+      return { items, redemptions, notifications, challenges: challengesByClass.flat() };
+    },
+    enabled: Boolean(studentId),
+  });
+  const leaderboardQuery = useQuery({
+    queryKey: ["learning", "class-leaderboards", studentId],
+    queryFn: async () => {
+      const memberships = await learningEnrollmentService.listUserClasses(studentId);
+      const classIds = [...new Set(memberships.filter(item => item.membershipType === "student").map(item => item.classGroupId))];
+      const rows = await Promise.all(classIds.map(classGroupId => learningRewardsService.listClassLeaderboard(classGroupId)));
+      return rows.flat();
     },
     enabled: Boolean(studentId),
   });
@@ -599,8 +602,8 @@ export default function LearningRewardsPage() {
       <section aria-labelledby="class-leaderboard-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
         <div className="flex items-center gap-2"><Trophy size={20} className="text-indigo-700"/><h2 id="class-leaderboard-heading" className="text-lg font-semibold text-slate-900">Class XP standings</h2></div>
         <p className="mt-1 text-sm text-slate-500">See how your learning XP compares with classmates. Names are shortened to protect student privacy.</p>
-        {shopQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading class standings…</p> : shopQuery.isError ? <p className="mt-4 text-sm text-red-700">Class standings could not be loaded.</p> : (() => {
-          const allRows = shopQuery.data?.leaderboards ?? [];
+        {leaderboardQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading class standings…</p> : leaderboardQuery.isError ? <p className="mt-4 text-sm text-red-700">Class standings could not be loaded.</p> : (() => {
+          const allRows = leaderboardQuery.data ?? [];
           const classIds = [...new Set(allRows.map(row => row.class_group_id))];
           return classIds.length ? <div className="mt-4 grid gap-4 lg:grid-cols-2">{classIds.map(classId => {
             const rows = allRows.filter(row => row.class_group_id === classId);
