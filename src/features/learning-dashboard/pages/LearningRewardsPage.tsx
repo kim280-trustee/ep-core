@@ -578,7 +578,7 @@ export default function LearningRewardsPage() {
         <div className="flex items-center gap-2"><Trophy size={20} className="text-indigo-700"/><h2 id="class-challenges-heading" className="text-lg font-semibold text-slate-900">Class challenges</h2></div>
         <p className="mt-1 text-sm text-slate-500">Shared goals set by your teacher. Meet the target during the challenge period to earn the bonus XP.</p>
         {shopQuery.isPending ? <p className="mt-3 text-sm text-slate-500">Loading challenges…</p> : shopQuery.isError ? <p className="mt-3 text-sm text-red-700">Challenges could not be loaded.</p> : (() => {
-          const now = Date.now();
+          const now = new Date().getTime();
           const activeChallenges = (shopQuery.data?.challenges ?? []).filter(challenge =>
             challenge.status === "active"
             && new Date(challenge.starts_at).getTime() <= now
