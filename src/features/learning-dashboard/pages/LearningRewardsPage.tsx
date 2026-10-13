@@ -602,6 +602,7 @@ export default function LearningRewardsPage() {
       <section aria-labelledby="class-leaderboard-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
         <div className="flex items-center gap-2"><Trophy size={20} className="text-indigo-700"/><h2 id="class-leaderboard-heading" className="text-lg font-semibold text-slate-900">Class XP standings</h2></div>
         <p className="mt-1 text-sm text-slate-500">See how your learning XP compares with classmates. Names are shortened to protect student privacy.</p>
+        <p className="mt-2 text-xs text-slate-500">Class standings count XP earned from learning linked to this class. Your overall XP also includes organization-wide rewards, such as assessment passes and mastered objectives.</p>
         {leaderboardQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading class standings…</p> : leaderboardQuery.isError ? <p className="mt-4 text-sm text-red-700">Class standings could not be loaded.</p> : (() => {
           const allRows = leaderboardQuery.data ?? [];
           const classIds = [...new Set(allRows.map(row => row.class_group_id))];
