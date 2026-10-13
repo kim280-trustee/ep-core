@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import type { ReactNode } from "react";
-import { ArrowLeft, BookOpen, CheckCircle2, ClipboardList, Clock3, FileText, GraduationCap, Users } from "lucide-react";
+import { ArrowLeft, BookOpen, CheckCircle2, ClipboardList, Clock3, FileText, GraduationCap, Trophy, Users } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningTeacherService } from "../services/learning-teacher.service";
@@ -38,11 +38,12 @@ export default function TeacherClassPage() {
           <h2 className="text-lg font-semibold text-slate-900">Class workspace</h2>
           <p className="mt-1 text-sm text-slate-500">Use this class as your starting point for the teaching and pilot workflow.</p>
         </div>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           <QuickAction icon={<ClipboardList size={18} />} label="Assignments" description="Review work and publication status." to={"/teacher/classes/" + classGroupId + "/assignments/history"} />
           <QuickAction icon={<Users size={18} />} label="Students" description="Open student progress and profiles." href="#students" />
           <QuickAction icon={<GraduationCap size={18} />} label="Gradebook" description="Review grades and academic results." to={"/teacher/classes/" + classGroupId + "/gradebook"} />
           <QuickAction icon={<BookOpen size={18} />} label="Content Library" description="Find learning content to assign." to="/teacher/content" />
+          <QuickAction icon={<Trophy size={18} />} label="Gamification" description="Set class challenges and manage student rewards." to={"/teacher/classes/" + classGroupId + "/gamification"} />
         </div>
       </section>
 
