@@ -119,21 +119,21 @@ export default function LearningRewardsPage() {
         description: "Complete your assigned learning to build momentum.",
         progress: weeklyCompletedAssignments,
         target: 2,
-        reward: "Consistency",
+        reward: "+25 XP",
       },
       {
         title: "Pass an assessment",
         description: "Show what you have learned in a quiz or assessment.",
         progress: weeklyPassedAssessments,
         target: 1,
-        reward: "Mastery",
+        reward: "+25 XP",
       },
       {
         title: "Learn on three days",
         description: "Short practice sessions count toward your weekly habit.",
         progress: weeklyPracticeDays,
         target: 3,
-        reward: "Learning habit",
+        reward: "+25 XP",
       },
     ];
     const badges: RewardBadge[] = [
@@ -335,13 +335,14 @@ export default function LearningRewardsPage() {
             {rewards.recentRewards.map((entry) => {
               const assignment = entry.eventType === "assignment_completed";
               const mastery = entry.eventType === "objective_mastered";
+              const weeklyQuest = entry.eventType === "weekly_quest_completed";
               return (
                 <li key={entry.id} className="flex items-center gap-3 py-3 first:pt-0 last:pb-0">
-                  <span className={`rounded-xl p-2 ${assignment ? "bg-sky-50 text-sky-700" : mastery ? "bg-emerald-50 text-emerald-700" : "bg-amber-50 text-amber-700"}`}>
-                    {assignment ? <BookOpen size={18} aria-hidden="true" /> : mastery ? <ShieldCheck size={18} aria-hidden="true" /> : <Star size={18} aria-hidden="true" />}
+                  <span className={`rounded-xl p-2 ${assignment ? "bg-sky-50 text-sky-700" : mastery ? "bg-emerald-50 text-emerald-700" : weeklyQuest ? "bg-violet-50 text-violet-700" : "bg-amber-50 text-amber-700"}`}>
+                    {assignment ? <BookOpen size={18} aria-hidden="true" /> : mastery ? <ShieldCheck size={18} aria-hidden="true" /> : weeklyQuest ? <Award size={18} aria-hidden="true" /> : <Star size={18} aria-hidden="true" />}
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="font-medium text-slate-900">{assignment ? "Assignment completed" : mastery ? "Objective mastered" : "Assessment passed"}</p>
+                    <p className="font-medium text-slate-900">{assignment ? "Assignment completed" : mastery ? "Objective mastered" : weeklyQuest ? "Weekly quest completed" : "Assessment passed"}</p>
                     <p className="mt-0.5 text-xs text-slate-500">
                       {new Date(entry.occurredAt).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" })}
                     </p>
@@ -352,7 +353,7 @@ export default function LearningRewardsPage() {
             })}
           </ul>
         ) : (
-          <p className="mt-4 rounded-xl bg-slate-50 p-4 text-sm text-slate-600">Your XP activity appears here after you complete an assignment, pass an assessment, or master an objective.</p>
+          <p className="mt-4 rounded-xl bg-slate-50 p-4 text-sm text-slate-600">Your XP activity appears here after assignments, passed assessments, mastered objectives, and completed weekly quests.</p>
         )}
       </section>
 
