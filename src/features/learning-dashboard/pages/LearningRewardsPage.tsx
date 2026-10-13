@@ -219,6 +219,38 @@ export default function LearningRewardsPage() {
         target: 3,
         icon: Trophy,
       },
+      {
+        title: "Rising Star",
+        description: "Complete ten assignments.",
+        unlocked: completedAssignmentIds.size >= 10,
+        progress: completedAssignmentIds.size,
+        target: 10,
+        icon: BookOpen,
+      },
+      {
+        title: "Quiz Champion",
+        description: "Pass five distinct assessments.",
+        unlocked: passedAssessmentIds.size >= 5,
+        progress: passedAssessmentIds.size,
+        target: 5,
+        icon: Star,
+      },
+      {
+        title: "Mastery Expert",
+        description: "Master ten learning objectives.",
+        unlocked: masteredObjectives >= 10,
+        progress: masteredObjectives,
+        target: 10,
+        icon: ShieldCheck,
+      },
+      {
+        title: "Week Warrior",
+        description: "Learn on seven consecutive days.",
+        unlocked: streak >= 7,
+        progress: streak,
+        target: 7,
+        icon: Flame,
+      },
     ];
     return {
       xp,
@@ -386,6 +418,27 @@ export default function LearningRewardsPage() {
         ) : (
           <p className="mt-4 text-sm font-medium text-slate-700">You have reached the highest level currently available.</p>
         )}
+        <div className="mt-6 border-t border-slate-100 pt-5">
+          <h3 className="text-sm font-semibold text-slate-800">Your level journey</h3>
+          <p className="mt-1 text-xs text-slate-500">Every level has a clear XP milestone to work toward.</p>
+          <ol className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+            {LEARNING_REWARD_LEVELS.map((level) => {
+              const reached = rewards.xp >= level.minXp;
+              const current = rewards.currentLevel.name === level.name;
+              return (
+                <li key={level.name} className={`rounded-xl border p-3 ${current ? "border-amber-300 bg-amber-50" : reached ? "border-emerald-200 bg-emerald-50/50" : "border-slate-200 bg-slate-50"}`}>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-semibold text-slate-900">{level.name}</span>
+                    <span className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ${current ? "bg-amber-100 text-amber-900" : reached ? "bg-emerald-100 text-emerald-800" : "bg-white text-slate-500"}`}>
+                      {current ? "Current" : reached ? "Reached" : "Locked"}
+                    </span>
+                  </div>
+                  <p className="mt-1 text-xs text-slate-600">{level.minXp.toLocaleString()} XP required</p>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
       </section>
 
       <section aria-labelledby="weekly-quests-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
