@@ -318,6 +318,40 @@ export default function LearningRewardsPage() {
         </div>
       </section>
 
+      <section aria-labelledby="recent-rewards-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <h2 id="recent-rewards-heading" className="text-lg font-semibold text-slate-900">Recent XP history</h2>
+            <p className="mt-1 text-sm text-slate-500">Points from verified learning achievements recorded in your reward ledger.</p>
+          </div>
+          <span className="rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-800">{rewards.rewardEventCount} recorded {rewards.rewardEventCount === 1 ? "reward" : "rewards"}</span>
+        </div>
+        {query.data.rewardLedger.length === 0 ? (
+          <div className="mt-4 rounded-xl border border-dashed border-slate-300 p-5 text-sm text-slate-600">
+            No XP has been recorded yet. Complete an assigned activity or pass an assessment to start your history.
+          </div>
+        ) : (
+          <ol className="mt-4 divide-y divide-slate-100">
+            {query.data.rewardLedger.slice(0, 8).map((entry) => (
+              <li key={entry.id} className="flex flex-wrap items-center justify-between gap-3 py-3 first:pt-0 last:pb-0">
+                <div className="flex min-w-0 items-start gap-3">
+                  <span className="mt-0.5 rounded-lg bg-amber-50 p-2 text-amber-700"><Zap size={17} /></span>
+                  <div className="min-w-0">
+                    <p className="font-medium text-slate-800">
+                      {entry.eventType === "assignment_completed" ? "Assignment completed" : "Assessment passed"}
+                    </p>
+                    <p className="mt-1 text-xs text-slate-500">
+                      {new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(new Date(entry.occurredAt))}
+                    </p>
+                  </div>
+                </div>
+                <span className="shrink-0 rounded-full bg-emerald-50 px-3 py-1 text-sm font-bold text-emerald-800">+{entry.xpDelta} XP</span>
+              </li>
+            ))}
+          </ol>
+        )}
+      </section>
+
       <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">How XP is earned</h2>
         <div className="mt-4 divide-y divide-slate-100">
