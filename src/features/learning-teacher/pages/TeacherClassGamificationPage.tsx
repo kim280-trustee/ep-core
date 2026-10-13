@@ -4,6 +4,7 @@ import { CheckCircle2, Gift, Trophy } from "lucide-react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningRewardsService } from "@/features/learning-rewards";
+import { learningTeacherService } from "../services/learning-teacher.service";
 
 function localDateTimeValue(date: Date) {
   return new Date(date.getTime() - date.getTimezoneOffset() * 60_000).toISOString().slice(0, 16);
@@ -28,6 +29,16 @@ export default function TeacherClassGamificationPage() {
   const classQuery = useQuery({
     queryKey: ["learning", "gamification", "class", classGroupId],
     queryFn: () => learningRewardsService.getClassContext(classGroupId),
+    enabled: Boolean(classGroupId),
+  });
+  const rosterQuery = useQuery({
+    queryKey: ["learning", "teacher-class", user?.id, classGroupId],
+    queryFn: () => learningTeacherService.getClassOverview(user!.id, classGroupId),
+    enabled: Boolean(user?.id && classGroupId),
+  });
+  const ledgerQuery = useQuery({
+    queryKey: ["learning", "gamification", "ledger", classGroupId],
+    queryFn: () => learningRewardsService.listClassLedger(classGroupId),
     enabled: Boolean(classGroupId),
   });
   const challengesQuery = useQuery({
@@ -149,6 +160,77 @@ export default function TeacherClassGamificationPage() {
         <div className="mt-5 border-t pt-4"><h3 className="font-semibold">Redemption requests</h3>{redemptionsQuery.isError?<p className="mt-2 text-sm text-red-700">Requests could not be loaded.</p>:!redemptionsQuery.data?.length?<p className="mt-2 text-sm text-slate-500">No student requests yet.</p>:<div className="mt-3 space-y-2">{redemptionsQuery.data.map(redemption=><div key={redemption.id} className="rounded-xl border p-3"><div className="flex flex-wrap items-center justify-between gap-2"><p className="font-semibold">{itemById.get(redemption.item_id)?.name??"Reward"} · {redemption.cost_xp} XP</p><span className="text-xs capitalize text-slate-500">{redemption.status}</span></div><p className="mt-1 text-xs text-slate-500">Student {redemption.student_user_id.slice(0,8)} · {new Date(redemption.requested_at).toLocaleString()}</p>{redemption.status==="requested"&&<div className="mt-3 flex gap-2"><button type="button" onClick={()=>review.mutate({id:redemption.id,decision:"approved"})} disabled={review.isPending} className="rounded-lg bg-emerald-700 px-3 py-1.5 text-xs font-semibold text-white">Approve</button><button type="button" onClick={()=>review.mutate({id:redemption.id,decision:"rejected"})} disabled={review.isPending} className="rounded-lg border border-red-200 px-3 py-1.5 text-xs font-semibold text-red-700">Reject</button></div>}{redemption.status==="approved"&&<button type="button" onClick={()=>review.mutate({id:redemption.id,decision:"fulfilled"})} disabled={review.isPending} className="mt-3 rounded-lg bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white">Mark fulfilled</button>}</div>)}</div>}</div>
       </section>
     </div>
+    <section className="rounded-2xl border border-slate-200 bg-white p-5">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h2 className="text-lg font-semibold text-slate-900">Student challenge progress</h2>
+          <p className="mt-1 text-sm text-slate-500">See each active challenge's verified progress for students in this class.</p>
+        </div>
+        <span className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">Teacher view</span>
+      </div>
+      {rosterQuery.isError || ledgerQuery.isError || challengesQuery.isError ? (
+        <p role="alert" className="mt-4 text-sm text-red-700">Challenge progress could not be loaded. Refresh and try again.</p>
+      ) : rosterQuery.isPending || ledgerQuery.isPending || challengesQuery.isPending ? (
+        <p className="mt-4 text-sm text-slate-500">Loading student progress…</p>
+      ) : (() => {
+        const now = Date.now();
+        const activeChallenges = (challengesQuery.data ?? []).filter(challenge =>
+          challenge.status === "active"
+          && new Date(challenge.starts_at).getTime() <= now
+          && new Date(challenge.ends_at).getTime() >= now
+        );
+        if (!activeChallenges.length) {
+          return <p className="mt-4 rounded-xl border border-dashed p-5 text-sm text-slate-500">Publish an active class challenge to see student-by-student progress here.</p>;
+        }
+        const students = rosterQuery.data?.students ?? [];
+        const ledger = ledgerQuery.data ?? [];
+        return <div className="mt-4 space-y-5">
+          {activeChallenges.map(challenge => (
+            <div key={challenge.id} className="overflow-hidden rounded-xl border border-slate-200">
+              <div className="flex flex-wrap items-center justify-between gap-2 bg-slate-50 p-4">
+                <div>
+                  <h3 className="font-semibold text-slate-900">{challenge.title}</h3>
+                  <p className="mt-1 text-xs text-slate-500">Target: {challenge.target_value} {challenge.target_type === "assignments_completed" ? "completed assignments" : "class XP"} · Ends {new Date(challenge.ends_at).toLocaleString()}</p>
+                </div>
+                <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-indigo-700">+{challenge.bonus_xp} XP</span>
+              </div>
+              {students.length ? <div className="overflow-x-auto">
+                <table className="min-w-full text-left text-sm">
+                  <thead className="bg-white text-xs uppercase tracking-wide text-slate-500">
+                    <tr><th className="px-4 py-3">Student</th><th className="px-4 py-3">Progress</th><th className="px-4 py-3">Status</th></tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {students.map(student => {
+                      const evidence = ledger.filter(entry =>
+                        entry.studentUserId === student.membership.userId
+                        && entry.classGroupId === challenge.class_group_id
+                        && entry.organizationId === challenge.organization_id
+                        && entry.occurredAt >= challenge.starts_at
+                        && entry.occurredAt <= challenge.ends_at
+                      );
+                      const completed = evidence.some(entry => entry.eventType === "challenge_completed" && entry.sourceId === challenge.id);
+                      const rawProgress = challenge.target_type === "assignments_completed"
+                        ? new Set(evidence.filter(entry => entry.eventType === "assignment_completed").map(entry => entry.sourceId)).size
+                        : evidence.filter(entry => entry.eventType !== "challenge_completed").reduce((sum, entry) => sum + entry.xpDelta, 0);
+                      const progress = Math.min(rawProgress, challenge.target_value);
+                      const percent = Math.round((progress / challenge.target_value) * 100);
+                      return <tr key={student.membership.userId}>
+                        <td className="px-4 py-3"><p className="font-medium text-slate-900">{student.name}</p><p className="text-xs text-slate-500">{student.email}</p></td>
+                        <td className="min-w-48 px-4 py-3">
+                          <div className="flex items-center justify-between gap-3 text-xs text-slate-600"><span>{progress} / {challenge.target_value}</span><span>{percent}%</span></div>
+                          <div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-100" role="progressbar" aria-label={student.name + " progress for " + challenge.title} aria-valuemin={0} aria-valuemax={challenge.target_value} aria-valuenow={progress}><div className={`h-full rounded-full ${completed ? "bg-emerald-500" : "bg-indigo-500"}`} style={{ width: percent + "%" }} /></div>
+                        </td>
+                        <td className="px-4 py-3"><span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${completed ? "bg-emerald-50 text-emerald-700" : "bg-slate-100 text-slate-600"}`}>{completed ? "Reward earned" : progress >= challenge.target_value ? "Awaiting reward record" : "In progress"}</span></td>
+                      </tr>;
+                    })}
+                  </tbody>
+                </table>
+              </div> : <p className="p-4 text-sm text-slate-500">No active students are enrolled in this class.</p>}
+            </div>
+          ))}
+        </div>;
+      })()}
+    </section>
     <div className="flex items-center gap-2 rounded-xl border border-emerald-100 bg-emerald-50 p-4 text-sm text-emerald-900"><CheckCircle2 size={18}/> Students cannot grant themselves XP. Challenge bonuses and reward redemptions are validated by database functions.</div>
   </div>;
 }
