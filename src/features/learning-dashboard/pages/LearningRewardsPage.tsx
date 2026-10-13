@@ -115,6 +115,12 @@ export default function LearningRewardsPage() {
         .filter((event) => isWithinCurrentWeek(event.occurredAt, weekStart, now))
         .map((event) => localDayKey(new Date(event.occurredAt))),
     ).size;
+    const completedWeeklyQuestCodes = new Set(
+      thisWeeksRewards
+        .filter((entry) => entry.eventType === "weekly_quest_completed")
+        .map((entry) => entry.metadata.quest_code)
+        .filter((questCode): questCode is string => typeof questCode === "string" && questCode.length > 0),
+    );
     const weeklyQuests = [
       {
         title: "Finish two assignments",
@@ -177,6 +183,14 @@ export default function LearningRewardsPage() {
         unlocked: completedAssignmentIds.size >= 5,
         progress: completedAssignmentIds.size,
         target: 5,
+        icon: Trophy,
+      },
+      {
+        title: "Weekly Champion",
+        description: "Complete all three weekly quests in one week.",
+        unlocked: completedWeeklyQuestCodes.size >= 3,
+        progress: completedWeeklyQuestCodes.size,
+        target: 3,
         icon: Trophy,
       },
     ];
