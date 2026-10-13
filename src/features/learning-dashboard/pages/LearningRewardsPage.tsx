@@ -111,9 +111,10 @@ export default function LearningRewardsPage() {
         .map((entry) => entry.sourceId),
     ).size;
     const weeklyPassedAssessments = new Set(
-      thisWeeksRewards
-        .filter((entry) => entry.eventType === "assessment_passed")
-        .map((entry) => entry.sourceId),
+      results
+        .filter((result) => result.passed === true && isWithinCurrentWeek(result.evaluatedAt, weekStart, now))
+        .map((result) => attempts.find((attempt) => attempt.id === result.attemptId)?.assessmentId)
+        .filter((assessmentId): assessmentId is string => Boolean(assessmentId)),
     ).size;
     const weeklyPracticeDays = new Set(
       activity
