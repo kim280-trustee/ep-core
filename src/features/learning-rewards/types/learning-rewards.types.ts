@@ -1,6 +1,6 @@
-export type LearningRewardEventType = "assignment_completed" | "assessment_passed";
+export type LearningRewardEventType = "assignment_completed" | "assessment_passed" | "objective_mastered";
 
-export type LearningRewardSourceType = "assignment" | "assessment";
+export type LearningRewardSourceType = "assignment" | "assessment" | "objective";
 
 export interface LearningRewardLedgerEntry {
   id: string;
