@@ -46,12 +46,13 @@ export default function LearningRewardsPage() {
     queryFn: async () => {
       const memberships = await learningEnrollmentService.listUserClasses(studentId);
       const classIds = [...new Set(memberships.filter(item => item.membershipType === "student").map(item => item.classGroupId))];
-      const [items, redemptions, notifications] = await Promise.all([
+      const [items, redemptions, notifications, challengesByClass] = await Promise.all([
         learningRewardsService.listShopItems(classIds),
         learningRewardsService.listStudentRedemptions(studentId),
         learningRewardsService.listNotifications(studentId),
+        Promise.all(classIds.map(classGroupId => learningRewardsService.listClassChallenges(classGroupId))),
       ]);
-      return { items, redemptions, notifications };
+      return { items, redemptions, notifications, challenges: challengesByClass.flat() };
     },
     enabled: Boolean(studentId),
   });
@@ -543,6 +544,24 @@ export default function LearningRewardsPage() {
         <div className="flex items-center gap-2"><Bell size={20} className="text-indigo-700"/><h2 id="reward-notifications-heading" className="text-lg font-semibold text-slate-900">Reward celebrations</h2></div>
         <p className="mt-1 text-sm text-slate-600">These in-app notifications are created when the protected XP ledger awards a reward.</p>
         {shopQuery.isPending ? <p className="mt-3 text-sm text-slate-500">Loading notifications…</p> : shopQuery.isError ? <p className="mt-3 text-sm text-red-700">Notifications could not be loaded.</p> : !(shopQuery.data?.notifications ?? []).some(item => !item.read_at) ? <p className="mt-3 text-sm text-slate-500">You're all caught up. New XP rewards will appear here.</p> : <ul className="mt-3 space-y-2">{(shopQuery.data?.notifications ?? []).filter(item => !item.read_at).slice(0,5).map(item => <li key={item.id} className="flex items-start gap-3 rounded-xl border border-indigo-100 bg-white p-3"><span className="rounded-lg bg-indigo-100 p-2 text-indigo-700"><Award size={17}/></span><div className="min-w-0 flex-1"><p className="font-semibold text-slate-900">{item.title}</p><p className="mt-1 text-sm text-slate-600">{item.message}</p><p className="mt-1 text-xs text-slate-400">{new Date(item.created_at).toLocaleString()}</p></div><button type="button" onClick={() => readNotificationMutation.mutate(item.id)} disabled={readNotificationMutation.isPending} aria-label={"Mark notification read: " + item.title} className="shrink-0 rounded-lg border px-2 py-1 text-xs font-semibold text-slate-600 disabled:opacity-50">Read</button></li>)}</ul>}
+      </section>
+
+      <section aria-labelledby="class-challenges-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <div className="flex items-center gap-2"><Trophy size={20} className="text-indigo-700"/><h2 id="class-challenges-heading" className="text-lg font-semibold text-slate-900">Class challenges</h2></div>
+        <p className="mt-1 text-sm text-slate-500">Shared goals set by your teacher. Meet the target during the challenge period to earn the bonus XP.</p>
+        {shopQuery.isPending ? <p className="mt-3 text-sm text-slate-500">Loading challenges…</p> : shopQuery.isError ? <p className="mt-3 text-sm text-red-700">Challenges could not be loaded.</p> : (() => {
+          const now = Date.now();
+          const activeChallenges = (shopQuery.data?.challenges ?? []).filter(challenge => challenge.status === "active" && new Date(challenge.ends_at).getTime() >= now && new Date(challenge.starts_at).getTime() <= now);
+          return activeChallenges.length ? <div className="mt-4 grid gap-3 sm:grid-cols-2">{activeChallenges.map(challenge => {
+            const matchingRewards = query.data?.rewardLedger.filter(entry => entry.eventType === "challenge_completed" && entry.sourceId === challenge.id) ?? [];
+            const completed = matchingRewards.length > 0;
+            const evidence = (query.data?.rewardLedger ?? []).filter(entry => entry.classGroupId === challenge.class_group_id && entry.occurredAt >= challenge.starts_at && entry.occurredAt <= challenge.ends_at);
+            const progress = challenge.target_type === "assignments_completed" ? new Set(evidence.filter(entry => entry.eventType === "assignment_completed").map(entry => entry.sourceId)).size : evidence.filter(entry => entry.eventType !== "challenge_completed").reduce((sum, entry) => sum + entry.xpDelta, 0);
+            const bounded = Math.min(progress, challenge.target_value);
+            const percent = Math.round((bounded / challenge.target_value) * 100);
+            return <article key={challenge.id} className={"rounded-xl border p-4 " + (completed ? "border-emerald-200 bg-emerald-50/50" : "border-slate-200 bg-slate-50")}><div className="flex items-start justify-between gap-2"><h3 className="font-semibold text-slate-900">{challenge.title}</h3><span className="shrink-0 rounded-full bg-white px-2 py-1 text-xs font-semibold text-indigo-700">+{challenge.bonus_xp} XP</span></div><p className="mt-2 text-sm text-slate-600">{challenge.description || (challenge.target_value + " " + challenge.target_type.replaceAll("_"," "))}</p><div className="mt-4 h-2 overflow-hidden rounded-full bg-slate-200" role="progressbar" aria-label={challenge.title + " progress"} aria-valuemin={0} aria-valuemax={challenge.target_value} aria-valuenow={bounded}><div className={"h-full rounded-full " + (completed ? "bg-emerald-500" : "bg-indigo-500")} style={{width:percent+"%"}}/></div><div className="mt-2 flex justify-between gap-2 text-xs text-slate-500"><span>{completed ? "Completed" : bounded + " / " + challenge.target_value}</span><span>Ends {new Date(challenge.ends_at).toLocaleDateString()}</span></div></article>;
+          })}</div> : <p className="mt-4 rounded-xl border border-dashed p-5 text-sm text-slate-500">No active class challenges right now.</p>;
+        })()}
       </section>
 
       <section aria-labelledby="reward-shop-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
