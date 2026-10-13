@@ -219,6 +219,38 @@ export default function LearningRewardsPage() {
         target: 3,
         icon: Trophy,
       },
+      {
+        title: "Rising Star",
+        description: "Complete ten assignments.",
+        unlocked: completedAssignmentIds.size >= 10,
+        progress: completedAssignmentIds.size,
+        target: 10,
+        icon: BookOpen,
+      },
+      {
+        title: "Quiz Champion",
+        description: "Pass five distinct assessments.",
+        unlocked: passedAssessmentIds.size >= 5,
+        progress: passedAssessmentIds.size,
+        target: 5,
+        icon: Star,
+      },
+      {
+        title: "Mastery Expert",
+        description: "Master ten learning objectives.",
+        unlocked: masteredObjectives >= 10,
+        progress: masteredObjectives,
+        target: 10,
+        icon: ShieldCheck,
+      },
+      {
+        title: "Week Warrior",
+        description: "Learn on seven consecutive days.",
+        unlocked: streak >= 7,
+        progress: streak,
+        target: 7,
+        icon: Flame,
+      },
     ];
     return {
       xp,
