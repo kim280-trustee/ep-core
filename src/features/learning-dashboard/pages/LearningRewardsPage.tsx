@@ -8,7 +8,7 @@ import { learningActivityService } from "@/features/learning-activity";
 import { learningAssignmentsService } from "@/features/learning-assignments";
 import { learningAssessmentService } from "@/features/learning-assessment";
 import { learningMasteryService } from "@/features/learning-mastery";
-import { LEARNING_LEARNING_REWARD_LEVELS, learningRewardsService } from "@/features/learning-rewards";
+import { LEARNING_REWARD_LEVELS, learningRewardsService } from "@/features/learning-rewards";
 
 function localDayKey(value: Date) {
   return `${value.getFullYear()}-${String(value.getMonth() + 1).padStart(2, "0")}-${String(value.getDate()).padStart(2, "0")}`;
