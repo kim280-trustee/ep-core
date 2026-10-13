@@ -1,13 +1,14 @@
 import { useMemo } from "react";
 import type { ReactNode } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { Award, BookOpen, Flame, ShieldCheck, Star, Trophy, Zap } from "lucide-react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Award, Bell, BookOpen, CheckCircle2, Flame, Gift, ShieldCheck, Star, Trophy, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningActivityService } from "@/features/learning-activity";
 import { learningAssignmentsService } from "@/features/learning-assignments";
 import { learningAssessmentService } from "@/features/learning-assessment";
 import { learningMasteryService } from "@/features/learning-mastery";
+import { learningEnrollmentService } from "@/features/learning-enrollment";
 import { calculateLearningStreak, LEARNING_REWARD_LEVELS, learningRewardsService } from "@/features/learning-rewards";
 
 function localDayKey(value: Date) {
@@ -38,6 +39,35 @@ type RewardBadge = {
 export default function LearningRewardsPage() {
   const { user } = useAuth();
   const studentId = user?.id ?? "";
+
+  const queryClient = useQueryClient();
+  const shopQuery = useQuery({
+    queryKey: ["learning", "reward-shop", studentId],
+    queryFn: async () => {
+      const memberships = await learningEnrollmentService.listUserClasses(studentId);
+      const classIds = [...new Set(memberships.filter(item => item.membershipType === "student").map(item => item.classGroupId))];
+      const [items, redemptions, notifications] = await Promise.all([
+        learningRewardsService.listShopItems(classIds),
+        learningRewardsService.listStudentRedemptions(studentId),
+        learningRewardsService.listNotifications(studentId),
+      ]);
+      return { items, redemptions, notifications };
+    },
+    enabled: Boolean(studentId),
+  });
+  const redeemMutation = useMutation({
+    mutationFn: (itemId: string) => learningRewardsService.redeemReward(itemId),
+    onSuccess: async () => {
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ["learning", "reward-shop", studentId] }),
+        queryClient.invalidateQueries({ queryKey: ["learning", "rewards", studentId] }),
+      ]);
+    },
+  });
+  const readNotificationMutation = useMutation({
+    mutationFn: (notificationId: string) => learningRewardsService.markNotificationRead(notificationId),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["learning", "reward-shop", studentId] }),
+  });
 
   const query = useQuery({
     queryKey: ["learning", "rewards", studentId],
@@ -509,6 +539,27 @@ export default function LearningRewardsPage() {
         </div>
       </section>
 
+      <section aria-labelledby="reward-notifications-heading" className="rounded-2xl border border-indigo-200 bg-indigo-50/50 p-5 sm:p-6">
+        <div className="flex items-center gap-2"><Bell size={20} className="text-indigo-700"/><h2 id="reward-notifications-heading" className="text-lg font-semibold text-slate-900">Reward celebrations</h2></div>
+        <p className="mt-1 text-sm text-slate-600">These in-app notifications are created when the protected XP ledger awards a reward.</p>
+        {shopQuery.isPending ? <p className="mt-3 text-sm text-slate-500">Loading notifications…</p> : shopQuery.isError ? <p className="mt-3 text-sm text-red-700">Notifications could not be loaded.</p> : !(shopQuery.data?.notifications ?? []).some(item => !item.read_at) ? <p className="mt-3 text-sm text-slate-500">You're all caught up. New XP rewards will appear here.</p> : <ul className="mt-3 space-y-2">{(shopQuery.data?.notifications ?? []).filter(item => !item.read_at).slice(0,5).map(item => <li key={item.id} className="flex items-start gap-3 rounded-xl border border-indigo-100 bg-white p-3"><span className="rounded-lg bg-indigo-100 p-2 text-indigo-700"><Award size={17}/></span><div className="min-w-0 flex-1"><p className="font-semibold text-slate-900">{item.title}</p><p className="mt-1 text-sm text-slate-600">{item.message}</p><p className="mt-1 text-xs text-slate-400">{new Date(item.created_at).toLocaleString()}</p></div><button type="button" onClick={() => readNotificationMutation.mutate(item.id)} disabled={readNotificationMutation.isPending} aria-label={"Mark notification read: " + item.title} className="shrink-0 rounded-lg border px-2 py-1 text-xs font-semibold text-slate-600 disabled:opacity-50">Read</button></li>)}</ul>}
+      </section>
+
+      <section aria-labelledby="reward-shop-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <div className="flex items-center gap-2"><Gift size={20}/><h2 id="reward-shop-heading" className="text-lg font-semibold text-slate-900">Class reward shop</h2></div>
+        <p className="mt-1 text-sm text-slate-500">Spend XP earned in the class where a reward is offered. Requests reserve stock and XP until the teacher reviews them.</p>
+        {redeemMutation.isError && <p role="alert" className="mt-3 rounded-lg bg-red-50 p-3 text-sm text-red-700">{redeemMutation.error instanceof Error ? redeemMutation.error.message : "Reward request failed."}</p>}
+        {shopQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading class rewards…</p> : shopQuery.isError ? <p className="mt-4 text-sm text-red-700">The reward shop could not be loaded.</p> : !(shopQuery.data?.items ?? []).length ? <p className="mt-4 rounded-xl border border-dashed p-5 text-sm text-slate-500">Your teacher has not added rewards to your classes yet.</p> : <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{shopQuery.data.items.map(item => {
+          const classXp = query.data?.rewardLedger.filter(entry => entry.classGroupId === item.class_group_id).reduce((sum, entry) => sum + entry.xpDelta, 0) ?? 0;
+          const committed = shopQuery.data?.redemptions.filter(entry => entry.class_group_id === item.class_group_id && entry.status !== "rejected").reduce((sum, entry) => sum + entry.cost_xp, 0) ?? 0;
+          const balance = Math.max(0, classXp - committed);
+          const stockAvailable = item.quantity_remaining === null || item.quantity_remaining > 0;
+          return <article key={item.id} className="flex flex-col rounded-xl border border-slate-200 p-4"><div className="flex items-start justify-between gap-2"><h3 className="font-semibold text-slate-900">{item.name}</h3><span className="shrink-0 rounded-full bg-amber-50 px-2 py-1 text-xs font-bold text-amber-800">{item.cost_xp} XP</span></div><p className="mt-2 flex-1 text-sm text-slate-600">{item.description || "A reward offered by your teacher."}</p><p className="mt-3 text-xs text-slate-500">Your class balance: {balance} XP {item.quantity_remaining !== null ? "· " + item.quantity_remaining + " left" : ""}</p><button type="button" onClick={() => redeemMutation.mutate(item.id)} disabled={redeemMutation.isPending || balance < item.cost_xp || !stockAvailable} className="mt-3 rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-40">{!stockAvailable ? "Out of stock" : balance < item.cost_xp ? "Keep earning XP" : "Request reward"}</button></article>;
+        })}</div>}
+        {(shopQuery.data?.redemptions ?? []).length > 0 && <div className="mt-5 border-t pt-4"><h3 className="font-semibold text-slate-900">Your reward requests</h3><ul className="mt-2 divide-y">{shopQuery.data?.redemptions.slice(0,6).map(entry => { const item = shopQuery.data?.items.find(candidate => candidate.id === entry.item_id); return <li key={entry.id} className="flex items-center justify-between gap-3 py-3 text-sm"><span>{item?.name ?? "Reward"} · {entry.cost_xp} XP</span><span className={"rounded-full px-2 py-1 text-xs font-semibold capitalize " + (entry.status === "fulfilled" ? "bg-emerald-50 text-emerald-700" : entry.status === "rejected" ? "bg-red-50 text-red-700" : "bg-amber-50 text-amber-800")}>{entry.status}</span></li>; })}</ul></div>}
+        <div className="mt-4 flex items-center gap-2 text-xs text-slate-500"><CheckCircle2 size={15}/> XP is deducted by a secure database transaction, not by the browser.</div>
+      </section>
+
       <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">How XP is earned</h2>
         <div className="mt-4 divide-y divide-slate-100">
@@ -518,6 +569,7 @@ export default function LearningRewardsPage() {
           <RewardRule title="Weekly quest completed" points="+25 XP" detail="Earned once for each weekly quest completed." />
           <RewardRule title="Three-day streak" points="+20 XP" detail="One-time bonus for learning on three consecutive days." />
           <RewardRule title="Seven-day streak" points="+50 XP" detail="One-time bonus for learning on seven consecutive days." />
+          <RewardRule title="Class challenge completed" points="5–100 XP" detail="Bonus XP when you meet a teacher-created class goal." />
         </div>
         <p className="mt-4 text-xs text-slate-500">XP is recorded in a protected reward ledger. Badge progress reflects your recorded learning evidence.</p>
       </section>
@@ -537,13 +589,14 @@ export default function LearningRewardsPage() {
               const mastery = entry.eventType === "objective_mastered";
               const weeklyQuest = entry.eventType === "weekly_quest_completed";
               const streakMilestone = entry.eventType === "streak_milestone";
+              const challenge = entry.eventType === "challenge_completed";
               return (
                 <li key={entry.id} className="flex items-center gap-3 py-3 first:pt-0 last:pb-0">
-                  <span className={`rounded-xl p-2 ${assignment ? "bg-sky-50 text-sky-700" : mastery ? "bg-emerald-50 text-emerald-700" : weeklyQuest ? "bg-violet-50 text-violet-700" : streakMilestone ? "bg-rose-50 text-rose-700" : "bg-amber-50 text-amber-700"}`}>
-                    {assignment ? <BookOpen size={18} aria-hidden="true" /> : mastery ? <ShieldCheck size={18} aria-hidden="true" /> : weeklyQuest ? <Award size={18} aria-hidden="true" /> : streakMilestone ? <Flame size={18} aria-hidden="true" /> : <Star size={18} aria-hidden="true" />}
+                  <span className={`rounded-xl p-2 ${assignment ? "bg-sky-50 text-sky-700" : mastery ? "bg-emerald-50 text-emerald-700" : weeklyQuest ? "bg-violet-50 text-violet-700" : streakMilestone ? "bg-rose-50 text-rose-700" : challenge ? "bg-indigo-50 text-indigo-700" : "bg-amber-50 text-amber-700"}`}>
+                    {assignment ? <BookOpen size={18} aria-hidden="true" /> : mastery ? <ShieldCheck size={18} aria-hidden="true" /> : weeklyQuest ? <Award size={18} aria-hidden="true" /> : streakMilestone ? <Flame size={18} aria-hidden="true" /> : challenge ? <Trophy size={18} aria-hidden="true" /> : <Star size={18} aria-hidden="true" />}
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="font-medium text-slate-900">{assignment ? "Assignment completed" : mastery ? "Objective mastered" : weeklyQuest ? "Weekly quest completed" : streakMilestone ? `${Number(entry.metadata.milestone_days) || 0}-day streak milestone` : "Assessment passed"}</p>
+                    <p className="font-medium text-slate-900">{assignment ? "Assignment completed" : mastery ? "Objective mastered" : weeklyQuest ? "Weekly quest completed" : streakMilestone ? `${Number(entry.metadata.milestone_days) || 0}-day streak milestone` : challenge ? "Class challenge completed" : "Assessment passed"}</p>
                     <p className="mt-0.5 text-xs text-slate-500">
                       {new Date(entry.occurredAt).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" })}
                     </p>
