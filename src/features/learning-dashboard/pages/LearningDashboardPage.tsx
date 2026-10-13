@@ -2,10 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { AlertCircle, BookOpen, CheckCircle2, Clock3, Target, TrendingUp } from "lucide-react";
+import { AlertCircle, BookOpen, CheckCircle2, Clock3, Target, TrendingUp, Zap } from "lucide-react";
 import { useAuth } from "@/core/auth";
 import { learningRuntimeService } from "@/features/learning-runtime";
 import { learningAssignmentsService } from "@/features/learning-assignments";
+import { LEARNING_REWARD_LEVELS, learningRewardsService } from "@/features/learning-rewards";
 import type { LearningAssignmentProgress } from "@/features/learning-assignments";
 
 function formatDate(value: string | null) {
@@ -62,11 +63,24 @@ export default function LearningDashboardPage() {
     enabled: Boolean(studentUserId),
   });
 
+  // Rewards load independently so a reward-ledger issue never blocks the core learning dashboard.
+  const rewardsQuery = useQuery({
+    queryKey: ["learning", "dashboard-reward-ledger", studentUserId],
+    queryFn: () => learningRewardsService.listStudentLedger(studentUserId),
+    enabled: Boolean(studentUserId),
+  });
+
   if (!user) return <div className="rounded-2xl border border-slate-200 bg-white p-6">Sign in to view your learning dashboard.</div>;
   if (query.isPending) return <div className="space-y-4"><div className="h-28 animate-pulse rounded-2xl bg-slate-200" /><div className="grid gap-4 md:grid-cols-2"><div className="h-52 animate-pulse rounded-2xl bg-slate-200" /><div className="h-52 animate-pulse rounded-2xl bg-slate-200" /></div></div>;
   if (query.isError) return <div className="flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800"><AlertCircle className="mt-0.5 shrink-0" size={20} /><div><p className="font-semibold">We could not load your learning dashboard.</p><p className="mt-1 text-sm">Please try again. Your learning data has not been changed.</p><button type="button" onClick={() => void query.refetch()} className="mt-3 rounded-lg bg-white px-3 py-2 text-sm font-medium shadow-sm">Try again</button></div></div>;
 
   const overview = query.data;
+  const rewardXp = (rewardsQuery.data ?? []).reduce((total, entry) => total + entry.xpDelta, 0);
+  const currentRewardLevel = [...LEARNING_REWARD_LEVELS].reverse().find((level) => rewardXp >= level.minXp) ?? LEARNING_REWARD_LEVELS[0];
+  const nextRewardLevel = LEARNING_REWARD_LEVELS.find((level) => level.minXp > rewardXp);
+  const rewardLevelProgress = nextRewardLevel
+    ? Math.min(100, Math.round(((rewardXp - currentRewardLevel.minXp) / (nextRewardLevel.minXp - currentRewardLevel.minXp)) * 100))
+    : 100;
   const inProgress = overview.progress.filter((p) => p.status === "in_progress");
   const completed = overview.progress.filter((p) => p.status === "completed");
   const averageMastery = overview.mastery.length ? Math.round(overview.mastery.reduce((sum, item) => sum + item.masteryScore, 0) / overview.mastery.length) : 0;
@@ -93,6 +107,28 @@ export default function LearningDashboardPage() {
       <Stat icon={<CheckCircle2 size={19} />} label="Completed" value={String(completed.length)} detail="assignment progress" />
       <Stat icon={<TrendingUp size={19} />} label="Recommendations" value={String(overview.recommendations.length)} detail="ready for you" />
     </section>
+    {rewardsQuery.isSuccess && <section aria-labelledby="dashboard-rewards-heading" className="rounded-2xl border border-amber-200 bg-gradient-to-r from-amber-50 to-white p-5 shadow-sm sm:p-6">
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <span className="rounded-xl bg-amber-100 p-3 text-amber-800"><Zap size={22} aria-hidden="true" /></span>
+          <div>
+            <p className="text-sm font-medium text-amber-800">Your learning rewards</p>
+            <h2 id="dashboard-rewards-heading" className="mt-0.5 text-xl font-bold text-slate-900">{currentRewardLevel.name} · {rewardXp} XP</h2>
+            <p className="mt-1 text-sm text-slate-600">{currentRewardLevel.description}</p>
+          </div>
+        </div>
+        <Link to="/learning/rewards" className="inline-flex items-center rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800">View rewards</Link>
+      </div>
+      {nextRewardLevel ? <div className="mt-5">
+        <div role="progressbar" aria-label={`Progress to ${nextRewardLevel.name} level`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={rewardLevelProgress} className="h-2.5 overflow-hidden rounded-full bg-amber-100">
+          <div className="h-full rounded-full bg-amber-500 transition-[width]" style={{ width: `${rewardLevelProgress}%` }} />
+        </div>
+        <div className="mt-2 flex flex-wrap justify-between gap-2 text-xs text-slate-600">
+          <span>{rewardLevelProgress}% to next level</span>
+          <span>{nextRewardLevel.minXp - rewardXp} XP to {nextRewardLevel.name}</span>
+        </div>
+      </div> : <p className="mt-4 text-sm font-medium text-slate-700">Highest current level reached.</p>}
+    </section>}
     {dueAlerts.length > 0 && <DashboardCard title="Assignment reminders" icon={<AlertCircle size={20} />}>
       <div className="space-y-3">{dueAlerts.map((assignment) => {
         const overdue = now !== null && new Date(assignment.dueAt!).getTime() < now;

@@ -8,7 +8,7 @@ import { learningActivityService } from "@/features/learning-activity";
 import { learningAssignmentsService } from "@/features/learning-assignments";
 import { learningAssessmentService } from "@/features/learning-assessment";
 import { learningMasteryService } from "@/features/learning-mastery";
-import { learningRewardsService } from "@/features/learning-rewards";
+import { LEARNING_REWARD_LEVELS, learningRewardsService } from "@/features/learning-rewards";
 
 function localDayKey(value: Date) {
   return `${value.getFullYear()}-${String(value.getMonth() + 1).padStart(2, "0")}-${String(value.getDate()).padStart(2, "0")}`;
@@ -51,14 +51,6 @@ type RewardBadge = {
   icon: typeof Award;
 };
 
-const REWARD_LEVELS = [
-  { name: "Starter", minXp: 0, description: "Begin your learning journey." },
-  { name: "Explorer", minXp: 100, description: "Build a steady learning habit." },
-  { name: "Achiever", minXp: 250, description: "Turn practice into progress." },
-  { name: "Scholar", minXp: 500, description: "Show consistent learning effort." },
-  { name: "Master", minXp: 1000, description: "Reach the highest current level." },
-] as const;
-
 export default function LearningRewardsPage() {
   const { user } = useAuth();
   const studentId = user?.id ?? "";
@@ -95,9 +87,9 @@ export default function LearningRewardsPage() {
     );
     const masteredObjectives = mastery.filter((item) => item.state === "mastered").length;
     const xp = rewardLedger.reduce((total, entry) => total + entry.xpDelta, 0);
-    const nextLevelIndex = REWARD_LEVELS.findIndex((level) => level.minXp > xp);
-    const currentLevel = REWARD_LEVELS[nextLevelIndex === -1 ? REWARD_LEVELS.length - 1 : nextLevelIndex - 1];
-    const nextLevel = REWARD_LEVELS[nextLevelIndex] ?? null;
+    const nextLevelIndex = LEARNING_REWARD_LEVELS.findIndex((level) => level.minXp > xp);
+    const currentLevel = LEARNING_REWARD_LEVELS[nextLevelIndex === -1 ? LEARNING_REWARD_LEVELS.length - 1 : nextLevelIndex - 1];
+    const nextLevel = LEARNING_REWARD_LEVELS[nextLevelIndex] ?? null;
     const levelProgress = nextLevel
       ? Math.min(100, Math.round(((xp - currentLevel.minXp) / (nextLevel.minXp - currentLevel.minXp)) * 100))
       : 100;

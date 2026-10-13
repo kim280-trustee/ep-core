@@ -1,3 +1,4 @@
+export { LEARNING_REWARD_LEVELS } from "./constants/learning-reward-levels";
 export { learningRewardsService } from "./services/learning-rewards.service";
 export type {
   LearningRewardEventType,
