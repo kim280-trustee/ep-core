@@ -47,7 +47,7 @@ export default function LearningRewardsPage() {
       const memberships = await learningEnrollmentService.listUserClasses(studentId);
       const classIds = [...new Set(memberships.filter(item => item.membershipType === "student").map(item => item.classGroupId))];
       const [items, redemptions, notifications, challengesByClass] = await Promise.all([
-        learningRewardsService.listShopItems(classIds),
+        learningRewardsService.listShopItems(classIds, true),
         learningRewardsService.listStudentRedemptions(studentId),
         learningRewardsService.listNotifications(studentId),
         Promise.all(classIds.map(classGroupId => learningRewardsService.listClassChallenges(classGroupId))),
@@ -567,7 +567,7 @@ export default function LearningRewardsPage() {
         <div className="flex items-center gap-2"><Gift size={20}/><h2 id="reward-shop-heading" className="text-lg font-semibold text-slate-900">Class reward shop</h2></div>
         <p className="mt-1 text-sm text-slate-500">Spend XP earned in your school organization on rewards offered by your class. Requests reserve stock and XP until the teacher reviews them.</p>
         {redeemMutation.isError && <p role="alert" className="mt-3 rounded-lg bg-red-50 p-3 text-sm text-red-700">{redeemMutation.error instanceof Error ? redeemMutation.error.message : "Reward request failed."}</p>}
-        {shopQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading class rewards…</p> : shopQuery.isError ? <p className="mt-4 text-sm text-red-700">The reward shop could not be loaded.</p> : !(shopQuery.data?.items ?? []).length ? <p className="mt-4 rounded-xl border border-dashed p-5 text-sm text-slate-500">Your teacher has not added rewards to your classes yet.</p> : <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{shopQuery.data.items.map(item => {
+        {shopQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading class rewards…</p> : shopQuery.isError ? <p className="mt-4 text-sm text-red-700">The reward shop could not be loaded.</p> : !(shopQuery.data?.items ?? []).some(item => item.status === "active") ? <p className="mt-4 rounded-xl border border-dashed p-5 text-sm text-slate-500">Your teacher has not added rewards to your classes yet.</p> : <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{shopQuery.data.items.filter(item => item.status === "active").map(item => {
           const classXp = query.data?.rewardLedger.filter(entry => entry.organizationId === item.organization_id).reduce((sum, entry) => sum + entry.xpDelta, 0) ?? 0;
           const committed = shopQuery.data?.redemptions.filter(entry => entry.organization_id === item.organization_id && entry.status !== "rejected").reduce((sum, entry) => sum + entry.cost_xp, 0) ?? 0;
           const balance = Math.max(0, classXp - committed);
