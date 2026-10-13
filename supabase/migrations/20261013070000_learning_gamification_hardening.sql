@@ -169,7 +169,7 @@ begin
     r.position,
     r.user_id = v_user
   from ranked r
-  order by r.position, r.display_name;
+  order by r.position, r.name;
 end;
 $function$;
 
