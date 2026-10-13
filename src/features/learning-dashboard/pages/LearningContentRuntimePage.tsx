@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AlertCircle, ArrowLeft, BookOpen, CheckCircle2 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
@@ -29,7 +29,7 @@ export default function LearningContentRuntimePage() {
   const content = contentId ?? "";
   const queryClient = useQueryClient();
   const [responseText, setResponseText] = useState("");
-  const [fillInAnswers, setFillInAnswers] = useState<string[]>([]);
+  const [fillInAnswerDrafts, setFillInAnswerDrafts] = useState<Record<string, string[]>>({});
 
   useEffect(() => {
     if (!user?.id || !id || !content) return;
@@ -93,25 +93,18 @@ export default function LearningContentRuntimePage() {
     enabled: Boolean(id && content && user?.id),
   });
 
-  useEffect(() => {
-    if (!responseQuery.data) return;
-    const nextResponseText = responseQuery.data.responseText;
-    const timer = window.setTimeout(() => {
-      setResponseText(nextResponseText);
-    }, 0);
-    return () => window.clearTimeout(timer);
-  }, [responseQuery.data]);
-
-  useEffect(() => {
-    if (!responseQuery.data || !query.data) return;
+  const fillInDraftKey = `${id}:${content}`;
+  const savedFillInAnswers = useMemo(() => {
+    if (!responseQuery.data || !query.data) return [];
     const template = query.data.sections.map((section) => section.body).join("\n\n");
     const parts = template.split(/(?:\\?_){3,}/g);
-    if (parts.length < 2) return;
+    if (parts.length < 2) return [];
     const escapedParts = parts.map((part) => part.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
     const matcher = new RegExp("^" + escapedParts.join("([\\s\\S]*?)") + "$");
     const match = responseQuery.data.responseText.match(matcher);
-    if (match) setFillInAnswers(match.slice(1));
+    return match ? match.slice(1) : [];
   }, [query.data, responseQuery.data]);
+  const fillInAnswers = fillInAnswerDrafts[fillInDraftKey] ?? savedFillInAnswers;
 
   const responseMutation = useMutation({
     mutationFn: async (status: "draft" | "submitted") => {
@@ -247,7 +240,7 @@ export default function LearningContentRuntimePage() {
                   return <input key={`${index}-blank-${answerIndex}`} aria-label={`Answer blank ${answerIndex + 1}`} value={fillInAnswers[answerIndex] ?? ""} disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending} onChange={(event) => {
                     const nextAnswers = [...fillInAnswers];
                     nextAnswers[answerIndex] = event.target.value;
-                    setFillInAnswers(nextAnswers);
+                    setFillInAnswerDrafts((current) => ({ ...current, [fillInDraftKey]: nextAnswers }));
                     setResponseText(buildFillInResponse(nextAnswers));
                   }} className="mx-1 inline-block min-w-28 max-w-full rounded-md border border-slate-400 bg-white px-2 py-1 text-slate-900 outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200" placeholder={`Blank ${answerIndex + 1}`} />
                 }) : section.body}
