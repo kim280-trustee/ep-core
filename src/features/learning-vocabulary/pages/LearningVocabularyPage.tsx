@@ -137,7 +137,7 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
   const objectivesQuery = useQuery({
     queryKey: ["learning-vocabulary", "objectives", organizationId],
     queryFn: () => learningContentService.listObjectives(),
-    enabled: isTeacher && Boolean(organizationId),
+    enabled: Boolean(organizationId),
     staleTime: 60_000,
   });
   const progressByEntryId = new Map(progress.map((item) => [item.vocabularyEntryId, item]));
