@@ -94,6 +94,11 @@ export class SupabaseAuthRepository
       return "/parent";
     }
 
+    const { data: permissions, error: permissionsError } = await supabase.rpc("get_current_user_permissions");
+    if (!permissionsError && permissions?.some((permission) => permission.permission_code === "settings.manage")) {
+      return "/school-admin";
+    }
+
     return null;
   }
 }
