@@ -9,7 +9,7 @@ import { learningAssignmentsService } from "@/features/learning-assignments";
 import { learningAssessmentService } from "@/features/learning-assessment";
 import { learningMasteryService } from "@/features/learning-mastery";
 import { learningEnrollmentService } from "@/features/learning-enrollment";
-import { calculateLearningStreak, LEARNING_REWARD_LEVELS, learningRewardsService } from "@/features/learning-rewards";
+import { calculateLearningStreak, getVerifiedLearningActivityTimestamps, LEARNING_REWARD_LEVELS, learningRewardsService } from "@/features/learning-rewards";
 
 function localDayKey(value: Date) {
   return `${value.getFullYear()}-${String(value.getMonth() + 1).padStart(2, "0")}-${String(value.getDate()).padStart(2, "0")}`;
@@ -187,7 +187,8 @@ export default function LearningRewardsPage() {
     const levelProgress = nextLevel
       ? Math.min(100, Math.round(((xp - currentLevel.minXp) / (nextLevel.minXp - currentLevel.minXp)) * 100))
       : 100;
-    const streak = calculateLearningStreak(activity.map((event) => event.occurredAt));
+    const verifiedActivityTimestamps = getVerifiedLearningActivityTimestamps(activity, rewardLedger);
+    const streak = calculateLearningStreak(verifiedActivityTimestamps);
     const now = new Date();
     const calendarEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     calendarEnd.setDate(calendarEnd.getDate() + (6 - calendarEnd.getDay()));
@@ -246,9 +247,9 @@ export default function LearningRewardsPage() {
         .filter((assessmentId): assessmentId is string => Boolean(assessmentId)),
     ).size;
     const weeklyPracticeDays = new Set(
-      activity
-        .filter((event) => isWithinCurrentWeek(event.occurredAt, weekStart, now))
-        .map((event) => localDayKey(new Date(event.occurredAt))),
+      verifiedActivityTimestamps
+        .filter((timestamp) => isWithinCurrentWeek(timestamp, weekStart, now))
+        .map((timestamp) => localDayKey(new Date(timestamp))),
     ).size;
     const completedWeeklyQuestCodes = new Set(
       thisWeeksRewards
