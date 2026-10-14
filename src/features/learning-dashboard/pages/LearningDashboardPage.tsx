@@ -77,14 +77,20 @@ export default function LearningDashboardPage() {
     enabled: Boolean(studentUserId),
   });
 
+  const verifiedCompletionsQuery = useQuery({
+    queryKey: ["learning", "dashboard-verified-completions", studentUserId],
+    queryFn: () => learningActivityService.listValidatedContentCompletions(studentUserId),
+    enabled: Boolean(studentUserId),
+  });
+
   if (!user) return <div className="rounded-2xl border border-slate-200 bg-white p-6">Sign in to view your learning dashboard.</div>;
   if (query.isPending) return <div className="space-y-4"><div className="h-28 animate-pulse rounded-2xl bg-slate-200" /><div className="grid gap-4 md:grid-cols-2"><div className="h-52 animate-pulse rounded-2xl bg-slate-200" /><div className="h-52 animate-pulse rounded-2xl bg-slate-200" /></div></div>;
   if (query.isError) return <div className="flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800"><AlertCircle className="mt-0.5 shrink-0" size={20} /><div><p className="font-semibold">We could not load your learning dashboard.</p><p className="mt-1 text-sm">Please try again. Your learning data has not been changed.</p><button type="button" onClick={() => void query.refetch()} className="mt-3 rounded-lg bg-white px-3 py-2 text-sm font-medium shadow-sm">Try again</button></div></div>;
 
   const overview = query.data;
   const rewardXp = (rewardsQuery.data ?? []).reduce((total, entry) => total + entry.xpDelta, 0);
-  const learningStreak = activityQuery.isSuccess && rewardsQuery.isSuccess
-    ? calculateLearningStreak(getVerifiedLearningActivityTimestamps(activityQuery.data, rewardsQuery.data))
+  const learningStreak = verifiedCompletionsQuery.isSuccess && rewardsQuery.isSuccess
+    ? calculateLearningStreak(getVerifiedLearningActivityTimestamps(verifiedCompletionsQuery.data, rewardsQuery.data))
     : null;
   const currentRewardLevel = [...LEARNING_REWARD_LEVELS].reverse().find((level) => rewardXp >= level.minXp) ?? LEARNING_REWARD_LEVELS[0];
   const nextRewardLevel = LEARNING_REWARD_LEVELS.find((level) => level.minXp > rewardXp);
