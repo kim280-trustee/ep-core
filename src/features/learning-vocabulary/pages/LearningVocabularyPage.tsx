@@ -71,6 +71,11 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
   const [answerRevealed, setAnswerRevealed] = useState(false);
   const [actionError, setActionError] = useState("");
   const [actionNotice, setActionNotice] = useState("");
+  const [detailsEntryId, setDetailsEntryId] = useState("");
+  const [editingTranslationId, setEditingTranslationId] = useState("");
+  const [editingExampleId, setEditingExampleId] = useState("");
+  const [translationForm, setTranslationForm] = useState({ languageCode: "th", translation: "", pronunciation: "", transliteration: "", audioUrl: "" });
+  const [exampleForm, setExampleForm] = useState({ languageCode: "en", sentence: "", translationLanguageCode: "th", translatedSentence: "", sequenceNo: 1 });
 
   const membershipsQuery = useQuery({
     queryKey: ["learning-vocabulary", "memberships", user?.id, audience],
@@ -111,6 +116,17 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
 
   const entries = entriesQuery.data ?? [];
   const progress = progressQuery.data ?? [];
+  const detailsEntry = entries.find((entry) => entry.id === detailsEntryId);
+  const translationsQuery = useQuery({
+    queryKey: ["learning-vocabulary", "translations", organizationId, detailsEntryId],
+    queryFn: () => learningVocabularyService.listTranslations(organizationId, detailsEntryId),
+    enabled: Boolean(organizationId && detailsEntryId),
+  });
+  const examplesQuery = useQuery({
+    queryKey: ["learning-vocabulary", "examples", organizationId, detailsEntryId],
+    queryFn: () => learningVocabularyService.listExamples(organizationId, detailsEntryId),
+    enabled: Boolean(organizationId && detailsEntryId),
+  });
   const progressByEntryId = new Map(progress.map((item) => [item.vocabularyEntryId, item]));
   const normalizedSearch = search.trim().toLocaleLowerCase();
   const filteredEntries = entries.filter((entry) =>
@@ -133,6 +149,10 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
       setActionError("");
       setActionNotice("Vocabulary changes saved.");
       await queryClient.invalidateQueries({ queryKey: ["learning-vocabulary", "entries", organizationId] });
+      if (detailsEntryId) {
+        await queryClient.invalidateQueries({ queryKey: ["learning-vocabulary", "translations", organizationId, detailsEntryId] });
+        await queryClient.invalidateQueries({ queryKey: ["learning-vocabulary", "examples", organizationId, detailsEntryId] });
+      }
     },
     onError: (error) => {
       setActionNotice("");
@@ -225,6 +245,94 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
     } catch {
       // The mutation displays the actionable error above the editor.
     }
+  };
+
+  const submitTranslation = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!user || !organizationId || !detailsEntryId || !translationForm.translation.trim()) return;
+    const languageCode = translationForm.languageCode.trim().toLowerCase();
+    if (!/^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$/.test(languageCode)) {
+      setActionError("Enter a valid translation language code, such as th or sw.");
+      return;
+    }
+    try {
+      if (editingTranslationId) {
+        await saveMutation.mutateAsync(() => learningVocabularyService.updateTranslation(editingTranslationId, {
+          translation: translationForm.translation,
+          pronunciation: translationForm.pronunciation,
+          transliteration: translationForm.transliteration,
+          audioUrl: translationForm.audioUrl,
+          updatedBy: user.id,
+        }));
+      } else {
+        await saveMutation.mutateAsync(() => learningVocabularyService.createTranslation({
+          tenantId: user.tenantId, organizationId, vocabularyEntryId: detailsEntryId,
+          languageCode, translation: translationForm.translation,
+          pronunciation: translationForm.pronunciation, transliteration: translationForm.transliteration,
+          audioUrl: translationForm.audioUrl, createdBy: user.id, updatedBy: user.id,
+        }));
+      }
+      setEditingTranslationId("");
+      setTranslationForm({ languageCode: "th", translation: "", pronunciation: "", transliteration: "", audioUrl: "" });
+    } catch {
+      // The shared mutation state displays the actionable error.
+    }
+  };
+
+  const submitExample = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!user || !organizationId || !detailsEntryId || !exampleForm.sentence.trim()) return;
+    const languageCode = exampleForm.languageCode.trim().toLowerCase();
+    const translationLanguageCode = exampleForm.translationLanguageCode.trim().toLowerCase();
+    const validCode = /^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$/;
+    if (!validCode.test(languageCode) || (translationLanguageCode && !validCode.test(translationLanguageCode))) {
+      setActionError("Enter valid language codes for the example and its translation.");
+      return;
+    }
+    try {
+      if (editingExampleId) {
+        await saveMutation.mutateAsync(() => learningVocabularyService.updateExample(editingExampleId, {
+          languageCode, sentence: exampleForm.sentence,
+          translationLanguageCode: translationLanguageCode || null,
+          translatedSentence: exampleForm.translatedSentence,
+          sequenceNo: exampleForm.sequenceNo, updatedBy: user.id,
+        }));
+      } else {
+        await saveMutation.mutateAsync(() => learningVocabularyService.createExample({
+          tenantId: user.tenantId, organizationId, vocabularyEntryId: detailsEntryId,
+          languageCode, sentence: exampleForm.sentence,
+          translationLanguageCode: translationLanguageCode || null,
+          translatedSentence: exampleForm.translatedSentence,
+          sequenceNo: exampleForm.sequenceNo, createdBy: user.id, updatedBy: user.id,
+        }));
+      }
+      setEditingExampleId("");
+      setExampleForm({ languageCode: "en", sentence: "", translationLanguageCode: "th", translatedSentence: "", sequenceNo: (examplesQuery.data?.length ?? 0) + 2 });
+    } catch {
+      // The shared mutation state displays the actionable error.
+    }
+  };
+
+  const editTranslation = (translation: NonNullable<typeof translationsQuery.data>[number]) => {
+    setEditingTranslationId(translation.id);
+    setTranslationForm({
+      languageCode: translation.languageCode, translation: translation.translation,
+      pronunciation: translation.pronunciation ?? "", transliteration: translation.transliteration ?? "",
+      audioUrl: translation.audioUrl ?? "",
+    });
+    setActionError("");
+    setActionNotice("");
+  };
+
+  const editExample = (example: NonNullable<typeof examplesQuery.data>[number]) => {
+    setEditingExampleId(example.id);
+    setExampleForm({
+      languageCode: example.languageCode, sentence: example.sentence,
+      translationLanguageCode: example.translationLanguageCode ?? "",
+      translatedSentence: example.translatedSentence ?? "", sequenceNo: example.sequenceNo,
+    });
+    setActionError("");
+    setActionNotice("");
   };
 
   const editEntry = (entry: LearningVocabularyEntry) => {
@@ -359,6 +467,93 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
             </section>
           )}
 
+          {detailsEntry && (
+            <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6" aria-labelledby="vocabulary-details-heading">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Reusable dictionary details</p>
+                  <h2 id="vocabulary-details-heading" className="mt-1 text-xl font-bold text-slate-950">{detailsEntry.word}</h2>
+                  <p className="mt-1 text-sm text-slate-500">Translations and example sentences are stored separately so one word can support several languages.</p>
+                </div>
+                <button type="button" className={secondaryButton} onClick={() => { setDetailsEntryId(""); setEditingTranslationId(""); setEditingExampleId(""); }}>Close details</button>
+              </div>
+              <div className="mt-5 grid gap-6 xl:grid-cols-2">
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="font-semibold text-slate-900">Translations</h3>
+                    {translationsQuery.isPending && <p className="mt-2 text-sm text-slate-500">Loading translations…</p>}
+                    {translationsQuery.isError && <p role="alert" className="mt-2 text-sm text-red-700">Translations could not be loaded. <button type="button" className="underline" onClick={() => void translationsQuery.refetch()}>Retry</button></p>}
+                    {translationsQuery.data?.map((translation) => (
+                      <article key={translation.id} className="mt-2 rounded-xl border border-slate-200 p-3">
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="min-w-0">
+                            <p className="font-semibold text-slate-900">{translation.translation} <span className="text-xs font-normal text-slate-500">({translation.languageCode})</span></p>
+                            {translation.transliteration && <p className="mt-1 text-sm text-slate-600">Transliteration: {translation.transliteration}</p>}
+                            {translation.pronunciation && <p className="mt-1 text-sm text-slate-600">Pronunciation: {translation.pronunciation}</p>}
+                            {translation.audioUrl && <audio className="mt-2 max-w-full" controls preload="none" src={translation.audioUrl}>Audio playback is not supported.</audio>}
+                          </div>
+                          {isTeacher && <button type="button" className={secondaryButton} onClick={() => editTranslation(translation)}>Edit</button>}
+                        </div>
+                      </article>
+                    ))}
+                    {!translationsQuery.isPending && !translationsQuery.isError && !translationsQuery.data?.length && <p className="mt-2 text-sm text-slate-500">No additional translations have been added.</p>}
+                  </div>
+                  {isTeacher && (
+                    <form className="rounded-xl bg-slate-50 p-4" onSubmit={(event) => void submitTranslation(event)}>
+                      <h4 className="font-semibold text-slate-900">{editingTranslationId ? "Edit translation" : "Add translation"}</h4>
+                      <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                        <Field label="Language code"><input className={inputClass} required disabled={Boolean(editingTranslationId)} maxLength={20} value={translationForm.languageCode} onChange={(event) => setTranslationForm((current) => ({ ...current, languageCode: event.target.value }))} placeholder="th, sw, fr…" /></Field>
+                        <Field label="Translation"><input className={inputClass} required maxLength={1000} value={translationForm.translation} onChange={(event) => setTranslationForm((current) => ({ ...current, translation: event.target.value }))} /></Field>
+                        <Field label="Pronunciation"><input className={inputClass} maxLength={200} value={translationForm.pronunciation} onChange={(event) => setTranslationForm((current) => ({ ...current, pronunciation: event.target.value }))} /></Field>
+                        <Field label="Transliteration"><input className={inputClass} maxLength={200} value={translationForm.transliteration} onChange={(event) => setTranslationForm((current) => ({ ...current, transliteration: event.target.value }))} /></Field>
+                        <div className="sm:col-span-2"><Field label="Audio URL"><input className={inputClass} type="url" maxLength={2000} value={translationForm.audioUrl} onChange={(event) => setTranslationForm((current) => ({ ...current, audioUrl: event.target.value }))} placeholder="https://…" /></Field></div>
+                      </div>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        <button type="submit" className={primaryButton} disabled={saveMutation.isPending}>{saveMutation.isPending ? "Saving…" : editingTranslationId ? "Save translation" : "Add translation"}</button>
+                        {editingTranslationId && <button type="button" className={secondaryButton} onClick={() => { setEditingTranslationId(""); setTranslationForm({ languageCode: "th", translation: "", pronunciation: "", transliteration: "", audioUrl: "" }); }}>Cancel</button>}
+                      </div>
+                    </form>
+                  )}
+                </div>
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="font-semibold text-slate-900">Example sentences</h3>
+                    {examplesQuery.isPending && <p className="mt-2 text-sm text-slate-500">Loading examples…</p>}
+                    {examplesQuery.isError && <p role="alert" className="mt-2 text-sm text-red-700">Examples could not be loaded. <button type="button" className="underline" onClick={() => void examplesQuery.refetch()}>Retry</button></p>}
+                    {examplesQuery.data?.map((example) => (
+                      <article key={example.id} className="mt-2 rounded-xl border border-slate-200 p-3">
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="min-w-0">
+                            <p className="text-sm leading-6 text-slate-800">{example.sentence}</p>
+                            {example.translatedSentence && <p className="mt-1 text-sm text-slate-600">{example.translatedSentence} <span className="text-xs">({example.translationLanguageCode})</span></p>}
+                          </div>
+                          {isTeacher && <div className="flex gap-2"><button type="button" className={secondaryButton} onClick={() => editExample(example)}>Edit</button><button type="button" className={secondaryButton} disabled={saveMutation.isPending} onClick={() => saveMutation.mutate(() => learningVocabularyService.deleteExample(example.id))}>Delete</button></div>}
+                        </div>
+                      </article>
+                    ))}
+                    {!examplesQuery.isPending && !examplesQuery.isError && !examplesQuery.data?.length && <p className="mt-2 text-sm text-slate-500">No example sentences have been added.</p>}
+                  </div>
+                  {isTeacher && (
+                    <form className="rounded-xl bg-slate-50 p-4" onSubmit={(event) => void submitExample(event)}>
+                      <h4 className="font-semibold text-slate-900">{editingExampleId ? "Edit example" : "Add example sentence"}</h4>
+                      <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                        <Field label="Sentence language"><input className={inputClass} required maxLength={20} value={exampleForm.languageCode} onChange={(event) => setExampleForm((current) => ({ ...current, languageCode: event.target.value }))} /></Field>
+                        <Field label="Sequence"><input className={inputClass} type="number" min={1} required value={exampleForm.sequenceNo} onChange={(event) => setExampleForm((current) => ({ ...current, sequenceNo: Number(event.target.value) }))} /></Field>
+                        <div className="sm:col-span-2"><Field label="Example sentence"><textarea className={inputClass} required rows={2} maxLength={2000} value={exampleForm.sentence} onChange={(event) => setExampleForm((current) => ({ ...current, sentence: event.target.value }))} /></Field></div>
+                        <Field label="Translation language"><input className={inputClass} maxLength={20} value={exampleForm.translationLanguageCode} onChange={(event) => setExampleForm((current) => ({ ...current, translationLanguageCode: event.target.value }))} /></Field>
+                        <Field label="Translated example"><input className={inputClass} maxLength={2000} value={exampleForm.translatedSentence} onChange={(event) => setExampleForm((current) => ({ ...current, translatedSentence: event.target.value }))} /></Field>
+                      </div>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        <button type="submit" className={primaryButton} disabled={saveMutation.isPending}>{saveMutation.isPending ? "Saving…" : editingExampleId ? "Save example" : "Add example"}</button>
+                        {editingExampleId && <button type="button" className={secondaryButton} onClick={() => { setEditingExampleId(""); setExampleForm({ languageCode: "en", sentence: "", translationLanguageCode: "th", translatedSentence: "", sequenceNo: (examplesQuery.data?.length ?? 0) + 1 }); }}>Cancel</button>}
+                      </div>
+                    </form>
+                  )}
+                </div>
+              </div>
+            </section>
+          )}
+
           <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
@@ -384,11 +579,11 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
                     {entry.topic && <p className="mt-2 text-xs text-slate-500">Topic: {entry.topic}</p>}
                     <div className="mt-auto flex flex-wrap items-center justify-between gap-2 pt-4">
                       {isTeacher ? (
-                        <div className="flex gap-2"><button type="button" className={secondaryButton} onClick={() => editEntry(entry)}>Edit</button>{entry.status !== "archived" && <button type="button" className={secondaryButton} disabled={saveMutation.isPending} onClick={() => archiveEntry(entry)}>Archive</button>}</div>
+                        <div className="flex flex-wrap gap-2"><button type="button" className={secondaryButton} onClick={() => setDetailsEntryId(entry.id)}>Translations & examples</button><button type="button" className={secondaryButton} onClick={() => editEntry(entry)}>Edit</button>{entry.status !== "archived" && <button type="button" className={secondaryButton} disabled={saveMutation.isPending} onClick={() => archiveEntry(entry)}>Archive</button>}</div>
                       ) : (
                         <>
                           <span className={"rounded-full px-2.5 py-1 text-xs font-semibold " + (progressItem?.status === "known" ? "bg-emerald-50 text-emerald-800" : progressItem?.status === "learning" ? "bg-amber-50 text-amber-800" : "bg-slate-100 text-slate-600")}>{statusLabel(progressItem?.status)}</span>
-                          <button type="button" className={primaryButton} onClick={() => { setPracticeEntryId(entry.id); setAnswerRevealed(false); }}>Practice</button>
+                          <div className="flex flex-wrap gap-2"><button type="button" className={primaryButton} onClick={() => { setPracticeEntryId(entry.id); setAnswerRevealed(false); }}>Practice</button><button type="button" className={secondaryButton} onClick={() => setDetailsEntryId(entry.id)}>Translations & examples</button></div>
                         </>
                       )}
                     </div>
