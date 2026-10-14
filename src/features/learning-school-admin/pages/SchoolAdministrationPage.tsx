@@ -202,6 +202,10 @@ export default function SchoolAdministrationPage() {
       setActionError("The term end date must be on or after the start date.");
       return;
     }
+    if (selectedYear && (termForm.startsOn < selectedYear.startsOn || termForm.endsOn > selectedYear.endsOn)) {
+      setActionError("Term dates must fall within " + selectedYear.name + ".");
+      return;
+    }
     const values = {
       organizationId,
       academicYearId,
