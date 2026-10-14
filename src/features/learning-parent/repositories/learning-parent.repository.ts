@@ -51,7 +51,7 @@ export const learningParentRepository={
       supabase.from("learning_student_mastery").select("objective_id,mastery_score,state").eq("student_user_id",studentUserId).order("mastery_score",{ascending:true}),
       supabase.from("learning_recommendations").select("id,recommendation_type,objective_id,priority,reason,generated_at").eq("student_user_id",studentUserId).eq("status","active").order("priority",{ascending:false}),
       supabase.from("learning_gradebook_entries").select("comment,recorded_at,class_subject_id,term_id").eq("student_user_id",studentUserId).not("comment","is",null).order("recorded_at",{ascending:false}).limit(10),
-      supabase.from("learning_reward_ledger").select("id,event_type,xp_delta,occurred_at").eq("student_user_id",studentUserId).order("occurred_at",{ascending:false}),
+      supabase.from("learning_reward_ledger").select("id,event_type,xp_delta,occurred_at,metadata").eq("student_user_id",studentUserId).order("occurred_at",{ascending:false}),
       supabase.from("learning_activity_events").select("occurred_at").eq("student_user_id",studentUserId).order("occurred_at",{ascending:false}).limit(500),
     ]);
     if(studentError)throw studentError;if(gradeError)throw gradeError;if(membershipError)throw membershipError;if(masteryError)throw masteryError;if(recommendationError)throw recommendationError;if(commentError)throw commentError;if(rewardError)throw rewardError;if(activityError)throw activityError;
@@ -118,6 +118,9 @@ export const learningParentRepository={
           ...(completedCount>=1?["First Steps"]:[]),
           ...(passed?["Assessment Ace"]:[]),
           ...(streak>=3?["Three-Day Streak"]:[]),
+          ...((rewardRows??[]).some(row=>row.event_type==="streak_milestone"&&Number((row.metadata as Record<string,unknown>|null)?.milestone_days)>=7)?["Week Warrior"]:[]),
+          ...((rewardRows??[]).some(row=>row.event_type==="streak_milestone"&&Number((row.metadata as Record<string,unknown>|null)?.milestone_days)>=14)?["Fortnight Focus"]:[]),
+          ...((rewardRows??[]).some(row=>row.event_type==="streak_milestone"&&Number((row.metadata as Record<string,unknown>|null)?.milestone_days)>=30)?["Monthly Master"]:[]),
           ...(masteredCount>=3?["Mastery Builder"]:[]),
           ...(completedCount>=5?["Dedicated Learner"]:[]),
         ];

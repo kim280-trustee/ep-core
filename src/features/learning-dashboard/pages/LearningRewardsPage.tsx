@@ -120,6 +120,12 @@ export default function LearningRewardsPage() {
     const hasSevenDayStreakMilestone = rewardLedger.some(
       (entry) => entry.eventType === "streak_milestone" && Number(entry.metadata.milestone_days) >= 7,
     );
+    const hasFourteenDayStreakMilestone = rewardLedger.some(
+      (entry) => entry.eventType === "streak_milestone" && Number(entry.metadata.milestone_days) >= 14,
+    );
+    const hasThirtyDayStreakMilestone = rewardLedger.some(
+      (entry) => entry.eventType === "streak_milestone" && Number(entry.metadata.milestone_days) >= 30,
+    );
     const xp = rewardLedger.reduce((total, entry) => total + entry.xpDelta, 0);
     const nextLevelIndex = LEARNING_REWARD_LEVELS.findIndex((level) => level.minXp > xp);
     const currentLevel = LEARNING_REWARD_LEVELS[nextLevelIndex === -1 ? LEARNING_REWARD_LEVELS.length - 1 : nextLevelIndex - 1];
@@ -311,6 +317,22 @@ export default function LearningRewardsPage() {
         unlocked: hasSevenDayStreakMilestone,
         progress: Math.max(streak, hasSevenDayStreakMilestone ? 7 : 0),
         target: 7,
+        icon: Flame,
+      },
+      {
+        title: "Fortnight Focus",
+        description: "Learn on fourteen consecutive days.",
+        unlocked: hasFourteenDayStreakMilestone,
+        progress: Math.max(streak, hasFourteenDayStreakMilestone ? 14 : 0),
+        target: 14,
+        icon: Flame,
+      },
+      {
+        title: "Monthly Master",
+        description: "Learn on thirty consecutive days.",
+        unlocked: hasThirtyDayStreakMilestone,
+        progress: Math.max(streak, hasThirtyDayStreakMilestone ? 30 : 0),
+        target: 30,
         icon: Flame,
       },
     ];
