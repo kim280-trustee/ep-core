@@ -45,7 +45,7 @@ export const learningParentRepository={
   },
   async acceptInvitation(invitationId:string){const{data,error}=await supabase.rpc("accept_learning_parent_invitation",{p_invitation_id:invitationId});if(error)throw error;if(typeof data!=="string"||!data)throw new Error("This invitation has expired or is no longer active.");return data as string;},
   async getOverview(studentUserId:string):Promise<LearningParentOverview>{
-    const[{data:student,error:studentError},{data:grades,error:gradeError},{data:memberships,error:membershipError},{data:mastery,error:masteryError},{data:recommendations,error:recommendationError},{data:comments,error:commentError},{data:rewardRows,error:rewardError},verifiedContentCompletions]=await Promise.all([
+    const[{data:student,error:studentError},{data:grades,error:gradeError},{data:memberships,error:membershipError},{data:mastery,error:masteryError},{data:recommendations,error:recommendationError},{data:comments,error:commentError},{data:rewardRows,error:rewardError},{data:notificationRows,error:notificationError},verifiedContentCompletions]=await Promise.all([
       supabase.from("users").select("id,name,email").eq("id",studentUserId).single(),
       supabase.from("learning_term_grades").select("class_subject_id,term_id,score,letter_grade,status,finalized_at").eq("student_user_id",studentUserId).eq("status","finalized").order("finalized_at",{ascending:false}),
       supabase.from("learning_class_memberships").select("class_group_id").eq("user_id",studentUserId).eq("membership_type","student").eq("status","active"),
@@ -53,9 +53,10 @@ export const learningParentRepository={
       supabase.from("learning_recommendations").select("id,recommendation_type,objective_id,priority,reason,generated_at").eq("student_user_id",studentUserId).eq("status","active").order("priority",{ascending:false}),
       supabase.from("learning_gradebook_entries").select("comment,recorded_at,class_subject_id,term_id").eq("student_user_id",studentUserId).not("comment","is",null).order("recorded_at",{ascending:false}).limit(10),
       supabase.from("learning_reward_ledger").select("id,event_type,xp_delta,occurred_at,metadata").eq("student_user_id",studentUserId).order("occurred_at",{ascending:false}),
+      supabase.from("learning_reward_notifications").select("id,title,message,created_at,read_at").eq("student_user_id",studentUserId).order("created_at",{ascending:false}).limit(5),
       learningActivityService.listValidatedContentCompletions(studentUserId),
     ]);
-    if(studentError)throw studentError;if(gradeError)throw gradeError;if(membershipError)throw membershipError;if(masteryError)throw masteryError;if(recommendationError)throw recommendationError;if(commentError)throw commentError;if(rewardError)throw rewardError;
+    if(studentError)throw studentError;if(gradeError)throw gradeError;if(membershipError)throw membershipError;if(masteryError)throw masteryError;if(recommendationError)throw recommendationError;if(commentError)throw commentError;if(rewardError)throw rewardError;if(notificationError)throw notificationError;
 
     const gradeRows=(grades??[]) as GradeRow[];
     const classGroupIds=[...new Set((memberships??[]).map(x=>x.class_group_id).filter((x):x is string=>Boolean(x)))];
@@ -150,6 +151,7 @@ export const learningParentRepository={
         ];
       })(),
       recentRewards:(rewardRows??[]).slice(0,5).map(row=>({id:row.id,eventType:row.event_type,xpDelta:row.xp_delta,occurredAt:row.occurred_at})),
+      recentRewardNotifications:(notificationRows??[]).map(row=>({id:row.id,title:row.title,message:row.message,createdAt:row.created_at,readAt:row.read_at})),
     };
   },
 };
