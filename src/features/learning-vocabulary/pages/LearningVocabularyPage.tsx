@@ -148,7 +148,7 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
   );
   const isDue = (entry: LearningVocabularyEntry) => {
     const saved = progressByEntryId.get(entry.id);
-    return !saved || new Date(saved.nextReviewAt).getTime() <= Date.now();
+    return !saved || new Date(saved.nextReviewAt).getTime() <= progressQuery.dataUpdatedAt;
   };
   const orderedFilteredEntries = isTeacher
     ? filteredEntries
