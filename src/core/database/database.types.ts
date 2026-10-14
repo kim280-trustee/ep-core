@@ -4846,6 +4846,31 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      record_learning_vocabulary_review: {
+        Args: {
+          p_is_correct: boolean
+          p_organization_id: string
+          p_vocabulary_entry_id: string
+        }
+        Returns: {
+          correct_count: number
+          created_at: string
+          ease_factor: number
+          id: string
+          incorrect_count: number
+          interval_days: number
+          last_answer_correct: boolean | null
+          last_practiced_at: string
+          next_review_at: string
+          organization_id: string
+          review_count: number
+          status: string
+          tenant_id: string
+          updated_at: string
+          user_id: string
+          vocabulary_entry_id: string
+        }
+      }
       get_learning_class_leaderboard: {
         Args: { p_class_group_id: string }
         Returns: {
