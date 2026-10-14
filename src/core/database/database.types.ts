@@ -3533,6 +3533,253 @@ export type Database = {
           },
         ]
       }
+      learning_vocabulary_entries: {
+        Row: {
+          created_at: string
+          created_by: string
+          definition: string
+          difficulty: string
+          example_sentence: string | null
+          id: string
+          language_code: string
+          normalized_word: string
+          organization_id: string
+          part_of_speech: string | null
+          pronunciation: string | null
+          status: string
+          tenant_id: string
+          topic: string | null
+          translation: string | null
+          translation_language_code: string | null
+          updated_at: string
+          updated_by: string
+          word: string
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          definition: string
+          difficulty?: string
+          example_sentence?: string | null
+          id?: string
+          language_code?: string
+          organization_id: string
+          part_of_speech?: string | null
+          pronunciation?: string | null
+          status?: string
+          tenant_id: string
+          topic?: string | null
+          translation?: string | null
+          translation_language_code?: string | null
+          updated_at?: string
+          updated_by: string
+          word: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          definition?: string
+          difficulty?: string
+          example_sentence?: string | null
+          id?: string
+          language_code?: string
+          organization_id?: string
+          part_of_speech?: string | null
+          pronunciation?: string | null
+          status?: string
+          tenant_id?: string
+          topic?: string | null
+          translation?: string | null
+          translation_language_code?: string | null
+          updated_at?: string
+          updated_by?: string
+          word?: string
+        }
+        Relationships: []
+      }
+      learning_vocabulary_examples: {
+        Row: {
+          created_at: string
+          created_by: string
+          id: string
+          language_code: string
+          organization_id: string
+          sequence_no: number
+          sentence: string
+          tenant_id: string
+          translated_sentence: string | null
+          translation_language_code: string | null
+          updated_at: string
+          updated_by: string
+          vocabulary_entry_id: string
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          id?: string
+          language_code?: string
+          organization_id: string
+          sequence_no?: number
+          sentence: string
+          tenant_id: string
+          translated_sentence?: string | null
+          translation_language_code?: string | null
+          updated_at?: string
+          updated_by: string
+          vocabulary_entry_id: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          id?: string
+          language_code?: string
+          organization_id?: string
+          sequence_no?: number
+          sentence?: string
+          tenant_id?: string
+          translated_sentence?: string | null
+          translation_language_code?: string | null
+          updated_at?: string
+          updated_by?: string
+          vocabulary_entry_id?: string
+        }
+        Relationships: []
+      }
+      learning_vocabulary_objectives: {
+        Row: {
+          created_at: string
+          created_by: string
+          id: string
+          objective_id: string
+          organization_id: string
+          tenant_id: string
+          vocabulary_entry_id: string
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          id?: string
+          objective_id: string
+          organization_id: string
+          tenant_id: string
+          vocabulary_entry_id: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          id?: string
+          objective_id?: string
+          organization_id?: string
+          tenant_id?: string
+          vocabulary_entry_id?: string
+        }
+        Relationships: []
+      }
+      learning_vocabulary_progress: {
+        Row: {
+          correct_count: number
+          created_at: string
+          ease_factor: number
+          id: string
+          incorrect_count: number
+          interval_days: number
+          last_answer_correct: boolean | null
+          last_practiced_at: string
+          next_review_at: string
+          organization_id: string
+          review_count: number
+          status: string
+          tenant_id: string
+          updated_at: string
+          user_id: string
+          vocabulary_entry_id: string
+        }
+        Insert: {
+          correct_count?: number
+          created_at?: string
+          ease_factor?: number
+          id?: string
+          incorrect_count?: number
+          interval_days?: number
+          last_answer_correct?: boolean | null
+          last_practiced_at?: string
+          next_review_at?: string
+          organization_id: string
+          review_count?: number
+          status?: string
+          tenant_id: string
+          updated_at?: string
+          user_id: string
+          vocabulary_entry_id: string
+        }
+        Update: {
+          correct_count?: number
+          created_at?: string
+          ease_factor?: number
+          id?: string
+          incorrect_count?: number
+          interval_days?: number
+          last_answer_correct?: boolean | null
+          last_practiced_at?: string
+          next_review_at?: string
+          organization_id?: string
+          review_count?: number
+          status?: string
+          tenant_id?: string
+          updated_at?: string
+          user_id?: string
+          vocabulary_entry_id?: string
+        }
+        Relationships: []
+      }
+      learning_vocabulary_translations: {
+        Row: {
+          audio_url: string | null
+          created_at: string
+          created_by: string
+          id: string
+          language_code: string
+          organization_id: string
+          pronunciation: string | null
+          tenant_id: string
+          transliteration: string | null
+          translation: string
+          updated_at: string
+          updated_by: string
+          vocabulary_entry_id: string
+        }
+        Insert: {
+          audio_url?: string | null
+          created_at?: string
+          created_by: string
+          id?: string
+          language_code: string
+          organization_id: string
+          pronunciation?: string | null
+          tenant_id: string
+          transliteration?: string | null
+          translation: string
+          updated_at?: string
+          updated_by: string
+          vocabulary_entry_id: string
+        }
+        Update: {
+          audio_url?: string | null
+          created_at?: string
+          created_by?: string
+          id?: string
+          language_code?: string
+          organization_id?: string
+          pronunciation?: string | null
+          tenant_id?: string
+          transliteration?: string | null
+          translation?: string
+          updated_at?: string
+          updated_by?: string
+          vocabulary_entry_id?: string
+        }
+        Relationships: []
+      }
       organization_memberships: {
         Row: {
           created_at: string
