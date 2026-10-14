@@ -1,4 +1,4 @@
-import { Award, BookOpen, Compass, LayoutDashboard, LogOut, TrendingUp } from "lucide-react";
+import { Award, BookOpen, Compass, Languages, LayoutDashboard, LogOut, TrendingUp } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "@/core/auth";
@@ -9,6 +9,7 @@ const items = [
   { to: "/learning/progress", label: "Progress", icon: TrendingUp },
   { to: "/learning/recommendations", label: "Recommendations", icon: Compass },
   { to: "/learning/rewards", label: "Rewards", icon: Award },
+  { to: "/learning/vocabulary", label: "Vocabulary", icon: Languages },
 ];
 
 export function LearningNavigation() {
