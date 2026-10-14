@@ -20,7 +20,7 @@ const assessmentTypes: Array<{ value: LearningAssessmentType; label: string }> =
 type PublishedQuestionOption = {
   id: string;
   code: string;
-  type: string;
+  type: "single_choice" | "true_false";
   prompt: string;
   versionId: string;
 };
@@ -68,7 +68,7 @@ export default function TeacherAssessmentBuilderPage() {
           return {
             id: question.id,
             code: question.code,
-            type: question.questionType,
+            type: question.questionType as "single_choice" | "true_false",
             prompt: typeof version.prompt.text === "string" ? version.prompt.text : question.code,
             versionId: version.id,
           } satisfies PublishedQuestionOption;
