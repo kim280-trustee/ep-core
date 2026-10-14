@@ -1,0 +1,382 @@
+import { useState } from "react";
+import type { FormEvent, ReactNode } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useAuth } from "@/core/auth";
+import { organizationService } from "@/core/organization";
+import { learningEnrollmentService } from "@/features/learning-enrollment";
+import { learningVocabularyService } from "../services/learning-vocabulary.service";
+import type {
+  LearningVocabularyEntry,
+  LearningVocabularyEntryStatus,
+  VocabularyDifficulty,
+  VocabularyProgressStatus,
+} from "../types/learning-vocabulary.types";
+
+const inputClass = "mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200";
+const primaryButton = "inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50";
+const secondaryButton = "inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50";
+
+type VocabularyForm = {
+  word: string;
+  definition: string;
+  exampleSentence: string;
+  translation: string;
+  pronunciation: string;
+  partOfSpeech: string;
+  topic: string;
+  languageCode: string;
+  translationLanguageCode: string;
+  difficulty: VocabularyDifficulty;
+  status: LearningVocabularyEntryStatus;
+};
+
+const emptyForm: VocabularyForm = {
+  word: "",
+  definition: "",
+  exampleSentence: "",
+  translation: "",
+  pronunciation: "",
+  partOfSpeech: "",
+  topic: "",
+  languageCode: "en",
+  translationLanguageCode: "",
+  difficulty: "beginner",
+  status: "draft",
+};
+
+function errorMessage(error: unknown) {
+  if (error instanceof Error && error.message) return error.message;
+  return "The request failed. Check your access and the entered values, then try again.";
+}
+
+function Field({ label, children }: { label: string; children: ReactNode }) {
+  return <label className="block text-sm font-medium text-slate-700">{label}{children}</label>;
+}
+
+function statusLabel(status: VocabularyProgressStatus | undefined) {
+  if (status === "known") return "Known";
+  if (status === "learning") return "Needs practice";
+  return "Not studied";
+}
+
+export function LearningVocabularyPage({ audience }: { audience: "teacher" | "student" }) {
+  const { user, loading: authLoading } = useAuth();
+  const queryClient = useQueryClient();
+  const isTeacher = audience === "teacher";
+  const [selectedOrganizationId, setSelectedOrganizationId] = useState("");
+  const [search, setSearch] = useState("");
+  const [editingEntryId, setEditingEntryId] = useState("");
+  const [form, setForm] = useState<VocabularyForm>(emptyForm);
+  const [practiceEntryId, setPracticeEntryId] = useState("");
+  const [answerRevealed, setAnswerRevealed] = useState(false);
+  const [actionError, setActionError] = useState("");
+  const [actionNotice, setActionNotice] = useState("");
+
+  const membershipsQuery = useQuery({
+    queryKey: ["learning-vocabulary", "memberships", user?.id, audience],
+    queryFn: () => learningEnrollmentService.listUserClasses(user!.id),
+    enabled: Boolean(user?.id) && !authLoading,
+    staleTime: 30_000,
+  });
+  const relevantMemberships = (membershipsQuery.data ?? []).filter(
+    (membership) => membership.status === "active" && membership.membershipType === audience,
+  );
+  const organizationIds = [...new Set(relevantMemberships.map((membership) => membership.organizationId))];
+
+  const organizationsQuery = useQuery({
+    queryKey: ["learning-vocabulary", "organizations", user?.id],
+    queryFn: () => organizationService.getOrganizations(),
+    enabled: Boolean(user?.id) && !authLoading,
+    staleTime: 60_000,
+  });
+  const accessibleOrganizations = organizationsQuery.data ?? [];
+  const organizationOptions = organizationIds.map((id) => ({
+    id,
+    name: accessibleOrganizations.find((organization) => organization.id === id)?.name ?? "School " + id.slice(0, 8),
+  }));
+  const organizationId = selectedOrganizationId && organizationIds.includes(selectedOrganizationId)
+    ? selectedOrganizationId
+    : organizationIds[0] ?? "";
+
+  const entriesQuery = useQuery({
+    queryKey: ["learning-vocabulary", "entries", organizationId, audience],
+    queryFn: () => learningVocabularyService.listEntries(organizationId, isTeacher),
+    enabled: Boolean(organizationId) && !membershipsQuery.isPending,
+  });
+  const progressQuery = useQuery({
+    queryKey: ["learning-vocabulary", "progress", organizationId, user?.id],
+    queryFn: () => learningVocabularyService.listProgress(organizationId, user!.id),
+    enabled: !isTeacher && Boolean(organizationId && user?.id) && !membershipsQuery.isPending,
+  });
+
+  const entries = entriesQuery.data ?? [];
+  const progress = progressQuery.data ?? [];
+  const progressByEntryId = new Map(progress.map((item) => [item.vocabularyEntryId, item]));
+  const normalizedSearch = search.trim().toLocaleLowerCase();
+  const filteredEntries = entries.filter((entry) =>
+    [entry.word, entry.definition, entry.translation ?? "", entry.topic ?? "", entry.partOfSpeech ?? ""]
+      .some((value) => value.toLocaleLowerCase().includes(normalizedSearch)),
+  );
+  const practiceEntry = entries.find((entry) => entry.id === practiceEntryId);
+
+  const saveMutation = useMutation({
+    mutationFn: (action: () => Promise<unknown>) => action(),
+    onSuccess: async () => {
+      setActionError("");
+      setActionNotice("Vocabulary changes saved.");
+      await queryClient.invalidateQueries({ queryKey: ["learning-vocabulary", "entries", organizationId] });
+    },
+    onError: (error) => {
+      setActionNotice("");
+      setActionError(errorMessage(error));
+    },
+  });
+
+  const progressMutation = useMutation({
+    mutationFn: (input: {
+      organizationId: string;
+      vocabularyEntryId: string;
+      status: VocabularyProgressStatus;
+    }) => learningVocabularyService.saveProgress({
+      tenantId: user!.tenantId,
+      organizationId: input.organizationId,
+      userId: user!.id,
+      vocabularyEntryId: input.vocabularyEntryId,
+      status: input.status,
+    }),
+    onSuccess: async (_result, input) => {
+      setActionError("");
+      setActionNotice(input.status === "known" ? "Marked as known." : "Saved for more practice.");
+      await queryClient.invalidateQueries({ queryKey: ["learning-vocabulary", "progress", input.organizationId, user?.id] });
+      const currentIndex = filteredEntries.findIndex((entry) => entry.id === input.vocabularyEntryId);
+      setPracticeEntryId(filteredEntries[currentIndex + 1]?.id ?? "");
+      setAnswerRevealed(false);
+    },
+    onError: (error) => {
+      setActionNotice("");
+      setActionError(errorMessage(error));
+    },
+  });
+
+  const submitEntry = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!user || !organizationId) return;
+    if (!form.word.trim() || !form.definition.trim()) {
+      setActionError("A word and definition are required.");
+      return;
+    }
+    if (!/^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$/.test(form.languageCode.trim().toLowerCase())) {
+      setActionError("Enter a valid language code, such as en or th.");
+      return;
+    }
+    const input = {
+      tenantId: user.tenantId,
+      organizationId,
+      word: form.word.trim(),
+      definition: form.definition.trim(),
+      exampleSentence: form.exampleSentence,
+      translation: form.translation,
+      pronunciation: form.pronunciation,
+      partOfSpeech: form.partOfSpeech,
+      topic: form.topic,
+      languageCode: form.languageCode.trim().toLowerCase(),
+      translationLanguageCode: form.translationLanguageCode,
+      difficulty: form.difficulty,
+      status: form.status,
+      createdBy: user.id,
+      updatedBy: user.id,
+    };
+    try {
+      if (editingEntryId) {
+        await saveMutation.mutateAsync(() => learningVocabularyService.updateEntry(editingEntryId, {
+          ...input,
+          createdBy: undefined,
+          updatedBy: user.id,
+        }));
+      } else {
+        await saveMutation.mutateAsync(() => learningVocabularyService.createEntry(input));
+      }
+      setEditingEntryId("");
+      setForm(emptyForm);
+    } catch {
+      // The mutation displays the actionable error above the editor.
+    }
+  };
+
+  const editEntry = (entry: LearningVocabularyEntry) => {
+    setEditingEntryId(entry.id);
+    setForm({
+      word: entry.word,
+      definition: entry.definition,
+      exampleSentence: entry.exampleSentence ?? "",
+      translation: entry.translation ?? "",
+      pronunciation: entry.pronunciation ?? "",
+      partOfSpeech: entry.partOfSpeech ?? "",
+      topic: entry.topic ?? "",
+      languageCode: entry.languageCode,
+      translationLanguageCode: entry.translationLanguageCode ?? "",
+      difficulty: entry.difficulty,
+      status: entry.status,
+    });
+    setActionError("");
+    setActionNotice("");
+  };
+
+  const archiveEntry = (entry: LearningVocabularyEntry) => {
+    if (!user) return;
+    saveMutation.mutate(() => learningVocabularyService.updateEntry(entry.id, {
+      status: "archived",
+      updatedBy: user.id,
+    }));
+    if (editingEntryId === entry.id) {
+      setEditingEntryId("");
+      setForm(emptyForm);
+    }
+  };
+
+  if (authLoading) {
+    return <div className="h-36 animate-pulse rounded-2xl bg-slate-200" />;
+  }
+  if (!user) {
+    return <div className="rounded-2xl border border-slate-200 bg-white p-6 text-sm text-slate-600">Sign in to use vocabulary learning.</div>;
+  }
+
+  return (
+    <div className="mx-auto max-w-7xl space-y-6">
+      <header className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8">
+        <p className="text-sm font-semibold text-slate-300">E&P Learning · Vocabulary</p>
+        <h1 className="mt-1 text-2xl font-bold sm:text-3xl">{isTeacher ? "Vocabulary library" : "Vocabulary practice"}</h1>
+        <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">
+          {isTeacher
+            ? "Create a reusable school vocabulary bank. Draft entries remain teacher-only until published."
+            : "Study published words, reveal meanings, and record whether each word is known or needs more practice."}
+        </p>
+        {organizationOptions.length > 1 && (
+          <label className="mt-5 block max-w-xl text-sm font-medium text-slate-200">School
+            <select className="mt-1 w-full rounded-xl border border-white/20 bg-slate-800 px-3 py-2.5 text-sm text-white" value={organizationId} onChange={(event) => { setSelectedOrganizationId(event.target.value); setPracticeEntryId(""); setAnswerRevealed(false); setEditingEntryId(""); setForm(emptyForm); }}>
+              {organizationOptions.map((option) => <option key={option.id} value={option.id}>{option.name}</option>)}
+            </select>
+          </label>
+        )}
+      </header>
+
+      {actionError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800"><div className="flex items-start justify-between gap-3"><p>{actionError}</p><button type="button" className="font-semibold" onClick={() => setActionError("")}>Dismiss</button></div></div>}
+      {actionNotice && <div role="status" className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-900"><div className="flex items-start justify-between gap-3"><p>{actionNotice}</p><button type="button" className="font-semibold" onClick={() => setActionNotice("")}>Dismiss</button></div></div>}
+
+      {membershipsQuery.isPending && <div className="rounded-xl bg-white p-5 text-sm text-slate-500">Loading your class memberships…</div>}
+      {membershipsQuery.isError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-5 text-sm text-red-800">Your class memberships could not be loaded. <button type="button" className="font-semibold underline" onClick={() => void membershipsQuery.refetch()}>Retry</button></div>}
+      {!membershipsQuery.isPending && !membershipsQuery.isError && !organizationIds.length && (
+        <div className="rounded-xl border border-amber-200 bg-amber-50 p-5 text-sm text-amber-900">
+          {isTeacher ? "No active teacher class membership was found. Ask your school administrator to assign you to a class." : "No active student class membership was found. Ask your school administrator to assign you to a class."}
+        </div>
+      )}
+      {organizationId && entriesQuery.isPending && <div className="h-32 animate-pulse rounded-2xl bg-slate-200" />}
+      {organizationId && entriesQuery.isError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-5 text-sm text-red-800">Vocabulary could not be loaded. <button type="button" className="font-semibold underline" onClick={() => void entriesQuery.refetch()}>Retry</button></div>}
+
+      {organizationId && !entriesQuery.isPending && !entriesQuery.isError && (
+        <>
+          {isTeacher && (
+            <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+              <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <h2 className="text-lg font-semibold text-slate-950">{editingEntryId ? "Edit vocabulary entry" : "Add vocabulary entry"}</h2>
+                  <p className="mt-1 text-sm leading-6 text-slate-500">Entries are shared with active classes in this school when published. Duplicate words in the same language are prevented by the database.</p>
+                </div>
+              </div>
+              <form className="grid gap-4 md:grid-cols-2 xl:grid-cols-3" onSubmit={submitEntry}>
+                <Field label="Word / phrase"><input className={inputClass} required maxLength={120} value={form.word} onChange={(event) => setForm((current) => ({ ...current, word: event.target.value }))} placeholder="environment" /></Field>
+                <Field label="Part of speech"><input className={inputClass} maxLength={40} value={form.partOfSpeech} onChange={(event) => setForm((current) => ({ ...current, partOfSpeech: event.target.value }))} placeholder="noun, verb, adjective…" /></Field>
+                <Field label="Topic"><input className={inputClass} maxLength={120} value={form.topic} onChange={(event) => setForm((current) => ({ ...current, topic: event.target.value }))} placeholder="Nature and the environment" /></Field>
+                <Field label="Language code"><input className={inputClass} required maxLength={20} value={form.languageCode} onChange={(event) => setForm((current) => ({ ...current, languageCode: event.target.value }))} placeholder="en" /></Field>
+                <Field label="Translation"><input className={inputClass} maxLength={500} value={form.translation} onChange={(event) => setForm((current) => ({ ...current, translation: event.target.value }))} placeholder="Optional translation" /></Field>
+                <Field label="Translation language code"><input className={inputClass} maxLength={20} value={form.translationLanguageCode} onChange={(event) => setForm((current) => ({ ...current, translationLanguageCode: event.target.value }))} placeholder="th (optional)" /></Field>
+                <Field label="Pronunciation / phonetics"><input className={inputClass} maxLength={200} value={form.pronunciation} onChange={(event) => setForm((current) => ({ ...current, pronunciation: event.target.value }))} placeholder="Optional pronunciation guide" /></Field>
+                <Field label="Difficulty"><select className={inputClass} value={form.difficulty} onChange={(event) => setForm((current) => ({ ...current, difficulty: event.target.value as VocabularyDifficulty }))}><option value="beginner">Beginner</option><option value="intermediate">Intermediate</option><option value="advanced">Advanced</option></select></Field>
+                <Field label="Publication status"><select className={inputClass} value={form.status} onChange={(event) => setForm((current) => ({ ...current, status: event.target.value as LearningVocabularyEntryStatus }))}><option value="draft">Draft (teachers only)</option><option value="published">Published (students can study)</option><option value="archived">Archived</option></select></Field>
+                <div className="md:col-span-2 xl:col-span-3"><Field label="Definition"><textarea className={inputClass} required rows={3} maxLength={3000} value={form.definition} onChange={(event) => setForm((current) => ({ ...current, definition: event.target.value }))} placeholder="Explain the word clearly for learners." /></Field></div>
+                <div className="md:col-span-2 xl:col-span-3"><Field label="Example sentence"><textarea className={inputClass} rows={2} maxLength={2000} value={form.exampleSentence} onChange={(event) => setForm((current) => ({ ...current, exampleSentence: event.target.value }))} placeholder="Use the word in a natural sentence." /></Field></div>
+                <div className="flex flex-wrap items-end gap-2 md:col-span-2 xl:col-span-3">
+                  <button type="submit" className={primaryButton} disabled={saveMutation.isPending}>{saveMutation.isPending ? "Saving…" : editingEntryId ? "Save entry" : "Create entry"}</button>
+                  {editingEntryId && <button type="button" className={secondaryButton} onClick={() => { setEditingEntryId(""); setForm(emptyForm); }}>Cancel edit</button>}
+                </div>
+              </form>
+            </section>
+          )}
+
+          { !isTeacher && practiceEntry && (
+            <section className="rounded-2xl border border-indigo-200 bg-indigo-50 p-6 sm:p-8" aria-labelledby="practice-card-title">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-indigo-700">Flashcard practice</p>
+                  <h2 id="practice-card-title" className="mt-2 text-2xl font-bold text-slate-950">{practiceEntry.word}</h2>
+                  {practiceEntry.partOfSpeech && <p className="mt-1 text-sm text-slate-600">{practiceEntry.partOfSpeech}</p>}
+                  {practiceEntry.pronunciation && <p className="mt-2 text-sm text-slate-600">Pronunciation: {practiceEntry.pronunciation}</p>}
+                </div>
+                <button type="button" className={secondaryButton} onClick={() => { setPracticeEntryId(""); setAnswerRevealed(false); }}>Close practice</button>
+              </div>
+              {!answerRevealed ? (
+                <button type="button" className={primaryButton + " mt-5"} onClick={() => setAnswerRevealed(true)}>Reveal meaning</button>
+              ) : (
+                <>
+                  <div className="mt-5 rounded-xl border border-indigo-100 bg-white p-4">
+                    <h3 className="font-semibold text-slate-900">Definition</h3>
+                    <p className="mt-1 whitespace-pre-wrap text-sm leading-6 text-slate-700">{practiceEntry.definition}</p>
+                    {practiceEntry.translation && <p className="mt-3 text-sm text-slate-700"><span className="font-semibold">Translation:</span> {practiceEntry.translation}</p>}
+                    {practiceEntry.exampleSentence && <p className="mt-3 text-sm text-slate-700"><span className="font-semibold">Example:</span> {practiceEntry.exampleSentence}</p>}
+                  </div>
+                  <p className="mt-4 text-sm text-slate-600">How well did you know this word?</p>
+                  <div className="mt-3 flex flex-wrap gap-3">
+                    <button type="button" className={primaryButton} disabled={progressMutation.isPending} onClick={() => progressMutation.mutate({ organizationId, vocabularyEntryId: practiceEntry.id, status: "known" })}>I knew it</button>
+                    <button type="button" className={secondaryButton} disabled={progressMutation.isPending} onClick={() => progressMutation.mutate({ organizationId, vocabularyEntryId: practiceEntry.id, status: "learning" })}>Need more practice</button>
+                  </div>
+                </>
+              )}
+            </section>
+          )}
+
+          <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <h2 className="text-lg font-semibold text-slate-950">{isTeacher ? "School vocabulary bank" : "Words to study"}</h2>
+                <p className="mt-1 text-sm text-slate-500">{filteredEntries.length} of {entries.length} entries</p>
+              </div>
+              <label className="block w-full sm:max-w-sm"><span className="text-sm font-medium text-slate-700">Search words, definitions, translations, or topics</span><input className={inputClass} type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search vocabulary…" /></label>
+            </div>
+            <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+              {filteredEntries.map((entry) => {
+                const progressItem = progressByEntryId.get(entry.id);
+                return (
+                  <article key={entry.id} className="flex flex-col rounded-xl border border-slate-200 p-4">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <h3 className="break-words text-lg font-semibold text-slate-950">{entry.word}</h3>
+                        {entry.partOfSpeech && <p className="mt-0.5 text-xs text-slate-500">{entry.partOfSpeech}</p>}
+                      </div>
+                      <span className={"shrink-0 rounded-full px-2.5 py-1 text-xs font-semibold " + (entry.status === "published" ? "bg-emerald-50 text-emerald-800" : entry.status === "draft" ? "bg-amber-50 text-amber-800" : "bg-slate-100 text-slate-600")}>{entry.status}</span>
+                    </div>
+                    <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-700">{entry.definition}</p>
+                    {entry.translation && <p className="mt-2 text-sm text-slate-600"><span className="font-medium">Translation:</span> {entry.translation}</p>}
+                    {entry.topic && <p className="mt-2 text-xs text-slate-500">Topic: {entry.topic}</p>}
+                    <div className="mt-auto flex flex-wrap items-center justify-between gap-2 pt-4">
+                      {isTeacher ? (
+                        <div className="flex gap-2"><button type="button" className={secondaryButton} onClick={() => editEntry(entry)}>Edit</button>{entry.status !== "archived" && <button type="button" className={secondaryButton} disabled={saveMutation.isPending} onClick={() => archiveEntry(entry)}>Archive</button>}</div>
+                      ) : (
+                        <>
+                          <span className={"rounded-full px-2.5 py-1 text-xs font-semibold " + (progressItem?.status === "known" ? "bg-emerald-50 text-emerald-800" : progressItem?.status === "learning" ? "bg-amber-50 text-amber-800" : "bg-slate-100 text-slate-600")}>{statusLabel(progressItem?.status)}</span>
+                          <button type="button" className={primaryButton} onClick={() => { setPracticeEntryId(entry.id); setAnswerRevealed(false); }}>Practice</button>
+                        </>
+                      )}
+                    </div>
+                  </article>
+                );
+              })}
+              {!filteredEntries.length && <div className="rounded-xl border border-dashed border-slate-300 p-6 text-sm text-slate-500 md:col-span-2 xl:col-span-3">{entries.length ? "No vocabulary matches your search." : isTeacher ? "No entries yet. Add a word above, then publish it for students." : "No published vocabulary is available for your classes yet. Ask your teacher to publish a vocabulary list."}</div>}
+            </div>
+          </section>
+        </>
+      )}
+    </div>
+  );
+}
+
+export default LearningVocabularyPage;
