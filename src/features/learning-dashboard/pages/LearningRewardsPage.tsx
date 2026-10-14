@@ -98,16 +98,13 @@ export default function LearningRewardsPage() {
       const studentMemberships = memberships.filter(item => item.membershipType === "student");
       const classGroupIds = [...new Set(studentMemberships.map(item => item.classGroupId))];
       const byClass = await Promise.all(classGroupIds.map(async classGroupId => {
-        const [classContext, challenges] = await Promise.all([
-          learningRewardsService.getClassContext(classGroupId),
-          learningRewardsService.listTeamChallenges(classGroupId),
-        ]);
+        const challenges = await learningRewardsService.listTeamChallenges(classGroupId);
         const currentChallenges = challenges.filter(item =>
           item.status === "active" && new Date(item.ends_at).getTime() >= Date.now()
         );
         return Promise.all(currentChallenges.map(async challenge => ({
           classGroupId,
-          className: classContext.name,
+          className: challenge.class_name,
           challenge,
           standings: await learningRewardsService.listTeamChallengeStandings(challenge.id),
         })));
