@@ -4618,6 +4618,51 @@ export type Database = {
         Args: { p_class_group_id: string; p_enabled: boolean }
         Returns: boolean
       }
+      create_learning_school_competition: {
+        Args: {
+          p_organization_id: string
+          p_title: string
+          p_description: string
+          p_target_type: string
+          p_target_value: number
+          p_bonus_xp: number
+          p_starts_at: string
+          p_ends_at: string
+        }
+        Returns: string
+      }
+      get_learning_school_competitions: {
+        Args: { p_organization_id: string }
+        Returns: {
+          id: string
+          title: string
+          description: string
+          target_type: string
+          target_value: number
+          bonus_xp: number
+          starts_at: string
+          ends_at: string
+          status: string
+        }[]
+      }
+      get_learning_school_competition_standings: {
+        Args: { p_competition_id: string }
+        Returns: {
+          class_group_id: string
+          class_name: string
+          progress_value: number
+          target_value: number
+          progress_percent: number
+          rank: number
+          completed_assignments: number
+          xp_earned: number
+          has_met_target: boolean
+        }[]
+      }
+      set_learning_school_competition_status: {
+        Args: { p_competition_id: string; p_status: string }
+        Returns: string
+      }
       redeem_learning_reward: {
         Args: { p_item_id: string }
         Returns: string
