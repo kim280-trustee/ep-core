@@ -134,6 +134,12 @@ export default function TeacherClassGamificationPage() {
     await Promise.all([
       queryClient.invalidateQueries({ queryKey: ["learning", "gamification"] }),
       queryClient.invalidateQueries({ queryKey: ["learning", "rewards"] }),
+      queryClient.invalidateQueries({ queryKey: ["learning", "class-teams"] }),
+      queryClient.invalidateQueries({ queryKey: ["learning", "class-team-members"] }),
+      queryClient.invalidateQueries({ queryKey: ["learning", "team-challenges"] }),
+      queryClient.invalidateQueries({ queryKey: ["learning", "team-challenge-standings"] }),
+      queryClient.invalidateQueries({ queryKey: ["learning", "school-competitions"] }),
+      queryClient.invalidateQueries({ queryKey: ["learning", "school-competition-standings"] }),
     ]);
   };
   const changeLeaderboardVisibility = useMutation({
