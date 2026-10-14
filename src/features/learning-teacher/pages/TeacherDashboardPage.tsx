@@ -1,11 +1,13 @@
-import { AlertCircle, ArrowRight, BookOpen, ClipboardCheck, ClipboardList, Library, Users } from "lucide-react";
+import { AlertCircle, ArrowRight, BookOpen, ClipboardCheck, ClipboardList, Library, Settings, Users } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
+import { useAuthorization } from "@/features/auth/authorization/useAuthorization";
 import { learningTeacherService } from "../services/learning-teacher.service";
 
 export default function TeacherDashboardPage() {
   const { user } = useAuth();
+  const authorization = useAuthorization();
   const query = useQuery({
     queryKey: ["learning", "teacher-classes", user?.id],
     queryFn: () => learningTeacherService.listTeacherClasses(user!.id),
@@ -115,6 +117,15 @@ export default function TeacherDashboardPage() {
             description="Create multi-question diagnostics, quizzes, tests, and practice assessments."
             action="Build Assessment"
           />
+          {authorization.hasPermission("settings.manage") && (
+            <DashboardTool
+              to="/school-admin"
+              icon={Settings}
+              title="School Administration"
+              description="Manage academic years, terms, classes, subjects, and class rosters."
+              action="Open School Setup"
+            />
+          )}
         </div>
       </section>
 
