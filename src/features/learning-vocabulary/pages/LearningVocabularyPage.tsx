@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAuth } from "@/core/auth";
 import { organizationService } from "@/core/organization";
 import { learningEnrollmentService } from "@/features/learning-enrollment";
+import { learningContentService } from "@/features/learning-content";
 import { learningVocabularyService } from "../services/learning-vocabulary.service";
 import type {
   LearningVocabularyEntry,
@@ -74,6 +75,7 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
   const [detailsEntryId, setDetailsEntryId] = useState("");
   const [editingTranslationId, setEditingTranslationId] = useState("");
   const [editingExampleId, setEditingExampleId] = useState("");
+  const [objectiveId, setObjectiveId] = useState("");
   const [translationForm, setTranslationForm] = useState({ languageCode: "th", translation: "", pronunciation: "", transliteration: "", audioUrl: "" });
   const [exampleForm, setExampleForm] = useState({ languageCode: "en", sentence: "", translationLanguageCode: "th", translatedSentence: "", sequenceNo: 1 });
 
@@ -127,6 +129,17 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
     queryFn: () => learningVocabularyService.listExamples(organizationId, detailsEntryId),
     enabled: Boolean(organizationId && detailsEntryId),
   });
+  const objectiveLinksQuery = useQuery({
+    queryKey: ["learning-vocabulary", "objective-links", organizationId, detailsEntryId],
+    queryFn: () => learningVocabularyService.listObjectiveLinks(organizationId, detailsEntryId),
+    enabled: Boolean(organizationId && detailsEntryId),
+  });
+  const objectivesQuery = useQuery({
+    queryKey: ["learning-vocabulary", "objectives", organizationId],
+    queryFn: () => learningContentService.listObjectives(),
+    enabled: isTeacher && Boolean(organizationId),
+    staleTime: 60_000,
+  });
   const progressByEntryId = new Map(progress.map((item) => [item.vocabularyEntryId, item]));
   const normalizedSearch = search.trim().toLocaleLowerCase();
   const filteredEntries = entries.filter((entry) =>
@@ -152,6 +165,7 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
       if (detailsEntryId) {
         await queryClient.invalidateQueries({ queryKey: ["learning-vocabulary", "translations", organizationId, detailsEntryId] });
         await queryClient.invalidateQueries({ queryKey: ["learning-vocabulary", "examples", organizationId, detailsEntryId] });
+        await queryClient.invalidateQueries({ queryKey: ["learning-vocabulary", "objective-links", organizationId, detailsEntryId] });
       }
     },
     onError: (error) => {
@@ -550,6 +564,39 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
                     </form>
                   )}
                 </div>
+              </div>
+              <div className="mt-6 border-t border-slate-200 pt-5">
+                <h3 className="font-semibold text-slate-900">Curriculum alignment</h3>
+                <p className="mt-1 text-sm text-slate-500">Link this vocabulary item to one or more learning objectives so it can be reused by lessons and curriculum-based recommendations.</p>
+                {objectiveLinksQuery.isPending && <p className="mt-2 text-sm text-slate-500">Loading objective links…</p>}
+                {objectiveLinksQuery.isError && <p role="alert" className="mt-2 text-sm text-red-700">Objective links could not be loaded. <button type="button" className="underline" onClick={() => void objectiveLinksQuery.refetch()}>Retry</button></p>}
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {objectiveLinksQuery.data?.map((link) => {
+                    const objective = objectivesQuery.data?.find((item) => item.id === link.objectiveId);
+                    return <span key={link.id} className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-700">{objective ? `${objective.code} · ${objective.name}` : `Objective ${link.objectiveId.slice(0, 8)}`}{isTeacher && <button type="button" className="font-bold" aria-label="Remove objective link" onClick={() => saveMutation.mutate(() => learningVocabularyService.unlinkObjective(link.id))}>×</button>}</span>;
+                  })}
+                  {!objectiveLinksQuery.isPending && !objectiveLinksQuery.isError && !objectiveLinksQuery.data?.length && <p className="text-sm text-slate-500">No curriculum objectives linked yet.</p>}
+                </div>
+                {isTeacher && (
+                  <form className="mt-4 flex flex-col gap-3 sm:flex-row" onSubmit={(event) => {
+                    event.preventDefault();
+                    if (!user || !organizationId || !detailsEntryId || !objectiveId) return;
+                    saveMutation.mutate(() => learningVocabularyService.linkObjective({
+                      tenantId: user.tenantId, organizationId, vocabularyEntryId: detailsEntryId,
+                      objectiveId, createdBy: user.id,
+                    }));
+                    setObjectiveId("");
+                  }}>
+                    <label className="min-w-0 flex-1 text-sm font-medium text-slate-700">Learning objective
+                      <select className={inputClass} value={objectiveId} required onChange={(event) => setObjectiveId(event.target.value)}>
+                        <option value="">Choose an objective…</option>
+                        {(objectivesQuery.data ?? []).map((objective) => <option key={objective.id} value={objective.id}>{objective.code} · {objective.name}</option>)}
+                      </select>
+                    </label>
+                    <button type="submit" className={primaryButton} disabled={saveMutation.isPending || objectivesQuery.isPending}>{saveMutation.isPending ? "Saving…" : "Link objective"}</button>
+                  </form>
+                )}
+                {isTeacher && objectivesQuery.isError && <p role="alert" className="mt-2 text-sm text-red-700">Learning objectives could not be loaded. <button type="button" className="underline" onClick={() => void objectivesQuery.refetch()}>Retry</button></p>}
               </div>
             </section>
           )}
