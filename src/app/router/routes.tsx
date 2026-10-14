@@ -5,12 +5,14 @@ import { authRoutes } from "../../features/auth/routes/auth.routes";
 import { learningDashboardRoutes } from "../../features/learning-dashboard";
 import { learningTeacherRoutes } from "../../features/learning-teacher";
 import { learningParentRoutes } from "../../features/learning-parent";
+import { learningSchoolAdminRoutes } from "../../features/learning-school-admin";
 
 export const routes: RouteObject[] = [
   ...authRoutes,
   ...learningDashboardRoutes,
   ...learningTeacherRoutes,
   ...learningParentRoutes,
+  ...learningSchoolAdminRoutes,
   {
     path: "/",
     element: <Navigate to="/login" replace />,
