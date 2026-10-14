@@ -117,7 +117,7 @@ export default function TeacherDashboardPage() {
             description="Create multi-question diagnostics, quizzes, tests, and practice assessments."
             action="Build Assessment"
           />
-          {authorization.hasPermission("settings.manage") && (
+          {authorization.hasPermission("learning.academic.manage") && (
             <DashboardTool
               to="/school-admin"
               icon={Settings}
