@@ -165,8 +165,13 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
       setActionError("A word and definition are required.");
       return;
     }
-    if (!/^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$/.test(form.languageCode.trim().toLowerCase())) {
+    const languageCodePattern = /^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$/;
+    if (!languageCodePattern.test(form.languageCode.trim().toLowerCase())) {
       setActionError("Enter a valid language code, such as en or th.");
+      return;
+    }
+    if (form.translationLanguageCode.trim() && !languageCodePattern.test(form.translationLanguageCode.trim().toLowerCase())) {
+      setActionError("Enter a valid translation language code, such as th.");
       return;
     }
     const input = {
@@ -189,8 +194,17 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
     try {
       if (editingEntryId) {
         await saveMutation.mutateAsync(() => learningVocabularyService.updateEntry(editingEntryId, {
-          ...input,
-          createdBy: undefined,
+          word: input.word,
+          definition: input.definition,
+          exampleSentence: input.exampleSentence,
+          translation: input.translation,
+          pronunciation: input.pronunciation,
+          partOfSpeech: input.partOfSpeech,
+          topic: input.topic,
+          languageCode: input.languageCode,
+          translationLanguageCode: input.translationLanguageCode,
+          difficulty: input.difficulty,
+          status: input.status,
           updatedBy: user.id,
         }));
       } else {
