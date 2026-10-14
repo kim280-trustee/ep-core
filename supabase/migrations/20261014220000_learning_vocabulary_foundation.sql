@@ -1,5 +1,4 @@
--- Reusable vocabulary catalog, multilingual variants, curriculum links, examples, and spaced-repetition state.
--- This migration consolidates the vocabulary foundation into a unique timestamp on the current integration branch.
+-- Reusable, organization-scoped vocabulary catalog and per-student practice state.
 create table public.learning_vocabulary_entries (
   id uuid primary key default gen_random_uuid(),
   tenant_id uuid not null,
@@ -242,47 +241,41 @@ with check (
 );
 
 
+-- Private authorization helper for all vocabulary child records.
+create schema if not exists private;
+create or replace function private.can_manage_learning_vocabulary(p_organization_id uuid)
+returns boolean
+language sql
+stable
+security definer
+set search_path = ''
+as $function$
+  select
+    coalesce(
+      public.has_permission('learning.academic.manage')
+      and public.is_organization_member(p_organization_id),
+      false
+    )
+    or exists (
+      select 1
+      from public.learning_class_memberships cm
+      join public.users u on u.id = cm.user_id and u.tenant_id = cm.tenant_id
+      where cm.organization_id = p_organization_id
+        and cm.membership_type = 'teacher'
+        and cm.status = 'active'
+        and u.auth_user_id = (select auth.uid())
+    );
+$function$;
+revoke all on function private.can_manage_learning_vocabulary(uuid) from public, anon;
+grant execute on function private.can_manage_learning_vocabulary(uuid) to authenticated;
+
 -- Multiple target-language translations per vocabulary entry.
 create table public.learning_vocabulary_translations (
   id uuid primary key default gen_random_uuid(),
   tenant_id uuid not null,
   organization_id uuid not null,
   vocabulary_entry_id uuid not null,
-  language_code text not null check (language_code ~ '^[a-z]{2,3}(-[A-Za-z0-9]{2,8})* ' 
--- Child records cannot be moved between tenants, schools, or vocabulary entries.
-create or replace function private.guard_learning_vocabulary_child_identity()
-returns trigger
-language plpgsql
-set search_path = ''
-as $function$
-begin
-  if new.tenant_id is distinct from old.tenant_id
-     or new.organization_id is distinct from old.organization_id
-     or new.vocabulary_entry_id is distinct from old.vocabulary_entry_id
-     or new.created_by is distinct from old.created_by then
-    raise exception 'Vocabulary child-record ownership cannot be changed.'
-      using errcode = '23514';
-  end if;
-  return new;
-end;
-$function$;
-
-create trigger learning_vocabulary_translations_guard_identity
-before update of tenant_id, organization_id, vocabulary_entry_id, created_by
-on public.learning_vocabulary_translations
-for each row execute function private.guard_learning_vocabulary_child_identity();
-
-create trigger learning_vocabulary_examples_guard_identity
-before update of tenant_id, organization_id, vocabulary_entry_id, created_by
-on public.learning_vocabulary_examples
-for each row execute function private.guard_learning_vocabulary_child_identity();
-
-create trigger learning_vocabulary_objectives_guard_identity
-before update of tenant_id, organization_id, vocabulary_entry_id, created_by
-on public.learning_vocabulary_objectives
-for each row execute function private.guard_learning_vocabulary_child_identity();
-
-),
+  language_code text not null check (language_code ~ '^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$'),
   translation text not null check (length(trim(translation)) between 1 and 1000),
   pronunciation text,
   transliteration text,
@@ -312,9 +305,9 @@ create table public.learning_vocabulary_examples (
   tenant_id uuid not null,
   organization_id uuid not null,
   vocabulary_entry_id uuid not null,
-  language_code text not null default 'en' check (language_code ~ '^[a-z]{2,3}(-[A-Za-z0-9]{2,8})* '),
+  language_code text not null default 'en' check (language_code ~ '^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$'),
   sentence text not null check (length(trim(sentence)) between 1 and 2000),
-  translation_language_code text check (translation_language_code is null or translation_language_code ~ '^[a-z]{2,3}(-[A-Za-z0-9]{2,8})* '),
+  translation_language_code text check (translation_language_code is null or translation_language_code ~ '^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$'),
   translated_sentence text,
   sequence_no integer not null default 1 check (sequence_no > 0),
   created_by uuid not null,
@@ -336,7 +329,7 @@ create table public.learning_vocabulary_examples (
 create index learning_vocabulary_examples_entry_idx
   on public.learning_vocabulary_examples(organization_id, vocabulary_entry_id, sequence_no);
 
--- A vocabulary item can support several curriculum objectives.
+-- Vocabulary entries can support several learning objectives and curricula.
 create table public.learning_vocabulary_objectives (
   id uuid primary key default gen_random_uuid(),
   tenant_id uuid not null,
@@ -362,136 +355,82 @@ alter table public.learning_vocabulary_translations enable row level security;
 alter table public.learning_vocabulary_examples enable row level security;
 alter table public.learning_vocabulary_objectives enable row level security;
 grant select, insert, update, delete on public.learning_vocabulary_translations,
-  public.learning_vocabulary_examples, public.learning_vocabulary_objectives to authenticated;
+  public.learning_vocabulary_examples to authenticated;
+grant select, insert, delete on public.learning_vocabulary_objectives to authenticated;
 
--- Reads follow the parent entry's RLS visibility. Only a teacher or academic manager can write.
+-- Child reads inherit the visibility of their parent vocabulary entry.
 create policy learning_vocabulary_translations_select on public.learning_vocabulary_translations
 for select to authenticated using (
   exists (select 1 from public.learning_vocabulary_entries e
     where e.id = vocabulary_entry_id and e.organization_id = learning_vocabulary_translations.organization_id)
 );
-create policy learning_vocabulary_translations_insert on public.learning_vocabulary_translations
-for insert to authenticated with check (
-  tenant_id = (select u.tenant_id from public.users u where u.auth_user_id = (select auth.uid()) limit 1)
-  and created_by = (select u.id from public.users u where u.auth_user_id = (select auth.uid()) limit 1)
-  and updated_by = (select u.id from public.users u where u.auth_user_id = (select auth.uid()) limit 1)
-  and exists (
-    select 1 from public.learning_vocabulary_entries e
-    where e.id = vocabulary_entry_id and e.organization_id = learning_vocabulary_translations.organization_id
-      and ((public.has_permission('learning.academic.manage') and public.is_organization_member(e.organization_id))
-        or exists (select 1 from public.learning_class_memberships cm
-          join public.users u on u.id = cm.user_id and u.tenant_id = cm.tenant_id
-          where cm.tenant_id = e.tenant_id and cm.organization_id = e.organization_id
-            and cm.membership_type = 'teacher' and cm.status = 'active'
-            and u.auth_user_id = (select auth.uid())))
-  )
-);
-create policy learning_vocabulary_translations_update on public.learning_vocabulary_translations
-for update to authenticated using (
-  exists (select 1 from public.learning_vocabulary_entries e
-    where e.id = vocabulary_entry_id and e.organization_id = learning_vocabulary_translations.organization_id
-      and ((public.has_permission('learning.academic.manage') and public.is_organization_member(e.organization_id))
-        or exists (select 1 from public.learning_class_memberships cm
-          join public.users u on u.id = cm.user_id and u.tenant_id = cm.tenant_id
-          where cm.tenant_id = e.tenant_id and cm.organization_id = e.organization_id
-            and cm.membership_type = 'teacher' and cm.status = 'active'
-            and u.auth_user_id = (select auth.uid())))
-) with check (
-  tenant_id = (select u.tenant_id from public.users u where u.auth_user_id = (select auth.uid()) limit 1)
-  and updated_by = (select u.id from public.users u where u.auth_user_id = (select auth.uid()) limit 1)
-);
-create policy learning_vocabulary_translations_delete on public.learning_vocabulary_translations
-for delete to authenticated using (
-  exists (select 1 from public.learning_vocabulary_entries e
-    where e.id = vocabulary_entry_id and e.organization_id = learning_vocabulary_translations.organization_id
-      and ((public.has_permission('learning.academic.manage') and public.is_organization_member(e.organization_id))
-        or exists (select 1 from public.learning_class_memberships cm
-          join public.users u on u.id = cm.user_id and u.tenant_id = cm.tenant_id
-          where cm.tenant_id = e.tenant_id and cm.organization_id = e.organization_id
-            and cm.membership_type = 'teacher' and cm.status = 'active'
-            and u.auth_user_id = (select auth.uid())))
-);
-
 create policy learning_vocabulary_examples_select on public.learning_vocabulary_examples
 for select to authenticated using (
   exists (select 1 from public.learning_vocabulary_entries e
     where e.id = vocabulary_entry_id and e.organization_id = learning_vocabulary_examples.organization_id)
 );
-create policy learning_vocabulary_examples_insert on public.learning_vocabulary_examples
-for insert to authenticated with check (
-  tenant_id = (select u.tenant_id from public.users u where u.auth_user_id = (select auth.uid()) limit 1)
-  and created_by = (select u.id from public.users u where u.auth_user_id = (select auth.uid()) limit 1)
-  and updated_by = (select u.id from public.users u where u.auth_user_id = (select auth.uid()) limit 1)
-  and exists (
-    select 1 from public.learning_vocabulary_entries e
-    where e.id = vocabulary_entry_id and e.organization_id = learning_vocabulary_examples.organization_id
-      and ((public.has_permission('learning.academic.manage') and public.is_organization_member(e.organization_id))
-        or exists (select 1 from public.learning_class_memberships cm
-          join public.users u on u.id = cm.user_id and u.tenant_id = cm.tenant_id
-          where cm.tenant_id = e.tenant_id and cm.organization_id = e.organization_id
-            and cm.membership_type = 'teacher' and cm.status = 'active'
-            and u.auth_user_id = (select auth.uid())))
-  )
-);
-create policy learning_vocabulary_examples_update on public.learning_vocabulary_examples
-for update to authenticated using (
-  exists (select 1 from public.learning_vocabulary_entries e
-    where e.id = vocabulary_entry_id and e.organization_id = learning_vocabulary_examples.organization_id
-      and ((public.has_permission('learning.academic.manage') and public.is_organization_member(e.organization_id))
-        or exists (select 1 from public.learning_class_memberships cm
-          join public.users u on u.id = cm.user_id and u.tenant_id = cm.tenant_id
-          where cm.tenant_id = e.tenant_id and cm.organization_id = e.organization_id
-            and cm.membership_type = 'teacher' and cm.status = 'active'
-            and u.auth_user_id = (select auth.uid())))
-) with check (
-  tenant_id = (select u.tenant_id from public.users u where u.auth_user_id = (select auth.uid()) limit 1)
-  and updated_by = (select u.id from public.users u where u.auth_user_id = (select auth.uid()) limit 1)
-);
-create policy learning_vocabulary_examples_delete on public.learning_vocabulary_examples
-for delete to authenticated using (
-  exists (select 1 from public.learning_vocabulary_entries e
-    where e.id = vocabulary_entry_id and e.organization_id = learning_vocabulary_examples.organization_id
-      and ((public.has_permission('learning.academic.manage') and public.is_organization_member(e.organization_id))
-        or exists (select 1 from public.learning_class_memberships cm
-          join public.users u on u.id = cm.user_id and u.tenant_id = cm.tenant_id
-          where cm.tenant_id = e.tenant_id and cm.organization_id = e.organization_id
-            and cm.membership_type = 'teacher' and cm.status = 'active'
-            and u.auth_user_id = (select auth.uid())))
-);
-
 create policy learning_vocabulary_objectives_select on public.learning_vocabulary_objectives
 for select to authenticated using (
   exists (select 1 from public.learning_vocabulary_entries e
     where e.id = vocabulary_entry_id and e.organization_id = learning_vocabulary_objectives.organization_id)
 );
+
+create policy learning_vocabulary_translations_insert on public.learning_vocabulary_translations
+for insert to authenticated with check (
+  tenant_id = (select u.tenant_id from public.users u where u.auth_user_id = (select auth.uid()) limit 1)
+  and created_by = (select u.id from public.users u where u.auth_user_id = (select auth.uid()) limit 1)
+  and updated_by = (select u.id from public.users u where u.auth_user_id = (select auth.uid()) limit 1)
+  and private.can_manage_learning_vocabulary(organization_id)
+  and exists (select 1 from public.learning_vocabulary_entries e
+    where e.id = vocabulary_entry_id and e.organization_id = learning_vocabulary_translations.organization_id)
+);
+create policy learning_vocabulary_translations_update on public.learning_vocabulary_translations
+for update to authenticated using (
+  private.can_manage_learning_vocabulary(organization_id)
+) with check (
+  tenant_id = (select u.tenant_id from public.users u where u.auth_user_id = (select auth.uid()) limit 1)
+  and updated_by = (select u.id from public.users u where u.auth_user_id = (select auth.uid()) limit 1)
+  and private.can_manage_learning_vocabulary(organization_id)
+  and exists (select 1 from public.learning_vocabulary_entries e
+    where e.id = vocabulary_entry_id and e.organization_id = learning_vocabulary_translations.organization_id)
+);
+create policy learning_vocabulary_translations_delete on public.learning_vocabulary_translations
+for delete to authenticated using (private.can_manage_learning_vocabulary(organization_id));
+
+create policy learning_vocabulary_examples_insert on public.learning_vocabulary_examples
+for insert to authenticated with check (
+  tenant_id = (select u.tenant_id from public.users u where u.auth_user_id = (select auth.uid()) limit 1)
+  and created_by = (select u.id from public.users u where u.auth_user_id = (select auth.uid()) limit 1)
+  and updated_by = (select u.id from public.users u where u.auth_user_id = (select auth.uid()) limit 1)
+  and private.can_manage_learning_vocabulary(organization_id)
+  and exists (select 1 from public.learning_vocabulary_entries e
+    where e.id = vocabulary_entry_id and e.organization_id = learning_vocabulary_examples.organization_id)
+);
+create policy learning_vocabulary_examples_update on public.learning_vocabulary_examples
+for update to authenticated using (
+  private.can_manage_learning_vocabulary(organization_id)
+) with check (
+  tenant_id = (select u.tenant_id from public.users u where u.auth_user_id = (select auth.uid()) limit 1)
+  and updated_by = (select u.id from public.users u where u.auth_user_id = (select auth.uid()) limit 1)
+  and private.can_manage_learning_vocabulary(organization_id)
+  and exists (select 1 from public.learning_vocabulary_entries e
+    where e.id = vocabulary_entry_id and e.organization_id = learning_vocabulary_examples.organization_id)
+);
+create policy learning_vocabulary_examples_delete on public.learning_vocabulary_examples
+for delete to authenticated using (private.can_manage_learning_vocabulary(organization_id));
+
 create policy learning_vocabulary_objectives_insert on public.learning_vocabulary_objectives
 for insert to authenticated with check (
   tenant_id = (select u.tenant_id from public.users u where u.auth_user_id = (select auth.uid()) limit 1)
   and created_by = (select u.id from public.users u where u.auth_user_id = (select auth.uid()) limit 1)
-  and exists (
-    select 1 from public.learning_vocabulary_entries e
-    where e.id = vocabulary_entry_id and e.organization_id = learning_vocabulary_objectives.organization_id
-      and ((public.has_permission('learning.academic.manage') and public.is_organization_member(e.organization_id))
-        or exists (select 1 from public.learning_class_memberships cm
-          join public.users u on u.id = cm.user_id and u.tenant_id = cm.tenant_id
-          where cm.tenant_id = e.tenant_id and cm.organization_id = e.organization_id
-            and cm.membership_type = 'teacher' and cm.status = 'active'
-            and u.auth_user_id = (select auth.uid())))
-  )
+  and private.can_manage_learning_vocabulary(organization_id)
+  and exists (select 1 from public.learning_vocabulary_entries e
+    where e.id = vocabulary_entry_id and e.organization_id = learning_vocabulary_objectives.organization_id)
 );
 create policy learning_vocabulary_objectives_delete on public.learning_vocabulary_objectives
-for delete to authenticated using (
-  exists (select 1 from public.learning_vocabulary_entries e
-    where e.id = vocabulary_entry_id and e.organization_id = learning_vocabulary_objectives.organization_id
-      and ((public.has_permission('learning.academic.manage') and public.is_organization_member(e.organization_id))
-        or exists (select 1 from public.learning_class_memberships cm
-          join public.users u on u.id = cm.user_id and u.tenant_id = cm.tenant_id
-          where cm.tenant_id = e.tenant_id and cm.organization_id = e.organization_id
-            and cm.membership_type = 'teacher' and cm.status = 'active'
-            and u.auth_user_id = (select auth.uid())))
-);
+for delete to authenticated using (private.can_manage_learning_vocabulary(organization_id));
 
--- Only the trusted database function may change review counters and scheduling state.
+-- Only this trusted function can record practice outcomes and change the review schedule.
 create or replace function public.record_learning_vocabulary_review(
   p_organization_id uuid,
   p_vocabulary_entry_id uuid,
@@ -615,3 +554,36 @@ before update of tenant_id, organization_id, created_by
 on public.learning_vocabulary_entries
 for each row execute function private.guard_learning_vocabulary_entry_identity();
 
+ 
+-- Child records cannot be moved between tenants, schools, or vocabulary entries.
+create or replace function private.guard_learning_vocabulary_child_identity()
+returns trigger
+language plpgsql
+set search_path = ''
+as $function$
+begin
+  if new.tenant_id is distinct from old.tenant_id
+     or new.organization_id is distinct from old.organization_id
+     or new.vocabulary_entry_id is distinct from old.vocabulary_entry_id
+     or new.created_by is distinct from old.created_by then
+    raise exception 'Vocabulary child-record ownership cannot be changed.'
+      using errcode = '23514';
+  end if;
+  return new;
+end;
+$function$;
+
+create trigger learning_vocabulary_translations_guard_identity
+before update of tenant_id, organization_id, vocabulary_entry_id, created_by
+on public.learning_vocabulary_translations
+for each row execute function private.guard_learning_vocabulary_child_identity();
+
+create trigger learning_vocabulary_examples_guard_identity
+before update of tenant_id, organization_id, vocabulary_entry_id, created_by
+on public.learning_vocabulary_examples
+for each row execute function private.guard_learning_vocabulary_child_identity();
+
+create trigger learning_vocabulary_objectives_guard_identity
+before update of tenant_id, organization_id, vocabulary_entry_id, created_by
+on public.learning_vocabulary_objectives
+for each row execute function private.guard_learning_vocabulary_child_identity();
