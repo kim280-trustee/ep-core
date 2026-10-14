@@ -638,7 +638,7 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
                       ) : (
                         <>
                           <span className={"rounded-full px-2.5 py-1 text-xs font-semibold " + (progressItem?.status === "known" ? "bg-emerald-50 text-emerald-800" : progressItem?.status === "learning" ? "bg-amber-50 text-amber-800" : "bg-slate-100 text-slate-600")}>{statusLabel(progressItem?.status)}</span>
-                          <div className="flex flex-wrap gap-2"><button type="button" className={primaryButton} onClick={() => { setPracticeEntryId(entry.id); setAnswerRevealed(false); }}>Practice</button><button type="button" className={secondaryButton} onClick={() => setDetailsEntryId(entry.id)}>Translations & examples</button></div>
+                          <div className="flex flex-wrap gap-2"><button type="button" className={primaryButton} onClick={() => { setPracticeEntryId(entry.id); setAnswerRevealed(false); }}>Practice</button><button type="button" className={secondaryButton} onClick={() => openDetails(entry.id)}>Translations & examples</button></div>
                         </>
                       )}
                     </div>
