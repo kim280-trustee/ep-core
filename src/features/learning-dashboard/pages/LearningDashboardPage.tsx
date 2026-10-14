@@ -71,12 +71,6 @@ export default function LearningDashboardPage() {
     enabled: Boolean(studentUserId),
   });
 
-  const activityQuery = useQuery({
-    queryKey: ["learning", "dashboard-reward-activity", studentUserId],
-    queryFn: () => learningActivityService.listRecentEvents(studentUserId, 250),
-    enabled: Boolean(studentUserId),
-  });
-
   const verifiedCompletionsQuery = useQuery({
     queryKey: ["learning", "dashboard-verified-completions", studentUserId],
     queryFn: () => learningActivityService.listValidatedContentCompletions(studentUserId),
