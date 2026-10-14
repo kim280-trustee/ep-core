@@ -308,6 +308,7 @@ $function$;
 create or replace function public.get_learning_team_challenges(p_class_group_id uuid)
 returns table (
   id uuid,
+  class_name text,
   title text,
   description text,
   target_type text,
@@ -340,9 +341,10 @@ begin
   ) into v_is_teacher;
 
   return query
-  select c.id, c.title, c.description, c.target_type, c.target_value, c.bonus_xp,
+  select c.id, cg.name, c.title, c.description, c.target_type, c.target_value, c.bonus_xp,
     c.starts_at, c.ends_at, c.status
   from public.learning_team_challenges c
+  join public.learning_class_groups cg on cg.id = c.class_group_id
   where c.class_group_id = p_class_group_id
     and (v_is_teacher or c.status = 'active')
   order by c.starts_at desc, c.created_at desc;
