@@ -8,6 +8,7 @@ import LearningAssessmentRuntimePage from "../pages/LearningAssessmentRuntimePag
 import LearningProgressPage from "../pages/LearningProgressPage";
 import LearningRecommendationsPage from "../pages/LearningRecommendationsPage";
 import LearningRewardsPage from "../pages/LearningRewardsPage";
+import { LearningVocabularyPage } from "@/features/learning-vocabulary";
 import LearningContentRuntimePage from "../pages/LearningContentRuntimePage";
 import StudentLayout from "../layouts/StudentLayout";
 
@@ -28,6 +29,7 @@ export const learningDashboardRoutes: RouteObject[] = [
       { path: "progress", element: <LearningProgressPage /> },
       { path: "recommendations", element: <LearningRecommendationsPage /> },
       { path: "rewards", element: <LearningRewardsPage /> },
+      { path: "vocabulary", element: <LearningVocabularyPage audience="student" /> },
     ],
   },
   { path: "student", element: <Navigate to="/learning" replace /> },
