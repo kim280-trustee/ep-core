@@ -8,7 +8,7 @@ import { learningContentService } from "@/features/learning-content";
 import { learningVocabularyService } from "../services/learning-vocabulary.service";
 import type {
   LearningVocabularyEntry,
-  LearningVocabularyEntryStatus,
+  VocabularyEntryStatus,
   VocabularyDifficulty,
   VocabularyProgressStatus,
 } from "../types/learning-vocabulary.types";
@@ -28,7 +28,7 @@ type VocabularyForm = {
   languageCode: string;
   translationLanguageCode: string;
   difficulty: VocabularyDifficulty;
-  status: LearningVocabularyEntryStatus;
+  status: VocabularyEntryStatus;
 };
 
 const emptyForm: VocabularyForm = {
