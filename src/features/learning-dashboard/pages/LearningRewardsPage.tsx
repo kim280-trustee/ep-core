@@ -122,6 +122,12 @@ export default function LearningRewardsPage() {
       ]);
     },
   });
+  const dailyGoalMutation = useMutation({
+    mutationFn: (goal: number) => learningRewardsService.setStudentDailyXpGoal(goal),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["learning", "rewards", studentId] });
+    },
+  });
   const readNotificationMutation = useMutation({
     mutationFn: (notificationId: string) => learningRewardsService.markNotificationRead(notificationId),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["learning", "reward-shop", studentId] }),
@@ -130,7 +136,7 @@ export default function LearningRewardsPage() {
   const query = useQuery({
     queryKey: ["learning", "rewards", studentId],
     queryFn: async () => {
-      const [assignments, progress, attempts, results, mastery, activity, rewardLedger] = await Promise.all([
+      const [assignments, progress, attempts, results, mastery, activity, rewardLedger, dailyXpGoal] = await Promise.all([
         learningAssignmentsService.listStudentAssignments(studentId),
         learningAssignmentsService.listProgress(studentId),
         learningAssessmentService.listAttempts(studentId),
@@ -138,16 +144,17 @@ export default function LearningRewardsPage() {
         learningMasteryService.listStudentMastery(studentId),
         learningActivityService.listRecentEvents(studentId, 250),
         learningRewardsService.listStudentLedger(studentId),
+        learningRewardsService.getStudentDailyXpGoal(),
       ]);
 
-      return { assignments, progress, attempts, results, mastery, activity, rewardLedger };
+      return { assignments, progress, attempts, results, mastery, activity, rewardLedger, dailyXpGoal };
     },
     enabled: Boolean(studentId),
   });
 
   const rewards = useMemo(() => {
     if (!query.data) return null;
-    const { assignments, progress, attempts, results, mastery, activity, rewardLedger } = query.data;
+    const { assignments, progress, attempts, results, mastery, activity, rewardLedger, dailyXpGoal } = query.data;
     const completedAssignmentIds = new Set(
       progress.filter((item) => item.status === "completed").map((item) => item.assignmentId),
     );
@@ -222,7 +229,6 @@ export default function LearningRewardsPage() {
       xpByWeek.set(weekKey, (xpByWeek.get(weekKey) ?? 0) + entry.xpDelta);
     });
     const todayXp = xpByDay.get(localDayKey(now)) ?? 0;
-    const dailyXpGoal = 20;
     const bestXpDay = [...xpByDay.entries()].sort((a, b) => b[1] - a[1])[0] ?? null;
     const bestXpWeek = [...xpByWeek.entries()].sort((a, b) => b[1] - a[1])[0] ?? null;
     const weeklyXp = thisWeeksRewards.reduce((total, entry) => total + entry.xpDelta, 0);
@@ -447,12 +453,28 @@ export default function LearningRewardsPage() {
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <h2 id="daily-goal-heading" className="text-lg font-semibold text-slate-900">Today's learning goal</h2>
-            <p className="mt-1 text-sm text-slate-500">Aim to earn 20 XP from verified learning today. Completing an assignment earns 20 XP.</p>
+            <p className="mt-1 text-sm text-slate-500">Choose a realistic daily target from verified learning. Completing an assignment earns 20 XP.</p>
           </div>
           <span className={`rounded-full px-3 py-1 text-xs font-semibold ${rewards.todayXp >= rewards.dailyXpGoal ? "bg-emerald-100 text-emerald-800" : "bg-indigo-50 text-indigo-700"}`}>
             {rewards.todayXp >= rewards.dailyXpGoal ? "Goal reached" : "Daily target"}
           </span>
         </div>
+        <div className="mt-4 flex flex-wrap items-center gap-2" role="group" aria-label="Choose daily XP goal">
+          <span className="mr-1 text-xs font-semibold uppercase tracking-wide text-slate-500">Daily target</span>
+          {[20, 40, 60, 80].map((goal) => (
+            <button
+              key={goal}
+              type="button"
+              onClick={() => dailyGoalMutation.mutate(goal)}
+              disabled={dailyGoalMutation.isPending || rewards.dailyXpGoal === goal}
+              aria-pressed={rewards.dailyXpGoal === goal}
+              className={`rounded-lg px-3 py-1.5 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-70 ${rewards.dailyXpGoal === goal ? "bg-indigo-700 text-white" : "border border-slate-200 bg-white text-slate-700 hover:bg-slate-50"}`}
+            >
+              {goal} XP
+            </button>
+          ))}
+        </div>
+        {dailyGoalMutation.isError && <p role="alert" className="mt-2 text-sm text-red-700">{dailyGoalMutation.error instanceof Error ? dailyGoalMutation.error.message : "Daily goal could not be saved."}</p>}
         <div className="mt-4 h-3 overflow-hidden rounded-full bg-slate-100" role="progressbar" aria-label="Daily XP goal progress" aria-valuemin={0} aria-valuemax={rewards.dailyXpGoal} aria-valuenow={Math.min(rewards.todayXp, rewards.dailyXpGoal)}>
           <div className={`h-full rounded-full transition-[width] ${rewards.todayXp >= rewards.dailyXpGoal ? "bg-emerald-500" : "bg-indigo-500"}`} style={{ width: `${Math.min(100, Math.round((rewards.todayXp / rewards.dailyXpGoal) * 100))}%` }} />
         </div>
@@ -772,6 +794,8 @@ export default function LearningRewardsPage() {
           <RewardRule title="Fourteen-day streak" points="+100 XP" detail="One-time bonus for learning on fourteen consecutive days." />
           <RewardRule title="Thirty-day streak" points="+200 XP" detail="One-time bonus for learning on thirty consecutive days." />
           <RewardRule title="Class challenge completed" points="5–100 XP" detail="Bonus XP when you meet a teacher-created class goal." />
+          <RewardRule title="Team challenge completed" points="5–100 XP" detail="Bonus XP when your team reaches a verified learning target." />
+          <RewardRule title="School-wide competition completed" points="5–100 XP" detail="Bonus XP for contributors when their class reaches a school campaign target." />
         </div>
         <p className="mt-4 text-xs text-slate-500">XP is recorded in a protected reward ledger. Badge progress reflects your recorded learning evidence.</p>
       </section>

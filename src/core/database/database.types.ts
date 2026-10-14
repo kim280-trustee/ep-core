@@ -4610,6 +4610,14 @@ export type Database = {
           is_current_user: boolean
         }[]
       }
+      get_learning_student_daily_xp_goal: {
+        Args: never
+        Returns: number
+      }
+      set_learning_student_daily_xp_goal: {
+        Args: { p_daily_xp_goal: number }
+        Returns: number
+      }
       get_learning_class_leaderboard_setting: {
         Args: { p_class_group_id: string }
         Returns: boolean

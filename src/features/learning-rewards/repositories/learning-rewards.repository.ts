@@ -212,6 +212,20 @@ export const learningRewardsRepository = {
     return data ?? [];
   },
 
+  async getStudentDailyXpGoal(): Promise<number> {
+    const { data, error } = await supabase.rpc("get_learning_student_daily_xp_goal");
+    if (error) throw error;
+    return data ?? 20;
+  },
+
+  async setStudentDailyXpGoal(dailyXpGoal: number): Promise<number> {
+    const { data, error } = await supabase.rpc("set_learning_student_daily_xp_goal", {
+      p_daily_xp_goal: dailyXpGoal,
+    });
+    if (error) throw error;
+    return data ?? 20;
+  },
+
   async canManageSchoolCompetitions(): Promise<boolean> {
     const { data, error } = await supabase.rpc("has_permission", {
       permission_code: "learning.academic.manage",
