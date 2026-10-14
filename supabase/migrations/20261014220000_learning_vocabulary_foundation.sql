@@ -248,29 +248,7 @@ create table public.learning_vocabulary_translations (
   tenant_id uuid not null,
   organization_id uuid not null,
   vocabulary_entry_id uuid not null,
-  language_code text not null check (language_code ~ '^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*
-create schema if not exists private;
-create or replace function private.guard_learning_vocabulary_entry_identity()
-returns trigger
-language plpgsql
-set search_path = public, pg_catalog
-as $function$
-begin
-  if new.tenant_id is distinct from old.tenant_id
-     or new.organization_id is distinct from old.organization_id
-     or new.created_by is distinct from old.created_by then
-    raise exception 'Vocabulary entry ownership and school cannot be changed.'
-      using errcode = '23514';
-  end if;
-  return new;
-end;
-$function$;
-
-create trigger learning_vocabulary_entries_guard_identity
-before update of tenant_id, organization_id, created_by
-on public.learning_vocabulary_entries
-for each row execute function private.guard_learning_vocabulary_entry_identity();
- 
+  language_code text not null check (language_code ~ '^[a-z]{2,3}(-[A-Za-z0-9]{2,8})* ' 
 -- Child records cannot be moved between tenants, schools, or vocabulary entries.
 create or replace function private.guard_learning_vocabulary_child_identity()
 returns trigger
@@ -334,53 +312,9 @@ create table public.learning_vocabulary_examples (
   tenant_id uuid not null,
   organization_id uuid not null,
   vocabulary_entry_id uuid not null,
-  language_code text not null default 'en' check (language_code ~ '^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*
-create schema if not exists private;
-create or replace function private.guard_learning_vocabulary_entry_identity()
-returns trigger
-language plpgsql
-set search_path = public, pg_catalog
-as $function$
-begin
-  if new.tenant_id is distinct from old.tenant_id
-     or new.organization_id is distinct from old.organization_id
-     or new.created_by is distinct from old.created_by then
-    raise exception 'Vocabulary entry ownership and school cannot be changed.'
-      using errcode = '23514';
-  end if;
-  return new;
-end;
-$function$;
-
-create trigger learning_vocabulary_entries_guard_identity
-before update of tenant_id, organization_id, created_by
-on public.learning_vocabulary_entries
-for each row execute function private.guard_learning_vocabulary_entry_identity();
-),
+  language_code text not null default 'en' check (language_code ~ '^[a-z]{2,3}(-[A-Za-z0-9]{2,8})* '),
   sentence text not null check (length(trim(sentence)) between 1 and 2000),
-  translation_language_code text check (translation_language_code is null or translation_language_code ~ '^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*
-create schema if not exists private;
-create or replace function private.guard_learning_vocabulary_entry_identity()
-returns trigger
-language plpgsql
-set search_path = public, pg_catalog
-as $function$
-begin
-  if new.tenant_id is distinct from old.tenant_id
-     or new.organization_id is distinct from old.organization_id
-     or new.created_by is distinct from old.created_by then
-    raise exception 'Vocabulary entry ownership and school cannot be changed.'
-      using errcode = '23514';
-  end if;
-  return new;
-end;
-$function$;
-
-create trigger learning_vocabulary_entries_guard_identity
-before update of tenant_id, organization_id, created_by
-on public.learning_vocabulary_entries
-for each row execute function private.guard_learning_vocabulary_entry_identity();
-),
+  translation_language_code text check (translation_language_code is null or translation_language_code ~ '^[a-z]{2,3}(-[A-Za-z0-9]{2,8})* '),
   translated_sentence text,
   sequence_no integer not null default 1 check (sequence_no > 0),
   created_by uuid not null,
