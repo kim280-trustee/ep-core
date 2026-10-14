@@ -1,6 +1,6 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { AlertCircle, ArrowLeft, ClipboardCheck, Target, TrendingUp } from "lucide-react";
+import { AlertCircle, ArrowLeft, ClipboardCheck, Target, TrendingUp, Users } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningAssignmentsService } from "@/features/learning-assignments";
@@ -82,10 +82,7 @@ export default function TeacherDiagnosticReportPage() {
     queryFn: async (): Promise<AttemptWithAnswers[]> => {
       const [attempts, assignments] = await Promise.all([
         learningAssessmentService.listAttemptsForAssessment(assessmentId),
-        classAssignmentsQuery.refetch().then((result) => {
-          if (result.isError) throw result.error;
-          return result.data ?? [];
-        }),
+        Promise.resolve(classAssignmentsQuery.data ?? []),
       ]);
       const classStudentIds = new Set((classQuery.data?.students ?? []).map((student) => student.membership.userId));
       const classAssignmentIds = new Set(
@@ -212,7 +209,7 @@ export default function TeacherDiagnosticReportPage() {
         <>
           <div className="grid gap-4 sm:grid-cols-3">
             <Stat icon={<ClipboardCheck size={18} />} label="Students with evaluated attempts" value={latestAttempts.size} />
-            <Stat icon={<UsersIcon />} label="Students in class" value={classQuery.data.students.length} />
+            <Stat icon={<Users size={18} />} label="Students in class" value={classQuery.data.students.length} />
             <Stat icon={<Target size={18} />} label="Objectives assessed" value={objectiveSummaries.length} />
           </div>
 
@@ -232,12 +229,9 @@ export default function TeacherDiagnosticReportPage() {
   );
 }
 
-function Panel({ title, children }: { title: string; children: React.ReactNode }) {
+function Panel({ title, children }: { title: string; children: ReactNode }) {
   return <section className="rounded-2xl border border-slate-200 bg-white p-5"><h1 className="text-xl font-bold text-slate-900">{title}</h1><div className="mt-3 text-sm text-slate-600">{children}</div></section>;
 }
-function Stat({ icon, label, value }: { icon: React.ReactNode; label: string; value: number }) {
+function Stat({ icon, label, value }: { icon: ReactNode; label: string; value: number }) {
   return <div className="rounded-2xl border border-slate-200 bg-white p-5"><div className="flex items-center gap-2 text-sm text-slate-500">{icon}<span>{label}</span></div><p className="mt-2 text-2xl font-bold text-slate-900">{value}</p></div>;
-}
-function UsersIcon() {
-  return <span className="text-lg leading-none">👥</span>;
 }
