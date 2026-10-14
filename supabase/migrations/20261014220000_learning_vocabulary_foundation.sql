@@ -268,6 +268,40 @@ create trigger learning_vocabulary_entries_guard_identity
 before update of tenant_id, organization_id, created_by
 on public.learning_vocabulary_entries
 for each row execute function private.guard_learning_vocabulary_entry_identity();
+ 
+-- Child records cannot be moved between tenants, schools, or vocabulary entries.
+create or replace function private.guard_learning_vocabulary_child_identity()
+returns trigger
+language plpgsql
+set search_path = ''
+as $function$
+begin
+  if new.tenant_id is distinct from old.tenant_id
+     or new.organization_id is distinct from old.organization_id
+     or new.vocabulary_entry_id is distinct from old.vocabulary_entry_id
+     or new.created_by is distinct from old.created_by then
+    raise exception 'Vocabulary child-record ownership cannot be changed.'
+      using errcode = '23514';
+  end if;
+  return new;
+end;
+$function$;
+
+create trigger learning_vocabulary_translations_guard_identity
+before update of tenant_id, organization_id, vocabulary_entry_id, created_by
+on public.learning_vocabulary_translations
+for each row execute function private.guard_learning_vocabulary_child_identity();
+
+create trigger learning_vocabulary_examples_guard_identity
+before update of tenant_id, organization_id, vocabulary_entry_id, created_by
+on public.learning_vocabulary_examples
+for each row execute function private.guard_learning_vocabulary_child_identity();
+
+create trigger learning_vocabulary_objectives_guard_identity
+before update of tenant_id, organization_id, vocabulary_entry_id, created_by
+on public.learning_vocabulary_objectives
+for each row execute function private.guard_learning_vocabulary_child_identity();
+
 ),
   translation text not null check (length(trim(translation)) between 1 and 1000),
   pronunciation text,
