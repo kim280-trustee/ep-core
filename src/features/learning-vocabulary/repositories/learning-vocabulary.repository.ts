@@ -6,10 +6,19 @@ import type {
   LearningVocabularyEntryUpdate,
   LearningVocabularyProgress,
   LearningVocabularyProgressInput,
+  LearningVocabularyTranslation,
+  LearningVocabularyTranslationInput,
+  LearningVocabularyExample,
+  LearningVocabularyExampleInput,
+  LearningVocabularyObjectiveLink,
+  LearningVocabularyObjectiveLinkInput,
 } from "../types/learning-vocabulary.types";
 
 type EntryRow = Database["public"]["Tables"]["learning_vocabulary_entries"]["Row"];
 type ProgressRow = Database["public"]["Tables"]["learning_vocabulary_progress"]["Row"];
+type TranslationRow = Database["public"]["Tables"]["learning_vocabulary_translations"]["Row"];
+type ExampleRow = Database["public"]["Tables"]["learning_vocabulary_examples"]["Row"];
+type ObjectiveLinkRow = Database["public"]["Tables"]["learning_vocabulary_objectives"]["Row"];
 
 const mapEntry = (row: EntryRow): LearningVocabularyEntry => ({
   id: row.id,
@@ -41,8 +50,57 @@ const mapProgress = (row: ProgressRow): LearningVocabularyProgress => ({
   vocabularyEntryId: row.vocabulary_entry_id,
   status: row.status as LearningVocabularyProgress["status"],
   lastPracticedAt: row.last_practiced_at,
+  reviewCount: row.review_count,
+  correctCount: row.correct_count,
+  incorrectCount: row.incorrect_count,
+  intervalDays: row.interval_days,
+  easeFactor: Number(row.ease_factor),
+  nextReviewAt: row.next_review_at,
+  lastAnswerCorrect: row.last_answer_correct,
   createdAt: row.created_at,
   updatedAt: row.updated_at,
+});
+
+const mapTranslation = (row: TranslationRow): LearningVocabularyTranslation => ({
+  id: row.id,
+  tenantId: row.tenant_id,
+  organizationId: row.organization_id,
+  vocabularyEntryId: row.vocabulary_entry_id,
+  languageCode: row.language_code,
+  translation: row.translation,
+  pronunciation: row.pronunciation,
+  transliteration: row.transliteration,
+  audioUrl: row.audio_url,
+  createdBy: row.created_by,
+  updatedBy: row.updated_by,
+  createdAt: row.created_at,
+  updatedAt: row.updated_at,
+});
+
+const mapExample = (row: ExampleRow): LearningVocabularyExample => ({
+  id: row.id,
+  tenantId: row.tenant_id,
+  organizationId: row.organization_id,
+  vocabularyEntryId: row.vocabulary_entry_id,
+  languageCode: row.language_code,
+  sentence: row.sentence,
+  translationLanguageCode: row.translation_language_code,
+  translatedSentence: row.translated_sentence,
+  sequenceNo: row.sequence_no,
+  createdBy: row.created_by,
+  updatedBy: row.updated_by,
+  createdAt: row.created_at,
+  updatedAt: row.updated_at,
+});
+
+const mapObjectiveLink = (row: ObjectiveLinkRow): LearningVocabularyObjectiveLink => ({
+  id: row.id,
+  tenantId: row.tenant_id,
+  organizationId: row.organization_id,
+  vocabularyEntryId: row.vocabulary_entry_id,
+  objectiveId: row.objective_id,
+  createdBy: row.created_by,
+  createdAt: row.created_at,
 });
 
 export const learningVocabularyRepository = {
@@ -111,18 +169,103 @@ export const learningVocabularyRepository = {
     return (data ?? []).map(mapProgress);
   },
 
-  async saveProgress(input: LearningVocabularyProgressInput): Promise<LearningVocabularyProgress> {
-    const now = new Date().toISOString();
-    const { data, error } = await supabase.from("learning_vocabulary_progress").upsert({
-      tenant_id: input.tenantId,
-      organization_id: input.organizationId,
-      user_id: input.userId,
-      vocabulary_entry_id: input.vocabularyEntryId,
-      status: input.status,
-      last_practiced_at: now,
-      updated_at: now,
-    }, { onConflict: "organization_id,user_id,vocabulary_entry_id" }).select("*").single();
+  async recordReview(input: { organizationId: string; vocabularyEntryId: string; isCorrect: boolean }): Promise<LearningVocabularyProgress> {
+    const { data, error } = await supabase.rpc("record_learning_vocabulary_review", {
+      p_organization_id: input.organizationId,
+      p_vocabulary_entry_id: input.vocabularyEntryId,
+      p_is_correct: input.isCorrect,
+    });
     if (error) throw error;
+    if (!data) throw new Error("Vocabulary review did not return updated progress.");
     return mapProgress(data);
+  },
+
+  async listTranslations(organizationId: string, vocabularyEntryId: string): Promise<LearningVocabularyTranslation[]> {
+    const { data, error } = await supabase.from("learning_vocabulary_translations")
+      .select("*").eq("organization_id", organizationId).eq("vocabulary_entry_id", vocabularyEntryId)
+      .order("language_code", { ascending: true });
+    if (error) throw error;
+    return (data ?? []).map(mapTranslation);
+  },
+
+  async createTranslation(input: LearningVocabularyTranslationInput): Promise<LearningVocabularyTranslation> {
+    const { data, error } = await supabase.from("learning_vocabulary_translations").insert({
+      tenant_id: input.tenantId, organization_id: input.organizationId,
+      vocabulary_entry_id: input.vocabularyEntryId, language_code: input.languageCode.trim().toLowerCase(),
+      translation: input.translation.trim(), pronunciation: input.pronunciation?.trim() || null,
+      transliteration: input.transliteration?.trim() || null, audio_url: input.audioUrl?.trim() || null,
+      created_by: input.createdBy, updated_by: input.updatedBy,
+    }).select("*").single();
+    if (error) throw error;
+    return mapTranslation(data);
+  },
+
+  async updateTranslation(id: string, input: Pick<LearningVocabularyTranslationInput, "translation" | "pronunciation" | "transliteration" | "audioUrl" | "updatedBy">): Promise<LearningVocabularyTranslation> {
+    const { data, error } = await supabase.from("learning_vocabulary_translations").update({
+      translation: input.translation.trim(), pronunciation: input.pronunciation?.trim() || null,
+      transliteration: input.transliteration?.trim() || null, audio_url: input.audioUrl?.trim() || null,
+      updated_by: input.updatedBy, updated_at: new Date().toISOString(),
+    }).eq("id", id).select("*").single();
+    if (error) throw error;
+    return mapTranslation(data);
+  },
+
+  async listExamples(organizationId: string, vocabularyEntryId: string): Promise<LearningVocabularyExample[]> {
+    const { data, error } = await supabase.from("learning_vocabulary_examples").select("*")
+      .eq("organization_id", organizationId).eq("vocabulary_entry_id", vocabularyEntryId)
+      .order("sequence_no", { ascending: true });
+    if (error) throw error;
+    return (data ?? []).map(mapExample);
+  },
+
+  async createExample(input: LearningVocabularyExampleInput): Promise<LearningVocabularyExample> {
+    const { data, error } = await supabase.from("learning_vocabulary_examples").insert({
+      tenant_id: input.tenantId, organization_id: input.organizationId,
+      vocabulary_entry_id: input.vocabularyEntryId, language_code: input.languageCode.trim().toLowerCase(),
+      sentence: input.sentence.trim(), translation_language_code: input.translationLanguageCode?.trim().toLowerCase() || null,
+      translated_sentence: input.translatedSentence?.trim() || null, sequence_no: input.sequenceNo,
+      created_by: input.createdBy, updated_by: input.updatedBy,
+    }).select("*").single();
+    if (error) throw error;
+    return mapExample(data);
+  },
+
+  async updateExample(id: string, input: Pick<LearningVocabularyExampleInput, "sentence" | "languageCode" | "translationLanguageCode" | "translatedSentence" | "sequenceNo" | "updatedBy">): Promise<LearningVocabularyExample> {
+    const { data, error } = await supabase.from("learning_vocabulary_examples").update({
+      sentence: input.sentence.trim(), language_code: input.languageCode.trim().toLowerCase(),
+      translation_language_code: input.translationLanguageCode?.trim().toLowerCase() || null,
+      translated_sentence: input.translatedSentence?.trim() || null, sequence_no: input.sequenceNo,
+      updated_by: input.updatedBy, updated_at: new Date().toISOString(),
+    }).eq("id", id).select("*").single();
+    if (error) throw error;
+    return mapExample(data);
+  },
+
+  async deleteExample(id: string): Promise<void> {
+    const { error } = await supabase.from("learning_vocabulary_examples").delete().eq("id", id);
+    if (error) throw error;
+  },
+
+  async listObjectiveLinks(organizationId: string, vocabularyEntryId: string): Promise<LearningVocabularyObjectiveLink[]> {
+    const { data, error } = await supabase.from("learning_vocabulary_objectives").select("*")
+      .eq("organization_id", organizationId).eq("vocabulary_entry_id", vocabularyEntryId)
+      .order("created_at", { ascending: true });
+    if (error) throw error;
+    return (data ?? []).map(mapObjectiveLink);
+  },
+
+  async linkObjective(input: LearningVocabularyObjectiveLinkInput): Promise<LearningVocabularyObjectiveLink> {
+    const { data, error } = await supabase.from("learning_vocabulary_objectives").insert({
+      tenant_id: input.tenantId, organization_id: input.organizationId,
+      vocabulary_entry_id: input.vocabularyEntryId, objective_id: input.objectiveId,
+      created_by: input.createdBy,
+    }).select("*").single();
+    if (error) throw error;
+    return mapObjectiveLink(data);
+  },
+
+  async unlinkObjective(id: string): Promise<void> {
+    const { error } = await supabase.from("learning_vocabulary_objectives").delete().eq("id", id);
+    if (error) throw error;
   },
 };
