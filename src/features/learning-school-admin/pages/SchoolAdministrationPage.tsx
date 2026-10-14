@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { FormEvent, ReactNode } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
@@ -31,7 +32,7 @@ function errorText(error: unknown): string {
   return "The operation could not be completed. Check your access and the entered values, then try again.";
 }
 
-function Section({ title, description, children }: { title: string; description: string; children: React.ReactNode }) {
+function Section({ title, description, children }: { title: string; description: string; children: ReactNode }) {
   return (
     <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
       <div className="mb-5">
@@ -43,7 +44,7 @@ function Section({ title, description, children }: { title: string; description:
   );
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({ label, children }: { label: string; children: ReactNode }) {
   return <label className="block text-sm font-medium text-slate-700">{label}{children}</label>;
 }
 
@@ -152,7 +153,7 @@ export default function SchoolAdministrationPage() {
     onError: (error) => setActionError(errorText(error)),
   });
 
-  const submitYear = (event: React.FormEvent<HTMLFormElement>) => {
+  const submitYear = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!organizationId || !yearForm.curriculumId || !yearForm.name.trim() || !yearForm.code.trim() || !yearForm.startsOn || !yearForm.endsOn) {
       setActionError("Complete every required academic-year field.");
@@ -178,7 +179,7 @@ export default function SchoolAdministrationPage() {
     }
   };
 
-  const submitTerm = (event: React.FormEvent<HTMLFormElement>) => {
+  const submitTerm = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!organizationId || !academicYearId || !termForm.name.trim() || !termForm.code.trim() || !termForm.startsOn || !termForm.endsOn) {
       setActionError("Complete every required term field.");
@@ -210,7 +211,7 @@ export default function SchoolAdministrationPage() {
     }
   };
 
-  const submitClass = (event: React.FormEvent<HTMLFormElement>) => {
+  const submitClass = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!organizationId || !academicYearId || !classForm.curriculumId || !classForm.gradeLevelId || !classForm.code.trim() || !classForm.name.trim()) {
       setActionError("Complete every required class field.");
