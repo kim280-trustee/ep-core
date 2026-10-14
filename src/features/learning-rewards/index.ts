@@ -5,4 +5,4 @@ export type {
   LearningRewardLedgerEntry,
   LearningRewardSourceType,
 } from "./types/learning-rewards.types";
-export { calculateLearningStreak, localLearningDayKey } from "./utils/learning-reward-progress";
+export { calculateLearningStreak, getVerifiedLearningActivityTimestamps, localLearningDayKey } from "./utils/learning-reward-progress";

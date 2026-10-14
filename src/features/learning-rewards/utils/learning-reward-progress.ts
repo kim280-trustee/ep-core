@@ -20,3 +20,31 @@ export function calculateLearningStreak(timestamps: string[], now = new Date()) 
   }
   return streak;
 }
+
+
+/**
+ * Restrict streak and practice-day calculations to evidence that cannot be
+ * created by ordinary page views or arbitrary client activity events.
+ */
+export function getVerifiedLearningActivityTimestamps(
+  activityEvents: Array<{ activityType: string; metadata: Record<string, unknown>; occurredAt: string }>,
+  rewardEvents: Array<{ eventType: string; occurredAt: string }>,
+) {
+  const verifiedContentCompletions = activityEvents
+    .filter((event) =>
+      event.activityType === "content_viewed"
+      && event.metadata["completion"] === "completed"
+      && event.metadata["source"] === "validated_completion_rpc",
+    )
+    .map((event) => event.occurredAt);
+
+  const verifiedRewardEvents = rewardEvents
+    .filter((event) =>
+      event.eventType === "assignment_completed"
+      || event.eventType === "assessment_passed"
+      || event.eventType === "objective_mastered",
+    )
+    .map((event) => event.occurredAt);
+
+  return [...verifiedContentCompletions, ...verifiedRewardEvents];
+}

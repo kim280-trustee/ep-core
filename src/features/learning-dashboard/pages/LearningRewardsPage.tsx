@@ -9,7 +9,7 @@ import { learningAssignmentsService } from "@/features/learning-assignments";
 import { learningAssessmentService } from "@/features/learning-assessment";
 import { learningMasteryService } from "@/features/learning-mastery";
 import { learningEnrollmentService } from "@/features/learning-enrollment";
-import { calculateLearningStreak, LEARNING_REWARD_LEVELS, learningRewardsService } from "@/features/learning-rewards";
+import { calculateLearningStreak, getVerifiedLearningActivityTimestamps, LEARNING_REWARD_LEVELS, learningRewardsService } from "@/features/learning-rewards";
 
 function localDayKey(value: Date) {
   return `${value.getFullYear()}-${String(value.getMonth() + 1).padStart(2, "0")}-${String(value.getDate()).padStart(2, "0")}`;
@@ -76,7 +76,9 @@ export default function LearningRewardsPage() {
         const competitions = await learningRewardsService.listSchoolCompetitions(organizationId);
         const now = Date.now();
         const activeCompetitions = competitions.filter(item =>
-          item.status === "active" && new Date(item.ends_at).getTime() >= now
+          item.status === "active"
+          && new Date(item.starts_at).getTime() <= now
+          && new Date(item.ends_at).getTime() >= now
         );
         const classGroupIds = [...new Set(
           studentMemberships.filter(item => item.organizationId === organizationId).map(item => item.classGroupId)
@@ -99,8 +101,11 @@ export default function LearningRewardsPage() {
       const classGroupIds = [...new Set(studentMemberships.map(item => item.classGroupId))];
       const byClass = await Promise.all(classGroupIds.map(async classGroupId => {
         const challenges = await learningRewardsService.listTeamChallenges(classGroupId);
+        const now = Date.now();
         const currentChallenges = challenges.filter(item =>
-          item.status === "active" && new Date(item.ends_at).getTime() >= Date.now()
+          item.status === "active"
+          && new Date(item.starts_at).getTime() <= now
+          && new Date(item.ends_at).getTime() >= now
         );
         return Promise.all(currentChallenges.map(async challenge => ({
           classGroupId,
@@ -136,25 +141,26 @@ export default function LearningRewardsPage() {
   const query = useQuery({
     queryKey: ["learning", "rewards", studentId],
     queryFn: async () => {
-      const [assignments, progress, attempts, results, mastery, activity, rewardLedger, dailyXpGoal] = await Promise.all([
+      const [assignments, progress, attempts, results, mastery, activity, verifiedContentCompletions, rewardLedger, dailyXpGoal] = await Promise.all([
         learningAssignmentsService.listStudentAssignments(studentId),
         learningAssignmentsService.listProgress(studentId),
         learningAssessmentService.listAttempts(studentId),
         learningAssessmentService.listResults(studentId),
         learningMasteryService.listStudentMastery(studentId),
         learningActivityService.listRecentEvents(studentId, 250),
+        learningActivityService.listValidatedContentCompletions(studentId),
         learningRewardsService.listStudentLedger(studentId),
         learningRewardsService.getStudentDailyXpGoal(),
       ]);
 
-      return { assignments, progress, attempts, results, mastery, activity, rewardLedger, dailyXpGoal };
+      return { assignments, progress, attempts, results, mastery, activity, verifiedContentCompletions, rewardLedger, dailyXpGoal };
     },
     enabled: Boolean(studentId),
   });
 
   const rewards = useMemo(() => {
     if (!query.data) return null;
-    const { assignments, progress, attempts, results, mastery, activity, rewardLedger, dailyXpGoal } = query.data;
+    const { assignments, progress, attempts, results, mastery, activity, verifiedContentCompletions, rewardLedger, dailyXpGoal } = query.data;
     const completedAssignmentIds = new Set(
       progress.filter((item) => item.status === "completed").map((item) => item.assignmentId),
     );
@@ -187,7 +193,8 @@ export default function LearningRewardsPage() {
     const levelProgress = nextLevel
       ? Math.min(100, Math.round(((xp - currentLevel.minXp) / (nextLevel.minXp - currentLevel.minXp)) * 100))
       : 100;
-    const streak = calculateLearningStreak(activity.map((event) => event.occurredAt));
+    const verifiedActivityTimestamps = getVerifiedLearningActivityTimestamps(verifiedContentCompletions, rewardLedger);
+    const streak = calculateLearningStreak(verifiedActivityTimestamps);
     const now = new Date();
     const calendarEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     calendarEnd.setDate(calendarEnd.getDate() + (6 - calendarEnd.getDay()));
@@ -246,9 +253,9 @@ export default function LearningRewardsPage() {
         .filter((assessmentId): assessmentId is string => Boolean(assessmentId)),
     ).size;
     const weeklyPracticeDays = new Set(
-      activity
-        .filter((event) => isWithinCurrentWeek(event.occurredAt, weekStart, now))
-        .map((event) => localDayKey(new Date(event.occurredAt))),
+      verifiedActivityTimestamps
+        .filter((timestamp) => isWithinCurrentWeek(timestamp, weekStart, now))
+        .map((timestamp) => localDayKey(new Date(timestamp))),
     ).size;
     const completedWeeklyQuestCodes = new Set(
       thisWeeksRewards
