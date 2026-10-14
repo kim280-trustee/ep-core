@@ -25,6 +25,13 @@ export default function TeacherClassGamificationPage() {
   const [itemCost, setItemCost] = useState("100");
   const [itemQuantity, setItemQuantity] = useState("");
   const [feedback, setFeedback] = useState("");
+  const [schoolCompetitionTitle, setSchoolCompetitionTitle] = useState("");
+  const [schoolCompetitionDescription, setSchoolCompetitionDescription] = useState("");
+  const [schoolTargetType, setSchoolTargetType] = useState<"assignments_completed" | "xp_earned">("xp_earned");
+  const [schoolTargetValue, setSchoolTargetValue] = useState("500");
+  const [schoolBonusXp, setSchoolBonusXp] = useState("25");
+  const [schoolStartsAt, setSchoolStartsAt] = useState(() => localDateTimeValue(new Date()));
+  const [schoolEndsAt, setSchoolEndsAt] = useState(() => { const d = new Date(); d.setDate(d.getDate() + 14); return localDateTimeValue(d); });
 
   const classQuery = useQuery({
     queryKey: ["learning", "gamification", "class", classGroupId],
@@ -35,6 +42,28 @@ export default function TeacherClassGamificationPage() {
     queryKey: ["learning", "gamification", "leaderboard-setting", classGroupId],
     queryFn: () => learningRewardsService.getClassLeaderboardEnabled(classGroupId),
     enabled: Boolean(classGroupId),
+  });
+  const schoolCompetitionPermissionQuery = useQuery({
+    queryKey: ["learning", "school-competition-permission", user?.id],
+    queryFn: () => learningRewardsService.canManageSchoolCompetitions(),
+    enabled: Boolean(user?.id),
+  });
+  const schoolCompetitionsQuery = useQuery({
+    queryKey: ["learning", "school-competitions", classQuery.data?.organization_id],
+    queryFn: () => learningRewardsService.listSchoolCompetitions(classQuery.data!.organization_id),
+    enabled: Boolean(classQuery.data?.organization_id),
+  });
+  const schoolCompetitionStandingsQuery = useQuery({
+    queryKey: ["learning", "school-competition-standings", classQuery.data?.organization_id, schoolCompetitionsQuery.data?.map(item => item.id)],
+    queryFn: async () => Promise.all(
+      (schoolCompetitionsQuery.data ?? [])
+        .filter(item => item.status === "active" && new Date(item.ends_at).getTime() >= Date.now())
+        .map(async competition => ({
+          competition,
+          standings: await learningRewardsService.listSchoolCompetitionStandings(competition.id),
+        })),
+    ),
+    enabled: Boolean(classQuery.data?.organization_id && schoolCompetitionsQuery.data),
   });
   const rosterQuery = useQuery({
     queryKey: ["learning", "teacher-class", user?.id, classGroupId],
@@ -76,6 +105,38 @@ export default function TeacherClassGamificationPage() {
       await invalidate();
     },
     onError: (error) => setFeedback(error instanceof Error ? error.message : "Leaderboard visibility could not be updated."),
+  });
+  const createSchoolCompetition = useMutation({
+    mutationFn: async () => {
+      const group = classQuery.data;
+      if (!group) throw new Error("Class details are not available.");
+      return learningRewardsService.createSchoolCompetition({
+        organizationId: group.organization_id,
+        title: schoolCompetitionTitle.trim(),
+        description: schoolCompetitionDescription.trim(),
+        targetType: schoolTargetType,
+        targetValue: Number(schoolTargetValue),
+        bonusXp: Number(schoolBonusXp),
+        startsAt: new Date(schoolStartsAt).toISOString(),
+        endsAt: new Date(schoolEndsAt).toISOString(),
+      });
+    },
+    onSuccess: async () => {
+      setSchoolCompetitionTitle("");
+      setSchoolCompetitionDescription("");
+      setFeedback("School-wide competition created.");
+      await invalidate();
+    },
+    onError: (error) => setFeedback(error instanceof Error ? error.message : "School-wide competition could not be created."),
+  });
+  const changeSchoolCompetitionStatus = useMutation({
+    mutationFn: ({ id, status }: { id: string; status: "active" | "paused" | "ended" }) =>
+      learningRewardsService.setSchoolCompetitionStatus(id, status),
+    onSuccess: async () => {
+      setFeedback("School-wide competition status updated.");
+      await invalidate();
+    },
+    onError: (error) => setFeedback(error instanceof Error ? error.message : "Competition status could not be updated."),
   });
   const createChallenge = useMutation({
     mutationFn: async () => {
@@ -170,6 +231,43 @@ export default function TeacherClassGamificationPage() {
           </button>
         )}
       </div>
+    </section>
+    <section className="rounded-2xl border border-slate-200 bg-white p-5">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h2 className="text-lg font-semibold text-slate-900">School-wide class competition</h2>
+          <p className="mt-1 max-w-3xl text-sm text-slate-600">Run a school campaign that compares classes using verified assignment completions or learning XP. Only class totals are shown; individual student names are not published on this board.</p>
+        </div>
+        {schoolCompetitionPermissionQuery.data && <span className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">School administrator</span>}
+      </div>
+      {schoolCompetitionPermissionQuery.isError && <p role="alert" className="mt-3 text-sm text-red-700">Competition permissions could not be checked.</p>}
+      {schoolCompetitionPermissionQuery.data === true && <form className="mt-4 grid gap-3 rounded-xl bg-slate-50 p-4 lg:grid-cols-2" onSubmit={event => { event.preventDefault(); createSchoolCompetition.mutate(); }}>
+        <label className="block text-sm font-medium">Competition title<input required minLength={3} maxLength={100} value={schoolCompetitionTitle} onChange={event => setSchoolCompetitionTitle(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
+        <label className="block text-sm font-medium">Success condition<select value={schoolTargetType} onChange={event => setSchoolTargetType(event.target.value as typeof schoolTargetType)} className="mt-1 w-full rounded-lg border bg-white p-2.5"><option value="xp_earned">Earn class XP</option><option value="assignments_completed">Complete assignments as a class</option></select></label>
+        <label className="block text-sm font-medium lg:col-span-2">Description<textarea rows={2} value={schoolCompetitionDescription} onChange={event => setSchoolCompetitionDescription(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
+        <div className="grid grid-cols-2 gap-3">
+          <label className="block text-sm font-medium">Target<input type="number" min={1} max={100000} required value={schoolTargetValue} onChange={event => setSchoolTargetValue(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
+          <label className="block text-sm font-medium">Bonus XP per contributor<input type="number" min={5} max={100} required value={schoolBonusXp} onChange={event => setSchoolBonusXp(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          <label className="block text-sm font-medium">Starts<input type="datetime-local" required value={schoolStartsAt} onChange={event => setSchoolStartsAt(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
+          <label className="block text-sm font-medium">Ends<input type="datetime-local" required min={schoolStartsAt} value={schoolEndsAt} onChange={event => setSchoolEndsAt(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
+        </div>
+        <div className="flex items-center justify-between gap-3 lg:col-span-2">
+          <p className="text-xs text-slate-500">Bonus XP is awarded once to each student who contributed qualifying activity when their class reaches the target.</p>
+          <button type="submit" disabled={createSchoolCompetition.isPending} className="shrink-0 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{createSchoolCompetition.isPending ? "Publishing…" : "Create competition"}</button>
+        </div>
+      </form>}
+      {schoolCompetitionPermissionQuery.data === false && <p className="mt-3 text-sm text-slate-500">School-wide competitions are managed by school administrators.</p>}
+      {schoolCompetitionsQuery.isPending || schoolCompetitionStandingsQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading school competitions…</p> : schoolCompetitionsQuery.isError || schoolCompetitionStandingsQuery.isError ? <p role="alert" className="mt-4 text-sm text-red-700">School competitions could not be loaded.</p> : !(schoolCompetitionStandingsQuery.data ?? []).length ? <p className="mt-4 rounded-xl border border-dashed p-5 text-sm text-slate-500">No active school-wide competitions right now.</p> : <div className="mt-4 space-y-5">
+        {(schoolCompetitionStandingsQuery.data ?? []).map(({ competition, standings }) => <article key={competition.id} className="overflow-hidden rounded-xl border border-slate-200">
+          <div className="flex flex-wrap items-start justify-between gap-3 bg-slate-50 p-4">
+            <div><h3 className="font-semibold text-slate-900">{competition.title}</h3><p className="mt-1 text-sm text-slate-600">{competition.description || "School-wide learning challenge"}</p><p className="mt-1 text-xs text-slate-500">Target: {competition.target_value} {competition.target_type === "xp_earned" ? "XP per class" : "completed assignments per class"} · +{competition.bonus_xp} XP to contributors · Ends {new Date(competition.ends_at).toLocaleString()}</p></div>
+            {schoolCompetitionPermissionQuery.data === true && <button type="button" onClick={() => changeSchoolCompetitionStatus.mutate({id:competition.id,status:"paused"})} disabled={changeSchoolCompetitionStatus.isPending} className="rounded-lg border px-3 py-1.5 text-xs font-semibold text-slate-700 disabled:opacity-50">Pause competition</button>}
+          </div>
+          {standings.length ? <div className="overflow-x-auto"><table className="min-w-full text-left text-sm"><thead className="bg-white text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-4 py-3">Rank</th><th className="px-4 py-3">Class</th><th className="px-4 py-3">Progress</th><th className="px-4 py-3">Assignments</th><th className="px-4 py-3">XP earned</th><th className="px-4 py-3">Status</th></tr></thead><tbody className="divide-y divide-slate-100">{standings.map(row=><tr key={row.class_group_id}><td className="px-4 py-3 font-semibold">#{row.rank}</td><td className="px-4 py-3 font-medium">{row.class_name}</td><td className="min-w-40 px-4 py-3"><div className="text-xs text-slate-600">{row.progress_value} / {row.target_value} ({row.progress_percent}%)</div><div className="mt-1 h-2 overflow-hidden rounded-full bg-slate-100"><div className="h-full rounded-full bg-indigo-500" style={{width:row.progress_percent+"%"}}/></div></td><td className="px-4 py-3 tabular-nums">{row.completed_assignments}</td><td className="px-4 py-3 tabular-nums">{row.xp_earned}</td><td className="px-4 py-3"><span className={`rounded-full px-2 py-1 text-xs font-semibold ${row.has_met_target ? "bg-emerald-50 text-emerald-700" : "bg-slate-100 text-slate-600"}`}>{row.has_met_target ? "Target reached" : "In progress"}</span></td></tr>)}</tbody></table></div> : <p className="p-4 text-sm text-slate-500">Class standings appear when students join and earn learning XP.</p>}
+        </article>)}
+      </div>}
     </section>
     <div className="grid gap-6 xl:grid-cols-2">
       <section className="rounded-2xl border border-slate-200 bg-white p-5">
