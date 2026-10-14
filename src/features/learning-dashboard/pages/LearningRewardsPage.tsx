@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import type { ReactNode } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Award, Bell, BookOpen, CheckCircle2, Flame, Gift, ShieldCheck, Star, Trophy, Zap } from "lucide-react";
+import { Award, Bell, BookOpen, CheckCircle2, Flame, Gift, ShieldCheck, Star, Trophy, Users, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningActivityService } from "@/features/learning-activity";
@@ -675,7 +675,7 @@ export default function LearningRewardsPage() {
         <div className="flex items-center gap-2"><Users size={20} className="text-indigo-700"/><h2 id="team-challenges-heading" className="text-lg font-semibold text-slate-900">Team challenges</h2></div>
         <p className="mt-1 text-sm text-slate-500">Work together with your classmates. Past activity stays with the team you belonged to when you earned it.</p>
         {teamChallengesQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading team challenges…</p> : teamChallengesQuery.isError ? <p className="mt-4 text-sm text-red-700">Team challenges could not be loaded.</p> : !(teamChallengesQuery.data ?? []).length ? <p className="mt-4 rounded-xl border border-dashed p-5 text-sm text-slate-500">Your teacher has not started a team challenge yet.</p> : <div className="mt-4 space-y-4">
-          {(teamChallengesQuery.data ?? []).map(({classGroupId, className, challenge, standings}) => {
+          {(teamChallengesQuery.data ?? []).map(({className, challenge, standings}) => {
             const visible = standings.slice(0, 5);
             const ownTeam = standings.find(row => row.is_current_user_team);
             if (ownTeam && !visible.some(row => row.team_id === ownTeam.team_id)) visible.push(ownTeam);
