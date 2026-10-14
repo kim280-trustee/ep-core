@@ -109,7 +109,12 @@ export const learningParentRepository={
       comments:commentRows.map(row=>({text:row.comment??"",recordedAt:row.recorded_at,subjectName:subjectMap.get(commentSubjectMap.get(row.class_subject_id)??"")??null,termName:termMap.get(row.term_id)??null})),
       recommendations:recommendationRows.map(row=>({id:row.id,type:row.recommendation_type,objectiveName:row.objective_id?objectiveMap.get(row.objective_id)?.name??null:null,reason:reasonText(row.reason),priority:row.priority,generatedAt:row.generated_at})),
       xpTotal:(rewardRows??[]).reduce((sum,row)=>sum+row.xp_delta,0),
-      currentStreak:calculateLearningStreak(getVerifiedLearningActivityTimestamps(verifiedContentCompletions,(rewardRows??[]).map(row=>({eventType:row.event_type,occurredAt:row.occurred_at}))),
+      currentStreak: calculateLearningStreak(
+        getVerifiedLearningActivityTimestamps(
+          verifiedContentCompletions,
+          (rewardRows ?? []).map((row) => ({ eventType: row.event_type, occurredAt: row.occurred_at })),
+        ),
+      ),
       badgesUnlocked:(()=>{
         const rewards=rewardRows??[];
         const completedCount=rewards.filter(row=>row.event_type==="assignment_completed").length;
