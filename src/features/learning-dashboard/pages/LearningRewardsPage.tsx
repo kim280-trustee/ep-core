@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import type { ReactNode } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Award, Bell, BookOpen, CheckCircle2, Flame, Gift, ShieldCheck, Star, Trophy, Zap } from "lucide-react";
+import { Award, Bell, BookOpen, CheckCircle2, Flame, Gift, ShieldCheck, Star, Trophy, Users, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningActivityService } from "@/features/learning-activity";
@@ -88,6 +88,28 @@ export default function LearningRewardsPage() {
         })));
       }));
       return grouped.flat();
+    },
+    enabled: Boolean(studentId),
+  });
+  const teamChallengesQuery = useQuery({
+    queryKey: ["learning", "team-challenges", studentId],
+    queryFn: async () => {
+      const memberships = await learningEnrollmentService.listUserClasses(studentId);
+      const studentMemberships = memberships.filter(item => item.membershipType === "student");
+      const classGroupIds = [...new Set(studentMemberships.map(item => item.classGroupId))];
+      const byClass = await Promise.all(classGroupIds.map(async classGroupId => {
+        const challenges = await learningRewardsService.listTeamChallenges(classGroupId);
+        const currentChallenges = challenges.filter(item =>
+          item.status === "active" && new Date(item.ends_at).getTime() >= Date.now()
+        );
+        return Promise.all(currentChallenges.map(async challenge => ({
+          classGroupId,
+          className: challenge.class_name,
+          challenge,
+          standings: await learningRewardsService.listTeamChallengeStandings(challenge.id),
+        })));
+      }));
+      return byClass.flat();
     },
     enabled: Boolean(studentId),
   });
@@ -644,6 +666,27 @@ export default function LearningRewardsPage() {
             return <article key={challenge.id} className={"rounded-xl border p-4 " + (completed ? "border-emerald-200 bg-emerald-50/50" : "border-slate-200 bg-slate-50")}><div className="flex items-start justify-between gap-2"><h3 className="font-semibold text-slate-900">{challenge.title}</h3><span className="shrink-0 rounded-full bg-white px-2 py-1 text-xs font-semibold text-indigo-700">+{challenge.bonus_xp} XP</span></div><p className="mt-2 text-sm text-slate-600">{challenge.description || (challenge.target_value + " " + challenge.target_type.replaceAll("_"," "))}</p><div className="mt-4 h-2 overflow-hidden rounded-full bg-slate-200" role="progressbar" aria-label={challenge.title + " progress"} aria-valuemin={0} aria-valuemax={challenge.target_value} aria-valuenow={bounded}><div className={"h-full rounded-full " + (completed ? "bg-emerald-500" : "bg-indigo-500")} style={{width:percent+"%"}}/></div><div className="mt-2 flex justify-between gap-2 text-xs text-slate-500"><span>{completed ? "Completed" : bounded + " / " + challenge.target_value}</span><span>Ends {new Date(challenge.ends_at).toLocaleDateString()}</span></div></article>;
           })}</div> : <p className="mt-4 rounded-xl border border-dashed p-5 text-sm text-slate-500">No active class challenges right now.</p>;
         })()}
+      </section>
+
+      <section aria-labelledby="team-challenges-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <div className="flex items-center gap-2"><Users size={20} className="text-indigo-700"/><h2 id="team-challenges-heading" className="text-lg font-semibold text-slate-900">Team challenges</h2></div>
+        <p className="mt-1 text-sm text-slate-500">Work together with your classmates. Past activity stays with the team you belonged to when you earned it.</p>
+        {teamChallengesQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading team challenges…</p> : teamChallengesQuery.isError ? <p className="mt-4 text-sm text-red-700">Team challenges could not be loaded.</p> : !(teamChallengesQuery.data ?? []).length ? <p className="mt-4 rounded-xl border border-dashed p-5 text-sm text-slate-500">Your teacher has not started a team challenge yet.</p> : <div className="mt-4 space-y-4">
+          {(teamChallengesQuery.data ?? []).map(({className, challenge, standings}) => {
+            const visible = standings.slice(0, 5);
+            const ownTeam = standings.find(row => row.is_current_user_team);
+            if (ownTeam && !visible.some(row => row.team_id === ownTeam.team_id)) visible.push(ownTeam);
+            return <article key={challenge.id} className="overflow-hidden rounded-xl border border-slate-200">
+              <div className="bg-slate-50 p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-indigo-700">{className}</p>
+                <h3 className="mt-1 font-semibold text-slate-900">{challenge.title}</h3>
+                <p className="mt-1 text-sm text-slate-600">{challenge.description || "Class team challenge"}</p>
+                <p className="mt-1 text-xs text-slate-500">Target: {challenge.target_value} {challenge.target_type === "xp_earned" ? "XP per team" : "completed assignments per team"} · +{challenge.bonus_xp} XP for contributors · Ends {new Date(challenge.ends_at).toLocaleDateString()}</p>
+              </div>
+              {visible.length ? <div className="overflow-x-auto"><table className="min-w-full text-left text-sm"><thead className="bg-white text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-4 py-3">Rank</th><th className="px-4 py-3">Team</th><th className="px-4 py-3">Progress</th><th className="px-4 py-3">Status</th></tr></thead><tbody className="divide-y divide-slate-100">{visible.map(row=><tr key={row.team_id} className={row.is_current_user_team ? "bg-indigo-50/70" : ""}><td className="px-4 py-3 font-semibold tabular-nums">#{row.rank}</td><td className="px-4 py-3 font-medium text-slate-900">{row.team_name}{row.is_current_user_team ? " · Your team" : ""}</td><td className="min-w-40 px-4 py-3"><div className="text-xs text-slate-600">{row.progress_value} / {row.target_value} ({row.progress_percent}%)</div><div className="mt-1 h-2 overflow-hidden rounded-full bg-slate-100"><div className="h-full rounded-full bg-indigo-500" style={{width:row.progress_percent+"%"}}/></div></td><td className="px-4 py-3"><span className={`rounded-full px-2 py-1 text-xs font-semibold ${row.has_met_target ? "bg-emerald-50 text-emerald-700" : "bg-slate-100 text-slate-600"}`}>{row.has_met_target ? "Target reached" : "In progress"}</span></td></tr>)}</tbody></table></div> : <p className="p-4 text-sm text-slate-500">Your teacher is still setting up teams for this challenge.</p>}
+            </article>;
+          })}
+        </div>}
       </section>
 
       <section aria-labelledby="school-competitions-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">

@@ -128,6 +128,90 @@ export const learningRewardsRepository = {
     return data === true;
   },
 
+  async createClassTeam(classGroupId: string, name: string, description: string): Promise<string> {
+    const { data, error } = await supabase.rpc("create_learning_class_team", {
+      p_class_group_id: classGroupId,
+      p_name: name,
+      p_description: description,
+    });
+    if (error) throw error;
+    return data;
+  },
+
+  async listClassTeams(classGroupId: string) {
+    const { data, error } = await supabase.rpc("get_learning_class_teams", {
+      p_class_group_id: classGroupId,
+    });
+    if (error) throw error;
+    return data ?? [];
+  },
+
+  async listClassTeamMembers(classGroupId: string) {
+    const { data, error } = await supabase.rpc("get_learning_class_team_members", {
+      p_class_group_id: classGroupId,
+    });
+    if (error) throw error;
+    return data ?? [];
+  },
+
+  async assignStudentToTeam(classGroupId: string, teamId: string, studentUserId: string): Promise<string> {
+    const { data, error } = await supabase.rpc("assign_learning_student_to_team", {
+      p_class_group_id: classGroupId,
+      p_team_id: teamId,
+      p_student_user_id: studentUserId,
+    });
+    if (error) throw error;
+    return data;
+  },
+
+  async createTeamChallenge(input: {
+    classGroupId: string;
+    title: string;
+    description: string;
+    targetType: "assignments_completed" | "xp_earned";
+    targetValue: number;
+    bonusXp: number;
+    startsAt: string;
+    endsAt: string;
+  }): Promise<string> {
+    const { data, error } = await supabase.rpc("create_learning_team_challenge", {
+      p_class_group_id: input.classGroupId,
+      p_title: input.title,
+      p_description: input.description,
+      p_target_type: input.targetType,
+      p_target_value: input.targetValue,
+      p_bonus_xp: input.bonusXp,
+      p_starts_at: input.startsAt,
+      p_ends_at: input.endsAt,
+    });
+    if (error) throw error;
+    return data;
+  },
+
+  async listTeamChallenges(classGroupId: string) {
+    const { data, error } = await supabase.rpc("get_learning_team_challenges", {
+      p_class_group_id: classGroupId,
+    });
+    if (error) throw error;
+    return data ?? [];
+  },
+
+  async setTeamChallengeStatus(challengeId: string, status: "active" | "paused" | "ended") {
+    const { error } = await supabase.rpc("set_learning_team_challenge_status", {
+      p_challenge_id: challengeId,
+      p_status: status,
+    });
+    if (error) throw error;
+  },
+
+  async listTeamChallengeStandings(challengeId: string) {
+    const { data, error } = await supabase.rpc("get_learning_team_challenge_standings", {
+      p_challenge_id: challengeId,
+    });
+    if (error) throw error;
+    return data ?? [];
+  },
+
   async canManageSchoolCompetitions(): Promise<boolean> {
     const { data, error } = await supabase.rpc("has_permission", {
       permission_code: "learning.academic.manage",
