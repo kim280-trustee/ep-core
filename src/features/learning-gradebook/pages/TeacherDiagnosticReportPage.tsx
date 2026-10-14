@@ -92,7 +92,7 @@ export default function TeacherDiagnosticReportPage() {
       );
       const scoped = attempts.filter(
         (attempt) => attempt.status === "evaluated" &&
-          attempt.assignmentId !== null &&
+          typeof attempt.assignmentId === "string" &&
           classAssignmentIds.has(attempt.assignmentId) &&
           classStudentIds.has(attempt.studentUserId),
       );
