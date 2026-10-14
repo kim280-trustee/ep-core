@@ -9,6 +9,7 @@ const items = [
   { to: "/learning/progress", label: "Progress", icon: TrendingUp },
   { to: "/learning/recommendations", label: "Recommendations", icon: Compass },
   { to: "/learning/rewards", label: "Rewards", icon: Award },
+  { to: "/learning/vocabulary", label: "Vocabulary", icon: BookOpen },
 ];
 
 function navigationClass(isActive: boolean) {
