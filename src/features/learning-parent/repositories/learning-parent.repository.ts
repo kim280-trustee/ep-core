@@ -110,19 +110,37 @@ export const learningParentRepository={
       xpTotal:(rewardRows??[]).reduce((sum,row)=>sum+row.xp_delta,0),
       currentStreak:calculateLearningStreak((activityRows??[]).map(row=>row.occurred_at)),
       badgesUnlocked:(()=>{
-        const completedCount=[...progressMap.values()].filter(row=>row.status==="completed").length;
-        const masteredCount=masteryRows.filter(row=>row.state==="mastered").length;
-        const passed=(rewardRows??[]).some(row=>row.event_type==="assessment_passed");
-        const streak=calculateLearningStreak((activityRows??[]).map(row=>row.occurred_at));
+        const rewards=rewardRows??[];
+        const completedCount=rewards.filter(row=>row.event_type==="assignment_completed").length;
+        const passedCount=rewards.filter(row=>row.event_type==="assessment_passed").length;
+        const masteredCount=rewards.filter(row=>row.event_type==="objective_mastered").length;
+        const streakMilestones=rewards
+          .filter(row=>row.event_type==="streak_milestone")
+          .map(row=>Number((row.metadata as Record<string,unknown>|null)?.milestone_days)||0);
+        const weeklyQuestCodes=new Map<string,Set<string>>();
+        rewards.filter(row=>row.event_type==="weekly_quest_completed").forEach(row=>{
+          const metadata=row.metadata as Record<string,unknown>|null;
+          const weekStart=metadata?.week_start;
+          const questCode=metadata?.quest_code;
+          if(typeof weekStart!=="string"||typeof questCode!=="string"||!questCode) return;
+          const codes=weeklyQuestCodes.get(weekStart)??new Set<string>();
+          codes.add(questCode);
+          weeklyQuestCodes.set(weekStart,codes);
+        });
+        const weeklyChampion=[...weeklyQuestCodes.values()].some(codes=>codes.size>=3);
         return [
           ...(completedCount>=1?["First Steps"]:[]),
-          ...(passed?["Assessment Ace"]:[]),
-          ...(streak>=3?["Three-Day Streak"]:[]),
-          ...((rewardRows??[]).some(row=>row.event_type==="streak_milestone"&&Number((row.metadata as Record<string,unknown>|null)?.milestone_days)>=7)?["Week Warrior"]:[]),
-          ...((rewardRows??[]).some(row=>row.event_type==="streak_milestone"&&Number((row.metadata as Record<string,unknown>|null)?.milestone_days)>=14)?["Fortnight Focus"]:[]),
-          ...((rewardRows??[]).some(row=>row.event_type==="streak_milestone"&&Number((row.metadata as Record<string,unknown>|null)?.milestone_days)>=30)?["Monthly Master"]:[]),
+          ...(passedCount>=1?["Assessment Ace"]:[]),
+          ...(streakMilestones.some(days=>days>=3)?["Three-Day Streak"]:[]),
           ...(masteredCount>=3?["Mastery Builder"]:[]),
           ...(completedCount>=5?["Dedicated Learner"]:[]),
+          ...(weeklyChampion?["Weekly Champion"]:[]),
+          ...(completedCount>=10?["Rising Star"]:[]),
+          ...(passedCount>=5?["Quiz Champion"]:[]),
+          ...(masteredCount>=10?["Mastery Expert"]:[]),
+          ...(streakMilestones.some(days=>days>=7)?["Week Warrior"]:[]),
+          ...(streakMilestones.some(days=>days>=14)?["Fortnight Focus"]:[]),
+          ...(streakMilestones.some(days=>days>=30)?["Monthly Master"]:[]),
         ];
       })(),
       recentRewards:(rewardRows??[]).slice(0,5).map(row=>({id:row.id,eventType:row.event_type,xpDelta:row.xp_delta,occurredAt:row.occurred_at})),
