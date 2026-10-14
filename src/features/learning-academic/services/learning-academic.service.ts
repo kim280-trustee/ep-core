@@ -11,4 +11,12 @@ export const learningAcademicService = {
   listTerms: (organizationId: string, academicYearId: string) => learningAcademicRepository.listTerms(organizationId, academicYearId),
   listClassGroups: (organizationId: string, academicYearId?: string) => learningAcademicRepository.listClassGroups(organizationId, academicYearId),
   listClassSubjects: (organizationId: string, classGroupId: string) => learningAcademicRepository.listClassSubjects(organizationId, classGroupId),
+  createAcademicYear: learningAcademicRepository.createAcademicYear,
+  updateAcademicYear: learningAcademicRepository.updateAcademicYear,
+  createTerm: learningAcademicRepository.createTerm,
+  updateTerm: learningAcademicRepository.updateTerm,
+  createClassGroup: learningAcademicRepository.createClassGroup,
+  updateClassGroup: learningAcademicRepository.updateClassGroup,
+  activateClassSubject: learningAcademicRepository.activateClassSubject,
+  updateClassSubjectStatus: learningAcademicRepository.updateClassSubjectStatus,
 };
