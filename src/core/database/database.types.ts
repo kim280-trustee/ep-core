@@ -4645,6 +4645,68 @@ export type Database = {
           status: string
         }[]
       }
+      create_learning_class_team: {
+        Args: { p_class_group_id: string; p_name: string; p_description: string }
+        Returns: string
+      }
+      get_learning_class_teams: {
+        Args: { p_class_group_id: string }
+        Returns: { id: string; name: string; description: string; status: string; member_count: number }[]
+      }
+      get_learning_class_team_members: {
+        Args: { p_class_group_id: string }
+        Returns: { id: string; team_id: string; student_user_id: string; student_name: string }[]
+      }
+      assign_learning_student_to_team: {
+        Args: { p_class_group_id: string; p_team_id: string; p_student_user_id: string }
+        Returns: string
+      }
+      create_learning_team_challenge: {
+        Args: {
+          p_class_group_id: string
+          p_title: string
+          p_description: string
+          p_target_type: string
+          p_target_value: number
+          p_bonus_xp: number
+          p_starts_at: string
+          p_ends_at: string
+        }
+        Returns: string
+      }
+      get_learning_team_challenges: {
+        Args: { p_class_group_id: string }
+        Returns: {
+          id: string
+          title: string
+          description: string
+          target_type: string
+          target_value: number
+          bonus_xp: number
+          starts_at: string
+          ends_at: string
+          status: string
+        }[]
+      }
+      get_learning_team_challenge_standings: {
+        Args: { p_challenge_id: string }
+        Returns: {
+          team_id: string
+          team_name: string
+          progress_value: number
+          target_value: number
+          progress_percent: number
+          rank: number
+          completed_assignments: number
+          xp_earned: number
+          has_met_target: boolean
+          is_current_user_team: boolean
+        }[]
+      }
+      set_learning_team_challenge_status: {
+        Args: { p_challenge_id: string; p_status: string }
+        Returns: string
+      }
       get_learning_school_competition_standings: {
         Args: { p_competition_id: string }
         Returns: {
