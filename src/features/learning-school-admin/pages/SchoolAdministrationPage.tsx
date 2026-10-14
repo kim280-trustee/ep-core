@@ -110,6 +110,7 @@ export default function SchoolAdministrationPage() {
   });
   const terms = termsQuery.data ?? [];
 
+  const yearCurriculumId = yearForm.curriculumId || curricula[0]?.id || "";
   const classCurriculumId = classForm.curriculumId || selectedYear?.curriculumId || curricula[0]?.id || "";
   const gradeLevelsQuery = useQuery({
     queryKey: ["school-admin", "grade-levels", classCurriculumId],
@@ -117,6 +118,7 @@ export default function SchoolAdministrationPage() {
     enabled: Boolean(classCurriculumId) && canManage,
   });
   const gradeLevels = gradeLevelsQuery.data ?? [];
+  const classGradeLevelId = classForm.gradeLevelId || gradeLevels[0]?.id || "";
 
   const classSubjectsQuery = useQuery({
     queryKey: ["school-admin", "class-subjects", organizationId, classGroupId],
@@ -153,9 +155,9 @@ export default function SchoolAdministrationPage() {
     onError: (error) => setActionError(errorText(error)),
   });
 
-  const submitYear = (event: FormEvent<HTMLFormElement>) => {
+  const submitYear = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!organizationId || !yearForm.curriculumId || !yearForm.name.trim() || !yearForm.code.trim() || !yearForm.startsOn || !yearForm.endsOn) {
+    if (!organizationId || !yearCurriculumId || !yearForm.name.trim() || !yearForm.code.trim() || !yearForm.startsOn || !yearForm.endsOn) {
       setActionError("Complete every required academic-year field.");
       return;
     }
@@ -165,21 +167,25 @@ export default function SchoolAdministrationPage() {
     }
     const values = {
       organizationId,
-      curriculumId: yearForm.curriculumId,
+      curriculumId: yearCurriculumId,
       name: yearForm.name.trim(),
       code: yearForm.code.trim(),
       startsOn: yearForm.startsOn,
       endsOn: yearForm.endsOn,
       status: yearForm.status,
     };
-    if (editingYearId) {
-      saveMutation.mutate(() => learningAcademicService.updateAcademicYear(editingYearId, values));
-    } else {
-      saveMutation.mutate(() => learningAcademicService.createAcademicYear(values));
-    }
+    const wasEditing = Boolean(editingYearId);
+    try {
+      const saved = await saveMutation.mutateAsync(() => wasEditing
+        ? learningAcademicService.updateAcademicYear(editingYearId, values)
+        : learningAcademicService.createAcademicYear(values));
+      if (!wasEditing) setSelectedAcademicYearId((saved as LearningAcademicYear).id);
+      setEditingYearId("");
+      setYearForm(emptyYearForm);
+    } catch { /* The mutation exposes the actionable error above the forms. */ }
   };
 
-  const submitTerm = (event: FormEvent<HTMLFormElement>) => {
+  const submitTerm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!organizationId || !academicYearId || !termForm.name.trim() || !termForm.code.trim() || !termForm.startsOn || !termForm.endsOn) {
       setActionError("Complete every required term field.");
@@ -204,33 +210,40 @@ export default function SchoolAdministrationPage() {
       endsOn: termForm.endsOn,
       status: termForm.status,
     };
-    if (editingTermId) {
-      saveMutation.mutate(() => learningAcademicService.updateTerm(editingTermId, values));
-    } else {
-      saveMutation.mutate(() => learningAcademicService.createTerm(values));
-    }
+    const wasEditing = Boolean(editingTermId);
+    try {
+      await saveMutation.mutateAsync(() => wasEditing
+        ? learningAcademicService.updateTerm(editingTermId, values)
+        : learningAcademicService.createTerm(values));
+      setEditingTermId("");
+      setTermForm(emptyTermForm);
+    } catch { /* The mutation exposes the actionable error above the forms. */ }
   };
 
-  const submitClass = (event: FormEvent<HTMLFormElement>) => {
+  const submitClass = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!organizationId || !academicYearId || !classForm.curriculumId || !classForm.gradeLevelId || !classForm.code.trim() || !classForm.name.trim()) {
+    if (!organizationId || !academicYearId || !classCurriculumId || !classGradeLevelId || !classForm.code.trim() || !classForm.name.trim()) {
       setActionError("Complete every required class field.");
       return;
     }
     const values = {
       organizationId,
       academicYearId,
-      curriculumId: classForm.curriculumId,
-      gradeLevelId: classForm.gradeLevelId,
+      curriculumId: classCurriculumId,
+      gradeLevelId: classGradeLevelId,
       code: classForm.code.trim(),
       name: classForm.name.trim(),
       status: classForm.status,
     };
-    if (editingClassId) {
-      saveMutation.mutate(() => learningAcademicService.updateClassGroup(editingClassId, values));
-    } else {
-      saveMutation.mutate(() => learningAcademicService.createClassGroup(values));
-    }
+    const wasEditing = Boolean(editingClassId);
+    try {
+      const saved = await saveMutation.mutateAsync(() => wasEditing
+        ? learningAcademicService.updateClassGroup(editingClassId, values)
+        : learningAcademicService.createClassGroup(values));
+      if (!wasEditing) setSelectedClassGroupId((saved as LearningClassGroup).id);
+      setEditingClassId("");
+      setClassForm(emptyClassForm);
+    } catch { /* The mutation exposes the actionable error above the forms. */ }
   };
 
   const editYear = (year: LearningAcademicYear) => {
@@ -292,7 +305,7 @@ export default function SchoolAdministrationPage() {
             <>
               <Section title="1. Academic years" description="Create and edit the school year, curriculum, dates, and planning status.">
                 <form className="grid gap-4 md:grid-cols-2 xl:grid-cols-4" onSubmit={submitYear}>
-                  <Field label="Curriculum"><select className={fieldClass} required value={yearForm.curriculumId || curricula[0]?.id || ""} onChange={(event) => setYearForm((form) => ({ ...form, curriculumId: event.target.value }))}><option value="">Choose curriculum</option>{curricula.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></Field>
+                  <Field label="Curriculum"><select className={fieldClass} required value={yearCurriculumId} onChange={(event) => setYearForm((form) => ({ ...form, curriculumId: event.target.value }))}><option value="">Choose curriculum</option>{curricula.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></Field>
                   <Field label="Year name"><input className={fieldClass} required maxLength={100} value={yearForm.name} onChange={(event) => setYearForm((form) => ({ ...form, name: event.target.value }))} placeholder="Academic Year 2026" /></Field>
                   <Field label="Year code"><input className={fieldClass} required maxLength={40} value={yearForm.code} onChange={(event) => setYearForm((form) => ({ ...form, code: event.target.value }))} placeholder="AY-2026" /></Field>
                   <Field label="Status"><select className={fieldClass} value={yearForm.status} onChange={(event) => setYearForm((form) => ({ ...form, status: event.target.value as AcademicPeriodStatus }))}><option value="planned">Planned</option><option value="active">Active</option><option value="closed">Closed</option></select></Field>
@@ -322,7 +335,7 @@ export default function SchoolAdministrationPage() {
                 {!selectedYear ? <p className="text-sm text-slate-500">Create or select an academic year first.</p> : <>
                   <form className="grid gap-4 md:grid-cols-2 xl:grid-cols-4" onSubmit={submitClass}>
                     <Field label="Curriculum"><select className={fieldClass} required value={classCurriculumId} onChange={(event) => setClassForm((form) => ({ ...form, curriculumId: event.target.value, gradeLevelId: "" }))}><option value="">Choose curriculum</option>{curricula.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select></Field>
-                    <Field label="Grade level"><select className={fieldClass} required value={classForm.gradeLevelId || gradeLevels[0]?.id || ""} onChange={(event) => setClassForm((form) => ({ ...form, gradeLevelId: event.target.value }))}><option value="">Choose grade</option>{gradeLevels.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></Field>
+                    <Field label="Grade level"><select className={fieldClass} required value={classGradeLevelId} onChange={(event) => setClassForm((form) => ({ ...form, gradeLevelId: event.target.value }))}><option value="">Choose grade</option>{gradeLevels.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></Field>
                     <Field label="Class code"><input className={fieldClass} required maxLength={40} value={classForm.code} onChange={(event) => setClassForm((form) => ({ ...form, code: event.target.value }))} placeholder="M1-MEP-A" /></Field>
                     <Field label="Class name"><input className={fieldClass} required maxLength={100} value={classForm.name} onChange={(event) => setClassForm((form) => ({ ...form, name: event.target.value }))} placeholder="M1 MEP English" /></Field>
                     <Field label="Status"><select className={fieldClass} value={classForm.status} onChange={(event) => setClassForm((form) => ({ ...form, status: event.target.value as ClassGroupStatus }))}><option value="planned">Planned</option><option value="active">Active</option><option value="archived">Archived</option></select></Field>
