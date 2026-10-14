@@ -5,7 +5,6 @@ import type {
   LearningVocabularyEntryInput,
   LearningVocabularyEntryUpdate,
   LearningVocabularyProgress,
-  LearningVocabularyProgressInput,
   LearningVocabularyTranslation,
   LearningVocabularyTranslationInput,
   LearningVocabularyExample,
