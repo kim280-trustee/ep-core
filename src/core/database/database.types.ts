@@ -3489,6 +3489,150 @@ export type Database = {
           },
         ]
       }
+      learning_vocabulary_entries: {
+        Row: {
+          created_at: string
+          created_by: string
+          definition: string
+          difficulty: string
+          example_sentence: string | null
+          id: string
+          language_code: string
+          normalized_word: string
+          organization_id: string
+          part_of_speech: string | null
+          pronunciation: string | null
+          status: string
+          tenant_id: string
+          topic: string | null
+          translation: string | null
+          translation_language_code: string | null
+          updated_at: string
+          updated_by: string
+          word: string
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          definition: string
+          difficulty?: string
+          example_sentence?: string | null
+          id?: string
+          language_code?: string
+          organization_id: string
+          part_of_speech?: string | null
+          pronunciation?: string | null
+          status?: string
+          tenant_id: string
+          topic?: string | null
+          translation?: string | null
+          translation_language_code?: string | null
+          updated_at?: string
+          updated_by: string
+          word: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          definition?: string
+          difficulty?: string
+          example_sentence?: string | null
+          id?: string
+          language_code?: string
+          organization_id?: string
+          part_of_speech?: string | null
+          pronunciation?: string | null
+          status?: string
+          tenant_id?: string
+          topic?: string | null
+          translation?: string | null
+          translation_language_code?: string | null
+          updated_at?: string
+          updated_by?: string
+          word?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_vocabulary_entries_creator_fk"
+            columns: ["tenant_id", "created_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_vocabulary_entries_org_fk"
+            columns: ["tenant_id", "organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_vocabulary_entries_updater_fk"
+            columns: ["tenant_id", "updated_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+        ]
+      }
+      learning_vocabulary_progress: {
+        Row: {
+          created_at: string
+          id: string
+          last_practiced_at: string
+          organization_id: string
+          status: string
+          tenant_id: string
+          updated_at: string
+          user_id: string
+          vocabulary_entry_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          last_practiced_at?: string
+          organization_id: string
+          status?: string
+          tenant_id: string
+          updated_at?: string
+          user_id: string
+          vocabulary_entry_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          last_practiced_at?: string
+          organization_id?: string
+          status?: string
+          tenant_id?: string
+          updated_at?: string
+          user_id?: string
+          vocabulary_entry_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_vocabulary_progress_entry_fk"
+            columns: ["organization_id", "vocabulary_entry_id"]
+            isOneToOne: false
+            referencedRelation: "learning_vocabulary_entries"
+            referencedColumns: ["organization_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_vocabulary_progress_org_fk"
+            columns: ["tenant_id", "organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_vocabulary_progress_user_fk"
+            columns: ["tenant_id", "user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+        ]
+      }
       learning_topics: {
         Row: {
           code: string
