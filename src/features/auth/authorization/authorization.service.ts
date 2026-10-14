@@ -38,5 +38,6 @@ function isPermissionCode(code: string): code is PermissionCode {
     "reports.view",
     "settings.view",
     "settings.manage",
+    "learning.academic.manage",
   ].includes(code);
 }
