@@ -136,25 +136,26 @@ export default function LearningRewardsPage() {
   const query = useQuery({
     queryKey: ["learning", "rewards", studentId],
     queryFn: async () => {
-      const [assignments, progress, attempts, results, mastery, activity, rewardLedger, dailyXpGoal] = await Promise.all([
+      const [assignments, progress, attempts, results, mastery, activity, verifiedContentCompletions, rewardLedger, dailyXpGoal] = await Promise.all([
         learningAssignmentsService.listStudentAssignments(studentId),
         learningAssignmentsService.listProgress(studentId),
         learningAssessmentService.listAttempts(studentId),
         learningAssessmentService.listResults(studentId),
         learningMasteryService.listStudentMastery(studentId),
         learningActivityService.listRecentEvents(studentId, 250),
+        learningActivityService.listValidatedContentCompletions(studentId),
         learningRewardsService.listStudentLedger(studentId),
         learningRewardsService.getStudentDailyXpGoal(),
       ]);
 
-      return { assignments, progress, attempts, results, mastery, activity, rewardLedger, dailyXpGoal };
+      return { assignments, progress, attempts, results, mastery, activity, verifiedContentCompletions, rewardLedger, dailyXpGoal };
     },
     enabled: Boolean(studentId),
   });
 
   const rewards = useMemo(() => {
     if (!query.data) return null;
-    const { assignments, progress, attempts, results, mastery, activity, rewardLedger, dailyXpGoal } = query.data;
+    const { assignments, progress, attempts, results, mastery, activity, verifiedContentCompletions, rewardLedger, dailyXpGoal } = query.data;
     const completedAssignmentIds = new Set(
       progress.filter((item) => item.status === "completed").map((item) => item.assignmentId),
     );
@@ -187,7 +188,7 @@ export default function LearningRewardsPage() {
     const levelProgress = nextLevel
       ? Math.min(100, Math.round(((xp - currentLevel.minXp) / (nextLevel.minXp - currentLevel.minXp)) * 100))
       : 100;
-    const verifiedActivityTimestamps = getVerifiedLearningActivityTimestamps(activity, rewardLedger);
+    const verifiedActivityTimestamps = getVerifiedLearningActivityTimestamps(verifiedContentCompletions, rewardLedger);
     const streak = calculateLearningStreak(verifiedActivityTimestamps);
     const now = new Date();
     const calendarEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate());
