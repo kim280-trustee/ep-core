@@ -66,6 +66,31 @@ export default function LearningRewardsPage() {
     },
     enabled: Boolean(studentId),
   });
+  const schoolCompetitionsQuery = useQuery({
+    queryKey: ["learning", "school-competitions", studentId],
+    queryFn: async () => {
+      const memberships = await learningEnrollmentService.listUserClasses(studentId);
+      const studentMemberships = memberships.filter(item => item.membershipType === "student");
+      const organizationIds = [...new Set(studentMemberships.map(item => item.organizationId))];
+      const grouped = await Promise.all(organizationIds.map(async organizationId => {
+        const competitions = await learningRewardsService.listSchoolCompetitions(organizationId);
+        const now = Date.now();
+        const activeCompetitions = competitions.filter(item =>
+          item.status === "active" && new Date(item.ends_at).getTime() >= now
+        );
+        const classGroupIds = [...new Set(
+          studentMemberships.filter(item => item.organizationId === organizationId).map(item => item.classGroupId)
+        )];
+        return Promise.all(activeCompetitions.map(async competition => ({
+          competition,
+          standings: await learningRewardsService.listSchoolCompetitionStandings(competition.id),
+          classGroupIds,
+        })));
+      }));
+      return grouped.flat();
+    },
+    enabled: Boolean(studentId),
+  });
   const redeemMutation = useMutation({
     mutationFn: (itemId: string) => learningRewardsService.redeemReward(itemId),
     onSuccess: async () => {
@@ -619,6 +644,36 @@ export default function LearningRewardsPage() {
             return <article key={challenge.id} className={"rounded-xl border p-4 " + (completed ? "border-emerald-200 bg-emerald-50/50" : "border-slate-200 bg-slate-50")}><div className="flex items-start justify-between gap-2"><h3 className="font-semibold text-slate-900">{challenge.title}</h3><span className="shrink-0 rounded-full bg-white px-2 py-1 text-xs font-semibold text-indigo-700">+{challenge.bonus_xp} XP</span></div><p className="mt-2 text-sm text-slate-600">{challenge.description || (challenge.target_value + " " + challenge.target_type.replaceAll("_"," "))}</p><div className="mt-4 h-2 overflow-hidden rounded-full bg-slate-200" role="progressbar" aria-label={challenge.title + " progress"} aria-valuemin={0} aria-valuemax={challenge.target_value} aria-valuenow={bounded}><div className={"h-full rounded-full " + (completed ? "bg-emerald-500" : "bg-indigo-500")} style={{width:percent+"%"}}/></div><div className="mt-2 flex justify-between gap-2 text-xs text-slate-500"><span>{completed ? "Completed" : bounded + " / " + challenge.target_value}</span><span>Ends {new Date(challenge.ends_at).toLocaleDateString()}</span></div></article>;
           })}</div> : <p className="mt-4 rounded-xl border border-dashed p-5 text-sm text-slate-500">No active class challenges right now.</p>;
         })()}
+      </section>
+
+      <section aria-labelledby="school-competitions-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <div className="flex items-center gap-2"><Trophy size={20} className="text-indigo-700"/><h2 id="school-competitions-heading" className="text-lg font-semibold text-slate-900">School-wide competitions</h2></div>
+        <p className="mt-1 text-sm text-slate-500">Classes compete using verified learning activity. The standings show class totals, not individual student names.</p>
+        {schoolCompetitionsQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading school competitions…</p> : schoolCompetitionsQuery.isError ? <p className="mt-4 text-sm text-red-700">School competitions could not be loaded.</p> : !(schoolCompetitionsQuery.data ?? []).length ? <p className="mt-4 rounded-xl border border-dashed p-5 text-sm text-slate-500">There are no active school-wide competitions right now.</p> : <div className="mt-4 space-y-4">
+          {(schoolCompetitionsQuery.data ?? []).map(({competition, standings, classGroupIds}) => {
+            const visible = standings.slice(0, 5);
+            const ownClasses = standings.filter(row => classGroupIds.includes(row.class_group_id));
+            for (const ownClass of ownClasses) {
+              if (!visible.some(row => row.class_group_id === ownClass.class_group_id)) visible.push(ownClass);
+            }
+            return <article key={competition.id} className="overflow-hidden rounded-xl border border-slate-200">
+              <div className="bg-slate-50 p-4">
+                <h3 className="font-semibold text-slate-900">{competition.title}</h3>
+                <p className="mt-1 text-sm text-slate-600">{competition.description || "School-wide learning challenge"}</p>
+                <p className="mt-1 text-xs text-slate-500">Target: {competition.target_value} {competition.target_type === "xp_earned" ? "XP per class" : "completed assignments per class"} · +{competition.bonus_xp} XP for contributors · Ends {new Date(competition.ends_at).toLocaleDateString()}</p>
+              </div>
+              {visible.length ? <div className="overflow-x-auto"><table className="min-w-full text-left text-sm"><thead className="bg-white text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-4 py-3">Rank</th><th className="px-4 py-3">Class</th><th className="px-4 py-3">Progress</th><th className="px-4 py-3">Status</th></tr></thead><tbody className="divide-y divide-slate-100">{visible.map(row => {
+                const isOwnClass = classGroupIds.includes(row.class_group_id);
+                return <tr key={row.class_group_id} className={isOwnClass ? "bg-indigo-50/70" : ""}>
+                  <td className="px-4 py-3 font-semibold tabular-nums">#{row.rank}</td>
+                  <td className="px-4 py-3 font-medium text-slate-900">{row.class_name}{isOwnClass ? " · Your class" : ""}</td>
+                  <td className="min-w-40 px-4 py-3"><div className="text-xs text-slate-600">{row.progress_value} / {row.target_value} ({row.progress_percent}%)</div><div className="mt-1 h-2 overflow-hidden rounded-full bg-slate-100"><div className="h-full rounded-full bg-indigo-500" style={{width:row.progress_percent+"%"}}/></div></td>
+                  <td className="px-4 py-3"><span className={`rounded-full px-2 py-1 text-xs font-semibold ${row.has_met_target ? "bg-emerald-50 text-emerald-700" : "bg-slate-100 text-slate-600"}`}>{row.has_met_target ? "Target reached" : "In progress"}</span></td>
+                </tr>;
+              })}</tbody></table></div> : <p className="p-4 text-sm text-slate-500">Standings will appear as classes earn learning XP.</p>}
+            </article>;
+          })}
+        </div>}
       </section>
 
       <section aria-labelledby="class-leaderboard-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
