@@ -117,6 +117,14 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
     [entry.word, entry.definition, entry.translation ?? "", entry.topic ?? "", entry.partOfSpeech ?? ""]
       .some((value) => value.toLocaleLowerCase().includes(normalizedSearch)),
   );
+  const isDue = (entry: LearningVocabularyEntry) => {
+    const saved = progressByEntryId.get(entry.id);
+    return !saved || new Date(saved.nextReviewAt).getTime() <= Date.now();
+  };
+  const orderedFilteredEntries = isTeacher
+    ? filteredEntries
+    : [...filteredEntries].sort((left, right) => Number(isDue(right)) - Number(isDue(left)));
+  const dueCount = isTeacher ? 0 : filteredEntries.filter(isDue).length;
   const practiceEntry = entries.find((entry) => entry.id === practiceEntryId);
 
   const saveMutation = useMutation({
@@ -137,19 +145,21 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
       organizationId: string;
       vocabularyEntryId: string;
       status: VocabularyProgressStatus;
-    }) => learningVocabularyService.saveProgress({
-      tenantId: user!.tenantId,
+    }) => learningVocabularyService.recordReview({
       organizationId: input.organizationId,
-      userId: user!.id,
       vocabularyEntryId: input.vocabularyEntryId,
-      status: input.status,
+      isCorrect: input.status === "known",
     }),
-    onSuccess: async (_result, input) => {
+    onSuccess: async (result, input) => {
       setActionError("");
-      setActionNotice(input.status === "known" ? "Marked as known." : "Saved for more practice.");
+      setActionNotice(result.status === "known"
+        ? "Word mastered. Spaced review will continue to reinforce it."
+        : input.status === "known"
+          ? "Correct answer recorded. Keep practicing to master this word."
+          : "Review recorded. This word is scheduled for another practice soon.");
       await queryClient.invalidateQueries({ queryKey: ["learning-vocabulary", "progress", input.organizationId, user?.id] });
-      const currentIndex = filteredEntries.findIndex((entry) => entry.id === input.vocabularyEntryId);
-      setPracticeEntryId(filteredEntries[currentIndex + 1]?.id ?? "");
+      const currentIndex = orderedFilteredEntries.findIndex((entry) => entry.id === input.vocabularyEntryId);
+      setPracticeEntryId(orderedFilteredEntries[currentIndex + 1]?.id ?? "");
       setAnswerRevealed(false);
     },
     onError: (error) => {
@@ -286,6 +296,7 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
       )}
       {organizationId && entriesQuery.isPending && <div className="h-32 animate-pulse rounded-2xl bg-slate-200" />}
       {organizationId && entriesQuery.isError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-5 text-sm text-red-800">Vocabulary could not be loaded. <button type="button" className="font-semibold underline" onClick={() => void entriesQuery.refetch()}>Retry</button></div>}
+      {!isTeacher && organizationId && progressQuery.isError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">Your review schedule could not be loaded. <button type="button" className="font-semibold underline" onClick={() => void progressQuery.refetch()}>Retry</button></div>}
 
       {organizationId && !entriesQuery.isPending && !entriesQuery.isError && (
         <>
@@ -352,12 +363,12 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
                 <h2 className="text-lg font-semibold text-slate-950">{isTeacher ? "School vocabulary bank" : "Words to study"}</h2>
-                <p className="mt-1 text-sm text-slate-500">{filteredEntries.length} of {entries.length} entries</p>
+                <p className="mt-1 text-sm text-slate-500">{filteredEntries.length} of {entries.length} entries{!isTeacher ? ` · ${dueCount} due for review` : ""}</p>
               </div>
               <label className="block w-full sm:max-w-sm"><span className="text-sm font-medium text-slate-700">Search words, definitions, translations, or topics</span><input className={inputClass} type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search vocabulary…" /></label>
             </div>
             <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-              {filteredEntries.map((entry) => {
+              {orderedFilteredEntries.map((entry) => {
                 const progressItem = progressByEntryId.get(entry.id);
                 return (
                   <article key={entry.id} className="flex flex-col rounded-xl border border-slate-200 p-4">
