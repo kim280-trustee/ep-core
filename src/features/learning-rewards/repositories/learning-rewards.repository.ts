@@ -128,6 +128,62 @@ export const learningRewardsRepository = {
     return data === true;
   },
 
+  async canManageSchoolCompetitions(): Promise<boolean> {
+    const { data, error } = await supabase.rpc("has_permission", {
+      permission_code: "learning.academic.manage",
+    });
+    if (error) throw error;
+    return data === true;
+  },
+
+  async listSchoolCompetitions(organizationId: string) {
+    const { data, error } = await supabase.rpc("get_learning_school_competitions", {
+      p_organization_id: organizationId,
+    });
+    if (error) throw error;
+    return data ?? [];
+  },
+
+  async createSchoolCompetition(input: {
+    organizationId: string;
+    title: string;
+    description: string;
+    targetType: "assignments_completed" | "xp_earned";
+    targetValue: number;
+    bonusXp: number;
+    startsAt: string;
+    endsAt: string;
+  }): Promise<string> {
+    const { data, error } = await supabase.rpc("create_learning_school_competition", {
+      p_organization_id: input.organizationId,
+      p_title: input.title,
+      p_description: input.description,
+      p_target_type: input.targetType,
+      p_target_value: input.targetValue,
+      p_bonus_xp: input.bonusXp,
+      p_starts_at: input.startsAt,
+      p_ends_at: input.endsAt,
+    });
+    if (error) throw error;
+    return data;
+  },
+
+  async setSchoolCompetitionStatus(competitionId: string, status: "active" | "paused" | "ended") {
+    const { error } = await supabase.rpc("set_learning_school_competition_status", {
+      p_competition_id: competitionId,
+      p_status: status,
+    });
+    if (error) throw error;
+  },
+
+  async listSchoolCompetitionStandings(competitionId: string) {
+    const { data, error } = await supabase.rpc("get_learning_school_competition_standings", {
+      p_competition_id: competitionId,
+    });
+    if (error) throw error;
+    return data ?? [];
+  },
+
   async listClassLeaderboard(classGroupId: string) {
     const { data, error } = await supabase.rpc("get_learning_class_leaderboard", {
       p_class_group_id: classGroupId,
