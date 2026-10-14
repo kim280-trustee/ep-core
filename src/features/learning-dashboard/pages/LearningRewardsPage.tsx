@@ -643,7 +643,7 @@ export default function LearningRewardsPage() {
                 </li>)}
               </ol>
             </section>;
-          })}</div> : <p className="mt-4 rounded-xl border border-dashed p-5 text-sm text-slate-500">Class standings will appear when you join a class and earn learning XP.</p>;
+          })}</div> : <p className="mt-4 rounded-xl border border-dashed p-5 text-sm text-slate-500">Class standings are hidden by your teacher or will appear when your class earns learning XP.</p>;
         })()}
       </section>
 

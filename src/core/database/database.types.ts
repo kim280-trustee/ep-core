@@ -4610,6 +4610,14 @@ export type Database = {
           is_current_user: boolean
         }[]
       }
+      get_learning_class_leaderboard_setting: {
+        Args: { p_class_group_id: string }
+        Returns: boolean
+      }
+      set_learning_class_leaderboard_enabled: {
+        Args: { p_class_group_id: string; p_enabled: boolean }
+        Returns: boolean
+      }
       redeem_learning_reward: {
         Args: { p_item_id: string }
         Returns: string

@@ -31,6 +31,11 @@ export default function TeacherClassGamificationPage() {
     queryFn: () => learningRewardsService.getClassContext(classGroupId),
     enabled: Boolean(classGroupId),
   });
+  const leaderboardSettingQuery = useQuery({
+    queryKey: ["learning", "gamification", "leaderboard-setting", classGroupId],
+    queryFn: () => learningRewardsService.getClassLeaderboardEnabled(classGroupId),
+    enabled: Boolean(classGroupId),
+  });
   const rosterQuery = useQuery({
     queryKey: ["learning", "teacher-class", user?.id, classGroupId],
     queryFn: () => learningTeacherService.getClassOverview(user!.id, classGroupId),
@@ -64,6 +69,14 @@ export default function TeacherClassGamificationPage() {
       queryClient.invalidateQueries({ queryKey: ["learning", "rewards"] }),
     ]);
   };
+  const changeLeaderboardVisibility = useMutation({
+    mutationFn: (enabled: boolean) => learningRewardsService.setClassLeaderboardEnabled(classGroupId, enabled),
+    onSuccess: async (enabled) => {
+      setFeedback(enabled ? "Class XP standings are now visible to students." : "Class XP standings are hidden from students.");
+      await invalidate();
+    },
+    onError: (error) => setFeedback(error instanceof Error ? error.message : "Leaderboard visibility could not be updated."),
+  });
   const createChallenge = useMutation({
     mutationFn: async () => {
       const group = classQuery.data;
@@ -135,6 +148,29 @@ export default function TeacherClassGamificationPage() {
   return <div className="mx-auto max-w-6xl space-y-6">
     <header><p className="text-sm font-medium text-slate-500">Teacher tools · {classQuery.data.name}</p><h1 className="mt-1 text-2xl font-bold text-slate-900">Class gamification</h1><p className="mt-2 text-sm text-slate-600">Set shared challenges, offer class rewards, and review student redemption requests. Rewards are issued only from verified learning records.</p></header>
     {feedback && <div role="status" className="rounded-xl border border-slate-200 bg-white p-3 text-sm text-slate-700">{feedback}</div>}
+    <section className="rounded-2xl border border-slate-200 bg-white p-5">
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div className="max-w-2xl">
+          <h2 className="text-lg font-semibold text-slate-900">Student leaderboard visibility</h2>
+          <p className="mt-1 text-sm text-slate-600">Choose whether students in this class can compare privacy-limited XP standings. Standings are hidden by default; teachers can still review class progress.</p>
+        </div>
+        {leaderboardSettingQuery.isPending ? (
+          <span className="text-sm text-slate-500">Loading setting…</span>
+        ) : leaderboardSettingQuery.isError ? (
+          <span role="alert" className="text-sm text-red-700">Visibility setting could not be loaded.</span>
+        ) : (
+          <button
+            type="button"
+            onClick={() => changeLeaderboardVisibility.mutate(!(leaderboardSettingQuery.data ?? false))}
+            disabled={changeLeaderboardVisibility.isPending}
+            aria-pressed={leaderboardSettingQuery.data ?? false}
+            className={`rounded-xl px-4 py-2.5 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-50 ${leaderboardSettingQuery.data ? "bg-emerald-700 text-white" : "border border-slate-300 bg-white text-slate-700"}`}
+          >
+            {changeLeaderboardVisibility.isPending ? "Saving…" : leaderboardSettingQuery.data ? "Visible to students · Turn off" : "Hidden from students · Turn on"}
+          </button>
+        )}
+      </div>
+    </section>
     <div className="grid gap-6 xl:grid-cols-2">
       <section className="rounded-2xl border border-slate-200 bg-white p-5">
         <div className="flex items-center gap-2"><Trophy size={20}/><h2 className="text-lg font-semibold">Create a class challenge</h2></div>
