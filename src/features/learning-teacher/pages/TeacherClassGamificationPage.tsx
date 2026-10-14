@@ -25,6 +25,17 @@ export default function TeacherClassGamificationPage() {
   const [itemCost, setItemCost] = useState("100");
   const [itemQuantity, setItemQuantity] = useState("");
   const [feedback, setFeedback] = useState("");
+  const [teamName, setTeamName] = useState("");
+  const [teamDescription, setTeamDescription] = useState("");
+  const [selectedTeamId, setSelectedTeamId] = useState("");
+  const [selectedStudentId, setSelectedStudentId] = useState("");
+  const [teamChallengeTitle, setTeamChallengeTitle] = useState("");
+  const [teamChallengeDescription, setTeamChallengeDescription] = useState("");
+  const [teamTargetType, setTeamTargetType] = useState<"assignments_completed" | "xp_earned">("assignments_completed");
+  const [teamTargetValue, setTeamTargetValue] = useState("5");
+  const [teamBonusXp, setTeamBonusXp] = useState("25");
+  const [teamStartsAt, setTeamStartsAt] = useState(() => localDateTimeValue(new Date()));
+  const [teamEndsAt, setTeamEndsAt] = useState(() => { const d = new Date(); d.setDate(d.getDate() + 7); return localDateTimeValue(d); });
   const [schoolCompetitionTitle, setSchoolCompetitionTitle] = useState("");
   const [schoolCompetitionDescription, setSchoolCompetitionDescription] = useState("");
   const [schoolTargetType, setSchoolTargetType] = useState<"assignments_completed" | "xp_earned">("xp_earned");
@@ -70,6 +81,33 @@ export default function TeacherClassGamificationPage() {
     queryFn: () => learningTeacherService.getClassOverview(user!.id, classGroupId),
     enabled: Boolean(user?.id && classGroupId),
   });
+  const teamsQuery = useQuery({
+    queryKey: ["learning", "class-teams", classGroupId],
+    queryFn: () => learningRewardsService.listClassTeams(classGroupId),
+    enabled: Boolean(classGroupId),
+  });
+  const teamMembersQuery = useQuery({
+    queryKey: ["learning", "class-team-members", classGroupId],
+    queryFn: () => learningRewardsService.listClassTeamMembers(classGroupId),
+    enabled: Boolean(classGroupId),
+  });
+  const teamChallengesQuery = useQuery({
+    queryKey: ["learning", "team-challenges", classGroupId],
+    queryFn: () => learningRewardsService.listTeamChallenges(classGroupId),
+    enabled: Boolean(classGroupId),
+  });
+  const teamChallengeStandingsQuery = useQuery({
+    queryKey: ["learning", "team-challenge-standings", classGroupId, teamChallengesQuery.data?.map(item => item.id)],
+    queryFn: async () => Promise.all(
+      (teamChallengesQuery.data ?? [])
+        .filter(item => item.status !== "ended")
+        .map(async challenge => ({
+          challenge,
+          standings: await learningRewardsService.listTeamChallengeStandings(challenge.id),
+        })),
+    ),
+    enabled: Boolean(classGroupId && teamChallengesQuery.data),
+  });
   const ledgerQuery = useQuery({
     queryKey: ["learning", "gamification", "ledger", classGroupId],
     queryFn: () => learningRewardsService.listClassLedger(classGroupId),
@@ -105,6 +143,55 @@ export default function TeacherClassGamificationPage() {
       await invalidate();
     },
     onError: (error) => setFeedback(error instanceof Error ? error.message : "Leaderboard visibility could not be updated."),
+  });
+  const createTeam = useMutation({
+    mutationFn: () => learningRewardsService.createClassTeam(classGroupId, teamName.trim(), teamDescription.trim()),
+    onSuccess: async () => {
+      setTeamName("");
+      setTeamDescription("");
+      setFeedback("Class team created.");
+      await invalidate();
+    },
+    onError: (error) => setFeedback(error instanceof Error ? error.message : "Team could not be created."),
+  });
+  const assignTeam = useMutation({
+    mutationFn: () => {
+      if (!selectedTeamId || !selectedStudentId) throw new Error("Choose a team and a student.");
+      return learningRewardsService.assignStudentToTeam(classGroupId, selectedTeamId, selectedStudentId);
+    },
+    onSuccess: async () => {
+      setFeedback("Student team assignment saved.");
+      await invalidate();
+    },
+    onError: (error) => setFeedback(error instanceof Error ? error.message : "Student could not be assigned to the team."),
+  });
+  const createTeamChallenge = useMutation({
+    mutationFn: () => learningRewardsService.createTeamChallenge({
+      classGroupId,
+      title: teamChallengeTitle.trim(),
+      description: teamChallengeDescription.trim(),
+      targetType: teamTargetType,
+      targetValue: Number(teamTargetValue),
+      bonusXp: Number(teamBonusXp),
+      startsAt: new Date(teamStartsAt).toISOString(),
+      endsAt: new Date(teamEndsAt).toISOString(),
+    }),
+    onSuccess: async () => {
+      setTeamChallengeTitle("");
+      setTeamChallengeDescription("");
+      setFeedback("Team challenge created.");
+      await invalidate();
+    },
+    onError: (error) => setFeedback(error instanceof Error ? error.message : "Team challenge could not be created."),
+  });
+  const changeTeamChallengeStatus = useMutation({
+    mutationFn: ({ id, status }: { id: string; status: "active" | "paused" | "ended" }) =>
+      learningRewardsService.setTeamChallengeStatus(id, status),
+    onSuccess: async () => {
+      setFeedback("Team challenge status updated.");
+      await invalidate();
+    },
+    onError: (error) => setFeedback(error instanceof Error ? error.message : "Team challenge status could not be updated."),
   });
   const createSchoolCompetition = useMutation({
     mutationFn: async () => {
@@ -230,6 +317,45 @@ export default function TeacherClassGamificationPage() {
             {changeLeaderboardVisibility.isPending ? "Saving…" : leaderboardSettingQuery.data ? "Visible to students · Turn off" : "Hidden from students · Turn on"}
           </button>
         )}
+      </div>
+    </section>
+    <section className="rounded-2xl border border-slate-200 bg-white p-5">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div><h2 className="text-lg font-semibold text-slate-900">Team challenges</h2><p className="mt-1 max-w-3xl text-sm text-slate-600">Create balanced class teams, assign students, and run verified team challenges. XP is attributed to the team a student belonged to when the learning activity happened.</p></div>
+        <span className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">Class teacher</span>
+      </div>
+      <div className="mt-4 grid gap-5 xl:grid-cols-2">
+        <div className="space-y-4">
+          <form className="space-y-3 rounded-xl bg-slate-50 p-4" onSubmit={event => { event.preventDefault(); createTeam.mutate(); }}>
+            <h3 className="font-semibold text-slate-900">Create a team</h3>
+            <label className="block text-sm font-medium">Team name<input required minLength={2} maxLength={80} value={teamName} onChange={event => setTeamName(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
+            <label className="block text-sm font-medium">Description<textarea rows={2} value={teamDescription} onChange={event => setTeamDescription(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
+            <button type="submit" disabled={createTeam.isPending} className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{createTeam.isPending ? "Creating…" : "Create team"}</button>
+          </form>
+          <form className="space-y-3 rounded-xl border border-slate-200 p-4" onSubmit={event => { event.preventDefault(); assignTeam.mutate(); }}>
+            <h3 className="font-semibold text-slate-900">Assign a student</h3>
+            <label className="block text-sm font-medium">Student<select required value={selectedStudentId} onChange={event => setSelectedStudentId(event.target.value)} className="mt-1 w-full rounded-lg border p-2.5"><option value="">Choose student</option>{(rosterQuery.data?.students ?? []).map(student => <option key={student.membership.userId} value={student.membership.userId}>{student.name}</option>)}</select></label>
+            <label className="block text-sm font-medium">Team<select required value={selectedTeamId} onChange={event => setSelectedTeamId(event.target.value)} className="mt-1 w-full rounded-lg border p-2.5"><option value="">Choose team</option>{(teamsQuery.data ?? []).filter(team => team.status === "active").map(team => <option key={team.id} value={team.id}>{team.name}</option>)}</select></label>
+            <button type="submit" disabled={assignTeam.isPending || !(teamsQuery.data ?? []).some(team => team.status === "active") || !(rosterQuery.data?.students ?? []).length} className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 disabled:opacity-50">{assignTeam.isPending ? "Saving…" : "Save team assignment"}</button>
+            <p className="text-xs text-slate-500">Moving a student keeps past learning credit with the team they belonged to at that time.</p>
+          </form>
+        </div>
+        <div className="rounded-xl border border-slate-200 p-4">
+          <h3 className="font-semibold text-slate-900">Class teams and members</h3>
+          {teamsQuery.isPending || teamMembersQuery.isPending ? <p className="mt-3 text-sm text-slate-500">Loading teams…</p> : teamsQuery.isError || teamMembersQuery.isError ? <p role="alert" className="mt-3 text-sm text-red-700">Class teams could not be loaded.</p> : !(teamsQuery.data ?? []).length ? <p className="mt-3 text-sm text-slate-500">Create the first team to start team challenges.</p> : <div className="mt-3 space-y-3">{(teamsQuery.data ?? []).map(team => <article key={team.id} className="rounded-xl bg-slate-50 p-3"><div className="flex items-center justify-between gap-2"><h4 className="font-semibold text-slate-900">{team.name}</h4><span className="text-xs text-slate-500">{team.member_count} students</span></div>{team.description && <p className="mt-1 text-sm text-slate-600">{team.description}</p>}<p className="mt-2 text-xs text-slate-500">{(teamMembersQuery.data ?? []).filter(member => member.team_id === team.id).map(member => member.student_name).join(", ") || "No students assigned yet."}</p></article>)}</div>}
+        </div>
+      </div>
+      <div className="mt-5 border-t border-slate-200 pt-5">
+        <h3 className="font-semibold text-slate-900">Create a team challenge</h3>
+        <form className="mt-3 grid gap-3 rounded-xl bg-slate-50 p-4 lg:grid-cols-2" onSubmit={event => { event.preventDefault(); createTeamChallenge.mutate(); }}>
+          <label className="block text-sm font-medium">Challenge title<input required minLength={3} maxLength={100} value={teamChallengeTitle} onChange={event => setTeamChallengeTitle(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
+          <label className="block text-sm font-medium">Success condition<select value={teamTargetType} onChange={event => setTeamTargetType(event.target.value as typeof teamTargetType)} className="mt-1 w-full rounded-lg border bg-white p-2.5"><option value="assignments_completed">Complete distinct assignments as a team</option><option value="xp_earned">Earn verified XP as a team</option></select></label>
+          <label className="block text-sm font-medium lg:col-span-2">Instructions<textarea rows={2} value={teamChallengeDescription} onChange={event => setTeamChallengeDescription(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
+          <div className="grid grid-cols-2 gap-3"><label className="block text-sm font-medium">Target<input type="number" min={1} max={100000} required value={teamTargetValue} onChange={event => setTeamTargetValue(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label><label className="block text-sm font-medium">Bonus XP (5–100)<input type="number" min={5} max={100} required value={teamBonusXp} onChange={event => setTeamBonusXp(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label></div>
+          <div className="grid grid-cols-2 gap-3"><label className="block text-sm font-medium">Starts<input type="datetime-local" required value={teamStartsAt} onChange={event => setTeamStartsAt(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label><label className="block text-sm font-medium">Ends<input type="datetime-local" required min={teamStartsAt} value={teamEndsAt} onChange={event => setTeamEndsAt(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label></div>
+          <div className="flex items-center justify-end lg:col-span-2"><button type="submit" disabled={createTeamChallenge.isPending} className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{createTeamChallenge.isPending ? "Publishing…" : "Create team challenge"}</button></div>
+        </form>
+        {teamChallengeStandingsQuery.isPending || teamChallengesQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading team challenge standings…</p> : teamChallengeStandingsQuery.isError || teamChallengesQuery.isError ? <p role="alert" className="mt-4 text-sm text-red-700">Team challenge standings could not be loaded.</p> : !(teamChallengeStandingsQuery.data ?? []).length ? <p className="mt-4 rounded-xl border border-dashed p-5 text-sm text-slate-500">Create an active challenge to compare team progress.</p> : <div className="mt-4 space-y-4">{(teamChallengeStandingsQuery.data ?? []).map(({challenge, standings}) => <article key={challenge.id} className="overflow-hidden rounded-xl border border-slate-200"><div className="flex flex-wrap items-start justify-between gap-3 bg-slate-50 p-4"><div><h4 className="font-semibold text-slate-900">{challenge.title}</h4><p className="mt-1 text-xs text-slate-500">Target: {challenge.target_value} {challenge.target_type === "xp_earned" ? "XP per team" : "completed assignments per team"} · +{challenge.bonus_xp} XP to contributors · Ends {new Date(challenge.ends_at).toLocaleString()} · {challenge.status}</p></div><div className="flex flex-wrap gap-2"><button type="button" onClick={() => changeTeamChallengeStatus.mutate({id:challenge.id,status:challenge.status === "paused" ? "active" : "paused"})} disabled={changeTeamChallengeStatus.isPending} className="rounded-lg border px-3 py-1.5 text-xs font-semibold disabled:opacity-50">{challenge.status === "paused" ? "Resume" : "Pause"}</button>{challenge.status !== "ended" && <button type="button" onClick={() => changeTeamChallengeStatus.mutate({id:challenge.id,status:"ended"})} disabled={changeTeamChallengeStatus.isPending} className="rounded-lg border border-red-200 px-3 py-1.5 text-xs font-semibold text-red-700 disabled:opacity-50">End</button>}</div></div>{standings.length ? <div className="overflow-x-auto"><table className="min-w-full text-left text-sm"><thead className="bg-white text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-4 py-3">Rank</th><th className="px-4 py-3">Team</th><th className="px-4 py-3">Progress</th><th className="px-4 py-3">Assignments</th><th className="px-4 py-3">XP earned</th><th className="px-4 py-3">Status</th></tr></thead><tbody className="divide-y divide-slate-100">{standings.map(row=><tr key={row.team_id}><td className="px-4 py-3 font-semibold">#{row.rank}</td><td className="px-4 py-3 font-medium">{row.team_name}</td><td className="min-w-40 px-4 py-3"><div className="text-xs text-slate-600">{row.progress_value} / {row.target_value} ({row.progress_percent}%)</div><div className="mt-1 h-2 overflow-hidden rounded-full bg-slate-100"><div className="h-full rounded-full bg-indigo-500" style={{width:row.progress_percent+"%"}}/></div></td><td className="px-4 py-3 tabular-nums">{row.completed_assignments}</td><td className="px-4 py-3 tabular-nums">{row.xp_earned}</td><td className="px-4 py-3"><span className={`rounded-full px-2 py-1 text-xs font-semibold ${row.has_met_target ? "bg-emerald-50 text-emerald-700" : "bg-slate-100 text-slate-600"}`}>{row.has_met_target ? "Target reached" : "In progress"}</span></td></tr>)}</tbody></table></div> : <p className="p-4 text-sm text-slate-500">Create teams and assign students before starting the challenge.</p>}</article>)}</div>}
       </div>
     </section>
     <section className="rounded-2xl border border-slate-200 bg-white p-5">
