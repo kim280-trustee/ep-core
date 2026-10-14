@@ -1,5 +1,5 @@
 ﻿import { supabase } from "@/core/infrastructure/supabase/client";
-import { calculateLearningStreak } from "@/features/learning-rewards";
+import { calculateLearningStreak, getVerifiedLearningActivityTimestamps } from "@/features/learning-rewards";
 import type { LearningParentOverview, LearningParentStudent, LearningParentStudentLink } from "../types/learning-parent.types";
 
 type GradeRow={class_subject_id:string;term_id:string;score:number|string;letter_grade:string|null;status:string;finalized_at:string|null};
@@ -52,7 +52,7 @@ export const learningParentRepository={
       supabase.from("learning_recommendations").select("id,recommendation_type,objective_id,priority,reason,generated_at").eq("student_user_id",studentUserId).eq("status","active").order("priority",{ascending:false}),
       supabase.from("learning_gradebook_entries").select("comment,recorded_at,class_subject_id,term_id").eq("student_user_id",studentUserId).not("comment","is",null).order("recorded_at",{ascending:false}).limit(10),
       supabase.from("learning_reward_ledger").select("id,event_type,xp_delta,occurred_at,metadata").eq("student_user_id",studentUserId).order("occurred_at",{ascending:false}),
-      supabase.from("learning_activity_events").select("occurred_at").eq("student_user_id",studentUserId).order("occurred_at",{ascending:false}).limit(500),
+      supabase.from("learning_activity_events").select("occurred_at,activity_type,metadata").eq("student_user_id",studentUserId).order("occurred_at",{ascending:false}).limit(500),
     ]);
     if(studentError)throw studentError;if(gradeError)throw gradeError;if(membershipError)throw membershipError;if(masteryError)throw masteryError;if(recommendationError)throw recommendationError;if(commentError)throw commentError;if(rewardError)throw rewardError;if(activityError)throw activityError;
 
@@ -108,7 +108,7 @@ export const learningParentRepository={
       comments:commentRows.map(row=>({text:row.comment??"",recordedAt:row.recorded_at,subjectName:subjectMap.get(commentSubjectMap.get(row.class_subject_id)??"")??null,termName:termMap.get(row.term_id)??null})),
       recommendations:recommendationRows.map(row=>({id:row.id,type:row.recommendation_type,objectiveName:row.objective_id?objectiveMap.get(row.objective_id)?.name??null:null,reason:reasonText(row.reason),priority:row.priority,generatedAt:row.generated_at})),
       xpTotal:(rewardRows??[]).reduce((sum,row)=>sum+row.xp_delta,0),
-      currentStreak:calculateLearningStreak((activityRows??[]).map(row=>row.occurred_at)),
+      currentStreak:calculateLearningStreak(getVerifiedLearningActivityTimestamps((activityRows??[]).map(row=>({activityType:row.activity_type,metadata:(row.metadata??{}) as Record<string,unknown>,occurredAt:row.occurred_at})),(rewardRows??[]).map(row=>({eventType:row.event_type,occurredAt:row.occurred_at}))),
       badgesUnlocked:(()=>{
         const rewards=rewardRows??[];
         const completedCount=rewards.filter(row=>row.event_type==="assignment_completed").length;
