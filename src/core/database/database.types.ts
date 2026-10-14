@@ -4678,6 +4678,7 @@ export type Database = {
         Args: { p_class_group_id: string }
         Returns: {
           id: string
+          class_name: string
           title: string
           description: string
           target_type: string
