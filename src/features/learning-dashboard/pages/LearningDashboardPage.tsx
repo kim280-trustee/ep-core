@@ -7,7 +7,7 @@ import { useAuth } from "@/core/auth";
 import { learningRuntimeService } from "@/features/learning-runtime";
 import { learningActivityService } from "@/features/learning-activity";
 import { learningAssignmentsService } from "@/features/learning-assignments";
-import { calculateLearningStreak, LEARNING_REWARD_LEVELS, learningRewardsService } from "@/features/learning-rewards";
+import { calculateLearningStreak, getVerifiedLearningActivityTimestamps, LEARNING_REWARD_LEVELS, learningRewardsService } from "@/features/learning-rewards";
 import type { LearningAssignmentProgress } from "@/features/learning-assignments";
 
 function formatDate(value: string | null) {
@@ -83,8 +83,8 @@ export default function LearningDashboardPage() {
 
   const overview = query.data;
   const rewardXp = (rewardsQuery.data ?? []).reduce((total, entry) => total + entry.xpDelta, 0);
-  const learningStreak = activityQuery.isSuccess
-    ? calculateLearningStreak(activityQuery.data.map((event) => event.occurredAt))
+  const learningStreak = activityQuery.isSuccess && rewardsQuery.isSuccess
+    ? calculateLearningStreak(getVerifiedLearningActivityTimestamps(activityQuery.data, rewardsQuery.data))
     : null;
   const currentRewardLevel = [...LEARNING_REWARD_LEVELS].reverse().find((level) => rewardXp >= level.minXp) ?? LEARNING_REWARD_LEVELS[0];
   const nextRewardLevel = LEARNING_REWARD_LEVELS.find((level) => level.minXp > rewardXp);
