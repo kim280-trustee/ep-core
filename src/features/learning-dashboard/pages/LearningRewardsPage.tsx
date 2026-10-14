@@ -671,6 +671,8 @@ export default function LearningRewardsPage() {
           <RewardRule title="Weekly quest completed" points="+25 XP" detail="Earned once for each weekly quest completed." />
           <RewardRule title="Three-day streak" points="+20 XP" detail="One-time bonus for learning on three consecutive days." />
           <RewardRule title="Seven-day streak" points="+50 XP" detail="One-time bonus for learning on seven consecutive days." />
+          <RewardRule title="Fourteen-day streak" points="+100 XP" detail="One-time bonus for learning on fourteen consecutive days." />
+          <RewardRule title="Thirty-day streak" points="+200 XP" detail="One-time bonus for learning on thirty consecutive days." />
           <RewardRule title="Class challenge completed" points="5–100 XP" detail="Bonus XP when you meet a teacher-created class goal." />
         </div>
         <p className="mt-4 text-xs text-slate-500">XP is recorded in a protected reward ledger. Badge progress reflects your recorded learning evidence.</p>
