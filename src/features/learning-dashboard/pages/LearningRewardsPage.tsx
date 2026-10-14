@@ -76,7 +76,9 @@ export default function LearningRewardsPage() {
         const competitions = await learningRewardsService.listSchoolCompetitions(organizationId);
         const now = Date.now();
         const activeCompetitions = competitions.filter(item =>
-          item.status === "active" && new Date(item.ends_at).getTime() >= now
+          item.status === "active"
+          && new Date(item.starts_at).getTime() <= now
+          && new Date(item.ends_at).getTime() >= now
         );
         const classGroupIds = [...new Set(
           studentMemberships.filter(item => item.organizationId === organizationId).map(item => item.classGroupId)
@@ -99,8 +101,11 @@ export default function LearningRewardsPage() {
       const classGroupIds = [...new Set(studentMemberships.map(item => item.classGroupId))];
       const byClass = await Promise.all(classGroupIds.map(async classGroupId => {
         const challenges = await learningRewardsService.listTeamChallenges(classGroupId);
+        const now = Date.now();
         const currentChallenges = challenges.filter(item =>
-          item.status === "active" && new Date(item.ends_at).getTime() >= Date.now()
+          item.status === "active"
+          && new Date(item.starts_at).getTime() <= now
+          && new Date(item.ends_at).getTime() >= now
         );
         return Promise.all(currentChallenges.map(async challenge => ({
           classGroupId,
