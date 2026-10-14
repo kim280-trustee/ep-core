@@ -37,6 +37,9 @@ export const learningAssessmentService = {
   listAttempts: (id: string) =>
     learningAssessmentRepository.listAttempts(id),
 
+  listAttemptsForAssessment: (assessmentId: string) =>
+    learningAssessmentRepository.listAttemptsForAssessment(assessmentId),
+
   listAttemptAnswers: (id: string) =>
     learningAssessmentRepository.listAttemptAnswers(id),
 
