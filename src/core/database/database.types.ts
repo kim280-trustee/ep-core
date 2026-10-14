@@ -4611,7 +4611,7 @@ export type Database = {
         }[]
       }
       get_learning_student_daily_xp_goal: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: number
       }
       set_learning_student_daily_xp_goal: {
