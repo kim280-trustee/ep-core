@@ -17,9 +17,12 @@ async function listActiveMemberships(userId: string) {
 }
 
 export const learningEnrollmentRepository = {
-  async listClassMembers(classGroupId: string) {
-    const { data, error } = await supabase.from("learning_class_memberships").select("*").eq("class_group_id", classGroupId).eq("status","active").order("membership_type").order("created_at");
-    if (error) throw error; return (data ?? []).map(map);
+  async listClassMembers(classGroupId: string, includeInactive = false) {
+    let query = supabase.from("learning_class_memberships").select("*").eq("class_group_id", classGroupId);
+    if (!includeInactive) query = query.eq("status", "active");
+    const { data, error } = await query.order("membership_type").order("created_at");
+    if (error) throw error;
+    return (data ?? []).map(map);
   },
   async listUserClasses(userId: string) {
     let rows = await listActiveMemberships(userId);
@@ -31,10 +34,11 @@ export const learningEnrollmentRepository = {
     return rows.map(map);
   },
   async addMember(input: LearningClassMembershipInput) {
-    const { data, error } = await supabase.from("learning_class_memberships").insert({
+    const { data, error } = await supabase.from("learning_class_memberships").upsert({
       tenant_id:input.tenantId, organization_id:input.organizationId, class_group_id:input.classGroupId,
       user_id:input.userId, membership_type:input.membershipType, status:input.status ?? "active", joined_at:input.joinedAt ?? new Date().toISOString(),
-    }).select("*").single();
+      updated_at: new Date().toISOString(),
+    }, { onConflict: "class_group_id,user_id,membership_type" }).select("*").single();
     if (error) throw error; return map(data);
   },
   async updateMember(id: string, data: Partial<LearningClassMembershipInput>) {
