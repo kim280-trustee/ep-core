@@ -70,6 +70,8 @@ alter table public.learning_vocabulary_progress enable row level security;
 grant select, insert, update, delete on public.learning_vocabulary_entries to authenticated;
 grant select on public.learning_vocabulary_progress to authenticated;
 revoke insert, update, delete on public.learning_vocabulary_progress from authenticated;
+drop policy if exists learning_vocabulary_progress_insert_own on public.learning_vocabulary_progress;
+drop policy if exists learning_vocabulary_progress_update_own on public.learning_vocabulary_progress;
 
 -- Published entries are available to active members of the organization/class.
 -- Teachers can see drafts in organizations where they teach; school managers can manage the catalog.
