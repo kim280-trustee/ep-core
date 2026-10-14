@@ -52,7 +52,7 @@ export default function SchoolAdministrationPage() {
   const { user, loading: authLoading } = useAuth();
   const authorization = useAuthorization();
   const queryClient = useQueryClient();
-  const canManage = authorization.hasPermission("settings.manage");
+  const canManage = authorization.hasPermission("learning.academic.manage");
 
   const [selectedOrganizationId, setSelectedOrganizationId] = useState("");
   const [selectedAcademicYearId, setSelectedAcademicYearId] = useState("");
@@ -279,7 +279,7 @@ export default function SchoolAdministrationPage() {
     return <div className="mx-auto max-w-7xl p-8"><div className="h-32 animate-pulse rounded-2xl bg-slate-200" /></div>;
   }
   if (!user) return <div className="mx-auto max-w-4xl p-8">Sign in to access school administration.</div>;
-  if (!canManage) return <div className="mx-auto max-w-4xl rounded-2xl border border-amber-200 bg-amber-50 p-8 text-amber-950"><h1 className="text-xl font-semibold">School administration access required</h1><p className="mt-2 text-sm">Your account needs the settings.manage permission to manage academic setup and class rosters.</p><Link className="mt-4 inline-block text-sm font-semibold underline" to="/teacher">Return to teaching workspace</Link></div>;
+  if (!canManage) return <div className="mx-auto max-w-4xl rounded-2xl border border-amber-200 bg-amber-50 p-8 text-amber-950"><h1 className="text-xl font-semibold">School administration access required</h1><p className="mt-2 text-sm">Your account needs the learning.academic.manage permission to manage academic setup and class rosters.</p><Link className="mt-4 inline-block text-sm font-semibold underline" to="/teacher">Return to teaching workspace</Link></div>;
 
   return (
     <div className="mx-auto max-w-7xl space-y-6">
