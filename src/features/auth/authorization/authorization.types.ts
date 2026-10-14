@@ -16,7 +16,8 @@ export type PermissionCode =
   | "expenses.edit"
   | "reports.view"
   | "settings.view"
-  | "settings.manage";
+  | "settings.manage"
+  | "learning.academic.manage";
 
 export interface AuthorizationState {
   permissions: PermissionCode[];
