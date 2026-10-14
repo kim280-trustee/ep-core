@@ -64,3 +64,67 @@ drop policy if exists learning_class_memberships_delete on public.learning_class
 create policy learning_class_memberships_delete on public.learning_class_memberships
 for delete to authenticated
 using (public.is_organization_member(organization_id) and public.has_permission('settings.manage'));
+
+
+-- Keep term dates inside their parent academic year even when writes bypass the UI.
+create schema if not exists private;
+
+create or replace function private.validate_learning_term_date_range()
+returns trigger
+language plpgsql
+set search_path = public, pg_catalog
+as $function$
+declare
+  v_year record;
+begin
+  select starts_on, ends_on
+    into v_year
+    from public.learning_academic_years
+   where id = new.academic_year_id
+     and organization_id = new.organization_id;
+
+  if not found then
+    raise exception 'The academic year does not belong to this school.'
+      using errcode = '23503';
+  end if;
+
+  if new.starts_on < v_year.starts_on or new.ends_on > v_year.ends_on then
+    raise exception 'Term dates must fall within the selected academic year.'
+      using errcode = '23514';
+  end if;
+
+  return new;
+end;
+$function$;
+
+create or replace function private.prevent_academic_year_shrinking_over_terms()
+returns trigger
+language plpgsql
+set search_path = public, pg_catalog
+as $function$
+begin
+  if exists (
+    select 1
+      from public.learning_terms t
+     where t.academic_year_id = new.id
+       and (t.starts_on < new.starts_on or t.ends_on > new.ends_on)
+  ) then
+    raise exception 'Academic-year dates cannot exclude an existing term.'
+      using errcode = '23514';
+  end if;
+
+  return new;
+end;
+$function$;
+
+drop trigger if exists learning_terms_validate_date_range on public.learning_terms;
+create trigger learning_terms_validate_date_range
+before insert or update of organization_id, academic_year_id, starts_on, ends_on
+on public.learning_terms
+for each row execute function private.validate_learning_term_date_range();
+
+drop trigger if exists learning_academic_years_preserve_term_range on public.learning_academic_years;
+create trigger learning_academic_years_preserve_term_range
+before update of starts_on, ends_on
+on public.learning_academic_years
+for each row execute function private.prevent_academic_year_shrinking_over_terms();
