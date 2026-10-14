@@ -111,6 +111,23 @@ export const learningRewardsRepository = {
     if (error) throw error;
   },
 
+  async getClassLeaderboardEnabled(classGroupId: string): Promise<boolean> {
+    const { data, error } = await supabase.rpc("get_learning_class_leaderboard_setting", {
+      p_class_group_id: classGroupId,
+    });
+    if (error) throw error;
+    return data === true;
+  },
+
+  async setClassLeaderboardEnabled(classGroupId: string, enabled: boolean): Promise<boolean> {
+    const { data, error } = await supabase.rpc("set_learning_class_leaderboard_enabled", {
+      p_class_group_id: classGroupId,
+      p_enabled: enabled,
+    });
+    if (error) throw error;
+    return data === true;
+  },
+
   async listClassLeaderboard(classGroupId: string) {
     const { data, error } = await supabase.rpc("get_learning_class_leaderboard", {
       p_class_group_id: classGroupId,
