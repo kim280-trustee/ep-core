@@ -36,6 +36,14 @@ export interface LearningAcademicRepository {
   listTerms(organizationId: string, academicYearId: string): Promise<LearningTerm[]>;
   listClassGroups(organizationId: string, academicYearId?: string): Promise<LearningClassGroup[]>;
   listClassSubjects(organizationId: string, classGroupId: string): Promise<LearningClassSubject[]>;
+  createAcademicYear(input: import("../types/learning-academic.types").LearningAcademicYearInput): Promise<LearningAcademicYear>;
+  updateAcademicYear(id: string, updates: import("../types/learning-academic.types").LearningAcademicYearUpdate): Promise<LearningAcademicYear>;
+  createTerm(input: import("../types/learning-academic.types").LearningTermInput): Promise<LearningTerm>;
+  updateTerm(id: string, updates: import("../types/learning-academic.types").LearningTermUpdate): Promise<LearningTerm>;
+  createClassGroup(input: import("../types/learning-academic.types").LearningClassGroupInput): Promise<LearningClassGroup>;
+  updateClassGroup(id: string, updates: import("../types/learning-academic.types").LearningClassGroupUpdate): Promise<LearningClassGroup>;
+  activateClassSubject(organizationId: string, classGroupId: string, subjectId: string): Promise<LearningClassSubject>;
+  updateClassSubjectStatus(id: string, status: ClassGroupStatus): Promise<LearningClassSubject>;
 }
 
 const mapCountry = (r: CountryRow): LearningCountry => ({
@@ -147,6 +155,82 @@ export const learningAcademicRepository: LearningAcademicRepository = {
     if (error) throw error;
     return (data ?? []).map(mapClassGroup);
   },
+
+  async createAcademicYear(input) {
+    const { data, error } = await supabase.from("learning_academic_years").insert({
+      organization_id: input.organizationId, curriculum_id: input.curriculumId, name: input.name.trim(),
+      code: input.code.trim(), starts_on: input.startsOn, ends_on: input.endsOn, status: input.status,
+    }).select("*").single();
+    if (error) throw error;
+    return mapYear(data);
+  },
+  async updateAcademicYear(id, updates) {
+    const patch: Database["public"]["Tables"]["learning_academic_years"]["Update"] = { updated_at: new Date().toISOString() };
+    if (updates.curriculumId !== undefined) patch.curriculum_id = updates.curriculumId;
+    if (updates.name !== undefined) patch.name = updates.name.trim();
+    if (updates.code !== undefined) patch.code = updates.code.trim();
+    if (updates.startsOn !== undefined) patch.starts_on = updates.startsOn;
+    if (updates.endsOn !== undefined) patch.ends_on = updates.endsOn;
+    if (updates.status !== undefined) patch.status = updates.status;
+    const { data, error } = await supabase.from("learning_academic_years").update(patch).eq("id", id).select("*").single();
+    if (error) throw error;
+    return mapYear(data);
+  },
+  async createTerm(input) {
+    const { data, error } = await supabase.from("learning_terms").insert({
+      organization_id: input.organizationId, academic_year_id: input.academicYearId, name: input.name.trim(),
+      code: input.code.trim(), sequence_no: input.sequenceNo, starts_on: input.startsOn, ends_on: input.endsOn, status: input.status,
+    }).select("*").single();
+    if (error) throw error;
+    return mapTerm(data);
+  },
+  async updateTerm(id, updates) {
+    const patch: Database["public"]["Tables"]["learning_terms"]["Update"] = { updated_at: new Date().toISOString() };
+    if (updates.name !== undefined) patch.name = updates.name.trim();
+    if (updates.code !== undefined) patch.code = updates.code.trim();
+    if (updates.sequenceNo !== undefined) patch.sequence_no = updates.sequenceNo;
+    if (updates.startsOn !== undefined) patch.starts_on = updates.startsOn;
+    if (updates.endsOn !== undefined) patch.ends_on = updates.endsOn;
+    if (updates.status !== undefined) patch.status = updates.status;
+    const { data, error } = await supabase.from("learning_terms").update(patch).eq("id", id).select("*").single();
+    if (error) throw error;
+    return mapTerm(data);
+  },
+  async createClassGroup(input) {
+    const { data, error } = await supabase.from("learning_class_groups").insert({
+      organization_id: input.organizationId, academic_year_id: input.academicYearId, curriculum_id: input.curriculumId,
+      grade_level_id: input.gradeLevelId, code: input.code.trim(), name: input.name.trim(), status: input.status,
+    }).select("*").single();
+    if (error) throw error;
+    return mapClassGroup(data);
+  },
+  async updateClassGroup(id, updates) {
+    const patch: Database["public"]["Tables"]["learning_class_groups"]["Update"] = { updated_at: new Date().toISOString() };
+    if (updates.curriculumId !== undefined) patch.curriculum_id = updates.curriculumId;
+    if (updates.gradeLevelId !== undefined) patch.grade_level_id = updates.gradeLevelId;
+    if (updates.code !== undefined) patch.code = updates.code.trim();
+    if (updates.name !== undefined) patch.name = updates.name.trim();
+    if (updates.status !== undefined) patch.status = updates.status;
+    const { data, error } = await supabase.from("learning_class_groups").update(patch).eq("id", id).select("*").single();
+    if (error) throw error;
+    return mapClassGroup(data);
+  },
+  async activateClassSubject(organizationId, classGroupId, subjectId) {
+    const { data, error } = await supabase.from("learning_class_subjects").upsert({
+      organization_id: organizationId, class_group_id: classGroupId, subject_id: subjectId, status: "active",
+      updated_at: new Date().toISOString(),
+    }, { onConflict: "class_group_id,subject_id" }).select("*").single();
+    if (error) throw error;
+    return mapClassSubject(data);
+  },
+  async updateClassSubjectStatus(id, status) {
+    const { data, error } = await supabase.from("learning_class_subjects").update({
+      status, updated_at: new Date().toISOString(),
+    }).eq("id", id).select("*").single();
+    if (error) throw error;
+    return mapClassSubject(data);
+  },
+
   async listClassSubjects(organizationId, classGroupId) {
     const { data, error } = await supabase.from("learning_class_subjects").select("*").eq("organization_id", organizationId).eq("class_group_id", classGroupId).order("created_at");
     if (error) throw error;
