@@ -67,6 +67,7 @@ export default function SchoolAdministrationPage() {
   const [userToAdd, setUserToAdd] = useState("");
   const [membershipType, setMembershipType] = useState<"student" | "teacher">("student");
   const [actionError, setActionError] = useState("");
+  const [actionNotice, setActionNotice] = useState("");
 
   const organizationsQuery = useQuery({
     queryKey: ["school-admin", "organizations", user?.id],
@@ -150,9 +151,10 @@ export default function SchoolAdministrationPage() {
     mutationFn: (action: () => Promise<unknown>) => action(),
     onSuccess: async () => {
       setActionError("");
+      setActionNotice("Changes saved successfully.");
       await queryClient.invalidateQueries({ queryKey: ["school-admin"] });
     },
-    onError: (error) => setActionError(errorText(error)),
+    onError: (error) => { setActionNotice(""); setActionError(errorText(error)); },
   });
 
   const submitYear = async (event: FormEvent<HTMLFormElement>) => {
@@ -251,12 +253,14 @@ export default function SchoolAdministrationPage() {
     setYearForm({ curriculumId: year.curriculumId, name: year.name, code: year.code, startsOn: year.startsOn, endsOn: year.endsOn, status: year.status });
     setEditingYearId(year.id);
     setActionError("");
+    setActionNotice("");
   };
 
   const editTerm = (term: LearningTerm) => {
     setTermForm({ name: term.name, code: term.code, sequenceNo: String(term.sequenceNo), startsOn: term.startsOn, endsOn: term.endsOn, status: term.status });
     setEditingTermId(term.id);
     setActionError("");
+    setActionNotice("");
   };
 
   const editClass = (group: LearningClassGroup) => {
@@ -264,6 +268,7 @@ export default function SchoolAdministrationPage() {
     setClassForm({ curriculumId: group.curriculumId, gradeLevelId: group.gradeLevelId, code: group.code, name: group.name, status: group.status });
     setEditingClassId(group.id);
     setActionError("");
+    setActionNotice("");
   };
 
   if (authLoading || authorization.loading) {
@@ -285,7 +290,7 @@ export default function SchoolAdministrationPage() {
         </div>
         <div className="mt-5 max-w-xl">
           <label className="block text-sm font-medium text-slate-200">School / organization
-            <select className="mt-1 w-full rounded-xl border border-white/20 bg-slate-800 px-3 py-2.5 text-sm text-white" value={organizationId} onChange={(event) => { setSelectedOrganizationId(event.target.value); setSelectedAcademicYearId(""); setSelectedClassGroupId(""); setEditingYearId(""); setEditingTermId(""); setEditingClassId(""); }}>
+            <select className="mt-1 w-full rounded-xl border border-white/20 bg-slate-800 px-3 py-2.5 text-sm text-white" value={organizationId} onChange={(event) => { setSelectedOrganizationId(event.target.value); setSelectedAcademicYearId(""); setSelectedClassGroupId(""); setEditingYearId(""); setEditingTermId(""); setEditingClassId(""); setYearForm(emptyYearForm); setTermForm(emptyTermForm); setClassForm(emptyClassForm); setActionError(""); setActionNotice(""); }}>
               {organizations.map((organization) => <option key={organization.id} value={organization.id}>{organization.name} ({organization.code})</option>)}
             </select>
           </label>
@@ -293,6 +298,11 @@ export default function SchoolAdministrationPage() {
       </header>
 
       {actionError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800"><div className="flex items-start justify-between gap-3"><p>{actionError}</p><button type="button" className="font-semibold" onClick={() => setActionError("")}>Dismiss</button></div></div>}
+      {actionNotice && <div role="status" className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-900"><div className="flex items-start justify-between gap-3"><p>{actionNotice}</p><button type="button" className="font-semibold" onClick={() => setActionNotice("")}>Dismiss</button></div></div>}
+      {termsQuery.isError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">Terms could not be loaded. <button type="button" className="font-semibold underline" onClick={() => void termsQuery.refetch()}>Retry</button></div>}
+      {classSubjectsQuery.isError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">Class subjects could not be loaded. <button type="button" className="font-semibold underline" onClick={() => void classSubjectsQuery.refetch()}>Retry</button></div>}
+      {rosterQuery.isError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">The class roster could not be loaded. <button type="button" className="font-semibold underline" onClick={() => void rosterQuery.refetch()}>Retry</button></div>}
+      {eligibleUsersQuery.isError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">School accounts could not be loaded. <button type="button" className="font-semibold underline" onClick={() => void eligibleUsersQuery.refetch()}>Retry</button></div>}
       {organizationsQuery.isPending && <div className="rounded-xl bg-white p-5 text-sm text-slate-500">Loading your schools…</div>}
       {organizationsQuery.isError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-5 text-sm text-red-800">Could not load your school memberships. <button type="button" className="font-semibold underline" onClick={() => void organizationsQuery.refetch()}>Try again</button></div>}
       {!organizationsQuery.isPending && !organizationsQuery.isError && !organizations.length && <div className="rounded-xl border border-amber-200 bg-amber-50 p-5 text-sm text-amber-900">No active school organization is linked to this account. An organization owner must add your account to the school before setup can continue.</div>}
@@ -327,7 +337,7 @@ export default function SchoolAdministrationPage() {
                     <Field label="Ends on"><input className={fieldClass} type="date" required value={termForm.endsOn} onChange={(event) => setTermForm((form) => ({ ...form, endsOn: event.target.value }))} /></Field>
                     <div className="flex items-end gap-2 md:col-span-2"><button className={buttonClass} type="submit" disabled={saveMutation.isPending}>{saveMutation.isPending ? "Saving…" : editingTermId ? "Save term" : "Create term"}</button>{editingTermId && <button className={secondaryButtonClass} type="button" onClick={() => { setEditingTermId(""); setTermForm(emptyTermForm); }}>Cancel edit</button>}</div>
                   </form>
-                  <div className="mt-5 divide-y divide-slate-100 rounded-xl border border-slate-200">{terms.map((term) => <div key={term.id} className="flex flex-wrap items-center justify-between gap-3 p-4"><div><p className="font-semibold text-slate-900">{term.sequenceNo}. {term.name} <span className="text-xs font-normal text-slate-500">({term.code})</span></p><p className="mt-1 text-xs text-slate-500">{term.startsOn} – {term.endsOn} · {term.status}</p></div><button type="button" className={secondaryButtonClass} onClick={() => editTerm(term)}>Edit</button></div>)}{!terms.length && <p className="p-4 text-sm text-slate-500">No terms exist for this academic year yet.</p>}</div>
+                  {termsQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading terms…</p> : <div className="mt-5 divide-y divide-slate-100 rounded-xl border border-slate-200">{terms.map((term) => <div key={term.id} className="flex flex-wrap items-center justify-between gap-3 p-4"><div><p className="font-semibold text-slate-900">{term.sequenceNo}. {term.name} <span className="text-xs font-normal text-slate-500">({term.code})</span></p><p className="mt-1 text-xs text-slate-500">{term.startsOn} – {term.endsOn} · {term.status}</p></div><button type="button" className={secondaryButtonClass} onClick={() => editTerm(term)}>Edit</button></div>)}{!terms.length && <p className="p-4 text-sm text-slate-500">No terms exist for this academic year yet.</p>}</div>
                 </>}
               </Section>
 
@@ -347,7 +357,7 @@ export default function SchoolAdministrationPage() {
                       <h3 className="font-semibold text-slate-900">{classGroups.find((group) => group.id === classGroupId)?.name ?? "Select a class"} · Subjects</h3>
                       {classGroupId ? <>
                         <div className="mt-3 flex flex-wrap gap-2"><select aria-label="Subject to add" className={fieldClass + " min-w-0 flex-1"} value={subjectToAdd} onChange={(event) => setSubjectToAdd(event.target.value)}><option value="">Choose subject</option>{availableSubjects.map((subject) => <option key={subject.id} value={subject.id}>{subject.name} ({subject.code})</option>)}</select><button type="button" className={buttonClass} disabled={!subjectToAdd || saveMutation.isPending} onClick={() => { const id = subjectToAdd; saveMutation.mutate(() => learningAcademicService.activateClassSubject(organizationId, classGroupId, id)); setSubjectToAdd(""); }}>Add subject</button></div>
-                        <div className="mt-4 space-y-2">{classSubjects.map((item) => { const subject = subjects.find((candidate) => candidate.id === item.subjectId); return <div key={item.id} className="flex items-center justify-between gap-3 rounded-lg bg-slate-50 px-3 py-2"><div><p className="text-sm font-medium text-slate-800">{subject?.name ?? "Unknown subject"}</p><p className="text-xs text-slate-500">{item.status}</p></div><button type="button" className={secondaryButtonClass} onClick={() => saveMutation.mutate(() => learningAcademicService.updateClassSubjectStatus(item.id, item.status === "active" ? "archived" : "active"))}>{item.status === "active" ? "Archive" : "Reactivate"}</button></div>; })}{!classSubjects.length && <p className="text-sm text-slate-500">No subjects assigned yet.</p>}</div>
+                        <div className="mt-4 space-y-2">{classSubjectsQuery.isPending ? <p className="text-sm text-slate-500">Loading subjects…</p> : classSubjects.map((item) => { const subject = subjects.find((candidate) => candidate.id === item.subjectId); return <div key={item.id} className="flex items-center justify-between gap-3 rounded-lg bg-slate-50 px-3 py-2"><div><p className="text-sm font-medium text-slate-800">{subject?.name ?? "Unknown subject"}</p><p className="text-xs text-slate-500">{item.status}</p></div><button type="button" className={secondaryButtonClass} onClick={() => saveMutation.mutate(() => learningAcademicService.updateClassSubjectStatus(item.id, item.status === "active" ? "archived" : "active"))}>{item.status === "active" ? "Archive" : "Reactivate"}</button></div>; })}{!classSubjectsQuery.isPending && !classSubjects.length && <p className="text-sm text-slate-500">No subjects assigned yet.</p>}</div>
                       </> : <p className="mt-3 text-sm text-slate-500">Select a class to manage subjects.</p>}
                     </div>
                   </div>
@@ -361,7 +371,7 @@ export default function SchoolAdministrationPage() {
                     <Field label="Class role"><select className={fieldClass} value={membershipType} onChange={(event) => { setMembershipType(event.target.value as "student" | "teacher"); setUserToAdd(""); }}><option value="student">Student</option><option value="teacher">Teacher</option></select></Field>
                     <div className="flex items-end"><button type="button" className={buttonClass} disabled={!userToAdd || saveMutation.isPending} onClick={() => { const selectedUserId = userToAdd; saveMutation.mutate(() => learningEnrollmentService.addMember({ tenantId: user.tenantId, organizationId, classGroupId, userId: selectedUserId, membershipType, status: "active" })); setUserToAdd(""); }}>Add to class</button></div>
                   </div>
-                  <div className="mt-5 overflow-x-auto"><table className="min-w-full text-left text-sm"><thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-3 py-3">Account</th><th className="px-3 py-3">Class role</th><th className="px-3 py-3">Status</th><th className="px-3 py-3">Action</th></tr></thead><tbody className="divide-y divide-slate-100">{roster.map((member) => { const account = userById.get(member.userId); return <tr key={member.id}><td className="px-3 py-3"><p className="font-medium text-slate-900">{account?.name ?? "School account"}</p><p className="text-xs text-slate-500">{account?.email ?? member.userId}</p></td><td className="px-3 py-3 capitalize">{member.membershipType}</td><td className="px-3 py-3 capitalize">{member.status}</td><td className="px-3 py-3">{member.status === "active" ? <button type="button" className={secondaryButtonClass} onClick={() => saveMutation.mutate(() => learningEnrollmentService.removeMember(member.id))}>Deactivate</button> : <button type="button" className={secondaryButtonClass} onClick={() => saveMutation.mutate(() => learningEnrollmentService.updateMember(member.id, { status: "active", joinedAt: new Date().toISOString() }))}>Reactivate</button>}</td></tr>; })}</tbody></table>{!roster.length && <p className="py-4 text-sm text-slate-500">No teachers or students are assigned to this class yet.</p>}</div>
+                  <div className="mt-5 overflow-x-auto">{rosterQuery.isPending ? <p className="py-4 text-sm text-slate-500">Loading roster…</p> : <table className="min-w-full text-left text-sm"><thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-3 py-3">Account</th><th className="px-3 py-3">Class role</th><th className="px-3 py-3">Status</th><th className="px-3 py-3">Action</th></tr></thead><tbody className="divide-y divide-slate-100">{roster.map((member) => { const account = userById.get(member.userId); return <tr key={member.id}><td className="px-3 py-3"><p className="font-medium text-slate-900">{account?.name ?? "School account"}</p><p className="text-xs text-slate-500">{account?.email ?? member.userId}</p></td><td className="px-3 py-3 capitalize">{member.membershipType}</td><td className="px-3 py-3 capitalize">{member.status}</td><td className="px-3 py-3">{member.status === "active" ? <button type="button" className={secondaryButtonClass} onClick={() => saveMutation.mutate(() => learningEnrollmentService.removeMember(member.id))}>Deactivate</button> : <button type="button" className={secondaryButtonClass} onClick={() => saveMutation.mutate(() => learningEnrollmentService.updateMember(member.id, { status: "active", joinedAt: new Date().toISOString() }))}>Reactivate</button>}</td></tr>; })}</tbody></table>{!rosterQuery.isPending && !roster.length && <p className="py-4 text-sm text-slate-500">No teachers or students are assigned to this class yet.</p>}</table>}</div>
                   <p className="mt-3 text-xs leading-5 text-slate-500">Only active class memberships are used by teacher and student workflows. Deactivation preserves the membership record and history. A user can be assigned as both teacher and student only if the school's model explicitly permits that.</p>
                 </>}
               </Section>
