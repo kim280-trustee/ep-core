@@ -6,5 +6,6 @@ export interface LearningParentMastery { objectiveId:string; objectiveName:strin
 export interface LearningParentComment { text:string; recordedAt:string; subjectName:string|null; termName:string|null; }
 export interface LearningParentRecommendation { id:string; type:string; objectiveName:string|null; reason:string|null; priority:number; generatedAt:string; }
 export interface LearningParentReward { id:string; eventType:string; xpDelta:number; occurredAt:string; }
-export interface LearningParentOverview { student:LearningParentStudent; subjectGrades:LearningParentSubjectGrade[]; assignments:LearningParentAssignment[]; mastery:LearningParentMastery[]; comments:LearningParentComment[]; recommendations:LearningParentRecommendation[]; xpTotal:number; currentStreak:number; badgesUnlocked:string[]; recentRewards:LearningParentReward[]; }
+export interface LearningParentRewardNotification { id:string; title:string; message:string; createdAt:string; readAt:string|null; }
+export interface LearningParentOverview { student:LearningParentStudent; subjectGrades:LearningParentSubjectGrade[]; assignments:LearningParentAssignment[]; mastery:LearningParentMastery[]; comments:LearningParentComment[]; recommendations:LearningParentRecommendation[]; xpTotal:number; currentStreak:number; badgesUnlocked:string[]; recentRewards:LearningParentReward[]; recentRewardNotifications:LearningParentRewardNotification[]; }
 export interface LearningParentInvitationInput { organizationId:string; parentEmail:string; parentName:string; studentUserId:string; relationship:string; }
