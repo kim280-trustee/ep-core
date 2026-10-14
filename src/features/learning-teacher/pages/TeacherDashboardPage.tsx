@@ -1,4 +1,4 @@
-import { AlertCircle, ArrowRight, BookOpen, ClipboardList, Library, Users } from "lucide-react";
+import { AlertCircle, ArrowRight, BookOpen, ClipboardCheck, ClipboardList, Library, Users } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
@@ -86,7 +86,7 @@ export default function TeacherDashboardPage() {
           <p className="mt-1 text-sm text-slate-500">Use these tools to prepare and deliver learning activities.</p>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           <DashboardTool
             to="/teacher/content"
             icon={Library}
@@ -107,6 +107,13 @@ export default function TeacherDashboardPage() {
             title="Create Assignment"
             description="Build an assignment and prepare it for students."
             action="Create Assignment"
+          />
+          <DashboardTool
+            to="/teacher/assessments"
+            icon={ClipboardCheck}
+            title="Assessment Builder"
+            description="Create multi-question diagnostics, quizzes, tests, and practice assessments."
+            action="Build Assessment"
           />
         </div>
       </section>
