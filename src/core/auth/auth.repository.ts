@@ -3,7 +3,7 @@ import type {
   Session,
 } from "@supabase/supabase-js";
 
-export type LoginDestination = "/teacher" | "/learning" | "/parent" | null;
+export type LoginDestination = "/teacher" | "/learning" | "/parent" | "/school-admin" | null;
 
 export interface AuthRepository {
   signIn(

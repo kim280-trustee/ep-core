@@ -42,7 +42,7 @@ export function LoginPage() {
         await authService.signOut();
         await refreshUser();
         throw new Error(
-          "This email is not linked to an E&P Learning student, teacher, or parent account. Contact your school administrator.",
+          "This email is not linked to an E&P Learning student, teacher, parent, or school administrator account. Contact your school administrator.",
         );
       }
 
@@ -52,7 +52,9 @@ export function LoginPage() {
         (destination === "/learning" &&
           (requestedPath === "/learning" || requestedPath?.startsWith("/learning/"))) ||
         (destination === "/parent" &&
-          (requestedPath === "/parent" || requestedPath?.startsWith("/parent/")));
+          (requestedPath === "/parent" || requestedPath?.startsWith("/parent/"))) ||
+        (destination === "/school-admin" &&
+          (requestedPath === "/school-admin" || requestedPath?.startsWith("/school-admin/")));
 
       await refreshUser();
       navigate(

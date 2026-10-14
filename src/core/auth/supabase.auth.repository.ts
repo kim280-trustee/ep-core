@@ -94,6 +94,12 @@ export class SupabaseAuthRepository
       return "/parent";
     }
 
+    const { data: permissionRows, error: permissionsError } = await supabase.rpc("get_current_user_permissions");
+    const permissions = permissionRows as { permission_code: string }[] | null;
+    if (!permissionsError && permissions?.some((permission) => permission.permission_code === "learning.academic.manage")) {
+      return "/school-admin";
+    }
+
     return null;
   }
 }
