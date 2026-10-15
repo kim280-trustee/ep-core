@@ -13,7 +13,7 @@ where c.title = 'M1 English Learning Sprint'
     select 1
     from public.learning_class_groups cg
     where cg.id = c.class_group_id
-      and cg.name = 'M1-MEP-A'
+      and cg.name in ('M1-MEP-A', 'M1 MEP English Pilot')
       and cg.organization_id = c.organization_id
   );
 
