@@ -19,6 +19,7 @@ export const learningContentService={
   updateContentStatus:(id:string,status:Parameters<typeof learningContentRepository.updateContentStatus>[1],reviewerId?:string)=>learningContentRepository.updateContentStatus(id,status,reviewerId),
   updateVersionStatus:(id:string,status:Parameters<typeof learningContentRepository.updateVersionStatus>[1],reviewerId?:string)=>learningContentRepository.updateVersionStatus(id,status,reviewerId),
   getStudentResponse:(assignmentId:string,contentItemId:string,studentUserId:string)=>learningContentRepository.getStudentResponse(assignmentId,contentItemId,studentUserId),
+  listStudentResponses:(studentUserId:string)=>learningContentRepository.listStudentResponses(studentUserId),
   saveStudentResponse:(input:Parameters<typeof learningContentRepository.saveStudentResponse>[0])=>learningContentRepository.saveStudentResponse(input),
   listTeacherResponses:(assignmentId:string)=>learningContentRepository.listTeacherResponses(assignmentId),
   gradeTeacherResponse:(input:Parameters<typeof learningContentRepository.gradeTeacherResponse>[0])=>learningContentRepository.gradeTeacherResponse(input),
