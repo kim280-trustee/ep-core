@@ -5,6 +5,8 @@ import { useAuth } from "@/core/auth";
 import { learningMasteryService } from "@/features/learning-mastery";
 import { learningAssignmentsService } from "@/features/learning-assignments";
 import { learningAssessmentService } from "@/features/learning-assessment";
+import { learningContentService } from "@/features/learning-content";
+import { Link } from "react-router-dom";
 
 const stateLabel: Record<string, string> = {
   not_started: "Not started",
@@ -25,14 +27,15 @@ export default function LearningProgressPage() {
   const query = useQuery({
     queryKey: ["learning", "progress", id],
     queryFn: async () => {
-      const [mastery, events, assignments, assignmentProgress, assessmentResults] = await Promise.all([
+      const [mastery, events, assignments, assignmentProgress, assessmentResults, contentResponses] = await Promise.all([
         learningMasteryService.listStudentMastery(id),
         learningMasteryService.listMasteryEvents(id),
         learningAssignmentsService.listStudentAssignments(user!.id),
         learningAssignmentsService.listProgress(id),
         learningAssessmentService.listResults(id),
+        learningContentService.listStudentResponses(id),
       ]);
-      return { mastery, events, assignments, assignmentProgress, assessmentResults };
+      return { mastery, events, assignments, assignmentProgress, assessmentResults, contentResponses };
     },
     enabled: Boolean(id),
   });
@@ -58,7 +61,7 @@ export default function LearningProgressPage() {
     return <ErrorState onRetry={() => void query.refetch()} />;
   }
 
-  const { mastery, events, assignments, assignmentProgress, assessmentResults } = query.data;
+  const { mastery, events, assignments, assignmentProgress, assessmentResults, contentResponses } = query.data;
   const average = mastery.length
     ? Math.round(
         mastery.reduce((sum, item) => sum + item.masteryScore, 0) / mastery.length,
@@ -103,15 +106,39 @@ export default function LearningProgressPage() {
           {assignments.length ? assignments.map((assignment) => {
             const progressItem = assignmentProgress.find((item) => item.assignmentId === assignment.id);
             const status = progressItem?.status ?? "not_started";
+            const response = contentResponses.find((item) => item.assignmentId === assignment.id && (item.score !== null || Boolean(item.teacherFeedback?.trim())));
+            const percentage = response?.score !== null && response?.score !== undefined && response.maxScore !== null && response.maxScore > 0
+              ? (response.score / response.maxScore) * 100
+              : null;
             return (
-              <div key={assignment.id} className="flex items-center justify-between gap-4 py-3 first:pt-0">
-                <div>
-                  <p className="text-sm font-medium text-slate-800">{assignment.title}</p>
-                  <p className="mt-1 text-xs text-slate-500">{assignment.code}</p>
+              <div key={assignment.id} className="py-3 first:pt-0">
+                <div className="flex items-center justify-between gap-4">
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium text-slate-800">{assignment.title}</p>
+                    <p className="mt-1 text-xs text-slate-500">{assignment.code}</p>
+                  </div>
+                  <span className={`shrink-0 rounded-full px-3 py-1 text-xs font-semibold ${status === "completed" ? "bg-emerald-100 text-emerald-700" : status === "in_progress" ? "bg-amber-100 text-amber-700" : "bg-slate-100 text-slate-700"}`}>
+                    {status === "completed" ? "Completed" : status === "in_progress" ? "In progress" : "Not started"}
+                  </span>
                 </div>
-                <span className={`rounded-full px-3 py-1 text-xs font-semibold ${status === "completed" ? "bg-emerald-100 text-emerald-700" : status === "in_progress" ? "bg-amber-100 text-amber-700" : "bg-slate-100 text-slate-700"}`}>
-                  {status === "completed" ? "Completed" : status === "in_progress" ? "In progress" : "Not started"}
-                </span>
+                {response && (
+                  <div className="mt-3 rounded-xl bg-slate-50 p-3">
+                    {response.score !== null && response.maxScore !== null && (
+                      <p className="text-sm font-semibold text-slate-900">
+                        Assignment grade: {response.score}/{response.maxScore}{percentage !== null ? ` · ${percentage.toFixed(2)}%` : ""}
+                      </p>
+                    )}
+                    {response.teacherFeedback?.trim() && (
+                      <div className="mt-2">
+                        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Teacher feedback</p>
+                        <p className="mt-1 whitespace-pre-wrap text-sm leading-6 text-slate-700">{response.teacherFeedback}</p>
+                      </div>
+                    )}
+                    <Link to={`/learning/assignments/${assignment.id}`} className="mt-2 inline-flex text-sm font-semibold text-blue-700 hover:underline">
+                      Review assignment results
+                    </Link>
+                  </div>
+                )}
               </div>
             );
           }) : <p className="text-sm text-slate-500">No published assignments yet.</p>}
