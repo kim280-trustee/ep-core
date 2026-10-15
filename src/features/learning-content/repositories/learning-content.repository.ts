@@ -74,6 +74,7 @@ export interface LearningContentRepository {
   updateContentStatus(id: string, status: LearningContentStatus, reviewerId?: string): Promise<LearningContentItem>;
   updateVersionStatus(id: string, status: LearningContentStatus, reviewerId?: string): Promise<LearningContentVersion>;
   getStudentResponse(assignmentId: string, contentItemId: string, studentUserId: string): Promise<LearningContentResponse | null>;
+  listStudentResponses(studentUserId: string): Promise<LearningContentResponse[]>;
   saveStudentResponse(input: { organizationId: string; assignmentId: string; contentItemId: string; contentVersionId: string | null; studentUserId: string; responseText: string; status: "draft" | "submitted" }): Promise<LearningContentResponse>;
   listTeacherResponses(assignmentId: string): Promise<(LearningContentResponse & { studentName: string; studentEmail: string | null })[]>;
   gradeTeacherResponse(input: { responseId: string; score: number; maxScore: number; teacherFeedback?: string | null }): Promise<string>;
@@ -140,6 +141,11 @@ export const learningContentRepository: LearningContentRepository = {
     if(error)throw error;
     if(!data)return null;
     return mapContentResponse(data);
+  },
+  async listStudentResponses(studentUserId){
+    const {data,error}=await supabase.from("learning_content_responses").select("*").eq("student_user_id",studentUserId).order("updated_at",{ascending:false});
+    if(error)throw error;
+    return(data??[]).map(mapContentResponse);
   },
   async listTeacherResponses(assignmentId){
     const {data,error}=await supabase.from("learning_content_responses").select("*").eq("assignment_id",assignmentId).order("submitted_at",{ascending:false});
