@@ -5,6 +5,7 @@ import { useAuth } from "@/core/auth";
 import { learningAssignmentsService } from "@/features/learning-assignments";
 import { learningAssessmentService } from "@/features/learning-assessment";
 import { learningActivityService } from "@/features/learning-activity";
+import { learningContentService } from "@/features/learning-content";
 
 function dateLabel(value: string | null) {
   if (!value) return "No due date";
@@ -23,7 +24,21 @@ export default function LearningAssignmentDetailPage() {
 
   const query = useQuery({
     queryKey: ["learning", "assignment", id, user?.id],
-    queryFn: async () => { const result = await learningAssignmentsService.getStudentAssignment(id, user!.id); const assessmentIds = result.items.filter(i => i.itemType === "assessment" && i.assessmentId).map(i => i.assessmentId as string); if (!assessmentIds.length) return { ...result, assessmentResults: [] }; const [attempts, results] = await Promise.all([learningAssessmentService.listAttempts(user!.id), learningAssessmentService.listResults(user!.id)]); const attemptIds = new Set(attempts.filter(a => assessmentIds.includes(a.assessmentId)).map(a => a.id)); return { ...result, assessmentResults: results.filter(r => attemptIds.has(r.attemptId)).sort((a,b) => new Date(b.evaluatedAt).getTime()-new Date(a.evaluatedAt).getTime()) }; },
+    queryFn: async () => {
+      const result = await learningAssignmentsService.getStudentAssignment(id, user!.id);
+      const assessmentIds = result.items.filter((item) => item.itemType === "assessment" && item.assessmentId).map((item) => item.assessmentId as string);
+      const [attempts, results, contentResponses] = await Promise.all([
+        assessmentIds.length ? learningAssessmentService.listAttempts(user!.id) : Promise.resolve([]),
+        assessmentIds.length ? learningAssessmentService.listResults(user!.id) : Promise.resolve([]),
+        learningContentService.listStudentResponses(user!.id),
+      ]);
+      const attemptIds = new Set(attempts.filter((attempt) => assessmentIds.includes(attempt.assessmentId)).map((attempt) => attempt.id));
+      return {
+        ...result,
+        assessmentResults: results.filter((item) => attemptIds.has(item.attemptId)).sort((a, b) => new Date(b.evaluatedAt).getTime() - new Date(a.evaluatedAt).getTime()),
+        contentResponses: contentResponses.filter((response) => response.assignmentId === id),
+      };
+    },
     enabled: Boolean(id && user?.id),
   });
 
@@ -208,6 +223,33 @@ export default function LearningAssignmentDetailPage() {
           </p>
         )}
       </section>
+
+      {query.data.contentResponses.some((response) => response.score !== null || Boolean(response.teacherFeedback?.trim())) && (
+        <section aria-labelledby="assignment-feedback-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+          <h2 id="assignment-feedback-heading" className="text-lg font-semibold text-slate-900">Grades and teacher feedback</h2>
+          <div className="mt-4 space-y-4">
+            {query.data.contentResponses.filter((response) => response.score !== null || Boolean(response.teacherFeedback?.trim())).map((response) => (
+              <article key={response.id} className="rounded-xl bg-slate-50 p-4">
+                {response.score !== null && response.maxScore !== null && (
+                  <p className="text-xl font-bold text-slate-900">
+                    {response.score}/{response.maxScore}
+                    <span className="ml-2 text-sm font-semibold text-slate-600">
+                      ({response.maxScore > 0 ? ((response.score / response.maxScore) * 100).toFixed(2) : "0.00"}%)
+                    </span>
+                  </p>
+                )}
+                {response.teacherFeedback?.trim() && (
+                  <div className="mt-3">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Teacher feedback</p>
+                    <p className="mt-1 whitespace-pre-wrap text-sm leading-6 text-slate-700">{response.teacherFeedback}</p>
+                  </div>
+                )}
+                {response.score === null && <p className="text-sm text-slate-600">Submitted — awaiting teacher grading.</p>}
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">
