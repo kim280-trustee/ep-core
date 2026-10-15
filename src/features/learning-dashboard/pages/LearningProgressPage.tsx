@@ -106,7 +106,7 @@ export default function LearningProgressPage() {
           {assignments.length ? assignments.map((assignment) => {
             const progressItem = assignmentProgress.find((item) => item.assignmentId === assignment.id);
             const status = progressItem?.status ?? "not_started";
-            const response = contentResponses.find((item) => item.assignmentId === assignment.id && (item.score !== null || Boolean(item.teacherFeedback?.trim())));
+            const response = contentResponses.find((item) => item.assignmentId === assignment.id && item.status === "submitted");
             const percentage = response?.score !== null && response?.score !== undefined && response.maxScore !== null && response.maxScore > 0
               ? (response.score / response.maxScore) * 100
               : null;
@@ -123,10 +123,12 @@ export default function LearningProgressPage() {
                 </div>
                 {response && (
                   <div className="mt-3 rounded-xl bg-slate-50 p-3">
-                    {response.score !== null && response.maxScore !== null && (
+                    {response.score !== null && response.maxScore !== null ? (
                       <p className="text-sm font-semibold text-slate-900">
                         Assignment grade: {response.score}/{response.maxScore}{percentage !== null ? ` · ${percentage.toFixed(2)}%` : ""}
                       </p>
+                    ) : (
+                      <p className="text-sm font-medium text-slate-600">Submitted — awaiting teacher grading</p>
                     )}
                     {response.teacherFeedback?.trim() && (
                       <div className="mt-2">
