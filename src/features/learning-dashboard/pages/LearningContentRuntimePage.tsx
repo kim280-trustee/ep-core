@@ -294,6 +294,31 @@ export default function LearningContentRuntimePage() {
           {completeMutation.isError && <p className="mt-3 text-sm text-red-600">{completeMutation.error instanceof Error ? completeMutation.error.message : "Could not complete this activity."}</p>}
         </section>
       )}
+      {responseQuery.data?.status === "submitted" && (
+        <section aria-labelledby="student-result-heading" className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+          <h2 id="student-result-heading" className="text-lg font-semibold text-slate-900">Your result</h2>
+          {responseQuery.data.score !== null && responseQuery.data.maxScore !== null ? (
+            <div className="mt-3">
+              <p className="text-2xl font-bold text-slate-900">
+                {responseQuery.data.score} / {responseQuery.data.maxScore}
+                <span className="ml-2 text-base font-semibold text-slate-600">
+                  ({responseQuery.data.maxScore > 0 ? ((responseQuery.data.score / responseQuery.data.maxScore) * 100).toFixed(2) : "0.00"}%)
+                </span>
+              </p>
+              <p className="mt-1 text-sm text-emerald-700">Graded by your teacher</p>
+            </div>
+          ) : (
+            <p className="mt-2 text-sm text-slate-600">Your response has been submitted and is awaiting teacher grading.</p>
+          )}
+          {responseQuery.data.teacherFeedback?.trim() && (
+            <div className="mt-4 rounded-xl bg-slate-50 p-4">
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Teacher feedback</p>
+              <p className="mt-2 whitespace-pre-wrap text-sm leading-6 text-slate-800">{responseQuery.data.teacherFeedback}</p>
+            </div>
+          )}
+        </section>
+      )}
+
       <div className="flex flex-wrap gap-3">
         <Link to={`/learning/assignments/${id}`} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800">
           <ArrowLeft size={17} />Return to assignment
