@@ -57,6 +57,7 @@ function AssignmentCard({ assignment, progress }: { assignment: (Awaited<ReturnT
           <span className="rounded-xl bg-slate-100 p-2 text-slate-600"><BookOpen size={20} /></span>
           <div className="min-w-0">
             <h2 className="font-semibold text-slate-900">{assignment.title}</h2>
+            <p className="mt-1 text-xs font-medium text-slate-500">Code: {assignment.code}</p>
             <p className="mt-1 text-sm text-slate-500">{assignment.description || "Learning assignment"}</p>
           </div>
         </div>
