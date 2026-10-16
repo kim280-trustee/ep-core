@@ -35,3 +35,14 @@ export interface LearningAttendanceHistoryRow {
   excused: number;
   marked: number;
 }
+export interface SchoolAttendanceReportRow {
+  classGroupId: string;
+  className: string;
+  classCode: string;
+  attendanceDate: string;
+  presentCount: number;
+  absentCount: number;
+  lateCount: number;
+  excusedCount: number;
+  markedCount: number;
+}
