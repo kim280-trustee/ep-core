@@ -39,6 +39,21 @@ function errorText(error: unknown): string {
   return "The operation could not be completed. Check your access and the entered values, then try again.";
 }
 
+function attendanceCsvCell(value: string): string {
+  const safeValue = /^[=+@\-\t\r]/.test(value) ? "'" + value : value;
+  return /[",\r\n]/.test(safeValue) ? '"' + safeValue.replace(/"/g, '""') + '"' : safeValue;
+}
+
+function downloadAttendanceCsv(filename: string, rows: string[][]) {
+  const csv = "\uFEFF" + rows.map((row) => row.map(attendanceCsvCell).join(",")).join("\r\n");
+  const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8;" }));
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = filename;
+  anchor.click();
+  window.setTimeout(() => URL.revokeObjectURL(url), 0);
+}
+
 function Section({ title, description, children }: { title: string; description: string; children: ReactNode }) {
   return (
     <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
@@ -144,6 +159,19 @@ export default function SchoolAdministrationPage() {
   });
   const roster = rosterQuery.data ?? [];
   const activeStudents = roster.filter((member) => member.membershipType === "student" && member.status === "active");
+  const exportAttendance = () => {
+    const selectedClass = allClassGroups.find((group) => group.id === classGroupId);
+    const rows = [
+      ["school", organizations.find((item) => item.id === organizationId)?.name ?? "", "class", selectedClass?.name ?? "", "date", attendanceDate],
+      ["student_name", "student_email", "status", "note"],
+      ...activeStudents.map((student) => {
+        const account = userById.get(student.userId);
+        return [account?.name ?? "Student account", account?.email ?? student.userId, getAttendanceStatus(student.userId), getAttendanceNote(student.userId)];
+      }),
+    ];
+    const safeClass = (selectedClass?.code || selectedClass?.name || "class").replace(/[^a-z0-9_-]+/gi, "-");
+    downloadAttendanceCsv(`attendance-${safeClass}-${attendanceDate}.csv`, rows);
+  };
   const attendanceContextKey = `${organizationId}:${classGroupId}:${attendanceDate}`;
   const attendanceQuery = useQuery({
     queryKey: ["school-admin", "attendance", organizationId, classGroupId, attendanceDate],
@@ -174,6 +202,19 @@ export default function SchoolAdministrationPage() {
   });
   const eligibleUsers = eligibleUsersQuery.data ?? [];
   const userById = new Map(eligibleUsers.map((item) => [item.id, item]));
+  const exportRoster = () => {
+    const selectedClass = allClassGroups.find((group) => group.id === classGroupId);
+    const rows = [
+      ["school", organizations.find((item) => item.id === organizationId)?.name ?? "", "class", selectedClass?.name ?? ""],
+      ["account_name", "email", "user_id", "class_role", "membership_status"],
+      ...roster.map((member) => {
+        const account = userById.get(member.userId);
+        return [account?.name ?? "School account", account?.email ?? "", member.userId, member.membershipType, member.status];
+      }),
+    ];
+    const safeClass = (selectedClass?.code || selectedClass?.name || "class").replace(/[^a-z0-9_-]+/gi, "-");
+    downloadAttendanceCsv(`roster-${safeClass}.csv`, rows);
+  };
   const existingMembershipKeys = new Set(roster.map((item) => item.userId + ":" + item.membershipType));
   const addableUsers = eligibleUsers.filter((item) => !existingMembershipKeys.has(item.id + ":" + membershipType));
   const activeClassSubjects = classSubjects.filter((item) => item.status === "active");
@@ -322,7 +363,7 @@ export default function SchoolAdministrationPage() {
             <h1 className="mt-1 text-2xl font-bold sm:text-3xl">School setup</h1>
             <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">Set up academic years and terms, create classes, attach subjects, and manage teacher and student rosters. Changes are saved to the school database.</p>
           </div>
-          <Link to="/teacher" className="rounded-xl border border-white/30 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10">Teacher workspace</Link>
+          <div className="flex flex-wrap gap-2"><Link to="/school-admin/timetable" className="rounded-xl border border-white/30 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10">Timetable</Link><Link to="/teacher" className="rounded-xl border border-white/30 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10">Teacher workspace</Link></div>
         </div>
         <div className="mt-5 max-w-xl">
           <label className="block text-sm font-medium text-slate-200">School / organization
@@ -407,6 +448,10 @@ export default function SchoolAdministrationPage() {
                     <Field label="Class role"><select className={fieldClass} value={membershipType} onChange={(event) => { setMembershipType(event.target.value as "student" | "teacher"); setUserToAdd(""); }}><option value="student">Student</option><option value="teacher">Teacher</option></select></Field>
                     <div className="flex items-end"><button type="button" className={buttonClass} disabled={!userToAdd || saveMutation.isPending} onClick={async () => { const selectedUserId = userToAdd; try { await saveMutation.mutateAsync(() => learningEnrollmentService.addMember({ tenantId: user.tenantId, organizationId, classGroupId, userId: selectedUserId, membershipType, status: "active" })); setUserToAdd(""); } catch { /* The mutation displays the failure above the forms. */ } }}>Add to class</button></div>
                   </div>
+                  <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+                    <p className="text-xs text-slate-500">Export includes every membership shown below, including inactive memberships.</p>
+                    <button type="button" className={secondaryButtonClass} disabled={rosterQuery.isPending || rosterQuery.isError || !roster.length} onClick={exportRoster}>Export roster CSV</button>
+                  </div>
                   <div className="mt-5 overflow-x-auto">
                     {rosterQuery.isPending ? <p className="py-4 text-sm text-slate-500">Loading roster…</p> : roster.length ? (
                       <table className="min-w-full text-left text-sm">
@@ -436,6 +481,7 @@ export default function SchoolAdministrationPage() {
                   <div className="flex flex-wrap items-end gap-3">
                     <Field label="Attendance date"><input className={fieldClass} type="date" required value={attendanceDate} onChange={(event) => setAttendanceDate(event.target.value)} /></Field>
                     <button type="button" className={secondaryButtonClass} disabled={!activeStudents.length || saveMutation.isPending} onClick={() => setAttendanceDraft((current) => ({ contextKey: attendanceContextKey, statuses: { ...(current.contextKey === attendanceContextKey ? current.statuses : {}), ...Object.fromEntries(activeStudents.map((student) => [student.userId, "present" as const])) }, notes: current.contextKey === attendanceContextKey ? current.notes : {} }))}>Mark all present</button>
+                    <button type="button" className={secondaryButtonClass} disabled={!activeStudents.length || attendanceQuery.isPending} onClick={exportAttendance}>Export CSV</button>
                     <button type="button" className={buttonClass} disabled={!activeStudents.length || attendanceQuery.isPending || saveMutation.isPending} onClick={() => {
                       const records = activeStudents.map((student) => ({ studentUserId: student.userId, status: getAttendanceStatus(student.userId), note: getAttendanceNote(student.userId) }));
                       void saveMutation.mutateAsync(() => learningAttendanceService.saveRegister({ tenantId: user.tenantId, organizationId, classGroupId, attendanceDate, takenBy: user.id, records }));
