@@ -72,6 +72,14 @@ begin
         and l.student_user_id = p_student_user_id
         and l.status = 'active'
     )
+    and exists (
+      select 1
+      from public.learning_class_memberships cm
+      where cm.organization_id = e.organization_id
+        and cm.user_id = p_student_user_id
+        and cm.membership_type = 'student'
+        and cm.status = 'active'
+    )
   group by e.organization_id
   order by e.organization_id;
 end;
