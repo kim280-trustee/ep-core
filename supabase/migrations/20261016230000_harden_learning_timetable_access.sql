@@ -15,8 +15,12 @@ begin
       using errcode = '42501';
   end if;
 
-  if new.created_by is distinct from public.learning_current_user_id() then
+  if tg_op = 'INSERT' and new.created_by is distinct from public.learning_current_user_id() then
     raise exception 'The timetable creator must be the signed-in E&P user'
+      using errcode = '42501';
+  end if;
+  if tg_op = 'UPDATE' and new.created_by is distinct from old.created_by then
+    raise exception 'The original timetable creator cannot be changed'
       using errcode = '42501';
   end if;
 
@@ -110,10 +114,7 @@ create policy learning_timetable_insert
 create policy learning_timetable_update
   on public.learning_timetable_entries for update to authenticated
   using (public.learning_can_manage_academic_records(organization_id))
-  with check (
-    public.learning_can_manage_academic_records(organization_id)
-    and created_by = public.learning_current_user_id()
-  );
+  with check (public.learning_can_manage_academic_records(organization_id));
 
 create policy learning_timetable_delete
   on public.learning_timetable_entries for delete to authenticated
