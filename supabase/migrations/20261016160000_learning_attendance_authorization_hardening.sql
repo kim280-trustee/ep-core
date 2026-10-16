@@ -13,7 +13,7 @@ drop policy if exists learning_attendance_records_delete on public.learning_atte
 create policy learning_attendance_sessions_select
   on public.learning_attendance_sessions for select to authenticated
   using (
-    (public.has_permission('learning.academic.manage') and public.is_organization_member(organization_id))
+    (exists (select 1 from public.get_current_user_permissions() permission where permission.permission_code = 'learning.academic.manage') and public.is_organization_member(organization_id))
     or exists (
       select 1
       from public.learning_class_memberships cm
@@ -31,7 +31,7 @@ create policy learning_attendance_sessions_insert
   with check (
     taken_by = public.learning_current_user_id()
     and (
-      (public.has_permission('learning.academic.manage') and public.is_organization_member(organization_id))
+      (exists (select 1 from public.get_current_user_permissions() permission where permission.permission_code = 'learning.academic.manage') and public.is_organization_member(organization_id))
       or exists (
         select 1
         from public.learning_class_memberships cm
@@ -48,7 +48,7 @@ create policy learning_attendance_sessions_insert
 create policy learning_attendance_sessions_update
   on public.learning_attendance_sessions for update to authenticated
   using (
-    (public.has_permission('learning.academic.manage') and public.is_organization_member(organization_id))
+    (exists (select 1 from public.get_current_user_permissions() permission where permission.permission_code = 'learning.academic.manage') and public.is_organization_member(organization_id))
     or exists (
       select 1
       from public.learning_class_memberships cm
@@ -63,7 +63,7 @@ create policy learning_attendance_sessions_update
   with check (
     taken_by = public.learning_current_user_id()
     and (
-      (public.has_permission('learning.academic.manage') and public.is_organization_member(organization_id))
+      (exists (select 1 from public.get_current_user_permissions() permission where permission.permission_code = 'learning.academic.manage') and public.is_organization_member(organization_id))
       or exists (
         select 1
         from public.learning_class_memberships cm
@@ -87,7 +87,7 @@ create policy learning_attendance_records_select
         and s.tenant_id = learning_attendance_records.tenant_id
         and s.organization_id = learning_attendance_records.organization_id
         and (
-          (public.has_permission('learning.academic.manage') and public.is_organization_member(s.organization_id))
+          (exists (select 1 from public.get_current_user_permissions() permission where permission.permission_code = 'learning.academic.manage') and public.is_organization_member(s.organization_id))
           or exists (
             select 1
             from public.learning_class_memberships cm
@@ -113,7 +113,7 @@ create policy learning_attendance_records_insert
         and s.tenant_id = learning_attendance_records.tenant_id
         and s.organization_id = learning_attendance_records.organization_id
         and (
-          (public.has_permission('learning.academic.manage') and public.is_organization_member(s.organization_id))
+          (exists (select 1 from public.get_current_user_permissions() permission where permission.permission_code = 'learning.academic.manage') and public.is_organization_member(s.organization_id))
           or exists (
             select 1
             from public.learning_class_memberships teacher_cm
@@ -148,7 +148,7 @@ create policy learning_attendance_records_update
         and s.tenant_id = learning_attendance_records.tenant_id
         and s.organization_id = learning_attendance_records.organization_id
         and (
-          (public.has_permission('learning.academic.manage') and public.is_organization_member(s.organization_id))
+          (exists (select 1 from public.get_current_user_permissions() permission where permission.permission_code = 'learning.academic.manage') and public.is_organization_member(s.organization_id))
           or exists (
             select 1
             from public.learning_class_memberships cm
@@ -171,7 +171,7 @@ create policy learning_attendance_records_update
         and s.tenant_id = learning_attendance_records.tenant_id
         and s.organization_id = learning_attendance_records.organization_id
         and (
-          (public.has_permission('learning.academic.manage') and public.is_organization_member(s.organization_id))
+          (exists (select 1 from public.get_current_user_permissions() permission where permission.permission_code = 'learning.academic.manage') and public.is_organization_member(s.organization_id))
           or exists (
             select 1
             from public.learning_class_memberships teacher_cm
@@ -206,7 +206,7 @@ create policy learning_attendance_records_delete
         and s.tenant_id = learning_attendance_records.tenant_id
         and s.organization_id = learning_attendance_records.organization_id
         and (
-          (public.has_permission('learning.academic.manage') and public.is_organization_member(s.organization_id))
+          (exists (select 1 from public.get_current_user_permissions() permission where permission.permission_code = 'learning.academic.manage') and public.is_organization_member(s.organization_id))
           or exists (
             select 1
             from public.learning_class_memberships cm
