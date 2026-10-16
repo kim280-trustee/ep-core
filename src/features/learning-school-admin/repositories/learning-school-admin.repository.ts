@@ -71,7 +71,8 @@ export const learningSchoolAdminRepository = {
       .order("name", { ascending: true });
     if (error) throw error;
     return ((data ?? []) as UserRow[]).map(mapUser);
-  },,
+  },
+
   async listStaff(organizationId: string) {
     const { data: memberships, error } = await supabase.from("organization_memberships").select("id,tenant_id,user_id,role_id,status").eq("organization_id", organizationId);
     if (error) throw error;
@@ -86,6 +87,34 @@ export const learningSchoolAdminRepository = {
     const { data: users, error: userError } = await supabase.from("users").select("id,name,email").eq("tenant_id", tenantId).in("id", ids);
     if (userError) throw userError;
     const byId = new Map(((users ?? []) as UserRow[]).map((item) => [item.id, item]));
-    return staff.map((item) => ({ membershipId: item.id, userId: item.user_id, name: byId.get(item.user_id)?.name ?? "Unnamed user", email: byId.get(item.user_id)?.email ?? "", status: item.status }));
+    const { data: classMemberships, error: classMembershipError } = await supabase
+      .from("learning_class_memberships")
+      .select("user_id,class_group_id,status")
+      .eq("organization_id", organizationId)
+      .eq("membership_type", "teacher");
+    if (classMembershipError) throw classMembershipError;
+    const activeTeacherMemberships = (classMemberships ?? []).filter((item) => item.status === "active");
+    const classIds = [...new Set(activeTeacherMemberships.map((item) => item.class_group_id))];
+    const { data: classes, error: classError } = classIds.length
+      ? await supabase.from("learning_class_groups").select("id,name,code").eq("organization_id", organizationId).in("id", classIds)
+      : { data: [], error: null };
+    if (classError) throw classError;
+    const classById = new Map((classes ?? []).map((item) => [item.id, item]));
+    const assignmentsByUser = new Map<string, string[]>();
+    for (const membership of activeTeacherMemberships) {
+      const classGroup = classById.get(membership.class_group_id);
+      if (!classGroup) continue;
+      const assignments = assignmentsByUser.get(membership.user_id) ?? [];
+      assignments.push(classGroup.name || classGroup.code);
+      assignmentsByUser.set(membership.user_id, assignments);
+    }
+    return staff.map((item) => ({
+      membershipId: item.id,
+      userId: item.user_id,
+      name: byId.get(item.user_id)?.name ?? "Unnamed user",
+      email: byId.get(item.user_id)?.email ?? "",
+      status: item.status,
+      teachingAssignments: [...new Set(assignmentsByUser.get(item.user_id) ?? [])].sort((a, b) => a.localeCompare(b)),
+    }));
   },
 };
