@@ -39,7 +39,8 @@ begin
   if not found then
     raise exception 'Staff membership was not found';
   end if;
-  if not public.learning_can_manage_academic_records(v_organization_id) then
+  if not public.is_organization_member(v_organization_id)
+     or not public.has_permission('learning.academic.manage') then
     raise exception 'You do not have permission to manage staff in this school';
   end if;
   if v_user_id = v_actor then
