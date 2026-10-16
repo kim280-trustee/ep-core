@@ -5241,6 +5241,7 @@ export type Database = {
       }
       get_current_user_tenant_id: { Args: never; Returns: string }
       has_permission: { Args: { permission_code: string }; Returns: boolean }
+      set_learning_staff_membership_status: { Args: { p_membership_id: string; p_status: string }; Returns: boolean }
       is_organization_member: {
         Args: { target_organization_id: string }
         Returns: boolean
