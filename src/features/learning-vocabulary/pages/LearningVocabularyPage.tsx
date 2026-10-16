@@ -199,7 +199,7 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
     recognition.onresult = (event) => {
       receivedResult = true;
       const transcript = event.results[0]?.[0]?.transcript ?? "";
-      const normalize = (value: string) => value.normalize("NFKD").toLocaleLowerCase().replace(/[^\\p{L}\\p{N}]+/gu, " ").trim();
+      const normalize = (value: string) => value.normalize("NFKD").toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
       const matched = normalize(transcript) === normalize(word);
       setSpeechNotice(matched
         ? "Speech recognition matched the target word. This is a transcript match, not a phoneme-level pronunciation score."
