@@ -58,6 +58,45 @@ export const learningParentRepository={
     const{data,error}=await supabase.functions.invoke("invite-parent",{body:input});if(error)throw error;if(data?.error)throw new Error(data.error);return data as{invitationId:string;sent:boolean};
   },
   async acceptInvitation(invitationId:string){const{data,error}=await supabase.rpc("accept_learning_parent_invitation",{p_invitation_id:invitationId});if(error)throw error;if(typeof data!=="string"||!data)throw new Error("This invitation has expired or is no longer active.");return data as string;},
+  async getVocabularySummary(studentUserId: string): Promise<{
+    vocabularyCount: number;
+    practicedCount: number;
+    knownCount: number;
+    dueCount: number;
+    reviewAttempts: number;
+    accuracyPercent: number | null;
+    organizationCount: number;
+  }> {
+    const rpcClient = supabase as unknown as {
+      rpc: (name: string, args: Record<string, unknown>) => Promise<{
+        data: unknown;
+        error: { message: string } | null;
+      }>;
+    };
+    const { data, error } = await rpcClient.rpc("get_learning_parent_vocabulary_summary", {
+      p_student_user_id: studentUserId,
+    });
+    if (error) throw new Error(error.message);
+    const rows = Array.isArray(data) ? data as Array<Record<string, unknown>> : [];
+    const total = (key: string) => rows.reduce((sum, row) => sum + Number(row[key] ?? 0), 0);
+    const vocabularyCount = total("vocabulary_count");
+    const practicedCount = total("practiced_count");
+    const knownCount = total("known_count");
+    const dueCount = total("due_count");
+    const reviewAttempts = total("review_attempts");
+    const correctAnswers = total("correct_answers");
+    const answeredCount = total("answered_count");
+    return {
+      vocabularyCount,
+      practicedCount,
+      knownCount,
+      dueCount,
+      reviewAttempts,
+      accuracyPercent: answeredCount > 0 ? Math.round((correctAnswers / answeredCount) * 1000) / 10 : null,
+      organizationCount: rows.length,
+    };
+  },
+
   async getOverview(studentUserId:string):Promise<LearningParentOverview>{
     const[{data:student,error:studentError},{data:grades,error:gradeError},{data:memberships,error:membershipError},{data:mastery,error:masteryError},{data:recommendations,error:recommendationError},{data:comments,error:commentError},{data:rewardRows,error:rewardError},{data:notificationRows,error:notificationError},verifiedContentCompletions]=await Promise.all([
       supabase.from("users").select("id,name,email").eq("id",studentUserId).single(),
