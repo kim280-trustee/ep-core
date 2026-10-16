@@ -202,9 +202,9 @@ export default function TeacherVocabularyAssignmentPage() {
         return { assignmentId: assignment.id, assessmentId: assessment.id, questionCount: createdQuestionIds.length };
       } catch (error) {
         const partial = assignmentId
-          ? " A draft assignment may remain; open Authoring to inspect it."
+          ? " An assignment may have been created before publishing failed; inspect Authoring before retrying."
           : assessmentId
-            ? " A draft assessment or questions may remain; inspect the Assessment Builder before retrying."
+            ? " The assessment or some questions may already exist, possibly published without an assignment. Inspect Assessment Builder before retrying."
             : "";
         throw new Error(errorText(error) + partial);
       }
