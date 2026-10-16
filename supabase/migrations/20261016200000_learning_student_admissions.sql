@@ -99,7 +99,7 @@ begin
   if exists (
     select 1 from public.users u
     where lower(u.email) = v_email
-      and u.auth_user_id is not null
+      and (u.auth_user_id is not null or u.tenant_id <> v_tenant_id)
   ) then
     raise exception 'An E&P account already exists for this email. Add the existing account to the class roster instead.';
   end if;
@@ -288,7 +288,7 @@ begin
     v_profile_id, 'student', 'active', now(), now()
   )
   on conflict (class_group_id, user_id, membership_type)
-  do update set status = 'active', joined_at = coalesce(public.learning_class_memberships.joined_at, now()), updated_at = now();
+  do update set status = 'active', joined_at = coalesce(learning_class_memberships.joined_at, now()), updated_at = now();
 
   update public.learning_student_invitations
   set status = 'accepted', accepted_by = v_profile_id,
