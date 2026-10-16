@@ -10,7 +10,6 @@ import { learningSchoolAdminService } from "../services/learning-school-admin.se
 
 const fieldClass = "mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900";
 const buttonClass = "inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50";
-const secondaryButtonClass = "inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 disabled:opacity-50";
 
 function errorText(error: unknown): string {
   return error instanceof Error && error.message ? error.message : "The parent link could not be saved. Check your school access and try again.";
