@@ -4880,6 +4880,21 @@ export type Database = {
           vocabulary_entry_id: string
         }
       }
+      get_learning_vocabulary_analytics: {
+        Args: { p_organization_id: string }
+        Returns: {
+          vocabulary_entry_id: string
+          word: string
+          topic: string | null
+          students_practiced: number
+          students_known: number
+          students_due: number
+          review_count: number
+          correct_count: number
+          incorrect_count: number
+          accuracy_percent: number
+        }[]
+      }
       get_learning_class_leaderboard: {
         Args: { p_class_group_id: string }
         Returns: {
