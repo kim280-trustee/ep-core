@@ -20,12 +20,16 @@ create table public.learning_timetable_entries (
   constraint learning_timetable_org_class_fk
     foreign key (organization_id, class_group_id)
     references public.learning_class_groups(organization_id, id) on delete cascade,
+  constraint learning_timetable_subject_fk
+    foreign key (subject_id) references public.learning_subjects(id) on delete restrict,
+  constraint learning_timetable_class_slot_unique
+    unique (class_group_id, day_of_week, starts_at),
   constraint learning_timetable_org_fk
     foreign key (tenant_id, organization_id)
     references public.organizations(tenant_id, id) on delete cascade,
   constraint learning_timetable_teacher_fk
     foreign key (tenant_id, teacher_user_id)
-    references public.users(tenant_id, id) on delete set null,
+    references public.users(tenant_id, id) on delete restrict,
   constraint learning_timetable_creator_fk
     foreign key (tenant_id, created_by)
     references public.users(tenant_id, id) on delete restrict
