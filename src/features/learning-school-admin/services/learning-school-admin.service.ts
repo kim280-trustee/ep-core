@@ -4,4 +4,5 @@ export const learningSchoolAdminService = {
   listManageableOrganizations: learningSchoolAdminRepository.listManageableOrganizations,
   listEligibleUsers: learningSchoolAdminRepository.listEligibleUsers,
   listStaff: learningSchoolAdminRepository.listStaff,
+  setStaffMembershipStatus: learningSchoolAdminRepository.setStaffMembershipStatus,
 };
