@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { supabase } from "@/core/infrastructure/supabase/client";
+import { learningEnrollmentService } from "@/features/learning-enrollment";
 
 export default function StudentInvitationPage() {
   const navigate = useNavigate();
@@ -26,14 +26,7 @@ export default function StudentInvitationPage() {
           return;
         }
 
-        const { data: acceptedUserId, error: acceptError } = await supabase.rpc(
-          "accept_learning_student_invitation",
-          { p_invitation_id: String(invitationId) },
-        );
-        if (acceptError) throw acceptError;
-        if (typeof acceptedUserId !== "string" || !acceptedUserId) {
-          throw new Error("This invitation has expired or is no longer active. Ask the school to send a new invitation.");
-        }
+        await learningEnrollmentService.acceptStudentInvitation(String(invitationId));
         if (active) {
           setStatus("Invitation accepted. Your class enrollment is complete. Redirecting to the student workspace…");
           redirectTimer = window.setTimeout(() => {
