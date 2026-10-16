@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { FormEvent, ReactNode } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAuth } from "@/core/auth";
@@ -16,6 +16,60 @@ import type {
 const inputClass = "mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200";
 const primaryButton = "inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50";
 const secondaryButton = "inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50";
+
+
+const vocabularyCsvHeaders = [
+  "word", "definition", "exampleSentence", "translation", "pronunciation",
+  "partOfSpeech", "topic", "languageCode", "translationLanguageCode",
+  "difficulty", "wordForms", "synonyms", "antonyms",
+] as const;
+
+function parseCsv(text: string): string[][] {
+  const rows: string[][] = [];
+  let row: string[] = [];
+  let cell = "";
+  let quoted = false;
+  for (let i = 0; i < text.length; i += 1) {
+    const char = text[i];
+    if (char === '"') {
+      if (quoted && text[i + 1] === '"') { cell += '"'; i += 1; }
+      else quoted = !quoted;
+    } else if (char === "," && !quoted) {
+      row.push(cell); cell = "";
+    } else if ((char === "\n" || char === "\r") && !quoted) {
+      if (char === "\r" && text[i + 1] === "\n") i += 1;
+      row.push(cell); rows.push(row); row = []; cell = "";
+    } else {
+      cell += char;
+    }
+  }
+  if (quoted) throw new Error("The CSV file has an unclosed quoted field.");
+  if (cell.length || row.length) { row.push(cell); rows.push(row); }
+  return rows.filter((item) => item.some((value) => value.trim() !== ""));
+}
+
+function csvCell(value: string | null | undefined): string {
+  const normalized = value ?? "";
+  return /[",\r\n]/.test(normalized) ? '"' + normalized.replace(/"/g, '""') + '"' : normalized;
+}
+
+function downloadVocabularyCsv(entries: LearningVocabularyEntry[], filename: string) {
+  const rows = [
+    [...vocabularyCsvHeaders, "status"].join(","),
+    ...entries.map((entry) => [
+      entry.word, entry.definition, entry.exampleSentence, entry.translation, entry.pronunciation,
+      entry.partOfSpeech, entry.topic, entry.languageCode, entry.translationLanguageCode,
+      entry.difficulty, entry.wordForms.join("; "), entry.synonyms.join("; "), entry.antonyms.join("; "), entry.status,
+    ].map((value) => csvCell(value)).join(",")),
+  ];
+  const blob = new Blob(["\uFEFF", rows.join("\r\n")], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = filename;
+  anchor.click();
+  URL.revokeObjectURL(url);
+}
 
 type VocabularyForm = {
   word: string;
@@ -88,6 +142,10 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
   const [objectiveId, setObjectiveId] = useState("");
   const [translationForm, setTranslationForm] = useState({ languageCode: "th", translation: "", pronunciation: "", transliteration: "", audioUrl: "" });
   const [exampleForm, setExampleForm] = useState({ languageCode: "en", sentence: "", translationLanguageCode: "th", translatedSentence: "", sequenceNo: 1 });
+  const csvInputRef = useRef<HTMLInputElement>(null);
+  const [csvBusy, setCsvBusy] = useState(false);
+  const [csvMessage, setCsvMessage] = useState("");
+
 
   const membershipsQuery = useQuery({
     queryKey: ["learning-vocabulary", "memberships", user?.id, audience],
@@ -211,6 +269,72 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
       setActionError(errorMessage(error));
     },
   });
+
+
+  const importVocabularyCsv = async (file: File) => {
+    if (!user || !organizationId || !isTeacher) return;
+    setCsvBusy(true);
+    setCsvMessage("");
+    setActionError("");
+    setActionNotice("");
+    try {
+      const rows = parseCsv((await file.text()).replace(/^\uFEFF/, ""));
+      if (rows.length < 2) throw new Error("The CSV must include a header row and at least one vocabulary row.");
+      const headers = rows[0].map((value) => value.trim());
+      if (!headers.includes("word") || !headers.includes("definition")) {
+        throw new Error('Required CSV columns are "word" and "definition". Download the template to see all supported columns.');
+      }
+      const column = (row: string[], name: string) => {
+        const index = headers.indexOf(name);
+        return index < 0 ? "" : (row[index] ?? "").trim();
+      };
+      const languagePattern = /^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$/;
+      const validDifficulties = new Set<VocabularyDifficulty>(["beginner", "intermediate", "advanced"]);
+      const importRows = rows.slice(1).map((row, index) => {
+        const word = column(row, "word");
+        const definition = column(row, "definition");
+        const languageCode = (column(row, "languageCode") || "en").toLowerCase();
+        const difficultyText = column(row, "difficulty") || "beginner";
+        if (!word || !definition) throw new Error("Row " + (index + 2) + ": word and definition are required.");
+        if (!languagePattern.test(languageCode)) throw new Error("Row " + (index + 2) + ": invalid languageCode.");
+        if (!validDifficulties.has(difficultyText as VocabularyDifficulty)) throw new Error("Row " + (index + 2) + ": difficulty must be beginner, intermediate, or advanced.");
+        const translationLanguageCode = column(row, "translationLanguageCode").toLowerCase();
+        if (translationLanguageCode && !languagePattern.test(translationLanguageCode)) throw new Error("Row " + (index + 2) + ": invalid translationLanguageCode.");
+        return {
+          word, definition, languageCode, translationLanguageCode: translationLanguageCode || null,
+          exampleSentence: column(row, "exampleSentence") || null,
+          translation: column(row, "translation") || null,
+          pronunciation: column(row, "pronunciation") || null,
+          partOfSpeech: column(row, "partOfSpeech") || null,
+          topic: column(row, "topic") || null,
+          difficulty: difficultyText as VocabularyDifficulty,
+          wordForms: column(row, "wordForms").split(";").map((item) => item.trim()).filter(Boolean),
+          synonyms: column(row, "synonyms").split(";").map((item) => item.trim()).filter(Boolean),
+          antonyms: column(row, "antonyms").split(";").map((item) => item.trim()).filter(Boolean),
+        };
+      });
+      if (importRows.length > 500) throw new Error("Import is limited to 500 vocabulary entries per file.");
+      let imported = 0;
+      for (const item of importRows) {
+        await learningVocabularyService.createEntry({
+          ...item,
+          tenantId: user.tenantId,
+          organizationId,
+          status: "draft",
+          createdBy: user.id,
+          updatedBy: user.id,
+        });
+        imported += 1;
+      }
+      setCsvMessage(imported + " entries imported as drafts. Review them and publish only when ready.");
+      await queryClient.invalidateQueries({ queryKey: ["learning-vocabulary", "entries", organizationId] });
+    } catch (error) {
+      setCsvMessage(errorMessage(error) + " Entries saved before the error may already exist; check the vocabulary bank before retrying.");
+    } finally {
+      setCsvBusy(false);
+      if (csvInputRef.current) csvInputRef.current.value = "";
+    }
+  };
 
   const submitEntry = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -635,6 +759,15 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
                 <h2 className="text-lg font-semibold text-slate-950">{isTeacher ? "School vocabulary bank" : "Words to study"}</h2>
+                {isTeacher && (
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <button type="button" className={secondaryButton} onClick={() => downloadVocabularyCsv(entries, "ep-learning-vocabulary.csv")} disabled={!entries.length}>Export CSV</button>
+                    <button type="button" className={secondaryButton} onClick={() => downloadVocabularyCsv([], "ep-learning-vocabulary-template.csv")}>Download CSV template</button>
+                    <button type="button" className={secondaryButton} onClick={() => csvInputRef.current?.click()} disabled={csvBusy}>{csvBusy ? "Importing…" : "Import CSV"}</button>
+                    <input ref={csvInputRef} type="file" accept=".csv,text/csv" className="hidden" onChange={(event) => { const file = event.target.files?.[0]; if (file) void importVocabularyCsv(file); }} />
+                  </div>
+                )}
+                {isTeacher && csvMessage && <p role="status" className="mt-3 text-sm text-slate-700">{csvMessage}</p>}
                 <p className="mt-1 text-sm text-slate-500">{filteredEntries.length} of {entries.length} entries{!isTeacher ? ` · ${dueCount} due for review` : ""}</p>
               </div>
               <label className="block w-full sm:max-w-sm"><span className="text-sm font-medium text-slate-700">Search words, definitions, translations, or topics</span><input className={inputClass} type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search vocabulary…" /></label>
