@@ -65,6 +65,7 @@ export default function SchoolAdministrationPage() {
   const [editingClassId, setEditingClassId] = useState("");
   const [subjectToAdd, setSubjectToAdd] = useState("");
   const [userToAdd, setUserToAdd] = useState("");
+  const [selectedUserIds, setSelectedUserIds] = useState<string[]>([]);
   const [membershipType, setMembershipType] = useState<"student" | "teacher">("student");
   const [actionError, setActionError] = useState("");
   const [actionNotice, setActionNotice] = useState("");
@@ -226,6 +227,32 @@ export default function SchoolAdministrationPage() {
     } catch { /* The mutation exposes the actionable error above the forms. */ }
   };
 
+  const bulkAddMembers = async () => {
+    if (!user || !organizationId || !classGroupId || selectedUserIds.length === 0) return;
+    const selectedIds = selectedUserIds.filter((id) => addableUsers.some((candidate) => candidate.id === id));
+    if (!selectedIds.length) {
+      setSelectedUserIds([]);
+      setActionError("Select at least one account that is not already assigned this class role.");
+      return;
+    }
+    setActionError("");
+    setActionNotice("");
+    try {
+      const results = await saveMutation.mutateAsync(() => Promise.allSettled(selectedIds.map((userId) =>
+        learningEnrollmentService.addMember({
+          tenantId: user.tenantId, organizationId, classGroupId, userId,
+          membershipType, status: "active",
+        }),
+      )));
+      const succeeded = results.filter((result) => result.status === "fulfilled").length;
+      const failedIds = selectedIds.filter((_, index) => results[index].status === "rejected");
+      setSelectedUserIds(failedIds);
+      setActionNotice(`${succeeded} ${membershipType}${succeeded === 1 ? "" : "s"} added to the class${failedIds.length ? `; ${failedIds.length} failed and remain selected for retry.` : "."}`);
+    } catch (error) {
+      setActionError(errorText(error));
+    }
+  };
+
   const submitClass = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!organizationId || !academicYearId || !classCurriculumId || !classGradeLevelId || !classForm.code.trim() || !classForm.name.trim()) {
@@ -301,6 +328,25 @@ export default function SchoolAdministrationPage() {
         </div>
       </header>
 
+      {workspace && organizationId && (
+        <section aria-label="School overview" className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          {[
+            { label: "Academic years", value: academicYears.length, detail: `${academicYears.filter((year) => year.status === "active").length} active` },
+            { label: "Terms in selected year", value: termsQuery.isPending ? "…" : terms.length, detail: `${terms.filter((term) => term.status === "active").length} active` },
+            { label: "Classes in selected year", value: classGroups.length, detail: `${classGroups.filter((group) => group.status === "active").length} active` },
+            { label: "Active subjects · selected class", value: classSubjectsQuery.isPending ? "…" : activeClassSubjects.length, detail: classGroupId ? (classGroups.find((group) => group.id === classGroupId)?.name ?? "Selected class") : "No class selected" },
+            { label: "Active students · selected class", value: rosterQuery.isPending ? "…" : roster.filter((member) => member.status === "active" && member.membershipType === "student").length, detail: classGroupId ? "Current class roster" : "No class selected" },
+            { label: "Active teachers · selected class", value: rosterQuery.isPending ? "…" : roster.filter((member) => member.status === "active" && member.membershipType === "teacher").length, detail: classGroupId ? "Current class roster" : "No class selected" },
+          ].map((item) => (
+            <div key={item.label} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+              <p className="text-sm font-medium text-slate-500">{item.label}</p>
+              <p className="mt-2 text-2xl font-bold tabular-nums text-slate-950">{item.value}</p>
+              <p className="mt-1 text-xs text-slate-500">{item.detail}</p>
+            </div>
+          ))}
+        </section>
+      )}
+
       {actionError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800"><div className="flex items-start justify-between gap-3"><p>{actionError}</p><button type="button" className="font-semibold" onClick={() => setActionError("")}>Dismiss</button></div></div>}
       {actionNotice && <div role="status" className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-900"><div className="flex items-start justify-between gap-3"><p>{actionNotice}</p><button type="button" className="font-semibold" onClick={() => setActionNotice("")}>Dismiss</button></div></div>}
       {termsQuery.isError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">Terms could not be loaded. <button type="button" className="font-semibold underline" onClick={() => void termsQuery.refetch()}>Retry</button></div>}
@@ -372,8 +418,25 @@ export default function SchoolAdministrationPage() {
                 {!classGroupId ? <p className="text-sm text-slate-500">Create or select a class first.</p> : <>
                   <div className="grid gap-3 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)_auto]">
                     <Field label="School user"><select className={fieldClass} value={userToAdd} onChange={(event) => setUserToAdd(event.target.value)}><option value="">Choose an existing school account</option>{addableUsers.map((item) => <option key={item.id} value={item.id}>{item.name}{item.email ? " · " + item.email : ""}</option>)}</select></Field>
-                    <Field label="Class role"><select className={fieldClass} value={membershipType} onChange={(event) => { setMembershipType(event.target.value as "student" | "teacher"); setUserToAdd(""); }}><option value="student">Student</option><option value="teacher">Teacher</option></select></Field>
+                    <Field label="Class role"><select className={fieldClass} value={membershipType} onChange={(event) => { setMembershipType(event.target.value as "student" | "teacher"); setUserToAdd(""); setSelectedUserIds([]); }}><option value="student">Student</option><option value="teacher">Teacher</option></select></Field>
                     <div className="flex items-end"><button type="button" className={buttonClass} disabled={!userToAdd || saveMutation.isPending} onClick={async () => { const selectedUserId = userToAdd; try { await saveMutation.mutateAsync(() => learningEnrollmentService.addMember({ tenantId: user.tenantId, organizationId, classGroupId, userId: selectedUserId, membershipType, status: "active" })); setUserToAdd(""); } catch { /* The mutation displays the failure above the forms. */ } }}>Add to class</button></div>
+                  </div>
+                  <div className="mt-4 rounded-xl border border-slate-200 p-4">
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <div><h3 className="font-semibold text-slate-900">Bulk assign existing accounts</h3><p className="mt-1 text-xs text-slate-500">Select several accounts to add them to this class as {membershipType}s. Accounts are not created here.</p></div>
+                      <div className="flex flex-wrap gap-2">
+                        <button type="button" className={secondaryButtonClass} disabled={!addableUsers.length} onClick={() => setSelectedUserIds(selectedUserIds.length === addableUsers.length ? [] : addableUsers.map((item) => item.id))}>{selectedUserIds.length === addableUsers.length && addableUsers.length ? "Clear selection" : "Select all available"}</button>
+                        <button type="button" className={buttonClass} disabled={!selectedUserIds.length || saveMutation.isPending} onClick={() => void bulkAddMembers()}>{saveMutation.isPending ? "Adding…" : `Add selected (${selectedUserIds.length})`}</button>
+                      </div>
+                    </div>
+                    {eligibleUsersQuery.isPending ? <p className="mt-3 text-sm text-slate-500">Loading eligible accounts…</p> : addableUsers.length ? (
+                      <div className="mt-3 grid max-h-64 gap-2 overflow-y-auto sm:grid-cols-2">
+                        {addableUsers.map((item) => <label key={item.id} className="flex items-start gap-3 rounded-lg bg-slate-50 p-3 text-sm">
+                          <input type="checkbox" className="mt-1" checked={selectedUserIds.includes(item.id)} onChange={(event) => setSelectedUserIds((current) => event.target.checked ? [...new Set([...current, item.id])] : current.filter((id) => id !== item.id))} />
+                          <span className="min-w-0"><span className="block font-medium text-slate-800">{item.name}</span>{item.email && <span className="block break-all text-xs text-slate-500">{item.email}</span>}</span>
+                        </label>)}
+                      </div>
+                    ) : <p className="mt-3 text-sm text-slate-500">No additional accounts are available for this class role.</p>}
                   </div>
                   <div className="mt-5 overflow-x-auto">
                     {rosterQuery.isPending ? <p className="py-4 text-sm text-slate-500">Loading roster…</p> : roster.length ? (
