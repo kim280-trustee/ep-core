@@ -19,7 +19,7 @@ declare
   v_role_name text;
   v_tenant_id uuid;
 begin
-  if p_status not in ('active', 'inactive') then
+  if p_status is null or p_status not in ('active', 'inactive') then
     raise exception 'Staff status must be active or inactive';
   end if;
 
