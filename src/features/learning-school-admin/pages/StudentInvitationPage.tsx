@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { learningEnrollmentService } from "@/features/learning-enrollment";
+import { supabase } from "@/core/infrastructure/supabase/client";
 
 export default function StudentInvitationPage() {
   const navigate = useNavigate();
