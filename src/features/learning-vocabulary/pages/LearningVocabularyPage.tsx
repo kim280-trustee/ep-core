@@ -50,7 +50,8 @@ function parseCsv(text: string): string[][] {
 
 function csvCell(value: string | null | undefined): string {
   const normalized = value ?? "";
-  return /[",\r\n]/.test(normalized) ? '"' + normalized.replace(/"/g, '""') + '"' : normalized;
+  const safeValue = /^[=+@\\-\\t\\r]/.test(normalized) ? "'" + normalized : normalized;
+  return /[",\r\n]/.test(safeValue) ? '"' + safeValue.replace(/"/g, '""') + '"' : safeValue;
 }
 
 function downloadVocabularyCsv(entries: LearningVocabularyEntry[], filename: string) {
@@ -183,6 +184,17 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
     queryFn: () => learningVocabularyService.listProgress(organizationId, user!.id),
     enabled: !isTeacher && Boolean(organizationId && user?.id) && !membershipsQuery.isPending,
   });
+  const reviewClockQuery = useQuery({
+    queryKey: ["learning-vocabulary", "review-clock"],
+    queryFn: () => Date.now(),
+    enabled: !isTeacher && Boolean(user?.id),
+    refetchInterval: 60_000,
+  });
+  const teacherAnalyticsQuery = useQuery({
+    queryKey: ["learning-vocabulary", "teacher-analytics", organizationId],
+    queryFn: () => learningVocabularyService.getTeacherAnalytics(organizationId),
+    enabled: isTeacher && Boolean(organizationId) && !membershipsQuery.isPending,
+  });
 
   const entries = entriesQuery.data ?? [];
   const progress = progressQuery.data ?? [];
@@ -216,7 +228,7 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
   );
   const isDue = (entry: LearningVocabularyEntry) => {
     const saved = progressByEntryId.get(entry.id);
-    return !saved || new Date(saved.nextReviewAt).getTime() <= progressQuery.dataUpdatedAt;
+    return !saved || new Date(saved.nextReviewAt).getTime() <= (reviewClockQuery.data ?? 0);
   };
   const orderedFilteredEntries = isTeacher
     ? filteredEntries
@@ -573,6 +585,49 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
 
       {organizationId && !entriesQuery.isPending && !entriesQuery.isError && (
         <>
+          {isTeacher && (
+            <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+              <div className="mb-4">
+                <h2 className="text-lg font-semibold text-slate-950">Student word-review analytics</h2>
+                <p className="mt-1 text-sm leading-6 text-slate-500">School-level aggregates for published words only. Individual student review histories remain private.</p>
+              </div>
+              {teacherAnalyticsQuery.isPending && <p className="text-sm text-slate-500">Loading vocabulary analytics…</p>}
+              {teacherAnalyticsQuery.isError && <p role="alert" className="text-sm text-red-700">Analytics could not be loaded. <button type="button" className="underline" onClick={() => void teacherAnalyticsQuery.refetch()}>Retry</button></p>}
+              {teacherAnalyticsQuery.data && (() => {
+                const stats = teacherAnalyticsQuery.data;
+                const totals = stats.reduce((sum, item) => ({
+                  practiced: sum.practiced + item.studentsPracticed,
+                  known: sum.known + item.studentsKnown,
+                  due: sum.due + item.studentsDue,
+                  reviews: sum.reviews + item.reviewCount,
+                  correct: sum.correct + item.correctCount,
+                  incorrect: sum.incorrect + item.incorrectCount,
+                }), { practiced: 0, known: 0, due: 0, reviews: 0, correct: 0, incorrect: 0 });
+                const accuracy = totals.correct + totals.incorrect
+                  ? Math.round((totals.correct / (totals.correct + totals.incorrect)) * 1000) / 10
+                  : 0;
+                return <>
+                  <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                    {[
+                      { label: "Published words", value: stats.length },
+                      { label: "Review attempts", value: totals.reviews },
+                      { label: "Correct answers", value: accuracy + "%" },
+                      { label: "Words due", value: totals.due },
+                    ].map((item) => <div key={item.label} className="rounded-xl bg-slate-50 p-4"><p className="text-sm text-slate-500">{item.label}</p><p className="mt-1 text-2xl font-semibold text-slate-950">{item.value}</p></div>)}
+                  </div>
+                  <div className="mt-5 overflow-x-auto">
+                    <table className="min-w-full text-left text-sm">
+                      <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-3 py-3">Word</th><th className="px-3 py-3">Topic</th><th className="px-3 py-3">Practiced</th><th className="px-3 py-3">Known</th><th className="px-3 py-3">Due</th><th className="px-3 py-3">Reviews</th><th className="px-3 py-3">Accuracy</th></tr></thead>
+                      <tbody className="divide-y divide-slate-100">
+                        {stats.map((item) => <tr key={item.vocabularyEntryId}><td className="px-3 py-3 font-medium text-slate-900">{item.word}</td><td className="px-3 py-3 text-slate-600">{item.topic || "—"}</td><td className="px-3 py-3 tabular-nums">{item.studentsPracticed}</td><td className="px-3 py-3 tabular-nums">{item.studentsKnown}</td><td className="px-3 py-3 tabular-nums">{item.studentsDue}</td><td className="px-3 py-3 tabular-nums">{item.reviewCount}</td><td className="px-3 py-3 tabular-nums">{item.accuracyPercent}%</td></tr>)}
+                        {!stats.length && <tr><td className="px-3 py-4 text-slate-500" colSpan={7}>Publish vocabulary entries to begin collecting review analytics.</td></tr>}
+                      </tbody>
+                    </table>
+                  </div>
+                </>;
+              })()}
+            </section>
+          )}
           {isTeacher && (
             <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
               <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
