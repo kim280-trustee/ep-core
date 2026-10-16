@@ -69,6 +69,13 @@ begin
       using errcode = '23503';
   end if;
 
+  -- Serialize schedule writes for this school/day so concurrent requests cannot
+  -- both pass the overlap check against the same earlier snapshot.
+  perform pg_catalog.pg_advisory_xact_lock(
+    pg_catalog.hashtext(new.organization_id::text),
+    new.day_of_week::integer
+  );
+
   if new.status = 'active' and exists (
     select 1
     from public.learning_timetable_entries existing
