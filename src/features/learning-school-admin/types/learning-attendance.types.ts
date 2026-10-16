@@ -26,3 +26,12 @@ export interface SaveLearningAttendanceInput {
     note: string;
   }>;
 }
+
+export interface LearningAttendanceHistoryRow {
+  date: string;
+  present: number;
+  absent: number;
+  late: number;
+  excused: number;
+  marked: number;
+}

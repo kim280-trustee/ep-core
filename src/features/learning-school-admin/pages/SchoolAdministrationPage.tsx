@@ -15,7 +15,7 @@ import type {
 import { learningEnrollmentService } from "@/features/learning-enrollment";
 import { learningSchoolAdminService } from "../services/learning-school-admin.service";
 import { learningAttendanceService } from "../services/learning-attendance.service";
-import type { LearningAttendanceStatus } from "../types/learning-attendance.types";
+import type { LearningAttendanceHistoryRow, LearningAttendanceStatus } from "../types/learning-attendance.types";
 
 const fieldClass = "mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200";
 const buttonClass = "inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50";
@@ -89,6 +89,8 @@ export default function SchoolAdministrationPage() {
   const [userToAdd, setUserToAdd] = useState("");
   const [membershipType, setMembershipType] = useState<"student" | "teacher">("student");
   const [attendanceDate, setAttendanceDate] = useState(localDateValue);
+  const [historyEndDate, setHistoryEndDate] = useState(localDateValue);
+  const [historyStartDate, setHistoryStartDate] = useState(() => { const date = new Date(); date.setDate(date.getDate() - 29); return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`; });
   const [attendanceDraft, setAttendanceDraft] = useState<{ contextKey: string; statuses: Record<string, LearningAttendanceStatus>; notes: Record<string, string> }>({ contextKey: "", statuses: {}, notes: {} });
   const [actionError, setActionError] = useState("");
   const [actionNotice, setActionNotice] = useState("");
@@ -178,6 +180,20 @@ export default function SchoolAdministrationPage() {
     queryFn: () => learningAttendanceService.getRegister(organizationId, classGroupId, attendanceDate),
     enabled: Boolean(organizationId && classGroupId && attendanceDate) && canManage,
   });
+  const attendanceHistoryQuery = useQuery({
+    queryKey: ["school-admin", "attendance-history", organizationId, classGroupId, historyStartDate, historyEndDate],
+    queryFn: () => learningAttendanceService.getHistory(organizationId, classGroupId, historyStartDate, historyEndDate),
+    enabled: Boolean(organizationId && classGroupId && historyStartDate && historyEndDate && historyStartDate <= historyEndDate) && canManage,
+  });
+  const exportAttendanceHistory = (rows: LearningAttendanceHistoryRow[]) => {
+    const className = classGroups.find((group) => group.id === classGroupId)?.name ?? "class";
+    const safeClass = className.trim().replace(/[^a-z0-9-_]+/gi, "-").replace(/^-+|-+$/g, "") || "class";
+    downloadAttendanceCsv(`attendance-history-${safeClass}-${historyStartDate}-to-${historyEndDate}.csv`, [
+      ["school", "class", "date", "present", "absent", "late", "excused", "marked"],
+      ...rows.map((row) => [organizations.find((org) => org.id === organizationId)?.name ?? "", className, row.date, String(row.present), String(row.absent), String(row.late), String(row.excused), String(row.marked)]),
+    ]);
+  };
+
   const savedAttendance = attendanceQuery.data;
   const attendanceStatuses = attendanceDraft.contextKey === attendanceContextKey ? attendanceDraft.statuses : {};
   const attendanceNotes = attendanceDraft.contextKey === attendanceContextKey ? attendanceDraft.notes : {};
@@ -524,7 +540,15 @@ export default function SchoolAdministrationPage() {
                   ) : <p className="mt-4 text-sm text-slate-500">No active students are assigned to this class.</p>}
                 </>}
               </Section>
-            </>
+            <Section title="Attendance history" description="Review saved attendance by date for the selected class. Export the filtered summary for school records.">
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  <Field label="From date"><input type="date" className={fieldClass} value={historyStartDate} max={historyEndDate || undefined} onChange={(event) => setHistoryStartDate(event.target.value)} /></Field>
+                  <Field label="To date"><input type="date" className={fieldClass} value={historyEndDate} min={historyStartDate || undefined} onChange={(event) => setHistoryEndDate(event.target.value)} /></Field>
+                  <div className="flex items-end"><button type="button" className={secondaryButtonClass} disabled={!attendanceHistoryQuery.data?.length} onClick={() => exportAttendanceHistory(attendanceHistoryQuery.data ?? [])}>Export history CSV</button></div>
+                </div>
+                {historyStartDate > historyEndDate ? <p role="alert" className="mt-4 text-sm text-red-700">Choose a start date on or before the end date.</p> : attendanceHistoryQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading attendance history…</p> : attendanceHistoryQuery.isError ? <p role="alert" className="mt-4 text-sm text-red-700">Could not load attendance history: {errorText(attendanceHistoryQuery.error)}</p> : !(attendanceHistoryQuery.data ?? []).length ? <p className="mt-4 text-sm text-slate-500">No saved attendance registers were found for this date range.</p> : <div className="mt-4 overflow-x-auto"><table className="min-w-full text-left text-sm"><thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-3 py-3">Date</th><th className="px-3 py-3">Present</th><th className="px-3 py-3">Absent</th><th className="px-3 py-3">Late</th><th className="px-3 py-3">Excused</th><th className="px-3 py-3">Marked</th></tr></thead><tbody className="divide-y divide-slate-100">{(attendanceHistoryQuery.data ?? []).map((row) => <tr key={row.date}><td className="px-3 py-3 font-medium text-slate-900">{row.date}</td><td className="px-3 py-3 tabular-nums">{row.present}</td><td className="px-3 py-3 tabular-nums">{row.absent}</td><td className="px-3 py-3 tabular-nums">{row.late}</td><td className="px-3 py-3 tabular-nums">{row.excused}</td><td className="px-3 py-3 tabular-nums">{row.marked}</td></tr>)}</tbody></table><p className="mt-3 text-xs text-slate-500">Only saved marks are counted. Students left unmarked are not treated as present or absent. The report includes up to 366 attendance dates.</p></div>}
+              </Section>
+              </>
           )}
         </>
       )}
