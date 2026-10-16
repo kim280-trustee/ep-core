@@ -6,6 +6,41 @@ import type {
 } from "../types/learning-attendance.types";
 
 export const learningAttendanceRepository = {
+  async getHistory(organizationId: string, classGroupId: string, startDate: string, endDate: string): Promise<import("../types/learning-attendance.types").LearningAttendanceHistoryRow[]> {
+    if (startDate > endDate) throw new Error("Start date must be on or before end date.");
+    const { data: sessions, error: sessionsError } = await supabase
+      .from("learning_attendance_sessions")
+      .select("id,attendance_date")
+      .eq("organization_id", organizationId)
+      .eq("class_group_id", classGroupId)
+      .gte("attendance_date", startDate)
+      .lte("attendance_date", endDate)
+      .order("attendance_date", { ascending: false })
+      .limit(366);
+    if (sessionsError) throw sessionsError;
+    const counts = new Map<string, { present: number; absent: number; late: number; excused: number; marked: number }>();
+    for (const session of sessions ?? []) counts.set(session.attendance_date, { present: 0, absent: 0, late: 0, excused: 0, marked: 0 });
+    const sessionIds = (sessions ?? []).map((session) => session.id);
+    if (sessionIds.length) {
+      const { data: records, error: recordsError } = await supabase
+        .from("learning_attendance_records")
+        .select("attendance_session_id,attendance_status")
+        .eq("organization_id", organizationId)
+        .in("attendance_session_id", sessionIds);
+      if (recordsError) throw recordsError;
+      const dateBySessionId = new Map((sessions ?? []).map((session) => [session.id, session.attendance_date]));
+      for (const record of records ?? []) {
+        const date = dateBySessionId.get(record.attendance_session_id);
+        const row = date ? counts.get(date) : undefined;
+        if (!row) continue;
+        if (record.attendance_status === "present" || record.attendance_status === "absent" || record.attendance_status === "late" || record.attendance_status === "excused") {
+          row[record.attendance_status] += 1;
+          row.marked += 1;
+        }
+      }
+    }
+    return [...counts.entries()].map(([date, row]) => ({ date, ...row }));
+  },
   async getRegister(organizationId: string, classGroupId: string, attendanceDate: string): Promise<LearningAttendanceRegister> {
     const { data: session, error: sessionError } = await supabase
       .from("learning_attendance_sessions")
