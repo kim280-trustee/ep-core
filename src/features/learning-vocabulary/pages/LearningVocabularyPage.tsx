@@ -50,7 +50,7 @@ function parseCsv(text: string): string[][] {
 
 function csvCell(value: string | null | undefined): string {
   const normalized = value ?? "";
-  const safeValue = /^[=+@\\-\\t\\r]/.test(normalized) ? "'" + normalized : normalized;
+  const safeValue = /^[=+\-@\t\r]/.test(normalized) ? "'" + normalized : normalized;
   return /[",\r\n]/.test(safeValue) ? '"' + safeValue.replace(/"/g, '""') + '"' : safeValue;
 }
 
@@ -194,6 +194,7 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
     queryKey: ["learning-vocabulary", "teacher-analytics", organizationId],
     queryFn: () => learningVocabularyService.getTeacherAnalytics(organizationId),
     enabled: isTeacher && Boolean(organizationId) && !membershipsQuery.isPending,
+    refetchInterval: isTeacher ? 60_000 : false,
   });
 
   const entries = entriesQuery.data ?? [];
@@ -241,7 +242,10 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
     onSuccess: async () => {
       setActionError("");
       setActionNotice("Vocabulary changes saved.");
-      await queryClient.invalidateQueries({ queryKey: ["learning-vocabulary", "entries", organizationId] });
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ["learning-vocabulary", "entries", organizationId] }),
+        queryClient.invalidateQueries({ queryKey: ["learning-vocabulary", "teacher-analytics", organizationId] }),
+      ]);
       if (detailsEntryId) {
         await queryClient.invalidateQueries({ queryKey: ["learning-vocabulary", "translations", organizationId, detailsEntryId] });
         await queryClient.invalidateQueries({ queryKey: ["learning-vocabulary", "examples", organizationId, detailsEntryId] });
