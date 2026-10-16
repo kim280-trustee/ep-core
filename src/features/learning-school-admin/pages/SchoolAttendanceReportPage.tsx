@@ -80,6 +80,7 @@ export default function SchoolAttendanceReportPage() {
 
   if (!user) return <main className="mx-auto max-w-6xl p-6">Sign in to view school attendance reports.</main>;
   if (authorization.loading || organizationsQuery.isPending) return <main className="mx-auto max-w-6xl space-y-4 p-6"><div className="h-8 w-64 animate-pulse rounded bg-slate-200" /><div className="h-32 animate-pulse rounded-2xl bg-slate-100" /></main>;
+  if (organizationsQuery.isSuccess && organizations.length === 0) return <main className="mx-auto max-w-6xl p-6"><section className="rounded-2xl border border-slate-200 bg-white p-6"><h1 className="text-xl font-bold text-slate-950">School-wide attendance</h1><p className="mt-2 text-sm leading-6 text-slate-600">No school is available for your account yet. Ask a school administrator to confirm your organization membership and academic-management permission.</p><Link className="mt-4 inline-flex font-semibold underline" to="/school-admin">Return to School Administration</Link></section></main>;
   if (!canManage) return <main className="mx-auto max-w-6xl p-6"><section className="rounded-2xl border border-amber-200 bg-amber-50 p-5 text-amber-900" role="alert"><h1 className="text-lg font-semibold">School attendance report</h1><p className="mt-2 text-sm">You need academic-management permission to view school-wide attendance.</p><Link className="mt-4 inline-flex font-semibold underline" to="/school-admin">Return to School Administration</Link></section></main>;
 
   return (
@@ -110,7 +111,7 @@ export default function SchoolAttendanceReportPage() {
 
       {organizationsQuery.isError && <section className="rounded-2xl border border-rose-200 bg-rose-50 p-5 text-sm text-rose-800" role="alert">School list could not be loaded. <button type="button" className="font-semibold underline" onClick={() => void organizationsQuery.refetch()}>Try again</button></section>}
       {reportQuery.isError && <section className="rounded-2xl border border-rose-200 bg-rose-50 p-5 text-sm text-rose-800" role="alert">Attendance report could not be loaded. Check your access and date range, then retry. <button type="button" className="font-semibold underline" onClick={() => void reportQuery.refetch()}>Try again</button></section>}
-      {reportQuery.isPending && <section className="rounded-2xl border border-slate-200 bg-white p-8 text-center text-sm text-slate-500">Loading saved attendance…</section>}
+      {organizationId && reportQuery.isPending && <section className="rounded-2xl border border-slate-200 bg-white p-8 text-center text-sm text-slate-500">Loading saved attendance…</section>}
 
       {!reportQuery.isPending && !reportQuery.isError && <>
         <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
