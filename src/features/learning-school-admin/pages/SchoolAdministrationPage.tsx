@@ -243,7 +243,7 @@ export default function SchoolAdministrationPage() {
           tenantId: user.tenantId, organizationId, classGroupId, userId,
           membershipType, status: "active",
         }),
-      )));
+      ))) as PromiseSettledResult<unknown>[];
       const succeeded = results.filter((result) => result.status === "fulfilled").length;
       const failedIds = selectedIds.filter((_, index) => results[index].status === "rejected");
       setSelectedUserIds(failedIds);
