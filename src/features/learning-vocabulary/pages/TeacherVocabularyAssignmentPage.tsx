@@ -206,7 +206,7 @@ export default function TeacherVocabularyAssignmentPage() {
           : assessmentId
             ? " The assessment or some questions may already exist, possibly published without an assignment. Inspect Assessment Builder before retrying."
             : "";
-        throw new Error(errorText(error) + partial);
+        throw new Error(errorText(error) + partial, { cause: error });
       }
     },
     onSuccess: async (result) => {
