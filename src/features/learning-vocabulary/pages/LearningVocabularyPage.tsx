@@ -131,6 +131,7 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
   const isTeacher = audience === "teacher";
   const [selectedOrganizationId, setSelectedOrganizationId] = useState("");
   const [search, setSearch] = useState("");
+  const [showDueOnly, setShowDueOnly] = useState(false);
   const [editingEntryId, setEditingEntryId] = useState("");
   const [form, setForm] = useState<VocabularyForm>(emptyForm);
   const [practiceEntryId, setPracticeEntryId] = useState("");
@@ -231,10 +232,11 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
     const saved = progressByEntryId.get(entry.id);
     return !saved || new Date(saved.nextReviewAt).getTime() <= (reviewClockQuery.data ?? 0);
   };
-  const orderedFilteredEntries = isTeacher
-    ? filteredEntries
-    : [...filteredEntries].sort((left, right) => Number(isDue(right)) - Number(isDue(left)));
   const dueCount = isTeacher ? 0 : filteredEntries.filter(isDue).length;
+  const visibleEntries = !isTeacher && showDueOnly ? filteredEntries.filter(isDue) : filteredEntries;
+  const orderedFilteredEntries = isTeacher
+    ? visibleEntries
+    : [...visibleEntries].sort((left, right) => Number(isDue(right)) - Number(isDue(left)));
   const practiceEntry = entries.find((entry) => entry.id === practiceEntryId);
 
   const saveMutation = useMutation({
@@ -830,6 +832,7 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
                 <p className="mt-1 text-sm text-slate-500">{filteredEntries.length} of {entries.length} entries{!isTeacher ? ` · ${dueCount} due for review` : ""}</p>
               </div>
               <label className="block w-full sm:max-w-sm"><span className="text-sm font-medium text-slate-700">Search words, definitions, translations, or topics</span><input className={inputClass} type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search vocabulary…" /></label>
+              {!isTeacher && <button type="button" className={secondaryButton + " self-end"} aria-pressed={showDueOnly} onClick={() => setShowDueOnly((current) => !current)}>{showDueOnly ? "Show all words" : "Due reviews only"}</button>}
             </div>
             <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
               {orderedFilteredEntries.map((entry) => {
@@ -863,6 +866,7 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
                 );
               })}
               {!filteredEntries.length && <div className="rounded-xl border border-dashed border-slate-300 p-6 text-sm text-slate-500 md:col-span-2 xl:col-span-3">{entries.length ? "No vocabulary matches your search." : isTeacher ? "No entries yet. Add a word above, then publish it for students." : "No published vocabulary is available for your classes yet. Ask your teacher to publish a vocabulary list."}</div>}
+              {filteredEntries.length > 0 && !orderedFilteredEntries.length && <div className="rounded-xl border border-dashed border-slate-300 p-6 text-sm text-slate-500 md:col-span-2 xl:col-span-3">No words are due for review right now. Switch back to all words or return when your next review is due.</div>}
             </div>
           </section>
         </>
