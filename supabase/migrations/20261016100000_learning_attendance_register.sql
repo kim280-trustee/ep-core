@@ -50,7 +50,7 @@ alter table public.learning_attendance_records enable row level security;
 revoke all on public.learning_attendance_sessions from public, anon;
 revoke all on public.learning_attendance_records from public, anon;
 grant select, insert, update on public.learning_attendance_sessions to authenticated;
-grant select, insert, update on public.learning_attendance_records to authenticated;
+grant select, insert, update, delete on public.learning_attendance_records to authenticated;
 
 -- Align with the current school-admin permission model: only active organization
 -- members may access attendance for that organization. Class-level teacher-only
@@ -97,6 +97,9 @@ create policy learning_attendance_records_insert
         )
     )
   );
+create policy learning_attendance_records_delete
+  on public.learning_attendance_records for delete to authenticated
+  using (public.is_organization_member(organization_id));
 create policy learning_attendance_records_update
   on public.learning_attendance_records for update to authenticated
   using (public.is_organization_member(organization_id))
