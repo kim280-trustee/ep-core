@@ -58,17 +58,20 @@ with check (
     join public.users p on p.id = parent_user_id and p.tenant_id = o.tenant_id
     where o.id = organization_id
   )
-  and exists (
-    select 1
-    from public.organizations o
-    join public.users s on s.id = student_user_id and s.tenant_id = o.tenant_id
-    join public.learning_class_memberships cm
-      on cm.user_id = s.id
-     and cm.tenant_id = s.tenant_id
-     and cm.organization_id = o.id
-     and cm.membership_type = 'student'
-     and cm.status = 'active'
-    where o.id = organization_id
+  and (
+    status = 'inactive'
+    or exists (
+      select 1
+      from public.organizations o
+      join public.users s on s.id = student_user_id and s.tenant_id = o.tenant_id
+      join public.learning_class_memberships cm
+        on cm.user_id = s.id
+       and cm.tenant_id = s.tenant_id
+       and cm.organization_id = o.id
+       and cm.membership_type = 'student'
+       and cm.status = 'active'
+      where o.id = organization_id
+    )
   )
 );
 
