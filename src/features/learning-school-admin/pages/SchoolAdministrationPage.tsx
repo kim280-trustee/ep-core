@@ -465,7 +465,6 @@ export default function SchoolAdministrationPage() {
                 </>}
               </Section>
             </>
-        </>
       )}
     </div>
   );
