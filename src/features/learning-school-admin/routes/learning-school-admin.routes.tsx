@@ -6,6 +6,7 @@ import StudentInvitationPage from "../pages/StudentInvitationPage";
 import SchoolParentLinksPage from "../pages/SchoolParentLinksPage";
 import SchoolTimetablePage from "../pages/SchoolTimetablePage";
 import SchoolStaffAdministrationPage from "../pages/SchoolStaffAdministrationPage";
+import SchoolAttendanceReportPage from "../pages/SchoolAttendanceReportPage";
 
 export const learningSchoolAdminRoutes: RouteObject[] = [
   { path: "school-admin", element: <ProtectedRoute><SchoolAdministrationPage /></ProtectedRoute> },
@@ -14,4 +15,5 @@ export const learningSchoolAdminRoutes: RouteObject[] = [
   { path: "student/invite", element: <ProtectedRoute><StudentInvitationPage /></ProtectedRoute> },
   { path: "school-admin/timetable", element: <ProtectedRoute><SchoolTimetablePage /></ProtectedRoute> },
   { path: "school-admin/staff", element: <ProtectedRoute><SchoolStaffAdministrationPage /></ProtectedRoute> },
+  { path: "school-admin/attendance-report", element: <ProtectedRoute><SchoolAttendanceReportPage /></ProtectedRoute> },
 ];
