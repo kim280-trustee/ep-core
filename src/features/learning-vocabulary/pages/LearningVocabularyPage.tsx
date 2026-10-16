@@ -69,7 +69,7 @@ function downloadVocabularyCsv(entries: LearningVocabularyEntry[], filename: str
   anchor.href = url;
   anchor.download = filename;
   anchor.click();
-  URL.revokeObjectURL(url);
+  window.setTimeout(() => URL.revokeObjectURL(url), 0);
 }
 
 type VocabularyForm = {
@@ -612,7 +612,7 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
                       { label: "Published words", value: stats.length },
                       { label: "Review attempts", value: totals.reviews },
                       { label: "Correct answers", value: accuracy + "%" },
-                      { label: "Words due", value: totals.due },
+                      { label: "Due reviews", value: totals.due },
                     ].map((item) => <div key={item.label} className="rounded-xl bg-slate-50 p-4"><p className="text-sm text-slate-500">{item.label}</p><p className="mt-1 text-2xl font-semibold text-slate-950">{item.value}</p></div>)}
                   </div>
                   <div className="mt-5 overflow-x-auto">
