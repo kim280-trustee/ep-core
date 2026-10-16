@@ -202,6 +202,19 @@ export default function SchoolAdministrationPage() {
   });
   const eligibleUsers = eligibleUsersQuery.data ?? [];
   const userById = new Map(eligibleUsers.map((item) => [item.id, item]));
+  const exportRoster = () => {
+    const selectedClass = allClassGroups.find((group) => group.id === classGroupId);
+    const rows = [
+      ["school", organizations.find((item) => item.id === organizationId)?.name ?? "", "class", selectedClass?.name ?? ""],
+      ["account_name", "email", "user_id", "class_role", "membership_status"],
+      ...roster.map((member) => {
+        const account = userById.get(member.userId);
+        return [account?.name ?? "School account", account?.email ?? "", member.userId, member.membershipType, member.status];
+      }),
+    ];
+    const safeClass = (selectedClass?.code || selectedClass?.name || "class").replace(/[^a-z0-9_-]+/gi, "-");
+    downloadAttendanceCsv(`roster-${safeClass}.csv`, rows);
+  };
   const existingMembershipKeys = new Set(roster.map((item) => item.userId + ":" + item.membershipType));
   const addableUsers = eligibleUsers.filter((item) => !existingMembershipKeys.has(item.id + ":" + membershipType));
   const activeClassSubjects = classSubjects.filter((item) => item.status === "active");
@@ -434,6 +447,10 @@ export default function SchoolAdministrationPage() {
                     <Field label="School user"><select className={fieldClass} value={userToAdd} onChange={(event) => setUserToAdd(event.target.value)}><option value="">Choose an existing school account</option>{addableUsers.map((item) => <option key={item.id} value={item.id}>{item.name}{item.email ? " · " + item.email : ""}</option>)}</select></Field>
                     <Field label="Class role"><select className={fieldClass} value={membershipType} onChange={(event) => { setMembershipType(event.target.value as "student" | "teacher"); setUserToAdd(""); }}><option value="student">Student</option><option value="teacher">Teacher</option></select></Field>
                     <div className="flex items-end"><button type="button" className={buttonClass} disabled={!userToAdd || saveMutation.isPending} onClick={async () => { const selectedUserId = userToAdd; try { await saveMutation.mutateAsync(() => learningEnrollmentService.addMember({ tenantId: user.tenantId, organizationId, classGroupId, userId: selectedUserId, membershipType, status: "active" })); setUserToAdd(""); } catch { /* The mutation displays the failure above the forms. */ } }}>Add to class</button></div>
+                  </div>
+                  <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+                    <p className="text-xs text-slate-500">Export includes every membership shown below, including inactive memberships.</p>
+                    <button type="button" className={secondaryButtonClass} disabled={rosterQuery.isPending || rosterQuery.isError || !roster.length} onClick={exportRoster}>Export roster CSV</button>
                   </div>
                   <div className="mt-5 overflow-x-auto">
                     {rosterQuery.isPending ? <p className="py-4 text-sm text-slate-500">Loading roster…</p> : roster.length ? (
