@@ -5156,6 +5156,23 @@ export type Database = {
         Args: { p_invitation_id: string }
         Returns: string
       }
+      create_learning_student_invitation: {
+        Args: {
+          p_class_group_id: string
+          p_organization_id: string
+          p_student_email: string
+          p_student_name: string
+        }
+        Returns: string
+      }
+      revoke_learning_student_invitation: {
+        Args: { p_invitation_id: string }
+        Returns: boolean
+      }
+      accept_learning_student_invitation: {
+        Args: { p_invitation_id: string }
+        Returns: string
+      }
       calculate_learning_term_grade: {
         Args: {
           p_class_subject_id: string
