@@ -22,6 +22,22 @@ function errorText(error: unknown): string {
   return error instanceof Error && error.message ? error.message : "The timetable change could not be saved. Check your access and try again.";
 }
 
+function csvCell(value: string | null | undefined): string {
+  const normalized = value ?? "";
+  const safeValue = /^[=+@\-\t\r]/.test(normalized) ? "'" + normalized : normalized;
+  return /[",\r\n]/.test(safeValue) ? '"' + safeValue.replace(/"/g, '""') + '"' : safeValue;
+}
+
+function downloadTimetableCsv(filename: string, rows: string[][]) {
+  const csv = "\uFEFF" + rows.map((row) => row.map(csvCell).join(",")).join("\r\n");
+  const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8;" }));
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = filename;
+  anchor.click();
+  window.setTimeout(() => URL.revokeObjectURL(url), 0);
+}
+
 function overlaps(aStart: string, aEnd: string, bStart: string, bEnd: string) {
   return aStart < bEnd && bStart < aEnd;
 }
@@ -93,6 +109,26 @@ export default function SchoolTimetablePage() {
   const classById = useMemo(() => new Map(classes.map((item) => [item.id, item])), [classes]);
   const subjectById = useMemo(() => new Map(subjects.map((item) => [item.id, item])), [subjects]);
   const userById = useMemo(() => new Map(eligibleUsers.map((item) => [item.id, item])), [eligibleUsers]);
+
+  const activeEntries = entries.filter((entry) => entry.status === "active");
+  const scheduledClassCount = new Set(activeEntries.map((entry) => entry.classGroupId)).size;
+  const assignedTeacherCount = new Set(activeEntries.flatMap((entry) => entry.teacherUserId ? [entry.teacherUserId] : [])).size;
+  const exportTimetable = () => {
+    const selectedOrganization = organizations.find((item) => item.id === activeOrganizationId);
+    const rows = [
+      ["school", selectedOrganization?.name ?? "", "school_code", selectedOrganization?.code ?? ""],
+      ["day", "start_time", "end_time", "class_code", "class_name", "subject", "teacher_name", "teacher_email", "room", "status", "notes"],
+      ...[...entries].sort((a, b) => a.dayOfWeek - b.dayOfWeek || a.startsAt.localeCompare(b.startsAt)).map((entry) => {
+        const day = weekdays.find((item) => item.value === entry.dayOfWeek)?.label ?? String(entry.dayOfWeek);
+        const group = classById.get(entry.classGroupId);
+        const subject = subjectById.get(entry.subjectId);
+        const teacher = entry.teacherUserId ? userById.get(entry.teacherUserId) : undefined;
+        return [day, entry.startsAt.slice(0, 5), entry.endsAt.slice(0, 5), group?.code ?? "", group?.name ?? "", subject?.name ?? "", teacher?.name ?? (entry.teacherUserId ? "Teacher account" : "Not assigned"), teacher?.email ?? "", entry.room ?? "", entry.status, entry.notes ?? ""];
+      }),
+    ];
+    const schoolCode = (selectedOrganization?.code || "school").trim().replace(/[^a-z0-9_-]+/gi, "-").replace(/^-+|-+$/g, "") || "school";
+    downloadTimetableCsv("timetable-" + schoolCode + ".csv", rows);
+  };
 
   const saveMutation = useMutation({
     mutationFn: learningTimetableService.create,
@@ -206,7 +242,8 @@ export default function SchoolTimetablePage() {
           </section>
 
           <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
-            <div className="mb-4 flex flex-wrap items-center justify-between gap-3"><div><h2 className="text-lg font-semibold text-slate-950">Weekly timetable</h2><p className="mt-1 text-sm text-slate-500">Entries are stored per school and shown by weekday and start time.</p></div><button type="button" className="text-sm font-semibold underline" onClick={() => void timetableQuery.refetch()}>Refresh</button></div>
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-3"><div><h2 className="text-lg font-semibold text-slate-950">Weekly timetable</h2><p className="mt-1 text-sm text-slate-500">Entries are stored per school and shown by weekday and start time.</p></div><div className="flex flex-wrap gap-3"><button type="button" disabled={!entries.length} className="text-sm font-semibold underline disabled:opacity-40" onClick={exportTimetable}>Export timetable CSV</button><button type="button" className="text-sm font-semibold underline" onClick={() => void timetableQuery.refetch()}>Refresh</button></div></div>
+            {!timetableQuery.isPending && !timetableQuery.isError && entries.length > 0 && <div className="mb-5 grid gap-3 sm:grid-cols-3"><div className="rounded-xl bg-slate-50 p-4"><p className="text-sm text-slate-500">Active lessons</p><p className="mt-1 text-2xl font-semibold tabular-nums">{activeEntries.length}</p></div><div className="rounded-xl bg-slate-50 p-4"><p className="text-sm text-slate-500">Classes scheduled</p><p className="mt-1 text-2xl font-semibold tabular-nums">{scheduledClassCount}</p></div><div className="rounded-xl bg-slate-50 p-4"><p className="text-sm text-slate-500">Teachers assigned</p><p className="mt-1 text-2xl font-semibold tabular-nums">{assignedTeacherCount}</p></div></div>}
             {timetableQuery.isPending && <p className="text-sm text-slate-500">Loading timetable…</p>}
             {timetableQuery.isError && <p role="alert" className="text-sm text-red-700">Timetable could not be loaded. Check the database migration and your school access, then retry.</p>}
             {!timetableQuery.isPending && !timetableQuery.isError && entries.length === 0 && <p className="rounded-xl bg-slate-50 p-5 text-sm text-slate-500">No lessons scheduled yet. Add the first lesson above.</p>}
