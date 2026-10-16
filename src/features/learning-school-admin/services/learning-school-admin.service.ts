@@ -3,4 +3,5 @@ import { learningSchoolAdminRepository } from "../repositories/learning-school-a
 export const learningSchoolAdminService = {
   listManageableOrganizations: learningSchoolAdminRepository.listManageableOrganizations,
   listEligibleUsers: learningSchoolAdminRepository.listEligibleUsers,
+  listStaff: learningSchoolAdminRepository.listStaff,
 };
