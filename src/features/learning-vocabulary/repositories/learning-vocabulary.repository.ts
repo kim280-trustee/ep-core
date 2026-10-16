@@ -11,6 +11,7 @@ import type {
   LearningVocabularyExampleInput,
   LearningVocabularyObjectiveLink,
   LearningVocabularyObjectiveLinkInput,
+  LearningVocabularyTeacherAnalytics,
 } from "../types/learning-vocabulary.types";
 
 type EntryRow = Database["public"]["Tables"]["learning_vocabulary_entries"]["Row"];
@@ -177,6 +178,25 @@ export const learningVocabularyRepository = {
       .eq("user_id", userId);
     if (error) throw error;
     return (data ?? []).map(mapProgress);
+  },
+
+  async getTeacherAnalytics(organizationId: string): Promise<LearningVocabularyTeacherAnalytics[]> {
+    const { data, error } = await supabase.rpc("get_learning_vocabulary_analytics", {
+      p_organization_id: organizationId,
+    });
+    if (error) throw error;
+    return (data ?? []).map((row) => ({
+      vocabularyEntryId: row.vocabulary_entry_id,
+      word: row.word,
+      topic: row.topic,
+      studentsPracticed: Number(row.students_practiced),
+      studentsKnown: Number(row.students_known),
+      studentsDue: Number(row.students_due),
+      reviewCount: Number(row.review_count),
+      correctCount: Number(row.correct_count),
+      incorrectCount: Number(row.incorrect_count),
+      accuracyPercent: Number(row.accuracy_percent),
+    }));
   },
 
   async recordReview(input: { organizationId: string; vocabularyEntryId: string; isCorrect: boolean }): Promise<LearningVocabularyProgress> {

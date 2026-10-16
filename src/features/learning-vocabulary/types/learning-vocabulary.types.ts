@@ -135,3 +135,16 @@ export type LearningVocabularyObjectiveLinkInput = Omit<
   LearningVocabularyObjectiveLink,
   "id" | "createdAt"
 >;
+
+export interface LearningVocabularyTeacherAnalytics {
+  vocabularyEntryId: string;
+  word: string;
+  topic: string | null;
+  studentsPracticed: number;
+  studentsKnown: number;
+  studentsDue: number;
+  reviewCount: number;
+  correctCount: number;
+  incorrectCount: number;
+  accuracyPercent: number;
+}
