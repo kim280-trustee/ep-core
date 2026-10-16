@@ -471,6 +471,90 @@ export type Database = {
           },
         ]
       }
+      learning_attendance_sessions: {
+        Row: {
+          attendance_date: string
+          class_group_id: string
+          created_at: string
+          id: string
+          notes: string | null
+          organization_id: string
+          status: string
+          submitted_at: string | null
+          taken_by: string
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          attendance_date: string
+          class_group_id: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          organization_id: string
+          status?: string
+          submitted_at?: string | null
+          taken_by: string
+          tenant_id: string
+          updated_at?: string
+        }
+        Update: {
+          attendance_date?: string
+          class_group_id?: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          organization_id?: string
+          status?: string
+          submitted_at?: string | null
+          taken_by?: string
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      learning_attendance_records: {
+        Row: {
+          attendance_session_id: string
+          attendance_status: string
+          created_at: string
+          id: string
+          marked_at: string
+          marked_by: string
+          note: string | null
+          organization_id: string
+          student_user_id: string
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          attendance_session_id: string
+          attendance_status: string
+          created_at?: string
+          id?: string
+          marked_at?: string
+          marked_by: string
+          note?: string | null
+          organization_id: string
+          student_user_id: string
+          tenant_id: string
+          updated_at?: string
+        }
+        Update: {
+          attendance_session_id?: string
+          attendance_status?: string
+          created_at?: string
+          id?: string
+          marked_at?: string
+          marked_by?: string
+          note?: string | null
+          organization_id?: string
+          student_user_id?: string
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       learning_academic_years: {
         Row: {
           code: string

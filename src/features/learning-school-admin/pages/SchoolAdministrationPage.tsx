@@ -14,6 +14,8 @@ import type {
 } from "@/features/learning-academic";
 import { learningEnrollmentService } from "@/features/learning-enrollment";
 import { learningSchoolAdminService } from "../services/learning-school-admin.service";
+import { learningAttendanceService } from "../services/learning-attendance.service";
+import type { LearningAttendanceStatus } from "../types/learning-attendance.types";
 
 const fieldClass = "mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200";
 const buttonClass = "inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50";
@@ -26,6 +28,11 @@ type ClassForm = { curriculumId: string; gradeLevelId: string; code: string; nam
 const emptyYearForm: YearForm = { curriculumId: "", name: "", code: "", startsOn: "", endsOn: "", status: "planned" };
 const emptyTermForm: TermForm = { name: "", code: "", sequenceNo: "1", startsOn: "", endsOn: "", status: "planned" };
 const emptyClassForm: ClassForm = { curriculumId: "", gradeLevelId: "", code: "", name: "", status: "active" };
+
+function localDateValue(): string {
+  const date = new Date();
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
 
 function errorText(error: unknown): string {
   if (error instanceof Error && error.message) return error.message;
@@ -66,6 +73,8 @@ export default function SchoolAdministrationPage() {
   const [subjectToAdd, setSubjectToAdd] = useState("");
   const [userToAdd, setUserToAdd] = useState("");
   const [membershipType, setMembershipType] = useState<"student" | "teacher">("student");
+  const [attendanceDate, setAttendanceDate] = useState(localDateValue);
+  const [attendanceDraft, setAttendanceDraft] = useState<{ contextKey: string; statuses: Record<string, LearningAttendanceStatus>; notes: Record<string, string> }>({ contextKey: "", statuses: {}, notes: {} });
   const [actionError, setActionError] = useState("");
   const [actionNotice, setActionNotice] = useState("");
 
@@ -134,6 +143,29 @@ export default function SchoolAdministrationPage() {
     enabled: Boolean(organizationId && classGroupId) && canManage,
   });
   const roster = rosterQuery.data ?? [];
+  const activeStudents = roster.filter((member) => member.membershipType === "student" && member.status === "active");
+  const attendanceContextKey = `${organizationId}:${classGroupId}:${attendanceDate}`;
+  const attendanceQuery = useQuery({
+    queryKey: ["school-admin", "attendance", organizationId, classGroupId, attendanceDate],
+    queryFn: () => learningAttendanceService.getRegister(organizationId, classGroupId, attendanceDate),
+    enabled: Boolean(organizationId && classGroupId && attendanceDate) && canManage,
+  });
+  const savedAttendance = attendanceQuery.data;
+  const attendanceStatuses = attendanceDraft.contextKey === attendanceContextKey ? attendanceDraft.statuses : {};
+  const attendanceNotes = attendanceDraft.contextKey === attendanceContextKey ? attendanceDraft.notes : {};
+  const getAttendanceStatus = (studentId: string): LearningAttendanceStatus => attendanceStatuses[studentId] ?? savedAttendance?.statusByStudentId[studentId] ?? "unmarked";
+  const getAttendanceNote = (studentId: string): string => attendanceNotes[studentId] ?? savedAttendance?.noteByStudentId[studentId] ?? "";
+
+  const updateAttendanceDraft = (studentId: string, update: { status?: LearningAttendanceStatus; note?: string }) => {
+    setAttendanceDraft((current) => {
+      const base = current.contextKey === attendanceContextKey ? current : { contextKey: attendanceContextKey, statuses: {}, notes: {} };
+      return {
+        ...base,
+        statuses: update.status === undefined ? base.statuses : { ...base.statuses, [studentId]: update.status },
+        notes: update.note === undefined ? base.notes : { ...base.notes, [studentId]: update.note },
+      };
+    });
+  };
 
   const eligibleUsersQuery = useQuery({
     queryKey: ["school-admin", "eligible-users", organizationId, user?.tenantId],
@@ -396,6 +428,40 @@ export default function SchoolAdministrationPage() {
                     ) : <p className="py-4 text-sm text-slate-500">No teachers or students are assigned to this class yet.</p>}
                   </div>
                   <p className="mt-3 text-xs leading-5 text-slate-500">Only active class memberships are used by teacher and student workflows. Deactivation preserves the membership record and history.</p>
+                </>}
+              </Section>
+
+              <Section title="5. Attendance register" description="Record daily attendance for active students in the selected class. Unmarked students are not automatically counted as present or absent.">
+                {!classGroupId ? <p className="text-sm text-slate-500">Select a class first.</p> : <>
+                  <div className="flex flex-wrap items-end gap-3">
+                    <Field label="Attendance date"><input className={fieldClass} type="date" required value={attendanceDate} onChange={(event) => setAttendanceDate(event.target.value)} /></Field>
+                    <button type="button" className={secondaryButtonClass} disabled={!activeStudents.length || saveMutation.isPending} onClick={() => setAttendanceDraft((current) => ({ contextKey: attendanceContextKey, statuses: { ...(current.contextKey === attendanceContextKey ? current.statuses : {}), ...Object.fromEntries(activeStudents.map((student) => [student.userId, "present" as const])) }, notes: current.contextKey === attendanceContextKey ? current.notes : {} }))}>Mark all present</button>
+                    <button type="button" className={buttonClass} disabled={!activeStudents.length || attendanceQuery.isPending || saveMutation.isPending} onClick={() => {
+                      const records = activeStudents.map((student) => ({ studentUserId: student.userId, status: getAttendanceStatus(student.userId), note: getAttendanceNote(student.userId) }));
+                      void saveMutation.mutateAsync(() => learningAttendanceService.saveRegister({ tenantId: user.tenantId, organizationId, classGroupId, attendanceDate, takenBy: user.id, records }));
+                    }}>{saveMutation.isPending ? "Saving attendance…" : "Save register"}</button>
+                  </div>
+                  {attendanceQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading attendance…</p> : attendanceQuery.isError ? <p className="mt-4 text-sm text-red-700">Could not load this register: {errorText(attendanceQuery.error)}</p> : activeStudents.length ? (
+                    <>
+                      <p className="mt-3 text-xs text-slate-500">{activeStudents.filter((student) => getAttendanceStatus(student.userId) !== "unmarked").length} of {activeStudents.length} students marked for {attendanceDate}.</p>
+                      <div className="mt-4 overflow-x-auto">
+                        <table className="min-w-full text-left text-sm">
+                          <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-3 py-3">Student</th><th className="px-3 py-3">Attendance</th><th className="px-3 py-3">Note (optional)</th></tr></thead>
+                          <tbody className="divide-y divide-slate-100">
+                            {activeStudents.map((student) => {
+                              const account = userById.get(student.userId);
+                              return <tr key={student.userId}>
+                                <td className="px-3 py-3"><p className="font-medium text-slate-900">{account?.name ?? "Student account"}</p><p className="text-xs text-slate-500">{account?.email ?? student.userId}</p></td>
+                                <td className="px-3 py-3"><select aria-label={`Attendance for ${account?.name ?? "student"}`} className={fieldClass + " min-w-36"} value={getAttendanceStatus(student.userId)} onChange={(event) => updateAttendanceDraft(student.userId, { status: event.target.value as LearningAttendanceStatus })}><option value="unmarked">Not marked</option><option value="present">Present</option><option value="absent">Absent</option><option value="late">Late</option><option value="excused">Excused</option></select></td>
+                                <td className="px-3 py-3"><input aria-label={`Attendance note for ${account?.name ?? "student"}`} className={fieldClass + " min-w-48"} maxLength={300} value={getAttendanceNote(student.userId)} onChange={(event) => updateAttendanceDraft(student.userId, { note: event.target.value })} placeholder="Optional note" /></td>
+                              </tr>;
+                            })}
+                          </tbody>
+                        </table>
+                      </div>
+                      <p className="mt-3 text-xs leading-5 text-slate-500">Choosing “Not marked” removes an existing mark when you save. Changes are saved to the school database; a register is not finalized or locked by this action.</p>
+                    </>
+                  ) : <p className="mt-4 text-sm text-slate-500">No active students are assigned to this class.</p>}
                 </>}
               </Section>
             </>
