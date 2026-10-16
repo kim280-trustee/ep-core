@@ -3926,6 +3926,60 @@ export type Database = {
           },
         ]
       }
+      learning_timetable_entries: {
+        Row: {
+          id: string
+          tenant_id: string
+          organization_id: string
+          class_group_id: string
+          subject_id: string
+          teacher_user_id: string | null
+          day_of_week: number
+          starts_at: string
+          ends_at: string
+          room: string | null
+          notes: string | null
+          status: string
+          created_by: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          tenant_id: string
+          organization_id: string
+          class_group_id: string
+          subject_id: string
+          teacher_user_id?: string | null
+          day_of_week: number
+          starts_at: string
+          ends_at: string
+          room?: string | null
+          notes?: string | null
+          status?: string
+          created_by: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          tenant_id?: string
+          organization_id?: string
+          class_group_id?: string
+          subject_id?: string
+          teacher_user_id?: string | null
+          day_of_week?: number
+          starts_at?: string
+          ends_at?: string
+          room?: string | null
+          notes?: string | null
+          status?: string
+          created_by?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       organizations: {
         Row: {
           code: string
