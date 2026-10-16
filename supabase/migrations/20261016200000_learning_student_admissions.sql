@@ -192,6 +192,25 @@ begin
   if not found then
     raise exception 'Student invitation was not found';
   end if;
+  -- Check the authenticated email before returning any status-specific result.
+  if v_auth_email <> lower(v_invite.student_email) then
+    raise exception 'The signed-in email does not match this student invitation';
+  end if;
+
+  -- A retry by the same authenticated account is safe and idempotent.
+  if v_invite.status = 'accepted' then
+    if exists (
+      select 1
+      from public.users u
+      where u.id = v_invite.accepted_by
+        and u.auth_user_id = v_auth_user_id
+        and lower(u.email) = v_auth_email
+    ) then
+      return v_invite.accepted_by;
+    end if;
+    raise exception 'This student invitation is no longer active';
+  end if;
+
   if v_invite.status <> 'pending' then
     raise exception 'This student invitation is no longer active';
   end if;
@@ -200,9 +219,6 @@ begin
     set status = 'expired', updated_at = now()
     where id = p_invitation_id;
     return null;
-  end if;
-  if v_auth_email <> lower(v_invite.student_email) then
-    raise exception 'The signed-in email does not match this student invitation';
   end if;
 
   select o.tenant_id into v_org_tenant_id
