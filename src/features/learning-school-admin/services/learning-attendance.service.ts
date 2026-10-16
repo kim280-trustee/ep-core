@@ -2,6 +2,7 @@ import { learningAttendanceRepository } from "../repositories/learning-attendanc
 
 export const learningAttendanceService = {
   getHistory: learningAttendanceRepository.getHistory,
+  getSchoolWideHistory: learningAttendanceRepository.getSchoolWideHistory,
   getRegister: learningAttendanceRepository.getRegister,
   saveRegister: learningAttendanceRepository.saveRegister,
 };
