@@ -24,8 +24,22 @@ export const learningParentRepository={
   },
   async listOrganizationUsers(organizationId:string):Promise<LearningParentStudent[]>{
     const{data:organization,error:organizationError}=await supabase.from("organizations").select("tenant_id").eq("id",organizationId).single();if(organizationError)throw organizationError;
-    const{data,error}=await supabase.from("users").select("id,name,email").eq("tenant_id",organization.tenant_id).order("name");if(error)throw error;
-    return(data??[]).map(row=>({id:row.id,name:row.name,email:row.email}));
+    const[{data:memberships,error:membershipError},{data:links,error:linksError}]=await Promise.all([
+      supabase.from("organization_memberships").select("user_id").eq("organization_id",organizationId).eq("status","active"),
+      supabase.from("learning_parent_student_links").select("parent_user_id,student_user_id").eq("organization_id",organizationId),
+    ]);
+    if(membershipError)throw membershipError;if(linksError)throw linksError;
+    const userIds=[...new Set([...(memberships??[]).map(row=>row.user_id),...(links??[]).flatMap(row=>[row.parent_user_id,row.student_user_id])])];
+    if(!userIds.length)return [];
+    const{data,error}=await supabase.from("users").select("id,name,email").eq("tenant_id",organization.tenant_id).in("id",userIds).order("name");if(error)throw error;
+    return(data??[]).map(row=>({id:row.id,name:row.name??"Unnamed user",email:row.email??""}));
+  },
+  async listOrganizationStudents(organizationId:string):Promise<LearningParentStudent[]>{
+    const{data:organization,error:organizationError}=await supabase.from("organizations").select("tenant_id").eq("id",organizationId).single();if(organizationError)throw organizationError;
+    const{data:memberships,error:membershipError}=await supabase.from("learning_class_memberships").select("user_id").eq("organization_id",organizationId).eq("membership_type","student").eq("status","active");if(membershipError)throw membershipError;
+    const userIds=[...new Set((memberships??[]).map(row=>row.user_id))];if(!userIds.length)return [];
+    const{data,error}=await supabase.from("users").select("id,name,email").eq("tenant_id",organization.tenant_id).in("id",userIds).order("name");if(error)throw error;
+    return(data??[]).map(row=>({id:row.id,name:row.name??"Unnamed user",email:row.email??""}));
   },
   async listLinks(organizationId:string):Promise<LearningParentStudentLink[]>{
     const{data,error}=await parentLinks().eq("organization_id",organizationId).order("created_at",{ascending:false});if(error)throw error;

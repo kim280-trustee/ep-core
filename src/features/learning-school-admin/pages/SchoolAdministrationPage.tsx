@@ -236,6 +236,29 @@ export default function SchoolAdministrationPage() {
     const safeClass = (selectedClass?.code || selectedClass?.name || "class").replace(/[^a-z0-9_-]+/gi, "-");
     downloadAttendanceCsv(`roster-${safeClass}.csv`, rows);
   };
+  const exportSchoolRosters = async () => {
+    setActionError("");
+    setActionNotice("");
+    try {
+      const classRosters = await Promise.all(classGroups.map(async (group) => ({
+        group,
+        members: await learningEnrollmentService.listClassMembers(group.id, true),
+      })));
+      const rows = [
+        ["school", organizations.find((item) => item.id === organizationId)?.name ?? "", "academic_year", selectedYear?.name ?? ""],
+        ["class_code", "class_name", "account_name", "email", "user_id", "class_role", "membership_status"],
+        ...classRosters.flatMap(({ group, members }) => members.map((member) => {
+          const account = userById.get(member.userId);
+          return [group.code, group.name, account?.name ?? "School account", account?.email ?? "", member.userId, member.membershipType, member.status];
+        })),
+      ];
+      const safeYear = (selectedYear?.code || selectedYear?.name || "academic-year").replace(/[^a-z0-9_-]+/gi, "-");
+      downloadAttendanceCsv("school-rosters-" + safeYear + ".csv", rows);
+      setActionNotice("Exported " + classRosters.reduce((total, item) => total + item.members.length, 0) + " class memberships across " + classRosters.length + " classes, including inactive memberships.");
+    } catch (error) {
+      setActionError("School roster export failed: " + errorText(error));
+    }
+  };
   const existingMembershipKeys = new Set(roster.map((item) => item.userId + ":" + item.membershipType));
   const addableUsers = eligibleUsers.filter((item) => !existingMembershipKeys.has(item.id + ":" + membershipType));
   const activeClassSubjects = classSubjects.filter((item) => item.status === "active");
@@ -384,7 +407,7 @@ export default function SchoolAdministrationPage() {
             <h1 className="mt-1 text-2xl font-bold sm:text-3xl">School setup</h1>
             <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">Set up academic years and terms, create classes, attach subjects, and manage teacher and student rosters. Changes are saved to the school database.</p>
           </div>
-          <div className="flex flex-wrap gap-2"><Link to="/school-admin/timetable" className="rounded-xl border border-white/30 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10">Timetable</Link><Link to="/teacher" className="rounded-xl border border-white/30 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10">Teacher workspace</Link></div>
+          <div className="flex flex-wrap gap-2"><Link to="/school-admin/timetable" className="rounded-xl border border-white/30 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10">Timetable</Link><Link to="/school-admin/parents" className="rounded-xl border border-white/30 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10">Parent links</Link><Link to="/teacher" className="rounded-xl border border-white/30 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10">Teacher workspace</Link></div>
         </div>
         <div className="mt-5 max-w-xl">
           <label className="block text-sm font-medium text-slate-200">School / organization
@@ -472,6 +495,7 @@ export default function SchoolAdministrationPage() {
                   <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
                     <p className="text-xs text-slate-500">Export includes every membership shown below, including inactive memberships.</p>
                     <button type="button" className={secondaryButtonClass} disabled={rosterQuery.isPending || rosterQuery.isError || !roster.length} onClick={exportRoster}>Export roster CSV</button>
+                    <button type="button" className={secondaryButtonClass} disabled={!classGroups.length || eligibleUsersQuery.isPending} onClick={() => void exportSchoolRosters()}>Export school rosters CSV</button>
                   </div>
                   <div className="mt-5 overflow-x-auto">
                     {rosterQuery.isPending ? <p className="py-4 text-sm text-slate-500">Loading roster…</p> : roster.length ? (
