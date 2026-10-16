@@ -5,6 +5,7 @@ export const learningVocabularyService = {
   createEntry: learningVocabularyRepository.createEntry,
   updateEntry: learningVocabularyRepository.updateEntry,
   listProgress: learningVocabularyRepository.listProgress,
+  getTeacherAnalytics: learningVocabularyRepository.getTeacherAnalytics,
   recordReview: learningVocabularyRepository.recordReview,
   listTranslations: learningVocabularyRepository.listTranslations,
   createTranslation: learningVocabularyRepository.createTranslation,
