@@ -184,6 +184,11 @@ export default function SchoolAdministrationPage() {
   const getAttendanceStatus = (studentId: string): LearningAttendanceStatus => attendanceStatuses[studentId] ?? savedAttendance?.statusByStudentId[studentId] ?? "unmarked";
   const getAttendanceNote = (studentId: string): string => attendanceNotes[studentId] ?? savedAttendance?.noteByStudentId[studentId] ?? "";
 
+  const attendanceSummary = activeStudents.reduce((summary, student) => {
+    summary[getAttendanceStatus(student.userId)] += 1;
+    return summary;
+  }, { present: 0, absent: 0, late: 0, excused: 0, unmarked: 0 } as Record<LearningAttendanceStatus, number>);
+
   const updateAttendanceDraft = (studentId: string, update: { status?: LearningAttendanceStatus; note?: string }) => {
     setAttendanceDraft((current) => {
       const base = current.contextKey === attendanceContextKey ? current : { contextKey: attendanceContextKey, statuses: {}, notes: {} };
@@ -490,6 +495,15 @@ export default function SchoolAdministrationPage() {
                   {attendanceQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading attendance…</p> : attendanceQuery.isError ? <p className="mt-4 text-sm text-red-700">Could not load this register: {errorText(attendanceQuery.error)}</p> : activeStudents.length ? (
                     <>
                       <p className="mt-3 text-xs text-slate-500">{activeStudents.filter((student) => getAttendanceStatus(student.userId) !== "unmarked").length} of {activeStudents.length} students marked for {attendanceDate}.</p>
+                      <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-5">
+                        {([
+                          { label: "Present", value: attendanceSummary.present },
+                          { label: "Absent", value: attendanceSummary.absent },
+                          { label: "Late", value: attendanceSummary.late },
+                          { label: "Excused", value: attendanceSummary.excused },
+                          { label: "Unmarked", value: attendanceSummary.unmarked },
+                        ] as const).map((item) => <div key={item.label} className="rounded-xl border border-slate-200 bg-slate-50 p-3"><p className="text-xs font-medium text-slate-500">{item.label}</p><p className="mt-1 text-2xl font-semibold tabular-nums text-slate-900">{item.value}</p></div>)}
+                      </div>
                       <div className="mt-4 overflow-x-auto">
                         <table className="min-w-full text-left text-sm">
                           <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-3 py-3">Student</th><th className="px-3 py-3">Attendance</th><th className="px-3 py-3">Note (optional)</th></tr></thead>
