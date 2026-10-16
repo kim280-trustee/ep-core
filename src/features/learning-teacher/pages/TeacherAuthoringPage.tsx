@@ -38,7 +38,8 @@ export default function TeacherAuthoringPage() {
   const requestedAssignmentGroup=allTeacherAssignments.data?.find(group=>group.assignments.some(assignment=>assignment.id===requestedAssignmentId));
   const activeClassGroupId=classGroupId||requestedAssignmentGroup?.classGroupId||classes.data?.[0]?.classGroup.id||"";
   const selected=classes.data?.find(x=>x.classGroup.id===activeClassGroupId);
-  const organizationId=selected?.membership.organizationId;
+  // The class group is the canonical source for its organization. Use the membership value only as a fallback.
+  const organizationId=selected?.classGroup.organizationId||selected?.membership.organizationId;
   const content=useQuery({queryKey:["learning","authoring","content",organizationId],queryFn:()=>learningContentService.listContent(organizationId),enabled:Boolean(organizationId)});
   const questions=useQuery({queryKey:["learning","authoring","questions",organizationId],queryFn:()=>learningAssessmentService.listQuestions(organizationId),enabled:Boolean(organizationId)});
   const assessments=useQuery({queryKey:["learning","authoring","assessments",organizationId],queryFn:()=>learningAssessmentService.listAssessments(organizationId),enabled:Boolean(organizationId)});
