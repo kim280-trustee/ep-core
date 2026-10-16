@@ -6,6 +6,7 @@ import { useAuth } from "@/core/auth";
 import { learningContentService } from "@/features/learning-content";
 import { learningAssessmentService } from "@/features/learning-assessment";
 import { learningAssignmentsService } from "@/features/learning-assignments";
+import { learningVocabularyService } from "@/features/learning-vocabulary";
 import { learningTeacherService } from "../services/learning-teacher.service";
 
 export default function TeacherAuthoringPage() {
@@ -28,6 +29,8 @@ export default function TeacherAuthoringPage() {
   const [assignmentId,setAssignmentId]=useState("");
   const [selectedContentId,setSelectedContentId]=useState("");
   const [selectedAssessmentId,setSelectedAssessmentId]=useState("");
+  const [vocabularySearch,setVocabularySearch]=useState("");
+  const [selectedVocabularyIds,setSelectedVocabularyIds]=useState<string[]>([]);
   const [searchParams]=useSearchParams();
   const [message,setMessage]=useState<string|null>(null);
   const [messageKind,setMessageKind]=useState<"success"|"error"|"info">("info");
@@ -40,6 +43,7 @@ export default function TeacherAuthoringPage() {
   const selected=classes.data?.find(x=>x.classGroup.id===activeClassGroupId);
   const organizationId=selected?.membership.organizationId;
   const content=useQuery({queryKey:["learning","authoring","content",organizationId],queryFn:()=>learningContentService.listContent(organizationId),enabled:Boolean(organizationId)});
+  const vocabulary=useQuery({queryKey:["learning","authoring","vocabulary",organizationId],queryFn:()=>learningVocabularyService.listEntries(organizationId!,false),enabled:Boolean(organizationId)});
   const questions=useQuery({queryKey:["learning","authoring","questions",organizationId],queryFn:()=>learningAssessmentService.listQuestions(organizationId),enabled:Boolean(organizationId)});
   const assessments=useQuery({queryKey:["learning","authoring","assessments",organizationId],queryFn:()=>learningAssessmentService.listAssessments(organizationId),enabled:Boolean(organizationId)});
   const teacherAssignments=useQuery({queryKey:["learning","authoring","assignments",activeClassGroupId],queryFn:()=>learningAssignmentsService.listAssignmentHistoryForClass(activeClassGroupId),enabled:Boolean(activeClassGroupId)});
@@ -76,10 +80,29 @@ export default function TeacherAuthoringPage() {
 
   return <div className="mx-auto max-w-6xl space-y-6">
     <div><Link to="/teacher" className="inline-flex items-center gap-2 text-sm text-slate-500"><ArrowLeft size={16}/>Back to teacher workspace</Link><h1 className="mt-3 text-2xl font-bold text-slate-900">Teacher authoring</h1><p className="mt-2 text-sm text-slate-500">Build reusable content, questions, assessments, and publish-ready assignment items.</p></div>
-    <Panel title="Authoring context"><Field label="Teacher class"><select value={activeClassGroupId} onChange={e=>{setClassGroupId(e.target.value);setAssignmentId("");}} className="input"><option value="">Select a class</option>{classes.data?.map(x=><option key={x.classGroup.id} value={x.classGroup.id}>{x.classGroup.name}</option>)}</select></Field></Panel>
+    <Panel title="Authoring context"><Field label="Teacher class"><select value={activeClassGroupId} onChange={e=>{setClassGroupId(e.target.value);setAssignmentId("");setSelectedVocabularyIds([]);}} className="input"><option value="">Select a class</option>{classes.data?.map(x=><option key={x.classGroup.id} value={x.classGroup.id}>{x.classGroup.name}</option>)}</select></Field></Panel>
     {message&&<div className={`flex items-start gap-3 rounded-xl border p-4 text-sm font-medium ${messageKind==="error"?"border-red-300 bg-red-50 text-red-800":messageKind==="success"?"border-emerald-300 bg-emerald-50 text-emerald-800":"border-blue-300 bg-blue-50 text-blue-800"}`}>{messageKind==="error"?<AlertCircle size={18} className="mt-0.5 shrink-0"/>:<CheckCircle2 size={18} className="mt-0.5 shrink-0"/>}<span>{message}</span></div>}
     <div className="grid gap-6 lg:grid-cols-2">
       <Panel title="Content library" icon={<BookOpen size={18}/>}>
+        <section className="mb-5 rounded-xl border border-indigo-200 bg-indigo-50/60 p-4">
+          <div>
+            <h3 className="font-semibold text-slate-900">Reuse dictionary vocabulary</h3>
+            <p className="mt-1 text-sm leading-5 text-slate-600">Choose published words from this school’s dictionary and insert their definitions, translations, pronunciation, and examples into the lesson or worksheet draft below. Publish the content before attaching it to an assignment.</p>
+          </div>
+          <div className="mt-3">
+            <Field label="Search published vocabulary">
+              <input value={vocabularySearch} onChange={e=>setVocabularySearch(e.target.value)} className="input" placeholder="Search by word, definition, or topic" />
+            </Field>
+          </div>
+          <div className="mt-3 max-h-56 space-y-2 overflow-y-auto rounded-lg border border-indigo-100 bg-white p-3">
+            {vocabulary.isPending ? <p className="text-sm text-slate-500">Loading the school dictionary…</p> : vocabulary.isError ? <p role="alert" className="text-sm text-red-700">Published vocabulary could not be loaded. Refresh the page and try again.</p> : (vocabulary.data??[]).filter(entry=>[entry.word,entry.definition,entry.topic??"",entry.translation??"",entry.partOfSpeech??"",...entry.wordForms,...entry.synonyms,...entry.antonyms].some(value=>value.toLocaleLowerCase().includes(vocabularySearch.trim().toLocaleLowerCase()))).map(entry=><label key={entry.id} className="flex cursor-pointer items-start gap-3 rounded-lg p-2 hover:bg-slate-50"><input type="checkbox" className="mt-1" checked={selectedVocabularyIds.includes(entry.id)} onChange={event=>setSelectedVocabularyIds(current=>event.target.checked?[...new Set([...current,entry.id])]:current.filter(id=>id!==entry.id))}/><span className="min-w-0"><span className="block font-medium text-slate-900">{entry.word}{entry.partOfSpeech?" · "+entry.partOfSpeech:""}</span><span className="mt-0.5 block line-clamp-2 text-xs text-slate-600">{entry.definition}</span>{entry.topic&&<span className="mt-0.5 block text-xs text-slate-400">{entry.topic}</span>}</span></label>)}
+            {!vocabulary.isPending&&!vocabulary.isError&&!(vocabulary.data??[]).some(entry=>[entry.word,entry.definition,entry.topic??"",entry.translation??"",entry.partOfSpeech??"",...entry.wordForms,...entry.synonyms,...entry.antonyms].some(value=>value.toLocaleLowerCase().includes(vocabularySearch.trim().toLocaleLowerCase())))&&<p className="text-sm text-slate-500">No published words match this search.</p>}
+          </div>
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
+            <p className="text-xs text-slate-500">{selectedVocabularyIds.length} word{selectedVocabularyIds.length===1?"":"s"} selected</p>
+            <button type="button" disabled={!selectedVocabularyIds.length||!organizationId||vocabulary.isPending||vocabulary.isError} onClick={async()=>{const chosen=(vocabulary.data??[]).filter(entry=>selectedVocabularyIds.includes(entry.id));if(!chosen.length||!organizationId)return;try{const blocks=await Promise.all(chosen.map(async(entry,index)=>{const [translations,examples]=await Promise.all([learningVocabularyService.listTranslations(organizationId,entry.id),learningVocabularyService.listExamples(organizationId,entry.id)]);return [[String(index+1)+". "+entry.word,"Definition: "+entry.definition,entry.translation?"Translation: "+entry.translation:"",entry.pronunciation?"Pronunciation: "+entry.pronunciation:"",entry.exampleSentence?"Example: "+entry.exampleSentence:"",entry.topic?"Topic: "+entry.topic:"",...translations.map(item=>["Translation ("+item.languageCode+"): "+item.translation,item.pronunciation?"Pronunciation: "+item.pronunciation:"",item.transliteration?"Transliteration: "+item.transliteration:"",item.audioUrl?"Audio URL: "+item.audioUrl:""].filter(Boolean).join("\n")),...examples.map(item=>["Example ("+item.languageCode+"): "+item.sentence,item.translatedSentence?"Translated example ("+(item.translationLanguageCode??"translation")+"): "+item.translatedSentence:""].filter(Boolean).join("\n"))].filter(Boolean).join("\n");}));const block=blocks.join("\n\n");setContentText(current=>current.trim()?current.trim()+"\n\nVocabulary practice\n\n"+block:"Vocabulary practice\n\n"+block);setSelectedVocabularyIds([]);setMessage("Selected dictionary words and their available translations/examples were inserted into the draft.");setMessageKind("success");}catch(error){setMessage(error instanceof Error?error.message:"Could not load all vocabulary details. No changes were inserted.");setMessageKind("error");}}} className="btn"><Plus size={16}/>Insert selected words into draft</button>
+          </div>
+        </section>
         <div className="space-y-3"><Field label="Code"><input value={contentCode} onChange={e=>setContentCode(e.target.value)} className="input" placeholder="ENG-M1-LESSON-001"/></Field><Field label="Title"><input value={contentTitle} onChange={e=>setContentTitle(e.target.value)} className="input" placeholder="Present simple"/></Field><Field label="Type"><select value={contentType} onChange={e=>setContentType(e.target.value as typeof contentType)} className="input"><option value="lesson">Lesson</option><option value="worksheet">Worksheet</option><option value="reading">Reading</option></select></Field><Field label="Learning objective"><select value={objectiveId} onChange={e=>setObjectiveId(e.target.value)} className="input"><option value="">Select objective</option>{objectives.data?.map(o=><option key={o.id} value={o.id}>{o.code} — {o.name}</option>)}</select></Field><Field label="Body"><textarea value={contentText} onChange={e=>setContentText(e.target.value)} rows={5} className="input" placeholder="Write the learner-facing content..."/></Field><button disabled={!organizationId||createContent.isPending} onClick={()=>createContent.mutate()} className="btn"><Plus size={16}/>Create draft</button></div>
         <div className="mt-6 space-y-2">{content.data?.slice(0,8).map(c=><div key={c.id} className="flex items-center justify-between rounded-xl border border-slate-100 p-3"><div><p className="font-medium">{c.title}</p><p className="text-xs text-slate-500">{c.code} · {c.status}</p></div>{c.status!=="published"&&<button onClick={()=>publishContent.mutate(c.id)} className="text-xs font-semibold text-slate-700">Publish</button>}</div>)}</div>
       </Panel>

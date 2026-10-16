@@ -131,6 +131,9 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
   const isTeacher = audience === "teacher";
   const [selectedOrganizationId, setSelectedOrganizationId] = useState("");
   const [search, setSearch] = useState("");
+  const [showDueOnly, setShowDueOnly] = useState(false);
+  const [selectedTopic, setSelectedTopic] = useState("all");
+  const [selectedDifficulty, setSelectedDifficulty] = useState<"all" | VocabularyDifficulty>("all");
   const [editingEntryId, setEditingEntryId] = useState("");
   const [form, setForm] = useState<VocabularyForm>(emptyForm);
   const [practiceEntryId, setPracticeEntryId] = useState("");
@@ -223,18 +226,22 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
   });
   const progressByEntryId = new Map(progress.map((item) => [item.vocabularyEntryId, item]));
   const normalizedSearch = search.trim().toLocaleLowerCase();
+  const availableTopics = [...new Set(entries.map((entry) => entry.topic?.trim()).filter((topic): topic is string => Boolean(topic)))].sort((a, b) => a.localeCompare(b));
   const filteredEntries = entries.filter((entry) =>
-    [entry.word, entry.definition, entry.translation ?? "", entry.topic ?? "", entry.partOfSpeech ?? "", ...entry.wordForms, ...entry.synonyms, ...entry.antonyms]
+    (selectedTopic === "all" || (entry.topic ?? "").trim() === selectedTopic)
+    && (selectedDifficulty === "all" || entry.difficulty === selectedDifficulty)
+    && [entry.word, entry.definition, entry.translation ?? "", entry.topic ?? "", entry.partOfSpeech ?? "", ...entry.wordForms, ...entry.synonyms, ...entry.antonyms]
       .some((value) => value.toLocaleLowerCase().includes(normalizedSearch)),
   );
   const isDue = (entry: LearningVocabularyEntry) => {
     const saved = progressByEntryId.get(entry.id);
     return !saved || new Date(saved.nextReviewAt).getTime() <= (reviewClockQuery.data ?? 0);
   };
-  const orderedFilteredEntries = isTeacher
-    ? filteredEntries
-    : [...filteredEntries].sort((left, right) => Number(isDue(right)) - Number(isDue(left)));
   const dueCount = isTeacher ? 0 : filteredEntries.filter(isDue).length;
+  const visibleEntries = !isTeacher && showDueOnly ? filteredEntries.filter(isDue) : filteredEntries;
+  const orderedFilteredEntries = isTeacher
+    ? visibleEntries
+    : [...visibleEntries].sort((left, right) => Number(isDue(right)) - Number(isDue(left)));
   const practiceEntry = entries.find((entry) => entry.id === practiceEntryId);
 
   const saveMutation = useMutation({
@@ -293,9 +300,11 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
     setCsvMessage("");
     setActionError("");
     setActionNotice("");
+    let imported = 0;
     try {
       const rows = parseCsv((await file.text()).replace(/^\uFEFF/, ""));
       if (rows.length < 2) throw new Error("The CSV must include a header row and at least one vocabulary row.");
+      if (rows.length - 1 > 500) throw new Error("Import is limited to 500 vocabulary entries per file.");
       const headers = rows[0].map((value) => value.trim());
       if (!headers.includes("word") || !headers.includes("definition")) {
         throw new Error('Required CSV columns are "word" and "definition". Download the template to see all supported columns.');
@@ -329,8 +338,14 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
           antonyms: column(row, "antonyms").split(";").map((item) => item.trim()).filter(Boolean),
         };
       });
-      if (importRows.length > 500) throw new Error("Import is limited to 500 vocabulary entries per file.");
-      let imported = 0;
+      const existingKeys = new Set(entries.map((entry) => entry.word.trim().toLocaleLowerCase() + "::" + entry.languageCode.toLowerCase()));
+      const seenKeys = new Set<string>();
+      importRows.forEach((item, index) => {
+        const key = item.word.trim().toLocaleLowerCase() + "::" + item.languageCode.toLowerCase();
+        if (existingKeys.has(key)) throw new Error("Row " + (index + 2) + ": \"" + item.word + "\" already exists for language " + item.languageCode + ". Remove or rename the duplicate before importing.");
+        if (seenKeys.has(key)) throw new Error("Row " + (index + 2) + ": duplicate word/language pair \"" + item.word + "\" in this CSV.");
+        seenKeys.add(key);
+      });
       for (const item of importRows) {
         await learningVocabularyService.createEntry({
           ...item,
@@ -345,7 +360,9 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
       setCsvMessage(imported + " entries imported as drafts. Review them and publish only when ready.");
       await queryClient.invalidateQueries({ queryKey: ["learning-vocabulary", "entries", organizationId] });
     } catch (error) {
-      setCsvMessage(errorMessage(error) + " Entries saved before the error may already exist; check the vocabulary bank before retrying.");
+      setCsvMessage(imported > 0
+        ? imported + " entries were saved as drafts before the import stopped. Do not rerun the full file unchanged; check the vocabulary bank and import only the remaining rows. " + errorMessage(error)
+        : errorMessage(error) + " No rows were imported by this attempt.");
     } finally {
       setCsvBusy(false);
       if (csvInputRef.current) csvInputRef.current.value = "";
@@ -830,6 +847,9 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
                 <p className="mt-1 text-sm text-slate-500">{filteredEntries.length} of {entries.length} entries{!isTeacher ? ` · ${dueCount} due for review` : ""}</p>
               </div>
               <label className="block w-full sm:max-w-sm"><span className="text-sm font-medium text-slate-700">Search words, definitions, translations, or topics</span><input className={inputClass} type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search vocabulary…" /></label>
+              <label className="block min-w-40 text-sm font-medium text-slate-700">Topic<select className={inputClass} value={selectedTopic} onChange={(event) => setSelectedTopic(event.target.value)}><option value="all">All topics</option>{availableTopics.map((topic) => <option key={topic} value={topic}>{topic}</option>)}</select></label>
+              <label className="block min-w-40 text-sm font-medium text-slate-700">Difficulty<select className={inputClass} value={selectedDifficulty} onChange={(event) => setSelectedDifficulty(event.target.value as "all" | VocabularyDifficulty)}><option value="all">All levels</option><option value="beginner">Beginner</option><option value="intermediate">Intermediate</option><option value="advanced">Advanced</option></select></label>
+              {!isTeacher && <button type="button" className={secondaryButton + " self-end"} aria-pressed={showDueOnly} onClick={() => setShowDueOnly((current) => !current)}>{showDueOnly ? "Show all words" : "Due reviews only"}</button>}
             </div>
             <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
               {orderedFilteredEntries.map((entry) => {
@@ -863,6 +883,7 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
                 );
               })}
               {!filteredEntries.length && <div className="rounded-xl border border-dashed border-slate-300 p-6 text-sm text-slate-500 md:col-span-2 xl:col-span-3">{entries.length ? "No vocabulary matches your search." : isTeacher ? "No entries yet. Add a word above, then publish it for students." : "No published vocabulary is available for your classes yet. Ask your teacher to publish a vocabulary list."}</div>}
+              {filteredEntries.length > 0 && !orderedFilteredEntries.length && <div className="rounded-xl border border-dashed border-slate-300 p-6 text-sm text-slate-500 md:col-span-2 xl:col-span-3">No words are due for review right now. Switch back to all words or return when your next review is due.</div>}
             </div>
           </section>
         </>
