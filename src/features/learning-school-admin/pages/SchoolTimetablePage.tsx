@@ -24,12 +24,12 @@ function errorText(error: unknown): string {
 
 function csvCell(value: string | null | undefined): string {
   const normalized = value ?? "";
-  const safeValue = /^[=+\\-@\\t\\r]/.test(normalized) ? "'" + normalized : normalized;
-  return /[",\\r\\n]/.test(safeValue) ? '"' + safeValue.replace(/"/g, '""') + '"' : safeValue;
+  const safeValue = /^[=+@\-\t\r]/.test(normalized) ? "'" + normalized : normalized;
+  return /[",\r\n]/.test(safeValue) ? '"' + safeValue.replace(/"/g, '""') + '"' : safeValue;
 }
 
 function downloadTimetableCsv(filename: string, rows: string[][]) {
-  const csv = "\\uFEFF" + rows.map((row) => row.map(csvCell).join(",")).join("\\r\\n");
+  const csv = "\uFEFF" + rows.map((row) => row.map(csvCell).join(",")).join("\r\n");
   const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8;" }));
   const anchor = document.createElement("a");
   anchor.href = url;
