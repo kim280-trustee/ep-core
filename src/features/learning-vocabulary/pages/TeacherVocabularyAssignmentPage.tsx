@@ -18,8 +18,7 @@ function errorText(error: unknown) {
   return error instanceof Error && error.message ? error.message : "The vocabulary assignment could not be created. Refresh the page and try again.";
 }
 
-function codePart(value: string) {
-  return value.normalize("NFKD").replace(/[^a-zA-Z0-9]+/g, "-").replace(/^-|-$/g, "").toUpperCase().slice(0, 18) || "VOCAB";
+|-$/g, "").toUpperCase().slice(0, 18) || "VOCAB";
 }
 
 export default function TeacherVocabularyAssignmentPage() {
