@@ -185,12 +185,26 @@ export default function SchoolAdministrationPage() {
     queryFn: () => learningAttendanceService.getHistory(organizationId, classGroupId, historyStartDate, historyEndDate),
     enabled: Boolean(organizationId && classGroupId && historyStartDate && historyEndDate && historyStartDate <= historyEndDate) && canManage,
   });
+  const organizationAttendanceHistoryQuery = useQuery({
+    queryKey: ["school-admin", "organization-attendance-history", organizationId, historyStartDate, historyEndDate],
+    queryFn: () => learningAttendanceService.getOrganizationHistory(organizationId, historyStartDate, historyEndDate),
+    enabled: Boolean(organizationId && historyStartDate && historyEndDate && historyStartDate <= historyEndDate) && canManage,
+  });
   const exportAttendanceHistory = (rows: LearningAttendanceHistoryRow[]) => {
     const className = classGroups.find((group) => group.id === classGroupId)?.name ?? "class";
     const safeClass = className.trim().replace(/[^a-z0-9-_]+/gi, "-").replace(/^-+|-+$/g, "") || "class";
     downloadAttendanceCsv(`attendance-history-${safeClass}-${historyStartDate}-to-${historyEndDate}.csv`, [
       ["school", "class", "date", "present", "absent", "late", "excused", "marked"],
       ...rows.map((row) => [organizations.find((org) => org.id === organizationId)?.name ?? "", className, row.date, String(row.present), String(row.absent), String(row.late), String(row.excused), String(row.marked)]),
+    ]);
+  };
+  const exportOrganizationAttendanceHistory = () => {
+    const rows = organizationAttendanceHistoryQuery.data ?? [];
+    const classNameById = new Map(allClassGroups.map((group) => [group.id, group.name]));
+    downloadAttendanceCsv(`school-attendance-${historyStartDate}-to-${historyEndDate}.csv`, [
+      ["school", organizations.find((org) => org.id === organizationId)?.name ?? "", "from", historyStartDate, "to", historyEndDate],
+      ["class", "date", "present", "absent", "late", "excused", "marked"],
+      ...rows.map((row) => [classNameById.get(row.classGroupId) ?? row.classGroupId, row.date, String(row.present), String(row.absent), String(row.late), String(row.excused), String(row.marked)]),
     ]);
   };
 
@@ -547,6 +561,13 @@ export default function SchoolAdministrationPage() {
                   <div className="flex items-end"><button type="button" className={secondaryButtonClass} disabled={!attendanceHistoryQuery.data?.length} onClick={() => exportAttendanceHistory(attendanceHistoryQuery.data ?? [])}>Export history CSV</button></div>
                 </div>
                 {historyStartDate > historyEndDate ? <p role="alert" className="mt-4 text-sm text-red-700">Choose a start date on or before the end date.</p> : attendanceHistoryQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading attendance history…</p> : attendanceHistoryQuery.isError ? <p role="alert" className="mt-4 text-sm text-red-700">Could not load attendance history: {errorText(attendanceHistoryQuery.error)}</p> : !(attendanceHistoryQuery.data ?? []).length ? <p className="mt-4 text-sm text-slate-500">No saved attendance registers were found for this date range.</p> : <div className="mt-4 overflow-x-auto"><table className="min-w-full text-left text-sm"><thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-3 py-3">Date</th><th className="px-3 py-3">Present</th><th className="px-3 py-3">Absent</th><th className="px-3 py-3">Late</th><th className="px-3 py-3">Excused</th><th className="px-3 py-3">Marked</th></tr></thead><tbody className="divide-y divide-slate-100">{(attendanceHistoryQuery.data ?? []).map((row) => <tr key={row.date}><td className="px-3 py-3 font-medium text-slate-900">{row.date}</td><td className="px-3 py-3 tabular-nums">{row.present}</td><td className="px-3 py-3 tabular-nums">{row.absent}</td><td className="px-3 py-3 tabular-nums">{row.late}</td><td className="px-3 py-3 tabular-nums">{row.excused}</td><td className="px-3 py-3 tabular-nums">{row.marked}</td></tr>)}</tbody></table><p className="mt-3 text-xs text-slate-500">Only saved marks are counted. Students left unmarked are not treated as present or absent. The report includes up to 366 attendance dates.</p></div>}
+              </Section>
+              <Section title="School-wide attendance report" description="Compare saved attendance registers across all classes in this school for the selected date range. Unmarked students are not counted as present or absent.">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <p className="text-sm text-slate-500">Showing up to 5,000 class-date registers for the selected range.</p>
+                  <button type="button" className={secondaryButtonClass} disabled={!organizationAttendanceHistoryQuery.data?.length} onClick={exportOrganizationAttendanceHistory}>Export school attendance CSV</button>
+                </div>
+                {historyStartDate > historyEndDate ? <p role="alert" className="mt-4 text-sm text-red-700">Choose a start date on or before the end date.</p> : organizationAttendanceHistoryQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading school-wide attendance…</p> : organizationAttendanceHistoryQuery.isError ? <p role="alert" className="mt-4 text-sm text-red-700">Could not load the school-wide report: {errorText(organizationAttendanceHistoryQuery.error)}</p> : !(organizationAttendanceHistoryQuery.data ?? []).length ? <p className="mt-4 text-sm text-slate-500">No saved attendance registers were found for this date range.</p> : <div className="mt-4 overflow-x-auto"><table className="min-w-full text-left text-sm"><thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-3 py-3">Class</th><th className="px-3 py-3">Date</th><th className="px-3 py-3">Present</th><th className="px-3 py-3">Absent</th><th className="px-3 py-3">Late</th><th className="px-3 py-3">Excused</th><th className="px-3 py-3">Marked</th></tr></thead><tbody className="divide-y divide-slate-100">{(organizationAttendanceHistoryQuery.data ?? []).map((row) => <tr key={row.classGroupId + ":" + row.date}><td className="px-3 py-3 font-medium text-slate-900">{allClassGroups.find((group) => group.id === row.classGroupId)?.name ?? "Class"}</td><td className="px-3 py-3">{row.date}</td><td className="px-3 py-3 tabular-nums">{row.present}</td><td className="px-3 py-3 tabular-nums">{row.absent}</td><td className="px-3 py-3 tabular-nums">{row.late}</td><td className="px-3 py-3 tabular-nums">{row.excused}</td><td className="px-3 py-3 tabular-nums">{row.marked}</td></tr>)}</tbody></table><p className="mt-3 text-xs text-slate-500">This report includes saved marks only. It does not infer attendance for students who were left unmarked.</p></div>}
               </Section>
               </>
           )}
