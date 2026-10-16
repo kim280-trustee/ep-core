@@ -5,6 +5,8 @@ import type { Organization } from "@/core/organization/types/organization.types"
 type OrganizationRow = Database["public"]["Tables"]["organizations"]["Row"];
 type UserRow = Pick<Database["public"]["Tables"]["users"]["Row"], "id" | "name" | "email">;
 
+export type SchoolStaffMembershipStatus = "active" | "inactive";
+
 export interface SchoolAdminUser {
   id: string;
   name: string;
@@ -71,6 +73,15 @@ export const learningSchoolAdminRepository = {
       .order("name", { ascending: true });
     if (error) throw error;
     return ((data ?? []) as UserRow[]).map(mapUser);
+  },
+
+  async setStaffMembershipStatus(membershipId: string, status: SchoolStaffMembershipStatus): Promise<boolean> {
+    const { data, error } = await supabase.rpc("set_learning_staff_membership_status", {
+      p_membership_id: membershipId,
+      p_status: status,
+    });
+    if (error) throw error;
+    return data === true;
   },
 
   async listStaff(organizationId: string) {
