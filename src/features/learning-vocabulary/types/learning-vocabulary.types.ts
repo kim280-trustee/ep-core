@@ -8,6 +8,9 @@ export interface LearningVocabularyEntry {
   organizationId: string;
   word: string;
   normalizedWord: string;
+  wordForms: string[];
+  synonyms: string[];
+  antonyms: string[];
   definition: string;
   exampleSentence: string | null;
   translation: string | null;
@@ -28,6 +31,9 @@ export interface LearningVocabularyEntryInput {
   tenantId: string;
   organizationId: string;
   word: string;
+  wordForms?: string[];
+  synonyms?: string[];
+  antonyms?: string[];
   definition: string;
   exampleSentence?: string | null;
   translation?: string | null;

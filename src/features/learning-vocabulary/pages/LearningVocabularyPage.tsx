@@ -19,6 +19,9 @@ const secondaryButton = "inline-flex items-center justify-center rounded-xl bord
 
 type VocabularyForm = {
   word: string;
+  wordForms: string;
+  synonyms: string;
+  antonyms: string;
   definition: string;
   exampleSentence: string;
   translation: string;
@@ -33,6 +36,9 @@ type VocabularyForm = {
 
 const emptyForm: VocabularyForm = {
   word: "",
+  wordForms: "",
+  synonyms: "",
+  antonyms: "",
   definition: "",
   exampleSentence: "",
   translation: "",
@@ -44,6 +50,10 @@ const emptyForm: VocabularyForm = {
   difficulty: "beginner",
   status: "draft",
 };
+
+function parseWordList(value: string): string[] {
+  return [...new Set(value.split(/[\n,;]/).map((item) => item.trim()).filter(Boolean))];
+}
 
 function errorMessage(error: unknown) {
   if (error instanceof Error && error.message) return error.message;
@@ -143,7 +153,7 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
   const progressByEntryId = new Map(progress.map((item) => [item.vocabularyEntryId, item]));
   const normalizedSearch = search.trim().toLocaleLowerCase();
   const filteredEntries = entries.filter((entry) =>
-    [entry.word, entry.definition, entry.translation ?? "", entry.topic ?? "", entry.partOfSpeech ?? ""]
+    [entry.word, entry.definition, entry.translation ?? "", entry.topic ?? "", entry.partOfSpeech ?? "", ...entry.wordForms, ...entry.synonyms, ...entry.antonyms]
       .some((value) => value.toLocaleLowerCase().includes(normalizedSearch)),
   );
   const isDue = (entry: LearningVocabularyEntry) => {
@@ -222,6 +232,9 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
       tenantId: user.tenantId,
       organizationId,
       word: form.word.trim(),
+      wordForms: parseWordList(form.wordForms),
+      synonyms: parseWordList(form.synonyms),
+      antonyms: parseWordList(form.antonyms),
       definition: form.definition.trim(),
       exampleSentence: form.exampleSentence,
       translation: form.translation,
@@ -239,6 +252,9 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
       if (editingEntryId) {
         await saveMutation.mutateAsync(() => learningVocabularyService.updateEntry(editingEntryId, {
           word: input.word,
+          wordForms: input.wordForms,
+          synonyms: input.synonyms,
+          antonyms: input.antonyms,
           definition: input.definition,
           exampleSentence: input.exampleSentence,
           translation: input.translation,
@@ -361,6 +377,9 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
     setEditingEntryId(entry.id);
     setForm({
       word: entry.word,
+      wordForms: entry.wordForms.join(", "),
+      synonyms: entry.synonyms.join(", "),
+      antonyms: entry.antonyms.join(", "),
       definition: entry.definition,
       exampleSentence: entry.exampleSentence ?? "",
       translation: entry.translation ?? "",
@@ -442,6 +461,9 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
                 <Field label="Word / phrase"><input className={inputClass} required maxLength={120} value={form.word} onChange={(event) => setForm((current) => ({ ...current, word: event.target.value }))} placeholder="environment" /></Field>
                 <Field label="Part of speech"><input className={inputClass} maxLength={40} value={form.partOfSpeech} onChange={(event) => setForm((current) => ({ ...current, partOfSpeech: event.target.value }))} placeholder="noun, verb, adjective…" /></Field>
                 <Field label="Topic"><input className={inputClass} maxLength={120} value={form.topic} onChange={(event) => setForm((current) => ({ ...current, topic: event.target.value }))} placeholder="Nature and the environment" /></Field>
+                <Field label="Word forms"><input className={inputClass} maxLength={500} value={form.wordForms} onChange={(event) => setForm((current) => ({ ...current, wordForms: event.target.value }))} placeholder="create, created, creating" /><span className="mt-1 block text-xs font-normal text-slate-500">Separate forms with commas, e.g. plural or verb forms.</span></Field>
+                <Field label="Synonyms"><input className={inputClass} maxLength={500} value={form.synonyms} onChange={(event) => setForm((current) => ({ ...current, synonyms: event.target.value }))} placeholder="similar, related" /></Field>
+                <Field label="Antonyms"><input className={inputClass} maxLength={500} value={form.antonyms} onChange={(event) => setForm((current) => ({ ...current, antonyms: event.target.value }))} placeholder="opposite meaning" /></Field>
                 <Field label="Language code"><input className={inputClass} required maxLength={20} value={form.languageCode} onChange={(event) => setForm((current) => ({ ...current, languageCode: event.target.value }))} placeholder="en" /></Field>
                 <Field label="Translation"><input className={inputClass} maxLength={500} value={form.translation} onChange={(event) => setForm((current) => ({ ...current, translation: event.target.value }))} placeholder="Optional translation" /></Field>
                 <Field label="Translation language code"><input className={inputClass} maxLength={20} value={form.translationLanguageCode} onChange={(event) => setForm((current) => ({ ...current, translationLanguageCode: event.target.value }))} placeholder="th (optional)" /></Field>
@@ -631,6 +653,9 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
                     </div>
                     <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-700">{entry.definition}</p>
                     {entry.translation && <p className="mt-2 text-sm text-slate-600"><span className="font-medium">Translation:</span> {entry.translation}</p>}
+                    {entry.wordForms.length > 0 && <p className="mt-2 text-sm text-slate-600"><span className="font-medium">Word forms:</span> {entry.wordForms.join(", ")}</p>}
+                    {entry.synonyms.length > 0 && <p className="mt-2 text-sm text-slate-600"><span className="font-medium">Synonyms:</span> {entry.synonyms.join(", ")}</p>}
+                    {entry.antonyms.length > 0 && <p className="mt-2 text-sm text-slate-600"><span className="font-medium">Antonyms:</span> {entry.antonyms.join(", ")}</p>}
                     {entry.topic && <p className="mt-2 text-xs text-slate-500">Topic: {entry.topic}</p>}
                     <div className="mt-auto flex flex-wrap items-center justify-between gap-2 pt-4">
                       {isTeacher ? (

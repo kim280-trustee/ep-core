@@ -3554,6 +3554,9 @@ export type Database = {
           updated_at: string
           updated_by: string
           word: string
+          word_forms: string[]
+          synonyms: string[]
+          antonyms: string[]
         }
         Insert: {
           created_at?: string
@@ -3574,6 +3577,9 @@ export type Database = {
           updated_at?: string
           updated_by: string
           word: string
+          word_forms?: string[]
+          synonyms?: string[]
+          antonyms?: string[]
         }
         Update: {
           created_at?: string
@@ -3594,6 +3600,9 @@ export type Database = {
           updated_at?: string
           updated_by?: string
           word?: string
+          word_forms?: string[]
+          synonyms?: string[]
+          antonyms?: string[]
         }
         Relationships: []
       }
