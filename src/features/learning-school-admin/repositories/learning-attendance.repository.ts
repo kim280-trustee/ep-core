@@ -41,6 +41,34 @@ export const learningAttendanceRepository = {
     }
     return [...counts.entries()].map(([date, row]) => ({ date, ...row }));
   },
+  async getSchoolWideHistory(organizationId: string, startDate: string, endDate: string): Promise<import("../types/learning-attendance.types").SchoolAttendanceReportRow[]> {
+    if (startDate > endDate) throw new Error("Start date must be on or before end date.");
+    const rpcClient = supabase as unknown as {
+      rpc: (name: string, args: Record<string, unknown>) => Promise<{ data: unknown; error: { message: string } | null }>;
+    };
+    const { data, error } = await rpcClient.rpc("get_learning_school_attendance_report", {
+      p_organization_id: organizationId,
+      p_start_date: startDate,
+      p_end_date: endDate,
+    });
+    if (error) throw new Error(error.message);
+    if (!Array.isArray(data)) return [];
+    return data.map((value) => {
+      const row = value as Record<string, unknown>;
+      return {
+        classGroupId: String(row.class_group_id ?? ""),
+        className: String(row.class_name ?? "Class"),
+        classCode: String(row.class_code ?? ""),
+        attendanceDate: String(row.attendance_date ?? ""),
+        presentCount: Number(row.present_count ?? 0),
+        absentCount: Number(row.absent_count ?? 0),
+        lateCount: Number(row.late_count ?? 0),
+        excusedCount: Number(row.excused_count ?? 0),
+        markedCount: Number(row.marked_count ?? 0),
+      };
+    });
+  },
+
   async getRegister(organizationId: string, classGroupId: string, attendanceDate: string): Promise<LearningAttendanceRegister> {
     const { data: session, error: sessionError } = await supabase
       .from("learning_attendance_sessions")
