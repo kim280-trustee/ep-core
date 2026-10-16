@@ -3,6 +3,14 @@ begin;
 
 create schema if not exists private;
 
+-- A cancelled slot must not reserve the class's start time forever.
+alter table public.learning_timetable_entries
+  drop constraint if exists learning_timetable_class_slot_unique;
+create unique index if not exists learning_timetable_class_slot_unique_active
+  on public.learning_timetable_entries (class_group_id, day_of_week, starts_at)
+  where status = 'active';
+
+
 create or replace function private.validate_learning_timetable_entry()
 returns trigger
 language plpgsql
