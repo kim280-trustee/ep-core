@@ -117,6 +117,13 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
     // Refresh the due list as review deadlines pass, even if the student leaves the page open.
     refetchInterval: isTeacher ? false : 60_000,
   });
+  const reviewClockQuery = useQuery({
+    queryKey: ["learning-vocabulary", "review-clock"],
+    queryFn: () => Date.now(),
+    enabled: !isTeacher,
+    refetchInterval: isTeacher ? false : 60_000,
+    staleTime: 0,
+  });
 
   const entries = entriesQuery.data ?? [];
   const progress = progressQuery.data ?? [];
@@ -150,7 +157,7 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
   );
   const isDue = (entry: LearningVocabularyEntry) => {
     const saved = progressByEntryId.get(entry.id);
-    return !saved || new Date(saved.nextReviewAt).getTime() <= progressQuery.dataUpdatedAt;
+    return !saved || new Date(saved.nextReviewAt).getTime() <= (reviewClockQuery.data ?? 0);
   };
   const orderedFilteredEntries = isTeacher
     ? filteredEntries
