@@ -9,6 +9,8 @@ returns table (
   known_count bigint,
   due_count bigint,
   review_attempts bigint,
+  correct_answers bigint,
+  answered_count bigint,
   accuracy_percent numeric
 )
 language plpgsql
@@ -46,6 +48,8 @@ begin
     count(e.id) filter (where p.status = 'known')::bigint as known_count,
     count(e.id) filter (where p.id is null or p.next_review_at <= now())::bigint as due_count,
     coalesce(sum(p.review_count), 0)::bigint as review_attempts,
+    coalesce(sum(p.correct_count), 0)::bigint as correct_answers,
+    coalesce(sum(p.correct_count + p.incorrect_count), 0)::bigint as answered_count,
     case
       when coalesce(sum(p.correct_count + p.incorrect_count), 0) = 0 then null
       else round(
