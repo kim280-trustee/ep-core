@@ -18,8 +18,6 @@ function errorText(error: unknown) {
   return error instanceof Error && error.message ? error.message : "The vocabulary assignment could not be created. Refresh the page and try again.";
 }
 
-|-$/g, "").toUpperCase().slice(0, 18) || "VOCAB";
-}
 
 export default function TeacherVocabularyAssignmentPage() {
   const { user } = useAuth();
