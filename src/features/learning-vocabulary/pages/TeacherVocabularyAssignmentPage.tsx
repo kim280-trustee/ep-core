@@ -101,10 +101,6 @@ export default function TeacherVocabularyAssignmentPage() {
         throw new Error("A generated assessment code already exists. Please retry.");
       }
 
-      const choices = selectedEntries.map((entry, index) => ({
-        key: String.fromCharCode(97 + index),
-        label: entry.definition.trim(),
-      }));
       const createdQuestionIds: string[] = [];
       let assessmentId: string | null = null;
       let assignmentId: string | null = null;
@@ -131,11 +127,24 @@ export default function TeacherVocabularyAssignmentPage() {
             createdBy: user.id,
           });
           createdQuestionIds.push(question.id);
+          const questionChoices = selectedEntries
+            .map((choiceEntry, choiceIndex) => ({
+              entry: choiceEntry,
+              order: (choiceIndex + index) % selectedEntries.length,
+            }))
+            .sort((left, right) => left.order - right.order)
+            .map((choice, optionIndex) => ({
+              key: String.fromCharCode(97 + optionIndex),
+              label: choice.entry.definition.trim(),
+              entryId: choice.entry.id,
+            }));
+          const correctOption = questionChoices.find((choice) => choice.entryId === entry.id)?.key;
+          if (!correctOption) throw new Error("The correct vocabulary answer could not be prepared.");
           const version = await learningAssessmentService.createQuestionVersion({
             questionId: question.id,
             versionNo: 1,
             prompt: { text: "What is the best definition of “" + entry.word + "”?" },
-            configuration: { options: choices },
+            configuration: { options: questionChoices.map(({ key, label }) => ({ key, label })) },
             explanation: entry.exampleSentence
               ? { text: "Example: " + entry.exampleSentence }
               : { text: "Definition: " + entry.definition },
@@ -143,7 +152,7 @@ export default function TeacherVocabularyAssignmentPage() {
           });
           await learningAssessmentService.saveQuestionEvaluationKey({
             questionVersionId: version.id,
-            evaluationKey: { correct_option_id: String.fromCharCode(97 + index) },
+            evaluationKey: { correct_option_id: correctOption },
             scoringRules: { method: "exact_option" },
           });
           await learningAssessmentService.addQuestionObjective({
