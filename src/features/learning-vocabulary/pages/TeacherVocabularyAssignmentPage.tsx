@@ -38,8 +38,8 @@ export default function TeacherVocabularyAssignmentPage() {
   });
   const activeClassGroupId = classGroupId || classesQuery.data?.[0]?.classGroup.id || "";
   const selectedClass = classesQuery.data?.find((item) => item.classGroup.id === activeClassGroupId);
-  const organizationId = selectedClass?.membership.organizationId;
-  const tenantId = selectedClass?.membership.tenantId;
+  const organizationId = selectedClass?.classGroup.organizationId?.trim() || selectedClass?.membership.organizationId?.trim() || "";
+  const tenantId = selectedClass?.membership.tenantId?.trim() || "";
 
   const entriesQuery = useQuery({
     queryKey: ["learning-vocabulary", "entries", organizationId, "graded-assignment"],
