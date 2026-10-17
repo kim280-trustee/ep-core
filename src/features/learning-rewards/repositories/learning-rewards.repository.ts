@@ -1,6 +1,7 @@
 import type { Database, Json } from "@/core/database/database.types";
 import { supabase } from "@/core/infrastructure/supabase/client";
 import type {
+  LearningBadgeAward,
   LearningRewardEventType,
   LearningRewardLedgerEntry,
   LearningRewardSourceType,
