@@ -98,7 +98,7 @@ export const learningParentRepository={
   },
 
   async getOverview(studentUserId:string):Promise<LearningParentOverview>{
-    const[{data:student,error:studentError},{data:grades,error:gradeError},{data:memberships,error:membershipError},{data:mastery,error:masteryError},{data:recommendations,error:recommendationError},{data:comments,error:commentError},{data:rewardRows,error:rewardError},{data:notificationRows,error:notificationError},verifiedContentCompletions]=await Promise.all([
+    const[{data:student,error:studentError},{data:grades,error:gradeError},{data:memberships,error:membershipError},{data:mastery,error:masteryError},{data:recommendations,error:recommendationError},{data:comments,error:commentError},{data:rewardRows,error:rewardError},{data:notificationRows,error:notificationError},{data:badgeRows,error:badgeError},verifiedContentCompletions]=await Promise.all([
       supabase.from("users").select("id,name,email").eq("id",studentUserId).single(),
       supabase.from("learning_term_grades").select("class_subject_id,term_id,score,letter_grade,status,finalized_at").eq("student_user_id",studentUserId).eq("status","finalized").order("finalized_at",{ascending:false}),
       supabase.from("learning_class_memberships").select("class_group_id").eq("user_id",studentUserId).eq("membership_type","student").eq("status","active"),
@@ -107,9 +107,10 @@ export const learningParentRepository={
       supabase.from("learning_gradebook_entries").select("comment,recorded_at,class_subject_id,term_id").eq("student_user_id",studentUserId).not("comment","is",null).order("recorded_at",{ascending:false}).limit(10),
       supabase.from("learning_reward_ledger").select("id,event_type,xp_delta,occurred_at,metadata").eq("student_user_id",studentUserId).order("occurred_at",{ascending:false}),
       supabase.from("learning_reward_notifications").select("id,title,message,created_at,read_at").eq("student_user_id",studentUserId).order("created_at",{ascending:false}).limit(5),
+      supabase.rpc("get_learning_parent_badge_awards",{p_student_user_id:studentUserId}),
       learningActivityService.listValidatedContentCompletions(studentUserId),
     ]);
-    if(studentError)throw studentError;if(gradeError)throw gradeError;if(membershipError)throw membershipError;if(masteryError)throw masteryError;if(recommendationError)throw recommendationError;if(commentError)throw commentError;if(rewardError)throw rewardError;if(notificationError)throw notificationError;
+    if(studentError)throw studentError;if(gradeError)throw gradeError;if(membershipError)throw membershipError;if(masteryError)throw masteryError;if(recommendationError)throw recommendationError;if(commentError)throw commentError;if(rewardError)throw rewardError;if(notificationError)throw notificationError;if(badgeError)throw badgeError;
 
     const gradeRows=(grades??[]) as GradeRow[];
     const classGroupIds=[...new Set((memberships??[]).map(x=>x.class_group_id).filter((x):x is string=>Boolean(x)))];
@@ -169,40 +170,7 @@ export const learningParentRepository={
           (rewardRows ?? []).map((row) => ({ eventType: row.event_type, occurredAt: row.occurred_at })),
         ),
       ),
-      badgesUnlocked:(()=>{
-        const rewards=rewardRows??[];
-        const completedCount=rewards.filter(row=>row.event_type==="assignment_completed").length;
-        const passedCount=rewards.filter(row=>row.event_type==="assessment_passed").length;
-        const masteredCount=rewards.filter(row=>row.event_type==="objective_mastered").length;
-        const streakMilestones=rewards
-          .filter(row=>row.event_type==="streak_milestone")
-          .map(row=>Number((row.metadata as Record<string,unknown>|null)?.milestone_days)||0);
-        const weeklyQuestCodes=new Map<string,Set<string>>();
-        rewards.filter(row=>row.event_type==="weekly_quest_completed").forEach(row=>{
-          const metadata=row.metadata as Record<string,unknown>|null;
-          const weekStart=metadata?.week_start;
-          const questCode=metadata?.quest_code;
-          if(typeof weekStart!=="string"||typeof questCode!=="string"||!questCode) return;
-          const codes=weeklyQuestCodes.get(weekStart)??new Set<string>();
-          codes.add(questCode);
-          weeklyQuestCodes.set(weekStart,codes);
-        });
-        const weeklyChampion=[...weeklyQuestCodes.values()].some(codes=>codes.size>=3);
-        return [
-          ...(completedCount>=1?["First Steps"]:[]),
-          ...(passedCount>=1?["Assessment Ace"]:[]),
-          ...(streakMilestones.some(days=>days>=3)?["Three-Day Streak"]:[]),
-          ...(masteredCount>=3?["Mastery Builder"]:[]),
-          ...(completedCount>=5?["Dedicated Learner"]:[]),
-          ...(weeklyChampion?["Weekly Champion"]:[]),
-          ...(completedCount>=10?["Rising Star"]:[]),
-          ...(passedCount>=5?["Quiz Champion"]:[]),
-          ...(masteredCount>=10?["Mastery Expert"]:[]),
-          ...(streakMilestones.some(days=>days>=7)?["Week Warrior"]:[]),
-          ...(streakMilestones.some(days=>days>=14)?["Fortnight Focus"]:[]),
-          ...(streakMilestones.some(days=>days>=30)?["Monthly Master"]:[]),
-        ];
-      })(),
+      badgesUnlocked:(badgeRows??[]).map(row=>row.badge_title),
       recentRewards:(rewardRows??[]).slice(0,5).map(row=>({id:row.id,eventType:row.event_type,xpDelta:row.xp_delta,occurredAt:row.occurred_at})),
       recentRewardNotifications:(notificationRows??[]).map(row=>({id:row.id,title:row.title,message:row.message,createdAt:row.created_at,readAt:row.read_at})),
     };
