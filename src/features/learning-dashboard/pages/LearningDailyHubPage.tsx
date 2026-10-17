@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import type { ReactNode } from "react";
 import { AlertCircle, BookOpen, CalendarDays, CheckCircle2, Compass, Languages, RefreshCw, Target, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
@@ -173,6 +174,6 @@ export default function LearningDailyHubPage() {
   </div>;
 }
 
-function SummaryCard({ icon, label, value, detail }: { icon: React.ReactNode; label: string; value: string; detail: string }) {
+function SummaryCard({ icon, label, value, detail }: { icon: ReactNode; label: string; value: string; detail: string }) {
   return <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"><div className="flex items-center gap-2 text-slate-500">{icon}<span className="text-sm font-medium">{label}</span></div><p className="mt-3 text-2xl font-bold text-slate-900">{value}</p><p className="mt-1 text-xs text-slate-500">{detail}</p></div>;
 }
