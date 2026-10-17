@@ -1,8 +1,8 @@
 # E&P Learning — V1 and Post-V1 Feature Register
 
 **Repository:** `kim280-trustee/ep-core`  
-**Branch reviewed:** `paul/integrate-edna-content`  
-**Review date:** 2026-10-10  
+**Branch reviewed:** `paul/dictionary-graded-assignments-and-admin-hardening`  
+**Review date:** 2026-10-17  
 **Canonical roadmap:** This is the single source of truth for V1 scope and post-V1 features.
 
 ## Status definitions
@@ -51,9 +51,9 @@ Use existing pilot data and the complete existing assignment `EN-M1-SELF-INTRO-A
 
 | Feature | Current finding in reviewed branch | Target | Dependency / release criteria |
 |---|---|---|---|
-| Basic gamification: points, achievement history | No dedicated gamification module or migration found | V1.x, after V1 gates | Persist an auditable reward ledger tied to verified learning events; make award writes idempotent; support reversals/corrections |
-| Badges and milestones | No dedicated implementation found | V1.x | Explicit criteria, unique awards, explanation of why earned, school-controlled enablement |
-| Streaks, levels and challenges | No dedicated implementation found | V1.x/V2 | Timezone-aware school days, holidays and offline behavior; never reward empty page opens or repeated submissions |
+| Basic gamification: points, achievement history | Existing reward ledger, XP levels and streak summary are present; the dashboard now adds evidence-derived achievement milestones and a daily mini quest | Partial; implementation present, runtime/security behavior unverified | Keep XP sourced from the persisted reward ledger; verify rewards are idempotent and derived only from trusted events; define correction/reversal policy |
+| Badges and milestones | Student dashboard displays four milestones derived from saved validated lesson completions and evaluated assessment results; badge awards are not yet persisted as a separate ledger | Partial | Verify against real student records; add persisted unique awards, award history, rule versioning and school-controlled enablement before describing badges as permanent awards |
+| Streaks, levels and challenges | Persisted XP level and learning-streak summaries exist; dashboard now shows a daily mini quest based on distinct verified completions | Partial | Validate school timezone/day boundaries, holidays and duplicate evidence; add challenge configuration only after reward rules are approved |
 | Leaderboards and team competitions | No dedicated implementation found | V2 | Optional, teacher-controlled, private by default, age-appropriate and non-shaming alternatives |
 | Attendance register, history and school-wide report | Code present on the integration branch; SQL report RPC and school-wide report page added in this batch | Implemented but unverified | Apply the forward migrations, then verify manager scope, date limits, saved-mark counts, CSV safety and cross-tenant denial |
 | Parent notifications and LINE OA | Parent portal/linking exists; no dedicated LINE OA/webhook integration found | V1.x/V2 | Verified account linking, consent/preferences, signature validation, idempotency, retries, delivery logs and opt-out |
@@ -64,7 +64,7 @@ Use existing pilot data and the complete existing assignment `EN-M1-SELF-INTRO-A
 | Billing and licensed seats | No dedicated Learning subscription/billing feature found | V3 | Tenant plans, seat-count rules, invoices, payment reconciliation, entitlements and support workflows |
 | Offline learning/synchronization | No dedicated offline-learning implementation found | V2/V3 | Explicit offline scope, queued writes, conflict resolution, sync visibility and duplicate-submission prevention |
 | Multi-country/curriculum expansion | Reusable academic and tenant foundations exist; country workflows are not established | V2/V3 | Configuration-driven curricula, language, calendars, grading, currency, local reporting and legal/privacy review |
-| Content marketplace/third-party integrations | No Learning marketplace scope verified | V3 | Licensing/ownership, tenant isolation, integration permissions, monitoring and support ownership |
+| Teacher Marketplace and Extra Classes | No dedicated marketplace/booking implementation found in the reviewed branch | V2/V3 | Verified teacher profiles; parent/student discovery and choice; E&P-managed online/in-person individual and group classes; recurring packages and school partnerships; safeguarded booking, payments, commission, refunds, payouts, reviews and disputes; tenant isolation and audit trails |\n| Content marketplace/third-party integrations | No Learning content marketplace scope verified | V3 | Licensing/ownership, tenant isolation, integration permissions, monitoring and support ownership |
 
 ## Gamification implementation order
 
@@ -74,7 +74,7 @@ Use existing pilot data and the complete existing assignment `EN-M1-SELF-INTRO-A
 4. **Add streaks/challenges after the ledger is reliable:** account for timezone, holidays and legitimate offline use.
 5. **Add leaderboards last and make them optional:** do not expose child rankings publicly by default.
 
-Do not implement gamification, attendance, AI, LINE or billing as superficial UI-only features. They need their own requirements, data model, authorization, failure handling and acceptance tests. The correct V1 action is to retain them as planned scope, not to add unvalidated tables to the launch build.
+Do not implement attendance, AI, LINE, billing, offline sync or marketplace workflows as superficial UI-only features. They need their own requirements, data model, authorization, failure handling and acceptance tests. The current achievement display is evidence-derived, but it is not yet a persisted badge-award system.
 
 ## Current known limitations / next work
 
@@ -84,7 +84,7 @@ Do not implement gamification, attendance, AI, LINE or billing as superficial UI
 - The gradebook summary average versus finalized term-grade discrepancy observed during the pilot must be reconciled against category weights, included/excluded entries, overrides, missing work and the finalized-grade policy before changing the underlying calculation.
 - Assignment lifecycle event panels showing no events need verification against real action history.
 - The school must confirm whether attendance and any official report template are V1 blockers.
-- Do not claim LINE, AI, attendance, gamification, offline sync, school billing or director analytics are implemented without dedicated code and acceptance evidence.
+- Gamification is partial: XP/streak infrastructure and evidence-derived dashboard milestones exist, but persisted badge awards and authenticated acceptance tests remain outstanding.\n- Do not claim LINE, AI, marketplace booking/payment, offline sync, school billing or director analytics are implemented without dedicated code and acceptance evidence.
 
 ## Execution order
 
