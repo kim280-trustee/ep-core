@@ -68,7 +68,7 @@ async function getAchievementSummary(studentUserId: string) {
     .filter(Boolean));
   const todaysAssessments = new Set(evaluatedAttempts
     .filter((attempt) => localDayKey(resultByAttempt.get(attempt.id)!.evaluatedAt) === today)
-    .map((attempt) => attempt.id));
+    .map((attempt) => attempt.assessmentId));
 
   return {
     badges,
