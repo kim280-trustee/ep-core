@@ -64,7 +64,8 @@ Use existing pilot data and the complete existing assignment `EN-M1-SELF-INTRO-A
 | Billing and licensed seats | No dedicated Learning subscription/billing feature found | V3 | Tenant plans, seat-count rules, invoices, payment reconciliation, entitlements and support workflows |
 | Offline learning/synchronization | No dedicated offline-learning implementation found | V2/V3 | Explicit offline scope, queued writes, conflict resolution, sync visibility and duplicate-submission prevention |
 | Multi-country/curriculum expansion | Reusable academic and tenant foundations exist; country workflows are not established | V2/V3 | Configuration-driven curricula, language, calendars, grading, currency, local reporting and legal/privacy review |
-| Teacher Marketplace and Extra Classes | No dedicated marketplace/booking implementation found in the reviewed branch | V2/V3 | Verified teacher profiles; parent/student discovery and choice; E&P-managed online/in-person individual and group classes; recurring packages and school partnerships; safeguarded booking, payments, commission, refunds, payouts, reviews and disputes; tenant isolation and audit trails |\n| Content marketplace/third-party integrations | No Learning content marketplace scope verified | V3 | Licensing/ownership, tenant isolation, integration permissions, monitoring and support ownership |
+| Teacher Marketplace and Extra Classes | No dedicated marketplace/booking implementation found in the reviewed branch | V2/V3 | Verified teacher profiles; parent/student discovery and choice; E&P-managed online/in-person individual and group classes; recurring packages and school partnerships; safeguarded booking, payments, commission, refunds, payouts, reviews and disputes; tenant isolation and audit trails |
+| Content marketplace/third-party integrations | No Learning content marketplace scope verified | V3 | Licensing/ownership, tenant isolation, integration permissions, monitoring and support ownership |
 
 ## Gamification implementation order
 
@@ -84,7 +85,8 @@ Do not implement attendance, AI, LINE, billing, offline sync or marketplace work
 - The gradebook summary average versus finalized term-grade discrepancy observed during the pilot must be reconciled against category weights, included/excluded entries, overrides, missing work and the finalized-grade policy before changing the underlying calculation.
 - Assignment lifecycle event panels showing no events need verification against real action history.
 - The school must confirm whether attendance and any official report template are V1 blockers.
-- Gamification is partial: XP/streak infrastructure and evidence-derived dashboard milestones exist, but persisted badge awards and authenticated acceptance tests remain outstanding.\n- Do not claim LINE, AI, marketplace booking/payment, offline sync, school billing or director analytics are implemented without dedicated code and acceptance evidence.
+- Gamification is partial: XP/streak infrastructure and evidence-derived dashboard milestones exist, but persisted badge awards and authenticated acceptance tests remain outstanding.
+- Do not claim LINE, AI, marketplace booking/payment, offline sync, school billing or director analytics are implemented without dedicated code and acceptance evidence.
 
 ## Execution order
 
