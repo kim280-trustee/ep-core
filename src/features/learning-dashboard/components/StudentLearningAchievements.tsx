@@ -3,14 +3,17 @@ import { Award, CheckCircle2, RefreshCw, Sparkles, Target, Trophy } from "lucide
 import { useAuth } from "@/core/auth";
 import { learningActivityService } from "@/features/learning-activity";
 import { learningAssessmentService } from "@/features/learning-assessment";
+import { learningRewardsService } from "@/features/learning-rewards";
+import type { LearningBadgeCode } from "@/features/learning-rewards";
 import type { LearningActivityEvent } from "@/features/learning-activity";
 
 type Achievement = {
-  id: string;
+  id: LearningBadgeCode;
   title: string;
   description: string;
   progress: number;
   goal: number;
+  awardedAt: string | null;
 };
 
 function localDayKey(value: string | Date): string | null {
@@ -27,10 +30,11 @@ function isValidatedCompletion(event: LearningActivityEvent): boolean {
 }
 
 async function getAchievementSummary(studentUserId: string) {
-  const [events, attempts, results] = await Promise.all([
+  const [events, attempts, results, awards] = await Promise.all([
     learningActivityService.listValidatedContentCompletions(studentUserId),
     learningAssessmentService.listAttempts(studentUserId),
     learningAssessmentService.listResults(studentUserId),
+    learningRewardsService.syncStudentBadgeAwards(),
   ]);
 
   const completions = events.filter(isValidatedCompletion);
@@ -41,12 +45,21 @@ async function getAchievementSummary(studentUserId: string) {
   );
   const assessmentIds = new Set(evaluatedAttempts.map((attempt) => attempt.assessmentId));
   const evidenceCount = lessonIds.size + assessmentIds.size;
-  const badges: Achievement[] = [
+  const badgeProgress: Omit<Achievement, "awardedAt">[] = [
     { id: "first_steps", title: "First Steps", description: "Complete your first lesson or evaluated assessment.", progress: Math.min(evidenceCount, 1), goal: 1 },
     { id: "content_explorer", title: "Content Explorer", description: "Complete three different lessons.", progress: Math.min(lessonIds.size, 3), goal: 3 },
     { id: "assessment_achiever", title: "Assessment Achiever", description: "Finish three different evaluated assessments.", progress: Math.min(assessmentIds.size, 3), goal: 3 },
     { id: "learning_champion", title: "Learning Champion", description: "Build a record of ten distinct learning completions.", progress: Math.min(evidenceCount, 10), goal: 10 },
   ];
+  const awardsByCode = new Map(awards.map((award) => [award.badgeCode, award]));
+  const badges: Achievement[] = badgeProgress.map((badge) => {
+    const award = awardsByCode.get(badge.id);
+    return {
+      ...badge,
+      progress: award ? badge.goal : badge.progress,
+      awardedAt: award?.awardedAt ?? null,
+    };
+  });
 
   const today = localDayKey(new Date());
   const todaysLessons = new Set(completions
@@ -78,6 +91,7 @@ export default function StudentLearningAchievements() {
     return (
       <section className="rounded-2xl border border-rose-200 bg-white p-5" role="alert">
         <p className="font-semibold text-slate-900">Learning achievements could not be loaded.</p>
+        <p className="mt-1 text-sm text-slate-600">Your learning activity is still available. Badge history may need a database update.</p>
         <button type="button" onClick={() => void query.refetch()} className="mt-3 inline-flex items-center gap-2 rounded-lg border px-3 py-2 text-sm font-semibold">
           <RefreshCw size={15} /> Try again
         </button>
@@ -86,7 +100,7 @@ export default function StudentLearningAchievements() {
   }
 
   const { badges, todayActivities, dailyGoal } = query.data;
-  const earned = badges.filter((badge) => badge.progress >= badge.goal).length;
+  const earned = badges.filter((badge) => Boolean(badge.awardedAt)).length;
   const questProgress = Math.min(todayActivities, dailyGoal);
 
   return (
@@ -95,14 +109,14 @@ export default function StudentLearningAchievements() {
         <div>
           <p className="flex items-center gap-2 text-sm font-semibold text-violet-700"><Sparkles size={16} /> Learning milestones</p>
           <h2 id="student-achievements-heading" className="mt-1 text-xl font-bold text-slate-900">Your achievements</h2>
-          <p className="mt-1 text-sm text-slate-600">Milestones are calculated from saved lesson completions and evaluated assessment results.</p>
+          <p className="mt-1 text-sm text-slate-600">Earned badges are saved against verified lesson completions and evaluated assessment results.</p>
         </div>
         <span className="inline-flex items-center gap-2 rounded-full bg-violet-50 px-3 py-1.5 text-sm font-bold text-violet-800"><Award size={16} /> {earned}/{badges.length} earned</span>
       </div>
 
       <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         {badges.map((badge, index) => {
-          const isEarned = badge.progress >= badge.goal;
+          const isEarned = Boolean(badge.awardedAt);
           const Icon = index === 0 ? Sparkles : index === 1 ? CheckCircle2 : index === 2 ? Target : Trophy;
           return (
             <article key={badge.id} className={`rounded-xl border p-4 ${isEarned ? "border-emerald-200 bg-emerald-50/70" : "border-slate-200 bg-slate-50"}`}>
@@ -112,6 +126,7 @@ export default function StudentLearningAchievements() {
               </div>
               <h3 className="mt-3 font-bold text-slate-900">{badge.title}</h3>
               <p className="mt-1 min-h-10 text-xs leading-5 text-slate-600">{badge.description}</p>
+              {isEarned && badge.awardedAt && <p className="mt-2 text-xs text-emerald-800">Awarded {new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric", year: "numeric" }).format(new Date(badge.awardedAt))}</p>}
               <div className="mt-3 flex items-center justify-between text-xs font-semibold text-slate-600"><span>Progress</span><span>{badge.progress}/{badge.goal}</span></div>
               <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-white"><div className={`h-full rounded-full ${isEarned ? "bg-emerald-500" : "bg-violet-500"}`} style={{ width: `${Math.min(100, badge.progress / badge.goal * 100)}%` }} /></div>
             </article>
@@ -119,13 +134,13 @@ export default function StudentLearningAchievements() {
         })}
       </div>
 
-      <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4">
+      <div className="mt-5 rounded-xl bg-violet-50 p-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <div><p className="font-bold text-amber-950">Today’s mini quest</p><p className="mt-1 text-sm text-amber-900">Complete three distinct lessons or evaluated assessments today.</p></div>
-          <span className="rounded-full bg-white px-3 py-1.5 text-sm font-extrabold text-amber-900">{questProgress}/{dailyGoal}</span>
+          <div><p className="font-semibold text-slate-900">Daily learning quest</p><p className="mt-1 text-sm text-slate-600">Complete three distinct lessons or evaluated assessments today.</p></div>
+          <span className="text-sm font-bold text-violet-800">{questProgress}/{dailyGoal}</span>
         </div>
-        <div className="mt-3 h-2.5 overflow-hidden rounded-full bg-white"><div className="h-full rounded-full bg-amber-500" style={{ width: `${questProgress / dailyGoal * 100}%` }} /></div>
-        <p className="mt-2 text-xs text-amber-900">{questProgress >= dailyGoal ? "Daily goal completed. Keep learning at your own pace." : `${dailyGoal - questProgress} more distinct learning ${dailyGoal - questProgress === 1 ? "activity" : "activities"} to reach today’s goal.`}</p>
+        <div className="mt-3 h-2 overflow-hidden rounded-full bg-white"><div className="h-full rounded-full bg-violet-500" style={{ width: `${questProgress / dailyGoal * 100}%` }} /></div>
+        {questProgress >= dailyGoal && <p className="mt-2 text-sm font-semibold text-emerald-700">Daily quest completed.</p>}
       </div>
     </section>
   );
