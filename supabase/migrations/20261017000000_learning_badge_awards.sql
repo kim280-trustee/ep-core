@@ -148,6 +148,71 @@ begin
 end;
 $function$;
 
+
+create or replace function public.get_learning_parent_badge_awards(p_student_user_id uuid)
+returns table (
+  badge_code text,
+  badge_title text,
+  description text,
+  awarded_at timestamptz
+)
+language plpgsql
+security definer
+set search_path = ''
+stable
+as $function$
+declare
+  v_parent_user_id uuid;
+begin
+  select u.id into v_parent_user_id
+  from public.users u
+  where u.auth_user_id = (select auth.uid())
+  limit 1;
+
+  if v_parent_user_id is null then
+    raise exception 'Authenticated parent profile not found';
+  end if;
+
+  if not exists (
+    select 1
+    from public.learning_parent_student_links l
+    join public.learning_class_memberships cm
+      on cm.organization_id = l.organization_id
+     and cm.user_id = l.student_user_id
+     and cm.membership_type = 'student'
+     and cm.status = 'active'
+    where l.parent_user_id = v_parent_user_id
+      and l.student_user_id = p_student_user_id
+      and l.status = 'active'
+  ) then
+    raise exception 'You do not have an active parent link to this student';
+  end if;
+
+  return query
+  select a.badge_code, a.badge_title, a.description, a.awarded_at
+  from public.learning_badge_awards a
+  where a.student_user_id = p_student_user_id
+    and exists (
+      select 1
+      from public.learning_parent_student_links l
+      join public.organizations o on o.id = l.organization_id
+      join public.learning_class_memberships cm
+        on cm.organization_id = l.organization_id
+       and cm.user_id = l.student_user_id
+       and cm.membership_type = 'student'
+       and cm.status = 'active'
+      where l.parent_user_id = v_parent_user_id
+        and l.student_user_id = p_student_user_id
+        and l.status = 'active'
+        and o.tenant_id = a.tenant_id
+    )
+  order by a.awarded_at desc, a.badge_code asc;
+end;
+$function$;
+
+revoke all on function public.get_learning_parent_badge_awards(uuid) from public, anon;
+grant execute on function public.get_learning_parent_badge_awards(uuid) to authenticated;
+
 revoke all on function public.sync_learning_badge_awards() from public, anon;
 grant execute on function public.sync_learning_badge_awards() to authenticated;
 
