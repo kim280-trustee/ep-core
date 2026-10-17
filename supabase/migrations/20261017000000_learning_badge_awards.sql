@@ -37,6 +37,7 @@ create policy "Students can view their own learning badge awards"
       select 1
       from public.users u
       where u.id = learning_badge_awards.student_user_id
+        and u.tenant_id = learning_badge_awards.tenant_id
         and u.auth_user_id = (select auth.uid())
     )
   );
@@ -70,7 +71,8 @@ begin
   select count(distinct e.content_item_id)::integer
     into v_lesson_count
   from public.learning_activity_events e
-  where e.student_user_id = v_student_user_id
+  where e.tenant_id = v_tenant_id
+    and e.student_user_id = v_student_user_id
     and e.activity_type = 'content_viewed'
     and e.content_item_id is not null
     and e.metadata @> '{"completion":"completed","source":"validated_completion_rpc"}'::jsonb;
@@ -81,7 +83,8 @@ begin
   join public.learning_assessment_results r
     on r.attempt_id = a.id
    and r.student_user_id = v_student_user_id
-  where a.student_user_id = v_student_user_id
+  where a.tenant_id = v_tenant_id
+    and a.student_user_id = v_student_user_id
     and a.status = 'evaluated'
     and r.evaluated_at is not null;
 
