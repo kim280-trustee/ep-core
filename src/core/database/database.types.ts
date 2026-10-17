@@ -3148,6 +3148,48 @@ export type Database = {
           },
         ]
       }
+      learning_badge_awards: {
+        Row: {
+          awarded_at: string
+          badge_code: string
+          badge_title: string
+          created_at: string
+          description: string
+          evidence_count: number
+          id: string
+          rule_version: number
+          student_user_id: string
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          awarded_at?: string
+          badge_code: string
+          badge_title: string
+          created_at?: string
+          description: string
+          evidence_count?: number
+          id?: string
+          rule_version?: number
+          student_user_id: string
+          tenant_id: string
+          updated_at?: string
+        }
+        Update: {
+          awarded_at?: string
+          badge_code?: string
+          badge_title?: string
+          created_at?: string
+          description?: string
+          evidence_count?: number
+          id?: string
+          rule_version?: number
+          student_user_id?: string
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       learning_class_challenges: {
         Row: { id: string; tenant_id: string; organization_id: string; class_group_id: string; title: string; description: string; target_type: string; target_value: number; bonus_xp: number; starts_at: string; ends_at: string; status: string; created_by: string; created_at: string; updated_at: string }
         Insert: { id?: string; tenant_id: string; organization_id: string; class_group_id: string; title: string; description?: string; target_type: string; target_value: number; bonus_xp?: number; starts_at?: string; ends_at: string; status?: string; created_by: string; created_at?: string; updated_at?: string }
@@ -4984,6 +5026,22 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      sync_learning_badge_awards: {
+        Args: never
+        Returns: {
+          awarded_at: string
+          badge_code: string
+          badge_title: string
+          created_at: string
+          description: string
+          evidence_count: number
+          id: string
+          rule_version: number
+          student_user_id: string
+          tenant_id: string
+          updated_at: string
+        }[]
+      }
       record_learning_vocabulary_review: {
         Args: {
           p_is_correct: boolean
