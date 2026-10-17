@@ -53,7 +53,7 @@ Use existing pilot data and the complete existing assignment `EN-M1-SELF-INTRO-A
 | Feature | Current finding in reviewed branch | Target | Dependency / release criteria |
 |---|---|---|---|
 | Basic gamification: points, achievement history | Existing reward ledger, XP levels and streak summary are present; the dashboard now adds evidence-derived achievement milestones and a daily mini quest | Partial; implementation present, runtime/security behavior unverified | Keep XP sourced from the persisted reward ledger; verify rewards are idempotent and derived only from trusted events; define correction/reversal policy |
-| Badges and milestones | Student dashboard displays four milestones derived from saved validated lesson completions and evaluated assessment results; badge awards are not yet persisted as a separate ledger | Partial | Verify against real student records; add persisted unique awards, award history, rule versioning and school-controlled enablement before describing badges as permanent awards |
+| Badges and milestones | Four rule-versioned badge types are now persisted in `learning_badge_awards`; a self-scoped RPC awards them idempotently from validated lesson completions and evaluated assessment results | Code present — verify; migration not applied | Apply the forward migration, then verify awards persist across sessions, duplicate RPC calls do not duplicate rows, and another student cannot read or create awards |
 | Streaks, levels and challenges | Persisted XP level and learning-streak summaries exist; dashboard now shows a daily mini quest based on distinct verified completions | Partial | Validate school timezone/day boundaries, holidays and duplicate evidence; add challenge configuration only after reward rules are approved |
 | Leaderboards and team competitions | No dedicated implementation found | V2 | Optional, teacher-controlled, private by default, age-appropriate and non-shaming alternatives |
 | Attendance register, history and school-wide report | Code present on the integration branch; SQL report RPC and school-wide report page added in this batch | Implemented but unverified | Apply the forward migrations, then verify manager scope, date limits, saved-mark counts, CSV safety and cross-tenant denial |
@@ -86,7 +86,7 @@ Do not implement attendance, AI, LINE, billing, offline sync or marketplace work
 - The gradebook summary average versus finalized term-grade discrepancy observed during the pilot must be reconciled against category weights, included/excluded entries, overrides, missing work and the finalized-grade policy before changing the underlying calculation.
 - Assignment lifecycle event panels showing no events need verification against real action history.
 - The school must confirm whether attendance and any official report template are V1 blockers.
-- Gamification is partial: XP/streak infrastructure and evidence-derived dashboard milestones exist, but persisted badge awards and authenticated acceptance tests remain outstanding.
+- Gamification now includes a persisted badge-award ledger in code; the migration is not applied and authenticated idempotency/RLS checks remain outstanding.
 - Do not claim LINE, AI, marketplace booking/payment, offline sync, school billing or director analytics are implemented without dedicated code and acceptance evidence.
 
 ## Execution order
