@@ -9,6 +9,7 @@ import { learningActivityService } from "@/features/learning-activity";
 import { learningAssignmentsService } from "@/features/learning-assignments";
 import { calculateLearningStreak, getVerifiedLearningActivityTimestamps, LEARNING_REWARD_LEVELS, learningRewardsService } from "@/features/learning-rewards";
 import type { LearningAssignmentProgress } from "@/features/learning-assignments";
+import StudentLearningAchievements from "@/features/learning-dashboard/components/StudentLearningAchievements";
 
 function formatDate(value: string | null) {
   if (!value) return "No due date";
@@ -145,6 +146,7 @@ export default function LearningDashboardPage() {
         </div>
       </div> : <p className="mt-4 text-sm font-medium text-slate-700">Highest current level reached.</p>}
     </section>}
+    <StudentLearningAchievements />
     {dueAlerts.length > 0 && <DashboardCard title="Assignment reminders" icon={<AlertCircle size={20} />}>
       <div className="space-y-3">{dueAlerts.map((assignment) => {
         const overdue = now !== null && new Date(assignment.dueAt!).getTime() < now;
