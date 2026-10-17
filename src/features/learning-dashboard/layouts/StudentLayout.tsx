@@ -1,10 +1,11 @@
-import { Award, BookOpen, Compass, Languages, LayoutDashboard, LogOut, TrendingUp } from "lucide-react";
+import { Award, BookOpen, CalendarDays, Compass, Languages, LayoutDashboard, LogOut, TrendingUp } from "lucide-react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "@/core/auth";
 
 const items = [
   { to: "/learning", label: "Dashboard", icon: LayoutDashboard, end: true },
+  { to: "/learning/today", label: "Daily Hub", icon: CalendarDays },
   { to: "/learning/assignments", label: "Assignments", icon: BookOpen },
   { to: "/learning/progress", label: "Progress", icon: TrendingUp },
   { to: "/learning/recommendations", label: "Recommendations", icon: Compass },

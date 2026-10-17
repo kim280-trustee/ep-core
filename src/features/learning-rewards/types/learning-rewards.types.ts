@@ -16,3 +16,19 @@ export interface LearningRewardLedgerEntry {
   occurredAt: string;
   createdAt: string;
 }
+
+export type LearningBadgeCode = "first_steps" | "content_explorer" | "assessment_achiever" | "learning_champion";
+
+export interface LearningBadgeAward {
+  id: string;
+  tenantId: string;
+  studentUserId: string;
+  badgeCode: LearningBadgeCode;
+  title: string;
+  description: string;
+  ruleVersion: number;
+  evidenceCount: number;
+  awardedAt: string;
+  createdAt: string;
+  updatedAt: string;
+}

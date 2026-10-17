@@ -51,4 +51,16 @@ export const learningEnrollmentRepository = {
     const { error } = await supabase.from("learning_class_memberships").update({status:"inactive"}).eq("id",id);
     if (error) throw error;
   },
+  async inviteStudent(input: { organizationId: string; classGroupId: string; studentEmail: string; studentName: string }) {
+    const { data, error } = await supabase.functions.invoke("invite-student", { body: input });
+    if (error) throw error;
+    if (data?.error) throw new Error(data.error);
+    return data as { invitationId: string; sent: boolean };
+  },
+  async acceptStudentInvitation(invitationId: string) {
+    const { data, error } = await supabase.rpc("accept_learning_student_invitation", { p_invitation_id: invitationId });
+    if (error) throw error;
+    if (typeof data !== "string" || !data) throw new Error("This invitation has expired or is no longer active. Ask the school to send a new invitation.");
+    return data;
+  },
 };

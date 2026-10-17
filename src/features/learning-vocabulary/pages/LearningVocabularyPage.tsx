@@ -17,6 +17,17 @@ const inputClass = "mt-1 w-full rounded-xl border border-slate-300 bg-white px-3
 const primaryButton = "inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50";
 const secondaryButton = "inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50";
 
+type SpeechRecognitionLike = {
+  lang: string;
+  interimResults: boolean;
+  maxAlternatives: number;
+  onresult: ((event: { results: ArrayLike<ArrayLike<{ transcript: string }>> }) => void) | null;
+  onerror: (() => void) | null;
+  onend: (() => void) | null;
+  start: () => void;
+};
+type SpeechRecognitionConstructor = new () => SpeechRecognitionLike;
+
 type VocabularyForm = {
   word: string;
   definition: string;
@@ -70,6 +81,7 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
   const [form, setForm] = useState<VocabularyForm>(emptyForm);
   const [practiceEntryId, setPracticeEntryId] = useState("");
   const [answerRevealed, setAnswerRevealed] = useState(false);
+  const [speechNotice, setSpeechNotice] = useState("");
   const [actionError, setActionError] = useState("");
   const [actionNotice, setActionNotice] = useState("");
   const [detailsEntryId, setDetailsEntryId] = useState("");
@@ -155,6 +167,50 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
     : [...filteredEntries].sort((left, right) => Number(isDue(right)) - Number(isDue(left)));
   const dueCount = isTeacher ? 0 : filteredEntries.filter(isDue).length;
   const practiceEntry = entries.find((entry) => entry.id === practiceEntryId);
+
+  const playWordAudio = (word: string, languageCode: string) => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) {
+      setSpeechNotice("Audio playback is not supported by this browser.");
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(word);
+    utterance.lang = languageCode || "en";
+    window.speechSynthesis.speak(utterance);
+    setSpeechNotice("Playing browser-generated pronunciation audio.");
+  };
+
+  const checkSpokenWord = (word: string, languageCode: string) => {
+    const speechWindow = window as Window & {
+      SpeechRecognition?: SpeechRecognitionConstructor;
+      webkitSpeechRecognition?: SpeechRecognitionConstructor;
+    };
+    const Recognition = speechWindow.SpeechRecognition ?? speechWindow.webkitSpeechRecognition;
+    if (!Recognition) {
+      setSpeechNotice("Speech recognition is not supported by this browser. You can still listen to the word.");
+      return;
+    }
+    const recognition = new Recognition();
+    recognition.lang = languageCode || "en";
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+    let receivedResult = false;
+    setSpeechNotice("Listening. Allow microphone access and say the word clearly.");
+    recognition.onresult = (event) => {
+      receivedResult = true;
+      const transcript = event.results[0]?.[0]?.transcript ?? "";
+      const normalize = (value: string) => value.normalize("NFKD").toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+      const matched = normalize(transcript) === normalize(word);
+      setSpeechNotice(matched
+        ? "Speech recognition matched the target word. This is a transcript match, not a phoneme-level pronunciation score."
+        : "Speech recognition heard “" + transcript + "”. The word did not match exactly; listen again and retry. This is not a phoneme-level pronunciation score.");
+    };
+    recognition.onerror = () => setSpeechNotice("Speech recognition failed or microphone access was denied. Try listening and speaking again.");
+    recognition.onend = () => {
+      if (!receivedResult) setSpeechNotice("No clear word was recognized. Try again.");
+    };
+    try { recognition.start(); } catch { setSpeechNotice("Speech recognition could not start. Try again."); }
+  };
 
   const saveMutation = useMutation({
     mutationFn: (action: () => Promise<unknown>) => action(),
@@ -466,8 +522,13 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
                   <h2 id="practice-card-title" className="mt-2 text-2xl font-bold text-slate-950">{practiceEntry.word}</h2>
                   {practiceEntry.partOfSpeech && <p className="mt-1 text-sm text-slate-600">{practiceEntry.partOfSpeech}</p>}
                   {practiceEntry.pronunciation && <p className="mt-2 text-sm text-slate-600">Pronunciation: {practiceEntry.pronunciation}</p>}
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <button type="button" className={secondaryButton} onClick={() => playWordAudio(practiceEntry.word, practiceEntry.languageCode)}>Listen to pronunciation</button>
+                    <button type="button" className={secondaryButton} onClick={() => checkSpokenWord(practiceEntry.word, practiceEntry.languageCode)}>Check spoken word</button>
+                  </div>
+                  {speechNotice && <p role="status" className="mt-2 max-w-xl text-xs leading-5 text-slate-600">{speechNotice}</p>}
                 </div>
-                <button type="button" className={secondaryButton} onClick={() => { setPracticeEntryId(""); setAnswerRevealed(false); }}>Close practice</button>
+                <button type="button" className={secondaryButton} onClick={() => { setPracticeEntryId(""); setAnswerRevealed(false); setSpeechNotice(""); }}>Close practice</button>
               </div>
               {!answerRevealed ? (
                 <button type="button" className={primaryButton + " mt-5"} onClick={() => setAnswerRevealed(true)}>Reveal meaning</button>

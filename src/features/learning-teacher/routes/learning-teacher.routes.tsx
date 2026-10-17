@@ -21,6 +21,7 @@ import TeacherContentDetailPage from "../../learning-content/pages/TeacherConten
 import TeacherContentResponsesPage from "../../learning-content/pages/TeacherContentResponsesPage";
 import TeacherClassGamificationPage from "../pages/TeacherClassGamificationPage";
 import { LearningVocabularyPage } from "@/features/learning-vocabulary";
+import TeacherVocabularyAssignmentPage from "@/features/learning-vocabulary/pages/TeacherVocabularyAssignmentPage";
 
 export const learningTeacherRoutes: RouteObject[] = [
   {
@@ -34,6 +35,7 @@ export const learningTeacherRoutes: RouteObject[] = [
       { path: "authoring", element: <TeacherAuthoringPage /> },
       { path: "content", element: <TeacherContentLibraryPage /> },
       { path: "vocabulary", element: <LearningVocabularyPage audience="teacher" /> },
+      { path: "vocabulary/assignments/new", element: <TeacherVocabularyAssignmentPage /> },
       { path: "content/new", element: <TeacherContentCreatePage /> },
       { path: "content/:id", element: <TeacherContentDetailPage /> },
       { path: "question-bank", element: <QuestionBankPage /> },

@@ -7,4 +7,6 @@ export const learningEnrollmentService = {
   addMember: (input: LearningClassMembershipInput) => learningEnrollmentRepository.addMember(input),
   updateMember: learningEnrollmentRepository.updateMember,
   removeMember: learningEnrollmentRepository.removeMember,
+  inviteStudent: learningEnrollmentRepository.inviteStudent,
+  acceptStudentInvitation: learningEnrollmentRepository.acceptStudentInvitation,
 };
