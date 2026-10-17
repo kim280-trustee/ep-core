@@ -88,7 +88,7 @@ begin
   v_evidence_count := v_lesson_count + v_assessment_count;
 
   if v_evidence_count >= 1 then
-    insert into public.learning_badge_awards (
+    insert into public.learning_badge_awards as existing (
       tenant_id, student_user_id, badge_code, badge_title, description,
       rule_version, evidence_count
     ) values (
@@ -96,12 +96,12 @@ begin
       'Complete your first lesson or evaluated assessment.', 1, v_evidence_count
     )
     on conflict (tenant_id, student_user_id, badge_code) do update
-      set evidence_count = greatest(public.learning_badge_awards.evidence_count, excluded.evidence_count),
+      set evidence_count = greatest(existing.evidence_count, excluded.evidence_count),
           updated_at = now();
   end if;
 
   if v_lesson_count >= 3 then
-    insert into public.learning_badge_awards (
+    insert into public.learning_badge_awards as existing (
       tenant_id, student_user_id, badge_code, badge_title, description,
       rule_version, evidence_count
     ) values (
@@ -109,12 +109,12 @@ begin
       'Complete three different lessons.', 1, v_lesson_count
     )
     on conflict (tenant_id, student_user_id, badge_code) do update
-      set evidence_count = greatest(public.learning_badge_awards.evidence_count, excluded.evidence_count),
+      set evidence_count = greatest(existing.evidence_count, excluded.evidence_count),
           updated_at = now();
   end if;
 
   if v_assessment_count >= 3 then
-    insert into public.learning_badge_awards (
+    insert into public.learning_badge_awards as existing (
       tenant_id, student_user_id, badge_code, badge_title, description,
       rule_version, evidence_count
     ) values (
@@ -122,12 +122,12 @@ begin
       'Finish three different evaluated assessments.', 1, v_assessment_count
     )
     on conflict (tenant_id, student_user_id, badge_code) do update
-      set evidence_count = greatest(public.learning_badge_awards.evidence_count, excluded.evidence_count),
+      set evidence_count = greatest(existing.evidence_count, excluded.evidence_count),
           updated_at = now();
   end if;
 
   if v_evidence_count >= 10 then
-    insert into public.learning_badge_awards (
+    insert into public.learning_badge_awards as existing (
       tenant_id, student_user_id, badge_code, badge_title, description,
       rule_version, evidence_count
     ) values (
@@ -135,7 +135,7 @@ begin
       'Build a record of ten distinct learning completions.', 1, v_evidence_count
     )
     on conflict (tenant_id, student_user_id, badge_code) do update
-      set evidence_count = greatest(public.learning_badge_awards.evidence_count, excluded.evidence_count),
+      set evidence_count = greatest(existing.evidence_count, excluded.evidence_count),
           updated_at = now();
   end if;
 
