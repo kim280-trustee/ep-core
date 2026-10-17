@@ -13,6 +13,22 @@ const record = (value: Json): Record<string, unknown> =>
     ? value as Record<string, unknown>
     : {};
 
+type BadgeAwardRow = Database["public"]["Tables"]["learning_badge_awards"]["Row"];
+
+const mapBadgeAward = (row: BadgeAwardRow): LearningBadgeAward => ({
+  id: row.id,
+  tenantId: row.tenant_id,
+  studentUserId: row.student_user_id,
+  badgeCode: row.badge_code as LearningBadgeAward["badgeCode"],
+  title: row.badge_title,
+  description: row.description,
+  ruleVersion: row.rule_version,
+  evidenceCount: row.evidence_count,
+  awardedAt: row.awarded_at,
+  createdAt: row.created_at,
+  updatedAt: row.updated_at,
+});
+
 const mapReward = (row: RewardRow): LearningRewardLedgerEntry => ({
   id: row.id,
   tenantId: row.tenant_id,
@@ -289,6 +305,12 @@ export const learningRewardsRepository = {
     if (error) throw error;
     return data ?? [];
   },
+  async syncStudentBadgeAwards(): Promise<LearningBadgeAward[]> {
+    const { data, error } = await supabase.rpc("sync_learning_badge_awards");
+    if (error) throw error;
+    return (data ?? []).map(mapBadgeAward);
+  },
+
   async listStudentLedger(studentUserId: string): Promise<LearningRewardLedgerEntry[]> {
     const { data, error } = await supabase
       .from("learning_reward_ledger")
