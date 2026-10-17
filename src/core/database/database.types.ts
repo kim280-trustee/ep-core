@@ -5026,6 +5026,15 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_learning_parent_badge_awards: {
+        Args: { p_student_user_id: string }
+        Returns: {
+          badge_code: string
+          badge_title: string
+          description: string
+          awarded_at: string
+        }[]
+      }
       sync_learning_badge_awards: {
         Args: never
         Returns: {
