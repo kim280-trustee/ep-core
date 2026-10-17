@@ -2,6 +2,7 @@ import type { RouteObject } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { ProtectedRoute } from "@/core/auth";
 import LearningDashboardPage from "../pages/LearningDashboardPage";
+import LearningDailyHubPage from "../pages/LearningDailyHubPage";
 import LearningAssignmentsPage from "../pages/LearningAssignmentsPage";
 import LearningAssignmentDetailPage from "../pages/LearningAssignmentDetailPage";
 import LearningAssessmentRuntimePage from "../pages/LearningAssessmentRuntimePage";
@@ -22,6 +23,7 @@ export const learningDashboardRoutes: RouteObject[] = [
     ),
     children: [
       { index: true, element: <LearningDashboardPage /> },
+      { path: "today", element: <LearningDailyHubPage /> },
       { path: "assignments", element: <LearningAssignmentsPage /> },
       { path: "assignments/:assignmentId", element: <LearningAssignmentDetailPage /> },
       { path: "assignments/:assignmentId/assessments/:assessmentId", element: <LearningAssessmentRuntimePage /> },
