@@ -50,7 +50,7 @@ export default function TeacherAuthoringPage() {
   const teacherAssignments=useQuery({queryKey:["learning","authoring","assignments",activeClassGroupId],queryFn:()=>learningAssignmentsService.listAssignmentHistoryForClass(activeClassGroupId),enabled:Boolean(activeClassGroupId)});
   const draftAssignments=teacherAssignments.data?.filter(a=>a.status==="draft")??[];
   const publishedAssignments=teacherAssignments.data?.filter(a=>a.status==="published")??[];
-  const activeAssignmentId=assignmentId||(requestedAssignmentId&&teacherAssignments.data?.some(a=>a.id===requestedAssignmentId)?requestedAssignmentId:draftAssignments[0]?.id||"");
+  // Keep the builder selection restricted to drafts. A stale URL/state ID for a published assignment must not disable the item selectors below.\n  const activeAssignmentId = draftAssignments.some(a => a.id === assignmentId)\n    ? assignmentId\n    : draftAssignments.some(a => a.id === requestedAssignmentId)\n      ? requestedAssignmentId\n      : draftAssignments[0]?.id ?? "";
   const assignmentItems=useQuery({queryKey:["learning","authoring","assignment-items",activeAssignmentId],queryFn:()=>learningAssignmentsService.listItems(activeAssignmentId),enabled:Boolean(activeAssignmentId)});
   const selectedAssignment=teacherAssignments.data?.find(a=>a.id===activeAssignmentId);
   const selectedIsDraft=selectedAssignment?.status==="draft";
