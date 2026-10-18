@@ -704,6 +704,55 @@ export type Database = {
           },
         ]
       }
+      learning_ai_generation_usage: {
+        Row: {
+          created_at: string
+          id: string
+          model: string
+          organization_id: string
+          tenant_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          model: string
+          organization_id: string
+          tenant_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          model?: string
+          organization_id?: string
+          tenant_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_ai_generation_usage_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_ai_generation_usage_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_ai_generation_usage_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       learning_assessment_questions: {
         Row: {
           assessment_id: string
@@ -5026,6 +5075,15 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      reserve_learning_ai_generation: {
+        Args: { p_model: string; p_organization_id: string }
+        Returns: {
+          allowed: boolean
+          daily_limit: number
+          reset_at: string
+          used_last_24_hours: number
+        }[]
+      }
       get_learning_parent_badge_awards: {
         Args: { p_student_user_id: string }
         Returns: {
