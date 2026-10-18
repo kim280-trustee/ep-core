@@ -156,6 +156,20 @@ begin
     and public.is_organization_member(profile.organization_id)
     and public.has_permission('learning.academic.manage')
     and exists (
+      select 1
+      from public.organization_memberships manager_membership
+      join public.roles manager_role on manager_role.id = manager_membership.role_id
+      where manager_membership.organization_id = profile.organization_id
+        and manager_membership.user_id = (
+          select actor.id from public.users actor
+          where actor.auth_user_id = (select auth.uid())
+          limit 1
+        )
+        and manager_membership.status = 'active'
+        and upper(manager_role.name) in ('OWNER', 'MANAGER')
+        and (manager_role.tenant_id = manager_membership.tenant_id or manager_role.tenant_id is null)
+    )
+    and exists (
       select 1 from public.learning_class_memberships cm
       where cm.organization_id = profile.organization_id
         and cm.user_id = profile.teacher_user_id
@@ -314,7 +328,17 @@ begin
   end if;
 
   if not public.is_organization_member(v_organization_id)
-     or not public.has_permission('learning.academic.manage') then
+     or not public.has_permission('learning.academic.manage')
+     or not exists (
+       select 1
+       from public.organization_memberships manager_membership
+       join public.roles manager_role on manager_role.id = manager_membership.role_id
+       where manager_membership.organization_id = v_organization_id
+         and manager_membership.user_id = v_actor_id
+         and manager_membership.status = 'active'
+         and upper(manager_role.name) in ('OWNER', 'MANAGER')
+         and (manager_role.tenant_id = manager_membership.tenant_id or manager_role.tenant_id is null)
+     ) then
     raise exception 'You do not have permission to review teacher profiles in this school';
   end if;
 
