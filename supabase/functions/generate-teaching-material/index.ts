@@ -48,6 +48,10 @@ export default {
         return Response.json({ error: "You need an active teacher assignment in this school to use the AI assistant." }, { status: 403 });
       }
 
+      if (Deno.env.get("AI_TEACHER_ASSISTANT_ENABLED") !== "true") {
+        return Response.json({ error: "AI drafting is currently disabled by the school administrator." }, { status: 503 });
+      }
+
       const apiKey = Deno.env.get("OPENAI_API_KEY");
       if (!apiKey) {
         return Response.json({ error: "AI generation is not configured yet. An administrator must add the OPENAI_API_KEY secret to Supabase Functions." }, { status: 503 });
