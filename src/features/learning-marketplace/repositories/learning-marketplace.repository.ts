@@ -7,6 +7,9 @@ import type {
   TeacherAvailabilitySlot,
   TeacherOffering,
   TeacherOrganization,
+  TeacherProfile,
+  PublicTeacherProfile,
+  TeacherProfileForReview,
 } from "../types/learning-marketplace.types";
 
 type RpcResult = { data: unknown; error: { message: string } | null };
@@ -58,5 +61,25 @@ export const learningMarketplaceRepository = {
   },
   async respondToRequest(input: { requestId: string; status: "accepted" | "declined"; responseNote: string }): Promise<string> {
     return rpc("respond_learning_marketplace_booking_request", { p_request_id: input.requestId, p_status: input.status, p_response_note: input.responseNote });
+  },
+  async listTeacherProfiles(): Promise<TeacherProfile[]> { return rows(await rpc<unknown>("list_learning_marketplace_teacher_profiles", {})); },
+  async listPublicTeacherProfiles(): Promise<PublicTeacherProfile[]> { return rows(await rpc<unknown>("list_learning_marketplace_public_teacher_profiles", {})); },
+  async listProfilesForReview(): Promise<TeacherProfileForReview[]> { return rows(await rpc<unknown>("list_learning_marketplace_profiles_for_review", {})); },
+  async saveTeacherProfile(input: { organizationId: string; headline: string; bio: string; languages: string[]; credentials: string[]; experienceYears: number }): Promise<string> {
+    return rpc("save_learning_marketplace_teacher_profile", {
+      p_organization_id: input.organizationId,
+      p_headline: input.headline,
+      p_bio: input.bio,
+      p_languages: input.languages,
+      p_credentials: input.credentials,
+      p_experience_years: input.experienceYears,
+    });
+  },
+  async reviewTeacherProfile(input: { profileId: string; status: "verified" | "rejected"; reviewNote: string }): Promise<string> {
+    return rpc("review_learning_marketplace_teacher_profile", {
+      p_profile_id: input.profileId,
+      p_status: input.status,
+      p_review_note: input.reviewNote,
+    });
   },
 };
