@@ -1,5 +1,5 @@
 import { supabase } from "@/core/infrastructure/supabase/client";
-import type { LearningNotification } from "../types/learning-notification.types";
+import type { LearningNotification, LearningNotificationPreference, LearningNotificationPreferenceType } from "../types/learning-notification.types";
 
 type RpcResult = { data: unknown; error: { message: string } | null };
 const client = supabase as unknown as {
@@ -13,6 +13,16 @@ async function rpc<T>(name: string, args: Record<string, unknown>): Promise<T> {
 }
 
 export const learningNotificationsRepository = {
+  async getPreferences(): Promise<LearningNotificationPreference[]> {
+    const data = await rpc<unknown>("get_learning_notification_preferences", {});
+    return Array.isArray(data) ? data as LearningNotificationPreference[] : [];
+  },
+  async setPreference(notificationType: LearningNotificationPreferenceType, enabled: boolean): Promise<boolean> {
+    return rpc<boolean>("set_learning_notification_preference", {
+      p_notification_type: notificationType,
+      p_in_app_enabled: enabled,
+    });
+  },
   async list(limit = 50): Promise<LearningNotification[]> {
     const data = await rpc<unknown>("list_learning_notifications", { p_limit: limit });
     return Array.isArray(data) ? data as LearningNotification[] : [];

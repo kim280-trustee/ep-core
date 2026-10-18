@@ -20,3 +20,14 @@ export interface LearningNotification {
   read_at: string | null;
   created_at: string;
 }
+
+
+export type LearningNotificationPreferenceType = Exclude<
+  LearningNotificationType,
+  "marketplace.safety_reported"
+>;
+
+export interface LearningNotificationPreference {
+  notification_type: LearningNotificationPreferenceType;
+  in_app_enabled: boolean;
+}
