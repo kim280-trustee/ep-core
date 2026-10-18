@@ -8,6 +8,7 @@ import OfferingAvailability from "../components/OfferingAvailability";
 import TeacherAvailabilityPanel from "../components/TeacherAvailabilityPanel";
 import TeacherProfilePanel from "../components/TeacherProfilePanel";
 import TeacherProfileSummary from "../components/TeacherProfileSummary";
+import MarketplaceSafetyPanel from "../components/MarketplaceSafetyPanel";
 
 const field = "mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm";
 const label = "block text-sm font-medium text-slate-700";
@@ -72,6 +73,7 @@ export default function LearningMarketplacePage() {
     </section>}
     <section><h2 className="text-2xl font-bold">Available tutoring</h2><p className="mb-4 mt-1 text-sm text-slate-500">Published offers from currently active teachers.</p>{offerings.isPending?<p className="rounded-xl border bg-white p-5">Loading offers…</p>:offerings.isError?<Error message="Tutoring offers could not be loaded."/>:(offerings.data??[]).length===0?<p className="rounded-xl border border-dashed bg-white p-7 text-sm text-slate-500">No published offers yet.</p>:<div className="grid gap-4 lg:grid-cols-2">{(offerings.data??[]).map(o=><OfferingCard key={o.id} offering={o} students={students.data??[]} onBook={input=>book.mutate(input)} pending={book.isPending}/>)}</div>}</section>
     <section className="rounded-2xl border bg-white p-5"><h2 className="text-xl font-bold">Booking requests</h2><p className="mt-1 text-sm text-slate-500">Requesters see their own requests; teachers see requests for their listings.</p>{requests.isPending?<p className="mt-3 text-sm">Loading…</p>:requests.isError?<Error message="Booking requests could not be loaded."/>:(requests.data??[]).length===0?<p className="mt-3 rounded-xl bg-slate-50 p-4 text-sm text-slate-500">No requests yet.</p>:<div className="mt-4 grid gap-3 lg:grid-cols-2">{(requests.data??[]).map(r=><RequestCard key={r.id} request={r} userId={user.id} onRespond={(status,note)=>respond.mutate({requestId:r.id,status,responseNote:note})} onCancel={reason=>cancel.mutate({requestId:r.id,reason})} pending={respond.isPending||cancel.isPending}/>)}</div>}</section>
+    <MarketplaceSafetyPanel />
     <p className="text-xs leading-5 text-slate-500">A lesson becomes confirmed only when the teacher confirms a specific date/time that fits their active weekly availability and does not overlap another confirmed lesson. This release does not collect payments or provide independent teacher identity verification, refunds, payouts, reviews, or dispute handling. Do not include sensitive student details in messages.</p>
   </main>;
 }

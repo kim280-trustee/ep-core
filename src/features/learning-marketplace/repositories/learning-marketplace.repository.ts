@@ -10,6 +10,9 @@ import type {
   TeacherProfile,
   PublicTeacherProfile,
   TeacherProfileForReview,
+  MarketplaceSafetyReport,
+  MarketplaceSafetyCategory,
+  MarketplaceSafetyStatus,
 } from "../types/learning-marketplace.types";
 
 type RpcResult = { data: unknown; error: { message: string } | null };
@@ -85,4 +88,23 @@ export const learningMarketplaceRepository = {
       p_review_note: input.reviewNote,
     });
   },
+
+  async createSafetyReport(input: { bookingRequestId: string; category: MarketplaceSafetyCategory; description: string }): Promise<string> {
+    return rpc("create_learning_marketplace_safety_report", {
+      p_booking_request_id: input.bookingRequestId,
+      p_category: input.category,
+      p_description: input.description,
+    });
+  },
+  async listSafetyReports(): Promise<MarketplaceSafetyReport[]> {
+    return rows(await rpc<unknown>("list_learning_marketplace_safety_reports", {}));
+  },
+  async reviewSafetyReport(input: { reportId: string; status: Exclude<MarketplaceSafetyStatus, "open">; reviewNote: string }): Promise<string> {
+    return rpc("review_learning_marketplace_safety_report", {
+      p_report_id: input.reportId,
+      p_status: input.status,
+      p_review_note: input.reviewNote,
+    });
+  },
+
 };

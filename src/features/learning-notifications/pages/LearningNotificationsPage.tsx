@@ -12,8 +12,44 @@ function dateLabel(value: string) {
     : new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(date);
 }
 
-function bookingLink(notification: LearningNotification) {
-  return notification.resource_type === "marketplace_booking" ? "/marketplace" : "/notifications";
+function notificationLink(notification: LearningNotification) {
+  if (
+    notification.notification_type === "learning.parent_assignment_published" ||
+    notification.notification_type === "learning.parent_assessment_result_available"
+  ) {
+    return "/parent";
+  }
+
+  switch (notification.resource_type) {
+    case "marketplace_booking":
+      return "/marketplace";
+    case "learning_assignment":
+      return "/learning/assignments";
+    case "assessment_result":
+      return "/learning/progress";
+    default:
+      return "/notifications";
+  }
+}
+
+function notificationLinkLabel(notification: LearningNotification) {
+  if (
+    notification.notification_type === "learning.parent_assignment_published" ||
+    notification.notification_type === "learning.parent_assessment_result_available"
+  ) {
+    return "View child's progress";
+  }
+
+  switch (notification.resource_type) {
+    case "marketplace_booking":
+      return "View Extra Classes";
+    case "learning_assignment":
+      return "Open assignment list";
+    case "assessment_result":
+      return "View learning progress";
+    default:
+      return "Open notifications";
+  }
 }
 
 export default function LearningNotificationsPage() {
@@ -64,7 +100,7 @@ export default function LearningNotificationsPage() {
               <h1 className="mt-1 text-2xl font-bold sm:text-3xl">Notifications</h1>
               <p className="mt-2 text-sm text-slate-300">
                 {unreadCount.data ?? unread} unread notification{(unreadCount.data ?? unread) === 1 ? "" : "s"}.
-                Marketplace booking updates appear here automatically.
+                Marketplace bookings, assignments, assessment results and linked-child progress alerts appear here automatically.
               </p>
             </div>
           </div>
@@ -104,7 +140,7 @@ export default function LearningNotificationsPage() {
         <section className="rounded-2xl border border-dashed bg-white p-8 text-center">
           <Bell className="mx-auto text-slate-400" size={30} />
           <h2 className="mt-3 font-semibold text-slate-900">You are all caught up</h2>
-          <p className="mt-1 text-sm text-slate-500">New extra-class booking requests and responses will appear here.</p>
+          <p className="mt-1 text-sm text-slate-500">New booking updates, assignments, assessment results and linked-child progress alerts will appear here.</p>
           <Link className="mt-4 inline-flex rounded-xl border px-4 py-2 text-sm font-semibold" to="/marketplace">Open Extra Classes</Link>
         </section>
       ) : (
@@ -119,7 +155,7 @@ export default function LearningNotificationsPage() {
                 </div>
                 <p className="mt-1 text-sm leading-6 text-slate-700">{item.body}</p>
                 <div className="mt-3 flex flex-wrap gap-3">
-                  <Link className="text-sm font-semibold text-indigo-700 underline" to={bookingLink(item)}>View Extra Classes</Link>
+                  <Link className="text-sm font-semibold text-indigo-700 underline" to={notificationLink(item)}>{notificationLinkLabel(item)}</Link>
                   {!item.read_at && (
                     <button type="button" disabled={markRead.isPending} onClick={() => markRead.mutate(item.id)} className="text-sm font-semibold text-slate-600 underline disabled:opacity-50">
                       Mark as read

@@ -35,3 +35,29 @@ export interface TeacherProfileForReview extends TeacherProfile {
   teacher_user_id: string;
   teacher_name: string;
 }
+export type MarketplaceSafetyCategory =
+  | "safeguarding_concern"
+  | "inappropriate_contact"
+  | "inappropriate_content"
+  | "harassment_or_discrimination"
+  | "fraud_or_misrepresentation"
+  | "other";
+
+export type MarketplaceSafetyStatus = "open" | "under_review" | "resolved" | "dismissed";
+
+export interface MarketplaceSafetyReport {
+  id: string;
+  organization_id: string;
+  organization_name: string;
+  booking_request_id: string;
+  offering_title: string;
+  reporter_user_id: string;
+  reported_teacher_user_id: string;
+  category: MarketplaceSafetyCategory;
+  description: string;
+  status: MarketplaceSafetyStatus;
+  review_note: string | null;
+  created_at: string;
+  reviewed_at: string | null;
+  can_review: boolean;
+}

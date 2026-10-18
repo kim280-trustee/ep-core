@@ -50,7 +50,12 @@ export default function TeacherAuthoringPage() {
   const teacherAssignments=useQuery({queryKey:["learning","authoring","assignments",activeClassGroupId],queryFn:()=>learningAssignmentsService.listAssignmentHistoryForClass(activeClassGroupId),enabled:Boolean(activeClassGroupId)});
   const draftAssignments=teacherAssignments.data?.filter(a=>a.status==="draft")??[];
   const publishedAssignments=teacherAssignments.data?.filter(a=>a.status==="published")??[];
-  const activeAssignmentId=assignmentId||(requestedAssignmentId&&teacherAssignments.data?.some(a=>a.id===requestedAssignmentId)?requestedAssignmentId:draftAssignments[0]?.id||"");
+  // Only draft assignments are editable. Ignore stale URL/state IDs for published assignments.
+  const activeAssignmentId = draftAssignments.some((assignment) => assignment.id === assignmentId)
+    ? assignmentId
+    : draftAssignments.some((assignment) => assignment.id === requestedAssignmentId)
+      ? requestedAssignmentId
+      : draftAssignments[0]?.id ?? "";
   const assignmentItems=useQuery({queryKey:["learning","authoring","assignment-items",activeAssignmentId],queryFn:()=>learningAssignmentsService.listItems(activeAssignmentId),enabled:Boolean(activeAssignmentId)});
   const selectedAssignment=teacherAssignments.data?.find(a=>a.id===activeAssignmentId);
   const selectedIsDraft=selectedAssignment?.status==="draft";
@@ -67,8 +72,27 @@ export default function TeacherAuthoringPage() {
   const publishQuestion=useMutation({mutationFn:(id:string)=>learningAssessmentService.publishQuestion(id,user!.id),onSuccess:()=>{setMessage("Question published.");void qc.invalidateQueries({queryKey:["learning","authoring","questions"]});},onError:(e:Error)=>setMessage(e.message)});
   const createAssessment=useMutation({mutationFn:async()=>{if(!user)throw new Error("Your sign-in session is unavailable. Sign in again and retry.");if(!organizationId)throw new Error("The selected teacher class has no organization context. Change the Teacher class selection; if this persists, the class membership data needs correction.");const code=assessmentCode.trim().toUpperCase();const title=assessmentTitle.trim();if(!code||!title||!selectedQuestionId)throw new Error("Assessment code, title, and question are required.");if((assessments.data??[]).some((assessment)=>assessment.code.trim().toUpperCase()===code))throw new Error("That assessment code already exists in this organization. Use a different code.");const selectedQuestion=questions.data?.find((question)=>question.id===selectedQuestionId);if(!selectedQuestion)throw new Error("The selected question is not available in this organization. Refresh the page and select a published question.");if(selectedQuestion.organizationId&&selectedQuestion.organizationId!==organizationId)throw new Error("The selected question belongs to a different organization. Select a question from the current teacher class.");if(selectedQuestion.status!=="published")throw new Error("Publish the selected question before adding it to an assessment.");if(selectedQuestion.questionType==="short_answer")throw new Error("Short-answer questions are not supported in assessment scoring yet. Select a published single-choice or true/false question.");const versions=await learningAssessmentService.listQuestionVersions(selectedQuestionId);const version=versions.find((candidate)=>candidate.publishedAt!==null);if(!version)throw new Error("The selected question has no published version. Open Question Bank, publish the question, then retry.");const assessment=await learningAssessmentService.createAssessment({organizationId,code,title,assessmentType,languageCode:"en",createdBy:user.id});try{await learningAssessmentService.addAssessmentQuestion({assessmentId:assessment.id,questionVersionId:version.id,sequenceNo:1,points:1,required:true});}catch(error){throw new Error("The draft assessment was created, but its question could not be attached. Refresh the assessment list before retrying to avoid creating a duplicate. Details: "+(error instanceof Error?error.message:String(error)), { cause: error });}return assessment;},onSuccess:()=>{showMessage("Assessment saved as draft with its published question attached.","success");void qc.invalidateQueries({queryKey:["learning","authoring","assessments"]});setAssessmentCode("");setAssessmentTitle("");},onError:(e:Error)=>showMessage(e.message,"error")});
   const publishAssessment=useMutation({mutationFn:(id:string)=>learningAssessmentService.publishAssessment(id,user!.id),onSuccess:()=>{setMessage("Assessment published.");void qc.invalidateQueries({queryKey:["learning","authoring","assessments"]});},onError:(e:Error)=>setMessage(e.message)});
-  const addAssignmentItem=useMutation({mutationFn:async(input:{itemType:"content"|"assessment";id:string})=>{if(!activeAssignmentId||!organizationId)throw new Error("Create/select an assignment first.");return learningAssignmentsService.addItem({organizationId,assignmentId:activeAssignmentId,itemType:input.itemType,contentItemId:input.itemType==="content"?input.id:null,assessmentId:input.itemType==="assessment"?input.id:null,sequenceNo:(assignmentItems.data?.length??0)+1,required:true});},onSuccess:()=>{showMessage("Learning item attached. Check the attached items below.","success");setSelectedContentId("");setSelectedAssessmentId("");void assignmentItems.refetch();},onError:(e:Error)=>setMessage(e.message)});
-  const publishAssignment=useMutation({mutationFn:async()=>{if(!activeAssignmentId)throw new Error("Select an assignment first.");if(selectedAssignment?.status==="published")return selectedAssignment;return learningAssignmentsService.publishAssignment(activeAssignmentId);},onSuccess:()=>{showMessage("Assignment is published and ready for students.","success");void teacherAssignments.refetch();void assignmentItems.refetch();},onError:(e:Error)=>showMessage(e.message,"error")});
+  const addAssignmentItem=useMutation({mutationFn:async(input:{itemType:"content"|"assessment";id:string})=>{
+    if(!activeAssignmentId||!organizationId)throw new Error("Create/select an assignment first.");
+    if(!draftAssignments.some((assignment)=>assignment.id===activeAssignmentId))throw new Error("Select a draft assignment before attaching learning items.");
+    const candidate=input.itemType==="content"
+      ? content.data?.find((item)=>item.id===input.id)
+      : assessments.data?.find((item)=>item.id===input.id);
+    if(!candidate||candidate.status!=="published")throw new Error("Only published content or assessments can be attached.");
+    if(candidate.organizationId&&candidate.organizationId!==organizationId)throw new Error("The selected learning item belongs to a different organization.");
+    return learningAssignmentsService.addItem({organizationId,assignmentId:activeAssignmentId,itemType:input.itemType,contentItemId:input.itemType==="content"?input.id:null,assessmentId:input.itemType==="assessment"?input.id:null,sequenceNo:(assignmentItems.data?.length??0)+1,required:true});
+  },onSuccess:()=>{showMessage("Learning item attached. Check the attached items below.","success");setSelectedContentId("");setSelectedAssessmentId("");void assignmentItems.refetch();},onError:(e:Error)=>setMessage(e.message)});
+  const publishAssignment=useMutation({mutationFn:async()=>{
+    if(!activeAssignmentId)throw new Error("Select a draft assignment first.");
+    if(!draftAssignments.some((assignment)=>assignment.id===activeAssignmentId))throw new Error("Published assignments cannot be edited or republished here.");
+    if(!assignmentItems.data?.length)throw new Error("Attach at least one published learning item before publishing.");
+    return learningAssignmentsService.publishAssignment(activeAssignmentId);
+  },onMutate:()=>showMessage("Publishing assignment… checking its content, assessment, and class permissions.","info"),onSuccess:()=>{
+    showMessage("Assignment published successfully and is ready for students.","success");
+    void teacherAssignments.refetch();
+    void assignmentItems.refetch();
+    void qc.invalidateQueries({queryKey:["learning","authoring","all-assignments"]});
+  },onError:(e:Error)=>showMessage(`Assignment was not published: ${e.message}`,"error")});
 
 
   if(!user)return <Panel title="Teacher authoring"><p>Sign in to continue.</p></Panel>;
