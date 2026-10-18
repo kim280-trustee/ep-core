@@ -152,7 +152,7 @@ export default function LearningAICoachPage() {
           <button type="submit" disabled={generate.isPending || !contentItemId || !question.trim() || contentQuery.isError} className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-indigo-700 px-4 py-3 text-sm font-semibold text-white hover:bg-indigo-600 disabled:cursor-not-allowed disabled:opacity-50">
             <MessageCircle size={17} />{generate.isPending ? "Preparing your practice…" : "Help me understand"}
           </button>
-          <p className="text-xs text-slate-500">The coach is a practice aid, not a replacement for your teacher. Responses are not saved as a chat history.</p>
+          <p className="text-xs text-slate-500">The coach is a practice aid, not a replacement for your teacher. E&P Learning does not save your prompt or response as chat history; minimal usage-limit metadata is retained.</p>
         </form>
 
         <section className="min-h-72 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6" aria-live="polite">
