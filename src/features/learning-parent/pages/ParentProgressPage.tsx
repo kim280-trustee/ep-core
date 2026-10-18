@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AlertCircle, Award, Bell, BookOpen, MessageSquare, Target, TrendingUp, Zap } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
@@ -15,7 +15,27 @@ type Copy=typeof copy[Language];
 
 export default function ParentProgressPage() {
   const { user } = useAuth();
-  const [language,setLanguage]=useState<Language>("en");
+  const queryClient = useQueryClient();
+  const languagePreferenceKey = ["learning", "parent", "language-preference", user?.id] as const;
+  const languagePreferenceQuery = useQuery({
+    queryKey: languagePreferenceKey,
+    queryFn: () => learningParentService.getLanguagePreference(),
+    enabled: Boolean(user?.id),
+  });
+  const languageMutation = useMutation({
+    mutationFn: (nextLanguage: Language) => learningParentService.setLanguagePreference(nextLanguage),
+    onMutate: (nextLanguage) => {
+      queryClient.setQueryData(languagePreferenceKey, nextLanguage);
+    },
+    onError: () => {
+      void queryClient.invalidateQueries({ queryKey: languagePreferenceKey });
+    },
+    onSuccess: (savedLanguage) => {
+      queryClient.setQueryData(languagePreferenceKey, savedLanguage);
+    },
+  });
+  const language: Language = languagePreferenceQuery.data ?? "en";
+  const setLanguage = (nextLanguage: Language) => languageMutation.mutate(nextLanguage);
   const [now,setNow]=useState<number|null>(null);
   useEffect(()=>{
     const initial=window.setTimeout(()=>setNow(Date.now()),0);
@@ -44,6 +64,8 @@ export default function ParentProgressPage() {
 
   return <div className="mx-auto max-w-6xl space-y-6">
     <PortalHeader t={t} language={language} setLanguage={setLanguage}/>
+    {languagePreferenceQuery.isError && <p role="status" className="rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800">The saved language preference could not be loaded. English is shown until it can be retrieved.</p>}
+    {languageMutation.isError && <p role="alert" className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-800">The language preference could not be saved. Please try again.</p>}
     <div className="space-y-6">{children.map(child=><ChildCard key={child.student.id} child={child} t={t} now={now}/>)}</div>
   </div>;
 }
