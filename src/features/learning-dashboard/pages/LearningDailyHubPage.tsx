@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import type { ReactNode } from "react";
 import { AlertCircle, BookOpen, CalendarDays, CheckCircle2, Compass, Languages, RefreshCw, Target, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
+import { organizationService } from "@/core/organization";
 import { learningActivityService } from "@/features/learning-activity";
 import { learningEnrollmentService } from "@/features/learning-enrollment";
 import { learningRuntimeService } from "@/features/learning-runtime";
@@ -19,6 +21,29 @@ function formatDueDate(value: string | null | undefined) {
 export default function LearningDailyHubPage() {
   const { user } = useAuth();
   const userId = user?.id ?? "";
+  const [selectedOrganizationId, setSelectedOrganizationId] = useState("");
+
+  const membershipsQuery = useQuery({
+    queryKey: ["learning", "daily-hub-memberships", userId],
+    queryFn: () => learningEnrollmentService.listUserClasses(userId),
+    enabled: Boolean(userId),
+    staleTime: 30_000,
+  });
+
+  const organizationsQuery = useQuery({
+    queryKey: ["learning", "daily-hub-organizations", userId],
+    queryFn: () => organizationService.getOrganizations(),
+    enabled: Boolean(userId),
+    staleTime: 60_000,
+  });
+
+  const activeStudentMemberships = (membershipsQuery.data ?? []).filter(
+    (membership) => membership.status === "active" && membership.membershipType === "student",
+  );
+  const organizationIds = [...new Set(activeStudentMemberships.map((membership) => membership.organizationId))];
+  const organizationId = selectedOrganizationId && organizationIds.includes(selectedOrganizationId)
+    ? selectedOrganizationId
+    : organizationIds[0] ?? "";
 
   const overviewQuery = useQuery({
     queryKey: ["learning", "daily-hub-overview", userId],
@@ -27,13 +52,8 @@ export default function LearningDailyHubPage() {
   });
 
   const vocabularyQuery = useQuery({
-    queryKey: ["learning", "daily-hub-vocabulary", userId],
+    queryKey: ["learning", "daily-hub-vocabulary", userId, organizationId],
     queryFn: async () => {
-      const memberships = await learningEnrollmentService.listUserClasses(userId);
-      const organizationId = memberships.find(
-        (membership) => membership.status === "active" && membership.membershipType === "student",
-      )?.organizationId;
-
       if (!organizationId) {
         return { organizationId: null, dueEntries: [], publishedCount: 0 };
       }
@@ -61,7 +81,7 @@ export default function LearningDailyHubPage() {
 
       return { organizationId, dueEntries, publishedCount: entries.length };
     },
-    enabled: Boolean(userId),
+    enabled: Boolean(userId && organizationId),
   });
 
   const rewardsQuery = useQuery({
@@ -129,6 +149,22 @@ export default function LearningDailyHubPage() {
       </div>
     </section>
 
+    {organizationIds.length > 1 && <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <label className="block max-w-xl text-sm font-semibold text-slate-700">School for vocabulary review
+        <select
+          className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm"
+          value={organizationId}
+          onChange={(event) => setSelectedOrganizationId(event.target.value)}
+        >
+          {organizationIds.map((id) => {
+            const organization = (organizationsQuery.data ?? []).find((item) => item.id === id);
+            return <option key={id} value={id}>{organization?.name ?? "School " + id.slice(0, 8)}</option>;
+          })}
+        </select>
+      </label>
+      <p className="mt-2 text-xs text-slate-500">Vocabulary review is loaded only for the selected school. Your assignments and progress remain combined in the existing learning overview.</p>
+    </section>}
+
     <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4" aria-label="Today's learning summary">
       <SummaryCard icon={<Languages size={19} />} label="Vocabulary due" value={vocabularyQuery.isSuccess ? String(dueVocabulary.length) : "—"} detail={vocabularyQuery.data?.publishedCount ? `of ${vocabularyQuery.data.publishedCount} published words` : "Spaced review"} />
       <SummaryCard icon={<BookOpen size={19} />} label="Open assignments" value={String(openAssignments.length)} detail="Published and not completed" />
@@ -151,9 +187,12 @@ export default function LearningDailyHubPage() {
     <div className="grid gap-6 lg:grid-cols-2">
       <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
         <div className="flex items-center gap-2"><Languages size={20} className="text-slate-500" /><h2 className="text-lg font-semibold text-slate-900">Vocabulary to review</h2></div>
-        {vocabularyQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading your review schedule…</p>
-          : vocabularyQuery.isError ? <div className="mt-4 rounded-xl bg-amber-50 p-4 text-sm text-amber-900" role="alert"><p>Vocabulary review could not be loaded. Your assignments and recommendations are still available.</p><button type="button" onClick={() => void vocabularyQuery.refetch()} className="mt-2 inline-flex items-center gap-2 font-semibold underline"><RefreshCw size={14} /> Retry vocabulary</button></div>
-            : dueVocabulary.length ? <div className="mt-4 space-y-3">{dueVocabulary.slice(0, 5).map((entry) => <article key={entry.id} className="rounded-xl border border-slate-200 p-4"><div className="flex flex-wrap items-start justify-between gap-2"><h3 className="font-semibold text-slate-900">{entry.word}</h3><span className="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-semibold text-amber-800">{entry.difficulty}</span></div><p className="mt-1 text-sm text-slate-600">{entry.definition}</p>{entry.translation && <p className="mt-1 text-sm text-slate-500">{entry.translation}</p>}</article>)}<Link to="/learning/vocabulary" className="inline-flex rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-800">Review vocabulary</Link></div>
+        {membershipsQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading your school memberships…</p>
+          : membershipsQuery.isError ? <div className="mt-4 rounded-xl bg-amber-50 p-4 text-sm text-amber-900" role="alert"><p>Your school memberships could not be loaded. Assignments and recommendations are still available.</p><button type="button" onClick={() => void membershipsQuery.refetch()} className="mt-2 inline-flex items-center gap-2 font-semibold underline"><RefreshCw size={14} /> Retry school access</button></div>
+            : !organizationId ? <div className="mt-4 rounded-xl bg-slate-50 p-4 text-sm text-slate-600">No active student school membership was found. Your assignments and recommendations remain available.</div>
+              : vocabularyQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading your review schedule…</p>
+                : vocabularyQuery.isError ? <div className="mt-4 rounded-xl bg-amber-50 p-4 text-sm text-amber-900" role="alert"><p>Vocabulary review could not be loaded for this school. Your assignments and recommendations are still available.</p><button type="button" onClick={() => void vocabularyQuery.refetch()} className="mt-2 inline-flex items-center gap-2 font-semibold underline"><RefreshCw size={14} /> Retry vocabulary</button></div>
+                  : dueVocabulary.length ? <div className="mt-4 space-y-3">{dueVocabulary.slice(0, 5).map((entry) => <article key={entry.id} className="rounded-xl border border-slate-200 p-4"><div className="flex flex-wrap items-start justify-between gap-2"><h3 className="font-semibold text-slate-900">{entry.word}</h3><span className="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-semibold text-amber-800">{entry.difficulty}</span></div><p className="mt-1 text-sm text-slate-600">{entry.definition}</p>{entry.translation && <p className="mt-1 text-sm text-slate-500">{entry.translation}</p>}</article>)}<Link to="/learning/vocabulary" className="inline-flex rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-800">Review vocabulary</Link></div>
               : <div className="mt-4 rounded-xl bg-slate-50 p-4 text-sm text-slate-600">{vocabularyQuery.data?.publishedCount ? "You are up to date. No vocabulary is due for review right now." : "No published vocabulary is available in your current class yet."}<div className="mt-3"><Link to="/learning/vocabulary" className="font-semibold text-slate-900 underline">Open vocabulary</Link></div></div>}
       </section>
 
