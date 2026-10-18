@@ -4,9 +4,13 @@ begin;
 -- teacher availability window and does not overlap another confirmed lesson.
 -- This migration does not collect payment or create a financial obligation.
 
+alter table public.learning_marketplace_booking_requests
+  add column if not exists confirmed_start_at timestamptz,
+  add column if not exists confirmed_timezone text;
+
 create index if not exists learning_marketplace_requests_confirmed_schedule_idx
-  on public.learning_marketplace_booking_requests (preferred_date, status)
-  where status = 'accepted';
+  on public.learning_marketplace_booking_requests (confirmed_start_at)
+  where status = 'accepted' and confirmed_start_at is not null;
 
 create or replace function public.create_learning_marketplace_booking_request(
   p_offering_id uuid,
@@ -119,6 +123,8 @@ declare
   v_duration_minutes integer;
   v_start_time time;
   v_start_minute integer;
+  v_timezone_name text;
+  v_confirmed_start_at timestamptz;
 begin
   if p_status is null or p_status not in ('accepted', 'declined') then
     raise exception 'Only accept or decline responses are allowed';
@@ -174,31 +180,56 @@ begin
     v_start_minute := extract(hour from v_start_time)::integer * 60
       + extract(minute from v_start_time)::integer;
 
-    -- Serialize confirmations for the same teacher and local date to prevent
-    -- two concurrent accept operations from double-booking the teacher.
-    perform pg_catalog.pg_advisory_xact_lock(
-      pg_catalog.hashtextextended(v_teacher_user_id::text || ':' || v_preferred_date::text, 0)
-    );
+    select slot.timezone_name into v_timezone_name
+    from public.learning_marketplace_teacher_availability slot
+    where slot.organization_id = v_organization_id
+      and slot.teacher_user_id = v_teacher_user_id
+      and slot.active
+      and slot.weekday = extract(dow from v_preferred_date)::smallint
+      and v_start_minute >= (
+        extract(hour from slot.start_time)::integer * 60
+        + extract(minute from slot.start_time)::integer
+      )
+      and v_start_minute + v_duration_minutes <= (
+        extract(hour from slot.end_time)::integer * 60
+        + extract(minute from slot.end_time)::integer
+      )
+    order by slot.start_time
+    limit 1;
 
-    if not exists (
-      select 1
-      from public.learning_marketplace_teacher_availability slot
-      where slot.organization_id = v_organization_id
-        and slot.teacher_user_id = v_teacher_user_id
-        and slot.active
-        and slot.weekday = extract(dow from v_preferred_date)::smallint
-        and v_start_minute >= (
-          extract(hour from slot.start_time)::integer * 60
-          + extract(minute from slot.start_time)::integer
-        )
-        and v_start_minute + v_duration_minutes <= (
-          extract(hour from slot.end_time)::integer * 60
-          + extract(minute from slot.end_time)::integer
-        )
-    ) then
+    if v_timezone_name is null then
       raise exception 'The requested date/time is outside the teacher''s active availability';
     end if;
 
+    v_confirmed_start_at := (v_preferred_date + v_start_time) at time zone v_timezone_name;
+
+    -- Serialize all confirmations for this teacher, including bookings across
+    -- organizations/time zones, then compare their absolute timestamps.
+    perform pg_catalog.pg_advisory_xact_lock(
+      pg_catalog.hashtextextended(v_teacher_user_id::text, 0)
+    );
+
+    if exists (
+      select 1
+      from public.learning_marketplace_booking_requests existing_request
+      join public.learning_marketplace_offerings existing_offer
+        on existing_offer.id = existing_request.offering_id
+      where existing_offer.teacher_user_id = v_teacher_user_id
+        and existing_request.status = 'accepted'
+        and existing_request.confirmed_start_at is not null
+        and existing_request.confirmed_start_at < (
+          v_confirmed_start_at + make_interval(mins => v_duration_minutes)
+        )
+        and (
+          existing_request.confirmed_start_at
+          + make_interval(mins => existing_offer.duration_minutes)
+        ) > v_confirmed_start_at
+    ) then
+      raise exception 'This time overlaps another confirmed lesson; choose another available time';
+    end if;
+
+    -- Older accepted requests created before this migration have no normalized
+    -- timestamp. Keep a same-school fallback check for those legacy rows.
     if exists (
       select 1
       from public.learning_marketplace_booking_requests existing_request
@@ -207,6 +238,7 @@ begin
       where existing_offer.teacher_user_id = v_teacher_user_id
         and existing_request.organization_id = v_organization_id
         and existing_request.status = 'accepted'
+        and existing_request.confirmed_start_at is null
         and existing_request.preferred_date = v_preferred_date
         and existing_request.preferred_time ~ '^([01][0-9]|2[0-3]):[0-5][0-9]$'
         and v_start_minute < (
@@ -226,6 +258,8 @@ begin
   update public.learning_marketplace_booking_requests request
   set status = p_status,
       response_note = nullif(trim(coalesce(p_response_note, '')), ''),
+      confirmed_start_at = case when p_status = 'accepted' then v_confirmed_start_at else null end,
+      confirmed_timezone = case when p_status = 'accepted' then v_timezone_name else null end,
       updated_at = now()
   where request.id = v_request_id;
 
