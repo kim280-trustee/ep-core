@@ -152,8 +152,12 @@ begin
      or p_start_time is null or p_end_time is null
      or p_start_time >= p_end_time
      or p_timezone_name is null
-     or length(trim(p_timezone_name)) not between 1 and 64 then
-    raise exception 'Invalid availability window';
+     or length(trim(p_timezone_name)) not between 1 and 64
+     or not exists (
+       select 1 from pg_catalog.pg_timezone_names tz
+       where tz.name = trim(p_timezone_name)
+     ) then
+    raise exception 'Invalid availability window or timezone';
   end if;
 
   if exists (
