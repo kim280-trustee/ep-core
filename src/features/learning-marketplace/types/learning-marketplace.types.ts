@@ -8,3 +8,30 @@ export interface TeacherOffering { id: string; organization_id: string; organiza
 export interface BookingRequest { id: string; offering_id: string; organization_id: string; teacher_user_id: string; teacher_name: string; offering_title: string; requester_user_id: string; requester_name: string; student_user_id: string; student_name: string; message: string; preferred_date: string | null; preferred_time: string | null; status: "requested" | "accepted" | "declined" | "cancelled"; response_note: string | null; created_at: string; }
 export interface TeacherAvailabilitySlot { id: string; organization_id: string; organization_name: string; weekday: number; start_time: string; end_time: string; timezone_name: string; active: boolean; }
 export interface PublicAvailabilitySlot { organization_id: string; teacher_user_id: string; weekday: number; start_time: string; end_time: string; timezone_name: string; }
+export interface TeacherProfile {
+  id: string;
+  organization_id: string;
+  organization_name: string;
+  headline: string;
+  bio: string;
+  languages: string[];
+  credentials: string[];
+  experience_years: number;
+  review_status: "pending" | "verified" | "rejected";
+  review_note: string | null;
+  updated_at: string;
+}
+export interface PublicTeacherProfile {
+  organization_id: string;
+  teacher_user_id: string;
+  headline: string;
+  bio: string;
+  languages: string[];
+  credentials: string[];
+  experience_years: number;
+  school_reviewed: boolean;
+}
+export interface TeacherProfileForReview extends TeacherProfile {
+  teacher_user_id: string;
+  teacher_name: string;
+}
