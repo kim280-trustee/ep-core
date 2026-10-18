@@ -3,6 +3,7 @@ import { Bell, CheckCheck, Circle, RefreshCw } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningNotificationsService } from "../services/learning-notifications.service";
+import NotificationPreferencesPanel from "../components/NotificationPreferencesPanel";
 import type { LearningNotification } from "../types/learning-notification.types";
 
 function dateLabel(value: string) {
@@ -167,7 +168,8 @@ export default function LearningNotificationsPage() {
           ))}
         </section>
       )}
-      <p className="text-xs leading-5 text-slate-500">These are in-app notifications only. Email, LINE, push delivery and user-configurable notification preferences are not included in this release.</p>
+      <NotificationPreferencesPanel />
+      <p className="text-xs leading-5 text-slate-500">These are in-app notifications only. Email, LINE and push delivery are not included in this release.</p>
     </main>
   );
 }
