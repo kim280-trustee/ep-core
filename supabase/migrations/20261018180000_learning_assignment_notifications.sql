@@ -12,7 +12,9 @@ alter table public.learning_notifications
     'marketplace.booking_cancelled',
     'marketplace.safety_reported',
     'learning.assignment_published',
-    'learning.assessment_result_available'
+    'learning.assessment_result_available',
+    'learning.parent_assignment_published',
+    'learning.parent_assessment_result_available'
   ));
 
 alter table public.learning_notifications
@@ -27,7 +29,9 @@ create unique index if not exists learning_notifications_learning_event_once_idx
   on public.learning_notifications (recipient_user_id, notification_type, resource_type, resource_id)
   where notification_type in (
     'learning.assignment_published',
-    'learning.assessment_result_available'
+    'learning.assessment_result_available',
+    'learning.parent_assignment_published',
+    'learning.parent_assessment_result_available'
   );
 
 create or replace function public.enqueue_learning_assignment_notification(
@@ -63,6 +67,29 @@ begin
     'learning_assignment',
     p_assignment_id
   )
+  on conflict do nothing;
+
+  -- Notify only active parent links in the same organization. The message omits
+  -- grades and student details so it remains appropriate for a notification preview.
+  insert into public.learning_notifications (
+    organization_id, recipient_user_id, actor_user_id,
+    notification_type, title, body, resource_type, resource_id
+  )
+  select
+    p_organization_id,
+    link.parent_user_id,
+    p_actor_user_id,
+    'learning.parent_assignment_published',
+    'New assignment for your child',
+    'A new assignment is ready for a linked student: ' || left(coalesce(nullif(trim(p_assignment_title), ''), 'Learning assignment'), 350),
+    'learning_assignment',
+    p_assignment_id
+  from public.learning_parent_student_links link
+  where link.organization_id = p_organization_id
+    and link.student_user_id = p_recipient_user_id
+    and link.status = 'active'
+    and link.parent_user_id <> p_recipient_user_id
+    and link.parent_user_id is distinct from p_actor_user_id
   on conflict do nothing;
 end;
 $function$;
@@ -200,6 +227,26 @@ begin
     'assessment_result',
     new.id
   )
+  on conflict do nothing;
+
+  insert into public.learning_notifications (
+    organization_id, recipient_user_id, actor_user_id,
+    notification_type, title, body, resource_type, resource_id
+  )
+  select
+    v_organization_id,
+    link.parent_user_id,
+    null,
+    'learning.parent_assessment_result_available',
+    'Assessment result available for your child',
+    'A new assessment result is available for a linked student.',
+    'assessment_result',
+    new.id
+  from public.learning_parent_student_links link
+  where link.organization_id = v_organization_id
+    and link.student_user_id = new.student_user_id
+    and link.status = 'active'
+    and link.parent_user_id <> new.student_user_id
   on conflict do nothing;
 
   return new;
