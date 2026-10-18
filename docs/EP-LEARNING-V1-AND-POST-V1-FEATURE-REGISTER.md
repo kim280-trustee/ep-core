@@ -2,7 +2,7 @@
 
 **Repository:** `kim280-trustee/ep-core`  
 **Branch reviewed:** `paul/dictionary-graded-assignments-and-admin-hardening`  
-**Review date:** 2026-10-17  
+**Review date:** 2026-10-18  
 **Canonical roadmap:** This is the single source of truth for V1 scope and post-V1 features.
 
 ## Status definitions
