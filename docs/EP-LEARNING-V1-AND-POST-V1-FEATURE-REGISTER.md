@@ -58,7 +58,7 @@ Use existing pilot data and the complete existing assignment `EN-M1-SELF-INTRO-A
 | Leaderboards and team competitions | No dedicated implementation found | V2 | Optional, teacher-controlled, private by default, age-appropriate and non-shaming alternatives |
 | Attendance register, history and school-wide report | Code present on the integration branch; SQL report RPC and school-wide report page added in this batch | Implemented but unverified | Apply the forward migrations, then verify manager scope, date limits, saved-mark counts, CSV safety and cross-tenant denial |
 | Parent notifications and LINE OA | Parent portal/linking exists; no dedicated LINE OA/webhook integration found | V1.x/V2 | Verified account linking, consent/preferences, signature validation, idempotency, retries, delivery logs and opt-out |
-| AI teacher assistant | No dedicated AI teacher feature found | V2 | Teacher approval before publishing, curriculum alignment, content-quality evaluation, usage/cost limits and child-data controls |
+| AI teacher assistant | Teacher-only draft generator for lessons, worksheets, quizzes and lesson plans; server-side OpenAI Responses API call; generated drafts are not persisted or published | Implemented in code — configure `OPENAI_API_KEY` in Supabase Functions and verify access/provider behavior | Validate active teacher membership, missing-key state, provider failure handling, age appropriateness, answer keys and human review; add usage limits before broad rollout |
 | AI student coach and personalized practice | No dedicated AI coach found; rule-based recommendations already exist | V2 | Ground responses in approved material, age-appropriate safeguards, teacher/guardian controls and quality evaluation |
 | School-wide analytics and proficiency trends | Attendance aggregates/report are now present; director-level academic proficiency trends remain unestablished | Partial | Define proficiency thresholds, term/cohort calculations and permissions before adding academic performance dashboards |
 | Official Thai reporting templates | Generic reports exist; official school templates not verified | V1 only for school-mandated blockers, otherwise V1.x/V2 | Obtain the actual school's forms/rules and compare formulas, labels, rounding and exports to approved examples |
@@ -89,7 +89,7 @@ Do not implement attendance, AI, LINE, billing, offline sync or marketplace work
 - The school must confirm whether attendance and any official report template are V1 blockers.
 - Gamification now includes a persisted badge-award ledger in code; the migration is not applied and authenticated idempotency/RLS checks remain outstanding.
 - Marketplace booking requests are now implemented as a first slice; requests are not confirmed bookings and no payment is collected. Teacher identity verification, calendar/availability, payment/commission/refunds/payouts, reviews/disputes, and full safeguarding workflows remain unimplemented.
-- Do not claim LINE, AI, offline sync, school billing or director analytics are implemented without dedicated code and acceptance evidence.
+- AI teacher drafting is now implemented in code, but live generation requires the server-side `OPENAI_API_KEY` secret and authenticated browser verification. Generated drafts are not persisted or auto-published; teachers must review them. No student personal data should be entered. Do not claim LINE, offline sync, school billing or director analytics are implemented without dedicated code and acceptance evidence.
 
 ## Execution order
 
