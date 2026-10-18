@@ -160,6 +160,12 @@ begin
     raise exception 'Invalid availability window or timezone';
   end if;
 
+  -- Serialize writes for this teacher, organization and weekday so concurrent
+  -- requests cannot create overlapping active windows.
+  perform pg_catalog.pg_advisory_xact_lock(
+    pg_catalog.hashtext(v_user_id::text || ':' || p_organization_id::text || ':' || p_weekday::text)
+  );
+
   if exists (
     select 1 from public.learning_marketplace_teacher_availability slot
     where slot.organization_id = p_organization_id
