@@ -31,10 +31,16 @@ export default {
         return Response.json({ error: "Choose a supported material type, language and difficulty." }, { status: 400 });
       }
 
+      const { data: authData, error: authError } = await ctx.supabase.auth.getUser();
+      const authenticatedUser = authData.user;
+      if (authError || !authenticatedUser) {
+        return Response.json({ error: "Sign in again before generating teaching material." }, { status: 401 });
+      }
+
       const { data: membership, error: membershipError } = await ctx.supabase
         .from("learning_class_memberships")
         .select("user_id")
-        .eq("user_id", ctx.user.id)
+        .eq("user_id", authenticatedUser.id)
         .eq("organization_id", organizationId)
         .eq("membership_type", "teacher")
         .eq("status", "active")
