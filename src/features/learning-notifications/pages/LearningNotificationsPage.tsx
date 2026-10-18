@@ -13,6 +13,13 @@ function dateLabel(value: string) {
 }
 
 function notificationLink(notification: LearningNotification) {
+  if (
+    notification.notification_type === "learning.parent_assignment_published" ||
+    notification.notification_type === "learning.parent_assessment_result_available"
+  ) {
+    return "/parent";
+  }
+
   switch (notification.resource_type) {
     case "marketplace_booking":
       return "/marketplace";
@@ -26,6 +33,13 @@ function notificationLink(notification: LearningNotification) {
 }
 
 function notificationLinkLabel(notification: LearningNotification) {
+  if (
+    notification.notification_type === "learning.parent_assignment_published" ||
+    notification.notification_type === "learning.parent_assessment_result_available"
+  ) {
+    return "View child's progress";
+  }
+
   switch (notification.resource_type) {
     case "marketplace_booking":
       return "View Extra Classes";
@@ -86,7 +100,7 @@ export default function LearningNotificationsPage() {
               <h1 className="mt-1 text-2xl font-bold sm:text-3xl">Notifications</h1>
               <p className="mt-2 text-sm text-slate-300">
                 {unreadCount.data ?? unread} unread notification{(unreadCount.data ?? unread) === 1 ? "" : "s"}.
-                Marketplace bookings, new assignments and assessment results appear here automatically.
+                Marketplace bookings, assignments, assessment results and linked-child progress alerts appear here automatically.
               </p>
             </div>
           </div>
@@ -126,7 +140,7 @@ export default function LearningNotificationsPage() {
         <section className="rounded-2xl border border-dashed bg-white p-8 text-center">
           <Bell className="mx-auto text-slate-400" size={30} />
           <h2 className="mt-3 font-semibold text-slate-900">You are all caught up</h2>
-          <p className="mt-1 text-sm text-slate-500">New booking updates, assignments and assessment results will appear here.</p>
+          <p className="mt-1 text-sm text-slate-500">New booking updates, assignments, assessment results and linked-child progress alerts will appear here.</p>
           <Link className="mt-4 inline-flex rounded-xl border px-4 py-2 text-sm font-semibold" to="/marketplace">Open Extra Classes</Link>
         </section>
       ) : (
