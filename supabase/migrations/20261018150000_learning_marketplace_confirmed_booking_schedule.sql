@@ -267,6 +267,93 @@ begin
 end;
 $function$;
 
+
+create or replace function public.cancel_learning_marketplace_booking_request(
+  p_request_id uuid,
+  p_cancel_reason text
+)
+returns uuid
+language plpgsql
+security definer
+set search_path = ''
+as $function$
+declare
+  v_user_id uuid;
+  v_request_id uuid;
+  v_requester_user_id uuid;
+  v_teacher_user_id uuid;
+  v_organization_id uuid;
+  v_status text;
+  v_confirmed_start_at timestamptz;
+begin
+  if p_cancel_reason is not null and length(p_cancel_reason) > 1000 then
+    raise exception 'Cancellation note is too long';
+  end if;
+
+  select u.id into v_user_id
+  from public.users u
+  where u.auth_user_id = (select auth.uid())
+  limit 1;
+
+  if v_user_id is null then
+    raise exception 'Authenticated user profile not found';
+  end if;
+
+  select request.id, request.requester_user_id, offer.teacher_user_id,
+         request.organization_id, request.status, request.confirmed_start_at
+    into v_request_id, v_requester_user_id, v_teacher_user_id,
+         v_organization_id, v_status, v_confirmed_start_at
+  from public.learning_marketplace_booking_requests request
+  join public.learning_marketplace_offerings offer
+    on offer.id = request.offering_id
+  where request.id = p_request_id
+    and (
+      request.requester_user_id = v_user_id
+      or (
+        offer.teacher_user_id = v_user_id
+        and exists (
+          select 1 from public.learning_class_memberships cm
+          where cm.organization_id = request.organization_id
+            and cm.user_id = v_user_id
+            and cm.membership_type = 'teacher'
+            and cm.status = 'active'
+        )
+      )
+    )
+  for update of request;
+
+  if v_request_id is null then
+    raise exception 'Booking request not found or access denied';
+  end if;
+
+  if v_status not in ('requested', 'accepted') then
+    raise exception 'Only requested or confirmed lessons can be cancelled';
+  end if;
+
+  if v_status = 'requested' and v_requester_user_id <> v_user_id then
+    raise exception 'Only the requester can cancel a pending request';
+  end if;
+
+  if v_status = 'accepted' and v_confirmed_start_at is not null
+     and v_confirmed_start_at <= now() then
+    raise exception 'A lesson that has started or passed cannot be cancelled here';
+  end if;
+
+  -- Lock against a concurrent confirmation of this same request. Updating the
+  -- status to cancelled releases the time slot for future requests.
+  update public.learning_marketplace_booking_requests request
+  set status = 'cancelled',
+      response_note = nullif(trim(coalesce(p_cancel_reason, '')), ''),
+      updated_at = now()
+  where request.id = v_request_id;
+
+  return v_request_id;
+end;
+$function$;
+
+revoke all on function public.cancel_learning_marketplace_booking_request(uuid, text) from public, anon;
+grant execute on function public.cancel_learning_marketplace_booking_request(uuid, text) to authenticated;
+
 revoke all on function public.create_learning_marketplace_booking_request(uuid, uuid, text, date, text) from public, anon;
 revoke all on function public.respond_learning_marketplace_booking_request(uuid, text, text) from public, anon;
 grant execute on function public.create_learning_marketplace_booking_request(uuid, uuid, text, date, text) to authenticated;
