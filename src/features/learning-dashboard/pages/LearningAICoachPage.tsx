@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { useState } from "react";
-import { AlertCircle, BookOpen, MessageCircle, Sparkles } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { AlertCircle, BookOpen, MessageCircle, Mic, MicOff, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { organizationService } from "@/core/organization";
@@ -20,6 +20,34 @@ type CoachResponse = {
   };
 };
 
+
+type SpeechRecognitionAlternative = { transcript: string };
+type SpeechRecognitionResult = {
+  isFinal: boolean;
+  length: number;
+  [index: number]: SpeechRecognitionAlternative;
+};
+type SpeechRecognitionResultList = {
+  length: number;
+  [index: number]: SpeechRecognitionResult;
+};
+type SpeechRecognitionEvent = {
+  resultIndex: number;
+  results: SpeechRecognitionResultList;
+};
+type SpeechRecognitionErrorEvent = { error: string };
+type SpeechRecognitionInstance = {
+  lang: string;
+  continuous: boolean;
+  interimResults: boolean;
+  onresult: ((event: SpeechRecognitionEvent) => void) | null;
+  onerror: ((event: SpeechRecognitionErrorEvent) => void) | null;
+  onend: (() => void) | null;
+  start: () => void;
+  stop: () => void;
+};
+type SpeechRecognitionConstructor = new () => SpeechRecognitionInstance;
+
 function errorFrom(error: unknown) {
   return error instanceof Error && error.message
     ? error.message
@@ -32,6 +60,74 @@ export default function LearningAICoachPage() {
   const [selectedContentItemId, setSelectedContentItemId] = useState("");
   const [question, setQuestion] = useState("");
   const [language, setLanguage] = useState<"English" | "Thai" | "English and Thai">("English");
+  const [speechLanguage, setSpeechLanguage] = useState<"en-US" | "th-TH">("en-US");
+  const [isListening, setIsListening] = useState(false);
+  const [speechError, setSpeechError] = useState("");
+  const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
+
+  const browserWindow = typeof window === "undefined"
+    ? null
+    : window as Window & {
+        SpeechRecognition?: SpeechRecognitionConstructor;
+        webkitSpeechRecognition?: SpeechRecognitionConstructor;
+      };
+  const speechRecognitionConstructor = browserWindow?.SpeechRecognition
+    ?? browserWindow?.webkitSpeechRecognition
+    ?? null;
+
+  useEffect(() => () => {
+    recognitionRef.current?.stop();
+    recognitionRef.current = null;
+  }, []);
+
+  const startListening = () => {
+    if (!speechRecognitionConstructor) {
+      setSpeechError("Speech recognition is not supported in this browser. Type your question instead.");
+      return;
+    }
+    if (generate.isPending) return;
+
+    const recognition = new speechRecognitionConstructor();
+    recognition.lang = speechLanguage;
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.onresult = (event) => {
+      let transcript = "";
+      for (let index = event.resultIndex; index < event.results.length; index += 1) {
+        const result = event.results[index];
+        if (result.isFinal) transcript += result[0]?.transcript ?? "";
+      }
+      const spokenText = transcript.trim();
+      if (spokenText) {
+        setQuestion((current) => [current.trim(), spokenText].filter(Boolean).join(" "));
+        setSpeechError("");
+      }
+    };
+    recognition.onerror = (event) => {
+      setSpeechError(event.error === "not-allowed"
+        ? "Microphone access was denied. Allow access in your browser settings or type your question."
+        : "Speech recognition stopped. You can type or edit your question instead.");
+      setIsListening(false);
+      recognitionRef.current = null;
+    };
+    recognition.onend = () => {
+      setIsListening(false);
+      if (recognitionRef.current === recognition) recognitionRef.current = null;
+    };
+
+    try {
+      recognitionRef.current = recognition;
+      recognition.start();
+      setSpeechError("");
+      setIsListening(true);
+    } catch {
+      recognitionRef.current = null;
+      setIsListening(false);
+      setSpeechError("The microphone could not start. Check browser permissions and try again.");
+    }
+  };
+
+  const stopListening = () => recognitionRef.current?.stop();
 
   const membershipsQuery = useQuery({
     queryKey: ["learning-ai-coach", "memberships", user?.id],
@@ -146,8 +242,26 @@ export default function LearningAICoachPage() {
             </select>
           </label>
           <label className={labelClass}>Your question
-            <textarea className={fieldClass} rows={5} value={question} onChange={(event) => setQuestion(event.target.value)} maxLength={600} required placeholder="Which part is confusing? Ask for a hint or a simpler example." />
+            <textarea className={fieldClass} rows={5} value={question} onChange={(event) => setQuestion(event.target.value)} maxLength={600} required placeholder="Type a question, or use the microphone to speak." />
           </label>
+          <div className="space-y-2 rounded-xl border border-slate-200 bg-slate-50 p-3">
+            <div className="flex flex-wrap items-end gap-3">
+              <label className={labelClass + " min-w-36 flex-1"}>Spoken language
+                <select className={fieldClass} value={speechLanguage} onChange={(event) => setSpeechLanguage(event.target.value as typeof speechLanguage)} disabled={isListening}>
+                  <option value="en-US">English</option>
+                  <option value="th-TH">Thai</option>
+                </select>
+              </label>
+              <button type="button" onClick={isListening ? stopListening : startListening} disabled={generate.isPending || (!speechRecognitionConstructor && !isListening)} className="inline-flex items-center justify-center gap-2 rounded-xl border border-indigo-200 bg-white px-4 py-2.5 text-sm font-semibold text-indigo-800 hover:bg-indigo-50 disabled:cursor-not-allowed disabled:opacity-50">
+                {isListening ? <MicOff size={17} /> : <Mic size={17} />}
+                {isListening ? "Stop microphone" : "Speak your question"}
+              </button>
+            </div>
+            {isListening && <p className="text-sm font-medium text-indigo-800" role="status">Listening… speak clearly, then stop when you are finished.</p>}
+            {speechError && <p className="text-sm text-red-700" role="alert">{speechError}</p>}
+            {!speechRecognitionConstructor && <p className="text-xs text-slate-600">This browser does not provide speech recognition. You can still type your question.</p>}
+            <p className="text-xs leading-5 text-slate-600">Review and edit the transcript before submitting. Speech recognition is handled by your browser or device and may use the browser provider's service; E&P sends the text you submit to the coach, not a stored audio recording.</p>
+          </div>
           <p className="text-xs leading-5 text-slate-500">Do not enter your full name, address, phone number, password, or other personal information.</p>
           <button type="submit" disabled={generate.isPending || !contentItemId || !question.trim() || contentQuery.isError} className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-indigo-700 px-4 py-3 text-sm font-semibold text-white hover:bg-indigo-600 disabled:cursor-not-allowed disabled:opacity-50">
             <MessageCircle size={17} />{generate.isPending ? "Preparing your practice…" : "Help me understand"}
