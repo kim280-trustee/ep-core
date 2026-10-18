@@ -22,6 +22,9 @@ export default {
       if (!question || question.length > 600) {
         return Response.json({ error: "Enter a question or learning difficulty (up to 600 characters)." }, { status: 400 });
       }
+      if (/[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}/i.test(question)) {
+        return Response.json({ error: "Please remove email addresses and other personal details before asking your learning question." }, { status: 400 });
+      }
       if (!ALLOWED_LANGUAGES.has(language)) {
         return Response.json({ error: "Choose English, Thai, or English and Thai." }, { status: 400 });
       }
