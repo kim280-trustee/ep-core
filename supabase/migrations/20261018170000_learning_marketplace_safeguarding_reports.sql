@@ -150,6 +150,8 @@ begin
          (
            public.is_organization_member(report.organization_id)
            and public.has_permission('learning.academic.manage')
+           and v_actor_id <> report.reporter_user_id
+           and v_actor_id <> report.reported_teacher_user_id
            and exists (
              select 1
              from public.organization_memberships manager_membership
@@ -169,6 +171,8 @@ begin
      or (
        public.is_organization_member(report.organization_id)
        and public.has_permission('learning.academic.manage')
+       and v_actor_id <> report.reporter_user_id
+       and v_actor_id <> report.reported_teacher_user_id
        and exists (
          select 1
          from public.organization_memberships manager_membership
@@ -197,6 +201,8 @@ as $function$
 declare
   v_actor_id uuid;
   v_organization_id uuid;
+  v_reporter_id uuid;
+  v_teacher_id uuid;
   v_report_id uuid;
 begin
   if p_status is null or p_status not in ('under_review', 'resolved', 'dismissed') then
@@ -215,13 +221,18 @@ begin
     raise exception 'Authenticated user profile not found';
   end if;
 
-  select report.organization_id into v_organization_id
+  select report.organization_id, report.reporter_user_id, report.reported_teacher_user_id
+    into v_organization_id, v_reporter_id, v_teacher_id
   from public.learning_marketplace_safety_reports report
   where report.id = p_report_id
   for update;
 
   if v_organization_id is null then
     raise exception 'Safety report was not found';
+  end if;
+
+  if v_actor_id = v_reporter_id or v_actor_id = v_teacher_id then
+    raise exception 'A report participant cannot review this report';
   end if;
 
   if not public.is_organization_member(v_organization_id)
