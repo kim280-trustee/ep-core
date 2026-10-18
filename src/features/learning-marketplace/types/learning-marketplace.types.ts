@@ -1,0 +1,8 @@
+export type DeliveryMode = "online" | "in_person" | "hybrid";
+export type LessonType = "individual" | "group";
+export type OfferingStatus = "draft" | "published" | "archived";
+export interface TeacherOrganization { organization_id: string; organization_name: string; }
+export interface EligibleStudent { organization_id: string; organization_name: string; student_user_id: string; student_name: string; }
+export interface Offering { id: string; organization_id: string; organization_name: string; teacher_user_id: string; teacher_name: string; title: string; subject: string; description: string; delivery_mode: DeliveryMode; lesson_type: LessonType; duration_minutes: number; price_amount: number | string; currency_code: string; package_lessons: number; grade_levels: string[]; created_at: string; }
+export interface TeacherOffering { id: string; organization_id: string; organization_name: string; title: string; subject: string; description: string; delivery_mode: DeliveryMode; lesson_type: LessonType; duration_minutes: number; price_amount: number | string; currency_code: string; package_lessons: number; grade_levels: string[]; status: OfferingStatus; created_at: string; }
+export interface BookingRequest { id: string; offering_id: string; organization_id: string; teacher_user_id: string; teacher_name: string; offering_title: string; requester_user_id: string; requester_name: string; student_user_id: string; student_name: string; message: string; preferred_date: string | null; preferred_time: string | null; status: "requested" | "accepted" | "declined" | "cancelled"; response_note: string | null; created_at: string; }
