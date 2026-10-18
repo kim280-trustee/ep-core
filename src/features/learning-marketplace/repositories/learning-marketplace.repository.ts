@@ -62,6 +62,9 @@ export const learningMarketplaceRepository = {
   async respondToRequest(input: { requestId: string; status: "accepted" | "declined"; responseNote: string }): Promise<string> {
     return rpc("respond_learning_marketplace_booking_request", { p_request_id: input.requestId, p_status: input.status, p_response_note: input.responseNote });
   },
+  async cancelBookingRequest(input: { requestId: string; reason: string }): Promise<string> {
+    return rpc("cancel_learning_marketplace_booking_request", { p_request_id: input.requestId, p_cancel_reason: input.reason });
+  },
   async listTeacherProfiles(): Promise<TeacherProfile[]> { return rows(await rpc<unknown>("list_learning_marketplace_teacher_profiles", {})); },
   async listPublicTeacherProfiles(): Promise<PublicTeacherProfile[]> { return rows(await rpc<unknown>("list_learning_marketplace_public_teacher_profiles", {})); },
   async listProfilesForReview(): Promise<TeacherProfileForReview[]> { return rows(await rpc<unknown>("list_learning_marketplace_profiles_for_review", {})); },
