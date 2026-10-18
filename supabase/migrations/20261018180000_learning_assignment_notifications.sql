@@ -67,39 +67,48 @@ begin
 end;
 $function$;
 
-create or replace function public.notify_learning_assignment_target()
-returns trigger
+create or replace function public.enqueue_learning_assignment_target(p_target_id uuid)
+returns void
 language plpgsql
 security definer
 set search_path = ''
 as $function$
 declare
+  v_target public.learning_assignment_targets%rowtype;
   v_assignment record;
   v_member record;
 begin
+  select t.* into v_target
+  from public.learning_assignment_targets t
+  where t.id = p_target_id;
+
+  if not found then
+    return;
+  end if;
+
   select a.id, a.organization_id, a.tenant_id, a.created_by, a.title, a.status
     into v_assignment
   from public.learning_assignments a
-  where a.id = new.assignment_id
-    and a.organization_id = new.organization_id
-    and a.tenant_id = new.tenant_id;
+  where a.id = v_target.assignment_id
+    and a.organization_id = v_target.organization_id
+    and a.tenant_id = v_target.tenant_id;
 
-  if not found or v_assignment.status <> 'published' or new.status <> 'active' then
-    return new;
+  if not found or v_assignment.status <> 'published' or v_target.status <> 'active' then
+    return;
   end if;
 
-  if new.student_user_id is not null then
+  if v_target.student_user_id is not null then
     perform public.enqueue_learning_assignment_notification(
       v_assignment.organization_id, v_assignment.id, v_assignment.created_by,
-      new.student_user_id, v_assignment.title
+      v_target.student_user_id, v_assignment.title
     );
-  elsif new.class_group_id is not null then
+  elsif v_target.class_group_id is not null then
     for v_member in
       select cm.user_id
       from public.learning_class_memberships cm
       where cm.tenant_id = v_assignment.tenant_id
         and cm.organization_id = v_assignment.organization_id
-        and cm.class_group_id = new.class_group_id
+        and cm.class_group_id = v_target.class_group_id
         and cm.membership_type = 'student'
         and cm.status = 'active'
     loop
@@ -109,7 +118,17 @@ begin
       );
     end loop;
   end if;
+end;
+$function$;
 
+create or replace function public.notify_learning_assignment_target()
+returns trigger
+language plpgsql
+security definer
+set search_path = ''
+as $function$
+begin
+  perform public.enqueue_learning_assignment_target(new.id);
   return new;
 end;
 $function$;
@@ -141,33 +160,10 @@ begin
       and t.tenant_id = new.tenant_id
       and t.status = 'active'
   loop
-    perform public.notify_learning_assignment_target_for_id(v_target.id);
+    perform public.enqueue_learning_assignment_target(v_target.id);
   end loop;
 
   return new;
-end;
-$function$;
-
--- Resolve the target row inside the definer function so publication can notify
--- existing targets, while later-added targets are handled by the target trigger.
-create or replace function public.notify_learning_assignment_target_for_id(p_target_id uuid)
-returns void
-language plpgsql
-security definer
-set search_path = ''
-as $function$
-declare
-  v_target public.learning_assignment_targets%rowtype;
-begin
-  select t.* into v_target
-  from public.learning_assignment_targets t
-  where t.id = p_target_id;
-
-  if not found then
-    return;
-  end if;
-
-  perform public.notify_learning_assignment_target();
 end;
 $function$;
 
@@ -231,7 +227,7 @@ for each row execute function public.notify_learning_assessment_result_available
 revoke all on function public.enqueue_learning_assignment_notification(uuid, uuid, uuid, uuid, text) from public, anon, authenticated;
 revoke all on function public.notify_learning_assignment_target() from public, anon, authenticated;
 revoke all on function public.notify_learning_assignment_published() from public, anon, authenticated;
-revoke all on function public.notify_learning_assignment_target_for_id(uuid) from public, anon, authenticated;
+revoke all on function public.enqueue_learning_assignment_target(uuid) from public, anon, authenticated;
 revoke all on function public.notify_learning_assessment_result_available() from public, anon, authenticated;
 
 commit;
