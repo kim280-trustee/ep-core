@@ -17,7 +17,33 @@ type RecommendationRow={id:string;recommendation_type:string;objective_id:string
 
 const parentLinks=()=>supabase.from("learning_parent_student_links").select("*");
 
+const parentPreferenceRpc = supabase as unknown as {
+  rpc: (name: string, args: Record<string, unknown>) => Promise<{
+    data: unknown;
+    error: { message: string } | null;
+  }>;
+};
+
 export const learningParentRepository={
+  async getLanguagePreference(): Promise<"en" | "th"> {
+    const { data, error } = await parentPreferenceRpc.rpc(
+      "get_learning_parent_language_preference",
+      {},
+    );
+    if (error) throw new Error(error.message);
+    return data === "th" ? "th" : "en";
+  },
+  async setLanguagePreference(language: "en" | "th"): Promise<"en" | "th"> {
+    const { data, error } = await parentPreferenceRpc.rpc(
+      "set_learning_parent_language_preference",
+      { p_language: language },
+    );
+    if (error) throw new Error(error.message);
+    if (data !== "en" && data !== "th") {
+      throw new Error("The saved language preference was not recognized.");
+    }
+    return data;
+  },
   async listChildren(parentUserId:string):Promise<LearningParentStudentLink[]>{
     const{data,error}=await parentLinks().eq("parent_user_id",parentUserId).eq("status","active");if(error)throw error;
     return(data??[]).map(row=>({id:row.id,organizationId:row.organization_id,parentUserId:row.parent_user_id,studentUserId:row.student_user_id,relationship:row.relationship,status:row.status as "active"|"inactive",createdAt:row.created_at,updatedAt:row.updated_at}));
