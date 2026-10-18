@@ -1,5 +1,18 @@
 begin;
 
+-- The notification inbox also alerts school reviewers when a safety report is submitted.
+alter table public.learning_notifications
+  drop constraint if exists learning_notifications_notification_type_check;
+alter table public.learning_notifications
+  add constraint learning_notifications_notification_type_check
+  check (notification_type in (
+    'marketplace.booking_requested',
+    'marketplace.booking_confirmed',
+    'marketplace.booking_declined',
+    'marketplace.booking_cancelled',
+    'marketplace.safety_reported'
+  ));
+
 create table if not exists public.learning_marketplace_safety_reports (
   id uuid primary key default gen_random_uuid(),
   organization_id uuid not null references public.organizations(id) on delete cascade,
@@ -101,6 +114,24 @@ begin
     v_organization_id, p_booking_request_id, v_reporter_id,
     v_teacher_id, p_category, trim(p_description)
   ) returning id into v_report_id;
+
+  insert into public.learning_notifications (
+    organization_id, recipient_user_id, actor_user_id,
+    notification_type, title, body, resource_type, resource_id
+  )
+  select distinct v_organization_id, manager_membership.user_id, v_reporter_id,
+    'marketplace.safety_reported',
+    'Marketplace safety report needs review',
+    'A safety report was submitted for an extra-class booking.',
+    'marketplace_booking', p_booking_request_id
+  from public.organization_memberships manager_membership
+  join public.roles manager_role on manager_role.id = manager_membership.role_id
+  where manager_membership.organization_id = v_organization_id
+    and manager_membership.status = 'active'
+    and upper(manager_role.name) in ('OWNER', 'MANAGER')
+    and (manager_role.tenant_id = manager_membership.tenant_id or manager_role.tenant_id is null)
+    and manager_membership.user_id <> v_reporter_id
+    and manager_membership.user_id <> v_teacher_id;
 
   return v_report_id;
 end;
