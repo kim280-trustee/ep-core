@@ -20,6 +20,12 @@ type DraftResponse = {
   draft: string;
   model?: string;
   requiresTeacherReview: true;
+  usage?: {
+    usedLast24Hours: number;
+    dailyLimit: number;
+    remainingRequests: number;
+    resetAt: string | null;
+  };
 };
 
 export default function TeacherAIAssistantPage() {
@@ -167,7 +173,7 @@ export default function TeacherAIAssistantPage() {
           </div>
           {copyMessage && <p role="status" className="mt-3 text-xs text-slate-600">{copyMessage}</p>}
           {generate.isPending ? <div className="mt-6 space-y-3" aria-label="Generating draft"><div className="h-4 w-3/4 animate-pulse rounded bg-slate-200" /><div className="h-4 w-full animate-pulse rounded bg-slate-200" /><div className="h-4 w-5/6 animate-pulse rounded bg-slate-200" /><div className="h-32 animate-pulse rounded-xl bg-slate-100" /></div>
-            : generate.data ? <><div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950"><strong>Teacher review required.</strong> This draft has not been validated against an official curriculum and has not been published.</div><pre className="mt-4 whitespace-pre-wrap break-words font-sans text-sm leading-6 text-slate-800">{generate.data.draft}</pre></>
+            : generate.data ? <><div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950"><strong>Teacher review required.</strong> This draft has not been validated against an official curriculum and has not been published.</div>{generate.data.usage && <p className="mt-3 text-xs text-slate-500" role="status">AI usage: {generate.data.usage.remainingRequests} of {generate.data.usage.dailyLimit} draft requests remaining in the rolling 24-hour window.</p>}<pre className="mt-4 whitespace-pre-wrap break-words font-sans text-sm leading-6 text-slate-800">{generate.data.draft}</pre></>
             : <div className="mt-8 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center"><Sparkles size={24} className="mx-auto text-slate-400" /><p className="mt-3 text-sm font-semibold text-slate-700">Your draft will appear here</p><p className="mt-1 text-sm text-slate-500">Enter the objective and select Generate draft.</p></div>}
         </section>
       </div>
