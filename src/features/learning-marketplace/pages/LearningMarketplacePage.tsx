@@ -37,7 +37,7 @@ export default function LearningMarketplacePage() {
   const own = mine.data ?? [];
   return <main className="mx-auto max-w-7xl space-y-6">
     <header className="rounded-3xl bg-slate-950 p-7 text-white"><p className="text-sm font-semibold text-indigo-200">E&P Learning · Extra Classes</p><h1 className="mt-2 text-3xl font-bold">Find the right teacher</h1><p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">Browse tutoring offers from active teachers, request lessons for yourself or a linked learner, and track responses. Payment is not collected in this first release.</p></header>
-    {save.isError && <Error message={save.error.message}/ >}{book.isError && <Error message={book.error.message}/ >}{respond.isError && <Error message={respond.error.message}/ >}
+    {save.isError && <Error message={save.error.message} />}{book.isError && <Error message={book.error.message} />}{respond.isError && <Error message={respond.error.message} />}
     {orgs.data && orgs.data.length > 0 && <section className="rounded-2xl border bg-white p-5">
       <h2 className="text-xl font-bold">{editId ? "Edit tutoring offer" : "Offer extra classes"}</h2><p className="mt-1 text-sm text-slate-500">Only active teachers assigned to the selected school can manage listings.</p>
       <form className="mt-4 grid gap-4 md:grid-cols-2" onSubmit={e=>{e.preventDefault();save.mutate();}}>
