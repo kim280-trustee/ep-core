@@ -58,6 +58,9 @@ begin
   select u.id, u.tenant_id
     into v_user_id, v_tenant_id
   from public.users u
+  join public.organizations o
+    on o.tenant_id = u.tenant_id
+   and o.id = p_organization_id
   where u.auth_user_id = v_auth_user_id
   limit 1;
 
