@@ -297,7 +297,7 @@ declare
   v_teacher_user_id uuid;
   v_profile_id uuid;
 begin
-  if p_status not in ('verified', 'rejected') then
+  if p_status is null or p_status not in ('verified', 'rejected') then
     raise exception 'Profile review status must be verified or rejected';
   end if;
   if p_review_note is not null and length(p_review_note) > 1000 then
