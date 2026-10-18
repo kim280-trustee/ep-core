@@ -14,6 +14,9 @@ function dateLabel(value: string) {
 }
 
 function notificationLink(notification: LearningNotification) {
+  if (notification.notification_type === "school.student_invitation_accepted") return "/school-admin/admissions";
+  if (notification.notification_type === "school.parent_attendance_recorded") return "/parent";
+
   if (
     notification.notification_type === "learning.parent_assignment_published" ||
     notification.notification_type === "learning.parent_assessment_result_available"
@@ -34,6 +37,9 @@ function notificationLink(notification: LearningNotification) {
 }
 
 function notificationLinkLabel(notification: LearningNotification) {
+  if (notification.notification_type === "school.student_invitation_accepted") return "View admissions";
+  if (notification.notification_type === "school.parent_attendance_recorded") return "View parent portal";
+
   if (
     notification.notification_type === "learning.parent_assignment_published" ||
     notification.notification_type === "learning.parent_assessment_result_available"
