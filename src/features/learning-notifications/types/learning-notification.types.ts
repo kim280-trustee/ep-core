@@ -2,7 +2,8 @@ export type LearningNotificationType =
   | "marketplace.booking_requested"
   | "marketplace.booking_confirmed"
   | "marketplace.booking_declined"
-  | "marketplace.booking_cancelled";
+  | "marketplace.booking_cancelled"
+  | "marketplace.safety_reported";
 
 export interface LearningNotification {
   id: string;
