@@ -145,7 +145,7 @@ begin
          report.booking_request_id, offer.title,
          report.reporter_user_id, report.reported_teacher_user_id,
          report.category, report.description, report.status,
-         case when report.reporter_user_id = v_actor_id then report.review_note else report.review_note end,
+         case when report.reporter_user_id = v_actor_id then null else report.review_note end,
          report.created_at, report.reviewed_at,
          (
            public.is_organization_member(report.organization_id)
