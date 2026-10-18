@@ -4,10 +4,16 @@ begin;
 create table if not exists public.learning_ai_generation_usage (
   id uuid primary key default gen_random_uuid(),
   tenant_id uuid not null references public.tenants(id) on delete cascade,
-  organization_id uuid not null references public.organizations(id) on delete cascade,
-  user_id uuid not null references public.users(id) on delete cascade,
+  organization_id uuid not null,
+  user_id uuid not null,
   model text not null check (length(model) between 1 and 100),
-  created_at timestamptz not null default now()
+  created_at timestamptz not null default now(),
+  constraint learning_ai_generation_usage_tenant_organization_fk
+    foreign key (tenant_id, organization_id)
+    references public.organizations (tenant_id, id) on delete cascade,
+  constraint learning_ai_generation_usage_tenant_user_fk
+    foreign key (tenant_id, user_id)
+    references public.users (tenant_id, id) on delete cascade
 );
 
 create index if not exists learning_ai_generation_usage_user_created_idx
