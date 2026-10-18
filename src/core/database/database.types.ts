@@ -753,6 +753,55 @@ export type Database = {
           },
         ]
       }
+      learning_student_ai_coach_usage: {
+        Row: {
+          created_at: string
+          id: string
+          model: string
+          organization_id: string
+          tenant_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          model: string
+          organization_id: string
+          tenant_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          model?: string
+          organization_id?: string
+          tenant_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_student_ai_coach_usage_tenant_org_fk"
+            columns: ["tenant_id", "organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_student_ai_coach_usage_tenant_user_fk"
+            columns: ["tenant_id", "user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_student_ai_coach_usage_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       learning_assessment_questions: {
         Row: {
           assessment_id: string
@@ -5076,6 +5125,15 @@ export type Database = {
     }
     Functions: {
       reserve_learning_ai_generation: {
+        Args: { p_model: string; p_organization_id: string }
+        Returns: {
+          allowed: boolean
+          daily_limit: number
+          reset_at: string
+          used_last_24_hours: number
+        }[]
+      }
+      reserve_learning_student_ai_coach: {
         Args: { p_model: string; p_organization_id: string }
         Returns: {
           allowed: boolean
