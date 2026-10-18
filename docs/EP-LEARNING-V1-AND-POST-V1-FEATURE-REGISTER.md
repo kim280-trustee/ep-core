@@ -65,7 +65,7 @@ Use existing pilot data and the complete existing assignment `EN-M1-SELF-INTRO-A
 | Billing and licensed seats | No dedicated Learning subscription/billing feature found | V3 | Tenant plans, seat-count rules, invoices, payment reconciliation, entitlements and support workflows |
 | Offline learning/synchronization | No dedicated offline-learning implementation found | V2/V3 | Explicit offline scope, queued writes, conflict resolution, sync visibility and duplicate-submission prevention |
 | Multi-country/curriculum expansion | Reusable academic and tenant foundations exist; country workflows are not established | V2/V3 | Configuration-driven curricula, language, calendars, grading, currency, local reporting and legal/privacy review |
-| Teacher Marketplace and Extra Classes | No dedicated marketplace/booking implementation found in the reviewed branch | V2/V3 | Verified teacher profiles; parent/student discovery and choice; E&P-managed online/in-person individual and group classes; recurring packages and school partnerships; safeguarded booking, payments, commission, refunds, payouts, reviews and disputes; tenant isolation and audit trails |
+| Teacher Marketplace and Extra Classes | New marketplace module supports published tutoring offers, individual/group formats, online/in-person/hybrid delivery, package pricing, grade levels, parent/student lesson requests and teacher accept/decline responses. Server RPCs enforce active teacher membership, requester/linked-student authorization, and requester/teacher-only request visibility. | Partial — booking-request MVP implemented; CI and end-to-end authorization verification required | Next: verified teacher profiles, availability/calendar, confirmed scheduling, payment/commission/refund/payout integration, reviews/disputes, school partnerships, safeguarding workflow and audit reporting |
 | Content marketplace/third-party integrations | No Learning content marketplace scope verified | V3 | Licensing/ownership, tenant isolation, integration permissions, monitoring and support ownership |
 
 ## Gamification implementation order
@@ -88,7 +88,8 @@ Do not implement attendance, AI, LINE, billing, offline sync or marketplace work
 - Assignment lifecycle event panels showing no events need verification against real action history.
 - The school must confirm whether attendance and any official report template are V1 blockers.
 - Gamification now includes a persisted badge-award ledger in code; the migration is not applied and authenticated idempotency/RLS checks remain outstanding.
-- Do not claim LINE, AI, marketplace booking/payment, offline sync, school billing or director analytics are implemented without dedicated code and acceptance evidence.
+- Marketplace booking requests are now implemented as a first slice; requests are not confirmed bookings and no payment is collected. Teacher identity verification, calendar/availability, payment/commission/refunds/payouts, reviews/disputes, and full safeguarding workflows remain unimplemented.
+- Do not claim LINE, AI, offline sync, school billing or director analytics are implemented without dedicated code and acceptance evidence.
 
 ## Execution order
 
