@@ -93,7 +93,7 @@ begin
     and a.organization_id = v_target.organization_id
     and a.tenant_id = v_target.tenant_id;
 
-  if not found or v_assignment.status <> 'published' or v_target.status <> 'active' then
+  if not found or v_assignment.status is distinct from 'published' or v_target.status is distinct from 'active' then
     return;
   end if;
 
@@ -142,7 +142,7 @@ as $function$
 declare
   v_target record;
 begin
-  if new.status <> 'published' then
+  if new.status is distinct from 'published' then
     return new;
   end if;
 
@@ -209,14 +209,54 @@ $function$;
 drop trigger if exists learning_assignment_published_notify
   on public.learning_assignments;
 create trigger learning_assignment_published_notify
-after insert or update of status on public.learning_assignments
+after insert or update on public.learning_assignments
 for each row execute function public.notify_learning_assignment_published();
 
 drop trigger if exists learning_assignment_target_notify
   on public.learning_assignment_targets;
 create trigger learning_assignment_target_notify
-after insert or update of status, student_user_id, class_group_id on public.learning_assignment_targets
+after insert or update on public.learning_assignment_targets
 for each row execute function public.notify_learning_assignment_target();
+
+create or replace function public.notify_published_assignments_to_class_member()
+returns trigger
+language plpgsql
+security definer
+set search_path = ''
+as $function$
+declare
+  v_target record;
+begin
+  if new.membership_type is distinct from 'student'
+     or new.status is distinct from 'active' then
+    return new;
+  end if;
+
+  for v_target in
+    select t.id
+    from public.learning_assignment_targets t
+    join public.learning_assignments a
+      on a.id = t.assignment_id
+     and a.organization_id = t.organization_id
+     and a.tenant_id = t.tenant_id
+    where t.tenant_id = new.tenant_id
+      and t.organization_id = new.organization_id
+      and t.class_group_id = new.class_group_id
+      and t.status = 'active'
+      and a.status = 'published'
+  loop
+    perform public.enqueue_learning_assignment_target(v_target.id);
+  end loop;
+
+  return new;
+end;
+$function$;
+
+drop trigger if exists learning_class_member_assignment_notify
+  on public.learning_class_memberships;
+create trigger learning_class_member_assignment_notify
+after insert or update on public.learning_class_memberships
+for each row execute function public.notify_published_assignments_to_class_member();
 
 drop trigger if exists learning_assessment_result_notify
   on public.learning_assessment_results;
@@ -229,5 +269,6 @@ revoke all on function public.notify_learning_assignment_target() from public, a
 revoke all on function public.notify_learning_assignment_published() from public, anon, authenticated;
 revoke all on function public.enqueue_learning_assignment_target(uuid) from public, anon, authenticated;
 revoke all on function public.notify_learning_assessment_result_available() from public, anon, authenticated;
+revoke all on function public.notify_published_assignments_to_class_member() from public, anon, authenticated;
 
 commit;
