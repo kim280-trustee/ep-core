@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
-import { AlertCircle, BookOpen, MessageCircle, Mic, MicOff, Sparkles } from "lucide-react";
+import { AlertCircle, BookOpen, MessageCircle, Mic, MicOff, Sparkles, Volume2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { organizationService } from "@/core/organization";
@@ -63,6 +63,8 @@ export default function LearningAICoachPage() {
   const [speechLanguage, setSpeechLanguage] = useState<"en-US" | "th-TH">("en-US");
   const [isListening, setIsListening] = useState(false);
   const [speechError, setSpeechError] = useState("");
+  const [speechOutputLanguage, setSpeechOutputLanguage] = useState<"en-US" | "th-TH">("en-US");
+  const [isSpeaking, setIsSpeaking] = useState(false);
   const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
 
   const browserWindow = typeof window === "undefined"
@@ -78,6 +80,9 @@ export default function LearningAICoachPage() {
   useEffect(() => () => {
     recognitionRef.current?.stop();
     recognitionRef.current = null;
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+    }
   }, []);
 
   const startListening = () => {
@@ -128,6 +133,33 @@ export default function LearningAICoachPage() {
   };
 
   const stopListening = () => recognitionRef.current?.stop();
+
+  const readResponseAloud = () => {
+    const response = generate.data?.response;
+    if (!response || typeof window === "undefined" || !("speechSynthesis" in window)) {
+      setSpeechError("Read-aloud is not supported on this device. You can read the response on screen.");
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(response);
+    utterance.lang = speechOutputLanguage;
+    utterance.rate = 0.9;
+    utterance.onend = () => setIsSpeaking(false);
+    utterance.onerror = () => {
+      setIsSpeaking(false);
+      setSpeechError("Audio playback stopped. The written response is still available.");
+    };
+    setSpeechError("");
+    setIsSpeaking(true);
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const stopSpeaking = () => {
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+    }
+    setIsSpeaking(false);
+  };
 
   const membershipsQuery = useQuery({
     queryKey: ["learning-ai-coach", "memberships", user?.id],
@@ -273,7 +305,21 @@ export default function LearningAICoachPage() {
           <div className="flex items-center gap-3"><span className="rounded-xl bg-indigo-50 p-2 text-indigo-700"><BookOpen size={20} /></span><div><h2 className="font-bold text-slate-900">Your learning help</h2><p className="text-xs text-slate-500">Based on the selected published lesson</p></div></div>
           {generate.isError && <div className="mt-5 flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 p-4 text-red-800" role="alert"><AlertCircle size={18} className="mt-0.5 shrink-0" /><p className="text-sm">{errorFrom(generate.error)}</p></div>}
           {!generate.data && !generate.isError && <div className="mt-8 rounded-xl border border-dashed border-slate-300 p-6 text-center"><Sparkles className="mx-auto text-slate-400" size={26} /><p className="mt-3 font-semibold text-slate-800">Ready when you are</p><p className="mt-1 text-sm text-slate-500">Choose a published lesson and ask one clear question to get a hint and guided practice.</p><Link to="/learning/assignments" className="mt-4 inline-flex text-sm font-semibold text-indigo-700 hover:text-indigo-900">Review your assignments</Link></div>}
-          {generate.data && <div className="mt-5 space-y-4"><div className="rounded-xl bg-indigo-50 p-4"><p className="text-xs font-semibold uppercase tracking-wide text-indigo-800">Lesson</p><p className="mt-1 font-semibold text-slate-900">{generate.data.contentTitle}</p></div><div className="whitespace-pre-wrap break-words text-sm leading-7 text-slate-800">{generate.data.response}</div>{generate.data.usage && <p className="border-t pt-3 text-xs text-slate-500">{generate.data.usage.remainingRequests} of {generate.data.usage.dailyLimit} AI coach requests remaining in the rolling 24-hour window.</p>}<p className="rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs leading-5 text-amber-900">Check your understanding with your teacher. If the lesson does not answer your question, ask your teacher for help.</p></div>}
+          {generate.data && <div className="mt-5 space-y-4"><div className="rounded-xl bg-indigo-50 p-4"><p className="text-xs font-semibold uppercase tracking-wide text-indigo-800">Lesson</p><p className="mt-1 font-semibold text-slate-900">{generate.data.contentTitle}</p></div><div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
+              <div className="flex flex-wrap items-end gap-3">
+                <label className={labelClass + " min-w-36 flex-1"}>Read-aloud language
+                  <select className={fieldClass} value={speechOutputLanguage} onChange={(event) => setSpeechOutputLanguage(event.target.value as typeof speechOutputLanguage)} disabled={isSpeaking}>
+                    <option value="en-US">English voice</option>
+                    <option value="th-TH">Thai voice</option>
+                  </select>
+                </label>
+                <button type="button" onClick={isSpeaking ? stopSpeaking : readResponseAloud} className="inline-flex items-center justify-center gap-2 rounded-xl border border-indigo-200 bg-white px-4 py-2.5 text-sm font-semibold text-indigo-800 hover:bg-indigo-50">
+                  {isSpeaking ? <MicOff size={17} /> : <Volume2 size={17} />}
+                  {isSpeaking ? "Stop audio" : "Read response aloud"}
+                </button>
+              </div>
+              <p className="mt-2 text-xs leading-5 text-slate-600">Audio uses your browser or device's built-in speech synthesis. Available voices depend on the device and selected language.</p>
+            </div><div className="whitespace-pre-wrap break-words text-sm leading-7 text-slate-800">{generate.data.response}</div>{generate.data.usage && <p className="border-t pt-3 text-xs text-slate-500">{generate.data.usage.remainingRequests} of {generate.data.usage.dailyLimit} AI coach requests remaining in the rolling 24-hour window.</p>}<p className="rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs leading-5 text-amber-900">Check your understanding with your teacher. If the lesson does not answer your question, ask your teacher for help.</p></div>}
         </section>
       </section>
     </div>
