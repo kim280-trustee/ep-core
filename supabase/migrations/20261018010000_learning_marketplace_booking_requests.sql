@@ -242,6 +242,101 @@ begin
 end;
 $function$;
 
+create or replace function public.list_learning_marketplace_teacher_offerings()
+returns table (
+  id uuid,
+  organization_id uuid,
+  organization_name text,
+  title text,
+  subject text,
+  description text,
+  delivery_mode text,
+  lesson_type text,
+  duration_minutes integer,
+  price_amount numeric,
+  currency_code text,
+  package_lessons integer,
+  grade_levels text[],
+  status text,
+  created_at timestamptz
+)
+language plpgsql
+security definer
+set search_path = ''
+stable
+as $function$
+declare
+  v_user_id uuid;
+begin
+  select u.id into v_user_id
+  from public.users u
+  where u.auth_user_id = (select auth.uid())
+  limit 1;
+
+  if v_user_id is null then
+    raise exception 'Authenticated user profile not found';
+  end if;
+
+  return query
+  select offer.id, offer.organization_id, org.name, offer.title, offer.subject,
+    offer.description, offer.delivery_mode, offer.lesson_type, offer.duration_minutes,
+    offer.price_amount, offer.currency_code, offer.package_lessons, offer.grade_levels,
+    offer.status, offer.created_at
+  from public.learning_marketplace_offerings offer
+  join public.organizations org on org.id = offer.organization_id
+  where offer.teacher_user_id = v_user_id
+  order by offer.updated_at desc;
+end;
+$function$;
+
+create or replace function public.list_learning_marketplace_eligible_students()
+returns table (
+  organization_id uuid,
+  organization_name text,
+  student_user_id uuid,
+  student_name text
+)
+language plpgsql
+security definer
+set search_path = ''
+stable
+as $function$
+declare
+  v_user_id uuid;
+begin
+  select u.id into v_user_id
+  from public.users u
+  where u.auth_user_id = (select auth.uid())
+  limit 1;
+
+  if v_user_id is null then
+    raise exception 'Authenticated user profile not found';
+  end if;
+
+  return query
+  select distinct o.id, o.name, student.id, coalesce(student.name, 'Student')
+  from public.learning_class_memberships cm
+  join public.organizations o on o.id = cm.organization_id
+  join public.users student on student.id = cm.user_id
+  where cm.user_id = v_user_id
+    and cm.membership_type = 'student'
+    and cm.status = 'active'
+  union
+  select distinct link.organization_id, o.name, student.id, coalesce(student.name, 'Student')
+  from public.learning_parent_student_links link
+  join public.organizations o on o.id = link.organization_id
+  join public.learning_class_memberships cm
+    on cm.organization_id = link.organization_id
+   and cm.user_id = link.student_user_id
+   and cm.membership_type = 'student'
+   and cm.status = 'active'
+  join public.users student on student.id = link.student_user_id
+  where link.parent_user_id = v_user_id
+    and link.status = 'active'
+  order by 2, 4;
+end;
+$function$;
+
 create or replace function public.create_learning_marketplace_booking_request(
   p_offering_id uuid,
   p_student_user_id uuid,
@@ -441,6 +536,8 @@ $function$;
 
 revoke all on function public.list_learning_marketplace_teacher_organizations() from public, anon;
 revoke all on function public.list_learning_marketplace_offerings() from public, anon;
+revoke all on function public.list_learning_marketplace_teacher_offerings() from public, anon;
+revoke all on function public.list_learning_marketplace_eligible_students() from public, anon;
 revoke all on function public.save_learning_marketplace_offering(uuid, uuid, text, text, text, text, text, integer, numeric, text, integer, text[], text) from public, anon;
 revoke all on function public.create_learning_marketplace_booking_request(uuid, uuid, text, date, text) from public, anon;
 revoke all on function public.list_learning_marketplace_booking_requests() from public, anon;
@@ -448,6 +545,8 @@ revoke all on function public.respond_learning_marketplace_booking_request(uuid,
 
 grant execute on function public.list_learning_marketplace_teacher_organizations() to authenticated;
 grant execute on function public.list_learning_marketplace_offerings() to authenticated;
+grant execute on function public.list_learning_marketplace_teacher_offerings() to authenticated;
+grant execute on function public.list_learning_marketplace_eligible_students() to authenticated;
 grant execute on function public.save_learning_marketplace_offering(uuid, uuid, text, text, text, text, text, integer, numeric, text, integer, text[], text) to authenticated;
 grant execute on function public.create_learning_marketplace_booking_request(uuid, uuid, text, date, text) to authenticated;
 grant execute on function public.list_learning_marketplace_booking_requests() to authenticated;
