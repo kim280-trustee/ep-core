@@ -524,6 +524,13 @@ begin
     and request.offering_id = offer.id
     and offer.teacher_user_id = v_user_id
     and request.status = 'requested'
+    and exists (
+      select 1 from public.learning_class_memberships cm
+      where cm.organization_id = request.organization_id
+        and cm.user_id = v_user_id
+        and cm.membership_type = 'teacher'
+        and cm.status = 'active'
+    )
   returning request.id into v_request_id;
 
   if v_request_id is null then
