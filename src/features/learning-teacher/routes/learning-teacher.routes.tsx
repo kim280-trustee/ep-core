@@ -5,6 +5,7 @@ import TeacherClassPage from "../pages/TeacherClassPage";
 import TeacherStudentProfilePage from "../pages/TeacherStudentProfilePage";
 import CreateTeacherAssignmentPage from "../pages/CreateTeacherAssignmentPage";
 import TeacherAuthoringPage from "../pages/TeacherAuthoringPage";
+import TeacherAIAssistantPage from "../pages/TeacherAIAssistantPage";
 import QuestionBankPage from "../../learning-assessment/pages/QuestionBankPage";
 import TeacherAssessmentBuilderPage from "../../learning-assessment/pages/TeacherAssessmentBuilderPage";
 import TeacherGradebookPage from "../../learning-gradebook/pages/TeacherGradebookPage";
@@ -33,6 +34,7 @@ export const learningTeacherRoutes: RouteObject[] = [
       { path: "classes/:classGroupId/students/:studentUserId", element: <TeacherStudentProfilePage /> },
       { path: "assignments/new", element: <CreateTeacherAssignmentPage /> },
       { path: "authoring", element: <TeacherAuthoringPage /> },
+      { path: "ai-assistant", element: <TeacherAIAssistantPage /> },
       { path: "content", element: <TeacherContentLibraryPage /> },
       { path: "vocabulary", element: <LearningVocabularyPage audience="teacher" /> },
       { path: "vocabulary/assignments/new", element: <TeacherVocabularyAssignmentPage /> },
