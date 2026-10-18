@@ -5,7 +5,9 @@ export type LearningNotificationType =
   | "marketplace.booking_cancelled"
   | "marketplace.safety_reported"
   | "learning.assignment_published"
-  | "learning.assessment_result_available";
+  | "learning.assessment_result_available"
+  | "learning.parent_assignment_published"
+  | "learning.parent_assessment_result_available";
 
 export interface LearningNotification {
   id: string;
