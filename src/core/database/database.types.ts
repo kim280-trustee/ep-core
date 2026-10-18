@@ -731,24 +731,24 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "learning_ai_generation_usage_organization_id_fkey"
-            columns: ["organization_id"]
+            foreignKeyName: "learning_ai_generation_usage_tenant_organization_fk"
+            columns: ["tenant_id", "organization_id"]
             isOneToOne: false
             referencedRelation: "organizations"
-            referencedColumns: ["id"]
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_ai_generation_usage_tenant_user_fk"
+            columns: ["tenant_id", "user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
           },
           {
             foreignKeyName: "learning_ai_generation_usage_tenant_id_fkey"
             columns: ["tenant_id"]
             isOneToOne: false
             referencedRelation: "tenants"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "learning_ai_generation_usage_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
             referencedColumns: ["id"]
           },
         ]
