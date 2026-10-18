@@ -1,5 +1,13 @@
 import { supabase } from "@/core/infrastructure/supabase/client";
-import type { BookingRequest, EligibleStudent, Offering, TeacherOffering, TeacherOrganization } from "../types/learning-marketplace.types";
+import type {
+  BookingRequest,
+  EligibleStudent,
+  Offering,
+  PublicAvailabilitySlot,
+  TeacherAvailabilitySlot,
+  TeacherOffering,
+  TeacherOrganization,
+} from "../types/learning-marketplace.types";
 
 type RpcResult = { data: unknown; error: { message: string } | null };
 const client = supabase as unknown as { rpc: (name: string, args: Record<string, unknown>) => Promise<RpcResult> };
@@ -16,6 +24,22 @@ export const learningMarketplaceRepository = {
   async listTeacherOfferings(): Promise<TeacherOffering[]> { return rows(await rpc<unknown>("list_learning_marketplace_teacher_offerings", {})); },
   async listEligibleStudents(): Promise<EligibleStudent[]> { return rows(await rpc<unknown>("list_learning_marketplace_eligible_students", {})); },
   async listBookingRequests(): Promise<BookingRequest[]> { return rows(await rpc<unknown>("list_learning_marketplace_booking_requests", {})); },
+  async listTeacherAvailability(): Promise<TeacherAvailabilitySlot[]> { return rows(await rpc<unknown>("list_learning_marketplace_teacher_availability", {})); },
+  async listPublicAvailability(): Promise<PublicAvailabilitySlot[]> { return rows(await rpc<unknown>("list_learning_marketplace_public_availability", {})); },
+  async saveAvailabilitySlot(input: { slotId?: string | null; organizationId: string; weekday: number; startTime: string; endTime: string; timezoneName: string; active: boolean }): Promise<string> {
+    return rpc("save_learning_marketplace_teacher_availability", {
+      p_slot_id: input.slotId ?? null,
+      p_organization_id: input.organizationId,
+      p_weekday: input.weekday,
+      p_start_time: input.startTime,
+      p_end_time: input.endTime,
+      p_timezone_name: input.timezoneName,
+      p_active: input.active,
+    });
+  },
+  async deleteAvailabilitySlot(slotId: string): Promise<string> {
+    return rpc("delete_learning_marketplace_teacher_availability", { p_slot_id: slotId });
+  },
   async saveOffering(input: { offeringId?: string | null; organizationId: string; title: string; subject: string; description: string; deliveryMode: string; lessonType: string; durationMinutes: number; priceAmount: number; currencyCode: string; packageLessons: number; gradeLevels: string[]; status: string }): Promise<string> {
     return rpc("save_learning_marketplace_offering", {
       p_offering_id: input.offeringId ?? null, p_organization_id: input.organizationId,
