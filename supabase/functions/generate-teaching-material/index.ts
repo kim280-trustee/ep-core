@@ -37,23 +37,6 @@ export default {
         return Response.json({ error: "Sign in again before generating teaching material." }, { status: 401 });
       }
 
-      const { data: membership, error: membershipError } = await ctx.supabase
-        .from("learning_class_memberships")
-        .select("user_id")
-        .eq("user_id", authenticatedUser.id)
-        .eq("organization_id", organizationId)
-        .eq("membership_type", "teacher")
-        .eq("status", "active")
-        .limit(1)
-        .maybeSingle();
-
-      if (membershipError) {
-        return Response.json({ error: "Teacher access could not be verified. Refresh and try again." }, { status: 403 });
-      }
-      if (!membership) {
-        return Response.json({ error: "You need an active teacher assignment in this school to use the AI assistant." }, { status: 403 });
-      }
-
       if (Deno.env.get("AI_TEACHER_ASSISTANT_ENABLED") !== "true") {
         return Response.json({ error: "AI drafting is currently disabled by the school administrator." }, { status: 503 });
       }
@@ -64,6 +47,44 @@ export default {
       }
 
       const model = Deno.env.get("OPENAI_MODEL") || "gpt-5.5";
+      // The database RPC maps auth.uid() to public.users.id, verifies active teacher membership
+      // in this organization, and atomically reserves a slot in the server-enforced rolling quota.
+      const { data: quotaRows, error: quotaError } = await ctx.supabase.rpc(
+        "reserve_learning_ai_generation",
+        { p_organization_id: organizationId, p_model: model },
+      );
+
+      if (quotaError) {
+        const reason = quotaError.message.toLowerCase();
+        if (
+          reason.includes("active teacher assignment") ||
+          reason.includes("profile not found") ||
+          reason.includes("authentication required")
+        ) {
+          return Response.json({ error: "You need an active teacher assignment in this school to use the AI assistant." }, { status: 403 });
+        }
+        console.error("AI generation quota reservation failed", quotaError.message);
+        return Response.json({ error: "AI usage controls are not available. An administrator must apply the AI usage-limit migration before generation can be used." }, { status: 503 });
+      }
+
+      const quota = Array.isArray(quotaRows) ? quotaRows[0] : null;
+      if (!quota || typeof quota.allowed !== "boolean") {
+        console.error("AI generation quota RPC returned an invalid response");
+        return Response.json({ error: "AI usage controls returned an invalid response. Please contact an administrator." }, { status: 503 });
+      }
+
+      if (!quota.allowed) {
+        return Response.json({
+          error: `Daily AI draft limit reached (${quota.daily_limit} requests per 24 hours). Try again after ${quota.reset_at}.`,
+          usage: {
+            usedLast24Hours: quota.used_last_24_hours,
+            dailyLimit: quota.daily_limit,
+            remainingRequests: 0,
+            resetAt: typeof quota.reset_at === "string" ? quota.reset_at : null,
+          },
+        }, { status: 429 });
+      }
+
       const instructions = [
         "You are an assistant for a professional school teacher.",
         "Create a useful first draft aligned only to the teacher-provided subject, grade, topic and objective.",
@@ -129,6 +150,12 @@ export default {
         draft: outputText,
         model: typeof result.model === "string" ? result.model : model,
         requiresTeacherReview: true,
+        usage: {
+          usedLast24Hours: quota.used_last_24_hours,
+          dailyLimit: quota.daily_limit,
+          remainingRequests: Math.max(0, quota.daily_limit - quota.used_last_24_hours),
+          resetAt: typeof quota.reset_at === "string" ? quota.reset_at : null,
+        },
       });
     } catch (error) {
       console.error("AI material generation request failed", error);
