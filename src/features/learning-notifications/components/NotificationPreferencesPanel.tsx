@@ -13,6 +13,8 @@ const preferences: { type: LearningNotificationPreferenceType; label: string; de
   { type: "learning.assessment_result_available", label: "Assessment results", description: "When an evaluated assessment result becomes available." },
   { type: "learning.parent_assignment_published", label: "Child's new assignments", description: "When an actively linked child's assignment is published." },
   { type: "learning.parent_assessment_result_available", label: "Child's assessment results", description: "When an actively linked child's evaluated result becomes available." },
+  { type: "school.parent_attendance_recorded", label: "Child attendance updates", description: "When the school submits an attendance register that includes your linked child." },
+  { type: "school.student_invitation_accepted", label: "Student invitations accepted", description: "When a student accepts an invitation you issued for your school." },
 ];
 
 export default function NotificationPreferencesPanel() {
