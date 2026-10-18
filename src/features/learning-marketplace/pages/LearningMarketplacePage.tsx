@@ -5,6 +5,8 @@ import { learningMarketplaceService } from "../services/learning-marketplace.ser
 import type { BookingRequest, DeliveryMode, EligibleStudent, Offering, TeacherOffering } from "../types/learning-marketplace.types";
 import OfferingAvailability from "../components/OfferingAvailability";
 import TeacherAvailabilityPanel from "../components/TeacherAvailabilityPanel";
+import TeacherProfilePanel from "../components/TeacherProfilePanel";
+import TeacherProfileSummary from "../components/TeacherProfileSummary";
 
 const field = "mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm";
 const label = "block text-sm font-medium text-slate-700";
@@ -40,6 +42,7 @@ export default function LearningMarketplacePage() {
   return <main className="mx-auto max-w-7xl space-y-6">
     <header className="rounded-3xl bg-slate-950 p-7 text-white"><p className="text-sm font-semibold text-indigo-200">E&P Learning · Extra Classes</p><h1 className="mt-2 text-3xl font-bold">Find the right teacher</h1><p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">Browse tutoring offers from active teachers, request lessons for yourself or a linked learner, and track responses. Payment is not collected in this first release.</p></header>
     <TeacherAvailabilityPanel />
+    <TeacherProfilePanel />
     {save.isError && <Error message={save.error.message} />}{book.isError && <Error message={book.error.message} />}{respond.isError && <Error message={respond.error.message} />}
     {orgs.data && orgs.data.length > 0 && <section className="rounded-2xl border bg-white p-5">
       <h2 className="text-xl font-bold">{editId ? "Edit tutoring offer" : "Offer extra classes"}</h2><p className="mt-1 text-sm text-slate-500">Only active teachers assigned to the selected school can manage listings.</p>
@@ -68,7 +71,7 @@ export default function LearningMarketplacePage() {
 function OfferingCard({offering,students,onBook,pending}:{offering:Offering;students:EligibleStudent[];onBook:(x:{offeringId:string;studentUserId:string;message:string;preferredDate:string|null;preferredTime:string|null})=>void;pending:boolean}) {
   const [studentId,setStudentId]=useState("");const [message,setMessage]=useState("");const [date,setDate]=useState("");const [time,setTime]=useState("");
   const eligible=students.filter(s=>s.organization_id===offering.organization_id);
-  return <article className="rounded-2xl border bg-white p-5"><p className="text-xs font-semibold uppercase text-indigo-700">{offering.subject} · {offering.organization_name}</p><h3 className="mt-2 text-xl font-bold">{offering.title}</h3><p className="mt-1 text-sm text-slate-500">Teacher: {offering.teacher_name}</p><OfferingAvailability organizationId={offering.organization_id} teacherUserId={offering.teacher_user_id} /><p className="mt-3 whitespace-pre-line text-sm leading-6">{offering.description}</p><p className="mt-3 text-sm font-semibold">{Number(offering.price_amount).toLocaleString()} {offering.currency_code} · {offering.package_lessons} lesson(s)</p><p className="mt-1 text-xs text-slate-500">{offering.delivery_mode.replace("_"," ")} · {offering.lesson_type} · {offering.duration_minutes} minutes · {(offering.grade_levels??[]).join(", ")}</p>
+  return <article className="rounded-2xl border bg-white p-5"><p className="text-xs font-semibold uppercase text-indigo-700">{offering.subject} · {offering.organization_name}</p><h3 className="mt-2 text-xl font-bold">{offering.title}</h3><p className="mt-1 text-sm text-slate-500">Teacher: {offering.teacher_name}</p><TeacherProfileSummary organizationId={offering.organization_id} teacherUserId={offering.teacher_user_id} /><OfferingAvailability organizationId={offering.organization_id} teacherUserId={offering.teacher_user_id} /><p className="mt-3 whitespace-pre-line text-sm leading-6">{offering.description}</p><p className="mt-3 text-sm font-semibold">{Number(offering.price_amount).toLocaleString()} {offering.currency_code} · {offering.package_lessons} lesson(s)</p><p className="mt-1 text-xs text-slate-500">{offering.delivery_mode.replace("_"," ")} · {offering.lesson_type} · {offering.duration_minutes} minutes · {(offering.grade_levels??[]).join(", ")}</p>
   <form className="mt-4 space-y-3 border-t pt-4" onSubmit={e=>{e.preventDefault();onBook({offeringId:offering.id,studentUserId:studentId,message:message.trim(),preferredDate:date||null,preferredTime:time||null});}}>
     <label className={label}>Learner<select className={field} value={studentId} onChange={e=>setStudentId(e.target.value)} required><option value="">Select learner</option>{eligible.map(s=><option key={s.student_user_id} value={s.student_user_id}>{s.student_name}</option>)}</select></label>
     <div className="grid gap-3 sm:grid-cols-2"><label className={label}>Preferred date<input className={field} type="date" value={date} onChange={e=>setDate(e.target.value)}/></label><label className={label}>Preferred time<input className={field} value={time} onChange={e=>setTime(e.target.value)} maxLength={100} placeholder="Weekdays after 4pm"/></label></div>
