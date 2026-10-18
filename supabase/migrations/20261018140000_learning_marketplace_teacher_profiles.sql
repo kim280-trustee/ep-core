@@ -207,8 +207,8 @@ begin
      or p_experience_years is null or p_experience_years not between 0 and 60
      or cardinality(coalesce(p_languages, '{}')) > 10
      or cardinality(coalesce(p_credentials, '{}')) > 20
-     or exists (select 1 from unnest(coalesce(p_languages, '{}')) value where length(trim(value)) not between 2 and 40)
-     or exists (select 1 from unnest(coalesce(p_credentials, '{}')) value where length(trim(value)) not between 2 and 160) then
+     or exists (select 1 from unnest(coalesce(p_languages, '{}')) as language_item(value) where length(trim(language_item.value)) not between 2 and 40)
+     or exists (select 1 from unnest(coalesce(p_credentials, '{}')) as credential_item(value) where length(trim(credential_item.value)) not between 2 and 160) then
     raise exception 'Invalid teacher profile details';
   end if;
 
