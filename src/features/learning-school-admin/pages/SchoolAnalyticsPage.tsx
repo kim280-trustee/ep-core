@@ -10,7 +10,9 @@ import { learningSchoolAdminService } from "../services/learning-school-admin.se
 
 function csvCell(value: string | number) {
   const text = String(value);
-  return `"${text.replace(/"/g, '""')}"`;
+  // Quoting alone does not prevent spreadsheet formula execution.
+  const safeText = /^[\\s\\u0000-\\u001f]*[=+@-]/.test(text) ? `'${text}` : text;
+  return `"${safeText.replace(/"/g, '""')}"`;
 }
 
 function downloadSummaryCsv(rows: Array<[string, string | number]>, organizationName: string) {
@@ -21,7 +23,7 @@ function downloadSummaryCsv(rows: Array<[string, string | number]>, organization
   link.href = url;
   link.download = `school-analytics-${organizationName.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-") || "report"}.csv`;
   link.click();
-  URL.revokeObjectURL(url);
+  window.setTimeout(() => URL.revokeObjectURL(url), 0);
 }
 
 export default function SchoolAnalyticsPage() {
