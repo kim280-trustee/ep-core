@@ -105,14 +105,39 @@ export const learningSchoolAnalyticsRepository = {
     let trackedAssignmentRecords = 0;
     let completedAssignmentRecords = 0;
     if (assignmentIds.length) {
-      const { data: progress, error } = await supabase
-        .from("learning_assignment_progress")
-        .select("id,status")
+      // Progress is attached to an assignment target. Count only progress for active
+      // targets, and when a class/year filter is selected, only targets that belong
+      // to the selected classes or to students actively enrolled in those classes.
+      const { data: targets, error: targetsError } = await supabase
+        .from("learning_assignment_targets")
+        .select("id,student_user_id,class_group_id")
         .eq("organization_id", organizationId)
+        .eq("status", "active")
         .in("assignment_id", assignmentIds);
-      if (error) throw error;
-      trackedAssignmentRecords = (progress ?? []).length;
-      completedAssignmentRecords = (progress ?? []).filter((row) => row.status === "completed").length;
+      if (targetsError) throw targetsError;
+
+      const selectedStudentIds = new Set(studentMemberships.map((row) => row.user_id));
+      const targetIds = (targets ?? [])
+        .filter((target) => {
+          if (!classGroupId && !academicYearId) return true;
+          return Boolean(
+            (target.class_group_id && visibleClassIds.includes(target.class_group_id)) ||
+            (target.student_user_id && selectedStudentIds.has(target.student_user_id)),
+          );
+        })
+        .map((target) => target.id);
+
+      if (targetIds.length) {
+        const { data: progress, error } = await supabase
+          .from("learning_assignment_progress")
+          .select("id,status")
+          .eq("organization_id", organizationId)
+          .in("assignment_id", assignmentIds)
+          .in("assignment_target_id", targetIds);
+        if (error) throw error;
+        trackedAssignmentRecords = (progress ?? []).length;
+        completedAssignmentRecords = (progress ?? []).filter((row) => row.status === "completed").length;
+      }
     }
 
     return {
