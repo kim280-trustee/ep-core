@@ -32,46 +32,34 @@ export const learningSchoolAnalyticsRepository = {
     if (classesError) throw classesError;
 
     const visibleClassIds = (classRows ?? []).map((row) => row.id);
-    let studentsQuery = supabase
-      .from("learning_class_memberships")
-      .select("user_id")
-      .eq("organization_id", organizationId)
-      .eq("membership_type", "student")
-      .eq("status", "active");
-    let teachersQuery = supabase
-      .from("learning_class_memberships")
-      .select("user_id")
-      .eq("organization_id", organizationId)
-      .eq("membership_type", "teacher")
-      .eq("status", "active");
-    if (classGroupId) {
-      studentsQuery = studentsQuery.eq("class_group_id", classGroupId);
-      teachersQuery = teachersQuery.eq("class_group_id", classGroupId);
-    } else if (academicYearId) {
-      if (visibleClassIds.length) {
-        studentsQuery = studentsQuery.in("class_group_id", visibleClassIds);
-        teachersQuery = teachersQuery.in("class_group_id", visibleClassIds);
-      } else {
-        return {
-          organizationId,
-          activeStudents: 0,
-          activeTeachers: 0,
-          activeClasses: activeClasses ?? 0,
-          publishedAssignments: 0,
-          trackedAssignmentRecords: 0,
-          completedAssignmentRecords: 0,
-          completionRate: null,
-          incompleteAssignmentRecords: 0,
-          refreshedAt: new Date().toISOString(),
-        };
-      }
+    let studentMemberships: Array<{ user_id: string }> = [];
+    let teacherMemberships: Array<{ user_id: string }> = [];
+    // Count memberships only when they belong to an active class in the selected scope.
+    // This prevents inactive-class memberships inflating school-wide totals.
+    if (visibleClassIds.length) {
+      const studentsQuery = supabase
+        .from("learning_class_memberships")
+        .select("user_id")
+        .eq("organization_id", organizationId)
+        .eq("membership_type", "student")
+        .eq("status", "active")
+        .in("class_group_id", visibleClassIds);
+      const teachersQuery = supabase
+        .from("learning_class_memberships")
+        .select("user_id")
+        .eq("organization_id", organizationId)
+        .eq("membership_type", "teacher")
+        .eq("status", "active")
+        .in("class_group_id", visibleClassIds);
+      const [{ data: students, error: studentsError }, { data: teachers, error: teachersError }] = await Promise.all([
+        studentsQuery,
+        teachersQuery,
+      ]);
+      if (studentsError) throw studentsError;
+      if (teachersError) throw teachersError;
+      studentMemberships = students ?? [];
+      teacherMemberships = teachers ?? [];
     }
-    const [{ data: studentMemberships, error: studentsError }, { data: teacherMemberships, error: teachersError }] = await Promise.all([
-      studentsQuery,
-      teachersQuery,
-    ]);
-    if (studentsError) throw studentsError;
-    if (teachersError) throw teachersError;
     const activeStudents = new Set((studentMemberships ?? []).map((row) => row.user_id)).size;
     const activeTeachers = new Set((teacherMemberships ?? []).map((row) => row.user_id)).size;
     let assignmentIds: string[] = [];
