@@ -4,5 +4,5 @@ import { learningSchoolAnalyticsRepository } from "../repositories/learning-scho
 export const learningSchoolAdminService = {
   listManageableOrganizations: learningSchoolAdminRepository.listManageableOrganizations,
   listEligibleUsers: learningSchoolAdminRepository.listEligibleUsers,
+  getAnalyticsSummary: learningSchoolAnalyticsRepository.getSummary,
 };
-\n  getAnalyticsSummary: learningSchoolAnalyticsRepository.getSummary,\n
