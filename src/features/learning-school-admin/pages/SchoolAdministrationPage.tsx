@@ -216,6 +216,32 @@ export default function SchoolAdministrationPage() {
     });
   };
 
+  const submitAttendance = async () => {
+    if (attendanceSummary.unmarked > 0) {
+      setActionError("Mark every active student before submitting the register.");
+      setActionNotice("");
+      return;
+    }
+    const records = activeStudents.map((student) => ({
+      studentUserId: student.userId,
+      status: getAttendanceStatus(student.userId),
+      note: getAttendanceNote(student.userId),
+    }));
+    try {
+      const sessionId = await saveMutation.mutateAsync(() => learningAttendanceService.saveRegister({
+        tenantId: user.tenantId,
+        organizationId,
+        classGroupId,
+        attendanceDate,
+        takenBy: user.id,
+        records,
+      })) as string;
+      await submitAttendanceMutation.mutateAsync(sessionId);
+    } catch {
+      // The save or submit mutation displays the actionable error.
+    }
+  };
+
   const eligibleUsersQuery = useQuery({
     queryKey: ["school-admin", "eligible-users", organizationId, user?.tenantId],
     queryFn: () => learningSchoolAdminService.listEligibleUsers(organizationId, user!.tenantId),
@@ -269,6 +295,16 @@ export default function SchoolAdministrationPage() {
     onSuccess: async () => {
       setActionError("");
       setActionNotice("Changes saved successfully.");
+      await queryClient.invalidateQueries({ queryKey: ["school-admin"] });
+    },
+    onError: (error) => { setActionNotice(""); setActionError(errorText(error)); },
+  });
+
+  const submitAttendanceMutation = useMutation({
+    mutationFn: (sessionId: string) => learningAttendanceService.submitRegister(sessionId),
+    onSuccess: async () => {
+      setActionError("");
+      setActionNotice("Attendance register submitted. Linked parents can now view the attendance summary.");
       await queryClient.invalidateQueries({ queryKey: ["school-admin"] });
     },
     onError: (error) => { setActionNotice(""); setActionError(errorText(error)); },
@@ -527,11 +563,13 @@ export default function SchoolAdministrationPage() {
                     <Field label="Attendance date"><input className={fieldClass} type="date" required value={attendanceDate} onChange={(event) => setAttendanceDate(event.target.value)} /></Field>
                     <button type="button" className={secondaryButtonClass} disabled={!activeStudents.length || saveMutation.isPending} onClick={() => setAttendanceDraft((current) => ({ contextKey: attendanceContextKey, statuses: { ...(current.contextKey === attendanceContextKey ? current.statuses : {}), ...Object.fromEntries(activeStudents.map((student) => [student.userId, "present" as const])) }, notes: current.contextKey === attendanceContextKey ? current.notes : {} }))}>Mark all present</button>
                     <button type="button" className={secondaryButtonClass} disabled={!activeStudents.length || attendanceQuery.isPending} onClick={exportAttendance}>Export CSV</button>
-                    <button type="button" className={buttonClass} disabled={!activeStudents.length || attendanceQuery.isPending || saveMutation.isPending} onClick={() => {
+                    <button type="button" className={buttonClass} disabled={!activeStudents.length || attendanceQuery.isPending || saveMutation.isPending || submitAttendanceMutation.isPending} onClick={() => {
                       const records = activeStudents.map((student) => ({ studentUserId: student.userId, status: getAttendanceStatus(student.userId), note: getAttendanceNote(student.userId) }));
                       void saveMutation.mutateAsync(() => learningAttendanceService.saveRegister({ tenantId: user.tenantId, organizationId, classGroupId, attendanceDate, takenBy: user.id, records }));
-                    }}>{saveMutation.isPending ? "Saving attendance…" : "Save register"}</button>
+                    }}>{saveMutation.isPending ? "Saving attendance…" : savedAttendance?.status === "submitted" ? "Save corrections" : "Save register"}</button>
+                    <button type="button" className={secondaryButtonClass} disabled={!activeStudents.length || attendanceQuery.isPending || saveMutation.isPending || submitAttendanceMutation.isPending || savedAttendance?.status === "submitted" || attendanceSummary.unmarked > 0} onClick={() => void submitAttendance()}>{submitAttendanceMutation.isPending ? "Submitting…" : savedAttendance?.status === "submitted" ? "Register submitted" : "Submit register"}</button>
                   </div>
+                  {savedAttendance?.status === "submitted" && <p role="status" className="mt-3 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-900">Submitted{savedAttendance.submittedAt ? " at " + new Date(savedAttendance.submittedAt).toLocaleString() : ""}. You can save corrections; the original register creator and attendance markers remain unchanged.</p>}
                   {attendanceQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading attendance…</p> : attendanceQuery.isError ? <p className="mt-4 text-sm text-red-700">Could not load this register: {errorText(attendanceQuery.error)}</p> : activeStudents.length ? (
                     <>
                       <p className="mt-3 text-xs text-slate-500">{activeStudents.filter((student) => getAttendanceStatus(student.userId) !== "unmarked").length} of {activeStudents.length} students marked for {attendanceDate}.</p>
