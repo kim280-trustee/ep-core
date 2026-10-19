@@ -72,13 +72,25 @@ export const learningSchoolAnalyticsRepository = {
       if (error) throw error;
       assignmentIds = (data ?? []).map((row) => row.id);
     } else if (visibleClassIds.length) {
-      const [{ data: targets, error: targetsError }, { data: subjects, error: subjectsError }] = await Promise.all([
+      const [{ data: classTargets, error: targetsError }, { data: subjects, error: subjectsError }] = await Promise.all([
         supabase.from("learning_assignment_targets").select("assignment_id").in("class_group_id", visibleClassIds).eq("status", "active"),
         supabase.from("learning_class_subjects").select("id").in("class_group_id", visibleClassIds).eq("status", "active"),
       ]);
       if (targetsError) throw targetsError;
       if (subjectsError) throw subjectsError;
-      const ids = new Set((targets ?? []).map((row) => row.assignment_id));
+      const selectedStudentIds = [...new Set(studentMemberships.map((row) => row.user_id))];
+      let studentTargets: Array<{ assignment_id: string }> = [];
+      if (selectedStudentIds.length) {
+        const { data, error } = await supabase
+          .from("learning_assignment_targets")
+          .select("assignment_id")
+          .in("student_user_id", selectedStudentIds)
+          .eq("organization_id", organizationId)
+          .eq("status", "active");
+        if (error) throw error;
+        studentTargets = data ?? [];
+      }
+      const ids = new Set([...(classTargets ?? []), ...studentTargets].map((row) => row.assignment_id));
       const classSubjectIds = (subjects ?? []).map((row) => row.id);
       if (classSubjectIds.length) {
         const { data: subjectAssignments, error } = await supabase
