@@ -89,6 +89,7 @@ export default function SchoolAnalyticsPage() {
       classSubjectId: validClassSubjectId || undefined,
       activityFrom: activityFrom || undefined,
       activityTo: activityTo || undefined,
+      timezone: organization?.timezone || "UTC",
     }),
     enabled: Boolean(organizationId && canManage && !organizationsQuery.isError),
   });
