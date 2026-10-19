@@ -4,3 +4,4 @@ export const learningSchoolAdminService = {
   listManageableOrganizations: learningSchoolAdminRepository.listManageableOrganizations,
   listEligibleUsers: learningSchoolAdminRepository.listEligibleUsers,
 };
+\nexport { learningSchoolAnalyticsRepository } from "../repositories/learning-school-analytics.repository";\n
