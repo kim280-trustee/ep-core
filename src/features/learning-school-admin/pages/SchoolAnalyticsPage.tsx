@@ -33,6 +33,9 @@ export default function SchoolAnalyticsPage() {
   const [organizationChoice, setOrganizationChoice] = useState("");
   const [academicYearId, setAcademicYearId] = useState("");
   const [classGroupId, setClassGroupId] = useState("");
+  const [classSubjectId, setClassSubjectId] = useState("");
+  const [activityFrom, setActivityFrom] = useState("");
+  const [activityTo, setActivityTo] = useState("");
 
   const organizationsQuery = useQuery({
     queryKey: ["school-analytics", "organizations", user?.id],
@@ -61,12 +64,31 @@ export default function SchoolAnalyticsPage() {
   const classes = (classesQuery.data ?? []).filter((item) => item.status === "active");
   const validClassId = classes.some((item) => item.id === classGroupId) ? classGroupId : "";
 
+  const classSubjectsQuery = useQuery({
+    queryKey: ["school-analytics", "class-subjects", organizationId, validClassId],
+    queryFn: () => learningAcademicService.listClassSubjects(organizationId, validClassId),
+    enabled: Boolean(organizationId && validClassId && canManage),
+  });
+  const subjectsQuery = useQuery({
+    queryKey: ["school-analytics", "subjects"],
+    queryFn: () => learningAcademicService.listSubjects(),
+    enabled: Boolean(canManage),
+  });
+  const subjectOptions = (classSubjectsQuery.data ?? [])
+    .filter((item) => item.status === "active")
+    .map((item) => ({ ...item, subject: subjectsQuery.data?.find((subject) => subject.id === item.subjectId) }))
+    .filter((item) => Boolean(item.subject));
+  const validClassSubjectId = subjectOptions.some((item) => item.id === classSubjectId) ? classSubjectId : "";
+
   const summaryQuery = useQuery({
-    queryKey: ["school-analytics", "summary", organizationId, validYearId, validClassId],
+    queryKey: ["school-analytics", "summary", organizationId, validYearId, validClassId, validClassSubjectId, activityFrom, activityTo],
     queryFn: () => learningSchoolAdminService.getAnalyticsSummary({
       organizationId,
       academicYearId: validYearId || undefined,
       classGroupId: validClassId || undefined,
+      classSubjectId: validClassSubjectId || undefined,
+      activityFrom: activityFrom || undefined,
+      activityTo: activityTo || undefined,
     }),
     enabled: Boolean(organizationId && canManage && !organizationsQuery.isError),
   });
@@ -76,6 +98,9 @@ export default function SchoolAnalyticsPage() {
     ["Organization", organization?.name ?? "Selected organization"],
     ["Academic year", years.find((year) => year.id === validYearId)?.name ?? "All years"],
     ["Class", classes.find((item) => item.id === validClassId)?.name ?? "All active classes"],
+    ["Assignment subject", subjectOptions.find((item) => item.id === validClassSubjectId)?.subject?.name ?? "All subjects"],
+    ["Activity from", activityFrom || "Any date"],
+    ["Activity through", activityTo || "Any date"],
     ["Active students", summary.activeStudents],
     ["Active teachers", summary.activeTeachers],
     ["Active classes", summary.activeClasses],
@@ -103,10 +128,13 @@ export default function SchoolAnalyticsPage() {
     {organizationsQuery.isError ? <ErrorPanel message="Your manageable schools could not be loaded. Check your school administration permission and retry." /> : null}
     {!organizationsQuery.isPending && !organizations.length && !organizationsQuery.isError ? <EmptyPanel title="No manageable school found" detail="An active school membership with the required administration permission is needed before school analytics can be shown." /> : null}
 
-    {organizations.length > 0 && <section className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 sm:grid-cols-3">
-      <label className="text-sm font-medium text-slate-700">School / organization<select value={organizationId} onChange={(event) => { setOrganizationChoice(event.target.value); setAcademicYearId(""); setClassGroupId(""); }} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5"><option value="">Select school</option>{organizations.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></label>
-      <label className="text-sm font-medium text-slate-700">Academic year<select value={validYearId} onChange={(event) => { setAcademicYearId(event.target.value); setClassGroupId(""); }} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5"><option value="">All academic years</option>{years.map((year) => <option key={year.id} value={year.id}>{year.name} ({year.code})</option>)}</select></label>
-      <label className="text-sm font-medium text-slate-700">Class<select value={validClassId} onChange={(event) => setClassGroupId(event.target.value)} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5"><option value="">All active classes</option>{classes.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></label>
+    {organizations.length > 0 && <section className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 sm:grid-cols-2 xl:grid-cols-5">
+      <label className="text-sm font-medium text-slate-700">School / organization<select value={organizationId} onChange={(event) => { setOrganizationChoice(event.target.value); setAcademicYearId(""); setClassGroupId(""); setClassSubjectId(""); }} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5"><option value="">Select school</option>{organizations.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></label>
+      <label className="text-sm font-medium text-slate-700">Academic year<select value={validYearId} onChange={(event) => { setAcademicYearId(event.target.value); setClassGroupId(""); setClassSubjectId(""); }} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5"><option value="">All academic years</option>{years.map((year) => <option key={year.id} value={year.id}>{year.name} ({year.code})</option>)}</select></label>
+      <label className="text-sm font-medium text-slate-700">Class<select value={validClassId} onChange={(event) => { setClassGroupId(event.target.value); setClassSubjectId(""); }} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5"><option value="">All active classes</option>{classes.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></label>
+      <label className="text-sm font-medium text-slate-700">Assignment subject (choose a class first)<select value={validClassSubjectId} onChange={(event) => setClassSubjectId(event.target.value)} disabled={!validClassId || classSubjectsQuery.isPending || subjectsQuery.isPending} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 disabled:bg-slate-100"><option value="">All subjects</option>{subjectOptions.map((item) => <option key={item.id} value={item.id}>{item.subject?.name} ({item.subject?.code})</option>)}</select></label>
+      <label className="text-sm font-medium text-slate-700">Activity from<input type="date" value={activityFrom} max={activityTo || undefined} onChange={(event) => setActivityFrom(event.target.value)} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5" /></label>
+      <label className="text-sm font-medium text-slate-700">Activity through<input type="date" value={activityTo} min={activityFrom || undefined} onChange={(event) => setActivityTo(event.target.value)} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5" /></label>
     </section>}
 
     {(yearsQuery.isError || classesQuery.isError || summaryQuery.isError) && <ErrorPanel message="Some school analytics could not be loaded. Verify that you can access the selected school, academic year and class, then retry." />}
@@ -119,7 +147,7 @@ export default function SchoolAnalyticsPage() {
         <Metric icon={<BarChart3 size={18} />} label="Published assignments" value={summary.publishedAssignments} detail="Published assignments in the selected scope" />
       </section>
       <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
-        <div className="flex flex-wrap items-start justify-between gap-3"><div><h2 className="text-lg font-semibold text-slate-900">Assignment progress</h2><p className="mt-1 text-sm text-slate-500">Completion uses tracked progress records for published assignments only; students without a progress record are not counted in this rate.</p></div><span className="text-xs text-slate-500">Refreshed {new Date(summary.refreshedAt).toLocaleString()}</span></div>
+        <div className="flex flex-wrap items-start justify-between gap-3"><div><h2 className="text-lg font-semibold text-slate-900">Assignment progress</h2><p className="mt-1 text-sm text-slate-500">Completion uses tracked progress records for published assignments only; when an activity date range is set, only records with activity in that range are counted. Students without a progress record are not counted in this rate.</p></div><span className="text-xs text-slate-500">Refreshed {new Date(summary.refreshedAt).toLocaleString()}</span></div>
         <div className="mt-5 grid gap-4 sm:grid-cols-3">
           <div className="rounded-xl bg-slate-50 p-4"><p className="text-sm text-slate-500">Completion rate (tracked)</p><p className="mt-2 text-2xl font-bold text-slate-900">{summary.completionRate === null ? "—" : `${summary.completionRate.toFixed(1)}%`}</p><p className="mt-1 text-xs text-slate-500">{summary.completionRate === null ? "No progress records yet" : `${summary.completedAssignmentRecords} of ${summary.trackedAssignmentRecords} tracked records completed`}</p></div>
           <div className="rounded-xl bg-slate-50 p-4"><p className="text-sm text-slate-500">Completed records</p><p className="mt-2 text-2xl font-bold text-slate-900">{summary.completedAssignmentRecords}</p><p className="mt-1 text-xs text-slate-500">Persisted completed progress status</p></div>
