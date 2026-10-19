@@ -1,5 +1,43 @@
 import { supabase } from "@/core/infrastructure/supabase/client";
 
+function localMidnightUtc(date: string, timezone: string): string {
+  const [year, month, day] = date.split("-").map(Number);
+  const targetUtc = Date.UTC(year, month - 1, day);
+  let guess = targetUtc;
+  try {
+    const formatter = new Intl.DateTimeFormat("en-US", {
+      timeZone: timezone,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hourCycle: "h23",
+    });
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      const parts = Object.fromEntries(
+        formatter.formatToParts(new Date(guess))
+          .filter((part) => part.type !== "literal")
+          .map((part) => [part.type, part.value]),
+      );
+      const observedUtc = Date.UTC(
+        Number(parts.year),
+        Number(parts.month) - 1,
+        Number(parts.day),
+        Number(parts.hour),
+        Number(parts.minute),
+        Number(parts.second),
+      );
+      guess += targetUtc - observedUtc;
+    }
+  } catch {
+    // Fall back to UTC only if an organisation has an invalid timezone value.
+  }
+  return new Date(guess).toISOString();
+}
+
+
 export interface SchoolAnalyticsSummary {
   organizationId: string;
   activeStudents: number;
@@ -21,8 +59,9 @@ export const learningSchoolAnalyticsRepository = {
     classSubjectId?: string;
     activityFrom?: string;
     activityTo?: string;
+    timezone?: string;
   }): Promise<SchoolAnalyticsSummary> {
-    const { organizationId, academicYearId, classGroupId, classSubjectId, activityFrom, activityTo } = input;
+    const { organizationId, academicYearId, classGroupId, classSubjectId, activityFrom, activityTo, timezone = "UTC" } = input;
 
     let classesQuery = supabase
       .from("learning_class_groups")
@@ -159,11 +198,11 @@ export const learningSchoolAnalyticsRepository = {
           .eq("organization_id", organizationId)
           .in("assignment_id", assignmentIds)
           .in("assignment_target_id", targetIds);
-        if (activityFrom) progressQuery = progressQuery.gte("last_activity_at", `${activityFrom}T00:00:00.000Z`);
+        if (activityFrom) progressQuery = progressQuery.gte("last_activity_at", localMidnightUtc(activityFrom, timezone));
         if (activityTo) {
-          const endExclusive = new Date(`${activityTo}T00:00:00.000Z`);
-          endExclusive.setUTCDate(endExclusive.getUTCDate() + 1);
-          progressQuery = progressQuery.lt("last_activity_at", endExclusive.toISOString());
+          const [year, month, day] = activityTo.split("-").map(Number);
+          const nextDate = new Date(Date.UTC(year, month - 1, day + 1)).toISOString().slice(0, 10);
+          progressQuery = progressQuery.lt("last_activity_at", localMidnightUtc(nextDate, timezone));
         }
         const { data: progress, error } = await progressQuery;
         if (error) throw error;
