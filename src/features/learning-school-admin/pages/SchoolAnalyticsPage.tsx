@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { AlertCircle, ArrowLeft, BarChart3, BookOpen, Download, GraduationCap, Users } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -70,23 +70,20 @@ export default function SchoolAnalyticsPage() {
   });
 
   const summary = summaryQuery.data;
-  const exportRows = useMemo((): Array<[string, string | number]> => {
-    if (!summary) return [];
-    return [
-      ["Organization", organization?.name ?? "Selected organization"],
-      ["Academic year", years.find((year) => year.id === validYearId)?.name ?? "All years"],
-      ["Class", classes.find((item) => item.id === validClassId)?.name ?? "All active classes"],
-      ["Active students", summary.activeStudents],
-      ["Active teachers", summary.activeTeachers],
-      ["Active classes", summary.activeClasses],
-      ["Published assignments", summary.publishedAssignments],
-      ["Tracked assignment progress records", summary.trackedAssignmentRecords],
-      ["Completed tracked assignment records", summary.completedAssignmentRecords],
-      ["Completion rate among tracked records", summary.completionRate === null ? "No tracked progress yet" : `${summary.completionRate.toFixed(1)}%`],
-      ["Incomplete tracked assignment records", summary.incompleteAssignmentRecords],
-      ["Refreshed at", summary.refreshedAt],
-    ];
-  }, [summary, organization?.name, years, validYearId, classes, validClassId]);
+  const exportRows: Array<[string, string | number]> = summary ? [
+    ["Organization", organization?.name ?? "Selected organization"],
+    ["Academic year", years.find((year) => year.id === validYearId)?.name ?? "All years"],
+    ["Class", classes.find((item) => item.id === validClassId)?.name ?? "All active classes"],
+    ["Active students", summary.activeStudents],
+    ["Active teachers", summary.activeTeachers],
+    ["Active classes", summary.activeClasses],
+    ["Published assignments", summary.publishedAssignments],
+    ["Tracked assignment progress records", summary.trackedAssignmentRecords],
+    ["Completed tracked assignment records", summary.completedAssignmentRecords],
+    ["Completion rate among tracked records", summary.completionRate === null ? "No tracked progress yet" : `${summary.completionRate.toFixed(1)}%`],
+    ["Incomplete tracked assignment records", summary.incompleteAssignmentRecords],
+    ["Refreshed at", summary.refreshedAt],
+  ] : [];
 
   if (authLoading || authorization.loading) return <div className="mx-auto max-w-7xl p-8"><div className="h-40 animate-pulse rounded-2xl bg-slate-200" /></div>;
   if (!user) return <div className="mx-auto max-w-4xl p-8">Sign in to access school analytics.</div>;
