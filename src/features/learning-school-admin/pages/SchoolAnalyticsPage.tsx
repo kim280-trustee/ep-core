@@ -11,7 +11,7 @@ import { learningSchoolAdminService } from "../services/learning-school-admin.se
 function csvCell(value: string | number) {
   const text = String(value);
   // Quoting alone does not prevent spreadsheet formula execution.
-  const safeText = /^[\s\u0000-\u001f]*[=+@-]/.test(text) ? `'${text}` : text;
+  const safeText = /^[\t\n\r ]*[=+@-]/.test(text) ? `'${text}` : text;
   return `"${safeText.replace(/"/g, '""')}"`;
 }
 
