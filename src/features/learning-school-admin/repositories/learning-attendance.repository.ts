@@ -72,7 +72,7 @@ export const learningAttendanceRepository = {
   async getRegister(organizationId: string, classGroupId: string, attendanceDate: string): Promise<LearningAttendanceRegister> {
     const { data: session, error: sessionError } = await supabase
       .from("learning_attendance_sessions")
-      .select("id,status")
+      .select("id,status,submitted_at")
       .eq("organization_id", organizationId)
       .eq("class_group_id", classGroupId)
       .eq("attendance_date", attendanceDate)
@@ -93,10 +93,25 @@ export const learningAttendanceRepository = {
         noteByStudentId[record.student_user_id] = record.note ?? "";
       }
     }
-    return { sessionId: session?.id ?? null, date: attendanceDate, statusByStudentId, noteByStudentId };
+    return {
+      sessionId: session?.id ?? null,
+      date: attendanceDate,
+      status: session?.status === "submitted" ? "submitted" : "open",
+      submittedAt: session?.submitted_at ?? null,
+      statusByStudentId,
+      noteByStudentId,
+    };
   },
 
-  async saveRegister(input: SaveLearningAttendanceInput): Promise<void> {
+  async submitRegister(sessionId: string): Promise<void> {
+    const rpcClient = supabase as unknown as {
+      rpc: (name: string, args: Record<string, unknown>) => Promise<{ data: unknown; error: { message: string } | null }>;
+    };
+    const { error } = await rpcClient.rpc("submit_learning_attendance_register", { p_session_id: sessionId });
+    if (error) throw new Error(error.message);
+  },
+
+  async saveRegister(input: SaveLearningAttendanceInput): Promise<string> {
     const now = new Date().toISOString();
     const { data: session, error: sessionError } = await supabase
       .from("learning_attendance_sessions")
@@ -140,5 +155,6 @@ export const learningAttendanceRepository = {
         }, { onConflict: "attendance_session_id,student_user_id" });
       if (error) throw error;
     }
+    return session.id;
   },
 };
