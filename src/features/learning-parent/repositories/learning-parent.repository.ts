@@ -1,7 +1,7 @@
 ﻿import { supabase } from "@/core/infrastructure/supabase/client";
 import { learningActivityService } from "@/features/learning-activity";
 import { calculateLearningStreak, getVerifiedLearningActivityTimestamps } from "@/features/learning-rewards";
-import type { LearningParentOverview, LearningParentStudent, LearningParentStudentLink } from "../types/learning-parent.types";
+import type { LearningParentAttendanceSummary, LearningParentOverview, LearningParentStudent, LearningParentStudentLink } from "../types/learning-parent.types";
 
 type GradeRow={class_subject_id:string;term_id:string;score:number|string;letter_grade:string|null;status:string;finalized_at:string|null};
 type AssignmentRow={id:string;title:string;due_at:string|null;status:string};
@@ -120,6 +120,29 @@ export const learningParentRepository={
       reviewAttempts,
       accuracyPercent: answeredCount > 0 ? Math.round((correctAnswers / answeredCount) * 1000) / 10 : null,
       organizationCount: rows.length,
+    };
+  },
+
+  async getAttendanceSummary(studentUserId: string): Promise<LearningParentAttendanceSummary> {
+    const rpcClient = supabase as unknown as {
+      rpc: (name: string, args: Record<string, unknown>) => Promise<{
+        data: unknown;
+        error: { message: string } | null;
+      }>;
+    };
+    const { data, error } = await rpcClient.rpc("get_learning_parent_attendance_summary", {
+      p_student_user_id: studentUserId,
+      p_limit: 30,
+    });
+    if (error) throw new Error(error.message);
+    const row = Array.isArray(data) ? data[0] as Record<string, unknown> | undefined : undefined;
+    return {
+      sessionsCount: Number(row?.sessions_count ?? 0),
+      presentCount: Number(row?.present_count ?? 0),
+      absentCount: Number(row?.absent_count ?? 0),
+      lateCount: Number(row?.late_count ?? 0),
+      excusedCount: Number(row?.excused_count ?? 0),
+      latestAttendanceDate: row?.latest_attendance_date ? String(row.latest_attendance_date) : null,
     };
   },
 
