@@ -52,6 +52,20 @@ export const learningSchoolAdminRepository = {
     return (data ?? []).map(mapOrganization);
   },
 
+  async listUsersByIds(tenantId: string, userIds: string[]): Promise<SchoolAdminUser[]> {
+    const ids = [...new Set(userIds)].filter(Boolean);
+    if (!ids.length) return [];
+
+    const { data, error } = await supabase
+      .from("users")
+      .select("id,name,email")
+      .eq("tenant_id", tenantId)
+      .in("id", ids)
+      .order("name", { ascending: true });
+    if (error) throw error;
+    return ((data ?? []) as UserRow[]).map(mapUser);
+  },
+
   async listEligibleUsers(organizationId: string, tenantId: string): Promise<SchoolAdminUser[]> {
     const { data: memberships, error: membershipError } = await supabase
       .from("organization_memberships")
