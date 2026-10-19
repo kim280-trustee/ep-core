@@ -1,5 +1,43 @@
 import { supabase } from "@/core/infrastructure/supabase/client";
 
+function localMidnightUtc(date: string, timezone: string): string {
+  const [year, month, day] = date.split("-").map(Number);
+  const targetUtc = Date.UTC(year, month - 1, day);
+  let guess = targetUtc;
+  try {
+    const formatter = new Intl.DateTimeFormat("en-US", {
+      timeZone: timezone,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hourCycle: "h23",
+    });
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      const parts = Object.fromEntries(
+        formatter.formatToParts(new Date(guess))
+          .filter((part) => part.type !== "literal")
+          .map((part) => [part.type, part.value]),
+      );
+      const observedUtc = Date.UTC(
+        Number(parts.year),
+        Number(parts.month) - 1,
+        Number(parts.day),
+        Number(parts.hour),
+        Number(parts.minute),
+        Number(parts.second),
+      );
+      guess += targetUtc - observedUtc;
+    }
+  } catch {
+    // Fall back to UTC only if an organisation has an invalid timezone value.
+  }
+  return new Date(guess).toISOString();
+}
+
+
 export interface SchoolAnalyticsSummary {
   organizationId: string;
   activeStudents: number;
@@ -18,8 +56,12 @@ export const learningSchoolAnalyticsRepository = {
     organizationId: string;
     academicYearId?: string;
     classGroupId?: string;
+    classSubjectId?: string;
+    activityFrom?: string;
+    activityTo?: string;
+    timezone?: string;
   }): Promise<SchoolAnalyticsSummary> {
-    const { organizationId, academicYearId, classGroupId } = input;
+    const { organizationId, academicYearId, classGroupId, classSubjectId, activityFrom, activityTo, timezone = "UTC" } = input;
 
     let classesQuery = supabase
       .from("learning_class_groups")
@@ -63,7 +105,17 @@ export const learningSchoolAnalyticsRepository = {
     const activeStudents = new Set((studentMemberships ?? []).map((row) => row.user_id)).size;
     const activeTeachers = new Set((teacherMemberships ?? []).map((row) => row.user_id)).size;
     let assignmentIds: string[] = [];
-    if (!classGroupId && !academicYearId) {
+    if (classSubjectId) {
+      // Subject filtering applies to assignment metrics and requires a selected class subject.
+      const { data, error } = await supabase
+        .from("learning_assignments")
+        .select("id")
+        .eq("organization_id", organizationId)
+        .eq("status", "published")
+        .eq("class_subject_id", classSubjectId);
+      if (error) throw error;
+      assignmentIds = (data ?? []).map((row) => row.id);
+    } else if (!classGroupId && !academicYearId) {
       const { data, error } = await supabase
         .from("learning_assignments")
         .select("id")
@@ -73,24 +125,16 @@ export const learningSchoolAnalyticsRepository = {
       assignmentIds = (data ?? []).map((row) => row.id);
     } else if (visibleClassIds.length) {
       const [{ data: classTargets, error: targetsError }, { data: subjects, error: subjectsError }] = await Promise.all([
-        supabase.from("learning_assignment_targets").select("assignment_id").in("class_group_id", visibleClassIds).eq("status", "active"),
-        supabase.from("learning_class_subjects").select("id").in("class_group_id", visibleClassIds).eq("status", "active"),
+        supabase.from("learning_assignment_targets").select("assignment_id").eq("organization_id", organizationId).in("class_group_id", visibleClassIds).eq("status", "active"),
+        supabase.from("learning_class_subjects").select("id").eq("organization_id", organizationId).in("class_group_id", visibleClassIds).eq("status", "active"),
       ]);
       if (targetsError) throw targetsError;
       if (subjectsError) throw subjectsError;
-      const selectedStudentIds = [...new Set(studentMemberships.map((row) => row.user_id))];
-      let studentTargets: Array<{ assignment_id: string }> = [];
-      if (selectedStudentIds.length) {
-        const { data, error } = await supabase
-          .from("learning_assignment_targets")
-          .select("assignment_id")
-          .in("student_user_id", selectedStudentIds)
-          .eq("organization_id", organizationId)
-          .eq("status", "active");
-        if (error) throw error;
-        studentTargets = data ?? [];
-      }
-      const ids = new Set([...(classTargets ?? []), ...studentTargets].map((row) => row.assignment_id));
+      // In class/year scope, only include assignments explicitly targeted to
+      // the selected classes or attached to their active class subjects. A student
+      // may belong to multiple classes, so their individual targets alone must not
+      // pull unrelated assignments from another class into this report.
+      const ids = new Set((classTargets ?? []).map((row) => row.assignment_id));
       const classSubjectIds = (subjects ?? []).map((row) => row.id);
       if (classSubjectIds.length) {
         const { data: subjectAssignments, error } = await supabase
@@ -132,20 +176,27 @@ export const learningSchoolAnalyticsRepository = {
       const targetIds = (targets ?? [])
         .filter((target) => {
           if (!classGroupId && !academicYearId) return true;
-          return Boolean(
-            (target.class_group_id && visibleClassIds.includes(target.class_group_id)) ||
-            (target.student_user_id && selectedStudentIds.has(target.student_user_id)),
-          );
+          if (target.class_group_id) return visibleClassIds.includes(target.class_group_id);
+          // A direct-to-student target has no class_group_id. Include it only when
+          // the assignment itself is already in the selected class/subject scope.
+          return Boolean(target.student_user_id && selectedStudentIds.has(target.student_user_id));
         })
         .map((target) => target.id);
 
       if (targetIds.length) {
-        const { data: progress, error } = await supabase
+        let progressQuery = supabase
           .from("learning_assignment_progress")
           .select("id,status")
           .eq("organization_id", organizationId)
           .in("assignment_id", assignmentIds)
           .in("assignment_target_id", targetIds);
+        if (activityFrom) progressQuery = progressQuery.gte("last_activity_at", localMidnightUtc(activityFrom, timezone));
+        if (activityTo) {
+          const [year, month, day] = activityTo.split("-").map(Number);
+          const nextDate = new Date(Date.UTC(year, month - 1, day + 1)).toISOString().slice(0, 10);
+          progressQuery = progressQuery.lt("last_activity_at", localMidnightUtc(nextDate, timezone));
+        }
+        const { data: progress, error } = await progressQuery;
         if (error) throw error;
         trackedAssignmentRecords = (progress ?? []).length;
         completedAssignmentRecords = (progress ?? []).filter((row) => row.status === "completed").length;
