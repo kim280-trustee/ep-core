@@ -18,8 +18,11 @@ export const learningSchoolAnalyticsRepository = {
     organizationId: string;
     academicYearId?: string;
     classGroupId?: string;
+    classSubjectId?: string;
+    activityFrom?: string;
+    activityTo?: string;
   }): Promise<SchoolAnalyticsSummary> {
-    const { organizationId, academicYearId, classGroupId } = input;
+    const { organizationId, academicYearId, classGroupId, classSubjectId, activityFrom, activityTo } = input;
 
     let classesQuery = supabase
       .from("learning_class_groups")
@@ -63,7 +66,17 @@ export const learningSchoolAnalyticsRepository = {
     const activeStudents = new Set((studentMemberships ?? []).map((row) => row.user_id)).size;
     const activeTeachers = new Set((teacherMemberships ?? []).map((row) => row.user_id)).size;
     let assignmentIds: string[] = [];
-    if (!classGroupId && !academicYearId) {
+    if (classSubjectId) {
+      // Subject filtering applies to assignment metrics and requires a selected class subject.
+      const { data, error } = await supabase
+        .from("learning_assignments")
+        .select("id")
+        .eq("organization_id", organizationId)
+        .eq("status", "published")
+        .eq("class_subject_id", classSubjectId);
+      if (error) throw error;
+      assignmentIds = (data ?? []).map((row) => row.id);
+    } else if (!classGroupId && !academicYearId) {
       const { data, error } = await supabase
         .from("learning_assignments")
         .select("id")
@@ -140,12 +153,19 @@ export const learningSchoolAnalyticsRepository = {
         .map((target) => target.id);
 
       if (targetIds.length) {
-        const { data: progress, error } = await supabase
+        let progressQuery = supabase
           .from("learning_assignment_progress")
           .select("id,status")
           .eq("organization_id", organizationId)
           .in("assignment_id", assignmentIds)
           .in("assignment_target_id", targetIds);
+        if (activityFrom) progressQuery = progressQuery.gte("last_activity_at", `${activityFrom}T00:00:00.000Z`);
+        if (activityTo) {
+          const endExclusive = new Date(`${activityTo}T00:00:00.000Z`);
+          endExclusive.setUTCDate(endExclusive.getUTCDate() + 1);
+          progressQuery = progressQuery.lt("last_activity_at", endExclusive.toISOString());
+        }
+        const { data: progress, error } = await progressQuery;
         if (error) throw error;
         trackedAssignmentRecords = (progress ?? []).length;
         completedAssignmentRecords = (progress ?? []).filter((row) => row.status === "completed").length;
