@@ -6,6 +6,7 @@ import { learningDashboardRoutes } from "../../features/learning-dashboard";
 import { learningTeacherRoutes } from "../../features/learning-teacher";
 import { learningParentRoutes } from "../../features/learning-parent";
 import { learningSchoolAdminRoutes } from "../../features/learning-school-admin";
+import { learningMarketplaceRoutes } from "../../features/learning-marketplace";
 
 export const routes: RouteObject[] = [
   ...authRoutes,
@@ -13,6 +14,7 @@ export const routes: RouteObject[] = [
   ...learningTeacherRoutes,
   ...learningParentRoutes,
   ...learningSchoolAdminRoutes,
+  ...learningMarketplaceRoutes,
   {
     path: "/",
     element: <Navigate to="/login" replace />,

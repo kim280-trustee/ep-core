@@ -1,4 +1,4 @@
-import { AlertCircle, ArrowRight, BookOpen, ClipboardCheck, ClipboardList, Library, Settings, Users } from "lucide-react";
+import { AlertCircle, ArrowRight, BookOpen, BookOpenCheck, ClipboardCheck, ClipboardList, Library, Settings, Users } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
@@ -109,6 +109,13 @@ export default function TeacherDashboardPage() {
             title="Create Assignment"
             description="Build an assignment and prepare it for students."
             action="Create Assignment"
+          />
+          <DashboardTool
+            to="/teacher/vocabulary/assignments/new"
+            icon={BookOpenCheck}
+            title="Graded Vocabulary Assignment"
+            description="Turn published Dictionary entries into an auto-marked class quiz."
+            action="Create Vocabulary Quiz"
           />
           <DashboardTool
             to="/teacher/assessments"
