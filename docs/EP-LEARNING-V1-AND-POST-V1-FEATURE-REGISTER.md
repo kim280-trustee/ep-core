@@ -80,6 +80,27 @@ Do not implement gamification, attendance, AI, LINE or billing as superficial UI
 
 A draft implementation adds `/school-admin/analytics` with organization, academic-year and class filters, plus a class-scoped subject filter and organisation-timezone activity date range for assignment progress; active student/teacher/class counts; published assignment counts; tracked assignment completion metrics; explicit empty/loading/error states; refresh timestamp; and CSV export of the filtered summary. Subject selection narrows published-assignment metrics to assignments linked to that class-subject record. Activity dates filter persisted progress by `last_activity_at` using the selected organisation's timezone; roster/class counts are not date-based. Completion rate excludes learners without a tracked progress row. Attendance, assessment performance and longitudinal proficiency are not included in this first slice because the reviewed base branch did not establish a reliable school-wide data contract for those metrics. This is source-implemented but not runtime-verified; do not call it verified until CI, authenticated browser and tenant-isolation checks pass.
 
+## Edna development audit — 2026-10-19
+
+This audit checked the canonical feature register, the existing school-admin/analytics implementation on `edna/school-analytics-v1`, and open draft pull requests discoverable in `kim280-trustee/ep-core`. A feature described in a draft PR is not considered merged into the working branch or verified at runtime.
+
+| Priority area | Finding | Status and next action |
+|---|---|---|
+| School Analytics V1 | Dedicated page, service/repository queries, organisation/year/class/subject/date filters, tracked assignment completion summary, empty/loading/error states, refresh time and formula-safe CSV exist in draft PR #87. No new migration is included. | **Implemented but unverified.** Keep PR #87 in draft until current CI is green and manager/non-manager access, cross-tenant denial, live metric/filter correctness and CSV export are tested with authenticated accounts. Do not add a competing dashboard. |
+| School administration | Separate draft PRs #64–#78 cover academic overview/bulk enrollment, attendance register/history/reporting, timetable and exports, parent links/admissions, and staff directory. | **Implemented across stacked drafts; unverified as an integrated chain.** Review dependency order, role checks and migration status before merge. The PR descriptions state migrations have not been applied to Supabase. |
+| Curriculum and lesson planning | A teacher AI drafting slice for lessons, worksheets, quizzes and lesson plans is described in draft PR #79. The reviewed base branch does not establish a complete reusable curriculum-linked lesson-plan management workflow. | **Partial / unverified.** After Analytics verification, inspect the actual #79 route, objective linkage, save/reuse behavior, teacher/class scope, feature flags and AI quota migration before extending it. Do not build a second content system. |
+| Parent–school communication | Draft PRs #80–#83 add recipient-scoped in-app notifications for booking, assignment/assessment, attendance and admissions events plus preferences. PR #86 adds a linked-child attendance summary. | **Partial / unverified.** This is not proof of a general school/class announcement board or operational email/LINE delivery. Review trigger/RPC authorization and migrations; test linked-parent isolation and preference suppression. Descriptions state migrations are not applied. |
+| Learning intervention and support | No dedicated intervention case/follow-up workflow was confirmed in the reviewed canonical register or the relevant open-PR search. Existing mastery, gradebook and recommendations are foundations, not a complete intervention log. | **Gap to inspect after earlier priorities.** Reuse existing evidence and add only if teachers need a persistent, authorised follow-up record with transparent criteria. |
+| Academic calendar and exam planning | Weekly timetable scheduling/export is present in draft PRs #66/#73, but a weekly timetable is not an academic calendar or exam-planning workflow. No dedicated calendar/exam planning PR was found in the search. | **Gap to inspect after intervention.** Reuse existing academic-year/term and assessment models; avoid duplicate calendar tables unless the schema audit proves they are needed. |
+| Operations, notifications and integrations | Multiple drafts mention notifications and AI, but deployment/configuration, migration application, backup/restore, offline sync, email/LINE delivery and end-to-end reliability are not established by source inspection. | **Unverified or deferred.** Do not claim these integrations are operational until configuration and authenticated tests pass. |
+
+### Audit guardrails
+
+- Do not merge or stack additional large modules into Paul’s active testing branch without checking each PR’s base/head and dependency chain.
+- Draft PR code is not available in the base branch until integrated; keep statuses separate.
+- No live Supabase migration was applied as part of this audit.
+- Source inspection and a successful build do not prove tenant isolation or browser behavior.
+
 ## Current known limitations / next work
 
 - The repository contains four competing feature-register documents. This root-level document is canonical; the other three point here to prevent roadmap drift.
