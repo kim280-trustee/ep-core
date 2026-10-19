@@ -104,8 +104,14 @@ export default function TeacherDiagnosticReportPage() {
     enabled: Boolean(assessmentId && classQuery.data?.students && classAssignmentsQuery.data),
   });
 
-  const objectiveNames = new Map((objectivesQuery.data ?? []).map((objective) => [objective.id, objective.name || objective.code]));
-  const questionMap = new Map((questionsQuery.data ?? []).map((question) => [question.assessmentQuestionId, question]));
+  const objectiveNames = useMemo(
+    () => new Map((objectivesQuery.data ?? []).map((objective) => [objective.id, objective.name || objective.code])),
+    [objectivesQuery.data],
+  );
+  const questionMap = useMemo(
+    () => new Map((questionsQuery.data ?? []).map((question) => [question.assessmentQuestionId, question])),
+    [questionsQuery.data],
+  );
   const latestAttempts = useMemo(() => {
     const latest = new Map<string, AttemptWithAnswers>();
     for (const attempt of attemptsQuery.data ?? []) {
