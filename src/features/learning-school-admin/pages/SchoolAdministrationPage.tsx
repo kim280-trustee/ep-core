@@ -217,6 +217,11 @@ export default function SchoolAdministrationPage() {
   };
 
   const submitAttendance = async () => {
+    if (!user) {
+      setActionError("Sign in before submitting attendance.");
+      setActionNotice("");
+      return;
+    }
     if (attendanceSummary.unmarked > 0) {
       setActionError("Mark every active student before submitting the register.");
       setActionNotice("");
