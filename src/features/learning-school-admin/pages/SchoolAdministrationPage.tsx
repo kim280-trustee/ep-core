@@ -292,7 +292,10 @@ export default function SchoolAdministrationPage() {
           </div>
           <div className="flex flex-wrap gap-2">
             <Link to="/school-admin/analytics" className="rounded-xl border border-white/30 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10">School analytics</Link>
+            <div className="flex flex-wrap gap-2">
+            <Link to="/school-admin/analytics" className="rounded-xl border border-white/30 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10">School analytics</Link>
             <Link to="/teacher" className="rounded-xl border border-white/30 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10">Teacher workspace</Link>
+          </div>
           </div>
         </div>
         <div className="mt-5 max-w-xl">
