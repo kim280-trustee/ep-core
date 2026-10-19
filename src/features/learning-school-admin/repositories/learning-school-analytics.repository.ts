@@ -125,8 +125,8 @@ export const learningSchoolAnalyticsRepository = {
       assignmentIds = (data ?? []).map((row) => row.id);
     } else if (visibleClassIds.length) {
       const [{ data: classTargets, error: targetsError }, { data: subjects, error: subjectsError }] = await Promise.all([
-        supabase.from("learning_assignment_targets").select("assignment_id").in("class_group_id", visibleClassIds).eq("status", "active"),
-        supabase.from("learning_class_subjects").select("id").in("class_group_id", visibleClassIds).eq("status", "active"),
+        supabase.from("learning_assignment_targets").select("assignment_id").eq("organization_id", organizationId).in("class_group_id", visibleClassIds).eq("status", "active"),
+        supabase.from("learning_class_subjects").select("id").eq("organization_id", organizationId).in("class_group_id", visibleClassIds).eq("status", "active"),
       ]);
       if (targetsError) throw targetsError;
       if (subjectsError) throw subjectsError;
