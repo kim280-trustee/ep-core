@@ -59,7 +59,7 @@ Use existing pilot data and the complete existing assignment `EN-M1-SELF-INTRO-A
 | Parent notifications and LINE OA | Parent portal/linking exists; no dedicated LINE OA/webhook integration found | V1.x/V2 | Verified account linking, consent/preferences, signature validation, idempotency, retries, delivery logs and opt-out |
 | AI teacher assistant | No dedicated AI teacher feature found | V2 | Teacher approval before publishing, curriculum alignment, content-quality evaluation, usage/cost limits and child-data controls |
 | AI student coach and personalized practice | No dedicated AI coach found; rule-based recommendations already exist | V2 | Ground responses in approved material, age-appropriate safeguards, teacher/guardian controls and quality evaluation |
-| School-wide analytics and proficiency trends | Gradebook/mastery foundations exist; director-level analytics not established | V2 | Define proficiency and evidence thresholds, longitudinal calculations, cohort rules and permissions before dashboard work |
+| School-wide analytics and proficiency trends | School Analytics V1 page and tenant-scoped summary repository added on `edna/school-analytics-v1`; existing teacher analytics remain class-scoped | Implemented but unverified (draft PR required) | Build/lint, authenticated manager access, cross-tenant denial, filter correctness, live-data calculations and CSV export must pass before verification |
 | Official Thai reporting templates | Generic reports exist; official school templates not verified | V1 only for school-mandated blockers, otherwise V1.x/V2 | Obtain the actual school's forms/rules and compare formulas, labels, rounding and exports to approved examples |
 | Billing and licensed seats | No dedicated Learning subscription/billing feature found | V3 | Tenant plans, seat-count rules, invoices, payment reconciliation, entitlements and support workflows |
 | Offline learning/synchronization | No dedicated offline-learning implementation found | V2/V3 | Explicit offline scope, queued writes, conflict resolution, sync visibility and duplicate-submission prevention |
@@ -75,6 +75,10 @@ Use existing pilot data and the complete existing assignment `EN-M1-SELF-INTRO-A
 5. **Add leaderboards last and make them optional:** do not expose child rankings publicly by default.
 
 Do not implement gamification, attendance, AI, LINE or billing as superficial UI-only features. They need their own requirements, data model, authorization, failure handling and acceptance tests. The correct V1 action is to retain them as planned scope, not to add unvalidated tables to the launch build.
+
+## School Analytics V1 implementation note (2026-10-19)
+
+A draft implementation adds `/school-admin/analytics` with organization, academic-year and class filters; active student/teacher/class counts; published assignment counts; tracked assignment completion metrics; explicit empty/loading/error states; refresh timestamp; and CSV export of the filtered summary. Completion rate is intentionally calculated only from persisted progress rows and excludes learners without a progress row. Attendance, assessment performance and longitudinal proficiency are not included in this first slice because the reviewed base branch did not establish a reliable school-wide data contract for those metrics. This is source-implemented but not runtime-verified; do not call it verified until CI, authenticated browser and tenant-isolation checks pass.
 
 ## Current known limitations / next work
 
