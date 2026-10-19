@@ -32,25 +32,19 @@ function mapUser(row: UserRow): SchoolAdminUser {
 
 export const learningSchoolAdminRepository = {
   async listManageableOrganizations(userId: string): Promise<Organization[]> {
-    // A global permission check alone must not make every active membership
-    // manageable. Keep the organisation list scoped to memberships whose
-    // organisation role is OWNER or MANAGER, then let the page's permission
-    // gate and database RLS enforce the remaining access rules.
+    // Resolve organisations from the signed-in user's active organisation memberships.
+    // School Setup and School Analytics both apply the learning.academic.manage
+    // permission gate, while database RLS remains responsible for data access.
+    // Avoid filtering on a nested role relation here: role relationship visibility
+    // can return an empty list for a valid active manager and block the whole workspace.
     const { data: memberships, error: membershipError } = await supabase
       .from("organization_memberships")
-      .select("organization_id, roles!organization_memberships_role_fk(name)")
+      .select("organization_id")
       .eq("user_id", userId)
       .eq("status", "active");
     if (membershipError) throw membershipError;
 
-    const organizationIds = [...new Set(
-      (memberships ?? [])
-        .filter((item) => {
-          const roleName = item.roles?.name?.trim().toUpperCase();
-          return roleName === "OWNER" || roleName === "MANAGER";
-        })
-        .map((item) => item.organization_id),
-    )];
+    const organizationIds = [...new Set((memberships ?? []).map((item) => item.organization_id))];
     if (!organizationIds.length) return [];
 
     const { data, error } = await supabase
@@ -62,7 +56,6 @@ export const learningSchoolAdminRepository = {
     if (error) throw error;
     return (data ?? []).map(mapOrganization);
   },
-
   async listEligibleUsers(organizationId: string, tenantId: string): Promise<SchoolAdminUser[]> {
     const { data: memberships, error: membershipError } = await supabase
       .from("organization_memberships")
