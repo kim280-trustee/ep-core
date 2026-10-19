@@ -81,7 +81,7 @@ export const learningParentRepository={
     const subjectMap=new Map(((subjects??[]) as Subject[]).map(x=>[x.id,x.name]));
     const classSubjectMap=new Map((classSubjects??[]).map(x=>[x.id,x.subject_id]));
     const commentSubjectMap=new Map((commentSubjects??[]).map(x=>[x.id,x.subject_id]));
-    const termMap=new Map(((terms??[]) as Term[]).map(x=>[x.id,x.name]));
+    const termMap=new Map(([...(terms??[]),...(commentTerms??[])] as Term[]).map(x=>[x.id,x.name]));
     const objectiveMap=new Map(((objectives??[]) as Objective[]).map(x=>[x.id,x]));
 
     const targets=[...(directTargets??[]),...(classTargets??[])].filter((row,index,array)=>array.findIndex(x=>x.assignment_id===row.assignment_id&&x.student_user_id===row.student_user_id&&x.class_group_id===row.class_group_id)===index) as TargetRow[];
