@@ -106,15 +106,27 @@ export const learningSchoolAnalyticsRepository = {
     const activeTeachers = new Set((teacherMemberships ?? []).map((row) => row.user_id)).size;
     let assignmentIds: string[] = [];
     if (classSubjectId) {
-      // Subject filtering applies to assignment metrics and requires a selected class subject.
-      const { data, error } = await supabase
-        .from("learning_assignments")
+      // Validate the selected subject against the active class scope before using it.
+      // Never trust a client-supplied class-subject ID on its own.
+      const { data: scopedSubjects, error: scopedSubjectsError } = await supabase
+        .from("learning_class_subjects")
         .select("id")
         .eq("organization_id", organizationId)
-        .eq("status", "published")
-        .eq("class_subject_id", classSubjectId);
-      if (error) throw error;
-      assignmentIds = (data ?? []).map((row) => row.id);
+        .eq("status", "active")
+        .eq("id", classSubjectId)
+        .in("class_group_id", visibleClassIds);
+      if (scopedSubjectsError) throw scopedSubjectsError;
+      const validSubjectIds = (scopedSubjects ?? []).map((row) => row.id);
+      if (validSubjectIds.length) {
+        const { data, error } = await supabase
+          .from("learning_assignments")
+          .select("id")
+          .eq("organization_id", organizationId)
+          .eq("status", "published")
+          .eq("class_subject_id", classSubjectId);
+        if (error) throw error;
+        assignmentIds = (data ?? []).map((row) => row.id);
+      }
     } else if (!classGroupId && !academicYearId) {
       const { data, error } = await supabase
         .from("learning_assignments")
