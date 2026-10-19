@@ -3,7 +3,7 @@ import { supabase } from "@/core/infrastructure/supabase/client";
 import type { Organization } from "@/core/organization/types/organization.types";
 
 type OrganizationRow = Database["public"]["Tables"]["organizations"]["Row"];
-type UserRow = Pick<Database["public"]["Tables"]["users"]["Row"], "id" | "name" | "email">;
+type UserRow = Pick<Database["public"]["Tables"]["users"]["Row"], "id" | "name" | "email" | "auth_user_id">;
 
 export interface SchoolAdminUser {
   id: string;
@@ -50,6 +50,39 @@ export const learningSchoolAdminRepository = {
       .order("name", { ascending: true });
     if (error) throw error;
     return (data ?? []).map(mapOrganization);
+  },
+
+  async listUsersByIds(tenantId: string, userIds: string[]): Promise<SchoolAdminUser[]> {
+    const ids = [...new Set(userIds)].filter(Boolean);
+    if (!ids.length) return [];
+
+    // Class memberships can reference either the application user ID or the
+    // linked Supabase Auth ID. Resolve both forms without crossing tenants.
+    const [byApplicationId, byAuthId] = await Promise.all([
+      supabase
+        .from("users")
+        .select("id,name,email,auth_user_id")
+        .eq("tenant_id", tenantId)
+        .in("id", ids),
+      supabase
+        .from("users")
+        .select("id,name,email,auth_user_id")
+        .eq("tenant_id", tenantId)
+        .in("auth_user_id", ids),
+    ]);
+    if (byApplicationId.error) throw byApplicationId.error;
+    if (byAuthId.error) throw byAuthId.error;
+
+    const profiles = new Map<string, SchoolAdminUser>();
+    for (const row of (byApplicationId.data ?? []) as UserRow[]) {
+      profiles.set(row.id, mapUser(row));
+    }
+    for (const row of (byAuthId.data ?? []) as UserRow[]) {
+      if (row.auth_user_id && ids.includes(row.auth_user_id)) {
+        profiles.set(row.auth_user_id, { ...mapUser(row), id: row.auth_user_id });
+      }
+    }
+    return [...profiles.values()].sort((a, b) => a.name.localeCompare(b.name));
   },
 
   async listEligibleUsers(organizationId: string, tenantId: string): Promise<SchoolAdminUser[]> {
