@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { AlertCircle, ArrowLeft, BarChart3, BookOpen, Download, GraduationCap, Users } from "lucide-react";
 import { Link } from "react-router-dom";
+import type { ReactNode } from "react";
 import { useAuth } from "@/core/auth";
 import { useAuthorization } from "@/features/auth/authorization/useAuthorization";
 import { learningAcademicService } from "@/features/learning-academic";
@@ -131,7 +132,7 @@ export default function SchoolAnalyticsPage() {
   </main>;
 }
 
-function Metric({ icon, label, value, detail }: { icon: React.ReactNode; label: string; value: number; detail: string }) {
+function Metric({ icon, label, value, detail }: { icon: ReactNode; label: string; value: number; detail: string }) {
   return <section className="rounded-2xl border border-slate-200 bg-white p-5"><div className="flex items-center gap-2 text-slate-500">{icon}<span className="text-sm font-medium">{label}</span></div><p className="mt-3 text-2xl font-bold text-slate-900">{value}</p><p className="mt-1 text-xs text-slate-500">{detail}</p></section>;
 }
 
