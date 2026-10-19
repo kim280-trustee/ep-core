@@ -1,0 +1,3 @@
+-- Legacy remote migration history marker.
+-- Live Supabase already contains the effects of 20260909050953_harden_v1_rls_and_anon_permissions.
+-- Preserve the historical version without replaying legacy SQL.

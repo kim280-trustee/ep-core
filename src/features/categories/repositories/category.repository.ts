@@ -1,3 +1,4 @@
+import type { Database } from "@/core/database/database.types";
 ﻿import { supabase } from "@/core/infrastructure/supabase/client";
 import type { Category } from "../types/category.types";
 
@@ -75,7 +76,7 @@ export const categoryRepository: ICategoryRepository = {
   },
 
   async update(tenantId, storeId, id, updates) {
-    const payload: Record<string, unknown> = {
+    const payload: Database["public"]["Tables"]["categories"]["Update"] = {
       updated_at: new Date().toISOString(),
     };
 

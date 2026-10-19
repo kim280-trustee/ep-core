@@ -24,3 +24,4 @@ export * from "./organization.context";
 
 
 export * from "./organization.provider";
+export * from "./types/organization-membership.types";

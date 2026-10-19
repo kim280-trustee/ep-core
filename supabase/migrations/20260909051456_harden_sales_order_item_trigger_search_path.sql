@@ -1,0 +1,3 @@
+-- Legacy remote migration history marker.
+-- Live Supabase already contains the effects of 20260909051456_harden_sales_order_item_trigger_search_path.
+-- Preserve the historical version without replaying legacy SQL.

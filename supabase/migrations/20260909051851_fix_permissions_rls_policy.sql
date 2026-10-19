@@ -1,0 +1,3 @@
+-- Legacy remote migration history marker.
+-- Live Supabase already contains the effects of 20260909051851_fix_permissions_rls_policy.
+-- Preserve the historical version without replaying legacy SQL.

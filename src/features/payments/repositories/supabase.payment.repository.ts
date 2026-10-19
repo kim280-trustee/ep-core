@@ -1,3 +1,5 @@
+import type { Database } from "@/core/database/database.types";
+
 import { supabase } from "@/core/infrastructure/supabase/client";
 
 import type { Payment } from "../types/payment.types";
@@ -109,7 +111,7 @@ class SupabasePaymentRepository implements PaymentRepository {
     id: string,
     updates: Partial<Payment>,
   ): Promise<Payment | undefined> {
-    const updateData: Record<string, unknown> = {};
+    const updateData: Database["public"]["Tables"]["payments"]["Update"] = {};
 
     if (updates.method !== undefined) {
       updateData.method = updates.method;

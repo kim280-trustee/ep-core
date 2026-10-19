@@ -1,0 +1,1 @@
+create index if not exists learning_class_subjects_grade_scale_idx on public.learning_class_subjects(grade_scale_id);\n

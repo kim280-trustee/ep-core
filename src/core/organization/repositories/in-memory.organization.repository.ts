@@ -24,7 +24,7 @@ implements OrganizationRepository {
 
 
 
-  findAll() {
+  async findAll() {
 
     return this.organizations;
 
@@ -32,7 +32,7 @@ implements OrganizationRepository {
 
 
 
-  findById(
+  async findById(
     id: string,
   ) {
 
@@ -44,7 +44,7 @@ implements OrganizationRepository {
 
 
 
-  create(
+  async create(
     organization: Organization,
   ) {
 
@@ -59,7 +59,7 @@ implements OrganizationRepository {
 
 
 
-  update(
+  async update(
     id: string,
     data: Partial<Organization>,
   ) {
@@ -96,7 +96,7 @@ implements OrganizationRepository {
 
 
 
-  delete(
+  async delete(
     id:string,
   ){
 

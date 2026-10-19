@@ -1,0 +1,3 @@
+-- Legacy remote migration history marker.
+-- Live Supabase already contains the effects of 20260909050326_add_v1_operational_foreign_keys_not_valid.
+-- Preserve the historical version without replaying legacy SQL.

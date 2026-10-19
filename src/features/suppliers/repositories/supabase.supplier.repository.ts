@@ -1,3 +1,5 @@
+import type { Database } from "@/core/database/database.types";
+
 ﻿import {
   supabase,
 } from "@/core/infrastructure/supabase/client";
@@ -249,7 +251,7 @@ implements ISupplierRepository {
   ): Promise<Supplier | undefined> {
 
     const updateData:
-      Record<string, unknown> = {};
+      Database["public"]["Tables"]["suppliers"]["Update"] = {};
 
 
     if (updates.name !== undefined) {
