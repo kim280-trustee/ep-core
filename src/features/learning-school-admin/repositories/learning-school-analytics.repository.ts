@@ -31,26 +31,49 @@ export const learningSchoolAnalyticsRepository = {
     const { data: classRows, count: activeClasses, error: classesError } = await classesQuery;
     if (classesError) throw classesError;
 
-    const { count: activeStudents, error: studentsError } = await supabase
+    const visibleClassIds = (classRows ?? []).map((row) => row.id);
+    let studentsQuery = supabase
       .from("learning_class_memberships")
-      .select("id", { count: "exact", head: true })
+      .select("user_id")
       .eq("organization_id", organizationId)
       .eq("membership_type", "student")
-      .eq("status", "active")
-      .eq("class_group_id", classGroupId || (academicYearId ? "__no_single_class__" : undefined));
-    if (studentsError) throw studentsError;
-
+      .eq("status", "active");
     let teachersQuery = supabase
       .from("learning_class_memberships")
-      .select("id", { count: "exact", head: true })
+      .select("user_id")
       .eq("organization_id", organizationId)
       .eq("membership_type", "teacher")
       .eq("status", "active");
-    if (classGroupId) teachersQuery = teachersQuery.eq("class_group_id", classGroupId);
-    const { count: activeTeachers, error: teachersError } = await teachersQuery;
+    if (classGroupId) {
+      studentsQuery = studentsQuery.eq("class_group_id", classGroupId);
+      teachersQuery = teachersQuery.eq("class_group_id", classGroupId);
+    } else if (academicYearId) {
+      if (visibleClassIds.length) {
+        studentsQuery = studentsQuery.in("class_group_id", visibleClassIds);
+        teachersQuery = teachersQuery.in("class_group_id", visibleClassIds);
+      } else {
+        return {
+          organizationId,
+          activeStudents: 0,
+          activeTeachers: 0,
+          activeClasses: activeClasses ?? 0,
+          publishedAssignments: 0,
+          trackedAssignmentRecords: 0,
+          completedAssignmentRecords: 0,
+          completionRate: null,
+          incompleteAssignmentRecords: 0,
+          refreshedAt: new Date().toISOString(),
+        };
+      }
+    }
+    const [{ data: studentMemberships, error: studentsError }, { data: teacherMemberships, error: teachersError }] = await Promise.all([
+      studentsQuery,
+      teachersQuery,
+    ]);
+    if (studentsError) throw studentsError;
     if (teachersError) throw teachersError;
-
-    const visibleClassIds = (classRows ?? []).map((row) => row.id);
+    const activeStudents = new Set((studentMemberships ?? []).map((row) => row.user_id)).size;
+    const activeTeachers = new Set((teacherMemberships ?? []).map((row) => row.user_id)).size;
     let assignmentIds: string[] = [];
     if (!classGroupId && !academicYearId) {
       const { data, error } = await supabase
