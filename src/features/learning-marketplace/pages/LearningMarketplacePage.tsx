@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningMarketplaceService } from "../services/learning-marketplace.service";
 import type { BookingRequest, DeliveryMode, EligibleStudent, Offering, TeacherOffering } from "../types/learning-marketplace.types";
@@ -42,6 +43,11 @@ export default function LearningMarketplacePage() {
   const own = mine.data ?? [];
   return <main className="mx-auto max-w-7xl space-y-6">
     <header className="rounded-3xl bg-slate-950 p-7 text-white"><p className="text-sm font-semibold text-indigo-200">E&P Learning · Extra Classes</p><h1 className="mt-2 text-3xl font-bold">Find the right teacher</h1><p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">Browse tutoring offers from active teachers, request lessons for yourself or a linked learner, and track responses. Payment is not collected in this first release.</p></header>
+    <div className="flex justify-end">
+      <Link to="/notifications" className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">
+        Notification inbox
+      </Link>
+    </div>
     <TeacherAvailabilityPanel />
     <TeacherProfilePanel />
     {save.isError && <Error message={save.error.message} />}{book.isError && <Error message={book.error.message} />}{respond.isError && <Error message={respond.error.message} />}{cancel.isError && <Error message={cancel.error.message} />}
