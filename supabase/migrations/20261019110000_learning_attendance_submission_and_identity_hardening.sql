@@ -45,6 +45,14 @@ security definer
 set search_path = ''
 as $function$
 begin
+  if tg_op = 'INSERT' then
+    if new.status is distinct from 'open' then
+      raise exception 'New attendance registers must start open and be submitted through the validated workflow';
+    end if;
+    new.submitted_at := null;
+    return new;
+  end if;
+
   if new.tenant_id is distinct from old.tenant_id
     or new.organization_id is distinct from old.organization_id
     or new.class_group_id is distinct from old.class_group_id
@@ -112,7 +120,7 @@ revoke all on function public.learning_guard_attendance_session_update() from pu
 drop trigger if exists learning_attendance_session_integrity
   on public.learning_attendance_sessions;
 create trigger learning_attendance_session_integrity
-  before update of tenant_id, organization_id, class_group_id, attendance_date, status, submitted_at
+  before insert or update
   on public.learning_attendance_sessions
   for each row
   execute function public.learning_guard_attendance_session_update();
