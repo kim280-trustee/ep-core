@@ -32,14 +32,25 @@ function mapUser(row: UserRow): SchoolAdminUser {
 
 export const learningSchoolAdminRepository = {
   async listManageableOrganizations(userId: string): Promise<Organization[]> {
+    // A global permission check alone must not make every active membership
+    // manageable. Keep the organisation list scoped to memberships whose
+    // organisation role is OWNER or MANAGER, then let the page's permission
+    // gate and database RLS enforce the remaining access rules.
     const { data: memberships, error: membershipError } = await supabase
       .from("organization_memberships")
-      .select("organization_id")
+      .select("organization_id, roles!organization_memberships_role_fk(name)")
       .eq("user_id", userId)
       .eq("status", "active");
     if (membershipError) throw membershipError;
 
-    const organizationIds = [...new Set((memberships ?? []).map((item) => item.organization_id))];
+    const organizationIds = [...new Set(
+      (memberships ?? [])
+        .filter((item) => {
+          const roleName = item.roles?.name?.trim().toUpperCase();
+          return roleName === "OWNER" || roleName === "MANAGER";
+        })
+        .map((item) => item.organization_id),
+    )];
     if (!organizationIds.length) return [];
 
     const { data, error } = await supabase
