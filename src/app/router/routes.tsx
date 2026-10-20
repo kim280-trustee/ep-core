@@ -8,6 +8,7 @@ import { learningParentRoutes } from "../../features/learning-parent";
 import { learningSchoolAdminRoutes } from "../../features/learning-school-admin";
 import { learningMarketplaceRoutes } from "../../features/learning-marketplace";
 import { learningNotificationsRoutes } from "../../features/learning-notifications";
+import { learningSchoolCalendarRoutes } from "../../features/learning-school-calendar";
 
 export const routes: RouteObject[] = [
   ...authRoutes,
@@ -17,6 +18,7 @@ export const routes: RouteObject[] = [
   ...learningSchoolAdminRoutes,
   ...learningMarketplaceRoutes,
   ...learningNotificationsRoutes,
+  ...learningSchoolCalendarRoutes,
   {
     path: "/",
     element: <Navigate to="/login" replace />,
