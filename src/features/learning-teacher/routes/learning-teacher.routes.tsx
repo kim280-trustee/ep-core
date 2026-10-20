@@ -21,6 +21,7 @@ import TeacherContentCreatePage from "../../learning-content/pages/TeacherConten
 import TeacherContentDetailPage from "../../learning-content/pages/TeacherContentDetailPage";
 import TeacherContentResponsesPage from "../../learning-content/pages/TeacherContentResponsesPage";
 import TeacherClassGamificationPage from "../pages/TeacherClassGamificationPage";
+import TeacherInterventionsPage from "../pages/TeacherInterventionsPage";
 import { LearningVocabularyPage } from "@/features/learning-vocabulary";
 import TeacherVocabularyAssignmentPage from "@/features/learning-vocabulary/pages/TeacherVocabularyAssignmentPage";
 
@@ -35,6 +36,7 @@ export const learningTeacherRoutes: RouteObject[] = [
       { path: "assignments/new", element: <CreateTeacherAssignmentPage /> },
       { path: "authoring", element: <TeacherAuthoringPage /> },
       { path: "ai-assistant", element: <TeacherAIAssistantPage /> },
+      { path: "interventions", element: <TeacherInterventionsPage /> },
       { path: "content", element: <TeacherContentLibraryPage /> },
       { path: "vocabulary", element: <LearningVocabularyPage audience="teacher" /> },
       { path: "vocabulary/assignments/new", element: <TeacherVocabularyAssignmentPage /> },
