@@ -30,7 +30,6 @@ export default function SchoolAnnouncementsPage() {
   const organizations = organizationsQuery.data ?? [];
   const organizationId = organizations.some((item) => item.id === organizationChoice)
     ? organizationChoice : organizations[0]?.id ?? "";
-  const organization = organizations.find((item) => item.id === organizationId);
 
   const classesQuery = useQuery({
     queryKey: ["school-announcements", "classes", organizationId],
