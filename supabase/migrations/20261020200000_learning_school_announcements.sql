@@ -70,6 +70,11 @@ begin
       and om.organization_id = p_organization_id
       and om.status = 'active'
       and upper(trim(r.name)) in ('OWNER', 'MANAGER')
+      and exists (
+        select 1
+        from public.get_current_user_permissions() permission
+        where permission.permission_code = 'learning.academic.manage'
+      )
   ) then
     raise exception 'Only an active school owner or manager can manage school announcements';
   end if;
@@ -136,6 +141,11 @@ begin
       and om.organization_id = p_organization_id
       and om.status = 'active'
       and upper(trim(r.name)) in ('OWNER', 'MANAGER')
+      and exists (
+        select 1
+        from public.get_current_user_permissions() permission
+        where permission.permission_code = 'learning.academic.manage'
+      )
   ) then
     raise exception 'Only an active school owner or manager can create school announcements';
   end if;
@@ -199,6 +209,11 @@ begin
       and om.organization_id = v_organization_id
       and om.status = 'active'
       and upper(trim(r.name)) in ('OWNER', 'MANAGER')
+      and exists (
+        select 1
+        from public.get_current_user_permissions() permission
+        where permission.permission_code = 'learning.academic.manage'
+      )
   ) then
     raise exception 'Only an active school owner or manager can publish school announcements';
   end if;
