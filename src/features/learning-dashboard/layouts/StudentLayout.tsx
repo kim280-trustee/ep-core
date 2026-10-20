@@ -6,6 +6,7 @@ import { useAuth } from "@/core/auth";
 const items = [
   { to: "/learning", label: "Dashboard", icon: LayoutDashboard, end: true },
   { to: "/learning/today", label: "Daily Hub", icon: CalendarDays },
+  { to: "/calendar", label: "School Calendar", icon: CalendarDays },
   { to: "/learning/coach", label: "AI Coach", icon: Sparkles },
   { to: "/learning/assignments", label: "Assignments", icon: BookOpen },
   { to: "/learning/progress", label: "Progress", icon: TrendingUp },
