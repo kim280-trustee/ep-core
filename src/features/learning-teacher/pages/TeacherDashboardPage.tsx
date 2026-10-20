@@ -97,6 +97,13 @@ export default function TeacherDashboardPage() {
             action="Open Content Library"
           />
           <DashboardTool
+            to="/teacher/lesson-plans"
+            icon={BookOpen}
+            title="Lesson Planning"
+            description="Plan a lesson against an existing curriculum outcome and save it to the school content library."
+            action="Create Lesson Plan"
+          />
+          <DashboardTool
             to="/teacher/authoring"
             icon={BookOpen}
             title="Authoring"
