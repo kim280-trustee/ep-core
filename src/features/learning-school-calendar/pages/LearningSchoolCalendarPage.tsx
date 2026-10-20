@@ -125,6 +125,16 @@ export default function LearningSchoolCalendarPage() {
     onError: (error: Error) => setFeedback({ kind: "error", text: error.message }),
   });
 
+  const cancelMutation = useMutation({
+    mutationFn: (eventId: string) => learningSchoolCalendarService.cancel(eventId),
+    onSuccess: () => {
+      setFeedback({ kind: "success", text: "Calendar event cancelled. It is no longer shown to parents, students or teachers." });
+      void queryClient.invalidateQueries({ queryKey: ["learning-calendar", "manage-events", organizationId] });
+      void queryClient.invalidateQueries({ queryKey: ["learning-calendar", "visible-events"] });
+    },
+    onError: (error: Error) => setFeedback({ kind: "error", text: error.message }),
+  });
+
   const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setFeedback(null);
@@ -183,7 +193,10 @@ export default function LearningSchoolCalendarPage() {
       : <div className="mt-4 space-y-3">{events.map((item) => <article key={item.id} className="rounded-xl border border-slate-200 p-4">
         <div className="flex flex-wrap items-start justify-between gap-3"><div className="min-w-0"><p className="text-xs font-semibold uppercase tracking-wide text-indigo-700">{eventTypes.find((type) => type.value === item.eventType)?.label ?? item.eventType}{item.organizationName ? " · " + item.organizationName : ""}</p><h3 className="mt-1 text-lg font-semibold text-slate-950">{item.title}</h3><p className="mt-1 text-sm text-slate-600">{eventRange(item)}{!item.isAllDay && item.startTime && item.endTime ? " · " + item.startTime.slice(0, 5) + "–" + item.endTime.slice(0, 5) : " · All day"}</p><p className="mt-1 text-xs text-slate-500">{item.className ? "Class: " + item.className : "School-wide"}{item.termName ? " · " + item.termName : ""}{item.academicYearName ? " · " + item.academicYearName : ""}</p></div>{canManage && item.status && <span className={item.status === "published" ? "rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-800" : "rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-800"}>{item.status}</span>}</div>
         {item.description && <p className="mt-3 whitespace-pre-wrap text-sm leading-6 text-slate-700">{item.description}</p>}
-        {canManage && item.status === "draft" && <button type="button" disabled={publishMutation.isPending} onClick={() => { setFeedback(null); publishMutation.mutate(item.id); }} className={buttonClass + " mt-4"}><Send size={15}/>{publishMutation.isPending ? "Publishing…" : "Publish event"}</button>}
+        {canManage && item.status !== "cancelled" && <div className="mt-4 flex flex-wrap gap-2">
+          {item.status === "draft" && <button type="button" disabled={publishMutation.isPending} onClick={() => { setFeedback(null); publishMutation.mutate(item.id); }} className={buttonClass}><Send size={15}/>{publishMutation.isPending ? "Publishing…" : "Publish event"}</button>}
+          <button type="button" disabled={cancelMutation.isPending} onClick={() => { if (window.confirm("Cancel this calendar event? It will no longer appear in parent, student or teacher views.")) { setFeedback(null); cancelMutation.mutate(item.id); } }} className="inline-flex items-center justify-center gap-2 rounded-xl border border-rose-300 px-4 py-2.5 text-sm font-semibold text-rose-700 hover:bg-rose-50 disabled:opacity-50">Cancel event</button>
+        </div>}
       </article>)}</div>}
     </section>
   </main>;
