@@ -78,4 +78,7 @@ export const learningSchoolCalendarRepository = {
   async publish(eventId: string): Promise<boolean> {
     return rpc<boolean>("publish_learning_school_calendar_event", { p_event_id: eventId });
   },
+  async cancel(eventId: string): Promise<boolean> {
+    return rpc<boolean>("cancel_learning_school_calendar_event", { p_event_id: eventId });
+  },
 };
