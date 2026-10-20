@@ -220,6 +220,47 @@ begin
 end;
 $function$;
 
+create or replace function public.cancel_learning_school_calendar_event(p_event_id uuid)
+returns boolean
+language plpgsql
+security definer
+set search_path = ''
+as $function$
+declare
+  v_user_id uuid;
+  v_organization_id uuid;
+begin
+  select u.id into v_user_id
+  from public.users u
+  where u.auth_user_id = (select auth.uid())
+  limit 1;
+  if v_user_id is null then raise exception 'Authenticated user profile not found'; end if;
+
+  select e.organization_id into v_organization_id
+  from public.learning_school_calendar_events e
+  where e.id = p_event_id
+  for update;
+  if v_organization_id is null then raise exception 'Calendar event not found'; end if;
+
+  if not exists (
+    select 1 from public.organizations o
+    where o.id = v_organization_id and o.status = 'active'
+      and exists (
+        select 1 from public.organization_memberships om
+        join public.roles r on r.id = om.role_id and r.tenant_id = om.tenant_id
+        where om.user_id = v_user_id and om.organization_id = o.id and om.status = 'active'
+          and upper(trim(r.name)) in ('OWNER', 'MANAGER')
+          and exists (select 1 from public.get_current_user_permissions() permission where permission.permission_code = 'learning.academic.manage')
+      )
+  ) then raise exception 'Only an active school owner or manager can cancel this calendar event'; end if;
+
+  update public.learning_school_calendar_events
+  set status = 'cancelled', updated_at = now()
+  where id = p_event_id and status <> 'cancelled';
+  return found;
+end;
+$function$;
+
 create or replace function public.list_learning_school_calendar_events(p_start_date date, p_end_date date)
 returns table (
   id uuid, organization_id uuid, organization_name text, academic_year_name text,
@@ -296,11 +337,13 @@ revoke all on function public.list_manageable_learning_calendar_organizations() 
 revoke all on function public.list_manageable_learning_calendar_events(uuid, date, date) from public, anon;
 revoke all on function public.create_learning_school_calendar_event(uuid, uuid, uuid, uuid, text, text, text, date, date, boolean, time, time) from public, anon;
 revoke all on function public.publish_learning_school_calendar_event(uuid) from public, anon;
+revoke all on function public.cancel_learning_school_calendar_event(uuid) from public, anon;
 revoke all on function public.list_learning_school_calendar_events(date, date) from public, anon;
 grant execute on function public.list_manageable_learning_calendar_organizations() to authenticated;
 grant execute on function public.list_manageable_learning_calendar_events(uuid, date, date) to authenticated;
 grant execute on function public.create_learning_school_calendar_event(uuid, uuid, uuid, uuid, text, text, text, date, date, boolean, time, time) to authenticated;
 grant execute on function public.publish_learning_school_calendar_event(uuid) to authenticated;
+grant execute on function public.cancel_learning_school_calendar_event(uuid) to authenticated;
 grant execute on function public.list_learning_school_calendar_events(date, date) to authenticated;
 
 commit;
