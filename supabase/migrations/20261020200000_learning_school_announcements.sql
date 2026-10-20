@@ -63,6 +63,13 @@ begin
   end if;
 
   if not exists (
+    select 1 from public.organizations o
+    where o.id = p_organization_id and o.status = 'active'
+  ) then
+    raise exception 'The selected school is not available';
+  end if;
+
+  if not exists (
     select 1
     from public.organization_memberships om
     join public.roles r on r.id = om.role_id and r.tenant_id = om.tenant_id
@@ -202,6 +209,13 @@ begin
   end if;
 
   if not exists (
+    select 1 from public.organizations o
+    where o.id = v_organization_id and o.status = 'active'
+  ) then
+    raise exception 'The selected school is not available';
+  end if;
+
+  if not exists (
     select 1
     from public.organization_memberships om
     join public.roles r on r.id = om.role_id and r.tenant_id = om.tenant_id
@@ -322,6 +336,10 @@ begin
     from public.learning_school_announcements a
     where a.id = p_announcement_id
       and a.status = 'published'
+      and exists (
+        select 1 from public.organizations o
+        where o.id = a.organization_id and o.status = 'active'
+      )
       and exists (
         select 1
         from public.learning_parent_student_links l
