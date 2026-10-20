@@ -15,7 +15,7 @@ create table if not exists public.learning_school_calendar_events (
   is_all_day boolean not null default true,
   start_time time,
   end_time time,
-  status text not null default 'draft' check (status in ('draft', 'published')),
+  status text not null default 'draft' check (status in ('draft', 'published', 'cancelled')),
   created_by uuid not null references public.users(id) on delete restrict,
   published_at timestamptz,
   created_at timestamptz not null default now(),
@@ -38,7 +38,7 @@ create unique index if not exists learning_school_calendar_no_duplicate_active_e
     lower(trim(title)),
     start_date,
     end_date
-  ) where status in ('draft', 'published');
+  ) where status <> 'cancelled';
 
 alter table public.learning_school_calendar_events enable row level security;
 revoke all on public.learning_school_calendar_events from public, anon, authenticated;
