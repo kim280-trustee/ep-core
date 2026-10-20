@@ -106,15 +106,27 @@ export const learningSchoolAnalyticsRepository = {
     const activeTeachers = new Set((teacherMemberships ?? []).map((row) => row.user_id)).size;
     let assignmentIds: string[] = [];
     if (classSubjectId) {
-      // Subject filtering applies to assignment metrics and requires a selected class subject.
-      const { data, error } = await supabase
-        .from("learning_assignments")
+      // Validate the selected subject against the active class scope before using it.
+      // Never trust a client-supplied class-subject ID on its own.
+      const { data: scopedSubjects, error: scopedSubjectsError } = await supabase
+        .from("learning_class_subjects")
         .select("id")
         .eq("organization_id", organizationId)
-        .eq("status", "published")
-        .eq("class_subject_id", classSubjectId);
-      if (error) throw error;
-      assignmentIds = (data ?? []).map((row) => row.id);
+        .eq("status", "active")
+        .eq("id", classSubjectId)
+        .in("class_group_id", visibleClassIds);
+      if (scopedSubjectsError) throw scopedSubjectsError;
+      const validSubjectIds = (scopedSubjects ?? []).map((row) => row.id);
+      if (validSubjectIds.length) {
+        const { data, error } = await supabase
+          .from("learning_assignments")
+          .select("id")
+          .eq("organization_id", organizationId)
+          .eq("status", "published")
+          .eq("class_subject_id", classSubjectId);
+        if (error) throw error;
+        assignmentIds = (data ?? []).map((row) => row.id);
+      }
     } else if (!classGroupId && !academicYearId) {
       const { data, error } = await supabase
         .from("learning_assignments")
@@ -130,19 +142,11 @@ export const learningSchoolAnalyticsRepository = {
       ]);
       if (targetsError) throw targetsError;
       if (subjectsError) throw subjectsError;
-      const selectedStudentIds = [...new Set(studentMemberships.map((row) => row.user_id))];
-      let studentTargets: Array<{ assignment_id: string }> = [];
-      if (selectedStudentIds.length) {
-        const { data, error } = await supabase
-          .from("learning_assignment_targets")
-          .select("assignment_id")
-          .in("student_user_id", selectedStudentIds)
-          .eq("organization_id", organizationId)
-          .eq("status", "active");
-        if (error) throw error;
-        studentTargets = data ?? [];
-      }
-      const ids = new Set([...(classTargets ?? []), ...studentTargets].map((row) => row.assignment_id));
+      // In class/year scope, only include assignments explicitly targeted to
+      // the selected classes or attached to their active class subjects. A student
+      // may belong to multiple classes, so their individual targets alone must not
+      // pull unrelated assignments from another class into this report.
+      const ids = new Set((classTargets ?? []).map((row) => row.assignment_id));
       const classSubjectIds = (subjects ?? []).map((row) => row.id);
       if (classSubjectIds.length) {
         const { data: subjectAssignments, error } = await supabase
@@ -184,10 +188,10 @@ export const learningSchoolAnalyticsRepository = {
       const targetIds = (targets ?? [])
         .filter((target) => {
           if (!classGroupId && !academicYearId) return true;
-          return Boolean(
-            (target.class_group_id && visibleClassIds.includes(target.class_group_id)) ||
-            (target.student_user_id && selectedStudentIds.has(target.student_user_id)),
-          );
+          if (target.class_group_id) return visibleClassIds.includes(target.class_group_id);
+          // A direct-to-student target has no class_group_id. Include it only when
+          // the assignment itself is already in the selected class/subject scope.
+          return Boolean(target.student_user_id && selectedStudentIds.has(target.student_user_id));
         })
         .map((target) => target.id);
 
