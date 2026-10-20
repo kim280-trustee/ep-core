@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - paul/integrate-edna-content
+      - 'edna/**'
   pull_request:
     branches:
       - paul/integrate-edna-content
+      - paul/dictionary-graded-assignments-and-admin-hardening
 
 permissions:
   contents: read
