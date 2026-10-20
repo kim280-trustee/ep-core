@@ -1,8 +1,8 @@
 # E&P Learning — V1 and Post-V1 Feature Register
 
 **Repository:** `kim280-trustee/ep-core`  
-**Branch reviewed:** `paul/learning-school-notifications`  
-**Review date:** 2026-10-18  
+**Branch reviewed:** `edna/academic-calendar-exams-v1`  
+**Review date:** 2026-10-20  
 **Canonical roadmap:** This is the single source of truth for V1 scope and post-V1 features.
 
 ## Status definitions
@@ -19,6 +19,7 @@
 |---|---|---|---|
 | Authentication, tenant and memberships | Core auth/tenant modules and organization membership migrations | Code present — verify | Teacher, student and guardian can access only authorized tenant/class/student records |
 | Academic structure and enrollment | Learning academic/enrollment features and schema | Code present — verify | Pilot curriculum, term, class, subjects and memberships resolve correctly |
+| Academic calendar and exam planning | Shared `/calendar` view for school-wide and class events, holidays, examinations and assessment deadlines; manager draft/publish controls; optional existing academic-year/term/class links; parent/student/teacher visibility is filtered by active class membership or active parent-child link | Implemented in draft PR; `20261020220000_learning_school_calendar_events.sql` not applied | Verify manager role/permission, parent-child and class scoping, duplicate-event constraint, date/time behavior in the organisation timezone, publish persistence, empty/error states and cross-tenant denial. Portal display only; no email/SMS/LINE reminders |
 | Content library and authoring | Learning content pages/services/repository and content migrations | Code present — verify | Save/edit/publish/reuse works; student runtime never serves an unpublished version |
 | Question bank and assessment authoring | Assessment feature and publication/security migrations | Code present — verify | Questions and assessments can be authored, validated and published |
 | Assignment lifecycle | Teacher assignment creation/history, runtime and lifecycle migrations | Code present — verify | Class/student targets, due dates, publish, reopen and reassign rules persist correctly |
@@ -48,6 +49,8 @@
 10. Confirm target Supabase migrations and policies are applied; a source commit or successful build alone does not apply database changes.
 
 Use existing pilot data and the complete existing assignment `EN-M1-SELF-INTRO-A1` where appropriate. Do not duplicate seed data just to make the test pass.
+
+- Academic calendar/exam planning now has a shared date-range view for authorised teachers, students, parents and school managers, with manager-only draft/publish controls and optional links to existing academic years, terms and classes. Event dates/times are stored as school-local date/time values and the organisation timezone is displayed; timezone conversion/notification delivery is not part of this slice. Migration `20261020220000_learning_school_calendar_events.sql` is not applied. Verify RPC authorization, duplicate-event handling, class/parent visibility and date/time behavior before use.
 
 ## Post-V1 feature roadmap
 
