@@ -55,11 +55,12 @@ export default function SchoolAnalyticsPage() {
   const academicQuery = useQuery({
     queryKey: ["school-analytics", "academic", organizationId],
     queryFn: async () => {
-      const [years, classes] = await Promise.all([
+      const [years, classes, subjects] = await Promise.all([
         learningAcademicService.listAcademicYears(organizationId),
         learningAcademicService.listClassGroups(organizationId),
+        learningAcademicService.listSubjects(),
       ]);
-      return { years, classes: classes.filter((item) => item.status === "active") };
+      return { years, classes: classes.filter((item) => item.status === "active"), subjects };
     },
     enabled: Boolean(organizationId && canManage),
   });
@@ -93,11 +94,13 @@ export default function SchoolAnalyticsPage() {
     enabled: Boolean(organizationId && visibleClasses.length && canManage),
   });
   const classData = classDataQuery.data ?? [];
+  const subjectNames = new Map((academicQuery.data?.subjects ?? []).map((subject) => [subject.id, subject.name]));
   const classSubjects = classData.flatMap(({ group, subjects }) => subjects.map((subject) => ({
     ...subject,
     className: group.name,
     classCode: group.code,
     classGroupId: group.id,
+    subjectName: subjectNames.get(subject.subjectId) ?? subject.subjectId,
   })));
   const visibleClassSubjects = selectedClassSubjectId && classSubjects.some((item) => item.id === selectedClassSubjectId)
     ? classSubjects.filter((item) => item.id === selectedClassSubjectId) : classSubjects;
@@ -108,12 +111,13 @@ export default function SchoolAnalyticsPage() {
     enabled: Boolean(organizationId && termId && canManage),
   });
   const finalizedGrades = (gradesQuery.data ?? []).filter((grade) => grade.status === "finalized");
+  const filteredFinalizedGrades = finalizedGrades.filter((grade) => visibleClassSubjects.some((subject) => subject.id === grade.classSubjectId));
   const rows = useMemo(() => visibleClassSubjects.map((subject) => {
     const grades = finalizedGrades.filter((grade) => grade.classSubjectId === subject.id);
     return {
       className: subject.className,
       classCode: subject.classCode,
-      subjectName: subject.subjectId,
+      subjectName: subject.subjectName,
       classSubjectId: subject.id,
       finalizedCount: grades.length,
       averageScore: grades.length ? grades.reduce((total, grade) => total + (grade.overrideScore ?? grade.score), 0) / grades.length : null,
@@ -121,9 +125,12 @@ export default function SchoolAnalyticsPage() {
   }), [visibleClassSubjects, finalizedGrades]);
   const studentIds = new Set(classData.flatMap(({ members }) => members.filter((member) => member.membershipType === "student" && member.status === "active").map((member) => member.userId)));
   const teacherIds = new Set(classData.flatMap(({ members }) => members.filter((member) => member.membershipType === "teacher" && member.status === "active").map((member) => member.userId)));
-  const gradeScores = finalizedGrades.map((grade) => grade.overrideScore ?? grade.score);
+  const gradeScores = filteredFinalizedGrades.map((grade) => grade.overrideScore ?? grade.score);
   const averageScore = gradeScores.length ? gradeScores.reduce((sum, score) => sum + score, 0) / gradeScores.length : null;
-  const loading = authLoading || authorization.loading || organizationsQuery.isPending || academicQuery.isPending || termsQuery.isPending || classDataQuery.isPending || gradesQuery.isPending;
+  const loading = authLoading || authorization.loading || organizationsQuery.isPending || academicQuery.isPending
+    || (Boolean(academicYearId) && termsQuery.isPending)
+    || (visibleClasses.length > 0 && classDataQuery.isPending)
+    || (Boolean(termId) && gradesQuery.isPending);
   const error = organizationsQuery.error || academicQuery.error || termsQuery.error || classDataQuery.error || gradesQuery.error;
 
   if (!user) return <main className="mx-auto max-w-6xl p-6">Sign in to view school analytics.</main>;
@@ -152,12 +159,12 @@ export default function SchoolAnalyticsPage() {
         <Metric label="Active students" value={studentIds.size.toLocaleString()} detail="Unique active student memberships in the filtered classes." />
         <Metric label="Active teachers" value={teacherIds.size.toLocaleString()} detail="Unique active teacher memberships in the filtered classes." />
         <Metric label="Active classes" value={visibleClasses.length.toLocaleString()} detail="Classes in the selected academic year and class filter." />
-        <Metric label="Finalized term grades" value={finalizedGrades.length.toLocaleString()} detail="Finalized grade records in the selected term visible to this account." />
+        <Metric label="Finalized term grades" value={filteredFinalizedGrades.length.toLocaleString()} detail="Finalized grade records for the filtered classes and subjects in the selected term." />
       </section>
       <section className="grid gap-3 lg:grid-cols-[1fr_2fr]">
         <Metric label="Average finalized score" value={averageScore === null ? "—" : averageScore.toFixed(1) + "%"} detail="Mean of finalized student term grades; empty grades are excluded." />
-        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"><div className="flex flex-wrap items-center justify-between gap-3"><div><h2 className="font-semibold text-slate-950">Class and subject comparison</h2><p className="mt-1 text-sm text-slate-500">Only finalized grades are included. Subjects without finalized grades show no average.</p></div><label className="text-sm font-medium text-slate-700">Subject<select className="ml-2 rounded-xl border border-slate-300 bg-white px-3 py-2" value={selectedClassSubjectId} onChange={(event) => setSelectedClassSubjectId(event.target.value)}><option value="">All subjects</option>{classSubjects.map((item) => <option key={item.id} value={item.id}>{item.className} · {item.subjectId}</option>)}</select></label></div>
-          {loading ? <p className="py-8 text-sm text-slate-500">Loading school data…</p> : error ? <p role="alert" className="py-8 text-sm text-rose-700">Analytics data could not be loaded. Check your access and retry.</p> : rows.length === 0 ? <p className="py-8 text-sm text-slate-500">No active classes or subjects match these filters.</p> : <div className="mt-4 overflow-x-auto"><table className="min-w-full text-left text-sm"><thead className="bg-slate-50 text-xs uppercase text-slate-500"><tr><th className="px-3 py-3">Class</th><th className="px-3 py-3">Subject ID</th><th className="px-3 py-3 text-right">Finalized grades</th><th className="px-3 py-3 text-right">Average score</th></tr></thead><tbody className="divide-y divide-slate-100">{rows.map((row) => <tr key={row.classSubjectId}><td className="px-3 py-3 font-medium text-slate-900">{row.className} <span className="text-xs text-slate-500">{row.classCode}</span></td><td className="px-3 py-3">{row.subjectName}</td><td className="px-3 py-3 text-right tabular-nums">{row.finalizedCount}</td><td className="px-3 py-3 text-right tabular-nums">{row.averageScore === null ? "—" : row.averageScore.toFixed(1) + "%"}</td></tr>)}</tbody></table></div>}
+        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"><div className="flex flex-wrap items-center justify-between gap-3"><div><h2 className="font-semibold text-slate-950">Class and subject comparison</h2><p className="mt-1 text-sm text-slate-500">Only finalized grades are included. Subjects without finalized grades show no average.</p></div><label className="text-sm font-medium text-slate-700">Subject<select className="ml-2 rounded-xl border border-slate-300 bg-white px-3 py-2" value={selectedClassSubjectId} onChange={(event) => setSelectedClassSubjectId(event.target.value)}><option value="">All subjects</option>{classSubjects.map((item) => <option key={item.id} value={item.id}>{item.className} · {item.subjectName}</option>)}</select></label></div>
+          {loading ? <p className="py-8 text-sm text-slate-500">Loading school data…</p> : error ? <p role="alert" className="py-8 text-sm text-rose-700">Analytics data could not be loaded. Check your access and retry.</p> : rows.length === 0 ? <p className="py-8 text-sm text-slate-500">No active classes or subjects match these filters.</p> : <div className="mt-4 overflow-x-auto"><table className="min-w-full text-left text-sm"><thead className="bg-slate-50 text-xs uppercase text-slate-500"><tr><th className="px-3 py-3">Class</th><th className="px-3 py-3">Subject</th><th className="px-3 py-3 text-right">Finalized grades</th><th className="px-3 py-3 text-right">Average score</th></tr></thead><tbody className="divide-y divide-slate-100">{rows.map((row) => <tr key={row.classSubjectId}><td className="px-3 py-3 font-medium text-slate-900">{row.className} <span className="text-xs text-slate-500">{row.classCode}</span></td><td className="px-3 py-3">{row.subjectName}</td><td className="px-3 py-3 text-right tabular-nums">{row.finalizedCount}</td><td className="px-3 py-3 text-right tabular-nums">{row.averageScore === null ? "—" : row.averageScore.toFixed(1) + "%"}</td></tr>)}</tbody></table></div>}
         </div>
       </section>
       {organizationsQuery.isError && <p role="alert" className="rounded-xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-800">School list could not be loaded. Refresh to retry.</p>}
