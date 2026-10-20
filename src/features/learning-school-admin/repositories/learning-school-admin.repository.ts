@@ -34,14 +34,40 @@ function mapUser(row: UserRow): SchoolAdminUser {
 
 export const learningSchoolAdminRepository = {
   async listManageableOrganizations(userId: string): Promise<Organization[]> {
+    // School-wide reports are limited to active OWNER/MANAGER memberships.
+    // Resolve roles separately because nested role joins may be hidden by RLS.
+    // Fail closed if either lookup errors; the page-level permission gate alone
+    // must not expand the list to every organisation the user belongs to.
     const { data: memberships, error: membershipError } = await supabase
       .from("organization_memberships")
-      .select("organization_id")
+      .select("organization_id, tenant_id, role_id")
       .eq("user_id", userId)
       .eq("status", "active");
     if (membershipError) throw membershipError;
 
-    const organizationIds = [...new Set((memberships ?? []).map((item) => item.organization_id))];
+    const activeMemberships = memberships ?? [];
+    const roleIds = [...new Set(activeMemberships.flatMap((item) => item.role_id ? [item.role_id] : []))];
+    const tenantIds = [...new Set(activeMemberships.map((item) => item.tenant_id))];
+    if (!roleIds.length || !tenantIds.length) return [];
+
+    const { data: roles, error: rolesError } = await supabase
+      .from("roles")
+      .select("id, name, tenant_id")
+      .in("id", roleIds)
+      .in("tenant_id", tenantIds);
+    if (rolesError) throw rolesError;
+
+    const roleNames = new Map(
+      (roles ?? []).map((role) => [`${role.tenant_id}:${role.id}`, role.name.trim().toUpperCase()]),
+    );
+    const organizationIds = [...new Set(
+      activeMemberships
+        .filter((item) => {
+          const roleName = item.role_id ? roleNames.get(`${item.tenant_id}:${item.role_id}`) : undefined;
+          return roleName === "OWNER" || roleName === "MANAGER";
+        })
+        .map((item) => item.organization_id),
+    )];
     if (!organizationIds.length) return [];
 
     const { data, error } = await supabase
