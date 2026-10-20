@@ -1,8 +1,8 @@
 # E&P Learning — V1 and Post-V1 Feature Register
 
 **Repository:** `kim280-trustee/ep-core`  
-**Branch reviewed:** `paul/learning-school-notifications`  
-**Review date:** 2026-10-18  
+**Branch reviewed:** `edna/parent-school-announcements-v1`  
+**Review date:** 2026-10-20  
 **Canonical roadmap:** This is the single source of truth for V1 scope and post-V1 features.
 
 ## Status definitions
@@ -29,6 +29,7 @@
 | Gradebook reports/export | Gradebook report page and CSV export | Partial; report selection/export hardening added in this branch | Term and subject are selectable; only finalized grades are ranked/averaged; CSV is correctly escaped; school format still needs approval |
 | Parent links and progress | Parent feature, invitations, progress page, authorized vocabulary summary, persisted badge summaries, and persisted EN/TH portal language preference | Code present — verify; new migrations not applied | Invitation acceptance, revocation, vocabulary aggregates and earned badges are visible only to the linked parent; test with separate parent/student accounts and unrelated tenants |
 | Parent attendance summary | Parent portal calls a server-side aggregate RPC for the linked student's last 30 submitted attendance sessions; exposes only session count, present/absent/late/excused totals and latest date, without notes or other students' records | Code present — verify; `20261018210000_learning_parent_attendance_summary.sql` not applied | Verify active parent link and active student enrollment are required, another parent's student is denied, only submitted sessions count, and the portal degrades safely if attendance data is unavailable |
+| Parent–school announcements | Draft management page supports school-wide or class-specific notices; published announcements are listed only for parents with an active link to an actively enrolled child in the target school/class, with per-parent read status | Implemented in draft PR; `20261020200000_learning_school_announcements.sql` not applied | Verify owner/manager plus `learning.academic.manage` authorization, class scoping, parent-child isolation, read-state persistence, migration/RPC grants, and empty/error states. Publishing only updates the parent portal; email/SMS/LINE delivery is not implemented |
 | Content response and teacher grading | Student response and teacher grading migrations/features | Code present — verify | Responses and feedback persist and appear only to authorized teacher/student |
 | Thai localization and official reports | Parent portal includes EN/TH copy; no approved official school template established | Partial / school validation required | Confirm Thai/English coverage, academic calendar/date conventions, grade calculations and actual school forms |
 | Security, RLS and data integrity | Recent hardening migrations for attempts, responses, publication, lifecycle and parent invitations | Code present — verify | Apply migrations safely and run positive/negative authorization tests in the target Supabase project |
@@ -105,6 +106,7 @@ Do not implement attendance, AI, external messaging, billing, offline sync or ma
 
 **Notification scope:** In-app notifications cover marketplace booking events, safety reports, newly published assignments and newly evaluated assessment results for students and actively linked parents in code. This branch adds user-configurable preferences for routine in-app event types; safety-report alerts remain enabled. Attendance and invitation alerts now have database-triggered code in `20261018200000_learning_school_notifications.sql`: linked parents are notified only when an attendance session is submitted, and the inviting staff member is notified when their student invitation is accepted. Migrations `20261018180000_learning_assignment_notifications.sql`, `20261018190000_learning_notification_preferences.sql` and `20261018200000_learning_school_notifications.sql` require review/application and authenticated tests for recipient isolation, active parent-link scope, event timing, preference suppression and safety-report exemption. Email, LINE and push delivery are not implemented.
 
+- Parent–school announcements now have a dedicated draft management page and parent portal view. Migration `20261020200000_learning_school_announcements.sql` defines school/class audience, manager-only draft/publish RPCs, linked-child visibility, and per-parent read status. The migration is not applied; validate SQL and test manager permission, active parent link/enrollment, class scoping, and cross-tenant denial before treating this as operational.
 - Parent attendance summary is now implemented in code through a restricted RPC that returns only aggregate counts for the latest 30 submitted sessions. Migration `20261018210000_learning_parent_attendance_summary.sql` is not applied; test active-link/active-enrollment authorization and cross-parent denial before relying on it. The portal treats summary failures as a separate section error so grades and assignments remain visible.
 
 **Scope rule:** Source inspection and compilation are not runtime verification. Change a status to “Verified” only with reproducible authenticated evidence. Never bypass RLS or add permissive policies just to make a workflow pass.
