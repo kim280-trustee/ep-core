@@ -45,7 +45,6 @@ export default function TeacherInterventionsPage() {
   });
   const classes = classesQuery.data ?? [];
   const classGroupId = classes.some((item) => item.classGroup.id === selectedClassId) ? selectedClassId : classes[0]?.classGroup.id ?? "";
-  const selectedClass = classes.find((item) => item.classGroup.id === classGroupId);
 
   const classOverviewQuery = useQuery({
     queryKey: ["learning", "teacher-interventions", "class-overview", user?.id, classGroupId],
