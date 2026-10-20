@@ -1,4 +1,4 @@
-import { Home, LogOut, UserPlus, Search, Bell } from "lucide-react";
+import { Home, LogOut, UserPlus, Search, Bell, CalendarDays } from "lucide-react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "@/core/auth";
@@ -6,6 +6,7 @@ import { useAuth } from "@/core/auth";
 const items = [
   { to: "/parent", label: "Dashboard", icon: Home, end: true },
   { to: "/parent/invite", label: "Invitation", icon: UserPlus },
+  { to: "/calendar", label: "School Calendar", icon: CalendarDays },
   { to: "/notifications", label: "Notifications", icon: Bell },
   { to: "/marketplace", label: "Extra Classes", icon: Search },
 ];
