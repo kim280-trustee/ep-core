@@ -41,6 +41,8 @@ export default function SchoolAnalyticsPage() {
   const [selectedTermId, setSelectedTermId] = useState("");
   const [selectedClassGroupId, setSelectedClassGroupId] = useState("");
   const [selectedClassSubjectId, setSelectedClassSubjectId] = useState("");
+  const [activityFrom, setActivityFrom] = useState("");
+  const [activityTo, setActivityTo] = useState("");
 
   const organizationsQuery = useQuery({
     queryKey: ["school-analytics", "organizations", user?.id],
@@ -123,6 +125,20 @@ export default function SchoolAnalyticsPage() {
       averageScore: grades.length ? grades.reduce((total, grade) => total + (grade.overrideScore ?? grade.score), 0) / grades.length : null,
     };
   }), [visibleClassSubjects, finalizedGrades]);
+  const assignmentSummaryQuery = useQuery({
+    queryKey: ["school-analytics", "assignment-progress", organizationId, academicYearId, classGroupId, selectedClassSubjectId, activityFrom, activityTo],
+    queryFn: () => learningSchoolAdminService.getAnalyticsSummary({
+      organizationId,
+      academicYearId: academicYearId || undefined,
+      classGroupId: classGroupId || undefined,
+      classSubjectId: selectedClassSubjectId || undefined,
+      activityFrom: activityFrom || undefined,
+      activityTo: activityTo || undefined,
+      timezone: organization?.timezone || "UTC",
+    }),
+    enabled: Boolean(organizationId && canManage && academicQuery.isSuccess),
+  });
+  const assignmentSummary = assignmentSummaryQuery.data;
   const studentIds = new Set(classData.flatMap(({ members }) => members.filter((member) => member.membershipType === "student" && member.status === "active").map((member) => member.userId)));
   const teacherIds = new Set(classData.flatMap(({ members }) => members.filter((member) => member.membershipType === "teacher" && member.status === "active").map((member) => member.userId)));
   const gradeScores = filteredFinalizedGrades.map((grade) => grade.overrideScore ?? grade.score);
@@ -131,8 +147,9 @@ export default function SchoolAnalyticsPage() {
     || (Boolean(organizationId) && academicQuery.isPending)
     || (Boolean(academicYearId) && termsQuery.isPending)
     || (visibleClasses.length > 0 && classDataQuery.isPending)
-    || (Boolean(termId) && gradesQuery.isPending);
-  const error = organizationsQuery.error || academicQuery.error || termsQuery.error || classDataQuery.error || gradesQuery.error;
+    || (Boolean(termId) && gradesQuery.isPending)
+    || (Boolean(organizationId) && assignmentSummaryQuery.isPending);
+  const error = organizationsQuery.error || academicQuery.error || termsQuery.error || classDataQuery.error || gradesQuery.error || assignmentSummaryQuery.error;
 
   if (!user) return <main className="mx-auto max-w-6xl p-6">Sign in to view school analytics.</main>;
   if (authorization.loading || authLoading) return <main className="mx-auto max-w-6xl p-6"><div className="h-28 animate-pulse rounded-2xl bg-slate-100" /></main>;
@@ -151,18 +168,24 @@ export default function SchoolAnalyticsPage() {
         <button type="button" disabled={!rows.length || loading} onClick={() => exportCsv(rows.map((row) => ({ className: row.className, subjectName: row.subjectName, finalizedCount: row.finalizedCount, averageScore: row.averageScore })), organization?.name ?? "School", term?.name ?? "")} className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50">Export filtered CSV</button>
       </header>
 
-      <section className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-2 lg:grid-cols-4">
+      <section className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6">
         <label className="text-sm font-medium text-slate-700">School / organization<select className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5" value={organizationId} disabled={organizations.length <= 1} onChange={(event) => { setSelectedOrganizationId(event.target.value); setSelectedAcademicYearId(""); setSelectedTermId(""); setSelectedClassGroupId(""); setSelectedClassSubjectId(""); }}><option value="">Select school</option>{organizations.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></label>
         <label className="text-sm font-medium text-slate-700">Academic year<select className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5" value={academicYearId} onChange={(event) => { setSelectedAcademicYearId(event.target.value); setSelectedTermId(""); setSelectedClassGroupId(""); setSelectedClassSubjectId(""); }}>{years.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
         <label className="text-sm font-medium text-slate-700">Term<select className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5" value={termId} onChange={(event) => setSelectedTermId(event.target.value)}><option value="">Select term</option>{terms.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
-        <label className="text-sm font-medium text-slate-700">Class<select className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5" value={classGroupId} onChange={(event) => setSelectedClassGroupId(event.target.value)}><option value="">All classes</option>{classes.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></label>
+        <label className="text-sm font-medium text-slate-700">Class<select className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5" value={classGroupId} onChange={(event) => { setSelectedClassGroupId(event.target.value); setSelectedClassSubjectId(""); }}><option value="">All classes</option>{classes.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></label>
+        <label className="text-sm font-medium text-slate-700">Activity from<input type="date" value={activityFrom} max={activityTo || undefined} onChange={(event) => setActivityFrom(event.target.value)} className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5" /></label>
+        <label className="text-sm font-medium text-slate-700">Activity through<input type="date" value={activityTo} min={activityFrom || undefined} onChange={(event) => setActivityTo(event.target.value)} className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5" /></label>
       </section>
-      <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
         <Metric label="Active students" value={studentIds.size.toLocaleString()} detail="Unique active student memberships in the filtered classes." />
         <Metric label="Active teachers" value={teacherIds.size.toLocaleString()} detail="Unique active teacher memberships in the filtered classes." />
         <Metric label="Active classes" value={visibleClasses.length.toLocaleString()} detail="Classes in the selected academic year and class filter." />
         <Metric label="Finalized term grades" value={filteredFinalizedGrades.length.toLocaleString()} detail="Finalized grade records for the filtered classes and subjects in the selected term." />
+        <Metric label="Published assignments" value={(assignmentSummary?.publishedAssignments ?? 0).toLocaleString()} detail="Published assignments for the selected academic year, class and subject. Assignments are not term-linked." />
+        <Metric label="Assignment completion" value={assignmentSummary?.completionRate === null || assignmentSummary?.completionRate === undefined ? "—" : assignmentSummary.completionRate.toFixed(1) + "%"} detail={assignmentSummary ? assignmentSummary.completionRate === null ? "No tracked progress records in this scope." : assignmentSummary.completedAssignmentRecords + " of " + assignmentSummary.trackedAssignmentRecords + " tracked records completed." : "Loading tracked assignment progress."} />
       </section>
+      {assignmentSummary && <p className="text-xs text-slate-500">Assignment activity dates filter persisted progress by the organisation’s timezone. Progress completion excludes students without a tracked assignment record; the academic term filter applies to grade metrics only.</p>}
+      {assignmentSummaryQuery.isError && <p role="alert" className="rounded-xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-800">Assignment progress could not be loaded. Other school metrics may still be available; retry by refreshing the page.</p>}
       <section className="grid gap-3 lg:grid-cols-[1fr_2fr]">
         <Metric label="Average finalized score" value={averageScore === null ? "—" : averageScore.toFixed(1) + "%"} detail="Mean of finalized student term grades; empty grades are excluded." />
         <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"><div className="flex flex-wrap items-center justify-between gap-3"><div><h2 className="font-semibold text-slate-950">Class and subject comparison</h2><p className="mt-1 text-sm text-slate-500">Only finalized grades are included. Subjects without finalized grades show no average.</p></div><label className="text-sm font-medium text-slate-700">Subject<select className="ml-2 rounded-xl border border-slate-300 bg-white px-3 py-2" value={selectedClassSubjectId} onChange={(event) => setSelectedClassSubjectId(event.target.value)}><option value="">All subjects</option>{classSubjects.map((item) => <option key={item.id} value={item.id}>{item.className} · {item.subjectName}</option>)}</select></label></div>
