@@ -32,21 +32,36 @@ function mapUser(row: UserRow): SchoolAdminUser {
 
 export const learningSchoolAdminRepository = {
   async listManageableOrganizations(userId: string): Promise<Organization[]> {
-    // A global permission check alone must not make every active membership
-    // manageable. Keep the organisation list scoped to memberships whose
-    // organisation role is OWNER or MANAGER, then let the page's permission
-    // gate and database RLS enforce the remaining access rules.
+    // Resolve the membership and role records separately. A nested role
+    // relationship can be hidden by RLS and incorrectly return no manageable
+    // schools for a valid manager. Fail closed if the role lookup cannot be
+    // completed; a global permission alone must not expose every membership.
     const { data: memberships, error: membershipError } = await supabase
       .from("organization_memberships")
-      .select("organization_id, roles!organization_memberships_role_fk(name)")
+      .select("organization_id, tenant_id, role_id")
       .eq("user_id", userId)
       .eq("status", "active");
     if (membershipError) throw membershipError;
 
+    const activeMemberships = memberships ?? [];
+    const roleIds = [...new Set(activeMemberships.flatMap((item) => item.role_id ? [item.role_id] : []))];
+    const tenantIds = [...new Set(activeMemberships.map((item) => item.tenant_id))];
+    if (!roleIds.length || !tenantIds.length) return [];
+
+    const { data: roles, error: rolesError } = await supabase
+      .from("roles")
+      .select("id, name, tenant_id")
+      .in("id", roleIds)
+      .in("tenant_id", tenantIds);
+    if (rolesError) throw rolesError;
+
+    const roleNames = new Map(
+      (roles ?? []).map((role) => [`${role.tenant_id}:${role.id}`, role.name.trim().toUpperCase()]),
+    );
     const organizationIds = [...new Set(
-      (memberships ?? [])
+      activeMemberships
         .filter((item) => {
-          const roleName = item.roles?.name?.trim().toUpperCase();
+          const roleName = item.role_id ? roleNames.get(`${item.tenant_id}:${item.role_id}`) : undefined;
           return roleName === "OWNER" || roleName === "MANAGER";
         })
         .map((item) => item.organization_id),
