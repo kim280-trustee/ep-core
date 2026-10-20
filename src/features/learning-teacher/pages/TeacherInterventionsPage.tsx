@@ -89,7 +89,12 @@ export default function TeacherInterventionsPage() {
       reviewDate: input.reviewDate || undefined,
       outcome: input.outcome.trim() || undefined,
     }),
-    onSuccess: () => {
+    onSuccess: (_result, variables) => {
+      setDrafts((previous) => {
+        const nextDrafts = { ...previous };
+        delete nextDrafts[variables.caseId];
+        return nextDrafts;
+      });
       setFeedback({ kind: "success", text: "Support case and follow-up details saved." });
       void queryClient.invalidateQueries({ queryKey: ["learning", "interventions", "cases", classGroupId] });
     },
