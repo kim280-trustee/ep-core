@@ -1,8 +1,8 @@
 # E&P Learning — V1 and Post-V1 Feature Register
 
 **Repository:** `kim280-trustee/ep-core`  
-**Branch reviewed:** `paul/learning-school-notifications`  
-**Review date:** 2026-10-18  
+**Branch reviewed:** `edna/learning-intervention-v1`  
+**Review date:** 2026-10-20  
 **Canonical roadmap:** This is the single source of truth for V1 scope and post-V1 features.
 
 ## Status definitions
@@ -24,6 +24,7 @@
 | Assignment lifecycle | Teacher assignment creation/history, runtime and lifecycle migrations | Code present — verify | Class/student targets, due dates, publish, reopen and reassign rules persist correctly |
 | Student content/assessment runtime | Learning dashboard/runtime and assessment attempt/result migrations | Code present — verify | Student can start, answer, submit and see a persisted result after refresh; attempt limits apply |
 | Progress, mastery and recommendations | Learning activity/mastery services and dashboard pages | Code present — verify | Persisted evidence drives consistent progress/recommendations; no invented progress |
+| Teacher intervention and support follow-up | `/teacher/interventions` records teacher-created cases with reason category, priority, evidence reference, notes, review date, status and outcome; server-side RPCs restrict records to the assigned teacher class or an authorised school owner/manager | Implemented in draft PR; `20261020210000_learning_intervention_cases.sql` not applied | Verify class/student membership, manager permission, cross-class and cross-tenant denial, follow-up persistence and empty/error states. Cases are manually created and do not auto-diagnose or rank students |
 | Daily Learning Hub | Student `/learning/today` combines due vocabulary, unfinished published assignments, recommendations and reward XP/streak into a data-derived next-action view; learners with multiple active school memberships can select the school whose vocabulary they are reviewing | Code present — verify | Confirm links open the correct learner workflows, vocabulary errors do not hide assignments, school selection scopes vocabulary correctly, and counts match persisted records; the daily plan is derived rather than stored as a checklist |
 | Teacher gradebook and grading | Gradebook service/repository/pages and academic-record migrations | Code present — verify | Assessment and teacher-entered grades reconcile; finalization/reopen and audit history behave correctly |
 | Gradebook reports/export | Gradebook report page and CSV export | Partial; report selection/export hardening added in this branch | Term and subject are selectable; only finalized grades are ranked/averaged; CSV is correctly escaped; school format still needs approval |
@@ -48,6 +49,8 @@
 10. Confirm target Supabase migrations and policies are applied; a source commit or successful build alone does not apply database changes.
 
 Use existing pilot data and the complete existing assignment `EN-M1-SELF-INTRO-A1` where appropriate. Do not duplicate seed data just to make the test pass.
+
+- Teacher support follow-up now has a draft case register with status, priority, review date, evidence reference and outcome. It is a manual workflow layered on existing class/student memberships, not a separate mastery or grading engine. Migration `20261020210000_learning_intervention_cases.sql` is not applied; verify assigned-class authorization, student enrollment checks and cross-tenant denial before use.
 
 ## Post-V1 feature roadmap
 
