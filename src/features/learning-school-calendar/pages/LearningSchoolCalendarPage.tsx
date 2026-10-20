@@ -4,8 +4,8 @@ import { CalendarDays, CheckCircle2, Clock3, Plus, Send, AlertCircle } from "luc
 import { useAuth } from "@/core/auth";
 import { useAuthorization } from "@/features/auth/authorization/useAuthorization";
 import { learningAcademicService } from "@/features/learning-academic";
-import { learningSchoolCalendarService } from "@/features/learning-school-calendar";
-import type { LearningCalendarEvent, LearningCalendarEventType } from "@/features/learning-school-calendar";
+import { learningSchoolCalendarService } from "../services/learning-school-calendar.service";
+import type { LearningCalendarEvent, LearningCalendarEventType } from "../types/learning-school-calendar.types";
 
 const fieldClass = "mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200";
 const buttonClass = "inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50";
