@@ -3,6 +3,7 @@ import { ProtectedRoute } from "@/core/auth";
 import ParentLayout from "../layouts/ParentLayout";
 import ParentProgressPage from "../pages/ParentProgressPage";
 import ParentInvitationPage from "../pages/ParentInvitationPage";
+import ParentAnnouncementsPage from "../pages/ParentAnnouncementsPage";
 
 export const learningParentRoutes: RouteObject[] = [
   {
@@ -15,6 +16,7 @@ export const learningParentRoutes: RouteObject[] = [
     children: [
       { index: true, element: <ParentProgressPage /> },
       { path: "invite", element: <ParentInvitationPage /> },
+      { path: "announcements", element: <ParentAnnouncementsPage /> },
     ],
   },
 ];
