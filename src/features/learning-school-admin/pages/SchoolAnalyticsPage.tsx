@@ -13,9 +13,17 @@ function csvCell(value: string): string {
   return /[",\r\n]/.test(safeValue) ? '"' + safeValue.replace(/"/g, '""') + '"' : safeValue;
 }
 
-function exportCsv(rows: Array<{ className: string; subjectName: string; finalizedCount: number; averageScore: number | null }>, schoolName: string, termName: string) {
+function exportCsv(
+  rows: Array<{ className: string; subjectName: string; finalizedCount: number; averageScore: number | null }>,
+  schoolName: string,
+  termName: string,
+  overview: Array<[string, string]>,
+) {
   const values = [
     ["school", schoolName, "term", termName],
+    ["overview metric", "value"],
+    ...overview,
+    [],
     ["class", "subject", "finalized student grades", "average finalized score (%)"],
     ...rows.map((row) => [row.className, row.subjectName, String(row.finalizedCount), row.averageScore === null ? "" : row.averageScore.toFixed(2)]),
   ];
@@ -104,8 +112,9 @@ export default function SchoolAnalyticsPage() {
     classGroupId: group.id,
     subjectName: subjectNames.get(subject.subjectId) ?? subject.subjectId,
   })));
-  const visibleClassSubjects = selectedClassSubjectId && classSubjects.some((item) => item.id === selectedClassSubjectId)
-    ? classSubjects.filter((item) => item.id === selectedClassSubjectId) : classSubjects;
+  const validClassSubjectId = classSubjects.some((item) => item.id === selectedClassSubjectId) ? selectedClassSubjectId : "";
+  const visibleClassSubjects = validClassSubjectId
+    ? classSubjects.filter((item) => item.id === validClassSubjectId) : classSubjects;
 
   const gradesQuery = useQuery({
     queryKey: ["school-analytics", "term-grades", organizationId, termId],
@@ -126,12 +135,12 @@ export default function SchoolAnalyticsPage() {
     };
   }), [visibleClassSubjects, finalizedGrades]);
   const assignmentSummaryQuery = useQuery({
-    queryKey: ["school-analytics", "assignment-progress", organizationId, academicYearId, classGroupId, selectedClassSubjectId, activityFrom, activityTo],
+    queryKey: ["school-analytics", "assignment-progress", organizationId, academicYearId, classGroupId, validClassSubjectId, activityFrom, activityTo],
     queryFn: () => learningSchoolAdminService.getAnalyticsSummary({
       organizationId,
       academicYearId: academicYearId || undefined,
       classGroupId: classGroupId || undefined,
-      classSubjectId: selectedClassSubjectId || undefined,
+      classSubjectId: validClassSubjectId || undefined,
       activityFrom: activityFrom || undefined,
       activityTo: activityTo || undefined,
       timezone: organization?.timezone || "UTC",
@@ -165,7 +174,27 @@ export default function SchoolAnalyticsPage() {
           <h1 className="mt-1 text-2xl font-bold text-slate-950 sm:text-3xl">School analytics</h1>
           <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">A live summary of active class membership and finalized term grades. Only saved, finalized grade records contribute to performance summaries.</p>
         </div>
-        <button type="button" disabled={!rows.length || loading} onClick={() => exportCsv(rows.map((row) => ({ className: row.className, subjectName: row.subjectName, finalizedCount: row.finalizedCount, averageScore: row.averageScore })), organization?.name ?? "School", term?.name ?? "")} className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50">Export filtered CSV</button>
+        <button type="button" disabled={!rows.length || loading} onClick={() => exportCsv(
+          rows.map((row) => ({ className: row.className, subjectName: row.subjectName, finalizedCount: row.finalizedCount, averageScore: row.averageScore })),
+          organization?.name ?? "School",
+          term?.name ?? "",
+          [
+            ["Academic year", years.find((item) => item.id === academicYearId)?.name ?? "All academic years"],
+            ["Class filter", classes.find((item) => item.id === classGroupId)?.name ?? "All classes"],
+            ["Subject filter", classSubjects.find((item) => item.id === validClassSubjectId)?.subjectName ?? "All subjects"],
+            ["Active students", String(studentIds.size)],
+            ["Active teachers", String(teacherIds.size)],
+            ["Active classes", String(visibleClasses.length)],
+            ["Finalized term grades", String(filteredFinalizedGrades.length)],
+            ["Average finalized score (%)", averageScore === null ? "No finalized grades" : averageScore.toFixed(2)],
+            ["Published assignments", String(assignmentSummary?.publishedAssignments ?? 0)],
+            ["Tracked assignment progress", String(assignmentSummary?.trackedAssignmentRecords ?? 0)],
+            ["Completed tracked assignments", String(assignmentSummary?.completedAssignmentRecords ?? 0)],
+            ["Assignment completion rate", assignmentSummary?.completionRate === null || assignmentSummary?.completionRate === undefined ? "No tracked progress" : assignmentSummary.completionRate.toFixed(2) + "%"],
+            ["Activity from", activityFrom || "Any date"],
+            ["Activity through", activityTo || "Any date"],
+          ],
+        )} className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50">Export filtered CSV</button>
       </header>
 
       <section className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6">
