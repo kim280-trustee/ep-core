@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
@@ -123,7 +123,7 @@ export default function SchoolAnalyticsPage() {
   });
   const finalizedGrades = (gradesQuery.data ?? []).filter((grade) => grade.status === "finalized");
   const filteredFinalizedGrades = finalizedGrades.filter((grade) => visibleClassSubjects.some((subject) => subject.id === grade.classSubjectId));
-  const rows = useMemo(() => visibleClassSubjects.map((subject) => {
+  const rows = visibleClassSubjects.map((subject) => {
     const grades = finalizedGrades.filter((grade) => grade.classSubjectId === subject.id);
     return {
       className: subject.className,
@@ -133,7 +133,7 @@ export default function SchoolAnalyticsPage() {
       finalizedCount: grades.length,
       averageScore: grades.length ? grades.reduce((total, grade) => total + (grade.overrideScore ?? grade.score), 0) / grades.length : null,
     };
-  }), [visibleClassSubjects, finalizedGrades]);
+  });
   const assignmentSummaryQuery = useQuery({
     queryKey: ["school-analytics", "assignment-progress", organizationId, academicYearId, classGroupId, validClassSubjectId, activityFrom, activityTo],
     queryFn: () => learningSchoolAdminService.getAnalyticsSummary({
