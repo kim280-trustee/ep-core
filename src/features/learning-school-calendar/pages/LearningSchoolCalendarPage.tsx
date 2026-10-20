@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { CalendarDays, CheckCircle2, Clock3, Plus, Send, AlertCircle } from "lucide-react";
+import { CalendarDays, CheckCircle2, Plus, Send, AlertCircle } from "lucide-react";
 import { useAuth } from "@/core/auth";
 import { useAuthorization } from "@/features/auth/authorization/useAuthorization";
 import { learningAcademicService } from "@/features/learning-academic";
