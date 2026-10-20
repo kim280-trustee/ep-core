@@ -127,7 +127,8 @@ export default function SchoolAnalyticsPage() {
   const teacherIds = new Set(classData.flatMap(({ members }) => members.filter((member) => member.membershipType === "teacher" && member.status === "active").map((member) => member.userId)));
   const gradeScores = filteredFinalizedGrades.map((grade) => grade.overrideScore ?? grade.score);
   const averageScore = gradeScores.length ? gradeScores.reduce((sum, score) => sum + score, 0) / gradeScores.length : null;
-  const loading = authLoading || authorization.loading || organizationsQuery.isPending || academicQuery.isPending
+  const loading = authLoading || authorization.loading || organizationsQuery.isPending
+    || (Boolean(organizationId) && academicQuery.isPending)
     || (Boolean(academicYearId) && termsQuery.isPending)
     || (visibleClasses.length > 0 && classDataQuery.isPending)
     || (Boolean(termId) && gradesQuery.isPending);
@@ -136,6 +137,7 @@ export default function SchoolAnalyticsPage() {
   if (!user) return <main className="mx-auto max-w-6xl p-6">Sign in to view school analytics.</main>;
   if (authorization.loading || authLoading) return <main className="mx-auto max-w-6xl p-6"><div className="h-28 animate-pulse rounded-2xl bg-slate-100" /></main>;
   if (!canManage) return <main className="mx-auto max-w-6xl p-6"><section role="alert" className="rounded-2xl border border-amber-200 bg-amber-50 p-5 text-amber-950"><h1 className="text-xl font-bold">School analytics access required</h1><p className="mt-2 text-sm">Your account needs the learning.academic.manage permission to view school-wide analytics.</p><Link to="/teacher" className="mt-4 inline-flex font-semibold underline">Return to workspace</Link></section></main>;
+  if (organizationsQuery.isSuccess && organizations.length === 0) return <main className="mx-auto max-w-6xl p-6"><section className="rounded-2xl border border-slate-200 bg-white p-6"><h1 className="text-xl font-bold text-slate-950">School analytics</h1><p className="mt-2 text-sm text-slate-600">No school is available for your account. Ask an owner or manager to confirm your active organisation membership and academic-management permission.</p><Link to="/school-admin" className="mt-4 inline-flex font-semibold underline">Return to school administration</Link></section></main>;
 
   return (
     <main className="mx-auto max-w-7xl space-y-6 p-4 sm:p-6">
@@ -151,7 +153,7 @@ export default function SchoolAnalyticsPage() {
 
       <section className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-2 lg:grid-cols-4">
         <label className="text-sm font-medium text-slate-700">School / organization<select className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5" value={organizationId} disabled={organizations.length <= 1} onChange={(event) => { setSelectedOrganizationId(event.target.value); setSelectedAcademicYearId(""); setSelectedTermId(""); setSelectedClassGroupId(""); setSelectedClassSubjectId(""); }}><option value="">Select school</option>{organizations.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></label>
-        <label className="text-sm font-medium text-slate-700">Academic year<select className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5" value={academicYearId} onChange={(event) => { setSelectedAcademicYearId(event.target.value); setSelectedTermId(""); setSelectedClassGroupId(""); setSelectedClassSubjectId(""); }}><option value="">All academic years</option>{years.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
+        <label className="text-sm font-medium text-slate-700">Academic year<select className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5" value={academicYearId} onChange={(event) => { setSelectedAcademicYearId(event.target.value); setSelectedTermId(""); setSelectedClassGroupId(""); setSelectedClassSubjectId(""); }}>{years.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
         <label className="text-sm font-medium text-slate-700">Term<select className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5" value={termId} onChange={(event) => setSelectedTermId(event.target.value)}><option value="">Select term</option>{terms.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
         <label className="text-sm font-medium text-slate-700">Class<select className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5" value={classGroupId} onChange={(event) => setSelectedClassGroupId(event.target.value)}><option value="">All classes</option>{classes.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></label>
       </section>
