@@ -21,6 +21,7 @@ const navigationGroups = [
       { to: "/notifications", label: "Notifications", icon: Bell, end: false },
       { to: "/marketplace", label: "Extra Classes", icon: GraduationCap, end: false },
       { to: "/teacher/authoring", label: "Authoring", icon: BookOpen, end: false },
+      { to: "/teacher/lesson-plans", label: "Lesson Planning", icon: BookOpen, end: false },
       { to: "/teacher/ai-assistant", label: "AI Assistant", icon: Sparkles, end: false },
       { to: "/teacher/question-bank", label: "Question Bank", icon: FileQuestion, end: false },
     ],
