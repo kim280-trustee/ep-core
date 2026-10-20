@@ -183,8 +183,8 @@ begin
   ) values (
     v_tenant_id, p_organization_id, p_academic_year_id, p_term_id, p_class_group_id,
     p_event_type, trim(p_title), trim(coalesce(p_description, '')), p_start_date, p_end_date,
-    coalesce(p_is_all_day, true), case when p_is_all_day then null else p_start_time end,
-    case when p_is_all_day then null else p_end_time end, 'draft', v_user_id
+    coalesce(p_is_all_day, true), case when coalesce(p_is_all_day, true) then null else p_start_time end,
+    case when coalesce(p_is_all_day, true) then null else p_end_time end, 'draft', v_user_id
   ) returning id into v_event_id;
   return v_event_id;
 end;
@@ -249,6 +249,7 @@ begin
   left join public.learning_class_groups cg on cg.id = e.class_group_id and cg.organization_id = e.organization_id
   where e.status = 'published'
     and e.start_date <= p_end_date and e.end_date >= p_start_date
+    and (e.class_group_id is null or cg.status = 'active')
     and (
       exists (
         select 1 from public.organization_memberships om
