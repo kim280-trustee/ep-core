@@ -5,3 +5,5 @@ export type {
   LearningCalendarEventType,
   LearningCalendarOrganization,
 } from "./types/learning-school-calendar.types";
+
+export { learningSchoolCalendarRoutes } from "./routes/learning-school-calendar.routes";
