@@ -119,8 +119,43 @@ export const learningContentRepository: LearningContentRepository = {
   async deleteContent(id){const{error}=await supabase.from("learning_content_items").delete().eq("id",id);if(error)throw error;},
   async listContentVersions(contentItemId){const{data,error}=await supabase.from("learning_content_versions").select("*").eq("content_item_id",contentItemId).order("version_no",{ascending:false});if(error)throw error;return(data??[]).map(mapContentVersion);},
   async listContentObjectives(contentItemId){const{data,error}=await supabase.from("learning_content_objectives").select("*").eq("content_item_id",contentItemId).order("sequence_no");if(error)throw error;return(data??[]).map(mapContentObjective);},
-  async createContent(input){const{data,error}=await supabase.from("learning_content_items").insert({organization_id:input.organizationId,code:input.code,title:input.title,content_type:input.contentType,language_code:input.languageCode,created_by:input.createdBy}).select("*").single();if(error)throw error;return mapContentItem(data);},
-  async createVersion(input){const{data,error}=await supabase.from("learning_content_versions").insert({content_item_id:input.contentItemId,version_no:input.versionNo,body:input.body as Json,change_summary:input.changeSummary??null,created_by:input.createdBy}).select("*").single();if(error)throw error;return mapContentVersion(data);},
+  async createContent(input){
+    const code=input.code.trim().toUpperCase();
+    if(!code)throw new Error("Content code is required.");
+    if(!input.title.trim())throw new Error("Content title is required.");
+    const {data,error}=await supabase.from("learning_content_items").insert({
+      organization_id:input.organizationId,
+      code,
+      title:input.title.trim(),
+      content_type:input.contentType,
+      language_code:input.languageCode.trim().toLowerCase(),
+      created_by:input.createdBy,
+    }).select("*").single();
+    if(error){
+      if(error.code==="23505")throw new Error("That content code already exists in this organization. Use a different code.");
+      throw error;
+    }
+    return mapContentItem(data);
+  },
+  async createVersion(input){
+    if(!Number.isInteger(input.versionNo)||input.versionNo<1)throw new Error("Version number must be a positive integer.");
+    const rawSections=input.body.sections;
+    if(!Array.isArray(rawSections)||!rawSections.some((section)=>section&&typeof section==="object"&&typeof (section as Record<string,unknown>).body==="string"&&String((section as Record<string,unknown>).body).trim())){
+      throw new Error("Content version cannot be empty.");
+    }
+    const{data,error}=await supabase.from("learning_content_versions").insert({
+      content_item_id:input.contentItemId,
+      version_no:input.versionNo,
+      body:input.body as Json,
+      change_summary:input.changeSummary?.trim()||null,
+      created_by:input.createdBy,
+    }).select("*").single();
+    if(error){
+      if(error.code==="23505")throw new Error("A version with this number already exists. Refresh the content and try again.");
+      throw error;
+    }
+    return mapContentVersion(data);
+  },
   async addObjective(input){const{data,error}=await supabase.from("learning_content_objectives").insert({content_item_id:input.contentItemId,objective_id:input.objectiveId,sequence_no:input.sequenceNo}).select("*").single();if(error)throw error;return mapContentObjective(data);},
   async updateContentStatus(id,status,_reviewerId){
     // The database RPC derives the reviewer from auth.uid(); caller-supplied identity is not trusted.
