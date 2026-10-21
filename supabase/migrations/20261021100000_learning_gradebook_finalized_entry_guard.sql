@@ -9,6 +9,14 @@ language plpgsql
 set search_path = ''
 as $function$
 begin
+  if current_user in ('anon', 'authenticated') then
+    raise exception 'Gradebook records must be changed through the audited gradebook RPC workflow.';
+  end if;
+
+  if tg_op = 'INSERT' then
+    return new;
+  end if;
+
   if exists (
     select 1
     from public.learning_term_grades grade
@@ -65,7 +73,7 @@ execute function public.learning_guard_term_grade_rpc_only();
 drop trigger if exists learning_guard_finalized_gradebook_entry_update
   on public.learning_gradebook_entries;
 create trigger learning_guard_finalized_gradebook_entry_update
-before update or delete on public.learning_gradebook_entries
+before insert or update or delete on public.learning_gradebook_entries
 for each row
 execute function public.learning_guard_finalized_gradebook_entry_mutation();
 
