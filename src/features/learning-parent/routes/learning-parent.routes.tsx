@@ -1,8 +1,11 @@
 import type { RouteObject } from "react-router-dom";
 import { ProtectedRoute } from "@/core/auth";
 import ParentLayout from "../layouts/ParentLayout";
-import ParentProgressPage from "../pages/ParentProgressPage";
-import ParentInvitationPage from "../pages/ParentInvitationPage";
+
+import { lazy } from "react";
+
+const ParentProgressPage = lazy(() => import("../pages/ParentProgressPage"));
+const ParentInvitationPage = lazy(() => import("../pages/ParentInvitationPage"));
 
 export const learningParentRoutes: RouteObject[] = [
   {
