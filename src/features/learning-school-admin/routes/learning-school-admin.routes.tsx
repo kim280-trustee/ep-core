@@ -1,6 +1,7 @@
 import type { RouteObject } from "react-router-dom";
 import { ProtectedRoute } from "@/core/auth";
 import SchoolAdministrationPage from "../pages/SchoolAdministrationPage";
+import SchoolAnalyticsPage from "../pages/SchoolAnalyticsPage";
 import SchoolStudentAdmissionsPage from "../pages/SchoolStudentAdmissionsPage";
 import StudentInvitationPage from "../pages/StudentInvitationPage";
 import SchoolParentLinksPage from "../pages/SchoolParentLinksPage";
@@ -10,6 +11,7 @@ import SchoolAttendanceReportPage from "../pages/SchoolAttendanceReportPage";
 
 export const learningSchoolAdminRoutes: RouteObject[] = [
   { path: "school-admin", element: <ProtectedRoute><SchoolAdministrationPage /></ProtectedRoute> },
+  { path: "school-admin/analytics", element: <ProtectedRoute><SchoolAnalyticsPage /></ProtectedRoute> },
   { path: "school-admin/parents", element: <ProtectedRoute><SchoolParentLinksPage /></ProtectedRoute> },
   { path: "school-admin/admissions", element: <ProtectedRoute><SchoolStudentAdmissionsPage /></ProtectedRoute> },
   { path: "student/invite", element: <ProtectedRoute><StudentInvitationPage /></ProtectedRoute> },
