@@ -11,6 +11,10 @@ import { learningRuntimeService } from "@/features/learning-runtime";
 import { learningRewardsService, calculateLearningStreak, getVerifiedLearningActivityTimestamps } from "@/features/learning-rewards";
 import { learningVocabularyService } from "@/features/learning-vocabulary";
 
+function localDayKey(value: Date) {
+  return value.getFullYear() + "-" + String(value.getMonth() + 1).padStart(2, "0") + "-" + String(value.getDate()).padStart(2, "0");
+}
+
 function formatDueDate(value: string | null | undefined) {
   if (!value) return "No due date";
   const date = new Date(value);
@@ -84,6 +88,13 @@ export default function LearningDailyHubPage() {
     enabled: Boolean(userId && organizationId),
   });
 
+  const dailyXpGoalQuery = useQuery({
+    queryKey: ["learning", "daily-xp-goal", userId],
+    queryFn: () => learningRewardsService.getStudentDailyXpGoal(),
+    enabled: Boolean(userId),
+    staleTime: 60_000,
+  });
+
   const rewardsQuery = useQuery({
     queryKey: ["learning", "daily-hub-rewards", userId],
     queryFn: async () => {
@@ -91,8 +102,12 @@ export default function LearningDailyHubPage() {
         learningRewardsService.listStudentLedger(userId),
         learningActivityService.listValidatedContentCompletions(userId),
       ]);
+      const todayKey = localDayKey(new Date());
       return {
         xp: ledger.reduce((total, entry) => total + entry.xpDelta, 0),
+        xpToday: ledger
+          .filter((entry) => localDayKey(new Date(entry.occurredAt)) === todayKey)
+          .reduce((total, entry) => total + entry.xpDelta, 0),
         streak: calculateLearningStreak(getVerifiedLearningActivityTimestamps(completions, ledger)),
       };
     },
@@ -142,9 +157,28 @@ export default function LearningDailyHubPage() {
           <h1 className="mt-2 text-2xl font-bold sm:text-3xl">Your plan for today</h1>
           <p className="mt-2 max-w-2xl text-sm text-slate-300">A practical next step based on your saved assignments, vocabulary review schedule and learning recommendations.</p>
         </div>
-        {rewardsQuery.isSuccess && <div className="rounded-xl border border-white/15 bg-white/10 px-4 py-3">
-          <p className="flex items-center gap-2 text-sm font-semibold"><Zap size={16} /> {rewardsQuery.data.xp} XP</p>
+        {rewardsQuery.isSuccess && <div className="min-w-48 rounded-xl border border-white/15 bg-white/10 px-4 py-3">
+          <p className="flex items-center gap-2 text-sm font-semibold"><Zap size={16} /> {rewardsQuery.data.xp} XP total</p>
           <p className="mt-1 text-xs text-slate-300">{rewardsQuery.data.streak} day learning streak</p>
+          {dailyXpGoalQuery.isSuccess && <div className="mt-3">
+            <div className="flex items-center justify-between gap-3 text-xs text-slate-200">
+              <span>Today's XP goal</span>
+              <span className="font-semibold tabular-nums">{rewardsQuery.data.xpToday} / {dailyXpGoalQuery.data} XP</span>
+            </div>
+            <div
+              className="mt-1.5 h-2 overflow-hidden rounded-full bg-white/20"
+              role="progressbar"
+              aria-label="Today's XP goal progress"
+              aria-valuemin={0}
+              aria-valuemax={dailyXpGoalQuery.data}
+              aria-valuenow={Math.max(0, rewardsQuery.data.xpToday)}
+            >
+              <div
+                className="h-full rounded-full bg-sky-300 transition-[width]"
+                style={{ width: Math.min(100, Math.max(0, Math.round((rewardsQuery.data.xpToday / Math.max(1, dailyXpGoalQuery.data)) * 100))) + "%" }}
+              />
+            </div>
+          </div>}
         </div>}
       </div>
     </section>
