@@ -5,6 +5,7 @@ import TeacherClassPage from "../pages/TeacherClassPage";
 import TeacherStudentProfilePage from "../pages/TeacherStudentProfilePage";
 import CreateTeacherAssignmentPage from "../pages/CreateTeacherAssignmentPage";
 import TeacherAuthoringPage from "../pages/TeacherAuthoringPage";
+import TeacherLessonPlanningPage from "../pages/TeacherLessonPlanningPage";
 import TeacherAIAssistantPage from "../pages/TeacherAIAssistantPage";
 import QuestionBankPage from "../../learning-assessment/pages/QuestionBankPage";
 import TeacherAssessmentBuilderPage from "../../learning-assessment/pages/TeacherAssessmentBuilderPage";
@@ -21,7 +22,6 @@ import TeacherContentCreatePage from "../../learning-content/pages/TeacherConten
 import TeacherContentDetailPage from "../../learning-content/pages/TeacherContentDetailPage";
 import TeacherContentResponsesPage from "../../learning-content/pages/TeacherContentResponsesPage";
 import TeacherClassGamificationPage from "../pages/TeacherClassGamificationPage";
-import TeacherInterventionsPage from "../pages/TeacherInterventionsPage";
 import { LearningVocabularyPage } from "@/features/learning-vocabulary";
 import TeacherVocabularyAssignmentPage from "@/features/learning-vocabulary/pages/TeacherVocabularyAssignmentPage";
 
@@ -35,8 +35,8 @@ export const learningTeacherRoutes: RouteObject[] = [
       { path: "classes/:classGroupId/students/:studentUserId", element: <TeacherStudentProfilePage /> },
       { path: "assignments/new", element: <CreateTeacherAssignmentPage /> },
       { path: "authoring", element: <TeacherAuthoringPage /> },
+      { path: "lesson-plans", element: <TeacherLessonPlanningPage /> },
       { path: "ai-assistant", element: <TeacherAIAssistantPage /> },
-      { path: "interventions", element: <TeacherInterventionsPage /> },
       { path: "content", element: <TeacherContentLibraryPage /> },
       { path: "vocabulary", element: <LearningVocabularyPage audience="teacher" /> },
       { path: "vocabulary/assignments/new", element: <TeacherVocabularyAssignmentPage /> },
