@@ -1,6 +1,8 @@
 import { Home, LogOut, UserPlus, Search, Bell, Megaphone } from "lucide-react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { learningSchoolAnnouncementsService } from "@/features/learning-school-announcements";
 import { useAuth } from "@/core/auth";
 
 const items = [
@@ -15,6 +17,13 @@ export default function ParentLayout() {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
   const [loggingOut, setLoggingOut] = useState(false);
+  const announcementsQuery = useQuery({
+    queryKey: ["learning", "parent", "school-announcements", user?.id],
+    queryFn: () => learningSchoolAnnouncementsService.listForParent(50),
+    enabled: Boolean(user?.id),
+    staleTime: 30_000,
+  });
+  const unreadAnnouncementCount = (announcementsQuery.data ?? []).filter((item) => !item.read_at).length;
   const handleLogout = async () => {
     if (loggingOut) return;
     setLoggingOut(true);
@@ -37,7 +46,7 @@ export default function ParentLayout() {
           <nav className="mt-6 space-y-1" aria-label="Parent portal navigation">
             {items.map(({to,label,icon:Icon,end}) => (
               <NavLink key={to} to={to} end={end} className={({isActive}) => linkClass(isActive)}>
-                <Icon size={18} />{label}
+                <Icon size={18} /><span className="flex-1">{label}</span>{label === "Announcements" && unreadAnnouncementCount > 0 && <span aria-label={`${unreadAnnouncementCount} unread announcements`} className="rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-bold text-indigo-800">{unreadAnnouncementCount > 99 ? "99+" : unreadAnnouncementCount}</span>}
               </NavLink>
             ))}
           </nav>
@@ -56,7 +65,7 @@ export default function ParentLayout() {
               <button type="button" onClick={() => void handleLogout()} disabled={loggingOut} className="rounded-xl border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-600 disabled:opacity-50">{loggingOut ? "Signing out..." : "Logout"}</button>
             </div>
             <nav className="mt-3 flex gap-2 overflow-x-auto pb-1" aria-label="Parent mobile navigation">
-              {items.map(({to,label,icon:Icon,end}) => <NavLink key={to} to={to} end={end} className={({isActive}) => linkClass(isActive)}><Icon size={16}/><span className="whitespace-nowrap">{label}</span></NavLink>)}
+              {items.map(({to,label,icon:Icon,end}) => <NavLink key={to} to={to} end={end} className={({isActive}) => linkClass(isActive)}><Icon size={16}/><span className="whitespace-nowrap">{label}</span>{label === "Announcements" && unreadAnnouncementCount > 0 && <span aria-label={`${unreadAnnouncementCount} unread announcements`} className="rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-bold text-indigo-800">{unreadAnnouncementCount > 99 ? "99+" : unreadAnnouncementCount}</span>}</NavLink>)}
             </nav>
           </div>
           <div className="p-4 sm:p-6 lg:p-8"><Outlet /></div>
