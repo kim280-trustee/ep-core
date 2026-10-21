@@ -1,30 +1,33 @@
 import type { RouteObject } from "react-router-dom";
 import TeacherLayout from "../layouts/TeacherLayout";
-import TeacherDashboardPage from "../pages/TeacherDashboardPage";
-import TeacherClassPage from "../pages/TeacherClassPage";
-import TeacherStudentProfilePage from "../pages/TeacherStudentProfilePage";
-import CreateTeacherAssignmentPage from "../pages/CreateTeacherAssignmentPage";
-import TeacherAuthoringPage from "../pages/TeacherAuthoringPage";
-import TeacherLessonPlanningPage from "../pages/TeacherLessonPlanningPage";
-import TeacherInterventionsPage from "../pages/TeacherInterventionsPage";
-import TeacherAIAssistantPage from "../pages/TeacherAIAssistantPage";
-import QuestionBankPage from "../../learning-assessment/pages/QuestionBankPage";
-import TeacherAssessmentBuilderPage from "../../learning-assessment/pages/TeacherAssessmentBuilderPage";
-import TeacherGradebookPage from "../../learning-gradebook/pages/TeacherGradebookPage";
-import TeacherStudentPerformancePage from "../../learning-gradebook/pages/TeacherStudentPerformancePage";
-import TeacherGradebookSettingsPage from "../../learning-gradebook/pages/TeacherGradebookSettingsPage";
-import TeacherGradebookReportsPage from "../../learning-gradebook/pages/TeacherGradebookReportsPage";
-import TeacherLearningAnalyticsPage from "../../learning-gradebook/pages/TeacherLearningAnalyticsPage";
-import TeacherDiagnosticReportPage from "../../learning-gradebook/pages/TeacherDiagnosticReportPage";
-import TeacherAssignmentHistoryPage from "../pages/TeacherAssignmentHistoryPage";
-import TeacherParentLinksPage from "../pages/TeacherParentLinksPage";
-import TeacherContentLibraryPage from "../../learning-content/pages/TeacherContentLibraryPage";
-import TeacherContentCreatePage from "../../learning-content/pages/TeacherContentCreatePage";
-import TeacherContentDetailPage from "../../learning-content/pages/TeacherContentDetailPage";
-import TeacherContentResponsesPage from "../../learning-content/pages/TeacherContentResponsesPage";
-import TeacherClassGamificationPage from "../pages/TeacherClassGamificationPage";
-import { LearningVocabularyPage } from "@/features/learning-vocabulary";
-import TeacherVocabularyAssignmentPage from "@/features/learning-vocabulary/pages/TeacherVocabularyAssignmentPage";
+
+import { lazy } from "react";
+
+const TeacherDashboardPage = lazy(() => import("../pages/TeacherDashboardPage"));
+const TeacherClassPage = lazy(() => import("../pages/TeacherClassPage"));
+const TeacherStudentProfilePage = lazy(() => import("../pages/TeacherStudentProfilePage"));
+const CreateTeacherAssignmentPage = lazy(() => import("../pages/CreateTeacherAssignmentPage"));
+const TeacherAuthoringPage = lazy(() => import("../pages/TeacherAuthoringPage"));
+const TeacherLessonPlanningPage = lazy(() => import("../pages/TeacherLessonPlanningPage"));
+const TeacherInterventionsPage = lazy(() => import("../pages/TeacherInterventionsPage"));
+const TeacherAIAssistantPage = lazy(() => import("../pages/TeacherAIAssistantPage"));
+const QuestionBankPage = lazy(() => import("../../learning-assessment/pages/QuestionBankPage"));
+const TeacherAssessmentBuilderPage = lazy(() => import("../../learning-assessment/pages/TeacherAssessmentBuilderPage"));
+const TeacherGradebookPage = lazy(() => import("../../learning-gradebook/pages/TeacherGradebookPage"));
+const TeacherStudentPerformancePage = lazy(() => import("../../learning-gradebook/pages/TeacherStudentPerformancePage"));
+const TeacherGradebookSettingsPage = lazy(() => import("../../learning-gradebook/pages/TeacherGradebookSettingsPage"));
+const TeacherGradebookReportsPage = lazy(() => import("../../learning-gradebook/pages/TeacherGradebookReportsPage"));
+const TeacherLearningAnalyticsPage = lazy(() => import("../../learning-gradebook/pages/TeacherLearningAnalyticsPage"));
+const TeacherDiagnosticReportPage = lazy(() => import("../../learning-gradebook/pages/TeacherDiagnosticReportPage"));
+const TeacherAssignmentHistoryPage = lazy(() => import("../pages/TeacherAssignmentHistoryPage"));
+const TeacherParentLinksPage = lazy(() => import("../pages/TeacherParentLinksPage"));
+const TeacherContentLibraryPage = lazy(() => import("../../learning-content/pages/TeacherContentLibraryPage"));
+const TeacherContentCreatePage = lazy(() => import("../../learning-content/pages/TeacherContentCreatePage"));
+const TeacherContentDetailPage = lazy(() => import("../../learning-content/pages/TeacherContentDetailPage"));
+const TeacherContentResponsesPage = lazy(() => import("../../learning-content/pages/TeacherContentResponsesPage"));
+const TeacherClassGamificationPage = lazy(() => import("../pages/TeacherClassGamificationPage"));
+const LearningVocabularyPage = lazy(() => import("@/features/learning-vocabulary").then(({ LearningVocabularyPage }) => ({ default: LearningVocabularyPage })));
+const TeacherVocabularyAssignmentPage = lazy(() => import("@/features/learning-vocabulary/pages/TeacherVocabularyAssignmentPage"));
 
 export const learningTeacherRoutes: RouteObject[] = [
   {
