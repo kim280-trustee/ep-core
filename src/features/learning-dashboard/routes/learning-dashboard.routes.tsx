@@ -1,18 +1,20 @@
 import type { RouteObject } from "react-router-dom";
+import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 import { ProtectedRoute } from "@/core/auth";
-import LearningDashboardPage from "../pages/LearningDashboardPage";
-import LearningDailyHubPage from "../pages/LearningDailyHubPage";
-import LearningAICoachPage from "../pages/LearningAICoachPage";
-import LearningAssignmentsPage from "../pages/LearningAssignmentsPage";
-import LearningAssignmentDetailPage from "../pages/LearningAssignmentDetailPage";
-import LearningAssessmentRuntimePage from "../pages/LearningAssessmentRuntimePage";
-import LearningProgressPage from "../pages/LearningProgressPage";
-import LearningRecommendationsPage from "../pages/LearningRecommendationsPage";
-import LearningRewardsPage from "../pages/LearningRewardsPage";
-import { LearningVocabularyPage } from "@/features/learning-vocabulary";
-import LearningContentRuntimePage from "../pages/LearningContentRuntimePage";
 import StudentLayout from "../layouts/StudentLayout";
+
+const LearningDashboardPage = lazy(() => import("../pages/LearningDashboardPage"));
+const LearningDailyHubPage = lazy(() => import("../pages/LearningDailyHubPage"));
+const LearningAICoachPage = lazy(() => import("../pages/LearningAICoachPage"));
+const LearningAssignmentsPage = lazy(() => import("../pages/LearningAssignmentsPage"));
+const LearningAssignmentDetailPage = lazy(() => import("../pages/LearningAssignmentDetailPage"));
+const LearningAssessmentRuntimePage = lazy(() => import("../pages/LearningAssessmentRuntimePage"));
+const LearningProgressPage = lazy(() => import("../pages/LearningProgressPage"));
+const LearningRecommendationsPage = lazy(() => import("../pages/LearningRecommendationsPage"));
+const LearningRewardsPage = lazy(() => import("../pages/LearningRewardsPage"));
+const LearningVocabularyPage = lazy(() => import("@/features/learning-vocabulary").then(({ LearningVocabularyPage }) => ({ default: LearningVocabularyPage })));
+const LearningContentRuntimePage = lazy(() => import("../pages/LearningContentRuntimePage"));
 
 export const learningDashboardRoutes: RouteObject[] = [
   {
