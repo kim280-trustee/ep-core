@@ -171,7 +171,7 @@ export default function LearningDailyHubPage() {
               aria-label="Today's XP goal progress"
               aria-valuemin={0}
               aria-valuemax={dailyXpGoalQuery.data}
-              aria-valuenow={Math.max(0, rewardsQuery.data.xpToday)}
+              aria-valuenow={Math.min(dailyXpGoalQuery.data, Math.max(0, rewardsQuery.data.xpToday))}
             >
               <div
                 className="h-full rounded-full bg-sky-300 transition-[width]"
