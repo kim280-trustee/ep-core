@@ -9,7 +9,8 @@ export type LearningNotificationType =
   | "learning.parent_assignment_published"
   | "learning.parent_assessment_result_available"
   | "school.parent_attendance_recorded"
-  | "school.student_invitation_accepted";
+  | "school.student_invitation_accepted"
+  | "school.announcement_published";
 
 export interface LearningNotification {
   id: string;
@@ -17,7 +18,7 @@ export interface LearningNotification {
   notification_type: LearningNotificationType;
   title: string;
   body: string;
-  resource_type: "marketplace_booking" | "learning_assignment" | "assessment_result" | "attendance_session" | "student_invitation";
+  resource_type: "marketplace_booking" | "learning_assignment" | "assessment_result" | "attendance_session" | "student_invitation" | "school_announcement";
   resource_id: string;
   read_at: string | null;
   created_at: string;
