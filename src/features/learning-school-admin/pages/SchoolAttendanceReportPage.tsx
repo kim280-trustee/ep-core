@@ -68,7 +68,7 @@ export default function SchoolAttendanceReportPage() {
     enabled: Boolean(organizationId && startDate && endDate && startDate <= endDate && canManage),
   });
 
-  const rows = reportQuery.data ?? [];
+  const rows = useMemo(() => reportQuery.data ?? [], [reportQuery.data]);
   const totals = useMemo(() => rows.reduce((result, row) => ({
     present: result.present + row.presentCount,
     absent: result.absent + row.absentCount,
