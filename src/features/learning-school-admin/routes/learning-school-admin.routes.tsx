@@ -1,13 +1,16 @@
 import type { RouteObject } from "react-router-dom";
 import { ProtectedRoute } from "@/core/auth";
-import SchoolAdministrationPage from "../pages/SchoolAdministrationPage";
-import SchoolAnalyticsPage from "../pages/SchoolAnalyticsPage";
-import SchoolStudentAdmissionsPage from "../pages/SchoolStudentAdmissionsPage";
-import StudentInvitationPage from "../pages/StudentInvitationPage";
-import SchoolParentLinksPage from "../pages/SchoolParentLinksPage";
-import SchoolTimetablePage from "../pages/SchoolTimetablePage";
-import SchoolStaffAdministrationPage from "../pages/SchoolStaffAdministrationPage";
-import SchoolAttendanceReportPage from "../pages/SchoolAttendanceReportPage";
+
+import { lazy } from "react";
+
+const SchoolAdministrationPage = lazy(() => import("../pages/SchoolAdministrationPage"));
+const SchoolAnalyticsPage = lazy(() => import("../pages/SchoolAnalyticsPage"));
+const SchoolStudentAdmissionsPage = lazy(() => import("../pages/SchoolStudentAdmissionsPage"));
+const StudentInvitationPage = lazy(() => import("../pages/StudentInvitationPage"));
+const SchoolParentLinksPage = lazy(() => import("../pages/SchoolParentLinksPage"));
+const SchoolTimetablePage = lazy(() => import("../pages/SchoolTimetablePage"));
+const SchoolStaffAdministrationPage = lazy(() => import("../pages/SchoolStaffAdministrationPage"));
+const SchoolAttendanceReportPage = lazy(() => import("../pages/SchoolAttendanceReportPage"));
 
 export const learningSchoolAdminRoutes: RouteObject[] = [
   { path: "school-admin", element: <ProtectedRoute><SchoolAdministrationPage /></ProtectedRoute> },
