@@ -200,7 +200,8 @@ begin
     on link.organization_id = a.organization_id
    and link.status = 'active'
   join public.learning_class_memberships student_membership
-    on student_membership.organization_id = a.organization_id
+    on student_membership.tenant_id = a.tenant_id
+   and student_membership.organization_id = a.organization_id
    and student_membership.user_id = link.student_user_id
    and student_membership.membership_type = 'student'
    and student_membership.status = 'active'
