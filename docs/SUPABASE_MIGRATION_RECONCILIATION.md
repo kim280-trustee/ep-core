@@ -7,10 +7,10 @@
 
 ## Summary
 
-- Local SQL migration files: **170**
+- Local SQL migration files: **173**
 - Applied migration records reported by Supabase: **143**
 - Same-name migration version mismatches: **31**
-- Local migration files with no matching applied name: **30**
+- Local migration files with no matching applied name: **33**
 - Applied migration records with no matching local filename: **3**
 
 **Release blocker:** Do not run a blind `supabase db push` while this drift exists. A migration can be applied already under one remote version while the repository has the same migration name under another version; the CLI may then treat the repository file as pending and attempt to apply it again.
@@ -84,7 +84,10 @@ These may be pending, renamed, or missing from the remote migration history. Con
 - `supabase/migrations/20261018210000_learning_parent_attendance_summary.sql` (`20261018210000`)
 - `supabase/migrations/20261019100000_school_admin_authorization_final_hardening.sql` (`20261019100000`)
 - `supabase/migrations/20261019110000_learning_attendance_submission_and_identity_hardening.sql` (`20261019110000`)
+- `supabase/migrations/20261020200000_learning_school_announcements.sql` (`20261020200000`)
 - `supabase/migrations/20261020210000_learning_intervention_cases.sql` (`20261020210000`)
+- `supabase/migrations/20261020220000_learning_school_announcement_notifications.sql` (`20261020220000`)
+- `supabase/migrations/20261021000000_learning_gradebook_status_inclusion_integrity.sql` (`20261021000000`)
 
 ## Applied remote records with no matching local filename
 
