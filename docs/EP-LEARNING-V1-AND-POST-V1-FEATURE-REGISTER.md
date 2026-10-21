@@ -1,8 +1,8 @@
 # E&P Learning — V1 and Post-V1 Feature Register
 
 **Repository:** `kim280-trustee/ep-core`  
-**Branch reviewed:** `edna/learning-intervention-v1`  
-**Review date:** 2026-10-20  
+**Branch reviewed:** `paul/integrate-edna-content`  
+**Review date:** 2026-10-21  
 **Canonical roadmap:** This is the single source of truth for V1 scope and post-V1 features.
 
 ## Status definitions
@@ -25,11 +25,14 @@
 | Student content/assessment runtime | Learning dashboard/runtime and assessment attempt/result migrations | Code present — verify | Student can start, answer, submit and see a persisted result after refresh; attempt limits apply |
 | Progress, mastery and recommendations | Learning activity/mastery services and dashboard pages | Code present — verify | Persisted evidence drives consistent progress/recommendations; no invented progress |
 | Teacher intervention and support follow-up | `/teacher/interventions` records teacher-created cases with reason category, priority, evidence reference, notes, review date, status and outcome; server-side RPCs restrict records to the assigned teacher class or an authorised school owner/manager | Implemented in draft PR; `20261020210000_learning_intervention_cases.sql` not applied | Verify class/student membership, manager permission, cross-class and cross-tenant denial, follow-up persistence and empty/error states. Cases are manually created and do not auto-diagnose or rank students |
-| Daily Learning Hub | Student `/learning/today` combines due vocabulary, unfinished published assignments, recommendations and reward XP/streak into a data-derived next-action view; learners with multiple active school memberships can select the school whose vocabulary they are reviewing | Code present — verify | Confirm links open the correct learner workflows, vocabulary errors do not hide assignments, school selection scopes vocabulary correctly, and counts match persisted records; the daily plan is derived rather than stored as a checklist |
+| Daily Learning Hub | Student `/learning/today` combines due vocabulary, unfinished published assignments, recommendations and reward XP/streak; the header now shows today's XP against the persisted daily goal with an accessible progress bar | Code present — verify; daily XP goal UI committed in this batch | Confirm links open the correct learner workflows, school selection scopes vocabulary, XP day boundaries match the intended timezone, and counts match persisted records; the daily plan is derived rather than stored as a checklist |
 | Teacher gradebook and grading | Gradebook service/repository/pages and academic-record migrations | Code present — verify | Assessment and teacher-entered grades reconcile; finalization/reopen and audit history behave correctly |
+| Curriculum-aligned lesson planning | `/teacher/lesson-plans` saves a structured lesson as a draft in the existing content library and aligns it to the selected curriculum, grade and learning objective; existing content review/publishing remains authoritative | Code present — verify | Confirm class membership, required sequence sections, duplicate content-code protection, objective alignment and persisted draft reopening; no separate lesson-plan table is used |
 | Gradebook reports/export | Gradebook report page and CSV export | Partial; report selection/export hardening added in this branch | Term and subject are selectable; only finalized grades are ranked/averaged; CSV is correctly escaped; school format still needs approval |
+| School Analytics V1 | School-level dashboard reads organization-scoped student, teacher and class counts plus available academic reporting; organization lookup has been fixed for the Khamkhen Kheo Chanupathum (KKC-MEP-PILOT) pilot | Pilot smoke test: organization resolves and active student/teacher metrics render; full acceptance still pending | Verify manager-only access, selected-organization isolation, metric definitions against persisted active memberships, empty/error states and cross-tenant denial; do not infer missing academic records |
 | Parent links and progress | Parent feature, invitations, progress page, authorized vocabulary summary, persisted badge summaries, and persisted EN/TH portal language preference | Code present — verify; new migrations not applied | Invitation acceptance, revocation, vocabulary aggregates and earned badges are visible only to the linked parent; test with separate parent/student accounts and unrelated tenants |
 | Parent attendance summary | Parent portal calls a server-side aggregate RPC for the linked student's last 30 submitted attendance sessions; exposes only session count, present/absent/late/excused totals and latest date, without notes or other students' records | Code present — verify; `20261018210000_learning_parent_attendance_summary.sql` not applied | Verify active parent link and active student enrollment are required, another parent's student is denied, only submitted sessions count, and the portal degrades safely if attendance data is unavailable |
+| School announcements and parent read status | School managers can draft and publish school-wide or class-specific notices; parents see published notices only for actively linked children enrolled in the matching active school/class; read state is per parent | Implemented in this batch; migration `20261020200000_learning_school_announcements.sql` not applied | Verify manager permission/active membership, class targeting, parent-link and active-enrollment scope, cross-tenant denial, draft privacy and read-state persistence in authenticated sessions |
 | Content response and teacher grading | Student response and teacher grading migrations/features | Code present — verify | Responses and feedback persist and appear only to authorized teacher/student |
 | Thai localization and official reports | Parent portal includes EN/TH copy; no approved official school template established | Partial / school validation required | Confirm Thai/English coverage, academic calendar/date conventions, grade calculations and actual school forms |
 | Security, RLS and data integrity | Recent hardening migrations for attempts, responses, publication, lifecycle and parent invitations | Code present — verify | Apply migrations safely and run positive/negative authorization tests in the target Supabase project |
@@ -85,6 +88,7 @@ Do not implement attendance, AI, external messaging, billing, offline sync or ma
 ## Current known limitations / next work
 
 - The repository contains four competing feature-register documents. This root-level document is canonical; the other three point here to prevent roadmap drift.
+- Parent school announcements are now wired into the parent and school-admin routes on `paul/integrate-edna-content`; migration `20261020200000_learning_school_announcements.sql` is included but not applied. Source build passed on Edna's feature branch, but this integrated branch still requires one local lint/build cycle and authenticated parent/manager/RLS checks.
 - Gradebook report previously hard-coded the first term and first subject and could rank draft grades. This branch now adds term/subject selection, finalized-only average/ranking, loading/error/empty states and CSV escaping/UTF-8 handling. Local build and browser verification are still required.
 - Parent invitation redirect timer is now cleaned up on unmount; invitation acceptance still requires authenticated integration testing.
 - Parent portal EN/TH preference now persists per authenticated profile through explicit language-preference RPCs; apply `20261018000000_learning_parent_language_preferences.sql` and verify persistence across reloads/devices plus rejection of unsupported languages.
@@ -98,7 +102,7 @@ Do not implement attendance, AI, external messaging, billing, offline sync or ma
 
 ## Execution order
 
-1. Pull this branch once and run `npm.cmd run build` and `npm.cmd run lint`; resolve errors before feature work.
+1. Finish the current implementation batch, then pull `paul/integrate-edna-content` once and run `npm.cmd run lint` and `npm.cmd run build` once; do not pull between individual feature commits.
 2. Complete the authenticated teacher → student → result → progress → gradebook journey.
 3. Test parent invitation/linking and negative access cases.
 4. Reconcile gradebook calculations and lifecycle-event history against persisted records.
