@@ -51,9 +51,9 @@ export default function SchoolParentLinksPage() {
     },
     enabled: Boolean(organizationId && canManage),
   });
-  const users = workspaceQuery.data?.users ?? [];
-  const students = workspaceQuery.data?.students ?? [];
-  const links = workspaceQuery.data?.links ?? [];
+  const users = useMemo(() => workspaceQuery.data?.users ?? [], [workspaceQuery.data?.users]);
+  const students = useMemo(() => workspaceQuery.data?.students ?? [], [workspaceQuery.data?.students]);
+  const links = useMemo(() => workspaceQuery.data?.links ?? [], [workspaceQuery.data?.links]);
   const userById = useMemo(() => new Map(users.map((item) => [item.id, item])), [users]);
   const studentIds = useMemo(() => new Set(students.map((item) => item.id)), [students]);
   const existingParentIds = useMemo(() => new Set(links.map((item) => item.parentUserId)), [links]);
