@@ -32,6 +32,36 @@ $function$;
 
 revoke all on function public.learning_guard_finalized_gradebook_entry_mutation() from public, anon, authenticated;
 
+-- Term-grade writes must go through the audited SECURITY DEFINER RPCs. The
+-- existing RLS policy grants managers table UPDATE, which otherwise lets a
+-- client bypass the reopen reason and override/finalization audit workflow.
+create or replace function public.learning_guard_term_grade_rpc_only()
+returns trigger
+language plpgsql
+set search_path = ''
+as $function$
+begin
+  if current_user in ('anon', 'authenticated') then
+    raise exception 'Term grades must be changed through the audited gradebook workflow.';
+  end if;
+
+  if tg_op = 'DELETE' then
+    return old;
+  end if;
+
+  return new;
+end;
+$function$;
+
+revoke all on function public.learning_guard_term_grade_rpc_only() from public, anon, authenticated;
+
+drop trigger if exists learning_term_grades_rpc_only
+  on public.learning_term_grades;
+create trigger learning_term_grades_rpc_only
+before insert or update or delete on public.learning_term_grades
+for each row
+execute function public.learning_guard_term_grade_rpc_only();
+
 drop trigger if exists learning_guard_finalized_gradebook_entry_update
   on public.learning_gradebook_entries;
 create trigger learning_guard_finalized_gradebook_entry_update
