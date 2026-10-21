@@ -40,7 +40,7 @@ export default function SchoolStaffAdministrationPage() {
     queryFn: () => learningSchoolAdminService.listStaff(organizationId) as Promise<StaffRow[]>,
     enabled: Boolean(organizationId && canManage),
   });
-  const staff = staffQuery.data ?? [];
+  const staff = useMemo(() => staffQuery.data ?? [], [staffQuery.data]);
   const statusMutation = useMutation({
     mutationFn: ({ membershipId, status }: { membershipId: string; status: "active" | "inactive" }) =>
       learningSchoolAdminService.setStaffMembershipStatus(membershipId, status),
