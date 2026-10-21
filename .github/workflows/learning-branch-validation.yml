@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - paul/integrate-edna-content
+      - 'edna/**'
   pull_request:
     branches:
       - paul/integrate-edna-content
+      - paul/parent-attendance-summary
 
 permissions:
   contents: read

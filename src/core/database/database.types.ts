@@ -471,6 +471,90 @@ export type Database = {
           },
         ]
       }
+      learning_attendance_sessions: {
+        Row: {
+          attendance_date: string
+          class_group_id: string
+          created_at: string
+          id: string
+          notes: string | null
+          organization_id: string
+          status: string
+          submitted_at: string | null
+          taken_by: string
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          attendance_date: string
+          class_group_id: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          organization_id: string
+          status?: string
+          submitted_at?: string | null
+          taken_by: string
+          tenant_id: string
+          updated_at?: string
+        }
+        Update: {
+          attendance_date?: string
+          class_group_id?: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          organization_id?: string
+          status?: string
+          submitted_at?: string | null
+          taken_by?: string
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      learning_attendance_records: {
+        Row: {
+          attendance_session_id: string
+          attendance_status: string
+          created_at: string
+          id: string
+          marked_at: string
+          marked_by: string
+          note: string | null
+          organization_id: string
+          student_user_id: string
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          attendance_session_id: string
+          attendance_status: string
+          created_at?: string
+          id?: string
+          marked_at?: string
+          marked_by: string
+          note?: string | null
+          organization_id: string
+          student_user_id: string
+          tenant_id: string
+          updated_at?: string
+        }
+        Update: {
+          attendance_session_id?: string
+          attendance_status?: string
+          created_at?: string
+          id?: string
+          marked_at?: string
+          marked_by?: string
+          note?: string | null
+          organization_id?: string
+          student_user_id?: string
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       learning_academic_years: {
         Row: {
           code: string
@@ -617,6 +701,104 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["tenant_id", "id"]
+          },
+        ]
+      }
+      learning_ai_generation_usage: {
+        Row: {
+          created_at: string
+          id: string
+          model: string
+          organization_id: string
+          tenant_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          model: string
+          organization_id: string
+          tenant_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          model?: string
+          organization_id?: string
+          tenant_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_ai_generation_usage_tenant_organization_fk"
+            columns: ["tenant_id", "organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_ai_generation_usage_tenant_user_fk"
+            columns: ["tenant_id", "user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_ai_generation_usage_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_student_ai_coach_usage: {
+        Row: {
+          created_at: string
+          id: string
+          model: string
+          organization_id: string
+          tenant_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          model: string
+          organization_id: string
+          tenant_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          model?: string
+          organization_id?: string
+          tenant_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_student_ai_coach_usage_tenant_org_fk"
+            columns: ["tenant_id", "organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_student_ai_coach_usage_tenant_user_fk"
+            columns: ["tenant_id", "user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_student_ai_coach_usage_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -3064,6 +3246,48 @@ export type Database = {
           },
         ]
       }
+      learning_badge_awards: {
+        Row: {
+          awarded_at: string
+          badge_code: string
+          badge_title: string
+          created_at: string
+          description: string
+          evidence_count: number
+          id: string
+          rule_version: number
+          student_user_id: string
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          awarded_at?: string
+          badge_code: string
+          badge_title: string
+          created_at?: string
+          description: string
+          evidence_count?: number
+          id?: string
+          rule_version?: number
+          student_user_id: string
+          tenant_id: string
+          updated_at?: string
+        }
+        Update: {
+          awarded_at?: string
+          badge_code?: string
+          badge_title?: string
+          created_at?: string
+          description?: string
+          evidence_count?: number
+          id?: string
+          rule_version?: number
+          student_user_id?: string
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       learning_class_challenges: {
         Row: { id: string; tenant_id: string; organization_id: string; class_group_id: string; title: string; description: string; target_type: string; target_value: number; bonus_xp: number; starts_at: string; ends_at: string; status: string; created_by: string; created_at: string; updated_at: string }
         Insert: { id?: string; tenant_id: string; organization_id: string; class_group_id: string; title: string; description?: string; target_type: string; target_value: number; bonus_xp?: number; starts_at?: string; ends_at: string; status?: string; created_by: string; created_at?: string; updated_at?: string }
@@ -3841,6 +4065,60 @@ export type Database = {
             referencedColumns: ["tenant_id", "id"]
           },
         ]
+      }
+      learning_timetable_entries: {
+        Row: {
+          id: string
+          tenant_id: string
+          organization_id: string
+          class_group_id: string
+          subject_id: string
+          teacher_user_id: string | null
+          day_of_week: number
+          starts_at: string
+          ends_at: string
+          room: string | null
+          notes: string | null
+          status: string
+          created_by: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          tenant_id: string
+          organization_id: string
+          class_group_id: string
+          subject_id: string
+          teacher_user_id?: string | null
+          day_of_week: number
+          starts_at: string
+          ends_at: string
+          room?: string | null
+          notes?: string | null
+          status?: string
+          created_by: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          tenant_id?: string
+          organization_id?: string
+          class_group_id?: string
+          subject_id?: string
+          teacher_user_id?: string | null
+          day_of_week?: number
+          starts_at?: string
+          ends_at?: string
+          room?: string | null
+          notes?: string | null
+          status?: string
+          created_by?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
       }
       organizations: {
         Row: {
@@ -4846,6 +5124,49 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      reserve_learning_ai_generation: {
+        Args: { p_model: string; p_organization_id: string }
+        Returns: {
+          allowed: boolean
+          daily_limit: number
+          reset_at: string
+          used_last_24_hours: number
+        }[]
+      }
+      reserve_learning_student_ai_coach: {
+        Args: { p_model: string; p_organization_id: string }
+        Returns: {
+          allowed: boolean
+          daily_limit: number
+          reset_at: string
+          used_last_24_hours: number
+        }[]
+      }
+      get_learning_parent_badge_awards: {
+        Args: { p_student_user_id: string }
+        Returns: {
+          badge_code: string
+          badge_title: string
+          description: string
+          awarded_at: string
+        }[]
+      }
+      sync_learning_badge_awards: {
+        Args: never
+        Returns: {
+          awarded_at: string
+          badge_code: string
+          badge_title: string
+          created_at: string
+          description: string
+          evidence_count: number
+          id: string
+          rule_version: number
+          student_user_id: string
+          tenant_id: string
+          updated_at: string
+        }[]
+      }
       record_learning_vocabulary_review: {
         Args: {
           p_is_correct: boolean
@@ -5018,6 +5339,23 @@ export type Database = {
         Args: { p_invitation_id: string }
         Returns: string
       }
+      create_learning_student_invitation: {
+        Args: {
+          p_class_group_id: string
+          p_organization_id: string
+          p_student_email: string
+          p_student_name: string
+        }
+        Returns: string
+      }
+      revoke_learning_student_invitation: {
+        Args: { p_invitation_id: string }
+        Returns: boolean
+      }
+      accept_learning_student_invitation: {
+        Args: { p_invitation_id: string }
+        Returns: string
+      }
       calculate_learning_term_grade: {
         Args: {
           p_class_subject_id: string
@@ -5086,6 +5424,7 @@ export type Database = {
       }
       get_current_user_tenant_id: { Args: never; Returns: string }
       has_permission: { Args: { permission_code: string }; Returns: boolean }
+      set_learning_staff_membership_status: { Args: { p_membership_id: string; p_status: string }; Returns: boolean }
       is_organization_member: {
         Args: { target_organization_id: string }
         Returns: boolean
