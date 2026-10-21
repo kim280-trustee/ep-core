@@ -16,6 +16,7 @@ const navigationGroups = [
     label: "Teaching",
     items: [
       { to: "/teacher/content", label: "Content Library", icon: FileText, end: false },
+      { to: "/teacher/lesson-plans", label: "Lesson Planning", icon: BookOpenCheck, end: false },
       { to: "/teacher/vocabulary", label: "Vocabulary", icon: Languages, end: false },
       { to: "/teacher/vocabulary/assignments/new", label: "Vocabulary Assignment", icon: BookOpenCheck, end: false },
       { to: "/notifications", label: "Notifications", icon: Bell, end: false },
