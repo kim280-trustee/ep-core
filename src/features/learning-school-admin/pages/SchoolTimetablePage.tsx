@@ -63,9 +63,9 @@ export default function SchoolTimetablePage() {
     },
     enabled: Boolean(activeOrganizationId && user?.tenantId && canManage),
   });
-  const classes = workspaceQuery.data?.classes ?? [];
-  const subjects = workspaceQuery.data?.subjects ?? [];
-  const eligibleUsers = workspaceQuery.data?.eligibleUsers ?? [];
+  const classes = useMemo(() => workspaceQuery.data?.classes ?? [], [workspaceQuery.data?.classes]);
+  const subjects = useMemo(() => workspaceQuery.data?.subjects ?? [], [workspaceQuery.data?.subjects]);
+  const eligibleUsers = useMemo(() => workspaceQuery.data?.eligibleUsers ?? [], [workspaceQuery.data?.eligibleUsers]);
   const activeClassGroupId = classGroupId && classes.some((item) => item.id === classGroupId)
     ? classGroupId : classes.find((item) => item.status === "active")?.id ?? "";
   const classSubjectsQuery = useQuery({
