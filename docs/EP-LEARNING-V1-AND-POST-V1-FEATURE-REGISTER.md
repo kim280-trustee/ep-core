@@ -127,12 +127,13 @@ All changes below target `paul/integrate-edna-content`. Continue implementation 
 - **Edna school analytics:** the integration branch's school analytics page and repository match `edna/school-analytics-v1-20261020`. Pilot smoke test reported by Paul: Khamkhen Kheo Chanupathum (KKC-MEP-PILOT) resolves and the active-student/active-teacher metrics render. Full authorization, metric and empty/error-state acceptance remains open.
 - **Edna teacher interventions:** intervention types, repository and migration are present on the integration branch. Migration `20261020210000_learning_intervention_cases.sql` is not applied; authenticated assigned-class, manager and cross-tenant checks remain open.
 - **Do not mark features verified solely because a source branch's CI passed.** Current integration needs one local lint/build run after the batch, then migration review/application and authenticated role/RLS acceptance in the intended Supabase project.
+- **Supabase migration state checked 2026-10-21:** the connected `ep-core` project reports latest applied migration version `20261019070729` (`learning_school_admin_roster_profile_visibility`). Some repository migration filenames use different timestamp versions for the same migration names (for example, the repository file is `20261019130000_learning_school_admin_roster_profile_visibility.sql`). Reconcile the applied version/name mapping before any CLI push; do not blindly apply the repository migration directory. The two announcement migrations and gradebook inclusion-integrity migration added in this batch are not applied.
 
 ### Pending release gates (tracked, not silently considered complete)
 
 1. Pull the integration branch once after this batch; run lint and production build once.
 2. Verify school announcements as a school manager and as parents linked to different children, including class-only notices, read persistence, notification preference suppression, one-notification-per-parent behavior and cross-tenant denial.
-3. Review/apply the pending forward migrations in dependency order; confirm actual Supabase migration state before applying anything.
+3. Reconcile the connected project's applied migration versions against repository filenames first; then review/apply pending forward migrations in dependency order. Do not run a blind migration push while timestamp/name drift remains.
 4. Run the teacher → student → persisted result → progress → gradebook journey and the parent invitation/attendance flows with real role-separated accounts; specifically reconcile raw points, unweighted percentages, weighted term grade, and any override.
 5. Reconcile gradebook finalization/averages and confirm the pilot school's required official reporting forms.
 6. Finish marketplace booking/safeguarding and notification end-to-end tests before enabling those workflows broadly.
