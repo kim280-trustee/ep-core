@@ -7,10 +7,10 @@
 
 ## Summary
 
-- Local SQL migration files: **174**
+- Local SQL migration files: **175**
 - Applied migration records reported by Supabase: **143**
 - Same-name migration version mismatches: **31**
-- Local migration files with no matching applied name: **34**
+- Local migration files with no matching applied name: **35**
 - Applied migration records with no matching local filename: **3**
 
 **Release blocker:** Do not run a blind `supabase db push` while this drift exists. A migration can be applied already under one remote version while the repository has the same migration name under another version; the CLI may then treat the repository file as pending and attempt to apply it again.
@@ -89,6 +89,7 @@ These may be pending, renamed, or missing from the remote migration history. Con
 - `supabase/migrations/20261020220000_learning_school_announcement_notifications.sql` (`20261020220000`)
 - `supabase/migrations/20261021000000_learning_gradebook_status_inclusion_integrity.sql` (`20261021000000`)
 - `supabase/migrations/20261021100000_learning_gradebook_finalized_entry_guard.sql` (`20261021100000`)
+- `supabase/migrations/20261021110000_learning_gradebook_entry_inclusion_audit.sql` (`20261021110000`)
 
 ## Applied remote records with no matching local filename
 
@@ -105,6 +106,6 @@ These may be legacy versions, renamed files, or migrations removed from the curr
 3. Recover the authoritative SQL for remote-only records or document why it is intentionally absent.
 4. Choose one canonical migration-version scheme and update local filenames/history only after the mapping is reviewed. Do not mark migrations applied merely to silence the CLI.
 5. After reconciliation, apply genuinely pending migrations in dependency order and verify with `supabase migration list`, read-only schema queries, and `supabase db advisors`.
-6. The announcement migrations (`20261020200000`, `20261020220000`) and gradebook integrity migrations (`20261021000000`, `20261021100000`) are part of the current integration batch and are not applied.
+6. The announcement migrations (`20261020200000`, `20261020220000`) and gradebook integrity migrations (`20261021000000`, `20261021100000`, `20261021110000`) are part of the current integration batch and are not applied.
 
 No migration was applied, repaired, or marked as applied during this inspection.
