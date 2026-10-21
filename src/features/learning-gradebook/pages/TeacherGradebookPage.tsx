@@ -219,7 +219,7 @@ function TermGradeDetails({ grade, entries: currentEntries }: { grade: LearningT
   const finalizedAt = grade.finalizedAt ? Date.parse(grade.finalizedAt) : null;
   const changedAfterFinalization = finalizedAt === null
     ? []
-    : currentEntries.filter((entry) => Date.parse(entry.updatedAt) > finalizedAt);
+    : currentEntries.filter((entry) => Date.parse(entry.createdAt) > finalizedAt || Date.parse(entry.updatedAt) > finalizedAt);
 
   return <details className="mt-2 max-w-[340px] whitespace-normal text-xs">
     <summary className="cursor-pointer font-semibold text-sky-800 underline">Calculation details</summary>
@@ -229,7 +229,7 @@ function TermGradeDetails({ grade, entries: currentEntries }: { grade: LearningT
       {totalWeight !== null && <p>Total configured weight: <b>{totalWeight}</b></p>}
       {calculatedAt && <p>Calculation snapshot: {new Date(calculatedAt).toLocaleString()}</p>}
       {grade.overrideScore !== null && <p>Teacher override: <b>{grade.overrideScore.toFixed(2)}%</b>{grade.overrideReason ? <span className="block mt-1">Reason: {grade.overrideReason}</span> : null}</p>}
-      {changedAfterFinalization.length > 0 && <p role="status" className="rounded-md border border-amber-200 bg-amber-50 p-2 text-amber-950"> {changedAfterFinalization.length} current record{changedAfterFinalization.length === 1 ? " was" : "s were"} updated after this grade was finalized. The saved grade remains a snapshot and is not recalculated automatically. Reopen with an audit reason and recalculate only if school policy requires it.</p>}
+      {changedAfterFinalization.length > 0 && <p role="status" className="rounded-md border border-amber-200 bg-amber-50 p-2 text-amber-950"> {changedAfterFinalization.length} current record{changedAfterFinalization.length === 1 ? " was" : "s were"} added or changed after this grade was finalized. The saved grade remains a snapshot and is not recalculated automatically. Reopen with an audit reason and recalculate only if school policy requires it.</p>}
       {calculationEntries.length > 0
         ? <ul className="space-y-1">{calculationEntries.map((entry, index) => <li key={entry.title + "-" + index} className="flex flex-wrap justify-between gap-2"><span>{entry.title}{entry.recordType ? " · " + entry.recordType : ""}</span><span>{entry.percentage.toFixed(2)}% × {entry.weight}</span></li>)}</ul>
         : <p>The saved calculation does not include entry-level details. Review included records and configured weights before recalculating.</p>}
