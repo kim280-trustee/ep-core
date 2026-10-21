@@ -12,6 +12,7 @@ const SchoolParentLinksPage = lazy(() => import("../pages/SchoolParentLinksPage"
 const SchoolTimetablePage = lazy(() => import("../pages/SchoolTimetablePage"));
 const SchoolStaffAdministrationPage = lazy(() => import("../pages/SchoolStaffAdministrationPage"));
 const SchoolAttendanceReportPage = lazy(() => import("../pages/SchoolAttendanceReportPage"));
+const SchoolAnnouncementsPage = lazy(() => import("../pages/SchoolAnnouncementsPage"));
 
 export const learningSchoolAdminRoutes: RouteObject[] = [
   { path: "school-admin", element: <ProtectedRoute><SchoolAdministrationPage /></ProtectedRoute> },
@@ -22,4 +23,5 @@ export const learningSchoolAdminRoutes: RouteObject[] = [
   { path: "school-admin/timetable", element: <ProtectedRoute><SchoolTimetablePage /></ProtectedRoute> },
   { path: "school-admin/staff", element: <ProtectedRoute><SchoolStaffAdministrationPage /></ProtectedRoute> },
   { path: "school-admin/attendance-report", element: <ProtectedRoute><SchoolAttendanceReportPage /></ProtectedRoute> },
+  { path: "school-admin/announcements", element: <ProtectedRoute><SchoolAnnouncementsPage /></ProtectedRoute> },
 ];
