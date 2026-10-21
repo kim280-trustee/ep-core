@@ -7,6 +7,7 @@ import { lazy } from "react";
 
 const ParentProgressPage = lazy(() => import("../pages/ParentProgressPage"));
 const ParentInvitationPage = lazy(() => import("../pages/ParentInvitationPage"));
+const ParentAnnouncementsPage = lazy(() => import("../pages/ParentAnnouncementsPage"));
 
 export const learningParentRoutes: RouteObject[] = [
   {
@@ -19,6 +20,7 @@ export const learningParentRoutes: RouteObject[] = [
     children: [
       { index: true, element: <ParentProgressPage /> },
       { path: "invite", element: <ParentInvitationPage /> },
+      { path: "announcements", element: <ParentAnnouncementsPage /> },
     ],
   },
 ];
