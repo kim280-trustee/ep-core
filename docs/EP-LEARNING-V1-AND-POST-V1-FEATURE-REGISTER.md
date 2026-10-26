@@ -141,3 +141,6 @@ All changes below target `paul/integrate-edna-content`. Continue implementation 
 8. Treat billing, external LINE/email/push delivery, offline synchronization and multi-country expansion as future scope until separately designed, implemented and tested.
 
 **Scope rule:** Source inspection and compilation are not runtime verification. Change a status to “Verified” only with reproducible authenticated evidence. Never bypass RLS or add permissive policies just to make a workflow pass.
+
+
+- **Live schema deployment gate — 2026-10-26:** a read-only catalog check confirms announcement, intervention, and notification tables/RPCs are absent, and the newest gradebook inclusion constraint/finalization triggers are absent. Several attendance, marketplace, badge-award and AI-quota tables checked are also absent. These features exist in source but are not verified/deployed in the connected Supabase project. Do not enable them or apply migrations in bulk; reconcile migration versions and SQL definitions first. See `docs/SUPABASE_MIGRATION_RECONCILIATION.md`.
