@@ -289,3 +289,32 @@ Multiple feature migrations also appear under generated timestamp versions and `
 - Current performance-advisor findings: 136 unindexed foreign keys, 6 auth/RLS initialization-plan findings, 17 tables with multiple permissive policies, 4 duplicate-index findings and 144 unused-index findings. Review before changing indexes/policies; do not apply blanket fixes.
 
 **Release decision: not yet production-ready.** The code and database schema have advanced, but exact migration-history reconciliation, the SECURITY DEFINER function-count discrepancy, Auth leaked-password protection, and authenticated end-to-end acceptance remain open.
+## Latest post-deployment snapshot — 2026-10-26, approximately 04:49 UTC
+
+This section supersedes the earlier 04:44 migration-count snapshot. Additional live schema deployments occurred during the same work session.
+
+### Current migration-history comparison
+
+A fresh comparison against the integration tree and live Supabase history reported:
+- Repository SQL migration files: **178**
+- Live migration records: **193**, latest version `20261026044704`
+- Matching version numbers: **110**
+- Matching version and migration name: **109**
+- Same-version name mismatch: **1** (`20260928041149`)
+- Repository versions absent from live history: **68**
+- Live versions absent from the repository: **83**
+
+Recent live-only records include generated-version applications for content-response integrity hardening, parent vocabulary summary, timetable access hardening, assignment notifications, parent attendance summary, attendance identity hardening, teacher/student RLS recursion repair, assignment-target recursion repair, and school-administration authorization hardening. Multiple feature migrations have generated history entries under different names. Schema presence is materially improved, but migration history remains inconsistent. Do not run a blind `supabase db push`, delete history rows, or bulk-mark migrations applied. Freeze further schema changes and map each generated record to exact source SQL before formal history repair.
+
+### Latest feature deployment and acceptance status
+
+Catalog checks find the principal database dependencies for vocabulary/teacher analytics, attendance/parent summaries, badges, timetable, staff administration, admissions, marketplace booking/availability/profiles/safeguarding, notification inbox/preferences, announcements, intervention cases, gradebook inclusion/finalization guards, school calendar, AI generation usage and student AI Coach. Edge Functions were reported active with JWT verification enabled, but AI provider secrets/configuration could not be verified through available tools. The confirmed-booking migration source was repaired in merged PR #129 before its live application; exact deployed/source parity still needs review.
+
+### Current security and release decision
+
+- The security advisor reports 19 RLS-enabled tables without table policies; direct privilege checks found no direct anon/authenticated table access for those 19 tables. The sampled features use RPC-only access, but each exposed function still needs body-level tenant, role, class, parent-child and state-transition checks.
+- The latest security advisor reports 105 authenticated-executable `SECURITY DEFINER` functions; the narrower catalog query returned 104. Reconcile the function list and grants. Leaked-password protection remains disabled.
+- Performance advisor reports 136 unindexed foreign keys, 6 auth/RLS initialization-plan findings, 17 tables with multiple permissive policies, 4 duplicate indexes and 144 unused indexes. Review individually; do not apply blanket changes.
+- Authenticated acceptance has not yet been recorded for teacher AI draft/save/review/publish, student AI Coach, student invitation acceptance, parent visibility, attendance submission, marketplace booking/safeguarding, announcement/calendar visibility, cross-tenant denial, or gradebook finalize/reopen/inclusion audit.
+
+**Release decision: not production-ready yet.** The project has advanced on both code and live schema, but migration-history reconciliation, the SECURITY DEFINER count discrepancy, Auth leaked-password protection and role-separated end-to-end acceptance remain open.
