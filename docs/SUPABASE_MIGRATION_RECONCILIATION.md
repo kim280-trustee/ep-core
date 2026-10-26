@@ -143,3 +143,19 @@ The prior section compared migration **names**, which is useful for identifying 
 The 66/34 lists overlap substantially by migration *purpose* because many migrations were applied remotely under different timestamps. Therefore these numbers must not be interpreted as 66 safe-to-apply migrations or 34 missing source files. The remote-only version `20261019070729` (`learning_school_admin_roster_profile_visibility`) is still the latest applied record. Several older content-response and gamification migrations have remote versions different from the local filenames. Review the actual SQL bodies and resulting schema for each mapping before changing history or applying anything.
 
 **Do not run `supabase db push`, bulk mark migrations as applied, or apply the 66 local-only files as a batch.** The next safe step is a migration-by-migration mapping table: local filename, matching remote version/name, SQL equivalence/schema evidence, and disposition (already applied under another version / genuinely pending / superseded / obsolete). After that, separately review and test the newer attendance, parent, marketplace, announcements, interventions and gradebook migrations. This update is documentation only; no database or migration-history changes were made.
+
+
+## Live schema object check — 2026-10-26
+
+A read-only PostgreSQL catalog check was run against the connected `ep-core` project after the migration-history comparison. This confirms that some integration features are present in source but are not ready to use against this database yet.
+
+**Objects confirmed missing in the live schema:**
+- School announcements: `learning_school_announcements`, `learning_school_announcement_reads`, and the five announcement RPCs.
+- Teacher interventions: `learning_intervention_cases` and its list/create/update RPCs.
+- Notifications: `learning_notifications` and `learning_notification_preferences`.
+- Gradebook integrity: `learning_gradebook_entries_status_inclusion_check`, `learning_guard_finalized_gradebook_entry_update`, and `learning_term_grades_rpc_only`.
+- Additional feature objects checked and absent: `learning_attendance_sessions`, `learning_timetable_slots`, `learning_badge_awards`, `learning_marketplace_bookings`, `learning_teacher_availability`, and `learning_student_ai_usage`.
+
+The corresponding existing core gradebook tables and audit log, parent-link table, and class-membership table were present. The absence of the new guard triggers/constraint means the live database does **not** yet enforce the source branch's latest gradebook integrity changes. The absence of notification tables means the current in-app notification workflows cannot be treated as deployed.
+
+**Release decision:** keep these feature paths behind deployment/acceptance gates. Do not apply the listed migrations yet: their dependency order and the 34 remote-version-only records / 66 local-version-only filenames must first be reconciled against exact SQL definitions and live schema. Once mappings are approved, apply only the reviewed pending migrations in dependency order, then run authenticated manager/teacher/student/parent negative-access tests and gradebook RPC/direct-write tests. This catalog inspection was read-only; no database changes were made.
