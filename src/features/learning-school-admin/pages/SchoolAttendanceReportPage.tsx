@@ -12,7 +12,7 @@ function localDateValue(date: Date): string {
 }
 
 function csvCell(value: string): string {
-  const safeValue = /^[=+@\-\t\r]/.test(value) ? "'" + value : value;
+  const safeValue = /^[\t\n\r ]*[=+\-@]/.test(value) ? "'" + value : value;
   return /[",\r\n]/.test(safeValue) ? '"' + safeValue.replace(/"/g, '""') + '"' : safeValue;
 }
 
