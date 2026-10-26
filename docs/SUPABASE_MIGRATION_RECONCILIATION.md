@@ -164,3 +164,46 @@ The corresponding existing core gradebook tables and audit log, parent-link tabl
 ### New vocabulary extension migration — pending review
 
 The source branch adds `20261026100000_learning_vocabulary_relations_analytics.sql` to add word forms, synonyms, antonyms, and a teacher analytics RPC. It is **local-only and unapplied**. The prerequisite `20261014220000_learning_vocabulary_foundation.sql` is also not applied to the connected project; read-only inspection found no public vocabulary tables or analytics RPC. Do not apply the extension alone or enable the vocabulary authoring/analytics UI in the live project until the foundation migration is reconciled, the full SQL chain is reviewed, and the analytics function's teacher-class/manager scope is tested. No database changes were made during this review.
+
+
+## Candidate alternate-version mappings — read-only triage (2026-10-26)
+
+The following local filenames and remote applied records have matching migration names but different version timestamps. These are **candidates for source/history reconciliation only**; the name match does not prove SQL equivalence or prove that every effect is present. Compare the full local SQL with the live catalog (tables, constraints, indexes, policies, grants, and function definitions) before any history repair. Do not mark a local version applied or execute it based on this table alone.
+
+| Local migration file | Same-name remote applied version | Current disposition |
+|---|---:|---|
+| `20261002024000_fix_learning_teacher_student_user_rls_recursion.sql` | `20261002023642` | Compare SQL and live policies/functions |
+| `20261002031100_learning_gradebook_bulk_import_recalculate.sql` | `20261002031209` | Compare SQL and live gradebook behavior |
+| `20261002031200_learning_gradebook_grade_scale_index.sql` | `20261002031244` | Compare index definition and validity |
+| `20261005133000_learning_student_content_responses.sql` | `20261012102441` | Compare table, policies, and grants |
+| `20261005150000_learning_teacher_content_response_grading.sql` | `20261012102444` | Compare RPC body, authorization, and grants |
+| `20261005153000_learning_teacher_content_response_access.sql` | `20261012102447` | Compare RPC body, authorization, and grants |
+| `20261010000000_harden_learning_content_response_integrity.sql` | `20261012102451` | Compare constraints, triggers, and policies |
+| `20261010000100_learning_attempt_limits_and_release_time.sql` | `20261012102455` | Compare assessment runtime guards |
+| `20261010000200_secure_learning_content_completion.sql` | `20261012102459` | Compare completion RPC and grants |
+| `20261010000300_fix_learning_assessment_optional_scoring.sql` | `20261012102502` | Compare scoring behavior and tests |
+| `20261010000400_harden_parent_invitation_acceptance.sql` | `20261012102505` | Compare invitation acceptance authorization |
+| `20261010000500_guard_learning_assessment_publication.sql` | `20261012102508` | Compare publication guard triggers/RPCs |
+| `20261010000600_immutable_published_content_versions.sql` | `20261012102512` | Compare published-version immutability |
+| `20261010000700_guard_learning_assignment_publication.sql` | `20261012102549` | Compare assignment publication guards |
+| `20261010000800_harden_learning_lifecycle_integrity.sql` | `20261012102552` | Compare lifecycle triggers and policies |
+| `20261010000900_harden_learning_content_version_transitions.sql` | `20261012102557` | Compare content-version transition guards |
+| `20261012000000_learning_reward_ledger.sql` | `20261012102600` | Compare ledger schema, RPCs, and grants |
+| `20261012000100_learning_class_reward_leaderboard.sql` | `20261012102602` | Compare class scope and leaderboard policies |
+| `20261013000000_learning_mastery_reward_ledger.sql` | `20261013045416` | Compare mastery-ledger behavior |
+| `20261013000100_learning_weekly_quest_rewards.sql` | `20261013045744` | Compare reward eligibility and idempotency |
+| `20261013000200_learning_streak_milestone_rewards.sql` | `20261013050354` | Compare streak eligibility and idempotency |
+| `20261014120000_learning_reward_achievement_notifications.sql` | `20261014114932` | Compare event recipients and duplicate suppression |
+| `20261014130000_learning_school_admin_permissions.sql` | `20261014123624` | Compare permission codes and role scoping |
+| `20261014140000_learning_extended_streak_milestones.sql` | `20261014125626` | Compare milestone definitions |
+| `20261014150000_learning_class_leaderboard_visibility.sql` | `20261014130705` | Compare visibility policy and RPC scope |
+| `20261014160000_learning_school_wide_competitions.sql` | `20261014131549` | Compare competition schema and policies |
+| `20261014170000_learning_team_challenges.sql` | `20261014132419` | Compare team challenge schema and policies |
+| `20261014180000_learning_student_daily_xp_goal.sql` | `20261014132759` | Compare daily-goal persistence and timezone logic |
+| `20261014190000_learning_gamification_fk_indexes.sql` | `20261014133213` | Compare indexes and validity |
+| `20261014210000_harden_learning_gamification_verified_activity.sql` | `20261014142729` | Compare server-validated evidence and reward guards |
+| `20261015050000_correct_m1_english_learning_sprint_target.sql` | `20261015045055` | Compare pilot seed state and audit trail |
+
+### Still treated as genuinely pending until separately verified
+
+No same-name mapping is asserted for the vocabulary foundation/extension, school attendance register and analytics, timetable, admissions, staff administration, parent vocabulary/attendance summaries, marketplace, notification preferences/inbox, announcements, intervention cases, or gradebook integrity migrations. Read-only catalog checks found several corresponding tables/RPCs absent, including vocabulary and school-wide attendance reporting. Review each dependency chain and its authorization tests before deployment. **No database migration was applied or marked as applied during this triage.**
