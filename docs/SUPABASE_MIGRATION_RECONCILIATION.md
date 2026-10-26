@@ -3,7 +3,7 @@
 **Original name-based snapshot:** 2026-10-21 (historical; see the exact version reconciliation dated 2026-10-26 below)  
 **Repository:** `kim280-trustee/ep-core`  
 **Branch:** `paul/integrate-edna-content`  
-**Connected Supabase project:** `ep-core` (read-only inspection; no schema or data was changed)
+**Connected Supabase project:** `ep-core` (live schema changes were applied on 2026-10-26; see the latest post-deployment snapshot below)
 
 ## Historical name-based summary (2026-10-21)
 
@@ -256,3 +256,39 @@ Current performance-advisor counts:
 The security advisor also reports **leaked-password protection disabled**. This is a Supabase Auth configuration issue, not a migration; it has not been changed by this audit. Enable it through the project's supported Auth settings after confirming the impact on sign-up/password flows.
 
 These advisor findings are triage signals, not instructions to apply blanket changes. Prioritize tenant/role boundary review and production-critical FK indexes; validate index usage before removing anything, review permissive-policy overlap for unintended broad access, and address the leaked-password setting as a deliberate Auth configuration change. No database or Auth settings were changed.
+
+
+## Latest post-deployment snapshot — 2026-10-26, approximately 04:49 UTC
+
+This section supersedes earlier read-only and pending-migration statements above. Subsequent live schema deployments have occurred since the earlier 04:44 and 04:48 snapshots.
+
+### Live schema changes and verification
+
+Catalog checks confirm that the following feature areas now have their principal schema/RPC dependencies in the connected project: vocabulary and teacher analytics; attendance register, attendance reporting and parent attendance summary; badge awards; timetable; staff administration; student admissions; marketplace offerings, bookings, teacher profiles/availability and safeguarding reports; notification inbox/preferences; announcements; intervention cases; gradebook inclusion/finalization guards; and school calendar events. AI teacher generation and student AI Coach quota tables/RPCs are also present. The associated Edge Functions are active with JWT verification enabled.
+
+The confirmed-booking marketplace migration had malformed appended SQL. The source was repaired in merged PR #129 after the branch validation workflow passed TypeScript/build and repository-wide lint; the corrected SQL was then applied successfully.
+
+### Current migration-history comparison
+
+A fresh comparison of the current integration tree with Supabase migration history reports:
+
+- Repository SQL migration files: **178**
+- Live migration records: **193**
+- Matching version numbers: **110**
+- Matching version and migration name: **109**
+- Same-version name mismatch: **1** (repository version 20260928041149)
+- Repository migration versions absent from live history: **68**
+- Live migration versions absent from the repository: **83**
+
+Recent live-only records include generated-version applications for content-response integrity hardening, parent vocabulary summary, timetable access hardening, assignment notifications, parent attendance summary, attendance identity hardening, teacher/student RLS recursion repair, assignment-target recursion repair, and school-administration authorization hardening. Several feature migrations also have multiple generated history entries under different names. Schema presence is therefore materially improved, but migration history is still inconsistent. Do not run a blind supabase db push, delete history rows, or bulk-mark migrations as applied. Freeze further schema changes and map each generated live record to the exact source SQL before attempting formal history repair.
+
+### Current security posture
+
+- The security advisor reports **19 RLS-enabled tables without table policies**. Direct privilege checks confirmed that anon and authenticated have no direct SELECT/INSERT/UPDATE/DELETE privileges on those tables; they are configured for RPC-only access. This is not proof that each exposed RPC is correctly authorized.
+- The latest security advisor reports **105 authenticated-executable SECURITY DEFINER functions**; a narrower direct catalog query previously returned 104. Resolve this discrepancy from the advisor's exact function list and catalog grants. Review actor identity, tenant/organization/class scope, parent-child linkage, state transitions and cross-tenant denial. Do not blanket-revoke application RPCs.
+- Supabase Auth leaked-password protection remains disabled and was not changed.
+- Edge Function deployment and database RPC presence have been verified, but successful authenticated requests and real persisted workflows have not been demonstrated. AI provider secrets/configuration cannot be inspected with the available project tools.
+
+### Release decision
+
+**Not production-ready yet.** Schema dependencies have been deployed, but the migration-history reconciliation remains unresolved and authenticated role-separated end-to-end tests are still required for teacher AI draft/save/review/publish, student AI Coach, student invitation acceptance, parent visibility, attendance submission, marketplace booking/safeguarding, school announcements/calendar, cross-tenant denial, and gradebook finalize/reopen/inclusion audit. Keep the release gate closed until these checks pass.
