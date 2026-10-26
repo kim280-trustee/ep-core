@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { FormEvent, ReactNode } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAuth } from "@/core/auth";
@@ -17,6 +17,7 @@ const inputClass = "mt-1 w-full rounded-xl border border-slate-300 bg-white px-3
 const primaryButton = "inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50";
 const secondaryButton = "inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50";
 
+
 type SpeechRecognitionLike = {
   lang: string;
   interimResults: boolean;
@@ -28,8 +29,65 @@ type SpeechRecognitionLike = {
 };
 type SpeechRecognitionConstructor = new () => SpeechRecognitionLike;
 
+const vocabularyCsvHeaders = [
+  "word", "definition", "exampleSentence", "translation", "pronunciation",
+  "partOfSpeech", "topic", "languageCode", "translationLanguageCode",
+  "difficulty", "wordForms", "synonyms", "antonyms",
+] as const;
+
+function parseCsv(text: string): string[][] {
+  const rows: string[][] = [];
+  let row: string[] = [];
+  let cell = "";
+  let quoted = false;
+  for (let i = 0; i < text.length; i += 1) {
+    const char = text[i];
+    if (char === '"') {
+      if (quoted && text[i + 1] === '"') { cell += '"'; i += 1; }
+      else quoted = !quoted;
+    } else if (char === "," && !quoted) {
+      row.push(cell); cell = "";
+    } else if ((char === "\n" || char === "\r") && !quoted) {
+      if (char === "\r" && text[i + 1] === "\n") i += 1;
+      row.push(cell); rows.push(row); row = []; cell = "";
+    } else {
+      cell += char;
+    }
+  }
+  if (quoted) throw new Error("The CSV file has an unclosed quoted field.");
+  if (cell.length || row.length) { row.push(cell); rows.push(row); }
+  return rows.filter((item) => item.some((value) => value.trim() !== ""));
+}
+
+function csvCell(value: string | null | undefined): string {
+  const normalized = value ?? "";
+  const safeValue = /^[\t\n\r ]*[=+\-@]/.test(normalized) ? "'" + normalized : normalized;
+  return /[",\r\n]/.test(safeValue) ? '"' + safeValue.replace(/"/g, '""') + '"' : safeValue;
+}
+
+function downloadVocabularyCsv(entries: LearningVocabularyEntry[], filename: string) {
+  const rows = [
+    [...vocabularyCsvHeaders, "status"].join(","),
+    ...entries.map((entry) => [
+      entry.word, entry.definition, entry.exampleSentence, entry.translation, entry.pronunciation,
+      entry.partOfSpeech, entry.topic, entry.languageCode, entry.translationLanguageCode,
+      entry.difficulty, entry.wordForms.join("; "), entry.synonyms.join("; "), entry.antonyms.join("; "), entry.status,
+    ].map((value) => csvCell(value)).join(",")),
+  ];
+  const blob = new Blob(["\uFEFF", rows.join("\r\n")], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = filename;
+  anchor.click();
+  window.setTimeout(() => URL.revokeObjectURL(url), 0);
+}
+
 type VocabularyForm = {
   word: string;
+  wordForms: string;
+  synonyms: string;
+  antonyms: string;
   definition: string;
   exampleSentence: string;
   translation: string;
@@ -44,6 +102,9 @@ type VocabularyForm = {
 
 const emptyForm: VocabularyForm = {
   word: "",
+  wordForms: "",
+  synonyms: "",
+  antonyms: "",
   definition: "",
   exampleSentence: "",
   translation: "",
@@ -55,6 +116,10 @@ const emptyForm: VocabularyForm = {
   difficulty: "beginner",
   status: "draft",
 };
+
+function parseWordList(value: string): string[] {
+  return [...new Set(value.split(/[\n,;]/).map((item) => item.trim()).filter(Boolean))];
+}
 
 function errorMessage(error: unknown) {
   if (error instanceof Error && error.message) return error.message;
@@ -77,6 +142,9 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
   const isTeacher = audience === "teacher";
   const [selectedOrganizationId, setSelectedOrganizationId] = useState("");
   const [search, setSearch] = useState("");
+  const [showDueOnly, setShowDueOnly] = useState(false);
+  const [selectedTopic, setSelectedTopic] = useState("all");
+  const [selectedDifficulty, setSelectedDifficulty] = useState<"all" | VocabularyDifficulty>("all");
   const [editingEntryId, setEditingEntryId] = useState("");
   const [form, setForm] = useState<VocabularyForm>(emptyForm);
   const [practiceEntryId, setPracticeEntryId] = useState("");
@@ -90,6 +158,10 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
   const [objectiveId, setObjectiveId] = useState("");
   const [translationForm, setTranslationForm] = useState({ languageCode: "th", translation: "", pronunciation: "", transliteration: "", audioUrl: "" });
   const [exampleForm, setExampleForm] = useState({ languageCode: "en", sentence: "", translationLanguageCode: "th", translatedSentence: "", sequenceNo: 1 });
+  const csvInputRef = useRef<HTMLInputElement>(null);
+  const [csvBusy, setCsvBusy] = useState(false);
+  const [csvMessage, setCsvMessage] = useState("");
+
 
   const membershipsQuery = useQuery({
     queryKey: ["learning-vocabulary", "memberships", user?.id, audience],
@@ -132,9 +204,15 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
   const reviewClockQuery = useQuery({
     queryKey: ["learning-vocabulary", "review-clock"],
     queryFn: () => Date.now(),
-    enabled: !isTeacher,
+    enabled: !isTeacher && Boolean(user?.id),
     refetchInterval: isTeacher ? false : 60_000,
     staleTime: 0,
+  });
+  const teacherAnalyticsQuery = useQuery({
+    queryKey: ["learning-vocabulary", "teacher-analytics", organizationId],
+    queryFn: () => learningVocabularyService.getTeacherAnalytics(organizationId),
+    enabled: isTeacher && Boolean(organizationId) && !membershipsQuery.isPending,
+    refetchInterval: isTeacher ? 60_000 : false,
   });
 
   const entries = entriesQuery.data ?? [];
@@ -163,18 +241,22 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
   });
   const progressByEntryId = new Map(progress.map((item) => [item.vocabularyEntryId, item]));
   const normalizedSearch = search.trim().toLocaleLowerCase();
+  const availableTopics = [...new Set(entries.map((entry) => entry.topic?.trim()).filter((topic): topic is string => Boolean(topic)))].sort((a, b) => a.localeCompare(b));
   const filteredEntries = entries.filter((entry) =>
-    [entry.word, entry.definition, entry.translation ?? "", entry.topic ?? "", entry.partOfSpeech ?? ""]
+    (selectedTopic === "all" || (entry.topic ?? "").trim() === selectedTopic)
+    && (selectedDifficulty === "all" || entry.difficulty === selectedDifficulty)
+    && [entry.word, entry.definition, entry.translation ?? "", entry.topic ?? "", entry.partOfSpeech ?? "", ...entry.wordForms, ...entry.synonyms, ...entry.antonyms]
       .some((value) => value.toLocaleLowerCase().includes(normalizedSearch)),
   );
   const isDue = (entry: LearningVocabularyEntry) => {
     const saved = progressByEntryId.get(entry.id);
     return !saved || new Date(saved.nextReviewAt).getTime() <= (reviewClockQuery.data ?? 0);
   };
-  const orderedFilteredEntries = isTeacher
-    ? filteredEntries
-    : [...filteredEntries].sort((left, right) => Number(isDue(right)) - Number(isDue(left)));
   const dueCount = isTeacher ? 0 : filteredEntries.filter(isDue).length;
+  const visibleEntries = !isTeacher && showDueOnly ? filteredEntries.filter(isDue) : filteredEntries;
+  const orderedFilteredEntries = isTeacher
+    ? visibleEntries
+    : [...visibleEntries].sort((left, right) => Number(isDue(right)) - Number(isDue(left)));
   const practiceEntry = entries.find((entry) => entry.id === practiceEntryId);
 
   const playWordAudio = (word: string, languageCode: string) => {
@@ -221,12 +303,16 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
     try { recognition.start(); } catch { setSpeechNotice("Speech recognition could not start. Try again."); }
   };
 
+
   const saveMutation = useMutation({
     mutationFn: (action: () => Promise<unknown>) => action(),
     onSuccess: async () => {
       setActionError("");
       setActionNotice("Vocabulary changes saved.");
-      await queryClient.invalidateQueries({ queryKey: ["learning-vocabulary", "entries", organizationId] });
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ["learning-vocabulary", "entries", organizationId] }),
+        queryClient.invalidateQueries({ queryKey: ["learning-vocabulary", "teacher-analytics", organizationId] }),
+      ]);
       if (detailsEntryId) {
         await queryClient.invalidateQueries({ queryKey: ["learning-vocabulary", "translations", organizationId, detailsEntryId] });
         await queryClient.invalidateQueries({ queryKey: ["learning-vocabulary", "examples", organizationId, detailsEntryId] });
@@ -267,6 +353,82 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
     },
   });
 
+
+  const importVocabularyCsv = async (file: File) => {
+    if (!user || !organizationId || !isTeacher) return;
+    setCsvBusy(true);
+    setCsvMessage("");
+    setActionError("");
+    setActionNotice("");
+    let imported = 0;
+    try {
+      const rows = parseCsv((await file.text()).replace(/^\uFEFF/, ""));
+      if (rows.length < 2) throw new Error("The CSV must include a header row and at least one vocabulary row.");
+      if (rows.length - 1 > 500) throw new Error("Import is limited to 500 vocabulary entries per file.");
+      const headers = rows[0].map((value) => value.trim());
+      if (!headers.includes("word") || !headers.includes("definition")) {
+        throw new Error('Required CSV columns are "word" and "definition". Download the template to see all supported columns.');
+      }
+      const column = (row: string[], name: string) => {
+        const index = headers.indexOf(name);
+        return index < 0 ? "" : (row[index] ?? "").trim();
+      };
+      const languagePattern = /^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$/;
+      const validDifficulties = new Set<VocabularyDifficulty>(["beginner", "intermediate", "advanced"]);
+      const importRows = rows.slice(1).map((row, index) => {
+        const word = column(row, "word");
+        const definition = column(row, "definition");
+        const languageCode = (column(row, "languageCode") || "en").toLowerCase();
+        const difficultyText = column(row, "difficulty") || "beginner";
+        if (!word || !definition) throw new Error("Row " + (index + 2) + ": word and definition are required.");
+        if (!languagePattern.test(languageCode)) throw new Error("Row " + (index + 2) + ": invalid languageCode.");
+        if (!validDifficulties.has(difficultyText as VocabularyDifficulty)) throw new Error("Row " + (index + 2) + ": difficulty must be beginner, intermediate, or advanced.");
+        const translationLanguageCode = column(row, "translationLanguageCode").toLowerCase();
+        if (translationLanguageCode && !languagePattern.test(translationLanguageCode)) throw new Error("Row " + (index + 2) + ": invalid translationLanguageCode.");
+        return {
+          word, definition, languageCode, translationLanguageCode: translationLanguageCode || null,
+          exampleSentence: column(row, "exampleSentence") || null,
+          translation: column(row, "translation") || null,
+          pronunciation: column(row, "pronunciation") || null,
+          partOfSpeech: column(row, "partOfSpeech") || null,
+          topic: column(row, "topic") || null,
+          difficulty: difficultyText as VocabularyDifficulty,
+          wordForms: column(row, "wordForms").split(";").map((item) => item.trim()).filter(Boolean),
+          synonyms: column(row, "synonyms").split(";").map((item) => item.trim()).filter(Boolean),
+          antonyms: column(row, "antonyms").split(";").map((item) => item.trim()).filter(Boolean),
+        };
+      });
+      const existingKeys = new Set(entries.map((entry) => entry.word.trim().toLocaleLowerCase() + "::" + entry.languageCode.toLowerCase()));
+      const seenKeys = new Set<string>();
+      importRows.forEach((item, index) => {
+        const key = item.word.trim().toLocaleLowerCase() + "::" + item.languageCode.toLowerCase();
+        if (existingKeys.has(key)) throw new Error("Row " + (index + 2) + ": \"" + item.word + "\" already exists for language " + item.languageCode + ". Remove or rename the duplicate before importing.");
+        if (seenKeys.has(key)) throw new Error("Row " + (index + 2) + ": duplicate word/language pair \"" + item.word + "\" in this CSV.");
+        seenKeys.add(key);
+      });
+      for (const item of importRows) {
+        await learningVocabularyService.createEntry({
+          ...item,
+          tenantId: user.tenantId,
+          organizationId,
+          status: "draft",
+          createdBy: user.id,
+          updatedBy: user.id,
+        });
+        imported += 1;
+      }
+      setCsvMessage(imported + " entries imported as drafts. Review them and publish only when ready.");
+      await queryClient.invalidateQueries({ queryKey: ["learning-vocabulary", "entries", organizationId] });
+    } catch (error) {
+      setCsvMessage(imported > 0
+        ? imported + " entries were saved as drafts before the import stopped. Do not rerun the full file unchanged; check the vocabulary bank and import only the remaining rows. " + errorMessage(error)
+        : errorMessage(error) + " No rows were imported by this attempt.");
+    } finally {
+      setCsvBusy(false);
+      if (csvInputRef.current) csvInputRef.current.value = "";
+    }
+  };
+
   const submitEntry = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!user || !organizationId) return;
@@ -287,6 +449,9 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
       tenantId: user.tenantId,
       organizationId,
       word: form.word.trim(),
+      wordForms: parseWordList(form.wordForms),
+      synonyms: parseWordList(form.synonyms),
+      antonyms: parseWordList(form.antonyms),
       definition: form.definition.trim(),
       exampleSentence: form.exampleSentence,
       translation: form.translation,
@@ -304,6 +469,9 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
       if (editingEntryId) {
         await saveMutation.mutateAsync(() => learningVocabularyService.updateEntry(editingEntryId, {
           word: input.word,
+          wordForms: input.wordForms,
+          synonyms: input.synonyms,
+          antonyms: input.antonyms,
           definition: input.definition,
           exampleSentence: input.exampleSentence,
           translation: input.translation,
@@ -426,6 +594,9 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
     setEditingEntryId(entry.id);
     setForm({
       word: entry.word,
+      wordForms: entry.wordForms.join(", "),
+      synonyms: entry.synonyms.join(", "),
+      antonyms: entry.antonyms.join(", "),
       definition: entry.definition,
       exampleSentence: entry.exampleSentence ?? "",
       translation: entry.translation ?? "",
@@ -497,6 +668,49 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
         <>
           {isTeacher && (
             <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+              <div className="mb-4">
+                <h2 className="text-lg font-semibold text-slate-950">Student word-review analytics</h2>
+                <p className="mt-1 text-sm leading-6 text-slate-500">School-level aggregates for published words only. Individual student review histories remain private.</p>
+              </div>
+              {teacherAnalyticsQuery.isPending && <p className="text-sm text-slate-500">Loading vocabulary analytics…</p>}
+              {teacherAnalyticsQuery.isError && <p role="alert" className="text-sm text-red-700">Analytics could not be loaded. <button type="button" className="underline" onClick={() => void teacherAnalyticsQuery.refetch()}>Retry</button></p>}
+              {teacherAnalyticsQuery.data && (() => {
+                const stats = teacherAnalyticsQuery.data;
+                const totals = stats.reduce((sum, item) => ({
+                  practiced: sum.practiced + item.studentsPracticed,
+                  known: sum.known + item.studentsKnown,
+                  due: sum.due + item.studentsDue,
+                  reviews: sum.reviews + item.reviewCount,
+                  correct: sum.correct + item.correctCount,
+                  incorrect: sum.incorrect + item.incorrectCount,
+                }), { practiced: 0, known: 0, due: 0, reviews: 0, correct: 0, incorrect: 0 });
+                const accuracy = totals.correct + totals.incorrect
+                  ? Math.round((totals.correct / (totals.correct + totals.incorrect)) * 1000) / 10
+                  : 0;
+                return <>
+                  <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                    {[
+                      { label: "Published words", value: stats.length },
+                      { label: "Review attempts", value: totals.reviews },
+                      { label: "Correct answers", value: accuracy + "%" },
+                      { label: "Due reviews", value: totals.due },
+                    ].map((item) => <div key={item.label} className="rounded-xl bg-slate-50 p-4"><p className="text-sm text-slate-500">{item.label}</p><p className="mt-1 text-2xl font-semibold text-slate-950">{item.value}</p></div>)}
+                  </div>
+                  <div className="mt-5 overflow-x-auto">
+                    <table className="min-w-full text-left text-sm">
+                      <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-3 py-3">Word</th><th className="px-3 py-3">Topic</th><th className="px-3 py-3">Practiced</th><th className="px-3 py-3">Known</th><th className="px-3 py-3">Due</th><th className="px-3 py-3">Reviews</th><th className="px-3 py-3">Accuracy</th></tr></thead>
+                      <tbody className="divide-y divide-slate-100">
+                        {stats.map((item) => <tr key={item.vocabularyEntryId}><td className="px-3 py-3 font-medium text-slate-900">{item.word}</td><td className="px-3 py-3 text-slate-600">{item.topic || "—"}</td><td className="px-3 py-3 tabular-nums">{item.studentsPracticed}</td><td className="px-3 py-3 tabular-nums">{item.studentsKnown}</td><td className="px-3 py-3 tabular-nums">{item.studentsDue}</td><td className="px-3 py-3 tabular-nums">{item.reviewCount}</td><td className="px-3 py-3 tabular-nums">{item.accuracyPercent}%</td></tr>)}
+                        {!stats.length && <tr><td className="px-3 py-4 text-slate-500" colSpan={7}>Publish vocabulary entries to begin collecting review analytics.</td></tr>}
+                      </tbody>
+                    </table>
+                  </div>
+                </>;
+              })()}
+            </section>
+          )}
+          {isTeacher && (
+            <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
               <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
                 <div>
                   <h2 className="text-lg font-semibold text-slate-950">{editingEntryId ? "Edit vocabulary entry" : "Add vocabulary entry"}</h2>
@@ -507,6 +721,9 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
                 <Field label="Word / phrase"><input className={inputClass} required maxLength={120} value={form.word} onChange={(event) => setForm((current) => ({ ...current, word: event.target.value }))} placeholder="environment" /></Field>
                 <Field label="Part of speech"><input className={inputClass} maxLength={40} value={form.partOfSpeech} onChange={(event) => setForm((current) => ({ ...current, partOfSpeech: event.target.value }))} placeholder="noun, verb, adjective…" /></Field>
                 <Field label="Topic"><input className={inputClass} maxLength={120} value={form.topic} onChange={(event) => setForm((current) => ({ ...current, topic: event.target.value }))} placeholder="Nature and the environment" /></Field>
+                <Field label="Word forms"><input className={inputClass} maxLength={500} value={form.wordForms} onChange={(event) => setForm((current) => ({ ...current, wordForms: event.target.value }))} placeholder="create, created, creating" /><span className="mt-1 block text-xs font-normal text-slate-500">Separate forms with commas, e.g. plural or verb forms.</span></Field>
+                <Field label="Synonyms"><input className={inputClass} maxLength={500} value={form.synonyms} onChange={(event) => setForm((current) => ({ ...current, synonyms: event.target.value }))} placeholder="similar, related" /></Field>
+                <Field label="Antonyms"><input className={inputClass} maxLength={500} value={form.antonyms} onChange={(event) => setForm((current) => ({ ...current, antonyms: event.target.value }))} placeholder="opposite meaning" /></Field>
                 <Field label="Language code"><input className={inputClass} required maxLength={20} value={form.languageCode} onChange={(event) => setForm((current) => ({ ...current, languageCode: event.target.value }))} placeholder="en" /></Field>
                 <Field label="Translation"><input className={inputClass} maxLength={500} value={form.translation} onChange={(event) => setForm((current) => ({ ...current, translation: event.target.value }))} placeholder="Optional translation" /></Field>
                 <Field label="Translation language code"><input className={inputClass} maxLength={20} value={form.translationLanguageCode} onChange={(event) => setForm((current) => ({ ...current, translationLanguageCode: event.target.value }))} placeholder="th (optional)" /></Field>
@@ -683,9 +900,21 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
                 <h2 className="text-lg font-semibold text-slate-950">{isTeacher ? "School vocabulary bank" : "Words to study"}</h2>
+                {isTeacher && (
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <button type="button" className={secondaryButton} onClick={() => downloadVocabularyCsv(entries, "ep-learning-vocabulary.csv")} disabled={!entries.length}>Export CSV</button>
+                    <button type="button" className={secondaryButton} onClick={() => downloadVocabularyCsv([], "ep-learning-vocabulary-template.csv")}>Download CSV template</button>
+                    <button type="button" className={secondaryButton} onClick={() => csvInputRef.current?.click()} disabled={csvBusy}>{csvBusy ? "Importing…" : "Import CSV"}</button>
+                    <input ref={csvInputRef} type="file" accept=".csv,text/csv" className="hidden" onChange={(event) => { const file = event.target.files?.[0]; if (file) void importVocabularyCsv(file); }} />
+                  </div>
+                )}
+                {isTeacher && csvMessage && <p role="status" className="mt-3 text-sm text-slate-700">{csvMessage}</p>}
                 <p className="mt-1 text-sm text-slate-500">{filteredEntries.length} of {entries.length} entries{!isTeacher ? ` · ${dueCount} due for review` : ""}</p>
               </div>
               <label className="block w-full sm:max-w-sm"><span className="text-sm font-medium text-slate-700">Search words, definitions, translations, or topics</span><input className={inputClass} type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search vocabulary…" /></label>
+              <label className="block min-w-40 text-sm font-medium text-slate-700">Topic<select className={inputClass} value={selectedTopic} onChange={(event) => setSelectedTopic(event.target.value)}><option value="all">All topics</option>{availableTopics.map((topic) => <option key={topic} value={topic}>{topic}</option>)}</select></label>
+              <label className="block min-w-40 text-sm font-medium text-slate-700">Difficulty<select className={inputClass} value={selectedDifficulty} onChange={(event) => setSelectedDifficulty(event.target.value as "all" | VocabularyDifficulty)}><option value="all">All levels</option><option value="beginner">Beginner</option><option value="intermediate">Intermediate</option><option value="advanced">Advanced</option></select></label>
+              {!isTeacher && <button type="button" className={secondaryButton + " self-end"} aria-pressed={showDueOnly} onClick={() => setShowDueOnly((current) => !current)}>{showDueOnly ? "Show all words" : "Due reviews only"}</button>}
             </div>
             <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
               {orderedFilteredEntries.map((entry) => {
@@ -701,6 +930,9 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
                     </div>
                     <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-700">{entry.definition}</p>
                     {entry.translation && <p className="mt-2 text-sm text-slate-600"><span className="font-medium">Translation:</span> {entry.translation}</p>}
+                    {entry.wordForms.length > 0 && <p className="mt-2 text-sm text-slate-600"><span className="font-medium">Word forms:</span> {entry.wordForms.join(", ")}</p>}
+                    {entry.synonyms.length > 0 && <p className="mt-2 text-sm text-slate-600"><span className="font-medium">Synonyms:</span> {entry.synonyms.join(", ")}</p>}
+                    {entry.antonyms.length > 0 && <p className="mt-2 text-sm text-slate-600"><span className="font-medium">Antonyms:</span> {entry.antonyms.join(", ")}</p>}
                     {entry.topic && <p className="mt-2 text-xs text-slate-500">Topic: {entry.topic}</p>}
                     <div className="mt-auto flex flex-wrap items-center justify-between gap-2 pt-4">
                       {isTeacher ? (
@@ -716,6 +948,7 @@ export function LearningVocabularyPage({ audience }: { audience: "teacher" | "st
                 );
               })}
               {!filteredEntries.length && <div className="rounded-xl border border-dashed border-slate-300 p-6 text-sm text-slate-500 md:col-span-2 xl:col-span-3">{entries.length ? "No vocabulary matches your search." : isTeacher ? "No entries yet. Add a word above, then publish it for students." : "No published vocabulary is available for your classes yet. Ask your teacher to publish a vocabulary list."}</div>}
+              {filteredEntries.length > 0 && !orderedFilteredEntries.length && <div className="rounded-xl border border-dashed border-slate-300 p-6 text-sm text-slate-500 md:col-span-2 xl:col-span-3">No words are due for review right now. Switch back to all words or return when your next review is due.</div>}
             </div>
           </section>
         </>

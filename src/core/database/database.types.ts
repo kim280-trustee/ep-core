@@ -3778,6 +3778,9 @@ export type Database = {
           updated_at: string
           updated_by: string
           word: string
+          word_forms: string[]
+          synonyms: string[]
+          antonyms: string[]
         }
         Insert: {
           created_at?: string
@@ -3798,6 +3801,9 @@ export type Database = {
           updated_at?: string
           updated_by: string
           word: string
+          word_forms?: string[]
+          synonyms?: string[]
+          antonyms?: string[]
         }
         Update: {
           created_at?: string
@@ -3818,6 +3824,9 @@ export type Database = {
           updated_at?: string
           updated_by?: string
           word?: string
+          word_forms?: string[]
+          synonyms?: string[]
+          antonyms?: string[]
         }
         Relationships: []
       }
@@ -5167,6 +5176,21 @@ export type Database = {
           updated_at: string
         }[]
       }
+      get_learning_vocabulary_analytics: {
+        Args: { p_organization_id: string }
+        Returns: {
+          accuracy_percent: number
+          correct_count: number
+          incorrect_count: number
+          review_count: number
+          students_due: number
+          students_known: number
+          students_practiced: number
+          topic: string | null
+          vocabulary_entry_id: string
+          word: string
+        }[]
+      },
       record_learning_vocabulary_review: {
         Args: {
           p_is_correct: boolean
