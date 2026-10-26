@@ -88,6 +88,7 @@ export default function SchoolAdministrationPage() {
   const [editingClassId, setEditingClassId] = useState("");
   const [subjectToAdd, setSubjectToAdd] = useState("");
   const [userToAdd, setUserToAdd] = useState("");
+  const [selectedUserIds, setSelectedUserIds] = useState<string[]>([]);
   const [membershipType, setMembershipType] = useState<"student" | "teacher">("student");
   const [attendanceDate, setAttendanceDate] = useState(localDateValue);
   const [historyEndDate, setHistoryEndDate] = useState(localDateValue);
@@ -350,6 +351,32 @@ export default function SchoolAdministrationPage() {
     } catch { /* The mutation exposes the actionable error above the forms. */ }
   };
 
+  const bulkAddMembers = async () => {
+    if (!user || !organizationId || !classGroupId || selectedUserIds.length === 0) return;
+    const selectedIds = selectedUserIds.filter((id) => addableUsers.some((candidate) => candidate.id === id));
+    if (!selectedIds.length) {
+      setSelectedUserIds([]);
+      setActionError("Select at least one account that is not already assigned this class role.");
+      return;
+    }
+    setActionError("");
+    setActionNotice("");
+    try {
+      const results = await saveMutation.mutateAsync(() => Promise.allSettled(selectedIds.map((userId) =>
+        learningEnrollmentService.addMember({
+          tenantId: user.tenantId, organizationId, classGroupId, userId,
+          membershipType, status: "active",
+        }),
+      ))) as PromiseSettledResult<unknown>[];
+      const succeeded = results.filter((result) => result.status === "fulfilled").length;
+      const failedIds = selectedIds.filter((_, index) => results[index].status === "rejected");
+      setSelectedUserIds(failedIds);
+      setActionNotice(`${succeeded} ${membershipType}${succeeded === 1 ? "" : "s"} added to the class${failedIds.length ? `; ${failedIds.length} failed and remain selected for retry.` : "."}`);
+    } catch (error) {
+      setActionError(errorText(error));
+    }
+  };
+
   const submitClass = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!organizationId || !academicYearId || !classCurriculumId || !classGradeLevelId || !classForm.code.trim() || !classForm.name.trim()) {
@@ -370,7 +397,7 @@ export default function SchoolAdministrationPage() {
       const saved = await saveMutation.mutateAsync(() => wasEditing
         ? learningAcademicService.updateClassGroup(editingClassId, values)
         : learningAcademicService.createClassGroup(values));
-      if (!wasEditing) setSelectedClassGroupId((saved as LearningClassGroup).id);
+      if (!wasEditing) { setSelectedClassGroupId((saved as LearningClassGroup).id); setSelectedUserIds([]); }
       setEditingClassId("");
       setClassForm(emptyClassForm);
     } catch { /* The mutation exposes the actionable error above the forms. */ }
@@ -393,6 +420,7 @@ export default function SchoolAdministrationPage() {
 
   const editClass = (group: LearningClassGroup) => {
     setSelectedClassGroupId(group.id);
+    setSelectedUserIds([]);
     setClassForm({ curriculumId: group.curriculumId, gradeLevelId: group.gradeLevelId, code: group.code, name: group.name, status: group.status });
     setEditingClassId(group.id);
     setActionError("");
@@ -432,7 +460,7 @@ export default function SchoolAdministrationPage() {
         </div>
         <div className="mt-6 grid gap-4 border-t border-white/15 pt-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
           <label className="block max-w-2xl text-sm font-semibold text-indigo-100">School / organization
-            <select className="mt-2 w-full rounded-xl border border-white/20 bg-slate-950/30 px-3.5 py-3 text-sm font-medium text-white outline-none transition focus:border-teal-300 focus:ring-2 focus:ring-teal-300/25" value={organizationId} onChange={(event) => { setSelectedOrganizationId(event.target.value); setSelectedAcademicYearId(""); setSelectedClassGroupId(""); setEditingYearId(""); setEditingTermId(""); setEditingClassId(""); setYearForm(emptyYearForm); setTermForm(emptyTermForm); setClassForm(emptyClassForm); setActionError(""); setActionNotice(""); }}>
+            <select className="mt-2 w-full rounded-xl border border-white/20 bg-slate-950/30 px-3.5 py-3 text-sm font-medium text-white outline-none transition focus:border-teal-300 focus:ring-2 focus:ring-teal-300/25" value={organizationId} onChange={(event) => { setSelectedOrganizationId(event.target.value); setSelectedAcademicYearId(""); setSelectedClassGroupId(""); setSelectedUserIds([]); setEditingYearId(""); setEditingTermId(""); setEditingClassId(""); setYearForm(emptyYearForm); setTermForm(emptyTermForm); setClassForm(emptyClassForm); setActionError(""); setActionNotice(""); }}>
               {organizations.map((organization) => <option key={organization.id} value={organization.id} className="bg-white text-slate-900">{organization.name} ({organization.code})</option>)}
             </select>
           </label>
@@ -442,6 +470,25 @@ export default function SchoolAdministrationPage() {
           </div>
         </div>
       </header>
+
+      {workspace && organizationId && (
+        <section aria-label="School overview" className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          {[
+            { label: "Academic years", value: academicYears.length, detail: `${academicYears.filter((year) => year.status === "active").length} active` },
+            { label: "Terms in selected year", value: termsQuery.isPending ? "…" : terms.length, detail: `${terms.filter((term) => term.status === "active").length} active` },
+            { label: "Classes in selected year", value: classGroups.length, detail: `${classGroups.filter((group) => group.status === "active").length} active` },
+            { label: "Active subjects · selected class", value: classSubjectsQuery.isPending ? "…" : activeClassSubjects.length, detail: classGroupId ? (classGroups.find((group) => group.id === classGroupId)?.name ?? "Selected class") : "No class selected" },
+            { label: "Active students · selected class", value: rosterQuery.isPending ? "…" : roster.filter((member) => member.status === "active" && member.membershipType === "student").length, detail: classGroupId ? "Current class roster" : "No class selected" },
+            { label: "Active teachers · selected class", value: rosterQuery.isPending ? "…" : roster.filter((member) => member.status === "active" && member.membershipType === "teacher").length, detail: classGroupId ? "Current class roster" : "No class selected" },
+          ].map((item) => (
+            <div key={item.label} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+              <p className="text-sm font-medium text-slate-500">{item.label}</p>
+              <p className="mt-2 text-2xl font-bold tabular-nums text-slate-950">{item.value}</p>
+              <p className="mt-1 text-xs text-slate-500">{item.detail}</p>
+            </div>
+          ))}
+        </section>
+      )}
 
       {actionError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800"><div className="flex items-start justify-between gap-3"><p>{actionError}</p><button type="button" className="font-semibold" onClick={() => setActionError("")}>Dismiss</button></div></div>}
       {actionNotice && <div role="status" className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-900"><div className="flex items-start justify-between gap-3"><p>{actionNotice}</p><button type="button" className="font-semibold" onClick={() => setActionNotice("")}>Dismiss</button></div></div>}
@@ -470,7 +517,7 @@ export default function SchoolAdministrationPage() {
                   <Field label="Ends on"><input className={fieldClass} type="date" required value={yearForm.endsOn} onChange={(event) => setYearForm((form) => ({ ...form, endsOn: event.target.value }))} /></Field>
                   <div className="flex items-end gap-2 md:col-span-2"><button className={buttonClass} type="submit" disabled={saveMutation.isPending || !curricula.length}>{saveMutation.isPending ? "Saving…" : editingYearId ? "Save academic year" : "Create academic year"}</button>{editingYearId && <button className={secondaryButtonClass} type="button" onClick={() => { setEditingYearId(""); setYearForm(emptyYearForm); }}>Cancel edit</button>}</div>
                 </form>
-                <div className="mt-5 overflow-x-auto"><table className="min-w-full text-left text-sm"><thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-3 py-3">Year</th><th className="px-3 py-3">Dates</th><th className="px-3 py-3">Status</th><th className="px-3 py-3">Actions</th></tr></thead><tbody className="divide-y divide-slate-100">{academicYears.map((year) => <tr key={year.id} className={year.id === academicYearId ? "bg-slate-50" : ""}><td className="px-3 py-3"><p className="font-semibold text-slate-900">{year.name}</p><p className="text-xs text-slate-500">{year.code}</p></td><td className="px-3 py-3 text-slate-600">{year.startsOn} – {year.endsOn}</td><td className="px-3 py-3"><span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold capitalize text-slate-700">{year.status}</span></td><td className="px-3 py-3"><div className="flex flex-wrap gap-2"><button type="button" className={secondaryButtonClass} onClick={() => { setSelectedAcademicYearId(year.id); setSelectedClassGroupId(""); setEditingTermId(""); setTermForm(emptyTermForm); setEditingClassId(""); setClassForm(emptyClassForm); setSubjectToAdd(""); setUserToAdd(""); }}>Select</button><button type="button" className={secondaryButtonClass} onClick={() => editYear(year)}>Edit</button></div></td></tr>)}</tbody></table>{!academicYears.length && <p className="py-4 text-sm text-slate-500">No academic years have been created for this school.</p>}</div>
+                <div className="mt-5 overflow-x-auto"><table className="min-w-full text-left text-sm"><thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-3 py-3">Year</th><th className="px-3 py-3">Dates</th><th className="px-3 py-3">Status</th><th className="px-3 py-3">Actions</th></tr></thead><tbody className="divide-y divide-slate-100">{academicYears.map((year) => <tr key={year.id} className={year.id === academicYearId ? "bg-slate-50" : ""}><td className="px-3 py-3"><p className="font-semibold text-slate-900">{year.name}</p><p className="text-xs text-slate-500">{year.code}</p></td><td className="px-3 py-3 text-slate-600">{year.startsOn} – {year.endsOn}</td><td className="px-3 py-3"><span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold capitalize text-slate-700">{year.status}</span></td><td className="px-3 py-3"><div className="flex flex-wrap gap-2"><button type="button" className={secondaryButtonClass} onClick={() => { setSelectedAcademicYearId(year.id); setSelectedClassGroupId(""); setSelectedUserIds([]); setEditingTermId(""); setTermForm(emptyTermForm); setEditingClassId(""); setClassForm(emptyClassForm); setSubjectToAdd(""); setUserToAdd(""); }}>Select</button><button type="button" className={secondaryButtonClass} onClick={() => editYear(year)}>Edit</button></div></td></tr>)}</tbody></table>{!academicYears.length && <p className="py-4 text-sm text-slate-500">No academic years have been created for this school.</p>}</div>
               </Section>
 
               <Section title="2. Terms" description={selectedYear ? "Manage terms within " + selectedYear.name + "." : "Create an academic year before adding terms."}>
@@ -499,7 +546,7 @@ export default function SchoolAdministrationPage() {
                     <div className="flex items-end gap-2 md:col-span-2"><button className={buttonClass} type="submit" disabled={saveMutation.isPending || !gradeLevels.length}>{saveMutation.isPending ? "Saving…" : editingClassId ? "Save class" : "Create class"}</button>{editingClassId && <button className={secondaryButtonClass} type="button" onClick={() => { setEditingClassId(""); setClassForm(emptyClassForm); }}>Cancel edit</button>}</div>
                   </form>
                   <div className="mt-5 grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-                    <div className="divide-y divide-slate-100 rounded-xl border border-slate-200">{classGroups.map((group) => <div key={group.id} className={"flex flex-wrap items-center justify-between gap-3 p-4 " + (group.id === classGroupId ? "bg-slate-50" : "")}><div><p className="font-semibold text-slate-900">{group.name}</p><p className="mt-1 text-xs text-slate-500">{group.code} · {group.status}</p></div><div className="flex gap-2"><button type="button" className={secondaryButtonClass} onClick={() => { setSelectedClassGroupId(group.id); setEditingClassId(""); setClassForm(emptyClassForm); setSubjectToAdd(""); setUserToAdd(""); }}>Select</button><button type="button" className={secondaryButtonClass} onClick={() => editClass(group)}>Edit</button></div></div>)}{!classGroups.length && <p className="p-4 text-sm text-slate-500">No classes exist for this year yet.</p>}</div>
+                    <div className="divide-y divide-slate-100 rounded-xl border border-slate-200">{classGroups.map((group) => <div key={group.id} className={"flex flex-wrap items-center justify-between gap-3 p-4 " + (group.id === classGroupId ? "bg-slate-50" : "")}><div><p className="font-semibold text-slate-900">{group.name}</p><p className="mt-1 text-xs text-slate-500">{group.code} · {group.status}</p></div><div className="flex gap-2"><button type="button" className={secondaryButtonClass} onClick={() => { setSelectedClassGroupId(group.id); setSelectedUserIds([]); setEditingClassId(""); setClassForm(emptyClassForm); setSubjectToAdd(""); setUserToAdd(""); }}>Select</button><button type="button" className={secondaryButtonClass} onClick={() => editClass(group)}>Edit</button></div></div>)}{!classGroups.length && <p className="p-4 text-sm text-slate-500">No classes exist for this year yet.</p>}</div>
                     <div className="rounded-xl border border-slate-200 p-4">
                       <h3 className="font-semibold text-slate-900">{classGroups.find((group) => group.id === classGroupId)?.name ?? "Select a class"} · Subjects</h3>
                       {classGroupId ? <>
@@ -515,8 +562,25 @@ export default function SchoolAdministrationPage() {
                 {!classGroupId ? <p className="text-sm text-slate-500">Create or select a class first.</p> : <>
                   <div className="grid gap-3 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)_auto]">
                     <Field label="School user"><select className={fieldClass} value={userToAdd} onChange={(event) => setUserToAdd(event.target.value)}><option value="">Choose an existing school account</option>{addableUsers.map((item) => <option key={item.id} value={item.id}>{item.name}{item.email ? " · " + item.email : ""}</option>)}</select></Field>
-                    <Field label="Class role"><select className={fieldClass} value={membershipType} onChange={(event) => { setMembershipType(event.target.value as "student" | "teacher"); setUserToAdd(""); }}><option value="student">Student</option><option value="teacher">Teacher</option></select></Field>
+                    <Field label="Class role"><select className={fieldClass} value={membershipType} onChange={(event) => { setMembershipType(event.target.value as "student" | "teacher"); setUserToAdd(""); setSelectedUserIds([]); }}><option value="student">Student</option><option value="teacher">Teacher</option></select></Field>
                     <div className="flex items-end"><button type="button" className={buttonClass} disabled={!userToAdd || saveMutation.isPending} onClick={async () => { const selectedUserId = userToAdd; try { await saveMutation.mutateAsync(() => learningEnrollmentService.addMember({ tenantId: user.tenantId, organizationId, classGroupId, userId: selectedUserId, membershipType, status: "active" })); setUserToAdd(""); } catch { /* The mutation displays the failure above the forms. */ } }}>Add to class</button></div>
+                  </div>
+                  <div className="mt-4 rounded-xl border border-slate-200 p-4">
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <div><h3 className="font-semibold text-slate-900">Bulk assign existing accounts</h3><p className="mt-1 text-xs text-slate-500">Select several accounts to add them to this class as {membershipType}s. Accounts are not created here.</p></div>
+                      <div className="flex flex-wrap gap-2">
+                        <button type="button" className={secondaryButtonClass} disabled={!addableUsers.length} onClick={() => setSelectedUserIds(selectedUserIds.length === addableUsers.length ? [] : addableUsers.map((item) => item.id))}>{selectedUserIds.length === addableUsers.length && addableUsers.length ? "Clear selection" : "Select all available"}</button>
+                        <button type="button" className={buttonClass} disabled={!selectedUserIds.length || saveMutation.isPending} onClick={() => void bulkAddMembers()}>{saveMutation.isPending ? "Adding…" : `Add selected (${selectedUserIds.length})`}</button>
+                      </div>
+                    </div>
+                    {eligibleUsersQuery.isPending ? <p className="mt-3 text-sm text-slate-500">Loading eligible accounts…</p> : addableUsers.length ? (
+                      <div className="mt-3 grid max-h-64 gap-2 overflow-y-auto sm:grid-cols-2">
+                        {addableUsers.map((item) => <label key={item.id} className="flex items-start gap-3 rounded-lg bg-slate-50 p-3 text-sm">
+                          <input type="checkbox" className="mt-1" checked={selectedUserIds.includes(item.id)} onChange={(event) => setSelectedUserIds((current) => event.target.checked ? [...new Set([...current, item.id])] : current.filter((id) => id !== item.id))} />
+                          <span className="min-w-0"><span className="block font-medium text-slate-800">{item.name}</span>{item.email && <span className="block break-all text-xs text-slate-500">{item.email}</span>}</span>
+                        </label>)}
+                      </div>
+                    ) : <p className="mt-3 text-sm text-slate-500">No additional accounts are available for this class role.</p>}
                   </div>
                   <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
                     <p className="text-xs text-slate-500">Export includes every membership shown below, including inactive memberships.</p>
