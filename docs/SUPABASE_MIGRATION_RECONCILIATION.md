@@ -8,7 +8,7 @@
 ## Historical name-based summary (2026-10-21)
 
 - Local SQL migration files: **175**
-- Applied migration records reported by Supabase: **143**
+- Latest live migration history read (2026-10-26): **193** records; latest version `20261026044704` (`school_admin_authorization_final_hardening`).
 - Same-name migration version mismatches: **31**
 - Local migration files with no matching applied name: **35**
 - Applied migration records with no matching local filename: **3**
@@ -114,10 +114,10 @@ No migration was applied, repaired, or marked as applied during this inspection.
 
 Read-only check of the connected Supabase project `ep-core` (`zcutsqbzvydyosfgrbdi`, region `ap-southeast-1`):
 
-- The project is healthy and reports **143 applied migration records**. The latest recorded migration remains `20261019070729` (`learning_school_admin_roster_profile_visibility`). The newer announcement, intervention, and gradebook integrity migrations listed above still do not appear in the applied migration history.
+- The live project now reports **193 applied migration records**, latest `20261026044704` (`school_admin_authorization_final_hardening`). This supersedes the earlier 143-record snapshot; newer features have been recorded under alternate timestamps, so repository filenames and remote history still require exact reconciliation.
 - The 175-file / 31 same-name mismatch / 35 local-only name / 3 remote-only name counts are the historical name-based snapshot from the earlier audit; the exact version-based comparison below supersedes these totals for migration planning.
-- Security advisors currently report **6 RLS-enabled tables with no policies**, **47 SECURITY DEFINER functions executable by authenticated users**, and **leaked-password protection disabled**. A read-only definition summary found all 47 functions have an explicit function-level `search_path`; 24 reference `auth.uid()` directly, 27 use `learning_current_user_id()`, 24 contain one of the inspected authorization helpers, and none lacked all of those obvious identity/authorization markers. These counts overlap and are only triage signals, not a substitute for reviewing each function's complete control flow and testing role/tenant boundaries. The six tables are the gamification settings/team/competition/preference tables. These findings require review of the actual RPC entry points, function bodies, grants, and intended RPC-only table access; do not blindly add policies or revoke function execution just to silence advisories.
-- Performance advisors report **81 unindexed foreign keys**, **6 auth/RLS initialization-plan findings**, **17 tables with multiple permissive policies**, and **4 duplicate-index findings**, plus unused-index notices. Prioritize by actual query paths and security impact; do not drop indexes or consolidate policies without checking dependencies and behavior.
+- Current security advisors report **19 RLS-enabled tables with no policies**, **105 SECURITY DEFINER functions executable by authenticated users**, and **leaked-password protection disabled**. A read-only privilege check confirmed all 19 no-policy tables deny direct `SELECT/INSERT/UPDATE/DELETE` to `authenticated` and `SELECT` to `anon`, consistent with intended RPC-only access; verify each RPC still enforces caller/tenant/role scope. All 105 authenticated-executable SECURITY DEFINER functions have an explicit function-level `search_path`; 79 reference `auth.uid()` directly, 27 use `learning_current_user_id()`, 29 contain an inspected authorization helper, and 52 contain a tenant-scope marker. These counts overlap and are triage signals, not proof that every control flow is correct. Do not add permissive policies or blanket-revoke functions just to silence advisories.
+- Current performance advisors report **136 unindexed foreign keys**, **6 auth/RLS initialization-plan findings**, **17 tables with multiple permissive policies**, **4 duplicate-index findings**, and **144 unused-index notices**. Prioritize Learning V1 query paths and production risk; do not bulk-add/drop indexes or consolidate policies without checking dependencies and behavior.
 - This was an inspection only. **No SQL, migration history, Auth settings, policies, functions, or indexes were changed.**
 
 ### Required next steps
@@ -129,42 +129,40 @@ Read-only check of the connected Supabase project `ep-core` (`zcutsqbzvydyosfgrb
 5. Prioritize unindexed foreign keys and duplicate indexes only after query/schema review, then rerun advisors.
 
 
-## Exact version reconciliation — 2026-10-26 (supersedes earlier totals)
+## Exact version reconciliation — refreshed 2026-10-26 (current snapshot)
 
-The earlier section compared migration **names**, which is useful for identifying likely renamed migrations but is not the same as comparing exact migration versions. A fresh read-only comparison was run against integration commit `0f004748ea11e264c9ea4a36f405bad6f39f5751` and the connected Supabase migration history on 2026-10-26. This branch also restores the source SQL for the already-applied roster-visibility migration under its exact recorded version; no database changes were made.
+A read-only comparison was run against the current integration tree (178 migration files) and the connected Supabase history (193 records through `20261026044704`).
 
-- Repository migration files: **178** (including the restored source file for the remote-applied roster visibility migration and the new local-only vocabulary relations/analytics migration)
-- Remote applied records: **143**
-- Versions present on both sides: **110** (109 exact version-and-name matches, plus the one same-version name mismatch below)
+- Repository migration files: **178**
+- Remote applied records: **193**
+- Versions present on both sides: **110** (109 exact version/name matches plus one same-version name mismatch)
 - Same-version name mismatch: **1** — local `20260928041149_learning_assessment_visibility_runtime_fix.sql`; remote record `20260928041149 (20260928000000_learning_assessment_visibility_runtime_fix)`.
-- Local files whose 14-digit version is absent remotely: **68**
-- Remote records whose version is absent from local filenames: **33**
+- Local filenames whose 14-digit version is absent remotely: **68**
+- Remote records whose version is absent from local filenames: **83**
 
-The 67/33 lists overlap substantially by migration *purpose* because many migrations were applied remotely under different timestamps. Therefore these numbers must not be interpreted as 67 safe-to-apply migrations or 33 missing source files. The latest applied record remains `20261019070729` (`learning_school_admin_roster_profile_visibility`); its local source filename is now restored with the exact remote version, and a read-only check confirmed the live function definition, authenticated-only execute grant, and roster visibility policy match that source. Several older content-response and gamification migrations still have remote versions different from local filenames. Review each SQL body and resulting schema before applying or repairing anything.
+The 68/83 lists overlap by migration purpose: multiple features were applied/recorded under alternate timestamps, and the remote history contains `*_reconciled` entries plus later non-reconciled records for some of the same features. These are not 68 safe-to-apply migrations or 83 missing source files. Live catalog checks now find the vocabulary, attendance, timetable, student invitations, marketplace, notifications, announcements, interventions, calendar, AI usage, and gradebook-integrity objects. Exact SQL/source equivalence still needs to be mapped before filenames or history are normalized.
 
-**Do not run `supabase db push`, bulk mark migrations as applied, or apply the 67 local-only files as a batch.** The next safe step is a migration-by-migration mapping table: local filename, matching remote version/name, SQL equivalence/schema evidence, and disposition (already applied under another version / genuinely pending / superseded / obsolete). After that, separately review and test the newer attendance, parent, marketplace, announcements, interventions and gradebook migrations. This update records source reconciliation only; no database or migration-history changes were made.
+**Do not run `supabase db push`, bulk mark migrations as applied, or apply the 68 local-only files as a batch.** Reconcile each source file against the live schema, function definitions, grants, triggers, constraints and policies; record whether it is already applied under another version, genuinely pending, superseded, or obsolete. No migration was applied by this read-only audit.
 
+## Live schema object check — refreshed 2026-10-26
 
-## Live schema object check — 2026-10-26
+A read-only PostgreSQL catalog check was repeated after the remote migration history advanced to 193 records (latest `20261026044704`). The following Learning objects are now present in the connected project:
 
-A read-only PostgreSQL catalog check was run against the connected `ep-core` project after the migration-history comparison. This confirms that some integration features are present in source but are not ready to use against this database yet.
+- Vocabulary: `learning_vocabulary_entries`, `learning_vocabulary_progress`, translations/examples/objectives, `word_forms`/`synonyms`/`antonyms`, and `get_learning_vocabulary_analytics`.
+- Attendance and parent summaries: `learning_attendance_sessions`, `learning_attendance_records`, attendance submission/identity guards, school attendance report RPC, parent attendance summary RPC, and parent language preference storage/RPCs.
+- School operations: `learning_student_invitations`, `learning_timetable_entries`, `learning_badge_awards`, `learning_school_announcements`, `learning_school_announcement_reads`, `learning_intervention_cases`, and `learning_school_calendar_events`, with their expected RPC entry points.
+- Marketplace/notifications: booking requests (including confirmed schedule columns), offerings, teacher availability/profiles, safety reports, `learning_notifications`, and `learning_notification_preferences`.
+- AI/gradebook: AI generation and student-coach usage tables/RPCs; `learning_gradebook_entries_status_inclusion_check`, `learning_guard_finalized_gradebook_entry_update`, and `learning_term_grades_rpc_only` are present.
 
-**Objects confirmed missing in the live schema:**
-- School announcements: `learning_school_announcements`, `learning_school_announcement_reads`, and the five announcement RPCs.
-- Teacher interventions: `learning_intervention_cases` and its list/create/update RPCs.
-- Notifications: `learning_notifications` and `learning_notification_preferences`.
-- Gradebook integrity: `learning_gradebook_entries_status_inclusion_check`, `learning_guard_finalized_gradebook_entry_update`, and `learning_term_grades_rpc_only`.
-- Additional feature objects checked and absent: `learning_attendance_sessions`, `learning_timetable_slots`, `learning_badge_awards`, `learning_marketplace_bookings`, `learning_teacher_availability`, `learning_student_ai_usage`, and `learning_school_calendar_events` plus its six calendar RPCs.
+This is **schema-presence evidence, not authenticated end-to-end verification**. The local migration filenames still do not match many remote versions, and the remote history contains multiple `*_reconciled` records plus later records for some of the same features. Keep the migration mapping gate open until each source SQL file is compared with live table definitions, function bodies, grants, constraints, triggers and policies. Do not apply or mark migrations solely based on name similarity.
 
-The corresponding existing core gradebook tables and audit log, parent-link table, and class-membership table were present. The absence of the new guard triggers/constraint means the live database does **not** yet enforce the source branch's latest gradebook integrity changes. The absence of notification tables means the current in-app notification workflows cannot be treated as deployed.
+**Security observation:** 19 RLS-enabled tables have no policies, but read-only privilege checks confirmed these tables deny direct table access to `authenticated` and `anon`; intended access is through SECURITY DEFINER RPCs. All 105 authenticated-executable SECURITY DEFINER functions have explicit `search_path` settings. Review authorization logic and cross-tenant/role boundaries before deciding whether any advisor finding requires a change.
 
-**Release decision:** keep these feature paths behind deployment/acceptance gates. Do not apply the listed migrations yet: their dependency order and the 33 remote-version-only records / 67 local-version-only filenames must first be reconciled against exact SQL definitions and live schema. Once mappings are approved, apply only the reviewed pending migrations in dependency order, then run authenticated manager/teacher/student/parent negative-access tests and gradebook RPC/direct-write tests. This catalog inspection was read-only; no database changes were made.
+**Release decision:** do not run a bulk migration push or modify migration history as a shortcut. First reconcile the 68 local-only versions and 83 remote-only versions against the actual live schema. Then run role-separated manager/teacher/student/parent acceptance tests, including gradebook direct-write denial, announcement targeting/read state, intervention scope, calendar visibility, marketplace safeguarding and AI quota enforcement.
 
+### Vocabulary migration source — version drift, live objects present
 
-### New vocabulary extension migration — pending review
-
-The source branch adds `20261026100000_learning_vocabulary_relations_analytics.sql` to add word forms, synonyms, antonyms, and a teacher analytics RPC. It is **local-only and unapplied**. The prerequisite `20261014220000_learning_vocabulary_foundation.sql` is also not applied to the connected project; read-only inspection found no public vocabulary tables or analytics RPC. Do not apply the extension alone or enable the vocabulary authoring/analytics UI in the live project until the foundation migration is reconciled, the full SQL chain is reviewed, and the analytics function's teacher-class/manager scope is tested. No database changes were made during this review.
-
+The local vocabulary foundation (`20261014220000`) and relations/analytics (`20261026100000`) filenames remain local-only by version, but the live tables and analytics RPC are present under remote records `20261026044112`/`20261026044331` (along with a `*_reconciled` record). Verify the live function body and grants against source, then align repository migration filenames/history without reapplying the schema. Teacher class scoping, manager authorization and cross-tenant denial still require authenticated acceptance tests.
 
 ## Candidate alternate-version mappings — read-only triage (2026-10-26)
 
@@ -212,3 +210,8 @@ No same-name mapping is asserted for the vocabulary foundation/extension, school
 ### School calendar migration — pending review
 
 The academic calendar and examinations source from Edna's `edna/academic-calendar-exams-v1` branch has been selectively ported. Its original migration timestamp `20261020220000` collided with the already-existing announcement-notification migration at that same version, so the calendar migration is renamed to `20261026200000_learning_school_calendar_events.sql`. This avoids duplicate migration versions but does not make the migration safe to apply automatically. It remains local-only and unapplied; verify its table references, RPC grants, manager authorization, class-scoped visibility, linked-parent visibility, and dependencies before deployment. No live database changes were made.
+
+
+### Latest remote migration-history additions — read-only snapshot
+
+The latest read returned 193 remote records through `20261026044704`. Recent records include `20261026044331` vocabulary relations/analytics, `20261026044348` attendance authorization hardening, `20261026044350` school attendance analytics, `20261026044352` badge awards, `20261026044354` school announcements, `20261026044357` interventions, `20261026044359` school calendar, `20261026044401/44404/44407` gradebook integrity/finalization/audit, `20261026044618` content-response integrity, `20261026044621` parent vocabulary summary, `20261026044623` timetable access hardening, `20261026044625` assignment notifications, `20261026044627` parent attendance summary, `20261026044629` attendance submission/identity hardening, `20261026044659` teacher/student RLS recursion fix, `20261026044701` assignment-target RLS recursion fix, and `20261026044704` school-admin authorization hardening. Several have additional `*_reconciled` history records. This list records observed state only; verify source equivalence before normalizing files or repairing history.
