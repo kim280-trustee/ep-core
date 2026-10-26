@@ -154,7 +154,7 @@ A read-only PostgreSQL catalog check was run against the connected `ep-core` pro
 - Teacher interventions: `learning_intervention_cases` and its list/create/update RPCs.
 - Notifications: `learning_notifications` and `learning_notification_preferences`.
 - Gradebook integrity: `learning_gradebook_entries_status_inclusion_check`, `learning_guard_finalized_gradebook_entry_update`, and `learning_term_grades_rpc_only`.
-- Additional feature objects checked and absent: `learning_attendance_sessions`, `learning_timetable_slots`, `learning_badge_awards`, `learning_marketplace_bookings`, `learning_teacher_availability`, and `learning_student_ai_usage`.
+- Additional feature objects checked and absent: `learning_attendance_sessions`, `learning_timetable_slots`, `learning_badge_awards`, `learning_marketplace_bookings`, `learning_teacher_availability`, `learning_student_ai_usage`, and `learning_school_calendar_events` plus its six calendar RPCs.
 
 The corresponding existing core gradebook tables and audit log, parent-link table, and class-membership table were present. The absence of the new guard triggers/constraint means the live database does **not** yet enforce the source branch's latest gradebook integrity changes. The absence of notification tables means the current in-app notification workflows cannot be treated as deployed.
 
