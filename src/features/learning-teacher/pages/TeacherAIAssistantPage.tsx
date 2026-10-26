@@ -85,7 +85,8 @@ export default function TeacherAIAssistantPage() {
 
   const saveDraft = useMutation({
     mutationFn: async () => {
-      if (!user?.id || !organizationId || !generate.data?.draft?.trim()) {
+      const generatedDraft = generate.data?.draft;
+      if (!user?.id || !organizationId || !generatedDraft?.trim()) {
         throw new Error("Generate a draft and select an active teacher class before saving.");
       }
       const suffix = Date.now().toString(36).toUpperCase();
@@ -105,7 +106,7 @@ export default function TeacherAIAssistantPage() {
         changeSummary: "AI-generated draft saved for teacher editing and review; not published.",
         createdBy: user.id,
         body: {
-          sections: [{ type: "text", title: "AI-generated draft", body: generate.data.draft }],
+          sections: [{ type: "text", title: "AI-generated draft", body: generatedDraft }],
           aiDraftContext: { country, educationSystem, curriculumReference, subject, gradeLevel, topic, objective, format, language, difficulty, durationMinutes: Number(durationMinutes), priorKnowledge, availableMaterials, teacherNeeds },
           requiresTeacherReview: true,
         },
