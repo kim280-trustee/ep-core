@@ -135,7 +135,7 @@ The prior section compared migration **names**, which is useful for identifying 
 
 - Repository migration files: **175**
 - Remote applied records: **143**
-- Exact version matches: **109**
+- Versions present on both sides: **109** (108 exact version-and-name matches, plus the one same-version name mismatch below)
 - Same-version name mismatch: **1** — local `20260928041149_learning_assessment_visibility_runtime_fix.sql`; remote record `20260928041149 (20260928000000_learning_assessment_visibility_runtime_fix)`.
 - Local files whose 14-digit version is absent remotely: **66**
 - Remote records whose version is absent from local filenames: **34**
