@@ -11,6 +11,7 @@ import type {
   LearningVocabularyExampleInput,
   LearningVocabularyObjectiveLink,
   LearningVocabularyObjectiveLinkInput,
+  LearningVocabularyTeacherAnalytics,
 } from "../types/learning-vocabulary.types";
 
 type EntryRow = Database["public"]["Tables"]["learning_vocabulary_entries"]["Row"];
@@ -19,12 +20,17 @@ type TranslationRow = Database["public"]["Tables"]["learning_vocabulary_translat
 type ExampleRow = Database["public"]["Tables"]["learning_vocabulary_examples"]["Row"];
 type ObjectiveLinkRow = Database["public"]["Tables"]["learning_vocabulary_objectives"]["Row"];
 
+const normalizeWordList = (values?: string[]) => [...new Set((values ?? []).map((value) => value.trim()).filter(Boolean))];
+
 const mapEntry = (row: EntryRow): LearningVocabularyEntry => ({
   id: row.id,
   tenantId: row.tenant_id,
   organizationId: row.organization_id,
   word: row.word,
   normalizedWord: row.normalized_word,
+  wordForms: row.word_forms ?? [],
+  synonyms: row.synonyms ?? [],
+  antonyms: row.antonyms ?? [],
   definition: row.definition,
   exampleSentence: row.example_sentence,
   translation: row.translation,
@@ -120,6 +126,9 @@ export const learningVocabularyRepository = {
       tenant_id: input.tenantId,
       organization_id: input.organizationId,
       word: input.word.trim(),
+      word_forms: normalizeWordList(input.wordForms),
+      synonyms: normalizeWordList(input.synonyms),
+      antonyms: normalizeWordList(input.antonyms),
       definition: input.definition.trim(),
       example_sentence: input.exampleSentence?.trim() || null,
       translation: input.translation?.trim() || null,
@@ -143,6 +152,9 @@ export const learningVocabularyRepository = {
       updated_at: new Date().toISOString(),
     };
     if (updates.word !== undefined) patch.word = updates.word.trim();
+    if (updates.wordForms !== undefined) patch.word_forms = normalizeWordList(updates.wordForms);
+    if (updates.synonyms !== undefined) patch.synonyms = normalizeWordList(updates.synonyms);
+    if (updates.antonyms !== undefined) patch.antonyms = normalizeWordList(updates.antonyms);
     if (updates.definition !== undefined) patch.definition = updates.definition.trim();
     if (updates.exampleSentence !== undefined) patch.example_sentence = updates.exampleSentence?.trim() || null;
     if (updates.translation !== undefined) patch.translation = updates.translation?.trim() || null;
@@ -166,6 +178,25 @@ export const learningVocabularyRepository = {
       .eq("user_id", userId);
     if (error) throw error;
     return (data ?? []).map(mapProgress);
+  },
+
+  async getTeacherAnalytics(organizationId: string): Promise<LearningVocabularyTeacherAnalytics[]> {
+    const { data, error } = await supabase.rpc("get_learning_vocabulary_analytics", {
+      p_organization_id: organizationId,
+    });
+    if (error) throw error;
+    return (data ?? []).map((row) => ({
+      vocabularyEntryId: row.vocabulary_entry_id,
+      word: row.word,
+      topic: row.topic,
+      studentsPracticed: Number(row.students_practiced),
+      studentsKnown: Number(row.students_known),
+      studentsDue: Number(row.students_due),
+      reviewCount: Number(row.review_count),
+      correctCount: Number(row.correct_count),
+      incorrectCount: Number(row.incorrect_count),
+      accuracyPercent: Number(row.accuracy_percent),
+    }));
   },
 
   async recordReview(input: { organizationId: string; vocabularyEntryId: string; isCorrect: boolean }): Promise<LearningVocabularyProgress> {
