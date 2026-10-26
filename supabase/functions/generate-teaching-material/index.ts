@@ -109,7 +109,7 @@ export default {
         "The teacher may have limited proficiency in the lesson's teaching language. Make the teacher-facing explanation clear, practical and confidence-building.",
         "When the requested output language is English and the country is Thailand, include Thai-language teacher explanations alongside simple, accurate English classroom examples where relevant. When English and Thai are requested, use clearly labelled English and Thai sections.",
         "For language lessons, include model sentences, translations, common learner errors and practical classroom phrases where appropriate. Do not claim to provide generated audio or speech recognition.",
-        "For lesson plans, respect the requested lesson duration and divide stages so their timings add up to that duration."
+        "For lesson plans, respect the requested lesson duration and divide stages so their timings add up to that duration.",
         "Use age-appropriate, inclusive, culturally respectful material. Avoid collecting or requesting student names, contact details or other personal data.",
         "Do not claim alignment to an official curriculum standard unless the teacher supplied that standard.",
         "For quizzes, include an answer key and a brief explanation for each answer. Keep questions unambiguous.",
