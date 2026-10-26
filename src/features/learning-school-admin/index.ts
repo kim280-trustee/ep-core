@@ -5,4 +5,3 @@ export * from "./services/learning-timetable.service";
 export * from "./types/learning-timetable.types";
 export * from "./routes/learning-school-admin.routes";
 
-export * from "../learning-school-calendar";
