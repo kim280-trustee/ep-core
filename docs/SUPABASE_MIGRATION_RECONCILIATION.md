@@ -3,7 +3,7 @@
 **Original name-based snapshot:** 2026-10-21 (historical; see the exact version reconciliation dated 2026-10-26 below)  
 **Repository:** `kim280-trustee/ep-core`  
 **Branch:** `paul/integrate-edna-content`  
-**Connected Supabase project:** `ep-core` (read-only inspection; no schema or data was changed)
+**Connected Supabase project:** `ep-core` (feature schema deployments occurred during the broader work session on 2026-10-26; the audit snapshots below were read-only and did not apply DDL or edit migration history)
 
 ## Historical name-based summary (2026-10-21)
 
@@ -211,7 +211,7 @@ No same-name mapping is asserted for the vocabulary foundation/extension, school
 
 ### School calendar migration — pending review
 
-The academic calendar and examinations source from Edna's `edna/academic-calendar-exams-v1` branch has been selectively ported. Its original migration timestamp `20261020220000` collided with the already-existing announcement-notification migration at that same version, so the calendar migration is renamed to `20261026200000_learning_school_calendar_events.sql`. This avoids duplicate migration versions but does not make the migration safe to apply automatically. It remains local-only and unapplied; verify its table references, RPC grants, manager authorization, class-scoped visibility, linked-parent visibility, and dependencies before deployment. No live database changes were made.
+The academic calendar and examinations source from Edna's `edna/academic-calendar-exams-v1` branch was selectively ported. Its original migration timestamp `20261020220000` collided with an existing migration, so the source was renamed to `20261026200000_learning_school_calendar_events.sql`. The live project later recorded `20261026044359` (`learning_school_calendar_events`) and `20261026044430` (`learning_school_calendar_events_reconciled`). This indicates deployment/history activity, but does not prove source SQL and deployed objects are identical. Review grants, manager authorization, class/parent visibility, and dependencies through role-separated acceptance tests.
 
 
 ### Live schema refresh — 2026-10-26, approximately 04:44 UTC
@@ -224,7 +224,7 @@ Read-only catalog checks now find public tables for vocabulary, school attendanc
 
 Security-advisor snapshot observed at approximately `2026-10-26T04:44:41Z`:
 - 114 public tables have RLS enabled; **19 currently have no table policies**: `learning_ai_generation_usage`, `learning_class_gamification_settings`, `learning_class_team_members`, `learning_class_teams`, `learning_intervention_cases`, `learning_marketplace_booking_requests`, `learning_marketplace_offerings`, `learning_marketplace_safety_reports`, `learning_marketplace_teacher_availability`, `learning_marketplace_teacher_profiles`, `learning_notification_preferences`, `learning_notifications`, `learning_school_announcement_reads`, `learning_school_announcements`, `learning_school_calendar_events`, `learning_school_competitions`, `learning_student_ai_coach_usage`, `learning_student_gamification_preferences`, and `learning_team_challenges`.
-- 104 public `SECURITY DEFINER` functions are executable by `authenticated`. A static catalog scan found explicit `search_path` declarations and an obvious identity/scope marker in every one; this is only a triage heuristic, not proof of correct authorization. Review each function's body, grants, tenant/class/child scope, and cross-tenant negative tests. Do not blanket-revoke RPCs that are required by the application.
+- The latest security advisor reports **105** authenticated-executable public `SECURITY DEFINER` functions; a narrower direct catalog query counted 104, so reconcile the exact function list. Static catalog scans found explicit `search_path` declarations and obvious identity/scope markers in the sampled set, but this is only triage—not proof of correct authorization. Review each function's body, grants, tenant/class/child scope, and cross-tenant negative tests. Do not blanket-revoke RPCs that are required by the application.
 - The 19 no-policy findings may be intentional for RPC-only access, but that must be confirmed per table and paired with function authorization review. Do not add broad policies merely to silence the advisor.
 
 **Next release gate:** freeze schema changes long enough to capture one consistent migration snapshot, map every live version to the exact repository SQL (including all `*_reconciled` versions), then test the deployed role-separated journeys and review each no-policy table/definer RPC. No database DDL or migration-history changes were performed by this audit.
@@ -256,3 +256,36 @@ Current performance-advisor counts:
 The security advisor also reports **leaked-password protection disabled**. This is a Supabase Auth configuration issue, not a migration; it has not been changed by this audit. Enable it through the project's supported Auth settings after confirming the impact on sign-up/password flows.
 
 These advisor findings are triage signals, not instructions to apply blanket changes. Prioritize tenant/role boundary review and production-critical FK indexes; validate index usage before removing anything, review permissive-policy overlap for unintended broad access, and address the leaked-password setting as a deliberate Auth configuration change. No database or Auth settings were changed.
+
+## Post-deployment migration reconciliation — 2026-10-26
+
+Feature migrations were applied to the connected Supabase project during the broader project work session. This supersedes the earlier snapshot's statements that all listed feature chains remained unapplied. The audit work described here used read-only catalog/history queries; it did not itself apply migrations or edit migration history.
+
+### Feature areas with live schema objects observed
+
+Read-only catalog checks now find tables/RPCs for vocabulary foundation and related-word/teacher analytics; school attendance register, authorization/submission, school-wide analytics and parent summary; badge awards; timetable scheduling/access hardening; staff administration; marketplace booking, teacher availability/profiles, confirmed-booking scheduling and safeguarding reports; notification inbox/preferences, school notifications, assignment notifications and parent language preferences; school announcements/announcement notifications; intervention cases; gradebook inclusion/finalization/audit guards; school calendar/examinations; student admissions/invitation RPCs; and AI generation/student AI Coach usage tables.
+
+Object presence does not establish full end-to-end acceptance. The marketplace confirmed-booking migration source was malformed, was repaired in PR #129, and was subsequently represented in the live migration history. Verify exact source/deployed-function parity before production acceptance.
+
+### Version reconciliation snapshot
+
+The post-deployment comparison recorded:
+- Repository migration files: **178**
+- Live migration records: **184** at the snapshot; the latest direct history read was `20261026044430`
+- Exact version matches: **110**
+- Exact version-and-name matches: **109**
+- Same-version name mismatch: **1** (`20260928041149`)
+- Repository versions absent from live history: **68**
+- Live versions absent from the repository: **74**
+
+Multiple feature migrations also appear under generated timestamp versions and `*_reconciled` names. The live schema may contain the desired objects while migration history still differs from the source tree. Do not delete migration records, mark versions applied by guesswork, or run a blind `supabase db push`. Capture a stable snapshot, compare each live version and object definition to its exact SQL, and repair source/history only through a reviewed, supported process.
+
+### Deployment and acceptance gates
+
+- AI quota/coach tables and RPCs have been applied; Edge Function JWT configuration was reported enabled, but provider secrets/configuration were not verified through the available project tools.
+- Authenticated role-separated acceptance evidence has not yet been recorded for AI generation/student coaching, draft persistence/unpublished behavior, parent visibility, cross-tenant denial, attendance submission, marketplace booking/safeguarding, announcements/read receipts, calendar visibility, or gradebook finalization/reopen.
+- The 19 RPC-only tables have no direct table privileges for anon/authenticated. Sampled user-facing RPCs are authenticated-only and use an empty search path; every exposed function still requires body-level authorization review and negative tenant/class/parent-child tests.
+- The Supabase Auth advisor reports leaked-password protection disabled. This setting has not been changed.
+- Current performance-advisor findings: 136 unindexed foreign keys, 6 auth/RLS initialization-plan findings, 17 tables with multiple permissive policies, 4 duplicate-index findings and 144 unused-index findings. Review before changing indexes/policies; do not apply blanket fixes.
+
+**Release decision: not yet production-ready.** The code and database schema have advanced, but exact migration-history reconciliation, the SECURITY DEFINER function-count discrepancy, Auth leaked-password protection, and authenticated end-to-end acceptance remain open.
