@@ -3,7 +3,7 @@
 **Original name-based snapshot:** 2026-10-21 (historical; see the exact version reconciliation dated 2026-10-26 below)  
 **Repository:** `kim280-trustee/ep-core`  
 **Branch:** `paul/integrate-edna-content`  
-**Connected Supabase project:** `ep-core` (read-only inspection; no schema or data was changed)
+**Connected Supabase project:** `ep-core` (live schema changes were applied on 2026-10-26; see the post-deployment update at the end of this document)
 
 ## Historical name-based summary (2026-10-21)
 
@@ -206,12 +206,12 @@ The following local filenames and remote applied records have matching migration
 
 ### Still treated as genuinely pending until separately verified
 
-No same-name mapping is asserted for the vocabulary foundation/extension, school attendance register and analytics, timetable, admissions, staff administration, parent vocabulary/attendance summaries, marketplace, notification preferences/inbox, announcements, intervention cases, or gradebook integrity migrations. Read-only catalog checks found several corresponding tables/RPCs absent, including vocabulary and school-wide attendance reporting. Review each dependency chain and its authorization tests before deployment. **No database migration was applied or marked as applied during this triage.**
+No same-name mapping is asserted for the vocabulary foundation/extension, school attendance register and analytics, timetable, admissions, staff administration, parent vocabulary/attendance summaries, marketplace, notification preferences/inbox, announcements, intervention cases, or gradebook integrity migrations. Read-only catalog checks found several corresponding tables/RPCs absent, including vocabulary and school-wide attendance reporting. Review each dependency chain and its authorization tests before deployment. **At the time of this original triage, no database migration had been applied or marked as applied. The later deployment update below supersedes that statement for the feature chains listed there.**
 
 
 ### School calendar migration — pending review
 
-The academic calendar and examinations source from Edna's `edna/academic-calendar-exams-v1` branch has been selectively ported. Its original migration timestamp `20261020220000` collided with the already-existing announcement-notification migration at that same version, so the calendar migration is renamed to `20261026200000_learning_school_calendar_events.sql`. This avoids duplicate migration versions but does not make the migration safe to apply automatically. It remains local-only and unapplied; verify its table references, RPC grants, manager authorization, class-scoped visibility, linked-parent visibility, and dependencies before deployment. No live database changes were made.
+The academic calendar and examinations source from Edna's `edna/academic-calendar-exams-v1` branch has been selectively ported. Its original migration timestamp `20261020220000` collided with the already-existing announcement-notification migration at that same version, so the calendar migration is renamed to `20261026200000_learning_school_calendar_events.sql`. This avoids duplicate migration versions but does not make the migration safe to apply automatically. The original snapshot recorded it as local-only and unapplied. It was subsequently applied to the live project under generated history record 20261026044359 (learning_school_calendar_events); verify its table references, RPC grants, manager authorization, class-scoped visibility, and linked-parent visibility through authenticated acceptance tests.
 
 
 ### Live schema refresh — 2026-10-26, approximately 04:44 UTC
@@ -227,4 +227,52 @@ Security-advisor snapshot observed at approximately `2026-10-26T04:44:41Z`:
 - 104 public `SECURITY DEFINER` functions are executable by `authenticated`. A static catalog scan found explicit `search_path` declarations and an obvious identity/scope marker in every one; this is only a triage heuristic, not proof of correct authorization. Review each function's body, grants, tenant/class/child scope, and cross-tenant negative tests. Do not blanket-revoke RPCs that are required by the application.
 - The 19 no-policy findings may be intentional for RPC-only access, but that must be confirmed per table and paired with function authorization review. Do not add broad policies merely to silence the advisor.
 
-**Next release gate:** freeze schema changes long enough to capture one consistent migration snapshot, map every live version to the exact repository SQL (including all `*_reconciled` versions), then test the deployed role-separated journeys and review each no-policy table/definer RPC. No database DDL or migration-history changes were performed by this audit.
+**Next release gate:** freeze schema changes long enough to capture one consistent migration snapshot, map every live version to the exact repository SQL (including all `*_reconciled` versions), then test the deployed role-separated journeys and review each no-policy table/definer RPC. The live database has since been changed; see the post-deployment update below.
+
+
+## Post-deployment update — 2026-10-26
+
+Live schema migrations were applied through the Supabase integration during the current work session. This update supersedes earlier statements that the project remained read-only or that the feature migrations were still unapplied.
+
+### Feature schema and RPCs applied
+
+The following feature chains were applied and their principal tables/RPCs were verified in the live catalog:
+
+- Vocabulary foundation and related-word/teacher analytics.
+- School attendance register, authorization hardening, submission/identity hardening, school-wide report and parent attendance summary.
+- Student badge-award persistence.
+- Timetable scheduling and access hardening.
+- Staff membership administration.
+- Marketplace booking requests, teacher availability/profiles, confirmed booking scheduling and safeguarding reports.
+- Notification inbox, assignment notifications, notification preferences, school notifications and parent language preferences.
+- School announcements and announcement notifications.
+- Student intervention cases.
+- Gradebook non-graded-entry integrity, finalized-grade mutation guards and audited inclusion changes.
+- School calendar/examinations.
+- Student admissions/invitation RPCs.
+- AI generation and student AI Coach quota tables/RPCs had been applied earlier in this session; their Edge Functions are deployed with JWT verification enabled.
+
+The malformed marketplace confirmed-booking migration initially failed SQL parsing. The source was repaired in PR #129, the PR's TypeScript/build and repository-wide lint checks passed, the PR was merged, and the corrected migration then applied successfully. This confirms source/build validation, not authenticated marketplace acceptance.
+
+### Migration-history status after deployment
+
+A fresh comparison against the integration tree and live migration history found:
+
+- Repository migration files: **178**
+- Live migration records: **184**
+- Exact version matches: **110**
+- Exact version and name matches: **109**
+- Same-version name mismatch: **1** (20260928041149)
+- Repository versions absent from live history: **68**
+- Live versions absent from the repository: **74**
+
+Several feature migrations were applied more than once during this session under generated timestamp versions and different history names (including vocabulary analytics, attendance hardening/analytics, badge awards, announcements, interventions, gradebook guards/audit, and calendar). The schema changes are present, but this has **not** repaired migration history; it has added further history entries and made exact reconciliation more urgent. Do not delete migration records or run a blind supabase db push. No supported migration-history repair operation was available in the connected tooling.
+
+### Current security and release gates
+
+- The security advisor reports **19 RLS-enabled tables with no table policies**. Catalog checks confirmed that anon and authenticated have no direct SELECT/INSERT/UPDATE/DELETE privileges on those 19 tables; they are currently configured for RPC-only access. This is safer than exposed direct access, but every corresponding RPC still needs an authorization review.
+- The security advisor reports **104 authenticated-executable SECURITY DEFINER functions** and compromised-password protection remains disabled. These are not all proven vulnerabilities; review the authorization bodies/grants and enable leaked-password protection in Supabase Auth settings.
+- The deployed Edge Functions are active and require JWT verification. The invite-student function now has its required student invitation RPCs present, but authenticated invocation has not been tested.
+- AI provider secrets/configuration could not be verified through the available project tools. Successful authenticated teacher generation, student coaching, draft persistence/unpublished behavior, parent visibility, cross-tenant denial, attendance submission, marketplace booking and gradebook finalization/reopen flows remain untested.
+
+**Release decision: not yet production-ready.** The schema blockers above have been deployed, but migration-history reconciliation, Auth configuration review, and authenticated role-separated end-to-end acceptance tests are still required.
