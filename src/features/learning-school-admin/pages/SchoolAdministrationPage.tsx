@@ -469,6 +469,7 @@ export default function SchoolAdministrationPage() {
             <Link to="/school-admin/analytics" className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15"><CalendarDays size={16} /> School analytics</Link>
             <Link to="/school-admin/admissions" className="rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15">Student admissions</Link>
             <Link to="/school-admin/timetable" className="rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15">Timetable</Link>
+            <Link to="/calendar" className="rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15">School calendar</Link>
             <Link to="/school-admin/attendance-report" className="rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15">Attendance report</Link>
             <Link to="/school-admin/parents" className="rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15">Parent links</Link>
             <Link to="/school-admin/announcements" className="rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15">Announcements</Link>

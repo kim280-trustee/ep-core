@@ -1,4 +1,4 @@
-import { Home, LogOut, UserPlus, Search, Bell, Megaphone } from "lucide-react";
+import { Home, LogOut, UserPlus, Search, Bell, Megaphone, CalendarDays } from "lucide-react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -9,6 +9,7 @@ const items = [
   { to: "/parent", label: "Dashboard", icon: Home, end: true },
   { to: "/parent/invite", label: "Invitation", icon: UserPlus },
   { to: "/parent/announcements", label: "Announcements", icon: Megaphone },
+  { to: "/calendar", label: "School Calendar", icon: CalendarDays },
   { to: "/notifications", label: "Notifications", icon: Bell },
   { to: "/marketplace", label: "Extra Classes", icon: Search },
 ];

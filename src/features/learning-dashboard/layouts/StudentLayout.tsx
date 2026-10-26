@@ -12,6 +12,7 @@ const items = [
   { to: "/learning/recommendations", label: "Recommendations", icon: Compass },
   { to: "/learning/rewards", label: "Rewards", icon: Award },
   { to: "/learning/vocabulary", label: "Vocabulary", icon: Languages },
+  { to: "/calendar", label: "School Calendar", icon: CalendarDays },
   { to: "/notifications", label: "Notifications", icon: Bell },
   { to: "/marketplace", label: "Extra Classes", icon: GraduationCap },
 ];
