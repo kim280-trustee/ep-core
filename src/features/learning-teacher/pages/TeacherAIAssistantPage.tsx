@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { AlertCircle, Copy, Sparkles } from "lucide-react";
 import { useAuth } from "@/core/auth";
 import { supabase } from "@/core/infrastructure/supabase/client";
@@ -53,6 +53,12 @@ export default function TeacherAIAssistantPage() {
   const [priorKnowledge, setPriorKnowledge] = useState("");
   const [availableMaterials, setAvailableMaterials] = useState("");
   const [teacherNeeds, setTeacherNeeds] = useState("");
+  const [curriculumId, setCurriculumId] = useState("");
+  const [gradeLevelId, setGradeLevelId] = useState("");
+  const [subjectId, setSubjectId] = useState("");
+  const [skillId, setSkillId] = useState("");
+  const [topicId, setTopicId] = useState("");
+  const [objectiveId, setObjectiveId] = useState("");
   const [copyMessage, setCopyMessage] = useState("");
 
   const classes = useQuery({
@@ -65,6 +71,43 @@ export default function TeacherAIAssistantPage() {
   const organizationId = selectedClass?.classGroup.organizationId?.trim()
     || selectedClass?.membership.organizationId?.trim()
     || "";
+
+  const curricula = useQuery({
+    queryKey: ["learning", "curricula"],
+    queryFn: () => learningContentService.listCurricula(),
+    enabled: Boolean(user?.id),
+  });
+  const gradeLevels = useQuery({
+    queryKey: ["learning", "grade-levels", curriculumId],
+    queryFn: () => learningContentService.listGradeLevels(curriculumId),
+    enabled: Boolean(curriculumId),
+  });
+  const subjects = useQuery({
+    queryKey: ["learning", "subjects", curriculumId],
+    queryFn: () => learningContentService.listSubjects(curriculumId),
+    enabled: Boolean(curriculumId),
+  });
+  const skills = useQuery({
+    queryKey: ["learning", "skills", subjectId],
+    queryFn: () => learningContentService.listSkills(subjectId),
+    enabled: Boolean(subjectId),
+  });
+  const topics = useQuery({
+    queryKey: ["learning", "topics", skillId],
+    queryFn: () => learningContentService.listTopics(skillId),
+    enabled: Boolean(skillId),
+  });
+  const objectives = useQuery({
+    queryKey: ["learning", "objectives", topicId],
+    queryFn: () => learningContentService.listObjectives(topicId),
+    enabled: Boolean(topicId),
+  });
+  const objectiveAlignments = useQuery({
+    queryKey: ["learning", "objective-alignments", curriculumId, gradeLevelId],
+    queryFn: () => learningContentService.listAlignments(undefined, curriculumId, gradeLevelId),
+    enabled: Boolean(curriculumId && gradeLevelId),
+  });
+  const alignedObjectiveIds = useMemo(() => new Set((objectiveAlignments.data ?? []).map((item) => item.objectiveId)), [objectiveAlignments.data]);
 
   const generate = useMutation({
     mutationFn: async (request: DraftRequest): Promise<DraftResponse> => {
@@ -92,6 +135,9 @@ export default function TeacherAIAssistantPage() {
       const suffix = Date.now().toString(36).toUpperCase();
       const code = `AI-${format.toUpperCase().replace(/[^A-Z0-9]+/g, "-")}-${suffix}`;
       const title = `${topic.trim()} — ${format === "lesson_plan" ? "Lesson plan" : format[0].toUpperCase() + format.slice(1)}`;
+      if (objectiveId && (objectiveAlignments.isError || !alignedObjectiveIds.has(objectiveId))) {
+        throw new Error("The selected learning objective is not verified as aligned to the chosen curriculum and grade. Refresh the alignment data or clear the optional alignment selection.");
+      }
       const content = await learningContentService.createContent({
         organizationId,
         code,
@@ -112,8 +158,15 @@ export default function TeacherAIAssistantPage() {
             requiresTeacherReview: true,
           },
         });
+        if (objectiveId) {
+          await learningContentService.addObjective({
+            contentItemId: content.id,
+            objectiveId,
+            sequenceNo: 1,
+          });
+        }
       } catch (error) {
-        // Avoid leaving an empty content item behind if its first version cannot be saved.
+        // Avoid leaving an incomplete content item behind if its version or objective link cannot be saved.
         try {
           await learningContentService.deleteContent(content.id);
         } catch (cleanupError) {
@@ -226,6 +279,31 @@ export default function TeacherAIAssistantPage() {
                 <input className={fieldClass} value={educationSystem} onChange={(event) => setEducationSystem(event.target.value)} maxLength={120} placeholder="MEP / national curriculum" />
               </label>
             </div>
+            <section className="space-y-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <div><h3 className="text-sm font-semibold text-slate-800">Link to E&P learning objectives (optional)</h3><p className="mt-1 text-xs leading-5 text-slate-600">Choose an existing curriculum alignment to make the saved draft eligible for the normal review workflow. If your curriculum or objective is not set up yet, you can still save the AI draft, but it cannot be submitted for review until an objective is linked.</p></div>
+              <label className={labelClass}>Curriculum
+                <select className={fieldClass} value={curriculumId} onChange={(event) => { setCurriculumId(event.target.value); setGradeLevelId(""); setSubjectId(""); setSkillId(""); setTopicId(""); setObjectiveId(""); }}><option value="">Not linked</option>{(curricula.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}{item.version ? ` (${item.version})` : ""}</option>)}</select>
+              </label>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <label className={labelClass}>Curriculum grade
+                  <select className={fieldClass} value={gradeLevelId} onChange={(event) => { setGradeLevelId(event.target.value); setObjectiveId(""); }} disabled={!curriculumId}><option value="">Select grade</option>{(gradeLevels.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
+                </label>
+                <label className={labelClass}>Curriculum subject
+                  <select className={fieldClass} value={subjectId} onChange={(event) => { setSubjectId(event.target.value); setSkillId(""); setTopicId(""); setObjectiveId(""); }} disabled={!curriculumId}><option value="">Select subject</option>{(subjects.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
+                </label>
+              </div>
+              <label className={labelClass}>Skill
+                <select className={fieldClass} value={skillId} onChange={(event) => { setSkillId(event.target.value); setTopicId(""); setObjectiveId(""); }} disabled={!subjectId}><option value="">Select skill</option>{(skills.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
+              </label>
+              <label className={labelClass}>Topic in curriculum
+                <select className={fieldClass} value={topicId} onChange={(event) => { setTopicId(event.target.value); setObjectiveId(""); }} disabled={!skillId}><option value="">Select topic</option>{(topics.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
+              </label>
+              <label className={labelClass}>Learning objective
+                <select className={fieldClass} value={objectiveId} onChange={(event) => setObjectiveId(event.target.value)} disabled={!topicId}><option value="">Save without objective link</option>{(objectives.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
+              </label>
+              {objectiveId && objectiveAlignments.isPending && <p className="text-xs text-slate-500">Checking objective alignment…</p>}
+              {objectiveId && !objectiveAlignments.isPending && !alignedObjectiveIds.has(objectiveId) && <p role="alert" className="rounded-lg bg-amber-50 p-2 text-xs text-amber-800">This objective is not aligned to the selected curriculum and grade level. Clear the selection or choose an aligned objective before saving.</p>}
+            </section>
             <label className={labelClass}>Curriculum reference (optional)
               <input className={fieldClass} value={curriculumReference} onChange={(event) => setCurriculumReference(event.target.value)} maxLength={500} placeholder="Official curriculum, standard, or learning outcome reference" />
             </label>
@@ -261,7 +339,7 @@ export default function TeacherAIAssistantPage() {
           </div>
           {copyMessage && <p role="status" className="mt-3 text-xs text-slate-600">{copyMessage}</p>}
           {generate.isPending ? <div className="mt-6 space-y-3" aria-label="Generating draft"><div className="h-4 w-3/4 animate-pulse rounded bg-slate-200" /><div className="h-4 w-full animate-pulse rounded bg-slate-200" /><div className="h-4 w-5/6 animate-pulse rounded bg-slate-200" /><div className="h-32 animate-pulse rounded-xl bg-slate-100" /></div>
-            : generate.data ? <><div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950"><strong>Teacher review required.</strong> This draft has not been validated against an official curriculum and has not been published.</div>{generate.data.usage && <p className="mt-3 text-xs text-slate-500" role="status">AI usage: {generate.data.usage.remainingRequests} of {generate.data.usage.dailyLimit} draft requests remaining in the rolling 24-hour window.</p>}<div className="mt-4 flex flex-wrap gap-2"><button type="button" onClick={() => saveDraft.mutate()} disabled={saveDraft.isPending || !organizationId} className="rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-50">{saveDraft.isPending ? "Saving draft…" : "Save to content library"}</button><a href="/teacher/content" className="inline-flex items-center rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">Open content library</a></div>{saveDraft.isError && <p role="alert" className="mt-3 text-sm text-red-700">{saveDraft.error.message}</p>}{saveDraft.data && <p role="status" className="mt-3 rounded-lg bg-emerald-50 p-3 text-sm text-emerald-800">Saved “{saveDraft.data.title}” as a draft. Open the content library to continue editing and review it before publication.</p>}<pre className="mt-4 whitespace-pre-wrap break-words font-sans text-sm leading-6 text-slate-800">{generate.data.draft}</pre></>
+            : generate.data ? <><div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950"><strong>Teacher review required.</strong> This draft has not been validated against an official curriculum and has not been published.</div>{generate.data.usage && <p className="mt-3 text-xs text-slate-500" role="status">AI usage: {generate.data.usage.remainingRequests} of {generate.data.usage.dailyLimit} draft requests remaining in the rolling 24-hour window.</p>}<div className="mt-4 flex flex-wrap gap-2"><button type="button" onClick={() => saveDraft.mutate()} disabled={saveDraft.isPending || !organizationId} className="rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-50">{saveDraft.isPending ? "Saving draft…" : "Save to content library"}</button><a href="/teacher/content" className="inline-flex items-center rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">Open content library</a></div>{saveDraft.isError && <p role="alert" className="mt-3 text-sm text-red-700">{saveDraft.error.message}</p>}{saveDraft.data && <p role="status" className="mt-3 rounded-lg bg-emerald-50 p-3 text-sm text-emerald-800">Saved “{saveDraft.data.title}” as a draft. {objectiveId ? "The learning objective is linked; continue editing and use the existing review workflow when ready." : "No learning objective is linked yet, so the existing authoring page will block review until you link an aligned objective."} <a className="font-semibold underline" href={`/teacher/content`}>Open the content library</a>.</p>}<pre className="mt-4 whitespace-pre-wrap break-words font-sans text-sm leading-6 text-slate-800">{generate.data.draft}</pre></>
             : <div className="mt-8 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center"><Sparkles size={24} className="mx-auto text-slate-400" /><p className="mt-3 text-sm font-semibold text-slate-700">Your draft will appear here</p><p className="mt-1 text-sm text-slate-500">Enter the objective and select Generate draft.</p></div>}
         </section>
       </div>
