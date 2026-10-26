@@ -1,11 +1,11 @@
 # Supabase Migration Reconciliation
 
-**Checked:** 2026-10-21  
+**Original name-based snapshot:** 2026-10-21 (historical; see the exact version reconciliation dated 2026-10-26 below)  
 **Repository:** `kim280-trustee/ep-core`  
 **Branch:** `paul/integrate-edna-content`  
 **Connected Supabase project:** `ep-core` (read-only inspection; no schema or data was changed)
 
-## Summary
+## Historical name-based summary (2026-10-21)
 
 - Local SQL migration files: **175**
 - Applied migration records reported by Supabase: **143**
@@ -115,7 +115,7 @@ No migration was applied, repaired, or marked as applied during this inspection.
 Read-only check of the connected Supabase project `ep-core` (`zcutsqbzvydyosfgrbdi`, region `ap-southeast-1`):
 
 - The project is healthy and reports **143 applied migration records**. The latest recorded migration remains `20261019070729` (`learning_school_admin_roster_profile_visibility`). The newer announcement, intervention, and gradebook integrity migrations listed above still do not appear in the applied migration history.
-- The existing reconciliation totals (175 local migration files, 31 same-name version mismatches, 35 local-only names, 3 remote-only records) remain the documented baseline; they must be recomputed against the current branch before any migration application.
+- The 175-file / 31 same-name mismatch / 35 local-only name / 3 remote-only name counts are the historical name-based snapshot from the earlier audit; the exact version-based comparison below supersedes these totals for migration planning.
 - Security advisors currently report **6 RLS-enabled tables with no policies**, **47 SECURITY DEFINER functions executable by authenticated users**, and **leaked-password protection disabled**. A read-only definition summary found all 47 functions have an explicit function-level `search_path`; 24 reference `auth.uid()` directly, 27 use `learning_current_user_id()`, 24 contain one of the inspected authorization helpers, and none lacked all of those obvious identity/authorization markers. These counts overlap and are only triage signals, not a substitute for reviewing each function's complete control flow and testing role/tenant boundaries. The six tables are the gamification settings/team/competition/preference tables. These findings require review of the actual RPC entry points, function bodies, grants, and intended RPC-only table access; do not blindly add policies or revoke function execution just to silence advisories.
 - Performance advisors report **81 unindexed foreign keys**, **6 auth/RLS initialization-plan findings**, **17 tables with multiple permissive policies**, and **4 duplicate-index findings**, plus unused-index notices. Prioritize by actual query paths and security impact; do not drop indexes or consolidate policies without checking dependencies and behavior.
 - This was an inspection only. **No SQL, migration history, Auth settings, policies, functions, or indexes were changed.**
@@ -131,18 +131,18 @@ Read-only check of the connected Supabase project `ep-core` (`zcutsqbzvydyosfgrb
 
 ## Exact version reconciliation — 2026-10-26 (supersedes earlier totals)
 
-The prior section compared migration **names**, which is useful for identifying likely renamed migrations but is not the same as comparing exact migration versions. A fresh read-only comparison was run against integration commit `477202b48761a7d70ab941b360861e714209cc8c` and the connected Supabase migration history on 2026-10-26.
+The earlier section compared migration **names**, which is useful for identifying likely renamed migrations but is not the same as comparing exact migration versions. A fresh read-only comparison was run against integration commit `fc66043d3ec7a48117dbd6b3b6100c54eed60f72` and the connected Supabase migration history on 2026-10-26. This branch also restores the source SQL for the already-applied roster-visibility migration under its exact recorded version; no database changes were made.
 
-- Repository migration files: **175**
+- Repository migration files: **176** (including the restored source file for the remote-applied roster visibility migration)
 - Remote applied records: **143**
-- Versions present on both sides: **109** (108 exact version-and-name matches, plus the one same-version name mismatch below)
+- Versions present on both sides: **110** (109 exact version-and-name matches, plus the one same-version name mismatch below)
 - Same-version name mismatch: **1** — local `20260928041149_learning_assessment_visibility_runtime_fix.sql`; remote record `20260928041149 (20260928000000_learning_assessment_visibility_runtime_fix)`.
 - Local files whose 14-digit version is absent remotely: **66**
-- Remote records whose version is absent from local filenames: **34**
+- Remote records whose version is absent from local filenames: **33**
 
-The 66/34 lists overlap substantially by migration *purpose* because many migrations were applied remotely under different timestamps. Therefore these numbers must not be interpreted as 66 safe-to-apply migrations or 34 missing source files. The remote-only version `20261019070729` (`learning_school_admin_roster_profile_visibility`) is still the latest applied record. Several older content-response and gamification migrations have remote versions different from the local filenames. Review the actual SQL bodies and resulting schema for each mapping before changing history or applying anything.
+The 66/33 lists overlap substantially by migration *purpose* because many migrations were applied remotely under different timestamps. Therefore these numbers must not be interpreted as 66 safe-to-apply migrations or 33 missing source files. The latest applied record remains `20261019070729` (`learning_school_admin_roster_profile_visibility`); its local source filename is now restored with the exact remote version, and a read-only check confirmed the live function definition, authenticated-only execute grant, and roster visibility policy match that source. Several older content-response and gamification migrations still have remote versions different from local filenames. Review each SQL body and resulting schema before applying or repairing anything.
 
-**Do not run `supabase db push`, bulk mark migrations as applied, or apply the 66 local-only files as a batch.** The next safe step is a migration-by-migration mapping table: local filename, matching remote version/name, SQL equivalence/schema evidence, and disposition (already applied under another version / genuinely pending / superseded / obsolete). After that, separately review and test the newer attendance, parent, marketplace, announcements, interventions and gradebook migrations. This update is documentation only; no database or migration-history changes were made.
+**Do not run `supabase db push`, bulk mark migrations as applied, or apply the 66 local-only files as a batch.** The next safe step is a migration-by-migration mapping table: local filename, matching remote version/name, SQL equivalence/schema evidence, and disposition (already applied under another version / genuinely pending / superseded / obsolete). After that, separately review and test the newer attendance, parent, marketplace, announcements, interventions and gradebook migrations. This update records source reconciliation only; no database or migration-history changes were made.
 
 
 ## Live schema object check — 2026-10-26
@@ -158,4 +158,4 @@ A read-only PostgreSQL catalog check was run against the connected `ep-core` pro
 
 The corresponding existing core gradebook tables and audit log, parent-link table, and class-membership table were present. The absence of the new guard triggers/constraint means the live database does **not** yet enforce the source branch's latest gradebook integrity changes. The absence of notification tables means the current in-app notification workflows cannot be treated as deployed.
 
-**Release decision:** keep these feature paths behind deployment/acceptance gates. Do not apply the listed migrations yet: their dependency order and the 34 remote-version-only records / 66 local-version-only filenames must first be reconciled against exact SQL definitions and live schema. Once mappings are approved, apply only the reviewed pending migrations in dependency order, then run authenticated manager/teacher/student/parent negative-access tests and gradebook RPC/direct-write tests. This catalog inspection was read-only; no database changes were made.
+**Release decision:** keep these feature paths behind deployment/acceptance gates. Do not apply the listed migrations yet: their dependency order and the 33 remote-version-only records / 66 local-version-only filenames must first be reconciled against exact SQL definitions and live schema. Once mappings are approved, apply only the reviewed pending migrations in dependency order, then run authenticated manager/teacher/student/parent negative-access tests and gradebook RPC/direct-write tests. This catalog inspection was read-only; no database changes were made.
