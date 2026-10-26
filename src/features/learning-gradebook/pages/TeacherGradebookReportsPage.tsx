@@ -14,7 +14,7 @@ type ReportRow = {
 function csvCell(value: string | number) {
   let text = String(value);
   // Prevent spreadsheet formula execution from untrusted names/emails or imported text.
-  if (/^[=+\-@\t\r]/.test(text)) text = "'" + text;
+  if (/^[\t\n\r ]*[=+\-@]/.test(text)) text = "'" + text;
   return '"' + text.replaceAll('"', '""') + '"';
 }
 
