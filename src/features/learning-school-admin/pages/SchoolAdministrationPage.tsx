@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { BookOpen, CalendarDays, GraduationCap, School, Users } from "lucide-react";
 import type { FormEvent, ReactNode } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
@@ -56,12 +57,12 @@ function downloadAttendanceCsv(filename: string, rows: string[][]) {
 
 function Section({ title, description, children }: { title: string; description: string; children: ReactNode }) {
   return (
-    <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-      <div className="mb-5">
-        <h2 className="text-lg font-semibold text-slate-950">{title}</h2>
-        <p className="mt-1 text-sm leading-6 text-slate-500">{description}</p>
+    <section className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-[0_10px_32px_-22px_rgba(15,23,42,0.35)]">
+      <div className="border-b border-slate-100 bg-gradient-to-r from-slate-50 via-white to-teal-50/40 px-5 py-4 sm:px-6">
+        <h2 className="text-lg font-bold tracking-tight text-slate-900">{title}</h2>
+        <p className="mt-1 text-sm leading-6 text-slate-600">{description}</p>
       </div>
-      {children}
+      <div className="p-5 sm:p-6">{children}</div>
     </section>
   );
 }
@@ -406,21 +407,39 @@ export default function SchoolAdministrationPage() {
 
   return (
     <div className="mx-auto max-w-7xl space-y-6">
-      <header className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <p className="text-sm font-medium text-slate-300">E&P Learning · Administration</p>
-            <h1 className="mt-1 text-2xl font-bold sm:text-3xl">School setup</h1>
-            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">Set up academic years and terms, create classes, attach subjects, and manage teacher and student rosters. Changes are saved to the school database.</p>
+      <header className="relative isolate overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-indigo-950 to-teal-900 p-5 text-white shadow-xl shadow-indigo-950/10 sm:p-7 lg:p-8">
+        <div aria-hidden="true" className="pointer-events-none absolute -right-12 -top-20 -z-10 h-64 w-64 rounded-full border-[28px] border-white/[0.05]" />
+        <div aria-hidden="true" className="pointer-events-none absolute -bottom-28 right-1/3 -z-10 h-56 w-56 rounded-full bg-teal-400/10 blur-3xl" />
+        <div className="flex flex-wrap items-start justify-between gap-5">
+          <div className="flex min-w-0 items-start gap-4">
+            <div className="hidden h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-white/10 shadow-inner sm:flex"><School size={28} strokeWidth={1.7} /></div>
+            <div className="min-w-0">
+              <p className="inline-flex items-center gap-2 rounded-full border border-teal-200/20 bg-teal-300/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-teal-100"><GraduationCap size={14} /> E&P Learning · School administration</p>
+              <h1 className="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">School setup</h1>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-indigo-100/90">Build a clear academic structure for your school — from year and term dates to class subjects and trusted teacher and student rosters.</p>
+            </div>
           </div>
-          <div className="flex flex-wrap gap-2"><Link to="/school-admin/admissions" className="rounded-xl border border-white/30 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10">Student admissions</Link><Link to="/school-admin/timetable" className="rounded-xl border border-white/30 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10">Timetable</Link><Link to="/school-admin/attendance-report" className="rounded-xl border border-white/30 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10">Attendance report</Link><Link to="/school-admin/parents" className="rounded-xl border border-white/30 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10">Parent links</Link><Link to="/school-admin/announcements" className="rounded-xl border border-white/30 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10">Announcements</Link><Link to="/school-admin/staff" className="rounded-xl border border-white/30 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10">Staff directory</Link><Link to="/teacher" className="rounded-xl border border-white/30 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10">Teacher workspace</Link></div>
+          <div className="flex flex-wrap gap-2">
+            <Link to="/school-admin/analytics" className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15"><CalendarDays size={16} /> School analytics</Link>
+            <Link to="/school-admin/admissions" className="rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15">Student admissions</Link>
+            <Link to="/school-admin/timetable" className="rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15">Timetable</Link>
+            <Link to="/school-admin/attendance-report" className="rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15">Attendance report</Link>
+            <Link to="/school-admin/parents" className="rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15">Parent links</Link>
+            <Link to="/school-admin/announcements" className="rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15">Announcements</Link>
+            <Link to="/school-admin/staff" className="rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15">Staff directory</Link>
+            <Link to="/teacher" className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-indigo-950 transition hover:bg-teal-50"><BookOpen size={16} /> Teacher workspace</Link>
+          </div>
         </div>
-        <div className="mt-5 max-w-xl">
-          <label className="block text-sm font-medium text-slate-200">School / organization
-            <select className="mt-1 w-full rounded-xl border border-white/20 bg-slate-800 px-3 py-2.5 text-sm text-white" value={organizationId} onChange={(event) => { setSelectedOrganizationId(event.target.value); setSelectedAcademicYearId(""); setSelectedClassGroupId(""); setEditingYearId(""); setEditingTermId(""); setEditingClassId(""); setYearForm(emptyYearForm); setTermForm(emptyTermForm); setClassForm(emptyClassForm); setActionError(""); setActionNotice(""); }}>
-              {organizations.map((organization) => <option key={organization.id} value={organization.id}>{organization.name} ({organization.code})</option>)}
+        <div className="mt-6 grid gap-4 border-t border-white/15 pt-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
+          <label className="block max-w-2xl text-sm font-semibold text-indigo-100">School / organization
+            <select className="mt-2 w-full rounded-xl border border-white/20 bg-slate-950/30 px-3.5 py-3 text-sm font-medium text-white outline-none transition focus:border-teal-300 focus:ring-2 focus:ring-teal-300/25" value={organizationId} onChange={(event) => { setSelectedOrganizationId(event.target.value); setSelectedAcademicYearId(""); setSelectedClassGroupId(""); setEditingYearId(""); setEditingTermId(""); setEditingClassId(""); setYearForm(emptyYearForm); setTermForm(emptyTermForm); setClassForm(emptyClassForm); setActionError(""); setActionNotice(""); }}>
+              {organizations.map((organization) => <option key={organization.id} value={organization.id} className="bg-white text-slate-900">{organization.name} ({organization.code})</option>)}
             </select>
           </label>
+          <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.07] px-4 py-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-300/15 text-teal-100"><Users size={20} /></div>
+            <div><p className="text-xs font-medium text-indigo-100">Selected academic year</p><p className="mt-0.5 text-sm font-bold">{selectedYear?.name ?? "Choose an academic year"}</p></div>
+          </div>
         </div>
       </header>
 
