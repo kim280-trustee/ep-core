@@ -100,22 +100,33 @@ export default function TeacherAIAssistantPage() {
         languageCode: language === "Thai" ? "th" : "en",
         createdBy: user.id,
       });
-      await learningContentService.createVersion({
-        contentItemId: content.id,
-        versionNo: 1,
-        changeSummary: "AI-generated draft saved for teacher editing and review; not published.",
-        createdBy: user.id,
-        body: {
-          sections: [{ type: "text", title: "AI-generated draft", body: generatedDraft }],
-          aiDraftContext: { country, educationSystem, curriculumReference, subject, gradeLevel, topic, objective, format, language, difficulty, durationMinutes: Number(durationMinutes), priorKnowledge, availableMaterials, teacherNeeds },
-          requiresTeacherReview: true,
-        },
-      });
+      try {
+        await learningContentService.createVersion({
+          contentItemId: content.id,
+          versionNo: 1,
+          changeSummary: "AI-generated draft saved for teacher editing and review; not published.",
+          createdBy: user.id,
+          body: {
+            sections: [{ type: "text", title: "AI-generated draft", body: generatedDraft }],
+            aiDraftContext: { country, educationSystem, curriculumReference, subject, gradeLevel, topic, objective, format, language, difficulty, durationMinutes: Number(durationMinutes), priorKnowledge, availableMaterials, teacherNeeds },
+            requiresTeacherReview: true,
+          },
+        });
+      } catch (error) {
+        // Avoid leaving an empty content item behind if its first version cannot be saved.
+        try {
+          await learningContentService.deleteContent(content.id);
+        } catch (cleanupError) {
+          console.error("Unable to clean up incomplete AI draft content item", cleanupError);
+        }
+        throw error;
+      }
       return { id: content.id, title: content.title };
     },
   });
 
   const handleGenerate = () => {
+    saveDraft.reset();
     setCopyMessage("");
     if (!organizationId) {
       generate.reset();
