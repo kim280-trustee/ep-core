@@ -127,3 +127,19 @@ Read-only check of the connected Supabase project `ep-core` (`zcutsqbzvydyosfgrb
 3. Review all externally executable SECURITY DEFINER RPCs for explicit `auth.uid()` checks, tenant/role/class authorization, safe `search_path`, and least-privilege grants. Some may be intentionally exposed authenticated RPCs; advisor presence alone is not proof of exploitability.
 4. Enable leaked-password protection through the Supabase Auth configuration after confirming rollout impact.
 5. Prioritize unindexed foreign keys and duplicate indexes only after query/schema review, then rerun advisors.
+
+
+## Exact version reconciliation — 2026-10-26 (supersedes earlier totals)
+
+The prior section compared migration **names**, which is useful for identifying likely renamed migrations but is not the same as comparing exact migration versions. A fresh read-only comparison was run against integration commit `477202b48761a7d70ab941b360861e714209cc8c` and the connected Supabase migration history on 2026-10-26.
+
+- Repository migration files: **175**
+- Remote applied records: **143**
+- Versions present on both sides: **109** (108 exact version-and-name matches, plus the one same-version name mismatch below)
+- Same-version name mismatch: **1** — local `20260928041149_learning_assessment_visibility_runtime_fix.sql`; remote record `20260928041149 (20260928000000_learning_assessment_visibility_runtime_fix)`.
+- Local files whose 14-digit version is absent remotely: **66**
+- Remote records whose version is absent from local filenames: **34**
+
+The 66/34 lists overlap substantially by migration *purpose* because many migrations were applied remotely under different timestamps. Therefore these numbers must not be interpreted as 66 safe-to-apply migrations or 34 missing source files. The remote-only version `20261019070729` (`learning_school_admin_roster_profile_visibility`) is still the latest applied record. Several older content-response and gamification migrations have remote versions different from the local filenames. Review the actual SQL bodies and resulting schema for each mapping before changing history or applying anything.
+
+**Do not run `supabase db push`, bulk mark migrations as applied, or apply the 66 local-only files as a batch.** The next safe step is a migration-by-migration mapping table: local filename, matching remote version/name, SQL equivalence/schema evidence, and disposition (already applied under another version / genuinely pending / superseded / obsolete). After that, separately review and test the newer attendance, parent, marketplace, announcements, interventions and gradebook migrations. This update is documentation only; no database or migration-history changes were made.
