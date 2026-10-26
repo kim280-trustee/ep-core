@@ -5190,7 +5190,7 @@ export type Database = {
           vocabulary_entry_id: string
           word: string
         }[]
-      }
+      },
       record_learning_vocabulary_review: {
         Args: {
           p_is_correct: boolean
