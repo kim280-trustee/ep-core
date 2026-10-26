@@ -256,3 +256,20 @@ Current performance-advisor counts:
 The security advisor also reports **leaked-password protection disabled**. This is a Supabase Auth configuration issue, not a migration; it has not been changed by this audit. Enable it through the project's supported Auth settings after confirming the impact on sign-up/password flows.
 
 These advisor findings are triage signals, not instructions to apply blanket changes. Prioritize tenant/role boundary review and production-critical FK indexes; validate index usage before removing anything, review permissive-policy overlap for unintended broad access, and address the leaked-password setting as a deliberate Auth configuration change. No database or Auth settings were changed.
+
+
+### Live state refresh — 2026-10-26, latest read-only snapshot
+
+A fresh read-only check of the live project `ep-core` found **193 migration-history records**, latest version `20261026044704` (`school_admin_authorization_final_hardening`). The integration branch contains **178 SQL migration files**. These counts are not a reconciliation: the live history includes generated/reconciled names and repeated application versions, so do not run `db push`, delete history rows, or mark the migration ledger clean from counts alone.
+
+The latest 20 live history rows include post-deployment hardening entries for content-response integrity, parent vocabulary summary, timetable access, assignment notifications, parent attendance summary, attendance submission identity, teacher/student user RLS recursion, assignment-target RLS recursion, and final school-admin authorization. This is evidence that the schema progressed beyond the earlier 184-record snapshot; it is not proof that every repository migration matches its deployed SQL.
+
+Read-only catalog confirmation still finds the principal tables for vocabulary and progress, gradebook entries, intervention cases, marketplace booking requests, notification preferences/inbox, school announcements, and school calendar events. The attendance table was not included in this particular presence query, so no new claim is made here about its exact table name.
+
+Latest Supabase advisor snapshot observed at approximately `2026-10-26T04:51:16Z`:
+- **19** RLS-enabled tables without policies.
+- **105** authenticated-executable `SECURITY DEFINER` functions.
+- Leaked-password protection remains disabled in the previous advisor snapshot; confirm current Auth configuration in the dashboard.
+- These findings require per-table/per-function authorization review, not blanket policies or blanket revocation. Earlier checks found the 19 tables deny direct data privileges to `authenticated` and `anon`, consistent with RPC-only access, but exposed RPC bodies still need actor, tenant, class, parent-child and state-transition review plus negative cross-tenant tests.
+
+**Release status remains blocked:** the migration ledger is not reconciled; Auth leaked-password protection and the 105 definer RPCs need review; and authenticated end-to-end journeys remain unverified. Prioritize a single consistent version/name-to-source mapping, then role-separated tests for teacher authoring/assignments, student attempts and AI coach, parent links/progress, attendance, gradebook finalization, school announcements/calendar, marketplace booking/safeguarding and notifications. Do not report the product as fully current or production-ready until those gates are evidenced.
