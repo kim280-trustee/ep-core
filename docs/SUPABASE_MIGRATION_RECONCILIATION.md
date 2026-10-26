@@ -131,7 +131,7 @@ Read-only check of the connected Supabase project `ep-core` (`zcutsqbzvydyosfgrb
 
 ## Exact version reconciliation — 2026-10-26 (supersedes earlier totals)
 
-The earlier section compared migration **names**, which is useful for identifying likely renamed migrations but is not the same as comparing exact migration versions. A fresh read-only comparison was run against integration commit `5cc15ce9e4693d187d448acc8cd10dd5985a1aed` and the connected Supabase migration history on 2026-10-26. This branch also restores the source SQL for the already-applied roster-visibility migration under its exact recorded version; no database changes were made.
+The earlier section compared migration **names**, which is useful for identifying likely renamed migrations but is not the same as comparing exact migration versions. A fresh read-only comparison was run against integration commit `0f004748ea11e264c9ea4a36f405bad6f39f5751` and the connected Supabase migration history on 2026-10-26. This branch also restores the source SQL for the already-applied roster-visibility migration under its exact recorded version; no database changes were made.
 
 - Repository migration files: **177** (including the restored source file for the remote-applied roster visibility migration and the new local-only vocabulary relations/analytics migration)
 - Remote applied records: **143**
