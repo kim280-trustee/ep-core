@@ -133,11 +133,11 @@ Read-only check of the connected Supabase project `ep-core` (`zcutsqbzvydyosfgrb
 
 The earlier section compared migration **names**, which is useful for identifying likely renamed migrations but is not the same as comparing exact migration versions. A fresh read-only comparison was run against integration commit `0f004748ea11e264c9ea4a36f405bad6f39f5751` and the connected Supabase migration history on 2026-10-26. This branch also restores the source SQL for the already-applied roster-visibility migration under its exact recorded version; no database changes were made.
 
-- Repository migration files: **177** (including the restored source file for the remote-applied roster visibility migration and the new local-only vocabulary relations/analytics migration)
+- Repository migration files: **178** (including the restored source file for the remote-applied roster visibility migration and the new local-only vocabulary relations/analytics migration)
 - Remote applied records: **143**
 - Versions present on both sides: **110** (109 exact version-and-name matches, plus the one same-version name mismatch below)
 - Same-version name mismatch: **1** — local `20260928041149_learning_assessment_visibility_runtime_fix.sql`; remote record `20260928041149 (20260928000000_learning_assessment_visibility_runtime_fix)`.
-- Local files whose 14-digit version is absent remotely: **67**
+- Local files whose 14-digit version is absent remotely: **68**
 - Remote records whose version is absent from local filenames: **33**
 
 The 67/33 lists overlap substantially by migration *purpose* because many migrations were applied remotely under different timestamps. Therefore these numbers must not be interpreted as 67 safe-to-apply migrations or 33 missing source files. The latest applied record remains `20261019070729` (`learning_school_admin_roster_profile_visibility`); its local source filename is now restored with the exact remote version, and a read-only check confirmed the live function definition, authenticated-only execute grant, and roster visibility policy match that source. Several older content-response and gamification migrations still have remote versions different from local filenames. Review each SQL body and resulting schema before applying or repairing anything.
@@ -207,3 +207,8 @@ The following local filenames and remote applied records have matching migration
 ### Still treated as genuinely pending until separately verified
 
 No same-name mapping is asserted for the vocabulary foundation/extension, school attendance register and analytics, timetable, admissions, staff administration, parent vocabulary/attendance summaries, marketplace, notification preferences/inbox, announcements, intervention cases, or gradebook integrity migrations. Read-only catalog checks found several corresponding tables/RPCs absent, including vocabulary and school-wide attendance reporting. Review each dependency chain and its authorization tests before deployment. **No database migration was applied or marked as applied during this triage.**
+
+
+### School calendar migration — pending review
+
+The academic calendar and examinations source from Edna's `edna/academic-calendar-exams-v1` branch has been selectively ported. Its original migration timestamp `20261020220000` collided with the already-existing announcement-notification migration at that same version, so the calendar migration is renamed to `20261026200000_learning_school_calendar_events.sql`. This avoids duplicate migration versions but does not make the migration safe to apply automatically. It remains local-only and unapplied; verify its table references, RPC grants, manager authorization, class-scoped visibility, linked-parent visibility, and dependencies before deployment. No live database changes were made.
