@@ -61,7 +61,7 @@ function parseCsv(text: string): string[][] {
 
 function csvCell(value: string | null | undefined): string {
   const normalized = value ?? "";
-  const safeValue = /^[=+\-@\t\r]/.test(normalized) ? "'" + normalized : normalized;
+  const safeValue = /^[\t\n\r ]*[=+\-@]/.test(normalized) ? "'" + normalized : normalized;
   return /[",\r\n]/.test(safeValue) ? '"' + safeValue.replace(/"/g, '""') + '"' : safeValue;
 }
 
