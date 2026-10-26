@@ -76,7 +76,7 @@ begin
     e.topic,
     count(distinct p.user_id) filter (where p.review_count > 0),
     count(distinct p.user_id) filter (where p.status = 'known'),
-    count(distinct p.user_id) filter (where p.status = 'learning' and p.next_review_at <= now()),
+    count(distinct p.user_id) filter (where p.next_review_at <= now()),
     coalesce(sum(p.review_count), 0)::bigint,
     coalesce(sum(p.correct_count), 0)::bigint,
     coalesce(sum(p.incorrect_count), 0)::bigint,
