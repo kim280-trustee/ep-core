@@ -109,3 +109,21 @@ These may be legacy versions, renamed files, or migrations removed from the curr
 6. The announcement migrations (`20261020200000`, `20261020220000`) and gradebook integrity migrations (`20261021000000`, `20261021100000`, `20261021110000`) are part of the current integration batch and are not applied.
 
 No migration was applied, repaired, or marked as applied during this inspection.
+
+## Live project recheck — 2026-10-26
+
+Read-only check of the connected Supabase project `ep-core` (`zcutsqbzvydyosfgrbdi`, region `ap-southeast-1`):
+
+- The project is healthy and reports **143 applied migration records**. The latest recorded migration remains `20261019070729` (`learning_school_admin_roster_profile_visibility`). The newer announcement, intervention, and gradebook integrity migrations listed above still do not appear in the applied migration history.
+- The existing reconciliation totals (175 local migration files, 31 same-name version mismatches, 35 local-only names, 3 remote-only records) remain the documented baseline; they must be recomputed against the current branch before any migration application.
+- Security advisors currently report **6 RLS-enabled tables with no policies**, **47 SECURITY DEFINER functions executable by authenticated users**, and **leaked-password protection disabled**. The six tables are the gamification settings/team/competition/preference tables. These findings require review of the actual RPC entry points, function bodies, grants, and intended RPC-only table access; do not blindly add policies or revoke function execution just to silence advisories.
+- Performance advisors report **81 unindexed foreign keys**, **6 auth/RLS initialization-plan findings**, **17 tables with multiple permissive policies**, and **4 duplicate-index findings**, plus unused-index notices. Prioritize by actual query paths and security impact; do not drop indexes or consolidate policies without checking dependencies and behavior.
+- This was an inspection only. **No SQL, migration history, Auth settings, policies, functions, or indexes were changed.**
+
+### Required next steps
+
+1. Recompute local-vs-remote migration mappings from the exact integration commit and compare SQL definitions for same-name/version-drift cases.
+2. Review the six no-policy gamification tables against the RPCs and intended access model; test authenticated and cross-tenant paths before changing grants or policies.
+3. Review all externally executable SECURITY DEFINER RPCs for explicit `auth.uid()` checks, tenant/role/class authorization, safe `search_path`, and least-privilege grants. Some may be intentionally exposed authenticated RPCs; advisor presence alone is not proof of exploitability.
+4. Enable leaked-password protection through the Supabase Auth configuration after confirming rollout impact.
+5. Prioritize unindexed foreign keys and duplicate indexes only after query/schema review, then rerun advisors.
