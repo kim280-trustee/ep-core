@@ -1,4 +1,4 @@
-import { BookOpen, BookOpenCheck, FileQuestion, FileText, Languages, LayoutDashboard, LogOut, PlusCircle, GraduationCap, Sparkles, Bell, Target } from "lucide-react";
+import { BookOpen, BookOpenCheck, FileQuestion, FileText, Languages, LayoutDashboard, LogOut, PlusCircle, GraduationCap, Sparkles, Bell, Target, CalendarDays } from "lucide-react";
 import { Navigate, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -18,6 +18,7 @@ const navigationGroups = [
       { to: "/teacher/content", label: "Content Library", icon: FileText, end: false },
       { to: "/teacher/lesson-plans", label: "Lesson Planning", icon: BookOpenCheck, end: false },
       { to: "/teacher/vocabulary", label: "Vocabulary", icon: Languages, end: false },
+      { to: "/calendar", label: "School Calendar", icon: CalendarDays, end: false },
       { to: "/teacher/vocabulary/assignments/new", label: "Vocabulary Assignment", icon: BookOpenCheck, end: false },
       { to: "/notifications", label: "Notifications", icon: Bell, end: false },
       { to: "/marketplace", label: "Extra Classes", icon: GraduationCap, end: false },
