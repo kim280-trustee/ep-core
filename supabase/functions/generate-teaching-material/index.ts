@@ -20,14 +20,31 @@ export default {
       const format = typeof body.format === "string" ? body.format : "";
       const language = typeof body.language === "string" ? body.language : "English";
       const difficulty = typeof body.difficulty === "string" ? body.difficulty : "developing";
+      const country = typeof body.country === "string" ? body.country.trim() : "";
+      const educationSystem = typeof body.educationSystem === "string" ? body.educationSystem.trim() : "";
+      const curriculumReference = typeof body.curriculumReference === "string" ? body.curriculumReference.trim() : "";
+      const durationMinutes = body.durationMinutes === undefined ? 50 : Number(body.durationMinutes);
+      const priorKnowledge = typeof body.priorKnowledge === "string" ? body.priorKnowledge.trim() : "";
+      const availableMaterials = typeof body.availableMaterials === "string" ? body.availableMaterials.trim() : "";
+      const teacherNeeds = typeof body.teacherNeeds === "string" ? body.teacherNeeds.trim() : "";
 
       if (!organizationId || !subject || !gradeLevel || !topic || !objective) {
         return Response.json({ error: "School, subject, grade, topic and learning objective are required." }, { status: 400 });
       }
-      if (organizationId.length > 128 || subject.length > 100 || gradeLevel.length > 80 || topic.length > 200 || objective.length > 500) {
+      if (
+        organizationId.length > 128 || subject.length > 100 || gradeLevel.length > 80 ||
+        topic.length > 200 || objective.length > 500 || country.length > 100 ||
+        educationSystem.length > 120 || curriculumReference.length > 500 ||
+        priorKnowledge.length > 1000 || availableMaterials.length > 1000 ||
+        teacherNeeds.length > 1000
+      ) {
         return Response.json({ error: "One or more fields are too long. Shorten the request and try again." }, { status: 400 });
       }
-      if (!ALLOWED_FORMATS.has(format) || !ALLOWED_LANGUAGES.has(language) || !ALLOWED_DIFFICULTIES.has(difficulty)) {
+      if (
+        !ALLOWED_FORMATS.has(format) || !ALLOWED_LANGUAGES.has(language) ||
+        !ALLOWED_DIFFICULTIES.has(difficulty) ||
+        !Number.isInteger(durationMinutes) || durationMinutes < 5 || durationMinutes > 240
+      ) {
         return Response.json({ error: "Choose a supported material type, language and difficulty." }, { status: 400 });
       }
 
@@ -87,7 +104,12 @@ export default {
 
       const instructions = [
         "You are an assistant for a professional school teacher.",
-        "Create a useful first draft aligned only to the teacher-provided subject, grade, topic and objective.",
+        "Create a useful first draft aligned only to the teacher-provided subject, grade, topic, objective and any explicitly supplied curriculum reference.",
+        "Treat country, education system and curriculum references as user-provided context, not proof of official curriculum approval. If no curriculum reference is supplied, say the teacher should verify alignment locally.",
+        "The teacher may have limited proficiency in the lesson's teaching language. Make the teacher-facing explanation clear, practical and confidence-building.",
+        "When the requested output language is English and the country is Thailand, include Thai-language teacher explanations alongside simple, accurate English classroom examples where relevant. When English and Thai are requested, use clearly labelled English and Thai sections.",
+        "For language lessons, include model sentences, translations, common learner errors and practical classroom phrases where appropriate. Do not claim to provide generated audio or speech recognition.",
+        "For lesson plans, respect the requested lesson duration and divide stages so their timings add up to that duration.",
         "Use age-appropriate, inclusive, culturally respectful material. Avoid collecting or requesting student names, contact details or other personal data.",
         "Do not claim alignment to an official curriculum standard unless the teacher supplied that standard.",
         "For quizzes, include an answer key and a brief explanation for each answer. Keep questions unambiguous.",
@@ -106,8 +128,15 @@ export default {
         `Topic: ${topic}`,
         `Learning objective: ${objective}`,
         `Difficulty: ${difficulty}`,
+        `Country: ${country || "Not specified"}`,
+        `Education system: ${educationSystem || "Not specified"}`,
+        `Teacher-supplied curriculum reference: ${curriculumReference || "Not supplied; do not invent standards"}`,
+        `Lesson duration in minutes: ${durationMinutes}`,
+        `Prior knowledge: ${priorKnowledge || "Not specified; state reasonable assumptions"}`,
+        `Available teaching materials: ${availableMaterials || "Not specified"}`,
+        `Teacher support needs: ${teacherNeeds || "Not specified"}`,
         "",
-        "Generate the draft now. Keep the content practical for a classroom and clearly separate the learner-facing material from the teacher answer key where applicable."
+        "Generate the draft now. Keep the content practical for a classroom and clearly separate teacher-facing guidance, learner-facing material and the teacher answer key where applicable. Include a brief assumptions and local-verification note. Never invent a curriculum standard, endorsement, student data or unavailable audio capability."
       ].join("\n");
 
       const response = await fetch("https://api.openai.com/v1/responses", {

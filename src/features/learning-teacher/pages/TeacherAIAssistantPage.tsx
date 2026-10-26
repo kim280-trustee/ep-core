@@ -4,6 +4,7 @@ import { AlertCircle, Copy, Sparkles } from "lucide-react";
 import { useAuth } from "@/core/auth";
 import { supabase } from "@/core/infrastructure/supabase/client";
 import { learningTeacherService } from "../services/learning-teacher.service";
+import { learningContentService } from "@/features/learning-content";
 
 type MaterialFormat = "lesson" | "worksheet" | "quiz" | "lesson_plan";
 type DraftRequest = {
@@ -15,6 +16,13 @@ type DraftRequest = {
   format: MaterialFormat;
   language: "English" | "Thai" | "English and Thai";
   difficulty: "beginner" | "developing" | "on_level" | "stretch";
+  country: string;
+  educationSystem: string;
+  curriculumReference: string;
+  durationMinutes: number;
+  priorKnowledge: string;
+  availableMaterials: string;
+  teacherNeeds: string;
 };
 type DraftResponse = {
   draft: string;
@@ -38,6 +46,13 @@ export default function TeacherAIAssistantPage() {
   const [format, setFormat] = useState<MaterialFormat>("lesson");
   const [language, setLanguage] = useState<DraftRequest["language"]>("English");
   const [difficulty, setDifficulty] = useState<DraftRequest["difficulty"]>("developing");
+  const [country, setCountry] = useState("Thailand");
+  const [educationSystem, setEducationSystem] = useState("MEP");
+  const [curriculumReference, setCurriculumReference] = useState("");
+  const [durationMinutes, setDurationMinutes] = useState("50");
+  const [priorKnowledge, setPriorKnowledge] = useState("");
+  const [availableMaterials, setAvailableMaterials] = useState("");
+  const [teacherNeeds, setTeacherNeeds] = useState("");
   const [copyMessage, setCopyMessage] = useState("");
 
   const classes = useQuery({
@@ -68,7 +83,50 @@ export default function TeacherAIAssistantPage() {
     },
   });
 
+  const saveDraft = useMutation({
+    mutationFn: async () => {
+      const generatedDraft = generate.data?.draft;
+      if (!user?.id || !organizationId || !generatedDraft?.trim()) {
+        throw new Error("Generate a draft and select an active teacher class before saving.");
+      }
+      const suffix = Date.now().toString(36).toUpperCase();
+      const code = `AI-${format.toUpperCase().replace(/[^A-Z0-9]+/g, "-")}-${suffix}`;
+      const title = `${topic.trim()} — ${format === "lesson_plan" ? "Lesson plan" : format[0].toUpperCase() + format.slice(1)}`;
+      const content = await learningContentService.createContent({
+        organizationId,
+        code,
+        title: title.slice(0, 180),
+        contentType: format === "worksheet" ? "worksheet" : format === "quiz" ? "other" : "lesson",
+        languageCode: language === "Thai" ? "th" : "en",
+        createdBy: user.id,
+      });
+      try {
+        await learningContentService.createVersion({
+          contentItemId: content.id,
+          versionNo: 1,
+          changeSummary: "AI-generated draft saved for teacher editing and review; not published.",
+          createdBy: user.id,
+          body: {
+            sections: [{ type: "text", title: "AI-generated draft", body: generatedDraft }],
+            aiDraftContext: { country, educationSystem, curriculumReference, subject, gradeLevel, topic, objective, format, language, difficulty, durationMinutes: Number(durationMinutes), priorKnowledge, availableMaterials, teacherNeeds },
+            requiresTeacherReview: true,
+          },
+        });
+      } catch (error) {
+        // Avoid leaving an empty content item behind if its first version cannot be saved.
+        try {
+          await learningContentService.deleteContent(content.id);
+        } catch (cleanupError) {
+          console.error("Unable to clean up incomplete AI draft content item", cleanupError);
+        }
+        throw error;
+      }
+      return { id: content.id, title: content.title };
+    },
+  });
+
   const handleGenerate = () => {
+    saveDraft.reset();
     setCopyMessage("");
     if (!organizationId) {
       generate.reset();
@@ -84,6 +142,13 @@ export default function TeacherAIAssistantPage() {
       format,
       language,
       difficulty,
+      country: country.trim(),
+      educationSystem: educationSystem.trim(),
+      curriculumReference: curriculumReference.trim(),
+      durationMinutes: Number(durationMinutes),
+      priorKnowledge: priorKnowledge.trim(),
+      availableMaterials: availableMaterials.trim(),
+      teacherNeeds: teacherNeeds.trim(),
     });
   };
 
@@ -153,6 +218,29 @@ export default function TeacherAIAssistantPage() {
                 </select>
               </label>
             </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <label className={labelClass}>Country
+                <input className={fieldClass} value={country} onChange={(event) => setCountry(event.target.value)} maxLength={100} placeholder="Thailand" />
+              </label>
+              <label className={labelClass}>Education system
+                <input className={fieldClass} value={educationSystem} onChange={(event) => setEducationSystem(event.target.value)} maxLength={120} placeholder="MEP / national curriculum" />
+              </label>
+            </div>
+            <label className={labelClass}>Curriculum reference (optional)
+              <input className={fieldClass} value={curriculumReference} onChange={(event) => setCurriculumReference(event.target.value)} maxLength={500} placeholder="Official curriculum, standard, or learning outcome reference" />
+            </label>
+            <label className={labelClass}>Lesson duration (minutes)
+              <input className={fieldClass} type="number" min={5} max={240} step={1} value={durationMinutes} onChange={(event) => setDurationMinutes(event.target.value)} required />
+            </label>
+            <label className={labelClass}>Learners' prior knowledge (optional)
+              <textarea className={fieldClass} value={priorKnowledge} onChange={(event) => setPriorKnowledge(event.target.value)} maxLength={1000} rows={2} placeholder="What learners already know; do not include student names or personal data." />
+            </label>
+            <label className={labelClass}>Available materials (optional)
+              <textarea className={fieldClass} value={availableMaterials} onChange={(event) => setAvailableMaterials(event.target.value)} maxLength={1000} rows={2} placeholder="Textbook pages, board, projector, printed cards..." />
+            </label>
+            <label className={labelClass}>Teacher support needed (optional)
+              <textarea className={fieldClass} value={teacherNeeds} onChange={(event) => setTeacherNeeds(event.target.value)} maxLength={1000} rows={2} placeholder="Thai explanations, simple teacher scripts, common errors, differentiation..." />
+            </label>
             <label className={labelClass}>Difficulty
               <select className={fieldClass} value={difficulty} onChange={(event) => setDifficulty(event.target.value as DraftRequest["difficulty"])}>
                 <option value="beginner">Beginner / needs support</option><option value="developing">Developing</option><option value="on_level">On level</option><option value="stretch">Stretch / extension</option>
@@ -173,7 +261,7 @@ export default function TeacherAIAssistantPage() {
           </div>
           {copyMessage && <p role="status" className="mt-3 text-xs text-slate-600">{copyMessage}</p>}
           {generate.isPending ? <div className="mt-6 space-y-3" aria-label="Generating draft"><div className="h-4 w-3/4 animate-pulse rounded bg-slate-200" /><div className="h-4 w-full animate-pulse rounded bg-slate-200" /><div className="h-4 w-5/6 animate-pulse rounded bg-slate-200" /><div className="h-32 animate-pulse rounded-xl bg-slate-100" /></div>
-            : generate.data ? <><div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950"><strong>Teacher review required.</strong> This draft has not been validated against an official curriculum and has not been published.</div>{generate.data.usage && <p className="mt-3 text-xs text-slate-500" role="status">AI usage: {generate.data.usage.remainingRequests} of {generate.data.usage.dailyLimit} draft requests remaining in the rolling 24-hour window.</p>}<pre className="mt-4 whitespace-pre-wrap break-words font-sans text-sm leading-6 text-slate-800">{generate.data.draft}</pre></>
+            : generate.data ? <><div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950"><strong>Teacher review required.</strong> This draft has not been validated against an official curriculum and has not been published.</div>{generate.data.usage && <p className="mt-3 text-xs text-slate-500" role="status">AI usage: {generate.data.usage.remainingRequests} of {generate.data.usage.dailyLimit} draft requests remaining in the rolling 24-hour window.</p>}<div className="mt-4 flex flex-wrap gap-2"><button type="button" onClick={() => saveDraft.mutate()} disabled={saveDraft.isPending || !organizationId} className="rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-50">{saveDraft.isPending ? "Saving draft…" : "Save to content library"}</button><a href="/teacher/content" className="inline-flex items-center rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">Open content library</a></div>{saveDraft.isError && <p role="alert" className="mt-3 text-sm text-red-700">{saveDraft.error.message}</p>}{saveDraft.data && <p role="status" className="mt-3 rounded-lg bg-emerald-50 p-3 text-sm text-emerald-800">Saved “{saveDraft.data.title}” as a draft. Open the content library to continue editing and review it before publication.</p>}<pre className="mt-4 whitespace-pre-wrap break-words font-sans text-sm leading-6 text-slate-800">{generate.data.draft}</pre></>
             : <div className="mt-8 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center"><Sparkles size={24} className="mx-auto text-slate-400" /><p className="mt-3 text-sm font-semibold text-slate-700">Your draft will appear here</p><p className="mt-1 text-sm text-slate-500">Enter the objective and select Generate draft.</p></div>}
         </section>
       </div>
