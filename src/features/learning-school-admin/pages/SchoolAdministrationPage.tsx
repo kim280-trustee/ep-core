@@ -405,6 +405,7 @@ export default function SchoolAdministrationPage() {
 
   const editYear = (year: LearningAcademicYear) => {
     setSelectedAcademicYearId(year.id);
+    setSelectedUserIds([]);
     setYearForm({ curriculumId: year.curriculumId, name: year.name, code: year.code, startsOn: year.startsOn, endsOn: year.endsOn, status: year.status });
     setEditingYearId(year.id);
     setActionError("");
@@ -420,6 +421,7 @@ export default function SchoolAdministrationPage() {
 
   const editClass = (group: LearningClassGroup) => {
     setSelectedClassGroupId(group.id);
+    setSelectedUserIds([]);
     setClassForm({ curriculumId: group.curriculumId, gradeLevelId: group.gradeLevelId, code: group.code, name: group.name, status: group.status });
     setEditingClassId(group.id);
     setActionError("");
@@ -542,7 +544,7 @@ export default function SchoolAdministrationPage() {
                 {!classGroupId ? <p className="text-sm text-slate-500">Create or select a class first.</p> : <>
                   <div className="grid gap-3 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)_auto]">
                     <Field label="School user"><select className={fieldClass} value={userToAdd} onChange={(event) => setUserToAdd(event.target.value)}><option value="">Choose an existing school account</option>{addableUsers.map((item) => <option key={item.id} value={item.id}>{item.name}{item.email ? " · " + item.email : ""}</option>)}</select></Field>
-                    <Field label="Class role"><select className={fieldClass} value={membershipType} onChange={(event) => { setMembershipType(event.target.value as "student" | "teacher"); setUserToAdd(""); }}><option value="student">Student</option><option value="teacher">Teacher</option></select></Field>
+                    <Field label="Class role"><select className={fieldClass} value={membershipType} onChange={(event) => { setMembershipType(event.target.value as "student" | "teacher"); setUserToAdd(""); setSelectedUserIds([]); }}><option value="student">Student</option><option value="teacher">Teacher</option></select></Field>
                     <div className="flex items-end"><button type="button" className={buttonClass} disabled={!userToAdd || saveMutation.isPending} onClick={async () => { const selectedUserId = userToAdd; try { await saveMutation.mutateAsync(() => learningEnrollmentService.addMember({ tenantId: user.tenantId, organizationId, classGroupId, userId: selectedUserId, membershipType, status: "active" })); setUserToAdd(""); } catch { /* The mutation displays the failure above the forms. */ } }}>Add to class</button></div>
                   </div>
                   <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
