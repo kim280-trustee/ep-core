@@ -240,3 +240,19 @@ For the sampled feature RPCs, live grants/configuration were also checked:
 - Source migrations for these feature areas explicitly revoke function execution from `public, anon` before granting only the required user-facing functions to `authenticated`.
 
 This narrows the immediate RLS-advisor concern: the 19 no-policy tables are intentionally RPC-only in the sampled code paths, not directly accessible through PostgREST table grants. **It does not close the authorization review**: every exposed RPC still needs a body-level check for actor identity, tenant/organization scope, class/parent-child relationship, allowed state transitions, and negative cross-tenant tests. Do not change table grants or add policies without identifying a real supported access path.
+
+
+### Advisor snapshot refresh — 2026-10-26, approximately 04:48 UTC
+
+The latest Supabase advisor read still reports 19 RLS-enabled tables without table policies and now reports **105** authenticated-executable `SECURITY DEFINER` functions. The immediately preceding direct catalog query counted 104 with a narrower join against routine privileges. Reconcile this one-function discrepancy using the advisor's exact function list and catalog grants before marking the security review complete.
+
+Current performance-advisor counts:
+- 136 unindexed foreign keys;
+- 6 auth/RLS initialization-plan findings;
+- 17 tables with multiple permissive policies;
+- 4 duplicate-index findings;
+- 144 indexes marked unused.
+
+The security advisor also reports **leaked-password protection disabled**. This is a Supabase Auth configuration issue, not a migration; it has not been changed by this audit. Enable it through the project's supported Auth settings after confirming the impact on sign-up/password flows.
+
+These advisor findings are triage signals, not instructions to apply blanket changes. Prioritize tenant/role boundary review and production-critical FK indexes; validate index usage before removing anything, review permissive-policy overlap for unintended broad access, and address the leaked-password setting as a deliberate Auth configuration change. No database or Auth settings were changed.
