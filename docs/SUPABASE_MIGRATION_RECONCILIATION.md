@@ -228,3 +228,15 @@ Security-advisor snapshot observed at approximately `2026-10-26T04:44:41Z`:
 - The 19 no-policy findings may be intentional for RPC-only access, but that must be confirmed per table and paired with function authorization review. Do not add broad policies merely to silence the advisor.
 
 **Next release gate:** freeze schema changes long enough to capture one consistent migration snapshot, map every live version to the exact repository SQL (including all `*_reconciled` versions), then test the deployed role-separated journeys and review each no-policy table/definer RPC. No database DDL or migration-history changes were performed by this audit.
+
+
+### RPC-only access verification — 2026-10-26, approximately 04:45 UTC
+
+Follow-up read-only catalog checks confirmed that all 19 tables listed above deny direct `SELECT`, `INSERT`, `UPDATE`, and `DELETE` privileges to `authenticated`, and deny `SELECT` to `anon`. This is consistent with the current repository pattern for announcements, interventions, calendar, marketplace, and notifications: the repositories call narrowly scoped RPCs rather than querying those tables directly.
+
+For the sampled feature RPCs, live grants/configuration were also checked:
+- User-facing announcement, intervention, calendar, marketplace-booking and notification RPCs had `search_path=""`, were executable by `authenticated`, and were not executable by `anon`.
+- Internal notification/announcement trigger helpers checked in the same query were not executable by either `anon` or `authenticated`.
+- Source migrations for these feature areas explicitly revoke function execution from `public, anon` before granting only the required user-facing functions to `authenticated`.
+
+This narrows the immediate RLS-advisor concern: the 19 no-policy tables are intentionally RPC-only in the sampled code paths, not directly accessible through PostgREST table grants. **It does not close the authorization review**: every exposed RPC still needs a body-level check for actor identity, tenant/organization scope, class/parent-child relationship, allowed state transitions, and negative cross-tenant tests. Do not change table grants or add policies without identifying a real supported access path.
