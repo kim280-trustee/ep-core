@@ -160,6 +160,12 @@ export default function SchoolAdministrationPage() {
     enabled: Boolean(organizationId && classGroupId) && canManage,
   });
   const roster = rosterQuery.data ?? [];
+  const rosterUserIds = [...new Set(roster.map((member) => member.userId))];
+  const rosterUsersQuery = useQuery({
+    queryKey: ["school-admin", "roster-users", user?.tenantId, rosterUserIds.join(",")],
+    queryFn: () => learningSchoolAdminService.listUsersByIds(user!.tenantId, rosterUserIds),
+    enabled: Boolean(user?.tenantId && rosterUserIds.length) && canManage,
+  });
   const activeStudents = roster.filter((member) => member.membershipType === "student" && member.status === "active");
   const exportAttendance = () => {
     const selectedClass = allClassGroups.find((group) => group.id === classGroupId);
@@ -222,7 +228,7 @@ export default function SchoolAdministrationPage() {
     enabled: Boolean(organizationId && user?.tenantId) && canManage,
   });
   const eligibleUsers = eligibleUsersQuery.data ?? [];
-  const userById = new Map(eligibleUsers.map((item) => [item.id, item]));
+  const userById = new Map([...eligibleUsers, ...(rosterUsersQuery.data ?? [])].map((item) => [item.id, item]));
   const exportRoster = () => {
     const selectedClass = allClassGroups.find((group) => group.id === classGroupId);
     const rows = [
@@ -424,6 +430,7 @@ export default function SchoolAdministrationPage() {
       {classSubjectsQuery.isError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">Class subjects could not be loaded. <button type="button" className="font-semibold underline" onClick={() => void classSubjectsQuery.refetch()}>Retry</button></div>}
       {rosterQuery.isError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">The class roster could not be loaded. <button type="button" className="font-semibold underline" onClick={() => void rosterQuery.refetch()}>Retry</button></div>}
       {eligibleUsersQuery.isError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">School accounts could not be loaded. <button type="button" className="font-semibold underline" onClick={() => void eligibleUsersQuery.refetch()}>Retry</button></div>}
+      {rosterUsersQuery.isError && <div role="alert" className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">Roster membership records loaded, but some account details could not be resolved. <button type="button" className="font-semibold underline" onClick={() => void rosterUsersQuery.refetch()}>Retry account lookup</button></div>}
       {organizationsQuery.isPending && <div className="rounded-xl bg-white p-5 text-sm text-slate-500">Loading your schools…</div>}
       {organizationsQuery.isError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-5 text-sm text-red-800">Could not load your school memberships. <button type="button" className="font-semibold underline" onClick={() => void organizationsQuery.refetch()}>Try again</button></div>}
       {!organizationsQuery.isPending && !organizationsQuery.isError && !organizations.length && <div className="rounded-xl border border-amber-200 bg-amber-50 p-5 text-sm text-amber-900">No active school organization is linked to this account. An organization owner must add your account to the school before setup can continue.</div>}
@@ -505,7 +512,7 @@ export default function SchoolAdministrationPage() {
                           {roster.map((member) => {
                             const account = userById.get(member.userId);
                             return <tr key={member.id}>
-                              <td className="px-3 py-3"><p className="font-medium text-slate-900">{account?.name ?? "School account"}</p><p className="text-xs text-slate-500">{account?.email ?? member.userId}</p></td>
+                              <td className="px-3 py-3"><p className="font-semibold text-slate-900">{account?.name ?? "Account details unavailable"}</p><p className="text-xs text-slate-500">{account?.email || (rosterUsersQuery.isPending ? "Loading account details…" : "Contact your school administrator to verify this account")}</p></td>
                               <td className="px-3 py-3 capitalize">{member.membershipType}</td>
                               <td className="px-3 py-3 capitalize">{member.status}</td>
                               <td className="px-3 py-3">{member.status === "active"
