@@ -97,7 +97,8 @@ export default function TeacherStudentPerformancePage() {
     }
     const csvCell = (value: string) => {
       let safe = value;
-      if (/^[\\t\\n\\r ]*[=+\\-@]/.test(safe)) safe = "'" + safe;
+      const firstNonWhitespace = safe.trimStart()[0];
+      if (firstNonWhitespace && "=+-@".includes(firstNonWhitespace)) safe = "\'" + safe;
       return '"' + safe.replaceAll('"', '""') + '"';
     };
     const csv = "\\uFEFF" + rows.map((row) => row.map(csvCell).join(",")).join("\\r\\n");
