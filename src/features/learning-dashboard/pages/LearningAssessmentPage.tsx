@@ -94,7 +94,7 @@ export default function LearningAssessmentPage() {
       if (!user) throw new Error("You must be signed in.");
       const student = user;
       const attempts = await learningAssessmentService.listAttempts(student.id);
-      const scopedAttempts = attempts.filter((attempt) => attempt.assessmentId === assessmentId && (!assignmentId || attempt.assignmentId === assignmentId));
+      const scopedAttempts = attempts.filter((attempt) => attempt.assessmentId === assessmentId && (!assignmentId || attempt.assignmentId === assignmentId || !attempt.assignmentId));
        const active = scopedAttempts.find((attempt) => attempt.status === "in_progress");
        if (active) return active;
        const maxAttempts = assignmentQuery.data?.assignment.maxAttempts;
