@@ -59,7 +59,7 @@ These checks are source review only. The function body still needs role-separate
 
 ## 4. GitHub Actions / code verification
 
-The current integration SHA returned no combined status entries and no PR-triggered workflow runs in the available queries. Therefore lint/build/test status is **unknown**, not passing. The historical local lint/build success is not a substitute for a run against this exact commit. A fresh CI run and final local checkout verification remain required before release.
+The current integration SHA returned no combined status entries and no PR-triggered workflow runs in the available queries. Therefore GitHub Actions status is **unknown**, not passing. A fresh checkout of `294858eae888e422c3356cbdd26d706b3f365bbc` completed on 2026-10-29. `npm ci` completed from the lockfile; `npm run lint` exited 0; and `npm run build` (TypeScript project build and Vite production build) exited 0. This verifies local lint/build on the exact integration SHA, but it does not establish green GitHub Actions or authenticated end-to-end acceptance. No `test` script is configured in `package.json`. `npm ci` also reported 10 dependency audit findings (2 moderate, 8 high); no automatic fix was applied.
 
 The current integration head is `294858eae888e422c3356cbdd26d706b3f365bbc`. The current branch's feature register continues to classify features as “Code present — verify” until a role-authenticated acceptance test passes.
 
