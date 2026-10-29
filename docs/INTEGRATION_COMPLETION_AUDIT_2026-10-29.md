@@ -108,3 +108,25 @@ The following are release gates, not completed tests:
 ## Release decision
 
 **Not production-ready yet.** The codebase has substantial implementation and the integration branch already contains some work associated with closed/unmerged branches, so a wholesale merge would risk regressing newer work. The remaining blockers are exact migration reconciliation, function-by-function authorization review, leaked-password protection verification, green CI on the current commit, and role-separated E2E acceptance. No production changes were made in this audit.
+
+
+## 7. Authorization issue found in live function review — 2026-10-29
+
+A read-only catalog review compared the deployed authorization helper with the role model in the integration migrations. The live definition of `public.learning_can_manage_academic_records(uuid)` returns true for any active organization member unless that user also has an active student membership in the same organization. It does not require `learning.academic.manage`, a staff role, or an assigned class.
+
+This is materially broader than the permission model documented in `20261014130000_learning_school_admin_permissions.sql`, which says organization membership is insufficient for academic mutations and assigns `learning.academic.manage` to OWNER/MANAGER. The staff administration flow also permits active STAFF organization memberships, while the live helper does not exclude STAFF or require an assigned teacher class.
+
+The helper is called by authenticated-accessible SECURITY DEFINER functions and RLS policies. Live examples include `get_learning_school_attendance_report` (school-wide attendance aggregates), `revoke_learning_student_invitation`, manual gradebook writes and gradebook inclusion, plus assignment, parent-link, admissions and timetable operations. Those callers inherit the broad helper rule unless they add a separate authorization check. Newer attendance and school-admin hardening migrations show more specific manager-permission and assigned-teacher checks, so authorization behavior varies by feature.
+
+**Release severity: high.** An active non-student STAFF/teacher membership may satisfy the helper without the academic-management permission or class assignment. This enables school-wide reporting and mutation paths beyond the stated role model. We have not used a real account to confirm exploitability, and we have not changed the database.
+
+**Required remediation before V1:**
+1. Inventory every live function, policy, and trigger that calls this helper; classify allowed OWNER/MANAGER, assigned-teacher, student, and parent actions.
+2. Require active organization membership plus `learning.academic.manage` for school-wide management/reporting.
+3. Give teacher workflows separate helpers that verify active teacher membership and the specific class/assignment/record in the requested operation.
+4. Update the callers and policies in a new, reviewed migration after mapping local SQL to the live migration ledger. Do not tighten this shared helper alone; that could break teacher workflows while leaving other call paths inconsistent.
+5. Add role-separated positive and negative database tests for owner, manager, assigned teacher, unassigned teacher, staff, student, parent, inactive member and cross-tenant user. Confirm direct table writes and SECURITY DEFINER RPC calls enforce the same boundary.
+
+The local repository checkout used for this review is based on `294858eae888e422c3356cbdd26d706b3f365bbc`. GitHub now confirms canonical integration commit `75596d28dc5266592b09b0d1a4e2650c3793d20f`; it preserves the same source tree SHA `4e65dd08f563c050e622e443e59ef0c3259b0656`, so the reviewed application/migration files are unchanged. A local `git fetch` could not refresh refs because GitHub DNS/network access failed. GitHub API read confirmed both the canonical merge commit and its tree. Fresh npm audit also could not reach registry.npmjs.org; the previous `npm ci` result remains 10 findings (2 moderate, 8 high), and needs a networked rerun before dependency remediation.
+
+No production database or Auth setting was changed. V1 remains blocked pending the authorization remediation and authenticated role tests, exact migration reconciliation, Auth leaked-password protection decision/configuration, and dependency/CI verification.
