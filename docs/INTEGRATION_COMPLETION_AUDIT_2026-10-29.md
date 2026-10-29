@@ -149,3 +149,25 @@ Some functions add additional checks, but direct authenticated table writes are 
 The current repo workflow `.github/workflows/learning-branch-validation.yml` runs only `npm ci`, `npm run build`, and `npm run lint`; it contains no database/RLS tests. Supabase advertises pgTAP, but it is not installed in the production project. Creating a Supabase development branch failed because project branching requires the Pro plan or above. Local Docker is installed but this environment is denied access to its engine. Therefore no disposable database is currently available for a migration dry run or role tests.
 
 A fresh lint/build attempt on the Windows host did not produce verification results: the lint Node process failed with a native out-of-memory error, and the build was stopped while running alongside it to avoid further resource exhaustion. Earlier lint/build checks passed on the identical source tree SHA `4e65dd08f563c050e622e443e59ef0c3259b0656`; those earlier results remain evidence for the current application source, but do not validate SQL authorization. A later serial build attempt also remained silent for over six minutes and was interrupted; the current host did not produce a fresh build result. No files in the canonical source tree were changed during this review.
+
+
+## 9. Effective authenticated table grants confirmed — 2026-10-29
+
+A read-only `has_table_privilege('authenticated', ...)` check confirms the affected policies are reachable through PostgREST, not merely dormant policy definitions. RLS is enabled on all listed tables.
+
+| Tables | Authenticated privileges | Policy gate observed |
+|---|---|---|
+| `learning_assignments`, `learning_assignment_items`, `learning_assignment_targets` | SELECT, INSERT, UPDATE, DELETE | Active organization membership |
+| `learning_content_items`, `learning_content_objectives` | SELECT, INSERT, UPDATE, DELETE | Active organization membership |
+| `learning_content_versions` | SELECT, INSERT, DELETE (no UPDATE grant) | Active organization membership, with draft/review state checks on writes |
+| `learning_gradebook_categories`, `learning_gradebook_entries`, `learning_term_grades` | SELECT, INSERT, UPDATE, DELETE | Organization membership and/or `learning_can_manage_academic_records` |
+| `learning_parent_student_links` | SELECT, INSERT, UPDATE, DELETE | `learning_can_manage_academic_records` for writes; parents may select their own links |
+| `learning_parent_invitations` | SELECT, INSERT, UPDATE | `learning_can_manage_academic_records` |
+| `learning_timetable_entries` | SELECT, INSERT, UPDATE, DELETE | Writes check `learning.academic.manage`; SELECT currently uses the broad helper |
+| `learning_student_invitations` | SELECT only | `learning_can_manage_academic_records`; invitation writes use RPCs |
+
+Authenticated users have SELECT but no direct INSERT/UPDATE/DELETE grants on `learning_content_responses`. Gradebook audit/history and grade scale tables also have no direct authenticated table privileges in this check; their writes/reads are through security-definer paths or remain denied by grants/RLS.
+
+**Confirmed impact:** an active organization member can directly create, edit or delete assignments and assignment targets/items; create, edit or delete shared content; edit class-wide gradebook records; and create/change parent/student links where the policy uses the broad helper. For helper-guarded paths, any active non-student organization member can pass the current helper. This goes beyond the originally identified report/RPC concern and is a direct authorization blocker for V1. Existing triggers may protect selected state transitions, but do not replace row- and role-scoped authorization or protect every direct DML operation.
+
+The effective-grant query does not establish which specific app roles are assigned these organization memberships in production. The migrations explicitly create active STAFF memberships and active teacher class memberships. Validate the behavior with separate manager, assigned-teacher, unassigned-teacher, and STAFF accounts on an isolated target before rollout.
