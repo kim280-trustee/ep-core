@@ -28,6 +28,8 @@ export default function TeacherInterventionsPage() {
   const queryClient = useQueryClient();
   const [selectedClassId, setSelectedClassId] = useState("");
   const [statusFilter, setStatusFilter] = useState<"all" | LearningInterventionStatus>("all");
+  const [caseSearch, setCaseSearch] = useState("");
+  const [priorityFilter, setPriorityFilter] = useState<"all" | LearningInterventionPriority>("all");
   const [studentUserId, setStudentUserId] = useState("");
   const [category, setCategory] = useState<LearningInterventionCategory>("teacher_observation");
   const [priority, setPriority] = useState<LearningInterventionPriority>("normal");
@@ -100,6 +102,28 @@ export default function TeacherInterventionsPage() {
     onError: (error: Error) => setFeedback({ kind: "error", text: error.message }),
   });
 
+  const normalizedCaseSearch = caseSearch.trim().toLocaleLowerCase();
+  const visibleCases = (casesQuery.data ?? []).filter((item) => {
+    const matchesSearch = !normalizedCaseSearch || [item.studentName, item.title, item.notes, item.evidenceReference ?? "", item.className, item.classCode].some((value) => value.toLocaleLowerCase().includes(normalizedCaseSearch));
+    return matchesSearch && (priorityFilter === "all" || item.priority === priorityFilter);
+  });
+  const exportCasesCsv = () => {
+    const rows = [["class", "class_code", "student", "title", "category", "priority", "status", "review_date", "evidence_reference", "notes", "outcome"], ...visibleCases.map((item) => [item.className, item.classCode, item.studentName, item.title, item.category, item.priority, item.status, item.reviewDate ?? "", item.evidenceReference ?? "", item.notes, item.outcome ?? ""])];
+    const csvCell = (value: string) => {
+      const firstNonWhitespace = value.trimStart()[0];
+      const safe = firstNonWhitespace && "=+-@".includes(firstNonWhitespace) ? "'" + value : value;
+      return '"' + safe.replaceAll('"', '""') + '"';
+    };
+    const blob = new Blob(["\uFEFF" + rows.map((row) => row.map(csvCell).join(",")).join("\r\n")], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = "student-support-follow-ups-" + classGroupId + ".csv";
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  };
   const getDraft = (item: LearningInterventionCase): CaseDraft => drafts[item.id] ?? initialDraft(item);
   const changeDraft = (item: LearningInterventionCase, patch: Partial<CaseDraft>) => {
     setDrafts((previous) => ({ ...previous, [item.id]: { ...(previous[item.id] ?? initialDraft(item)), ...patch } }));
@@ -165,10 +189,18 @@ export default function TeacherInterventionsPage() {
       <div className="flex flex-wrap items-end justify-between gap-3"><div><h2 className="flex items-center gap-2 text-lg font-semibold text-slate-950"><Target size={19}/> Follow-up register</h2><p className="mt-1 text-sm text-slate-500">Only cases for your assigned classes are returned by the server.</p></div>
         <label className="text-sm font-medium text-slate-700">Status<select value={statusFilter} onChange={(event) => setStatusFilter(event.target.value as typeof statusFilter)} className={inputClass}><option value="all">All statuses</option><option value="open">Open</option><option value="in_progress">In progress</option><option value="resolved">Resolved</option></select></label>
       </div>
+      <div className="mt-4 grid gap-3 rounded-xl border border-slate-200 p-3 sm:grid-cols-[1fr_auto_auto]">
+        <label className="text-sm font-medium text-slate-700">Search support cases<input type="search" value={caseSearch} onChange={(event) => setCaseSearch(event.target.value)} placeholder="Student, title, class or evidence" className={inputClass}/></label>
+        <label className="text-sm font-medium text-slate-700">Priority<select value={priorityFilter} onChange={(event) => setPriorityFilter(event.target.value)} className={inputClass}><option value="all">All priorities</option><option value="high">High</option><option value="normal">Normal</option><option value="low">Low</option></select></label>
+        <button type="button" onClick={exportCasesCsv} disabled={!visibleCases.length} className="rounded-xl border border-slate-300 px-3 py-2 text-sm font-semibold disabled:opacity-40">Export filtered CSV</button>
+        <p className="text-xs text-slate-500 sm:col-span-3" aria-live="polite">Showing {visibleCases.length} of {casesQuery.data?.length ?? 0} support cases.</p>
+        {(caseSearch || priorityFilter !== "all") && <button type="button" onClick={() => { setCaseSearch(""); setPriorityFilter("all"); }} className="justify-self-start rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold sm:col-span-3">Clear filters</button>}
+      </div>
       {casesQuery.isPending ? <div className="mt-4 h-36 animate-pulse rounded-xl bg-slate-100"/>
       : casesQuery.isError ? <p role="alert" className="mt-4 rounded-xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-800">Support cases could not be loaded. Check your class access and retry.</p>
       : !casesQuery.data?.length ? <div className="mt-4 rounded-xl border border-dashed border-slate-300 p-8 text-center"><ClipboardCheck size={24} className="mx-auto text-slate-400"/><p className="mt-2 font-semibold text-slate-900">No support cases in this view</p><p className="mt-1 text-sm text-slate-500">Create a case when you have specific learning evidence and a follow-up action.</p></div>
-      : <div className="mt-4 space-y-4">{casesQuery.data.map((item) => {
+      : !visibleCases.length ? <div className="mt-4 rounded-xl border border-dashed border-slate-300 p-8 text-center"><p className="font-semibold text-slate-900">No cases match these filters</p><p className="mt-1 text-sm text-slate-500">Clear the search or choose a different priority.</p></div>
+      : <div className="mt-4 space-y-4">{visibleCases.map((item) => {
         const draft = getDraft(item);
         return <article key={item.id} className="rounded-2xl border border-slate-200 p-4 sm:p-5">
           <div className="flex flex-wrap items-start justify-between gap-3"><div className="min-w-0"><p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{item.className} ({item.classCode}) · {item.studentName}</p><h3 className="mt-1 text-lg font-semibold text-slate-950">{item.title}</h3><p className="mt-1 text-xs text-slate-500">{categoryOptions.find((option) => option.value === item.category)?.label ?? item.category} · Updated {new Date(item.updatedAt).toLocaleString()}</p></div><span className={item.status === "resolved" ? "rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-800" : item.priority === "high" ? "rounded-full bg-rose-100 px-3 py-1 text-xs font-bold text-rose-800" : "rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-800"}>{item.status === "in_progress" ? "In progress" : item.status} · {item.priority} priority</span></div>
