@@ -171,3 +171,15 @@ Authenticated users have SELECT but no direct INSERT/UPDATE/DELETE grants on `le
 **Confirmed impact:** an active organization member can directly create, edit or delete assignments and assignment targets/items; create, edit or delete shared content; edit class-wide gradebook records; and create/change parent/student links where the policy uses the broad helper. For helper-guarded paths, any active non-student organization member can pass the current helper. This goes beyond the originally identified report/RPC concern and is a direct authorization blocker for V1. Existing triggers may protect selected state transitions, but do not replace row- and role-scoped authorization or protect every direct DML operation.
 
 The effective-grant query does not establish which specific app roles are assigned these organization memberships in production. The migrations explicitly create active STAFF memberships and active teacher class memberships. Validate the behavior with separate manager, assigned-teacher, unassigned-teacher, and STAFF accounts on an isolated target before rollout.
+
+
+## 10. Client-to-policy path mapping — 2026-10-29
+
+The canonical client source confirms these are production application paths:
+
+- `CreateTeacherAssignmentPage` calls the repository to insert a draft in `learning_assignments`, then inserts a class target and assignment item directly. The selected class comes from `learningTeacherService.listTeacherClasses`, but the database write policies currently check organization membership and do not verify that the actor teaches the selected class.
+- `TeacherContentCreatePage` inserts a content item, first version, and objective directly, with a direct delete for cleanup after a partial save failure. It verifies curriculum/objective alignment in the client; database authorization must separately ensure teacher identity, authorship, and allowed organization.
+- The parent repository directly upserts and updates `learning_parent_student_links`. The school parent-links page checks `learning.academic.manage` in the UI, while the live database helper does not require it.
+- Gradebook category creation/update uses direct table writes. Manual grade entries, bulk imports, term grade finalization, overrides and inclusion changes use SECURITY DEFINER RPCs; those RPCs still rely on the broad helper unless their own code adds a class-specific teacher check.
+
+This narrows remediation requirements: enforce manager permission for school-wide administration and parent links; enforce active teacher membership in the specific target class for assignment and gradebook workflows; enforce teacher authorship or manager permission for shared content and version/objective edits. Validate RPC and direct-table paths together so client-side class selection is not the only guard.
