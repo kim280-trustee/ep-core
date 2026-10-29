@@ -11,6 +11,8 @@ export default function TeacherContentResponsesPage() {
   const queryClient = useQueryClient();
   const [drafts, setDrafts] = useState<Record<string, GradeDraft>>({});
   const [savedResponseIds, setSavedResponseIds] = useState<string[]>([]);
+  const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState<"all" | "submitted" | "awaiting" | "graded">("all");
   const responses = useQuery({
     queryKey: ["learning", "teacher-content-responses", assignmentId],
     queryFn: () => learningContentService.listTeacherResponses(assignmentId),
@@ -30,7 +32,14 @@ export default function TeacherContentResponsesPage() {
   if (responses.isPending) return <div className="h-64 animate-pulse rounded-2xl bg-slate-200" />;
   if (responses.isError) return <Message text={responses.error instanceof Error ? responses.error.message : "Responses could not be loaded."} />;
 
-  const items = responses.data ?? [];
+  const allItems = responses.data ?? [];
+  const normalizedSearch = search.trim().toLocaleLowerCase();
+  const items = allItems.filter((item) => {
+    const matchesSearch = !normalizedSearch || [item.studentName, item.studentEmail ?? "", item.responseText ?? ""].some((value) => value.toLocaleLowerCase().includes(normalizedSearch));
+    const isGraded = item.score !== null && item.maxScore !== null;
+    const matchesStatus = statusFilter === "all" || (statusFilter === "submitted" && item.status === "submitted") || (statusFilter === "awaiting" && item.status !== "submitted") || (statusFilter === "graded" && isGraded);
+    return matchesSearch && matchesStatus;
+  });
   return (
     <div className="space-y-6">
       <Link to="/teacher" className="inline-flex items-center gap-2 text-sm text-slate-500"><ArrowLeft size={16} />Teacher Dashboard</Link>
@@ -39,7 +48,19 @@ export default function TeacherContentResponsesPage() {
         <h1 className="mt-1 text-2xl font-bold">Student Responses</h1>
         <p className="mt-2 text-sm text-slate-300">Review submitted writing/content work, give feedback, and record the grade in the gradebook.</p>
       </header>
-      {!items.length ? <Message text="No student responses have been submitted for this assignment yet." /> : (
+      <section className="grid gap-3 rounded-2xl border bg-white p-4 sm:grid-cols-[1fr_auto]">
+        <label className="text-sm font-medium text-slate-700">Search responses
+          <input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Student name, email or response text" className="mt-1 block w-full rounded-xl border border-slate-300 px-3 py-2 font-normal" />
+        </label>
+        <label className="text-sm font-medium text-slate-700">Review status
+          <select value={statusFilter} onChange={(event) => setStatusFilter(event.target.value as typeof statusFilter)} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-normal">
+            <option value="all">All responses</option><option value="submitted">Submitted</option><option value="awaiting">Awaiting submission</option><option value="graded">Already graded</option>
+          </select>
+        </label>
+        <p className="text-xs text-slate-500 sm:col-span-2" aria-live="polite">Showing {items.length} of {allItems.length} responses.</p>
+        {(search || statusFilter !== "all") && <button type="button" onClick={() => { setSearch(""); setStatusFilter("all"); }} className="justify-self-start rounded-lg border border-slate-300 px-3 py-2 text-sm font-semibold sm:col-span-2">Clear filters</button>}
+      </section>
+      {!allItems.length ? <Message text="No student responses have been submitted for this assignment yet." /> : !items.length ? <Message text="No responses match these filters." /> : (
         <section className="space-y-4">
           {items.map((r) => {
             const d = drafts[r.id] ?? {
