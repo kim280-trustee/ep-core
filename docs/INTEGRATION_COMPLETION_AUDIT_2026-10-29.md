@@ -130,3 +130,22 @@ The helper is called by authenticated-accessible SECURITY DEFINER functions and 
 The local repository checkout used for this review is based on `294858eae888e422c3356cbdd26d706b3f365bbc`. GitHub now confirms canonical integration commit `75596d28dc5266592b09b0d1a4e2650c3793d20f`; it preserves the same source tree SHA `4e65dd08f563c050e622e443e59ef0c3259b0656`, so the reviewed application/migration files are unchanged. A local `git fetch` could not refresh refs because GitHub DNS/network access failed. GitHub API read confirmed both the canonical merge commit and its tree. Fresh npm audit also could not reach registry.npmjs.org; the previous `npm ci` result remains 10 findings (2 moderate, 8 high), and needs a networked rerun before dependency remediation.
 
 No production database or Auth setting was changed. V1 remains blocked pending the authorization remediation and authenticated role tests, exact migration reconciliation, Auth leaked-password protection decision/configuration, and dependency/CI verification.
+
+
+## 8. RLS caller inventory and validation environment — 2026-10-29
+
+A fresh live catalog query counted **19 SECURITY DEFINER functions** and **25 RLS policies** that reference `learning_can_manage_academic_records`. The functions include gradebook calculation and mutation, assignment close/reopen/reassign, content status transitions, parent/student invitation handling, and school-wide attendance reporting. The policies cover gradebook entries/grades and audit history, grade scales, parent invitations/links, student invitations, content responses, and timetable reads. This confirms the issue spans multiple feature areas; changing the helper alone could remove intended teacher workflows or leave parallel policies unaffected.
+
+The same read-only policy scan found organization-membership-only writes in the live policies for:
+- `learning_assignments`: insert, update, delete;
+- `learning_assignment_items`: insert, update, delete;
+- `learning_assignment_targets`: insert, update, delete;
+- `learning_content_items`: insert, update, delete;
+- `learning_content_versions`: insert, update, delete;
+- `learning_content_objectives`: insert, update, delete.
+
+Some functions add additional checks, but direct authenticated table writes are a separate route. The review has not yet established which of these policies are intentionally available to assigned teachers, whether every direct write path preserves lifecycle/audit invariants, or whether any app server route further restricts access. Treat these as **high-priority RLS review findings**, not as proof every listed path is exploitable.
+
+The current repo workflow `.github/workflows/learning-branch-validation.yml` runs only `npm ci`, `npm run build`, and `npm run lint`; it contains no database/RLS tests. Supabase advertises pgTAP, but it is not installed in the production project. Creating a Supabase development branch failed because project branching requires the Pro plan or above. Local Docker is installed but this environment is denied access to its engine. Therefore no disposable database is currently available for a migration dry run or role tests.
+
+A fresh lint/build attempt on the Windows host did not produce verification results: the lint Node process failed with a native out-of-memory error, and the build was stopped while running alongside it to avoid further resource exhaustion. Earlier lint/build checks passed on the identical source tree SHA `4e65dd08f563c050e622e443e59ef0c3259b0656`; those earlier results remain evidence for the current application source, but do not validate SQL authorization. No files in the canonical source tree were changed during this review.
