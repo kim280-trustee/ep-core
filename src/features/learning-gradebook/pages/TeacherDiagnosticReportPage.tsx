@@ -191,7 +191,7 @@ export default function TeacherDiagnosticReportPage() {
     const csvCell = (value: string) => {
       let safe = value;
       const firstNonWhitespace = safe.trimStart()[0];
-      if (firstNonWhitespace && "=+-@".includes(firstNonWhitespace)) safe = "\'" + safe;
+      if (firstNonWhitespace && "=+-@".includes(firstNonWhitespace)) safe = "'" + safe;
       return '"' + safe.replaceAll('"', '""') + '"';
     };
     const csv = "\\uFEFF" + csvRows.map((row) => row.map(csvCell).join(",")).join("\\r\\n");
