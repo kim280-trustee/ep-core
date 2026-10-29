@@ -1,6 +1,6 @@
 import { withSupabase } from "npm:@supabase/server";
 
-const ALLOWED_FORMATS = new Set(["lesson", "worksheet", "quiz", "lesson_plan"]);
+const ALLOWED_FORMATS = new Set(["lesson", "worksheet", "quiz", "lesson_plan", "differentiated_pack"]);
 const ALLOWED_LANGUAGES = new Set(["English", "Thai", "English and Thai"]);
 const ALLOWED_DIFFICULTIES = new Set(["beginner", "developing", "on_level", "stretch"]);
 
@@ -116,6 +116,7 @@ export default {
         "For worksheets, include clear learner instructions and a separate answer key.",
         "For lesson plans, include measurable objectives, materials, timed stages, checks for understanding and differentiation.",
         "For lessons, explain the concept, give worked examples, and include a short learner practice section.",
+        "For differentiated packs, create three clearly separated versions of the same learning task: supported (scaffolds and sentence starters), core (grade-appropriate expected level), and stretch (deeper reasoning or extension). Keep all three aligned to the same learning objective, include learner instructions, and add one shared teacher answer key plus guidance for grouping and adapting support. Do not label learners or imply fixed ability.",
         "Return a teacher-editable draft in Markdown. Flag assumptions briefly at the end.",
         "This is a draft for teacher review; never state that it has been approved or published."
       ].join("\n");
@@ -136,7 +137,8 @@ export default {
         `Available teaching materials: ${availableMaterials || "Not specified"}`,
         `Teacher support needs: ${teacherNeeds || "Not specified"}`,
         "",
-        "Generate the draft now. Keep the content practical for a classroom and clearly separate teacher-facing guidance, learner-facing material and the teacher answer key where applicable. Include a brief assumptions and local-verification note. Never invent a curriculum standard, endorsement, student data or unavailable audio capability."
+        format === "differentiated_pack" ? "Generate a complete differentiated lesson pack with supported, core and stretch tasks, learner instructions, a shared answer key, and teacher guidance for using the three versions." : "Generate the requested material in a practical classroom-ready structure.",
+        "Keep teacher-facing guidance, learner-facing material and answer keys clearly separated where applicable. Include a brief assumptions and local-verification note. Never invent a curriculum standard, endorsement, student data or unavailable audio capability."
       ].join("\n");
 
       const response = await fetch("https://api.openai.com/v1/responses", {
@@ -149,7 +151,7 @@ export default {
           model,
           instructions,
           input,
-          max_output_tokens: 1800,
+          max_output_tokens: format === "differentiated_pack" ? 3000 : 1800,
           store: false,
         }),
       });
