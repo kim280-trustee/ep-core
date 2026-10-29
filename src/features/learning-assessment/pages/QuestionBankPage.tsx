@@ -202,6 +202,9 @@ export default function QuestionBankPage() {
             <select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} className="rounded-xl border border-slate-300 px-3 py-2 text-sm"><option value="">All types</option>{teacherTypes.map((type) => <option key={type.value} value={type.value}>{type.label}</option>)}</select>
             <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="rounded-xl border border-slate-300 px-3 py-2 text-sm"><option value="">All status</option><option value="draft">Draft</option><option value="review">Review</option><option value="published">Published</option><option value="retired">Retired</option></select>
           </div>
+          {(search || typeFilter || statusFilter) && <button type="button" onClick={() => { setSearch(""); setTypeFilter(""); setStatusFilter(""); }} className="mt-2 rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600">Clear question filters</button>}
+          {questions.isPending && <p className="mt-4 text-sm text-slate-500">Loading question library…</p>}
+          {questions.isError && <p role="alert" className="mt-4 rounded-xl bg-red-50 p-4 text-sm text-red-800">Question library could not be loaded. Refresh and try again.</p>}
           <div className="mt-4 space-y-2">
             {filteredQuestions.map((question) => (
               <div key={question.id} className="rounded-xl border border-slate-200 p-3">
