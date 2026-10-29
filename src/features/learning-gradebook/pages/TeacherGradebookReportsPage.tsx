@@ -224,6 +224,27 @@ export default function TeacherGradebookReportsPage() {
         </label>
       </section>
 
+      <section className="grid gap-3 rounded-2xl border bg-white p-4 sm:grid-cols-3 print:hidden">
+        <label className="text-sm font-medium text-slate-700">
+          Search students
+          <input type="search" value={studentSearch} onChange={(event) => setStudentSearch(event.target.value)} placeholder="Name or email" className="mt-1 block w-full rounded-xl border border-slate-300 px-3 py-2 font-normal" />
+        </label>
+        <label className="text-sm font-medium text-slate-700">
+          Grade status
+          <select value={gradeStatusFilter} onChange={(event) => setGradeStatusFilter(event.target.value as typeof gradeStatusFilter)} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-normal">
+            <option value="all">All students</option><option value="finalized">Finalized</option><option value="draft">Draft</option><option value="ungraded">Ungraded</option>
+          </select>
+        </label>
+        <label className="text-sm font-medium text-slate-700">
+          Sort students
+          <select value={sortOrder} onChange={(event) => setSortOrder(event.target.value as typeof sortOrder)} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-normal">
+            <option value="rank">Rank / score</option><option value="name">Name A–Z</option><option value="score-low">Lowest score</option><option value="score-high">Highest score</option>
+          </select>
+        </label>
+        {(studentSearch || gradeStatusFilter !== "all" || sortOrder !== "rank") && <button type="button" onClick={() => { setStudentSearch(""); setGradeStatusFilter("all"); setSortOrder("rank"); }} className="justify-self-start rounded-lg border border-slate-300 px-3 py-2 text-sm font-semibold sm:col-span-3">Clear filters</button>}
+        <p className="text-xs text-slate-500 sm:col-span-3" aria-live="polite">Showing {visibleRows.length} of {rows.length} students.</p>
+      </section>
+
       <section className="rounded-2xl bg-slate-900 p-6 text-white print:bg-white print:p-0 print:text-black">
         <p className="text-sm text-slate-300 print:text-slate-500">Academic report</p>
         <h1 className="mt-1 text-2xl font-bold">{classQ.data?.classInfo.classGroup.name}</h1>
