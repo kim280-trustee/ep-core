@@ -81,7 +81,7 @@ export default function LearningRecommendationsPage() {
             Filter
             <select value={filter} onChange={(event) => setFilter(event.target.value as typeof filter)} className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 font-normal outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200">
               <option value="all">All recommendations</option>
-              <option value="high_priority">High priority (4–5)</option>
+              <option value="high_priority">High priority (4+)</option>
               <option value="content">Content activities</option>
               <option value="assessment">Assessments</option>
             </select>
