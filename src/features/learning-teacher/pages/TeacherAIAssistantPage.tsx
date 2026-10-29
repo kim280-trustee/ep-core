@@ -221,39 +221,37 @@ export default function TeacherAIAssistantPage() {
     }
   };
 
+  // Exports must describe the exact request that produced the visible draft,
+  // not form values the teacher may have edited afterwards.
+  const generatedRequest = generate.variables;
+
   const exportBaseName = () => {
-    const safeTopic = topic.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60);
+    const safeTopic = (generatedRequest?.topic ?? topic).trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60);
     return safeTopic || "ep-learning-material";
   };
 
-  const lessonPackContext = () => ({
-    exportedAt: new Date().toISOString(),
-    school: { organizationId, className: selectedClass?.classGroup.name ?? "" },
-    subject: subject.trim(),
-    gradeLevel: gradeLevel.trim(),
-    topic: topic.trim(),
-    objective: objective.trim(),
-    materialType: format,
-    language,
-    difficulty,
-    country: country.trim(),
-    educationSystem: educationSystem.trim(),
-    curriculumReference: curriculumReference.trim(),
-    durationMinutes: Number(durationMinutes),
-    priorKnowledge: priorKnowledge.trim(),
-    availableMaterials: availableMaterials.trim(),
-    teacherNeeds: teacherNeeds.trim(),
-    curriculumAlignment: {
-      curriculumId: curriculumId || null,
-      gradeLevelId: gradeLevelId || null,
-      subjectId: subjectId || null,
-      skillId: skillId || null,
-      topicId: topicId || null,
-      objectiveId: objectiveId || null,
-      verifiedInEandP: Boolean(objectiveId && !objectiveAlignments.isPending && !objectiveAlignments.isError && alignedObjectiveIds.has(objectiveId)),
-    },
-    requiresTeacherReview: true as const,
-  });
+  const lessonPackContext = () => {
+    const request = generatedRequest;
+    return {
+      exportedAt: new Date().toISOString(),
+      school: { organizationId: request?.organizationId ?? organizationId },
+      subject: request?.subject ?? subject.trim(),
+      gradeLevel: request?.gradeLevel ?? gradeLevel.trim(),
+      topic: request?.topic ?? topic.trim(),
+      objective: request?.objective ?? objective.trim(),
+      materialType: request?.format ?? format,
+      language: request?.language ?? language,
+      difficulty: request?.difficulty ?? difficulty,
+      country: request?.country ?? country.trim(),
+      educationSystem: request?.educationSystem ?? educationSystem.trim(),
+      curriculumReference: request?.curriculumReference ?? curriculumReference.trim(),
+      durationMinutes: request?.durationMinutes ?? Number(durationMinutes),
+      priorKnowledge: request?.priorKnowledge ?? priorKnowledge.trim(),
+      availableMaterials: request?.availableMaterials ?? availableMaterials.trim(),
+      teacherNeeds: request?.teacherNeeds ?? teacherNeeds.trim(),
+      requiresTeacherReview: true as const,
+    };
+  };
 
   const downloadTextFile = (filename: string, content: string, mimeType: string) => {
     const blob = new Blob([content], { type: mimeType });
@@ -279,7 +277,7 @@ export default function TeacherAIAssistantPage() {
       `- **Language:** ${context.language}`,
       `- **Learning objective:** ${context.objective}`,
       `- **Duration:** ${context.durationMinutes} minutes`,
-      `- **School:** ${context.school.className || "Not specified"}`,
+      `- **Organization ID:** ${context.school.organizationId || "Not specified"}`,
       `- **Country / system:** ${context.country || "Not specified"} / ${context.educationSystem || "Not specified"}`,
       `- **Curriculum reference:** ${context.curriculumReference || "Not supplied"}`,
       "",
