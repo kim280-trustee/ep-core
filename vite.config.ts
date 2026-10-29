@@ -4,10 +4,6 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "node:path";
 
 export default defineConfig({
-  experimental: {
-    bundledDev: true,
-  },
-
   plugins: [react(), tailwindcss()],
 
   resolve: {
