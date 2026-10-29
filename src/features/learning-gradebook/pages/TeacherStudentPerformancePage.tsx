@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { useQueries, useQuery } from "@tanstack/react-query";
-import { ArrowLeft, Lock } from "lucide-react";
+import { ArrowLeft, Download, Lock } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningTeacherService } from "@/features/learning-teacher";
@@ -85,6 +85,33 @@ export default function TeacherStudentPerformancePage() {
     return [...groups.values()].map((value) => ({ ...value, percentage: value.max > 0 ? value.score / value.max * 100 : 0 }));
   }, [entries, categoryMap]);
 
+  function exportPerformanceCsv() {
+    const rows: string[][] = [
+      ["student", "email", "term_id", "subject", "record_title", "category", "status", "score", "max_score", "percentage", "included_in_grade", "late", "comment"],
+    ];
+    for (const entry of entries) {
+      rows.push([student?.name ?? "", student?.email ?? "", termId, subjectMap.get(entry.classSubjectId) ?? "", entry.title, entry.categoryId ? (categoryMap.get(entry.categoryId) ?? "Category") : "Other", entry.status, String(entry.score), String(entry.maxScore), entry.percentage.toFixed(2), String(entry.includedInGrade), String(entry.late), entry.comment ?? ""]);
+    }
+    for (const grade of grades) {
+      rows.push([student?.name ?? "", student?.email ?? "", termId, subjectMap.get(grade.classSubjectId) ?? "", "TERM GRADE", "", grade.status, grade.score.toFixed(2), "100", grade.score.toFixed(2), "", "", grade.letterGrade ?? ""]);
+    }
+    const csvCell = (value: string) => {
+      let safe = value;
+      if (/^[\\t\\n\\r ]*[=+\\-@]/.test(safe)) safe = "'" + safe;
+      return '"' + safe.replaceAll('"', '""') + '"';
+    };
+    const csv = "\\uFEFF" + rows.map((row) => row.map(csvCell).join(",")).join("\\r\\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = "student-performance-" + (student?.membership.userId ?? "student") + "-" + (termId || "term") + ".csv";
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
   if (!user) return <State text="Sign in to access student performance." />;
   if (classQuery.isPending || termsQuery.isPending) return <div className="h-64 animate-pulse rounded-2xl bg-slate-200" />;
   if (classQuery.isError || termsQuery.isError || !student) return <State text="The student performance record could not be loaded." />;
@@ -94,7 +121,7 @@ export default function TeacherStudentPerformancePage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <Link to={"/teacher/classes/" + classGroupId + "/gradebook"} className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900"><ArrowLeft size={16} />Back to Gradebook</Link>
-        <Link to="/teacher" className="text-sm font-medium text-slate-700 hover:text-slate-950">Teacher Dashboard</Link>
+        <div className="flex flex-wrap gap-2"><button type="button" onClick={exportPerformanceCsv} disabled={allLoading || (!entries.length && !grades.length)} className="inline-flex items-center gap-2 rounded-xl border border-slate-300 px-3 py-2 text-sm font-semibold disabled:opacity-50"><Download size={15}/>Export CSV</button><Link to="/teacher" className="text-sm font-medium text-slate-700 hover:text-slate-950">Teacher Dashboard</Link></div>
       </div>
       <section className="rounded-2xl bg-slate-900 p-6 text-white">
         <p className="text-sm text-slate-300">Student performance</p>
