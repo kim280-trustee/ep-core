@@ -169,8 +169,8 @@ export default function LearningAssessmentRuntimePage() {
       }
 
       const previousAttempt =
-        allAssessmentAttempts.length > 0
-          ? [...allAssessmentAttempts].sort(
+        existingAttempts.length > 0
+          ? [...existingAttempts].sort(
               (a, b) => b.attemptNumber - a.attemptNumber,
             )[0]
           : null;
