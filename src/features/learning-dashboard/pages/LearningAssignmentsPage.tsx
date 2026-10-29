@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { AlertCircle, ArrowRight, BookOpen, CheckCircle2, Clock3, Search, SlidersHorizontal } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -45,20 +45,18 @@ export default function LearningAssignmentsPage() {
     completed: assignments.filter((item) => progressByAssignment.get(item.id)?.status === "completed").length,
     overdue: assignments.filter((item) => progressByAssignment.get(item.id)?.status === "overdue").length,
   };
-  const filteredAssignments = useMemo(() => {
-    const search = searchText.trim().toLocaleLowerCase();
-    return assignments.filter((assignment) => {
-      const status = progressByAssignment.get(assignment.id)?.status ?? "not_started";
-      const matchesFilter = filter === "all" || status === filter;
-      const matchesSearch = !search || [assignment.title, assignment.code, assignment.description ?? ""]
-        .some((value) => value.toLocaleLowerCase().includes(search));
-      return matchesFilter && matchesSearch;
-    }).sort((a, b) => {
-      const aDue = a.dueAt ? new Date(a.dueAt).getTime() : Number.POSITIVE_INFINITY;
-      const bDue = b.dueAt ? new Date(b.dueAt).getTime() : Number.POSITIVE_INFINITY;
-      return aDue - bDue || a.title.localeCompare(b.title);
-    });
-  }, [assignments, filter, searchText, progress]);
+  const search = searchText.trim().toLocaleLowerCase();
+  const filteredAssignments = assignments.filter((assignment) => {
+    const status = progressByAssignment.get(assignment.id)?.status ?? "not_started";
+    const matchesFilter = filter === "all" || status === filter;
+    const matchesSearch = !search || [assignment.title, assignment.code, assignment.description ?? ""]
+      .some((value) => value.toLocaleLowerCase().includes(search));
+    return matchesFilter && matchesSearch;
+  }).sort((a, b) => {
+    const aDue = a.dueAt ? new Date(a.dueAt).getTime() : Number.POSITIVE_INFINITY;
+    const bDue = b.dueAt ? new Date(b.dueAt).getTime() : Number.POSITIVE_INFINITY;
+    return aDue - bDue || a.title.localeCompare(b.title);
+  });
 
   return (
     <div className="space-y-6">
