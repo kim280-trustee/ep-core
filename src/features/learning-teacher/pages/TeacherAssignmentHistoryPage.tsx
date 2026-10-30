@@ -11,6 +11,7 @@ export default function TeacherAssignmentHistoryPage() {
   const { classGroupId = "" } = useParams();
   const queryClient = useQueryClient();
   const [statusFilter, setStatusFilter] = useState("all");
+  const [search, setSearch] = useState("");
   const [studentByAssignment, setStudentByAssignment] = useState<Record<string,string>>({});
   const classesQuery = useQuery({
     queryKey: ["learning","teacher-classes",user?.id],
@@ -46,9 +47,32 @@ export default function TeacherAssignmentHistoryPage() {
   const classInfo = classesQuery.data.find((item) => item.classGroup.id === classGroupId);
   if (!classInfo) return <div className="rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800">You are not assigned to this class.</div>;
   const students = classOverviewQuery.data.students;
-  const assignments = historyQuery.data.filter((item) => statusFilter === "all" || item.status === statusFilter);
+  const normalizedSearch = search.trim().toLocaleLowerCase();
+  const assignments = historyQuery.data.filter((item) => {
+    const matchesStatus = statusFilter === "all" || item.status === statusFilter;
+    const matchesSearch = !normalizedSearch || [item.title, item.code, item.description ?? ""].some((value) => value.toLocaleLowerCase().includes(normalizedSearch));
+    return matchesStatus && matchesSearch;
+  });
   const events=lifecycleQuery.data??[];
   const eventLabels=new Map([["reassigned","Reassigned"],["reopened","Reopened"],["closed","Closed"]]);
+  function exportCsv() {
+    const rows = [["code", "title", "status", "due_at", "lifecycle_type"], ...assignments.map((item) => [item.code, item.title, item.status, item.dueAt ?? "", item.lifecycleType])];
+    const csvCell = (value: string) => {
+      const firstNonWhitespace = value.trimStart()[0];
+      const safe = firstNonWhitespace && "=+-@".includes(firstNonWhitespace) ? "'" + value : value;
+      return '"' + safe.replaceAll('"', '""') + '"' ;
+    };
+    const csv = "\uFEFF" + rows.map((row) => row.map(csvCell).join(",")).join("\r\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = "assignment-history-" + classGroupId + ".csv";
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
 
   return <div className="space-y-6">
     <div><Link to={"/teacher/classes/"+classGroupId} className="inline-flex items-center gap-2 text-sm text-slate-500"><ArrowLeft size={16}/>Back to class</Link></div>
@@ -57,9 +81,11 @@ export default function TeacherAssignmentHistoryPage() {
       <h1 className="mt-1 text-2xl font-bold">Assignment History</h1>
       <p className="mt-2 text-sm text-slate-300">Review published and past assignments, reopen closed work, or give an existing assignment to a specific student without deleting historical results.</p>
     </section>
-    <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border bg-white p-4">
-      <div><p className="font-semibold text-slate-900">{assignments.length} assignment{assignments.length===1?"":"s"}</p><p className="text-xs text-slate-500">Lifecycle history is retained.</p></div>
-      <select value={statusFilter} onChange={e=>setStatusFilter(e.target.value)} className="rounded-xl border px-3 py-2 text-sm"><option value="all">All statuses</option><option value="published">Published</option><option value="closed">Closed</option><option value="archived">Archived</option><option value="draft">Draft</option></select>
+    <div className="grid gap-3 rounded-2xl border bg-white p-4 sm:grid-cols-[1fr_auto_auto]">
+      <label className="text-sm font-medium text-slate-700">Search assignments<input type="search" value={search} onChange={e=>setSearch(e.target.value)} placeholder="Title, code or instructions" className="mt-1 block w-full rounded-xl border px-3 py-2 font-normal"/></label>
+      <label className="text-sm font-medium text-slate-700">Status<select value={statusFilter} onChange={e=>setStatusFilter(e.target.value)} className="mt-1 block w-full rounded-xl border px-3 py-2 font-normal"><option value="all">All statuses</option><option value="published">Published</option><option value="closed">Closed</option><option value="archived">Archived</option><option value="draft">Draft</option></select></label>
+      <div className="flex flex-col justify-end gap-2"><button type="button" onClick={exportCsv} disabled={!assignments.length} className="rounded-xl border px-3 py-2 text-sm font-semibold disabled:opacity-40">Export filtered CSV</button>{(search||statusFilter!=="all")&&<button type="button" onClick={()=>{setSearch("");setStatusFilter("all");}} className="rounded-xl border px-3 py-2 text-sm">Clear filters</button>}</div>
+      <p className="text-xs text-slate-500 sm:col-span-3" aria-live="polite">Showing {assignments.length} of {historyQuery.data.length} assignments.</p>
     </div>
     <section className="overflow-hidden rounded-2xl border bg-white">
       {assignments.length ? <div className="divide-y">{assignments.map((assignment) => <article key={assignment.id} className="p-5">
