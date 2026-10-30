@@ -62,7 +62,7 @@ export default function LearningAssessmentRuntimePage() {
   const { assignmentId, assessmentId } = useParams();
   const queryClient = useQueryClient();
 
-  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [answerDrafts, setAnswerDrafts] = useState<Record<string, string>>({});
   const [attemptId, setAttemptId] = useState<string | null>(null);
   const [submittedAttempt, setSubmittedAttempt] = useState<Awaited<
     ReturnType<typeof learningAssessmentService.submitAttempt>
@@ -169,16 +169,15 @@ export default function LearningAssessmentRuntimePage() {
     enabled: Boolean(attemptId && started),
   });
 
-  useEffect(() => {
-    if (!attemptAnswersQuery.data) return;
+  const answers = useMemo(() => {
     const restoredAnswers = Object.fromEntries(
-      attemptAnswersQuery.data.flatMap((answer) => {
+      (attemptAnswersQuery.data ?? []).flatMap((answer) => {
         const optionId = answer.answer.option_id;
         return typeof optionId === "string" ? [[answer.assessmentQuestionId, optionId]] : [];
       }),
     );
-    setAnswers((current) => ({ ...restoredAnswers, ...current }));
-  }, [attemptAnswersQuery.data]);
+    return { ...restoredAnswers, ...answerDrafts };
+  }, [attemptAnswersQuery.data, answerDrafts]);
 
   const startMutation = useMutation({
     mutationFn: async () => {
@@ -672,7 +671,7 @@ export default function LearningAssessmentRuntimePage() {
                       checked={answers[question.assessmentQuestionId] === option.key}
                       onChange={(event) => {
                         const value = event.target.value;
-                        setAnswers((current) => ({
+                        setAnswerDrafts((current) => ({
                           ...current,
                           [question.assessmentQuestionId]: value,
                         }));
