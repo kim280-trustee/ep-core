@@ -195,7 +195,7 @@ export const learningParentRepository={
     const targets=[...(directTargets??[]),...(classTargets??[]).filter((row)=>!row.student_user_id||row.student_user_id===studentUserId)].filter((row,index,array)=>array.findIndex(x=>x.assignment_id===row.assignment_id&&x.student_user_id===row.student_user_id&&x.class_group_id===row.class_group_id)===index) as TargetRow[];
     const assignmentIds=[...new Set(targets.map(x=>x.assignment_id))];
     const[{data:assignments,error:assignmentError},{data:progress,error:progressError}]=await Promise.all([
-      assignmentIds.length?supabase.from("learning_assignments").select("id,title,due_at,status").in("id",assignmentIds).eq("status","published"):Promise.resolve({data:[],error:null}),
+      assignmentIds.length?supabase.from("learning_assignments").select("id,title,due_at,available_from,status").in("id",assignmentIds).eq("status","published").or(`available_from.is.null,available_from.lte.${new Date().toISOString()}`):Promise.resolve({data:[],error:null}),
       assignmentIds.length?supabase.from("learning_assignment_progress").select("assignment_id,status,completed_at,updated_at").eq("student_user_id",studentUserId).in("assignment_id",assignmentIds):Promise.resolve({data:[],error:null}),
     ]);
     if(assignmentError)throw assignmentError;if(progressError)throw progressError;
