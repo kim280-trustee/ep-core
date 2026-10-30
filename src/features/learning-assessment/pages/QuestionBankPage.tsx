@@ -14,7 +14,7 @@ type TeacherQuestionType = Extract<LearningQuestionType, "single_choice" | "true
 const teacherTypes: Array<{ value: TeacherQuestionType; label: string }> = [
   { value: "single_choice", label: "Single choice" },
   { value: "true_false", label: "True / False" },
-  { value: "short_answer", label: "Short answer" },
+  { value: "short_answer", label: "Short answer (teacher review only)" },
 ];
 
 export default function QuestionBankPage() {
@@ -236,7 +236,7 @@ export default function QuestionBankPage() {
 
             {questionType === "true_false" && <Field label="Correct answer"><select value={correctOption} onChange={(e) => setCorrectOption(e.target.value)} className="input"><option value="">Select correct answer</option><option value="true">True</option><option value="false">False</option></select></Field>}
 
-            {questionType === "short_answer" && <Field label="Expected answer"><input value={shortAnswer} onChange={(e) => setShortAnswer(e.target.value)} className="input" placeholder="Teacher reference answer" /><p className="mt-1 text-xs text-slate-500">Short-answer questions are stored for manual review in this batch.</p></Field>}
+            {questionType === "short_answer" && <Field label="Expected answer"><input value={shortAnswer} onChange={(e) => setShortAnswer(e.target.value)} className="input" placeholder="Teacher reference answer" /><p className="mt-1 text-xs text-slate-500">Short-answer questions are saved for teacher review only. They cannot be added to student assessments until the manual-grading workflow is implemented.</p></Field>}
 
             <Field label="Learning objective"><select value={objectiveId} onChange={(e) => setObjectiveId(e.target.value)} className="input"><option value="">Select objective</option>{objectives.data?.map((objective) => <option key={objective.id} value={objective.id}>{objective.code} — {objective.name}</option>)}</select></Field>
             <Field label="Explanation (optional)"><textarea value={explanation} onChange={(e) => setExplanation(e.target.value)} rows={3} className="input" placeholder="Explain the answer after submission..." /></Field>
