@@ -92,3 +92,23 @@ Do not push migrations, rewrite timestamps, or edit the ledger to force counts t
 - [ ] Complete full role-based browser E2E and rerun advisors after staged remediation.
 
 No production database schema, function body, grant, policy, Auth setting, or migration ledger was changed during this follow-up.
+
+
+### Additional organization-scoped permission findings — 30 October 2026
+
+A second read-only review found 14 SECURITY DEFINER routines/triggers in the live catalog that reference `get_current_user_permissions()`. That helper derives permissions from tenant-wide `user_roles`, not the user's role assigned to the target organization. Several callers combine that global permission result with active organization membership or an OWNER/MANAGER role-name check. This does not prove the target organization's assigned role has the permission, so it can recreate the cross-organization privilege leakage addressed by PR #157.
+
+Confirmed affected routines:
+- Calendar: `create_learning_school_calendar_event`, `publish_learning_school_calendar_event`, `cancel_learning_school_calendar_event`, `list_manageable_learning_calendar_organizations`, `list_manageable_learning_calendar_events`, and `list_learning_school_calendar_events`.
+- Announcements: `create_learning_school_announcement`, `list_manageable_learning_school_announcements`, and `publish_learning_school_announcement`.
+- Intervention cases: `create_learning_intervention_case`, `list_learning_intervention_cases`, and `update_learning_intervention_case`.
+- Attendance: `submit_learning_attendance_register` and trigger function `learning_guard_attendance_session_update`.
+
+The attendance paths use the tenant-wide permission together with `is_organization_member(organization_id)`; calendar, announcement, and intervention manager paths similarly consult the tenant-wide permission helper. The teacher-specific class-membership branches in intervention and attendance routines are separate and should be preserved when correcting manager authorization.
+
+The relevant source migrations were inspected:
+- `20261026200000_learning_school_calendar_events.sql`
+- `20261020210000_learning_intervention_cases.sql`
+- `20261019110000_learning_attendance_submission_and_identity_hardening.sql`
+
+This is a source/catalog finding, not an executed exploit. No production changes were made. The next remediation should replace these tenant-wide permission checks with target-organization role-permission checks, preserve teacher class-membership access, add a role matrix including cross-organization STAFF, and verify on a disposable/staging database before deployment. Migration-history reconciliation remains a hard gate; do not apply the new migration to production yet.
