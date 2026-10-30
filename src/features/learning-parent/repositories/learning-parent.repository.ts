@@ -201,7 +201,13 @@ export const learningParentRepository={
     if(assignmentError)throw assignmentError;if(progressError)throw progressError;
     const assignmentMap=new Map(((assignments??[]) as AssignmentRow[]).map(x=>[x.id,x]));
     const progressMap=new Map<string,ProgressRow>();
-    for(const row of(progress??[]) as ProgressRow[])if(!progressMap.has(row.assignment_id))progressMap.set(row.assignment_id,row);
+    const progressPriority=(status:string)=>status==="completed"?0:status==="in_progress"?1:2;
+    for(const row of(progress??[]) as ProgressRow[]){
+      const current=progressMap.get(row.assignment_id);
+      if(!current||progressPriority(row.status)<progressPriority(current.status)||(row.status===current.status&&(row.updated_at??"")>(current.updated_at??""))){
+        progressMap.set(row.assignment_id,row);
+      }
+    }
 
     const reasonText=(reason:unknown)=>{if(typeof reason==="string")return reason;if(reason&&typeof reason==="object"){const r=reason as Record<string,unknown>;return String(r.message??r.reason??r.explanation??"");}return "";};
 
