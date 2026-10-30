@@ -94,10 +94,11 @@ export default function LearningAssessmentPage() {
       if (!user) throw new Error("You must be signed in.");
       const student = user;
       const attempts = await learningAssessmentService.listAttempts(student.id);
-      const active = attempts.find((attempt) => attempt.assessmentId === assessmentId && attempt.status === "in_progress");
-      if (active) return active;
-      const maxAttempts = assignmentQuery.data?.assignment.maxAttempts;
-      const completedAttempts = attempts.filter((attempt) => attempt.assessmentId === assessmentId && attempt.status === "evaluated");
+      const scopedAttempts = attempts.filter((attempt) => attempt.assessmentId === assessmentId && (!assignmentId || attempt.assignmentId === assignmentId || !attempt.assignmentId));
+       const active = scopedAttempts.find((attempt) => attempt.status === "in_progress");
+       if (active) return active;
+       const maxAttempts = assignmentQuery.data?.assignment.maxAttempts;
+       const completedAttempts = scopedAttempts.filter((attempt) => attempt.status === "evaluated");
       if (maxAttempts !== null && maxAttempts !== undefined && completedAttempts.length >= maxAttempts) {
         throw new Error("You have reached the maximum number of attempts for this assignment.");
       }
@@ -184,8 +185,10 @@ export default function LearningAssessmentPage() {
         if (!hasUnsupportedRequiredItem && requiredAssessments.length > 0) {
           const attempts = await learningAssessmentService.listAttempts(student.id);
           const evaluatedAssessmentIds = new Set(
-            attempts.filter((item) => item.status === "evaluated").map((item) => item.assessmentId),
-          );
+             attempts
+               .filter((item) => item.status === "evaluated" && item.assignmentId === assignmentId)
+               .map((item) => item.assessmentId),
+           );
           const allRequiredAssessmentsComplete = requiredAssessments.every(
             (item) => item.assessmentId && evaluatedAssessmentIds.has(item.assessmentId),
           );

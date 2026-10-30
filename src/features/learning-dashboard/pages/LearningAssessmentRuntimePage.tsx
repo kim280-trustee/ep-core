@@ -168,9 +168,10 @@ export default function LearningAssessmentRuntimePage() {
         throw new Error("You have reached the maximum number of attempts.");
       }
 
+      const assessmentAttempts = existingAttempts.filter((attempt) => attempt.assessmentId === assessment);
       const previousAttempt =
-        allAssessmentAttempts.length > 0
-          ? [...allAssessmentAttempts].sort(
+        assessmentAttempts.length > 0
+          ? [...assessmentAttempts].sort(
               (a, b) => b.attemptNumber - a.attemptNumber,
             )[0]
           : null;
