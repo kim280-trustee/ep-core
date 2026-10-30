@@ -75,7 +75,7 @@ export default function TeacherGradebookPage() {
             .map((value) => {
               const cell = String(value);
               // Quoting alone does not prevent spreadsheet formula execution.
-              const safeCell = /^[\\t\\n\\r ]*[=+\\-@]/.test(cell) ? "'" + cell : cell;
+              const safeCell = /^[\t\n\r ]*[=+\-@]/.test(cell) ? "'" + cell : cell;
               return '"' + safeCell.replaceAll('"', '""') + '"';
             })
             .join(","),
