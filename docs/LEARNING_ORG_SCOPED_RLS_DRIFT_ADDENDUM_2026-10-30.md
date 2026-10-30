@@ -66,7 +66,7 @@ Read-only catalog inspection of live PostgreSQL 17.6.1:
 - Five public definer helpers use non-empty paths: `get_current_user_permissions`, `get_current_user_tenant_id`, `has_permission`, `is_organization_member`, and `learning_school_admin_can_view_user`. Their search paths and tenant/organization semantics require source comparison.
 - A static body scan of the 105 authenticated-callable public definer functions found 79 direct `auth.uid()` references, 26 references to application identity/authorization helpers without a direct `auth.uid()` reference, and two functions with no obvious direct identity or authorization helper reference. The two exceptions were inspected: `get_learning_school_attendance_report` and `revoke_learning_student_invitation`; both delegate authorization to `learning_can_manage_academic_records`.
 
-### Confirmed authorization defect in the replacement helper
+### Confirmed live authorization defect and source correction already prepared
 
 The live definition of `public.learning_can_manage_academic_records(target_organization_id)` currently returns true when the caller is an active organization member and is not an active student in that organization. It does not check the organization membership's `role_id`, `learning.academic.manage` permission, or an OWNER/MANAGER role.
 
@@ -80,7 +80,9 @@ The `organization_memberships` table contains `role_id`, so the role context exi
 
 This is not limited to the proposed 29 policies: 19 authenticated-callable public `SECURITY DEFINER` RPCs call this helper, including gradebook, assignment lifecycle, invitation, content grading/publication, and school attendance-report operations. The two RPCs with no obvious direct identity/helper references both rely on it. These RPCs inherit the helper's authorization weakness.
 
-**Release consequence:** do not deploy the 29-policy migration unchanged. First correct the helper's source definition to authorize against the active organization membership's role and the required permission, then audit all 19 RPC callers and preserve explicitly intended teacher/class-membership branches. Do not infer that a generic organization membership is sufficient authorization.
+**Source correction already exists:** `supabase/migrations/20261030130000_harden_learning_academic_record_permission.sql` replaces the helper with the required organization-membership role/permission check, using `organization_memberships.role_id` and `learning.academic.manage`. It sets an empty search path and retains the active-student exclusion. The live helper remains the older weak implementation because this migration is not present in the production migration ledger. The correction is therefore prepared in source but not deployed.
+
+**Release consequence:** do not deploy the 29-policy migration alone or unchanged as an isolated release. The required sequence is `20261030130000` (helper correction), then the dependent RPC hardening migrations `20261030140000`, `20261030150000`, `20261030160000`, and finally `20261030170000` (29 RLS policies). Audit the 19 dependent RPC callers and preserve explicitly intended teacher/class-membership branches. Do not infer that a generic organization membership is sufficient authorization.
 
 ### Supabase security advisor snapshot
 
@@ -91,3 +93,8 @@ The security advisor reported:
 - Leaked-password protection is disabled in Supabase Auth. An administrator must enable and verify this setting.
 
 The advisor output is not a substitute for reviewing each function body. No production DDL, data, grants, migration ledger entries, or Auth settings were changed during this audit.
+
+
+## Correction — source migration state
+
+The live helper defect described above is real, but the source fix was already committed before this audit continuation. The earlier wording suggesting that a new source fix still needed to be authored was inaccurate. The remaining work is staging validation and migration-ledger reconciliation for the existing five migrations dated 2026-10-30, not authoring a duplicate helper replacement.
