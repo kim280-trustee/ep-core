@@ -45,3 +45,50 @@ The existing integration readiness audit (PR #148) records a particularly import
 ## Explicitly not done
 
 No production grants, RLS policies, SECURITY DEFINER bodies, Auth settings, or migration history were changed by this audit commit. A source inventory is not a remediation, and a successful build is not authorization verification.
+
+
+## Verified follow-up — 30 October 2026, 01:xx UTC
+
+### Academic-record authorization fix
+
+PR #157 was merged into `paul/integrate-edna-content` after CI passed (workflow run 725). The migration changes `learning_can_manage_academic_records(uuid)` to require:
+- an active membership in the target organization;
+- `learning.academic.manage` on that membership's assigned role via `organization_memberships.role_id`, `roles`, `role_permissions`, and `permissions`;
+- no active student membership in that organization.
+
+The function no longer relies on `has_permission()` for this check because that helper evaluates tenant-wide `user_roles`, which could let a privileged tenant role leak authority into a school where the same person is STAFF.
+
+Read-only role simulation against live membership records returned MANAGER = allowed and STAFF = denied. This exercised the proposed predicate using test JWT-sub claims; it did not execute the migration or alter production. The PR migration is merged in source control but remains unapplied in production pending migration reconciliation and staging tests.
+
+### SECURITY DEFINER execution inventory
+
+A fresh catalog query found 117 SECURITY DEFINER functions in `public`:
+- 105 executable by `authenticated`;
+- 0 executable by `anon`;
+- 0 executable by `PUBLIC`;
+- all 117 have an explicit configured search_path.
+
+A static triage of the 105 authenticated-callable functions found 2 without an obvious direct `auth.uid()` / `learning_current_user_id()` reference. Both route authorization through `learning_can_manage_academic_records`; they remain in the manual authorization review. This scan is triage only, not a proof of function safety.
+
+### Exact migration-ledger comparison
+
+The live Supabase ledger contains 193 rows; the canonical branch currently contains 178 timestamped migration files. Comparing exact versions yields:
+- 68 repository versions absent from the live ledger;
+- 83 live versions absent from the repository;
+- 1 shared version with a different recorded name.
+
+Comparing names separately shows 47 migration names represented on both sides but recorded under different versions. The remaining unmatched sets are 21 repository migration names absent from the live ledger and 36 live migration names absent from the repository. This confirms substantial historical version/name drift, not simply a small pending migration queue.
+
+Do not push migrations, rewrite timestamps, or edit the ledger to force counts to match. The 47 same-name pairs and the 21/36 unmatched sets require content-level comparison against the live schema and repository SQL. The new PR #157 migration must remain pending until this is resolved.
+
+### Updated release state
+
+- [x] Academic permission helper fix merged to the canonical branch and CI passed.
+- [x] Read-only manager/staff predicate simulation: manager allowed, staff denied.
+- [ ] Validate active-student, inactive-member, non-member, and cross-organization negative cases in staging.
+- [ ] Complete function-by-function authorization review of authenticated SECURITY DEFINER RPCs.
+- [ ] Reconcile migration history using exact SQL/catalog evidence.
+- [ ] Enable leaked-password protection in Auth configuration.
+- [ ] Complete full role-based browser E2E and rerun advisors after staged remediation.
+
+No production database schema, function body, grant, policy, Auth setting, or migration ledger was changed during this follow-up.
