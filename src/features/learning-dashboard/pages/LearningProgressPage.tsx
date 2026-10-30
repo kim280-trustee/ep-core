@@ -119,10 +119,9 @@ export default function LearningProgressPage() {
           {assignments.length ? assignments.map((assignment) => {
             const progressItem = assignmentProgress.find((item) => item.assignmentId === assignment.id);
             const status = progressItem?.status ?? "not_started";
-            const response = contentResponses.find((item) => item.assignmentId === assignment.id && item.status === "submitted");
-            const percentage = response?.score !== null && response?.score !== undefined && response.maxScore !== null && response.maxScore > 0
-              ? (response.score / response.maxScore) * 100
-              : null;
+            const responsesForAssignment = contentResponses
+              .filter((item) => item.assignmentId === assignment.id && item.status === "submitted")
+              .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
             return (
               <div key={assignment.id} className="py-3 first:pt-0">
                 <div className="flex items-center justify-between gap-4">
@@ -134,22 +133,32 @@ export default function LearningProgressPage() {
                     {status === "completed" ? "Completed" : status === "in_progress" ? "In progress" : "Not started"}
                   </span>
                 </div>
-                {response && (
-                  <div className="mt-3 rounded-xl bg-slate-50 p-3">
-                    {response.score !== null && response.maxScore !== null ? (
-                      <p className="text-sm font-semibold text-slate-900">
-                        Assignment grade: {response.score}/{response.maxScore}{percentage !== null ? ` · ${percentage.toFixed(2)}%` : ""}
-                      </p>
-                    ) : (
-                      <p className="text-sm font-medium text-slate-600">Submitted — awaiting teacher grading</p>
-                    )}
-                    {response.teacherFeedback?.trim() && (
-                      <div className="mt-2">
-                        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Teacher feedback</p>
-                        <p className="mt-1 whitespace-pre-wrap text-sm leading-6 text-slate-700">{response.teacherFeedback}</p>
-                      </div>
-                    )}
-                    <Link to={`/learning/assignments/${assignment.id}`} className="mt-2 inline-flex text-sm font-semibold text-blue-700 hover:underline">
+                {responsesForAssignment.length > 0 && (
+                  <div className="mt-3 space-y-2">
+                    {responsesForAssignment.map((response) => {
+                      const percentage = response.score !== null && response.maxScore !== null && response.maxScore > 0
+                        ? (response.score / response.maxScore) * 100
+                        : null;
+                      return (
+                        <div key={response.id} className="rounded-xl bg-slate-50 p-3">
+                          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Submitted content response</p>
+                          {response.score !== null && response.maxScore !== null ? (
+                            <p className="mt-1 text-sm font-semibold text-slate-900">
+                              Grade: {response.score}/{response.maxScore}{percentage !== null ? ` · ${percentage.toFixed(2)}%` : ""}
+                            </p>
+                          ) : (
+                            <p className="mt-1 text-sm font-medium text-slate-600">Submitted — awaiting teacher grading</p>
+                          )}
+                          {response.teacherFeedback?.trim() && (
+                            <div className="mt-2">
+                              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Teacher feedback</p>
+                              <p className="mt-1 whitespace-pre-wrap text-sm leading-6 text-slate-700">{response.teacherFeedback}</p>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                    <Link to={`/learning/assignments/${assignment.id}`} className="inline-flex text-sm font-semibold text-blue-700 hover:underline">
                       Review assignment results
                     </Link>
                   </div>
