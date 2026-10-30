@@ -44,6 +44,13 @@ export default function CreateTeacherAssignmentPage() {
       }
       const selected = classesQuery.data?.find((item) => item.classGroup.id === classGroupId);
       if (!selected) throw new Error("Select a class.");
+      if (classSubjectId && !selected.subjects.some((subject) => subject.id === classSubjectId)) {
+        throw new Error("The selected subject does not belong to this class. Choose a subject from the selected class.");
+      }
+      const dueDate = dueAt ? new Date(dueAt) : null;
+      if (dueDate && !Number.isFinite(dueDate.getTime())) {
+        throw new Error("Enter a valid assignment due date and time.");
+      }
       if (contentId && !contentReady) {
         throw new Error("The selected learning content must be found in this organization and published before it can be reused.");
       }
@@ -56,7 +63,7 @@ export default function CreateTeacherAssignmentPage() {
         title: title.trim(),
         description: description.trim() || null,
         status: "draft",
-        dueAt: dueAt ? new Date(dueAt).toISOString() : null,
+        dueAt: dueDate?.toISOString() ?? null,
         createdBy: user.id,
       });
       await learningAssignmentsService.addTarget({
@@ -65,7 +72,7 @@ export default function CreateTeacherAssignmentPage() {
         assignmentId: assignment.id,
         targetType: "class",
         classGroupId: selected.classGroup.id,
-        dueAt: dueAt ? new Date(dueAt).toISOString() : null,
+        dueAt: dueDate?.toISOString() ?? null,
       });
       if (selectedContent) {
         await learningAssignmentsService.addItem({
