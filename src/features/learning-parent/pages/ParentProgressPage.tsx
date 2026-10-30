@@ -82,8 +82,8 @@ function csvCell(value: unknown) {
   const raw = value === null || value === undefined ? "" : String(value);
   // Prefix spreadsheet formula-like text before CSV quoting. Preserve ordinary
   // signed numeric values (for example, -2.5) as numbers.
-  const isNumeric = /^-?\\d+(?:\\.\\d+)?$/.test(raw.trim());
-  const hasFormulaPrefix = /^[\\u0000-\\u0020\\u007f-\\u009f]*[=+\\-@]/.test(raw);
+  const isNumeric = /^-?\d+(?:\.\d+)?$/.test(raw.trim());
+  const hasFormulaPrefix = /^[\u0000-\u0020\u007f-\u009f]*[=+\-@]/.test(raw);
   const safe = hasFormulaPrefix && !isNumeric ? "'" + raw : raw;
   return '"' + safe.replace(/"/g, '""') + '"';
 }
