@@ -119,8 +119,13 @@ export default function LearningContentRuntimePage() {
   const responseMutation = useMutation({
     mutationFn: async (status: "draft" | "submitted") => {
       if (!user?.id || !query.data) throw new Error("You must be signed in.");
-      const text = responseText.trim();
-      if (!text) throw new Error("Write your response before saving.");
+      // Fill-in activities keep their answers in the individual blank controls.
+      // Build the persisted response from those controls instead of relying on the
+      // separate free-text state, which is intentionally unused for fill-in lessons.
+      const text = isFillInActivity ? buildFillInResponse(fillInAnswers).trim() : responseText.trim();
+      if (!text || (isFillInActivity && !fillInComplete)) {
+        throw new Error(isFillInActivity ? "Complete every blank before saving." : "Write your response before saving.");
+      }
       return learningContentService.saveStudentResponse({
         organizationId: query.data.assignment.organizationId, assignmentId: id, contentItemId: content,
         contentVersionId: query.data.version.id, studentUserId: user.id, responseText: text, status,
@@ -277,7 +282,7 @@ export default function LearningContentRuntimePage() {
       {currentContent.contentType === "writing" || isFillInActivity ? (
         <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
           <h2 className="text-lg font-semibold text-slate-900">{isFillInActivity ? "Submit your completed activity" : "Your response"}</h2>
-          <p className="mt-1 text-sm text-slate-500">{isFillInActivity ? "Fill in each blank in the content above, then save or submit your completed introduction." : "Write your answer below. You can save a draft and return later."}</p>
+          <p className="mt-1 text-sm text-slate-500">{isFillInActivity ? "Fill in each blank in the content above, then save your draft or submit the completed activity." : "Write your answer below. You can save a draft and return later."}</p>
           {!isFillInActivity && <textarea value={responseText} onChange={e => setResponseText(e.target.value)} disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending} className="input mt-4 min-h-40 w-full resize-y" placeholder="Write your answer here..." />}
           <div className="mt-4 flex flex-wrap items-center gap-3">
             {responseQuery.data?.status === "submitted" ? <span className="text-sm font-medium text-emerald-700">Response submitted.</span> : <>
