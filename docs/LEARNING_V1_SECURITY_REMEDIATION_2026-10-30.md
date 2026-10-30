@@ -203,3 +203,8 @@ Committed additive migration `20261030160000_scope_learning_announcement_permiss
 Committed migration `20261030170000_scope_learning_rls_admin_permissions.sql` (commit `ac8c541e706842976e8eb222988806a1a4424e55`). It updates 29 existing policies across 9 learning tables: academic years, attendance records/sessions, class groups, class memberships, class subjects, terms, timetable entries, and vocabulary entries. Tenant-wide academic-management predicates are replaced by `learning_can_manage_academic_records(organization_id)` (or the referenced attendance session organization). All other predicates are preserved, including teacher class-membership branches, record ownership, student membership, and vocabulary authoring rules.
 
 The migration was generated from the current live policy definitions and is a source artifact only. Static transformation found 29 matching policies and preserved all non-permission predicate text; 9 additional policies on those tables did not contain the targeted tenant-wide permission pattern and were left untouched. This has not been applied to production. The live catalog still reflects the pre-migration policies until the migration ledger is reconciled and deployment is authorized.
+
+
+## 2026-10-30 no-policy RLS table privilege check
+
+Rechecked all 19 tables reported by the Supabase advisor as RLS-enabled with no policies. All 19 remain RLS-enabled, and none grants table-level SELECT/INSERT/UPDATE/DELETE to either `anon` or `authenticated`. They are therefore not currently directly accessible through those roles via table grants. Do not add broad policies to clear the advisor warning: review the SECURITY DEFINER RPC call paths and intended access model for each table first.
