@@ -176,3 +176,18 @@ No production schema, Auth configuration, migration ledger, or data was changed 
 Committed additive migration `20261030140000_scope_learning_admin_permissions_to_organization.sql` (commit `300753663088325e33c2741e3e2e5c41503f8c0f`). It updates 11 SECURITY DEFINER functions/triggers covering school calendar administration, intervention cases, and attendance submission/guarding to use `learning_can_manage_academic_records(target_organization_id)` rather than tenant-wide permission lookup. Teacher class-membership branches and parent/student calendar visibility branches are retained.
 
 Static source verification: 11 function definitions present; no direct get_current_user_permissions() references remain in these 11 definitions. The migration is source-only and is **not applied to the live database** because migration-ledger/schema reconciliation is still blocked. No production schema, data, Auth settings, or migration ledger changes were made. This commit was written directly to the canonical integration branch; the PR-only workflow lookup returned no runs, so CI status for this commit is not established.
+
+
+## 2026-10-30 second follow-on source remediation
+
+Committed additive migration `20261030150000_scope_learning_competition_staff_marketplace_permissions.sql` (commit `4d13ae0800115502cd403185f2d2317d0ae45efe`). It updates 9 SECURITY DEFINER functions:
+- School competition creation and status changes
+- Vocabulary analytics administrator scope (teacher class visibility remains)
+- School-admin user visibility helper
+- Staff membership status changes
+- Marketplace teacher-profile review queue and review action
+- Marketplace safety-report list and review action
+
+Administrator checks now use the organization-scoped `learning_can_manage_academic_records(target_organization_id)` helper. Marketplace role-name checks, participant exclusions, teacher class-membership branches, and existing data filters are retained. Static verification of the committed migration: 9 function definitions and zero remaining `has_permission('learning.academic.manage')` or `get_current_user_permissions()` references.
+
+This is source-only; the migration has not been applied to production pending migration-history reconciliation and role-matrix verification. No live schema/data/Auth/migration-ledger changes were made.
