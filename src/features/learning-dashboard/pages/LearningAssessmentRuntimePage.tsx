@@ -188,9 +188,9 @@ export default function LearningAssessmentRuntimePage() {
       let attempt = resumableAttempt;
 
       if (!attempt) {
-        // The database enforces attempt limits and attempt numbers per
-        // student + assessment (not per assignment), so use the same scope.
-        if (maxAttempts !== null && allAssessmentAttempts.length >= maxAttempts) {
+        // The database applies max_attempts per assignment (including legacy
+        // unlinked attempts), while attempt_number is sequenced per assessment.
+        if (maxAttempts !== null && existingAttempts.length >= maxAttempts) {
           throw new Error("You have reached the maximum number of attempts.");
         }
 
@@ -434,9 +434,9 @@ export default function LearningAssessmentRuntimePage() {
 
   const { assessment: currentAssessment, questions } = assessmentQuery.data;
   const maxAttempts = assignmentQuery.data.assignment.maxAttempts;
-  // Keep the displayed allowance aligned with the database trigger, which
-  // counts attempts for this student + assessment across linked assignments.
-  const attemptsRemaining = maxAttempts === null ? null : Math.max(maxAttempts - allAssessmentAttempts.length, 0);
+  // max_attempts belongs to the assignment; attempt numbers are shared by
+  // the student across assignments that reuse the same assessment.
+  const attemptsRemaining = maxAttempts === null ? null : Math.max(maxAttempts - existingAttempts.length, 0);
   const latestEvaluatedAttempt = [...existingAttempts]
     .filter((attempt) => attempt.status === "evaluated")
     .sort((a, b) => b.attemptNumber - a.attemptNumber)[0];
