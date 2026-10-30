@@ -17,7 +17,7 @@ async function listAccessibleTargets(studentUserId:string){
   const classGroupIds=[...new Set((memberships??[]).map(row=>row.class_group_id))].filter((v):v is string=>Boolean(v));
   let classTargets:TargetRow[]=[];
   if(classGroupIds.length){const{data,error}=await supabase.from("learning_assignment_targets").select("*").in("class_group_id",classGroupIds).eq("status","active");if(error)throw error;classTargets=data??[];}
-  return [...(directTargets??[]),...classTargets].map(mapT);
+  return [...(directTargets??[]),...classTargets.filter((target)=>!target.student_user_id||target.student_user_id===studentUserId)].map(mapT);
 }
 export const learningAssignmentsRepository={
  async listStudentAssignments(studentUserId:string){const targets=await listAccessibleTargets(studentUserId);const ids=[...new Set(targets.map(target=>target.assignmentId))];if(!ids.length)return[];const now=new Date().toISOString();const{data,error}=await supabase.from("learning_assignments").select("*").eq("status","published").in("id",ids).or(`available_from.is.null,available_from.lte.${now}`).order("due_at",{ascending:true,nullsFirst:false});if(error)throw error;return(data??[]).map(mapA);},
@@ -55,7 +55,7 @@ async listAssignmentsForClass(classGroupId:string){const{data:targets,error}=awa
   const assignments=await learningAssignmentsRepository.listStudentAssignments(studentUserId);
   const{data:attempts,error}=await supabase.from("learning_attempts").select("*").eq("student_user_id",studentUserId).eq("assessment_id",assessmentId);
   if(error)throw error;
-  for(const assignment of assignments){const items=await learningAssignmentsRepository.listItems(assignment.id);if(!items.some(item=>item.assessmentId===assessmentId))continue;const attemptCount=(attempts??[]).filter(attempt=>{const linkedAssignmentId=(attempt as typeof attempt & {assignment_id?:string|null}).assignment_id;return !linkedAssignmentId||linkedAssignmentId===assignment.id;}).length;const maxAttempts=assignment.maxAttempts;if(maxAttempts===null||attemptCount<maxAttempts)return assignment;}
+  for(const assignment of assignments){const items=await learningAssignmentsRepository.listItems(assignment.id);if(!items.some(item=>item.assessmentId===assessmentId))continue;const attemptCount=(attempts??[]).filter(attempt=>{const linkedAssignmentId=(attempt as typeof attempt & {assignment_id?:string|null}).assignment_id;return linkedAssignmentId===assignment.id;}).length;const maxAttempts=assignment.maxAttempts;if(maxAttempts===null||attemptCount<maxAttempts)return assignment;}
   return null;
 },
 async completeIfReady(assignmentId:string,studentUserId:string){
