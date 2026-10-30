@@ -39,3 +39,18 @@ The live catalog query still finds the old helper references in all 29 policies.
 ## Scope and safety
 
 This check queried `pg_policies` only. No DDL, data, grants, Auth settings, or migration ledger rows were changed.
+
+
+## Permission-helper root cause and callable surface
+
+A separate read-only catalog inspection retrieved the live definition and ACL of `public.get_current_user_permissions()`:
+
+- It is `SECURITY DEFINER` and executable by `authenticated`.
+- `anon` does not have EXECUTE.
+- Its ACL is limited to owner and `authenticated`; it is not granted to PUBLIC.
+- Its configured search path is `public` (rather than the empty search path used by the newer hardened Learning routines).
+- Its body resolves permissions through `users` → `user_roles` → `roles` → `role_permissions` → `permissions`, keyed by the user's tenant. It does not accept or verify a target organization ID.
+
+This is a tenant-level permission-list helper, not an organization authorization decision. A caller must independently bind the permission to an active membership and the specific target organization. The 29 live policies identified above do not do that: they combine the tenant-wide permission result with a generic organization-membership predicate. The current source migration replaces those policy branches with the organization-scoped `learning_can_manage_academic_records(organization_id)` helper.
+
+The helper itself should not be blindly revoked or rewritten: other application areas may intentionally rely on tenant-level permission lookup. The required fix is to ensure each Learning authorization decision is scoped to its target organization, then separately assess whether this legacy helper can be narrowed or retired after caller inventory and regression testing.
