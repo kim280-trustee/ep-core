@@ -497,7 +497,7 @@ create policy learning_content_items_update
 on public.learning_content_items
 for update to authenticated
 using (private.learning_can_manage_content_item(id))
-with check (\n  private.learning_can_manage_content_item(id)\n  and (\n    created_by = public.learning_current_user_id()\n    or public.learning_can_manage_academic_records(organization_id)\n  )\n);
+with check (\n  organization_id is not null\n  and (\n    (\n      created_by = public.learning_current_user_id()\n      and private.learning_can_author_organization_content(organization_id)\n    )\n    or public.learning_can_manage_academic_records(organization_id)\n  )\n);
 
 create policy learning_content_items_delete
 on public.learning_content_items
