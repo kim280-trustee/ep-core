@@ -256,3 +256,15 @@ A source-only follow-up migration was added:
 - Live catalog confirms all eight currently remain on their previous non-empty paths, callable by authenticated and not callable by anon. This migration has **not** been applied to production.
 
 The pending source security migration sequence is now 1300, 1400, 1500, 1600, 1700, then 1800. The six migrations remain staging-only until the migration-history and authorization gates are cleared.
+
+## Staging execution attempt — 2026-10-30 continuation
+
+The user approved the quoted branch compute rate ($0.01344/hour). Supabase cost confirmation was obtained, but `create_branch` returned `Branching is supported only on the Pro plan or above`. The account currently exposes only the production `ep-core` project; no separate staging project exists. Therefore no safe staging database is available through the current plan.
+
+The six pending migrations were fetched again from the integration branch and statically inspected:
+- 31 SECURITY DEFINER function definitions across migrations 1300–1600 and 1800 were found with empty search paths and schema-qualified table references (the 29-policy migration 1700 contains no function definitions).
+- Migration 1700 contains 29 policy changes.
+- Migration 1800 contains eight function hardenings.
+- The source files are present and retrievable, but this is not a PostgreSQL execution test. No migration has been applied to either production or staging.
+
+**Release block:** Supabase branch creation is Pro-plan gated. Do not apply these migrations to production as a substitute. Continue only after a separate staging database is available (upgrade/enable branching, or provide another staging Supabase project) and migration history reconciliation is complete.
