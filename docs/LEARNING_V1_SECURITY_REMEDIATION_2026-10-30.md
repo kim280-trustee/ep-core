@@ -196,3 +196,10 @@ This is source-only; the migration has not been applied to production pending mi
 ## 2026-10-30 third follow-on source remediation
 
 Committed additive migration `20261030160000_scope_learning_announcement_permissions.sql` (commit `d9a68de7d12d007df52b87df73a3f88a380f1c17`). It updates the three school-announcement administration functions (create, list/manage, publish) to require `learning.academic.manage` on the actor's active role in the target organization. Existing OWNER/MANAGER role and active-organization checks remain. Static verification: all three source definitions no longer call `get_current_user_permissions()`. This migration is not deployed pending migration-history reconciliation and cross-organization role tests.
+
+
+## 2026-10-30 organization-scoped RLS policy remediation (source)
+
+Committed migration `20261030170000_scope_learning_rls_admin_permissions.sql` (commit `ac8c541e706842976e8eb222988806a1a4424e55`). It updates 29 existing policies across 9 learning tables: academic years, attendance records/sessions, class groups, class memberships, class subjects, terms, timetable entries, and vocabulary entries. Tenant-wide academic-management predicates are replaced by `learning_can_manage_academic_records(organization_id)` (or the referenced attendance session organization). All other predicates are preserved, including teacher class-membership branches, record ownership, student membership, and vocabulary authoring rules.
+
+The migration was generated from the current live policy definitions and is a source artifact only. Static transformation found 29 matching policies and preserved all non-permission predicate text; 9 additional policies on those tables did not contain the targeted tenant-wide permission pattern and were left untouched. This has not been applied to production. The live catalog still reflects the pre-migration policies until the migration ledger is reconciled and deployment is authorized.
