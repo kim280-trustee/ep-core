@@ -148,7 +148,7 @@ export default function LearningAssessmentRuntimePage() {
     [attemptsQuery.data, assessment],
   );
   const existingAttempts = useMemo(
-    () => allAssessmentAttempts.filter((attempt) => !attempt.assignmentId || attempt.assignmentId === id),
+    () => allAssessmentAttempts.filter((attempt) => attempt.assignmentId === id),
     [allAssessmentAttempts, id],
   );
   const resumableAttempt = useMemo(
