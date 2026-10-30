@@ -54,3 +54,40 @@ A separate read-only catalog inspection retrieved the live definition and ACL of
 This is a tenant-level permission-list helper, not an organization authorization decision. A caller must independently bind the permission to an active membership and the specific target organization. The 29 live policies identified above do not do that: they combine the tenant-wide permission result with a generic organization-membership predicate. The current source migration replaces those policy branches with the organization-scoped `learning_can_manage_academic_records(organization_id)` helper.
 
 The helper itself should not be blindly revoked or rewritten: other application areas may intentionally rely on tenant-level permission lookup. The required fix is to ensure each Learning authorization decision is scoped to its target organization, then separately assess whether this legacy helper can be narrowed or retired after caller inventory and regression testing.
+
+## Privileged-function audit — 2026-10-30 continuation
+
+Read-only catalog inspection of live PostgreSQL 17.6.1:
+
+- `public`: 117 `SECURITY DEFINER` functions; 105 executable by `authenticated`; none executable by `anon` or `PUBLIC`.
+- `private`: 30 `SECURITY DEFINER` functions; 9 executable by `authenticated`; none executable by `anon` or `PUBLIC`.
+- Authenticated and anon have no CREATE privilege on either `public` or `private`; authenticated has USAGE but not CREATE on `private`.
+- Four authenticated-callable private definer helpers use non-empty search paths: `learning_assignment_target_assignment_matches_org`, `learning_assignment_visible`, `learning_content_visible`, and `learning_student_has_assignment_target`. Their definitions and unqualified references need source-level review and hardening assessment. The lack of CREATE privileges reduces the immediate object-shadowing risk but does not remove the value of using an empty path and fully qualified references.
+- Five public definer helpers use non-empty paths: `get_current_user_permissions`, `get_current_user_tenant_id`, `has_permission`, `is_organization_member`, and `learning_school_admin_can_view_user`. Their search paths and tenant/organization semantics require source comparison.
+- A static body scan of the 105 authenticated-callable public definer functions found 79 direct `auth.uid()` references, 26 references to application identity/authorization helpers without a direct `auth.uid()` reference, and two functions with no obvious direct identity or authorization helper reference. The two exceptions were inspected: `get_learning_school_attendance_report` and `revoke_learning_student_invitation`; both delegate authorization to `learning_can_manage_academic_records`.
+
+### Confirmed authorization defect in the replacement helper
+
+The live definition of `public.learning_can_manage_academic_records(target_organization_id)` currently returns true when the caller is an active organization member and is not an active student in that organization. It does not check the organization membership's `role_id`, `learning.academic.manage` permission, or an OWNER/MANAGER role.
+
+The live role-permission catalogue shows:
+
+- OWNER: has `learning.academic.manage`.
+- MANAGER: has `learning.academic.manage`.
+- STAFF: does not have `learning.academic.manage`.
+
+The `organization_memberships` table contains `role_id`, so the role context exists in the live schema, but the helper does not consult it. Therefore STAFF (and any other non-student active organization member) can satisfy this helper. This is inconsistent with the role-permission catalogue and the intended OWNER/MANAGER/STAFF authorization boundary.
+
+This is not limited to the proposed 29 policies: 19 authenticated-callable public `SECURITY DEFINER` RPCs call this helper, including gradebook, assignment lifecycle, invitation, content grading/publication, and school attendance-report operations. The two RPCs with no obvious direct identity/helper references both rely on it. These RPCs inherit the helper's authorization weakness.
+
+**Release consequence:** do not deploy the 29-policy migration unchanged. First correct the helper's source definition to authorize against the active organization membership's role and the required permission, then audit all 19 RPC callers and preserve explicitly intended teacher/class-membership branches. Do not infer that a generic organization membership is sufficient authorization.
+
+### Supabase security advisor snapshot
+
+The security advisor reported:
+
+- 19 tables with RLS enabled and no policies. Classify each as intentionally RPC-only or as a missing direct-access policy before changing anything.
+- 105 authenticated-callable public `SECURITY DEFINER` functions. This is a review queue, not proof that all 105 are vulnerable; each callable routine needs an authorization contract.
+- Leaked-password protection is disabled in Supabase Auth. An administrator must enable and verify this setting.
+
+The advisor output is not a substitute for reviewing each function body. No production DDL, data, grants, migration ledger entries, or Auth settings were changed during this audit.
