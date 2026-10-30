@@ -92,8 +92,26 @@ export default function LearningDashboardPage() {
   const rewardLevelProgress = nextRewardLevel
     ? Math.min(100, Math.round(((rewardXp - currentRewardLevel.minXp) / (nextRewardLevel.minXp - currentRewardLevel.minXp)) * 100))
     : 100;
-  const inProgress = overview.progress.filter((p) => p.status === "in_progress");
-  const completed = overview.progress.filter((p) => p.status === "completed");
+  // Progress history can outlive an assignment. Only count progress attached to
+  // assignments currently visible to the student (published and available).
+  const activeAssignmentIds = new Set(
+    overview.assignments
+      .filter((assignment) => assignment.status === "published")
+      .map((assignment) => assignment.id),
+  );
+  const activeProgress = overview.progress.filter((progress) =>
+    activeAssignmentIds.has(progress.assignmentId),
+  );
+  const inProgress = activeProgress.filter((progress) => progress.status === "in_progress");
+  const completed = activeProgress.filter((progress) => progress.status === "completed");
+  const startedOrCompletedIds = new Set(
+    activeProgress
+      .filter((progress) => progress.status === "in_progress" || progress.status === "completed")
+      .map((progress) => progress.assignmentId),
+  );
+  const notStartedCount = overview.assignments.filter(
+    (assignment) => !startedOrCompletedIds.has(assignment.id),
+  ).length;
   const averageMastery = overview.mastery.length ? Math.round(overview.mastery.reduce((sum, item) => sum + item.masteryScore, 0) / overview.mastery.length) : 0;
   const assignmentsById = new Map(overview.assignments.map((a) => [a.id, a]));
   const continueItems = inProgress.map((p) => ({ progress: p, assignment: assignmentsById.get(p.assignmentId) })).filter((x): x is { progress: LearningAssignmentProgress; assignment: NonNullable<typeof x.assignment> } => Boolean(x.assignment)).slice(0, 4);
@@ -114,7 +132,7 @@ export default function LearningDashboardPage() {
     <section className="rounded-2xl bg-slate-900 p-6 text-white shadow-sm sm:p-8"><div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between"><div><p className="text-sm font-medium text-slate-300">Student Learning</p><h1 className="mt-1 text-2xl font-bold sm:text-3xl">Welcome back, {user.name || "Student"}</h1><p className="mt-2 max-w-2xl text-sm text-slate-300">Continue your learning, review your progress, and see what should come next.</p></div>{continueItems.length > 0 && <Link to={`/learning/assignments/${continueItems[0].assignment.id}`} className="inline-flex w-fit items-center rounded-lg bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100">Continue learning</Link>}</div></section>
     <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       <Stat icon={<Target size={19} />} label="Mastery" value={averageMastery + "%"} detail={overview.mastery.length + " objectives"} />
-      <Stat icon={<BookOpen size={19} />} label="Assignments" value={String(overview.assignments.length)} detail={inProgress.length + " in progress"} />
+      <Stat icon={<BookOpen size={19} />} label="Assignments" value={String(overview.assignments.length)} detail={inProgress.length + " in progress · " + notStartedCount + " not started"} />
       <Stat icon={<CheckCircle2 size={19} />} label="Completed" value={String(completed.length)} detail="assignment progress" />
       <Stat icon={<TrendingUp size={19} />} label="Recommendations" value={String(overview.recommendations.length)} detail="ready for you" />
     </section>
