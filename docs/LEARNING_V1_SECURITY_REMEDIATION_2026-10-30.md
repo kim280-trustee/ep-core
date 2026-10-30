@@ -112,3 +112,21 @@ The relevant source migrations were inspected:
 - `20261019110000_learning_attendance_submission_and_identity_hardening.sql`
 
 This is a source/catalog finding, not an executed exploit. No production changes were made. The next remediation should replace these tenant-wide permission checks with target-organization role-permission checks, preserve teacher class-membership access, add a role matrix including cross-organization STAFF, and verify on a disposable/staging database before deployment. Migration-history reconciliation remains a hard gate; do not apply the new migration to production yet.
+
+
+### Expanded global-permission reference scan
+
+A broader catalog scan found 9 additional SECURITY DEFINER routines that call tenant-wide `has_permission('learning.academic.manage')`:
+- `create_learning_school_competition`
+- `set_learning_school_competition_status`
+- `get_learning_vocabulary_analytics`
+- `learning_school_admin_can_view_user`
+- `set_learning_staff_membership_status`
+- `list_learning_marketplace_profiles_for_review`
+- `list_learning_marketplace_safety_reports`
+- `review_learning_marketplace_safety_report`
+- `review_learning_marketplace_teacher_profile`
+
+The first five do not consistently verify that the target organization's assigned role carries the permission. In particular, competition creation/status and staff membership status combine tenant-wide permission with organization membership; vocabulary analytics and school-admin user visibility do likewise; these are high-priority cross-organization authorization candidates. Marketplace moderation routines additionally check OWNER/MANAGER role names in the target organization, which reduces the direct STAFF escalation path, but still does not prove the target role's permission assignment. They remain in scope for correction to a single organization-scoped permission predicate.
+
+This brings the catalog review set to 23 SECURITY DEFINER routines/triggers using tenant-wide permission helpers. The next patch must inspect each caller's intended access model and replace only privileged manager branches; teacher, student, parent, and ordinary organization-member read paths must remain intact. This scan is static catalog review; it has not changed production.
