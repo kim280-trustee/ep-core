@@ -151,6 +151,12 @@ export default function LearningAssessmentRuntimePage() {
     () => allAssessmentAttempts.filter((attempt) => attempt.assignmentId === id),
     [allAssessmentAttempts, id],
   );
+  // The database also counts legacy attempts without an assignment_id
+  // against the selected assignment's max_attempts limit.
+  const attemptsCountedForLimit = useMemo(
+    () => allAssessmentAttempts.filter((attempt) => attempt.assignmentId === id || attempt.assignmentId === null),
+    [allAssessmentAttempts, id],
+  );
   const resumableAttempt = useMemo(
     () => [...existingAttempts]
       .filter((attempt) => attempt.status === "in_progress")
@@ -190,7 +196,7 @@ export default function LearningAssessmentRuntimePage() {
       if (!attempt) {
         // The database applies max_attempts per assignment (including legacy
         // unlinked attempts), while attempt_number is sequenced per assessment.
-        if (maxAttempts !== null && existingAttempts.length >= maxAttempts) {
+        if (maxAttempts !== null && attemptsCountedForLimit.length >= maxAttempts) {
           throw new Error("You have reached the maximum number of attempts.");
         }
 
@@ -436,7 +442,7 @@ export default function LearningAssessmentRuntimePage() {
   const maxAttempts = assignmentQuery.data.assignment.maxAttempts;
   // max_attempts belongs to the assignment; attempt numbers are shared by
   // the student across assignments that reuse the same assessment.
-  const attemptsRemaining = maxAttempts === null ? null : Math.max(maxAttempts - existingAttempts.length, 0);
+  const attemptsRemaining = maxAttempts === null ? null : Math.max(maxAttempts - attemptsCountedForLimit.length, 0);
   const latestEvaluatedAttempt = [...existingAttempts]
     .filter((attempt) => attempt.status === "evaluated")
     .sort((a, b) => b.attemptNumber - a.attemptNumber)[0];
