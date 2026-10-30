@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { ReactNode } from "react";
 import { AlertCircle, Target, TrendingUp } from "lucide-react";
@@ -23,6 +24,9 @@ function isCorrectionEvent(event: { evidence: Record<string, unknown> }) {
 export default function LearningProgressPage() {
   const { user } = useAuth();
   const id = user?.id ?? "";
+  const [masterySearch, setMasterySearch] = useState("");
+  const [masteryState, setMasteryState] = useState("all");
+  const [masterySort, setMasterySort] = useState<"lowest" | "highest" | "state">("lowest");
 
   const query = useQuery({
     queryKey: ["learning", "progress", id],
@@ -70,6 +74,15 @@ export default function LearningProgressPage() {
   const needsReview = mastery.filter(
     (item) => item.state === "needs_review",
   ).length;
+  const normalizedMasterySearch = masterySearch.trim().toLocaleLowerCase();
+  const visibleMastery = mastery
+    .filter((item) => masteryState === "all" || item.state === masteryState)
+    .filter((item) => !normalizedMasterySearch || item.objectiveId.toLocaleLowerCase().includes(normalizedMasterySearch))
+    .sort((a, b) => masterySort === "highest"
+      ? b.masteryScore - a.masteryScore
+      : masterySort === "state"
+        ? (stateLabel[a.state] ?? a.state).localeCompare(stateLabel[b.state] ?? b.state)
+        : a.masteryScore - b.masteryScore);
 
   return (
     <div className="space-y-6">
@@ -173,9 +186,38 @@ export default function LearningProgressPage() {
         <h2 className="text-lg font-semibold text-slate-900">
           Objective mastery
         </h2>
+        <p className="mt-1 text-sm text-slate-500">Find objectives that need attention or review your strongest areas.</p>
+        {mastery.length > 0 && (
+          <div className="mt-4 grid gap-3 sm:grid-cols-3">
+            <label className="block text-sm font-medium text-slate-700">
+              Search objective
+              <input type="search" value={masterySearch} onChange={(event) => setMasterySearch(event.target.value)} placeholder="Enter objective ID…" className="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 font-normal outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200" />
+            </label>
+            <label className="block text-sm font-medium text-slate-700">
+              Mastery state
+              <select value={masteryState} onChange={(event) => setMasteryState(event.target.value)} className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 font-normal outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200">
+                <option value="all">All states</option>
+                <option value="needs_review">Needs review</option>
+                <option value="developing">Developing</option>
+                <option value="proficient">Proficient</option>
+                <option value="mastered">Mastered</option>
+                <option value="not_started">Not started</option>
+              </select>
+            </label>
+            <label className="block text-sm font-medium text-slate-700">
+              Sort by
+              <select value={masterySort} onChange={(event) => setMasterySort(event.target.value as typeof masterySort)} className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 font-normal outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200">
+                <option value="lowest">Lowest mastery first</option>
+                <option value="highest">Highest mastery first</option>
+                <option value="state">Mastery state</option>
+              </select>
+            </label>
+            <p className="text-xs text-slate-500 sm:col-span-3" aria-live="polite">Showing {visibleMastery.length} of {mastery.length} objectives.</p>
+          </div>
+        )}
         <div className="mt-5 space-y-4">
-          {mastery.length ? (
-            mastery.map((item) => (
+          {mastery.length ? visibleMastery.length ? (
+            visibleMastery.map((item) => (
               <div key={item.id}>
                 <div className="flex items-center justify-between gap-4 text-sm">
                   <span className="font-medium text-slate-800">
@@ -196,6 +238,11 @@ export default function LearningProgressPage() {
                 </div>
               </div>
             ))
+          ) : (
+            <div className="rounded-xl border border-dashed border-slate-300 p-5 text-center">
+              <p className="text-sm text-slate-600">No objectives match these filters.</p>
+              <button type="button" onClick={() => { setMasterySearch(""); setMasteryState("all"); setMasterySort("lowest"); }} className="mt-2 rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700">Clear filters</button>
+            </div>
           ) : (
             <p className="text-sm text-slate-500">
               Mastery data will appear after you complete learning activities
