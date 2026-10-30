@@ -75,3 +75,65 @@ Usage snapshot:
 ## Release decision
 
 **Not ready for production deployment.** The immediate blockers are full migration-history reconciliation, staging role-matrix tests, complete privileged-RPC review, and administrator confirmation of leaked-password protection. Source commits are not live fixes. Keep production unchanged until those gates are satisfied.
+
+
+## Supplemental live-database verification — 2026-10-30
+
+A follow-up read-only query inspected the live PostgreSQL function bodies rather than relying on the source branch.
+
+### Confirmed source/live drift
+
+The canonical branch contains these hardening migrations, but the corresponding function bodies in the live database still contain the older authorization checks:
+
+- `20261030130000_harden_learning_academic_record_permission.sql`
+- `20261030140000_scope_learning_admin_permissions_to_organization.sql`
+- `20261030150000_scope_learning_competition_staff_marketplace_permissions.sql`
+- `20261030160000_scope_learning_announcement_permissions.sql`
+
+Live inventory of authenticated-executable public SECURITY DEFINER functions:
+
+| Check | Live count |
+|---|---:|
+| Authenticated-executable SECURITY DEFINER functions | 105 |
+| Still referencing `get_current_user_permissions()` | 13 |
+| Still referencing tenant-wide `has_permission('learning.academic.manage')` | 10 |
+| Referencing `learning_can_manage_academic_records()` | 19 |
+
+The 13 functions still referencing the tenant-wide permission helper are:
+
+- `cancel_learning_school_calendar_event`
+- `create_learning_intervention_case`
+- `create_learning_school_announcement`
+- `create_learning_school_calendar_event`
+- `list_learning_intervention_cases`
+- `list_learning_school_calendar_events`
+- `list_manageable_learning_calendar_events`
+- `list_manageable_learning_calendar_organizations`
+- `list_manageable_learning_school_announcements`
+- `publish_learning_school_announcement`
+- `publish_learning_school_calendar_event`
+- `submit_learning_attendance_register`
+- `update_learning_intervention_case`
+
+The 10 functions still referencing tenant-wide academic permission are:
+
+- `create_learning_school_competition`
+- `get_learning_school_competitions`
+- `get_learning_vocabulary_analytics`
+- `learning_school_admin_can_view_user`
+- `list_learning_marketplace_profiles_for_review`
+- `list_learning_marketplace_safety_reports`
+- `review_learning_marketplace_safety_report`
+- `review_learning_marketplace_teacher_profile`
+- `set_learning_school_competition_status`
+- `set_learning_staff_membership_status`
+
+These are source/live drift findings, not proof that every listed function is exploitable. Each function needs an authorization-path review and role-matrix test. The counts are not additive because the two patterns may overlap.
+
+### Release implication
+
+Do not treat the source migrations as deployed. Do not apply them directly to production while the migration-history mismatch remains unresolved. First reconcile the complete migration inventory and live schema, then test the migrations against an isolated staging database with cross-organization negative cases. Only after those checks should a controlled deployment plan be prepared.
+
+### Scope and safety
+
+This supplemental pass was read-only. No production schema, data, Auth settings, grants, policies, indexes, or migration ledger entries were changed. The SQL inspection is a live-state snapshot; rerun it immediately before any deployment decision.
