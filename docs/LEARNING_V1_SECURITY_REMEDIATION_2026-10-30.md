@@ -169,3 +169,10 @@ Completion status:
 - Advisor rerun: completed; findings remain as recorded above.
 
 No production schema, Auth configuration, migration ledger, or data was changed in this pass. This document is an audit record, not a V1 security sign-off.
+
+
+## 2026-10-30 follow-on source remediation
+
+Committed additive migration `20261030140000_scope_learning_admin_permissions_to_organization.sql` (commit `300753663088325e33c2741e3e2e5c41503f8c0f`). It updates 11 SECURITY DEFINER functions/triggers covering school calendar administration, intervention cases, and attendance submission/guarding to use `learning_can_manage_academic_records(target_organization_id)` rather than tenant-wide permission lookup. Teacher class-membership branches and parent/student calendar visibility branches are retained.
+
+Static source verification: 11 function definitions present; no direct get_current_user_permissions() references remain in these 11 definitions. The migration is source-only and is **not applied to the live database** because migration-ledger/schema reconciliation is still blocked. No production schema, data, Auth settings, or migration ledger changes were made. This commit was written directly to the canonical integration branch; the PR-only workflow lookup returned no runs, so CI status for this commit is not established.
