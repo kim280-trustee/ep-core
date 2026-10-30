@@ -130,3 +130,21 @@ A broader catalog scan found 9 additional SECURITY DEFINER routines that call te
 The first five do not consistently verify that the target organization's assigned role carries the permission. In particular, competition creation/status and staff membership status combine tenant-wide permission with organization membership; vocabulary analytics and school-admin user visibility do likewise; these are high-priority cross-organization authorization candidates. Marketplace moderation routines additionally check OWNER/MANAGER role names in the target organization, which reduces the direct STAFF escalation path, but still does not prove the target role's permission assignment. They remain in scope for correction to a single organization-scoped permission predicate.
 
 This brings the catalog review set to 23 SECURITY DEFINER routines/triggers using tenant-wide permission helpers. The next patch must inspect each caller's intended access model and replace only privileged manager branches; teacher, student, parent, and ordinary organization-member read paths must remain intact. This scan is static catalog review; it has not changed production.
+
+
+### Learning RLS policy scan — tenant-wide permission references
+
+A read-only `pg_policies` scan found 29 policies across 9 `learning_*` tables whose predicates still reference tenant-wide `has_permission()` or `get_current_user_permissions()`:
+- `learning_academic_years` (3 policies)
+- `learning_attendance_records` (4)
+- `learning_attendance_sessions` (3)
+- `learning_class_groups` (3)
+- `learning_class_memberships` (3)
+- `learning_class_subjects` (3)
+- `learning_terms` (3)
+- `learning_timetable_entries` (3)
+- `learning_vocabulary_entries` (4)
+
+These predicates require individual review against each table's organization key and teacher/class access branches. The presence of a tenant-wide permission reference is not by itself proof that every policy is exploitable: some policies may correctly scope to the user's tenant and others may OR a privileged manager branch with teacher membership. However, it means the new organization-assigned permission helper has not yet been propagated to all learning RLS authorization paths. Do not mass-replace policies; preserve legitimate teacher workflows and validate both USING and WITH CHECK behavior with cross-organization role tests.
+
+The catalog now identifies three distinct remediation surfaces: 23 SECURITY DEFINER routines/triggers using tenant-wide permission helpers, 29 learning RLS policies using those helpers, and the 25 academic-record policies already routed through the corrected helper in PR #157. Confirm overlap before counting unique policies or drafting the migration.
