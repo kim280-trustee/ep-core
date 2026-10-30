@@ -1,6 +1,6 @@
 import { useMemo, useState, type ReactNode } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { AlertCircle, ArrowLeft, ClipboardCheck, Target, TrendingUp, Users } from "lucide-react";
+import { AlertCircle, ArrowLeft, ClipboardCheck, Download, Target, TrendingUp, Users } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningAssignmentsService } from "@/features/learning-assignments";
@@ -27,6 +27,8 @@ export default function TeacherDiagnosticReportPage() {
   const { user } = useAuth();
   const { classGroupId = "" } = useParams();
   const [selectedAssessmentId, setSelectedAssessmentId] = useState("");
+  const [studentSearch, setStudentSearch] = useState("");
+  const [studentStatusFilter, setStudentStatusFilter] = useState<"all" | "priority" | "no-gap" | "awaiting">("all");
 
   const classQuery = useQuery({
     queryKey: ["learning", "teacher-class", user?.id, classGroupId],
@@ -174,6 +176,36 @@ export default function TeacherDiagnosticReportPage() {
     return { student, attempt, gaps };
   }), [classQuery.data?.students, latestAttempts, questionMap, objectiveNames]);
 
+  const normalizedStudentSearch = studentSearch.trim().toLocaleLowerCase();
+  const visibleStudentRows = studentRows.filter(({ student, attempt, gaps }) => {
+    const matchesSearch = !normalizedStudentSearch || student.name.toLocaleLowerCase().includes(normalizedStudentSearch) || student.email.toLocaleLowerCase().includes(normalizedStudentSearch);
+    const matchesStatus = studentStatusFilter === "all" || (studentStatusFilter === "priority" && gaps.length > 0) || (studentStatusFilter === "no-gap" && Boolean(attempt) && gaps.length === 0) || (studentStatusFilter === "awaiting" && !attempt);
+    return matchesSearch && matchesStatus;
+  });
+
+  function exportStudentCsv() {
+    const csvRows: string[][] = [["student", "email", "latest_percentage", "attempt_number", "priority_objectives"]];
+    for (const { student, attempt, gaps } of visibleStudentRows) {
+      csvRows.push([student.name, student.email, attempt ? String(attempt.percentage ?? 0) : "", attempt ? String(attempt.attemptNumber) : "", gaps.map((gap) => gap.name + " (" + gap.percentage + "%)").join("; ")]);
+    }
+    const csvCell = (value: string) => {
+      let safe = value;
+      const firstNonWhitespace = safe.trimStart()[0];
+      if (firstNonWhitespace && "=+-@".includes(firstNonWhitespace)) safe = "'" + safe;
+      return '"' + safe.replaceAll('"', '""') + '"';
+    };
+    const csv = "\\uFEFF" + csvRows.map((row) => row.map(csvCell).join(",")).join("\\r\\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = "diagnostic-" + (assessmentId || "report") + "-students.csv";
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
   if (!user) return <Panel title="Diagnostic report"><p>Sign in to continue.</p></Panel>;
   if (classQuery.isPending) return <div className="h-64 animate-pulse rounded-2xl bg-slate-200" />;
   if (classQuery.isError) return <Panel title="Diagnostic report"><p>This class could not be loaded. Confirm that you are assigned to it.</p></Panel>;
@@ -226,8 +258,9 @@ export default function TeacherDiagnosticReportPage() {
           </section>
 
           <section className="rounded-2xl border border-slate-200 bg-white p-5">
-            <h2 className="text-lg font-semibold text-slate-900">Student diagnostic status</h2>
-            <div className="mt-4 overflow-x-auto"><table className="min-w-full text-left text-sm"><thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-4 py-3">Student</th><th className="px-4 py-3">Latest result</th><th className="px-4 py-3">Attempt</th><th className="px-4 py-3">Priority objectives</th></tr></thead><tbody className="divide-y divide-slate-100">{studentRows.map(({ student, attempt, gaps }) => <tr key={student.membership.userId}><td className="px-4 py-3"><p className="font-medium text-slate-900">{student.name}</p><p className="text-xs text-slate-500">{student.email}</p></td><td className="px-4 py-3">{attempt ? <span className="font-semibold">{attempt.percentage ?? 0}%</span> : <span className="text-slate-400">Not completed</span>}</td><td className="px-4 py-3">{attempt ? `#${attempt.attemptNumber}` : "—"}</td><td className="px-4 py-3">{gaps.length ? <div className="flex max-w-lg flex-wrap gap-1.5">{gaps.slice(0, 3).map((gap) => <span key={gap.objectiveId} className="rounded-full bg-amber-50 px-2 py-1 text-xs font-medium text-amber-800">{gap.name} · {gap.percentage}%</span>)}</div> : <span className="text-slate-400">{attempt ? "No priority gap detected" : "Awaiting attempt"}</span>}</td></tr>)}</tbody></table></div>
+            <div className="flex flex-wrap items-start justify-between gap-3"><div><h2 className="text-lg font-semibold text-slate-900">Student diagnostic status</h2><p className="mt-1 text-sm text-slate-500">Search students, focus on priority learning gaps, or find learners awaiting a first attempt.</p></div><button type="button" onClick={exportStudentCsv} disabled={!visibleStudentRows.length} className="inline-flex items-center gap-2 rounded-xl border border-slate-300 px-3 py-2 text-sm font-semibold disabled:opacity-50"><Download size={15}/>Export filtered CSV</button></div>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2"><label className="text-sm font-medium text-slate-700">Search student<input type="search" value={studentSearch} onChange={(event) => setStudentSearch(event.target.value)} placeholder="Name or email" className="mt-1 block w-full rounded-xl border border-slate-300 px-3 py-2 font-normal"/></label><label className="text-sm font-medium text-slate-700">Student status<select value={studentStatusFilter} onChange={(event) => setStudentStatusFilter(event.target.value as typeof studentStatusFilter)} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-normal"><option value="all">All students</option><option value="priority">Has priority objectives</option><option value="no-gap">No priority gap detected</option><option value="awaiting">Awaiting attempt</option></select></label><p className="text-xs text-slate-500 sm:col-span-2" aria-live="polite">Showing {visibleStudentRows.length} of {studentRows.length} students.</p>{(studentSearch || studentStatusFilter !== "all") && <button type="button" onClick={() => { setStudentSearch(""); setStudentStatusFilter("all"); }} className="justify-self-start rounded-lg border border-slate-300 px-3 py-2 text-sm font-semibold">Clear filters</button>}</div>
+            <div className="mt-4 overflow-x-auto"><table className="min-w-full text-left text-sm"><thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-4 py-3">Student</th><th className="px-4 py-3">Latest result</th><th className="px-4 py-3">Attempt</th><th className="px-4 py-3">Priority objectives</th></tr></thead><tbody className="divide-y divide-slate-100">{visibleStudentRows.map(({ student, attempt, gaps }) => <tr key={student.membership.userId}><td className="px-4 py-3"><p className="font-medium text-slate-900">{student.name}</p><p className="text-xs text-slate-500">{student.email}</p></td><td className="px-4 py-3">{attempt ? <span className="font-semibold">{attempt.percentage ?? 0}%</span> : <span className="text-slate-400">Not completed</span>}</td><td className="px-4 py-3">{attempt ? `#${attempt.attemptNumber}` : "—"}</td><td className="px-4 py-3">{gaps.length ? <div className="flex max-w-lg flex-wrap gap-1.5">{gaps.slice(0, 3).map((gap) => <span key={gap.objectiveId} className="rounded-full bg-amber-50 px-2 py-1 text-xs font-medium text-amber-800">{gap.name} · {gap.percentage}%</span>)}</div> : <span className="text-slate-400">{attempt ? "No priority gap detected" : "Awaiting attempt"}</span>}</td></tr>)}{!visibleStudentRows.length && <tr><td colSpan={4} className="px-4 py-8 text-center text-slate-500">No students match these filters.</td></tr>}</tbody></table></div>
           </section>
         </>
       )}
