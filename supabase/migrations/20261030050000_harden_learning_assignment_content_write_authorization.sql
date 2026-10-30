@@ -65,6 +65,47 @@ as $function$
     );
 $function$;
 
+create or replace function private.learning_can_manage_assignment_fields(
+  p_organization_id uuid,
+  p_class_subject_id uuid,
+  p_created_by uuid
+)
+returns boolean
+language sql
+stable
+security definer
+set search_path = ''
+as $function$
+  select
+    public.learning_can_manage_academic_records(p_organization_id)
+    or (
+      p_created_by = public.learning_current_user_id()
+      and exists (
+        select 1
+        from public.learning_class_memberships cm
+        join public.learning_class_groups cg
+          on cg.id = cm.class_group_id
+         and cg.organization_id = cm.organization_id
+         and cg.status = 'active'
+        where cm.organization_id = p_organization_id
+          and cm.user_id = public.learning_current_user_id()
+          and cm.membership_type = 'teacher'
+          and cm.status = 'active'
+          and (
+            p_class_subject_id is null
+            or exists (
+              select 1
+              from public.learning_class_subjects cs
+              where cs.id = p_class_subject_id
+                and cs.organization_id = p_organization_id
+                and cs.class_group_id = cm.class_group_id
+                and cs.status = 'active'
+            )
+          )
+      )
+    );
+$function$;
+
 create or replace function private.learning_can_manage_assignment(
   p_assignment_id uuid,
   p_organization_id uuid
@@ -275,12 +316,12 @@ as $function$
 $function$;
 
 revoke all on function private.learning_can_create_assignment(uuid, uuid, uuid) from public, anon;
-revoke all on function private.learning_can_manage_assignment(uuid, uuid) from public, anon;
+revoke all on function private.learning_can_manage_assignment_fields(uuid, uuid, uuid) from public, anon;\nrevoke all on function private.learning_can_manage_assignment(uuid, uuid) from public, anon;
 revoke all on function private.learning_can_manage_assignment_target(uuid, uuid, uuid, uuid) from public, anon;
 revoke all on function private.learning_can_author_organization_content(uuid) from public, anon;
 revoke all on function private.learning_can_manage_content_item(uuid) from public, anon;
 grant execute on function private.learning_can_create_assignment(uuid, uuid, uuid) to authenticated;
-grant execute on function private.learning_can_manage_assignment(uuid, uuid) to authenticated;
+grant execute on function private.learning_can_manage_assignment_fields(uuid, uuid, uuid) to authenticated;\ngrant execute on function private.learning_can_manage_assignment(uuid, uuid) to authenticated;
 grant execute on function private.learning_can_manage_assignment_target(uuid, uuid, uuid, uuid) to authenticated;
 grant execute on function private.learning_can_author_organization_content(uuid) to authenticated;
 grant execute on function private.learning_can_manage_content_item(uuid) to authenticated;
@@ -456,7 +497,7 @@ create policy learning_content_items_update
 on public.learning_content_items
 for update to authenticated
 using (private.learning_can_manage_content_item(id))
-with check (private.learning_can_manage_content_item(id));
+with check (\n  private.learning_can_manage_content_item(id)\n  and (\n    created_by = public.learning_current_user_id()\n    or public.learning_can_manage_academic_records(organization_id)\n  )\n);
 
 create policy learning_content_items_delete
 on public.learning_content_items
