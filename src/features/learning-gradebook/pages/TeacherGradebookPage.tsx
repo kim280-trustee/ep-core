@@ -18,9 +18,9 @@ export default function TeacherGradebookPage() {
   const [editing,setEditing]=useState<LearningGradebookEntry|null>(null);
 
   const classQuery=useQuery({queryKey:["learning","teacher-gradebook-class",user?.id,classGroupId],queryFn:()=>learningTeacherService.getClassOverview(user!.id,classGroupId),enabled:Boolean(user?.id&&classGroupId)});
-  const organizationId=classQuery.data?.classInfo.membership.organizationId??""; const subjects=classQuery.data?.classInfo.subjects??[]; const selectedSubjectId=subjectId||subjects[0]?.id||"";
+  const organizationId=classQuery.data?.classInfo.membership.organizationId??""; const subjects=classQuery.data?.classInfo.subjects??[]; const selectedSubjectId=subjects.some((subject)=>subject.id===subjectId)?subjectId:subjects[0]?.id||"";
   const termsQuery=useQuery({queryKey:["learning","gradebook-terms",organizationId],queryFn:()=>learningGradebookService.listTerms(organizationId),enabled:Boolean(organizationId)});
-  const selectedTermId=termId||termsQuery.data?.[0]?.id||"";
+  const selectedTermId=termsQuery.data?.some((term)=>term.id===termId)?termId:termsQuery.data?.[0]?.id||"";
   const entriesQuery=useQuery({queryKey:["learning","teacher-gradebook-entries",selectedTermId,selectedSubjectId],queryFn:()=>learningGradebookService.listEntries({termId:selectedTermId,classSubjectId:selectedSubjectId}),enabled:Boolean(selectedTermId&&selectedSubjectId)});
   const categoriesQuery=useQuery({queryKey:["learning","gradebook-categories",organizationId],queryFn:()=>learningGradebookService.listCategories(organizationId),enabled:Boolean(organizationId)});
   const termGradesQuery=useQuery({queryKey:["learning","teacher-term-grades",selectedTermId,selectedSubjectId],queryFn:()=>learningGradebookService.listTermGrades({termId:selectedTermId,classSubjectId:selectedSubjectId}),enabled:Boolean(selectedTermId&&selectedSubjectId)});
