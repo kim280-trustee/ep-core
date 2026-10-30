@@ -78,6 +78,61 @@ function PortalEmpty({t,language,setLanguage}:{t:Copy;language:Language;setLangu
   return <div className="mx-auto max-w-6xl space-y-6"><PortalHeader t={t} language={language} setLanguage={setLanguage}/><section className="rounded-2xl border border-dashed bg-white p-10 text-center"><p className="font-semibold text-slate-900">{t.none}</p><p className="mt-2 text-sm text-slate-500">{t.noneHelp}</p></section></div>;
 }
 
+function csvCell(value: unknown) {
+  const raw = value === null || value === undefined ? "" : String(value);
+  // Prefix spreadsheet formula-like text before CSV quoting. Preserve ordinary
+  // signed numeric values (for example, -2.5) as numbers.
+  const isNumeric = /^-?\d+(?:\.\d+)?$/.test(raw.trim());
+  // Skip leading ASCII whitespace/control characters before checking formula markers.
+  let firstMeaningfulIndex = 0;
+  while (firstMeaningfulIndex < raw.length) {
+    const code = raw.charCodeAt(firstMeaningfulIndex);
+    if (code > 0x20 && (code < 0x7f || code > 0x9f)) break;
+    firstMeaningfulIndex += 1;
+  }
+  const firstMeaningfulCharacter = raw[firstMeaningfulIndex] ?? "";
+  const hasFormulaPrefix = "=+-@".includes(firstMeaningfulCharacter);
+  const safe = hasFormulaPrefix && !isNumeric ? "'" + raw : raw;
+  return '"' + safe.replace(/"/g, '""') + '"';
+}
+
+function downloadChildProgressReport(child: LearningParentOverview) {
+  const rows: string[][] = [
+    ["E&P Learning progress report"],
+    ["Student", child.student.name],
+    ["Generated at", new Date().toISOString()],
+    [],
+    ["Assignments"],
+    ["Assignment", "Status", "Due date"],
+    ...child.assignments.map(item => [item.title, item.progressStatus, item.dueAt ?? ""]),
+    [],
+    ["Finalized subject grades"],
+    ["Subject", "Term", "Score percent", "Grade", "Finalized at"],
+    ...child.subjectGrades.map(item => [item.subjectName, item.termName, String(item.score), item.grade ?? "", item.finalizedAt ?? ""]),
+    [],
+    ["Learning objectives"],
+    ["Objective", "Score percent", "Mastery state"],
+    ...child.mastery.map(item => [item.objectiveName, String(item.score), item.state]),
+    [],
+    ["Learning summary"],
+    ["Total XP", String(child.xpTotal)],
+    ["Current streak (days)", String(child.currentStreak)],
+    ["Badges unlocked", String(child.badgesUnlocked.length)],
+    ["Teacher comments count", String(child.comments.length)],
+  ];
+  const csv = "\uFEFF" + rows.map(row => row.map(csvCell).join(",")).join("\r\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+  const safeName = child.student.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 50) || "student";
+  anchor.href = url;
+  anchor.download = `ep-learning-progress-${safeName}.csv`;
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
 function ChildCard({child,t,now}:{child:LearningParentOverview;t:Copy;now:number|null}) {
   const vocabularyQuery = useQuery({
     queryKey: ["learning", "parent", "vocabulary-summary", child.student.id],
@@ -94,7 +149,7 @@ function ChildCard({child,t,now}:{child:LearningParentOverview;t:Copy;now:number
   const reminderCutoff=now===null?0:now+7*24*60*60*1000;
   const dueAlerts=now===null?[]:child.assignments.filter(item=>item.dueAt&&item.progressStatus!=="completed"&&new Date(item.dueAt).getTime()<=reminderCutoff).sort((a,b)=>new Date(a.dueAt!).getTime()-new Date(b.dueAt!).getTime()).slice(0,5);
   return <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
-    <div className="border-b border-slate-100 p-6"><div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><div><h2 className="text-xl font-bold text-slate-900">{child.student.name}</h2><p className="text-sm text-slate-500">{child.student.email}</p></div><div className="rounded-xl bg-slate-50 px-4 py-3 text-sm"><span className="text-slate-500">{t.average}</span><p className="text-xl font-bold text-slate-900">{average===null?t.noGrades:average.toFixed(1)+"%"}</p></div></div></div>
+    <div className="border-b border-slate-100 p-6"><div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><div><h2 className="text-xl font-bold text-slate-900">{child.student.name}</h2><p className="text-sm text-slate-500">{child.student.email}</p></div><div className="flex flex-wrap items-center gap-3"><div className="rounded-xl bg-slate-50 px-4 py-3 text-sm"><span className="text-slate-500">{t.average}</span><p className="text-xl font-bold text-slate-900">{average===null?t.noGrades:average.toFixed(1)+"%"}</p></div><button type="button" onClick={() => downloadChildProgressReport(child)} className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500">Download progress CSV</button></div></div></div>
     <div className="grid gap-4 p-6 sm:grid-cols-2 lg:grid-cols-4"><Metric icon={<BookOpen size={18}/>} label={t.assignments} value={String(child.assignments.length)} detail={completed+" "+t.completed+" · "+inProgress+" "+t.inProgress}/><Metric icon={<Zap size={18}/>} label={t.xp} value={String(child.xpTotal)} detail={t.rewardHistory}/><Metric icon={<TrendingUp size={18}/>} label={t.streak} value={child.currentStreak+" days"} detail={t.streak}/><Metric icon={<Award size={18}/>} label={t.badges} value={String(child.badgesUnlocked.length)} detail={t.badgesUnlocked}/><Metric icon={<TrendingUp size={18}/>} label={t.subjects} value={String(new Set(child.subjectGrades.map(grade => grade.subjectName)).size)} detail={t.finalized}/><Metric icon={<Target size={18}/>} label={t.objectives} value={String(child.mastery.length)} detail={needsReview.length+" "+t.attention}/><Metric icon={<MessageSquare size={18}/>} label={t.comments} value={String(child.comments.length)} detail={t.recent}/></div>
     <section className="border-t border-slate-100 p-6"><div className="flex items-center gap-2"><CalendarDays size={18}/><h3 className="text-lg font-semibold text-slate-900">{t.attendanceProgress}</h3></div>{attendanceQuery.isPending?<div className="mt-3 h-20 animate-pulse rounded-xl bg-slate-100"/>:attendanceQuery.isError?<p role="status" className="mt-3 rounded-xl bg-amber-50 p-3 text-sm text-amber-800">{t.attendanceUnavailable}</p>:attendanceQuery.data.sessionsCount===0?<p className="mt-3 rounded-xl border border-dashed border-slate-200 p-4 text-sm text-slate-500">{t.noAttendance}</p>:<div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3"><Metric icon={<CalendarDays size={18}/>} label={t.attendanceSessions} value={String(attendanceQuery.data.sessionsCount)} detail={t.latestAttendance+": "+(attendanceQuery.data.latestAttendanceDate?new Date(attendanceQuery.data.latestAttendanceDate+"T00:00:00").toLocaleDateString():"—")}/><Metric icon={<BookOpen size={18}/>} label={t.present} value={String(attendanceQuery.data.presentCount)} detail={t.attendanceProgress}/><Metric icon={<AlertCircle size={18}/>} label={t.absent} value={String(attendanceQuery.data.absentCount)} detail={t.attendanceProgress}/><Metric icon={<TrendingUp size={18}/>} label={t.late} value={String(attendanceQuery.data.lateCount)} detail={t.attendanceProgress}/><Metric icon={<CalendarDays size={18}/>} label={t.excused} value={String(attendanceQuery.data.excusedCount)} detail={t.attendanceProgress}/></div>}</section>
     <section className="border-t border-slate-100 p-6"><h3 className="text-lg font-semibold text-slate-900">{t.vocabularyProgress}</h3>{vocabularyQuery.isPending?<div className="mt-3 h-20 animate-pulse rounded-xl bg-slate-100"/>:vocabularyQuery.isError?<p className="mt-3 rounded-xl bg-amber-50 p-3 text-sm text-amber-800">{t.vocabularyUnavailable}</p>:<div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4"><Metric icon={<BookOpen size={18}/>} label={t.vocabularyCount} value={String(vocabularyQuery.data.vocabularyCount)} detail={t.vocabularyProgress}/><Metric icon={<BookOpen size={18}/>} label={t.practicedCount} value={String(vocabularyQuery.data.practicedCount)} detail={t.reviewAttempts+": "+vocabularyQuery.data.reviewAttempts}/><Metric icon={<Target size={18}/>} label={t.knownCount} value={String(vocabularyQuery.data.knownCount)} detail={t.accuracy+": "+(vocabularyQuery.data.accuracyPercent===null?"—":vocabularyQuery.data.accuracyPercent+"%")}/><Metric icon={<TrendingUp size={18}/>} label={t.dueCount} value={String(vocabularyQuery.data.dueCount)} detail={t.vocabularyProgress}/></div>}</section>
