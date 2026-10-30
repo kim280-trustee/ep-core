@@ -192,7 +192,7 @@ export const learningParentRepository={
     const termMap=new Map(((terms??[]) as Term[]).map(x=>[x.id,x.name]));
     const objectiveMap=new Map(((objectives??[]) as Objective[]).map(x=>[x.id,x]));
 
-    const targets=[...(directTargets??[]),...(classTargets??[])].filter((row,index,array)=>array.findIndex(x=>x.assignment_id===row.assignment_id&&x.student_user_id===row.student_user_id&&x.class_group_id===row.class_group_id)===index) as TargetRow[];
+    const targets=[...(directTargets??[]),...(classTargets??[]).filter((row)=>!row.student_user_id||row.student_user_id===studentUserId)].filter((row,index,array)=>array.findIndex(x=>x.assignment_id===row.assignment_id&&x.student_user_id===row.student_user_id&&x.class_group_id===row.class_group_id)===index) as TargetRow[];
     const assignmentIds=[...new Set(targets.map(x=>x.assignment_id))];
     const[{data:assignments,error:assignmentError},{data:progress,error:progressError}]=await Promise.all([
       assignmentIds.length?supabase.from("learning_assignments").select("id,title,due_at,status").in("id",assignmentIds).eq("status","published"):Promise.resolve({data:[],error:null}),
