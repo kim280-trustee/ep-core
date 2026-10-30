@@ -151,6 +151,28 @@ export default function LearningAssessmentRuntimePage() {
     () => allAssessmentAttempts.filter((attempt) => !attempt.assignmentId || attempt.assignmentId === id),
     [allAssessmentAttempts, id],
   );
+  const resumableAttempt = useMemo(
+    () => [...existingAttempts]
+      .filter((attempt) => attempt.status === "in_progress")
+      .sort((a, b) => b.attemptNumber - a.attemptNumber)[0] ?? null,
+    [existingAttempts],
+  );
+  const attemptAnswersQuery = useQuery({
+    queryKey: ["learning", "assessment-attempt-answers", attemptId],
+    queryFn: () => learningAssessmentService.listAttemptAnswers(attemptId!),
+    enabled: Boolean(attemptId && started),
+  });
+
+  useEffect(() => {
+    if (!attemptAnswersQuery.data) return;
+    const restoredAnswers = Object.fromEntries(
+      attemptAnswersQuery.data.flatMap((answer) => {
+        const optionId = answer.answer.option_id;
+        return typeof optionId === "string" ? [[answer.assessmentQuestionId, optionId]] : [];
+      }),
+    );
+    setAnswers((current) => ({ ...restoredAnswers, ...current }));
+  }, [attemptAnswersQuery.data]);
 
   const startMutation = useMutation({
     mutationFn: async () => {
@@ -163,28 +185,27 @@ export default function LearningAssessmentRuntimePage() {
       }
 
       const maxAttempts = assignmentQuery.data.assignment.maxAttempts;
+      let attempt = resumableAttempt;
 
-      if (maxAttempts !== null && existingAttempts.length >= maxAttempts) {
-        throw new Error("You have reached the maximum number of attempts.");
+      if (!attempt) {
+        if (maxAttempts !== null && existingAttempts.length >= maxAttempts) {
+          throw new Error("You have reached the maximum number of attempts.");
+        }
+
+        const previousAttempt = [...existingAttempts].sort(
+          (a, b) => b.attemptNumber - a.attemptNumber,
+        )[0] ?? null;
+
+        attempt = await learningAssessmentService.createAttempt({
+          tenantId: user.tenantId,
+          organizationId: assignmentQuery.data.assignment.organizationId,
+          assignmentId: id,
+          assessmentId: assessment,
+          studentUserId: user.id,
+          attemptNumber: (previousAttempt?.attemptNumber ?? 0) + 1,
+          previousAttemptId: previousAttempt?.id ?? null,
+        });
       }
-
-      const assessmentAttempts = existingAttempts.filter((attempt) => attempt.assessmentId === assessment);
-      const previousAttempt =
-        assessmentAttempts.length > 0
-          ? [...assessmentAttempts].sort(
-              (a, b) => b.attemptNumber - a.attemptNumber,
-            )[0]
-          : null;
-
-      const attempt = await learningAssessmentService.createAttempt({
-        tenantId: user.tenantId,
-        organizationId: assignmentQuery.data.assignment.organizationId,
-        assignmentId: id,
-        assessmentId: assessment,
-        studentUserId: user.id,
-        attemptNumber: (previousAttempt?.attemptNumber ?? 0) + 1,
-        previousAttemptId: previousAttempt?.id ?? null,
-      });
 
       let session: Awaited<ReturnType<typeof learningActivityService.startForStudent>> | null = null;
       try {
@@ -572,7 +593,7 @@ export default function LearningAssessmentRuntimePage() {
             onClick={() => startMutation.mutate()}
             className="rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {startMutation.isPending ? "Starting..." : questions.length === 0 ? "No questions available" : attemptsRemaining === 0 ? "No attempts remaining" : "Start assessment"}
+            {startMutation.isPending ? "Starting..." : questions.length === 0 ? "No questions available" : attemptsRemaining === 0 && !resumableAttempt ? "No attempts remaining" : resumableAttempt ? "Resume assessment" : "Start assessment"}
           </button>
 
           {questions.length === 0 && (
@@ -663,7 +684,7 @@ export default function LearningAssessmentRuntimePage() {
       <section className="sticky bottom-4 rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-lg backdrop-blur">
         <button
           type="button"
-          disabled={submitMutation.isPending || pendingAnswerSaves > 0 || saveAnswerMutation.isError}
+          disabled={submitMutation.isPending || pendingAnswerSaves > 0 || saveAnswerMutation.isError || attemptAnswersQuery.isPending || attemptAnswersQuery.isError}
           onClick={() => submitMutation.mutate()}
           className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
         >
@@ -671,6 +692,15 @@ export default function LearningAssessmentRuntimePage() {
           {submitMutation.isPending ? "Submitting..." : "Submit assessment"}
         </button>
 
+        {attemptAnswersQuery.isError && (
+          <div className="mt-3 flex flex-wrap items-center gap-2 text-sm text-red-600">
+            <span>Saved answers could not be restored. Retry before submitting.</span>
+            <button type="button" onClick={() => void attemptAnswersQuery.refetch()} className="rounded-lg border border-red-200 px-2 py-1 font-semibold">Retry</button>
+          </div>
+        )}
+        {attemptAnswersQuery.isPending && (
+          <p className="mt-3 text-sm text-slate-500">Restoring saved answers…</p>
+        )}
         {saveAnswerMutation.isError && (
           <p className="mt-3 text-sm text-red-600">
             {saveAnswerMutation.error instanceof Error ? saveAnswerMutation.error.message : "Your latest answer could not be saved. Change or reselect the answer to try again."}
