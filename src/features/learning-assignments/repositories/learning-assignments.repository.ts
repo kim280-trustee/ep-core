@@ -62,15 +62,7 @@ async listAssignmentsForClass(classGroupId:string){const{data:targets,error}=awa
   return null;
 },
 async completeIfReady(assignmentId:string,studentUserId:string){
-  const{items,progress}=await learningAssignmentsRepository.getStudentAssignment(assignmentId,studentUserId);
-  if(!progress||progress.status==="completed")return progress;
-  const requiredAssessmentIds=items.filter(item=>item.required&&item.itemType==="assessment").map(item=>item.assessmentId).filter((v):v is string=>Boolean(v));
-  if(!requiredAssessmentIds.length)return progress;
-  const{data:attempts,error}=await supabase.from("learning_attempts").select("*").eq("student_user_id",studentUserId).in("assessment_id",requiredAssessmentIds);
-  if(error)throw error;
-  const evaluated=new Set((attempts??[]).filter(attempt=>attempt.status==="evaluated"&&(attempt as typeof attempt & {assignment_id?:string|null}).assignment_id===assignmentId).map(attempt=>attempt.assessment_id));
-  if(!requiredAssessmentIds.every(id=>evaluated.has(id)))return progress;
-  return learningAssignmentsRepository.updateProgress(progress.id,"completed");
+  return learningAssignmentsRepository.refreshProgressForStudent(assignmentId,studentUserId);
 },
  async listTargets(id:string){const{data,error}=await supabase.from("learning_assignment_targets").select("*").eq("assignment_id",id).eq("status","active");if(error)throw error;return(data??[]).map(mapT);},
  async listProgress(studentUserId:string){const{data,error}=await supabase.from("learning_assignment_progress").select("*").eq("student_user_id",studentUserId).order("last_activity_at",{ascending:false,nullsFirst:false});if(error)throw error;const priority=(status:LearningAssignmentProgress["status"])=>status==="completed"?0:status==="in_progress"?1:2;return(data??[]).map(mapP).sort((a,b)=>priority(a.status)-priority(b.status)||(b.lastActivityAt??"").localeCompare(a.lastActivityAt??""));},
