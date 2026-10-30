@@ -47,7 +47,7 @@ The existing integration readiness audit (PR #148) records a particularly import
 No production grants, RLS policies, SECURITY DEFINER bodies, Auth settings, or migration history were changed by this audit commit. A source inventory is not a remediation, and a successful build is not authorization verification.
 
 
-## Verified follow-up — 30 October 2026, 01:xx UTC
+## Verified follow-up — 30 October 2026
 
 ### Academic-record authorization fix
 
