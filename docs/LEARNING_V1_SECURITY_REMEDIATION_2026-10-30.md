@@ -148,3 +148,24 @@ A read-only `pg_policies` scan found 29 policies across 9 `learning_*` tables wh
 These predicates require individual review against each table's organization key and teacher/class access branches. The presence of a tenant-wide permission reference is not by itself proof that every policy is exploitable: some policies may correctly scope to the user's tenant and others may OR a privileged manager branch with teacher membership. However, it means the new organization-assigned permission helper has not yet been propagated to all learning RLS authorization paths. Do not mass-replace policies; preserve legitimate teacher workflows and validate both USING and WITH CHECK behavior with cross-organization role tests.
 
 The catalog now identifies three distinct remediation surfaces: 23 SECURITY DEFINER routines/triggers using tenant-wide permission helpers, 29 learning RLS policies using those helpers, and the 25 academic-record policies already routed through the corrected helper in PR #157. Confirm overlap before counting unique policies or drafting the migration.
+
+
+### Final advisor rerun and deployment blockers — 30 October 2026
+
+Supabase security and performance advisors were rerun against project `zcutsqbzvydyosfgrbdi` after the read-only review. The security advisor still reports:
+- 19 RLS-enabled tables without policies (INFO). Direct grants were previously checked and no direct authenticated/anon table privileges were found, but RPC access and ownership paths still require verification.
+- 105 authenticated-executable SECURITY DEFINER functions (WARN). This is a broad warning, not proof that all 105 are vulnerable; each function requires an authorization/callsite decision.
+
+The performance advisor continues to report duplicate indexes (4 findings) and multiple permissive policies on several tables. These are not automatically safe to remove: index usage and policy semantics must be checked before cleanup. Preserve this as a separate performance/authorization review.
+
+The live migration listing still contains 193 entries, including repeated migration names and timestamp/name divergence. The repository has 178 migration files. This listing alone is not sufficient to decide which SQL has or has not been applied; the earlier exact-version and normalized-name comparison demonstrates substantial drift. No ledger edits or migration pushes were performed.
+
+Completion status:
+- Organization-scoped academic-record helper: source change merged in PR #157; not deployed to production.
+- Broader RPC/RLS authorization remediation: findings catalogued, but no safe blanket replacement is possible; individual function/policy definitions and UI callsites remain to be remediated and tested.
+- Cross-organization role matrix E2E: not run; current production data is insufficient to establish all OWNER/MANAGER/STAFF combinations.
+- Migration reconciliation: not complete. Requires content-level comparison of all 178 repository migration files against live schema effects and live ledger aliases. Production migration deployment remains blocked.
+- Leaked-password protection: still disabled. The available Supabase connector exposes no Auth configuration update action; this setting must be enabled in Supabase Dashboard Auth settings by an authorized project administrator.
+- Advisor rerun: completed; findings remain as recorded above.
+
+No production schema, Auth configuration, migration ledger, or data was changed in this pass. This document is an audit record, not a V1 security sign-off.
