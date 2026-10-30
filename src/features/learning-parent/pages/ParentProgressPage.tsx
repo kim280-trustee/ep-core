@@ -79,8 +79,13 @@ function PortalEmpty({t,language,setLanguage}:{t:Copy;language:Language;setLangu
 }
 
 function csvCell(value: unknown) {
-  const text = value === null || value === undefined ? "" : String(value);
-  return '"' + text.replace(/"/g, '""') + '"';
+  const raw = value === null || value === undefined ? "" : String(value);
+  // Prefix spreadsheet formula-like text before CSV quoting. Preserve ordinary
+  // signed numeric values (for example, -2.5) as numbers.
+  const isNumeric = /^-?\\d+(?:\\.\\d+)?$/.test(raw.trim());
+  const hasFormulaPrefix = /^[\\u0000-\\u0020\\u007f-\\u009f]*[=+\\-@]/.test(raw);
+  const safe = hasFormulaPrefix && !isNumeric ? "'" + raw : raw;
+  return '"' + safe.replace(/"/g, '""') + '"';
 }
 
 function downloadChildProgressReport(child: LearningParentOverview) {
