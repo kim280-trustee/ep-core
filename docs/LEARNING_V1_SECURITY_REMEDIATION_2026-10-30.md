@@ -191,3 +191,8 @@ Committed additive migration `20261030150000_scope_learning_competition_staff_ma
 Administrator checks now use the organization-scoped `learning_can_manage_academic_records(target_organization_id)` helper. Marketplace role-name checks, participant exclusions, teacher class-membership branches, and existing data filters are retained. Static verification of the committed migration: 9 function definitions and zero remaining `has_permission('learning.academic.manage')` or `get_current_user_permissions()` references.
 
 This is source-only; the migration has not been applied to production pending migration-history reconciliation and role-matrix verification. No live schema/data/Auth/migration-ledger changes were made.
+
+
+## 2026-10-30 third follow-on source remediation
+
+Committed additive migration `20261030160000_scope_learning_announcement_permissions.sql` (commit `d9a68de7d12d007df52b87df73a3f88a380f1c17`). It updates the three school-announcement administration functions (create, list/manage, publish) to require `learning.academic.manage` on the actor's active role in the target organization. Existing OWNER/MANAGER role and active-organization checks remain. Static verification: all three source definitions no longer call `get_current_user_permissions()`. This migration is not deployed pending migration-history reconciliation and cross-organization role tests.
