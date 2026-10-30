@@ -71,7 +71,14 @@ export default function TeacherGradebookPage() {
       "\uFEFF" +
       rows
         .map((row) =>
-          row.map((value) => '"' + String(value).replaceAll('"', '""') + '"').join(","),
+          row
+            .map((value) => {
+              const cell = String(value);
+              // Quoting alone does not prevent spreadsheet formula execution.
+              const safeCell = /^[\\t\\n\\r ]*[=+\\-@]/.test(cell) ? "'" + cell : cell;
+              return '"' + safeCell.replaceAll('"', '""') + '"';
+            })
+            .join(","),
         )
         .join("\r\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
