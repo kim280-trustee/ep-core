@@ -492,7 +492,7 @@ export default function LearningAssessmentRuntimePage() {
     );
   }
 
-  if (!started && attemptsRemaining === 0) {
+  if (!started && attemptsRemaining === 0 && !resumableAttempt) {
     return (
       <div className="space-y-6">
 
@@ -589,7 +589,7 @@ export default function LearningAssessmentRuntimePage() {
         <section className="rounded-2xl border border-slate-200 bg-white p-6">
           <button
             type="button"
-            disabled={startMutation.isPending || attemptsRemaining === 0 || questions.length === 0}
+            disabled={startMutation.isPending || (attemptsRemaining === 0 && !resumableAttempt) || questions.length === 0}
             onClick={() => startMutation.mutate()}
             className="rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
           >
