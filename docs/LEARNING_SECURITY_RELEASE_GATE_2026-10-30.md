@@ -239,3 +239,20 @@ Production deployment remains blocked until all of the following are complete:
 - Source migration 1300 corrected to preserve definer rights and an authenticated-only ACL.
 - Existing audit addendum corrected to distinguish live defect from source fix.
 - No production or staging database changes made.
+
+## Additional search-path hardening — 2026-10-30 continuation
+
+A further read-only catalog inspection identified eight authenticated-callable SECURITY DEFINER helpers whose configured search paths were not empty:
+
+- Private: `learning_assignment_target_assignment_matches_org`, `learning_assignment_visible`, `learning_content_visible`, `learning_student_has_assignment_target`.
+- Public: `get_current_user_permissions`, `get_current_user_tenant_id`, `has_permission`, `is_organization_member`.
+
+A source-only follow-up migration was added:
+
+- `supabase/migrations/20261030180000_harden_learning_definer_search_paths.sql`
+- Commit: `bbd5a7344b2670287bbfe757c020e4c71e81a581`
+- Recreates all eight functions with `SET search_path = ''` and schema-qualified relation/function references.
+- Uses `CREATE OR REPLACE`, preserving existing function ownership and ACLs; no grants were broadened.
+- Live catalog confirms all eight currently remain on their previous non-empty paths, callable by authenticated and not callable by anon. This migration has **not** been applied to production.
+
+The pending source security migration sequence is now 1300, 1400, 1500, 1600, 1700, then 1800. The six migrations remain staging-only until the migration-history and authorization gates are cleared.
