@@ -64,7 +64,7 @@ Read-only catalog inspection of live PostgreSQL 17.6.1:
 - Authenticated and anon have no CREATE privilege on either `public` or `private`; authenticated has USAGE but not CREATE on `private`.
 - Four authenticated-callable private definer helpers use non-empty search paths: `learning_assignment_target_assignment_matches_org`, `learning_assignment_visible`, `learning_content_visible`, and `learning_student_has_assignment_target`. Their definitions and unqualified references need source-level review and hardening assessment. The lack of CREATE privileges reduces the immediate object-shadowing risk but does not remove the value of using an empty path and fully qualified references.
 - Five public definer helpers use non-empty paths: `get_current_user_permissions`, `get_current_user_tenant_id`, `has_permission`, `is_organization_member`, and `learning_school_admin_can_view_user`. Their search paths and tenant/organization semantics require source comparison.
-- A static body scan of the 105 authenticated-callable public definer functions found 79 direct `auth.uid()` references, 26 references to application identity/authorization helpers without a direct `auth.uid()` reference, and two functions with no obvious direct identity or authorization helper reference. The two exceptions were inspected: `get_learning_school_attendance_report` and `revoke_learning_student_invitation`; both delegate authorization to `learning_can_manage_academic_records`.
+- A static body scan of the 105 authenticated-callable public definer functions found 79 direct `auth.uid()` references, 24 references to application identity/authorization helpers without a direct `auth.uid()` reference, and two functions with no obvious direct identity or authorization helper reference. The two exceptions were inspected: `get_learning_school_attendance_report` and `revoke_learning_student_invitation`; both delegate authorization to `learning_can_manage_academic_records`.
 
 ### Confirmed live authorization defect and source correction already prepared
 
@@ -98,3 +98,12 @@ The advisor output is not a substitute for reviewing each function body. No prod
 ## Correction — source migration state
 
 The live helper defect described above is real, but the source fix was already committed before this audit continuation. The earlier wording suggesting that a new source fix still needed to be authored was inaccurate. The remaining work is staging validation and migration-ledger reconciliation for the existing five migrations dated 2026-10-30, not authoring a duplicate helper replacement.
+
+
+### Additional verified privilege dependency
+
+The live database grants `authenticated` no SELECT privilege on `public.role_permissions`. Therefore the organization-scoped helper must execute with carefully constrained definer rights (or use a separate privileged helper); an invoker-rights implementation that directly queries `role_permissions` is not viable. The updated pending migration preserves definer rights, uses an empty search path, and limits EXECUTE to authenticated users. This was source-verified after commit `113eb5c5b1138d657469308a8742fd350bfa76e1`; it has not been applied to production or tested in staging.
+
+### RLS-enabled tables with no policies
+
+A live catalog/grant query enumerated all 19 public tables reported by the security advisor as RLS-enabled with no policies. None grants SELECT/INSERT/UPDATE/DELETE to `authenticated`, and none grants SELECT/INSERT to `anon`. They are therefore not directly accessible through ordinary authenticated/anonymous table API grants in the current catalog. Treat them as internal/RPC-only tables pending owner confirmation; do not add permissive policies merely to silence the advisor.
