@@ -372,6 +372,42 @@ as $function$
     );
 $function$;
 
+create or replace function private.learning_content_item_status_unchanged(
+  p_content_item_id uuid,
+  p_new_status text
+)
+returns boolean
+language sql
+stable
+security definer
+set search_path = ''
+as $function$
+  select exists (
+    select 1
+    from public.learning_content_items ci
+    where ci.id = p_content_item_id
+      and ci.status = p_new_status
+  );
+$function$;
+
+create or replace function private.learning_content_version_status_unchanged(
+  p_content_version_id uuid,
+  p_new_status text
+)
+returns boolean
+language sql
+stable
+security definer
+set search_path = ''
+as $function$
+  select exists (
+    select 1
+    from public.learning_content_versions cv
+    where cv.id = p_content_version_id
+      and cv.status = p_new_status
+  );
+$function$;
+
 create or replace function private.learning_can_manage_content_item(
   p_content_item_id uuid
 )
@@ -390,7 +426,7 @@ as $function$
         public.learning_can_manage_academic_records(ci.organization_id)
         or (
           ci.created_by = public.learning_current_user_id()
-          and ci.status = any (array['draft'::text, 'review'::text])
+          and ci.status = 'draft'::text
           and private.learning_can_author_organization_content(ci.organization_id)
         )
       )
@@ -405,6 +441,8 @@ revoke all on function private.learning_can_manage_assignment(uuid, uuid) from p
 revoke all on function private.learning_can_manage_assignment_target(uuid, uuid, uuid, uuid) from public, anon;
 revoke all on function private.learning_can_author_organization_content(uuid) from public, anon;
 revoke all on function private.learning_can_manage_content_item(uuid) from public, anon;
+revoke all on function private.learning_content_item_status_unchanged(uuid, text) from public, anon;
+revoke all on function private.learning_content_version_status_unchanged(uuid, text) from public, anon;
 grant execute on function private.learning_organization_tenant_matches(uuid, uuid) to authenticated;
 grant execute on function private.learning_assignment_target_scope_matches(uuid, uuid, uuid) to authenticated;
 grant execute on function private.learning_can_create_assignment(uuid, uuid, uuid) to authenticated;
@@ -413,6 +451,8 @@ grant execute on function private.learning_can_manage_assignment(uuid, uuid) to 
 grant execute on function private.learning_can_manage_assignment_target(uuid, uuid, uuid, uuid) to authenticated;
 grant execute on function private.learning_can_author_organization_content(uuid) to authenticated;
 grant execute on function private.learning_can_manage_content_item(uuid) to authenticated;
+grant execute on function private.learning_content_item_status_unchanged(uuid, text) to authenticated;
+grant execute on function private.learning_content_version_status_unchanged(uuid, text) to authenticated;
 
 -- Assignment rows: managers can manage school-wide; teachers can manage only
 -- their own assignments for class subjects they are assigned to (or class-only
@@ -438,10 +478,10 @@ using (
 )
 with check (
   private.learning_organization_tenant_matches(organization_id, tenant_id)
-  and private.learning_can_manage_assignment(id, organization_id)
-  and (
-    created_by = public.learning_current_user_id()
-    or public.learning_can_manage_academic_records(organization_id)
+  and private.learning_can_manage_assignment_fields(
+    organization_id,
+    class_subject_id,
+    created_by
   )
 );
 
@@ -569,11 +609,12 @@ for update to authenticated
 using (private.learning_can_manage_content_item(id))
 with check (
   organization_id is not null
+  and private.learning_content_item_status_unchanged(id, status)
   and (
     public.learning_can_manage_academic_records(organization_id)
     or (
       created_by = public.learning_current_user_id()
-      and status <> 'published'
+      and status = 'draft'
       and private.learning_can_author_organization_content(organization_id)
     )
   )
@@ -635,6 +676,7 @@ with check (
     )
   )
   and private.learning_can_manage_content_item(content_item_id)
+  and private.learning_content_version_status_unchanged(id, status)
 );
 
 create policy learning_content_versions_delete
