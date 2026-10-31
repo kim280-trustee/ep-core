@@ -44,6 +44,57 @@ as $function$
   );
 $function$;
 
+create or replace function private.learning_assignment_item_scope_matches(
+  p_assignment_id uuid,
+  p_organization_id uuid,
+  p_item_type text,
+  p_content_item_id uuid,
+  p_assessment_id uuid
+)
+returns boolean
+language sql
+stable
+security definer
+set search_path = ''
+as $function$
+  select exists (
+    select 1
+    from public.learning_assignments a
+    where a.id = p_assignment_id
+      and a.organization_id = p_organization_id
+      and (
+        (
+          p_item_type = 'content'
+          and p_content_item_id is not null
+          and p_assessment_id is null
+          and exists (
+            select 1
+            from public.learning_content_items ci
+            where ci.id = p_content_item_id
+              and (
+                ci.organization_id = p_organization_id
+                or (ci.organization_id is null and ci.status = 'published')
+              )
+          )
+        )
+        or (
+          p_item_type = 'assessment'
+          and p_assessment_id is not null
+          and p_content_item_id is null
+          and exists (
+            select 1
+            from public.learning_assessments assessment
+            where assessment.id = p_assessment_id
+              and (
+                assessment.organization_id = p_organization_id
+                or (assessment.organization_id is null and assessment.status = 'published')
+              )
+          )
+        )
+      )
+  );
+$function$;
+
 create or replace function private.learning_can_create_assignment(
   p_organization_id uuid,
   p_class_subject_id uuid,
@@ -435,6 +486,7 @@ $function$;
 
 revoke all on function private.learning_organization_tenant_matches(uuid, uuid) from public, anon;
 revoke all on function private.learning_assignment_target_scope_matches(uuid, uuid, uuid) from public, anon;
+revoke all on function private.learning_assignment_item_scope_matches(uuid, uuid, text, uuid, uuid) from public, anon;
 revoke all on function private.learning_can_create_assignment(uuid, uuid, uuid) from public, anon;
 revoke all on function private.learning_can_manage_assignment_fields(uuid, uuid, uuid) from public, anon;
 revoke all on function private.learning_can_manage_assignment(uuid, uuid) from public, anon;
@@ -445,6 +497,7 @@ revoke all on function private.learning_content_item_status_unchanged(uuid, text
 revoke all on function private.learning_content_version_status_unchanged(uuid, text) from public, anon;
 grant execute on function private.learning_organization_tenant_matches(uuid, uuid) to authenticated;
 grant execute on function private.learning_assignment_target_scope_matches(uuid, uuid, uuid) to authenticated;
+grant execute on function private.learning_assignment_item_scope_matches(uuid, uuid, text, uuid, uuid) to authenticated;
 grant execute on function private.learning_can_create_assignment(uuid, uuid, uuid) to authenticated;
 grant execute on function private.learning_can_manage_assignment_fields(uuid, uuid, uuid) to authenticated;
 grant execute on function private.learning_can_manage_assignment(uuid, uuid) to authenticated;
@@ -504,13 +557,21 @@ on public.learning_assignment_items
 for insert to authenticated
 with check (
   private.learning_can_manage_assignment(assignment_id, organization_id)
+  and private.learning_assignment_item_scope_matches(
+    assignment_id, organization_id, item_type, content_item_id, assessment_id
+  )
 );
 
 create policy learning_assignment_items_update
 on public.learning_assignment_items
 for update to authenticated
 using (private.learning_can_manage_assignment(assignment_id, organization_id))
-with check (private.learning_can_manage_assignment(assignment_id, organization_id));
+with check (
+  private.learning_can_manage_assignment(assignment_id, organization_id)
+  and private.learning_assignment_item_scope_matches(
+    assignment_id, organization_id, item_type, content_item_id, assessment_id
+  )
+);
 
 create policy learning_assignment_items_delete
 on public.learning_assignment_items
