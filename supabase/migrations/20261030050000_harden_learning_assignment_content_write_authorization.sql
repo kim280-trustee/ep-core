@@ -328,6 +328,7 @@ as $function$
         public.learning_can_manage_academic_records(ci.organization_id)
         or (
           ci.created_by = public.learning_current_user_id()
+          and ci.status = any (array['draft'::text, 'review'::text])
           and private.learning_can_author_organization_content(ci.organization_id)
         )
       )
@@ -491,11 +492,12 @@ using (private.learning_can_manage_content_item(id))
 with check (
   organization_id is not null
   and (
-    (
+    public.learning_can_manage_academic_records(organization_id)
+    or (
       created_by = public.learning_current_user_id()
+      and status <> 'published'
       and private.learning_can_author_organization_content(organization_id)
     )
-    or public.learning_can_manage_academic_records(organization_id)
   )
 );
 
@@ -545,6 +547,15 @@ using (
 )
 with check (
   status = any (array['draft'::text, 'review'::text, 'published'::text])
+  and (
+    status <> 'published'
+    or exists (
+      select 1
+      from public.learning_content_items ci
+      where ci.id = content_item_id
+        and public.learning_can_manage_academic_records(ci.organization_id)
+    )
+  )
   and private.learning_can_manage_content_item(content_item_id)
 );
 
