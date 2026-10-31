@@ -117,7 +117,6 @@ with check (
     select 1 from public.learning_questions q
     where q.id = question_id
       and q.organization_id is not null
-      and learning_question_versions.published_at is null
       and (
         public.learning_can_manage_academic_records(q.organization_id)
         or (learning_question_versions.created_by = public.learning_current_user_id()
@@ -178,6 +177,7 @@ using (
     join public.learning_questions q on q.id = v.question_id
     where v.id = question_version_id
       and q.organization_id is not null
+      and v.published_at is null
       and (
         public.learning_can_manage_academic_records(q.organization_id)
         or (v.created_by = public.learning_current_user_id()
@@ -193,6 +193,7 @@ with check (
     join public.learning_questions q on q.id = v.question_id
     where v.id = question_version_id
       and q.organization_id is not null
+      and v.published_at is null
       and (
         public.learning_can_manage_academic_records(q.organization_id)
         or (v.created_by = public.learning_current_user_id()
@@ -211,6 +212,7 @@ using (
     join public.learning_questions q on q.id = v.question_id
     where v.id = question_version_id
       and q.organization_id is not null
+      and v.published_at is null
       and (
         public.learning_can_manage_academic_records(q.organization_id)
         or (v.created_by = public.learning_current_user_id()
@@ -341,6 +343,7 @@ with check (
     join public.learning_questions q on q.id = v.question_id
     where v.id = question_version_id
       and q.organization_id is not null
+      and v.published_at is null
       and (
         public.learning_can_manage_academic_records(q.organization_id)
         or (
