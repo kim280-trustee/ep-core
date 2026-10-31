@@ -493,9 +493,10 @@ using (
     class_group_id,
     student_user_id
   )
-  and private.learning_assignment_target_assignment_matches_org(
+  and private.learning_assignment_target_scope_matches(
     assignment_id,
-    organization_id
+    organization_id,
+    tenant_id
   )
 )
 with check (
@@ -505,9 +506,10 @@ with check (
     class_group_id,
     student_user_id
   )
-  and private.learning_assignment_target_assignment_matches_org(
+  and private.learning_assignment_target_scope_matches(
     assignment_id,
-    organization_id
+    organization_id,
+    tenant_id
   )
 );
 
@@ -521,9 +523,10 @@ using (
     class_group_id,
     student_user_id
   )
-  and private.learning_assignment_target_assignment_matches_org(
+  and private.learning_assignment_target_scope_matches(
     assignment_id,
-    organization_id
+    organization_id,
+    tenant_id
   )
 );
 
