@@ -507,6 +507,12 @@ grant execute on function private.learning_can_manage_content_item(uuid) to auth
 grant execute on function private.learning_content_item_status_unchanged(uuid, text) to authenticated;
 grant execute on function private.learning_content_version_status_unchanged(uuid, text) to authenticated;
 
+-- Lifecycle events are audit records. All legitimate writes are performed
+-- by SECURITY DEFINER lifecycle RPCs; organization members must not be able
+-- to forge actor/action history through direct table inserts.
+drop policy if exists learning_assignment_lifecycle_insert
+on public.learning_assignment_lifecycle_events;
+
 -- Assignment rows: managers can manage school-wide; teachers can manage only
 -- their own assignments for class subjects they are assigned to (or class-only
 -- drafts that they subsequently target only to their own classes).
