@@ -282,6 +282,13 @@ with check (
     select 1 from public.learning_assessments a
     where a.id = assessment_id
       and a.organization_id is not null
+      and exists (
+        select 1
+        from public.learning_question_versions qv
+        join public.learning_questions q on q.id = qv.question_id
+        where qv.id = question_version_id
+          and q.organization_id = a.organization_id
+      )
       and (
         public.learning_can_manage_academic_records(a.organization_id)
         or (a.created_by = public.learning_current_user_id()
@@ -297,6 +304,13 @@ using (
     select 1 from public.learning_assessments a
     where a.id = assessment_id
       and a.organization_id is not null
+      and exists (
+        select 1
+        from public.learning_question_versions qv
+        join public.learning_questions q on q.id = qv.question_id
+        where qv.id = question_version_id
+          and q.organization_id = a.organization_id
+      )
       and (
         public.learning_can_manage_academic_records(a.organization_id)
         or (a.created_by = public.learning_current_user_id()
@@ -309,6 +323,13 @@ with check (
     select 1 from public.learning_assessments a
     where a.id = assessment_id
       and a.organization_id is not null
+      and exists (
+        select 1
+        from public.learning_question_versions qv
+        join public.learning_questions q on q.id = qv.question_id
+        where qv.id = question_version_id
+          and q.organization_id = a.organization_id
+      )
       and (
         public.learning_can_manage_academic_records(a.organization_id)
         or (a.created_by = public.learning_current_user_id()
@@ -324,6 +345,13 @@ using (
     select 1 from public.learning_assessments a
     where a.id = assessment_id
       and a.organization_id is not null
+      and exists (
+        select 1
+        from public.learning_question_versions qv
+        join public.learning_questions q on q.id = qv.question_id
+        where qv.id = question_version_id
+          and q.organization_id = a.organization_id
+      )
       and (
         public.learning_can_manage_academic_records(a.organization_id)
         or (a.created_by = public.learning_current_user_id()
