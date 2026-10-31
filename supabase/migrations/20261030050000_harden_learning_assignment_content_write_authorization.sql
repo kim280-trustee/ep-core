@@ -223,6 +223,23 @@ as $function$
               and cg.organization_id = p_organization_id
               and cg.status = 'active'
           )
+          and exists (
+            select 1
+            from public.learning_assignments a
+            where a.id = p_assignment_id
+              and a.organization_id = p_organization_id
+              and (
+                a.class_subject_id is null
+                or exists (
+                  select 1
+                  from public.learning_class_subjects cs
+                  where cs.id = a.class_subject_id
+                    and cs.organization_id = p_organization_id
+                    and cs.class_group_id = p_class_group_id
+                    and cs.status = 'active'
+                )
+              )
+          )
         )
         or (
           p_class_group_id is null
