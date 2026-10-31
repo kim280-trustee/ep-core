@@ -10,17 +10,20 @@ security definer
 set search_path = ''
 as $function$
 declare
-  v_assignment record;
-  v_assessment record;
-  v_session record;
-  v_content record;
+  v_assignment_org_id uuid := null;
+  v_assignment_tenant_id uuid := null;
+  v_assessment_org_id uuid := null;
+  v_session_org_id uuid := null;
+  v_session_tenant_id uuid := null;
+  v_session_student_id uuid := null;
+  v_content_org_id uuid := null;
   v_org_id uuid;
   v_org_tenant_id uuid;
   v_student_tenant_id uuid;
 begin
   if new.assignment_id is not null then
     select a.organization_id, a.tenant_id
-      into v_assignment
+      into v_assignment_org_id, v_assignment_tenant_id
     from public.learning_assignments a
     where a.id = new.assignment_id;
     if not found then raise exception 'Activity assignment was not found'; end if;
@@ -28,7 +31,7 @@ begin
 
   if new.assessment_id is not null then
     select a.organization_id
-      into v_assessment
+      into v_assessment_org_id
     from public.learning_assessments a
     where a.id = new.assessment_id;
     if not found then raise exception 'Activity assessment was not found'; end if;
@@ -36,18 +39,18 @@ begin
 
   if new.session_id is not null then
     select s.organization_id, s.tenant_id, s.student_user_id
-      into v_session
+      into v_session_org_id, v_session_tenant_id, v_session_student_id
     from public.learning_sessions s
     where s.id = new.session_id;
     if not found then raise exception 'Activity session was not found'; end if;
-    if v_session.student_user_id is distinct from new.student_user_id then
+    if v_session_student_id is distinct from new.student_user_id then
       raise exception 'Activity session belongs to a different student';
     end if;
   end if;
 
   if new.content_item_id is not null then
     select c.organization_id
-      into v_content
+      into v_content_org_id
     from public.learning_content_items c
     where c.id = new.content_item_id;
     if not found then raise exception 'Activity content item was not found'; end if;
@@ -55,10 +58,10 @@ begin
 
   v_org_id := coalesce(
     new.organization_id,
-    v_assignment.organization_id,
-    v_assessment.organization_id,
-    v_session.organization_id,
-    v_content.organization_id
+    v_assignment_org_id,
+    v_assessment_org_id,
+    v_session_org_id,
+    v_content_org_id
   );
 
   if v_org_id is null then
@@ -68,20 +71,20 @@ begin
   if new.organization_id is not null and new.organization_id is distinct from v_org_id then
     raise exception 'Activity event organization does not match its linked records';
   end if;
-  if v_assignment.organization_id is not null
-     and v_assignment.organization_id is distinct from v_org_id then
+  if v_assignment_org_id is not null
+     and v_assignment_org_id is distinct from v_org_id then
     raise exception 'Activity assignment belongs to a different organization';
   end if;
-  if v_assessment.organization_id is not null
-     and v_assessment.organization_id is distinct from v_org_id then
+  if v_assessment_org_id is not null
+     and v_assessment_org_id is distinct from v_org_id then
     raise exception 'Activity assessment belongs to a different organization';
   end if;
-  if v_session.organization_id is not null
-     and v_session.organization_id is distinct from v_org_id then
+  if v_session_org_id is not null
+     and v_session_org_id is distinct from v_org_id then
     raise exception 'Activity session belongs to a different organization';
   end if;
-  if v_content.organization_id is not null
-     and v_content.organization_id is distinct from v_org_id then
+  if v_content_org_id is not null
+     and v_content_org_id is distinct from v_org_id then
     raise exception 'Activity content belongs to a different organization';
   end if;
 
@@ -99,12 +102,12 @@ begin
     raise exception 'Activity event student does not belong to its tenant';
   end if;
 
-  if v_assignment.tenant_id is not null
-     and v_assignment.tenant_id is distinct from new.tenant_id then
+  if v_assignment_tenant_id is not null
+     and v_assignment_tenant_id is distinct from new.tenant_id then
     raise exception 'Activity assignment belongs to a different tenant';
   end if;
-  if v_session.tenant_id is not null
-     and v_session.tenant_id is distinct from new.tenant_id then
+  if v_session_tenant_id is not null
+     and v_session_tenant_id is distinct from new.tenant_id then
     raise exception 'Activity session belongs to a different tenant';
   end if;
 
