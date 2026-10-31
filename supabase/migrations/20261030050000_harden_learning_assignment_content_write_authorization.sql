@@ -194,8 +194,27 @@ as $function$
             and student_cm.membership_type = 'student'
             and student_cm.status = 'active'
             and (
-              p_class_group_id is null
-              or student_cm.class_group_id = p_class_group_id
+              (p_class_group_id is not null and student_cm.class_group_id = p_class_group_id)
+              or (
+                p_class_group_id is null
+                and exists (
+                  select 1
+                  from public.learning_assignments a
+                  where a.id = p_assignment_id
+                    and a.organization_id = p_organization_id
+                    and (
+                      a.class_subject_id is null
+                      or exists (
+                        select 1
+                        from public.learning_class_subjects cs
+                        where cs.id = a.class_subject_id
+                          and cs.organization_id = p_organization_id
+                          and cs.class_group_id = student_cm.class_group_id
+                          and cs.status = 'active'
+                      )
+                    )
+                )
+              )
             )
         )
       )
@@ -316,12 +335,14 @@ as $function$
 $function$;
 
 revoke all on function private.learning_can_create_assignment(uuid, uuid, uuid) from public, anon;
-revoke all on function private.learning_can_manage_assignment_fields(uuid, uuid, uuid) from public, anon;\nrevoke all on function private.learning_can_manage_assignment(uuid, uuid) from public, anon;
+revoke all on function private.learning_can_manage_assignment_fields(uuid, uuid, uuid) from public, anon;
+revoke all on function private.learning_can_manage_assignment(uuid, uuid) from public, anon;
 revoke all on function private.learning_can_manage_assignment_target(uuid, uuid, uuid, uuid) from public, anon;
 revoke all on function private.learning_can_author_organization_content(uuid) from public, anon;
 revoke all on function private.learning_can_manage_content_item(uuid) from public, anon;
 grant execute on function private.learning_can_create_assignment(uuid, uuid, uuid) to authenticated;
-grant execute on function private.learning_can_manage_assignment_fields(uuid, uuid, uuid) to authenticated;\ngrant execute on function private.learning_can_manage_assignment(uuid, uuid) to authenticated;
+grant execute on function private.learning_can_manage_assignment_fields(uuid, uuid, uuid) to authenticated;
+grant execute on function private.learning_can_manage_assignment(uuid, uuid) to authenticated;
 grant execute on function private.learning_can_manage_assignment_target(uuid, uuid, uuid, uuid) to authenticated;
 grant execute on function private.learning_can_author_organization_content(uuid) to authenticated;
 grant execute on function private.learning_can_manage_content_item(uuid) to authenticated;
@@ -367,49 +388,19 @@ create policy learning_assignment_items_insert
 on public.learning_assignment_items
 for insert to authenticated
 with check (
-  exists (
-    select 1
-    from public.learning_assignments a
-    where a.id = assignment_id
-      and a.organization_id = organization_id
-      and private.learning_can_manage_assignment(a.id, a.organization_id)
-  )
+  private.learning_can_manage_assignment(assignment_id, organization_id)
 );
 
 create policy learning_assignment_items_update
 on public.learning_assignment_items
 for update to authenticated
-using (
-  exists (
-    select 1
-    from public.learning_assignments a
-    where a.id = assignment_id
-      and a.organization_id = organization_id
-      and private.learning_can_manage_assignment(a.id, a.organization_id)
-  )
-)
-with check (
-  exists (
-    select 1
-    from public.learning_assignments a
-    where a.id = assignment_id
-      and a.organization_id = organization_id
-      and private.learning_can_manage_assignment(a.id, a.organization_id)
-  )
-);
+using (private.learning_can_manage_assignment(assignment_id, organization_id))
+with check (private.learning_can_manage_assignment(assignment_id, organization_id));
 
 create policy learning_assignment_items_delete
 on public.learning_assignment_items
 for delete to authenticated
-using (
-  exists (
-    select 1
-    from public.learning_assignments a
-    where a.id = assignment_id
-      and a.organization_id = organization_id
-      and private.learning_can_manage_assignment(a.id, a.organization_id)
-  )
-);
+using (private.learning_can_manage_assignment(assignment_id, organization_id));
 
 -- Assignment targets must remain inside the assignment's organization and,
 -- for teachers, inside a class to which that teacher is actively assigned.
@@ -497,7 +488,16 @@ create policy learning_content_items_update
 on public.learning_content_items
 for update to authenticated
 using (private.learning_can_manage_content_item(id))
-with check (\n  organization_id is not null\n  and (\n    (\n      created_by = public.learning_current_user_id()\n      and private.learning_can_author_organization_content(organization_id)\n    )\n    or public.learning_can_manage_academic_records(organization_id)\n  )\n);
+with check (
+  organization_id is not null
+  and (
+    (
+      created_by = public.learning_current_user_id()
+      and private.learning_can_author_organization_content(organization_id)
+    )
+    or public.learning_can_manage_academic_records(organization_id)
+  )
+);
 
 create policy learning_content_items_delete
 on public.learning_content_items
