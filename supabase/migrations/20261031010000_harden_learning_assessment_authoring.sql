@@ -49,7 +49,7 @@ using (
   organization_id is not null
   and (
     public.learning_can_manage_academic_records(organization_id)
-    or (created_by = public.learning_current_user_id()
+    or (learning_question_versions.created_by = public.learning_current_user_id()
         and public.learning_is_active_teacher(organization_id))
   )
 )
@@ -57,7 +57,7 @@ with check (
   organization_id is not null
   and (
     public.learning_can_manage_academic_records(organization_id)
-    or (created_by = public.learning_current_user_id()
+    or (learning_question_versions.created_by = public.learning_current_user_id()
         and public.learning_is_active_teacher(organization_id))
   )
 );
@@ -68,7 +68,7 @@ using (
   organization_id is not null
   and (
     public.learning_can_manage_academic_records(organization_id)
-    or (created_by = public.learning_current_user_id()
+    or (learning_question_versions.created_by = public.learning_current_user_id()
         and public.learning_is_active_teacher(organization_id))
   )
 );
@@ -104,7 +104,7 @@ using (
       and q.organization_id is not null
       and (
         public.learning_can_manage_academic_records(q.organization_id)
-        or (created_by = public.learning_current_user_id()
+        or (learning_question_versions.created_by = public.learning_current_user_id()
             and q.created_by = public.learning_current_user_id()
             and public.learning_is_active_teacher(q.organization_id))
       )
@@ -117,7 +117,7 @@ with check (
       and q.organization_id is not null
       and (
         public.learning_can_manage_academic_records(q.organization_id)
-        or (created_by = public.learning_current_user_id()
+        or (learning_question_versions.created_by = public.learning_current_user_id()
             and q.created_by = public.learning_current_user_id()
             and public.learning_is_active_teacher(q.organization_id))
       )
@@ -133,7 +133,7 @@ using (
       and q.organization_id is not null
       and (
         public.learning_can_manage_academic_records(q.organization_id)
-        or (created_by = public.learning_current_user_id()
+        or (learning_question_versions.created_by = public.learning_current_user_id()
             and q.created_by = public.learning_current_user_id()
             and public.learning_is_active_teacher(q.organization_id))
       )
@@ -238,7 +238,7 @@ using (
   organization_id is not null
   and (
     public.learning_can_manage_academic_records(organization_id)
-    or (created_by = public.learning_current_user_id()
+    or (learning_question_versions.created_by = public.learning_current_user_id()
         and public.learning_is_active_teacher(organization_id))
   )
 )
@@ -246,7 +246,7 @@ with check (
   organization_id is not null
   and (
     public.learning_can_manage_academic_records(organization_id)
-    or (created_by = public.learning_current_user_id()
+    or (learning_question_versions.created_by = public.learning_current_user_id()
         and public.learning_is_active_teacher(organization_id))
   )
 );
@@ -257,7 +257,7 @@ using (
   organization_id is not null
   and (
     public.learning_can_manage_academic_records(organization_id)
-    or (created_by = public.learning_current_user_id()
+    or (learning_question_versions.created_by = public.learning_current_user_id()
         and public.learning_is_active_teacher(organization_id))
   )
 );
@@ -321,6 +321,28 @@ using (
         public.learning_can_manage_academic_records(a.organization_id)
         or (a.created_by = public.learning_current_user_id()
             and public.learning_is_active_teacher(a.organization_id))
+      )
+  )
+);
+
+-- Direct writes to the key table must follow the same ownership rule as the RPC.
+drop policy if exists learning_question_evaluation_keys_insert on public.learning_question_evaluation_keys;
+create policy learning_question_evaluation_keys_insert on public.learning_question_evaluation_keys
+for insert to authenticated
+with check (
+  exists (
+    select 1
+    from public.learning_question_versions v
+    join public.learning_questions q on q.id = v.question_id
+    where v.id = question_version_id
+      and q.organization_id is not null
+      and (
+        public.learning_can_manage_academic_records(q.organization_id)
+        or (
+          v.created_by = public.learning_current_user_id()
+          and q.created_by = public.learning_current_user_id()
+          and public.learning_is_active_teacher(q.organization_id)
+        )
       )
   )
 );
