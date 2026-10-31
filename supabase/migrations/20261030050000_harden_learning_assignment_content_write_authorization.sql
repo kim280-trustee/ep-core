@@ -3,6 +3,47 @@
 -- This closes organization-membership-only write paths without changing read access.
 begin;
 
+create or replace function private.learning_organization_tenant_matches(
+  p_organization_id uuid,
+  p_tenant_id uuid
+)
+returns boolean
+language sql
+stable
+security definer
+set search_path = ''
+as $function$
+  select exists (
+    select 1
+    from public.organizations o
+    where o.id = p_organization_id
+      and o.tenant_id = p_tenant_id
+  );
+$function$;
+
+create or replace function private.learning_assignment_target_scope_matches(
+  p_assignment_id uuid,
+  p_organization_id uuid,
+  p_tenant_id uuid
+)
+returns boolean
+language sql
+stable
+security definer
+set search_path = ''
+as $function$
+  select exists (
+    select 1
+    from public.learning_assignments a
+    join public.organizations o
+      on o.id = a.organization_id
+     and o.tenant_id = a.tenant_id
+    where a.id = p_assignment_id
+      and a.organization_id = p_organization_id
+      and a.tenant_id = p_tenant_id
+  );
+$function$;
+
 create or replace function private.learning_can_create_assignment(
   p_organization_id uuid,
   p_class_subject_id uuid,
@@ -121,6 +162,10 @@ as $function$
     from public.learning_assignments a
     where a.id = p_assignment_id
       and a.organization_id = p_organization_id
+      and exists (
+        select 1 from public.organizations o
+        where o.id = a.organization_id and o.tenant_id = a.tenant_id
+      )
       and (
         public.learning_can_manage_academic_records(a.organization_id)
         or (
@@ -335,12 +380,16 @@ as $function$
   );
 $function$;
 
+revoke all on function private.learning_organization_tenant_matches(uuid, uuid) from public, anon;
+revoke all on function private.learning_assignment_target_scope_matches(uuid, uuid, uuid) from public, anon;
 revoke all on function private.learning_can_create_assignment(uuid, uuid, uuid) from public, anon;
 revoke all on function private.learning_can_manage_assignment_fields(uuid, uuid, uuid) from public, anon;
 revoke all on function private.learning_can_manage_assignment(uuid, uuid) from public, anon;
 revoke all on function private.learning_can_manage_assignment_target(uuid, uuid, uuid, uuid) from public, anon;
 revoke all on function private.learning_can_author_organization_content(uuid) from public, anon;
 revoke all on function private.learning_can_manage_content_item(uuid) from public, anon;
+grant execute on function private.learning_organization_tenant_matches(uuid, uuid) to authenticated;
+grant execute on function private.learning_assignment_target_scope_matches(uuid, uuid, uuid) to authenticated;
 grant execute on function private.learning_can_create_assignment(uuid, uuid, uuid) to authenticated;
 grant execute on function private.learning_can_manage_assignment_fields(uuid, uuid, uuid) to authenticated;
 grant execute on function private.learning_can_manage_assignment(uuid, uuid) to authenticated;
@@ -359,15 +408,20 @@ create policy learning_assignments_insert
 on public.learning_assignments
 for insert to authenticated
 with check (
-  private.learning_can_create_assignment(organization_id, class_subject_id, created_by)
+  private.learning_organization_tenant_matches(organization_id, tenant_id)
+  and private.learning_can_create_assignment(organization_id, class_subject_id, created_by)
 );
 
 create policy learning_assignments_update
 on public.learning_assignments
 for update to authenticated
-using (private.learning_can_manage_assignment(id, organization_id))
+using (
+  private.learning_organization_tenant_matches(organization_id, tenant_id)
+  and private.learning_can_manage_assignment(id, organization_id)
+)
 with check (
-  private.learning_can_manage_assignment(id, organization_id)
+  private.learning_organization_tenant_matches(organization_id, tenant_id)
+  and private.learning_can_manage_assignment(id, organization_id)
   and (
     created_by = public.learning_current_user_id()
     or public.learning_can_manage_academic_records(organization_id)
@@ -377,7 +431,10 @@ with check (
 create policy learning_assignments_delete
 on public.learning_assignments
 for delete to authenticated
-using (private.learning_can_manage_assignment(id, organization_id));
+using (
+  private.learning_organization_tenant_matches(organization_id, tenant_id)
+  and private.learning_can_manage_assignment(id, organization_id)
+);
 
 -- Assignment items inherit the parent assignment's manager/assigned-teacher
 -- authorization rather than accepting any active organization member.
@@ -419,9 +476,10 @@ with check (
     class_group_id,
     student_user_id
   )
-  and private.learning_assignment_target_assignment_matches_org(
+  and private.learning_assignment_target_scope_matches(
     assignment_id,
-    organization_id
+    organization_id,
+    tenant_id
   )
 );
 
