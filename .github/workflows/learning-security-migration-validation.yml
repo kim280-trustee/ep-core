@@ -51,6 +51,57 @@ jobs:
             done < <(git diff --name-only origin/paul/integrate-edna-content...origin/"${branch}" -- supabase/migrations/)
           done
 
+      - name: Isolate Learning migrations from unrelated POS and payment history
+        shell: bash
+        run: |
+          set -euo pipefail
+          migrations="supabase/migrations"
+          keep_versions=(
+            20260818000000
+            20261030050000
+            20261031000000
+            20261031005000
+            20261031006000
+            20261031007000
+            20261031010000
+            20261031020000
+            20261031030000
+            20261031031000
+            20261031032000
+            20261031033000
+            20261031034000
+            20261031034050
+            20261031034100
+            20261031035000
+            20261031036000
+            20261031040000
+            20261031041000
+            20261031050000
+            20261031051000
+            20261031052000
+            20261031053000
+            20261031054000
+            20261031060000
+            20261031061000
+            20261031062000
+            20261031063000
+          )
+          for file in "$migrations"/*.sql; do
+            [ -f "$file" ] || continue
+            name="$(basename "$file")"
+            version="${name%%_*}"
+            keep=false
+            [[ "$name" == *learning* ]] && keep=true
+            [[ "$name" == "20260918210000_core_organization_memberships.sql" ]] && keep=true
+            for expected in "${keep_versions[@]}"; do
+              [[ "$version" == "$expected" ]] && keep=true
+            done
+            if [ "$keep" = false ]; then
+              echo "Excluding out-of-scope POS/payment migration from Learning replay: $name"
+              rm "$file"
+            fi
+          done
+
       - name: Install Supabase CLI
         uses: supabase/setup-cli@v1
         with:
@@ -62,7 +113,7 @@ jobs:
       - name: Start isolated local Supabase stack
         run: supabase start --yes
 
-      - name: Apply complete migration history
+      - name: Apply isolated Learning migration history
         run: supabase db reset --local
 
       - name: Verify migration history and security-critical objects
