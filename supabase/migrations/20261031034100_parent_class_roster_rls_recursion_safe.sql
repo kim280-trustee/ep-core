@@ -38,9 +38,6 @@ on public.learning_class_memberships
 for select to authenticated
 using (
   private.learning_parent_can_view_student(organization_id, user_id)
-  or class_group_id in (
-    select private.learning_parent_class_group_ids_for_org(organization_id)
-  )
 );
 
 commit;
