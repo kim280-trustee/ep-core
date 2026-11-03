@@ -139,7 +139,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y postgresql-client
           cat > /tmp/verify-learning-security.sql <<'SQL'
-          DO $$
+          DO $verify$
           DECLARE
             expected text[] := ARRAY[
               '20260818000000',
@@ -245,7 +245,7 @@ jobs:
               RAISE EXCEPTION 'Core current-user permission helper privileges are not restricted to authenticated users';
             END IF;
           END;
-          $;
+          $verify$;
           SQL
           PGPASSWORD=postgres psql "postgresql://postgres:postgres@127.0.0.1:55422/postgres" -v ON_ERROR_STOP=1 -f /tmp/verify-learning-security.sql
 
