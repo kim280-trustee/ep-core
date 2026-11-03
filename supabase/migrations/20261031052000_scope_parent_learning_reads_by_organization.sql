@@ -55,7 +55,6 @@ create policy learning_parent_class_memberships_view
 on public.learning_class_memberships for select to authenticated
 using (
   user_id in (select private.learning_parent_student_ids(organization_id))
-  or class_group_id in (select private.learning_parent_class_group_ids(organization_id))
 );
 
 drop policy if exists learning_parent_assignments_view on public.learning_assignments;
