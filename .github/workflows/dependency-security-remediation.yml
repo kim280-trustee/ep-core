@@ -1,0 +1,47 @@
+name: Temporary dependency security remediation
+
+on:
+  push:
+    branches:
+      - paul/dependency-security-remediation-20261103
+
+permissions:
+  contents: write
+
+jobs:
+  remediate-and-verify:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout remediation branch
+        uses: actions/checkout@v4
+        with:
+          ref: paul/dependency-security-remediation-20261103
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Apply non-breaking audit fixes only
+        run: npm audit fix
+      - name: Commit updated dependency manifests
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json
+          if ! git diff --cached --quiet; then
+            git commit -m "fix(deps): apply compatible npm security updates"
+            git push origin HEAD:paul/dependency-security-remediation-20261103
+          else
+            echo "No dependency manifest changes were required."
+          fi
+      - name: Report remaining vulnerabilities
+        continue-on-error: true
+        run: npm audit
+      - name: TypeScript and production build
+        run: npm run build
+      - name: Repository-wide lint
+        run: npm run lint
