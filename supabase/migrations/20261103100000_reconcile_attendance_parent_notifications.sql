@@ -19,7 +19,8 @@ alter table public.learning_notifications
     'learning.parent_assignment_published',
     'learning.parent_assessment_result_available',
     'school.parent_attendance_recorded',
-    'school.student_invitation_accepted'
+    'school.student_invitation_accepted',
+    'school.announcement_published'
   ));
 
 alter table public.learning_notifications
@@ -32,7 +33,8 @@ alter table public.learning_notifications
     'learning_assignment',
     'assessment_result',
     'attendance_session',
-    'student_invitation'
+    'student_invitation',
+    'school_announcement'
   ));
 
 -- Parent attendance and invitation events are idempotent per recipient/event.
