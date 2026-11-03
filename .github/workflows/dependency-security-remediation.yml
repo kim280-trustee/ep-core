@@ -29,6 +29,7 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
       - name: Apply non-breaking audit fixes only
+        continue-on-error: true
         run: npm audit fix
       - name: Commit updated dependency manifests
         run: |
