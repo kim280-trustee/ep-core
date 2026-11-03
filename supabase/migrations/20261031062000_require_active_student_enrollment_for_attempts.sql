@@ -33,6 +33,18 @@ with check (
       organization_id is null
       and exists (
         select 1
+        from public.organizations o
+        join public.learning_class_memberships cm
+          on cm.organization_id = o.id
+         and cm.tenant_id = o.tenant_id
+         and cm.user_id = learning_attempts.student_user_id
+         and cm.membership_type = 'student'
+         and cm.status = 'active'
+        where o.tenant_id = learning_attempts.tenant_id
+          and o.status = 'active'
+      )
+      and exists (
+        select 1
         from public.learning_assessments a
         where a.id = assessment_id
           and a.organization_id is null
