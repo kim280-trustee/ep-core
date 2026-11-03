@@ -143,6 +143,7 @@ jobs:
           DECLARE
             expected text[] := ARRAY[
               '20260818000000',
+              '20260918210000',
               '20261030050000',
               '20261031000000',
               '20261031005000',
@@ -190,6 +191,24 @@ jobs:
               RAISE EXCEPTION 'Parent invitation table is missing';
             END IF;
 
+            IF to_regprocedure('public.accept_learning_parent_invitation(uuid)') IS NULL THEN
+              RAISE EXCEPTION 'Hardened parent invitation acceptance RPC is missing';
+            END IF;
+
+            IF to_regprocedure('private.learning_parent_student_ids(uuid)') IS NULL
+               OR to_regprocedure('private.learning_parent_student_ids(uuid,uuid)') IS NULL THEN
+              RAISE EXCEPTION 'Organization- and tenant-scoped parent access helpers are missing';
+            END IF;
+
+            IF to_regprocedure('private.enforce_learning_activity_event_organization()') IS NULL
+               OR NOT EXISTS (
+                 SELECT 1 FROM pg_trigger
+                 WHERE tgname = 'learning_activity_event_organization_integrity'
+                   AND NOT tgisinternal
+               ) THEN
+              RAISE EXCEPTION 'Activity-event organization integrity trigger is missing';
+            END IF;
+
             IF NOT (SELECT relrowsecurity FROM pg_class WHERE oid = 'public.learning_parent_invitations'::regclass) THEN
               RAISE EXCEPTION 'RLS is not enabled on parent invitations';
             END IF;
@@ -210,6 +229,10 @@ jobs:
 
             IF has_function_privilege('anon', 'public.submit_learning_attempt(uuid)', 'EXECUTE') THEN
               RAISE EXCEPTION 'Anonymous role can execute assessment submission RPC';
+            END IF;
+
+            IF has_function_privilege('anon', 'public.create_learning_parent_invitation(uuid,text,text,uuid,text)', 'EXECUTE') THEN
+              RAISE EXCEPTION 'Anonymous role can execute parent invitation creation RPC';
             END IF;
           END
           $;
