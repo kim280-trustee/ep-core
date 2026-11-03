@@ -3,6 +3,7 @@ import { withSupabase } from "npm:@supabase/server";
 export default {
   fetch: withSupabase({ auth: "user" }, async (req, ctx) => {
     if (req.method !== "POST") return Response.json({ error: "Method not allowed" }, { status: 405 });
+    let invitationId: string | null = null;
     try {
       const body = await req.json();
       const organizationId = String(body.organizationId ?? "");
@@ -15,7 +16,7 @@ export default {
         return Response.json({ error: "Organization, parent email, and student are required" }, { status: 400 });
       }
 
-      const { data: invitationId, error: invitationError } = await ctx.supabase.rpc(
+      const { data, error: invitationError } = await ctx.supabase.rpc(
         "create_learning_parent_invitation",
         {
           p_organization_id: organizationId,
@@ -26,22 +27,34 @@ export default {
         },
       );
       if (invitationError) throw invitationError;
+      invitationId = String(data);
 
-      const origin = req.headers.get("Origin") ?? Deno.env.get("APP_URL");
-      if (!origin) throw new Error("Application URL is not configured");
-      const redirectTo = new URL("/parent/invite", origin).toString();
+      const configuredAppUrl = Deno.env.get("APP_URL");
+      if (!configuredAppUrl) throw new Error("Application URL is not configured");
+      const appUrl = new URL(configuredAppUrl);
+      if (appUrl.protocol !== "https:" && appUrl.hostname !== "localhost") {
+        throw new Error("Application URL must use HTTPS");
+      }
+      const redirectTo = new URL("/parent/invite", appUrl).toString();
 
       const { error: inviteError } = await ctx.supabaseAdmin.auth.admin.inviteUserByEmail(parentEmail, {
-        data: {
-          name: parentName || undefined,
-          parent_invitation_id: invitationId,
-        },
+        data: { name: parentName || undefined, parent_invitation_id: invitationId },
         redirectTo,
       });
-      if (inviteError) return Response.json({ error: inviteError.message, invitationId }, { status: 400 });
+      if (inviteError) {
+        await ctx.supabaseAdmin.from("learning_parent_invitations")
+          .update({ status: "revoked", updated_at: new Date().toISOString() })
+          .eq("id", invitationId).eq("status", "pending");
+        return Response.json({ error: inviteError.message, invitationId, sent: false }, { status: 400 });
+      }
 
       return Response.json({ invitationId, sent: true });
     } catch (error) {
+      if (invitationId) {
+        await ctx.supabaseAdmin.from("learning_parent_invitations")
+          .update({ status: "revoked", updated_at: new Date().toISOString() })
+          .eq("id", invitationId).eq("status", "pending");
+      }
       return Response.json({ error: error instanceof Error ? error.message : "Parent invitation failed" }, { status: 400 });
     }
   }),
