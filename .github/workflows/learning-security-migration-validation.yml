@@ -1,0 +1,153 @@
+name: Learning Security Migration Validation
+
+on:
+  pull_request:
+    branches:
+      - paul/integrate-edna-content
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: learning-security-migrations-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  migration-validation:
+    name: Apply all six security PR migrations locally
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout verification branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch integration base and all six security branches
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin paul/integrate-edna-content:refs/remotes/origin/paul/integrate-edna-content
+          branches=(
+            paul/v1-assignment-content-rls-hardening-20261030
+            paul/harden-assessment-authoring-20261031
+            paul/harden-student-session-recommendation-updates-20261031
+            paul/harden-student-data-read-scope-20261031
+            paul/harden-activity-event-organization-integrity-20261031
+            paul/harden-parent-invitation-acceptance-20261031
+          )
+          for branch in "${branches[@]}"; do
+            git fetch origin "${branch}:refs/remotes/origin/${branch}"
+            while IFS= read -r file; do
+              [ -n "$file" ] || continue
+              if [ -f "$file" ]; then
+                echo "Migration already exists in combined tree: $file"
+                exit 1
+              fi
+              mkdir -p "$(dirname "$file")"
+              git show "origin/${branch}:${file}" > "$file"
+              echo "Added $file from $branch"
+            done < <(git diff --name-only origin/paul/integrate-edna-content...origin/"${branch}" -- supabase/migrations/)
+          done
+
+      - name: Install Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Initialize local Supabase configuration
+        run: supabase init --force
+
+      - name: Start isolated local Supabase stack
+        run: supabase start --yes
+
+      - name: Apply complete migration history
+        run: supabase db reset --local
+
+      - name: Verify migration history and security-critical objects
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+          cat > /tmp/verify-learning-security.sql <<'SQL'
+          DO $$
+          DECLARE
+            expected text[] := ARRAY[
+              '20261030050000',
+              '20261031000000',
+              '20261031005000',
+              '20261031006000',
+              '20261031007000',
+              '20261031010000',
+              '20261031020000',
+              '20261031030000',
+              '20261031031000',
+              '20261031032000',
+              '20261031033000',
+              '20261031034000',
+              '20261031034050',
+              '20261031034100',
+              '20261031035000',
+              '20261031036000',
+              '20261031040000',
+              '20261031041000',
+              '20261031050000',
+              '20261031051000',
+              '20261031052000',
+              '20261031053000',
+              '20261031054000',
+              '20261031060000',
+              '20261031061000',
+              '20261031062000',
+              '20261031063000'
+            ];
+            missing text[];
+          BEGIN
+            SELECT array_agg(v) INTO missing
+            FROM unnest(expected) AS v
+            WHERE NOT EXISTS (
+              SELECT 1 FROM supabase_migrations.schema_migrations m WHERE m.version = v
+            );
+            IF missing IS NOT NULL THEN
+              RAISE EXCEPTION 'Security migrations missing from applied history: %', missing;
+            END IF;
+
+            IF to_regprocedure('public.submit_learning_attempt(uuid)') IS NULL THEN
+              RAISE EXCEPTION 'Expected assessment submission RPC is missing';
+            END IF;
+
+            IF to_regclass('public.learning_parent_invitations') IS NULL THEN
+              RAISE EXCEPTION 'Parent invitation table is missing';
+            END IF;
+
+            IF NOT (SELECT relrowsecurity FROM pg_class WHERE oid = 'public.learning_parent_invitations'::regclass) THEN
+              RAISE EXCEPTION 'RLS is not enabled on parent invitations';
+            END IF;
+
+            IF has_table_privilege('authenticated', 'public.learning_parent_invitations', 'INSERT')
+               OR has_table_privilege('authenticated', 'public.learning_parent_invitations', 'UPDATE') THEN
+              RAISE EXCEPTION 'Authenticated role still has direct parent-invitation write privileges';
+            END IF;
+
+            IF NOT EXISTS (
+              SELECT 1 FROM pg_proc p
+              JOIN pg_namespace n ON n.oid = p.pronamespace
+              WHERE n.nspname = 'public'
+                AND p.proname = 'create_learning_parent_invitation'
+            ) THEN
+              RAISE EXCEPTION 'Validated parent invitation RPC is missing';
+            END IF;
+
+            IF has_function_privilege('anon', 'public.submit_learning_attempt(uuid)', 'EXECUTE') THEN
+              RAISE EXCEPTION 'Anonymous role can execute assessment submission RPC';
+            END IF;
+          END
+          $$;
+          SQL
+          PGPASSWORD=postgres psql "postgresql://postgres:postgres@127.0.0.1:54322/postgres" -v ON_ERROR_STOP=1 -f /tmp/verify-learning-security.sql
+
+      - name: Stop local Supabase stack
+        if: always()
+        run: supabase stop --no-backup
