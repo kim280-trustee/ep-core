@@ -121,6 +121,24 @@ begin
   ) then
     raise exception 'Attendance session resource is not allowed by the inbox constraint';
   end if;
+
+  if not exists (
+    select 1 from pg_constraint
+    where conrelid = 'public.learning_notifications'::regclass
+      and conname = 'learning_notifications_notification_type_check'
+      and pg_get_constraintdef(oid) like '%school.announcement_published%'
+  ) then
+    raise exception 'School announcement notification type is not allowed by the inbox constraint';
+  end if;
+
+  if not exists (
+    select 1 from pg_constraint
+    where conrelid = 'public.learning_notifications'::regclass
+      and conname = 'learning_notifications_resource_type_check'
+      and pg_get_constraintdef(oid) like '%school_announcement%'
+  ) then
+    raise exception 'School announcement resource is not allowed by the inbox constraint';
+  end if;
 end;
 $verification$;
 
