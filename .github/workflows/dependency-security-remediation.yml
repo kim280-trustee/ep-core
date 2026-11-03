@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - paul/dependency-security-remediation-20261103
+  pull_request:
+    branches:
+      - paul/integrate-edna-content
 
 permissions:
   contents: write
