@@ -1,6 +1,13 @@
 -- Remove implicit PUBLIC execution from authentication/authorization SECURITY DEFINER APIs.
-revoke all on function public.get_current_user_permissions() from public;
-grant execute on function public.get_current_user_permissions() to authenticated;
+do $migration$
+begin
+  -- This legacy helper is optional across supported Core baselines.
+  if to_regprocedure('public.get_current_user_permissions()') is not null then
+    execute 'revoke all on function public.get_current_user_permissions() from public';
+    execute 'grant execute on function public.get_current_user_permissions() to authenticated';
+  end if;
+end;
+$migration$;
 revoke all on function public.get_current_user_tenant_id() from public;
 grant execute on function public.get_current_user_tenant_id() to authenticated;
 revoke all on function public.has_permission(text) from public;

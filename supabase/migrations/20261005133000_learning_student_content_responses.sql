@@ -1,3 +1,42 @@
+-- This helper exists in the live schema but was missing from the clean
+-- migration chain. Define it before the student response/progress policies use it.
+create or replace function private.learning_student_has_assignment_target(
+  p_assignment_id uuid,
+  p_student_user_id uuid
+)
+returns boolean
+language sql
+stable
+security definer
+set search_path = ''
+as $function$
+  select exists (
+    select 1
+    from public.learning_assignment_targets t
+    where t.assignment_id = p_assignment_id
+      and t.status = 'active'
+      and (
+        t.student_user_id = p_student_user_id
+        or (
+          t.class_group_id is not null
+          and exists (
+            select 1
+            from public.learning_class_memberships cm
+            where cm.class_group_id = t.class_group_id
+              and cm.user_id = p_student_user_id
+              and cm.membership_type = 'student'
+              and cm.status = 'active'
+          )
+        )
+      )
+  );
+$function$;
+
+revoke all on function private.learning_student_has_assignment_target(uuid, uuid)
+  from public, anon;
+grant execute on function private.learning_student_has_assignment_target(uuid, uuid)
+  to authenticated;
+
 create table if not exists public.learning_content_responses (
  id uuid primary key default gen_random_uuid(),
  organization_id uuid not null references public.organizations(id) on delete cascade,

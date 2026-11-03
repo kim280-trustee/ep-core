@@ -1,0 +1,264 @@
+name: Learning Security Migration Validation
+
+on:
+  pull_request:
+    branches:
+      - paul/integrate-edna-content
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: learning-security-migrations-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  migration-validation:
+    name: Apply all six security PR migrations locally
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout verification branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch integration base and all six security branches
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin paul/integrate-edna-content:refs/remotes/origin/paul/integrate-edna-content
+          branches=(
+            paul/v1-assignment-content-rls-hardening-20261030
+            paul/harden-assessment-authoring-20261031
+            paul/harden-student-session-recommendation-updates-20261031
+            paul/harden-student-data-read-scope-20261031
+            paul/harden-activity-event-organization-integrity-20261031
+            paul/harden-parent-invitation-acceptance-20261031
+          )
+          for branch in "${branches[@]}"; do
+            git fetch origin "${branch}:refs/remotes/origin/${branch}"
+            while IFS= read -r file; do
+              [ -n "$file" ] || continue
+              if [ -f "$file" ]; then
+                if git show "origin/${branch}:${file}" | cmp -s - "$file"; then
+                  echo "Migration already present with identical contents: $file"
+                  continue
+                fi
+                echo "Conflicting migration contents for $file from $branch"
+                exit 1
+              fi
+              mkdir -p "$(dirname "$file")"
+              git show "origin/${branch}:${file}" > "$file"
+              echo "Added $file from $branch"
+            done < <(git diff --name-only origin/paul/integrate-edna-content...origin/"${branch}" -- supabase/migrations/)
+          done
+
+      - name: Isolate Learning migrations from unrelated POS and payment history
+        shell: bash
+        run: |
+          set -euo pipefail
+          migrations="supabase/migrations"
+          keep_versions=(
+            20260818000000
+            20261030050000
+            20261031000000
+            20261031005000
+            20261031006000
+            20261031007000
+            20261031010000
+            20261031020000
+            20261031030000
+            20261031031000
+            20261031032000
+            20261031033000
+            20261031034000
+            20261031034050
+            20261031034100
+            20261031035000
+            20261031036000
+            20261031040000
+            20261031041000
+            20261031050000
+            20261031051000
+            20261031052000
+            20261031053000
+            20261031054000
+            20261031060000
+            20261031061000
+            20261031062000
+            20261031063000
+          )
+          for file in "$migrations"/*.sql; do
+            [ -f "$file" ] || continue
+            name="$(basename "$file")"
+            version="${name%%_*}"
+            keep=false
+            [[ "$name" == *learning* ]] && keep=true
+            [[ "$name" == "20260918210000_core_organization_memberships.sql" ]] && keep=true
+            for expected in "${keep_versions[@]}"; do
+              [[ "$version" == "$expected" ]] && keep=true
+            done
+            if [ "$keep" = false ]; then
+              echo "Excluding out-of-scope POS/payment migration from Learning replay: $name"
+              rm "$file"
+            fi
+          done
+
+      - name: Add local-only foundation baseline to isolated migration replay
+        run: cp .github/test-fixtures/ep_core_foundation_baseline.sql supabase/migrations/20260818000000_ep_core_foundation_baseline.sql
+
+      - name: Install Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: 2.122.1
+
+      - name: Initialize local Supabase configuration
+        run: supabase init --force
+
+      - name: Configure isolated local Supabase ports
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Avoid collisions with services already bound on hosted runners.
+          sed -i \
+            -e 's/port = 54320/port = 55420/' \
+            -e 's/port = 54321/port = 55421/' \
+            -e 's/port = 54322/port = 55422/' \
+            -e 's/port = 54323/port = 55423/' \
+            -e 's/port = 54324/port = 55424/' \
+            -e 's/port = 54327/port = 55427/' \
+            -e 's/port = 54329/port = 55429/' \
+            supabase/config.toml
+          grep -nE 'port = 55[0-9]{3}' supabase/config.toml
+
+      - name: Start isolated local Supabase stack
+        run: supabase start --yes
+
+      - name: Apply isolated Learning migration history
+        run: supabase db reset --local
+
+      - name: Verify migration history and security-critical objects
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+          cat > /tmp/verify-learning-security.sql <<'SQL'
+          DO $verify$
+          DECLARE
+            expected text[] := ARRAY[
+              '20260818000000',
+              '20260918210000',
+              '20261030050000',
+              '20261031000000',
+              '20261031005000',
+              '20261031006000',
+              '20261031007000',
+              '20261031010000',
+              '20261031020000',
+              '20261031030000',
+              '20261031031000',
+              '20261031032000',
+              '20261031033000',
+              '20261031034000',
+              '20261031034050',
+              '20261031034100',
+              '20261031035000',
+              '20261031036000',
+              '20261031040000',
+              '20261031041000',
+              '20261031050000',
+              '20261031051000',
+              '20261031052000',
+              '20261031053000',
+              '20261031054000',
+              '20261031060000',
+              '20261031061000',
+              '20261031062000',
+              '20261031063000'
+            ];
+            missing text[];
+          BEGIN
+            SELECT array_agg(expected_version.version) INTO missing
+            FROM unnest(expected) AS expected_version(version)
+            WHERE NOT EXISTS (
+              SELECT 1
+              FROM supabase_migrations.schema_migrations m
+              WHERE m.version = expected_version.version
+            );
+            IF missing IS NOT NULL THEN
+              RAISE EXCEPTION 'Security migrations missing from applied history: %', missing;
+            END IF;
+
+            IF to_regprocedure('public.submit_learning_attempt(uuid)') IS NULL THEN
+              RAISE EXCEPTION 'Expected assessment submission RPC is missing';
+            END IF;
+
+            IF to_regclass('public.learning_parent_invitations') IS NULL THEN
+              RAISE EXCEPTION 'Parent invitation table is missing';
+            END IF;
+
+            IF to_regprocedure('public.accept_learning_parent_invitation(uuid)') IS NULL THEN
+              RAISE EXCEPTION 'Hardened parent invitation acceptance RPC is missing';
+            END IF;
+
+            IF to_regprocedure('private.learning_parent_student_ids(uuid)') IS NULL
+               OR to_regprocedure('private.learning_parent_student_ids(uuid,uuid)') IS NULL THEN
+              RAISE EXCEPTION 'Organization- and tenant-scoped parent access helpers are missing';
+            END IF;
+
+            IF to_regprocedure('private.enforce_learning_activity_event_organization()') IS NULL
+               OR NOT EXISTS (
+                 SELECT 1 FROM pg_trigger
+                 WHERE tgname = 'learning_activity_event_organization_integrity'
+                   AND NOT tgisinternal
+               ) THEN
+              RAISE EXCEPTION 'Activity-event organization integrity trigger is missing';
+            END IF;
+
+            IF NOT (SELECT relrowsecurity FROM pg_class WHERE oid = 'public.learning_parent_invitations'::regclass) THEN
+              RAISE EXCEPTION 'RLS is not enabled on parent invitations';
+            END IF;
+
+            IF has_table_privilege('authenticated', 'public.learning_parent_invitations', 'INSERT')
+               OR has_table_privilege('authenticated', 'public.learning_parent_invitations', 'UPDATE') THEN
+              RAISE EXCEPTION 'Authenticated role still has direct parent-invitation write privileges';
+            END IF;
+
+            IF NOT EXISTS (
+              SELECT 1 FROM pg_proc p
+              JOIN pg_namespace n ON n.oid = p.pronamespace
+              WHERE n.nspname = 'public'
+                AND p.proname = 'create_learning_parent_invitation'
+            ) THEN
+              RAISE EXCEPTION 'Validated parent invitation RPC is missing';
+            END IF;
+
+            IF has_function_privilege('anon', 'public.submit_learning_attempt(uuid)', 'EXECUTE') THEN
+              RAISE EXCEPTION 'Anonymous role can execute assessment submission RPC';
+            END IF;
+
+            IF has_function_privilege('anon', 'public.create_learning_parent_invitation(uuid,text,text,uuid,text)', 'EXECUTE') THEN
+              RAISE EXCEPTION 'Anonymous role can execute parent invitation creation RPC';
+            END IF;
+
+            IF has_function_privilege('anon', 'public.accept_learning_parent_invitation(uuid)', 'EXECUTE')
+               OR NOT has_function_privilege('authenticated', 'public.accept_learning_parent_invitation(uuid)', 'EXECUTE') THEN
+              RAISE EXCEPTION 'Parent invitation acceptance RPC privileges are not restricted to authenticated users';
+            END IF;
+
+            IF has_function_privilege('anon', 'public.get_current_user_permissions()', 'EXECUTE')
+               OR NOT has_function_privilege('authenticated', 'public.get_current_user_permissions()', 'EXECUTE') THEN
+              RAISE EXCEPTION 'Core current-user permission helper privileges are not restricted to authenticated users';
+            END IF;
+          END;
+          $verify$;
+          SQL
+          PGPASSWORD=postgres psql "postgresql://postgres:postgres@127.0.0.1:55422/postgres" -v ON_ERROR_STOP=1 -f /tmp/verify-learning-security.sql
+
+      - name: Stop local Supabase stack
+        if: always()
+        continue-on-error: true
+        run: supabase stop --no-backup

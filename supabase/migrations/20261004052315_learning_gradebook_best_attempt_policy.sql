@@ -1,199 +1,85 @@
-﻿-- Learning Gradebook: best-attempt policy
---
--- Assessment attempts remain historically preserved, but only the best
--- attempt for a student/assessment contributes to the gradebook.
---
--- Best attempt:
---   1. Highest percentage
---   2. Latest evaluated_at
---   3. Highest result id as deterministic final tie-breaker
+-- Preserve all assessment attempts, but include only the best result in the gradebook.
+-- The original assessment-result sync helper retains its boolean return contract;
+-- this trigger wrapper applies the best-attempt rule using the current schema.
 
-CREATE OR REPLACE FUNCTION private.sync_learning_assessment_result_to_gradebook(
-  p_assessment_result_id uuid
-)
-RETURNS void
-LANGUAGE plpgsql
-SECURITY DEFINER
-SET search_path = ''
-AS $function$
-DECLARE
-  v_result record;
-  v_assignment record;
-  v_assessment record;
-  v_category_id uuid;
-  v_gradebook_entry_id uuid;
+create or replace function private.sync_learning_assessment_result_gradebook_trigger()
+returns trigger
+language plpgsql
+security definer
+set search_path = ''
+as $function$
+declare
+  v_assessment_id uuid;
   v_best_result_id uuid;
-BEGIN
-  SELECT
-    ar.id,
-    ar.attempt_id,
-    ar.assessment_id,
-    ar.score,
-    ar.max_score,
-    ar.percentage,
-    ar.evaluated_at
-  INTO v_result
-  FROM public.learning_assessment_results ar
-  WHERE ar.id = p_assessment_result_id;
+begin
+  -- Keep the existing trusted result-to-gradebook mapping and upsert behavior.
+  perform private.sync_learning_assessment_result_to_gradebook(new.id);
 
-  IF NOT FOUND THEN
-    RETURN;
-  END IF;
+  select a.assessment_id
+    into v_assessment_id
+  from public.learning_attempts a
+  where a.id = new.attempt_id;
 
-  SELECT
-    a.id,
-    a.title,
-    a.learning_item_id
-  INTO v_assessment
-  FROM public.learning_assessments a
-  WHERE a.id = v_result.assessment_id;
+  if v_assessment_id is null then
+    return new;
+  end if;
 
-  IF NOT FOUND THEN
-    RETURN;
-  END IF;
+  -- Rank all evaluated attempts for this student and assessment:
+  -- highest percentage, latest evaluation time, then stable result id.
+  select ar.id
+    into v_best_result_id
+  from public.learning_assessment_results ar
+  join public.learning_attempts a
+    on a.id = ar.attempt_id
+  where a.assessment_id = v_assessment_id
+    and a.student_user_id = new.student_user_id
+  order by
+    ar.percentage desc nulls last,
+    ar.evaluated_at desc nulls last,
+    ar.id desc
+  limit 1;
 
-  SELECT
-    at.id,
-    at.student_user_id,
-    at.assignment_id
-  INTO v_result
-  FROM public.learning_attempts at
-  WHERE at.id = v_result.attempt_id;
-
-  IF NOT FOUND THEN
-    RETURN;
-  END IF;
-
-  SELECT
-    la.id,
-    la.class_subject_id,
-    la.category_id
-  INTO v_assignment
-  FROM public.learning_assignments la
-  WHERE la.id = v_result.assignment_id;
-
-  IF NOT FOUND THEN
-    RETURN;
-  END IF;
-
-  v_category_id := v_assignment.category_id;
-
-  IF v_category_id IS NULL THEN
-    SELECT c.id
-    INTO v_category_id
-    FROM public.learning_gradebook_categories c
-    WHERE c.class_subject_id = v_assignment.class_subject_id
-      AND lower(c.name) = 'unit'
-      AND c.is_active = true
-    ORDER BY c.created_at
-    LIMIT 1;
-  END IF;
-
-  IF v_category_id IS NULL THEN
-    RAISE EXCEPTION
-      'No gradebook category available for assignment %',
-      v_result.assignment_id;
-  END IF;
-
-  INSERT INTO public.learning_gradebook_entries (
-    class_subject_id,
-    student_user_id,
-    category_id,
-    assessment_id,
-    assessment_result_id,
-    assignment_id,
-    title,
-    score,
-    max_score,
-    percentage,
-    record_type,
-    included_in_grade,
-    notes
-  )
-  VALUES (
-    v_assignment.class_subject_id,
-    v_result.student_user_id,
-    v_category_id,
-    v_result.assessment_id,
-    p_assessment_result_id,
-    v_result.assignment_id,
-    v_assessment.title,
-    v_result.score,
-    v_result.max_score,
-    v_result.percentage,
-    'assessment',
-    true,
-    jsonb_build_object(
-      'source',
-      'assessment_result',
-      'attempt_id',
-      v_result.attempt_id,
-      'attempt_policy',
-      'best_attempt'
-    )
-  )
-  ON CONFLICT (assessment_result_id)
-  DO UPDATE SET
-    score = EXCLUDED.score,
-    max_score = EXCLUDED.max_score,
-    percentage = EXCLUDED.percentage,
-    title = EXCLUDED.title,
-    category_id = EXCLUDED.category_id,
-    class_subject_id = EXCLUDED.class_subject_id,
-    student_user_id = EXCLUDED.student_user_id,
-    assignment_id = EXCLUDED.assignment_id,
-    included_in_grade = EXCLUDED.included_in_grade,
-    notes = EXCLUDED.notes,
+  update public.learning_gradebook_entries gbe
+  set
+    included_in_grade = (gbe.assessment_result_id = v_best_result_id),
+    notes = coalesce(gbe.notes, '{}'::jsonb)
+      || jsonb_build_object('attempt_policy', 'best_attempt'),
     updated_at = now()
-  RETURNING id INTO v_gradebook_entry_id;
+  where gbe.assessment_id = v_assessment_id
+    and gbe.student_user_id = new.student_user_id
+    and gbe.record_type = 'assessment';
 
-  SELECT ar.id
-  INTO v_best_result_id
-  FROM public.learning_assessment_results ar
-  JOIN public.learning_attempts at
-    ON at.id = ar.attempt_id
-  WHERE ar.assessment_id = v_result.assessment_id
-    AND at.student_user_id = v_result.student_user_id
-  ORDER BY
-    ar.percentage DESC NULLS LAST,
-    ar.evaluated_at DESC NULLS LAST,
-    ar.id DESC
-  LIMIT 1;
-
-  UPDATE public.learning_gradebook_entries
-  SET
-    included_in_grade = (assessment_result_id = v_best_result_id),
-    notes = COALESCE(notes, '{}'::jsonb) ||
-      jsonb_build_object('attempt_policy', 'best_attempt'),
-    updated_at = now()
-  WHERE assessment_id = v_result.assessment_id
-    AND student_user_id = v_result.student_user_id
-    AND record_type = 'assessment';
-END;
+  return new;
+end;
 $function$;
 
-WITH ranked AS (
-  SELECT
+revoke all on function private.sync_learning_assessment_result_gradebook_trigger()
+from public, anon, authenticated;
+
+-- Recalculate historical gradebook inclusion using the same deterministic
+-- ranking rule. Rows remain stored for audit/history; only one is included.
+with ranked as (
+  select
     gbe.id,
-    ROW_NUMBER() OVER (
-      PARTITION BY gbe.assessment_id, gbe.student_user_id
-      ORDER BY
-        ar.percentage DESC NULLS LAST,
-        ar.evaluated_at DESC NULLS LAST,
-        ar.id DESC
-    ) AS rn
-  FROM public.learning_gradebook_entries gbe
-  JOIN public.learning_assessment_results ar
-    ON ar.id = gbe.assessment_result_id
-  WHERE gbe.record_type = 'assessment'
-    AND gbe.assessment_id IS NOT NULL
-    AND gbe.student_user_id IS NOT NULL
+    row_number() over (
+      partition by gbe.assessment_id, gbe.student_user_id
+      order by
+        ar.percentage desc nulls last,
+        ar.evaluated_at desc nulls last,
+        ar.id desc
+    ) as rn
+  from public.learning_gradebook_entries gbe
+  join public.learning_assessment_results ar
+    on ar.id = gbe.assessment_result_id
+  where gbe.record_type = 'assessment'
+    and gbe.assessment_id is not null
+    and gbe.student_user_id is not null
 )
-UPDATE public.learning_gradebook_entries gbe
-SET
+update public.learning_gradebook_entries gbe
+set
   included_in_grade = (ranked.rn = 1),
-  notes = COALESCE(gbe.notes, '{}'::jsonb) ||
-    jsonb_build_object('attempt_policy', 'best_attempt'),
+  notes = coalesce(gbe.notes, '{}'::jsonb)
+    || jsonb_build_object('attempt_policy', 'best_attempt'),
   updated_at = now()
-FROM ranked
-WHERE gbe.id = ranked.id;
+from ranked
+where gbe.id = ranked.id;

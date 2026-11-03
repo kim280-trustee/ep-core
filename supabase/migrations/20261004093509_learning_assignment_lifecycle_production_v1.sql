@@ -98,7 +98,15 @@ grant execute on function public.close_learning_assignment(uuid) to authenticate
 revoke all on function public.reassign_learning_assignment(uuid,uuid,timestamptz) from public;
 revoke all on function public.reassign_learning_assignment(uuid,uuid,timestamptz) from anon;
 grant execute on function public.reassign_learning_assignment(uuid,uuid,timestamptz) to authenticated;
-revoke execute on function public.get_current_user_permissions() from anon;
+do $migration$
+begin
+  -- This legacy helper is not present in every supported Core baseline.
+  -- Revoke anonymous execution when it exists, without blocking clean installs.
+  if to_regprocedure('public.get_current_user_permissions()') is not null then
+    execute 'revoke execute on function public.get_current_user_permissions() from anon';
+  end if;
+end;
+$migration$;
 revoke execute on function public.get_current_user_tenant_id() from anon;
 revoke execute on function public.has_permission(text) from anon;
 revoke execute on function public.is_organization_member(uuid) from anon;
