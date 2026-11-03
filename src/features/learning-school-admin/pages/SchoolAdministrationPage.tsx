@@ -299,6 +299,15 @@ export default function SchoolAdministrationPage() {
     },
     onError: (error) => { setActionNotice(""); setActionError(errorText(error)); },
   });
+  const submitAttendanceMutation = useMutation({
+    mutationFn: (sessionId: string) => learningAttendanceService.submitRegister(sessionId),
+    onSuccess: async () => {
+      setActionError("");
+      setActionNotice("Attendance register submitted successfully.");
+      await queryClient.invalidateQueries({ queryKey: ["school-admin"] });
+    },
+    onError: (error) => { setActionNotice(""); setActionError(errorText(error)); },
+  });
 
   const submitYear = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -640,10 +649,22 @@ export default function SchoolAdministrationPage() {
                       const records = activeStudents.map((student) => ({ studentUserId: student.userId, status: getAttendanceStatus(student.userId), note: getAttendanceNote(student.userId) }));
                       void saveMutation.mutateAsync(() => learningAttendanceService.saveRegister({ tenantId: user.tenantId, organizationId, classGroupId, attendanceDate, takenBy: user.id, records }));
                     }}>{saveMutation.isPending ? "Saving attendance…" : "Save register"}</button>
+                    {savedAttendance?.sessionId && savedAttendance.sessionStatus !== "submitted" ? (
+                      <button type="button" className={buttonClass} disabled={!activeStudents.length || attendanceQuery.isPending || saveMutation.isPending || submitAttendanceMutation.isPending || attendanceSummary.unmarked > 0} onClick={() => {
+                        const records = activeStudents.map((student) => ({ studentUserId: student.userId, status: getAttendanceStatus(student.userId), note: getAttendanceNote(student.userId) }));
+                        void (async () => {
+                          try {
+                            await saveMutation.mutateAsync(() => learningAttendanceService.saveRegister({ tenantId: user.tenantId, organizationId, classGroupId, attendanceDate, takenBy: user.id, records }));
+                            await submitAttendanceMutation.mutateAsync(savedAttendance.sessionId!);
+                          } catch { /* Mutations expose the actionable error above the form. */ }
+                        })();
+                      }}>{submitAttendanceMutation.isPending ? "Submitting…" : "Submit register"}</button>
+                    ) : null}
                   </div>
                   {attendanceQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading attendance…</p> : attendanceQuery.isError ? <p className="mt-4 text-sm text-red-700">Could not load this register: {errorText(attendanceQuery.error)}</p> : activeStudents.length ? (
                     <>
                       <p className="mt-3 text-xs text-slate-500">{activeStudents.filter((student) => getAttendanceStatus(student.userId) !== "unmarked").length} of {activeStudents.length} students marked for {attendanceDate}.</p>
+                      {savedAttendance?.sessionStatus === "submitted" ? <p className="mt-2 text-xs font-semibold text-emerald-700">Submitted to the school. Parent attendance summaries can now include this register.</p> : savedAttendance?.sessionId ? <p className="mt-2 text-xs text-slate-500">Saved as an open register. Submit it after every active student has been marked.</p> : null}
                       <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-5">
                         {([
                           { label: "Present", value: attendanceSummary.present },
@@ -668,7 +689,7 @@ export default function SchoolAdministrationPage() {
                           </tbody>
                         </table>
                       </div>
-                      <p className="mt-3 text-xs leading-5 text-slate-500">Choosing “Not marked” removes an existing mark when you save. Changes are saved to the school database; a register is not finalized or locked by this action.</p>
+                      <p className="mt-3 text-xs leading-5 text-slate-500">Choosing “Not marked” removes an existing mark when you save. Save stores an open register; Submit makes it available to linked parents.</p>
                     </>
                   ) : <p className="mt-4 text-sm text-slate-500">No active students are assigned to this class.</p>}
                 </>}
