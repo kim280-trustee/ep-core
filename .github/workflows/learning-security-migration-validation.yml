@@ -42,7 +42,11 @@ jobs:
             while IFS= read -r file; do
               [ -n "$file" ] || continue
               if [ -f "$file" ]; then
-                echo "Migration already exists in combined tree: $file"
+                if git show "origin/${branch}:${file}" | cmp -s - "$file"; then
+                  echo "Migration already present with identical contents: $file"
+                  continue
+                fi
+                echo "Conflicting migration contents for $file from $branch"
                 exit 1
               fi
               mkdir -p "$(dirname "$file")"
