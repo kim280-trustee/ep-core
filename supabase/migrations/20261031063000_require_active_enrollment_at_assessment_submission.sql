@@ -60,37 +60,23 @@ begin
     raise exception 'You cannot submit another student''s attempt';
   end if;
 
-  if v_organization_id is not null then
-    if not exists (
-      select 1
-      from public.organizations o
-      join public.learning_class_memberships cm
-        on cm.organization_id = o.id
-       and cm.tenant_id = o.tenant_id
-       and cm.user_id = v_student_user_id
-       and cm.membership_type = 'student'
-       and cm.status = 'active'
-      where o.id = v_organization_id
-        and o.tenant_id = v_tenant_id
-        and o.status = 'active'
-    ) then
-      raise exception 'An active student enrollment in this organization is required';
-    end if;
-  else
-    if not exists (
-      select 1
-      from public.organizations o
-      join public.learning_class_memberships cm
-        on cm.organization_id = o.id
-       and cm.tenant_id = o.tenant_id
-       and cm.user_id = v_student_user_id
-       and cm.membership_type = 'student'
-       and cm.status = 'active'
-      where o.tenant_id = v_tenant_id
-        and o.status = 'active'
-    ) then
-      raise exception 'An active student enrollment is required';
-    end if;
+  -- Lock the qualifying active enrollment and organization rows so a
+  -- concurrent suspension/deactivation cannot race the submission check.
+  perform 1
+  from public.organizations o
+  join public.learning_class_memberships cm
+    on cm.organization_id = o.id
+   and cm.tenant_id = o.tenant_id
+   and cm.user_id = v_student_user_id
+   and cm.membership_type = 'student'
+   and cm.status = 'active'
+  where o.tenant_id = v_tenant_id
+    and o.status = 'active'
+    and (v_organization_id is null or o.id = v_organization_id)
+  for share of o, cm;
+
+  if not found then
+    raise exception 'An active student enrollment in this organization is required';
   end if;
 
   return public.submit_learning_attempt_internal(p_attempt_id);
