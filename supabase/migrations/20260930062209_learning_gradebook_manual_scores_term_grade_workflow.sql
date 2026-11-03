@@ -171,7 +171,7 @@ begin
 
   return v_grade_id;
 end;
-$function$
+$function$;
 
 
 CREATE OR REPLACE FUNCTION public.create_learning_manual_gradebook_entry(p_term_id uuid, p_class_subject_id uuid, p_student_user_id uuid, p_title text, p_score numeric, p_max_score numeric, p_category_id uuid DEFAULT NULL::uuid, p_description text DEFAULT NULL::text)
@@ -305,7 +305,7 @@ begin
 
   return v_entry_id;
 end;
-$function$
+$function$;
 
 
 CREATE OR REPLACE FUNCTION public.finalize_learning_term_grade(p_term_id uuid, p_class_subject_id uuid, p_student_user_id uuid)
@@ -376,7 +376,7 @@ begin
 
   return v_grade_id;
 end;
-$function$
+$function$;
 
 
 revoke all on function public.create_learning_manual_gradebook_entry(uuid,uuid,uuid,text,numeric,numeric,uuid,text) from public;
