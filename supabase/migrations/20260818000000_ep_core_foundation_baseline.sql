@@ -2,7 +2,8 @@
 -- Reconstructed from src/core/database/migrations/001_core_schema.sql and
 -- 002_core_hardening.sql, with the Supabase Auth identity column included.
 --
--- This file contains schema only. Legacy permissive registration policies
+-- This file contains the required Core schema plus deterministic local-only
+-- Learning pilot identity fixtures. Legacy permissive registration policies
 -- from src/core/database/migrations/003-006 are intentionally not copied.
 -- Access remains fail-closed until the versioned Supabase policies/grants apply.
 
