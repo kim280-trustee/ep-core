@@ -23,8 +23,7 @@ create table if not exists public.users (
   auth_user_id uuid unique,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
-  constraint users_tenant_email_key unique (tenant_id, email),
-  constraint users_tenant_id_id_key unique (tenant_id, id)
+  constraint users_tenant_email_key unique (tenant_id, email)
 );
 
 create index if not exists users_tenant_id_index
@@ -38,8 +37,7 @@ create table if not exists public.roles (
   name text not null,
   is_system_role boolean not null default false,
   created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now(),
-  constraint roles_tenant_id_id_key unique (tenant_id, id)
+  updated_at timestamptz not null default now()
 );
 
 create index if not exists roles_tenant_id_index
