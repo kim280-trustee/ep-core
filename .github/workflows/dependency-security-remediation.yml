@@ -35,6 +35,11 @@ jobs:
       - name: Apply non-breaking audit fixes only
         continue-on-error: true
         run: npm audit fix
+      - name: Patch remaining minimatch advisory with scoped override
+        run: |
+          npm pkg set 'overrides.minimatch=^11.0.4'
+          npm install --package-lock-only
+          npm ci
       - name: Commit updated dependency manifests
         run: |
           git config user.name "github-actions[bot]"
