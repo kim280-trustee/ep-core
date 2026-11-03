@@ -28,6 +28,7 @@ as $function$
      and student_membership.status = 'active'
     where l.organization_id = p_organization_id
       and l.student_user_id = p_student_user_id
+      and parent_profile.tenant_id = o.tenant_id
       and l.status = 'active'
       and parent_profile.auth_user_id = (select auth.uid())
       and o.status = 'active'
