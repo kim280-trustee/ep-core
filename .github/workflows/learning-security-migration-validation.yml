@@ -102,6 +102,9 @@ jobs:
             fi
           done
 
+      - name: Add local-only foundation baseline to isolated migration replay
+        run: cp .github/test-fixtures/ep_core_foundation_baseline.sql supabase/migrations/20260818000000_ep_core_foundation_baseline.sql
+
       - name: Install Supabase CLI
         uses: supabase/setup-cli@v1
         with:
