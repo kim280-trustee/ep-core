@@ -29,6 +29,7 @@ as $function$
 declare
   v_auth_user_id uuid := (select auth.uid());
   v_student_user_id uuid;
+  v_auth_tenant_id uuid;
   v_tenant_id uuid;
   v_organization_id uuid;
 begin
@@ -37,7 +38,7 @@ begin
   end if;
 
   select u.id, u.tenant_id
-    into v_student_user_id, v_tenant_id
+    into v_student_user_id, v_auth_tenant_id
   from public.users u
   where u.auth_user_id = v_auth_user_id;
 
@@ -58,6 +59,10 @@ begin
     select u.id from public.users u where u.auth_user_id = v_auth_user_id
   ) then
     raise exception 'You cannot submit another student''s attempt';
+  end if;
+
+  if v_tenant_id <> v_auth_tenant_id then
+    raise exception 'Assessment attempt belongs to a different tenant';
   end if;
 
   -- Lock the qualifying active enrollment and organization rows so a
