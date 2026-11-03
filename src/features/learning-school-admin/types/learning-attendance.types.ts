@@ -9,6 +9,7 @@ export interface LearningAttendanceRecord {
 
 export interface LearningAttendanceRegister {
   sessionId: string | null;
+  sessionStatus: "open" | "submitted" | null;
   date: string;
   statusByStudentId: Record<string, LearningAttendanceStatus>;
   noteByStudentId: Record<string, string>;
