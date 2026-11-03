@@ -174,10 +174,12 @@ jobs:
             ];
             missing text[];
           BEGIN
-            SELECT array_agg(v) INTO missing
-            FROM unnest(expected) AS v
+            SELECT array_agg(expected_version.version) INTO missing
+            FROM unnest(expected) AS expected_version(version)
             WHERE NOT EXISTS (
-              SELECT 1 FROM supabase_migrations.schema_migrations m WHERE m.version = v
+              SELECT 1
+              FROM supabase_migrations.schema_migrations m
+              WHERE m.version = expected_version.version
             );
             IF missing IS NOT NULL THEN
               RAISE EXCEPTION 'Security migrations missing from applied history: %', missing;
