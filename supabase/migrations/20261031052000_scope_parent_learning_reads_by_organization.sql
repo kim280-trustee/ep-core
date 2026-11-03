@@ -11,8 +11,13 @@ set search_path = ''
 as $function$
   select distinct l.student_user_id
   from public.learning_parent_student_links l
-  join public.users p on p.id = l.parent_user_id
   join public.organizations o on o.id = l.organization_id
+  join public.users p
+    on p.id = l.parent_user_id
+   and p.tenant_id = o.tenant_id
+  join public.users student
+    on student.id = l.student_user_id
+   and student.tenant_id = o.tenant_id
   join public.learning_class_memberships cm
     on cm.organization_id = l.organization_id
    and cm.tenant_id = o.tenant_id
