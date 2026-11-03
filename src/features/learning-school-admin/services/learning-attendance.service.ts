@@ -5,4 +5,5 @@ export const learningAttendanceService = {
   getSchoolWideHistory: learningAttendanceRepository.getSchoolWideHistory,
   getRegister: learningAttendanceRepository.getRegister,
   saveRegister: learningAttendanceRepository.saveRegister,
+  submitRegister: learningAttendanceRepository.submitRegister,
 };
