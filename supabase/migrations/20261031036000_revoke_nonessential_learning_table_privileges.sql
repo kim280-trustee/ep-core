@@ -23,10 +23,10 @@ $$;
 
 -- Prevent future Learning tables created by the migration owner from inheriting
 -- non-essential table privileges for anon/authenticated.
-alter default privileges for role supabase_admin
+alter default privileges for role postgres
   revoke truncate, references, trigger on tables from anon, authenticated;
 
-alter default privileges for role supabase_admin in schema public
+alter default privileges for role postgres in schema public
   revoke truncate, references, trigger on tables from anon, authenticated;
 
 commit;
