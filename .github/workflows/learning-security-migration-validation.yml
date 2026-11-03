@@ -234,6 +234,16 @@ jobs:
             IF has_function_privilege('anon', 'public.create_learning_parent_invitation(uuid,text,text,uuid,text)', 'EXECUTE') THEN
               RAISE EXCEPTION 'Anonymous role can execute parent invitation creation RPC';
             END IF;
+
+            IF has_function_privilege('anon', 'public.accept_learning_parent_invitation(uuid)', 'EXECUTE')
+               OR NOT has_function_privilege('authenticated', 'public.accept_learning_parent_invitation(uuid)', 'EXECUTE') THEN
+              RAISE EXCEPTION 'Parent invitation acceptance RPC privileges are not restricted to authenticated users';
+            END IF;
+
+            IF has_function_privilege('anon', 'public.get_current_user_permissions()', 'EXECUTE')
+               OR NOT has_function_privilege('authenticated', 'public.get_current_user_permissions()', 'EXECUTE') THEN
+              RAISE EXCEPTION 'Core current-user permission helper privileges are not restricted to authenticated users';
+            END IF;
           END
           $;
           SQL
