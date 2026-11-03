@@ -8,6 +8,10 @@ on:
     branches:
       - paul/integrate-edna-content
 
+concurrency:
+  group: dependency-security-remediation
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
