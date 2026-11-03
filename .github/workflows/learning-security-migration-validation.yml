@@ -244,7 +244,7 @@ jobs:
                OR NOT has_function_privilege('authenticated', 'public.get_current_user_permissions()', 'EXECUTE') THEN
               RAISE EXCEPTION 'Core current-user permission helper privileges are not restricted to authenticated users';
             END IF;
-          END
+          END;
           $;
           SQL
           PGPASSWORD=postgres psql "postgresql://postgres:postgres@127.0.0.1:55422/postgres" -v ON_ERROR_STOP=1 -f /tmp/verify-learning-security.sql
