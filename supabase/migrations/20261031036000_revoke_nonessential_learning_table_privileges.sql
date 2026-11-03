@@ -10,7 +10,7 @@ begin
     select schemaname, tablename
     from pg_tables
     where schemaname = 'public'
-      and tablename like 'learning\_%' escape '\'
+      and left(tablename, 9) = 'learning_'
   loop
     execute format(
       'revoke truncate, references, trigger on table %I.%I from anon, authenticated',
