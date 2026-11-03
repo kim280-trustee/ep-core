@@ -93,7 +93,21 @@ export const learningAttendanceRepository = {
         noteByStudentId[record.student_user_id] = record.note ?? "";
       }
     }
-    return { sessionId: session?.id ?? null, date: attendanceDate, statusByStudentId, noteByStudentId };
+    return { sessionId: session?.id ?? null, sessionStatus: session?.status === "submitted" ? "submitted" : session?.id ? "open" : null, date: attendanceDate, statusByStudentId, noteByStudentId };
+  },
+
+  async submitRegister(sessionId: string): Promise<string> {
+    const rpcClient = supabase as unknown as {
+      rpc: (name: string, args: Record<string, unknown>) => Promise<{ data: unknown; error: { message: string } | null }>;
+    };
+    const { data, error } = await rpcClient.rpc("submit_learning_attendance_register", {
+      p_session_id: sessionId,
+    });
+    if (error) throw new Error(error.message);
+    if (typeof data !== "string" || !data) {
+      throw new Error("The attendance register was not confirmed as submitted.");
+    }
+    return data;
   },
 
   async saveRegister(input: SaveLearningAttendanceInput): Promise<void> {
