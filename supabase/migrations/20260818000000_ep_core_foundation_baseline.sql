@@ -80,6 +80,47 @@ create table if not exists public.company_settings (
 create index if not exists company_settings_tenant_id_index
   on public.company_settings (tenant_id);
 
+
+-- Authorization helpers required by the organization membership foundation.
+-- Definitions mirror the live core authorization contract, with explicit
+-- function privileges for the isolated migration test environment.
+create or replace function public.get_current_user_tenant_id()
+returns uuid
+language sql
+stable
+security definer
+set search_path = public, pg_catalog
+as $
+  select u.tenant_id
+  from public.users u
+  where u.auth_user_id = (select auth.uid())
+  limit 1;
+$;
+
+create or replace function public.has_permission(permission_code text)
+returns boolean
+language sql
+stable
+security definer
+set search_path = public, pg_catalog
+as $
+  select exists (
+    select 1
+    from public.users u
+    join public.user_roles ur on ur.user_id = u.id
+    join public.roles r on r.id = ur.role_id and r.tenant_id = u.tenant_id
+    join public.role_permissions rp on rp.role_id = r.id
+    join public.permissions p on p.id = rp.permission_id
+    where u.auth_user_id = (select auth.uid())
+      and p.code = permission_code
+  );
+$;
+
+revoke all on function public.get_current_user_tenant_id() from public, anon;
+revoke all on function public.has_permission(text) from public, anon;
+grant execute on function public.get_current_user_tenant_id() to authenticated;
+grant execute on function public.has_permission(text) to authenticated;
+
 alter table public.tenants enable row level security;
 alter table public.users enable row level security;
 alter table public.roles enable row level security;
