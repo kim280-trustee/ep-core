@@ -81,6 +81,50 @@ create index if not exists company_settings_tenant_id_index
   on public.company_settings (tenant_id);
 
 
+-- Deterministic local-only fixture rows required by the existing Learning pilot
+-- bootstrap migration. These identities are not production credentials; the
+-- reserved .invalid email domain prevents accidental email delivery.
+insert into public.tenants (id, name, country, currency)
+values (
+  '2671fd05-2ebf-487c-bd5c-5bc71c7d4ac3',
+  'E&P Learning Pilot Tenant',
+  'Thailand',
+  'THB'
+);
+
+insert into public.users (id, tenant_id, name, email, auth_user_id)
+values
+  (
+    '58d39658-65ec-4918-95e1-994ad5bf4f72',
+    '2671fd05-2ebf-487c-bd5c-5bc71c7d4ac3',
+    'Learning Pilot Staff',
+    'learning-pilot-staff@example.invalid',
+    null
+  ),
+  (
+    'f368d757-9321-4a69-af31-7bd3cd38b780',
+    '2671fd05-2ebf-487c-bd5c-5bc71c7d4ac3',
+    'Learning Pilot Student',
+    'learning-pilot-student@example.invalid',
+    null
+  );
+
+insert into public.roles (id, tenant_id, name, is_system_role)
+values
+  (
+    'fa27f858-f0c2-4c15-be0b-e0ed4bdd7e93',
+    '2671fd05-2ebf-487c-bd5c-5bc71c7d4ac3',
+    'Learning Pilot Staff',
+    false
+  ),
+  (
+    '20559f5d-5217-4b94-9dc5-f57774e0875e',
+    '2671fd05-2ebf-487c-bd5c-5bc71c7d4ac3',
+    'Learning Pilot Student',
+    false
+  );
+
+
 -- Authorization helpers required by the organization membership foundation.
 -- Definitions mirror the live core authorization contract, with explicit
 -- function privileges for the isolated migration test environment.
