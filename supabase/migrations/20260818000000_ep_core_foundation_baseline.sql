@@ -161,8 +161,26 @@ as $ep$
   );
 $ep$;
 
+create or replace function public.get_current_user_permissions()
+returns table(permission_code text)
+language sql
+stable
+security definer
+set search_path = ''
+as $ep$
+  select distinct p.code
+  from public.users u
+  join public.user_roles ur on ur.user_id = u.id
+  join public.roles r on r.id = ur.role_id and r.tenant_id = u.tenant_id
+  join public.role_permissions rp on rp.role_id = r.id
+  join public.permissions p on p.id = rp.permission_id
+  where u.auth_user_id = (select auth.uid());
+$ep$;
+
 revoke all on function public.get_current_user_tenant_id() from public, anon;
 revoke all on function public.has_permission(text) from public, anon;
+revoke all on function public.get_current_user_permissions() from public, anon;
+grant execute on function public.get_current_user_permissions() to authenticated;
 grant execute on function public.get_current_user_tenant_id() to authenticated;
 grant execute on function public.has_permission(text) to authenticated;
 
