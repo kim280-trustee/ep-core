@@ -49,7 +49,11 @@ begin
   select a.student_user_id, a.tenant_id, a.organization_id
     into v_student_user_id, v_tenant_id, v_organization_id
   from public.learning_attempts a
-  where a.id = p_attempt_id;
+  join public.learning_assessments ass
+    on ass.id = a.assessment_id
+   and ass.organization_id is not distinct from a.organization_id
+  where a.id = p_attempt_id
+  for update of a;
 
   if not found then
     raise exception 'Assessment attempt was not found';
