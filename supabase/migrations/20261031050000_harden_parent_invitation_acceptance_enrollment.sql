@@ -40,21 +40,22 @@ begin
 
   -- Do not accept an invitation if the school is no longer active or
   -- the invited student is no longer actively enrolled in that school.
-  if not exists (
-    select 1
-    from public.organizations o
-    join public.learning_class_memberships cm
-      on cm.organization_id = o.id
-     and cm.tenant_id = o.tenant_id
-     and cm.user_id = v_invite.student_user_id
-     and cm.membership_type = 'student'
-     and cm.status = 'active'
-    join public.users s
-      on s.id = cm.user_id
-     and s.tenant_id = cm.tenant_id
-    where o.id = v_invite.organization_id
-      and o.status = 'active'
-  ) then
+  perform 1
+  from public.organizations o
+  join public.learning_class_memberships cm
+    on cm.organization_id = o.id
+   and cm.tenant_id = o.tenant_id
+   and cm.user_id = v_invite.student_user_id
+   and cm.membership_type = 'student'
+   and cm.status = 'active'
+  join public.users s
+    on s.id = cm.user_id
+   and s.tenant_id = cm.tenant_id
+  where o.id = v_invite.organization_id
+    and o.status = 'active'
+  for share of o, cm;
+
+  if not found then
     raise exception 'The school or student enrollment is no longer active';
   end if;
 
