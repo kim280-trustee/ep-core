@@ -90,12 +90,12 @@ language sql
 stable
 security definer
 set search_path = public, pg_catalog
-as $
+as $ep$
   select u.tenant_id
   from public.users u
   where u.auth_user_id = (select auth.uid())
   limit 1;
-$;
+$ep$;
 
 create or replace function public.has_permission(permission_code text)
 returns boolean
@@ -103,7 +103,7 @@ language sql
 stable
 security definer
 set search_path = public, pg_catalog
-as $
+as $ep$
   select exists (
     select 1
     from public.users u
@@ -114,7 +114,7 @@ as $
     where u.auth_user_id = (select auth.uid())
       and p.code = permission_code
   );
-$;
+$ep$;
 
 revoke all on function public.get_current_user_tenant_id() from public, anon;
 revoke all on function public.has_permission(text) from public, anon;
