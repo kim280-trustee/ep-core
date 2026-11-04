@@ -259,6 +259,7 @@ jobs:
           PGPASSWORD=postgres psql "postgresql://postgres:postgres@127.0.0.1:55422/postgres" -v ON_ERROR_STOP=1 -f /tmp/verify-learning-security.sql
           PGPASSWORD=postgres psql "postgresql://postgres:postgres@127.0.0.1:55422/postgres" -v ON_ERROR_STOP=1 -f supabase/tests/learning_security_contract.sql
           PGPASSWORD=postgres psql "postgresql://postgres:postgres@127.0.0.1:55422/postgres" -v ON_ERROR_STOP=1 -f supabase/tests/learning_role_matrix_runtime.sql
+          PGPASSWORD=postgres psql "postgresql://postgres:postgres@127.0.0.1:55422/postgres" -v ON_ERROR_STOP=1 -f supabase/tests/learning_rpc_runtime_authorization.sql
 
       - name: Stop local Supabase stack
         if: always()
