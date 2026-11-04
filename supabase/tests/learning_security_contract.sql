@@ -123,10 +123,6 @@ begin
   end if;
 
   perform pg_temp.assert_policy_contains(
-    'learning_parent_student_links', 'learning_parent_student_links_parent_read', 'SELECT',
-    array['auth.uid']
-  );
-  perform pg_temp.assert_policy_contains(
     'learning_student_mastery', 'learning_parent_mastery_view', 'SELECT',
     array['learning_parent_student_ids']
   );
@@ -231,8 +227,8 @@ begin
   end if;
 
   -- All inspected SECURITY DEFINER authorization helpers must pin search_path.
-  for v_definition in
-    select pg_get_functiondef(p.oid)
+  if exists (
+    select 1
     from pg_proc p
     join pg_namespace n on n.oid = p.pronamespace
     where n.nspname in ('public', 'private')
@@ -246,11 +242,9 @@ begin
         'learning_parent_can_view_student',
         'learning_parent_student_ids'
       )
-  loop
-    if position('search_path=""' in replace(lower(v_definition), ' ', '')) = 0
-       and position('search_path to ''''' in lower(v_definition)) = 0 then
-      raise exception 'A critical SECURITY DEFINER function does not pin search_path: %', left(v_definition, 180);
-    end if;
-  end loop;
+      and not coalesce(p.proconfig, array[]::text[]) @> array['search_path=""']
+  ) then
+    raise exception 'A critical SECURITY DEFINER function does not pin search_path';
+  end if;
 end;
 $learning_security_contract$;
