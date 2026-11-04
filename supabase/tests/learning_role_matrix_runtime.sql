@@ -22,7 +22,8 @@ begin
     (v_owner,v_tenant,'Runtime Owner','runtime-owner@example.invalid',v_owner_auth),
     (v_manager,v_tenant,'Runtime Manager','runtime-manager@example.invalid',v_manager_auth),
     (v_staff,v_tenant,'Runtime Staff','runtime-staff@example.invalid',v_staff_auth),
-    (v_parent,v_tenant,'Runtime Parent','runtime-parent@example.invalid',v_parent_auth)
+    (v_parent,v_tenant,'Runtime Parent','runtime-parent@example.invalid',v_parent_auth),
+    ('00000000-0000-0000-0000-000000000099',v_tenant,'Unlinked Runtime Student','unlinked-runtime-student@example.invalid','8d0c1a10-4a91-4a1c-9d30-100000000099')
   on conflict (id) do update set auth_user_id=excluded.auth_user_id,email=excluded.email,name=excluded.name;
 
   update public.users set auth_user_id='8d0c1a10-4a91-4a1c-9d30-100000000005'
@@ -100,6 +101,50 @@ begin
   if private.learning_parent_can_view_student('00000000-0000-0000-0000-000000000099',v_student) then raise exception 'Parent link must not cross organization boundaries'; end if;
 end;
 $matrix$;
+
+
+-- Exercise actual table RLS, not only authorization helper return values.
+-- The parent must see the linked student's profile and class membership,
+-- while an existing but unlinked student's profile remains invisible.
+do $table_rls$
+declare
+  v_org uuid := 'b2e1058a-058a-57c5-9c17-7b080838bd2c';
+  v_student uuid := 'f368d757-9321-4a69-af31-7bd3cd38b780';
+  v_other_student uuid := '00000000-0000-0000-0000-000000000099';
+begin
+  perform set_config('request.jwt.claim.sub','8d0c1a10-4a91-4a1c-9d30-100000000004',true);
+
+  if not exists (
+    select 1 from public.users where id=v_student
+  ) then
+    raise exception 'Parent table RLS must expose the linked student profile';
+  end if;
+
+  if exists (
+    select 1 from public.users where id=v_other_student
+  ) then
+    raise exception 'Parent table RLS exposed an unlinked student profile';
+  end if;
+
+  if not exists (
+    select 1 from public.learning_class_memberships
+    where organization_id=v_org
+      and user_id=v_student
+      and membership_type='student'
+      and status='active'
+  ) then
+    raise exception 'Parent table RLS must expose the linked student class membership';
+  end if;
+
+  if exists (
+    select 1 from public.learning_class_memberships
+    where organization_id=v_org
+      and user_id=v_other_student
+  ) then
+    raise exception 'Parent table RLS exposed an unlinked student class membership';
+  end if;
+end;
+$table_rls$;
 
 reset role;
 rollback;
