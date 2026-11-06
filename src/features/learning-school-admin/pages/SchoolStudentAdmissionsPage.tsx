@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
+import { LearningLanguageSelector } from "@/features/learning-shared/components/LearningLanguageSelector";
 import { useAuthorization } from "@/features/auth/authorization/useAuthorization";
 import { learningAcademicService } from "@/features/learning-academic";
 import { learningSchoolAdminService } from "../services/learning-school-admin.service";
@@ -75,6 +76,7 @@ export default function SchoolStudentAdmissionsPage() {
 
   return (
     <main className="mx-auto max-w-5xl space-y-6">
+      <div className="flex justify-end"><LearningLanguageSelector compact /></div>
       <header className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8">
         <p className="text-sm text-slate-300">E&P Learning · School administration</p>
         <h1 className="mt-1 text-2xl font-bold sm:text-3xl">New student admissions</h1>
