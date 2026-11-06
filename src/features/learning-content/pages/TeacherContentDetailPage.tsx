@@ -3,6 +3,7 @@ import { ArrowLeft, Eye, FileText, Save, Send, Archive, ClipboardPlus } from "lu
 import type { FormEvent } from "react";
 import { useMemo, useState } from "react";
 import { useAuth } from "@/core/auth";
+import { useTranslation } from "@/core/i18n";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { learningContentService } from "@/features/learning-content";
 import { learningTeacherService } from "@/features/learning-teacher";
@@ -18,6 +19,7 @@ const statusClasses: Record<LearningContentStatus, string> = {
 export default function TeacherContentDetailPage() {
   const { id } = useParams<{ id: string }>();
   const { user } = useAuth();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [body, setBody] = useState("");
@@ -231,14 +233,14 @@ export default function TeacherContentDetailPage() {
           <Link
             to="/teacher/content"
             className="rounded-lg p-2 text-slate-500 hover:bg-slate-100"
-            aria-label="Back to content library"
+            aria-label={t("contentDetail.back")}
           >
             <ArrowLeft size={19} />
           </Link>
           <div>
             <div className="flex items-center gap-2 text-sm font-medium text-slate-500">
               <FileText size={18} />
-              Teacher Content
+              {t("contentDetail.teacherContent")}
             </div>
             <h1 className="mt-1 text-2xl font-bold text-slate-900">{currentItem.title}</h1>
             <p className="mt-1 text-sm text-slate-500">
@@ -247,7 +249,7 @@ export default function TeacherContentDetailPage() {
           </div>
         </div>
         <span className={"inline-flex w-fit rounded-full px-3 py-1.5 text-xs font-semibold " + statusClasses[currentItem.status]}>
-          {currentItem.status[0].toUpperCase() + currentItem.status.slice(1)}
+          {t(`contentDetail.status.${currentItem.status}`)}
         </span>
       </header>
 
@@ -255,8 +257,8 @@ export default function TeacherContentDetailPage() {
         <section className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5 shadow-sm">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h2 className="font-semibold text-emerald-900">Reuse this content</h2>
-              <p className="mt-1 text-sm text-emerald-800">Create a class assignment using this published content.</p>
+              <h2 className="font-semibold text-emerald-900">{t("contentDetail.reuse")}</h2>
+              <p className="mt-1 text-sm text-emerald-800">{t("contentDetail.reuseHelp")}</p>
             </div>
             <Link
               to={"/teacher/assignments/new?contentId=" + currentItem.id}
@@ -270,31 +272,31 @@ export default function TeacherContentDetailPage() {
       )}
 
       <section className="grid gap-4 md:grid-cols-3">
-        <Info label="Content type" value={label(currentItem.contentType)} />
-        <Info label="Current version" value={latestVersion ? String(latestVersion.versionNo) : "None"} />
-        <Info label="Learning objectives" value={String(objectives.data?.length ?? 0)} />
+        <Info label={t("contentDetail.type")} value={label(currentItem.contentType)} />
+        <Info label={t("contentDetail.version")} value={latestVersion ? String(latestVersion.versionNo) : t("contentDetail.none")} />
+        <Info label={t("contentDetail.objectives")} value={String(objectives.data?.length ?? 0)} />
       </section>
 
       {objectives.data?.length ? (
         <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <h2 className="font-semibold text-slate-900">Learning objectives</h2>
+          <h2 className="font-semibold text-slate-900">{t("contentDetail.objectives")}</h2>
           <div className="mt-4 space-y-2">
             {objectives.data.map((link) => (
               <div key={link.objectiveId} className="rounded-xl bg-slate-50 px-4 py-3 text-sm text-slate-700">
-                Objective {link.sequenceNo}: {link.objectiveId}
+                {t("contentDetail.objective")} {link.sequenceNo}: {link.objectiveId}
               </div>
             ))}
           </div>
         </section>
       ) : (
         <section className="rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm text-amber-900">
-          This content has no learning objective. Review and publishing are blocked until at least one objective is linked.
+          {t("contentDetail.noObjective")}
         </section>
       )}
 
       {isRetired && (
         <section className="rounded-2xl border border-red-200 bg-red-50 p-5 text-sm text-red-800">
-          This content is retired and is no longer available for new publication. Its version history remains available.
+          {t("contentDetail.retired")}
         </section>
       )}
 
@@ -303,16 +305,16 @@ export default function TeacherContentDetailPage() {
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <h2 className="text-lg font-semibold text-slate-900">
-                {isRetired ? "Version history" : isPublished ? "Create the next draft version" : "Edit current draft"}
+                {isRetired ? t("contentDetail.versionHistory") : isPublished ? t("contentDetail.nextDraft") : t("contentDetail.editDraft")}
               </h2>
               <p className="mt-1 text-sm text-slate-500">
                 {isRetired
-                  ? "Retired content is read-only."
+                  ? t("contentDetail.retiredReadOnly")
                   : isPublished
-                    ? "Published versions remain historical. Saving changes creates a new draft version."
+                    ? t("contentDetail.publishedHistory")
                     : isReview
-                      ? "Saving changes creates a new draft and returns the content to draft status."
-                      : "Edit the latest learning content and save it as a new version."}
+                      ? t("contentDetail.reviewDraft")
+                      : t("contentDetail.editLatest")}
               </p>
             </div>
             <button
@@ -321,7 +323,7 @@ export default function TeacherContentDetailPage() {
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
             >
               <Eye size={17} />
-              {preview ? "Hide preview" : "Preview"}
+              {preview ? t("contentDetail.hidePreview") : t("contentDetail.preview")}
             </button>
           </div>
 
@@ -334,17 +336,17 @@ export default function TeacherContentDetailPage() {
                   setBody(event.target.value);
                 }}
                 className="input mt-5 min-h-72 w-full resize-y"
-                placeholder="Write the learning content..."
+                placeholder={t("contentDetail.writeContent")}
                 required
               />
 
               <label className="mt-4 block">
-                <span className="mb-1.5 block text-sm font-medium text-slate-700">Change summary</span>
+                <span className="mb-1.5 block text-sm font-medium text-slate-700">{t("contentDetail.changeSummary")}</span>
                 <input
                   value={changeSummary}
                   onChange={(event) => setChangeSummary(event.target.value)}
                   className="input w-full"
-                  placeholder="Describe what changed in this version"
+                  placeholder={t("contentDetail.changePlaceholder")}
                 />
               </label>
             </>
@@ -352,9 +354,9 @@ export default function TeacherContentDetailPage() {
 
           {preview && (
             <div className="mt-5 rounded-xl border border-slate-200 bg-slate-50 p-5">
-              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Preview</p>
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{t("contentDetail.preview")}</p>
               <div className="mt-3 whitespace-pre-wrap text-sm leading-7 text-slate-800">
-                {currentBody || "Nothing to preview yet."}
+                {currentBody || t("contentDetail.nothingPreview")}
               </div>
             </div>
           )}
@@ -362,16 +364,16 @@ export default function TeacherContentDetailPage() {
 
         {latestVersion && (
           <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h2 className="font-semibold text-slate-900">Version history</h2>
+            <h2 className="font-semibold text-slate-900">{t("contentDetail.versionHistory")}</h2>
             <div className="mt-4 space-y-2">
               {(versions.data ?? []).map((version) => (
                 <div key={version.id} className="flex flex-col gap-1 rounded-xl border border-slate-100 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
                   <div>
-                    <p className="text-sm font-semibold text-slate-800">Version {version.versionNo}</p>
-                    <p className="text-xs text-slate-500">{version.changeSummary || "No change summary"}</p>
+                    <p className="text-sm font-semibold text-slate-800">{t("contentDetail.versionLabel")} {version.versionNo}</p>
+                    <p className="text-xs text-slate-500">{version.changeSummary || t("contentDetail.noSummary")}</p>
                   </div>
                   <span className={"inline-flex w-fit rounded-full px-2.5 py-1 text-xs font-semibold " + statusClasses[version.status]}>
-                    {version.status[0].toUpperCase() + version.status.slice(1)}
+                    {t(`contentDetail.status.${version.status}`)}
                   </span>
                 </div>
               ))}
@@ -389,7 +391,7 @@ export default function TeacherContentDetailPage() {
               className="inline-flex items-center gap-2 rounded-xl border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-50"
             >
               <Save size={17} />
-              {saving ? "Saving..." : "Save New Version"}
+              {saving ? t("contentDetail.saving") : t("contentDetail.saveVersion")}
             </button>
 
             {isDraft && (
@@ -400,7 +402,7 @@ export default function TeacherContentDetailPage() {
                 className="inline-flex items-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-amber-700 disabled:opacity-50"
               >
                 <Send size={17} />
-                {reviewing ? "Submitting..." : "Send for Review"}
+                {reviewing ? t("contentDetail.submitting") : t("contentDetail.sendReview")}
               </button>
             )}
 
@@ -412,7 +414,7 @@ export default function TeacherContentDetailPage() {
                 className="inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-5 py-2.5 text-sm font-semibold text-white hover:bg-emerald-800 disabled:opacity-50"
               >
                 <Send size={17} />
-                {publishing ? "Publishing..." : "Publish"}
+                {publishing ? t("contentDetail.publishing") : t("contentDetail.publish")}
               </button>
             )}
 
@@ -424,7 +426,7 @@ export default function TeacherContentDetailPage() {
                 className="inline-flex items-center gap-2 rounded-xl border border-red-300 px-5 py-2.5 text-sm font-semibold text-red-700 hover:bg-red-50 disabled:opacity-50"
               >
                 <Archive size={17} />
-                {retiring ? "Retiring..." : "Retire"}
+                {retiring ? t("contentDetail.retiring") : t("contentDetail.retire")}
               </button>
             )}
           </div>
