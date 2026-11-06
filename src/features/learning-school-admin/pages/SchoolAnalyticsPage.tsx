@@ -211,8 +211,8 @@ export default function SchoolAnalyticsPage() {
         <label className="text-sm font-medium text-slate-700">{t("schoolAnalytics.activityThrough")}<input type="date" value={activityTo} min={activityFrom || undefined} onChange={(event) => setActivityTo(event.target.value)} className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5" /></label>
       </section>
       <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-        <Metric label={t("schoolAdmin.activeStudents")} value={studentIds.size.toLocaleString()} detail={t("schoolAnalytics.activeStudentsDetail")} />
-        <Metric label={t("schoolAdmin.activeTeachers")} value={teacherIds.size.toLocaleString()} detail={t("schoolAnalytics.activeTeachersDetail")} />
+        <Metric label={t("schoolAnalytics.activeStudents")} value={studentIds.size.toLocaleString()} detail={t("schoolAnalytics.activeStudentsDetail")} />
+        <Metric label={t("schoolAnalytics.activeTeachers")} value={teacherIds.size.toLocaleString()} detail={t("schoolAnalytics.activeTeachersDetail")} />
         <Metric label={t("schoolAnalytics.activeClasses")} value={visibleClasses.length.toLocaleString()} detail={t("schoolAnalytics.activeClassesDetail")} />
         <Metric label={t("schoolAnalytics.finalizedTermGrades")} value={filteredFinalizedGrades.length.toLocaleString()} detail={t("schoolAnalytics.finalizedTermGradesDetail")} />
         <Metric label={t("schoolAnalytics.publishedAssignments")} value={(assignmentSummary?.publishedAssignments ?? 0).toLocaleString()} detail={t("schoolAnalytics.publishedAssignmentsDetail")} />
