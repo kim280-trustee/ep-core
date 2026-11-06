@@ -710,6 +710,10 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "studentDashboard.activityEmpty": "Your recent learning activity will appear here.",
     "studentDashboard.assignment": "assignment",
     "studentDashboard.assignmentsPlural": "assignments",
+    "studentDashboard.published": "Published",
+    "studentDashboard.recommendationPractice": "Practice",
+    "studentDashboard.recommendationReview": "Review",
+    "studentDashboard.recommendationExtend": "Extend learning",
   },
   th: {
     "customers.customerNotFound": "ไม่พบลูกค้า",
@@ -1412,6 +1416,10 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "studentDashboard.activityEmpty": "กิจกรรมการเรียนรู้ล่าสุดของคุณจะแสดงที่นี่",
     "studentDashboard.assignment": "งาน",
     "studentDashboard.assignmentsPlural": "งาน",
+    "studentDashboard.published": "เผยแพร่แล้ว",
+    "studentDashboard.recommendationPractice": "ฝึกฝน",
+    "studentDashboard.recommendationReview": "ทบทวน",
+    "studentDashboard.recommendationExtend": "ต่อยอดการเรียนรู้",
     "learning.parent": "ผู้ปกครอง",
   }
 };
