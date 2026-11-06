@@ -90,7 +90,7 @@ export default function LearningProgressPage() {
     <div className="space-y-6">
       <section>
         <p className="text-sm font-medium text-slate-500">{t("studentProgress.studentLearning")}</p>
-        <h1 className="mt-1 text-2xl font-bold text-slate-900">Progress</h1>
+        <h1 className="mt-1 text-2xl font-bold text-slate-900">{t("studentProgress.title")}</h1>
         <p className="mt-2 text-sm text-slate-500">
           {t("studentProgress.intro")}
         </p>
@@ -132,7 +132,7 @@ export default function LearningProgressPage() {
                     <p className="mt-1 text-xs text-slate-500">{assignment.code}</p>
                   </div>
                   <span className={`shrink-0 rounded-full px-3 py-1 text-xs font-semibold ${status === "completed" ? "bg-emerald-100 text-emerald-700" : status === "in_progress" ? "bg-amber-100 text-amber-700" : "bg-slate-100 text-slate-700"}`}>
-                    {status === "completed" ? "Completed" : status === "in_progress" ? "In progress" : "Not started"}
+                    {status === "completed" ? t("studentProgress.completed") : status === "in_progress" ? t("studentProgress.inProgress") : t("studentProgress.notStarted")}
                   </span>
                 </div>
                 {responsesForAssignment.length > 0 && (
@@ -290,7 +290,7 @@ export default function LearningProgressPage() {
                       {correction
                         ? t("studentProgress.correctionDetail")
                         : event.attemptId
-                          ? `{t("studentProgress.assessmentAttempt")} ${event.attemptId}`
+                          ? `${t("studentProgress.attempt")}${event.attemptId}`
                           : t("studentProgress.masteryUpdate")}
                     </p>
                   </div>
