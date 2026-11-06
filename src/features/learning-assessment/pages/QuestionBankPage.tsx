@@ -13,9 +13,9 @@ type Choice = { key: string; label: string };
 type TeacherQuestionType = Extract<LearningQuestionType, "single_choice" | "true_false" | "short_answer">;
 
 const teacherTypes: Array<{ value: TeacherQuestionType; label: string }> = [
-  { value: "single_choice", label: t("questionBank.single") },
-  { value: "true_false", label: t("questionBank.trueFalse") },
-  { value: "short_answer", label: t("questionBank.short") },
+  { value: "single_choice", label: "Single choice" },
+  { value: "true_false", label: "True / False" },
+  { value: "short_answer", label: "Short answer (not yet assessable)" },
 ];
 
 export default function QuestionBankPage() {
