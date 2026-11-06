@@ -583,7 +583,7 @@ export default function SchoolAdministrationPage() {
                       <h3 className="font-semibold text-slate-900">{classGroups.find((group) => group.id === classGroupId)?.name ?? t("schoolSetup.selectClass")} · Subjects</h3>
                       {classGroupId ? <>
                         <div className="mt-3 flex flex-wrap gap-2"><select aria-label={t("schoolSetup.subjectToAdd")} className={fieldClass + " min-w-0 flex-1"} value={subjectToAdd} onChange={(event) => setSubjectToAdd(event.target.value)}><option value="">{t("schoolSetup.chooseSubject")}</option>{availableSubjects.map((subject) => <option key={subject.id} value={subject.id}>{subject.name} ({subject.code})</option>)}</select><button type="button" className={buttonClass} disabled={!subjectToAdd || saveMutation.isPending} onClick={async () => { const id = subjectToAdd; try { await saveMutation.mutateAsync(() => learningAcademicService.activateClassSubject(organizationId, classGroupId, id)); setSubjectToAdd(""); } catch { /* The mutation displays the failure above the forms. */ } }}>{t("schoolSetup.addSubject")}</button></div>
-                        <div className="mt-4 space-y-2">{classSubjectsQuery.isPending ? <p className="text-sm text-slate-500">{t("schoolSetup.loadingSubjects")}</p> : classSubjects.map((item) => { const subject = subjects.find((candidate) => candidate.id === item.subjectId); return <div key={item.id} className="flex items-center justify-between gap-3 rounded-lg bg-slate-50 px-3 py-2"><div><p className="text-sm font-medium text-slate-800">{subject?.name ?? t("schoolSetup.unknownSubject")}</p><p className="text-xs text-slate-500">{item.status}</p></div><button type="button" className={secondaryButtonClass} disabled={saveMutation.isPending} onClick={() => saveMutation.mutate(() => learningAcademicService.updateClassSubjectStatus(item.id, item.status === "active" ? "archived" : "active"))}>{item.status === "active" ? "Archive" : "Reactivate"}</button></div>; })}{!classSubjectsQuery.isPending && !classSubjectsQuery.isError && !classSubjects.length && <p className="text-sm text-slate-500">{t("schoolSetup.noSubjectsAssigned")}</p>}</div>
+                        <div className="mt-4 space-y-2">{classSubjectsQuery.isPending ? <p className="text-sm text-slate-500">{t("schoolSetup.loadingSubjects")}</p> : classSubjects.map((item) => { const subject = subjects.find((candidate) => candidate.id === item.subjectId); return <div key={item.id} className="flex items-center justify-between gap-3 rounded-lg bg-slate-50 px-3 py-2"><div><p className="text-sm font-medium text-slate-800">{subject?.name ?? t("schoolSetup.unknownSubject")}</p><p className="text-xs text-slate-500">{item.status}</p></div><button type="button" className={secondaryButtonClass} disabled={saveMutation.isPending} onClick={() => saveMutation.mutate(() => learningAcademicService.updateClassSubjectStatus(item.id, item.status === "active" ? "archived" : "active"))}>{item.status === "active" ? t("schoolSetup.archive") : t("schoolSetup.reactivate")}</button></div>; })}{!classSubjectsQuery.isPending && !classSubjectsQuery.isError && !classSubjects.length && <p className="text-sm text-slate-500">{t("schoolSetup.noSubjectsAssigned")}</p>}</div>
                       </> : <p className="mt-3 text-sm text-slate-500">{t("schoolSetup.selectClassManageSubjects")}</p>}
                     </div>
                   </div>
@@ -599,10 +599,10 @@ export default function SchoolAdministrationPage() {
                   </div>
                   <div className="mt-4 rounded-xl border border-slate-200 p-4">
                     <div className="flex flex-wrap items-center justify-between gap-3">
-                      <div><h3 className="font-semibold text-slate-900">{t("schoolSetup.bulkAssignAccounts")}</h3><p className="mt-1 text-xs text-slate-500">Select several accounts to add them to this class as {membershipType}s. Accounts are not created here.</p></div>
+                      <div><h3 className="font-semibold text-slate-900">{t("schoolSetup.bulkAssignAccounts")}</h3><p className="mt-1 text-xs text-slate-500">{t("schoolSetup.bulkAssignPrefix")} {membershipType === "student" ? t("schoolAdmin.student") : t("schoolAdmin.teacher")}{t("schoolSetup.bulkAssignSuffix")}</p></div>
                       <div className="flex flex-wrap gap-2">
-                        <button type="button" className={secondaryButtonClass} disabled={!addableUsers.length} onClick={() => setSelectedUserIds(selectedUserIds.length === addableUsers.length ? [] : addableUsers.map((item) => item.id))}>{selectedUserIds.length === addableUsers.length && addableUsers.length ? "Clear selection" : "Select all available"}</button>
-                        <button type="button" className={buttonClass} disabled={!selectedUserIds.length || saveMutation.isPending} onClick={() => void bulkAddMembers()}>{saveMutation.isPending ? "Adding…" : `Add selected (${selectedUserIds.length})`}</button>
+                        <button type="button" className={secondaryButtonClass} disabled={!addableUsers.length} onClick={() => setSelectedUserIds(selectedUserIds.length === addableUsers.length ? [] : addableUsers.map((item) => item.id))}>{selectedUserIds.length === addableUsers.length && addableUsers.length ? t("schoolSetup.clearSelection") : t("schoolSetup.selectAllAvailable")}</button>
+                        <button type="button" className={buttonClass} disabled={!selectedUserIds.length || saveMutation.isPending} onClick={() => void bulkAddMembers()}>{saveMutation.isPending ? t("schoolSetup.adding") : t("schoolSetup.addSelected") + ` (${selectedUserIds.length})`}</button>
                       </div>
                     </div>
                     {eligibleUsersQuery.isPending ? <p className="mt-3 text-sm text-slate-500">{t("schoolSetup.loadingEligibleAccounts")}</p> : addableUsers.length ? (
@@ -615,21 +615,21 @@ export default function SchoolAdministrationPage() {
                     ) : <p className="mt-3 text-sm text-slate-500">{t("schoolSetup.noAdditionalAccounts")}</p>}
                   </div>
                   <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-                    <p className="text-xs text-slate-500">Export includes every membership shown below, including inactive memberships.</p>
+                    <p className="text-xs text-slate-500">{t("schoolSetup.exportIncludesInactive")}</p>
                     <button type="button" className={secondaryButtonClass} disabled={rosterQuery.isPending || rosterQuery.isError || !roster.length} onClick={exportRoster}>{t("schoolSetup.exportRoster")}</button>
                     <button type="button" className={secondaryButtonClass} disabled={!classGroups.length || eligibleUsersQuery.isPending} onClick={() => void exportSchoolRosters()}>{t("schoolSetup.exportSchoolRosters")}</button>
                   </div>
                   <div className="mt-5 overflow-x-auto">
                     {rosterQuery.isPending ? <p className="py-4 text-sm text-slate-500">{t("schoolSetup.loadingRoster")}</p> : roster.length ? (
                       <table className="min-w-full text-left text-sm">
-                        <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-3 py-3">{t("schoolSetup.account")}</th><th className="px-3 py-3">{t("schoolSetup.classRole")}</th><th className="px-3 py-3">Status</th><th className="px-3 py-3">{t("schoolSetup.action")}</th></tr></thead>
+                        <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-3 py-3">{t("schoolSetup.account")}</th><th className="px-3 py-3">{t("schoolSetup.classRole")}</th><th className="px-3 py-3">{t("schoolAdmin.status")}</th><th className="px-3 py-3">{t("schoolSetup.action")}</th></tr></thead>
                         <tbody className="divide-y divide-slate-100">
                           {roster.map((member) => {
                             const account = userById.get(member.userId);
                             return <tr key={member.id}>
                               <td className="px-3 py-3"><p className="font-semibold text-slate-900">{account?.name ?? t("schoolSetup.accountDetailsUnavailable")}</p><p className="text-xs text-slate-500">{account?.email || (rosterUsersQuery.isPending ? t("schoolSetup.loadingAccountDetails") : t("schoolSetup.verifyAccount"))}</p></td>
-                              <td className="px-3 py-3 capitalize">{member.membershipType}</td>
-                              <td className="px-3 py-3 capitalize">{member.status}</td>
+                              <td className="px-3 py-3 capitalize">{member.membershipType === "student" ? t("schoolAdmin.student") : t("schoolAdmin.teacher")}</td>
+                              <td className="px-3 py-3 capitalize">{member.status === "active" ? t("schoolAdmin.active") : member.status === "inactive" ? t("schoolAdmin.inactive") : member.status}</td>
                               <td className="px-3 py-3">{member.status === "active"
                                 ? <button type="button" className={secondaryButtonClass} disabled={saveMutation.isPending} onClick={() => saveMutation.mutate(() => learningEnrollmentService.removeMember(member.id))}>{t("schoolAdmin.deactivate")}</button>
                                 : <button type="button" className={secondaryButtonClass} disabled={saveMutation.isPending} onClick={() => saveMutation.mutate(() => learningEnrollmentService.updateMember(member.id, { status: "active", joinedAt: new Date().toISOString() }))}>{t("schoolSetup.reactivate")}</button>}</td>
