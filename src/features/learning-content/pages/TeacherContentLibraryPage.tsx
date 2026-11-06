@@ -38,7 +38,7 @@ export default function TeacherContentLibraryPage() {
   }, [content.data, search, status, contentType]);
   if (!user) return <EmptyState text={t("contentLibrary.signIn")} />;
   if (classes.isPending) return <div className="h-64 animate-pulse rounded-2xl bg-slate-200" />;
-  if (classes.isError) return <ErrorState text={t("contentLibrary.teacherContextError")} onRetry={() => void classes.refetch()} />;
+  if (classes.isError) return <ErrorState text={t("contentLibrary.teacherContextError")} onRetry={() => void classes.refetch()} retryLabel={t("contentLibrary.tryAgain")} />;
   if (!classes.data?.length) return <EmptyState text={t("contentLibrary.noClass")} />;
   return (
     <div className="space-y-6">
@@ -55,7 +55,7 @@ export default function TeacherContentLibraryPage() {
           <label><span className="sr-only">{t("contentLibrary.filterType")}</span><select value={contentType} onChange={(event) => setContentType(event.target.value as LearningContentType | "all")} className="input w-full">{contentTypes.map((value) => <option key={value} value={value}>{value === "all" ? t("contentLibrary.allTypes") : t(typeLabels[value])}</option>)}</select></label>
         </div>
       </section>
-      {content.isPending ? <div className="h-72 animate-pulse rounded-2xl bg-slate-200" /> : content.isError ? <ErrorState text={t("contentLibrary.loadError")} onRetry={() => void content.refetch()} /> : (
+      {content.isPending ? <div className="h-72 animate-pulse rounded-2xl bg-slate-200" /> : content.isError ? <ErrorState text={t("contentLibrary.loadError")} onRetry={() => void content.refetch()} retryLabel={t("contentLibrary.tryAgain")} /> : (
         <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
           <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4"><div><h2 className="font-semibold text-slate-900">{t("contentLibrary.materials")}</h2><p className="mt-1 text-xs text-slate-500">{filteredContent.length} / {(content.data ?? []).length} {t("contentLibrary.items")}</p></div><button type="button" onClick={() => void content.refetch()} className="rounded-lg p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900" title={t("contentLibrary.refresh")}><RefreshCw size={17} /></button></div>
           {filteredContent.length ? <div className="divide-y divide-slate-100">{filteredContent.map((item) => (
@@ -70,4 +70,4 @@ export default function TeacherContentLibraryPage() {
   );
 }
 function EmptyState({ text }: { text: string }) { return <div className="rounded-2xl border border-slate-200 bg-white p-8 text-sm text-slate-600">{text}</div>; }
-function ErrorState({ text, onRetry }: { text: string; onRetry: () => void }) { return <div className="rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800"><p className="font-semibold">{text}</p><button type="button" onClick={onRetry} className="mt-3 inline-flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-sm font-medium"><RefreshCw size={16} />Try again</button></div>; }
+function ErrorState({ text, onRetry, retryLabel }: { text: string; onRetry: () => void; retryLabel: string }) { return <div className="rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800"><p className="font-semibold">{text}</p><button type="button" onClick={onRetry} className="mt-3 inline-flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-sm font-medium"><RefreshCw size={16} />{retryLabel}</button></div>; }
