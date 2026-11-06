@@ -256,7 +256,7 @@ export default function CreateTeacherAssignmentPage() {
             disabled={createMutation.isPending || Boolean(contentId && !contentReady)}
             className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-base font-semibold text-white hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-600 sm:w-auto"
           >
-            {createMutation.isPending ? "{t("teacherCreateAssignment.creating")}" : <><CheckCircle2 size={18} />{t("teacherCreateAssignment.createContinue")}</>}
+            {createMutation.isPending ? t("teacherCreateAssignment.creating") : <><CheckCircle2 size={18} />{t("teacherCreateAssignment.createContinue")}</>}
           </button>
           <p className="mt-2 flex items-start gap-2 text-sm text-slate-500">
             <ClipboardCheck size={17} className="mt-0.5 shrink-0" />
