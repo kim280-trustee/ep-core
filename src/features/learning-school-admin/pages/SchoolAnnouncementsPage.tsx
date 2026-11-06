@@ -95,6 +95,7 @@ export default function SchoolAnnouncementsPage() {
   if (!canManage) return <main className="mx-auto max-w-5xl p-6"><section role="alert" className="rounded-2xl border border-amber-200 bg-amber-50 p-5 text-amber-950"><h1 className="font-bold">School announcement access required</h1><p className="mt-2 text-sm">You need the learning.academic.manage permission. The server also verifies your active OWNER or MANAGER membership for the selected school.</p><Link to="/school-admin" className="mt-4 inline-flex font-semibold underline">Return to school administration</Link></section></main>;
 
   return <main className="mx-auto max-w-5xl space-y-6">
+    <div className="flex justify-end"><LearningLanguageSelector compact /></div>
     <header>
       <Link to="/school-admin" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-slate-900"><ArrowLeft size={16}/> School administration</Link>
       <p className="mt-4 text-sm font-semibold text-indigo-700">Parent engagement</p>
