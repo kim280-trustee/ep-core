@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
+import { useTranslation } from "@/core/i18n/useTranslation";
 import { LearningLanguageSelector } from "@/features/learning-shared/components/LearningLanguageSelector";
 import { useAuthorization } from "@/features/auth/authorization/useAuthorization";
 import { learningSchoolAdminService } from "../services/learning-school-admin.service";
@@ -43,6 +44,7 @@ function exportCsv(rows: SchoolAttendanceReportRow[], schoolName: string, startD
 
 export default function SchoolAttendanceReportPage() {
   const { user, loading: authLoading } = useAuth();
+  const { t } = useTranslation();
   const authorization = useAuthorization();
   const canManage = authorization.hasPermission("learning.academic.manage");
   const [selectedOrganizationId, setSelectedOrganizationId] = useState("");
@@ -117,11 +119,11 @@ export default function SchoolAttendanceReportPage() {
 
       {!reportQuery.isPending && !reportQuery.isError && <>
         <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-          <Summary label="Registers" value={totals.registers} />
-          <Summary label="Present" value={totals.present} />
-          <Summary label="Absent" value={totals.absent} />
-          <Summary label="Late" value={totals.late} />
-          <Summary label="Excused" value={totals.excused} />
+          <Summary label=t("schoolAdmin.registers") value={totals.registers} />
+          <Summary label=t("schoolAdmin.present") value={totals.present} />
+          <Summary label=t("schoolAdmin.absent") value={totals.absent} />
+          <Summary label=t("schoolAdmin.late") value={totals.late} />
+          <Summary label=t("schoolAdmin.excused") value={totals.excused} />
         </section>
         <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
           <div className="border-b border-slate-200 p-5"><h2 className="font-semibold text-slate-950">Class and date breakdown</h2><p className="mt-1 text-sm text-slate-500">{rows.length} saved class-date registers</p></div>
