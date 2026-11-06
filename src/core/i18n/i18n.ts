@@ -1375,6 +1375,7 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "teacherAuthoring.creatingQuestion": "Creating question…",
     "teacherInterventions.evidenceReferenceOptional": "Evidence reference (optional)",
     "teacherInterventions.reviewDateOptional": "Review date (optional)",
+    "teacherAuthoring.validating": "Validating…",
   },
   th: {
     "customers.customerNotFound": "ไม่พบลูกค้า",
@@ -2743,6 +2744,7 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "teacherAuthoring.creatingQuestion": "กำลังสร้างคำถาม…",
     "teacherInterventions.evidenceReferenceOptional": "ข้อมูลอ้างอิงหลักฐาน (ไม่บังคับ)",
     "teacherInterventions.reviewDateOptional": "วันที่ทบทวน (ไม่บังคับ)",
+    "teacherAuthoring.validating": "กำลังตรวจสอบ…",
   }
 };
 
