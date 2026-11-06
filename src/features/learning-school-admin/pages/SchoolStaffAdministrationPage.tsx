@@ -75,12 +75,12 @@ export default function SchoolStaffAdministrationPage() {
   if (authLoading || authorization.loading) {
     return <main className="mx-auto max-w-7xl p-8"><div className="h-32 animate-pulse rounded-2xl bg-slate-200" /></main>;
   }
-  if (!user) return <main className="mx-auto max-w-4xl p-8">Sign in to access staff administration.</main>;
+  if (!user) return <main className="mx-auto max-w-4xl p-8">{t("schoolAdmin.signInStaff")}</main>;
   if (!canManage) {
     return <main className="mx-auto max-w-4xl rounded-2xl border border-amber-200 bg-amber-50 p-8 text-amber-950">
-      <h1 className="text-xl font-semibold">School administration access required</h1>
-      <p className="mt-2 text-sm">Your account needs the learning.academic.manage permission to view the staff directory.</p>
-      <Link className="mt-4 inline-block text-sm font-semibold underline" to="/school-admin">Return to school administration</Link>
+      <h1 className="text-xl font-semibold">{t("schoolAdmin.accessRequired")}</h1>
+      <p className="mt-2 text-sm">{t("schoolAdmin.staffPermissionDescription")}</p>
+      <Link className="mt-4 inline-block text-sm font-semibold underline" to="/school-admin">{t("schoolAdmin.return")}</Link>
     </main>;
   }
 
@@ -127,7 +127,7 @@ export default function SchoolStaffAdministrationPage() {
             </label>
             <label className="text-sm font-medium text-slate-700">{t("schoolAdmin.membershipStatus")}
               <select className={fieldClass} value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)}>
-                <option value="all">{t("schoolAdmin.allStatuses")}</option><option value="active">Active</option><option value="inactive">Inactive</option><option value="suspended">{t("schoolAdmin.suspended")}</option><option value="invited">{t("schoolAdmin.invited")}</option>
+                <option value="all">{t("schoolAdmin.allStatuses")}</option><option value="active">{t("schoolAdmin.active")}</option><option value="inactive">{t("schoolAdmin.inactive")}</option><option value="suspended">{t("schoolAdmin.suspended")}</option><option value="invited">{t("schoolAdmin.invited")}</option>
               </select>
             </label>
             <div className="flex items-end text-sm text-slate-500">{visibleStaff.length} / {staff.length} {t("schoolAdmin.staffShown")}</div>
