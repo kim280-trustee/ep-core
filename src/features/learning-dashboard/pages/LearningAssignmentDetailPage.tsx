@@ -267,7 +267,7 @@ export default function Learning{t("studentAssignmentDetail.assignment")}DetailP
                 <div className="flex items-center gap-3">
                   <Circle size={15} className="shrink-0 text-slate-400" />
                   <div>
-                    <p className="font-medium text-slate-800">Item {index + 1}: {itemLabel}</p>
+                    <p className="font-medium text-slate-800">{t("studentAssignmentDetail.itemNumber")}{index + 1}: {itemLabel}</p>
                     <p className="mt-1 text-xs text-slate-500">{item.required ? t("studentAssignmentDetail.required") : t("studentAssignmentDetail.optional")}{t("studentAssignmentDetail.activity")}</p>
                   </div>
                 </div>
