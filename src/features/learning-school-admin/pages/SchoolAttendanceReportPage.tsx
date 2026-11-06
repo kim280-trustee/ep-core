@@ -86,6 +86,7 @@ export default function SchoolAttendanceReportPage() {
 
   return (
     <main className="mx-auto max-w-6xl space-y-6 p-4 sm:p-6">
+      <div className="flex justify-end"><LearningLanguageSelector compact /></div>
       <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <Link to="/school-admin" className="text-sm font-semibold text-slate-500 hover:text-slate-900">← School Administration</Link>
