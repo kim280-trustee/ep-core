@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { useAuthorization } from "@/features/auth/authorization/useAuthorization";
 import { learningTeacherService } from "../services/learning-teacher.service";
+import { useTranslation } from "@/core/i18n/useTranslation";
 
 export default function TeacherDashboardPage() {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const authorization = useAuthorization();
   const query = useQuery({
@@ -14,7 +16,7 @@ export default function TeacherDashboardPage() {
     enabled: Boolean(user?.id),
   });
 
-  if (!user) return <Empty text="Sign in to access the teacher workspace." />;
+  if (!user) return <Empty text=t("teacherDashboard.signIn") />;
   if (query.isPending) return <div className="h-64 animate-pulse rounded-2xl bg-slate-200" />;
   if (query.isError) {
     return (
@@ -57,7 +59,7 @@ export default function TeacherDashboardPage() {
                     <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">{item.classGroup.code}</p>
                     <h3 className="mt-1 text-lg font-bold text-slate-950">{item.classGroup.name}</h3>
                     <p className="mt-1 text-sm text-slate-500">
-                      {item.subjects.length ? item.subjects.map((subject) => subject.subject.name).join(", ") : "No subjects assigned"}
+                      {item.subjects.length ? item.subjects.map((subject) => subject.subject.name).join(", ") : t("teacherDashboard.noSubjects")}
                     </p>
                   </div>
                   <div className="rounded-xl bg-slate-100 p-2.5 text-slate-600">
@@ -92,52 +94,52 @@ export default function TeacherDashboardPage() {
           <DashboardTool
             to="/teacher/content"
             icon={Library}
-            title="Content Library"
-            description="Find and manage lessons and learning content."
-            action="Open Content Library"
+            title=t("teacherDashboard.contentLibrary")
+            description=t("teacherDashboard.contentHelp")
+            action=t("teacherDashboard.openContent")
           />
           <DashboardTool
             to="/teacher/lesson-plans"
             icon={BookOpen}
-            title="Lesson Planning"
-            description="Plan a lesson against an existing curriculum outcome and save it to the school content library."
-            action="Create Lesson Plan"
+            title=t("teacherDashboard.lessonPlanning")
+            description=t("teacherDashboard.lessonPlanningHelp")
+            action=t("teacherDashboard.createLessonPlan")
           />
           <DashboardTool
             to="/teacher/authoring"
             icon={BookOpen}
-            title="Authoring"
-            description="Create and prepare learning content for students."
-            action="Open Authoring"
+            title=t("teacherDashboard.authoring")
+            description=t("teacherDashboard.authoringHelp")
+            action=t("teacherDashboard.openAuthoring")
           />
           <DashboardTool
             to="/teacher/assignments/new"
             icon={ClipboardList}
-            title="Create Assignment"
-            description="Build an assignment and prepare it for students."
-            action="Create Assignment"
+            title=t("teacherDashboard.createAssignment")
+            description=t("teacherDashboard.assignmentHelp")
+            action=t("teacherDashboard.createAssignment")
           />
           <DashboardTool
             to="/teacher/vocabulary/assignments/new"
             icon={BookOpenCheck}
-            title="Graded Vocabulary Assignment"
-            description="Turn published Dictionary entries into an auto-marked class quiz."
-            action="Create Vocabulary Quiz"
+            title=t("teacherDashboard.vocabularyQuiz")
+            description=t("teacherDashboard.vocabularyHelp")
+            action=t("teacherDashboard.createVocabularyQuiz")
           />
           <DashboardTool
             to="/teacher/assessments"
             icon={ClipboardCheck}
-            title="Assessment Builder"
-            description="Create multi-question diagnostics, quizzes, tests, and practice assessments."
-            action="Build Assessment"
+            title=t("teacherDashboard.assessmentBuilder")
+            description=t("teacherDashboard.assessmentHelp")
+            action=t("teacherDashboard.buildAssessment")
           />
           {authorization.hasPermission("learning.academic.manage") && (
             <DashboardTool
               to="/school-admin"
               icon={Settings}
-              title="School Administration"
-              description="Manage academic years, terms, classes, subjects, and class rosters."
-              action="Open School Setup"
+              title=t("teacherDashboard.schoolAdmin")
+              description=t("teacherDashboard.schoolAdminHelp")
+              action=t("teacherDashboard.schoolSetup")
             />
           )}
         </div>
