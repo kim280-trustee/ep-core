@@ -230,8 +230,8 @@ export default function SchoolAnalyticsPage() {
       {academicQuery.isError && <p role="alert" className="rounded-xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-800">{t("schoolAnalytics.academicLoadError")}</p>}
       {termsQuery.isError && <p role="alert" className="rounded-xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-800">{t("schoolAnalytics.termsLoadError")}</p>}
       {classDataQuery.isError && <p role="alert" className="rounded-xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-800">{t("schoolAnalytics.classDataLoadError")}</p>}
-      {gradesQuery.isError && <p role="alert" className="rounded-xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-800">Grade records could not be loaded. Check that gradebook migrations are applied and your account has access.</p>}
-      <p className="text-xs text-slate-400">Data refreshes from the school database when the page loads. {gradesQuery.dataUpdatedAt ? "Grade data last refreshed " + new Date(gradesQuery.dataUpdatedAt).toLocaleString() + "." : ""}</p>
+      {gradesQuery.isError && <p role="alert" className="rounded-xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-800">{t("schoolAnalytics.gradeRecordsLoadError")}</p>}
+      <p className="text-xs text-slate-400">{t("schoolAnalytics.dataRefreshNote")} {gradesQuery.dataUpdatedAt ? t("schoolAnalytics.gradeDataLastRefreshed") + " " + new Date(gradesQuery.dataUpdatedAt).toLocaleString() + "." : ""}</p>
     </main>
   );
 }
