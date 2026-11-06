@@ -1373,6 +1373,8 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "teacherAuthoring.questionWaiting": "Question creation is waiting for the selected class organization to load. Change the Teacher class selection or refresh the page.",
     "teacherAuthoring.assessmentWaiting": "Assessment creation is waiting for the selected class organization to load. Change the Teacher class selection or refresh the page.",
     "teacherAuthoring.creatingQuestion": "Creating question…",
+    "teacherInterventions.evidenceReferenceOptional": "Evidence reference (optional)",
+    "teacherInterventions.reviewDateOptional": "Review date (optional)",
   },
   th: {
     "customers.customerNotFound": "ไม่พบลูกค้า",
@@ -2739,6 +2741,8 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "teacherAuthoring.questionWaiting": "กำลังรอโหลดข้อมูลองค์กรของชั้นเรียนที่เลือก โปรดเปลี่ยนชั้นเรียนหรือรีเฟรชหน้า",
     "teacherAuthoring.assessmentWaiting": "กำลังรอโหลดข้อมูลองค์กรของชั้นเรียนที่เลือก โปรดเปลี่ยนชั้นเรียนหรือรีเฟรชหน้า",
     "teacherAuthoring.creatingQuestion": "กำลังสร้างคำถาม…",
+    "teacherInterventions.evidenceReferenceOptional": "ข้อมูลอ้างอิงหลักฐาน (ไม่บังคับ)",
+    "teacherInterventions.reviewDateOptional": "วันที่ทบทวน (ไม่บังคับ)",
   }
 };
 
