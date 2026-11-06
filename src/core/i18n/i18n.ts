@@ -1338,6 +1338,16 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "teacherAI.openDraft": "Open this draft to edit and continue through the existing review workflow",
     "teacherCreateAssignment.codePlaceholder": "E.g. ENG-M1-001",
     "teacherCreateAssignment.titlePlaceholder": "E.g. Introducing Yourself",
+    "teacherGamification.active": "Active",
+    "teacherGamification.paused": "Paused",
+    "teacherGamification.ended": "Ended",
+    "teacherGamification.inactive": "Inactive",
+    "teacherGamification.requested": "Requested",
+    "teacherGamification.approved": "Approved",
+    "teacherGamification.rejected": "Rejected",
+    "teacherGamification.fulfilled": "Fulfilled",
+    "teacherGamification.class": "Class",
+    "teacherGamification.studentsCount": "students",
   },
   th: {
     "customers.customerNotFound": "ไม่พบลูกค้า",
@@ -2669,6 +2679,16 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "teacherAI.openDraft": "เปิดฉบับร่างนี้เพื่อแก้ไขและดำเนินการตามขั้นตอนตรวจทานที่มีอยู่",
     "teacherCreateAssignment.codePlaceholder": "เช่น ENG-M1-001",
     "teacherCreateAssignment.titlePlaceholder": "เช่น การแนะนำตัวเอง",
+    "teacherGamification.active": "กำลังใช้งาน",
+    "teacherGamification.paused": "หยุดชั่วคราว",
+    "teacherGamification.ended": "สิ้นสุดแล้ว",
+    "teacherGamification.inactive": "ปิดใช้งาน",
+    "teacherGamification.requested": "ส่งคำขอแล้ว",
+    "teacherGamification.approved": "อนุมัติแล้ว",
+    "teacherGamification.rejected": "ปฏิเสธแล้ว",
+    "teacherGamification.fulfilled": "มอบรางวัลแล้ว",
+    "teacherGamification.class": "ชั้นเรียน",
+    "teacherGamification.studentsCount": "คน",
   }
 };
 
