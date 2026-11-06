@@ -295,7 +295,7 @@ export default function TeacherAssessmentBuilderPage() {
                   </label>
                 );
               })}
-              {!questionsQuery.data?.length && <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-600">No published auto-scored questions are available. Create and publish questions in the <Link className="font-semibold underline" to="/teacher/question-bank">{t("assessmentBuilder.questionBank")}</Link>{ ${t("assessmentBuilder.first")}}</p>}
+              {!questionsQuery.data?.length && <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-600">No published auto-scored questions are available. Create and publish questions in the <Link className="font-semibold underline" to="/teacher/question-bank">{t("assessmentBuilder.questionBank")}</Link>{" "}{t("assessmentBuilder.first")}</p>}
               {Boolean(questionsQuery.data?.length) && !visibleQuestionOptions.length && <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-600">{t("assessmentBuilder.noMatches")}</p>}
               </div>
             </>
