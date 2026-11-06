@@ -341,84 +341,84 @@ export default function TeacherAIAssistantPage() {
         <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <h2 className="text-base font-bold text-slate-900">{t("teacherAI.requirements")}</h2>
           <div className="mt-4 space-y-4">
-            <label className={labelClass}>Teacher class
+            <label className={labelClass}>{t("teacherAI.teacherClass")}
               <select className={fieldClass} value={selectedClass?.classGroup.id ?? ""} onChange={(event) => setClassGroupId(event.target.value)}>
                 {classes.data.map((item) => <option key={item.classGroup.id} value={item.classGroup.id}>{item.classGroup.name}</option>)}
               </select>
             </label>
-            <label className={labelClass}>Subject
-              <input className={fieldClass} value={subject} onChange={(event) => setSubject(event.target.value)} maxLength={100} required placeholder="English" />
+            <label className={labelClass}>{t("teacherAI.subject")}
+              <input className={fieldClass} value={subject} onChange={(event) => setSubject(event.target.value)} maxLength={100} required placeholder={t("teacherAI.subjectPlaceholder")} />
             </label>
-            <label className={labelClass}>Grade / level
+            <label className={labelClass}>{t("teacherAI.grade")}
               <input className={fieldClass} value={gradeLevel} onChange={(event) => setGradeLevel(event.target.value)} maxLength={80} required placeholder="M1 / Grade 7" />
             </label>
-            <label className={labelClass}>Topic
-              <input className={fieldClass} value={topic} onChange={(event) => setTopic(event.target.value)} maxLength={200} required placeholder="Self introduction" />
+            <label className={labelClass}>{t("teacherAI.topic")}
+              <input className={fieldClass} value={topic} onChange={(event) => setTopic(event.target.value)} maxLength={200} required placeholder={t("teacherAI.topicPlaceholder")} />
             </label>
-            <label className={labelClass}>Learning objective
-              <textarea className={fieldClass} value={objective} onChange={(event) => setObjective(event.target.value)} maxLength={500} rows={3} required placeholder="By the end of the lesson, learners can introduce themselves using simple sentences." />
+            <label className={labelClass}>{t("teacherAI.objective")}
+              <textarea className={fieldClass} value={objective} onChange={(event) => setObjective(event.target.value)} maxLength={500} rows={3} required placeholder={t("teacherAI.objectivePlaceholder")} />
             </label>
             <div className="grid gap-4 sm:grid-cols-2">
-              <label className={labelClass}>Material type
+              <label className={labelClass}>{t("teacherAI.materialType")}
                 <select className={fieldClass} value={format} onChange={(event) => setFormat(event.target.value as MaterialFormat)}>
-                  <option value="lesson">{t("teacherAI.lesson")}</option><option value="worksheet">{t("teacherAI.worksheet")}</option><option value="quiz">{t("teacherAI.quiz")}</option><option value="lesson_plan">{t("teacherAI.lessonPlan")}</option><option value="differentiated_pack">Differentiated lesson pack</option>
+                  <option value="lesson">{t("teacherAI.lesson")}</option><option value="worksheet">{t("teacherAI.worksheet")}</option><option value="quiz">{t("teacherAI.quiz")}</option><option value="lesson_plan">{t("teacherAI.lessonPlan")}</option><option value="differentiated_pack">{t("teacherAI.differentiatedPack")}</option>
                 </select>
               </label>
-              <label className={labelClass}>Language
+              <label className={labelClass}>{t("teacherAI.language")}
                 <select className={fieldClass} value={language} onChange={(event) => setLanguage(event.target.value as DraftRequest["language"])}>
-                  <option value="English">English</option><option value="Thai">Thai</option><option value="English and Thai">English and Thai</option>
+                  <option value="English">English</option><option value="Thai">Thai</option><option value="English and Thai">{t("teacherAI.bilingualLanguage")}</option>
                 </select>
               </label>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
-              <label className={labelClass}>Country
-                <input className={fieldClass} value={country} onChange={(event) => setCountry(event.target.value)} maxLength={100} placeholder="Thailand" />
+              <label className={labelClass}>{t("teacherAI.country")}
+                <input className={fieldClass} value={country} onChange={(event) => setCountry(event.target.value)} maxLength={100} placeholder={t("teacherAI.countryPlaceholder")} />
               </label>
-              <label className={labelClass}>Education system
-                <input className={fieldClass} value={educationSystem} onChange={(event) => setEducationSystem(event.target.value)} maxLength={120} placeholder="MEP / national curriculum" />
+              <label className={labelClass}>{t("teacherAI.system")}
+                <input className={fieldClass} value={educationSystem} onChange={(event) => setEducationSystem(event.target.value)} maxLength={120} placeholder={t("teacherAI.systemPlaceholder")} />
               </label>
             </div>
             <section className="space-y-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
-              <div><h3 className="text-sm font-semibold text-slate-800">{t("teacherAI.linkObjectives")}</h3><p className="mt-1 text-xs leading-5 text-slate-600">The existing E&P authoring workflow requires an objective aligned to the selected curriculum and grade. Select the full hierarchy before saving. If the right curriculum or objective is not configured yet, copy the generated text and save it after the academic alignment is available.</p></div>
+              <div><h3 className="text-sm font-semibold text-slate-800">{t("teacherAI.linkObjectives")}</h3><p className="mt-1 text-xs leading-5 text-slate-600">{t("teacherAI.alignmentHelp")}</p></div>
               <label className={labelClass}>Curriculum
                 <select className={fieldClass} value={curriculumId} onChange={(event) => { setCurriculumId(event.target.value); setGradeLevelId(""); setSubjectId(""); setSkillId(""); setTopicId(""); setObjectiveId(""); }}><option value="">{t("teacherAI.selectCurriculum")}</option>{(curricula.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}{item.version ? ` (${item.version})` : ""}</option>)}</select>
               </label>
               <div className="grid gap-3 sm:grid-cols-2">
-                <label className={labelClass}>Curriculum grade
+                <label className={labelClass}>{t("teacherAI.grade")}
                   <select className={fieldClass} value={gradeLevelId} onChange={(event) => { setGradeLevelId(event.target.value); setObjectiveId(""); }} disabled={!curriculumId}><option value="">{t("teacherAI.selectGrade")}</option>{(gradeLevels.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
                 </label>
-                <label className={labelClass}>Curriculum subject
+                <label className={labelClass}>{t("teacherAI.subject")}
                   <select className={fieldClass} value={subjectId} onChange={(event) => { setSubjectId(event.target.value); setSkillId(""); setTopicId(""); setObjectiveId(""); }} disabled={!curriculumId}><option value="">{t("teacherAI.selectSubject")}</option>{(subjects.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
                 </label>
               </div>
-              <label className={labelClass}>Skill
+              <label className={labelClass}>{t("teacherAI.skill")}
                 <select className={fieldClass} value={skillId} onChange={(event) => { setSkillId(event.target.value); setTopicId(""); setObjectiveId(""); }} disabled={!subjectId}><option value="">{t("teacherAI.selectSkill")}</option>{(skills.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
               </label>
-              <label className={labelClass}>Topic in curriculum
+              <label className={labelClass}>{t("teacherAI.topic")}
                 <select className={fieldClass} value={topicId} onChange={(event) => { setTopicId(event.target.value); setObjectiveId(""); }} disabled={!skillId}><option value="">{t("teacherAI.selectTopic")}</option>{(topics.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
               </label>
-              <label className={labelClass}>Learning objective
+              <label className={labelClass}>{t("teacherAI.objective")}
                 <select className={fieldClass} value={objectiveId} onChange={(event) => setObjectiveId(event.target.value)} disabled={!topicId}><option value="">{t("teacherAI.selectObjective")}</option>{(objectives.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
               </label>
               {objectiveId && objectiveAlignments.isPending && <p className="text-xs text-slate-500">{t("teacherAI.checking")}</p>}
               {objectiveId && !objectiveAlignments.isPending && !alignedObjectiveIds.has(objectiveId) && <p role="alert" className="rounded-lg bg-amber-50 p-2 text-xs text-amber-800">{t("teacherAI.notAligned")}</p>}
             </section>
             <label className={labelClass}>Curriculum reference (optional)
-              <input className={fieldClass} value={curriculumReference} onChange={(event) => setCurriculumReference(event.target.value)} maxLength={500} placeholder="Official curriculum, standard, or learning outcome reference" />
+              <input className={fieldClass} value={curriculumReference} onChange={(event) => setCurriculumReference(event.target.value)} maxLength={500} placeholder={t("teacherAI.referencePlaceholder")} />
             </label>
             <label className={labelClass}>Lesson duration (minutes)
               <input className={fieldClass} type="number" min={5} max={240} step={1} value={durationMinutes} onChange={(event) => setDurationMinutes(event.target.value)} required />
             </label>
             <label className={labelClass}>Learners' prior knowledge (optional)
-              <textarea className={fieldClass} value={priorKnowledge} onChange={(event) => setPriorKnowledge(event.target.value)} maxLength={1000} rows={2} placeholder="What learners already know; do not include student names or personal data." />
+              <textarea className={fieldClass} value={priorKnowledge} onChange={(event) => setPriorKnowledge(event.target.value)} maxLength={1000} rows={2} placeholder={t("teacherAI.priorPlaceholder")} />
             </label>
-            <label className={labelClass}>Available materials (optional)
-              <textarea className={fieldClass} value={availableMaterials} onChange={(event) => setAvailableMaterials(event.target.value)} maxLength={1000} rows={2} placeholder="Textbook pages, board, projector, printed cards..." />
+            <label className={labelClass}>{t("teacherAI.materials")}
+              <textarea className={fieldClass} value={availableMaterials} onChange={(event) => setAvailableMaterials(event.target.value)} maxLength={1000} rows={2} placeholder={t("teacherAI.materialsPlaceholder")} />
             </label>
-            <label className={labelClass}>Teacher support needed (optional)
-              <textarea className={fieldClass} value={teacherNeeds} onChange={(event) => setTeacherNeeds(event.target.value)} maxLength={1000} rows={2} placeholder="Thai explanations, simple teacher scripts, common errors, differentiation..." />
+            <label className={labelClass}>{t("teacherAI.support")}
+              <textarea className={fieldClass} value={teacherNeeds} onChange={(event) => setTeacherNeeds(event.target.value)} maxLength={1000} rows={2} placeholder={t("teacherAI.supportPlaceholder")} />
             </label>
-            <label className={labelClass}>Difficulty
+            <label className={labelClass}>{t("teacherAI.difficulty")}
               <select className={fieldClass} value={difficulty} onChange={(event) => setDifficulty(event.target.value as DraftRequest["difficulty"])}>
                 <option value="beginner">{t("teacherAI.beginner")}</option><option value="developing">{t("teacherAI.developing")}</option><option value="on_level">{t("teacherAI.onLevel")}</option><option value="stretch">{t("teacherAI.stretch")}</option>
               </select>
@@ -437,8 +437,8 @@ export default function TeacherAIAssistantPage() {
             {generate.data && <div className="flex flex-wrap gap-2"><button type="button" onClick={() => void copyDraft()} className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"><Copy size={14} />{t("teacherAI.copy")}</button><button type="button" onClick={downloadMarkdownPack} className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"><Download size={14} />{t("teacherAI.markdown")}</button><button type="button" onClick={downloadJsonPack} className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"><FileJson size={14} />{t("teacherAI.json")}</button></div>}
           </div>
           {copyMessage && <p role="status" className="mt-3 text-xs text-slate-600">{copyMessage}</p>}
-          {generate.isPending ? <div className="mt-6 space-y-3" aria-label="Generating draft"><div className="h-4 w-3/4 animate-pulse rounded bg-slate-200" /><div className="h-4 w-full animate-pulse rounded bg-slate-200" /><div className="h-4 w-5/6 animate-pulse rounded bg-slate-200" /><div className="h-32 animate-pulse rounded-xl bg-slate-100" /></div>
-            : generate.data ? <><div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950"><strong>{t("teacherAI.review")}</strong> This draft has not been validated against an official curriculum and has not been published.</div>{generate.data.usage && <p className="mt-3 text-xs text-slate-500" role="status">{t("teacherAI.aiUsage")} {generate.data.usage.remainingRequests} {t("teacherAI.of")} {generate.data.usage.dailyLimit} {t("teacherAI.remaining")}</p>}<div className="mt-4 flex flex-wrap gap-2"><button type="button" onClick={() => saveDraft.mutate()} disabled={saveDraft.isPending || !organizationId || !curriculumId || !gradeLevelId || !subjectId || !skillId || !topicId || !objectiveId || objectiveAlignments.isPending || objectiveAlignments.isError || !alignedObjectiveIds.has(objectiveId)} className="rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-50">{saveDraft.isPending ? t("teacherAI.saving") : t("teacherAI.save")}</button><a href="/teacher/content" className="inline-flex items-center rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">{t("teacherAI.openLibrary")}</a></div>{saveDraft.isError && <p role="alert" className="mt-3 text-sm text-red-700">{saveDraft.error.message}</p>}{saveDraft.data && <p role="status" className="mt-3 rounded-lg bg-emerald-50 p-3 text-sm text-emerald-800">Saved “{saveDraft.data.title}” as a draft with the aligned learning objective linked. <a className="font-semibold underline" href={`/teacher/content/${saveDraft.data.id}`}>Open this draft to edit and continue through the existing review workflow</a></p>}<pre className="mt-4 whitespace-pre-wrap break-words font-sans text-sm leading-6 text-slate-800">{generate.data.draft}</pre></>
+          {generate.isPending ? <div className="mt-6 space-y-3" aria-label={t("teacherAI.generatingDraft")}><div className="h-4 w-3/4 animate-pulse rounded bg-slate-200" /><div className="h-4 w-full animate-pulse rounded bg-slate-200" /><div className="h-4 w-5/6 animate-pulse rounded bg-slate-200" /><div className="h-32 animate-pulse rounded-xl bg-slate-100" /></div>
+            : generate.data ? <><div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950"><strong>{t("teacherAI.review")}</strong> {t("teacherAI.draftNotValidated")}</div>{generate.data.usage && <p className="mt-3 text-xs text-slate-500" role="status">{t("teacherAI.aiUsage")} {generate.data.usage.remainingRequests} {t("teacherAI.of")} {generate.data.usage.dailyLimit} {t("teacherAI.remaining")}</p>}<div className="mt-4 flex flex-wrap gap-2"><button type="button" onClick={() => saveDraft.mutate()} disabled={saveDraft.isPending || !organizationId || !curriculumId || !gradeLevelId || !subjectId || !skillId || !topicId || !objectiveId || objectiveAlignments.isPending || objectiveAlignments.isError || !alignedObjectiveIds.has(objectiveId)} className="rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-50">{saveDraft.isPending ? t("teacherAI.saving") : t("teacherAI.save")}</button><a href="/teacher/content" className="inline-flex items-center rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">{t("teacherAI.openLibrary")}</a></div>{saveDraft.isError && <p role="alert" className="mt-3 text-sm text-red-700">{saveDraft.error.message}</p>}{saveDraft.data && <p role="status" className="mt-3 rounded-lg bg-emerald-50 p-3 text-sm text-emerald-800">{t("teacherAI.savedDraftPrefix")}{saveDraft.data.title}{t("teacherAI.savedDraftSuffix")} <a className="font-semibold underline" href={`/teacher/content/${saveDraft.data.id}`}>{t("teacherAI.openDraft")}</a></p>}<pre className="mt-4 whitespace-pre-wrap break-words font-sans text-sm leading-6 text-slate-800">{generate.data.draft}</pre></>
             : <div className="mt-8 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center"><Sparkles size={24} className="mx-auto text-slate-400" /><p className="mt-3 text-sm font-semibold text-slate-700">{t("teacherAI.draftHere")}</p><p className="mt-1 text-sm text-slate-500">{t("teacherAI.enterObjective")}</p></div>}
         </section>
       </div>
