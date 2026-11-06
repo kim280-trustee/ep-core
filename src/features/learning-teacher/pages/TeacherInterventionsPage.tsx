@@ -150,7 +150,7 @@ export default function TeacherInterventionsPage() {
 
   return <main className="mx-auto max-w-6xl space-y-6">
     <header>
-      <Link to="/teacher" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-slate-900"><ArrowLeft size={16}/> Teacher workspace</Link>
+      <Link to="/teacher" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-slate-900"><ArrowLeft size={16}/> {t("teacherInterventions.workspace")}</Link>
       <p className="mt-4 text-sm font-semibold text-indigo-700">{t("teacherInterventions.teachingSupport")}</p>
       <h1 className="mt-1 text-2xl font-bold text-slate-950 sm:text-3xl">{t("teacherInterventions.title")}</h1>
       <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">{t("teacherInterventions.intro")}</p>
@@ -159,7 +159,7 @@ export default function TeacherInterventionsPage() {
     {feedback && <div role={feedback.kind === "error" ? "alert" : "status"} className={feedback.kind === "error" ? "flex gap-2 rounded-xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-800" : "flex gap-2 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800"}><AlertCircle size={18} className="shrink-0"/><span>{feedback.text}</span></div>}
 
     <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-      <div className="flex flex-wrap items-start justify-between gap-3"><div><h2 className="flex items-center gap-2 text-lg font-semibold text-slate-950"><Plus size={18}/> Record a support case</h2><p className="mt-1 text-sm text-slate-500">{t("teacherInterventions.createHelp")}</p></div></div>
+      <div className="flex flex-wrap items-start justify-between gap-3"><div><h2 className="flex items-center gap-2 text-lg font-semibold text-slate-950"><Plus size={18}/> {t("teacherInterventions.createTitle")}</h2><p className="mt-1 text-sm text-slate-500">{t("teacherInterventions.createHelp")}</p></div></div>
       <form onSubmit={submit} className="mt-5 grid gap-4 md:grid-cols-2">
         <label className="block text-sm font-medium text-slate-700">Class
           <select value={classGroupId} onChange={(event) => { setSelectedClassId(event.target.value); setStudentUserId(""); }} className={inputClass}>{classes.map((item) => <option key={item.classGroup.id} value={item.classGroup.id}>{item.classGroup.name} ({item.classGroup.code})</option>)}</select>
@@ -176,10 +176,10 @@ export default function TeacherInterventionsPage() {
         <label className="block text-sm font-medium text-slate-700 md:col-span-2">Title
           <input value={title} onChange={(event) => setTitle(event.target.value)} maxLength={120} required className={inputClass} placeholder={t("teacherInterventions.titlePlaceholder")}/>
         </label>
-        <label className="block text-sm font-medium text-slate-700">Evidence reference (optional)
+        <label className="block text-sm font-medium text-slate-700">{t("teacherInterventions.evidenceReferenceOptional")}
           <input value={evidenceReference} onChange={(event) => setEvidenceReference(event.target.value)} maxLength={160} className={inputClass} placeholder={t("teacherInterventions.evidencePlaceholder")}/>
         </label>
-        <label className="block text-sm font-medium text-slate-700">Review date (optional)
+        <label className="block text-sm font-medium text-slate-700">{t("teacherInterventions.reviewDateOptional")}
           <input type="date" value={reviewDate} onChange={(event) => setReviewDate(event.target.value)} className={inputClass}/>
         </label>
         <label className="block text-sm font-medium text-slate-700 md:col-span-2">Evidence and planned support
@@ -212,8 +212,8 @@ export default function TeacherInterventionsPage() {
           <div className="mt-4 grid gap-3 md:grid-cols-2">
             <label className="block text-sm font-medium text-slate-700">{t("teacherInterventions.followStatus")}<select value={draft.status} onChange={(event) => changeDraft(item, { status: event.target.value as LearningInterventionStatus })} className={inputClass}><option value="open">{t("teacherInterventions.open")}</option><option value="in_progress">{t("teacherInterventions.inProgress")}</option><option value="resolved">{t("teacherInterventions.resolved")}</option></select></label>
             <label className="block text-sm font-medium text-slate-700">{t("teacherInterventions.priority")}<select value={draft.priority} onChange={(event) => changeDraft(item, { priority: event.target.value as LearningInterventionPriority })} className={inputClass}><option value="low">{t("teacherInterventions.low")}</option><option value="normal">{t("teacherInterventions.normal")}</option><option value="high">{t("teacherInterventions.high")}</option></select></label>
-            <label className="block text-sm font-medium text-slate-700">Review date<input type="date" value={draft.reviewDate} onChange={(event) => changeDraft(item, { reviewDate: event.target.value })} className={inputClass}/></label>
-            <label className="block text-sm font-medium text-slate-700">Evidence reference<input value={draft.evidenceReference} onChange={(event) => changeDraft(item, { evidenceReference: event.target.value })} maxLength={160} className={inputClass}/></label>
+            <label className="block text-sm font-medium text-slate-700">{t("teacherInterventions.reviewDate")}<input type="date" value={draft.reviewDate} onChange={(event) => changeDraft(item, { reviewDate: event.target.value })} className={inputClass}/></label>
+            <label className="block text-sm font-medium text-slate-700">{t("teacherInterventions.evidenceReference")}<input value={draft.evidenceReference} onChange={(event) => changeDraft(item, { evidenceReference: event.target.value })} maxLength={160} className={inputClass}/></label>
             <label className="block text-sm font-medium text-slate-700 md:col-span-2">{t("teacherInterventions.followNotes")}<textarea value={draft.notes} onChange={(event) => changeDraft(item, { notes: event.target.value })} maxLength={3000} rows={3} className={inputClass}/></label>
             <label className="block text-sm font-medium text-slate-700 md:col-span-2">{t("teacherInterventions.outcome")}<textarea value={draft.outcome} onChange={(event) => changeDraft(item, { outcome: event.target.value })} maxLength={2000} rows={2} className={inputClass}/></label>
           </div>
