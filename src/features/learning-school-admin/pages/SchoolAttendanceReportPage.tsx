@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { useTranslation } from "@/core/i18n/useTranslation";
+import { useTranslation } from "@/core/i18n/useTranslation";
 import { LearningLanguageSelector } from "@/features/learning-shared/components/LearningLanguageSelector";
 import { useAuthorization } from "@/features/auth/authorization/useAuthorization";
 import { learningSchoolAdminService } from "../services/learning-school-admin.service";
@@ -45,6 +46,7 @@ function exportCsv(rows: SchoolAttendanceReportRow[], schoolName: string, startD
 export default function SchoolAttendanceReportPage() {
   const { user, loading: authLoading } = useAuth();
   const { t } = useTranslation();
+  const { t } = useTranslation();
   const authorization = useAuthorization();
   const canManage = authorization.hasPermission("learning.academic.manage");
   const [selectedOrganizationId, setSelectedOrganizationId] = useState("");
@@ -81,10 +83,10 @@ export default function SchoolAttendanceReportPage() {
     registers: result.registers + 1,
   }), { present: 0, absent: 0, late: 0, excused: 0, marked: 0, registers: 0 }), [rows]);
 
-  if (!user) return <main className="mx-auto max-w-6xl p-6">Sign in to view school attendance reports.</main>;
+  if (!user) return <main className="mx-auto max-w-6xl p-6">{t("schoolAdmin.signInAttendance")}</main>;
   if (authorization.loading || organizationsQuery.isPending) return <main className="mx-auto max-w-6xl space-y-4 p-6"><div className="h-8 w-64 animate-pulse rounded bg-slate-200" /><div className="h-32 animate-pulse rounded-2xl bg-slate-100" /></main>;
-  if (organizationsQuery.isSuccess && organizations.length === 0) return <main className="mx-auto max-w-6xl p-6"><section className="rounded-2xl border border-slate-200 bg-white p-6"><h1 className="text-xl font-bold text-slate-950">School-wide attendance</h1><p className="mt-2 text-sm leading-6 text-slate-600">No school is available for your account yet. Ask a school administrator to confirm your organization membership and academic-management permission.</p><Link className="mt-4 inline-flex font-semibold underline" to="/school-admin">Return to School Administration</Link></section></main>;
-  if (!canManage) return <main className="mx-auto max-w-6xl p-6"><section className="rounded-2xl border border-amber-200 bg-amber-50 p-5 text-amber-900" role="alert"><h1 className="text-lg font-semibold">School attendance report</h1><p className="mt-2 text-sm">You need academic-management permission to view school-wide attendance.</p><Link className="mt-4 inline-flex font-semibold underline" to="/school-admin">Return to School Administration</Link></section></main>;
+  if (organizationsQuery.isSuccess && organizations.length === 0) return <main className="mx-auto max-w-6xl p-6"><section className="rounded-2xl border border-slate-200 bg-white p-6"><h1 className="text-xl font-bold text-slate-950">{t("schoolAdmin.attendanceTitle")}</h1><p className="mt-2 text-sm leading-6 text-slate-600">{t("schoolAdmin.noSchool")}</p><Link className="mt-4 inline-flex font-semibold underline" to="/school-admin">Return to School Administration</Link></section></main>;
+  if (!canManage) return <main className="mx-auto max-w-6xl p-6"><section className="rounded-2xl border border-amber-200 bg-amber-50 p-5 text-amber-900" role="alert"><h1 className="text-lg font-semibold">{t("schoolAdmin.attendanceTitle")}</h1><p className="mt-2 text-sm">{t("schoolAdmin.attendancePermission")}</p><Link className="mt-4 inline-flex font-semibold underline" to="/school-admin">Return to School Administration</Link></section></main>;
 
   return (
     <main className="mx-auto max-w-6xl space-y-6 p-4 sm:p-6">
@@ -92,11 +94,11 @@ export default function SchoolAttendanceReportPage() {
       <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <Link to="/school-admin" className="text-sm font-semibold text-slate-500 hover:text-slate-900">← School Administration</Link>
-          <p className="mt-4 text-sm font-semibold text-indigo-700">School insights</p>
-          <h1 className="mt-1 text-2xl font-bold text-slate-950 sm:text-3xl">School-wide attendance</h1>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">Review saved attendance marks across classes and export a date-scoped report. Unmarked students are not counted as present or absent.</p>
+          <p className="mt-4 text-sm font-semibold text-indigo-700">{t("schoolAdmin.schoolInsights")}</p>
+          <h1 className="mt-1 text-2xl font-bold text-slate-950 sm:text-3xl">{t("schoolAdmin.attendanceTitle")}</h1>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">{t("schoolAdmin.attendanceDescription")}</p>
         </div>
-        <button type="button" disabled={!rows.length || reportQuery.isFetching} onClick={() => exportCsv(rows, organization?.name ?? "School", startDate, endDate)} className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50">Export CSV</button>
+        <button type="button" disabled={!rows.length || reportQuery.isFetching} onClick={() => exportCsv(rows, organization?.name ?? "School", startDate, endDate)} className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50">{t("schoolAdmin.exportCsv")}</button>
       </header>
 
       <section className="grid gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-3 sm:p-5">
