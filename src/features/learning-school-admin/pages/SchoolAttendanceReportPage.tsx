@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { useTranslation } from "@/core/i18n/useTranslation";
-import { useTranslation } from "@/core/i18n/useTranslation";
 import { LearningLanguageSelector } from "@/features/learning-shared/components/LearningLanguageSelector";
 import { useAuthorization } from "@/features/auth/authorization/useAuthorization";
 import { learningSchoolAdminService } from "../services/learning-school-admin.service";
@@ -45,7 +44,6 @@ function exportCsv(rows: SchoolAttendanceReportRow[], schoolName: string, startD
 
 export default function SchoolAttendanceReportPage() {
   const { user, loading: authLoading } = useAuth();
-  const { t } = useTranslation();
   const { t } = useTranslation();
   const authorization = useAuthorization();
   const canManage = authorization.hasPermission("learning.academic.manage");
