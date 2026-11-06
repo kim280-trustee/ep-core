@@ -98,17 +98,17 @@ export default function LearningProgressPage() {
 
       <div className="grid gap-4 sm:grid-cols-3">
         <Metric
-          label="{t("studentProgress.averageMastery")}"
+          label={t("studentProgress.averageMastery")}
           value={mastery.length ? `${average}%` : "—"}
           icon={<Target size={18} />}
         />
         <Metric
-          label="{t("studentProgress.objectivesTracked")}"
+          label={t("studentProgress.objectivesTracked")}
           value={String(mastery.length)}
           icon={<TrendingUp size={18} />}
         />
         <Metric
-          label="{t("studentProgress.needsReview")}"
+          label={t("studentProgress.needsReview")}
           value={String(needsReview)}
           icon={<AlertCircle size={18} />}
         />
@@ -202,7 +202,7 @@ export default function LearningProgressPage() {
           <div className="mt-4 grid gap-3 sm:grid-cols-3">
             <label className="block text-sm font-medium text-slate-700">
               {t("studentProgress.searchObjective")}
-              <input type="search" value={masterySearch} onChange={(event) => setMasterySearch(event.target.value)} placeholder="{t("studentProgress.objectivePlaceholder")}" className="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 font-normal outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200" />
+              <input type="search" value={masterySearch} onChange={(event) => setMasterySearch(event.target.value)} placeholder={t("studentProgress.objectivePlaceholder")} className="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 font-normal outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200" />
             </label>
             <label className="block text-sm font-medium text-slate-700">
               {t("studentProgress.masteryState")}
@@ -212,7 +212,7 @@ export default function LearningProgressPage() {
                 <option value="developing">{t("studentProgress.developing")}</option>
                 <option value="proficient">{t("studentProgress.proficient")}</option>
                 <option value="mastered">{t("studentProgress.mastered")}</option>
-                <option value="not_started">Not started</option>
+                <option value="not_started">{t("studentProgress.notStarted")}</option>
               </select>
             </label>
             <label className="block text-sm font-medium text-slate-700">
@@ -283,15 +283,15 @@ export default function LearningProgressPage() {
                   <div>
                     <p className="text-sm font-medium text-slate-800">
                       {correction
-                        ? "{t("studentProgress.correction")}"
+                        ? t("studentProgress.correction")
                         : `Objective ${event.objectiveId}`}
                     </p>
                     <p className="mt-1 text-xs text-slate-500">
                       {correction
-                        ? "{t("studentProgress.correctionDetail")}"
+                        ? t("studentProgress.correctionDetail")
                         : event.attemptId
                           ? `{t("studentProgress.assessmentAttempt")} ${event.attemptId}`
-                          : "{t("studentProgress.masteryUpdate")}"}
+                          : t("studentProgress.masteryUpdate")}
                     </p>
                   </div>
                   <span className="text-sm text-slate-600">
