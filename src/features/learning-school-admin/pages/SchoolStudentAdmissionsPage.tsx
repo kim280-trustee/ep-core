@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
+import { useTranslation } from "@/core/i18n/useTranslation";
 import { LearningLanguageSelector } from "@/features/learning-shared/components/LearningLanguageSelector";
 import { useAuthorization } from "@/features/auth/authorization/useAuthorization";
 import { learningAcademicService } from "@/features/learning-academic";
@@ -17,6 +18,7 @@ function errorText(error: unknown) {
 
 export default function SchoolStudentAdmissionsPage() {
   const { user, loading: authLoading } = useAuth();
+  const { t } = useTranslation();
   const authorization = useAuthorization();
   const queryClient = useQueryClient();
   const canManage = authorization.hasPermission("learning.academic.manage");
@@ -118,7 +120,7 @@ export default function SchoolStudentAdmissionsPage() {
             {classesQuery.isError && <p role="alert" className="mb-3 text-sm text-red-700">Could not load classes for this school.</p>}
             {!classesQuery.isPending && !classesQuery.isError && classes.length === 0 && <p className="mb-3 text-sm text-amber-800">Create an active class before inviting a student.</p>}
             <button className={buttonClass} type="submit" disabled={inviteMutation.isPending || classesQuery.isPending || !classes.length || !organizationId || !classGroupId}>
-              {inviteMutation.isPending ? "Sending invitation…" : "Send student invitation"}
+              {inviteMutation.isPending ? t("schoolAdmin.sendingInvitation") : t("schoolAdmin.sendInvitation")}
             </button>
           </div>
         </form>
