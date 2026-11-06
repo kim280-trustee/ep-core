@@ -152,7 +152,7 @@ export default function Learning{t("studentAssignmentDetail.assignment")}DetailP
 
         <p className="mt-2 max-w-2xl text-sm text-slate-300">
           {assignment.description ||
-            "{t("studentAssignmentDetail.description")}"}
+            t("studentAssignmentDetail.description")}
         </p>
 
         <div className="mt-5 flex flex-wrap gap-4 text-sm text-slate-300">
@@ -186,7 +186,7 @@ export default function Learning{t("studentAssignmentDetail.assignment")}DetailP
               ? t("studentAssignmentDetail.completed")
               : progress?.status === "in_progress"
                 ? t("studentAssignmentDetail.inProgress")
-                : "{t("studentAssignmentDetail.notStarted")}"}
+                : t("studentAssignmentDetail.notStarted")}
           </span>
 
           {progress?.lastActivityAt && (
@@ -209,7 +209,7 @@ export default function Learning{t("studentAssignmentDetail.assignment")}DetailP
           )}
 
           {completed
-            ? "{t("studentAssignmentDetail.completed")}"
+            ? t("studentAssignmentDetail.completed")
             : startMutation.isPending
               ? t("studentAssignmentDetail.starting")
               : progress?.status === "in_progress"
@@ -221,7 +221,7 @@ export default function Learning{t("studentAssignmentDetail.assignment")}DetailP
           <p className="mt-3 text-sm text-red-600">
             {startMutation.error instanceof Error
               ? startMutation.error.message
-              : "{t("studentAssignmentDetail.couldNotStart")}"}
+              : t("studentAssignmentDetail.couldNotStart")}
           </p>
         )}
       </section>
