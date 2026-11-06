@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
+import { LearningLanguageSelector } from "@/features/learning-shared/components/LearningLanguageSelector";
 import { useAuthorization } from "@/features/auth/authorization/useAuthorization";
 import { learningSchoolAdminService } from "../services/learning-school-admin.service";
 
@@ -83,6 +84,7 @@ export default function SchoolStaffAdministrationPage() {
 
   return (
     <main className="mx-auto max-w-7xl space-y-6">
+      <div className="flex justify-end"><LearningLanguageSelector compact /></div>
       <header className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
