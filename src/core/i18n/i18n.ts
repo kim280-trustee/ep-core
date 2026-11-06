@@ -1348,6 +1348,7 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "teacherGamification.fulfilled": "Fulfilled",
     "teacherGamification.class": "Class",
     "teacherGamification.studentsCount": "students",
+
   },
   th: {
     "customers.customerNotFound": "ไม่พบลูกค้า",
@@ -2689,6 +2690,7 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "teacherGamification.fulfilled": "มอบรางวัลแล้ว",
     "teacherGamification.class": "ชั้นเรียน",
     "teacherGamification.studentsCount": "คน",
+
   }
 };
 
