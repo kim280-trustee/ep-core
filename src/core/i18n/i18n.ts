@@ -828,6 +828,12 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "teacherHistory.selectStudent": "Select student to give again",
     "teacherHistory.giveAgain": "Give again",
     "teacherHistory.empty": "No assignment history for this class.",
+    "teacherHistory.csvCode": "Code",
+    "teacherHistory.csvTitle": "Title",
+    "teacherHistory.csvStatus": "Status",
+    "teacherHistory.csvDueAt": "Due date",
+    "teacherHistory.csvLifecycle": "Lifecycle",
+    "teacherHistory.original": "Original",,
   },
   th: {
     "customers.customerNotFound": "ไม่พบลูกค้า",
@@ -1649,6 +1655,12 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "teacherHistory.selectStudent": "เลือกนักเรียนเพื่อมอบหมายอีกครั้ง",
     "teacherHistory.giveAgain": "มอบหมายอีกครั้ง",
     "teacherHistory.empty": "ยังไม่มีประวัติงานที่มอบหมายสำหรับชั้นเรียนนี้",
+    "teacherHistory.csvCode": "รหัส",
+    "teacherHistory.csvTitle": "ชื่อ",
+    "teacherHistory.csvStatus": "สถานะ",
+    "teacherHistory.csvDueAt": "กำหนดส่ง",
+    "teacherHistory.csvLifecycle": "ประวัติการเปลี่ยนแปลง",
+    "teacherHistory.original": "ต้นฉบับ",,
   }
 };
 
