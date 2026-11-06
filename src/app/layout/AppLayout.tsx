@@ -21,6 +21,12 @@ export function AppLayout({ children }: Props) {
   const isLearningRoute = location.pathname === "/learning" || location.pathname.startsWith("/learning/");
 
   useEffect(() => {
+    // Learning has its own account-level language preference; POS store settings
+    // must never overwrite the language selected inside a Learning workspace.
+    if (isLearningRoute) {
+      return;
+    }
+
     const context = storeContext.getStore();
 
     if (!context?.tenantId) {
@@ -34,7 +40,7 @@ export function AppLayout({ children }: Props) {
     } else {
       changeLanguage("en");
     }
-  }, [changeLanguage]);
+  }, [changeLanguage, isLearningRoute]);
 
   useEffect(() => {
     if (!mobileMenuOpen) {
@@ -106,5 +112,3 @@ export function AppLayout({ children }: Props) {
     </div>
   );
 }
-
-
