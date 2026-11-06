@@ -169,26 +169,26 @@ export default function QuestionBankPage() {
     if (removed?.key === correctOption) setCorrectOption("");
   };
 
-  if (!user) return <Panel title=t("questionBank.title")><p>Sign in to continue.</p></Panel>;
+  if (!user) return <Panel title={t("questionBank.title")}><p>{t("questionBank.signIn")}</p></Panel>;
   if (classes.isPending) return <div className="h-64 animate-pulse rounded-2xl bg-slate-200" />;
-  if (classes.isError) return <Panel title=t("questionBank.title")><p>Teacher classes could not be loaded.</p></Panel>;
+  if (classes.isError) return <Panel title={t("questionBank.title")}><p>{t("questionBank.loadError")}</p></Panel>;
 
   return (
     <div className="mx-auto max-w-7xl space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <Link to="/teacher" className="text-sm text-slate-500 hover:text-slate-900">Back to teacher workspace</Link>
-          <h1 className="mt-2 text-2xl font-bold text-slate-900">Question Bank</h1>
-          <p className="mt-1 text-sm text-slate-500">Create reusable, versioned questions with secure answer keys.</p>
+          <Link to="/teacher" className="text-sm text-slate-500 hover:text-slate-900">{t("questionBank.back")}</Link>
+          <h1 className="mt-2 text-2xl font-bold text-slate-900">{t("questionBank.title")}</h1>
+          <p className="mt-1 text-sm text-slate-500">{t("questionBank.intro")}</p>
         </div>
-        <button type="button" onClick={resetForm} className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800"><Plus size={16} /> New question</button>
+        <button type="button" onClick={resetForm} className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800"><Plus size={16} />{t("questionBank.new")}</button>
       </div>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5">
         <label className="block max-w-xl space-y-2">
-          <span className="text-sm font-medium text-slate-700">Teacher class</span>
+          <span className="text-sm font-medium text-slate-700">{t("questionBank.teacherClass")}</span>
           <select value={activeClassGroupId} onChange={(e) => setClassGroupId(e.target.value)} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm">
-            <option value="">Select a class</option>
+            <option value="">{t("questionBank.selectClass")}</option>
             {classes.data?.map((item) => <option key={item.classGroup.id} value={item.classGroup.id}>{item.classGroup.name}</option>)}
           </select>
         </label>
@@ -198,58 +198,58 @@ export default function QuestionBankPage() {
 
       <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
         <section className="rounded-2xl border border-slate-200 bg-white p-5">
-          <div className="flex items-start justify-between gap-3"><div><h2 className="flex items-center gap-2 font-semibold text-slate-900"><FileQuestion size={18} /> Question library</h2><p className="mt-1 text-xs text-slate-500">Find a question or prepare a new version.</p></div><span className="text-xs text-slate-500">{filteredQuestions.length} shown</span></div>
+          <div className="flex items-start justify-between gap-3"><div><h2 className="flex items-center gap-2 font-semibold text-slate-900"><FileQuestion size={18} />{t("questionBank.library")}</h2><p className="mt-1 text-xs text-slate-500">{t("questionBank.libraryHelp")}</p></div><span className="text-xs text-slate-500">{filteredQuestions.length} {t("questionBank.shown")}</span></div>
           <div className="mt-4 grid gap-2 sm:grid-cols-[1fr_auto_auto]">
-            <label className="relative"><Search size={16} className="absolute left-3 top-2.5 text-slate-400" /><input value={search} onChange={(e) => setSearch(e.target.value)} className="w-full rounded-xl border border-slate-300 py-2 pl-9 pr-3 text-sm" placeholder=t("questionBank.searchPlaceholder") /></label>
-            <select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} className="rounded-xl border border-slate-300 px-3 py-2 text-sm"><option value="">All types</option>{teacherTypes.map((type) => <option key={type.value} value={type.value}>{type.label}</option>)}</select>
-            <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="rounded-xl border border-slate-300 px-3 py-2 text-sm"><option value="">All status</option><option value="draft">Draft</option><option value="review">Review</option><option value="published">Published</option><option value="retired">Retired</option></select>
+            <label className="relative"><Search size={16} className="absolute left-3 top-2.5 text-slate-400" /><input value={search} onChange={(e) => setSearch(e.target.value)} className="w-full rounded-xl border border-slate-300 py-2 pl-9 pr-3 text-sm" placeholder={t("questionBank.searchPlaceholder")} /></label>
+            <select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} className="rounded-xl border border-slate-300 px-3 py-2 text-sm"><option value="">{t("questionBank.allTypes")}</option>{teacherTypes.map((type) => <option key={type.value} value={type.value}>{type.label}</option>)}</select>
+            <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="rounded-xl border border-slate-300 px-3 py-2 text-sm"><option value="">{t("questionBank.allStatus")}</option><option value="draft">Draft</option><option value="review">Review</option><option value="published">Published</option><option value="retired">Retired</option></select>
           </div>
-          {(search || typeFilter || statusFilter) && <button type="button" onClick={() => { setSearch(""); setTypeFilter(""); setStatusFilter(""); }} className="mt-2 rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600">Clear question filters</button>}
-          {questions.isPending && <p className="mt-4 text-sm text-slate-500">Loading question library…</p>}
-          {questions.isError && <p role="alert" className="mt-4 rounded-xl bg-red-50 p-4 text-sm text-red-800">Question library could not be loaded. Refresh and try again.</p>}
+          {(search || typeFilter || statusFilter) && <button type="button" onClick={() => { setSearch(""); setTypeFilter(""); setStatusFilter(""); }} className="mt-2 rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600">{t("questionBank.clearFilters")}</button>}
+          {questions.isPending && <p className="mt-4 text-sm text-slate-500">{t("questionBank.loading")}</p>}
+          {questions.isError && <p role="alert" className="mt-4 rounded-xl bg-red-50 p-4 text-sm text-red-800">{t("questionBank.loadError")}</p>}
           <div className="mt-4 space-y-2">
             {filteredQuestions.map((question) => (
               <div key={question.id} className="rounded-xl border border-slate-200 p-3">
                 <div className="flex items-start justify-between gap-3"><div><p className="font-semibold text-slate-900">{question.code}</p><p className="text-xs text-slate-500">{question.questionType} · {question.status}</p></div><span className="text-xs text-slate-400">{question.languageCode}</span></div>
                 <div className="mt-3 flex flex-wrap gap-2">
-                  {question.status !== "published" && <button type="button" onClick={() => publishMutation.mutate(question.id)} className="rounded-lg bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white">Publish</button>}
-                  <button type="button" onClick={() => prepareNewVersion.mutate(question.id)} className="rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold">New version</button>
+                  {question.status !== "published" && <button type="button" onClick={() => publishMutation.mutate(question.id)} className="rounded-lg bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white">{t("questionBank.publish")}</button>}
+                  <button type="button" onClick={() => prepareNewVersion.mutate(question.id)} className="rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold">{t("questionBank.newVersion")}</button>
                 </div>
               </div>
             ))}
-            {!filteredQuestions.length && <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-500">No questions match the current filters.</p>}
+            {!filteredQuestions.length && <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-500">{t("questionBank.noMatches")}</p>}
           </div>
         </section>
 
         <section className="rounded-2xl border border-slate-200 bg-white p-5">
           <div className="flex items-center justify-between gap-3"><h2 className="font-semibold text-slate-900">{editingQuestionId ? t("questionBank.createVersion") : t("questionBank.create")}</h2>{editingQuestionId && <button type="button" onClick={resetForm} className="text-slate-400"><X size={18} /></button>}</div>
           <div className="mt-5 space-y-4">
-            <Field label=t("questionBank.code")><input disabled={Boolean(editingQuestionId)} value={code} onChange={(e) => setCode(e.target.value)} className="input" placeholder="ENG-M1-Q001" /></Field>
-            <Field label=t("questionBank.type")><select disabled={Boolean(editingQuestionId)} value={questionType} onChange={(e) => { const next = e.target.value as TeacherQuestionType; setQuestionType(next); setCorrectOption(next === "single_choice" ? "a" : ""); }} className="input">{teacherTypes.map((type) => <option key={type.value} value={type.value}>{type.label}</option>)}</select></Field>
-            <Field label=t("questionBank.prompt")><textarea value={prompt} onChange={(e) => setPrompt(e.target.value)} rows={4} className="input" placeholder=t("questionBank.promptPlaceholder") /></Field>
+            <Field label={t("questionBank.code")}><input disabled={Boolean(editingQuestionId)} value={code} onChange={(e) => setCode(e.target.value)} className="input" placeholder="ENG-M1-Q001" /></Field>
+            <Field label={t("questionBank.type")}><select disabled={Boolean(editingQuestionId)} value={questionType} onChange={(e) => { const next = e.target.value as TeacherQuestionType; setQuestionType(next); setCorrectOption(next === "single_choice" ? "a" : ""); }} className="input">{teacherTypes.map((type) => <option key={type.value} value={type.value}>{type.label}</option>)}</select></Field>
+            <Field label={t("questionBank.prompt")}><textarea value={prompt} onChange={(e) => setPrompt(e.target.value)} rows={4} className="input" placeholder={t("questionBank.promptPlaceholder")} /></Field>
 
             {questionType === "single_choice" && (
               <div className="space-y-3">
-                <div className="flex items-center justify-between"><div><span className="text-sm font-medium text-slate-700">Answer options</span><p className="mt-0.5 text-xs text-slate-500">Choose the correct answer using the radio button.</p></div><button type="button" onClick={addChoice} className="inline-flex items-center gap-1 rounded-lg border border-slate-200 px-2.5 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"><Plus size={14} /> Add option</button></div>
-                {choices.map((choice, index) => <div key={choice.key} className="flex items-center gap-2"><input type="radio" name="correct-option" checked={correctOption === choice.key} onChange={() => setCorrectOption(choice.key)} /><span className="w-5 text-sm font-semibold">{choice.key.toUpperCase()}</span><input value={choice.label} onChange={(e) => updateChoice(index, e.target.value)} className="input flex-1" placeholder=t("questionBank.optionPlaceholder") /><button type="button" onClick={() => removeChoice(index)} className="rounded-lg p-2 text-slate-400 hover:bg-slate-50"><X size={16} /></button></div>)}
+                <div className="flex items-center justify-between"><div><span className="text-sm font-medium text-slate-700">{t("questionBank.options")}</span><p className="mt-0.5 text-xs text-slate-500">{t("questionBank.optionsHelp")}</p></div><button type="button" onClick={addChoice} className="inline-flex items-center gap-1 rounded-lg border border-slate-200 px-2.5 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"><Plus size={14} />{t("questionBank.addOption")}</button></div>
+                {choices.map((choice, index) => <div key={choice.key} className="flex items-center gap-2"><input type="radio" name="correct-option" checked={correctOption === choice.key} onChange={() => setCorrectOption(choice.key)} /><span className="w-5 text-sm font-semibold">{choice.key.toUpperCase()}</span><input value={choice.label} onChange={(e) => updateChoice(index, e.target.value)} className="input flex-1" placeholder={t("questionBank.optionPlaceholder")} /><button type="button" onClick={() => removeChoice(index)} className="rounded-lg p-2 text-slate-400 hover:bg-slate-50"><X size={16} /></button></div>)}
                 
               </div>
             )}
 
-            {questionType === "true_false" && <Field label=t("questionBank.correct")><select value={correctOption} onChange={(e) => setCorrectOption(e.target.value)} className="input"><option value="">Select correct answer</option><option value="true">True</option><option value="false">False</option></select></Field>}
+            {questionType === "true_false" && <Field label={t("questionBank.correct")}><select value={correctOption} onChange={(e) => setCorrectOption(e.target.value)} className="input"><option value="">{t("questionBank.selectCorrect")}</option><option value="true">True</option><option value="false">False</option></select></Field>}
 
-            {questionType === "short_answer" && <Field label=t("questionBank.expected")><input value={shortAnswer} onChange={(e) => setShortAnswer(e.target.value)} className="input" placeholder=t("questionBank.expectedPlaceholder") /><p className="mt-1 text-xs text-slate-500">Short-answer questions can be saved in the question bank, but student delivery and manual grading are not implemented yet. They cannot be added to student assessments.</p></Field>}
+            {questionType === "short_answer" && <Field label={t("questionBank.expected")}><input value={shortAnswer} onChange={(e) => setShortAnswer(e.target.value)} className="input" placeholder={t("questionBank.expectedPlaceholder")} /><p className="mt-1 text-xs text-slate-500">{t("questionBank.shortAnswerNote")}</p></Field>}
 
-            <Field label=t("questionBank.objective")><select value={objectiveId} onChange={(e) => setObjectiveId(e.target.value)} className="input"><option value="">Select objective</option>{objectives.data?.map((objective) => <option key={objective.id} value={objective.id}>{objective.code} — {objective.name}</option>)}</select></Field>
-            <Field label=t("questionBank.explanation")><textarea value={explanation} onChange={(e) => setExplanation(e.target.value)} rows={3} className="input" placeholder=t("questionBank.explanationPlaceholder") /></Field>
+            <Field label={t("questionBank.objective")}><select value={objectiveId} onChange={(e) => setObjectiveId(e.target.value)} className="input"><option value="">{t("questionBank.selectObjective")}</option>{objectives.data?.map((objective) => <option key={objective.id} value={objective.id}>{objective.code} — {objective.name}</option>)}</select></Field>
+            <Field label={t("questionBank.explanation")}><textarea value={explanation} onChange={(e) => setExplanation(e.target.value)} rows={3} className="input" placeholder={t("questionBank.explanationPlaceholder")} /></Field>
 
-            <div className="flex items-center justify-between gap-3 border-t border-slate-100 pt-4"><p className="text-xs text-slate-500">Save as a draft, then publish when it is ready.</p><button type="button" disabled={!organizationId || createMutation.isPending} onClick={() => createMutation.mutate()} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 disabled:opacity-50"><Sparkles size={16} />{createMutation.isPending ? t("questionBank.saving") : editingQuestionId ? t("questionBank.saveVersion") : t("questionBank.saveDraft")}</button></div>
+            <div className="flex items-center justify-between gap-3 border-t border-slate-100 pt-4"><p className="text-xs text-slate-500">{t("questionBank.draftHelp")}</p><button type="button" disabled={!organizationId || createMutation.isPending} onClick={() => createMutation.mutate()} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 disabled:opacity-50"><Sparkles size={16} />{createMutation.isPending ? t("questionBank.saving") : editingQuestionId ? t("questionBank.saveVersion") : t("questionBank.saveDraft")}</button></div>
           </div>
         </section>
       </div>
 
       <section className="rounded-2xl border border-slate-200 bg-slate-900 p-5 text-white">
-        <div className="flex items-start gap-3"><Send size={18} className="mt-0.5" /><div><p className="font-semibold">Publishing workflow</p><p className="mt-1 text-sm text-slate-300">A question needs a version, objective mapping, and reviewer before publication. Evaluation keys are stored in the database and are not readable from the browser.</p></div></div>
+        <div className="flex items-start gap-3"><Send size={18} className="mt-0.5" /><div><p className="font-semibold">{t("questionBank.workflow")}</p><p className="mt-1 text-sm text-slate-300">{t("questionBank.workflowHelp")}</p></div></div>
       </section>
     </div>
   );
