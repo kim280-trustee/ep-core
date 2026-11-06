@@ -21,6 +21,7 @@ const fieldClass = "mt-1 w-full rounded-xl border border-slate-300 bg-white px-3
 export default function SchoolStaffAdministrationPage() {
   const { user, loading: authLoading } = useAuth();
   const { t } = useTranslation();
+  const translateMembershipStatus = (status: string) => status === "active" ? t("schoolAdmin.active") : status === "inactive" ? t("schoolAdmin.inactive") : status === "suspended" ? t("schoolAdmin.suspended") : status === "invited" ? t("schoolAdmin.invited") : status;
   const authorization = useAuthorization();
   const canManage = authorization.hasPermission("learning.academic.manage");
   const queryClient = useQueryClient();
@@ -142,7 +143,7 @@ export default function SchoolStaffAdministrationPage() {
               <tbody>{visibleStaff.map((member) => <tr key={member.membershipId} className="border-t border-slate-100 align-top">
                 <td className="px-4 py-4"><p className="font-semibold text-slate-900">{member.name}</p><p className="mt-1 text-slate-500">{member.email || t("schoolAdmin.noEmail")}</p></td>
                 <td className="px-4 py-4">{member.teachingAssignments.length ? <div className="flex flex-wrap gap-2">{member.teachingAssignments.map((assignment) => <span key={assignment} className="rounded-full bg-slate-100 px-2.5 py-1 text-xs text-slate-700">{assignment}</span>)}</div> : <span className="text-slate-500">{t("schoolAdmin.noClassAssignment")}</span>}</td>
-                <td className="px-4 py-4"><span className={member.status === "active" ? "rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-800" : "rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700"}>{member.status}</span></td>
+                <td className="px-4 py-4"><span className={member.status === "active" ? "rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-800" : "rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700"}>{translateMembershipStatus(member.status)}</span></td>
                 <td className="px-4 py-4">{member.status === "active" || member.status === "inactive" ? <button type="button" className="font-semibold underline disabled:cursor-not-allowed disabled:opacity-50" disabled={statusMutation.isPending} onClick={() => { setActionError(""); setActionNotice(""); statusMutation.mutate({ membershipId: member.membershipId, status: member.status === "active" ? "inactive" : "active" }); }}>{statusMutation.isPending ? t("schoolAdmin.saving") : member.status === "active" ? t("schoolAdmin.deactivate") : t("schoolAdmin.reactivate")}</button> : <span className="text-xs text-slate-500">{t("schoolAdmin.noAction")}</span>}</td>
               </tr>)}</tbody>
             </table>
