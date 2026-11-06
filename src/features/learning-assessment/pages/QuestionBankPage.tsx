@@ -12,16 +12,28 @@ import type { LearningQuestionType } from "../types/learning-assessment.types";
 type Choice = { key: string; label: string };
 type TeacherQuestionType = Extract<LearningQuestionType, "single_choice" | "true_false" | "short_answer">;
 
-const teacherTypes: Array<{ value: TeacherQuestionType; label: string }> = [
-  { value: "single_choice", label: "Single choice" },
-  { value: "true_false", label: "True / False" },
-  { value: "short_answer", label: "Short answer (not yet assessable)" },
-];
+const teacherTypes: TeacherQuestionType[] = ["single_choice", "true_false", "short_answer"];
 
 export default function QuestionBankPage() {
   const { user } = useAuth();
   const { t } = useTranslation();
   const qc = useQueryClient();
+  const questionTypeLabel = (value: string) => value === "single_choice"
+    ? t("questionBank.single")
+    : value === "true_false"
+      ? t("questionBank.trueFalse")
+      : value === "short_answer"
+        ? t("questionBank.short")
+        : value;
+  const questionStatusLabel = (value: string) => value === "draft"
+    ? t("questionBank.statusDraft")
+    : value === "review"
+      ? t("questionBank.statusReview")
+      : value === "published"
+        ? t("questionBank.statusPublished")
+        : value === "retired"
+          ? t("questionBank.statusRetired")
+          : value;
   const [classGroupId, setClassGroupId] = useState("");
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
@@ -201,7 +213,7 @@ export default function QuestionBankPage() {
           <div className="flex items-start justify-between gap-3"><div><h2 className="flex items-center gap-2 font-semibold text-slate-900"><FileQuestion size={18} />{t("questionBank.library")}</h2><p className="mt-1 text-xs text-slate-500">{t("questionBank.libraryHelp")}</p></div><span className="text-xs text-slate-500">{filteredQuestions.length} {t("questionBank.shown")}</span></div>
           <div className="mt-4 grid gap-2 sm:grid-cols-[1fr_auto_auto]">
             <label className="relative"><Search size={16} className="absolute left-3 top-2.5 text-slate-400" /><input value={search} onChange={(e) => setSearch(e.target.value)} className="w-full rounded-xl border border-slate-300 py-2 pl-9 pr-3 text-sm" placeholder={t("questionBank.searchPlaceholder")} /></label>
-            <select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} className="rounded-xl border border-slate-300 px-3 py-2 text-sm"><option value="">{t("questionBank.allTypes")}</option>{teacherTypes.map((type) => <option key={type.value} value={type.value}>{type.label}</option>)}</select>
+            <select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} className="rounded-xl border border-slate-300 px-3 py-2 text-sm"><option value="">{t("questionBank.allTypes")}</option>{teacherTypes.map((type) => <option key={type} value={type}>{questionTypeLabel(type)}</option>)}</select>
             <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="rounded-xl border border-slate-300 px-3 py-2 text-sm"><option value="">{t("questionBank.allStatus")}</option><option value="draft">Draft</option><option value="review">Review</option><option value="published">Published</option><option value="retired">Retired</option></select>
           </div>
           {(search || typeFilter || statusFilter) && <button type="button" onClick={() => { setSearch(""); setTypeFilter(""); setStatusFilter(""); }} className="mt-2 rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600">{t("questionBank.clearFilters")}</button>}
@@ -210,7 +222,7 @@ export default function QuestionBankPage() {
           <div className="mt-4 space-y-2">
             {filteredQuestions.map((question) => (
               <div key={question.id} className="rounded-xl border border-slate-200 p-3">
-                <div className="flex items-start justify-between gap-3"><div><p className="font-semibold text-slate-900">{question.code}</p><p className="text-xs text-slate-500">{question.questionType} · {question.status}</p></div><span className="text-xs text-slate-400">{question.languageCode}</span></div>
+                <div className="flex items-start justify-between gap-3"><div><p className="font-semibold text-slate-900">{question.code}</p><p className="text-xs text-slate-500">{questionTypeLabel(question.questionType)} · {questionStatusLabel(question.status)}</p></div><span className="text-xs text-slate-400">{question.languageCode}</span></div>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {question.status !== "published" && <button type="button" onClick={() => publishMutation.mutate(question.id)} className="rounded-lg bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white">{t("questionBank.publish")}</button>}
                   <button type="button" onClick={() => prepareNewVersion.mutate(question.id)} className="rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold">{t("questionBank.newVersion")}</button>
@@ -236,7 +248,7 @@ export default function QuestionBankPage() {
               </div>
             )}
 
-            {questionType === "true_false" && <Field label={t("questionBank.correct")}><select value={correctOption} onChange={(e) => setCorrectOption(e.target.value)} className="input"><option value="">{t("questionBank.selectCorrect")}</option><option value="true">True</option><option value="false">False</option></select></Field>}
+            {questionType === "true_false" && <Field label={t("questionBank.correct")}><select value={correctOption} onChange={(e) => setCorrectOption(e.target.value)} className="input"><option value="">{t("questionBank.selectCorrect")}</option><option value="true">{t("questionBank.trueLabel")}</option><option value="false">{t("questionBank.falseLabel")}</option></select></Field>}
 
             {questionType === "short_answer" && <Field label={t("questionBank.expected")}><input value={shortAnswer} onChange={(e) => setShortAnswer(e.target.value)} className="input" placeholder={t("questionBank.expectedPlaceholder")} /><p className="mt-1 text-xs text-slate-500">{t("questionBank.shortAnswerNote")}</p></Field>}
 
