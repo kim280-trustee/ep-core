@@ -70,13 +70,13 @@ export default function SchoolParentLinksPage() {
   };
   const linkMutation = useMutation({
     mutationFn: () => {
-      if (!user?.id || !organizationId || !parentUserId || !studentUserId) throw new Error("Select a parent account and an active student.");
-      if (parentUserId === studentUserId) throw new Error("A parent account cannot be linked to itself as a student.");
+      if (!user?.id || !organizationId || !parentUserId || !studentUserId) throw new Error(t("schoolAdmin.selectParentAndStudentError"));
+      if (parentUserId === studentUserId) throw new Error(t("schoolAdmin.parentSelfLinkError"));
       return learningParentService.createLink({ organizationId, parentUserId, studentUserId, relationship, createdBy: user.id });
     },
     onSuccess: async () => {
       setErrorMessage("");
-      setNotice("Parent and student accounts linked successfully.");
+      setNotice(t("schoolAdmin.parentLinkSuccess"));
       await refreshLinks();
     },
     onError: (error) => { setNotice(""); setErrorMessage(errorText(error)); },
@@ -85,7 +85,7 @@ export default function SchoolParentLinksPage() {
     mutationFn: ({ id, status }: { id: string; status: "active" | "inactive" }) => learningParentService.setLinkStatus(id, status),
     onSuccess: async (_result, input) => {
       setErrorMessage("");
-      setNotice(input.status === "active" ? "Parent link reactivated." : "Parent link deactivated.");
+      setNotice(input.status === "active" ? t("schoolAdmin.parentLinkReactivated") : t("schoolAdmin.parentLinkDeactivated"));
       await refreshLinks();
     },
     onError: (error) => { setNotice(""); setErrorMessage(errorText(error)); },
@@ -93,7 +93,7 @@ export default function SchoolParentLinksPage() {
   const inviteMutation = useMutation({
     mutationFn: () => {
       if (!organizationId || !inviteStudentId || !parentName.trim() || !parentEmail.trim()) {
-        throw new Error("Enter the parent's name and email, then select a student.");
+        throw new Error(t("schoolAdmin.parentInviteRequiredError"));
       }
       return learningParentService.inviteParent({
         organizationId,
@@ -106,8 +106,8 @@ export default function SchoolParentLinksPage() {
     onSuccess: async (result) => {
       setErrorMessage("");
       setNotice(result.sent
-        ? "Parent invitation submitted successfully. The parent must use the invitation email and sign in with that email address."
-        : "The invitation request was accepted, but the service did not confirm that an email was sent. Check the invitation status before retrying.");
+        ? t("schoolAdmin.parentInvitationSent")
+        : t("schoolAdmin.parentInvitationUnconfirmed"));
       setParentName("");
       setParentEmail("");
       await refreshLinks();
@@ -122,7 +122,7 @@ export default function SchoolParentLinksPage() {
     if (existingPair) {
       const current = links.find((item) => item.parentUserId === parentUserId && item.studentUserId === studentUserId);
       if (current?.status === "active") {
-        setErrorMessage("These accounts are already linked.");
+        setErrorMessage(t("schoolAdmin.accountsAlreadyLinked"));
         return;
       }
       if (current?.status === "inactive") {
