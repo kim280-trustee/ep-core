@@ -58,8 +58,8 @@ export default function SchoolStudentAdmissionsPage() {
     onSuccess: async (result) => {
       setErrorMessage("");
       setNotice(result.sent
-        ? "Invitation email sent. The student must open the email and accept using the same email address. The class roster is updated after acceptance."
-        : "The request completed, but email delivery was not confirmed. Check the invitation status before retrying.");
+        ? t("schoolAdmin.studentInvitationSent")
+        : t("schoolAdmin.studentInvitationUnconfirmed"));
       setStudentName("");
       setStudentEmail("");
       await queryClient.invalidateQueries({ queryKey: ["school-admin"] });
