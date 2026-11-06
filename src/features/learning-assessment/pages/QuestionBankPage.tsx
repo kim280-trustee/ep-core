@@ -91,7 +91,7 @@ export default function QuestionBankPage() {
       const versions = await learningAssessmentService.listQuestionVersions(questionId);
       const latest = versions[0];
       if (!latest) throw new Error(t("questionBank.noVersion"));
-      const mappedType = teacherTypes.some((item) => item.value === question.questionType)
+      const mappedType = teacherTypes.includes(question.questionType as TeacherQuestionType)
         ? question.questionType as TeacherQuestionType
         : "short_answer";
       setEditingQuestionId(questionId);
@@ -237,7 +237,7 @@ export default function QuestionBankPage() {
           <div className="flex items-center justify-between gap-3"><h2 className="font-semibold text-slate-900">{editingQuestionId ? t("questionBank.createVersion") : t("questionBank.create")}</h2>{editingQuestionId && <button type="button" onClick={resetForm} className="text-slate-400"><X size={18} /></button>}</div>
           <div className="mt-5 space-y-4">
             <Field label={t("questionBank.code")}><input disabled={Boolean(editingQuestionId)} value={code} onChange={(e) => setCode(e.target.value)} className="input" placeholder="ENG-M1-Q001" /></Field>
-            <Field label={t("questionBank.type")}><select disabled={Boolean(editingQuestionId)} value={questionType} onChange={(e) => { const next = e.target.value as TeacherQuestionType; setQuestionType(next); setCorrectOption(next === "single_choice" ? "a" : ""); }} className="input">{teacherTypes.map((type) => <option key={type.value} value={type.value}>{type.label}</option>)}</select></Field>
+            <Field label={t("questionBank.type")}><select disabled={Boolean(editingQuestionId)} value={questionType} onChange={(e) => { const next = e.target.value as TeacherQuestionType; setQuestionType(next); setCorrectOption(next === "single_choice" ? "a" : ""); }} className="input">{teacherTypes.map((type) => <option key={type} value={type}>{questionTypeLabel(type)}</option>)}</select></Field>
             <Field label={t("questionBank.prompt")}><textarea value={prompt} onChange={(e) => setPrompt(e.target.value)} rows={4} className="input" placeholder={t("questionBank.promptPlaceholder")} /></Field>
 
             {questionType === "single_choice" && (
