@@ -124,7 +124,7 @@ export default function TeacherLayout() {
             </nav>
 
             <div className="mt-6 border-t border-slate-200 pt-4">
-              <p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">Academic</p>
+              <p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">{t("learning.academic")}</p>
               <div className="mt-2 space-y-1">
                 {classLinks.map(item => (
                   <NavLink key={item.to} to={item.to} className={({ isActive }) => linkClass(isActive)}>
@@ -135,7 +135,7 @@ export default function TeacherLayout() {
             </div>
 
             <div className="mt-6 border-t border-slate-200 pt-4">
-              <p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">My Classes</p>
+              <p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">{t("learning.myClasses")}</p>
               <div className="mt-2 space-y-1">
                 {teacherAccess.data.slice(0, 8).map(cls => (
                   <NavLink key={cls.classGroup.id} to={"/teacher/classes/"+cls.classGroup.id} className={({ isActive }) => linkClass(isActive)}>
@@ -159,11 +159,10 @@ export default function TeacherLayout() {
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <div><p className="font-bold text-slate-950">E&P Learning</p><p className="text-xs text-slate-500">{t("learning.teacherWorkspace")}</p></div>
-                  <p className="text-xs text-slate-500">Teacher Workspace</p>
                 </div>
                 <LearningLanguageSelector compact />
                 <button type="button" onClick={() => void handleLogout()} disabled={loggingOut} className="rounded-xl border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-600 disabled:opacity-50">
-                  {loggingOut ? "Signing out..." : "Logout"}
+                  {loggingOut ? t("learning.signingOut") : t("learning.logout")}
                 </button>
               </div>
               <nav className="mt-3 flex gap-2 overflow-x-auto pb-1" aria-label="Teacher mobile navigation">
