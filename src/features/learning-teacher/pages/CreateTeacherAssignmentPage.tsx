@@ -187,14 +187,14 @@ export default function CreateTeacherAssignmentPage() {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             <Field label={t("teacherCreateAssignment.code")} hint={t("teacherCreateAssignment.required")}>
-              <input required value={code} onChange={(event) => setCode(event.target.value)} placeholder="E.g. ENG-M1-001" className="input" />
+              <input required value={code} onChange={(event) => setCode(event.target.value)} placeholder={t("teacherCreateAssignment.codePlaceholder")} className="input" />
             </Field>
             <Field label={t("teacherCreateAssignment.due")} hint={t("teacherCreateAssignment.optional")}>
               <input type="datetime-local" value={dueAt} onChange={(event) => setDueAt(event.target.value)} className="input" />
             </Field>
           </div>
           <Field label={t("teacherCreateAssignment.titleField")} hint={t("teacherCreateAssignment.required")}>
-            <input required value={title} onChange={(event) => setTitle(event.target.value)} placeholder="E.g. Introducing Yourself" className="input" />
+            <input required value={title} onChange={(event) => setTitle(event.target.value)} placeholder={t("teacherCreateAssignment.titlePlaceholder")} className="input" />
           </Field>
           <Field label={t("teacherCreateAssignment.instructions")} hint={t("teacherCreateAssignment.optional")}>
             <textarea value={description} onChange={(event) => setDescription(event.target.value)} rows={4} placeholder={t("teacherCreateAssignment.instructionsPlaceholder")} className="input" />
