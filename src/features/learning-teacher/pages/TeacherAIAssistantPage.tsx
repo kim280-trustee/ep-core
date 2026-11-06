@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 import { AlertCircle, Copy, Download, FileJson, Sparkles } from "lucide-react";
 import { useAuth } from "@/core/auth";
+import { useTranslation } from "@/core/i18n/useTranslation";
 import { supabase } from "@/core/infrastructure/supabase/client";
 import { learningTeacherService } from "../services/learning-teacher.service";
 import { learningContentService } from "@/features/learning-content";
@@ -37,6 +38,7 @@ type DraftResponse = {
 };
 
 export default function TeacherAIAssistantPage() {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const [classGroupId, setClassGroupId] = useState("");
   const [subject, setSubject] = useState("English");
@@ -118,10 +120,10 @@ export default function TeacherAIAssistantPage() {
       if (error) {
         const context = (error as { context?: { json?: () => Promise<{ error?: string }> } }).context;
         const details = await context?.json?.().catch(() => null);
-        throw new Error(details?.error || error.message || "The draft could not be generated.");
+        throw new Error(details?.error || error.message || t("teacherAI.generateError"));
       }
       if (!data || typeof data.draft !== "string" || !data.draft.trim()) {
-        throw new Error("The AI service returned an invalid draft. Please try again.");
+        throw new Error(t("teacherAI.invalidDraft"));
       }
       return data as DraftResponse;
     },
@@ -131,20 +133,20 @@ export default function TeacherAIAssistantPage() {
     mutationFn: async () => {
       const generatedDraft = generate.data?.draft;
       if (!user?.id || !organizationId || !generatedDraft?.trim()) {
-        throw new Error("Generate a draft and select an active teacher class before saving.");
+        throw new Error(t("teacherAI.savePrerequisite"));
       }
       const suffix = Date.now().toString(36).toUpperCase();
       const code = `AI-${format.toUpperCase().replace(/[^A-Z0-9]+/g, "-")}-${suffix}`;
       const formatLabel = format.split("_").map((part) => part[0].toUpperCase() + part.slice(1)).join(" ");
       const title = `${topic.trim()} — ${formatLabel}`;
       if (!curriculumId || !gradeLevelId || !subjectId || !skillId || !topicId || !objectiveId) {
-        throw new Error("Choose a curriculum, grade, subject, skill, topic, and learning objective before saving to the Content Library.");
+        throw new Error(t("teacherAI.objectiveRequired"));
       }
       if (objectiveAlignments.isPending) {
-        throw new Error("The curriculum alignment is still being checked. Wait a moment and save again.");
+        throw new Error(t("teacherAI.alignmentPending"));
       }
       if (objectiveAlignments.isError || !alignedObjectiveIds.has(objectiveId)) {
-        throw new Error("The selected learning objective is not verified as aligned to the chosen curriculum and grade. Refresh the alignment data and try again.");
+        throw new Error(t("teacherAI.alignmentInvalid"));
       }
       const content = await learningContentService.createContent({
         organizationId,
@@ -215,9 +217,9 @@ export default function TeacherAIAssistantPage() {
     if (!generate.data?.draft) return;
     try {
       await navigator.clipboard.writeText(generate.data.draft);
-      setCopyMessage("Draft copied.");
+      setCopyMessage(t("teacherAI.copied"));
     } catch {
-      setCopyMessage("Copy was blocked by this browser. Select the draft text and copy it manually.");
+      setCopyMessage(t("teacherAI.copyBlocked"));
     }
   };
 
@@ -292,7 +294,7 @@ export default function TeacherAIAssistantPage() {
       `Exported: ${context.exportedAt}`,
     ].join("\n");
     downloadTextFile(`${exportBaseName()}-${format}.md`, markdown, "text/markdown;charset=utf-8");
-    setCopyMessage("Lesson pack downloaded as Markdown.");
+    setCopyMessage(t("teacherAI.draftCopiedDownload"));
   };
 
   const downloadJsonPack = () => {
@@ -320,7 +322,7 @@ export default function TeacherAIAssistantPage() {
   }
 
   if (classes.isPending) {
-    return <div className="h-64 animate-pulse rounded-2xl bg-slate-200" aria-label="Loading teacher classes" />;
+    return <div className="h-64 animate-pulse rounded-2xl bg-slate-200" aria-label=t("teacherAI.loading") />;
   }
 
   if (classes.isError || !classes.data?.length) {
@@ -423,7 +425,7 @@ export default function TeacherAIAssistantPage() {
             </label>
             {generate.isError && <div role="alert" className="flex gap-2 rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-800"><AlertCircle size={18} className="mt-0.5 shrink-0" /><span>{generate.error.message}</span></div>}
             <button type="button" onClick={handleGenerate} disabled={generate.isPending || !organizationId || !subject.trim() || !gradeLevel.trim() || !topic.trim() || !objective.trim()} className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-indigo-700 px-4 py-3 text-sm font-semibold text-white hover:bg-indigo-800 disabled:cursor-not-allowed disabled:opacity-50">
-              <Sparkles size={16} />{generate.isPending ? "Generating draft…" : "Generate draft"}
+              <Sparkles size={16} />{generate.isPending ? t("teacherAI.generating") : t("teacherAI.generate")}
             </button>
             <p className="text-xs leading-5 text-slate-500">Do not enter student names, contact details, grades or other personal information. Check facts, answer keys and curriculum fit before using the material.</p>
           </div>
@@ -436,7 +438,7 @@ export default function TeacherAIAssistantPage() {
           </div>
           {copyMessage && <p role="status" className="mt-3 text-xs text-slate-600">{copyMessage}</p>}
           {generate.isPending ? <div className="mt-6 space-y-3" aria-label="Generating draft"><div className="h-4 w-3/4 animate-pulse rounded bg-slate-200" /><div className="h-4 w-full animate-pulse rounded bg-slate-200" /><div className="h-4 w-5/6 animate-pulse rounded bg-slate-200" /><div className="h-32 animate-pulse rounded-xl bg-slate-100" /></div>
-            : generate.data ? <><div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950"><strong>Teacher review required.</strong> This draft has not been validated against an official curriculum and has not been published.</div>{generate.data.usage && <p className="mt-3 text-xs text-slate-500" role="status">AI usage: {generate.data.usage.remainingRequests} of {generate.data.usage.dailyLimit} draft requests remaining in the rolling 24-hour window.</p>}<div className="mt-4 flex flex-wrap gap-2"><button type="button" onClick={() => saveDraft.mutate()} disabled={saveDraft.isPending || !organizationId || !curriculumId || !gradeLevelId || !subjectId || !skillId || !topicId || !objectiveId || objectiveAlignments.isPending || objectiveAlignments.isError || !alignedObjectiveIds.has(objectiveId)} className="rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-50">{saveDraft.isPending ? "Saving draft…" : "Save to content library"}</button><a href="/teacher/content" className="inline-flex items-center rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">Open content library</a></div>{saveDraft.isError && <p role="alert" className="mt-3 text-sm text-red-700">{saveDraft.error.message}</p>}{saveDraft.data && <p role="status" className="mt-3 rounded-lg bg-emerald-50 p-3 text-sm text-emerald-800">Saved “{saveDraft.data.title}” as a draft with the aligned learning objective linked. <a className="font-semibold underline" href={`/teacher/content/${saveDraft.data.id}`}>Open this draft to edit and continue through the existing review workflow</a></p>}<pre className="mt-4 whitespace-pre-wrap break-words font-sans text-sm leading-6 text-slate-800">{generate.data.draft}</pre></>
+            : generate.data ? <><div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950"><strong>Teacher review required.</strong> This draft has not been validated against an official curriculum and has not been published.</div>{generate.data.usage && <p className="mt-3 text-xs text-slate-500" role="status">{t("teacherAI.aiUsage")} {generate.data.usage.remainingRequests} {t("teacherAI.of")} {generate.data.usage.dailyLimit} {t("teacherAI.remaining")}</p>}<div className="mt-4 flex flex-wrap gap-2"><button type="button" onClick={() => saveDraft.mutate()} disabled={saveDraft.isPending || !organizationId || !curriculumId || !gradeLevelId || !subjectId || !skillId || !topicId || !objectiveId || objectiveAlignments.isPending || objectiveAlignments.isError || !alignedObjectiveIds.has(objectiveId)} className="rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-50">{saveDraft.isPending ? t("teacherAI.saving") : t("teacherAI.save")}</button><a href="/teacher/content" className="inline-flex items-center rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">Open content library</a></div>{saveDraft.isError && <p role="alert" className="mt-3 text-sm text-red-700">{saveDraft.error.message}</p>}{saveDraft.data && <p role="status" className="mt-3 rounded-lg bg-emerald-50 p-3 text-sm text-emerald-800">Saved “{saveDraft.data.title}” as a draft with the aligned learning objective linked. <a className="font-semibold underline" href={`/teacher/content/${saveDraft.data.id}`}>Open this draft to edit and continue through the existing review workflow</a></p>}<pre className="mt-4 whitespace-pre-wrap break-words font-sans text-sm leading-6 text-slate-800">{generate.data.draft}</pre></>
             : <div className="mt-8 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center"><Sparkles size={24} className="mx-auto text-slate-400" /><p className="mt-3 text-sm font-semibold text-slate-700">Your draft will appear here</p><p className="mt-1 text-sm text-slate-500">Enter the objective and select Generate draft.</p></div>}
         </section>
       </div>
