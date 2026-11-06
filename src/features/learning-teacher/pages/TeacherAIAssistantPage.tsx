@@ -322,7 +322,7 @@ export default function TeacherAIAssistantPage() {
   }
 
   if (classes.isPending) {
-    return <div className="h-64 animate-pulse rounded-2xl bg-slate-200" aria-label=t("teacherAI.loading") />;
+    return <div className="h-64 animate-pulse rounded-2xl bg-slate-200" aria-label={t("teacherAI.loading")} />;
   }
 
   if (classes.isError || !classes.data?.length) {
