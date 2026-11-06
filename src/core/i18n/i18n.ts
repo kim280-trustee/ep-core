@@ -900,8 +900,6 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "teacherAI.draftCopiedDownload": "Lesson pack downloaded as Markdown.",
     "teacherAI.aiUsage": "AI usage:",
     "teacherAI.remaining": "draft requests remaining in the rolling 24-hour window.",
-  },
-
     "teacherLessonPlan.signIn": "Sign in to create a lesson plan.",
     "teacherLessonPlan.loadError": "Your teaching classes could not be loaded. Refresh and try again.",
     "teacherLessonPlan.noClass": "No active teaching class",
@@ -971,7 +969,7 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "teacherLessonPlan.completeSections": "Complete the opening activity, teaching steps, guided practice and assessment before saving.",
     "teacherLessonPlan.durationRange": "Lesson duration must be a whole number from 5 to 300 minutes.",
     "teacherLessonPlan.duplicateCode": "That content code already exists in this school. Use a different code.",
-
+  },
   th: {
     "customers.customerNotFound": "ไม่พบลูกค้า",
     "customers.customerNotFoundDescription": "ไม่พบข้อมูลลูกค้าที่ร้องขอ",
@@ -1864,39 +1862,6 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "teacherAI.draftCopiedDownload": "ดาวน์โหลดชุดบทเรียนเป็น Markdown แล้ว",
     "teacherAI.aiUsage": "การใช้งาน AI:",
     "teacherAI.remaining": "คำขอสร้างฉบับร่างที่เหลือในช่วงเวลา 24 ชั่วโมง",
-  }
-};
-
-export function setLanguage(language: Language) {
-  currentLanguage = language;
-  listeners.forEach((listener) => listener());
-}
-
-export function getLanguage(): Language {
-  return currentLanguage;
-}
-
-export function subscribeToLanguage(listener: () => void) {
-  listeners.add(listener);
-  return () => listeners.delete(listener);
-}
-
-function resolve(locale: unknown, keys: string[]) {
-  let value = locale;
-  for (const item of keys) {
-    if (typeof value !== "object" || value === null) return undefined;
-    value = (value as Record<string, unknown>)[item];
-  }
-  return typeof value === "string" ? value : undefined;
-}
-
-export function translate(key: string) {
-  const keys = key.split(".");
-  return resolve(languages[currentLanguage], keys)
-    ?? supplementalTranslations[currentLanguage]?.[key]
-    ?? resolve(en, keys)
-    ?? supplementalTranslations.en?.[key]
-    ?? key;
     "teacherLessonPlan.signIn": "เข้าสู่ระบบเพื่อสร้างแผนการสอน",
     "teacherLessonPlan.loadError": "ไม่สามารถโหลดชั้นเรียนที่คุณสอนได้ โปรดรีเฟรชแล้วลองอีกครั้ง",
     "teacherLessonPlan.noClass": "ไม่มีชั้นเรียนที่กำลังสอนอยู่",
@@ -1966,3 +1931,37 @@ export function translate(key: string) {
     "teacherLessonPlan.completeSections": "กรอกกิจกรรมนำเข้าสู่บทเรียน ขั้นตอนการสอน การฝึกแบบมีครูช่วย และการประเมินก่อนบันทึก",
     "teacherLessonPlan.durationRange": "ระยะเวลาบทเรียนต้องเป็นจำนวนเต็มตั้งแต่ 5 ถึง 300 นาที",
     "teacherLessonPlan.duplicateCode": "รหัสเนื้อหานี้มีอยู่ในโรงเรียนแล้ว โปรดใช้รหัสอื่น",
+  }
+};
+
+export function setLanguage(language: Language) {
+  currentLanguage = language;
+  listeners.forEach((listener) => listener());
+}
+
+export function getLanguage(): Language {
+  return currentLanguage;
+}
+
+export function subscribeToLanguage(listener: () => void) {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
+}
+
+function resolve(locale: unknown, keys: string[]) {
+  let value = locale;
+  for (const item of keys) {
+    if (typeof value !== "object" || value === null) return undefined;
+    value = (value as Record<string, unknown>)[item];
+  }
+  return typeof value === "string" ? value : undefined;
+}
+
+export function translate(key: string) {
+  const keys = key.split(".");
+  return resolve(languages[currentLanguage], keys)
+    ?? supplementalTranslations[currentLanguage]?.[key]
+    ?? resolve(en, keys)
+    ?? supplementalTranslations.en?.[key]
+    ?? key;
+}
