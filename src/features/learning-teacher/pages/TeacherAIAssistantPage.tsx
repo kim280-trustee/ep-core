@@ -318,7 +318,7 @@ export default function TeacherAIAssistantPage() {
   const labelClass = "block text-sm font-medium text-slate-700";
 
   if (!user) {
-    return <section className="rounded-2xl border border-slate-200 bg-white p-6"><h1 className="text-xl font-bold">AI Teacher Assistant</h1><p className="mt-2 text-sm text-slate-600">Sign in with an active teacher account to continue.</p></section>;
+    return <section className="rounded-2xl border border-slate-200 bg-white p-6"><h1 className="text-xl font-bold">{t("teacherAI.title")}</h1><p className="mt-2 text-sm text-slate-600">{t("teacherAI.signIn")}</p></section>;
   }
 
   if (classes.isPending) {
@@ -326,20 +326,20 @@ export default function TeacherAIAssistantPage() {
   }
 
   if (classes.isError || !classes.data?.length) {
-    return <section className="rounded-2xl border border-amber-200 bg-amber-50 p-6"><h1 className="text-xl font-bold text-slate-900">AI Teacher Assistant</h1><p className="mt-2 text-sm text-amber-900">An active teacher class could not be loaded. Check your teacher assignment and refresh this page.</p></section>;
+    return <section className="rounded-2xl border border-amber-200 bg-amber-50 p-6"><h1 className="text-xl font-bold text-slate-900">{t("teacherAI.title")}</h1><p className="mt-2 text-sm text-amber-900">{t("teacherAI.loadError")}</p></section>;
   }
 
   return (
     <div className="mx-auto max-w-6xl space-y-6">
       <header>
-        <div className="flex items-center gap-2 text-indigo-700"><Sparkles size={20} /><span className="text-sm font-semibold">Teacher tools</span></div>
-        <h1 className="mt-2 text-2xl font-bold text-slate-950">AI Teacher Assistant</h1>
-        <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">Create a first draft of a lesson, worksheet, quiz or lesson plan from your learning objective. Generated material is not saved or published automatically.</p>
+        <div className="flex items-center gap-2 text-indigo-700"><Sparkles size={20} /><span className="text-sm font-semibold">{t("teacherAI.tools")}</span></div>
+        <h1 className="mt-2 text-2xl font-bold text-slate-950">{t("teacherAI.title")}</h1>
+        <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">{t("teacherAI.intro")}</p>
       </header>
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
         <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <h2 className="text-base font-bold text-slate-900">Draft requirements</h2>
+          <h2 className="text-base font-bold text-slate-900">{t("teacherAI.requirements")}</h2>
           <div className="mt-4 space-y-4">
             <label className={labelClass}>Teacher class
               <select className={fieldClass} value={selectedClass?.classGroup.id ?? ""} onChange={(event) => setClassGroupId(event.target.value)}>
@@ -361,7 +361,7 @@ export default function TeacherAIAssistantPage() {
             <div className="grid gap-4 sm:grid-cols-2">
               <label className={labelClass}>Material type
                 <select className={fieldClass} value={format} onChange={(event) => setFormat(event.target.value as MaterialFormat)}>
-                  <option value="lesson">Lesson</option><option value="worksheet">Worksheet</option><option value="quiz">Quiz</option><option value="lesson_plan">Lesson plan</option><option value="differentiated_pack">Differentiated lesson pack</option>
+                  <option value="lesson">{t("teacherAI.lesson")}</option><option value="worksheet">{t("teacherAI.worksheet")}</option><option value="quiz">{t("teacherAI.quiz")}</option><option value="lesson_plan">{t("teacherAI.lessonPlan")}</option><option value="differentiated_pack">Differentiated lesson pack</option>
                 </select>
               </label>
               <label className={labelClass}>Language
@@ -379,29 +379,29 @@ export default function TeacherAIAssistantPage() {
               </label>
             </div>
             <section className="space-y-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
-              <div><h3 className="text-sm font-semibold text-slate-800">Link to E&P learning objectives</h3><p className="mt-1 text-xs leading-5 text-slate-600">The existing E&P authoring workflow requires an objective aligned to the selected curriculum and grade. Select the full hierarchy before saving. If the right curriculum or objective is not configured yet, copy the generated text and save it after the academic alignment is available.</p></div>
+              <div><h3 className="text-sm font-semibold text-slate-800">{t("teacherAI.linkObjectives")}</h3><p className="mt-1 text-xs leading-5 text-slate-600">The existing E&P authoring workflow requires an objective aligned to the selected curriculum and grade. Select the full hierarchy before saving. If the right curriculum or objective is not configured yet, copy the generated text and save it after the academic alignment is available.</p></div>
               <label className={labelClass}>Curriculum
-                <select className={fieldClass} value={curriculumId} onChange={(event) => { setCurriculumId(event.target.value); setGradeLevelId(""); setSubjectId(""); setSkillId(""); setTopicId(""); setObjectiveId(""); }}><option value="">Select curriculum</option>{(curricula.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}{item.version ? ` (${item.version})` : ""}</option>)}</select>
+                <select className={fieldClass} value={curriculumId} onChange={(event) => { setCurriculumId(event.target.value); setGradeLevelId(""); setSubjectId(""); setSkillId(""); setTopicId(""); setObjectiveId(""); }}><option value="">{t("teacherAI.selectCurriculum")}</option>{(curricula.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}{item.version ? ` (${item.version})` : ""}</option>)}</select>
               </label>
               <div className="grid gap-3 sm:grid-cols-2">
                 <label className={labelClass}>Curriculum grade
-                  <select className={fieldClass} value={gradeLevelId} onChange={(event) => { setGradeLevelId(event.target.value); setObjectiveId(""); }} disabled={!curriculumId}><option value="">Select grade</option>{(gradeLevels.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
+                  <select className={fieldClass} value={gradeLevelId} onChange={(event) => { setGradeLevelId(event.target.value); setObjectiveId(""); }} disabled={!curriculumId}><option value="">{t("teacherAI.selectGrade")}</option>{(gradeLevels.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
                 </label>
                 <label className={labelClass}>Curriculum subject
-                  <select className={fieldClass} value={subjectId} onChange={(event) => { setSubjectId(event.target.value); setSkillId(""); setTopicId(""); setObjectiveId(""); }} disabled={!curriculumId}><option value="">Select subject</option>{(subjects.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
+                  <select className={fieldClass} value={subjectId} onChange={(event) => { setSubjectId(event.target.value); setSkillId(""); setTopicId(""); setObjectiveId(""); }} disabled={!curriculumId}><option value="">{t("teacherAI.selectSubject")}</option>{(subjects.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
                 </label>
               </div>
               <label className={labelClass}>Skill
-                <select className={fieldClass} value={skillId} onChange={(event) => { setSkillId(event.target.value); setTopicId(""); setObjectiveId(""); }} disabled={!subjectId}><option value="">Select skill</option>{(skills.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
+                <select className={fieldClass} value={skillId} onChange={(event) => { setSkillId(event.target.value); setTopicId(""); setObjectiveId(""); }} disabled={!subjectId}><option value="">{t("teacherAI.selectSkill")}</option>{(skills.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
               </label>
               <label className={labelClass}>Topic in curriculum
-                <select className={fieldClass} value={topicId} onChange={(event) => { setTopicId(event.target.value); setObjectiveId(""); }} disabled={!skillId}><option value="">Select topic</option>{(topics.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
+                <select className={fieldClass} value={topicId} onChange={(event) => { setTopicId(event.target.value); setObjectiveId(""); }} disabled={!skillId}><option value="">{t("teacherAI.selectTopic")}</option>{(topics.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
               </label>
               <label className={labelClass}>Learning objective
-                <select className={fieldClass} value={objectiveId} onChange={(event) => setObjectiveId(event.target.value)} disabled={!topicId}><option value="">Select learning objective</option>{(objectives.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
+                <select className={fieldClass} value={objectiveId} onChange={(event) => setObjectiveId(event.target.value)} disabled={!topicId}><option value="">{t("teacherAI.selectObjective")}</option>{(objectives.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
               </label>
-              {objectiveId && objectiveAlignments.isPending && <p className="text-xs text-slate-500">Checking objective alignment…</p>}
-              {objectiveId && !objectiveAlignments.isPending && !alignedObjectiveIds.has(objectiveId) && <p role="alert" className="rounded-lg bg-amber-50 p-2 text-xs text-amber-800">This objective is not aligned to the selected curriculum and grade level. Choose an aligned objective before saving.</p>}
+              {objectiveId && objectiveAlignments.isPending && <p className="text-xs text-slate-500">{t("teacherAI.checking")}</p>}
+              {objectiveId && !objectiveAlignments.isPending && !alignedObjectiveIds.has(objectiveId) && <p role="alert" className="rounded-lg bg-amber-50 p-2 text-xs text-amber-800">{t("teacherAI.notAligned")}</p>}
             </section>
             <label className={labelClass}>Curriculum reference (optional)
               <input className={fieldClass} value={curriculumReference} onChange={(event) => setCurriculumReference(event.target.value)} maxLength={500} placeholder="Official curriculum, standard, or learning outcome reference" />
@@ -420,26 +420,26 @@ export default function TeacherAIAssistantPage() {
             </label>
             <label className={labelClass}>Difficulty
               <select className={fieldClass} value={difficulty} onChange={(event) => setDifficulty(event.target.value as DraftRequest["difficulty"])}>
-                <option value="beginner">Beginner / needs support</option><option value="developing">Developing</option><option value="on_level">On level</option><option value="stretch">Stretch / extension</option>
+                <option value="beginner">{t("teacherAI.beginner")}</option><option value="developing">{t("teacherAI.developing")}</option><option value="on_level">{t("teacherAI.onLevel")}</option><option value="stretch">{t("teacherAI.stretch")}</option>
               </select>
             </label>
             {generate.isError && <div role="alert" className="flex gap-2 rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-800"><AlertCircle size={18} className="mt-0.5 shrink-0" /><span>{generate.error.message}</span></div>}
             <button type="button" onClick={handleGenerate} disabled={generate.isPending || !organizationId || !subject.trim() || !gradeLevel.trim() || !topic.trim() || !objective.trim()} className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-indigo-700 px-4 py-3 text-sm font-semibold text-white hover:bg-indigo-800 disabled:cursor-not-allowed disabled:opacity-50">
               <Sparkles size={16} />{generate.isPending ? t("teacherAI.generating") : t("teacherAI.generate")}
             </button>
-            <p className="text-xs leading-5 text-slate-500">Do not enter student names, contact details, grades or other personal information. Check facts, answer keys and curriculum fit before using the material.</p>
+            <p className="text-xs leading-5 text-slate-500">{t("teacherAI.privacy")}</p>
           </div>
         </section>
 
         <section className="min-h-[28rem] rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <div><h2 className="text-base font-bold text-slate-900">Generated draft</h2><p className="mt-1 text-xs text-slate-500">Editable text · not saved to the content library</p></div>
-            {generate.data && <div className="flex flex-wrap gap-2"><button type="button" onClick={() => void copyDraft()} className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"><Copy size={14} />Copy draft</button><button type="button" onClick={downloadMarkdownPack} className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"><Download size={14} />Download Markdown</button><button type="button" onClick={downloadJsonPack} className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"><FileJson size={14} />Export JSON</button></div>}
+            <div><h2 className="text-base font-bold text-slate-900">{t("teacherAI.generated")}</h2><p className="mt-1 text-xs text-slate-500">{t("teacherAI.notSaved")}</p></div>
+            {generate.data && <div className="flex flex-wrap gap-2"><button type="button" onClick={() => void copyDraft()} className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"><Copy size={14} />{t("teacherAI.copy")}</button><button type="button" onClick={downloadMarkdownPack} className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"><Download size={14} />{t("teacherAI.markdown")}</button><button type="button" onClick={downloadJsonPack} className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"><FileJson size={14} />{t("teacherAI.json")}</button></div>}
           </div>
           {copyMessage && <p role="status" className="mt-3 text-xs text-slate-600">{copyMessage}</p>}
           {generate.isPending ? <div className="mt-6 space-y-3" aria-label="Generating draft"><div className="h-4 w-3/4 animate-pulse rounded bg-slate-200" /><div className="h-4 w-full animate-pulse rounded bg-slate-200" /><div className="h-4 w-5/6 animate-pulse rounded bg-slate-200" /><div className="h-32 animate-pulse rounded-xl bg-slate-100" /></div>
-            : generate.data ? <><div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950"><strong>Teacher review required.</strong> This draft has not been validated against an official curriculum and has not been published.</div>{generate.data.usage && <p className="mt-3 text-xs text-slate-500" role="status">{t("teacherAI.aiUsage")} {generate.data.usage.remainingRequests} {t("teacherAI.of")} {generate.data.usage.dailyLimit} {t("teacherAI.remaining")}</p>}<div className="mt-4 flex flex-wrap gap-2"><button type="button" onClick={() => saveDraft.mutate()} disabled={saveDraft.isPending || !organizationId || !curriculumId || !gradeLevelId || !subjectId || !skillId || !topicId || !objectiveId || objectiveAlignments.isPending || objectiveAlignments.isError || !alignedObjectiveIds.has(objectiveId)} className="rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-50">{saveDraft.isPending ? t("teacherAI.saving") : t("teacherAI.save")}</button><a href="/teacher/content" className="inline-flex items-center rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">Open content library</a></div>{saveDraft.isError && <p role="alert" className="mt-3 text-sm text-red-700">{saveDraft.error.message}</p>}{saveDraft.data && <p role="status" className="mt-3 rounded-lg bg-emerald-50 p-3 text-sm text-emerald-800">Saved “{saveDraft.data.title}” as a draft with the aligned learning objective linked. <a className="font-semibold underline" href={`/teacher/content/${saveDraft.data.id}`}>Open this draft to edit and continue through the existing review workflow</a></p>}<pre className="mt-4 whitespace-pre-wrap break-words font-sans text-sm leading-6 text-slate-800">{generate.data.draft}</pre></>
-            : <div className="mt-8 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center"><Sparkles size={24} className="mx-auto text-slate-400" /><p className="mt-3 text-sm font-semibold text-slate-700">Your draft will appear here</p><p className="mt-1 text-sm text-slate-500">Enter the objective and select Generate draft.</p></div>}
+            : generate.data ? <><div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950"><strong>{t("teacherAI.review")}</strong> This draft has not been validated against an official curriculum and has not been published.</div>{generate.data.usage && <p className="mt-3 text-xs text-slate-500" role="status">{t("teacherAI.aiUsage")} {generate.data.usage.remainingRequests} {t("teacherAI.of")} {generate.data.usage.dailyLimit} {t("teacherAI.remaining")}</p>}<div className="mt-4 flex flex-wrap gap-2"><button type="button" onClick={() => saveDraft.mutate()} disabled={saveDraft.isPending || !organizationId || !curriculumId || !gradeLevelId || !subjectId || !skillId || !topicId || !objectiveId || objectiveAlignments.isPending || objectiveAlignments.isError || !alignedObjectiveIds.has(objectiveId)} className="rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-50">{saveDraft.isPending ? t("teacherAI.saving") : t("teacherAI.save")}</button><a href="/teacher/content" className="inline-flex items-center rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">{t("teacherAI.openLibrary")}</a></div>{saveDraft.isError && <p role="alert" className="mt-3 text-sm text-red-700">{saveDraft.error.message}</p>}{saveDraft.data && <p role="status" className="mt-3 rounded-lg bg-emerald-50 p-3 text-sm text-emerald-800">Saved “{saveDraft.data.title}” as a draft with the aligned learning objective linked. <a className="font-semibold underline" href={`/teacher/content/${saveDraft.data.id}`}>Open this draft to edit and continue through the existing review workflow</a></p>}<pre className="mt-4 whitespace-pre-wrap break-words font-sans text-sm leading-6 text-slate-800">{generate.data.draft}</pre></>
+            : <div className="mt-8 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center"><Sparkles size={24} className="mx-auto text-slate-400" /><p className="mt-3 text-sm font-semibold text-slate-700">{t("teacherAI.draftHere")}</p><p className="mt-1 text-sm text-slate-500">{t("teacherAI.enterObjective")}</p></div>}
         </section>
       </div>
     </div>
