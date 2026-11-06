@@ -67,10 +67,10 @@ export default function ParentLayout() {
             <div className="flex items-center justify-between gap-3">
               <div className="min-w-0"><p className="font-bold text-slate-950">E&P Learning</p><p className="truncate text-xs text-slate-500">{user?.email || t("learning.parent")}</p></div>
               <LearningLanguageSelector scope="parent" compact />
-              <button type="button" onClick={() => void handleLogout()} disabled={loggingOut} className="rounded-xl border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-600 disabled:opacity-50">{loggingOut ? "Signing out..." : "Logout"}</button>
+              <button type="button" onClick={() => void handleLogout()} disabled={loggingOut} className="rounded-xl border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-600 disabled:opacity-50">{loggingOut ? t("learning.signingOut") : t("learning.logout")}</button>
             </div>
             <nav className="mt-3 flex gap-2 overflow-x-auto pb-1" aria-label="Parent mobile navigation">
-              {items.map(({to,label,icon:Icon,end}) => <NavLink key={to} to={to} end={end} className={({isActive}) => linkClass(isActive)}><Icon size={16}/><span className="whitespace-nowrap">{t(label)}</span>{label === "Announcements" && unreadAnnouncementCount > 0 && <span aria-label={`${unreadAnnouncementCount} unread announcements`} className="rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-bold text-indigo-800">{unreadAnnouncementCount > 99 ? "99+" : unreadAnnouncementCount}</span>}</NavLink>)}
+              {items.map(({to,label,icon:Icon,end}) => <NavLink key={to} to={to} end={end} className={({isActive}) => linkClass(isActive)}><Icon size={16}/><span className="whitespace-nowrap">{t(label)}</span>{label === "learning.announcements" && unreadAnnouncementCount > 0 && <span aria-label={`${unreadAnnouncementCount} unread announcements`} className="rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-bold text-indigo-800">{unreadAnnouncementCount > 99 ? "99+" : unreadAnnouncementCount}</span>}</NavLink>)}
             </nav>
           </div>
           <div className="p-4 sm:p-6 lg:p-8"><Outlet /></div>
