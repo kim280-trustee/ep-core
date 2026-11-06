@@ -186,20 +186,20 @@ export default function TeacherAssessmentBuilderPage() {
     onError: (error: Error) => setMessage({ kind: "error", text: error.message }),
   });
 
-  if (!user) return <Panel title={t("assessmentBuilder.title")}><p>{${t("assessmentBuilder.signIn")}}</p></Panel>;
+  if (!user) return <Panel title={t("assessmentBuilder.title")}><p>{t("assessmentBuilder.signIn")}</p></Panel>;
   if (classesQuery.isPending) return <div className="h-64 animate-pulse rounded-2xl bg-slate-200" />;
-  if (classesQuery.isError) return <Panel title={t("assessmentBuilder.title")}><p>{${t("assessmentBuilder.classError")}}</p></Panel>;
-  if (!classesQuery.data?.length) return <Panel title={t("assessmentBuilder.title")}><p>{${t("assessmentBuilder.noClasses")}}</p></Panel>;
+  if (classesQuery.isError) return <Panel title={t("assessmentBuilder.title")}><p>{t("assessmentBuilder.classError")}</p></Panel>;
+  if (!classesQuery.data?.length) return <Panel title={t("assessmentBuilder.title")}><p>{t("assessmentBuilder.noClasses")}</p></Panel>;
 
   return (
     <div className="mx-auto max-w-6xl space-y-6">
       <header>
-        <Link to="/teacher" className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-900"><ArrowLeft size={16} />{${t("assessmentBuilder.back")}}</Link>
+        <Link to="/teacher" className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-900"><ArrowLeft size={16} />{t("assessmentBuilder.back")}</Link>
         <div className="mt-3 flex items-start gap-3">
           <span className="rounded-2xl bg-indigo-100 p-3 text-indigo-700"><ClipboardCheck size={24} /></span>
           <div>
-            <h1 className="text-2xl font-bold text-slate-900">{${t("assessmentBuilder.title")}}</h1>
-            <p className="mt-1 max-w-3xl text-sm leading-6 text-slate-600">{${t("assessmentBuilder.intro")}}</p>
+            <h1 className="text-2xl font-bold text-slate-900">{t("assessmentBuilder.title")}</h1>
+            <p className="mt-1 max-w-3xl text-sm leading-6 text-slate-600">{t("assessmentBuilder.intro")}</p>
           </div>
         </div>
       </header>
@@ -212,9 +212,9 @@ export default function TeacherAssessmentBuilderPage() {
       )}
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
-        <h2 className="font-semibold text-slate-900">{${t("assessmentBuilder.context")}}</h2>
+        <h2 className="font-semibold text-slate-900">{t("assessmentBuilder.context")}</h2>
         <label className="mt-3 block max-w-xl space-y-2">
-          <span className="text-sm font-medium text-slate-700">{${t("assessmentBuilder.class")}}</span>
+          <span className="text-sm font-medium text-slate-700">{t("assessmentBuilder.class")}</span>
           <select value={activeClassGroupId} onChange={(event) => { setClassGroupId(event.target.value); setActiveAssessmentId(""); setSelectedVersionIds([]); setMessage(null); }} className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm">
             {classesQuery.data.map((item) => <option key={item.classGroup.id} value={item.classGroup.id}>{item.classGroup.name}</option>)}
           </select>
@@ -224,30 +224,30 @@ export default function TeacherAssessmentBuilderPage() {
       <div className="grid gap-6 lg:grid-cols-2">
         <section className="space-y-4 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
           <div>
-            <h2 className="text-lg font-semibold text-slate-900">{${t("assessmentBuilder.createHeading")}}</h2>
-            <p className="mt-1 text-sm text-slate-500">{${t("assessmentBuilder.createHelp")}}</p>
+            <h2 className="text-lg font-semibold text-slate-900">{t("assessmentBuilder.createHeading")}</h2>
+            <p className="mt-1 text-sm text-slate-500">{t("assessmentBuilder.createHelp")}</p>
           </div>
           <form onSubmit={(event) => { event.preventDefault(); setMessage(null); createMutation.mutate(); }} className="space-y-4">
             <Field label={t("assessmentBuilder.code")}><input required value={assessmentCode} onChange={(event) => setAssessmentCode(event.target.value)} className="input" placeholder="ENG-M1-DIAG-001" /></Field>
             <Field label="Title"><input required value={assessmentTitle} onChange={(event) => setAssessmentTitle(event.target.value)} className="input" placeholder="Present simple diagnostic" /></Field>
-            <Field label={t("assessmentBuilder.code")}><select value={assessmentType} onChange={(event) => setAssessmentType(event.target.value as LearningAssessmentType)} className="input">{assessmentTypes.map((item) => <option key={item.value} value={item.value}>{t(item.value === "diagnostic" ? "assessmentBuilder.typeDiagnostic" : item.value === "practice" ? "assessmentBuilder.typePractice" : item.value === "assignment" ? "assessmentBuilder.typeAssignment" : item.value === "quiz" ? "assessmentBuilder.typeQuiz" : item.value === "test" ? "assessmentBuilder.typeTest" : item.value === "mock_exam" ? "assessmentBuilder.typeMock" : "assessmentBuilder.typeCompetition")}</option>)}</select></Field>
-            <Field label={t("assessmentBuilder.code")}><textarea value={assessmentDescription} onChange={(event) => setAssessmentDescription(event.target.value)} rows={3} className="input" placeholder={t("assessmentBuilder.searchPlaceholder")} /></Field>
+            <Field label={t("assessmentBuilder.type")}><select value={assessmentType} onChange={(event) => setAssessmentType(event.target.value as LearningAssessmentType)} className="input">{assessmentTypes.map((item) => <option key={item.value} value={item.value}>{t(item.value === "diagnostic" ? "assessmentBuilder.typeDiagnostic" : item.value === "practice" ? "assessmentBuilder.typePractice" : item.value === "assignment" ? "assessmentBuilder.typeAssignment" : item.value === "quiz" ? "assessmentBuilder.typeQuiz" : item.value === "test" ? "assessmentBuilder.typeTest" : item.value === "mock_exam" ? "assessmentBuilder.typeMock" : "assessmentBuilder.typeCompetition")}</option>)}</select></Field>
+            <Field label={t("assessmentBuilder.instructions")}><textarea value={assessmentDescription} onChange={(event) => setAssessmentDescription(event.target.value)} rows={3} className="input" placeholder={t("assessmentBuilder.instructionsPlaceholder")} /></Field>
             <button type="submit" disabled={createMutation.isPending || !organizationId} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">
               <Plus size={16} />{createMutation.isPending ? "Creating…" : "Create draft assessment"}
             </button>
           </form>
 
           <div className="border-t border-slate-200 pt-4">
-            <h3 className="font-semibold text-slate-900">{${t("assessmentBuilder.continueDraft")}}</h3>
-            {assessmentsQuery.isError ? <p className="mt-2 text-sm text-red-700">{${t("assessmentBuilder.loadError")}}</p> : (
+            <h3 className="font-semibold text-slate-900">{t("assessmentBuilder.continueDraft")}</h3>
+            {assessmentsQuery.isError ? <p className="mt-2 text-sm text-red-700">{t("assessmentBuilder.loadError")}</p> : (
               <div className="mt-3 space-y-2">
                 {draftAssessments.map((assessment) => (
                   <div key={assessment.id} className={`flex items-center justify-between gap-3 rounded-xl border p-3 ${assessment.id === activeAssessmentId ? "border-indigo-300 bg-indigo-50" : "border-slate-200"}`}>
                     <div className="min-w-0"><p className="truncate font-semibold text-slate-900">{assessment.title}</p><p className="text-xs text-slate-500">{assessment.code} · {assessment.assessmentType}</p></div>
-                    <button type="button" onClick={() => { setActiveAssessmentId(assessment.id); setSelectedVersionIds([]); setMessage({ kind: "info", text: `Editing draft: ${assessment.title}` }); }} className="shrink-0 rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold">{${t("assessmentBuilder.continue")}}</button>
+                    <button type="button" onClick={() => { setActiveAssessmentId(assessment.id); setSelectedVersionIds([]); setMessage({ kind: "info", text: `Editing draft: ${assessment.title}` }); }} className="shrink-0 rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold">{t("assessmentBuilder.continue")}</button>
                   </div>
                 ))}
-                {!draftAssessments.length && <p className="text-sm text-slate-500">{${t("assessmentBuilder.noDrafts")}}</p>}
+                {!draftAssessments.length && <p className="text-sm text-slate-500">{t("assessmentBuilder.noDrafts")}</p>}
               </div>
             )}
           </div>
@@ -255,17 +255,17 @@ export default function TeacherAssessmentBuilderPage() {
 
         <section className="space-y-4 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
           <div>
-            <h2 className="text-lg font-semibold text-slate-900">{${t("assessmentBuilder.addHeading")}}</h2>
-            <p className="mt-1 text-sm text-slate-500">{${t("assessmentBuilder.addHelp")}}</p>
+            <h2 className="text-lg font-semibold text-slate-900">{t("assessmentBuilder.addHeading")}</h2>
+            <p className="mt-1 text-sm text-slate-500">{t("assessmentBuilder.addHelp")}</p>
           </div>
           {activeAssessment ? (
             <div className="rounded-xl border border-indigo-200 bg-indigo-50 p-3">
-              <p className="text-xs font-semibold uppercase tracking-wide text-indigo-700">{${t("assessmentBuilder.activeDraft")}}</p>
+              <p className="text-xs font-semibold uppercase tracking-wide text-indigo-700">{t("assessmentBuilder.activeDraft")}</p>
               <p className="mt-1 font-semibold text-slate-900">{activeAssessment.title}</p>
               <p className="text-sm text-slate-600">{activeAssessment.code} · {activeAssessment.assessmentType}</p>
-              {activeAssessment.status === "published" && <p className="mt-1 text-sm font-semibold text-emerald-700">{${t("assessmentBuilder.readOnly")}}</p>}
+              {activeAssessment.status === "published" && <p className="mt-1 text-sm font-semibold text-emerald-700">{t("assessmentBuilder.readOnly")}</p>}
             </div>
-          ) : <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-600">{${t("assessmentBuilder.chooseDraft")}}</p>}
+          ) : <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-600">{t("assessmentBuilder.chooseDraft")}</p>}
 
           {questionsQuery.isPending ? <div className="h-32 animate-pulse rounded-xl bg-slate-100" /> : questionsQuery.isError ? (
             <p role="alert" className="rounded-xl bg-red-50 p-3 text-sm text-red-800">Published questions could not be loaded.</p>
@@ -276,10 +276,10 @@ export default function TeacherAssessmentBuilderPage() {
                   <input type="search" value={questionSearch} onChange={(event) => setQuestionSearch(event.target.value)} placeholder={t("assessmentBuilder.searchPlaceholder")} className="mt-1 block w-full rounded-xl border border-slate-300 px-3 py-2 font-normal" />
                 </label>
                 <label className="text-sm font-medium text-slate-700">Question type
-                  <select value={questionTypeFilter} onChange={(event) => setQuestionTypeFilter(event.target.value as typeof questionTypeFilter)} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-normal"><option value="all">{${t("assessmentBuilder.allTypes")}}</option><option value="single_choice">Single choice</option><option value="true_false">True / False</option></select>
+                  <select value={questionTypeFilter} onChange={(event) => setQuestionTypeFilter(event.target.value as typeof questionTypeFilter)} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-normal"><option value="all">{t("assessmentBuilder.allTypes")}</option><option value="single_choice">{t("questionBank.single")}</option><option value="true_false">{t("questionBank.trueFalse")}</option></select>
                 </label>
                 <p className="text-xs text-slate-500 sm:col-span-2" aria-live="polite">Showing {visibleQuestionOptions.length} of {questionsQuery.data?.length ?? 0} questions · {selectedVersionIds.length} selected · {pendingQuestionOptions.length} ready to add</p>
-                {(questionSearch || questionTypeFilter !== "all" || selectedVersionIds.length > 0) && <div className="flex flex-wrap gap-2 sm:col-span-2"><button type="button" onClick={() => { setQuestionSearch(""); setQuestionTypeFilter("all"); }} className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold">{${t("assessmentBuilder.clearFilters")}}</button>{selectedVersionIds.length > 0 && <button type="button" onClick={() => setSelectedVersionIds([])} className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold">{${t("assessmentBuilder.clearSelection")}}</button>}</div>}
+                {(questionSearch || questionTypeFilter !== "all" || selectedVersionIds.length > 0) && <div className="flex flex-wrap gap-2 sm:col-span-2"><button type="button" onClick={() => { setQuestionSearch(""); setQuestionTypeFilter("all"); }} className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold">{t("assessmentBuilder.clearFilters")}</button>{selectedVersionIds.length > 0 && <button type="button" onClick={() => setSelectedVersionIds([])} className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold">{t("assessmentBuilder.clearSelection")}</button>}</div>}
               </div>
               <div className="max-h-[28rem] space-y-2 overflow-y-auto pr-1">
               {visibleQuestionOptions.map((question) => {
@@ -295,8 +295,8 @@ export default function TeacherAssessmentBuilderPage() {
                   </label>
                 );
               })}
-              {!questionsQuery.data?.length && <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-600">No published auto-scored questions are available. Create and publish questions in the <Link className="font-semibold underline" to="/teacher/question-bank">{${t("assessmentBuilder.questionBank")}}</Link>{ ${t("assessmentBuilder.first")}}</p>}
-              {Boolean(questionsQuery.data?.length) && !visibleQuestionOptions.length && <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-600">{${t("assessmentBuilder.noMatches")}}</p>}
+              {!questionsQuery.data?.length && <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-600">No published auto-scored questions are available. Create and publish questions in the <Link className="font-semibold underline" to="/teacher/question-bank">{t("assessmentBuilder.questionBank")}</Link>{ ${t("assessmentBuilder.first")}}</p>}
+              {Boolean(questionsQuery.data?.length) && !visibleQuestionOptions.length && <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-600">{t("assessmentBuilder.noMatches")}</p>}
               </div>
             </>
           )}
@@ -312,7 +312,7 @@ export default function TeacherAssessmentBuilderPage() {
           {activeAssessment && (
             <div className="rounded-xl border border-slate-200 p-3">
               <h3 className="font-semibold text-slate-900">Attached questions ({activeAssessmentQuestionsQuery.data?.length ?? 0})</h3>
-              {activeAssessmentQuestionsQuery.isPending ? <p className="mt-2 text-sm text-slate-500">{${t("assessmentBuilder.loadingAttached")}}</p> : (
+              {activeAssessmentQuestionsQuery.isPending ? <p className="mt-2 text-sm text-slate-500">{t("assessmentBuilder.loadingAttached")}</p> : (
                 <ol className="mt-2 list-decimal space-y-1 pl-5 text-sm text-slate-600">
                   {(activeAssessmentQuestionsQuery.data ?? []).map((item) => <li key={item.id}>Question {item.sequenceNo} · {item.points} point(s)</li>)}
                 </ol>
@@ -323,8 +323,8 @@ export default function TeacherAssessmentBuilderPage() {
       </div>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5">
-        <div className="flex items-center gap-3"><FileQuestion size={20} className="text-slate-500" /><div><h2 className="font-semibold text-slate-900">{${t("assessmentBuilder.next")}}</h2><p className="mt-1 text-sm text-slate-500">{${t("assessmentBuilder.nextHelp")}}</p></div></div>
-        <Link to="/teacher/authoring" className="mt-4 inline-flex items-center gap-2 rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-800"><ClipboardCheck size={16} />{${t("assessmentBuilder.openAuthoring")}}</Link>
+        <div className="flex items-center gap-3"><FileQuestion size={20} className="text-slate-500" /><div><h2 className="font-semibold text-slate-900">{t("assessmentBuilder.next")}</h2><p className="mt-1 text-sm text-slate-500">{t("assessmentBuilder.nextHelp")}</p></div></div>
+        <Link to="/teacher/authoring" className="mt-4 inline-flex items-center gap-2 rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-800"><ClipboardCheck size={16} />{t("assessmentBuilder.openAuthoring")}</Link>
       </section>
     </div>
   );
