@@ -4,6 +4,7 @@ import type { FormEvent, ReactNode } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
+import { LearningLanguageSelector } from "@/features/learning-shared/components/LearningLanguageSelector";
 import { useAuthorization } from "@/features/auth/authorization/useAuthorization";
 import { learningAcademicService } from "@/features/learning-academic";
 import type {
@@ -462,6 +463,7 @@ export default function SchoolAdministrationPage() {
 
   return (
     <div className="mx-auto max-w-7xl space-y-6">
+      <div className="flex justify-end"><LearningLanguageSelector compact /></div>
       <header className="relative isolate overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-indigo-950 to-teal-900 p-5 text-white shadow-xl shadow-indigo-950/10 sm:p-7 lg:p-8">
         <div aria-hidden="true" className="pointer-events-none absolute -right-12 -top-20 -z-10 h-64 w-64 rounded-full border-[28px] border-white/[0.05]" />
         <div aria-hidden="true" className="pointer-events-none absolute -bottom-28 right-1/3 -z-10 h-56 w-56 rounded-full bg-teal-400/10 blur-3xl" />
