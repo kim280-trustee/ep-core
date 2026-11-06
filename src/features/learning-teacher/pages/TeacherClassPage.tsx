@@ -29,7 +29,7 @@ export default function TeacherClassPage() {
       <section className="rounded-2xl bg-slate-900 p-6 text-white">
         <p className="text-sm text-slate-300">{classInfo.classGroup.code}</p>
         <h1 className="mt-1 text-2xl font-bold">{classInfo.classGroup.name}</h1>
-        <p className="mt-2 text-sm text-slate-300">{classInfo.subjects.map((item) => item.subject.name).join(", ") || "No subjects assigned"}</p>
+        <p className="mt-2 text-sm text-slate-300">{classInfo.subjects.map((item) => item.subject.name).join(", ") || "{t("teacherClass.noSubjects")}"}</p>
         <div className="mt-4 flex flex-wrap gap-2">
           <Link to={"/teacher/classes/" + classGroupId + "/gradebook"} className="inline-flex rounded-xl bg-white px-4 py-2 text-sm font-semibold text-slate-900">{t("teacherClass.openGradebook")}</Link><Link to={"/teacher/classes/" + classGroupId + "/assignments/history"} className="inline-flex rounded-xl border border-white/30 px-4 py-2 text-sm font-semibold text-white">{t("teacherClass.assignmentHistory")}</Link>
         </div>
@@ -75,7 +75,7 @@ export default function TeacherClassPage() {
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <div><h2 className="text-lg font-semibold text-slate-900">{t("teacherClass.classPerformance")}</h2><p className="mt-1 text-sm text-slate-500">{performance.termName ? "Current term: " + performance.termName  : t("teacherClass.noTermGrades")}</p></div>
+          <div><h2 className="text-lg font-semibold text-slate-900">{t("teacherClass.classPerformance")}</h2><p className="mt-1 text-sm text-slate-500">{performance.termName ? t("teacherClass.currentTerm") + ": " + performance.termName  : t("teacherClass.noTermGrades")}</p></div>
           <Link to={"/teacher/classes/" + classGroupId + "/gradebook"} className="text-sm font-medium text-slate-700">{t("teacherClass.openFullGradebook")}</Link>
         </div>
         <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
@@ -92,7 +92,7 @@ export default function TeacherClassPage() {
       <section className="grid gap-6 lg:grid-cols-2">
         <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <h2 className="mb-4 text-lg font-semibold text-slate-900">{t("teacherClass.assignments")}</h2>
-          {assignments.length ? <div className="space-y-3">{assignments.map((item) => <div key={item.assignment.id} className="rounded-xl border border-slate-200 p-4"><div className="flex items-start justify-between gap-3"><div><p className="font-medium text-slate-900">{item.assignment.title}</p><p className="mt-1 text-xs text-slate-500">{item.assignment.status}</p></div><span className="text-xs text-slate-500">{item.completedCount}/{item.studentCount} complete</span></div><div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-100"><div className="h-full bg-slate-900" style={{ width: (item.studentCount ? Math.round(item.completedCount / item.studentCount * 100) : 0) + "%" }} /></div><div className="mt-2 flex gap-3 text-xs text-slate-500"><span>Started {item.startedCount}</span><span>Overdue {item.overdueCount}</span></div></div>)}</div> : <p className="text-sm text-slate-500">{t("teacherClass.noAssignments")}</p>}<Link to={"/teacher/classes/" + classGroupId + "/assignments/history"} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-slate-700">{t("teacherClass.openAssignmentHistory")} <FileText size={15} /></Link>
+          {assignments.length ? <div className="space-y-3">{assignments.map((item) => <div key={item.assignment.id} className="rounded-xl border border-slate-200 p-4"><div className="flex items-start justify-between gap-3"><div><p className="font-medium text-slate-900">{item.assignment.title}</p><p className="mt-1 text-xs text-slate-500">{(item.assignment.status === "published" ? t("teacherClass.statusPublished") : item.assignment.status === "closed" ? t("teacherClass.statusClosed") : item.assignment.status === "draft" ? t("teacherClass.statusDraft") : item.assignment.status)}</p></div><span className="text-xs text-slate-500">{item.completedCount}/{item.studentCount} {t("teacherClass.complete")}</span></div><div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-100"><div className="h-full bg-slate-900" style={{ width: (item.studentCount ? Math.round(item.completedCount / item.studentCount * 100) : 0) + "%" }} /></div><div className="mt-2 flex gap-3 text-xs text-slate-500"><span>{t("teacherClass.started")} {item.startedCount}</span><span>{t("teacherClass.overdue")} {item.overdueCount}</span></div></div>)}</div> : <p className="text-sm text-slate-500">{t("teacherClass.noAssignments")}</p>}<Link to={"/teacher/classes/" + classGroupId + "/assignments/history"} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-slate-700">{t("teacherClass.openAssignmentHistory")} <FileText size={15} /></Link>
         </section>
         <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <h2 className="mb-4 text-lg font-semibold text-slate-900">{t("teacherClass.studentsNeedingAttention")}</h2>
