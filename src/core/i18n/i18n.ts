@@ -833,7 +833,7 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "teacherHistory.csvStatus": "Status",
     "teacherHistory.csvDueAt": "Due date",
     "teacherHistory.csvLifecycle": "Lifecycle",
-    "teacherHistory.original": "Original",,
+    "teacherHistory.original": "Original",
   },
   th: {
     "customers.customerNotFound": "ไม่พบลูกค้า",
@@ -1660,7 +1660,7 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "teacherHistory.csvStatus": "สถานะ",
     "teacherHistory.csvDueAt": "กำหนดส่ง",
     "teacherHistory.csvLifecycle": "ประวัติการเปลี่ยนแปลง",
-    "teacherHistory.original": "ต้นฉบับ",,
+    "teacherHistory.original": "ต้นฉบับ",
   }
 };
 
