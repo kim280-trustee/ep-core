@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AlertCircle, ArrowLeft, BellRing, Megaphone, Plus, Send } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
+import { useTranslation } from "@/core/i18n/useTranslation";
 import { LearningLanguageSelector } from "@/features/learning-shared/components/LearningLanguageSelector";
 import { useAuthorization } from "@/features/auth/authorization/useAuthorization";
 import { learningAcademicService } from "@/features/learning-academic";
@@ -14,6 +15,7 @@ const buttonClass = "inline-flex items-center justify-center gap-2 rounded-xl bg
 
 export default function SchoolAnnouncementsPage() {
   const { user, loading: authLoading } = useAuth();
+  const { t } = useTranslation();
   const authorization = useAuthorization();
   const queryClient = useQueryClient();
   const canManage = authorization.hasPermission("learning.academic.manage");
@@ -57,7 +59,7 @@ export default function SchoolAnnouncementsPage() {
       setTitle("");
       setBody("");
       setClassGroupId("");
-      setFeedback({ kind: "success", text: "Announcement saved as a draft. Review it below and publish when ready." });
+      setFeedback({ kind: "success", text: t("schoolAdmin.draftSaved") });
       void queryClient.invalidateQueries({ queryKey: ["school-announcements", "list", organizationId] });
     },
     onError: (error: Error) => setFeedback({ kind: "error", text: error.message }),
@@ -66,7 +68,7 @@ export default function SchoolAnnouncementsPage() {
   const publishMutation = useMutation({
     mutationFn: (announcementId: string) => learningSchoolAnnouncementsService.publish(announcementId),
     onSuccess: () => {
-      setFeedback({ kind: "success", text: "Announcement published to the selected school's eligible parent portal audience." });
+      setFeedback({ kind: "success", text: t("schoolAdmin.announcementPublished") });
       void queryClient.invalidateQueries({ queryKey: ["school-announcements", "list", organizationId] });
     },
     onError: (error: Error) => setFeedback({ kind: "error", text: error.message }),
@@ -76,15 +78,15 @@ export default function SchoolAnnouncementsPage() {
     event.preventDefault();
     setFeedback(null);
     if (!organizationId) {
-      setFeedback({ kind: "error", text: "Select a school before creating an announcement." });
+      setFeedback({ kind: "error", text: t("schoolAdmin.selectSchoolBeforeAnnouncement") });
       return;
     }
     if (title.trim().length < 1 || title.trim().length > 120) {
-      setFeedback({ kind: "error", text: "Title must contain 1–120 characters." });
+      setFeedback({ kind: "error", text: t("schoolAdmin.titleLengthError") });
       return;
     }
     if (body.trim().length < 1 || body.trim().length > 3000) {
-      setFeedback({ kind: "error", text: "Announcement text must contain 1–3,000 characters." });
+      setFeedback({ kind: "error", text: t("schoolAdmin.bodyLengthError") });
       return;
     }
     createMutation.mutate();
@@ -126,10 +128,10 @@ export default function SchoolAnnouncementsPage() {
           <input value={title} onChange={(event) => setTitle(event.target.value)} maxLength={120} required className={fieldClass} placeholder="e.g. Midterm examination reminder"/>
         </label>
         <label className="block text-sm font-medium text-slate-700">Announcement
-          <textarea value={body} onChange={(event) => setBody(event.target.value)} maxLength={3000} rows={5} required className={fieldClass} placeholder="Write the information parents need to know."/>
+          <textarea value={body} onChange={(event) => setBody(event.target.value)} maxLength={3000} rows={5} required className={fieldClass} placeholder=t("schoolAdmin.announcementPlaceholder")/>
           <span className="mt-1 block text-xs font-normal text-slate-500">{body.length}/3000 characters. Avoid including unnecessary student personal information.</span>
         </label>
-        <button type="submit" disabled={!organizationId || createMutation.isPending || !title.trim() || !body.trim()} className={buttonClass}><Plus size={16}/>{createMutation.isPending ? "Saving draft…" : "Save draft announcement"}</button>
+        <button type="submit" disabled={!organizationId || createMutation.isPending || !title.trim() || !body.trim()} className={buttonClass}><Plus size={16}/>{createMutation.isPending ? t("schoolAdmin.savingDraft") : t("schoolAdmin.saveDraft")}</button>
       </form>}
     </section>
 
@@ -139,9 +141,9 @@ export default function SchoolAnnouncementsPage() {
       : announcementsQuery.isError ? <p role="alert" className="py-8 text-sm text-rose-700">Announcements could not be loaded. Check your school access and retry.</p>
       : !announcementsQuery.data?.length ? <p className="py-8 text-sm text-slate-500">No announcements yet. Save a draft above to get started.</p>
       : <div className="mt-4 space-y-3">{announcementsQuery.data.map((item) => <article key={item.id} className="rounded-xl border border-slate-200 p-4">
-        <div className="flex flex-wrap items-start justify-between gap-3"><div className="min-w-0"><h3 className="font-semibold text-slate-950">{item.title}</h3><p className="mt-1 text-xs text-slate-500">{item.class_group_name ? "Class: " + item.class_group_name : "School-wide"} · {item.status} · {new Date(item.created_at).toLocaleString()}</p></div><span className={item.status === "published" ? "rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-bold text-emerald-800" : "rounded-full bg-amber-100 px-2.5 py-1 text-xs font-bold text-amber-800"}>{item.status}</span></div>
+        <div className="flex flex-wrap items-start justify-between gap-3"><div className="min-w-0"><h3 className="font-semibold text-slate-950">{item.title}</h3><p className="mt-1 text-xs text-slate-500">{item.class_group_name ? t("schoolAdmin.classPrefix") + " " + item.class_group_name : t("schoolAdmin.schoolWide")} · {item.status} · {new Date(item.created_at).toLocaleString()}</p></div><span className={item.status === "published" ? "rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-bold text-emerald-800" : "rounded-full bg-amber-100 px-2.5 py-1 text-xs font-bold text-amber-800"}>{item.status}</span></div>
         <p className="mt-3 whitespace-pre-wrap text-sm leading-6 text-slate-700">{item.body}</p>
-        {item.status === "draft" && <button type="button" disabled={publishMutation.isPending} onClick={() => { setFeedback(null); publishMutation.mutate(item.id); }} className={buttonClass + " mt-4"}><Send size={16}/>{publishMutation.isPending ? "Publishing…" : "Publish announcement"}</button>}
+        {item.status === "draft" && <button type="button" disabled={publishMutation.isPending} onClick={() => { setFeedback(null); publishMutation.mutate(item.id); }} className={buttonClass + " mt-4"}><Send size={16}/>{publishMutation.isPending ? t("schoolAdmin.publishing") : t("schoolAdmin.publishAnnouncement")}</button>}
       </article>)}</div>}
     </section>
     {classesQuery.isError && <p role="alert" className="text-sm text-rose-700">Class options could not be loaded; you can still create a school-wide announcement after refreshing.</p>}
