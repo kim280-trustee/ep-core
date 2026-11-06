@@ -3,41 +3,44 @@ import { Navigate, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ProtectedRoute, useAuth } from "@/core/auth";
+import { useTranslation } from "@/core/i18n/useTranslation";
+import { LearningLanguageSelector } from "@/features/learning-shared/components/LearningLanguageSelector";
 import { learningTeacherService } from "../services/learning-teacher.service";
 
 const navigationGroups = [
   {
     label: null,
     items: [
-      { to: "/teacher", label: "Dashboard", icon: LayoutDashboard, end: true },
+      { to: "/teacher", label: "learning.dashboard", icon: LayoutDashboard, end: true },
     ],
   },
   {
-    label: "Teaching",
+    label: "learning.teaching",
     items: [
-      { to: "/teacher/content", label: "Content Library", icon: FileText, end: false },
-      { to: "/teacher/lesson-plans", label: "Lesson Planning", icon: BookOpenCheck, end: false },
-      { to: "/teacher/vocabulary", label: "Vocabulary", icon: Languages, end: false },
-      { to: "/calendar", label: "School Calendar", icon: CalendarDays, end: false },
-      { to: "/teacher/vocabulary/assignments/new", label: "Vocabulary Assignment", icon: BookOpenCheck, end: false },
-      { to: "/notifications", label: "Notifications", icon: Bell, end: false },
-      { to: "/marketplace", label: "Extra Classes", icon: GraduationCap, end: false },
-      { to: "/teacher/authoring", label: "Authoring", icon: BookOpen, end: false },
-      { to: "/teacher/ai-assistant", label: "AI Assistant", icon: Sparkles, end: false },
-      { to: "/teacher/interventions", label: "Student Support", icon: Target, end: false },
-      { to: "/teacher/question-bank", label: "Question Bank", icon: FileQuestion, end: false },
+      { to: "/teacher/content", label: "learning.contentLibrary", icon: FileText, end: false },
+      { to: "/teacher/lesson-plans", label: "learning.lessonPlanning", icon: BookOpenCheck, end: false },
+      { to: "/teacher/vocabulary", label: "learning.vocabulary", icon: Languages, end: false },
+      { to: "/calendar", label: "learning.schoolCalendar", icon: CalendarDays, end: false },
+      { to: "/teacher/vocabulary/assignments/new", label: "learning.vocabularyAssignment", icon: BookOpenCheck, end: false },
+      { to: "/notifications", label: "learning.notifications", icon: Bell, end: false },
+      { to: "/marketplace", label: "learning.extraClasses", icon: GraduationCap, end: false },
+      { to: "/teacher/authoring", label: "learning.authoring", icon: BookOpen, end: false },
+      { to: "/teacher/ai-assistant", label: "learning.aiAssistant", icon: Sparkles, end: false },
+      { to: "/teacher/interventions", label: "learning.studentSupport", icon: Target, end: false },
+      { to: "/teacher/question-bank", label: "learning.questionBank", icon: FileQuestion, end: false },
     ],
   },
   {
-    label: "Assignments",
+    label: "learning.assignments",
     items: [
-      { to: "/teacher/assignments/new", label: "Create Assignment", icon: PlusCircle, end: false },
+      { to: "/teacher/assignments/new", label: "learning.createAssignment", icon: PlusCircle, end: false },
     ],
   },
 ];
 
 export default function TeacherLayout() {
   const { user, loading, logout } = useAuth();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [loggingOut, setLoggingOut] = useState(false);
   const teacherAccess = useQuery({
@@ -80,13 +83,13 @@ export default function TeacherLayout() {
 
   const primaryClassId = teacherAccess.data?.[0]?.classGroup.id;
   const classLinks = primaryClassId ? [
-    { to: "/teacher/classes/"+primaryClassId, label: "Class Overview" },
-    { to: "/teacher/classes/"+primaryClassId+"/assignments/history", label: "Assignment History" },
-    { to: "/teacher/classes/"+primaryClassId+"/parents", label: "Parents" },
-    { to: "/teacher/classes/"+primaryClassId+"/gradebook", label: "Gradebook" },
-    { to: "/teacher/classes/"+primaryClassId+"/gradebook/reports", label: "Gradebook Reports" },
-    { to: "/teacher/classes/"+primaryClassId+"/gradebook/settings", label: "Gradebook Settings" },
-    { to: "/teacher/classes/"+primaryClassId+"/gamification", label: "Class Gamification" },
+    { to: "/teacher/classes/"+primaryClassId, label: "learning.classOverview" },
+    { to: "/teacher/classes/"+primaryClassId+"/assignments/history", label: "learning.assignmentHistory" },
+    { to: "/teacher/classes/"+primaryClassId+"/parents", label: "learning.parents" },
+    { to: "/teacher/classes/"+primaryClassId+"/gradebook", label: "learning.gradebook" },
+    { to: "/teacher/classes/"+primaryClassId+"/gradebook/reports", label: "learning.gradebookReports" },
+    { to: "/teacher/classes/"+primaryClassId+"/gradebook/settings", label: "learning.gradebookSettings" },
+    { to: "/teacher/classes/"+primaryClassId+"/gamification", label: "learning.classGamification" },
   ] : [];
 
   const linkClass = (active: boolean) => [
@@ -100,19 +103,19 @@ export default function TeacherLayout() {
         <div className="mx-auto flex min-h-screen max-w-[1600px]">
           <aside className="hidden w-72 shrink-0 border-r border-slate-200 bg-white p-4 lg:flex lg:flex-col">
             <div className="px-3 py-3">
-              <p className="text-lg font-bold text-slate-950">E&P Learning</p>
-              <p className="mt-1 text-xs text-slate-500">Teacher Workspace</p>
+              <div className="flex items-center justify-between gap-2"><p className="text-lg font-bold text-slate-950">E&P Learning</p><LearningLanguageSelector compact /></div>
+              <p className="mt-1 text-xs text-slate-500">{t("learning.teacherWorkspace")}</p>
             </div>
 
             <nav className="mt-6 space-y-5" aria-label="Teacher portal navigation">
               {navigationGroups.map((group) => (
                 <div key={group.label ?? "dashboard"}>
-                  {group.label && <p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">{group.label}</p>}
+                  {group.label && <p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">{t(group.label)}</p>}
                   <div className={group.label ? "mt-2 space-y-1" : "space-y-1"}>
                     {group.items.map(({ to, label, icon: Icon, end }) => (
                       <NavLink key={to} to={to} end={end} className={({ isActive }) => linkClass(isActive)}>
                         <Icon size={18} />
-                        {label}
+                        {t(label)}
                       </NavLink>
                     ))}
                   </div>
@@ -121,18 +124,18 @@ export default function TeacherLayout() {
             </nav>
 
             <div className="mt-6 border-t border-slate-200 pt-4">
-              <p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">Academic</p>
+              <p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">{t("learning.academic")}</p>
               <div className="mt-2 space-y-1">
                 {classLinks.map(item => (
                   <NavLink key={item.to} to={item.to} className={({ isActive }) => linkClass(isActive)}>
-                    {item.label}
+                    {t(item.label)}
                   </NavLink>
                 ))}
               </div>
             </div>
 
             <div className="mt-6 border-t border-slate-200 pt-4">
-              <p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">My Classes</p>
+              <p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">{t("learning.myClasses")}</p>
               <div className="mt-2 space-y-1">
                 {teacherAccess.data.slice(0, 8).map(cls => (
                   <NavLink key={cls.classGroup.id} to={"/teacher/classes/"+cls.classGroup.id} className={({ isActive }) => linkClass(isActive)}>
@@ -146,7 +149,7 @@ export default function TeacherLayout() {
               <p className="truncate px-3 text-xs text-slate-500">{user.email || ""}</p>
               <button type="button" onClick={() => void handleLogout()} disabled={loggingOut} className="mt-3 inline-flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-100 disabled:opacity-50">
                 <LogOut size={18}/>
-                {loggingOut ? "Signing out..." : "Logout"}
+                {loggingOut ? t("learning.signingOut") : t("learning.logout")}
               </button>
             </div>
           </aside>
@@ -155,18 +158,18 @@ export default function TeacherLayout() {
             <div className="border-b border-slate-200 bg-white px-4 py-3 lg:hidden">
               <div className="flex items-center justify-between gap-3">
                 <div>
-                  <p className="font-bold text-slate-950">E&P Learning</p>
-                  <p className="text-xs text-slate-500">Teacher Workspace</p>
+                  <div><p className="font-bold text-slate-950">E&P Learning</p><p className="text-xs text-slate-500">{t("learning.teacherWorkspace")}</p></div>
                 </div>
+                <LearningLanguageSelector compact />
                 <button type="button" onClick={() => void handleLogout()} disabled={loggingOut} className="rounded-xl border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-600 disabled:opacity-50">
-                  {loggingOut ? "Signing out..." : "Logout"}
+                  {loggingOut ? t("learning.signingOut") : t("learning.logout")}
                 </button>
               </div>
               <nav className="mt-3 flex gap-2 overflow-x-auto pb-1" aria-label="Teacher mobile navigation">
                 {navigationGroups.flatMap(group => group.items).map(({ to, label, icon: Icon, end }) => (
                   <NavLink key={to} to={to} end={end} className={({ isActive }) => "inline-flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold "+(isActive ? "bg-slate-900 text-white" : "text-slate-600 ring-1 ring-inset ring-slate-200")}>
                     <Icon size={16}/>
-                    {label}
+                    {t(label)}
                   </NavLink>
                 ))}
               </nav>

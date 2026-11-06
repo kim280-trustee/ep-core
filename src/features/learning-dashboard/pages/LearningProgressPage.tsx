@@ -3,18 +3,19 @@ import { useQuery } from "@tanstack/react-query";
 import type { ReactNode } from "react";
 import { AlertCircle, Target, TrendingUp } from "lucide-react";
 import { useAuth } from "@/core/auth";
+import { useTranslation } from "@/core/i18n/useTranslation";
 import { learningMasteryService } from "@/features/learning-mastery";
 import { learningAssignmentsService } from "@/features/learning-assignments";
 import { learningAssessmentService } from "@/features/learning-assessment";
 import { learningContentService } from "@/features/learning-content";
 import { Link } from "react-router-dom";
 
-const stateLabel: Record<string, string> = {
-  not_started: "Not started",
-  developing: "Developing",
-  proficient: "Proficient",
-  mastered: "Mastered",
-  needs_review: "Needs review",
+const stateTranslationKey: Record<string, string> = {
+  not_started: "studentProgress.notStarted",
+  developing: "studentProgress.developing",
+  proficient: "studentProgress.proficient",
+  mastered: "studentProgress.mastered",
+  needs_review: "studentProgress.needsReview",
 };
 
 function isCorrectionEvent(event: { evidence: Record<string, unknown> }) {
@@ -22,6 +23,7 @@ function isCorrectionEvent(event: { evidence: Record<string, unknown> }) {
 }
 
 export default function LearningProgressPage() {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const id = user?.id ?? "";
   const [masterySearch, setMasterySearch] = useState("");
@@ -47,7 +49,7 @@ export default function LearningProgressPage() {
   if (!user) {
     return (
       <div className="rounded-2xl border border-slate-200 bg-white p-6">
-        Sign in to view your progress.
+        {t("studentProgress.signIn")}
       </div>
     );
   }
@@ -81,40 +83,40 @@ export default function LearningProgressPage() {
     .sort((a, b) => masterySort === "highest"
       ? b.masteryScore - a.masteryScore
       : masterySort === "state"
-        ? (stateLabel[a.state] ?? a.state).localeCompare(stateLabel[b.state] ?? b.state)
+        ? t(stateTranslationKey[a.state] ?? a.state).localeCompare(t(stateTranslationKey[b.state] ?? b.state))
         : a.masteryScore - b.masteryScore);
 
   return (
     <div className="space-y-6">
       <section>
-        <p className="text-sm font-medium text-slate-500">Student Learning</p>
-        <h1 className="mt-1 text-2xl font-bold text-slate-900">Progress</h1>
+        <p className="text-sm font-medium text-slate-500">{t("studentProgress.studentLearning")}</p>
+        <h1 className="mt-1 text-2xl font-bold text-slate-900">{t("studentProgress.title")}</h1>
         <p className="mt-2 text-sm text-slate-500">
-          See how your learning objectives are developing over time.
+          {t("studentProgress.intro")}
         </p>
       </section>
 
       <div className="grid gap-4 sm:grid-cols-3">
         <Metric
-          label="Average mastery"
+          label={t("studentProgress.averageMastery")}
           value={mastery.length ? `${average}%` : "—"}
           icon={<Target size={18} />}
         />
         <Metric
-          label="Objectives tracked"
+          label={t("studentProgress.objectivesTracked")}
           value={String(mastery.length)}
           icon={<TrendingUp size={18} />}
         />
         <Metric
-          label="Needs review"
+          label={t("studentProgress.needsReview")}
           value={String(needsReview)}
           icon={<AlertCircle size={18} />}
         />
       </div>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-        <h2 className="text-lg font-semibold text-slate-900">Assignment progress</h2>
-        <p className="mt-1 text-sm text-slate-500">Your assigned learning activities and completion status.</p>
+        <h2 className="text-lg font-semibold text-slate-900">{t("studentProgress.assignmentProgress")}</h2>
+        <p className="mt-1 text-sm text-slate-500">{t("studentProgress.assignmentIntro")}</p>
         <div className="mt-4 divide-y divide-slate-100">
           {assignments.length ? assignments.map((assignment) => {
             const progressItem = assignmentProgress.find((item) => item.assignmentId === assignment.id);
@@ -130,7 +132,7 @@ export default function LearningProgressPage() {
                     <p className="mt-1 text-xs text-slate-500">{assignment.code}</p>
                   </div>
                   <span className={`shrink-0 rounded-full px-3 py-1 text-xs font-semibold ${status === "completed" ? "bg-emerald-100 text-emerald-700" : status === "in_progress" ? "bg-amber-100 text-amber-700" : "bg-slate-100 text-slate-700"}`}>
-                    {status === "completed" ? "Completed" : status === "in_progress" ? "In progress" : "Not started"}
+                    {status === "completed" ? t("studentProgress.completed") : status === "in_progress" ? t("studentProgress.inProgress") : t("studentProgress.notStarted")}
                   </span>
                 </div>
                 {responsesForAssignment.length > 0 && (
@@ -141,17 +143,17 @@ export default function LearningProgressPage() {
                         : null;
                       return (
                         <div key={response.id} className="rounded-xl bg-slate-50 p-3">
-                          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Submitted content response</p>
+                          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{t("studentProgress.submittedResponse")}</p>
                           {response.score !== null && response.maxScore !== null ? (
                             <p className="mt-1 text-sm font-semibold text-slate-900">
-                              Grade: {response.score}/{response.maxScore}{percentage !== null ? ` · ${percentage.toFixed(2)}%` : ""}
+                              {t("studentProgress.grade")}{response.score}/{response.maxScore}{percentage !== null ? ` · ${percentage.toFixed(2)}%` : ""}
                             </p>
                           ) : (
-                            <p className="mt-1 text-sm font-medium text-slate-600">Submitted — awaiting teacher grading</p>
+                            <p className="mt-1 text-sm font-medium text-slate-600">{t("studentProgress.awaitingGrading")}</p>
                           )}
                           {response.teacherFeedback?.trim() && (
                             <div className="mt-2">
-                              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Teacher feedback</p>
+                              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{t("studentProgress.teacherFeedback")}</p>
                               <p className="mt-1 whitespace-pre-wrap text-sm leading-6 text-slate-700">{response.teacherFeedback}</p>
                             </div>
                           )}
@@ -159,69 +161,69 @@ export default function LearningProgressPage() {
                       );
                     })}
                     <Link to={`/learning/assignments/${assignment.id}`} className="inline-flex text-sm font-semibold text-blue-700 hover:underline">
-                      Review assignment results
+                      {t("studentProgress.reviewResults")}
                     </Link>
                   </div>
                 )}
               </div>
             );
-          }) : <p className="text-sm text-slate-500">No published assignments yet.</p>}
+          }) : <p className="text-sm text-slate-500">{t("studentProgress.noAssignments")}</p>}
         </div>
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
-        <h2 className="text-lg font-semibold text-slate-900">Assessment results</h2>
-        <p className="mt-1 text-sm text-slate-500">Scores from completed assessment attempts.</p>
+        <h2 className="text-lg font-semibold text-slate-900">{t("studentProgress.assessmentResults")}</h2>
+        <p className="mt-1 text-sm text-slate-500">{t("studentProgress.assessmentIntro")}</p>
         <div className="mt-4 divide-y divide-slate-100">
           {assessmentResults.length ? assessmentResults.slice(0, 20).map((result) => (
             <div key={result.id} className="flex flex-wrap items-center justify-between gap-4 py-3 first:pt-0">
               <div>
-                <p className="text-sm font-medium text-slate-800">Assessment attempt</p>
+                <p className="text-sm font-medium text-slate-800">{t("studentProgress.assessmentAttempt")}</p>
                 <p className="mt-1 text-xs text-slate-500">
-                  Evaluated {new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(new Date(result.evaluatedAt))}
+                  {t("studentProgress.evaluated")}{new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(new Date(result.evaluatedAt))}
                 </p>
               </div>
               <div className="text-right">
                 <p className="text-sm font-bold text-slate-900">{result.score ?? 0} / {result.maxScore ?? 0}</p>
-                <p className="text-xs font-semibold text-slate-500">{result.percentage ?? 0}% · {result.passed ? "Passed" : "Not passed"}</p>
+                <p className="text-xs font-semibold text-slate-500">{result.percentage ?? 0}% · {result.passed ? t("studentProgress.passed") : t("studentProgress.notPassed")}</p>
               </div>
             </div>
-          )) : <p className="text-sm text-slate-500">No assessment results have been recorded yet.</p>}
+          )) : <p className="text-sm text-slate-500">{t("studentProgress.noAssessmentResults")}</p>}
         </div>
       </section>
 
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">
-          Objective mastery
+          {t("studentProgress.objectiveMastery")}
         </h2>
-        <p className="mt-1 text-sm text-slate-500">Find objectives that need attention or review your strongest areas.</p>
+        <p className="mt-1 text-sm text-slate-500">{t("studentProgress.masteryIntro")}</p>
         {mastery.length > 0 && (
           <div className="mt-4 grid gap-3 sm:grid-cols-3">
             <label className="block text-sm font-medium text-slate-700">
-              Search objective
-              <input type="search" value={masterySearch} onChange={(event) => setMasterySearch(event.target.value)} placeholder="Enter objective ID…" className="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 font-normal outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200" />
+              {t("studentProgress.searchObjective")}
+              <input type="search" value={masterySearch} onChange={(event) => setMasterySearch(event.target.value)} placeholder={t("studentProgress.objectivePlaceholder")} className="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 font-normal outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200" />
             </label>
             <label className="block text-sm font-medium text-slate-700">
-              Mastery state
+              {t("studentProgress.masteryState")}
               <select value={masteryState} onChange={(event) => setMasteryState(event.target.value)} className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 font-normal outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200">
-                <option value="all">All states</option>
-                <option value="needs_review">Needs review</option>
-                <option value="developing">Developing</option>
-                <option value="proficient">Proficient</option>
-                <option value="mastered">Mastered</option>
-                <option value="not_started">Not started</option>
+                <option value="all">{t("studentProgress.allStates")}</option>
+                <option value="needs_review">{t("studentProgress.needsReview")}</option>
+                <option value="developing">{t("studentProgress.developing")}</option>
+                <option value="proficient">{t("studentProgress.proficient")}</option>
+                <option value="mastered">{t("studentProgress.mastered")}</option>
+                <option value="not_started">{t("studentProgress.notStarted")}</option>
               </select>
             </label>
             <label className="block text-sm font-medium text-slate-700">
-              Sort by
+              {t("studentProgress.sortBy")}
               <select value={masterySort} onChange={(event) => setMasterySort(event.target.value as typeof masterySort)} className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 font-normal outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200">
-                <option value="lowest">Lowest mastery first</option>
-                <option value="highest">Highest mastery first</option>
-                <option value="state">Mastery state</option>
+                <option value="lowest">{t("studentProgress.lowestFirst")}</option>
+                <option value="highest">{t("studentProgress.highestFirst")}</option>
+                <option value="state">{t("studentProgress.masteryState")}</option>
               </select>
             </label>
-            <p className="text-xs text-slate-500 sm:col-span-3" aria-live="polite">Showing {visibleMastery.length} of {mastery.length} objectives.</p>
+            <p className="text-xs text-slate-500 sm:col-span-3" aria-live="polite">{t("studentProgress.showing")}{visibleMastery.length}{t("studentProgress.of")}{mastery.length}{t("studentProgress.objectives")}</p>
           </div>
         )}
         <div className="mt-5 space-y-4">
@@ -230,11 +232,11 @@ export default function LearningProgressPage() {
               <div key={item.id}>
                 <div className="flex items-center justify-between gap-4 text-sm">
                   <span className="font-medium text-slate-800">
-                    Objective {item.objectiveId}
+                    {t("studentProgress.objective")}{item.objectiveId}
                   </span>
                   <span className="text-slate-500">
                     {Math.round(item.masteryScore)}% ·{" "}
-                    {stateLabel[item.state] ?? item.state}
+                    {t(stateTranslationKey[item.state] ?? item.state)}
                   </span>
                 </div>
                 <div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-100">
@@ -249,13 +251,12 @@ export default function LearningProgressPage() {
             ))
           ) : (
             <div className="rounded-xl border border-dashed border-slate-300 p-5 text-center">
-              <p className="text-sm text-slate-600">No objectives match these filters.</p>
-              <button type="button" onClick={() => { setMasterySearch(""); setMasteryState("all"); setMasterySort("lowest"); }} className="mt-2 rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700">Clear filters</button>
+              <p className="text-sm text-slate-600">{t("studentProgress.noMatches")}</p>
+              <button type="button" onClick={() => { setMasterySearch(""); setMasteryState("all"); setMasterySort("lowest"); }} className="mt-2 rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700">{t("studentProgress.clearFilters")}</button>
             </div>
           ) : (
             <p className="text-sm text-slate-500">
-              Mastery data will appear after you complete learning activities
-              and assessments.
+              {t("studentProgress.masteryEmpty")}
             </p>
           )}
         </div>
@@ -263,11 +264,10 @@ export default function LearningProgressPage() {
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900">
-          Assessment history
+          {t("studentProgress.assessmentHistory")}
         </h2>
         <p className="mt-1 text-sm text-slate-500">
-          Your assessment evidence is retained as part of your learning
-          history.
+          {t("studentProgress.historyIntro")}
         </p>
 
         <div className="mt-4 divide-y divide-slate-100">
@@ -283,15 +283,15 @@ export default function LearningProgressPage() {
                   <div>
                     <p className="text-sm font-medium text-slate-800">
                       {correction
-                        ? "Mastery data correction"
+                        ? t("studentProgress.correction")
                         : `Objective ${event.objectiveId}`}
                     </p>
                     <p className="mt-1 text-xs text-slate-500">
                       {correction
-                        ? "Pilot seed correction recorded without changing assessment evidence"
+                        ? t("studentProgress.correctionDetail")
                         : event.attemptId
-                          ? `Assessment attempt ${event.attemptId}`
-                          : "Mastery update"}
+                          ? `${t("studentProgress.attempt")}${event.attemptId}`
+                          : t("studentProgress.masteryUpdate")}
                     </p>
                   </div>
                   <span className="text-sm text-slate-600">
@@ -304,7 +304,7 @@ export default function LearningProgressPage() {
             })
           ) : (
             <p className="text-sm text-slate-500">
-              No mastery events have been recorded yet.
+              {t("studentProgress.noEvents")}
             </p>
           )}
         </div>
@@ -334,17 +334,18 @@ function Metric({
 }
 
 function ErrorState({ onRetry }: { onRetry: () => void }) {
+  const { t } = useTranslation();
   return (
     <div className="flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800">
       <AlertCircle size={20} />
       <div>
-        <p className="font-semibold">Progress could not be loaded.</p>
+        <p className="font-semibold">{t("studentProgress.loadError")}</p>
         <button
           type="button"
           onClick={onRetry}
           className="mt-3 rounded-lg bg-white px-3 py-2 text-sm font-medium shadow-sm"
         >
-          Try again
+          {t("studentProgress.tryAgain")}
         </button>
       </div>
     </div>

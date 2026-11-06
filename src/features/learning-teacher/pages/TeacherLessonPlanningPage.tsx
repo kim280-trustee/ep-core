@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, BookOpen, Save } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/core/auth";
+import { useTranslation } from "@/core/i18n/useTranslation";
 import { learningContentService } from "@/features/learning-content";
 import { learningTeacherService } from "@/features/learning-teacher";
 
@@ -22,6 +23,7 @@ function Field({ label, children, required = false }: { label: string; children:
 }
 
 export default function TeacherLessonPlanningPage() {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -113,19 +115,19 @@ export default function TeacherLessonPlanningPage() {
 
   const createPlan = useMutation({
     mutationFn: async () => {
-      if (!user?.id || !organizationId || !selectedClass) throw new Error("Select one of your active teaching classes first.");
+      if (!user?.id || !organizationId || !selectedClass) throw new Error(t("teacherLessonPlan.selectActiveClass"));
       if (!validCurriculumId || !validGradeLevelId || !validSubjectId || !validSkillId || !validTopicId || !selectedObjective) {
-        throw new Error("Select a curriculum, grade, subject, skill, topic and aligned learning objective.");
+        throw new Error(t("teacherLessonPlan.selectAlignment"));
       }
-      if (!title.trim() || !code.trim()) throw new Error("Lesson title and content code are required.");
+      if (!title.trim() || !code.trim()) throw new Error(t("teacherLessonPlan.requiredFields"));
       if (!openingActivity.trim() || !instruction.trim() || !guidedPractice.trim() || !assessment.trim()) {
-        throw new Error("Complete the opening activity, teaching steps, guided practice and assessment before saving.");
+        throw new Error(t("teacherLessonPlan.completeSections"));
       }
       const duration = Number(durationMinutes);
-      if (!Number.isInteger(duration) || duration < 5 || duration > 300) throw new Error("Lesson duration must be a whole number from 5 to 300 minutes.");
+      if (!Number.isInteger(duration) || duration < 5 || duration > 300) throw new Error(t("teacherLessonPlan.durationRange"));
       const normalizedCode = code.trim().toUpperCase();
       if ((existingContentQuery.data ?? []).some((item) => item.code.trim().toUpperCase() === normalizedCode)) {
-        throw new Error("That content code already exists in this school. Use a different code.");
+        throw new Error(t("teacherLessonPlan.duplicateCode"));
       }
 
       const sections = [
@@ -182,58 +184,58 @@ export default function TeacherLessonPlanningPage() {
     createPlan.mutate();
   }
 
-  if (!user) return <div className="rounded-2xl border border-slate-200 bg-white p-6">Sign in to create a lesson plan.</div>;
+  if (!user) return <div className="rounded-2xl border border-slate-200 bg-white p-6">{t("teacherLessonPlan.signIn")}</div>;
   if (classesQuery.isPending) return <div className="h-64 animate-pulse rounded-2xl bg-slate-200" />;
-  if (classesQuery.isError) return <div className="rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800">Your teaching classes could not be loaded. Refresh and try again.</div>;
-  if (!classes.length) return <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5 text-amber-900"><h1 className="font-semibold">No active teaching class</h1><p className="mt-1 text-sm">You need an active teaching-class membership before creating a school-owned lesson plan.</p></div>;
+  if (classesQuery.isError) return <div className="rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800">{t("teacherLessonPlan.loadError")}</div>;
+  if (!classes.length) return <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5 text-amber-900"><h1 className="font-semibold">{t("teacherLessonPlan.noClass")}</h1><p className="mt-1 text-sm">{t("teacherLessonPlan.noClassHelp")}</p></div>;
 
   return <div className="mx-auto max-w-5xl space-y-6">
     <header className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8">
-      <Link to="/teacher" className="inline-flex items-center gap-2 text-sm text-slate-300 hover:text-white"><ArrowLeft size={16}/>Back to teacher workspace</Link>
-      <div className="mt-4 flex items-start gap-3"><div className="rounded-xl bg-white/10 p-3"><BookOpen size={22}/></div><div><p className="text-sm font-medium text-slate-300">Teaching support · Academic planning</p><h1 className="mt-1 text-2xl font-bold sm:text-3xl">Lesson planning</h1><p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">Create a structured, curriculum-aligned lesson plan and save it in your school’s existing content library. Plans remain drafts until reviewed and published through the existing content workflow.</p></div></div>
+      <Link to="/teacher" className="inline-flex items-center gap-2 text-sm text-slate-300 hover:text-white"><ArrowLeft size={16}/>{t("teacherLessonPlan.back")}</Link>
+      <div className="mt-4 flex items-start gap-3"><div className="rounded-xl bg-white/10 p-3"><BookOpen size={22}/></div><div><p className="text-sm font-medium text-slate-300">{t("teacherLessonPlan.support")}</p><h1 className="mt-1 text-2xl font-bold sm:text-3xl">{t("teacherLessonPlan.title")}</h1><p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">{t("teacherLessonPlan.intro")}</p></div></div>
     </header>
 
     <form onSubmit={submit} className="space-y-5">
       <Section title="1. Teaching context" description="Select the school class and align the plan to an existing curriculum outcome.">
         <div className="grid gap-4 sm:grid-cols-2">
-          <Field label="Teacher class" required><select value={validClassGroupId} onChange={(event) => setClassGroupId(event.target.value)} className={inputClass} required><option value="">Select class</option>{classes.map((item) => <option key={item.classGroup.id} value={item.classGroup.id}>{item.classGroup.name} ({item.classGroup.code})</option>)}</select></Field>
-          <Field label="Curriculum" required><select value={validCurriculumId} onChange={(event) => { setCurriculumId(event.target.value); setGradeLevelId(""); setSubjectId(""); setSkillId(""); setTopicId(""); setObjectiveId(""); }} className={inputClass} required><option value="">Select curriculum</option>{curricula.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></Field>
-          <Field label="Grade level" required><select value={validGradeLevelId} onChange={(event) => { setGradeLevelId(event.target.value); setObjectiveId(""); }} className={inputClass} disabled={!validCurriculumId} required><option value="">Select grade</option>{gradeLevels.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></Field>
-          <Field label="Subject" required><select value={validSubjectId} onChange={(event) => { setSubjectId(event.target.value); setSkillId(""); setTopicId(""); setObjectiveId(""); }} className={inputClass} disabled={!validCurriculumId} required><option value="">Select subject</option>{subjects.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></Field>
-          <Field label="Skill" required><select value={validSkillId} onChange={(event) => { setSkillId(event.target.value); setTopicId(""); setObjectiveId(""); }} className={inputClass} disabled={!validSubjectId} required><option value="">Select skill</option>{skills.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></Field>
-          <Field label="Topic" required><select value={validTopicId} onChange={(event) => { setTopicId(event.target.value); setObjectiveId(""); }} className={inputClass} disabled={!validSkillId} required><option value="">Select topic</option>{topics.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></Field>
-          <Field label="Learning objective" required><select value={selectedObjective?.id ?? ""} onChange={(event) => setObjectiveId(event.target.value)} className={inputClass} disabled={!validTopicId || alignmentsQuery.isPending} required><option value="">Select objective aligned to this grade</option>{objectives.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select>{alignmentsQuery.isError && <span className="mt-1 block text-xs text-red-700">Curriculum alignment could not be loaded. Retry before saving.</span>}{validTopicId && !alignmentsQuery.isPending && !alignmentsQuery.isError && !objectives.length && <span className="mt-1 block text-xs text-amber-700">No objective for this topic is aligned to the selected curriculum and grade.</span>}</Field>
+          <Field label="Teacher class" required><select value={validClassGroupId} onChange={(event) => setClassGroupId(event.target.value)} className={inputClass} required><option value="">{t("teacherLessonPlan.selectClass")}</option>{classes.map((item) => <option key={item.classGroup.id} value={item.classGroup.id}>{item.classGroup.name} ({item.classGroup.code})</option>)}</select></Field>
+          <Field label="Curriculum" required><select value={validCurriculumId} onChange={(event) => { setCurriculumId(event.target.value); setGradeLevelId(""); setSubjectId(""); setSkillId(""); setTopicId(""); setObjectiveId(""); }} className={inputClass} required><option value="">{t("teacherLessonPlan.selectCurriculum")}</option>{curricula.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></Field>
+          <Field label="Grade level" required><select value={validGradeLevelId} onChange={(event) => { setGradeLevelId(event.target.value); setObjectiveId(""); }} className={inputClass} disabled={!validCurriculumId} required><option value="">{t("teacherLessonPlan.selectGrade")}</option>{gradeLevels.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></Field>
+          <Field label="Subject" required><select value={validSubjectId} onChange={(event) => { setSubjectId(event.target.value); setSkillId(""); setTopicId(""); setObjectiveId(""); }} className={inputClass} disabled={!validCurriculumId} required><option value="">{t("teacherLessonPlan.selectSubject")}</option>{subjects.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></Field>
+          <Field label="Skill" required><select value={validSkillId} onChange={(event) => { setSkillId(event.target.value); setTopicId(""); setObjectiveId(""); }} className={inputClass} disabled={!validSubjectId} required><option value="">{t("teacherLessonPlan.selectSkill")}</option>{skills.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></Field>
+          <Field label="Topic" required><select value={validTopicId} onChange={(event) => { setTopicId(event.target.value); setObjectiveId(""); }} className={inputClass} disabled={!validSkillId} required><option value="">{t("teacherLessonPlan.selectTopic")}</option>{topics.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></Field>
+          <Field label="Learning objective" required><select value={selectedObjective?.id ?? ""} onChange={(event) => setObjectiveId(event.target.value)} className={inputClass} disabled={!validTopicId || alignmentsQuery.isPending} required><option value="">{t("teacherLessonPlan.selectObjective")}</option>{objectives.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select>{alignmentsQuery.isError && <span className="mt-1 block text-xs text-red-700">{t("teacherLessonPlan.alignmentError")}</span>}{validTopicId && !alignmentsQuery.isPending && !alignmentsQuery.isError && !objectives.length && <span className="mt-1 block text-xs text-amber-700">{t("teacherLessonPlan.noAlignedObjective")}</span>}</Field>
         </div>
       </Section>
 
       <Section title="2. Lesson details" description="Identify the plan and choose the learner-facing language.">
         <div className="grid gap-4 sm:grid-cols-2">
-          <Field label="Lesson title" required><input value={title} onChange={(event) => { setTitle(event.target.value); if (!code) setCode(slugify(event.target.value)); }} className={inputClass} maxLength={160} required placeholder="Present Simple: Daily Routines"/></Field>
-          <Field label="Unique content code" required><input value={code} onChange={(event) => setCode(event.target.value.toUpperCase())} className={inputClass} maxLength={80} required placeholder="ENG-M1-DAILY-ROUTINES-PLAN"/></Field>
+          <Field label="Lesson title" required><input value={title} onChange={(event) => { setTitle(event.target.value); if (!code) setCode(slugify(event.target.value)); }} className={inputClass} maxLength={160} required placeholder={t("teacherLessonPlan.titlePlaceholder")}/></Field>
+          <Field label="Unique content code" required><input value={code} onChange={(event) => setCode(event.target.value.toUpperCase())} className={inputClass} maxLength={80} required placeholder={t("teacherLessonPlan.codePlaceholder")}/></Field>
           <Field label="Lesson duration (minutes)" required><input type="number" min={5} max={300} step={1} value={durationMinutes} onChange={(event) => setDurationMinutes(event.target.value)} className={inputClass} required/></Field>
-          <Field label="Plan language" required><select value={languageCode} onChange={(event) => setLanguageCode(event.target.value)} className={inputClass}><option value="en">English</option><option value="th">Thai</option><option value="sw">Swahili</option></select></Field>
-          <div className="sm:col-span-2"><Field label="Prior knowledge / prerequisite"><textarea value={priorKnowledge} onChange={(event) => setPriorKnowledge(event.target.value)} className={inputClass} rows={2} placeholder="What should learners already know?"/></Field></div>
-          <div className="sm:col-span-2"><Field label="Resources and preparation"><textarea value={resources} onChange={(event) => setResources(event.target.value)} className={inputClass} rows={2} placeholder="Board, cards, textbook pages, audio, or other resources"/></Field></div>
+          <Field label="Plan language" required><select value={languageCode} onChange={(event) => setLanguageCode(event.target.value)} className={inputClass}><option value="en">{t("teacherLessonPlan.english")}</option><option value="th">{t("teacherLessonPlan.thai")}</option><option value="sw">{t("teacherLessonPlan.swahili")}</option></select></Field>
+          <div className="sm:col-span-2"><Field label="Prior knowledge / prerequisite"><textarea value={priorKnowledge} onChange={(event) => setPriorKnowledge(event.target.value)} className={inputClass} rows={2} placeholder={t("teacherLessonPlan.priorPlaceholder")}/></Field></div>
+          <div className="sm:col-span-2"><Field label="Resources and preparation"><textarea value={resources} onChange={(event) => setResources(event.target.value)} className={inputClass} rows={2} placeholder={t("teacherLessonPlan.resourcesPlaceholder")}/></Field></div>
         </div>
       </Section>
 
       <Section title="3. Teaching sequence" description="Plan the lesson in a clear progression from introduction to guided and independent work.">
         <div className="space-y-4">
-          <Field label="Opening / warm-up activity" required><textarea value={openingActivity} onChange={(event) => setOpeningActivity(event.target.value)} className={inputClass} rows={3} required placeholder="How will you activate prior knowledge and engage learners?"/></Field>
-          <Field label="Teacher explanation and modelling" required><textarea value={instruction} onChange={(event) => setInstruction(event.target.value)} className={inputClass} rows={4} required placeholder="Key explanation, examples, modelling and checks for understanding"/></Field>
-          <Field label="Guided practice" required><textarea value={guidedPractice} onChange={(event) => setGuidedPractice(event.target.value)} className={inputClass} rows={3} required placeholder="Activities completed with teacher support"/></Field>
-          <Field label="Independent practice"><textarea value={independentPractice} onChange={(event) => setIndependentPractice(event.target.value)} className={inputClass} rows={3} placeholder="What will learners practise independently?"/></Field>
-          <Field label="Assessment / exit ticket" required><textarea value={assessment} onChange={(event) => setAssessment(event.target.value)} className={inputClass} rows={3} required placeholder="How will you check achievement of the objective?"/></Field>
-          <Field label="Differentiation and learner support"><textarea value={differentiation} onChange={(event) => setDifferentiation(event.target.value)} className={inputClass} rows={2} placeholder="Scaffolds, language support, accessibility and extension for learners who need it"/></Field>
-          <Field label="Extension / homework"><textarea value={extension} onChange={(event) => setExtension(event.target.value)} className={inputClass} rows={2} placeholder="Optional follow-up activity"/></Field>
+          <Field label="Opening / warm-up activity" required><textarea value={openingActivity} onChange={(event) => setOpeningActivity(event.target.value)} className={inputClass} rows={3} required placeholder={t("teacherLessonPlan.openingPlaceholder")}/></Field>
+          <Field label="Teacher explanation and modelling" required><textarea value={instruction} onChange={(event) => setInstruction(event.target.value)} className={inputClass} rows={4} required placeholder={t("teacherLessonPlan.instructionPlaceholder")}/></Field>
+          <Field label="Guided practice" required><textarea value={guidedPractice} onChange={(event) => setGuidedPractice(event.target.value)} className={inputClass} rows={3} required placeholder={t("teacherLessonPlan.guidedPlaceholder")}/></Field>
+          <Field label="Independent practice"><textarea value={independentPractice} onChange={(event) => setIndependentPractice(event.target.value)} className={inputClass} rows={3} placeholder={t("teacherLessonPlan.independentPlaceholder")}/></Field>
+          <Field label="Assessment / exit ticket" required><textarea value={assessment} onChange={(event) => setAssessment(event.target.value)} className={inputClass} rows={3} required placeholder={t("teacherLessonPlan.assessmentPlaceholder")}/></Field>
+          <Field label="Differentiation and learner support"><textarea value={differentiation} onChange={(event) => setDifferentiation(event.target.value)} className={inputClass} rows={2} placeholder={t("teacherLessonPlan.differentiationPlaceholder")}/></Field>
+          <Field label="Extension / homework"><textarea value={extension} onChange={(event) => setExtension(event.target.value)} className={inputClass} rows={2} placeholder={t("teacherLessonPlan.extensionPlaceholder")}/></Field>
         </div>
       </Section>
 
       {formError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">{formError}</div>}
-      {createPlan.isPending && <p role="status" className="text-sm text-slate-600">Saving the lesson plan to the school content library…</p>}
-      <div className="flex flex-wrap items-center justify-between gap-3"><Link to="/teacher/content" className="text-sm font-semibold text-slate-600 underline">Open content library</Link><button type="submit" disabled={createPlan.isPending || !organizationId || curriculaQuery.isError || existingContentQuery.isPending || existingContentQuery.isError} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50"><Save size={17}/>{createPlan.isPending ? "Saving plan…" : "Save lesson plan draft"}</button></div>
-      {existingContentQuery.isError && <p className="text-sm text-red-700">The school content library could not be checked for duplicate codes. Retry before saving.</p>}
-      <p className="text-xs text-slate-500">A saved plan is a draft content item, not an assignment. To deliver it to learners, review and publish it in the content workflow, then attach it to an assignment.</p>
+      {createPlan.isPending && <p role="status" className="text-sm text-slate-600">{t("teacherLessonPlan.savingLibrary")}</p>}
+      <div className="flex flex-wrap items-center justify-between gap-3"><Link to="/teacher/content" className="text-sm font-semibold text-slate-600 underline">{t("teacherLessonPlan.openLibrary")}</Link><button type="submit" disabled={createPlan.isPending || !organizationId || curriculaQuery.isError || existingContentQuery.isPending || existingContentQuery.isError} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50"><Save size={17}/>{createPlan.isPending ? "Saving plan…" : "Save lesson plan draft"}</button></div>
+      {existingContentQuery.isError && <p className="text-sm text-red-700">{t("teacherLessonPlan.duplicateError")}</p>}
+      <p className="text-xs text-slate-500">{t("teacherLessonPlan.draftNotice")}</p>
     </form>
   </div>;
 }

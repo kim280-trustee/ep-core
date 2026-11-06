@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { CheckCircle2, Gift, Trophy } from "lucide-react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
+import { useTranslation } from "@/core/i18n/useTranslation";
 import { learningRewardsService } from "@/features/learning-rewards";
 import { learningTeacherService } from "../services/learning-teacher.service";
 
@@ -13,6 +14,10 @@ function localDateTimeValue(date: Date) {
 export default function TeacherClassGamificationPage() {
   const { classGroupId = "" } = useParams();
   const { user } = useAuth();
+  const { t } = useTranslation();
+  const statusLabels: Record<string, string> = { active: t("teacherGamification.active"), paused: t("teacherGamification.paused"), ended: t("teacherGamification.ended"), inactive: t("teacherGamification.inactive"), requested: t("teacherGamification.requested"), approved: t("teacherGamification.approved"), rejected: t("teacherGamification.rejected"), fulfilled: t("teacherGamification.fulfilled") };
+  const statusLabel = (status: string) => statusLabels[status] ?? status;
+  const targetTypeLabel = (type: string) => type === "assignments_completed" ? t("teacherGamification.completedAssignments") : t("teacherGamification.classXp");
   const queryClient = useQueryClient();
   const [challengeTitle, setChallengeTitle] = useState("");
   const [challengeDescription, setChallengeDescription] = useState("");
@@ -145,31 +150,31 @@ export default function TeacherClassGamificationPage() {
   const changeLeaderboardVisibility = useMutation({
     mutationFn: (enabled: boolean) => learningRewardsService.setClassLeaderboardEnabled(classGroupId, enabled),
     onSuccess: async (enabled) => {
-      setFeedback(enabled ? "Class XP standings are now visible to students." : "Class XP standings are hidden from students.");
+      setFeedback(enabled ? t("teacherGamification.visibleSuccess") : t("teacherGamification.hiddenSuccess"));
       await invalidate();
     },
-    onError: (error) => setFeedback(error instanceof Error ? error.message : "Leaderboard visibility could not be updated."),
+    onError: (error) => setFeedback(error instanceof Error ? error.message : t("teacherGamification.visibilityUpdateError")),
   });
   const createTeam = useMutation({
     mutationFn: () => learningRewardsService.createClassTeam(classGroupId, teamName.trim(), teamDescription.trim()),
     onSuccess: async () => {
       setTeamName("");
       setTeamDescription("");
-      setFeedback("Class team created.");
+      setFeedback(t("teacherGamification.teamCreated"));
       await invalidate();
     },
-    onError: (error) => setFeedback(error instanceof Error ? error.message : "Team could not be created."),
+    onError: (error) => setFeedback(error instanceof Error ? error.message : t("teacherGamification.teamCreateError")),
   });
   const assignTeam = useMutation({
     mutationFn: () => {
-      if (!selectedTeamId || !selectedStudentId) throw new Error("Choose a team and a student.");
+      if (!selectedTeamId || !selectedStudentId) throw new Error(t("teacherGamification.chooseTeamStudent"));
       return learningRewardsService.assignStudentToTeam(classGroupId, selectedTeamId, selectedStudentId);
     },
     onSuccess: async () => {
-      setFeedback("Student team assignment saved.");
+      setFeedback(t("teacherGamification.assignSaved"));
       await invalidate();
     },
-    onError: (error) => setFeedback(error instanceof Error ? error.message : "Student could not be assigned to the team."),
+    onError: (error) => setFeedback(error instanceof Error ? error.message : t("teacherGamification.studentAssignError")),
   });
   const createTeamChallenge = useMutation({
     mutationFn: () => learningRewardsService.createTeamChallenge({
@@ -185,24 +190,24 @@ export default function TeacherClassGamificationPage() {
     onSuccess: async () => {
       setTeamChallengeTitle("");
       setTeamChallengeDescription("");
-      setFeedback("Team challenge created.");
+      setFeedback(t("teacherGamification.teamChallengeCreated"));
       await invalidate();
     },
-    onError: (error) => setFeedback(error instanceof Error ? error.message : "Team challenge could not be created."),
+    onError: (error) => setFeedback(error instanceof Error ? error.message : t("teacherGamification.teamChallengeCreateError")),
   });
   const changeTeamChallengeStatus = useMutation({
     mutationFn: ({ id, status }: { id: string; status: "active" | "paused" | "ended" }) =>
       learningRewardsService.setTeamChallengeStatus(id, status),
     onSuccess: async () => {
-      setFeedback("Team challenge status updated.");
+      setFeedback(t("teacherGamification.teamChallengeStatusUpdated"));
       await invalidate();
     },
-    onError: (error) => setFeedback(error instanceof Error ? error.message : "Team challenge status could not be updated."),
+    onError: (error) => setFeedback(error instanceof Error ? error.message : t("teacherGamification.teamChallengeStatusError")),
   });
   const createSchoolCompetition = useMutation({
     mutationFn: async () => {
       const group = classQuery.data;
-      if (!group) throw new Error("Class details are not available.");
+      if (!group) throw new Error(t("teacherGamification.classDetailsUnavailable"));
       return learningRewardsService.createSchoolCompetition({
         organizationId: group.organization_id,
         title: schoolCompetitionTitle.trim(),
@@ -217,24 +222,24 @@ export default function TeacherClassGamificationPage() {
     onSuccess: async () => {
       setSchoolCompetitionTitle("");
       setSchoolCompetitionDescription("");
-      setFeedback("School-wide competition created.");
+      setFeedback(t("teacherGamification.schoolCompetitionCreated"));
       await invalidate();
     },
-    onError: (error) => setFeedback(error instanceof Error ? error.message : "School-wide competition could not be created."),
+    onError: (error) => setFeedback(error instanceof Error ? error.message : t("teacherGamification.schoolCompetitionCreateError")),
   });
   const changeSchoolCompetitionStatus = useMutation({
     mutationFn: ({ id, status }: { id: string; status: "active" | "paused" | "ended" }) =>
       learningRewardsService.setSchoolCompetitionStatus(id, status),
     onSuccess: async () => {
-      setFeedback("School-wide competition status updated.");
+      setFeedback(t("teacherGamification.schoolCompetitionStatusUpdated"));
       await invalidate();
     },
-    onError: (error) => setFeedback(error instanceof Error ? error.message : "Competition status could not be updated."),
+    onError: (error) => setFeedback(error instanceof Error ? error.message : t("teacherGamification.competitionStatusError")),
   });
   const createChallenge = useMutation({
     mutationFn: async () => {
       const group = classQuery.data;
-      if (!group || !user?.id) throw new Error("Class details are not available.");
+      if (!group || !user?.id) throw new Error(t("teacherGamification.classDetailsUnavailable"));
       await learningRewardsService.createClassChallenge({
         tenantId: group.tenant_id,
         organizationId: group.organization_id,
@@ -249,15 +254,15 @@ export default function TeacherClassGamificationPage() {
       });
     },
     onSuccess: async () => {
-      setChallengeTitle(""); setChallengeDescription(""); setFeedback("Class challenge created.");
+      setChallengeTitle(""); setChallengeDescription(""); setFeedback(t("teacherGamification.challengeCreated"));
       await invalidate();
     },
-    onError: (error) => setFeedback(error instanceof Error ? error.message : "Challenge could not be created."),
+    onError: (error) => setFeedback(error instanceof Error ? error.message : t("teacherGamification.challengeCreateError")),
   });
   const createItem = useMutation({
     mutationFn: async () => {
       const group = classQuery.data;
-      if (!group || !user?.id) throw new Error("Class details are not available.");
+      if (!group || !user?.id) throw new Error(t("teacherGamification.classDetailsUnavailable"));
       await learningRewardsService.createShopItem({
         tenantId: group.tenant_id,
         organizationId: group.organization_id,
@@ -270,48 +275,48 @@ export default function TeacherClassGamificationPage() {
       });
     },
     onSuccess: async () => {
-      setItemName(""); setItemDescription(""); setFeedback("Reward added to the student shop.");
+      setItemName(""); setItemDescription(""); setFeedback(t("teacherGamification.rewardAdded"));
       await invalidate();
     },
-    onError: (error) => setFeedback(error instanceof Error ? error.message : "Reward could not be added."),
+    onError: (error) => setFeedback(error instanceof Error ? error.message : t("teacherGamification.rewardAddError")),
   });
   const review = useMutation({
     mutationFn: ({ id, decision }: { id: string; decision: "approved" | "rejected" | "fulfilled" }) =>
       learningRewardsService.reviewRedemption(id, decision),
-    onSuccess: async () => { setFeedback("Redemption updated."); await invalidate(); },
-    onError: (error) => setFeedback(error instanceof Error ? error.message : "Redemption could not be updated."),
+    onSuccess: async () => { setFeedback(t("teacherGamification.redemptionUpdated")); await invalidate(); },
+    onError: (error) => setFeedback(error instanceof Error ? error.message : t("teacherGamification.redemptionError")),
   });
   const changeChallengeStatus = useMutation({
     mutationFn: async ({ id, status }: { id: string; status: "active" | "paused" | "ended" }) => {
       await learningRewardsService.updateClassChallengeStatus(id, status);
     },
-    onSuccess: async () => { setFeedback("Challenge status updated."); await invalidate(); },
-    onError: (error) => setFeedback(error instanceof Error ? error.message : "Challenge status could not be updated."),
+    onSuccess: async () => { setFeedback(t("teacherGamification.challengeStatusUpdated")); await invalidate(); },
+    onError: (error) => setFeedback(error instanceof Error ? error.message : t("teacherGamification.challengeStatusError")),
   });
   const changeItemStatus = useMutation({
     mutationFn: async ({ id, status }: { id: string; status: "active" | "inactive" }) => {
       await learningRewardsService.updateShopItemStatus(id, status);
     },
-    onSuccess: async () => { setFeedback("Reward availability updated."); await invalidate(); },
-    onError: (error) => setFeedback(error instanceof Error ? error.message : "Reward availability could not be updated."),
+    onSuccess: async () => { setFeedback(t("teacherGamification.rewardAvailabilityUpdated")); await invalidate(); },
+    onError: (error) => setFeedback(error instanceof Error ? error.message : t("teacherGamification.rewardAvailabilityError")),
   });
 
-  if (classQuery.isPending) return <div className="rounded-2xl bg-white p-6">Loading class gamification…</div>;
-  if (classQuery.isError || !classQuery.data) return <div className="rounded-2xl border border-red-200 bg-red-50 p-6 text-red-800">Class gamification could not be loaded. Confirm that you are an active teacher in this class.</div>;
+  if (classQuery.isPending) return <div className="rounded-2xl bg-white p-6">{t("teacherGamification.loading")}</div>;
+  if (classQuery.isError || !classQuery.data) return <div className="rounded-2xl border border-red-200 bg-red-50 p-6 text-red-800">{t("teacherGamification.loadError")}</div>;
 
   return <div className="mx-auto max-w-6xl space-y-6">
-    <header><p className="text-sm font-medium text-slate-500">Teacher tools · {classQuery.data.name}</p><h1 className="mt-1 text-2xl font-bold text-slate-900">Class gamification</h1><p className="mt-2 text-sm text-slate-600">Set shared challenges, offer class rewards, and review student redemption requests. Rewards are issued only from verified learning records.</p></header>
+    <header><p className="text-sm font-medium text-slate-500">{t("teacherGamification.teacherTools")} · {classQuery.data.name}</p><h1 className="mt-1 text-2xl font-bold text-slate-900">{t("teacherGamification.title")}</h1><p className="mt-2 text-sm text-slate-600">{t("teacherGamification.intro")}</p></header>
     {feedback && <div role="status" className="rounded-xl border border-slate-200 bg-white p-3 text-sm text-slate-700">{feedback}</div>}
     <section className="rounded-2xl border border-slate-200 bg-white p-5">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="max-w-2xl">
-          <h2 className="text-lg font-semibold text-slate-900">Student leaderboard visibility</h2>
-          <p className="mt-1 text-sm text-slate-600">Choose whether students in this class can compare privacy-limited XP standings. Standings are hidden by default; teachers can still review class progress.</p>
+          <h2 className="text-lg font-semibold text-slate-900">{t("teacherGamification.leaderboard")}</h2>
+          <p className="mt-1 text-sm text-slate-600">{t("teacherGamification.leaderboardHelp")}</p>
         </div>
         {leaderboardSettingQuery.isPending ? (
-          <span className="text-sm text-slate-500">Loading setting…</span>
+          <span className="text-sm text-slate-500">{t("teacherGamification.loadingSetting")}</span>
         ) : leaderboardSettingQuery.isError ? (
-          <span role="alert" className="text-sm text-red-700">Visibility setting could not be loaded.</span>
+          <span role="alert" className="text-sm text-red-700">{t("teacherGamification.visibilityLoadError")}</span>
         ) : (
           <button
             type="button"
@@ -320,127 +325,127 @@ export default function TeacherClassGamificationPage() {
             aria-pressed={leaderboardSettingQuery.data ?? false}
             className={`rounded-xl px-4 py-2.5 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-50 ${leaderboardSettingQuery.data ? "bg-emerald-700 text-white" : "border border-slate-300 bg-white text-slate-700"}`}
           >
-            {changeLeaderboardVisibility.isPending ? "Saving…" : leaderboardSettingQuery.data ? "Visible to students · Turn off" : "Hidden from students · Turn on"}
+            {changeLeaderboardVisibility.isPending ? t("teacherGamification.saving") : leaderboardSettingQuery.data ? t("teacherGamification.visibleOff") : t("teacherGamification.hiddenOn")}
           </button>
         )}
       </div>
     </section>
     <section className="rounded-2xl border border-slate-200 bg-white p-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
-        <div><h2 className="text-lg font-semibold text-slate-900">Team challenges</h2><p className="mt-1 max-w-3xl text-sm text-slate-600">Create balanced class teams, assign students, and run verified team challenges. XP is attributed to the team a student belonged to when the learning activity happened.</p></div>
-        <span className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">Class teacher</span>
+        <div><h2 className="text-lg font-semibold text-slate-900">{t("teacherGamification.teamChallenges")}</h2><p className="mt-1 max-w-3xl text-sm text-slate-600">{t("teacherGamification.teamHelp")}</p></div>
+        <span className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">{t("teacherGamification.classTeacher")}</span>
       </div>
       <div className="mt-4 grid gap-5 xl:grid-cols-2">
         <div className="space-y-4">
           <form className="space-y-3 rounded-xl bg-slate-50 p-4" onSubmit={event => { event.preventDefault(); createTeam.mutate(); }}>
-            <h3 className="font-semibold text-slate-900">Create a team</h3>
-            <label className="block text-sm font-medium">Team name<input required minLength={2} maxLength={80} value={teamName} onChange={event => setTeamName(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
-            <label className="block text-sm font-medium">Description<textarea rows={2} value={teamDescription} onChange={event => setTeamDescription(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
-            <button type="submit" disabled={createTeam.isPending} className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{createTeam.isPending ? "Creating…" : "Create team"}</button>
+            <h3 className="font-semibold text-slate-900">{t("teacherGamification.createTeam")}</h3>
+            <label className="block text-sm font-medium">{t("teacherGamification.teamName")}<input required minLength={2} maxLength={80} value={teamName} onChange={event => setTeamName(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
+            <label className="block text-sm font-medium">{t("teacherGamification.description")}<textarea rows={2} value={teamDescription} onChange={event => setTeamDescription(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
+            <button type="submit" disabled={createTeam.isPending} className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{createTeam.isPending ? t("teacherGamification.creating") : t("teacherGamification.createTeamButton")}</button>
           </form>
           <form className="space-y-3 rounded-xl border border-slate-200 p-4" onSubmit={event => { event.preventDefault(); assignTeam.mutate(); }}>
-            <h3 className="font-semibold text-slate-900">Assign a student</h3>
-            <label className="block text-sm font-medium">Student<select required value={selectedStudentId} onChange={event => setSelectedStudentId(event.target.value)} className="mt-1 w-full rounded-lg border p-2.5"><option value="">Choose student</option>{(rosterQuery.data?.students ?? []).map(student => <option key={student.membership.userId} value={student.membership.userId}>{student.name}</option>)}</select></label>
-            <label className="block text-sm font-medium">Team<select required value={selectedTeamId} onChange={event => setSelectedTeamId(event.target.value)} className="mt-1 w-full rounded-lg border p-2.5"><option value="">Choose team</option>{(teamsQuery.data ?? []).filter(team => team.status === "active").map(team => <option key={team.id} value={team.id}>{team.name}</option>)}</select></label>
-            <button type="submit" disabled={assignTeam.isPending || !(teamsQuery.data ?? []).some(team => team.status === "active") || !(rosterQuery.data?.students ?? []).length} className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 disabled:opacity-50">{assignTeam.isPending ? "Saving…" : "Save team assignment"}</button>
-            <p className="text-xs text-slate-500">Moving a student keeps past learning credit with the team they belonged to at that time.</p>
+            <h3 className="font-semibold text-slate-900">{t("teacherGamification.assignStudent")}</h3>
+            <label className="block text-sm font-medium">{t("teacherGamification.student")}<select required value={selectedStudentId} onChange={event => setSelectedStudentId(event.target.value)} className="mt-1 w-full rounded-lg border p-2.5"><option value="">{t("teacherGamification.chooseStudent")}</option>{(rosterQuery.data?.students ?? []).map(student => <option key={student.membership.userId} value={student.membership.userId}>{student.name}</option>)}</select></label>
+            <label className="block text-sm font-medium">{t("teacherGamification.team")}<select required value={selectedTeamId} onChange={event => setSelectedTeamId(event.target.value)} className="mt-1 w-full rounded-lg border p-2.5"><option value="">{t("teacherGamification.chooseTeam")}</option>{(teamsQuery.data ?? []).filter(team => team.status === "active").map(team => <option key={team.id} value={team.id}>{team.name}</option>)}</select></label>
+            <button type="submit" disabled={assignTeam.isPending || !(teamsQuery.data ?? []).some(team => team.status === "active") || !(rosterQuery.data?.students ?? []).length} className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 disabled:opacity-50">{assignTeam.isPending ? t("teacherGamification.saving") : t("teacherGamification.assignButton")}</button>
+            <p className="text-xs text-slate-500">{t("teacherGamification.movingStudent")}</p>
           </form>
         </div>
         <div className="rounded-xl border border-slate-200 p-4">
-          <h3 className="font-semibold text-slate-900">Class teams and members</h3>
-          {teamsQuery.isPending || teamMembersQuery.isPending ? <p className="mt-3 text-sm text-slate-500">Loading teams…</p> : teamsQuery.isError || teamMembersQuery.isError ? <p role="alert" className="mt-3 text-sm text-red-700">Class teams could not be loaded.</p> : !(teamsQuery.data ?? []).length ? <p className="mt-3 text-sm text-slate-500">Create the first team to start team challenges.</p> : <div className="mt-3 space-y-3">{(teamsQuery.data ?? []).map(team => <article key={team.id} className="rounded-xl bg-slate-50 p-3"><div className="flex items-center justify-between gap-2"><h4 className="font-semibold text-slate-900">{team.name}</h4><span className="text-xs text-slate-500">{team.member_count} students</span></div>{team.description && <p className="mt-1 text-sm text-slate-600">{team.description}</p>}<p className="mt-2 text-xs text-slate-500">{(teamMembersQuery.data ?? []).filter(member => member.team_id === team.id).map(member => member.student_name).join(", ") || "No students assigned yet."}</p></article>)}</div>}
+          <h3 className="font-semibold text-slate-900">{t("teacherGamification.teamsMembers")}</h3>
+          {teamsQuery.isPending || teamMembersQuery.isPending ? <p className="mt-3 text-sm text-slate-500">{t("teacherGamification.loadingTeams")}</p> : teamsQuery.isError || teamMembersQuery.isError ? <p role="alert" className="mt-3 text-sm text-red-700">{t("teacherGamification.teamsLoadError")}</p> : !(teamsQuery.data ?? []).length ? <p className="mt-3 text-sm text-slate-500">{t("teacherGamification.firstTeam")}</p> : <div className="mt-3 space-y-3">{(teamsQuery.data ?? []).map(team => <article key={team.id} className="rounded-xl bg-slate-50 p-3"><div className="flex items-center justify-between gap-2"><h4 className="font-semibold text-slate-900">{team.name}</h4><span className="text-xs text-slate-500">{team.member_count} {t("teacherGamification.studentsCount")}</span></div>{team.description && <p className="mt-1 text-sm text-slate-600">{team.description}</p>}<p className="mt-2 text-xs text-slate-500">{(teamMembersQuery.data ?? []).filter(member => member.team_id === team.id).map(member => member.student_name).join(", ") || t("teacherGamification.noStudents")}</p></article>)}</div>}
         </div>
       </div>
       <div className="mt-5 border-t border-slate-200 pt-5">
-        <h3 className="font-semibold text-slate-900">Create a team challenge</h3>
+        <h3 className="font-semibold text-slate-900">{t("teacherGamification.createTeamChallenge")}</h3>
         <form className="mt-3 grid gap-3 rounded-xl bg-slate-50 p-4 lg:grid-cols-2" onSubmit={event => { event.preventDefault(); createTeamChallenge.mutate(); }}>
-          <label className="block text-sm font-medium">Challenge title<input required minLength={3} maxLength={100} value={teamChallengeTitle} onChange={event => setTeamChallengeTitle(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
-          <label className="block text-sm font-medium">Success condition<select value={teamTargetType} onChange={event => setTeamTargetType(event.target.value as typeof teamTargetType)} className="mt-1 w-full rounded-lg border bg-white p-2.5"><option value="assignments_completed">Complete distinct assignments as a team</option><option value="xp_earned">Earn verified XP as a team</option></select></label>
-          <label className="block text-sm font-medium lg:col-span-2">Instructions<textarea rows={2} value={teamChallengeDescription} onChange={event => setTeamChallengeDescription(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
-          <div className="grid grid-cols-2 gap-3"><label className="block text-sm font-medium">Target<input type="number" min={1} max={100000} required value={teamTargetValue} onChange={event => setTeamTargetValue(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label><label className="block text-sm font-medium">Bonus XP (5–100)<input type="number" min={5} max={100} required value={teamBonusXp} onChange={event => setTeamBonusXp(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label></div>
-          <div className="grid grid-cols-2 gap-3"><label className="block text-sm font-medium">Starts<input type="datetime-local" required value={teamStartsAt} onChange={event => setTeamStartsAt(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label><label className="block text-sm font-medium">Ends<input type="datetime-local" required min={teamStartsAt} value={teamEndsAt} onChange={event => setTeamEndsAt(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label></div>
-          <div className="flex items-center justify-end lg:col-span-2"><button type="submit" disabled={createTeamChallenge.isPending} className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{createTeamChallenge.isPending ? "Publishing…" : "Create team challenge"}</button></div>
+          <label className="block text-sm font-medium">{t("teacherGamification.challengeTitle")}<input required minLength={3} maxLength={100} value={teamChallengeTitle} onChange={event => setTeamChallengeTitle(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
+          <label className="block text-sm font-medium">{t("teacherGamification.successCondition")}<select value={teamTargetType} onChange={event => setTeamTargetType(event.target.value as typeof teamTargetType)} className="mt-1 w-full rounded-lg border bg-white p-2.5"><option value="assignments_completed">{t("teacherGamification.completeTeam")}</option><option value="xp_earned">{t("teacherGamification.earnTeamXp")}</option></select></label>
+          <label className="block text-sm font-medium lg:col-span-2">{t("teacherGamification.instructions")}<textarea rows={2} value={teamChallengeDescription} onChange={event => setTeamChallengeDescription(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
+          <div className="grid grid-cols-2 gap-3"><label className="block text-sm font-medium">{t("teacherGamification.target")}<input type="number" min={1} max={100000} required value={teamTargetValue} onChange={event => setTeamTargetValue(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label><label className="block text-sm font-medium">{t("teacherGamification.bonusXp")}<input type="number" min={5} max={100} required value={teamBonusXp} onChange={event => setTeamBonusXp(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label></div>
+          <div className="grid grid-cols-2 gap-3"><label className="block text-sm font-medium">{t("teacherGamification.starts")}<input type="datetime-local" required value={teamStartsAt} onChange={event => setTeamStartsAt(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label><label className="block text-sm font-medium">{t("teacherGamification.ends")}<input type="datetime-local" required min={teamStartsAt} value={teamEndsAt} onChange={event => setTeamEndsAt(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label></div>
+          <div className="flex items-center justify-end lg:col-span-2"><button type="submit" disabled={createTeamChallenge.isPending} className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{createTeamChallenge.isPending ? t("teacherGamification.publishing") : "Create team challenge"}</button></div>
         </form>
-        {teamChallengeStandingsQuery.isPending || teamChallengesQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading team challenge standings…</p> : teamChallengeStandingsQuery.isError || teamChallengesQuery.isError ? <p role="alert" className="mt-4 text-sm text-red-700">Team challenge standings could not be loaded.</p> : !(teamChallengeStandingsQuery.data ?? []).length ? <p className="mt-4 rounded-xl border border-dashed p-5 text-sm text-slate-500">Create an active challenge to compare team progress.</p> : <div className="mt-4 space-y-4">{(teamChallengeStandingsQuery.data ?? []).map(({challenge, standings}) => <article key={challenge.id} className="overflow-hidden rounded-xl border border-slate-200"><div className="flex flex-wrap items-start justify-between gap-3 bg-slate-50 p-4"><div><h4 className="font-semibold text-slate-900">{challenge.title}</h4><p className="mt-1 text-xs text-slate-500">Target: {challenge.target_value} {challenge.target_type === "xp_earned" ? "XP per team" : "completed assignments per team"} · +{challenge.bonus_xp} XP to contributors · Ends {new Date(challenge.ends_at).toLocaleString()} · {challenge.status}</p></div><div className="flex flex-wrap gap-2"><button type="button" onClick={() => changeTeamChallengeStatus.mutate({id:challenge.id,status:challenge.status === "paused" ? "active" : "paused"})} disabled={changeTeamChallengeStatus.isPending} className="rounded-lg border px-3 py-1.5 text-xs font-semibold disabled:opacity-50">{challenge.status === "paused" ? "Resume" : "Pause"}</button>{challenge.status !== "ended" && <button type="button" onClick={() => changeTeamChallengeStatus.mutate({id:challenge.id,status:"ended"})} disabled={changeTeamChallengeStatus.isPending} className="rounded-lg border border-red-200 px-3 py-1.5 text-xs font-semibold text-red-700 disabled:opacity-50">End</button>}</div></div>{standings.length ? <div className="overflow-x-auto"><table className="min-w-full text-left text-sm"><thead className="bg-white text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-4 py-3">Rank</th><th className="px-4 py-3">Team</th><th className="px-4 py-3">Progress</th><th className="px-4 py-3">Assignments</th><th className="px-4 py-3">XP earned</th><th className="px-4 py-3">Status</th></tr></thead><tbody className="divide-y divide-slate-100">{standings.map(row=><tr key={row.team_id}><td className="px-4 py-3 font-semibold">#{row.rank}</td><td className="px-4 py-3 font-medium">{row.team_name}</td><td className="min-w-40 px-4 py-3"><div className="text-xs text-slate-600">{row.progress_value} / {row.target_value} ({row.progress_percent}%)</div><div className="mt-1 h-2 overflow-hidden rounded-full bg-slate-100"><div className="h-full rounded-full bg-indigo-500" style={{width:row.progress_percent+"%"}}/></div></td><td className="px-4 py-3 tabular-nums">{row.completed_assignments}</td><td className="px-4 py-3 tabular-nums">{row.xp_earned}</td><td className="px-4 py-3"><span className={`rounded-full px-2 py-1 text-xs font-semibold ${row.has_met_target ? "bg-emerald-50 text-emerald-700" : "bg-slate-100 text-slate-600"}`}>{row.has_met_target ? "Target reached" : "In progress"}</span></td></tr>)}</tbody></table></div> : <p className="p-4 text-sm text-slate-500">Create teams and assign students before starting the challenge.</p>}</article>)}</div>}
+        {teamChallengeStandingsQuery.isPending || teamChallengesQuery.isPending ? <p className="mt-4 text-sm text-slate-500">{t("teacherGamification.loadingTeamStandings")}</p> : teamChallengeStandingsQuery.isError || teamChallengesQuery.isError ? <p role="alert" className="mt-4 text-sm text-red-700">{t("teacherGamification.teamStandingsError")}</p> : !(teamChallengeStandingsQuery.data ?? []).length ? <p className="mt-4 rounded-xl border border-dashed p-5 text-sm text-slate-500">{t("teacherGamification.startActiveChallenge")}</p> : <div className="mt-4 space-y-4">{(teamChallengeStandingsQuery.data ?? []).map(({challenge, standings}) => <article key={challenge.id} className="overflow-hidden rounded-xl border border-slate-200"><div className="flex flex-wrap items-start justify-between gap-3 bg-slate-50 p-4"><div><h4 className="font-semibold text-slate-900">{challenge.title}</h4><p className="mt-1 text-xs text-slate-500">{t("teacherGamification.targetLabel")} {challenge.target_value} {challenge.target_type === "xp_earned" ? t("teacherGamification.xpPerTeam") : t("teacherGamification.assignmentsPerTeam")} · +{challenge.bonus_xp} {t("teacherGamification.xpContributors")} · {t("teacherGamification.ends")} {new Date(challenge.ends_at).toLocaleString()} · {statusLabel(challenge.status)}</p></div><div className="flex flex-wrap gap-2"><button type="button" onClick={() => changeTeamChallengeStatus.mutate({id:challenge.id,status:challenge.status === "paused" ? "active" : "paused"})} disabled={changeTeamChallengeStatus.isPending} className="rounded-lg border px-3 py-1.5 text-xs font-semibold disabled:opacity-50">{challenge.status === "paused" ? t("teacherGamification.resume") : t("teacherGamification.pause")}</button>{challenge.status !== "ended" && <button type="button" onClick={() => changeTeamChallengeStatus.mutate({id:challenge.id,status:"ended"})} disabled={changeTeamChallengeStatus.isPending} className="rounded-lg border border-red-200 px-3 py-1.5 text-xs font-semibold text-red-700 disabled:opacity-50">{t("teacherGamification.end")}</button>}</div></div>{standings.length ? <div className="overflow-x-auto"><table className="min-w-full text-left text-sm"><thead className="bg-white text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-4 py-3">{t("teacherGamification.rank")}</th><th className="px-4 py-3">{t("teacherGamification.team")}</th><th className="px-4 py-3">{t("teacherGamification.progress")}</th><th className="px-4 py-3">{t("teacherGamification.assignments")}</th><th className="px-4 py-3">{t("teacherGamification.xpEarned")}</th><th className="px-4 py-3">{t("teacherGamification.status")}</th></tr></thead><tbody className="divide-y divide-slate-100">{standings.map(row=><tr key={row.team_id}><td className="px-4 py-3 font-semibold">#{row.rank}</td><td className="px-4 py-3 font-medium">{row.team_name}</td><td className="min-w-40 px-4 py-3"><div className="text-xs text-slate-600">{row.progress_value} / {row.target_value} ({row.progress_percent}%)</div><div className="mt-1 h-2 overflow-hidden rounded-full bg-slate-100"><div className="h-full rounded-full bg-indigo-500" style={{width:row.progress_percent+"%"}}/></div></td><td className="px-4 py-3 tabular-nums">{row.completed_assignments}</td><td className="px-4 py-3 tabular-nums">{row.xp_earned}</td><td className="px-4 py-3"><span className={`rounded-full px-2 py-1 text-xs font-semibold ${row.has_met_target ? "bg-emerald-50 text-emerald-700" : "bg-slate-100 text-slate-600"}`}>{row.has_met_target ? t("teacherGamification.targetReached") : t("teacherGamification.inProgress")}</span></td></tr>)}</tbody></table></div> : <p className="p-4 text-sm text-slate-500">{t("teacherGamification.teamsBeforeChallenge")}</p>}</article>)}</div>}
       </div>
     </section>
     <section className="rounded-2xl border border-slate-200 bg-white p-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h2 className="text-lg font-semibold text-slate-900">School-wide class competition</h2>
-          <p className="mt-1 max-w-3xl text-sm text-slate-600">Run a school campaign that compares classes using verified assignment completions or learning XP. Only class totals are shown; individual student names are not published on this board.</p>
+          <h2 className="text-lg font-semibold text-slate-900">{t("teacherGamification.schoolCompetition")}</h2>
+          <p className="mt-1 max-w-3xl text-sm text-slate-600">{t("teacherGamification.schoolCompetitionHelp")}</p>
         </div>
-        {schoolCompetitionPermissionQuery.data && <span className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">School administrator</span>}
+        {schoolCompetitionPermissionQuery.data && <span className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">{t("teacherGamification.schoolAdmin")}</span>}
       </div>
-      {schoolCompetitionPermissionQuery.isError && <p role="alert" className="mt-3 text-sm text-red-700">Competition permissions could not be checked.</p>}
+      {schoolCompetitionPermissionQuery.isError && <p role="alert" className="mt-3 text-sm text-red-700">{t("teacherGamification.permissionError")}</p>}
       {schoolCompetitionPermissionQuery.data === true && <form className="mt-4 grid gap-3 rounded-xl bg-slate-50 p-4 lg:grid-cols-2" onSubmit={event => { event.preventDefault(); createSchoolCompetition.mutate(); }}>
-        <label className="block text-sm font-medium">Competition title<input required minLength={3} maxLength={100} value={schoolCompetitionTitle} onChange={event => setSchoolCompetitionTitle(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
-        <label className="block text-sm font-medium">Success condition<select value={schoolTargetType} onChange={event => setSchoolTargetType(event.target.value as typeof schoolTargetType)} className="mt-1 w-full rounded-lg border bg-white p-2.5"><option value="xp_earned">Earn class XP</option><option value="assignments_completed">Complete assignments as a class</option></select></label>
-        <label className="block text-sm font-medium lg:col-span-2">Description<textarea rows={2} value={schoolCompetitionDescription} onChange={event => setSchoolCompetitionDescription(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
+        <label className="block text-sm font-medium">{t("teacherGamification.competitionTitle")}<input required minLength={3} maxLength={100} value={schoolCompetitionTitle} onChange={event => setSchoolCompetitionTitle(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
+        <label className="block text-sm font-medium">{t("teacherGamification.successCondition")}<select value={schoolTargetType} onChange={event => setSchoolTargetType(event.target.value as typeof schoolTargetType)} className="mt-1 w-full rounded-lg border bg-white p-2.5"><option value="xp_earned">{t("teacherGamification.earnClassXp")}</option><option value="assignments_completed">{t("teacherGamification.completeClassAssignments")}</option></select></label>
+        <label className="block text-sm font-medium lg:col-span-2">{t("teacherGamification.description")}<textarea rows={2} value={schoolCompetitionDescription} onChange={event => setSchoolCompetitionDescription(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
         <div className="grid grid-cols-2 gap-3">
-          <label className="block text-sm font-medium">Target<input type="number" min={1} max={100000} required value={schoolTargetValue} onChange={event => setSchoolTargetValue(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
-          <label className="block text-sm font-medium">Bonus XP per contributor<input type="number" min={5} max={100} required value={schoolBonusXp} onChange={event => setSchoolBonusXp(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
+          <label className="block text-sm font-medium">{t("teacherGamification.target")}<input type="number" min={1} max={100000} required value={schoolTargetValue} onChange={event => setSchoolTargetValue(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
+          <label className="block text-sm font-medium">{t("teacherGamification.bonusPerContributor")}<input type="number" min={5} max={100} required value={schoolBonusXp} onChange={event => setSchoolBonusXp(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
         </div>
         <div className="grid grid-cols-2 gap-3">
-          <label className="block text-sm font-medium">Starts<input type="datetime-local" required value={schoolStartsAt} onChange={event => setSchoolStartsAt(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
-          <label className="block text-sm font-medium">Ends<input type="datetime-local" required min={schoolStartsAt} value={schoolEndsAt} onChange={event => setSchoolEndsAt(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
+          <label className="block text-sm font-medium">{t("teacherGamification.starts")}<input type="datetime-local" required value={schoolStartsAt} onChange={event => setSchoolStartsAt(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
+          <label className="block text-sm font-medium">{t("teacherGamification.ends")}<input type="datetime-local" required min={schoolStartsAt} value={schoolEndsAt} onChange={event => setSchoolEndsAt(event.target.value)} className="mt-1 w-full rounded-lg border bg-white p-2.5"/></label>
         </div>
         <div className="flex items-center justify-between gap-3 lg:col-span-2">
-          <p className="text-xs text-slate-500">Bonus XP is awarded once to each student who contributed qualifying activity when their class reaches the target.</p>
-          <button type="submit" disabled={createSchoolCompetition.isPending} className="shrink-0 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{createSchoolCompetition.isPending ? "Publishing…" : "Create competition"}</button>
+          <p className="text-xs text-slate-500">{t("teacherGamification.bonusOnce")}</p>
+          <button type="submit" disabled={createSchoolCompetition.isPending} className="shrink-0 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{createSchoolCompetition.isPending ? t("teacherGamification.publishing") : t("teacherGamification.createCompetition")}</button>
         </div>
       </form>}
-      {schoolCompetitionPermissionQuery.data === false && <p className="mt-3 text-sm text-slate-500">School-wide competitions are managed by school administrators.</p>}
-      {schoolCompetitionsQuery.isPending || schoolCompetitionStandingsQuery.isPending ? <p className="mt-4 text-sm text-slate-500">Loading school competitions…</p> : schoolCompetitionsQuery.isError || schoolCompetitionStandingsQuery.isError ? <p role="alert" className="mt-4 text-sm text-red-700">School competitions could not be loaded.</p> : !(schoolCompetitionStandingsQuery.data ?? []).length ? <p className="mt-4 rounded-xl border border-dashed p-5 text-sm text-slate-500">No active school-wide competitions right now.</p> : <div className="mt-4 space-y-5">
+      {schoolCompetitionPermissionQuery.data === false && <p className="mt-3 text-sm text-slate-500">{t("teacherGamification.schoolAdminOnly")}</p>}
+      {schoolCompetitionsQuery.isPending || schoolCompetitionStandingsQuery.isPending ? <p className="mt-4 text-sm text-slate-500">{t("teacherGamification.loadingCompetitions")}</p> : schoolCompetitionsQuery.isError || schoolCompetitionStandingsQuery.isError ? <p role="alert" className="mt-4 text-sm text-red-700">{t("teacherGamification.competitionsError")}</p> : !(schoolCompetitionStandingsQuery.data ?? []).length ? <p className="mt-4 rounded-xl border border-dashed p-5 text-sm text-slate-500">{t("teacherGamification.noCompetitions")}</p> : <div className="mt-4 space-y-5">
         {(schoolCompetitionStandingsQuery.data ?? []).map(({ competition, standings }) => <article key={competition.id} className="overflow-hidden rounded-xl border border-slate-200">
           <div className="flex flex-wrap items-start justify-between gap-3 bg-slate-50 p-4">
-            <div><h3 className="font-semibold text-slate-900">{competition.title}</h3><p className="mt-1 text-sm text-slate-600">{competition.description || "School-wide learning challenge"}</p><p className="mt-1 text-xs text-slate-500">Target: {competition.target_value} {competition.target_type === "xp_earned" ? "XP per class" : "completed assignments per class"} · +{competition.bonus_xp} XP to contributors · Ends {new Date(competition.ends_at).toLocaleString()}</p></div>
+            <div><h3 className="font-semibold text-slate-900">{competition.title}</h3><p className="mt-1 text-sm text-slate-600">{competition.description || t("teacherGamification.schoolChallenge")}</p><p className="mt-1 text-xs text-slate-500">{t("teacherGamification.targetLabel")} {competition.target_value} {competition.target_type === "xp_earned" ? t("teacherGamification.xpPerClass") : t("teacherGamification.assignmentsPerClass")} · +{competition.bonus_xp} {t("teacherGamification.xpContributors")} · {t("teacherGamification.ends")} {new Date(competition.ends_at).toLocaleString()}</p></div>
             {schoolCompetitionPermissionQuery.data === true && <div className="flex flex-wrap gap-2">
-              <button type="button" onClick={() => changeSchoolCompetitionStatus.mutate({id:competition.id,status:competition.status === "paused" ? "active" : "paused"})} disabled={changeSchoolCompetitionStatus.isPending || competition.status === "ended"} className="rounded-lg border px-3 py-1.5 text-xs font-semibold text-slate-700 disabled:opacity-50">{competition.status === "paused" ? "Resume competition" : "Pause competition"}</button>
-              {competition.status !== "ended" && <button type="button" onClick={() => changeSchoolCompetitionStatus.mutate({id:competition.id,status:"ended"})} disabled={changeSchoolCompetitionStatus.isPending} className="rounded-lg border border-red-200 px-3 py-1.5 text-xs font-semibold text-red-700 disabled:opacity-50">End competition</button>}
+              <button type="button" onClick={() => changeSchoolCompetitionStatus.mutate({id:competition.id,status:competition.status === "paused" ? "active" : "paused"})} disabled={changeSchoolCompetitionStatus.isPending || competition.status === "ended"} className="rounded-lg border px-3 py-1.5 text-xs font-semibold text-slate-700 disabled:opacity-50">{competition.status === "paused" ? t("teacherGamification.resumeCompetition") : t("teacherGamification.pauseCompetition")}</button>
+              {competition.status !== "ended" && <button type="button" onClick={() => changeSchoolCompetitionStatus.mutate({id:competition.id,status:"ended"})} disabled={changeSchoolCompetitionStatus.isPending} className="rounded-lg border border-red-200 px-3 py-1.5 text-xs font-semibold text-red-700 disabled:opacity-50">{t("teacherGamification.endCompetition")}</button>}
             </div>}
           </div>
-          {standings.length ? <div className="overflow-x-auto"><table className="min-w-full text-left text-sm"><thead className="bg-white text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-4 py-3">Rank</th><th className="px-4 py-3">Class</th><th className="px-4 py-3">Progress</th><th className="px-4 py-3">Assignments</th><th className="px-4 py-3">XP earned</th><th className="px-4 py-3">Status</th></tr></thead><tbody className="divide-y divide-slate-100">{standings.map(row=><tr key={row.class_group_id}><td className="px-4 py-3 font-semibold">#{row.rank}</td><td className="px-4 py-3 font-medium">{row.class_name}</td><td className="min-w-40 px-4 py-3"><div className="text-xs text-slate-600">{row.progress_value} / {row.target_value} ({row.progress_percent}%)</div><div className="mt-1 h-2 overflow-hidden rounded-full bg-slate-100"><div className="h-full rounded-full bg-indigo-500" style={{width:row.progress_percent+"%"}}/></div></td><td className="px-4 py-3 tabular-nums">{row.completed_assignments}</td><td className="px-4 py-3 tabular-nums">{row.xp_earned}</td><td className="px-4 py-3"><span className={`rounded-full px-2 py-1 text-xs font-semibold ${row.has_met_target ? "bg-emerald-50 text-emerald-700" : "bg-slate-100 text-slate-600"}`}>{row.has_met_target ? "Target reached" : "In progress"}</span></td></tr>)}</tbody></table></div> : <p className="p-4 text-sm text-slate-500">Class standings appear when students join and earn learning XP.</p>}
+          {standings.length ? <div className="overflow-x-auto"><table className="min-w-full text-left text-sm"><thead className="bg-white text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-4 py-3">{t("teacherGamification.rank")}</th><th className="px-4 py-3">{t("teacherGamification.class")}</th><th className="px-4 py-3">{t("teacherGamification.progress")}</th><th className="px-4 py-3">{t("teacherGamification.assignments")}</th><th className="px-4 py-3">{t("teacherGamification.xpEarned")}</th><th className="px-4 py-3">{t("teacherGamification.status")}</th></tr></thead><tbody className="divide-y divide-slate-100">{standings.map(row=><tr key={row.class_group_id}><td className="px-4 py-3 font-semibold">#{row.rank}</td><td className="px-4 py-3 font-medium">{row.class_name}</td><td className="min-w-40 px-4 py-3"><div className="text-xs text-slate-600">{row.progress_value} / {row.target_value} ({row.progress_percent}%)</div><div className="mt-1 h-2 overflow-hidden rounded-full bg-slate-100"><div className="h-full rounded-full bg-indigo-500" style={{width:row.progress_percent+"%"}}/></div></td><td className="px-4 py-3 tabular-nums">{row.completed_assignments}</td><td className="px-4 py-3 tabular-nums">{row.xp_earned}</td><td className="px-4 py-3"><span className={`rounded-full px-2 py-1 text-xs font-semibold ${row.has_met_target ? "bg-emerald-50 text-emerald-700" : "bg-slate-100 text-slate-600"}`}>{row.has_met_target ? t("teacherGamification.targetReached") : t("teacherGamification.inProgress")}</span></td></tr>)}</tbody></table></div> : <p className="p-4 text-sm text-slate-500">{t("teacherGamification.classStandings")}</p>}
         </article>)}
       </div>}
     </section>
     <div className="grid gap-6 xl:grid-cols-2">
       <section className="rounded-2xl border border-slate-200 bg-white p-5">
-        <div className="flex items-center gap-2"><Trophy size={20}/><h2 className="text-lg font-semibold">Create a class challenge</h2></div>
+        <div className="flex items-center gap-2"><Trophy size={20}/><h2 className="text-lg font-semibold">{t("teacherGamification.createClassChallenge")}</h2></div>
         <form className="mt-4 space-y-3" onSubmit={event => { event.preventDefault(); createChallenge.mutate(); }}>
-          <label className="block text-sm font-medium">Challenge title<input required minLength={3} maxLength={100} value={challengeTitle} onChange={e=>setChallengeTitle(e.target.value)} className="mt-1 w-full rounded-lg border p-2.5"/></label>
-          <label className="block text-sm font-medium">Instructions<textarea value={challengeDescription} onChange={e=>setChallengeDescription(e.target.value)} rows={2} className="mt-1 w-full rounded-lg border p-2.5"/></label>
-          <label className="block text-sm font-medium">Success condition<select value={targetType} onChange={e=>setTargetType(e.target.value as typeof targetType)} className="mt-1 w-full rounded-lg border p-2.5"><option value="assignments_completed">Complete assignments</option><option value="xp_earned">Earn XP from verified learning</option></select></label>
-          <div className="grid grid-cols-2 gap-3"><label className="block text-sm font-medium">Target<input type="number" min={1} max={10000} required value={targetValue} onChange={e=>setTargetValue(e.target.value)} className="mt-1 w-full rounded-lg border p-2.5"/></label><label className="block text-sm font-medium">Bonus XP (5–100)<input type="number" min={5} max={100} required value={bonusXp} onChange={e=>setBonusXp(e.target.value)} className="mt-1 w-full rounded-lg border p-2.5"/></label></div>
-          <label className="block text-sm font-medium">Challenge ends<input type="datetime-local" required min={localDateTimeValue(new Date())} value={endsAt} onChange={e=>setEndsAt(e.target.value)} className="mt-1 w-full rounded-lg border p-2.5"/></label>
-          <button disabled={createChallenge.isPending} className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{createChallenge.isPending?"Creating…":"Publish challenge"}</button>
+          <label className="block text-sm font-medium">{t("teacherGamification.challengeTitle")}<input required minLength={3} maxLength={100} value={challengeTitle} onChange={e=>setChallengeTitle(e.target.value)} className="mt-1 w-full rounded-lg border p-2.5"/></label>
+          <label className="block text-sm font-medium">{t("teacherGamification.instructions")}<textarea value={challengeDescription} onChange={e=>setChallengeDescription(e.target.value)} rows={2} className="mt-1 w-full rounded-lg border p-2.5"/></label>
+          <label className="block text-sm font-medium">{t("teacherGamification.successCondition")}<select value={targetType} onChange={e=>setTargetType(e.target.value as typeof targetType)} className="mt-1 w-full rounded-lg border p-2.5"><option value="assignments_completed">{t("teacherGamification.completeAssignments")}</option><option value="xp_earned">{t("teacherGamification.earnVerifiedXp")}</option></select></label>
+          <div className="grid grid-cols-2 gap-3"><label className="block text-sm font-medium">{t("teacherGamification.target")}<input type="number" min={1} max={10000} required value={targetValue} onChange={e=>setTargetValue(e.target.value)} className="mt-1 w-full rounded-lg border p-2.5"/></label><label className="block text-sm font-medium">{t("teacherGamification.bonusXp")}<input type="number" min={5} max={100} required value={bonusXp} onChange={e=>setBonusXp(e.target.value)} className="mt-1 w-full rounded-lg border p-2.5"/></label></div>
+          <label className="block text-sm font-medium">{t("teacherGamification.challengeEnds")}<input type="datetime-local" required min={localDateTimeValue(new Date())} value={endsAt} onChange={e=>setEndsAt(e.target.value)} className="mt-1 w-full rounded-lg border p-2.5"/></label>
+          <button disabled={createChallenge.isPending} className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{createChallenge.isPending?t("teacherGamification.creating"):t("teacherGamification.publishChallenge")}</button>
         </form>
-        <div className="mt-5 border-t pt-4"><h3 className="font-semibold">Current and past challenges</h3>{challengesQuery.isError?<p className="mt-2 text-sm text-red-700">Challenges could not be loaded.</p>:!challengesQuery.data?.length?<p className="mt-2 text-sm text-slate-500">No class challenges yet.</p>:<div className="mt-3 space-y-2">{challengesQuery.data.map(challenge=><div key={challenge.id} className="rounded-xl border p-3"><div className="flex justify-between gap-3"><p className="font-semibold">{challenge.title}</p><span className="text-xs text-slate-500">{challenge.status}</span></div><p className="mt-1 text-sm text-slate-600">{challenge.description || (challenge.target_value + " " + challenge.target_type.replaceAll("_"," "))} · +{challenge.bonus_xp} XP</p><p className="mt-1 text-xs text-slate-400">Ends {new Date(challenge.ends_at).toLocaleString()}</p>{challenge.status!=="ended"&&<button type="button" onClick={()=>changeChallengeStatus.mutate({id:challenge.id,status:challenge.status==="active"?"paused":"active"})} disabled={changeChallengeStatus.isPending} className="mt-3 rounded-lg border px-3 py-1.5 text-xs font-semibold text-slate-700 disabled:opacity-50">{challenge.status==="active"?"Pause challenge":"Resume challenge"}</button>}{challenge.status!=="ended"&&<button type="button" onClick={()=>changeChallengeStatus.mutate({id:challenge.id,status:"ended"})} disabled={changeChallengeStatus.isPending} className="ml-2 mt-3 rounded-lg border border-red-200 px-3 py-1.5 text-xs font-semibold text-red-700 disabled:opacity-50">End challenge</button>}</div>)}</div>}</div>
+        <div className="mt-5 border-t pt-4"><h3 className="font-semibold">{t("teacherGamification.currentPastChallenges")}</h3>{challengesQuery.isError?<p className="mt-2 text-sm text-red-700">{t("teacherGamification.challengesLoadError")}</p>:!challengesQuery.data?.length?<p className="mt-2 text-sm text-slate-500">{t("teacherGamification.noChallenges")}</p>:<div className="mt-3 space-y-2">{challengesQuery.data.map(challenge=><div key={challenge.id} className="rounded-xl border p-3"><div className="flex justify-between gap-3"><p className="font-semibold">{challenge.title}</p><span className="text-xs text-slate-500">{statusLabel(challenge.status)}</span></div><p className="mt-1 text-sm text-slate-600">{challenge.description || (challenge.target_value + " " + targetTypeLabel(challenge.target_type))} · +{challenge.bonus_xp} XP</p><p className="mt-1 text-xs text-slate-400">{t("teacherGamification.ends")} {new Date(challenge.ends_at).toLocaleString()}</p>{challenge.status!=="ended"&&<button type="button" onClick={()=>changeChallengeStatus.mutate({id:challenge.id,status:challenge.status==="active"?"paused":"active"})} disabled={changeChallengeStatus.isPending} className="mt-3 rounded-lg border px-3 py-1.5 text-xs font-semibold text-slate-700 disabled:opacity-50">{challenge.status==="active"?t("teacherGamification.pauseChallenge"):t("teacherGamification.resumeChallenge")}</button>}{challenge.status!=="ended"&&<button type="button" onClick={()=>changeChallengeStatus.mutate({id:challenge.id,status:"ended"})} disabled={changeChallengeStatus.isPending} className="ml-2 mt-3 rounded-lg border border-red-200 px-3 py-1.5 text-xs font-semibold text-red-700 disabled:opacity-50">{t("teacherGamification.endChallenge")}</button>}</div>)}</div>}</div>
       </section>
       <section className="rounded-2xl border border-slate-200 bg-white p-5">
-        <div className="flex items-center gap-2"><Gift size={20}/><h2 className="text-lg font-semibold">Student reward shop</h2></div>
+        <div className="flex items-center gap-2"><Gift size={20}/><h2 className="text-lg font-semibold">{t("teacherGamification.rewardShop")}</h2></div>
         <form className="mt-4 space-y-3" onSubmit={event=>{event.preventDefault();createItem.mutate();}}>
-          <label className="block text-sm font-medium">Reward name<input required minLength={2} maxLength={100} value={itemName} onChange={e=>setItemName(e.target.value)} className="mt-1 w-full rounded-lg border p-2.5"/></label>
-          <label className="block text-sm font-medium">Description<textarea value={itemDescription} onChange={e=>setItemDescription(e.target.value)} rows={2} className="mt-1 w-full rounded-lg border p-2.5"/></label>
-          <div className="grid grid-cols-2 gap-3"><label className="block text-sm font-medium">Cost in XP<input type="number" min={1} max={100000} required value={itemCost} onChange={e=>setItemCost(e.target.value)} className="mt-1 w-full rounded-lg border p-2.5"/></label><label className="block text-sm font-medium">Stock (blank = unlimited)<input type="number" min={0} value={itemQuantity} onChange={e=>setItemQuantity(e.target.value)} className="mt-1 w-full rounded-lg border p-2.5"/></label></div>
-          <button disabled={createItem.isPending} className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{createItem.isPending?"Saving…":"Add reward"}</button>
+          <label className="block text-sm font-medium">{t("teacherGamification.rewardName")}<input required minLength={2} maxLength={100} value={itemName} onChange={e=>setItemName(e.target.value)} className="mt-1 w-full rounded-lg border p-2.5"/></label>
+          <label className="block text-sm font-medium">{t("teacherGamification.description")}<textarea value={itemDescription} onChange={e=>setItemDescription(e.target.value)} rows={2} className="mt-1 w-full rounded-lg border p-2.5"/></label>
+          <div className="grid grid-cols-2 gap-3"><label className="block text-sm font-medium">{t("teacherGamification.costXp")}<input type="number" min={1} max={100000} required value={itemCost} onChange={e=>setItemCost(e.target.value)} className="mt-1 w-full rounded-lg border p-2.5"/></label><label className="block text-sm font-medium">{t("teacherGamification.stockUnlimited")}<input type="number" min={0} value={itemQuantity} onChange={e=>setItemQuantity(e.target.value)} className="mt-1 w-full rounded-lg border p-2.5"/></label></div>
+          <button disabled={createItem.isPending} className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{createItem.isPending?t("teacherGamification.saving"):t("teacherGamification.addReward")}</button>
         </form>
-        <div className="mt-5 border-t pt-4"><h3 className="font-semibold">Published rewards</h3>{itemsQuery.isError?<p className="mt-2 text-sm text-red-700">Rewards could not be loaded.</p>:!itemsQuery.data?.length?<p className="mt-2 text-sm text-slate-500">No rewards published yet.</p>:<div className="mt-3 space-y-2">{itemsQuery.data.map(item=><div key={item.id} className="flex flex-wrap items-center justify-between gap-3 rounded-xl border p-3"><div><p className="font-semibold">{item.name} · {item.cost_xp} XP</p><p className="mt-1 text-xs text-slate-500">{item.quantity_remaining===null?"Unlimited stock":item.quantity_remaining+" remaining"} · {item.status}</p></div><button type="button" onClick={()=>changeItemStatus.mutate({id:item.id,status:item.status==="active"?"inactive":"active"})} disabled={changeItemStatus.isPending} className="rounded-lg border px-3 py-1.5 text-xs font-semibold text-slate-700 disabled:opacity-50">{item.status==="active"?"Deactivate":"Activate"}</button></div>)}</div>}</div>
-        <div className="mt-5 border-t pt-4"><h3 className="font-semibold">Redemption requests</h3>{redemptionsQuery.isError?<p className="mt-2 text-sm text-red-700">Requests could not be loaded.</p>:!redemptionsQuery.data?.length?<p className="mt-2 text-sm text-slate-500">No student requests yet.</p>:<div className="mt-3 space-y-2">{redemptionsQuery.data.map(redemption=><div key={redemption.id} className="rounded-xl border p-3"><div className="flex flex-wrap items-center justify-between gap-2"><p className="font-semibold">{itemById.get(redemption.item_id)?.name??"Reward"} · {redemption.cost_xp} XP</p><span className="text-xs capitalize text-slate-500">{redemption.status}</span></div><p className="mt-1 text-xs text-slate-500">Student {redemption.student_user_id.slice(0,8)} · {new Date(redemption.requested_at).toLocaleString()}</p>{redemption.status==="requested"&&<div className="mt-3 flex gap-2"><button type="button" onClick={()=>review.mutate({id:redemption.id,decision:"approved"})} disabled={review.isPending} className="rounded-lg bg-emerald-700 px-3 py-1.5 text-xs font-semibold text-white">Approve</button><button type="button" onClick={()=>review.mutate({id:redemption.id,decision:"rejected"})} disabled={review.isPending} className="rounded-lg border border-red-200 px-3 py-1.5 text-xs font-semibold text-red-700">Reject</button></div>}{redemption.status==="approved"&&<button type="button" onClick={()=>review.mutate({id:redemption.id,decision:"fulfilled"})} disabled={review.isPending} className="mt-3 rounded-lg bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white">Mark fulfilled</button>}</div>)}</div>}</div>
+        <div className="mt-5 border-t pt-4"><h3 className="font-semibold">{t("teacherGamification.publishedRewards")}</h3>{itemsQuery.isError?<p className="mt-2 text-sm text-red-700">{t("teacherGamification.rewardsLoadError")}</p>:!itemsQuery.data?.length?<p className="mt-2 text-sm text-slate-500">{t("teacherGamification.noRewards")}</p>:<div className="mt-3 space-y-2">{itemsQuery.data.map(item=><div key={item.id} className="flex flex-wrap items-center justify-between gap-3 rounded-xl border p-3"><div><p className="font-semibold">{item.name} · {item.cost_xp} XP</p><p className="mt-1 text-xs text-slate-500">{item.quantity_remaining===null?t("teacherGamification.unlimitedStock"):item.quantity_remaining+" remaining"} · {item.status}</p></div><button type="button" onClick={()=>changeItemStatus.mutate({id:item.id,status:item.status==="active"?"inactive":"active"})} disabled={changeItemStatus.isPending} className="rounded-lg border px-3 py-1.5 text-xs font-semibold text-slate-700 disabled:opacity-50">{item.status==="active"?t("teacherGamification.deactivate"):t("teacherGamification.activate")}</button></div>)}</div>}</div>
+        <div className="mt-5 border-t pt-4"><h3 className="font-semibold">{t("teacherGamification.redemptionRequests")}</h3>{redemptionsQuery.isError?<p className="mt-2 text-sm text-red-700">{t("teacherGamification.requestsLoadError")}</p>:!redemptionsQuery.data?.length?<p className="mt-2 text-sm text-slate-500">{t("teacherGamification.noRequests")}</p>:<div className="mt-3 space-y-2">{redemptionsQuery.data.map(redemption=><div key={redemption.id} className="rounded-xl border p-3"><div className="flex flex-wrap items-center justify-between gap-2"><p className="font-semibold">{itemById.get(redemption.item_id)?.name??t("teacherGamification.reward")} · {redemption.cost_xp} XP</p><span className="text-xs capitalize text-slate-500">{statusLabel(redemption.status)}</span></div><p className="mt-1 text-xs text-slate-500">{t("teacherGamification.student")} {redemption.student_user_id.slice(0,8)} · {new Date(redemption.requested_at).toLocaleString()}</p>{redemption.status==="requested"&&<div className="mt-3 flex gap-2"><button type="button" onClick={()=>review.mutate({id:redemption.id,decision:"approved"})} disabled={review.isPending} className="rounded-lg bg-emerald-700 px-3 py-1.5 text-xs font-semibold text-white">{t("teacherGamification.approve")}</button><button type="button" onClick={()=>review.mutate({id:redemption.id,decision:"rejected"})} disabled={review.isPending} className="rounded-lg border border-red-200 px-3 py-1.5 text-xs font-semibold text-red-700">{t("teacherGamification.reject")}</button></div>}{redemption.status==="approved"&&<button type="button" onClick={()=>review.mutate({id:redemption.id,decision:"fulfilled"})} disabled={review.isPending} className="mt-3 rounded-lg bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white">{t("teacherGamification.markFulfilled")}</button>}</div>)}</div>}</div>
       </section>
     </div>
     <section className="rounded-2xl border border-slate-200 bg-white p-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h2 className="text-lg font-semibold text-slate-900">Student challenge progress</h2>
-          <p className="mt-1 text-sm text-slate-500">See each active challenge's verified progress for students in this class.</p>
+          <h2 className="text-lg font-semibold text-slate-900">{t("teacherGamification.studentChallengeProgress")}</h2>
+          <p className="mt-1 text-sm text-slate-500">{t("teacherGamification.studentProgressHelp")}</p>
         </div>
-        <span className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">Teacher view</span>
+        <span className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">{t("teacherGamification.teacherView")}</span>
       </div>
       {rosterQuery.isError || ledgerQuery.isError || challengesQuery.isError ? (
-        <p role="alert" className="mt-4 text-sm text-red-700">Challenge progress could not be loaded. Refresh and try again.</p>
+        <p role="alert" className="mt-4 text-sm text-red-700">{t("teacherGamification.challengeProgressError")}</p>
       ) : rosterQuery.isPending || ledgerQuery.isPending || challengesQuery.isPending ? (
-        <p className="mt-4 text-sm text-slate-500">Loading student progress…</p>
+        <p className="mt-4 text-sm text-slate-500">{t("teacherGamification.loadingStudentProgress")}</p>
       ) : (() => {
         const now = new Date().getTime();
         const activeChallenges = (challengesQuery.data ?? []).filter(challenge =>
@@ -449,7 +454,7 @@ export default function TeacherClassGamificationPage() {
           && new Date(challenge.ends_at).getTime() >= now
         );
         if (!activeChallenges.length) {
-          return <p className="mt-4 rounded-xl border border-dashed p-5 text-sm text-slate-500">Publish an active class challenge to see student-by-student progress here.</p>;
+          return <p className="mt-4 rounded-xl border border-dashed p-5 text-sm text-slate-500">{t("teacherGamification.publishActiveChallenge")}</p>;
         }
         const students = rosterQuery.data?.students ?? [];
         const ledger = ledgerQuery.data ?? [];
@@ -459,14 +464,14 @@ export default function TeacherClassGamificationPage() {
               <div className="flex flex-wrap items-center justify-between gap-2 bg-slate-50 p-4">
                 <div>
                   <h3 className="font-semibold text-slate-900">{challenge.title}</h3>
-                  <p className="mt-1 text-xs text-slate-500">Target: {challenge.target_value} {challenge.target_type === "assignments_completed" ? "completed assignments" : "class XP"} · Ends {new Date(challenge.ends_at).toLocaleString()}</p>
+                  <p className="mt-1 text-xs text-slate-500">{t("teacherGamification.targetLabel")} {challenge.target_value} {challenge.target_type === "assignments_completed" ? t("teacherGamification.completedAssignments") : t("teacherGamification.classXp")} · {t("teacherGamification.ends")} {new Date(challenge.ends_at).toLocaleString()}</p>
                 </div>
                 <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-indigo-700">+{challenge.bonus_xp} XP</span>
               </div>
               {students.length ? <div className="overflow-x-auto">
                 <table className="min-w-full text-left text-sm">
                   <thead className="bg-white text-xs uppercase tracking-wide text-slate-500">
-                    <tr><th className="px-4 py-3">Student</th><th className="px-4 py-3">Progress</th><th className="px-4 py-3">Status</th></tr>
+                    <tr><th className="px-4 py-3">{t("teacherGamification.student")}</th><th className="px-4 py-3">{t("teacherGamification.progress")}</th><th className="px-4 py-3">{t("teacherGamification.status")}</th></tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
                     {students.map(student => {
@@ -489,17 +494,17 @@ export default function TeacherClassGamificationPage() {
                           <div className="flex items-center justify-between gap-3 text-xs text-slate-600"><span>{progress} / {challenge.target_value}</span><span>{percent}%</span></div>
                           <div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-100" role="progressbar" aria-label={student.name + " progress for " + challenge.title} aria-valuemin={0} aria-valuemax={challenge.target_value} aria-valuenow={progress}><div className={`h-full rounded-full ${completed ? "bg-emerald-500" : "bg-indigo-500"}`} style={{ width: percent + "%" }} /></div>
                         </td>
-                        <td className="px-4 py-3"><span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${completed ? "bg-emerald-50 text-emerald-700" : "bg-slate-100 text-slate-600"}`}>{completed ? "Reward earned" : progress >= challenge.target_value ? "Awaiting reward record" : "In progress"}</span></td>
+                        <td className="px-4 py-3"><span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${completed ? "bg-emerald-50 text-emerald-700" : "bg-slate-100 text-slate-600"}`}>{completed ? t("teacherGamification.rewardEarned") : progress >= challenge.target_value ? t("teacherGamification.awaitingReward") : t("teacherGamification.inProgress")}</span></td>
                       </tr>;
                     })}
                   </tbody>
                 </table>
-              </div> : <p className="p-4 text-sm text-slate-500">No active students are enrolled in this class.</p>}
+              </div> : <p className="p-4 text-sm text-slate-500">{t("teacherGamification.noActiveStudents")}</p>}
             </div>
           ))}
         </div>;
       })()}
     </section>
-    <div className="flex items-center gap-2 rounded-xl border border-emerald-100 bg-emerald-50 p-4 text-sm text-emerald-900"><CheckCircle2 size={18}/> Students cannot grant themselves XP. Challenge bonuses and reward redemptions are validated by database functions.</div>
+    <div className="flex items-center gap-2 rounded-xl border border-emerald-100 bg-emerald-50 p-4 text-sm text-emerald-900"><CheckCircle2 size={18}/> {t("teacherGamification.xpSafeguard")}</div>
   </div>;
 }

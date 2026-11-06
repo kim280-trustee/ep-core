@@ -2,12 +2,14 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, CheckCircle2, Save } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
+import { useTranslation } from "@/core/i18n/useTranslation";
 import { learningContentService } from "@/features/learning-content";
 
 type GradeDraft = { score: string; maxScore: string; feedback: string };
 
 export default function TeacherContentResponsesPage() {
   const { assignmentId = "" } = useParams();
+  const { t, language } = useTranslation();
   const queryClient = useQueryClient();
   const [drafts, setDrafts] = useState<Record<string, GradeDraft>>({});
   const [savedResponseIds, setSavedResponseIds] = useState<string[]>([]);
@@ -28,9 +30,9 @@ export default function TeacherContentResponsesPage() {
     },
   });
 
-  if (!assignmentId) return <Message text="No assignment was selected." />;
+  if (!assignmentId) return <Message text={t("contentResponses.noAssignment")} />;
   if (responses.isPending) return <div className="h-64 animate-pulse rounded-2xl bg-slate-200" />;
-  if (responses.isError) return <Message text={responses.error instanceof Error ? responses.error.message : "Responses could not be loaded."} />;
+  if (responses.isError) return <Message text={responses.error instanceof Error ? responses.error.message : t("contentResponses.loadError")} />;
 
   const allItems = responses.data ?? [];
   const normalizedSearch = search.trim().toLocaleLowerCase();
@@ -42,25 +44,25 @@ export default function TeacherContentResponsesPage() {
   });
   return (
     <div className="space-y-6">
-      <Link to="/teacher" className="inline-flex items-center gap-2 text-sm text-slate-500"><ArrowLeft size={16} />Teacher Dashboard</Link>
+      <Link to="/teacher" className="inline-flex items-center gap-2 text-sm text-slate-500"><ArrowLeft size={16} />{t("contentResponses.teacherDashboard")}</Link>
       <header className="rounded-2xl bg-slate-900 p-6 text-white">
-        <p className="text-sm text-slate-300">Teacher Assessment</p>
-        <h1 className="mt-1 text-2xl font-bold">Student Responses</h1>
-        <p className="mt-2 text-sm text-slate-300">Review submitted writing/content work, give feedback, and record the grade in the gradebook.</p>
+        <p className="text-sm text-slate-300">{t("contentResponses.teacherAssessment")}</p>
+        <h1 className="mt-1 text-2xl font-bold">{t("contentResponses.title")}</h1>
+        <p className="mt-2 text-sm text-slate-300">{t("contentResponses.intro")}</p>
       </header>
       <section className="grid gap-3 rounded-2xl border bg-white p-4 sm:grid-cols-[1fr_auto]">
-        <label className="text-sm font-medium text-slate-700">Search responses
-          <input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Student name, email or response text" className="mt-1 block w-full rounded-xl border border-slate-300 px-3 py-2 font-normal" />
+        <label className="text-sm font-medium text-slate-700">{t("contentResponses.search")}
+          <input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder={t("contentResponses.searchPlaceholder")} className="mt-1 block w-full rounded-xl border border-slate-300 px-3 py-2 font-normal" />
         </label>
-        <label className="text-sm font-medium text-slate-700">Review status
+        <label className="text-sm font-medium text-slate-700">{t("contentResponses.reviewStatus")}
           <select value={statusFilter} onChange={(event) => setStatusFilter(event.target.value as typeof statusFilter)} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-normal">
-            <option value="all">All responses</option><option value="submitted">Submitted</option><option value="awaiting">Awaiting submission</option><option value="graded">Already graded</option>
+            <option value="all">{t("contentResponses.allResponses")}</option><option value="submitted">{t("contentResponses.submitted")}</option><option value="awaiting">{t("contentResponses.awaiting")}</option><option value="graded">{t("contentResponses.alreadyGraded")}</option>
           </select>
         </label>
-        <p className="text-xs text-slate-500 sm:col-span-2" aria-live="polite">Showing {items.length} of {allItems.length} responses.</p>
-        {(search || statusFilter !== "all") && <button type="button" onClick={() => { setSearch(""); setStatusFilter("all"); }} className="justify-self-start rounded-lg border border-slate-300 px-3 py-2 text-sm font-semibold sm:col-span-2">Clear filters</button>}
+        <p className="text-xs text-slate-500 sm:col-span-2" aria-live="polite">{t("contentResponses.showing")} {items.length} / {allItems.length}</p>
+        {(search || statusFilter !== "all") && <button type="button" onClick={() => { setSearch(""); setStatusFilter("all"); }} className="justify-self-start rounded-lg border border-slate-300 px-3 py-2 text-sm font-semibold sm:col-span-2">{t("contentResponses.clearFilters")}</button>}
       </section>
-      {!allItems.length ? <Message text="No student responses have been submitted for this assignment yet." /> : !items.length ? <Message text="No responses match these filters." /> : (
+      {!allItems.length ? <Message text={t("contentResponses.noResponses")} /> : !items.length ? <Message text={t("contentResponses.noMatches")} /> : (
         <section className="space-y-4">
           {items.map((r) => {
             const d = drafts[r.id] ?? {
@@ -79,11 +81,11 @@ export default function TeacherContentResponsesPage() {
             const numbersValid = scorePresent && maxScorePresent && Number.isFinite(numericScore) && Number.isFinite(numericMaxScore) && numericScore >= 0 && numericMaxScore > 0 && numericScore <= numericMaxScore;
             const valid = r.status === "submitted" && numbersValid;
             const validationMessage = r.status !== "submitted"
-              ? "This response must be submitted by the student before it can be graded."
+              ? t("contentResponses.mustSubmit")
               : !scorePresent || !maxScorePresent
-                ? "Enter both the score and maximum score to enable saving."
+                ? t("contentResponses.enterScores")
                 : !numbersValid
-                  ? "Check the scores: the score must be 0 or higher and cannot exceed the maximum score."
+                  ? t("contentResponses.invalidScores")
                   : null;
             const isSavingThisResponse = grade.isPending && grade.variables?.responseId === r.id;
             const saveError = grade.isError && grade.variables?.responseId === r.id;
@@ -92,30 +94,30 @@ export default function TeacherContentResponsesPage() {
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                   <div>
                     <h2 className="font-semibold text-slate-900">{r.studentName}</h2>
-                    <p className="text-xs text-slate-500">{r.studentEmail ?? r.studentUserId}{r.submittedAt ? " · Submitted " + new Date(r.submittedAt).toLocaleString() : ""}</p>
+                    <p className="text-xs text-slate-500">{r.studentEmail ?? r.studentUserId}{r.submittedAt ? " · " + t("contentResponses.submittedAt") + " " + new Intl.DateTimeFormat(language === "th" ? "th-TH" : "en-US", { dateStyle: "medium", timeStyle: "short" }).format(new Date(r.submittedAt)) : ""}</p>
                   </div>
                   {r.status === "submitted"
-                    ? <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700"><CheckCircle2 size={14} />Submitted</span>
-                    : <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700">Draft · Awaiting submission</span>}
+                    ? <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700"><CheckCircle2 size={14} />{t("contentResponses.submitted")}</span>
+                    : <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700">{t("contentResponses.draftAwaiting")}</span>}
                 </div>
                 <div className="mt-5 rounded-xl bg-slate-50 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">Student response</p>
-                  <p className="mt-2 whitespace-pre-wrap text-sm leading-7 text-slate-800">{r.responseText || "No response text."}</p>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">{t("contentResponses.studentResponse")}</p>
+                  <p className="mt-2 whitespace-pre-wrap text-sm leading-7 text-slate-800">{r.responseText || t("contentResponses.noResponseText")}</p>
                 </div>
                 <div className="mt-5 grid gap-4 md:grid-cols-[120px_120px_1fr]">
-                  <label className="text-sm font-medium text-slate-700">Score<input type="number" min="0" step="0.01" value={d.score} onChange={(e) => set({ score: e.target.value })} className="input mt-1 w-full" /></label>
-                  <label className="text-sm font-medium text-slate-700">Max score<input type="number" min="0.01" step="0.01" value={d.maxScore} onChange={(e) => set({ maxScore: e.target.value })} className="input mt-1 w-full" /></label>
-                  <label className="text-sm font-medium text-slate-700">Teacher feedback<textarea value={d.feedback} onChange={(e) => set({ feedback: e.target.value })} className="input mt-1 min-h-24 w-full resize-y" /></label>
+                  <label className="text-sm font-medium text-slate-700">{t("contentResponses.score")}<input type="number" min="0" step="0.01" value={d.score} onChange={(e) => set({ score: e.target.value })} className="input mt-1 w-full" /></label>
+                  <label className="text-sm font-medium text-slate-700">{t("contentResponses.maxScore")}<input type="number" min="0.01" step="0.01" value={d.maxScore} onChange={(e) => set({ maxScore: e.target.value })} className="input mt-1 w-full" /></label>
+                  <label className="text-sm font-medium text-slate-700">{t("contentResponses.teacherFeedback")}<textarea value={d.feedback} onChange={(e) => set({ feedback: e.target.value })} className="input mt-1 min-h-24 w-full resize-y" /></label>
                 </div>
                 <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-                  <span className="text-xs text-slate-500">{r.score !== null && r.maxScore !== null ? "Recorded: " + r.score + "/" + r.maxScore : "Not graded yet"}</span>
+                  <span className="text-xs text-slate-500">{r.score !== null && r.maxScore !== null ? t("contentResponses.recorded") + ": " + r.score + "/" + r.maxScore : t("contentResponses.notGraded")}</span>
                   <button type="button" disabled={!valid || grade.isPending} onClick={() => grade.mutate({ responseId: r.id, score: numericScore, maxScore: numericMaxScore, feedback: d.feedback })} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-40">
-                    <Save size={16} />{isSavingThisResponse ? "Saving..." : "Save Grade & Feedback"}
+                    <Save size={16} />{isSavingThisResponse ? t("contentResponses.saving") : t("contentResponses.saveGrade")}
                   </button>
                 </div>
                 {validationMessage && <p className="mt-2 text-xs text-amber-700">{validationMessage}</p>}
-                {savedResponseIds.includes(r.id) && <p role="status" className="mt-3 text-sm font-medium text-emerald-700">Grade and feedback saved successfully.</p>}
-                {saveError && <p role="alert" className="mt-3 text-sm font-medium text-red-700">{grade.error instanceof Error ? grade.error.message : "Could not save the grade. Please try again."}</p>}
+                {savedResponseIds.includes(r.id) && <p role="status" className="mt-3 text-sm font-medium text-emerald-700">{t("contentResponses.saved")}</p>}
+                {saveError && <p role="alert" className="mt-3 text-sm font-medium text-red-700">{grade.error instanceof Error ? grade.error.message : t("contentResponses.saveError")}</p>}
               </article>
             );
           })}
