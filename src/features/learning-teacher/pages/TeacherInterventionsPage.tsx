@@ -161,19 +161,19 @@ export default function TeacherInterventionsPage() {
     <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
       <div className="flex flex-wrap items-start justify-between gap-3"><div><h2 className="flex items-center gap-2 text-lg font-semibold text-slate-950"><Plus size={18}/> {t("teacherInterventions.createTitle")}</h2><p className="mt-1 text-sm text-slate-500">{t("teacherInterventions.createHelp")}</p></div></div>
       <form onSubmit={submit} className="mt-5 grid gap-4 md:grid-cols-2">
-        <label className="block text-sm font-medium text-slate-700">Class
+        <label className="block text-sm font-medium text-slate-700">{t("teacherInterventions.class")}
           <select value={classGroupId} onChange={(event) => { setSelectedClassId(event.target.value); setStudentUserId(""); }} className={inputClass}>{classes.map((item) => <option key={item.classGroup.id} value={item.classGroup.id}>{item.classGroup.name} ({item.classGroup.code})</option>)}</select>
         </label>
-        <label className="block text-sm font-medium text-slate-700">Student
+        <label className="block text-sm font-medium text-slate-700">{t("teacherInterventions.student")}
           <select value={studentUserId} onChange={(event) => setStudentUserId(event.target.value)} required disabled={classOverviewQuery.isPending || !students.length} className={inputClass}><option value="">{t("teacherInterventions.selectStudent")}</option>{students.map((student) => <option key={student.membership.userId} value={student.membership.userId}>{student.name}</option>)}</select>
         </label>
-        <label className="block text-sm font-medium text-slate-700">Reason category
+        <label className="block text-sm font-medium text-slate-700">{t("teacherInterventions.category")}
           <select value={category} onChange={(event) => setCategory(event.target.value as LearningInterventionCategory)} className={inputClass}>{categoryOptions.map((item) => <option key={item.value} value={item.value}>{t(item.labelKey)}</option>)}</select>
         </label>
-        <label className="block text-sm font-medium text-slate-700">Priority
+        <label className="block text-sm font-medium text-slate-700">{t("teacherInterventions.priority")}
           <select value={priority} onChange={(event) => setPriority(event.target.value as LearningInterventionPriority)} className={inputClass}><option value="low">{t("teacherInterventions.low")}</option><option value="normal">{t("teacherInterventions.normal")}</option><option value="high">{t("teacherInterventions.high")}</option></select>
         </label>
-        <label className="block text-sm font-medium text-slate-700 md:col-span-2">Title
+        <label className="block text-sm font-medium text-slate-700 md:col-span-2">{t("teacherInterventions.caseTitle")}
           <input value={title} onChange={(event) => setTitle(event.target.value)} maxLength={120} required className={inputClass} placeholder={t("teacherInterventions.titlePlaceholder")}/>
         </label>
         <label className="block text-sm font-medium text-slate-700">{t("teacherInterventions.evidenceReferenceOptional")}
@@ -182,16 +182,16 @@ export default function TeacherInterventionsPage() {
         <label className="block text-sm font-medium text-slate-700">{t("teacherInterventions.reviewDateOptional")}
           <input type="date" value={reviewDate} onChange={(event) => setReviewDate(event.target.value)} className={inputClass}/>
         </label>
-        <label className="block text-sm font-medium text-slate-700 md:col-span-2">Evidence and planned support
+        <label className="block text-sm font-medium text-slate-700 md:col-span-2">{t("teacherInterventions.evidenceNotes")}
           <textarea value={notes} onChange={(event) => setNotes(event.target.value)} maxLength={3000} required rows={4} className={inputClass} placeholder={t("teacherInterventions.notesPlaceholder")}/>
         </label>
-        <div className="md:col-span-2"><button type="submit" disabled={!classGroupId || !studentUserId || !title.trim() || !notes.trim() || createMutation.isPending} className={buttonClass}><Plus size={16}/>{createMutation.isPending ? "Saving support case…" : "Save support case"}</button></div>
+        <div className="md:col-span-2"><button type="submit" disabled={!classGroupId || !studentUserId || !title.trim() || !notes.trim() || createMutation.isPending} className={buttonClass}><Plus size={16}/>{createMutation.isPending ? t("teacherInterventions.savingCase") : t("teacherInterventions.saveCase")}</button></div>
       </form>
       {classOverviewQuery.isError && <p role="alert" className="mt-3 text-sm text-rose-700">{t("teacherInterventions.rosterError")}</p>}
     </section>
 
     <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-      <div className="flex flex-wrap items-end justify-between gap-3"><div><h2 className="flex items-center gap-2 text-lg font-semibold text-slate-950"><Target size={19}/> Follow-up register</h2><p className="mt-1 text-sm text-slate-500">{t("teacherInterventions.registerHelp")}</p></div>
+      <div className="flex flex-wrap items-end justify-between gap-3"><div><h2 className="flex items-center gap-2 text-lg font-semibold text-slate-950"><Target size={19}/> {t("teacherInterventions.register")}</h2><p className="mt-1 text-sm text-slate-500">{t("teacherInterventions.registerHelp")}</p></div>
         <label className="text-sm font-medium text-slate-700">{t("teacherInterventions.status")}<select value={statusFilter} onChange={(event) => setStatusFilter(event.target.value as typeof statusFilter)} className={inputClass}><option value="all">{t("teacherInterventions.allStatuses")}</option><option value="open">{t("teacherInterventions.open")}</option><option value="in_progress">{t("teacherInterventions.inProgress")}</option><option value="resolved">{t("teacherInterventions.resolved")}</option></select></label>
       </div>
       <div className="mt-4 grid gap-3 rounded-xl border border-slate-200 p-3 sm:grid-cols-[1fr_auto_auto]">
@@ -208,7 +208,7 @@ export default function TeacherInterventionsPage() {
       : <div className="mt-4 space-y-4">{visibleCases.map((item) => {
         const draft = getDraft(item);
         return <article key={item.id} className="rounded-2xl border border-slate-200 p-4 sm:p-5">
-          <div className="flex flex-wrap items-start justify-between gap-3"><div className="min-w-0"><p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{item.className} ({item.classCode}) · {item.studentName}</p><h3 className="mt-1 text-lg font-semibold text-slate-950">{item.title}</h3><p className="mt-1 text-xs text-slate-500">{t(categoryOptions.find((option) => option.value === item.category)?.labelKey ?? "teacherInterventions.other")} · Updated {new Date(item.updatedAt).toLocaleString()}</p></div><span className={item.status === "resolved" ? "rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-800" : item.priority === "high" ? "rounded-full bg-rose-100 px-3 py-1 text-xs font-bold text-rose-800" : "rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-800"}>{statusLabel(item.status)} · {priorityLabel(item.priority)} {t("teacherInterventions.priority")}</span></div>
+          <div className="flex flex-wrap items-start justify-between gap-3"><div className="min-w-0"><p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{item.className} ({item.classCode}) · {item.studentName}</p><h3 className="mt-1 text-lg font-semibold text-slate-950">{item.title}</h3><p className="mt-1 text-xs text-slate-500">{t(categoryOptions.find((option) => option.value === item.category)?.labelKey ?? "teacherInterventions.other")} · {t("teacherInterventions.updated")} {new Date(item.updatedAt).toLocaleString()}</p></div><span className={item.status === "resolved" ? "rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-800" : item.priority === "high" ? "rounded-full bg-rose-100 px-3 py-1 text-xs font-bold text-rose-800" : "rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-800"}>{statusLabel(item.status)} · {priorityLabel(item.priority)} {t("teacherInterventions.priority")}</span></div>
           <div className="mt-4 grid gap-3 md:grid-cols-2">
             <label className="block text-sm font-medium text-slate-700">{t("teacherInterventions.followStatus")}<select value={draft.status} onChange={(event) => changeDraft(item, { status: event.target.value as LearningInterventionStatus })} className={inputClass}><option value="open">{t("teacherInterventions.open")}</option><option value="in_progress">{t("teacherInterventions.inProgress")}</option><option value="resolved">{t("teacherInterventions.resolved")}</option></select></label>
             <label className="block text-sm font-medium text-slate-700">{t("teacherInterventions.priority")}<select value={draft.priority} onChange={(event) => changeDraft(item, { priority: event.target.value as LearningInterventionPriority })} className={inputClass}><option value="low">{t("teacherInterventions.low")}</option><option value="normal">{t("teacherInterventions.normal")}</option><option value="high">{t("teacherInterventions.high")}</option></select></label>
@@ -217,7 +217,7 @@ export default function TeacherInterventionsPage() {
             <label className="block text-sm font-medium text-slate-700 md:col-span-2">{t("teacherInterventions.followNotes")}<textarea value={draft.notes} onChange={(event) => changeDraft(item, { notes: event.target.value })} maxLength={3000} rows={3} className={inputClass}/></label>
             <label className="block text-sm font-medium text-slate-700 md:col-span-2">{t("teacherInterventions.outcome")}<textarea value={draft.outcome} onChange={(event) => changeDraft(item, { outcome: event.target.value })} maxLength={2000} rows={2} className={inputClass}/></label>
           </div>
-          <div className="mt-4 flex flex-wrap items-center justify-between gap-3"><p className="inline-flex items-center gap-2 text-xs text-slate-500"><CalendarDays size={14}/>{draft.reviewDate ? t("teacherInterventions.reviewOn") + " " + draft.reviewDate : t("teacherInterventions.noReviewDate")}{item.resolvedAt ? " · Resolved " + new Date(item.resolvedAt).toLocaleDateString() : ""}</p><button type="button" disabled={updateMutation.isPending || !draft.notes.trim()} onClick={() => { setFeedback(null); updateMutation.mutate({ caseId: item.id, ...draft }); }} className={buttonClass}><Save size={15}/>{updateMutation.isPending ? "Saving…" : "Save follow-up"}</button></div>
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-3"><p className="inline-flex items-center gap-2 text-xs text-slate-500"><CalendarDays size={14}/>{draft.reviewDate ? t("teacherInterventions.reviewOn") + " " + draft.reviewDate : t("teacherInterventions.noReviewDate")}{item.resolvedAt ? " · " + t("teacherInterventions.resolved") + " " + new Date(item.resolvedAt).toLocaleDateString() : ""}</p><button type="button" disabled={updateMutation.isPending || !draft.notes.trim()} onClick={() => { setFeedback(null); updateMutation.mutate({ caseId: item.id, ...draft }); }} className={buttonClass}><Save size={15}/>{updateMutation.isPending ? t("teacherInterventions.saving") : t("teacherInterventions.saveFollowup")}</button></div>
         </article>;
       })}</div>}
     </section>
