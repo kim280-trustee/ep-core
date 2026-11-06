@@ -85,8 +85,8 @@ export default function SchoolAttendanceReportPage() {
 
   if (!user) return <main className="mx-auto max-w-6xl p-6">{t("schoolAdmin.signInAttendance")}</main>;
   if (authorization.loading || organizationsQuery.isPending) return <main className="mx-auto max-w-6xl space-y-4 p-6"><div className="h-8 w-64 animate-pulse rounded bg-slate-200" /><div className="h-32 animate-pulse rounded-2xl bg-slate-100" /></main>;
-  if (organizationsQuery.isSuccess && organizations.length === 0) return <main className="mx-auto max-w-6xl p-6"><section className="rounded-2xl border border-slate-200 bg-white p-6"><h1 className="text-xl font-bold text-slate-950">{t("schoolAdmin.attendanceTitle")}</h1><p className="mt-2 text-sm leading-6 text-slate-600">{t("schoolAdmin.noSchool")}</p><Link className="mt-4 inline-flex font-semibold underline" to="/school-admin">Return to School Administration</Link></section></main>;
-  if (!canManage) return <main className="mx-auto max-w-6xl p-6"><section className="rounded-2xl border border-amber-200 bg-amber-50 p-5 text-amber-900" role="alert"><h1 className="text-lg font-semibold">{t("schoolAdmin.attendanceTitle")}</h1><p className="mt-2 text-sm">{t("schoolAdmin.attendancePermission")}</p><Link className="mt-4 inline-flex font-semibold underline" to="/school-admin">Return to School Administration</Link></section></main>;
+  if (organizationsQuery.isSuccess && organizations.length === 0) return <main className="mx-auto max-w-6xl p-6"><section className="rounded-2xl border border-slate-200 bg-white p-6"><h1 className="text-xl font-bold text-slate-950">{t("schoolAdmin.attendanceTitle")}</h1><p className="mt-2 text-sm leading-6 text-slate-600">{t("schoolAdmin.noSchool")}</p><Link className="mt-4 inline-flex font-semibold underline" to="/school-admin">{t("schoolAdmin.return")}</Link></section></main>;
+  if (!canManage) return <main className="mx-auto max-w-6xl p-6"><section className="rounded-2xl border border-amber-200 bg-amber-50 p-5 text-amber-900" role="alert"><h1 className="text-lg font-semibold">{t("schoolAdmin.attendanceTitle")}</h1><p className="mt-2 text-sm">{t("schoolAdmin.attendancePermission")}</p><Link className="mt-4 inline-flex font-semibold underline" to="/school-admin">{t("schoolAdmin.return")}</Link></section></main>;
 
   return (
     <main className="mx-auto max-w-6xl space-y-6 p-4 sm:p-6">
@@ -116,7 +116,7 @@ export default function SchoolAttendanceReportPage() {
       </section>
 
       {organizationsQuery.isError && <section className="rounded-2xl border border-rose-200 bg-rose-50 p-5 text-sm text-rose-800" role="alert">{t("schoolAdmin.schoolListError")} <button type="button" className="font-semibold underline" onClick={() => void organizationsQuery.refetch()}>{t("schoolAdmin.tryAgain")}</button></section>}
-      {reportQuery.isError && <section className="rounded-2xl border border-rose-200 bg-rose-50 p-5 text-sm text-rose-800" role="alert">{t("schoolAdmin.attendanceLoadError")} <button type="button" className="font-semibold underline" onClick={() => void reportQuery.refetch()}>Try again</button></section>}
+      {reportQuery.isError && <section className="rounded-2xl border border-rose-200 bg-rose-50 p-5 text-sm text-rose-800" role="alert">{t("schoolAdmin.attendanceLoadError")} <button type="button" className="font-semibold underline" onClick={() => void reportQuery.refetch()}>{t("schoolAdmin.tryAgain")}</button></section>}
       {organizationId && reportQuery.isPending && <section className="rounded-2xl border border-slate-200 bg-white p-8 text-center text-sm text-slate-500">{t("schoolAdmin.loadingAttendance")}</section>}
 
       {!reportQuery.isPending && !reportQuery.isError && <>
