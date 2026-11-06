@@ -125,7 +125,7 @@ export default function SchoolAnnouncementsPage() {
           <span className="mt-1 block text-xs font-normal text-slate-500">{t("schoolAdmin.classNoticeAudienceHelp")}</span>
         </label>
         <label className="block text-sm font-medium text-slate-700">{t("schoolAdmin.title")}
-          <input value={title} onChange={(event) => setTitle(event.target.value)} maxLength={120} required className={fieldClass} placeholder="e.g. Midterm examination reminder"/>
+          <input value={title} onChange={(event) => setTitle(event.target.value)} maxLength={120} required className={fieldClass} placeholder={t("schoolAdmin.announcementTitlePlaceholder")}/>
         </label>
         <label className="block text-sm font-medium text-slate-700">{t("schoolAdmin.announcement")}
           <textarea value={body} onChange={(event) => setBody(event.target.value)} maxLength={3000} rows={5} required className={fieldClass} placeholder={t("schoolAdmin.announcementPlaceholder")}/>
