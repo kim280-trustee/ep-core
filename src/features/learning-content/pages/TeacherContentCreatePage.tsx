@@ -346,6 +346,3 @@ function Message({ text }: { text: string }) {
 function slugify(value: string) {
   return value.trim().toUpperCase().replace(/[^A-Z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 }
-function label(value: string) {
-  return value.charAt(0).toUpperCase() + value.slice(1);
-}
