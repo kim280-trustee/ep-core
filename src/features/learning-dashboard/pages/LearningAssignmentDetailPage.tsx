@@ -3,8 +3,8 @@ import { AlertCircle, ArrowLeft, CheckCircle2, Circle, Clock3, Play } from "luci
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { useTranslation } from "@/core/i18n/useTranslation";
-import { learning{t("studentAssignmentDetail.assignment")}sService } from "@/features/learning-assignments";
-import { learning{t("studentAssignmentDetail.assessment")}Service } from "@/features/learning-assessment";
+import { learningAssignmentsService } from "@/features/learning-assignments";
+import { learningAssessmentService } from "@/features/learning-assessment";
 import { learningActivityService } from "@/features/learning-activity";
 import { learningContentService } from "@/features/learning-content";
 
@@ -16,7 +16,7 @@ function dateLabel(value: string | null, noDueDate: string) {
   }).format(new Date(value));
 }
 
-export default function Learning{t("studentAssignmentDetail.assignment")}DetailPage() {
+export default function LearningAssignmentDetailPage() {
   const { t } = useTranslation();
   const { user } = useAuth();
   const { assignmentId } = useParams();
@@ -27,11 +27,11 @@ export default function Learning{t("studentAssignmentDetail.assignment")}DetailP
   const query = useQuery({
     queryKey: ["learning", "assignment", id, user?.id],
     queryFn: async () => {
-      const result = await learning{t("studentAssignmentDetail.assignment")}sService.getStudent{t("studentAssignmentDetail.assignment")}(id, user!.id);
+      const result = await learningAssignmentsService.getStudentAssignment(id, user!.id);
       const assessmentIds = result.items.filter((item) => item.itemType === "assessment" && item.assessmentId).map((item) => item.assessmentId as string);
       const [attempts, results, contentResponses] = await Promise.all([
-        assessmentIds.length ? learning{t("studentAssignmentDetail.assessment")}Service.listAttempts(user!.id) : Promise.resolve([]),
-        assessmentIds.length ? learning{t("studentAssignmentDetail.assessment")}Service.listResults(user!.id) : Promise.resolve([]),
+        assessmentIds.length ? learningAssessmentService.listAttempts(user!.id) : Promise.resolve([]),
+        assessmentIds.length ? learningAssessmentService.listResults(user!.id) : Promise.resolve([]),
         learningContentService.listStudentResponses(user!.id),
       ]);
       const attemptIds = new Set(attempts.filter((attempt) => assessmentIds.includes(attempt.assessmentId)).map((attempt) => attempt.id));
@@ -47,7 +47,7 @@ export default function Learning{t("studentAssignmentDetail.assignment")}DetailP
   const startMutation = useMutation({
     mutationFn: async () => {
       if (!user?.id) throw new Error("You must be signed in.");
-      const result = await learning{t("studentAssignmentDetail.assignment")}sService.startForStudent(id, user.id);
+      const result = await learningAssignmentsService.startForStudent(id, user.id);
 
       // Progress state is the critical operation. Activity logging is telemetry and
       // must never prevent the student from opening the assignment.
@@ -87,7 +87,7 @@ export default function Learning{t("studentAssignmentDetail.assignment")}DetailP
   if (!user) {
     return (
       <div className="rounded-2xl border border-slate-200 bg-white p-6">
-        {t("student{t("studentAssignmentDetail.assignment")}Detail.signIn")}
+        {t("studentAssignmentDetail.signIn")}
       </div>
     );
   }
@@ -109,7 +109,7 @@ export default function Learning{t("studentAssignmentDetail.assignment")}DetailP
           className="inline-flex items-center gap-2 text-sm text-slate-600"
         >
           <ArrowLeft size={16} />
-          {t("student{t("studentAssignmentDetail.assignment")}Detail.back")}
+          {t("studentAssignmentDetail.back")}
         </Link>
 
         <div className="flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800">
@@ -117,11 +117,11 @@ export default function Learning{t("studentAssignmentDetail.assignment")}DetailP
 
           <div>
             <p className="font-semibold">
-              {t("student{t("studentAssignmentDetail.assignment")}Detail.loadError")}
+              {t("studentAssignmentDetail.loadError")}
             </p>
 
             <p className="mt-1 text-sm">
-              {t("student{t("studentAssignmentDetail.assignment")}Detail.unavailable")}
+              {t("studentAssignmentDetail.unavailable")}
             </p>
           </div>
         </div>
@@ -140,7 +140,7 @@ export default function Learning{t("studentAssignmentDetail.assignment")}DetailP
         className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900"
       >
         <ArrowLeft size={16} />
-        {t("student{t("studentAssignmentDetail.assignment")}Detail.back")}
+        Back to assignments
       </Link>
 
       <section className="rounded-2xl bg-slate-900 p-6 text-white sm:p-8">
@@ -160,7 +160,7 @@ export default function Learning{t("studentAssignmentDetail.assignment")}DetailP
             <Clock3 size={16} />
             {assignment.dueAt
               ? `${t("studentAssignmentDetail.due")} ${dateLabel(assignment.dueAt, t("studentAssignmentDetail.noDueDate"))}`
-              : "No due date"}
+              : t("studentAssignmentDetail.noDueDate")}
           </span>
 
           <span>
