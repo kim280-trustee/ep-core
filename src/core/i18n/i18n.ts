@@ -1366,6 +1366,13 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "teacherAuthoring.creatingAssessment": "Creating assessment…",
     "teacherAuthoring.publishing": "Publishing assignment… checking its content, assessment, and class permissions.",
     "teacherAI.of": "of",
+    "teacherAuthoring.required": "Required",
+    "teacherAuthoring.optional": "Optional",
+    "teacherAuthoring.assessmentItem": "assessment",
+    "teacherAuthoring.contentItem": "content",
+    "teacherAuthoring.questionWaiting": "Question creation is waiting for the selected class organization to load. Change the Teacher class selection or refresh the page.",
+    "teacherAuthoring.assessmentWaiting": "Assessment creation is waiting for the selected class organization to load. Change the Teacher class selection or refresh the page.",
+    "teacherAuthoring.creatingQuestion": "Creating question…",
   },
   th: {
     "customers.customerNotFound": "ไม่พบลูกค้า",
@@ -2725,6 +2732,13 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "teacherAuthoring.creatingAssessment": "กำลังสร้างแบบประเมิน…",
     "teacherAuthoring.publishing": "กำลังเผยแพร่งาน… ตรวจสอบเนื้อหา แบบประเมิน และสิทธิ์ของชั้นเรียน",
     "teacherAI.of": "จาก",
+    "teacherAuthoring.required": "จำเป็น",
+    "teacherAuthoring.optional": "ไม่บังคับ",
+    "teacherAuthoring.assessmentItem": "แบบประเมิน",
+    "teacherAuthoring.contentItem": "เนื้อหา",
+    "teacherAuthoring.questionWaiting": "กำลังรอโหลดข้อมูลองค์กรของชั้นเรียนที่เลือก โปรดเปลี่ยนชั้นเรียนหรือรีเฟรชหน้า",
+    "teacherAuthoring.assessmentWaiting": "กำลังรอโหลดข้อมูลองค์กรของชั้นเรียนที่เลือก โปรดเปลี่ยนชั้นเรียนหรือรีเฟรชหน้า",
+    "teacherAuthoring.creatingQuestion": "กำลังสร้างคำถาม…",
   }
 };
 
