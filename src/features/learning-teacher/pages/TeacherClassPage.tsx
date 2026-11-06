@@ -75,11 +75,11 @@ export default function TeacherClassPage() {
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <div><h2 className="text-lg font-semibold text-slate-900">{t("teacherClass.classPerformance")}</h2><p className="mt-1 text-sm text-slate-500">{performance.termName ? "Current term: " + performance.termName : {t("teacherClass.noTermGrades")}}</p></div>
+          <div><h2 className="text-lg font-semibold text-slate-900">{t("teacherClass.classPerformance")}</h2><p className="mt-1 text-sm text-slate-500">{performance.termName ? "Current term: " + performance.termName  : t("teacherClass.noTermGrades")}</p></div>
           <Link to={"/teacher/classes/" + classGroupId + "/gradebook"} className="text-sm font-medium text-slate-700">{t("teacherClass.openFullGradebook")}</Link>
         </div>
         <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-          {performance.subjects.map((subject) => <div key={subject.classSubjectId} className="rounded-xl border border-slate-200 p-4"><p className="text-sm text-slate-500">{subject.subjectName}</p><p className="mt-1 text-2xl font-bold">{subject.averageScore === null ? {t("teacherClass.noGrades")} : subject.averageScore.toFixed(1) + "%"}</p><p className="mt-1 text-xs text-slate-500">{subject.gradedStudents} {t("teacherClass.gradedStudent")}</p></div>)}
+          {performance.subjects.map((subject) => <div key={subject.classSubjectId} className="rounded-xl border border-slate-200 p-4"><p className="text-sm text-slate-500">{subject.subjectName}</p><p className="mt-1 text-2xl font-bold">{subject.averageScore === null ? t("teacherClass.noGrades") : subject.averageScore.toFixed(1) + "%"}</p><p className="mt-1 text-xs text-slate-500">{subject.gradedStudents} {t("teacherClass.gradedStudent")}</p></div>)}
         </div>
       </section>
 
