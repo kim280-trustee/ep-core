@@ -131,7 +131,7 @@ jobs:
             -e 's/port = 54327/port = 56427/' \
             -e 's/port = 54329/port = 56429/' \
             supabase/config.toml
-          grep -nE 'port = 55[0-9]{3}' supabase/config.toml
+          grep -nE 'port = 56[0-9]{3}' supabase/config.toml
 
       - name: Start isolated local Supabase stack
         run: supabase start --yes
