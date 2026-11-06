@@ -4,6 +4,7 @@ import type { FormEvent, ReactNode } from "react";
 import { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/core/auth";
+import { useTranslation } from "@/core/i18n/useTranslation";
 import { learningContentService } from "@/features/learning-content";
 import { learningTeacherService } from "@/features/learning-teacher";
 import type { LearningContentType } from "@/features/learning-content";
@@ -15,6 +16,7 @@ const contentTypes: LearningContentType[] = [
 
 export default function TeacherContentCreatePage() {
   const { user } = useAuth();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [curriculumId, setCurriculumId] = useState("");
@@ -129,44 +131,44 @@ export default function TeacherContentCreatePage() {
     setError("");
 
     if (!user?.id || !organizationId) {
-      setError("Your teacher organization could not be determined.");
+      setError(t("contentCreate.organizationMissing"));
       return;
     }
     if (!curriculumId || !gradeLevelId || !subjectId || !skillId || !topicId || !objectiveId || !title.trim() || !code.trim() || !body.trim()) {
-      setError("Complete the curriculum, grade, subject, skill, topic, objective, title, code, and content body.");
+      setError(t("contentCreate.requiredFields"));
       return;
     }
     if (title.trim().length < 3 || title.trim().length > 200) {
-      setError("Title must be between 3 and 200 characters.");
+      setError(t("contentCreate.titleLength"));
       return;
     }
 
     const normalizedCode = code.trim().toUpperCase();
     if (!/^[A-Z0-9]+(?:-[A-Z0-9]+)*$/.test(normalizedCode)) {
-      setError("Content code may contain only letters, numbers, and single hyphens between segments.");
+      setError(t("contentCreate.codeFormat"));
       return;
     }
 
     if (!selectedGradeLevel || !selectedSubject || !selectedSkill || !selectedTopic || !selectedObjective) {
-      setError("The selected academic alignment is no longer available. Refresh the page and choose the alignment again.");
+      setError(t("contentCreate.alignmentUnavailable"));
       return;
     }
 
     if (!alignedObjectiveIds.has(objectiveId)) {
-      setError("Select a learning objective aligned to the chosen curriculum and grade level.");
+      setError(t("contentCreate.objectiveAlignment"));
       return;
     }
 
     if (existingContent.isError) {
-      setError("Content codes could not be checked. Refresh the page and try again.");
+      setError(t("contentCreate.codeCheckError"));
       return;
     }
     if (objectiveAlignments.isError) {
-      setError("Curriculum alignment could not be verified. Refresh the page and try again.");
+      setError(t("contentCreate.alignmentCheckError"));
       return;
     }
     if ((existingContent.data ?? []).some((item) => item.code.toUpperCase() === normalizedCode)) {
-      setError("That content code already exists in this organization. Use a different code.");
+      setError(t("contentCreate.duplicateCode"));
       return;
     }
 
@@ -189,7 +191,7 @@ export default function TeacherContentCreatePage() {
         body: {
           sections: [{ type: "text", title: "Content", body: body.trim() }],
         },
-        changeSummary: changeSummary.trim() || "Initial draft",
+        changeSummary: changeSummary.trim() || t("contentCreate.initialDraft"),
         createdBy: user.id,
       });
 
@@ -209,116 +211,116 @@ export default function TeacherContentCreatePage() {
           // Preserve the original save error; the item can be recovered from the library if cleanup fails.
         }
       }
-      setError(err instanceof Error ? err.message : "Could not save the content draft.");
+      setError(err instanceof Error ? err.message : t("contentCreate.saveError"));
     } finally {
       setSaving(false);
     }
   }
 
-  if (!user) return <Message text="Sign in to create learning content." />;
+  if (!user) return <Message text={t("contentCreate.signIn")} />;
   if (classes.isPending || curricula.isPending) return <div className="h-96 animate-pulse rounded-2xl bg-slate-200" />;
-  if (classes.isError || curricula.isError || !organizationId) return <Message text="We could not determine your teacher organization." />;
+  if (classes.isError || curricula.isError || !organizationId) return <Message text={t("contentCreate.organizationMissing")} />;
   if (gradeLevels.isError || subjects.isError || skills.isError || topics.isError || objectives.isError) {
-    return <Message text="We could not load the academic alignment options. Refresh the page and try again." />;
+    return <Message text={t("contentCreate.optionsError")} />;
   }
 
   return (
     <div className="mx-auto max-w-4xl space-y-6">
       <header className="flex items-center gap-3">
-        <Link to="/teacher/content" className="rounded-lg p-2 text-slate-500 hover:bg-slate-100" aria-label="Back">
+        <Link to="/teacher/content" className="rounded-lg p-2 text-slate-500 hover:bg-slate-100" aria-label={t("contentCreate.back")}>
           <ArrowLeft size={19} />
         </Link>
         <div>
-          <div className="flex items-center gap-2 text-sm font-medium text-slate-500"><BookOpen size={18} />Teacher Content</div>
-          <h1 className="mt-1 text-2xl font-bold text-slate-900">Create Content</h1>
-          <p className="mt-1 text-sm text-slate-500">Build a reusable learning material and save it as a draft.</p>
+          <div className="flex items-center gap-2 text-sm font-medium text-slate-500"><BookOpen size={18} />{t("contentLibrary.teacherContent")}</div>
+          <h1 className="mt-1 text-2xl font-bold text-slate-900">{t("contentCreate.title")}</h1>
+          <p className="mt-1 text-sm text-slate-500">{t("contentCreate.intro")}</p>
         </div>
       </header>
 
       <form onSubmit={saveDraft} className="space-y-6">
-        <Section number="1" title="Academic alignment" description="Choose the curriculum structure this material belongs to.">
-          <Field label="Curriculum">
+        <Section number="1" title={t("contentCreate.academicAlignment")} description={t("contentCreate.academicAlignmentHelp")}>
+          <Field label={t("contentCreate.curriculum")}>
             <select value={curriculumId} onChange={(e) => changeCurriculum(e.target.value)} className="input w-full" required>
-              <option value="">Select curriculum</option>
+              <option value="">{t("contentCreate.selectCurriculum")}</option>
               {(curricula.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
             </select>
           </Field>
-          <Field label="Grade level">
+          <Field label={t("contentCreate.gradeLevel")}>
             <select value={gradeLevelId} onChange={(e) => changeGradeLevel(e.target.value)} className="input w-full" required>
               <option value="">
-                {gradeLevels.isPending ? "Loading grade levels..." : gradeLevels.isError ? "Could not load grade levels" : "Select grade level"}
+                {gradeLevels.isPending ? t("contentCreate.loadingGradeLevels") : gradeLevels.isError ? t("contentCreate.gradeLevelsError") : t("contentCreate.selectGrade")}
               </option>
               {(gradeLevels.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
             </select>
-            {!gradeLevels.isPending && !gradeLevels.isError && curriculumId && !(gradeLevels.data ?? []).length && <p className="mt-2 rounded-lg bg-amber-50 p-2 text-xs text-amber-800">No active grade levels are configured for this curriculum.</p>}
+            {!gradeLevels.isPending && !gradeLevels.isError && curriculumId && !(gradeLevels.data ?? []).length && <p className="mt-2 rounded-lg bg-amber-50 p-2 text-xs text-amber-800">{t("contentCreate.noGradeLevels")}</p>}
           </Field>
-          <Field label="Subject">
+          <Field label={t("contentCreate.subject")}>
             <select value={subjectId} onChange={(e) => changeSubject(e.target.value)} className="input w-full" required>
               <option value="">
-                {subjects.isPending ? "Loading subjects..." : subjects.isError ? "Could not load subjects" : "Select subject"}
+                {subjects.isPending ? t("contentCreate.loadingSubjects") : subjects.isError ? t("contentCreate.subjectsError") : t("contentCreate.selectSubject")}
               </option>
               {(subjects.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
             </select>
-            {!subjects.isPending && !subjects.isError && curriculumId && !(subjects.data ?? []).length && <p className="mt-2 rounded-lg bg-amber-50 p-2 text-xs text-amber-800">No active subjects are configured for this curriculum.</p>}
+            {!subjects.isPending && !subjects.isError && curriculumId && !(subjects.data ?? []).length && <p className="mt-2 rounded-lg bg-amber-50 p-2 text-xs text-amber-800">{t("contentCreate.noSubjects")}</p>}
           </Field>
-          <Field label="Skill">
+          <Field label={t("contentCreate.skill")}>
             <select value={skillId} onChange={(e) => changeSkill(e.target.value)} className="input w-full" required>
-              <option value="">Select skill</option>
+              <option value="">{t("contentCreate.selectSkill")}</option>
               {(skills.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
             </select>
           </Field>
-          <Field label="Topic">
+          <Field label={t("contentCreate.topic")}>
             <select value={topicId} onChange={(e) => changeTopic(e.target.value)} className="input w-full" required>
-              <option value="">Select topic</option>
+              <option value="">{t("contentCreate.selectTopic")}</option>
               {(topics.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
             </select>
           </Field>
-          <Field label="Learning objective">
+          <Field label={t("contentCreate.learningObjective")}>
             <select value={objectiveId} onChange={(e) => setObjectiveId(e.target.value)} className="input w-full" required>
-              <option value="">Select learning objective</option>
+              <option value="">{t("contentCreate.selectObjective")}</option>
               {(objectives.data ?? []).filter((item) => !gradeLevelId || alignedObjectiveIds.has(item.id)).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
             </select>
             {selectedObjective?.description && <p className="mt-2 text-xs text-slate-500">{selectedObjective.description}</p>}
-            {objectiveId && objectiveAlignments.isPending && <p className="mt-2 text-xs text-slate-500">Checking curriculum alignment...</p>}
-            {objectiveId && !objectiveAlignments.isPending && !selectedAlignment && <p className="mt-2 rounded-lg bg-amber-50 p-2 text-xs text-amber-800">This objective is not aligned to the selected curriculum and grade level.</p>}
-            {selectedAlignment && <p className="mt-2 rounded-lg bg-emerald-50 p-2 text-xs text-emerald-800">Aligned to the selected curriculum and grade level{selectedAlignment.required ? " · Required" : ""}{selectedAlignment.notes ? ` · ${selectedAlignment.notes}` : ""}</p>}
+            {objectiveId && objectiveAlignments.isPending && <p className="mt-2 text-xs text-slate-500">{t("contentCreate.checkingAlignment")}</p>}
+            {objectiveId && !objectiveAlignments.isPending && !selectedAlignment && <p className="mt-2 rounded-lg bg-amber-50 p-2 text-xs text-amber-800">{t("contentCreate.objectiveNotAligned")}</p>}
+            {selectedAlignment && <p className="mt-2 rounded-lg bg-emerald-50 p-2 text-xs text-emerald-800">{t("contentCreate.aligned")}{selectedAlignment.required ? " · " + t("contentCreate.required") : ""}{selectedAlignment.notes ? ` · ${selectedAlignment.notes}` : ""}</p>}
           </Field>
         </Section>
 
-        <Section number="2" title="Content details" description="Give the learning material its identity and format.">
-          <Field label="Title">
-            <input value={title} onChange={(e) => changeTitle(e.target.value)} className="input w-full" placeholder="e.g. Introducing Yourself" required />
+        <Section number="2" title={t("contentCreate.contentDetails")} description={t("contentCreate.contentDetailsHelp")}>
+          <Field label={t("contentCreate.titleField")}>
+            <input value={title} onChange={(e) => changeTitle(e.target.value)} className="input w-full" placeholder={t("contentCreate.titlePlaceholder")} required />
           </Field>
-          <Field label="Content code">
-            <input value={code} onChange={(e) => setCode(e.target.value.toUpperCase())} className="input w-full" placeholder="e.g. EN-M1-SELF-INTRO" required />
+          <Field label={t("contentCreate.code")}>
+            <input value={code} onChange={(e) => setCode(e.target.value.toUpperCase())} className="input w-full" placeholder={t("contentCreate.codePlaceholder")} required />
           </Field>
-          <Field label="Content type">
+          <Field label={t("contentCreate.contentType")}>
             <select value={contentType} onChange={(e) => setContentType(e.target.value as LearningContentType)} className="input w-full">
-              {contentTypes.map((value) => <option key={value} value={value}>{label(value)}</option>)}
+              {contentTypes.map((value) => <option key={value} value={value}>{t("contentLibrary." + value)}</option>)}
             </select>
           </Field>
-          <Field label="Language">
+          <Field label={t("contentCreate.language")}>
             <select value={languageCode} onChange={(e) => setLanguageCode(e.target.value)} className="input w-full">
               <option value="en">English</option><option value="th">Thai</option><option value="sw">Swahili</option>
             </select>
           </Field>
         </Section>
 
-        <Section number="3" title="Content body" description="Write the first draft of the learning material." full>
-          <Field label="Learning content">
-            <textarea value={body} onChange={(e) => setBody(e.target.value)} className="input min-h-64 w-full resize-y" placeholder="Write the lesson, explanation, reading passage, instructions, or other learning material here..." required />
+        <Section number="3" title={t("contentCreate.contentBody")} description={t("contentCreate.contentBodyHelp")} full>
+          <Field label={t("contentCreate.learningContent")}>
+            <textarea value={body} onChange={(e) => setBody(e.target.value)} className="input min-h-64 w-full resize-y" placeholder={t("contentCreate.bodyPlaceholder")} required />
           </Field>
-          <Field label="Change summary (optional)">
-            <input value={changeSummary} onChange={(e) => setChangeSummary(e.target.value)} className="input w-full" placeholder="Initial draft" />
+          <Field label={t("contentCreate.changeSummary")}>
+            <input value={changeSummary} onChange={(e) => setChangeSummary(e.target.value)} className="input w-full" placeholder={t("contentCreate.initialDraft")} />
           </Field>
         </Section>
 
         {error && <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">{error}</div>}
 
         <div className="flex justify-end gap-3">
-          <Link to="/teacher/content" className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">Cancel</Link>
+          <Link to="/teacher/content" className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">{t("contentCreate.cancel")}</Link>
           <button type="submit" disabled={saving || existingContent.isPending} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white disabled:opacity-50">
-            <Save size={17} />{saving ? "Saving draft..." : "Save Draft"}
+            <Save size={17} />{saving ? t("contentCreate.saving") : t("contentCreate.saveDraft")}
           </button>
         </div>
       </form>
