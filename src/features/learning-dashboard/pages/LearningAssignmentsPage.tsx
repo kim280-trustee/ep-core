@@ -67,16 +67,16 @@ export default function LearningAssignmentsPage() {
         <span className="w-fit rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600">{assignments.length} {assignments.length === 1 ? t("studentAssignments.assignment") : t("studentAssignments.assignments")}</span>
       </section>
       {assignments.length > 0 && (
-        <section aria-label="{t("studentAssignments.filter")}" className="space-y-4 rounded-2xl border border-slate-200 bg-white p-4 sm:p-5">
+        <section aria-label={t("studentAssignments.filter")} className="space-y-4 rounded-2xl border border-slate-200 bg-white p-4 sm:p-5">
           <div className="flex flex-col gap-3 sm:flex-row">
             <label className="relative block flex-1">
               <span className="sr-only">{t("studentAssignments.search")}</span>
               <Search size={17} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-              <input value={searchText} onChange={(event) => setSearchText(event.target.value)} placeholder="{t("studentAssignments.searchPlaceholder")}" className="w-full rounded-xl border border-slate-300 py-2.5 pl-9 pr-3 text-sm outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200" />
+              <input value={searchText} onChange={(event) => setSearchText(event.target.value)} placeholder={t("studentAssignments.searchPlaceholder")} className="w-full rounded-xl border border-slate-300 py-2.5 pl-9 pr-3 text-sm outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200" />
             </label>
             <div className="flex items-center gap-2 text-sm text-slate-500"><SlidersHorizontal size={16} /> {filteredAssignments.length} of {assignments.length}</div>
           </div>
-          <div className="flex flex-wrap gap-2" role="group" aria-label="{t("studentAssignments.status")}">
+          <div className="flex flex-wrap gap-2" role="group" aria-label={t("studentAssignments.status")}>
             {filterOptions.map((option) => (
               <button key={option.value} type="button" onClick={() => setFilter(option.value)} aria-pressed={filter === option.value} className={"rounded-full border px-3 py-2 text-xs font-semibold transition " + (filter === option.value ? "border-slate-900 bg-slate-900 text-white" : "border-slate-200 bg-white text-slate-600 hover:bg-slate-50")}>
                 {t(option.label)} ({counts[option.value]})
@@ -114,7 +114,7 @@ function AssignmentCard({ assignment, progress }: { assignment: (Awaited<ReturnT
           <div className="min-w-0">
             <h2 className="font-semibold text-slate-900">{assignment.title}</h2>
             <p className="mt-1 text-xs font-medium text-slate-500">{t("studentAssignments.code")}{assignment.code}</p>
-            <p className="mt-1 text-sm text-slate-500">{assignment.description || "{t("studentAssignments.learningAssignment")}"}</p>
+            <p className="mt-1 text-sm text-slate-500">{assignment.description || t("studentAssignments.learningAssignment")}</p>
           </div>
         </div>
         <span className="flex shrink-0 items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600"><Icon size={13} />{statusText}</span>
