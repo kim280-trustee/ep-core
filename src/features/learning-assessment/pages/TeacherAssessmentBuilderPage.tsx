@@ -17,6 +17,7 @@ const assessmentTypeTranslationKeys: Record<LearningAssessmentType, string> = {
   test: "assessmentBuilder.typeTest",
   mock_exam: "assessmentBuilder.typeMock",
   competition: "assessmentBuilder.typeCompetition",
+  other: "assessmentBuilder.typeOther",
 };
 
 type PublishedQuestionOption = {
