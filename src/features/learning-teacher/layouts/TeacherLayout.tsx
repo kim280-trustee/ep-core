@@ -90,6 +90,7 @@ export default function TeacherLayout() {
     { to: "/teacher/classes/"+primaryClassId+"/gradebook/reports", label: "learning.gradebookReports" },
     { to: "/teacher/classes/"+primaryClassId+"/gradebook/settings", label: "learning.gradebookSettings" },
     { to: "/teacher/classes/"+primaryClassId+"/gamification", label: "learning.classGamification" },
+    { to: "/teacher/classes/"+primaryClassId+"/live-games", label: "liveGames.navigation" },
   ] : [];
 
   const linkClass = (active: boolean) => [
