@@ -1,6 +1,6 @@
-export type LearningRewardEventType = "assignment_completed" | "assessment_passed" | "objective_mastered" | "weekly_quest_completed" | "streak_milestone" | "challenge_completed";
+export type LearningRewardEventType = "assignment_completed" | "assessment_passed" | "objective_mastered" | "weekly_quest_completed" | "streak_milestone" | "challenge_completed" | "live_game_completed";
 
-export type LearningRewardSourceType = "assignment" | "assessment" | "objective" | "weekly_quest" | "streak_milestone" | "challenge";
+export type LearningRewardSourceType = "assignment" | "assessment" | "objective" | "weekly_quest" | "streak_milestone" | "challenge" | "live_game";
 
 export interface LearningRewardLedgerEntry {
   id: string;
