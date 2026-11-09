@@ -120,6 +120,12 @@ export default function StudentLiveGamesPage() {
     questionStartedAt.current = null;
   }, [question?.current_question_index, sessionId]);
 
+  useEffect(() => {
+    if (!deadlineAt) return;
+    const interval = window.setInterval(() => setClockNow(Date.now()), 500);
+    return () => window.clearInterval(interval);
+  }, [deadlineAt]);
+
   const ownPlayer = playerQuery.data;
   const currentScore = ownPlayer?.score ?? 0;
   const isAnswered = Boolean(answerResult);
