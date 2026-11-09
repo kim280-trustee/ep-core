@@ -3312,6 +3312,24 @@ export type Database = {
         Update: { read_at?: string | null }
         Relationships: []
       }
+      learning_live_game_sessions: {
+        Row: { assessment_id: string; class_group_id: string; created_at: string; current_question_index: number; ended_at: string | null; host_user_id: string; id: string; join_code: string; organization_id: string; settings: Json; started_at: string | null; status: string; tenant_id: string; updated_at: string }
+        Insert: { assessment_id: string; class_group_id: string; created_at?: string; current_question_index?: number; ended_at?: string | null; host_user_id: string; id?: string; join_code: string; organization_id: string; settings?: Json; started_at?: string | null; status?: string; tenant_id: string; updated_at?: string }
+        Update: { assessment_id?: string; class_group_id?: string; created_at?: string; current_question_index?: number; ended_at?: string | null; host_user_id?: string; id?: string; join_code?: string; organization_id?: string; settings?: Json; started_at?: string | null; status?: string; tenant_id?: string; updated_at?: string }
+        Relationships: []
+      }
+      learning_live_game_players: {
+        Row: { display_name: string; id: string; joined_at: string; last_seen_at: string; organization_id: string; score: number; session_id: string; status: string; student_user_id: string; tenant_id: string }
+        Insert: { display_name: string; id?: string; joined_at?: string; last_seen_at?: string; organization_id: string; score?: number; session_id: string; status?: string; student_user_id: string; tenant_id: string }
+        Update: { display_name?: string; id?: string; joined_at?: string; last_seen_at?: string; organization_id?: string; score?: number; session_id?: string; status?: string; student_user_id?: string; tenant_id?: string }
+        Relationships: []
+      }
+      learning_live_game_answers: {
+        Row: { answer: Json; assessment_question_id: string; id: string; is_correct: boolean; organization_id: string; player_id: string; points_awarded: number; response_time_ms: number | null; session_id: string; submitted_at: string; tenant_id: string }
+        Insert: { answer: Json; assessment_question_id: string; id?: string; is_correct: boolean; organization_id: string; player_id: string; points_awarded?: number; response_time_ms?: number | null; session_id: string; submitted_at?: string; tenant_id: string }
+        Update: { answer?: Json; assessment_question_id?: string; id?: string; is_correct?: boolean; organization_id?: string; player_id?: string; points_awarded?: number; response_time_ms?: number | null; session_id?: string; submitted_at?: string; tenant_id?: string }
+        Relationships: []
+      }
       learning_sessions: {
         Row: {
           context_id: string | null
@@ -5133,6 +5151,12 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      create_learning_live_game_session: { Args: { p_assessment_id: string; p_class_group_id: string; p_settings?: Json }; Returns: string }
+      join_learning_live_game_session: { Args: { p_join_code: string }; Returns: string }
+      start_learning_live_game_session: { Args: { p_session_id: string }; Returns: undefined }
+      advance_learning_live_game_question: { Args: { p_session_id: string }; Returns: boolean }
+      submit_learning_live_game_answer: { Args: { p_answer: Json; p_response_time_ms?: number | null; p_session_id: string }; Returns: Json }
+
       reserve_learning_ai_generation: {
         Args: { p_model: string; p_organization_id: string }
         Returns: {
