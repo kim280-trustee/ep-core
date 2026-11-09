@@ -122,6 +122,7 @@ export default function StudentLiveGamesPage() {
 
   useEffect(() => {
     if (!deadlineAt) return;
+    setClockNow(Date.now());
     const interval = window.setInterval(() => setClockNow(Date.now()), 500);
     return () => window.clearInterval(interval);
   }, [deadlineAt]);
