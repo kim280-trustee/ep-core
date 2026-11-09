@@ -82,9 +82,9 @@ export const learningLiveGamesRepository = {
       points?: number;
     };
   },
-  async submitAnswer(sessionId: string, answer: Record<string, unknown>, responseTimeMs?: number) {
+  async submitAnswer(sessionId: string, assessmentQuestionId: string, answer: Record<string, unknown>, responseTimeMs?: number) {
     const { data, error } = await supabase.rpc("submit_learning_live_game_answer", {
-      p_session_id: sessionId, p_answer: answer as Json, p_response_time_ms: responseTimeMs ?? null,
+      p_session_id: sessionId, p_assessment_question_id: assessmentQuestionId, p_answer: answer as Json, p_response_time_ms: responseTimeMs ?? null,
     });
     if (error) throw error;
     return data as unknown as LearningLiveGameAnswerResult;
