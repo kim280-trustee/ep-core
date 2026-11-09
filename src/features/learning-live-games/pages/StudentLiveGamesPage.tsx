@@ -33,10 +33,10 @@ export default function StudentLiveGamesPage() {
   const { user } = useAuth();
   const { t } = useTranslation();
   const queryClient = useQueryClient();
-  const [joinCode, setJoinCode] = useState("");
+  const [joinCode, setJoinCode] = useState(() => new URLSearchParams(window.location.search).get("code")?.replace(/\\D/g, "").slice(0, 6) ?? "");
   const [playerId, setPlayerId] = useState<string | null>(null);
-  const [answersByQuestion, setAnswersByQuestion] = useState<Record<string, { selectedOption: string; result: { is_correct: boolean; points_awarded: number } | null }>>({});
-  const questionStartedAt = useRef<number | null>(null);
+  const [answersByQuestion, setAnswersByQuestion] = useState<Record<string, { selectedOptions: string[]; result: { is_correct: boolean; points_awarded: number } | null }>>({});
+  const questionStartedAt = useRef<number | null>(null);\n  const [clockNow, setClockNow] = useState(Date.now());
 
   const playerQuery = useQuery({
     queryKey: ["learning", "live-games", "student-player", playerId],
@@ -107,7 +107,7 @@ export default function StudentLiveGamesPage() {
   const options = useMemo(() => readOptions(question?.configuration), [question?.configuration]);
   const prompt = readText(question?.prompt);
   const questionKey = question?.assessment_question_id ?? "";
-  const selectedOption = answersByQuestion[questionKey]?.selectedOption ?? "";
+  const selectedOptions = answersByQuestion[questionKey]?.selectedOptions ?? [];\n  const deadlineAt = question?.deadline_at ?? null;\n  const timeRemaining = deadlineAt ? Math.max(0, Math.ceil((Date.parse(deadlineAt) - clockNow) / 1000)) : null;
   const answerResult = answersByQuestion[questionKey]?.result ?? null;
 
   useEffect(() => {
@@ -157,18 +157,18 @@ export default function StudentLiveGamesPage() {
             {sessionQuery.data?.status === "in_progress" && questionQuery.isError && <p role="alert" className="mt-4 text-sm text-red-700">{questionQuery.error.message}</p>}
             {sessionQuery.data?.status === "in_progress" && question && (
               <div className="mt-5">
-                <div className="flex items-center justify-between text-sm font-semibold text-slate-500"><span>{t("liveGames.question")} {question.current_question_index} / {question.total_questions}</span><span>{question.points ?? 0} {t("liveGames.points")}</span></div>
+                <div className="flex items-center justify-between text-sm font-semibold text-slate-500"><span>{t("liveGames.question")} {question.current_question_index} / {question.total_questions}</span><span>{question.points ?? 0} {t("liveGames.points")}</span></div>\n                {timeRemaining !== null && <div className={"mt-3 rounded-lg px-3 py-2 text-center text-sm font-bold " + (timeRemaining <= 5 ? "bg-red-100 text-red-800" : "bg-amber-50 text-amber-900")}>{t("liveGames.timeRemaining")}: {timeRemaining}s</div>}\n                {question.question_type === "multiple_choice" && <p className="mt-3 text-sm font-semibold text-indigo-700">{t("liveGames.selectAllThatApply")}</p>}
                 <div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-100"><div className="h-full rounded-full bg-indigo-600" style={{ width: ((question.current_question_index / Math.max(question.total_questions, 1)) * 100) + "%" }} /></div>
                 <h3 className="mt-5 text-xl font-bold leading-relaxed text-slate-950">{prompt}</h3>
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
                   {options.map((option, index) => (
-                    <button key={option.key} type="button" disabled={isAnswered || answerMutation.isPending} onClick={() => { if (questionStartedAt.current === null) questionStartedAt.current = Date.now(); setAnswersByQuestion((current) => ({ ...current, [questionKey]: { selectedOption: option.key, result: current[questionKey]?.result ?? null } })); }} aria-pressed={selectedOption === option.key} className={"min-h-16 rounded-xl border-2 p-4 text-left text-sm font-semibold transition " + (selectedOption === option.key ? "border-indigo-600 bg-indigo-50 text-indigo-950" : "border-slate-200 bg-white text-slate-800 hover:border-indigo-300")}>
+                    <button key={option.key} type="button" disabled={isAnswered || answerMutation.isPending || timeRemaining === 0} onClick={() => { if (questionStartedAt.current === null) questionStartedAt.current = Date.now(); setAnswersByQuestion((current) => { const previous = current[questionKey]?.selectedOptions ?? []; const next = question?.question_type === "multiple_choice" ? (previous.includes(option.key) ? previous.filter((key) => key !== option.key) : [...previous, option.key]) : [option.key]; return { ...current, [questionKey]: { selectedOptions: next, result: current[questionKey]?.result ?? null } }; }); }} aria-pressed={selectedOptions.includes(option.key)} className={"min-h-16 rounded-xl border-2 p-4 text-left text-sm font-semibold transition " + (selectedOptions.includes(option.key) ? "border-indigo-600 bg-indigo-50 text-indigo-950" : "border-slate-200 bg-white text-slate-800 hover:border-indigo-300")}>
                       <span className="mr-2 inline-flex h-7 w-7 items-center justify-center rounded-lg bg-slate-100 text-xs">{String.fromCharCode(65 + index)}</span>{option.label}
                     </button>
                   ))}
                 </div>
-                {!isAnswered && <button type="button" disabled={!selectedOption || answerMutation.isPending} onClick={() => answerMutation.mutate(Math.max(0, Date.now() - (questionStartedAt.current ?? Date.now())))} className="mt-4 w-full rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white disabled:opacity-50">{answerMutation.isPending ? t("liveGames.submitting") : t("liveGames.submitAnswer")}</button>}
-                {answerMutation.isError && <p role="alert" className="mt-3 text-sm text-red-700">{answerMutation.error.message}</p>}
+                {!isAnswered && <button type="button" disabled={!selectedOptions.length || answerMutation.isPending || timeRemaining === 0} onClick={() => answerMutation.mutate(Math.max(0, Date.now() - (questionStartedAt.current ?? Date.now())))} className="mt-4 w-full rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white disabled:opacity-50">{answerMutation.isPending ? t("liveGames.submitting") : t("liveGames.submitAnswer")}</button>}
+                {timeRemaining === 0 && !isAnswered && <p role="status" className="mt-3 text-center text-sm font-semibold text-red-700">{t("liveGames.timeExpired")}</p>}\n                {answerMutation.isError && <p role="alert" className="mt-3 text-sm text-red-700">{answerMutation.error.message}</p>}
                 {answerResult && <div className={"mt-4 flex items-start gap-3 rounded-xl p-4 " + (answerResult.is_correct ? "bg-emerald-50 text-emerald-900" : "bg-amber-50 text-amber-950")}>
                   {answerResult.is_correct ? <CheckCircle2 size={22} /> : <XCircle size={22} />}
                   <div><p className="font-bold">{answerResult.is_correct ? t("liveGames.correctAnswer") : t("liveGames.incorrectAnswer")}</p><p className="mt-1 text-sm">{answerResult.points_awarded} {t("liveGames.pointsEarned")}</p><p className="mt-1 text-xs">{t("liveGames.waitForNextQuestion")}</p></div>
