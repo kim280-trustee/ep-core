@@ -12,7 +12,8 @@ export interface LearningLiveGameSession {
   currentQuestionIndex: number;
   settings: Record<string, unknown>;
   startedAt: string | null;
-  endedAt: string | null;\n  questionDeadlineAt: string | null;
+  endedAt: string | null;
+  questionDeadlineAt: string | null;
   createdAt: string;
   updatedAt: string;
 }
