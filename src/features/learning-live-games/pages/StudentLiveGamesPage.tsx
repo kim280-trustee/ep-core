@@ -35,9 +35,8 @@ export default function StudentLiveGamesPage() {
   const queryClient = useQueryClient();
   const [joinCode, setJoinCode] = useState("");
   const [playerId, setPlayerId] = useState<string | null>(null);
-  const [selectedOption, setSelectedOption] = useState("");
-  const [answerResult, setAnswerResult] = useState<{ is_correct: boolean; points_awarded: number } | null>(null);
-  const questionStartedAt = useRef(Date.now());
+  const [answersByQuestion, setAnswersByQuestion] = useState<Record<string, { selectedOption: string; result: { is_correct: boolean; points_awarded: number } | null }>>({});
+  const questionStartedAt = useRef<number | null>(null);
 
   const playerQuery = useQuery({
     queryKey: ["learning", "live-games", "student-player", playerId],
@@ -92,11 +91,11 @@ export default function StudentLiveGamesPage() {
       return learningLiveGamesService.submitAnswer(
         sessionId,
         { option_id: selectedOption },
-        Math.max(0, Date.now() - questionStartedAt.current),
+        Math.max(0, Date.now() - (questionStartedAt.current ?? Date.now())),
       );
     },
     onSuccess: (result) => {
-      setAnswerResult(result);
+      setAnswersByQuestion((current) => ({ ...current, [questionKey]: { selectedOption, result } }));
       void queryClient.invalidateQueries({ queryKey: ["learning", "live-games", "student-leaderboard", sessionId] });
       void queryClient.invalidateQueries({ queryKey: ["learning", "live-games", "student-player", playerId] });
     },
@@ -105,13 +104,13 @@ export default function StudentLiveGamesPage() {
   const question = questionQuery.data;
   const options = useMemo(() => readOptions(question?.configuration), [question?.configuration]);
   const prompt = readText(question?.prompt);
-  const currentQuestionIndex = question?.current_question_index ?? 0;
+  const questionKey = question?.assessment_question_id ?? "";
+  const selectedOption = answersByQuestion[questionKey]?.selectedOption ?? "";
+  const answerResult = answersByQuestion[questionKey]?.result ?? null;
 
   useEffect(() => {
-    setSelectedOption("");
-    setAnswerResult(null);
-    questionStartedAt.current = Date.now();
-  }, [currentQuestionIndex, sessionId]);
+    questionStartedAt.current = null;
+  }, [question?.current_question_index, sessionId]);
 
   const ownPlayer = playerQuery.data;
   const currentScore = ownPlayer?.score ?? 0;
@@ -161,7 +160,7 @@ export default function StudentLiveGamesPage() {
                 <h3 className="mt-5 text-xl font-bold leading-relaxed text-slate-950">{prompt}</h3>
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
                   {options.map((option, index) => (
-                    <button key={option.key} type="button" disabled={isAnswered || answerMutation.isPending} onClick={() => setSelectedOption(option.key)} aria-pressed={selectedOption === option.key} className={"min-h-16 rounded-xl border-2 p-4 text-left text-sm font-semibold transition " + (selectedOption === option.key ? "border-indigo-600 bg-indigo-50 text-indigo-950" : "border-slate-200 bg-white text-slate-800 hover:border-indigo-300")}>
+                    <button key={option.key} type="button" disabled={isAnswered || answerMutation.isPending} onClick={() => { if (questionStartedAt.current === null) questionStartedAt.current = Date.now(); setAnswersByQuestion((current) => ({ ...current, [questionKey]: { selectedOption: option.key, result: current[questionKey]?.result ?? null } })); }} aria-pressed={selectedOption === option.key} className={"min-h-16 rounded-xl border-2 p-4 text-left text-sm font-semibold transition " + (selectedOption === option.key ? "border-indigo-600 bg-indigo-50 text-indigo-950" : "border-slate-200 bg-white text-slate-800 hover:border-indigo-300")}>
                       <span className="mr-2 inline-flex h-7 w-7 items-center justify-center rounded-lg bg-slate-100 text-xs">{String.fromCharCode(65 + index)}</span>{option.label}
                     </button>
                   ))}
@@ -183,7 +182,7 @@ export default function StudentLiveGamesPage() {
               {(playersQuery.data ?? []).map((player, index) => <div key={player.id} className="flex items-center justify-between py-3 text-sm"><span className="font-medium text-slate-800">{index + 1}. {player.displayName}{player.id === playerId ? " (" + t("liveGames.you") + ")" : ""}</span><span className="font-bold tabular-nums text-slate-950">{player.score} XP</span></div>)}
             </div>
           </section>
-          <button type="button" onClick={() => { setPlayerId(null); setSelectedOption(""); setAnswerResult(null); }} className="text-sm font-semibold text-slate-500 underline">{t("liveGames.leaveGame")}</button>
+          <button type="button" onClick={() => { setPlayerId(null); setAnswersByQuestion({}); questionStartedAt.current = null; }} className="text-sm font-semibold text-slate-500 underline">{t("liveGames.leaveGame")}</button>
         </>
       )}
     </div>
