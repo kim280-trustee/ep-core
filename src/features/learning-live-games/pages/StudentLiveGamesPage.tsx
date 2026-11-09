@@ -97,7 +97,7 @@ export default function StudentLiveGamesPage() {
     },
     onError: () => { void queryClient.invalidateQueries({ queryKey: ["learning", "live-games", "student-question", sessionId] }); },
     onSuccess: (result) => {
-      setAnswersByQuestion((current) => ({ ...current, [questionKey]: { selectedOption, result } }));
+      setAnswersByQuestion((current) => ({ ...current, [questionKey]: { selectedOptions, result } }));
       void queryClient.invalidateQueries({ queryKey: ["learning", "live-games", "student-leaderboard", sessionId] });
       void queryClient.invalidateQueries({ queryKey: ["learning", "live-games", "student-player", playerId] });
     },
