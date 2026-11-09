@@ -160,7 +160,7 @@ begin
 
   loop
     v_code := lpad((floor(random()*1000000))::integer::text,6,'0');
-    exit when not exists(select 1 from public.learning_live_game_sessions s where s.join_code=v_code and s.status in ('lobby','in_progress'));
+    exit when not exists(select 1 from public.learning_live_game_sessions s where s.join_code=v_code);
   end loop;
 
   insert into public.learning_live_game_sessions(
