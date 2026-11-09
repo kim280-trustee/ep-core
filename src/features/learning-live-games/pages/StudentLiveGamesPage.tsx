@@ -57,7 +57,7 @@ export default function StudentLiveGamesPage() {
     enabled: Boolean(sessionId && sessionQuery.data?.status === "in_progress"),
     refetchInterval: 3000,
   });
-  const playersQuery = useQuery({
+  const participationQuery = useQuery({\n    queryKey: ["learning", "live-games", "student-participation", playerId],\n    queryFn: () => learningLiveGamesService.hasSubmittedAnswer(playerId!),\n    enabled: Boolean(playerId && sessionQuery.data?.status === "completed"),\n  });\n  const playersQuery = useQuery({
     queryKey: ["learning", "live-games", "student-leaderboard", sessionId],
     queryFn: () => learningLiveGamesService.listPlayers(sessionId),
     enabled: Boolean(sessionId),
@@ -175,13 +175,13 @@ export default function StudentLiveGamesPage() {
                 </div>}
               </div>
             )}
-            {sessionQuery.data?.status === "completed" && <div className="mt-5 rounded-xl bg-emerald-50 p-5 text-center"><Trophy className="mx-auto text-emerald-700" size={32} /><h3 className="mt-2 text-xl font-bold text-emerald-950">{t("liveGames.gameComplete")}</h3><p className="mt-1 text-sm text-emerald-800">{t("liveGames.finalScore")}: {currentScore} {t("liveGames.points")}</p><p className="mt-2 text-sm font-semibold text-emerald-900">{t("liveGames.participationXpReward")}</p></div>}
+            {sessionQuery.data?.status === "completed" && <div className="mt-5 rounded-xl bg-emerald-50 p-5 text-center"><Trophy className="mx-auto text-emerald-700" size={32} /><h3 className="mt-2 text-xl font-bold text-emerald-950">{t("liveGames.gameComplete")}</h3><p className="mt-1 text-sm text-emerald-800">{t("liveGames.finalScore")}: {currentScore} {t("liveGames.points")}</p>{participationQuery.data && <p className="mt-2 text-sm font-semibold text-emerald-900">{t("liveGames.participationXpReward")}</p>}</div>}
             {sessionQuery.data?.status === "cancelled" && <div className="mt-5 rounded-xl bg-slate-100 p-5 text-center"><h3 className="font-bold text-slate-900">{t("liveGames.gameCancelled")}</h3></div>}
           </section>
           <section className="rounded-2xl border border-slate-200 bg-white p-5">
             <h3 className="font-bold text-slate-900">{t("liveGames.leaderboard")}</h3>
             <div className="mt-3 divide-y divide-slate-100">
-              {(playersQuery.data ?? []).map((player, index) => <div key={player.id} className="flex items-center justify-between py-3 text-sm"><span className="font-medium text-slate-800">{index + 1}. {player.displayName}{player.id === playerId ? " (" + t("liveGames.you") + ")" : ""}</span><span className="font-bold tabular-nums text-slate-950">{player.score} XP</span></div>)}
+              {(playersQuery.data ?? []).map((player, index) => <div key={player.id} className="flex items-center justify-between py-3 text-sm"><span className="font-medium text-slate-800">{index + 1}. {player.displayName}{player.id === playerId ? " (" + t("liveGames.you") + ")" : ""}</span><span className="font-bold tabular-nums text-slate-950">{player.score} {t("liveGames.points")}</span></div>)}
             </div>
           </section>
           <button type="button" onClick={() => { setPlayerId(null); setAnswersByQuestion({}); questionStartedAt.current = null; }} className="text-sm font-semibold text-slate-500 underline">{t("liveGames.leaveGame")}</button>
