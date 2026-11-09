@@ -90,10 +90,12 @@ export default function StudentLiveGamesPage() {
       if (!questionQuery.data?.assessment_question_id || !selectedOption) throw new Error(t("liveGames.chooseAnswer"));
       return learningLiveGamesService.submitAnswer(
         sessionId,
+        questionKey,
         { option_id: selectedOption },
         Math.max(0, Date.now() - (questionStartedAt.current ?? Date.now())),
       );
     },
+    onError: () => { void queryClient.invalidateQueries({ queryKey: ["learning", "live-games", "student-question", sessionId] }); },
     onSuccess: (result) => {
       setAnswersByQuestion((current) => ({ ...current, [questionKey]: { selectedOption, result } }));
       void queryClient.invalidateQueries({ queryKey: ["learning", "live-games", "student-leaderboard", sessionId] });
