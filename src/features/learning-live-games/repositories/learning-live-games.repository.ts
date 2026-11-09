@@ -22,9 +22,9 @@ const mapPlayer = (row: PlayerRow): LearningLiveGamePlayer => ({
 });
 
 export const learningLiveGamesRepository = {
-  async createSession(classGroupId: string, assessmentId: string) {
+  async createSession(classGroupId: string, assessmentId: string, timeLimitSeconds = 0) {
     const { data, error } = await supabase.rpc("create_learning_live_game_session", {
-      p_class_group_id: classGroupId, p_assessment_id: assessmentId, p_settings: {} as Json,
+      p_class_group_id: classGroupId, p_assessment_id: assessmentId, p_settings: { time_limit_seconds: timeLimitSeconds } as Json,
     });
     if (error) throw error;
     return data;
@@ -41,7 +41,7 @@ export const learningLiveGamesRepository = {
     if (error) throw error;
     return (data ?? []).map(mapPlayer);
   },
-  async startSession(sessionId: string) {
+  async cancelSession(sessionId: string) {\n    const { error } = await supabase.rpc("cancel_learning_live_game_session", { p_session_id: sessionId });\n    if (error) throw error;\n  },\n  async startSession(sessionId: string) {
     const { error } = await supabase.rpc("start_learning_live_game_session", { p_session_id: sessionId });
     if (error) throw error;
   },
@@ -79,7 +79,7 @@ export const learningLiveGamesRepository = {
       question_type?: string;
       prompt?: Record<string, unknown>;
       configuration?: Record<string, unknown>;
-      points?: number;
+      points?: number;\n      deadline_at?: string | null;
     };
   },
   async submitAnswer(sessionId: string, assessmentQuestionId: string, answer: Record<string, unknown>, responseTimeMs?: number) {
