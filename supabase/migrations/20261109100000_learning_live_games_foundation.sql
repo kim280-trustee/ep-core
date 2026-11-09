@@ -345,4 +345,60 @@ begin
 end;
 $publication$;
 
+
+-- Return question content to an enrolled player without exposing evaluation keys.
+create or replace function public.get_learning_live_game_question(p_session_id uuid)
+returns jsonb
+language plpgsql
+security definer
+set search_path = ''
+as $function$
+declare
+  v_session public.learning_live_game_sessions%rowtype;
+  v_question record;
+  v_total integer;
+begin
+  select * into v_session
+  from public.learning_live_game_sessions s
+  where s.id=p_session_id and exists (
+    select 1 from public.learning_live_game_players p
+    where p.session_id=s.id and p.student_user_id=public.learning_current_user_id()
+      and p.status='active'
+  );
+  if not found then raise exception 'Join this game to view its questions.'; end if;
+
+  select count(*) into v_total
+  from public.learning_assessment_questions aq
+  where aq.assessment_id=v_session.assessment_id;
+
+  if v_session.status<>'in_progress' then
+    return jsonb_build_object('status',v_session.status,'current_question_index',v_session.current_question_index,'total_questions',v_total);
+  end if;
+
+  select aq.id as assessment_question_id, aq.points, q.question_type,
+         qv.prompt, qv.configuration
+  into v_question
+  from public.learning_assessment_questions aq
+  join public.learning_question_versions qv on qv.id=aq.question_version_id
+  join public.learning_questions q on q.id=qv.question_id
+  where aq.assessment_id=v_session.assessment_id
+  order by aq.sequence_no
+  offset (v_session.current_question_index-1) limit 1;
+  if not found then raise exception 'Current question was not found.'; end if;
+
+  return jsonb_build_object(
+    'status',v_session.status,
+    'current_question_index',v_session.current_question_index,
+    'total_questions',v_total,
+    'assessment_question_id',v_question.assessment_question_id,
+    'question_type',v_question.question_type,
+    'prompt',v_question.prompt,
+    'configuration',v_question.configuration,
+    'points',v_question.points
+  );
+end;
+$function$;
+revoke all on function public.get_learning_live_game_question(uuid) from public,anon;
+grant execute on function public.get_learning_live_game_question(uuid) to authenticated;
+
 commit;
