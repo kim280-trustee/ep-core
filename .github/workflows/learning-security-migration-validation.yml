@@ -1,6 +1,9 @@
 name: Learning Security Migration Validation
 
 on:
+  push:
+    branches:
+      - paul/ep-live-games-foundation
   pull_request:
     branches:
       - paul/integrate-edna-content
