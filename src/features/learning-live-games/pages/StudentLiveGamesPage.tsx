@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { CheckCircle2, Gamepad2, LoaderCircle, Trophy, Users, XCircle } from "lucide-react";
 import { useAuth } from "@/core/auth";
@@ -37,7 +37,7 @@ export default function StudentLiveGamesPage() {
   const [playerId, setPlayerId] = useState<string | null>(null);
   const [answersByQuestion, setAnswersByQuestion] = useState<Record<string, { selectedOptions: string[]; result: { is_correct: boolean; points_awarded: number } | null }>>({});
   const questionStartedAt = useRef<number | null>(null);
-  const [clockNow, setClockNow] = useState(Date.now());
+  const [clockNow, setClockNow] = useState(0);
 
   const playerQuery = useQuery({
     queryKey: ["learning", "live-games", "student-player", playerId],
@@ -108,7 +108,7 @@ export default function StudentLiveGamesPage() {
   });
 
   const question = questionQuery.data;
-  const options = useMemo(() => readOptions(question?.configuration), [question?.configuration]);
+  const options = readOptions(question?.configuration);
   const prompt = readText(question?.prompt);
   const questionKey = question?.assessment_question_id ?? "";
   const selectedOptions = answersByQuestion[questionKey]?.selectedOptions ?? [];
