@@ -5156,7 +5156,7 @@ export type Database = {
       join_learning_live_game_session: { Args: { p_join_code: string }; Returns: string }
       start_learning_live_game_session: { Args: { p_session_id: string }; Returns: undefined }
       advance_learning_live_game_question: { Args: { p_session_id: string }; Returns: boolean }
-      submit_learning_live_game_answer: { Args: { p_answer: Json; p_response_time_ms?: number | null; p_session_id: string }; Returns: Json }
+      submit_learning_live_game_answer: { Args: { p_answer: Json; p_assessment_question_id: string; p_response_time_ms?: number | null; p_session_id: string }; Returns: Json }
 
       reserve_learning_ai_generation: {
         Args: { p_model: string; p_organization_id: string }
