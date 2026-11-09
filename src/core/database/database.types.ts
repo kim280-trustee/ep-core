@@ -5151,7 +5151,8 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      get_learning_live_game_question: { Args: { p_session_id: string }; Returns: Json }\n      cancel_learning_live_game_session: { Args: { p_session_id: string }; Returns: undefined }
+      get_learning_live_game_question: { Args: { p_session_id: string }; Returns: Json }
+      cancel_learning_live_game_session: { Args: { p_session_id: string }; Returns: undefined }
       create_learning_live_game_session: { Args: { p_assessment_id: string; p_class_group_id: string; p_settings?: Json }; Returns: string }
       join_learning_live_game_session: { Args: { p_join_code: string }; Returns: string }
       start_learning_live_game_session: { Args: { p_session_id: string }; Returns: undefined }
