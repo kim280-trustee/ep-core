@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Play, Radio, Trophy, Users } from "lucide-react";
 import { useParams } from "react-router-dom";
-import { useAuth } from "@/core/auth";
 import { useTranslation } from "@/core/i18n/useTranslation";
 import { supabase } from "@/core/infrastructure/supabase/client";
 import { learningAssessmentService } from "@/features/learning-assessment/services/learning-assessment.service";
@@ -11,7 +10,6 @@ import { learningLiveGamesService } from "../services/learning-live-games.servic
 
 export default function TeacherLiveGamesPage() {
   const { classGroupId = "" } = useParams();
-  const { user } = useAuth();
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const [assessmentId, setAssessmentId] = useState("");
