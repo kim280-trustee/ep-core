@@ -21,13 +21,15 @@ declare
 begin
   if new.status in ('completed','cancelled') then
     new.question_deadline_at := null;
-  elsif new.status = 'in_progress'
-    and (tg_op = 'INSERT' or old.status is distinct from new.status
-      or old.current_question_index is distinct from new.current_question_index) then
-    new.question_deadline_at := case
-      when v_seconds > 0 then now() + make_interval(secs => v_seconds)
-      else null
-    end;
+  elsif new.status = 'in_progress' then
+    if tg_op = 'INSERT' then
+      new.question_deadline_at := case when v_seconds > 0
+        then now() + make_interval(secs => v_seconds) else null end;
+    elsif old.status is distinct from new.status
+      or old.current_question_index is distinct from new.current_question_index then
+      new.question_deadline_at := case when v_seconds > 0
+        then now() + make_interval(secs => v_seconds) else null end;
+    end if;
   end if;
   return new;
 end;
