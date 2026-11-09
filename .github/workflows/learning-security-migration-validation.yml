@@ -126,13 +126,13 @@ jobs:
           set -euo pipefail
           # Avoid collisions with services already bound on hosted runners.
           sed -i \
-            -e 's/port = 54320/port = 56420/' \
-            -e 's/port = 54321/port = 56421/' \
-            -e 's/port = 54322/port = 56422/' \
-            -e 's/port = 54323/port = 56423/' \
-            -e 's/port = 54324/port = 56424/' \
-            -e 's/port = 54327/port = 56427/' \
-            -e 's/port = 54329/port = 56429/' \
+            -e 's/port = 54320/port = 57420/' \
+            -e 's/port = 54321/port = 57421/' \
+            -e 's/port = 54322/port = 57422/' \
+            -e 's/port = 54323/port = 57423/' \
+            -e 's/port = 54324/port = 57424/' \
+            -e 's/port = 54327/port = 57427/' \
+            -e 's/port = 54329/port = 57429/' \
             supabase/config.toml
           grep -nE 'port = 56[0-9]{3}' supabase/config.toml
 
@@ -259,9 +259,9 @@ jobs:
           END;
           $verify$;
           SQL
-          PGPASSWORD=postgres psql "postgresql://postgres:postgres@127.0.0.1:56422/postgres" -v ON_ERROR_STOP=1 -f /tmp/verify-learning-security.sql
-          PGPASSWORD=postgres psql "postgresql://postgres:postgres@127.0.0.1:56422/postgres" -v ON_ERROR_STOP=1 -f supabase/tests/learning_security_contract.sql
-          PGPASSWORD=postgres psql "postgresql://postgres:postgres@127.0.0.1:56422/postgres" -v ON_ERROR_STOP=1 -f supabase/tests/learning_role_matrix_runtime.sql
+          PGPASSWORD=postgres psql "postgresql://postgres:postgres@127.0.0.1:57422/postgres" -v ON_ERROR_STOP=1 -f /tmp/verify-learning-security.sql
+          PGPASSWORD=postgres psql "postgresql://postgres:postgres@127.0.0.1:57422/postgres" -v ON_ERROR_STOP=1 -f supabase/tests/learning_security_contract.sql
+          PGPASSWORD=postgres psql "postgresql://postgres:postgres@127.0.0.1:57422/postgres" -v ON_ERROR_STOP=1 -f supabase/tests/learning_role_matrix_runtime.sql
 
       - name: Stop local Supabase stack
         if: always()
