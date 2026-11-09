@@ -95,7 +95,7 @@ using (
     join public.learning_class_memberships cm on cm.class_group_id = s.class_group_id
     where s.id = learning_live_game_players.session_id
       and cm.user_id = public.learning_current_user_id()
-      and cm.membership_type = 'teacher'
+      and cm.membership_type in ('teacher','student')
       and cm.status = 'active'
   )
 );
