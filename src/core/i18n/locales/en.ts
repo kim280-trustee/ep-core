@@ -462,6 +462,7 @@ export const en = {
     waitForNextQuestion: "Wait here for your teacher to move to the next question.",
     gameComplete: "Game complete!",
     finalScore: "Your final score",
+    participationXpReward: "You also earned 5 XP for completing the game.",
     gameCancelled: "Your teacher ended this game.",
     you: "You",
     leaveGame: "Leave game",
