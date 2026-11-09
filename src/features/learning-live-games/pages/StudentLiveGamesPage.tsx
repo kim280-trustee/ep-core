@@ -113,7 +113,7 @@ export default function StudentLiveGamesPage() {
   const questionKey = question?.assessment_question_id ?? "";
   const selectedOptions = answersByQuestion[questionKey]?.selectedOptions ?? [];
   const deadlineAt = question?.deadline_at ?? null;
-  const timeRemaining = deadlineAt ? Math.max(0, Math.ceil((Date.parse(deadlineAt) - clockNow) / 1000)) : null;
+  const timeRemaining = deadlineAt && clockNow > 0 ? Math.max(0, Math.ceil((Date.parse(deadlineAt) - clockNow) / 1000)) : null;
   const answerResult = answersByQuestion[questionKey]?.result ?? null;
 
   useEffect(() => {
@@ -122,7 +122,6 @@ export default function StudentLiveGamesPage() {
 
   useEffect(() => {
     if (!deadlineAt) return;
-    setClockNow(Date.now());
     const interval = window.setInterval(() => setClockNow(Date.now()), 500);
     return () => window.clearInterval(interval);
   }, [deadlineAt]);
