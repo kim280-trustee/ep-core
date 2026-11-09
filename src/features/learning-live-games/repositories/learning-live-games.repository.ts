@@ -62,7 +62,7 @@ export const learningLiveGamesRepository = {
     if (error) throw error;
     return mapSession(data);
   },
-  async getPlayer(playerId: string) {
+  async hasSubmittedAnswer(playerId: string) {\n    const { count, error } = await supabase.from("learning_live_game_answers")\n      .select("id", { count: "exact", head: true }).eq("player_id", playerId);\n    if (error) throw error;\n    return (count ?? 0) > 0;\n  },\n  async getPlayer(playerId: string) {
     const { data, error } = await supabase.from("learning_live_game_players")
       .select("*").eq("id", playerId).single();
     if (error) throw error;
