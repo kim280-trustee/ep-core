@@ -55,6 +55,33 @@ export const learningLiveGamesRepository = {
     if (error) throw error;
     return data;
   },
+
+  async getSession(sessionId: string) {
+    const { data, error } = await supabase.from("learning_live_game_sessions")
+      .select("*").eq("id", sessionId).single();
+    if (error) throw error;
+    return mapSession(data);
+  },
+  async getPlayer(playerId: string) {
+    const { data, error } = await supabase.from("learning_live_game_players")
+      .select("*").eq("id", playerId).single();
+    if (error) throw error;
+    return mapPlayer(data);
+  },
+  async getCurrentQuestion(sessionId: string) {
+    const { data, error } = await supabase.rpc("get_learning_live_game_question", { p_session_id: sessionId });
+    if (error) throw error;
+    return data as {
+      status: LearningLiveGameSession["status"];
+      current_question_index: number;
+      total_questions: number;
+      assessment_question_id?: string;
+      question_type?: string;
+      prompt?: Record<string, unknown>;
+      configuration?: Record<string, unknown>;
+      points?: number;
+    };
+  },
   async submitAnswer(sessionId: string, answer: Record<string, unknown>, responseTimeMs?: number) {
     const { data, error } = await supabase.rpc("submit_learning_live_game_answer", {
       p_session_id: sessionId, p_answer: answer as Json, p_response_time_ms: responseTimeMs ?? null,
