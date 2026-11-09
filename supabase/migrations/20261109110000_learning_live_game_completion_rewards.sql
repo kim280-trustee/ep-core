@@ -73,11 +73,25 @@ begin
     jsonb_build_object(
       'source', 'learning_live_game_sessions',
       'game_score', p.score,
+      'answers_submitted', (
+        select count(*)::integer
+        from public.learning_live_game_answers a
+        where a.session_id = new.id and a.player_id = p.id
+      ),
+      'correct_answers', (
+        select count(*)::integer
+        from public.learning_live_game_answers a
+        where a.session_id = new.id and a.player_id = p.id and a.is_correct
+      ),
       'session_id', new.id
     ),
     coalesce(new.ended_at, now())
   from public.learning_live_game_players p
   where p.session_id = new.id
+    and exists (
+      select 1 from public.learning_live_game_answers a
+      where a.session_id = new.id and a.player_id = p.id
+    )
   on conflict (student_user_id, event_type, source_type, source_id) do nothing;
 
   return new;
