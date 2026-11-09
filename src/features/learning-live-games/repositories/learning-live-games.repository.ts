@@ -87,7 +87,7 @@ export const learningLiveGamesRepository = {
       p_session_id: sessionId, p_answer: answer as Json, p_response_time_ms: responseTimeMs ?? null,
     });
     if (error) throw error;
-    return data as LearningLiveGameAnswerResult;
+    return data as unknown as LearningLiveGameAnswerResult;
   },
 };
 
