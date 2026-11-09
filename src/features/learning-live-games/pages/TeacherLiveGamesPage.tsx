@@ -13,6 +13,7 @@ export default function TeacherLiveGamesPage() {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const [assessmentId, setAssessmentId] = useState("");
+  const [timeLimitSeconds, setTimeLimitSeconds] = useState(30);
 
   const classQuery = useQuery({
     queryKey: ["learning", "live-games", "class", classGroupId],
@@ -55,7 +56,7 @@ export default function TeacherLiveGamesPage() {
   }, [activeSession?.id, classGroupId, queryClient]);
 
   const createMutation = useMutation({
-    mutationFn: () => learningLiveGamesService.createSession(classGroupId, assessmentId),
+    mutationFn: () => learningLiveGamesService.createSession(classGroupId, assessmentId, timeLimitSeconds),
     onSuccess: () => {
       setAssessmentId("");
       void queryClient.invalidateQueries({ queryKey: ["learning", "live-games", "sessions", classGroupId] });
@@ -73,8 +74,17 @@ export default function TeacherLiveGamesPage() {
     },
   });
 
+  const cancelMutation = useMutation({
+    mutationFn: (id: string) => learningLiveGamesService.cancelSession(id),
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ["learning", "live-games", "sessions", classGroupId] });
+    },
+  });
+
   const publishedAssessments = (assessmentsQuery.data ?? []).filter((assessment) => assessment.status === "published");
-  const isBusy = createMutation.isPending || startMutation.isPending || advanceMutation.isPending;
+  const isBusy = createMutation.isPending || startMutation.isPending || advanceMutation.isPending || cancelMutation.isPending;
+  const studentJoinUrl = activeSession ? window.location.origin + "/learning/live-games?code=" + activeSession.joinCode : "";
+  const qrImageUrl = studentJoinUrl ? "https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=12&data=" + encodeURIComponent(studentJoinUrl) : "";
 
   return (
     <div className="mx-auto max-w-5xl space-y-6">
@@ -98,6 +108,7 @@ export default function TeacherLiveGamesPage() {
               <option value="">{t("liveGames.chooseAssessment")}</option>
               {publishedAssessments.map((assessment) => <option key={assessment.id} value={assessment.id}>{assessment.title}</option>)}
             </select>
+            <select aria-label={t("liveGames.timeLimit")} value={timeLimitSeconds} onChange={(event) => setTimeLimitSeconds(Number(event.target.value))} className="min-h-11 rounded-xl border border-slate-300 bg-white px-3 text-sm"><option value={0}>{t("liveGames.noTimeLimit")}</option><option value={15}>15 {t("liveGames.seconds")}</option><option value={30}>30 {t("liveGames.seconds")}</option><option value={45}>45 {t("liveGames.seconds")}</option><option value={60}>60 {t("liveGames.seconds")}</option><option value={90}>90 {t("liveGames.seconds")}</option><option value={120}>120 {t("liveGames.seconds")}</option></select>
             <button type="button" disabled={!assessmentId || isBusy} onClick={() => createMutation.mutate()} className="rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50">
               {createMutation.isPending ? t("liveGames.creating") : t("liveGames.createGame")}
             </button>
@@ -114,8 +125,13 @@ export default function TeacherLiveGamesPage() {
               <p className="text-sm font-semibold uppercase tracking-wide text-indigo-600">{t("liveGames.joinCode")}</p>
               <p className="mt-1 font-mono text-5xl font-black tracking-[0.18em] text-slate-950">{activeSession.joinCode}</p>
               <p className="mt-2 text-sm text-slate-500">{t("liveGames.shareCode")}</p>
+              <p className="mt-2 text-xs text-slate-500">{t("liveGames.timeLimit")}: {Number(activeSession.settings.time_limit_seconds ?? 0) || t("liveGames.noTimeLimit")}{Number(activeSession.settings.time_limit_seconds ?? 0) ? " " + t("liveGames.seconds") : ""}</p>
             </div>
             <div className="rounded-xl bg-slate-100 px-3 py-2 text-sm font-semibold capitalize text-slate-700">{t("liveGames.status." + activeSession.status)}</div>
+          </div>
+          <div className="mt-5 flex flex-wrap items-center gap-4 rounded-xl bg-slate-50 p-4">
+            <img src={qrImageUrl} alt={t("liveGames.scanToJoin")} width={132} height={132} className="rounded-lg bg-white p-2" />
+            <div className="min-w-0 flex-1"><p className="font-semibold text-slate-900">{t("liveGames.scanToJoin")}</p><p className="mt-1 break-all text-xs text-slate-500">{studentJoinUrl}</p><button type="button" onClick={() => { void navigator.clipboard.writeText(studentJoinUrl); }} className="mt-2 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700">{t("liveGames.copyJoinLink")}</button></div>
           </div>
           <div className="mt-6 flex flex-wrap gap-3">
             {activeSession.status === "lobby" && (
@@ -129,7 +145,8 @@ export default function TeacherLiveGamesPage() {
               </button>
             )}
           </div>
-          {(startMutation.isError || advanceMutation.isError) && <p role="alert" className="mt-3 text-sm text-red-700">{(startMutation.error ?? advanceMutation.error)?.message}</p>}
+          {(startMutation.isError || advanceMutation.isError || cancelMutation.isError) && <p role="alert" className="mt-3 text-sm text-red-700">{(startMutation.error ?? advanceMutation.error ?? cancelMutation.error)?.message}</p>}
+          <button type="button" disabled={isBusy} onClick={() => { if (window.confirm(t("liveGames.confirmEndGame"))) cancelMutation.mutate(activeSession.id); }} className="mt-4 rounded-xl border border-red-200 px-4 py-2 text-sm font-semibold text-red-700 disabled:opacity-50">{t("liveGames.endGame")}</button>
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             <div className="rounded-xl bg-slate-50 p-4">
               <div className="flex items-center gap-2 text-sm font-semibold text-slate-600"><Users size={17} /> {t("liveGames.players")}</div>
@@ -146,7 +163,7 @@ export default function TeacherLiveGamesPage() {
               {(playersQuery.data ?? []).map((player, index) => (
                 <div key={player.id} className="flex items-center justify-between px-4 py-3 text-sm">
                   <span className="font-medium text-slate-800">{index + 1}. {player.displayName}</span>
-                  <span className="font-bold tabular-nums text-slate-950">{player.score} XP</span>
+                  <span className="font-bold tabular-nums text-slate-950">{player.score} {t("liveGames.points")}</span>
                 </div>
               ))}
               {!playersQuery.data?.length && <p className="px-4 py-4 text-sm text-slate-500">{t("liveGames.waitingForPlayers")}</p>}
