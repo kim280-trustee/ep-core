@@ -462,6 +462,7 @@ export const th = {
     waitForNextQuestion: "รอให้ครูไปยังคำถามถัดไป",
     gameComplete: "จบเกมแล้ว!",
     finalScore: "คะแนนสุดท้ายของคุณ",
+    participationXpReward: "คุณได้รับ 5 XP เพิ่มจากการเล่นเกมจนจบ",
     gameCancelled: "ครูจบเกมนี้แล้ว",
     you: "คุณ",
     leaveGame: "ออกจากเกม",
