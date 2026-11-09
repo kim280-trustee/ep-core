@@ -93,13 +93,11 @@ export default function StudentLiveGamesPage() {
   });
   const answerMutation = useMutation({
     mutationFn: (responseTimeMs: number) => {
-      if (!questionQuery.data?.assessment_question_id || !selectedOption) throw new Error(t("liveGames.chooseAnswer"));
-      return learningLiveGamesService.submitAnswer(
-        sessionId,
-        questionKey,
-        { option_id: selectedOption },
-        responseTimeMs,
-      );
+      if (!questionQuery.data?.assessment_question_id || !selectedOptions.length) throw new Error(t("liveGames.chooseAnswer"));
+      const answer = question?.question_type === "multiple_choice"
+        ? { option_ids: selectedOptions }
+        : { option_id: selectedOptions[0] };
+      return learningLiveGamesService.submitAnswer(sessionId, questionKey, answer, responseTimeMs);
     },
     onError: () => { void queryClient.invalidateQueries({ queryKey: ["learning", "live-games", "student-question", sessionId] }); },
     onSuccess: (result) => {
