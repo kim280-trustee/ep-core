@@ -3313,7 +3313,7 @@ export type Database = {
         Relationships: []
       }
       learning_live_game_sessions: {
-        Row: { assessment_id: string; class_group_id: string; created_at: string; current_question_index: number; ended_at: string | null; host_user_id: string; id: string; join_code: string; organization_id: string; settings: Json; started_at: string | null; status: string; tenant_id: string; updated_at: string }
+        Row: { assessment_id: string; class_group_id: string; created_at: string; current_question_index: number; ended_at: string | null; host_user_id: string; id: string; join_code: string; organization_id: string; question_deadline_at: string | null; settings: Json; started_at: string | null; status: string; tenant_id: string; updated_at: string }
         Insert: { assessment_id: string; class_group_id: string; created_at?: string; current_question_index?: number; ended_at?: string | null; host_user_id: string; id?: string; join_code: string; organization_id: string; settings?: Json; started_at?: string | null; status?: string; tenant_id: string; updated_at?: string }
         Update: { assessment_id?: string; class_group_id?: string; created_at?: string; current_question_index?: number; ended_at?: string | null; host_user_id?: string; id?: string; join_code?: string; organization_id?: string; settings?: Json; started_at?: string | null; status?: string; tenant_id?: string; updated_at?: string }
         Relationships: []
@@ -5151,7 +5151,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      get_learning_live_game_question: { Args: { p_session_id: string }; Returns: Json }
+      get_learning_live_game_question: { Args: { p_session_id: string }; Returns: Json }\n      cancel_learning_live_game_session: { Args: { p_session_id: string }; Returns: undefined }
       create_learning_live_game_session: { Args: { p_assessment_id: string; p_class_group_id: string; p_settings?: Json }; Returns: string }
       join_learning_live_game_session: { Args: { p_join_code: string }; Returns: string }
       start_learning_live_game_session: { Args: { p_session_id: string }; Returns: undefined }
