@@ -41,7 +41,11 @@ export const learningLiveGamesRepository = {
     if (error) throw error;
     return (data ?? []).map(mapPlayer);
   },
-  async cancelSession(sessionId: string) {\n    const { error } = await supabase.rpc("cancel_learning_live_game_session", { p_session_id: sessionId });\n    if (error) throw error;\n  },\n  async startSession(sessionId: string) {
+  async cancelSession(sessionId: string) {
+    const { error } = await supabase.rpc("cancel_learning_live_game_session", { p_session_id: sessionId });
+    if (error) throw error;
+  },
+  async startSession(sessionId: string) {
     const { error } = await supabase.rpc("start_learning_live_game_session", { p_session_id: sessionId });
     if (error) throw error;
   },
@@ -62,7 +66,13 @@ export const learningLiveGamesRepository = {
     if (error) throw error;
     return mapSession(data);
   },
-  async hasSubmittedAnswer(playerId: string) {\n    const { count, error } = await supabase.from("learning_live_game_answers")\n      .select("id", { count: "exact", head: true }).eq("player_id", playerId);\n    if (error) throw error;\n    return (count ?? 0) > 0;\n  },\n  async getPlayer(playerId: string) {
+  async hasSubmittedAnswer(playerId: string) {
+    const { count, error } = await supabase.from("learning_live_game_answers")
+      .select("id", { count: "exact", head: true }).eq("player_id", playerId);
+    if (error) throw error;
+    return (count ?? 0) > 0;
+  },
+  async getPlayer(playerId: string) {
     const { data, error } = await supabase.from("learning_live_game_players")
       .select("*").eq("id", playerId).single();
     if (error) throw error;
@@ -79,7 +89,8 @@ export const learningLiveGamesRepository = {
       question_type?: string;
       prompt?: Record<string, unknown>;
       configuration?: Record<string, unknown>;
-      points?: number;\n      deadline_at?: string | null;
+      points?: number;
+      deadline_at?: string | null;
     };
   },
   async submitAnswer(sessionId: string, assessmentQuestionId: string, answer: Record<string, unknown>, responseTimeMs?: number) {
