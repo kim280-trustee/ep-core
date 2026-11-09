@@ -33,7 +33,7 @@ export default function StudentLiveGamesPage() {
   const { user } = useAuth();
   const { t } = useTranslation();
   const queryClient = useQueryClient();
-  const [joinCode, setJoinCode] = useState(() => new URLSearchParams(window.location.search).get("code")?.replace(/\\D/g, "").slice(0, 6) ?? "");
+  const [joinCode, setJoinCode] = useState(() => new URLSearchParams(window.location.search).get("code")?.replace(/\D/g, "").slice(0, 6) ?? "");
   const [playerId, setPlayerId] = useState<string | null>(null);
   const [answersByQuestion, setAnswersByQuestion] = useState<Record<string, { selectedOptions: string[]; result: { is_correct: boolean; points_awarded: number } | null }>>({});
   const questionStartedAt = useRef<number | null>(null);
