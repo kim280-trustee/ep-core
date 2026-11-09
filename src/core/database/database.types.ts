@@ -3314,8 +3314,8 @@ export type Database = {
       }
       learning_live_game_sessions: {
         Row: { assessment_id: string; class_group_id: string; created_at: string; current_question_index: number; ended_at: string | null; host_user_id: string; id: string; join_code: string; organization_id: string; question_deadline_at: string | null; settings: Json; started_at: string | null; status: string; tenant_id: string; updated_at: string }
-        Insert: { assessment_id: string; class_group_id: string; created_at?: string; current_question_index?: number; ended_at?: string | null; host_user_id: string; id?: string; join_code: string; organization_id: string; settings?: Json; started_at?: string | null; status?: string; tenant_id: string; updated_at?: string }
-        Update: { assessment_id?: string; class_group_id?: string; created_at?: string; current_question_index?: number; ended_at?: string | null; host_user_id?: string; id?: string; join_code?: string; organization_id?: string; settings?: Json; started_at?: string | null; status?: string; tenant_id?: string; updated_at?: string }
+        Insert: { assessment_id: string; class_group_id: string; created_at?: string; current_question_index?: number; ended_at?: string | null; host_user_id: string; id?: string; join_code: string; organization_id: string; question_deadline_at?: string | null; settings?: Json; started_at?: string | null; status?: string; tenant_id: string; updated_at?: string }
+        Update: { assessment_id?: string; class_group_id?: string; created_at?: string; current_question_index?: number; ended_at?: string | null; host_user_id?: string; id?: string; join_code?: string; organization_id?: string; question_deadline_at?: string | null; settings?: Json; started_at?: string | null; status?: string; tenant_id?: string; updated_at?: string }
         Relationships: []
       }
       learning_live_game_players: {
