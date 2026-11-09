@@ -35,7 +35,7 @@ create table public.learning_live_game_players (
   session_id uuid not null references public.learning_live_game_sessions(id) on delete cascade,
   student_user_id uuid not null,
   display_name text not null check (length(trim(display_name)) between 1 and 80),
-  score integer not null default 0 check (score >= 0),
+  score numeric(10,2) not null default 0 check (score >= 0),
   status text not null default 'active' check (status in ('active','disconnected')),
   joined_at timestamptz not null default now(),
   last_seen_at timestamptz not null default now(),
@@ -56,7 +56,7 @@ create table public.learning_live_game_answers (
   assessment_question_id uuid not null references public.learning_assessment_questions(id) on delete restrict,
   answer jsonb not null,
   is_correct boolean not null,
-  points_awarded integer not null default 0 check (points_awarded >= 0),
+  points_awarded numeric(10,2) not null default 0 check (points_awarded >= 0),
   response_time_ms integer check (response_time_ms is null or response_time_ms >= 0),
   submitted_at timestamptz not null default now(),
   unique (player_id,assessment_question_id),
@@ -268,7 +268,7 @@ declare
   v_key jsonb;
   v_rules jsonb;
   v_correct boolean;
-  v_points integer;
+  v_points numeric(10,2);
   v_answer_id uuid;
 begin
   if v_user is null then raise exception 'Sign in to submit an answer.'; end if;
