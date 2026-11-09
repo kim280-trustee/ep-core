@@ -86,13 +86,13 @@ export default function StudentLiveGamesPage() {
     },
   });
   const answerMutation = useMutation({
-    mutationFn: () => {
+    mutationFn: (responseTimeMs: number) => {
       if (!questionQuery.data?.assessment_question_id || !selectedOption) throw new Error(t("liveGames.chooseAnswer"));
       return learningLiveGamesService.submitAnswer(
         sessionId,
         questionKey,
         { option_id: selectedOption },
-        Math.max(0, Date.now() - (questionStartedAt.current ?? Date.now())),
+        responseTimeMs,
       );
     },
     onError: () => { void queryClient.invalidateQueries({ queryKey: ["learning", "live-games", "student-question", sessionId] }); },
@@ -167,7 +167,7 @@ export default function StudentLiveGamesPage() {
                     </button>
                   ))}
                 </div>
-                {!isAnswered && <button type="button" disabled={!selectedOption || answerMutation.isPending} onClick={() => answerMutation.mutate()} className="mt-4 w-full rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white disabled:opacity-50">{answerMutation.isPending ? t("liveGames.submitting") : t("liveGames.submitAnswer")}</button>}
+                {!isAnswered && <button type="button" disabled={!selectedOption || answerMutation.isPending} onClick={() => answerMutation.mutate(Math.max(0, Date.now() - (questionStartedAt.current ?? Date.now())))} className="mt-4 w-full rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white disabled:opacity-50">{answerMutation.isPending ? t("liveGames.submitting") : t("liveGames.submitAnswer")}</button>}
                 {answerMutation.isError && <p role="alert" className="mt-3 text-sm text-red-700">{answerMutation.error.message}</p>}
                 {answerResult && <div className={"mt-4 flex items-start gap-3 rounded-xl p-4 " + (answerResult.is_correct ? "bg-emerald-50 text-emerald-900" : "bg-amber-50 text-amber-950")}>
                   {answerResult.is_correct ? <CheckCircle2 size={22} /> : <XCircle size={22} />}
