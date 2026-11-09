@@ -253,6 +253,7 @@ $function$;
 
 create or replace function public.submit_learning_live_game_answer(
   p_session_id uuid,
+  p_assessment_question_id uuid,
   p_answer jsonb,
   p_response_time_ms integer default null
 ) returns jsonb
@@ -289,6 +290,9 @@ begin
   order by aq.sequence_no
   offset (v_session.current_question_index-1) limit 1;
   if not found then raise exception 'Current question was not found.'; end if;
+  if v_question.assessment_question_id is distinct from p_assessment_question_id then
+    raise exception 'The question has changed. Load the current question before answering.';
+  end if;
 
   select ek.evaluation_key,ek.scoring_rules into v_key,v_rules
   from public.learning_question_evaluation_keys ek
@@ -322,12 +326,12 @@ revoke all on function public.create_learning_live_game_session(uuid,uuid,jsonb)
 revoke all on function public.join_learning_live_game_session(text) from public,anon;
 revoke all on function public.start_learning_live_game_session(uuid) from public,anon;
 revoke all on function public.advance_learning_live_game_question(uuid) from public,anon;
-revoke all on function public.submit_learning_live_game_answer(uuid,jsonb,integer) from public,anon;
+revoke all on function public.submit_learning_live_game_answer(uuid,uuid,jsonb,integer) from public,anon;
 grant execute on function public.create_learning_live_game_session(uuid,uuid,jsonb) to authenticated;
 grant execute on function public.join_learning_live_game_session(text) to authenticated;
 grant execute on function public.start_learning_live_game_session(uuid) to authenticated;
 grant execute on function public.advance_learning_live_game_question(uuid) to authenticated;
-grant execute on function public.submit_learning_live_game_answer(uuid,jsonb,integer) to authenticated;
+grant execute on function public.submit_learning_live_game_answer(uuid,uuid,jsonb,integer) to authenticated;
 
 do $publication$
 begin
