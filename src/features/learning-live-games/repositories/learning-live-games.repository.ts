@@ -12,7 +12,7 @@ const mapSession = (row: SessionRow): LearningLiveGameSession => ({
   currentQuestionIndex: row.current_question_index,
   settings: row.settings && typeof row.settings === "object" && !Array.isArray(row.settings)
     ? row.settings as Record<string, unknown> : {},
-  startedAt: row.started_at, endedAt: row.ended_at, createdAt: row.created_at, updatedAt: row.updated_at,
+  startedAt: row.started_at, endedAt: row.ended_at, questionDeadlineAt: row.question_deadline_at, createdAt: row.created_at, updatedAt: row.updated_at,
 });
 
 const mapPlayer = (row: PlayerRow): LearningLiveGamePlayer => ({
