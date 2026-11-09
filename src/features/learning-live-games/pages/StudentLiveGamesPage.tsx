@@ -23,7 +23,7 @@ function readOptions(value: unknown) {
     if (typeof option === "string") return [{ key: String.fromCharCode(97 + index), label: option }];
     if (!option || typeof option !== "object") return [];
     const record = option as Record<string, unknown>;
-    const key = typeof record.key === "string" ? record.key : typeof record.value === "string" ? record.value : String.fromCharCode(97 + index);
+    const key = typeof record.key === "string" ? record.key : typeof record.value === "string" ? record.value : typeof record.id === "string" ? record.id : String.fromCharCode(97 + index);
     const label = typeof record.label === "string" ? record.label : typeof record.text === "string" ? record.text : key;
     return [{ key, label }];
   });
