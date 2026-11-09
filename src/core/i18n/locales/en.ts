@@ -465,7 +465,7 @@ export const en = {
     participationXpReward: "You also earned 5 XP for completing the game.",
     gameCancelled: "Your teacher ended this game.",
     you: "You",
-    leaveGame: "Leave game",
+    leaveGame: "Leave game",\n    timeRemaining: "Time remaining",\n    timeExpired: "Time is up. Wait for the next question.",\n    selectAllThatApply: "Select all correct answers.",
 
     navigation: "Live Games",
     title: "Live classroom games",
@@ -477,7 +477,7 @@ export const en = {
     creating: "Creating…",
     noPublishedAssessments: "Publish an assessment before creating a live game.",
     joinCode: "Join code",
-    shareCode: "Share this code with students so they can join the game.",
+    shareCode: "Share this code with students so they can join the game.",\n    timeLimit: "Question time limit",\n    noTimeLimit: "No time limit",\n    seconds: "seconds",\n    scanToJoin: "Scan to join the game",\n    copyJoinLink: "Copy student link",\n    endGame: "End game",\n    confirmEndGame: "End this live game for all students? This cannot be undone.",
     startGame: "Start game",
     nextQuestion: "Next question",
     players: "Players joined",
