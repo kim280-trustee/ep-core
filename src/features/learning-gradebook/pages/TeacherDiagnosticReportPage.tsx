@@ -216,8 +216,8 @@ export default function TeacherDiagnosticReportPage() {
 
   return (
     <div className="mx-auto max-w-7xl space-y-6 print:space-y-3">
-      <header className="print:hidden">
-        <Link to={`/teacher/classes/${classGroupId}`} className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-900"><ArrowLeft size={16} />Back to class</Link>
+      <header>
+        <Link to={`/teacher/classes/${classGroupId}`} className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-900 print:hidden"><ArrowLeft size={16} />Back to class</Link>
         <div className="mt-3 flex items-start gap-3">
           <span className="rounded-2xl bg-indigo-100 p-3 text-indigo-700"><ClipboardCheck size={24} /></span>
           <div><h1 className="text-2xl font-bold text-slate-900">Diagnostic results</h1><p className="mt-1 text-sm text-slate-600">{classQuery.data.classInfo.classGroup.name} · Compare student baseline performance by learning objective.</p></div>
