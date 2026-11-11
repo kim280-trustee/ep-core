@@ -9,6 +9,7 @@ import { learningEnrollmentService } from "@/features/learning-enrollment/servic
 import { learningSchoolAdminService } from "../services/learning-school-admin.service";
 import { learningTeacherLeaveService } from "../services/learning-teacher-leave.service";
 import { learningTimetableService } from "../services/learning-timetable.service";
+import { learningSchoolCalendarService } from "@/features/learning-school-calendar/services/learning-school-calendar.service";
 import type { LearningTeacherLeaveRequest } from "../types/learning-teacher-leave.types";
 
 function dateKey(date: Date) {
@@ -23,7 +24,7 @@ function formatTime(value: string) {
   return value.slice(0, 5);
 }
 
-function getOccurrences(request: LearningTeacherLeaveRequest, entries: Awaited<ReturnType<typeof learningTimetableService.list>>) {
+function getOccurrences(request: LearningTeacherLeaveRequest, entries: Awaited<ReturnType<typeof learningTimetableService.list>>, calendarEvents: Awaited<ReturnType<typeof learningSchoolCalendarService.listManageableEvents>>) {
   const assignedEntries = entries.filter((entry) => entry.status === "active" && entry.teacherUserId === request.teacherUserId);
   const start = new Date(request.startDate + "T12:00:00");
   const end = new Date(request.endDate + "T12:00:00");
@@ -32,7 +33,14 @@ function getOccurrences(request: LearningTeacherLeaveRequest, entries: Awaited<R
     const dayOfWeek = cursor.getDay() === 0 ? 7 : cursor.getDay();
     const date = dateKey(cursor);
     for (const entry of assignedEntries) {
-      if (entry.dayOfWeek === dayOfWeek) occurrences.push({ entry, date });
+      const isSchoolHoliday = calendarEvents.some((event) =>
+        event.eventType === "holiday"
+        && event.status === "published"
+        && event.startDate <= date
+        && event.endDate >= date
+        && (!event.classGroupId || event.classGroupId === entry.classGroupId)
+      );
+      if (entry.dayOfWeek === dayOfWeek && !isSchoolHoliday) occurrences.push({ entry, date });
     }
   }
   return occurrences.sort((a, b) => a.date.localeCompare(b.date) || a.entry.startsAt.localeCompare(b.entry.startsAt));
@@ -71,6 +79,11 @@ export default function SchoolTeacherLeaveManagementPage() {
         learningAcademicService.listClassGroups(organizationId),
         learningAcademicService.listSubjects(),
       ]);
+      const firstDate = requests.length ? requests.reduce((min, request) => request.startDate < min ? request.startDate : min, requests[0].startDate) : null;
+      const lastDate = requests.length ? requests.reduce((max, request) => request.endDate > max ? request.endDate : max, requests[0].endDate) : null;
+      const calendarEvents = firstDate && lastDate
+        ? await learningSchoolCalendarService.listManageableEvents(organizationId, firstDate, lastDate)
+        : [];
       const classIds = classGroups.filter((classGroup) => classGroup.status === "active").map((classGroup) => classGroup.id);
       const [classMemberships, eligibleUsers] = await Promise.all([
         Promise.all(classIds.map((classGroupId) => learningEnrollmentService.listClassMembers(classGroupId))),
@@ -84,7 +97,7 @@ export default function SchoolTeacherLeaveManagementPage() {
         ...coverages.flatMap((coverage) => [coverage.absentTeacherUserId, coverage.substituteTeacherUserId]),
       ])];
       const profiles = await learningSchoolAdminService.listUsersByIds(organization!.tenantId, userIds);
-      return { requests, coverages, timetable, classGroups, subjects, teacherMemberships, eligibleUsers, profiles };
+      return { requests, coverages, timetable, classGroups, subjects, calendarEvents, teacherMemberships, eligibleUsers, profiles };
     },
   });
 
@@ -161,7 +174,7 @@ export default function SchoolTeacherLeaveManagementPage() {
       <section className="space-y-4">
         {data.requests.length ? data.requests.map((request) => {
           const teacherName = profileById.get(request.teacherUserId)?.name ?? request.teacherUserId.slice(0, 8);
-          const occurrences = request.status === "approved" ? getOccurrences(request, data.timetable) : [];
+          const occurrences = request.status === "approved" ? getOccurrences(request, data.timetable, data.calendarEvents) : [];
           return <article key={request.id} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div><h2 className="font-bold text-slate-950">{teacherName} · {t("teacherLeave.types." + request.leaveType)}</h2><p className="mt-1 text-sm text-slate-500">{formatDate(request.startDate, locale)} – {formatDate(request.endDate, locale)}</p><p className="mt-2 text-sm text-slate-700">{request.reason}</p>{request.reviewNote && <p className="mt-2 text-sm text-slate-500">{t("teacherLeave.managerNote")}: {request.reviewNote}</p>}</div>
