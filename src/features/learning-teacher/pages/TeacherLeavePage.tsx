@@ -5,6 +5,7 @@ import { useAuth } from "@/core/auth";
 import { useTranslation } from "@/core/i18n/useTranslation";
 import { learningTeacherService } from "../services/learning-teacher.service";
 import { learningTeacherLeaveService } from "@/features/learning-school-admin/services/learning-teacher-leave.service";
+import { learningSchoolAdminService } from "@/features/learning-school-admin/services/learning-school-admin.service";
 import type { LearningTeacherLeaveType } from "@/features/learning-school-admin/types/learning-teacher-leave.types";
 
 function localDateValue(date: Date) {
@@ -32,19 +33,19 @@ export default function TeacherLeavePage() {
     queryKey: ["learning", "teacher-leave-workspace", user?.id],
     enabled: Boolean(user?.id) && !authLoading,
     queryFn: async () => {
-      const [classes, requests, coverages] = await Promise.all([
-        learningTeacherService.listTeacherClasses(user!.id),
+      const classes = await learningTeacherService.listTeacherClasses(user!.id);
+      const profileUserId = classes[0]?.membership.userId;
+      const [requests, coverages, organizations] = await Promise.all([
         learningTeacherLeaveService.listMyRequests(),
         learningTeacherLeaveService.listMyCoverages(),
+        profileUserId ? learningSchoolAdminService.listManageableOrganizations(profileUserId) : Promise.resolve([]),
       ]);
-      return { classes, requests, coverages };
+      const teacherOrganizationIds = new Set(classes.map((item) => item.membership.organizationId));
+      return { classes, requests, coverages, organizations: organizations.filter((item) => teacherOrganizationIds.has(item.id)) };
     },
   });
 
-  const organizations = [...new Map((workspace.data?.classes ?? []).map((item) => [
-    item.membership.organizationId,
-    { id: item.membership.organizationId, name: item.organization?.name ?? item.classGroup.organizationId },
-  ])).values()];
+  const organizations = workspace.data?.organizations ?? [];
   const selectedOrganizationId = organizationId || organizations[0]?.id || "";
   const profileUserId = workspace.data?.classes[0]?.membership.userId;
   const classById = new Map((workspace.data?.classes ?? []).map((item) => [item.classGroup.id, item.classGroup.name]));
@@ -131,7 +132,7 @@ export default function TeacherLeavePage() {
       <div className="flex items-center gap-2"><ShieldCheck size={19} className="text-slate-500" /><h2 className="text-lg font-bold text-slate-950">{t("teacherLeave.substituteDuties")}</h2></div>
       {workspace.data.coverages.length ? <div className="mt-4 divide-y divide-slate-100">
         {workspace.data.coverages.map((coverage) => <article key={coverage.id} className="flex flex-wrap items-center justify-between gap-3 py-3">
-          <div><p className="font-semibold text-slate-900">{formatDate(coverage.coverageDate, locale)} · {classById.get(coverage.classGroupId) ?? t("teacherLeave.class")}</p><p className="mt-1 text-sm text-slate-500">{coverage.substituteTeacherUserId === profileUserId ? t("teacherLeave.youAreSubstitute") : t("teacherLeave.yourClassHasCover")} · {coverage.timetableEntryId.slice(0, 8)}</p></div>
+          <div><p className="font-semibold text-slate-900">{formatDate(coverage.coverageDate, locale)} · {classById.get(coverage.classGroupId) ?? t("teacherLeave.class")}</p><p className="mt-1 text-sm text-slate-500">{coverage.substituteTeacherUserId === profileUserId ? t("teacherLeave.youAreSubstitute") : t("teacherLeave.yourClassHasCover")}</p></div>
           <Status status={coverage.status} t={t} />
         </article>)}
       </div> : <Empty title={t("teacherLeave.noSubstituteDuties")} description={t("teacherLeave.noSubstituteDutiesDescription")} />}
