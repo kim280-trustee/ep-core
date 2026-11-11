@@ -226,6 +226,14 @@ begin
     raise exception 'Anonymous role can execute a sensitive Learning RPC';
   end if;
 
+  select lower(pg_get_functiondef('private.validate_learning_timetable_entry()'::regprocedure))
+    into v_definition;
+  if position('cg.tenant_id' in v_definition) > 0
+     or position('public.organizations' in v_definition) = 0
+     or position('org.tenant_id = new.tenant_id' in v_definition) = 0 then
+    raise exception 'Timetable trigger must validate tenant ownership through the organization';
+  end if;
+
   if has_function_privilege('anon', 'public.list_learning_teacher_timetable()', 'EXECUTE')
      or not has_function_privilege('authenticated', 'public.list_learning_teacher_timetable()', 'EXECUTE') then
     raise exception 'Teacher timetable RPC must be executable only by authenticated callers';
