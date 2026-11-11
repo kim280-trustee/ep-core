@@ -71,16 +71,20 @@ export default function SchoolTeacherLeaveManagementPage() {
         learningAcademicService.listClassGroups(organizationId),
         learningAcademicService.listSubjects(),
       ]);
-      const classIds = [...new Set(timetable.map((entry) => entry.classGroupId))];
-      const classMemberships = await Promise.all(classIds.map((classGroupId) => learningEnrollmentService.listClassMembers(classGroupId)));
+      const classIds = classGroups.map((classGroup) => classGroup.id);
+      const [classMemberships, eligibleUsers] = await Promise.all([
+        Promise.all(classIds.map((classGroupId) => learningEnrollmentService.listClassMembers(classGroupId))),
+        learningSchoolAdminService.listEligibleUsers(organizationId, organization!.tenantId),
+      ]);
       const teacherMemberships = classMemberships.flat().filter((membership) => membership.membershipType === "teacher" && membership.status === "active");
       const userIds = [...new Set([
         ...requests.map((request) => request.teacherUserId),
         ...teacherMemberships.map((membership) => membership.userId),
+        ...eligibleUsers.map((profile) => profile.id),
         ...coverages.flatMap((coverage) => [coverage.absentTeacherUserId, coverage.substituteTeacherUserId]),
       ])];
       const profiles = await learningSchoolAdminService.listUsersByIds(organization!.tenantId, userIds);
-      return { requests, coverages, timetable, classGroups, subjects, teacherMemberships, profiles };
+      return { requests, coverages, timetable, classGroups, subjects, teacherMemberships, eligibleUsers, profiles };
     },
   });
 
@@ -170,7 +174,8 @@ export default function SchoolTeacherLeaveManagementPage() {
                 {occurrences.map(({ entry, date }) => {
                   const slotKey = request.id + ":" + entry.id + ":" + date;
                   const existing = coverageBySlot.get(slotKey);
-                  const eligible = data.teacherMemberships.filter((membership) => membership.classGroupId === entry.classGroupId && membership.userId !== request.teacherUserId);
+                  const eligibleUserIds = new Set(data.eligibleUsers.map((profile) => profile.id));
+                  const eligible = [...new Map(data.teacherMemberships.filter((membership) => eligibleUserIds.has(membership.userId) && membership.userId !== request.teacherUserId).map((membership) => [membership.userId, membership])).values()];
                   const selected = selectedSubstitutes[slotKey] ?? existing?.substituteTeacherUserId ?? "";
                   const className = classById.get(entry.classGroupId)?.name ?? t("teacherLeave.class");
                   const subjectName = subjectById.get(entry.subjectId)?.name ?? t("teacherLeave.subject");
