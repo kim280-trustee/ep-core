@@ -99,6 +99,16 @@ export default function SchoolTeacherLeaveManagementPage() {
     onError: (error: Error) => { setActionNotice(""); setActionError(error.message); },
   });
 
+  const cancelMutation = useMutation({
+    mutationFn: (coverageId: string) => learningTeacherLeaveService.cancelCoverage(coverageId),
+    onSuccess: async () => {
+      setActionError("");
+      setActionNotice(t("teacherLeave.coverageCancelled"));
+      await queryClient.invalidateQueries({ queryKey: ["school-admin", "teacher-leave", organizationId] });
+    },
+    onError: (error: Error) => { setActionNotice(""); setActionError(error.message); },
+  });
+
   const assignMutation = useMutation({
     mutationFn: ({ leaveRequestId, timetableEntryId, coverageDate, substituteTeacherUserId }: {
       leaveRequestId: string; timetableEntryId: string; coverageDate: string; substituteTeacherUserId: string;
@@ -188,6 +198,7 @@ export default function SchoolTeacherLeaveManagementPage() {
                         {eligible.map((membership) => <option key={membership.userId} value={membership.userId}>{profileById.get(membership.userId)?.name ?? membership.userId.slice(0, 8)}</option>)}
                       </select>
                       <button type="button" disabled={!selected || assignMutation.isPending} onClick={() => assignMutation.mutate({ leaveRequestId: request.id, timetableEntryId: entry.id, coverageDate: date, substituteTeacherUserId: selected })} className="rounded-lg bg-slate-900 px-3 py-2 text-xs font-semibold text-white disabled:opacity-50">{existing ? t("teacherLeave.updateCoverage") : t("teacherLeave.assign")}</button>
+                      {existing && <button type="button" disabled={cancelMutation.isPending} onClick={() => cancelMutation.mutate(existing.id)} className="rounded-lg border border-slate-300 px-2 py-2 text-xs font-semibold text-slate-700 disabled:opacity-50" aria-label={t("teacherLeave.cancelCoverage")}><X size={15} /></button>}
                     </div>
                     {!eligible.length && <p className="text-xs text-amber-700 sm:col-span-2">{t("teacherLeave.noEligibleSubstitutes")}</p>}
                   </div>;
