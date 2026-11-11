@@ -234,6 +234,14 @@ begin
     raise exception 'Timetable trigger must validate tenant ownership through the organization';
   end if;
 
+  select lower(pg_get_functiondef('public.list_learning_teacher_timetable()'::regprocedure))
+    into v_definition;
+  if position('class_group.tenant_id' in v_definition) > 0
+     or position('org.tenant_id = entry.tenant_id' in v_definition) = 0
+     or position('membership_type' in v_definition) = 0 then
+    raise exception 'Teacher timetable RPC must validate tenant through organizations and active class membership';
+  end if;
+
   if has_function_privilege('anon', 'public.list_learning_teacher_timetable()', 'EXECUTE')
      or not has_function_privilege('authenticated', 'public.list_learning_teacher_timetable()', 'EXECUTE') then
     raise exception 'Teacher timetable RPC must be executable only by authenticated callers';
