@@ -319,6 +319,7 @@ begin
     into v_definition;
   if position('learning_can_manage_academic_records' in v_definition) = 0
      or position('membership_type' in v_definition) = 0
+     or position('organization_memberships' in v_definition) = 0
      or position('teacher' in v_definition) = 0
      or position('extract(isodow' in v_definition) = 0
      or position('starts_at' in v_definition) = 0
