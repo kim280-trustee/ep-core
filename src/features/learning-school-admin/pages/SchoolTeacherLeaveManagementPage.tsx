@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { CalendarCheck, Check, Clock3, ShieldCheck, X } from "lucide-react";
+import { CalendarCheck, Check, X } from "lucide-react";
 import { useAuth } from "@/core/auth";
 import { useTranslation } from "@/core/i18n/useTranslation";
 import { useAuthorization } from "@/features/auth/authorization/useAuthorization";
