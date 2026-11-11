@@ -58,12 +58,12 @@ export default function TeacherWorkloadAssistantPage() {
         .sort((a, b) => a.entry.startsAt.localeCompare(b.entry.startsAt));
 
       const todayClassIds = [...new Set(todayLessons.map((item) => item.classInfo.classGroup.id))];
-      const attendanceTasks = await Promise.all(todayClassIds.map(async (classGroupId) => {
+      const attendanceTasks = (await Promise.all(todayClassIds.map(async (classGroupId) => {
         const classInfo = classes.find((item) => item.classGroup.id === classGroupId)!;
         const organizationId = classInfo.membership.organizationId || classInfo.classGroup.organizationId;
         const register = await learningAttendanceService.getRegister(organizationId, classGroupId, todayKey);
         return { classInfo, register, status: register.sessionStatus ?? "not_started" as const };
-      }));
+      }))).filter((item) => item.status !== "submitted");
 
       const assignmentRows = overviews.flatMap(({ classInfo, overview }) =>
         overview.assignments
@@ -107,7 +107,7 @@ export default function TeacherWorkloadAssistantPage() {
 
   const data = workload.data;
   const dateLabel = new Intl.DateTimeFormat(locale, { weekday: "long", day: "numeric", month: "long", year: "numeric" }).format(today);
-  const attendanceOpen = data.attendanceTasks.filter((item) => item.status !== "submitted").length;
+  const attendanceOpen = data.attendanceTasks.length;
   const overdueAssignments = data.assignmentTasks.reduce((sum, item) => sum + item.overdueCount, 0);
 
   return <div className="mx-auto max-w-6xl space-y-6">
