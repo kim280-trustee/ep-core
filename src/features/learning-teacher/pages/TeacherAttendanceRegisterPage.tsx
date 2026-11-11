@@ -59,7 +59,6 @@ export default function TeacherAttendanceRegisterPage() {
     if (!registerQuery.data) return;
     setStatusByStudentId(registerQuery.data.register.statusByStudentId);
     setNoteByStudentId(registerQuery.data.register.noteByStudentId);
-    setNotice("");
     setFormError("");
   }, [registerQuery.data]);
 
@@ -76,7 +75,7 @@ export default function TeacherAttendanceRegisterPage() {
         organizationId: data.classInfo.membership.organizationId,
         classGroupId,
         attendanceDate,
-        takenBy: user.id,
+        takenBy: data.classInfo.membership.userId,
         records: data.students.map((student) => ({
           studentUserId: student.userId,
           status: statusByStudentId[student.userId] ?? "unmarked",
@@ -123,7 +122,7 @@ export default function TeacherAttendanceRegisterPage() {
 
     <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
       <label className="block max-w-xs text-sm font-semibold text-slate-700">{t("teacherAttendance.date")}
-        <input type="date" value={attendanceDate} max={localDateKey(new Date())} onChange={(event) => setAttendanceDate(event.target.value)} disabled={locked} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm" />
+        <input type="date" value={attendanceDate} max={localDateKey(new Date())} onChange={(event) => { setAttendanceDate(event.target.value); setNotice(""); setFormError(""); }} disabled={locked} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm" />
       </label>
       <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
         <Count label={t("teacherAttendance.present")} value={counts.present} />
