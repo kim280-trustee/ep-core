@@ -37,16 +37,15 @@ export default function TeacherWorkloadAssistantPage() {
     enabled: Boolean(user?.id),
     queryFn: async () => {
       const classes = await learningTeacherService.listTeacherClasses(user!.id);
-      const organizationIds = [...new Set(classes.map((item) => item.membership.organizationId || item.classGroup.organizationId).filter(Boolean))];
-      const [timetables, overviews] = await Promise.all([
-        Promise.all(organizationIds.map((organizationId) => learningTimetableService.list(organizationId))),
+      const [timetableEntries, overviews] = await Promise.all([
+        learningTimetableService.listForCurrentTeacher(),
         Promise.all(classes.map(async (classInfo) => ({
           classInfo,
           overview: await learningTeacherService.getClassOverview(user!.id, classInfo.classGroup.id),
         }))),
       ]);
 
-      const todayLessons = timetables.flat()
+      const todayLessons = timetableEntries
         .filter((entry) => entry.status === "active" && entry.teacherUserId === user!.id && entry.dayOfWeek === localWeekday(today))
         .map((entry) => {
           const classInfo = classes.find((item) => item.classGroup.id === entry.classGroupId);
