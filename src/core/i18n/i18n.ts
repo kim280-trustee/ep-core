@@ -965,7 +965,7 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "teacherLeave.assign": "Assign",
     "teacherLeave.noEligibleSubstitutes": "No other active teacher is available in this school.",
     "teacherLeave.noLessonsInLeavePeriod": "No scheduled school lessons for this teacher fall within the requested leave dates.",
-    "teacherLeave.noManagerRequests": "New teacher leave requests will appear here for review."
+    "teacherLeave.noManagerRequests": "New teacher leave requests will appear here for review.",
     "teacherAI.title": "AI Teacher Assistant",
     "teacherAI.signIn": "Sign in with an active teacher account to continue.",
     "teacherAI.loading": "Loading teacher classes",
@@ -2808,7 +2808,7 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "teacherLeave.assign": "มอบหมาย",
     "teacherLeave.noEligibleSubstitutes": "ไม่มีครูคนอื่นที่มีสถานะสอนในโรงเรียนนี้",
     "teacherLeave.noLessonsInLeavePeriod": "ไม่มีคาบสอนตามตารางในวันเปิดเรียนภายในช่วงวันที่ขอลา",
-    "teacherLeave.noManagerRequests": "คำขอลาใหม่จากครูจะแสดงที่นี่เพื่อให้พิจารณา"
+    "teacherLeave.noManagerRequests": "คำขอลาใหม่จากครูจะแสดงที่นี่เพื่อให้พิจารณา",
     "teacherAI.title": "ผู้ช่วยครู AI",
     "teacherAI.signIn": "เข้าสู่ระบบด้วยบัญชีครูที่ใช้งานอยู่เพื่อดำเนินการต่อ",
     "teacherAI.loading": "กำลังโหลดชั้นเรียนของครู",
