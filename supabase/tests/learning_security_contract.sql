@@ -226,6 +226,21 @@ begin
     raise exception 'Anonymous role can execute a sensitive Learning RPC';
   end if;
 
+  if has_function_privilege('anon', 'public.list_learning_teacher_timetable()', 'EXECUTE')
+     or not has_function_privilege('authenticated', 'public.list_learning_teacher_timetable()', 'EXECUTE') then
+    raise exception 'Teacher timetable RPC must be executable only by authenticated callers';
+  end if;
+
+  select lower(pg_get_functiondef('public.list_learning_teacher_timetable()'::regprocedure))
+    into v_definition;
+  if position('auth.uid()' in v_definition) = 0
+     or position('learning_current_user_id()' in v_definition) = 0
+     or position('teacher_user_id' in v_definition) = 0
+     or position('membership_type' in v_definition) = 0
+     or position('active' in v_definition) = 0 then
+    raise exception 'Teacher timetable RPC lacks authenticated active-teacher scoping';
+  end if;
+
   -- All inspected SECURITY DEFINER authorization helpers must pin search_path.
   if exists (
     select 1
@@ -240,7 +255,8 @@ begin
         'create_learning_parent_invitation',
         'submit_learning_attempt',
         'learning_parent_can_view_student',
-        'learning_parent_student_ids'
+        'learning_parent_student_ids',
+        'list_learning_teacher_timetable'
       )
       and not coalesce(p.proconfig, array[]::text[]) @> array['search_path=""']
   ) then
