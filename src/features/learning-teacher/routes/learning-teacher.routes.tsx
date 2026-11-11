@@ -7,6 +7,7 @@ import { lazy } from "react";
 const TeacherDashboardPage = lazy(() => import("../pages/TeacherDashboardPage"));
 const TeacherWorkloadAssistantPage = lazy(() => import("../pages/TeacherWorkloadAssistantPage"));
 const TeacherAttendanceRegisterPage = lazy(() => import("../pages/TeacherAttendanceRegisterPage"));
+const TeacherLeavePage = lazy(() => import("../pages/TeacherLeavePage"));
 const TeacherLiveGamesPage = lazy(() => import("@/features/learning-live-games/pages/TeacherLiveGamesPage"));
 const TeacherClassPage = lazy(() => import("../pages/TeacherClassPage"));
 const TeacherStudentProfilePage = lazy(() => import("../pages/TeacherStudentProfilePage"));
@@ -40,6 +41,7 @@ export const learningTeacherRoutes: RouteObject[] = [
     children: [
       { index: true, element: <TeacherDashboardPage /> },
       { path: "workload", element: <TeacherWorkloadAssistantPage /> },
+      { path: "leave", element: <TeacherLeavePage /> },
       { path: "classes/:classGroupId/attendance", element: <TeacherAttendanceRegisterPage /> },
       { path: "classes/:classGroupId", element: <TeacherClassPage /> },
       { path: "classes/:classGroupId/students/:studentUserId", element: <TeacherStudentProfilePage /> },
