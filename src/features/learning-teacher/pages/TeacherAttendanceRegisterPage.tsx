@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, CheckCircle2, ClipboardCheck, Save } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
@@ -22,8 +22,8 @@ export default function TeacherAttendanceRegisterPage() {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const [attendanceDate, setAttendanceDate] = useState(localDateKey(new Date()));
-  const [statusByStudentId, setStatusByStudentId] = useState<Record<string, LearningAttendanceStatus>>({});
-  const [noteByStudentId, setNoteByStudentId] = useState<Record<string, string>>({});
+  const [statusOverrides, setStatusOverrides] = useState<Record<string, LearningAttendanceStatus>>({});
+  const [noteOverrides, setNoteOverrides] = useState<Record<string, string>>({});
   const [notice, setNotice] = useState("");
   const [formError, setFormError] = useState("");
 
@@ -55,17 +55,12 @@ export default function TeacherAttendanceRegisterPage() {
     },
   });
 
-  useEffect(() => {
-    if (!registerQuery.data) return;
-    setStatusByStudentId(registerQuery.data.register.statusByStudentId);
-    setNoteByStudentId(registerQuery.data.register.noteByStudentId);
-    setFormError("");
-  }, [registerQuery.data]);
-
   const save = useMutation({
     mutationFn: async (submit: boolean) => {
       const data = registerQuery.data;
       if (!user?.id || !data) throw new Error(t("teacherAttendance.saveError"));
+      const statusByStudentId = { ...data.register.statusByStudentId, ...statusOverrides };
+      const noteByStudentId = { ...data.register.noteByStudentId, ...noteOverrides };
       if (data.register.sessionStatus === "submitted") throw new Error(t("teacherAttendance.alreadySubmitted"));
       if (submit && data.students.some((student) => (statusByStudentId[student.userId] ?? "unmarked") === "unmarked")) {
         throw new Error(t("teacherAttendance.markEveryone"));
@@ -90,6 +85,8 @@ export default function TeacherAttendanceRegisterPage() {
       return submit;
     },
     onSuccess: async (submitted) => {
+      setStatusOverrides({});
+      setNoteOverrides({});
       setNotice(submitted ? t("teacherAttendance.submitted") : t("teacherAttendance.saved"));
       setFormError("");
       await queryClient.invalidateQueries({ queryKey: ["learning", "teacher-attendance-register", user?.id, classGroupId, attendanceDate] });
@@ -105,6 +102,8 @@ export default function TeacherAttendanceRegisterPage() {
   if (registerQuery.isError || !registerQuery.data) return <Message text={registerQuery.error instanceof Error ? registerQuery.error.message : t("teacherAttendance.loadError")} />;
 
   const { classInfo, students, register } = registerQuery.data;
+  const statusByStudentId = { ...register.statusByStudentId, ...statusOverrides };
+  const noteByStudentId = { ...register.noteByStudentId, ...noteOverrides };
   const locked = register.sessionStatus === "submitted";
   const counts = students.reduce((total, student) => {
     const status = statusByStudentId[student.userId] ?? "unmarked";
@@ -122,7 +121,7 @@ export default function TeacherAttendanceRegisterPage() {
 
     <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
       <label className="block max-w-xs text-sm font-semibold text-slate-700">{t("teacherAttendance.date")}
-        <input type="date" value={attendanceDate} max={localDateKey(new Date())} onChange={(event) => { setAttendanceDate(event.target.value); setNotice(""); setFormError(""); }} disabled={locked} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm" />
+        <input type="date" value={attendanceDate} max={localDateKey(new Date())} onChange={(event) => { setAttendanceDate(event.target.value); setStatusOverrides({}); setNoteOverrides({}); setNotice(""); setFormError(""); }} disabled={locked} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm" />
       </label>
       <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
         <Count label={t("teacherAttendance.present")} value={counts.present} />
@@ -141,10 +140,10 @@ export default function TeacherAttendanceRegisterPage() {
         {students.map((student, index) => <article key={student.id} className="grid gap-3 p-4 sm:grid-cols-[minmax(0,1fr)_220px] sm:items-center">
           <div><p className="text-xs font-semibold text-slate-400">{index + 1}</p><p className="font-semibold text-slate-900">{student.name}</p></div>
           <div className="grid grid-cols-2 gap-2">
-            <select aria-label={t("teacherAttendance.statusFor") + " " + student.name} value={statusByStudentId[student.userId] ?? "unmarked"} disabled={locked} onChange={(event) => setStatusByStudentId((current) => ({ ...current, [student.userId]: event.target.value as LearningAttendanceStatus }))} className="rounded-lg border border-slate-300 bg-white px-2 py-2 text-sm">
+            <select aria-label={t("teacherAttendance.statusFor") + " " + student.name} value={statusByStudentId[student.userId] ?? "unmarked"} disabled={locked} onChange={(event) => setStatusOverrides((current) => ({ ...current, [student.userId]: event.target.value as LearningAttendanceStatus }))} className="rounded-lg border border-slate-300 bg-white px-2 py-2 text-sm">
               {statuses.map((status) => <option key={status} value={status}>{t("teacherAttendance.status." + status)}</option>)}
             </select>
-            <input aria-label={t("teacherAttendance.noteFor") + " " + student.name} value={noteByStudentId[student.userId] ?? ""} disabled={locked} maxLength={240} onChange={(event) => setNoteByStudentId((current) => ({ ...current, [student.userId]: event.target.value }))} placeholder={t("teacherAttendance.optionalNote")} className="min-w-0 rounded-lg border border-slate-300 px-2 py-2 text-sm" />
+            <input aria-label={t("teacherAttendance.noteFor") + " " + student.name} value={noteByStudentId[student.userId] ?? ""} disabled={locked} maxLength={240} onChange={(event) => setNoteOverrides((current) => ({ ...current, [student.userId]: event.target.value }))} placeholder={t("teacherAttendance.optionalNote")} className="min-w-0 rounded-lg border border-slate-300 px-2 py-2 text-sm" />
           </div>
         </article>)}
       </div> : <p className="p-6 text-sm text-slate-500">{t("teacherAttendance.noStudents")}</p>}
