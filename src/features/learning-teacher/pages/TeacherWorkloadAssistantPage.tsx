@@ -3,7 +3,6 @@ import { AlertCircle, ArrowRight, BookOpen, CalendarDays, CheckCircle2, Clipboar
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { useTranslation } from "@/core/i18n/useTranslation";
-import { learningAssignmentsService } from "@/features/learning-assignments/services/learning-assignments.service";
 import { learningContentService } from "@/features/learning-content/services/learning-content.service";
 import { learningAttendanceService } from "@/features/learning-school-admin/services/learning-attendance.service";
 import { learningTimetableService } from "@/features/learning-school-admin/services/learning-timetable.service";
