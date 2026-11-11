@@ -961,7 +961,7 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "teacherLeave.chooseSubstitute": "Choose a substitute",
     "teacherLeave.updateCoverage": "Update",
     "teacherLeave.assign": "Assign",
-    "teacherLeave.noEligibleSubstitutes": "No other active teacher is assigned to this class.",
+    "teacherLeave.noEligibleSubstitutes": "No other active teacher is available in this school.",
     "teacherLeave.noLessonsInLeavePeriod": "No scheduled lessons for this teacher fall within the requested leave dates.",
     "teacherLeave.noManagerRequests": "New teacher leave requests will appear here for review."
     "teacherAI.title": "AI Teacher Assistant",
@@ -2802,7 +2802,7 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "teacherLeave.chooseSubstitute": "เลือกครูสอนแทน",
     "teacherLeave.updateCoverage": "เปลี่ยน",
     "teacherLeave.assign": "มอบหมาย",
-    "teacherLeave.noEligibleSubstitutes": "ไม่มีครูคนอื่นที่มีสถานะสอนในชั้นเรียนนี้",
+    "teacherLeave.noEligibleSubstitutes": "ไม่มีครูคนอื่นที่มีสถานะสอนในโรงเรียนนี้",
     "teacherLeave.noLessonsInLeavePeriod": "ไม่มีคาบสอนตามตารางของครูในช่วงวันที่ขอลา",
     "teacherLeave.noManagerRequests": "คำขอลาใหม่จากครูจะแสดงที่นี่เพื่อให้พิจารณา"
     "teacherAI.title": "ผู้ช่วยครู AI",
