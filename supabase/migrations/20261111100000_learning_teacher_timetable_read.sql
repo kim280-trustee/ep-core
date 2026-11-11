@@ -29,6 +29,10 @@ begin
    and class_group.organization_id = entry.organization_id
    and class_group.tenant_id = entry.tenant_id
    and class_group.status = 'active'
+  join public.organizations org
+    on org.id = entry.organization_id
+   and org.tenant_id = entry.tenant_id
+   and org.status = 'active'
   where entry.teacher_user_id = v_user_id
     and entry.status = 'active'
     and exists (
@@ -41,7 +45,6 @@ begin
         and membership.membership_type = 'teacher'
         and membership.status = 'active'
     )
-    and public.is_organization_member(entry.organization_id)
   order by entry.day_of_week, entry.starts_at;
 end;
 $function$;
