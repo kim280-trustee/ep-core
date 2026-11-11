@@ -55,9 +55,11 @@ begin
   insert into public.organization_memberships(tenant_id,organization_id,user_id,role_id,status) values
     (v_tenant,v_org,v_owner,v_owner_role,'active'),
     (v_tenant,v_org,v_manager,v_manager_role,'active'),
-    (v_tenant,v_org,v_staff,v_staff_role,'active')
+    (v_tenant,v_org,v_staff,v_staff_role,'active'),
+    (v_tenant,v_org,v_substitute,v_staff_role,'active')
   on conflict (organization_id,user_id) do update set role_id=excluded.role_id,status='active';
 
+  perform set_config('request.jwt.claim.sub',v_manager_auth::text,true);
   insert into public.learning_class_memberships(
     tenant_id,organization_id,class_group_id,user_id,membership_type,status
   ) values (
