@@ -144,7 +144,7 @@ export default function TeacherWorkloadAssistantPage() {
         {data.attendanceTasks.length ? <div className="mt-4 space-y-3">
           {data.attendanceTasks.map(({ classInfo, status }) => <article key={classInfo.classGroup.id} className="rounded-xl border border-slate-200 p-3">
             <div className="flex items-start justify-between gap-2"><div><p className="font-semibold text-slate-900">{classInfo.classGroup.name}</p><p className="mt-1 text-xs text-slate-500">{status === "open" ? t("teacherWorkload.attendanceOpen") : t("teacherWorkload.attendanceNotStarted")}</p></div><span className="rounded-full bg-amber-50 px-2.5 py-1 text-xs font-semibold text-amber-800">{t("teacherWorkload.actionNeeded")}</span></div>
-            <Link to={"/teacher/classes/" + classInfo.classGroup.id} className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-slate-700">{t("teacherWorkload.openClass")}<ArrowRight size={15} /></Link>
+            <Link to={"/teacher/classes/" + classInfo.classGroup.id + "/attendance"} className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-slate-700">{t("teacherWorkload.openAttendance")}<ArrowRight size={15} /></Link>
           </article>)}
         </div> : <Empty title={t("teacherWorkload.attendanceComplete")} description={t("teacherWorkload.attendanceCompleteDescription")} />}
       </div>
