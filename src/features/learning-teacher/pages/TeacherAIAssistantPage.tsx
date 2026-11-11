@@ -24,6 +24,12 @@ type DraftRequest = {
   priorKnowledge: string;
   availableMaterials: string;
   teacherNeeds: string;
+  curriculumId: string;
+  gradeLevelId: string;
+  subjectId: string;
+  skillId: string;
+  topicId: string;
+  objectiveId: string;
   questionCount: number;
   totalMarks: number;
   examDurationMinutes: number;
@@ -135,18 +141,28 @@ export default function TeacherAIAssistantPage() {
     },
   });
 
+  const generatedRequest = generate.variables;
+
   const saveDraft = useMutation({
     mutationFn: async () => {
+      const request = generate.variables;
       const generatedDraft = generate.data?.draft;
       if (!user?.id || !organizationId || !generatedDraft?.trim()) {
         throw new Error(t("teacherAI.savePrerequisite"));
       }
+      const draftFormat = request?.format ?? format;
+      const draftTopic = request?.topic ?? topic.trim();
+      const draftLanguage = request?.language ?? language;
+      const draftObjectiveId = request?.objectiveId ?? objectiveId;
       const suffix = Date.now().toString(36).toUpperCase();
-      const code = `AI-${format.toUpperCase().replace(/[^A-Z0-9]+/g, "-")}-${suffix}`;
-      const formatLabel = format.split("_").map((part) => part[0].toUpperCase() + part.slice(1)).join(" ");
-      const title = `${topic.trim()} — ${formatLabel}`;
-      if (!curriculumId || !gradeLevelId || !subjectId || !skillId || !topicId || !objectiveId) {
+      const code = `AI-${draftFormat.toUpperCase().replace(/[^A-Z0-9]+/g, "-")}-${suffix}`;
+      const formatLabel = draftFormat.split("_").map((part) => part[0].toUpperCase() + part.slice(1)).join(" ");
+      const title = `${draftTopic} — ${formatLabel}`;
+      if (!request?.curriculumId || !request.gradeLevelId || !request.subjectId || !request.skillId || !request.topicId || !request.objectiveId) {
         throw new Error(t("teacherAI.objectiveRequired"));
+      }
+      if (request.objectiveId !== objectiveId || request.curriculumId !== curriculumId || request.gradeLevelId !== gradeLevelId || request.subjectId !== subjectId || request.skillId !== skillId || request.topicId !== topicId) {
+        throw new Error("The curriculum selection changed after generation. Generate the material again before saving it.");
       }
       if (objectiveAlignments.isPending) {
         throw new Error(t("teacherAI.alignmentPending"));
@@ -158,8 +174,8 @@ export default function TeacherAIAssistantPage() {
         organizationId,
         code,
         title: title.slice(0, 180),
-        contentType: format === "worksheet" ? "worksheet" : format === "quiz" || format === "exam" ? "other" : "lesson",
-        languageCode: language === "Thai" ? "th" : "en",
+        contentType: draftFormat === "worksheet" ? "worksheet" : draftFormat === "quiz" || draftFormat === "exam" ? "other" : "lesson",
+        languageCode: draftLanguage === "Thai" ? "th" : "en",
         createdBy: user.id,
       });
       try {
@@ -170,13 +186,13 @@ export default function TeacherAIAssistantPage() {
           createdBy: user.id,
           body: {
             sections: [{ type: "text", title: "AI-generated draft", body: generatedDraft }],
-            aiDraftContext: { country, educationSystem, curriculumReference, subject, gradeLevel, topic, objective, format, language, difficulty, durationMinutes: Number(durationMinutes), questionCount: Number(questionCount), totalMarks: Number(totalMarks), examDurationMinutes: Number(examDurationMinutes), priorKnowledge, availableMaterials, teacherNeeds },
+            aiDraftContext: request,
             requiresTeacherReview: true,
           },
         });
         await learningContentService.addObjective({
           contentItemId: content.id,
-          objectiveId,
+          objectiveId: draftObjectiveId,
           sequenceNo: 1,
         });
       } catch (error) {
@@ -216,6 +232,12 @@ export default function TeacherAIAssistantPage() {
       priorKnowledge: priorKnowledge.trim(),
       availableMaterials: availableMaterials.trim(),
       teacherNeeds: teacherNeeds.trim(),
+      curriculumId,
+      gradeLevelId,
+      subjectId,
+      skillId,
+      topicId,
+      objectiveId,
       questionCount: Number(questionCount),
       totalMarks: Number(totalMarks),
       examDurationMinutes: Number(examDurationMinutes),
@@ -234,8 +256,6 @@ export default function TeacherAIAssistantPage() {
 
   // Exports must describe the exact request that produced the visible draft,
   // not form values the teacher may have edited afterwards.
-  const generatedRequest = generate.variables;
-
   const exportBaseName = () => {
     const safeTopic = (generatedRequest?.topic ?? topic).trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60);
     return safeTopic || "ep-learning-material";
