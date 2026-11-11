@@ -488,6 +488,7 @@ export default function SchoolAdministrationPage() {
             <Link to="/school-admin/parents" className="rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15">{t("learning.parentLinks")}</Link>
             <Link to="/school-admin/announcements" className="rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15">{t("learning.announcements")}</Link>
             <Link to="/school-admin/staff" className="rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15">{t("schoolAdmin.staffDirectory")}</Link>
+            <Link to="/school-admin/teacher-leave" className="rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15">{t("teacherLeave.title")}</Link>
             <Link to="/teacher" className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-indigo-950 transition hover:bg-teal-50"><BookOpen size={16} /> {t("learning.teacherWorkspace")}</Link>
           </div>
         </div>
