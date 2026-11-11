@@ -5,6 +5,7 @@ import TeacherLayout from "../layouts/TeacherLayout";
 import { lazy } from "react";
 
 const TeacherDashboardPage = lazy(() => import("../pages/TeacherDashboardPage"));
+const TeacherWorkloadAssistantPage = lazy(() => import("../pages/TeacherWorkloadAssistantPage"));
 const TeacherLiveGamesPage = lazy(() => import("@/features/learning-live-games/pages/TeacherLiveGamesPage"));
 const TeacherClassPage = lazy(() => import("../pages/TeacherClassPage"));
 const TeacherStudentProfilePage = lazy(() => import("../pages/TeacherStudentProfilePage"));
@@ -37,6 +38,7 @@ export const learningTeacherRoutes: RouteObject[] = [
     element: <TeacherLayout />,
     children: [
       { index: true, element: <TeacherDashboardPage /> },
+      { path: "workload", element: <TeacherWorkloadAssistantPage /> },
       { path: "classes/:classGroupId", element: <TeacherClassPage /> },
       { path: "classes/:classGroupId/students/:studentUserId", element: <TeacherStudentProfilePage /> },
       { path: "assignments/new", element: <CreateTeacherAssignmentPage /> },
