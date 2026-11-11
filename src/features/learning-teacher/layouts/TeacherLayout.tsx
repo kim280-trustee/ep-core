@@ -18,6 +18,7 @@ const navigationGroups = [
     label: "learning.teaching",
     items: [
       { to: "/teacher/workload", label: "teacherWorkload.title", icon: ClipboardCheck, end: false },
+      { to: "/teacher/leave", label: "teacherLeave.title", icon: CalendarDays, end: false },
       { to: "/teacher/content", label: "learning.contentLibrary", icon: FileText, end: false },
       { to: "/teacher/lesson-plans", label: "learning.lessonPlanning", icon: BookOpenCheck, end: false },
       { to: "/teacher/vocabulary", label: "learning.vocabulary", icon: Languages, end: false },
