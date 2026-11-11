@@ -121,7 +121,7 @@ export default function TeacherAttendanceRegisterPage() {
 
     <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
       <label className="block max-w-xs text-sm font-semibold text-slate-700">{t("teacherAttendance.date")}
-        <input type="date" value={attendanceDate} max={localDateKey(new Date())} onChange={(event) => { setAttendanceDate(event.target.value); setStatusOverrides({}); setNoteOverrides({}); setNotice(""); setFormError(""); }} disabled={locked} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm" />
+        <input type="date" value={attendanceDate} max={localDateKey(new Date())} onChange={(event) => { setAttendanceDate(event.target.value); setStatusOverrides({}); setNoteOverrides({}); setNotice(""); setFormError(""); }} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm" />
       </label>
       <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
         <Count label={t("teacherAttendance.present")} value={counts.present} />
