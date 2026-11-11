@@ -71,7 +71,7 @@ export default function SchoolTeacherLeaveManagementPage() {
         learningAcademicService.listClassGroups(organizationId),
         learningAcademicService.listSubjects(),
       ]);
-      const classIds = classGroups.map((classGroup) => classGroup.id);
+      const classIds = classGroups.filter((classGroup) => classGroup.status === "active").map((classGroup) => classGroup.id);
       const [classMemberships, eligibleUsers] = await Promise.all([
         Promise.all(classIds.map((classGroupId) => learningEnrollmentService.listClassMembers(classGroupId))),
         learningSchoolAdminService.listEligibleUsers(organizationId, organization!.tenantId),
