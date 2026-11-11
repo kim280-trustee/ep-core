@@ -555,6 +555,111 @@ export type Database = {
         }
         Relationships: []
       }
+      learning_teacher_leave_requests: {
+        Row: {
+          created_at: string
+          end_date: string
+          id: string
+          leave_type: string
+          organization_id: string
+          reason: string
+          review_note: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          start_date: string
+          status: string
+          teacher_user_id: string
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          end_date: string
+          id?: string
+          leave_type: string
+          organization_id: string
+          reason: string
+          review_note?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          start_date: string
+          status?: string
+          teacher_user_id: string
+          tenant_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          end_date?: string
+          id?: string
+          leave_type?: string
+          organization_id?: string
+          reason?: string
+          review_note?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          start_date?: string
+          status?: string
+          teacher_user_id?: string
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      learning_teacher_substitute_coverages: {
+        Row: {
+          absent_teacher_user_id: string
+          assigned_at: string
+          assigned_by: string
+          class_group_id: string
+          coverage_date: string
+          created_at: string
+          id: string
+          leave_request_id: string
+          notes: string | null
+          organization_id: string
+          status: string
+          substitute_teacher_user_id: string
+          tenant_id: string
+          timetable_entry_id: string
+          updated_at: string
+        }
+        Insert: {
+          absent_teacher_user_id: string
+          assigned_at?: string
+          assigned_by: string
+          class_group_id: string
+          coverage_date: string
+          created_at?: string
+          id?: string
+          leave_request_id: string
+          notes?: string | null
+          organization_id: string
+          status?: string
+          substitute_teacher_user_id: string
+          tenant_id: string
+          timetable_entry_id: string
+          updated_at?: string
+        }
+        Update: {
+          absent_teacher_user_id?: string
+          assigned_at?: string
+          assigned_by?: string
+          class_group_id?: string
+          coverage_date?: string
+          created_at?: string
+          id?: string
+          leave_request_id?: string
+          notes?: string | null
+          organization_id?: string
+          status?: string
+          substitute_teacher_user_id?: string
+          tenant_id?: string
+          timetable_entry_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       learning_academic_years: {
         Row: {
           code: string
@@ -5151,6 +5256,22 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      create_learning_teacher_leave_request: {
+        Args: { p_end_date: string; p_leave_type: string; p_organization_id: string; p_reason: string; p_start_date: string }
+        Returns: string
+      }
+      review_learning_teacher_leave_request: {
+        Args: { p_decision: string; p_request_id: string; p_review_note?: string | null }
+        Returns: string
+      }
+      assign_learning_teacher_substitute: {
+        Args: { p_coverage_date: string; p_leave_request_id: string; p_notes?: string | null; p_substitute_teacher_user_id: string; p_timetable_entry_id: string }
+        Returns: string
+      }
+      cancel_learning_teacher_substitute_coverage: {
+        Args: { p_coverage_id: string }
+        Returns: string
+      }
       get_learning_live_game_question: { Args: { p_session_id: string }; Returns: Json }
       cancel_learning_live_game_session: { Args: { p_session_id: string }; Returns: undefined }
       create_learning_live_game_session: { Args: { p_assessment_id: string; p_class_group_id: string; p_settings?: Json }; Returns: string }
