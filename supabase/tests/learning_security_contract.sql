@@ -257,6 +257,75 @@ begin
     raise exception 'Teacher timetable RPC lacks authenticated active-teacher scoping';
   end if;
 
+  perform pg_temp.assert_policy_contains(
+    'learning_teacher_leave_requests', 'learning_teacher_leave_requests_select', 'SELECT',
+    array['teacher_user_id', 'learning_current_user_id', 'learning_can_manage_academic_records']
+  );
+  perform pg_temp.assert_policy_contains(
+    'learning_teacher_substitute_coverages', 'learning_teacher_substitute_coverages_select', 'SELECT',
+    array['absent_teacher_user_id', 'substitute_teacher_user_id', 'learning_current_user_id', 'learning_can_manage_academic_records']
+  );
+
+  if not exists (
+    select 1 from pg_class c join pg_namespace n on n.oid = c.relnamespace
+    where n.nspname = 'public' and c.relname = 'learning_teacher_leave_requests' and c.relrowsecurity
+  ) or not exists (
+    select 1 from pg_class c join pg_namespace n on n.oid = c.relnamespace
+    where n.nspname = 'public' and c.relname = 'learning_teacher_substitute_coverages' and c.relrowsecurity
+  ) then
+    raise exception 'Teacher leave and substitute tables must have RLS enabled';
+  end if;
+
+  if not has_table_privilege('authenticated', 'public.learning_teacher_leave_requests', 'SELECT')
+     or has_table_privilege('authenticated', 'public.learning_teacher_leave_requests', 'INSERT')
+     or has_table_privilege('authenticated', 'public.learning_teacher_leave_requests', 'UPDATE')
+     or has_table_privilege('authenticated', 'public.learning_teacher_leave_requests', 'DELETE')
+     or not has_table_privilege('authenticated', 'public.learning_teacher_substitute_coverages', 'SELECT')
+     or has_table_privilege('authenticated', 'public.learning_teacher_substitute_coverages', 'INSERT')
+     or has_table_privilege('authenticated', 'public.learning_teacher_substitute_coverages', 'UPDATE')
+     or has_table_privilege('authenticated', 'public.learning_teacher_substitute_coverages', 'DELETE') then
+    raise exception 'Authenticated users must have read-only table grants for teacher leave and coverage';
+  end if;
+
+  if has_function_privilege('anon', 'public.create_learning_teacher_leave_request(uuid,date,date,text,text)', 'EXECUTE')
+     or not has_function_privilege('authenticated', 'public.create_learning_teacher_leave_request(uuid,date,date,text,text)', 'EXECUTE')
+     or has_function_privilege('anon', 'public.review_learning_teacher_leave_request(uuid,text,text)', 'EXECUTE')
+     or not has_function_privilege('authenticated', 'public.review_learning_teacher_leave_request(uuid,text,text)', 'EXECUTE')
+     or has_function_privilege('anon', 'public.assign_learning_teacher_substitute(uuid,uuid,date,uuid,text)', 'EXECUTE')
+     or not has_function_privilege('authenticated', 'public.assign_learning_teacher_substitute(uuid,uuid,date,uuid,text)', 'EXECUTE')
+     or has_function_privilege('anon', 'public.cancel_learning_teacher_substitute_coverage(uuid)', 'EXECUTE')
+     or not has_function_privilege('authenticated', 'public.cancel_learning_teacher_substitute_coverage(uuid)', 'EXECUTE') then
+    raise exception 'Teacher leave RPCs must be executable only by authenticated callers';
+  end if;
+
+  select lower(pg_get_functiondef('public.create_learning_teacher_leave_request(uuid,date,date,text,text)'::regprocedure))
+    into v_definition;
+  if position('auth.uid()' in v_definition) = 0
+     or position('learning_current_user_id()' in v_definition) = 0
+     or position('membership_type' in v_definition) = 0
+     or position('teacher' in v_definition) = 0 then
+    raise exception 'Teacher leave creation must verify an authenticated active teacher membership';
+  end if;
+
+  select lower(pg_get_functiondef('public.review_learning_teacher_leave_request(uuid,text,text)'::regprocedure))
+    into v_definition;
+  if position('learning_can_manage_academic_records' in v_definition) = 0
+     or position('pending' in v_definition) = 0
+     or position('auth.uid()' in v_definition) = 0 then
+    raise exception 'Teacher leave review must be restricted to managers and pending requests';
+  end if;
+
+  select lower(pg_get_functiondef('public.assign_learning_teacher_substitute(uuid,uuid,date,uuid,text)'::regprocedure))
+    into v_definition;
+  if position('learning_can_manage_academic_records' in v_definition) = 0
+     or position('membership_type' in v_definition) = 0
+     or position('teacher' in v_definition) = 0
+     or position('extract(isodow' in v_definition) = 0
+     or position('starts_at' in v_definition) = 0
+     or position('ends_at' in v_definition) = 0 then
+    raise exception 'Substitute assignment must enforce manager, class, date and timetable-conflict checks';
+  end if;
+
   -- All inspected SECURITY DEFINER authorization helpers must pin search_path.
   if exists (
     select 1
@@ -272,7 +341,11 @@ begin
         'submit_learning_attempt',
         'learning_parent_can_view_student',
         'learning_parent_student_ids',
-        'list_learning_teacher_timetable'
+        'list_learning_teacher_timetable',
+        'create_learning_teacher_leave_request',
+        'review_learning_teacher_leave_request',
+        'assign_learning_teacher_substitute',
+        'cancel_learning_teacher_substitute_coverage'
       )
       and not coalesce(p.proconfig, array[]::text[]) @> array['search_path=""']
   ) then
