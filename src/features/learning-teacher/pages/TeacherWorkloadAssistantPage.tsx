@@ -65,11 +65,11 @@ export default function TeacherWorkloadAssistantPage() {
 
       const assignmentRows = overviews.flatMap(({ classInfo, overview }) =>
         overview.assignments
-          .filter((item) => item.assignment.status === "published")
+          .filter((item) => item.assignment.status === "published" || item.assignment.status === "closed")
           .map((item) => ({ classInfo, ...item })),
       );
       const assignmentTasks = assignmentRows
-        .filter((item) => item.completedCount < item.studentCount || item.overdueCount > 0)
+        .filter((item) => item.assignment.status === "published" && (item.completedCount < item.studentCount || item.overdueCount > 0))
         .sort((a, b) => {
           if (a.overdueCount !== b.overdueCount) return b.overdueCount - a.overdueCount;
           const aDue = a.assignment.dueAt ? new Date(a.assignment.dueAt).getTime() : Number.MAX_SAFE_INTEGER;
