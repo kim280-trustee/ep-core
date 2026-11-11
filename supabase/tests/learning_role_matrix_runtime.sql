@@ -9,6 +9,9 @@ declare
   v_owner uuid := '8d0c1a10-4a91-4a1c-9d30-000000000001';
   v_manager uuid := '8d0c1a10-4a91-4a1c-9d30-000000000002';
   v_staff uuid := '8d0c1a10-4a91-4a1c-9d30-000000000003';
+  v_teacher uuid := '58d39658-65ec-4918-95e1-994ad5bf4f72';
+  v_class uuid := '53a79ceb-8e6c-569c-85c2-f0d115304c0b';
+  v_subject uuid;
   v_parent uuid := '8d0c1a10-4a91-4a1c-9d30-000000000004';
   v_owner_auth uuid := '8d0c1a10-4a91-4a1c-9d30-100000000001';
   v_manager_auth uuid := '8d0c1a10-4a91-4a1c-9d30-100000000002';
@@ -60,6 +63,26 @@ begin
   on conflict (organization_id,parent_user_id,student_user_id)
   do update set status='active';
 
+  -- Seed one timetable entry assigned to the teacher fixture. The authenticated
+  -- teacher must see this row through the self-scoped RPC despite lacking
+  -- school-wide timetable management permission.
+  perform set_config('request.jwt.claim.sub',v_manager_auth::text,true);
+  select subject_id into v_subject
+  from public.learning_class_subjects
+  where organization_id=v_org and class_group_id=v_class
+  order by created_at
+  limit 1;
+  if v_subject is null then raise exception 'Teacher timetable fixture needs an active class subject'; end if;
+  delete from public.learning_timetable_entries
+  where class_group_id=v_class and day_of_week=1 and starts_at='09:00'::time;
+  insert into public.learning_timetable_entries(
+    tenant_id,organization_id,class_group_id,subject_id,teacher_user_id,
+    day_of_week,starts_at,ends_at,room,created_by
+  ) values (
+    v_tenant,v_org,v_class,v_subject,v_teacher,
+    1,'09:00'::time,'09:50'::time,'Runtime test room',v_manager
+  );
+
   if not exists (
     select 1 from public.learning_class_memberships
     where organization_id=v_org and class_group_id='53a79ceb-8e6c-569c-85c2-f0d115304c0b'
@@ -91,6 +114,16 @@ begin
   if not public.learning_teacher_can_view_student(v_org,v_student) then raise exception 'Assigned teacher must view the enrolled student'; end if;
   if public.learning_teacher_can_view_student(v_org,v_other_student) then raise exception 'Teacher must not view an unrelated student'; end if;
   if public.learning_can_manage_academic_records(v_org) then raise exception 'Teacher without manager permission must not manage academic records'; end if;
+  if not exists (
+    select 1 from public.list_learning_teacher_timetable()
+    where class_group_id='53a79ceb-8e6c-569c-85c2-f0d115304c0b'
+      and teacher_user_id='58d39658-65ec-4918-95e1-994ad5bf4f72'
+  ) then raise exception 'Assigned STAFF teacher must read their own timetable entry'; end if;
+
+  perform set_config('request.jwt.claim.sub','8d0c1a10-4a91-4a1c-9d30-100000000003',true);
+  if exists (select 1 from public.list_learning_teacher_timetable()) then
+    raise exception 'Unassigned STAFF member must not read another teacher timetable';
+  end if;
 
   perform set_config('request.jwt.claim.sub','8d0c1a10-4a91-4a1c-9d30-100000000006',true);
   if public.learning_can_manage_academic_records(v_org) then raise exception 'STUDENT must not manage academic records'; end if;
