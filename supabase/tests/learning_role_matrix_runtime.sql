@@ -154,6 +154,7 @@ begin
   -- Exercise the complete leave-review-substitute flow with separate teacher,
   -- manager, substitute, and parent identities.
   v_coverage_date := current_date + ((8 - extract(isodow from current_date)::integer) % 7);
+  perform set_config('request.jwt.claim.sub','8d0c1a10-4a91-4a1c-9d30-100000000002',true);
   select id into v_timetable_entry_id
   from public.learning_timetable_entries
   where organization_id=v_org
