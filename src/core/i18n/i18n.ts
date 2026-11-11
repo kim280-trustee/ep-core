@@ -904,7 +904,7 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "teacherAttendance.saving": "Saving…",
     "teacherAttendance.saveDraft": "Save draft",
     "teacherAttendance.submitting": "Submitting…",
-    "teacherAttendance.submitRegister": "Submit attendance"
+    "teacherAttendance.submitRegister": "Submit attendance",
     "teacherAI.title": "AI Teacher Assistant",
     "teacherAI.signIn": "Sign in with an active teacher account to continue.",
     "teacherAI.loading": "Loading teacher classes",
@@ -2686,7 +2686,7 @@ const supplementalTranslations: Partial<Record<Language, Record<string, string>>
     "teacherAttendance.saving": "กำลังบันทึก…",
     "teacherAttendance.saveDraft": "บันทึกร่าง",
     "teacherAttendance.submitting": "กำลังส่ง…",
-    "teacherAttendance.submitRegister": "ส่งข้อมูลการเข้าเรียน"
+    "teacherAttendance.submitRegister": "ส่งข้อมูลการเข้าเรียน",
     "teacherAI.title": "ผู้ช่วยครู AI",
     "teacherAI.signIn": "เข้าสู่ระบบด้วยบัญชีครูที่ใช้งานอยู่เพื่อดำเนินการต่อ",
     "teacherAI.loading": "กำลังโหลดชั้นเรียนของครู",
