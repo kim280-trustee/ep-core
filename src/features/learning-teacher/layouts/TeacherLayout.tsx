@@ -30,6 +30,7 @@ const navigationGroups = [
       { to: "/teacher/ai-assistant", label: "learning.aiAssistant", icon: Sparkles, end: false },
       { to: "/teacher/interventions", label: "learning.studentSupport", icon: Target, end: false },
       { to: "/teacher/question-bank", label: "learning.questionBank", icon: FileQuestion, end: false },
+      { to: "/teacher/assessments", label: "assessmentBuilder.title", icon: ClipboardCheck, end: false },
     ],
   },
   {
