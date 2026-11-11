@@ -320,15 +320,25 @@ begin
 
   if not exists (
     select 1
+    from public.organization_memberships organization_membership
+    where organization_membership.tenant_id = v_request.tenant_id
+      and organization_membership.organization_id = v_request.organization_id
+      and organization_membership.user_id = p_substitute_teacher_user_id
+      and organization_membership.status = 'active'
+  ) or not exists (
+    select 1
     from public.learning_class_memberships membership
+    join public.learning_class_groups class_group
+      on class_group.id = membership.class_group_id
+     and class_group.organization_id = membership.organization_id
+     and class_group.status = 'active'
     where membership.tenant_id = v_request.tenant_id
       and membership.organization_id = v_request.organization_id
-      and membership.class_group_id = v_entry.class_group_id
       and membership.user_id = p_substitute_teacher_user_id
       and membership.membership_type = 'teacher'
       and membership.status = 'active'
   ) then
-    raise exception 'Substitute must be an active teacher in the same class';
+    raise exception 'Substitute must be an active school member with a teaching assignment';
   end if;
 
   perform pg_catalog.pg_advisory_xact_lock(
