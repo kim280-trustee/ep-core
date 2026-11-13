@@ -555,6 +555,111 @@ export type Database = {
         }
         Relationships: []
       }
+      learning_teacher_leave_requests: {
+        Row: {
+          created_at: string
+          end_date: string
+          id: string
+          leave_type: string
+          organization_id: string
+          reason: string
+          review_note: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          start_date: string
+          status: string
+          teacher_user_id: string
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          end_date: string
+          id?: string
+          leave_type: string
+          organization_id: string
+          reason: string
+          review_note?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          start_date: string
+          status?: string
+          teacher_user_id: string
+          tenant_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          end_date?: string
+          id?: string
+          leave_type?: string
+          organization_id?: string
+          reason?: string
+          review_note?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          start_date?: string
+          status?: string
+          teacher_user_id?: string
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      learning_teacher_substitute_coverages: {
+        Row: {
+          absent_teacher_user_id: string
+          assigned_at: string
+          assigned_by: string
+          class_group_id: string
+          coverage_date: string
+          created_at: string
+          id: string
+          leave_request_id: string
+          notes: string | null
+          organization_id: string
+          status: string
+          substitute_teacher_user_id: string
+          tenant_id: string
+          timetable_entry_id: string
+          updated_at: string
+        }
+        Insert: {
+          absent_teacher_user_id: string
+          assigned_at?: string
+          assigned_by: string
+          class_group_id: string
+          coverage_date: string
+          created_at?: string
+          id?: string
+          leave_request_id: string
+          notes?: string | null
+          organization_id: string
+          status?: string
+          substitute_teacher_user_id: string
+          tenant_id: string
+          timetable_entry_id: string
+          updated_at?: string
+        }
+        Update: {
+          absent_teacher_user_id?: string
+          assigned_at?: string
+          assigned_by?: string
+          class_group_id?: string
+          coverage_date?: string
+          created_at?: string
+          id?: string
+          leave_request_id?: string
+          notes?: string | null
+          organization_id?: string
+          status?: string
+          substitute_teacher_user_id?: string
+          tenant_id?: string
+          timetable_entry_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       learning_academic_years: {
         Row: {
           code: string
@@ -3312,6 +3417,24 @@ export type Database = {
         Update: { read_at?: string | null }
         Relationships: []
       }
+      learning_live_game_sessions: {
+        Row: { assessment_id: string; class_group_id: string; created_at: string; current_question_index: number; ended_at: string | null; host_user_id: string; id: string; join_code: string; organization_id: string; question_deadline_at: string | null; settings: Json; started_at: string | null; status: string; tenant_id: string; updated_at: string }
+        Insert: { assessment_id: string; class_group_id: string; created_at?: string; current_question_index?: number; ended_at?: string | null; host_user_id: string; id?: string; join_code: string; organization_id: string; question_deadline_at?: string | null; settings?: Json; started_at?: string | null; status?: string; tenant_id: string; updated_at?: string }
+        Update: { assessment_id?: string; class_group_id?: string; created_at?: string; current_question_index?: number; ended_at?: string | null; host_user_id?: string; id?: string; join_code?: string; organization_id?: string; question_deadline_at?: string | null; settings?: Json; started_at?: string | null; status?: string; tenant_id?: string; updated_at?: string }
+        Relationships: []
+      }
+      learning_live_game_players: {
+        Row: { display_name: string; id: string; joined_at: string; last_seen_at: string; organization_id: string; score: number; session_id: string; status: string; student_user_id: string; tenant_id: string }
+        Insert: { display_name: string; id?: string; joined_at?: string; last_seen_at?: string; organization_id: string; score?: number; session_id: string; status?: string; student_user_id: string; tenant_id: string }
+        Update: { display_name?: string; id?: string; joined_at?: string; last_seen_at?: string; organization_id?: string; score?: number; session_id?: string; status?: string; student_user_id?: string; tenant_id?: string }
+        Relationships: []
+      }
+      learning_live_game_answers: {
+        Row: { answer: Json; assessment_question_id: string; id: string; is_correct: boolean; organization_id: string; player_id: string; points_awarded: number; response_time_ms: number | null; session_id: string; submitted_at: string; tenant_id: string }
+        Insert: { answer: Json; assessment_question_id: string; id?: string; is_correct: boolean; organization_id: string; player_id: string; points_awarded?: number; response_time_ms?: number | null; session_id: string; submitted_at?: string; tenant_id: string }
+        Update: { answer?: Json; assessment_question_id?: string; id?: string; is_correct?: boolean; organization_id?: string; player_id?: string; points_awarded?: number; response_time_ms?: number | null; session_id?: string; submitted_at?: string; tenant_id?: string }
+        Relationships: []
+      }
       learning_sessions: {
         Row: {
           context_id: string | null
@@ -5133,6 +5256,30 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      create_learning_teacher_leave_request: {
+        Args: { p_end_date: string; p_leave_type: string; p_organization_id: string; p_reason: string; p_start_date: string }
+        Returns: string
+      }
+      review_learning_teacher_leave_request: {
+        Args: { p_decision: string; p_request_id: string; p_review_note?: string | null }
+        Returns: string
+      }
+      assign_learning_teacher_substitute: {
+        Args: { p_coverage_date: string; p_leave_request_id: string; p_notes?: string | null; p_substitute_teacher_user_id: string; p_timetable_entry_id: string }
+        Returns: string
+      }
+      cancel_learning_teacher_substitute_coverage: {
+        Args: { p_coverage_id: string }
+        Returns: string
+      }
+      get_learning_live_game_question: { Args: { p_session_id: string }; Returns: Json }
+      cancel_learning_live_game_session: { Args: { p_session_id: string }; Returns: undefined }
+      create_learning_live_game_session: { Args: { p_assessment_id: string; p_class_group_id: string; p_settings?: Json }; Returns: string }
+      join_learning_live_game_session: { Args: { p_join_code: string }; Returns: string }
+      start_learning_live_game_session: { Args: { p_session_id: string }; Returns: undefined }
+      advance_learning_live_game_question: { Args: { p_session_id: string }; Returns: boolean }
+      submit_learning_live_game_answer: { Args: { p_answer: Json; p_assessment_question_id: string; p_response_time_ms?: number | null; p_session_id: string }; Returns: Json }
+
       reserve_learning_ai_generation: {
         Args: { p_model: string; p_organization_id: string }
         Returns: {

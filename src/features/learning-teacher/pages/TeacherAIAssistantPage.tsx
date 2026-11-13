@@ -7,7 +7,7 @@ import { supabase } from "@/core/infrastructure/supabase/client";
 import { learningTeacherService } from "../services/learning-teacher.service";
 import { learningContentService } from "@/features/learning-content";
 
-type MaterialFormat = "lesson" | "worksheet" | "quiz" | "lesson_plan" | "differentiated_pack";
+type MaterialFormat = "lesson" | "worksheet" | "quiz" | "lesson_plan" | "differentiated_pack" | "exam";
 type DraftRequest = {
   organizationId: string;
   subject: string;
@@ -24,6 +24,15 @@ type DraftRequest = {
   priorKnowledge: string;
   availableMaterials: string;
   teacherNeeds: string;
+  curriculumId: string;
+  gradeLevelId: string;
+  subjectId: string;
+  skillId: string;
+  topicId: string;
+  objectiveId: string;
+  questionCount: number;
+  totalMarks: number;
+  examDurationMinutes: number;
 };
 type DraftResponse = {
   draft: string;
@@ -55,6 +64,9 @@ export default function TeacherAIAssistantPage() {
   const [priorKnowledge, setPriorKnowledge] = useState("");
   const [availableMaterials, setAvailableMaterials] = useState("");
   const [teacherNeeds, setTeacherNeeds] = useState("");
+  const [questionCount, setQuestionCount] = useState("20");
+  const [totalMarks, setTotalMarks] = useState("50");
+  const [examDurationMinutes, setExamDurationMinutes] = useState("60");
   const [curriculumId, setCurriculumId] = useState("");
   const [gradeLevelId, setGradeLevelId] = useState("");
   const [subjectId, setSubjectId] = useState("");
@@ -129,18 +141,28 @@ export default function TeacherAIAssistantPage() {
     },
   });
 
+  const generatedRequest = generate.variables;
+
   const saveDraft = useMutation({
     mutationFn: async () => {
+      const request = generate.variables;
       const generatedDraft = generate.data?.draft;
       if (!user?.id || !organizationId || !generatedDraft?.trim()) {
         throw new Error(t("teacherAI.savePrerequisite"));
       }
+      const draftFormat = request?.format ?? format;
+      const draftTopic = request?.topic ?? topic.trim();
+      const draftLanguage = request?.language ?? language;
+      const draftObjectiveId = request?.objectiveId ?? objectiveId;
       const suffix = Date.now().toString(36).toUpperCase();
-      const code = `AI-${format.toUpperCase().replace(/[^A-Z0-9]+/g, "-")}-${suffix}`;
-      const formatLabel = format.split("_").map((part) => part[0].toUpperCase() + part.slice(1)).join(" ");
-      const title = `${topic.trim()} — ${formatLabel}`;
-      if (!curriculumId || !gradeLevelId || !subjectId || !skillId || !topicId || !objectiveId) {
+      const code = `AI-${draftFormat.toUpperCase().replace(/[^A-Z0-9]+/g, "-")}-${suffix}`;
+      const formatLabel = draftFormat.split("_").map((part) => part[0].toUpperCase() + part.slice(1)).join(" ");
+      const title = `${draftTopic} — ${formatLabel}`;
+      if (!request?.curriculumId || !request.gradeLevelId || !request.subjectId || !request.skillId || !request.topicId || !request.objectiveId) {
         throw new Error(t("teacherAI.objectiveRequired"));
+      }
+      if (request.objectiveId !== objectiveId || request.curriculumId !== curriculumId || request.gradeLevelId !== gradeLevelId || request.subjectId !== subjectId || request.skillId !== skillId || request.topicId !== topicId) {
+        throw new Error("The curriculum selection changed after generation. Generate the material again before saving it.");
       }
       if (objectiveAlignments.isPending) {
         throw new Error(t("teacherAI.alignmentPending"));
@@ -152,8 +174,8 @@ export default function TeacherAIAssistantPage() {
         organizationId,
         code,
         title: title.slice(0, 180),
-        contentType: format === "worksheet" ? "worksheet" : format === "quiz" ? "other" : "lesson",
-        languageCode: language === "Thai" ? "th" : "en",
+        contentType: draftFormat === "worksheet" ? "worksheet" : draftFormat === "quiz" || draftFormat === "exam" ? "other" : "lesson",
+        languageCode: draftLanguage === "Thai" ? "th" : "en",
         createdBy: user.id,
       });
       try {
@@ -164,13 +186,13 @@ export default function TeacherAIAssistantPage() {
           createdBy: user.id,
           body: {
             sections: [{ type: "text", title: "AI-generated draft", body: generatedDraft }],
-            aiDraftContext: { country, educationSystem, curriculumReference, subject, gradeLevel, topic, objective, format, language, difficulty, durationMinutes: Number(durationMinutes), priorKnowledge, availableMaterials, teacherNeeds },
+            aiDraftContext: request,
             requiresTeacherReview: true,
           },
         });
         await learningContentService.addObjective({
           contentItemId: content.id,
-          objectiveId,
+          objectiveId: draftObjectiveId,
           sequenceNo: 1,
         });
       } catch (error) {
@@ -210,6 +232,15 @@ export default function TeacherAIAssistantPage() {
       priorKnowledge: priorKnowledge.trim(),
       availableMaterials: availableMaterials.trim(),
       teacherNeeds: teacherNeeds.trim(),
+      curriculumId,
+      gradeLevelId,
+      subjectId,
+      skillId,
+      topicId,
+      objectiveId,
+      questionCount: Number(questionCount),
+      totalMarks: Number(totalMarks),
+      examDurationMinutes: Number(examDurationMinutes),
     });
   };
 
@@ -225,8 +256,6 @@ export default function TeacherAIAssistantPage() {
 
   // Exports must describe the exact request that produced the visible draft,
   // not form values the teacher may have edited afterwards.
-  const generatedRequest = generate.variables;
-
   const exportBaseName = () => {
     const safeTopic = (generatedRequest?.topic ?? topic).trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60);
     return safeTopic || "ep-learning-material";
@@ -251,6 +280,9 @@ export default function TeacherAIAssistantPage() {
       priorKnowledge: request?.priorKnowledge ?? priorKnowledge.trim(),
       availableMaterials: request?.availableMaterials ?? availableMaterials.trim(),
       teacherNeeds: request?.teacherNeeds ?? teacherNeeds.trim(),
+      questionCount: request?.questionCount ?? Number(questionCount),
+      totalMarks: request?.totalMarks ?? Number(totalMarks),
+      examDurationMinutes: request?.examDurationMinutes ?? Number(examDurationMinutes),
       requiresTeacherReview: true as const,
     };
   };
@@ -297,6 +329,22 @@ export default function TeacherAIAssistantPage() {
     setCopyMessage(t("teacherAI.draftCopiedDownload"));
   };
 
+  const downloadWordDocument = () => {
+    if (!generate.data?.draft) return;
+    const context = lessonPackContext();
+    const escapeHtml = (value: string) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    const documentHtml = [
+      "<!doctype html><html><head><meta charset=\"utf-8\"><title>" + escapeHtml(context.topic) + "</title>",
+      "<style>body{font-family:Arial,sans-serif;line-height:1.5;margin:2.2cm;color:#111}h1{font-size:22pt}pre{font-family:Arial,sans-serif;white-space:pre-wrap;overflow-wrap:anywhere} .meta{color:#444;font-size:10pt} .notice{border:1px solid #d97706;padding:10px;margin:16px 0}</style></head><body>",
+      "<h1>" + escapeHtml(context.topic) + "</h1>",
+      "<p class=\"meta\">" + escapeHtml(context.subject) + " · " + escapeHtml(context.gradeLevel) + " · " + escapeHtml(context.materialType) + " · " + escapeHtml(context.language) + "</p>",
+      "<p class=\"notice\"><strong>Teacher review required.</strong> Verify accuracy, answer keys, marking guidance and curriculum alignment before classroom use.</p>",
+      "<pre>" + escapeHtml(generate.data.draft) + "</pre></body></html>",
+    ].join("");
+    downloadTextFile(exportBaseName() + "-" + format + ".doc", documentHtml, "application/msword;charset=utf-8");
+    setCopyMessage("Word-compatible document downloaded.");
+  };
+
   const downloadJsonPack = () => {
     if (!generate.data?.draft) return;
     const pack = {
@@ -337,8 +385,8 @@ export default function TeacherAIAssistantPage() {
         <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">{t("teacherAI.intro")}</p>
       </header>
 
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
-        <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+      <div className="grid gap-6 print:block lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
+        <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm print:hidden">
           <h2 className="text-base font-bold text-slate-900">{t("teacherAI.requirements")}</h2>
           <div className="mt-4 space-y-4">
             <label className={labelClass}>{t("teacherAI.teacherClass")}
@@ -361,7 +409,7 @@ export default function TeacherAIAssistantPage() {
             <div className="grid gap-4 sm:grid-cols-2">
               <label className={labelClass}>{t("teacherAI.materialType")}
                 <select className={fieldClass} value={format} onChange={(event) => setFormat(event.target.value as MaterialFormat)}>
-                  <option value="lesson">{t("teacherAI.lesson")}</option><option value="worksheet">{t("teacherAI.worksheet")}</option><option value="quiz">{t("teacherAI.quiz")}</option><option value="lesson_plan">{t("teacherAI.lessonPlan")}</option><option value="differentiated_pack">{t("teacherAI.differentiatedPack")}</option>
+                  <option value="lesson">{t("teacherAI.lesson")}</option><option value="worksheet">{t("teacherAI.worksheet")}</option><option value="quiz">{t("teacherAI.quiz")}</option><option value="lesson_plan">{t("teacherAI.lessonPlan")}</option><option value="differentiated_pack">{t("teacherAI.differentiatedPack")}</option><option value="exam">Exam paper / ข้อสอบ</option>
                 </select>
               </label>
               <label className={labelClass}>{t("teacherAI.language")}
@@ -403,6 +451,7 @@ export default function TeacherAIAssistantPage() {
               {objectiveId && objectiveAlignments.isPending && <p className="text-xs text-slate-500">{t("teacherAI.checking")}</p>}
               {objectiveId && !objectiveAlignments.isPending && !alignedObjectiveIds.has(objectiveId) && <p role="alert" className="rounded-lg bg-amber-50 p-2 text-xs text-amber-800">{t("teacherAI.notAligned")}</p>}
             </section>
+            {format === "exam" && <section className="grid gap-3 rounded-xl border border-indigo-100 bg-indigo-50/60 p-4 sm:grid-cols-3"><div className="sm:col-span-3"><h3 className="text-sm font-semibold text-slate-900">Exam paper settings / ตั้งค่าข้อสอบ</h3><p className="mt-1 text-xs text-slate-600">The generator creates a student paper and a separate teacher answer key, marking scheme and rubric. Review everything before use.</p></div><label className={labelClass}>Number of questions<input className={fieldClass} type="number" min={5} max={80} step={1} value={questionCount} onChange={(event) => setQuestionCount(event.target.value)} /></label><label className={labelClass}>Total marks<input className={fieldClass} type="number" min={5} max={300} step={1} value={totalMarks} onChange={(event) => setTotalMarks(event.target.value)} /></label><label className={labelClass}>Exam time (minutes)<input className={fieldClass} type="number" min={10} max={240} step={5} value={examDurationMinutes} onChange={(event) => setExamDurationMinutes(event.target.value)} /></label></section>}
             <label className={labelClass}>Curriculum reference (optional)
               <input className={fieldClass} value={curriculumReference} onChange={(event) => setCurriculumReference(event.target.value)} maxLength={500} placeholder={t("teacherAI.referencePlaceholder")} />
             </label>
@@ -431,14 +480,14 @@ export default function TeacherAIAssistantPage() {
           </div>
         </section>
 
-        <section className="min-h-[28rem] rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <section className="min-h-[28rem] rounded-2xl border border-slate-200 bg-white p-5 shadow-sm print:border-0 print:p-0 print:shadow-none">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div><h2 className="text-base font-bold text-slate-900">{t("teacherAI.generated")}</h2><p className="mt-1 text-xs text-slate-500">{t("teacherAI.notSaved")}</p></div>
-            {generate.data && <div className="flex flex-wrap gap-2"><button type="button" onClick={() => void copyDraft()} className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"><Copy size={14} />{t("teacherAI.copy")}</button><button type="button" onClick={downloadMarkdownPack} className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"><Download size={14} />{t("teacherAI.markdown")}</button><button type="button" onClick={downloadJsonPack} className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"><FileJson size={14} />{t("teacherAI.json")}</button></div>}
+            {generate.data && <div className="flex flex-wrap gap-2 print:hidden"><button type="button" onClick={() => void copyDraft()} className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"><Copy size={14} />{t("teacherAI.copy")}</button><button type="button" onClick={downloadMarkdownPack} className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"><Download size={14} />{t("teacherAI.markdown")}</button><button type="button" onClick={downloadJsonPack} className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"><FileJson size={14} />{t("teacherAI.json")}</button><button type="button" onClick={downloadWordDocument} className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50">Word document</button><button type="button" onClick={() => window.print()} className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50">Print / Save PDF</button></div>}
           </div>
           {copyMessage && <p role="status" className="mt-3 text-xs text-slate-600">{copyMessage}</p>}
           {generate.isPending ? <div className="mt-6 space-y-3" aria-label={t("teacherAI.generatingDraft")}><div className="h-4 w-3/4 animate-pulse rounded bg-slate-200" /><div className="h-4 w-full animate-pulse rounded bg-slate-200" /><div className="h-4 w-5/6 animate-pulse rounded bg-slate-200" /><div className="h-32 animate-pulse rounded-xl bg-slate-100" /></div>
-            : generate.data ? <><div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950"><strong>{t("teacherAI.review")}</strong> {t("teacherAI.draftNotValidated")}</div>{generate.data.usage && <p className="mt-3 text-xs text-slate-500" role="status">{t("teacherAI.aiUsage")} {generate.data.usage.remainingRequests} {t("teacherAI.of")} {generate.data.usage.dailyLimit} {t("teacherAI.remaining")}</p>}<div className="mt-4 flex flex-wrap gap-2"><button type="button" onClick={() => saveDraft.mutate()} disabled={saveDraft.isPending || !organizationId || !curriculumId || !gradeLevelId || !subjectId || !skillId || !topicId || !objectiveId || objectiveAlignments.isPending || objectiveAlignments.isError || !alignedObjectiveIds.has(objectiveId)} className="rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-50">{saveDraft.isPending ? t("teacherAI.saving") : t("teacherAI.save")}</button><a href="/teacher/content" className="inline-flex items-center rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">{t("teacherAI.openLibrary")}</a></div>{saveDraft.isError && <p role="alert" className="mt-3 text-sm text-red-700">{saveDraft.error.message}</p>}{saveDraft.data && <p role="status" className="mt-3 rounded-lg bg-emerald-50 p-3 text-sm text-emerald-800">{t("teacherAI.savedDraftPrefix")}{saveDraft.data.title}{t("teacherAI.savedDraftSuffix")} <a className="font-semibold underline" href={`/teacher/content/${saveDraft.data.id}`}>{t("teacherAI.openDraft")}</a></p>}<pre className="mt-4 whitespace-pre-wrap break-words font-sans text-sm leading-6 text-slate-800">{generate.data.draft}</pre></>
+            : generate.data ? <><div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950 print:hidden"><strong>{t("teacherAI.review")}</strong> {t("teacherAI.draftNotValidated")}</div>{generate.data.usage && <p className="mt-3 text-xs text-slate-500" role="status">{t("teacherAI.aiUsage")} {generate.data.usage.remainingRequests} {t("teacherAI.of")} {generate.data.usage.dailyLimit} {t("teacherAI.remaining")}</p>}<div className="mt-4 flex flex-wrap gap-2 print:hidden"><button type="button" onClick={() => saveDraft.mutate()} disabled={saveDraft.isPending || !organizationId || !curriculumId || !gradeLevelId || !subjectId || !skillId || !topicId || !objectiveId || objectiveAlignments.isPending || objectiveAlignments.isError || !alignedObjectiveIds.has(objectiveId)} className="rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-50">{saveDraft.isPending ? t("teacherAI.saving") : t("teacherAI.save")}</button><a href="/teacher/content" className="inline-flex items-center rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">{t("teacherAI.openLibrary")}</a></div>{saveDraft.isError && <p role="alert" className="mt-3 text-sm text-red-700">{saveDraft.error.message}</p>}{saveDraft.data && <p role="status" className="mt-3 rounded-lg bg-emerald-50 p-3 text-sm text-emerald-800">{t("teacherAI.savedDraftPrefix")}{saveDraft.data.title}{t("teacherAI.savedDraftSuffix")} <a className="font-semibold underline" href={`/teacher/content/${saveDraft.data.id}`}>{t("teacherAI.openDraft")}</a></p>}<pre className="mt-4 whitespace-pre-wrap break-words font-sans text-sm leading-6 text-slate-800 print:mt-0 print:text-black">{generate.data.draft}</pre></>
             : <div className="mt-8 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center"><Sparkles size={24} className="mx-auto text-slate-400" /><p className="mt-3 text-sm font-semibold text-slate-700">{t("teacherAI.draftHere")}</p><p className="mt-1 text-sm text-slate-500">{t("teacherAI.enterObjective")}</p></div>}
         </section>
       </div>

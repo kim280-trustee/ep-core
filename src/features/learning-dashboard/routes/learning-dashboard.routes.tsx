@@ -6,6 +6,7 @@ import { ProtectedRoute } from "@/core/auth";
 import StudentLayout from "../layouts/StudentLayout";
 
 const LearningDashboardPage = lazy(() => import("../pages/LearningDashboardPage"));
+const StudentLiveGamesPage = lazy(() => import("@/features/learning-live-games/pages/StudentLiveGamesPage"));
 const LearningDailyHubPage = lazy(() => import("../pages/LearningDailyHubPage"));
 const LearningAICoachPage = lazy(() => import("../pages/LearningAICoachPage"));
 const LearningAssignmentsPage = lazy(() => import("../pages/LearningAssignmentsPage"));
@@ -28,6 +29,7 @@ export const learningDashboardRoutes: RouteObject[] = [
     children: [
       { index: true, element: <LearningDashboardPage /> },
       { path: "today", element: <LearningDailyHubPage /> },
+      { path: "live-games", element: <StudentLiveGamesPage /> },
       { path: "coach", element: <LearningAICoachPage /> },
       { path: "assignments", element: <LearningAssignmentsPage /> },
       { path: "assignments/:assignmentId", element: <LearningAssignmentDetailPage /> },

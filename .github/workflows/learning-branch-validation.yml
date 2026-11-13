@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - paul/integrate-edna-content
+      - paul/ep-live-games-foundation
       - 'edna/**'
   pull_request:
     branches:

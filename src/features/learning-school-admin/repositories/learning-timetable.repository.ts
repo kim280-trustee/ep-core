@@ -34,6 +34,15 @@ export const learningTimetableRepository = {
     return (data ?? []).map(mapRow);
   },
 
+  async listForCurrentTeacher(): Promise<LearningTimetableEntry[]> {
+    const rpcClient = supabase as unknown as {
+      rpc: (name: string, args: Record<string, never>) => Promise<{ data: Row[] | null; error: { message: string } | null }>;
+    };
+    const { data, error } = await rpcClient.rpc("list_learning_teacher_timetable", {});
+    if (error) throw new Error(error.message);
+    return (data ?? []).map(mapRow);
+  },
+
   async create(values: CreateLearningTimetableEntry): Promise<LearningTimetableEntry> {
     const { data, error } = await supabase
       .from("learning_timetable_entries")

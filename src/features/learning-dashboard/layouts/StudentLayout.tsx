@@ -1,11 +1,13 @@
-import { Award, BookOpen, CalendarDays, Compass, Languages, LayoutDashboard, LogOut, TrendingUp, GraduationCap, Sparkles, Bell } from "lucide-react";
+import { Award, BookOpen, CalendarDays, Compass, Languages, LayoutDashboard, LogOut, TrendingUp, GraduationCap, Sparkles, Bell, Gamepad2 } from "lucide-react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "@/core/auth";
+import { useTranslation } from "@/core/i18n/useTranslation";
 
 const items = [
   { to: "/learning", label: "Dashboard", icon: LayoutDashboard, end: true },
   { to: "/learning/today", label: "Daily Hub", icon: CalendarDays },
+  { to: "/learning/live-games", label: "Live Games", icon: Gamepad2 },
   { to: "/learning/coach", label: "AI Coach", icon: Sparkles },
   { to: "/learning/assignments", label: "Assignments", icon: BookOpen },
   { to: "/learning/progress", label: "Progress", icon: TrendingUp },
@@ -28,6 +30,7 @@ function navigationClass(isActive: boolean) {
 
 export default function StudentLayout() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { user, logout } = useAuth();
   const [loggingOut, setLoggingOut] = useState(false);
 
@@ -96,7 +99,7 @@ export default function StudentLayout() {
               {items.map(({ to, label, icon: Icon, end }) => (
                 <NavLink key={to} to={to} end={end} className={({ isActive }) => navigationClass(isActive)}>
                   <Icon size={16} />
-                  <span className="whitespace-nowrap">{label}</span>
+                  <span className="whitespace-nowrap">{label === "Live Games" ? t("liveGames.navigation") : label}</span>
                 </NavLink>
               ))}
             </nav>

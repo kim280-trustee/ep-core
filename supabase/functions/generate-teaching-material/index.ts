@@ -1,6 +1,6 @@
 import { withSupabase } from "npm:@supabase/server";
 
-const ALLOWED_FORMATS = new Set(["lesson", "worksheet", "quiz", "lesson_plan", "differentiated_pack"]);
+const ALLOWED_FORMATS = new Set(["lesson", "worksheet", "quiz", "lesson_plan", "differentiated_pack", "exam", "marking_feedback"]);
 const ALLOWED_LANGUAGES = new Set(["English", "Thai", "English and Thai"]);
 const ALLOWED_DIFFICULTIES = new Set(["beginner", "developing", "on_level", "stretch"]);
 
@@ -24,9 +24,15 @@ export default {
       const educationSystem = typeof body.educationSystem === "string" ? body.educationSystem.trim() : "";
       const curriculumReference = typeof body.curriculumReference === "string" ? body.curriculumReference.trim() : "";
       const durationMinutes = body.durationMinutes === undefined ? 50 : Number(body.durationMinutes);
+      const questionCount = body.questionCount === undefined ? 20 : Number(body.questionCount);
+      const totalMarks = body.totalMarks === undefined ? 50 : Number(body.totalMarks);
+      const examDurationMinutes = body.examDurationMinutes === undefined ? 60 : Number(body.examDurationMinutes);
       const priorKnowledge = typeof body.priorKnowledge === "string" ? body.priorKnowledge.trim() : "";
       const availableMaterials = typeof body.availableMaterials === "string" ? body.availableMaterials.trim() : "";
       const teacherNeeds = typeof body.teacherNeeds === "string" ? body.teacherNeeds.trim() : "";
+      const studentResponse = typeof body.studentResponse === "string" ? body.studentResponse.trim() : "";
+      const markingCriteria = typeof body.markingCriteria === "string" ? body.markingCriteria.trim() : "";
+      const maxMarks = body.maxMarks === undefined ? 10 : Number(body.maxMarks);
 
       if (!organizationId || !subject || !gradeLevel || !topic || !objective) {
         return Response.json({ error: "School, subject, grade, topic and learning objective are required." }, { status: 400 });
@@ -36,14 +42,18 @@ export default {
         topic.length > 200 || objective.length > 500 || country.length > 100 ||
         educationSystem.length > 120 || curriculumReference.length > 500 ||
         priorKnowledge.length > 1000 || availableMaterials.length > 1000 ||
-        teacherNeeds.length > 1000
+        teacherNeeds.length > 1000 || studentResponse.length > 6000 || markingCriteria.length > 2000
       ) {
         return Response.json({ error: "One or more fields are too long. Shorten the request and try again." }, { status: 400 });
       }
       if (
         !ALLOWED_FORMATS.has(format) || !ALLOWED_LANGUAGES.has(language) ||
         !ALLOWED_DIFFICULTIES.has(difficulty) ||
-        !Number.isInteger(durationMinutes) || durationMinutes < 5 || durationMinutes > 240
+        !Number.isInteger(durationMinutes) || durationMinutes < 5 || durationMinutes > 240 ||
+        !Number.isInteger(questionCount) || questionCount < 5 || questionCount > 80 ||
+        !Number.isInteger(totalMarks) || totalMarks < 5 || totalMarks > 300 ||
+        !Number.isInteger(examDurationMinutes) || examDurationMinutes < 10 || examDurationMinutes > 240 ||
+        (format === "marking_feedback" && (!studentResponse || !Number.isFinite(maxMarks) || maxMarks <= 0 || maxMarks > 100))
       ) {
         return Response.json({ error: "Choose a supported material type, language and difficulty." }, { status: 400 });
       }
@@ -113,6 +123,8 @@ export default {
         "Use age-appropriate, inclusive, culturally respectful material. Avoid collecting or requesting student names, contact details or other personal data.",
         "Do not claim alignment to an official curriculum standard unless the teacher supplied that standard.",
         "For quizzes, include an answer key and a brief explanation for each answer. Keep questions unambiguous.",
+        "For exam papers, create a complete printable examination with candidate instructions, clear sections, numbered questions, marks per question, and a total that adds up exactly to the requested total marks. Match the requested question count and time limit. Include a separate teacher-only answer key with worked answers where useful, a marking scheme with point allocations, and an analytic rubric for extended responses. Include a balanced mix of recall, understanding and application appropriate to the grade and difficulty. Do not reveal answers in the student paper section. If a question cannot be objectively marked, provide explicit marking criteria. Never claim official examination-board approval.",
+        "For marking feedback, assess only the supplied student response against the teacher-provided criteria. Suggest a score out of the supplied maximum, explain which criteria are met or missing with evidence from the response, and draft specific, age-appropriate feedback that helps the learner improve. If criteria are missing or ambiguous, say so and avoid false precision. Do not infer student ability, identity or circumstances. The score and feedback are suggestions only; the teacher makes the final decision.",
         "For worksheets, include clear learner instructions and a separate answer key.",
         "For lesson plans, include measurable objectives, materials, timed stages, checks for understanding and differentiation.",
         "For lessons, explain the concept, give worked examples, and include a short learner practice section.",
@@ -133,11 +145,15 @@ export default {
         `Education system: ${educationSystem || "Not specified"}`,
         `Teacher-supplied curriculum reference: ${curriculumReference || "Not supplied; do not invent standards"}`,
         `Lesson duration in minutes: ${durationMinutes}`,
+        `Exam question count: ${questionCount}`,
+        `Exam total marks: ${totalMarks}`,
+        `Exam duration in minutes: ${examDurationMinutes}`,
         `Prior knowledge: ${priorKnowledge || "Not specified; state reasonable assumptions"}`,
         `Available teaching materials: ${availableMaterials || "Not specified"}`,
         `Teacher support needs: ${teacherNeeds || "Not specified"}`,
+        ...(format === "marking_feedback" ? [`Maximum marks: ${maxMarks}`, `Teacher marking criteria: ${markingCriteria || "No rubric supplied; use transparent general criteria and clearly state assumptions"}`, `Anonymous student response: ${studentResponse}`] : []),
         "",
-        format === "differentiated_pack" ? "Generate a complete differentiated lesson pack with supported, core and stretch tasks, learner instructions, a shared answer key, and teacher guidance for using the three versions." : "Generate the requested material in a practical classroom-ready structure.",
+        format === "differentiated_pack" ? "Generate a complete differentiated lesson pack with supported, core and stretch tasks, learner instructions, a shared answer key, and teacher guidance for using the three versions." : format === "exam" ? "Generate a complete examination paper. Separate the student-facing paper from the teacher-only answer key, marking scheme and rubric. Show marks for every question and verify the total." : format === "marking_feedback" ? "Provide a teacher-only suggested mark, criterion-by-criterion evidence, and actionable feedback. Clearly label all scoring as a suggestion for teacher review." : "Generate the requested material in a practical classroom-ready structure.",
         "Keep teacher-facing guidance, learner-facing material and answer keys clearly separated where applicable. Include a brief assumptions and local-verification note. Never invent a curriculum standard, endorsement, student data or unavailable audio capability."
       ].join("\n");
 
@@ -151,7 +167,7 @@ export default {
           model,
           instructions,
           input,
-          max_output_tokens: format === "differentiated_pack" ? 3000 : 1800,
+          max_output_tokens: format === "exam" ? 4500 : format === "marking_feedback" ? 1600 : format === "differentiated_pack" ? 3000 : 1800,
           store: false,
         }),
       });

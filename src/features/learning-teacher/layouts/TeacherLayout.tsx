@@ -1,4 +1,4 @@
-import { BookOpen, BookOpenCheck, FileQuestion, FileText, Languages, LayoutDashboard, LogOut, PlusCircle, GraduationCap, Sparkles, Bell, Target, CalendarDays } from "lucide-react";
+import { BookOpen, BookOpenCheck, FileQuestion, FileText, Languages, LayoutDashboard, LogOut, PlusCircle, GraduationCap, Sparkles, Bell, Target, CalendarDays, ClipboardCheck } from "lucide-react";
 import { Navigate, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -17,6 +17,8 @@ const navigationGroups = [
   {
     label: "learning.teaching",
     items: [
+      { to: "/teacher/workload", label: "teacherWorkload.title", icon: ClipboardCheck, end: false },
+      { to: "/teacher/leave", label: "teacherLeave.title", icon: CalendarDays, end: false },
       { to: "/teacher/content", label: "learning.contentLibrary", icon: FileText, end: false },
       { to: "/teacher/lesson-plans", label: "learning.lessonPlanning", icon: BookOpenCheck, end: false },
       { to: "/teacher/vocabulary", label: "learning.vocabulary", icon: Languages, end: false },
@@ -28,6 +30,7 @@ const navigationGroups = [
       { to: "/teacher/ai-assistant", label: "learning.aiAssistant", icon: Sparkles, end: false },
       { to: "/teacher/interventions", label: "learning.studentSupport", icon: Target, end: false },
       { to: "/teacher/question-bank", label: "learning.questionBank", icon: FileQuestion, end: false },
+      { to: "/teacher/assessments", label: "assessmentBuilder.title", icon: ClipboardCheck, end: false },
     ],
   },
   {
@@ -90,6 +93,7 @@ export default function TeacherLayout() {
     { to: "/teacher/classes/"+primaryClassId+"/gradebook/reports", label: "learning.gradebookReports" },
     { to: "/teacher/classes/"+primaryClassId+"/gradebook/settings", label: "learning.gradebookSettings" },
     { to: "/teacher/classes/"+primaryClassId+"/gamification", label: "learning.classGamification" },
+    { to: "/teacher/classes/"+primaryClassId+"/live-games", label: "liveGames.navigation" },
   ] : [];
 
   const linkClass = (active: boolean) => [

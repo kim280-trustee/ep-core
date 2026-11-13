@@ -2,6 +2,7 @@ import { learningTimetableRepository } from "../repositories/learning-timetable.
 
 export const learningTimetableService = {
   list: learningTimetableRepository.list,
+  listForCurrentTeacher: learningTimetableRepository.listForCurrentTeacher,
   create: learningTimetableRepository.create,
   setStatus: learningTimetableRepository.setStatus,
   delete: learningTimetableRepository.delete,

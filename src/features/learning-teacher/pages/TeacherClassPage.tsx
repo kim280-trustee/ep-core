@@ -40,8 +40,9 @@ export default function TeacherClassPage() {
           <h2 className="text-lg font-semibold text-slate-900">{t("teacherClass.workspace")}</h2>
           <p className="mt-1 text-sm text-slate-500">{t("teacherClass.workspaceHelp")}</p>
         </div>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-7">
           <QuickAction icon={<ClipboardList size={18} />} label={t("teacherClass.assignments")} description={t("teacherClass.assignmentHelp")} to={"/teacher/classes/" + classGroupId + "/assignments/history"} />
+          <QuickAction icon={<ClipboardCheck size={18} />} label={t("teacherAttendance.title")} description={t("teacherWorkload.attendanceActions")} to={"/teacher/classes/" + classGroupId + "/attendance"} />
           <QuickAction icon={<Users size={18} />} label={t("teacherClass.students")} description={t("teacherClass.studentsHelp")} href="#students" />
           <QuickAction icon={<GraduationCap size={18} />} label={t("teacherClass.gradebook")} description={t("teacherClass.gradebookHelp")} to={"/teacher/classes/" + classGroupId + "/gradebook"} />
           <QuickAction icon={<BookOpen size={18} />} label={t("teacherClass.contentLibrary")} description={t("teacherClass.contentHelp")} to="/teacher/content" />

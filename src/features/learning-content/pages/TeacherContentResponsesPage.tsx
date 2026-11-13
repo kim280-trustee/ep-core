@@ -1,8 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { ArrowLeft, CheckCircle2, Save } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Save, Sparkles } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 import { useTranslation } from "@/core/i18n/useTranslation";
+import { supabase } from "@/core/infrastructure/supabase/client";
 import { learningContentService } from "@/features/learning-content";
 
 type GradeDraft = { score: string; maxScore: string; feedback: string };
@@ -15,10 +16,41 @@ export default function TeacherContentResponsesPage() {
   const [savedResponseIds, setSavedResponseIds] = useState<string[]>([]);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<"all" | "submitted" | "awaiting" | "graded">("all");
+  const [markingCriteria, setMarkingCriteria] = useState<Record<string, string>>({});
+  const [aiSuggestions, setAiSuggestions] = useState<Record<string, string>>({});
   const responses = useQuery({
     queryKey: ["learning", "teacher-content-responses", assignmentId],
     queryFn: () => learningContentService.listTeacherResponses(assignmentId),
     enabled: Boolean(assignmentId),
+  });
+  const suggestMarking = useMutation({
+    mutationFn: async (input: { responseId: string; organizationId: string; studentResponse: string; markingCriteria: string; maxMarks: number }) => {
+      const { data, error } = await supabase.functions.invoke("generate-teaching-material", {
+        body: {
+          organizationId: input.organizationId,
+          subject: "Written response",
+          gradeLevel: "Teacher supplied grade context",
+          topic: "Student written response",
+          objective: "Assess the response only against the supplied marking criteria. Suggest a mark and constructive feedback for teacher review.",
+          format: "marking_feedback",
+          language: language === "th" ? "Thai" : "English",
+          difficulty: "developing",
+          country: "", educationSystem: "", curriculumReference: "", durationMinutes: 50,
+          priorKnowledge: "", availableMaterials: "", teacherNeeds: "",
+          studentResponse: input.studentResponse,
+          markingCriteria: input.markingCriteria,
+          maxMarks: input.maxMarks,
+        },
+      });
+      if (error) {
+        const context = (error as { context?: { json?: () => Promise<{ error?: string }> } }).context;
+        const details = await context?.json?.().catch(() => null);
+        throw new Error(details?.error || error.message || "AI marking suggestion failed.");
+      }
+      if (!data || typeof data.draft !== "string" || !data.draft.trim()) throw new Error("The AI service returned no marking suggestion.");
+      return { responseId: input.responseId, draft: data.draft as string };
+    },
+    onSuccess: (result) => setAiSuggestions((current) => ({ ...current, [result.responseId]: result.draft })),
   });
   const grade = useMutation({
     mutationFn: ({ responseId, score, maxScore, feedback }: { responseId: string; score: number; maxScore: number; feedback: string }) =>
@@ -104,6 +136,7 @@ export default function TeacherContentResponsesPage() {
                   <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">{t("contentResponses.studentResponse")}</p>
                   <p className="mt-2 whitespace-pre-wrap text-sm leading-7 text-slate-800">{r.responseText || t("contentResponses.noResponseText")}</p>
                 </div>
+                <section className="mt-4 rounded-xl border border-indigo-100 bg-indigo-50/50 p-4"><div className="flex flex-wrap items-center justify-between gap-3"><div><h3 className="text-sm font-semibold text-slate-900">AI marking assistant / ผู้ช่วยตรวจคำตอบ</h3><p className="mt-1 text-xs text-slate-600">Get a suggested mark and feedback. The teacher must make the final grading decision.</p></div><button type="button" disabled={r.status !== "submitted" || !r.responseText.trim() || suggestMarking.isPending} onClick={() => { setAiSuggestions((current) => { const next = { ...current }; delete next[r.id]; return next; }); suggestMarking.mutate({ responseId: r.id, organizationId: r.organizationId, studentResponse: r.responseText, markingCriteria: markingCriteria[r.id] ?? "", maxMarks: numbersValid ? numericMaxScore : 10 }); }} className="inline-flex items-center gap-2 rounded-lg bg-indigo-700 px-3 py-2 text-xs font-semibold text-white disabled:opacity-40"><Sparkles size={14} />{suggestMarking.isPending && suggestMarking.variables?.responseId === r.id ? "Preparing suggestion..." : "Suggest marks & feedback"}</button></div><label className="mt-3 block text-xs font-medium text-slate-700">Marking criteria / rubric (optional)<textarea value={markingCriteria[r.id] ?? ""} onChange={(event) => setMarkingCriteria((current) => ({ ...current, [r.id]: event.target.value }))} maxLength={2000} rows={2} placeholder="Paste the rubric or explain what a good answer should include." className="mt-1 block w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm" /></label><p className="mt-2 text-xs text-amber-800">Remove student names and personal details before using AI. The suggestion is not saved as a grade.</p>{aiSuggestions[r.id] && <div className="mt-3 rounded-lg border border-indigo-200 bg-white p-3"><p className="text-xs font-semibold uppercase tracking-wide text-indigo-700">AI suggestion — teacher review required</p><pre className="mt-2 whitespace-pre-wrap font-sans text-sm leading-6 text-slate-800">{aiSuggestions[r.id]}</pre><button type="button" onClick={() => set({ feedback: aiSuggestions[r.id] })} className="mt-3 rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700">Use suggested feedback as a draft</button></div>}{suggestMarking.isError && suggestMarking.variables?.responseId === r.id && <p role="alert" className="mt-2 text-xs text-red-700">{suggestMarking.error instanceof Error ? suggestMarking.error.message : "AI suggestion could not be generated."}</p>}</section>
                 <div className="mt-5 grid gap-4 md:grid-cols-[120px_120px_1fr]">
                   <label className="text-sm font-medium text-slate-700">{t("contentResponses.score")}<input type="number" min="0" step="0.01" value={d.score} onChange={(e) => set({ score: e.target.value })} className="input mt-1 w-full" /></label>
                   <label className="text-sm font-medium text-slate-700">{t("contentResponses.maxScore")}<input type="number" min="0.01" step="0.01" value={d.maxScore} onChange={(e) => set({ maxScore: e.target.value })} className="input mt-1 w-full" /></label>

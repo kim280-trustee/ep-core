@@ -8,6 +8,8 @@ import { useAuthorization } from "@/features/auth/authorization/useAuthorization
 import { learningAcademicService } from "@/features/learning-academic";
 import { learningEnrollmentService } from "@/features/learning-enrollment";
 import { learningGradebookService } from "@/features/learning-gradebook";
+import { learningInterventionsService } from "@/features/learning-interventions";
+import type { LearningInterventionCase, LearningInterventionPriority, LearningInterventionStatus } from "@/features/learning-interventions";
 import { learningSchoolAdminService } from "../services/learning-school-admin.service";
 
 function csvCell(value: string): string {
@@ -54,6 +56,9 @@ export default function SchoolAnalyticsPage() {
   const [selectedClassSubjectId, setSelectedClassSubjectId] = useState("");
   const [activityFrom, setActivityFrom] = useState("");
   const [activityTo, setActivityTo] = useState("");
+  const [supportStatusFilter, setSupportStatusFilter] = useState<"all" | LearningInterventionStatus>("all");
+  const [supportPriorityFilter, setSupportPriorityFilter] = useState<"all" | LearningInterventionPriority>("all");
+  const [supportSearch, setSupportSearch] = useState("");
 
   const organizationsQuery = useQuery({
     queryKey: ["school-analytics", "organizations", user?.id],
@@ -119,6 +124,22 @@ export default function SchoolAnalyticsPage() {
   const visibleClassSubjects = validClassSubjectId
     ? classSubjects.filter((item) => item.id === validClassSubjectId) : classSubjects;
 
+  const supportCasesQuery = useQuery({
+    queryKey: ["school-analytics", "support-cases", organizationId, visibleClasses.map((item) => item.id).join(",")],
+    queryFn: async () => {
+      const collected: LearningInterventionCase[] = [];
+      for (let offset = 0; offset < visibleClasses.length; offset += 10) {
+        const batch = await Promise.all(visibleClasses.slice(offset, offset + 10).map((group) => learningInterventionsService.listCases(group.id)));
+        collected.push(...batch.flat());
+      }
+      const uniqueCases = new Map<string, LearningInterventionCase>();
+      collected.forEach((item) => uniqueCases.set(item.id, item));
+      return [...uniqueCases.values()];
+    },
+    enabled: Boolean(organizationId && canManage && academicQuery.isSuccess),
+    staleTime: 30_000,
+  });
+
   const gradesQuery = useQuery({
     queryKey: ["school-analytics", "term-grades", organizationId, termId],
     queryFn: () => learningGradebookService.listTermGrades({ termId }),
@@ -155,6 +176,33 @@ export default function SchoolAnalyticsPage() {
   const teacherIds = new Set(classData.flatMap(({ members }) => members.filter((member) => member.membershipType === "teacher" && member.status === "active").map((member) => member.userId)));
   const gradeScores = filteredFinalizedGrades.map((grade) => grade.overrideScore ?? grade.score);
   const averageScore = gradeScores.length ? gradeScores.reduce((sum, score) => sum + score, 0) / gradeScores.length : null;
+  const supportCases = supportCasesQuery.data ?? [];
+  const todayInOrganization = new Intl.DateTimeFormat("en-CA", { timeZone: organization?.timezone || "UTC", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+  const openSupportCases = supportCases.filter((item) => item.status !== "resolved");
+  const highPrioritySupportCases = openSupportCases.filter((item) => item.priority === "high");
+  const overdueSupportCases = openSupportCases.filter((item) => item.reviewDate !== null && item.reviewDate < todayInOrganization);
+  const visibleSupportCases = supportCases.filter((item) => {
+    const matchesStatus = supportStatusFilter === "all" || item.status === supportStatusFilter;
+    const matchesPriority = supportPriorityFilter === "all" || item.priority === supportPriorityFilter;
+    const search = supportSearch.trim().toLocaleLowerCase();
+    const matchesSearch = !search || [item.studentName, item.className, item.classCode, item.title, item.notes, item.evidenceReference ?? ""].some((value) => value.toLocaleLowerCase().includes(search));
+    return matchesStatus && matchesPriority && matchesSearch;
+  });
+  const exportSupportCases = () => {
+    const rows = [
+      ["class", "class_code", "student", "case", "priority", "status", "review_date", "evidence_reference", "notes", "outcome"],
+      ...visibleSupportCases.map((item) => [item.className, item.classCode, item.studentName, item.title, item.priority, item.status, item.reviewDate ?? "", item.evidenceReference ?? "", item.notes, item.outcome ?? ""]),
+    ];
+    const csv = "\\uFEFF" + rows.map((row) => row.map(csvCell).join(",")).join("\\r\\n");
+    const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8;" }));
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = "school-support-follow-ups.csv";
+    anchor.click();
+    window.setTimeout(() => URL.revokeObjectURL(url), 0);
+  };
+  const supportStatusLabel = (status: LearningInterventionStatus) => status === "in_progress" ? t("schoolAnalytics.supportInProgress") : status === "resolved" ? t("schoolAnalytics.supportResolved") : t("schoolAnalytics.supportOpen");
+  const supportPriorityLabel = (priority: LearningInterventionPriority) => priority === "high" ? t("schoolAnalytics.supportHigh") : priority === "low" ? t("schoolAnalytics.supportLow") : t("schoolAnalytics.supportNormal");
   const loading = authLoading || authorization.loading || organizationsQuery.isPending
     || (Boolean(organizationId) && academicQuery.isPending)
     || (Boolean(academicYearId) && termsQuery.isPending)
@@ -220,6 +268,15 @@ export default function SchoolAnalyticsPage() {
       </section>
       {assignmentSummary && <p className="text-xs text-slate-500">{t("schoolAnalytics.assignmentActivityNote")}</p>}
       {assignmentSummaryQuery.isError && <p role="alert" className="rounded-xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-800">{t("schoolAnalytics.assignmentProgressError")}</p>}
+      <section className="space-y-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <div className="flex flex-wrap items-start justify-between gap-3"><div><h2 className="font-semibold text-slate-950">{t("schoolAnalytics.supportCasesTitle")}</h2><p className="mt-1 max-w-3xl text-sm text-slate-500">{t("schoolAnalytics.supportCasesDescription")}</p></div><button type="button" onClick={exportSupportCases} disabled={!visibleSupportCases.length || supportCasesQuery.isPending} className="rounded-xl border border-slate-300 px-3 py-2 text-sm font-semibold text-slate-700 disabled:opacity-50">{t("schoolAnalytics.supportCasesExport")}</button></div>
+        <div className="grid gap-3 sm:grid-cols-3"><Metric label={t("schoolAnalytics.supportUnresolvedCases")} value={openSupportCases.length} detail={t("schoolAnalytics.supportOpenDetail")} /><Metric label={t("schoolAnalytics.supportHighPriority")} value={highPrioritySupportCases.length} detail={t("schoolAnalytics.supportHighPriorityDetail")} /><Metric label={t("schoolAnalytics.supportOverdue")} value={overdueSupportCases.length} detail={t("schoolAnalytics.supportOverdueDetail")} /></div>
+        <div className="grid gap-3 md:grid-cols-3"><label className="text-sm font-medium text-slate-700">{t("schoolAnalytics.supportCasesSearch")}<input value={supportSearch} onChange={(event) => setSupportSearch(event.target.value)} placeholder={t("schoolAnalytics.supportCasesSearchPlaceholder")} className="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5" /></label><label className="text-sm font-medium text-slate-700">{t("schoolAnalytics.supportStatusFilter")}<select value={supportStatusFilter} onChange={(event) => setSupportStatusFilter(event.target.value as "all" | LearningInterventionStatus)} className="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5"><option value="all">{t("schoolAnalytics.supportAll")}</option><option value="open">{t("schoolAnalytics.supportOpen")}</option><option value="in_progress">{t("schoolAnalytics.supportInProgress")}</option><option value="resolved">{t("schoolAnalytics.supportResolved")}</option></select></label><label className="text-sm font-medium text-slate-700">{t("schoolAnalytics.supportPriorityFilter")}<select value={supportPriorityFilter} onChange={(event) => setSupportPriorityFilter(event.target.value as "all" | LearningInterventionPriority)} className="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5"><option value="all">{t("schoolAnalytics.supportAll")}</option><option value="high">{t("schoolAnalytics.supportHigh")}</option><option value="normal">{t("schoolAnalytics.supportNormal")}</option><option value="low">{t("schoolAnalytics.supportLow")}</option></select></label></div>
+        {supportCasesQuery.isPending && <p className="py-6 text-sm text-slate-500">{t("schoolAnalytics.supportCasesLoading")}</p>}
+        {supportCasesQuery.isError && <p role="alert" className="rounded-xl bg-rose-50 p-4 text-sm text-rose-800">{t("schoolAnalytics.supportCasesLoadError")}</p>}
+        {!supportCasesQuery.isPending && !supportCasesQuery.isError && visibleSupportCases.length === 0 && <p className="py-6 text-sm text-slate-500">{t("schoolAnalytics.supportCasesNone")}</p>}
+        {!supportCasesQuery.isPending && !supportCasesQuery.isError && visibleSupportCases.length > 0 && <div className="overflow-x-auto"><table className="min-w-full text-left text-sm"><thead className="bg-slate-50 text-xs uppercase text-slate-500"><tr><th className="px-3 py-3">{t("schoolAnalytics.supportStudent")}</th><th className="px-3 py-3">{t("schoolAdmin.class")}</th><th className="px-3 py-3">{t("schoolAnalytics.supportCase")}</th><th className="px-3 py-3">{t("schoolAnalytics.supportPriorityFilter")}</th><th className="px-3 py-3">{t("schoolAnalytics.supportStatusFilter")}</th><th className="px-3 py-3">{t("schoolAnalytics.supportReviewDate")}</th></tr></thead><tbody className="divide-y divide-slate-100">{visibleSupportCases.slice(0, 100).map((item) => <tr key={item.id}><td className="px-3 py-3 font-medium text-slate-900">{item.studentName}</td><td className="px-3 py-3">{item.className} <span className="text-xs text-slate-500">{item.classCode}</span></td><td className="max-w-sm px-3 py-3"><p className="font-medium text-slate-900">{item.title}</p><p className="mt-1 line-clamp-2 text-xs text-slate-500">{item.notes}</p></td><td className="px-3 py-3">{supportPriorityLabel(item.priority)}</td><td className="px-3 py-3">{supportStatusLabel(item.status)}</td><td className="whitespace-nowrap px-3 py-3">{item.reviewDate ?? t("schoolAnalytics.supportNoReviewDate")}{item.status !== "resolved" && item.reviewDate !== null && item.reviewDate < todayInOrganization ? <span className="ml-2 rounded-full bg-rose-100 px-2 py-1 text-xs font-semibold text-rose-800">{t("schoolAnalytics.supportOverdue")}</span> : null}</td></tr>)}</tbody></table><p className="mt-3 text-xs text-slate-500">{t("schoolAnalytics.supportCasesNotice")} {visibleSupportCases.length > 100 ? " " + t("schoolAnalytics.supportCasesFirst100") : ""}</p></div>}
+      </section>
       <section className="grid gap-3 lg:grid-cols-[1fr_2fr]">
         <Metric label={t("schoolAnalytics.averageFinalizedScore")} value={averageScore === null ? "—" : averageScore.toFixed(1) + "%"} detail={t("schoolAnalytics.averageFinalizedScoreDetail")} />
         <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"><div className="flex flex-wrap items-center justify-between gap-3"><div><h2 className="font-semibold text-slate-950">{t("schoolAnalytics.classSubjectComparison")}</h2><p className="mt-1 text-sm text-slate-500">{t("schoolAnalytics.classSubjectComparisonHelp")}</p></div></div>
