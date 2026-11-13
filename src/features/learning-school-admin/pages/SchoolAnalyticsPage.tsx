@@ -132,7 +132,7 @@ export default function SchoolAnalyticsPage() {
       results.flat().forEach((item) => uniqueCases.set(item.id, item));
       return [...uniqueCases.values()];
     },
-    enabled: Boolean(organizationId && visibleClasses.length && canManage),
+    enabled: Boolean(organizationId && canManage),
     staleTime: 30_000,
   });
 
