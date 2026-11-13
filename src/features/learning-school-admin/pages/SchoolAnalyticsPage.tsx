@@ -127,9 +127,13 @@ export default function SchoolAnalyticsPage() {
   const supportCasesQuery = useQuery({
     queryKey: ["school-analytics", "support-cases", organizationId, visibleClasses.map((item) => item.id).join(",")],
     queryFn: async () => {
-      const results = await Promise.all(visibleClasses.map((group) => learningInterventionsService.listCases(group.id)));
+      const collected: LearningInterventionCase[] = [];
+      for (let offset = 0; offset < visibleClasses.length; offset += 10) {
+        const batch = await Promise.all(visibleClasses.slice(offset, offset + 10).map((group) => learningInterventionsService.listCases(group.id)));
+        collected.push(...batch.flat());
+      }
       const uniqueCases = new Map<string, LearningInterventionCase>();
-      results.flat().forEach((item) => uniqueCases.set(item.id, item));
+      collected.forEach((item) => uniqueCases.set(item.id, item));
       return [...uniqueCases.values()];
     },
     enabled: Boolean(organizationId && canManage),
