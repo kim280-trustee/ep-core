@@ -32,7 +32,7 @@ export interface LearningQuestionObjective {
 export interface LearningAssessment {
   id: string; organizationId: string | null; code: string; title: string; description: string | null;
   assessmentType: LearningAssessmentType; languageCode: string; curriculumId: string | null;
-  gradeLevelId: string | null; status: LearningAssessmentStatus; createdBy: string; updatedBy: string | null;
+  gradeLevelId: string | null; subjectId: string | null; status: LearningAssessmentStatus; createdBy: string; updatedBy: string | null;
   reviewedBy: string | null; reviewedAt: string | null; publishedAt: string | null;
   createdAt: string; updatedAt: string;
 }
@@ -62,7 +62,7 @@ export type LearningQuestionInsert = {
 export type LearningAssessmentInsert = {
   organizationId: string; code: string; title: string; description?: string | null;
   assessmentType: LearningAssessmentType; languageCode?: string; curriculumId?: string | null;
-  gradeLevelId?: string | null;
+  gradeLevelId?: string | null; subjectId?: string | null;
 };
 export type LearningAttemptAnswerInput = {
   attemptId: string; assessmentQuestionId: string; answer: Record<string, unknown>;
