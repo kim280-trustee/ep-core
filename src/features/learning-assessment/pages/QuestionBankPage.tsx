@@ -35,6 +35,7 @@ export default function QuestionBankPage() {
           ? t("questionBank.statusRetired")
           : value;
   const [classGroupId, setClassGroupId] = useState("");
+  const [subjectId, setSubjectId] = useState("");
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
@@ -59,6 +60,7 @@ export default function QuestionBankPage() {
   const activeClassGroupId = classGroupId || classes.data?.[0]?.classGroup.id || "";
   const selectedClass = classes.data?.find((x) => x.classGroup.id === activeClassGroupId);
   const organizationId = selectedClass?.membership.organizationId;
+  const selectedSubjectId = subjectId || selectedClass?.subjects[0]?.subjectId || "";
 
   const questions = useQuery({
     queryKey: ["learning", "question-bank", "questions", organizationId],
@@ -66,9 +68,23 @@ export default function QuestionBankPage() {
     enabled: Boolean(organizationId),
   });
   const objectives = useQuery({
-    queryKey: ["learning", "question-bank", "objectives"],
-    queryFn: () => learningContentService.listObjectives(),
-    enabled: Boolean(user),
+    queryKey: ["learning", "question-bank", "objectives", activeClassGroupId, selectedSubjectId],
+    queryFn: async () => {
+      if (!selectedClass || !selectedSubjectId) return [];
+      const skills = await learningContentService.listSkills(selectedSubjectId);
+      const topicsBySkill = await Promise.all(skills.map((skill) => learningContentService.listTopics(skill.id)));
+      const topics = topicsBySkill.flat();
+      const objectivesByTopic = await Promise.all(topics.map((topic) => learningContentService.listObjectives(topic.id)));
+      const classObjectives = objectivesByTopic.flat();
+      const alignments = await learningContentService.listAlignments(
+        undefined,
+        selectedClass.classGroup.curriculumId,
+        selectedClass.classGroup.gradeLevelId,
+      );
+      const alignedIds = new Set(alignments.map((alignment) => alignment.objectiveId));
+      return classObjectives.filter((objective) => alignedIds.has(objective.id));
+    },
+    enabled: Boolean(selectedClass && selectedSubjectId),
   });
 
   const filteredQuestions = useMemo(() => {
@@ -116,7 +132,7 @@ export default function QuestionBankPage() {
 
   const createMutation = useMutation({
     mutationFn: async () => {
-      if (!user?.id || !organizationId) throw new Error(t("questionBank.selectClassError"));
+      if (!user?.id || !organizationId || !selectedClass || !selectedSubjectId) throw new Error("Select a class and an active subject first.");
       if (!code.trim() || !prompt.trim() || !objectiveId) throw new Error(t("questionBank.required"));
       if (questionType === "single_choice" && choices.some((choice) => !choice.label.trim())) throw new Error(t("questionBank.completeOptions"));
       if ((questionType === "single_choice" || questionType === "true_false") && !correctOption) throw new Error(t("questionBank.chooseCorrect"));
@@ -197,13 +213,22 @@ export default function QuestionBankPage() {
       </div>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5">
-        <label className="block max-w-xl space-y-2">
-          <span className="text-sm font-medium text-slate-700">{t("questionBank.teacherClass")}</span>
-          <select value={activeClassGroupId} onChange={(e) => setClassGroupId(e.target.value)} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm">
-            <option value="">{t("questionBank.selectClass")}</option>
-            {classes.data?.map((item) => <option key={item.classGroup.id} value={item.classGroup.id}>{item.classGroup.name}</option>)}
-          </select>
-        </label>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <label className="block space-y-2">
+            <span className="text-sm font-medium text-slate-700">{t("questionBank.teacherClass")}</span>
+            <select value={activeClassGroupId} onChange={(e) => { setClassGroupId(e.target.value); setSubjectId(""); setObjectiveId(""); }} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm">
+              <option value="">{t("questionBank.selectClass")}</option>
+              {classes.data?.map((item) => <option key={item.classGroup.id} value={item.classGroup.id}>{item.classGroup.name}</option>)}
+            </select>
+          </label>
+          <label className="block space-y-2">
+            <span className="text-sm font-medium text-slate-700">Subject</span>
+            <select value={selectedSubjectId} onChange={(e) => { setSubjectId(e.target.value); setObjectiveId(""); }} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm" disabled={!selectedClass?.subjects.length}>
+              {selectedClass?.subjects.map((item) => <option key={item.subjectId} value={item.subjectId}>{item.subject.name}</option>)}
+            </select>
+          </label>
+        </div>
+        {selectedClass && !selectedClass.subjects.length && <p className="mt-2 text-xs text-amber-700">This class has no active subjects assigned.</p>}
       </section>
 
       {message && <div className="rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-700">{message}</div>}
@@ -255,7 +280,7 @@ export default function QuestionBankPage() {
             <Field label={t("questionBank.objective")}><select value={objectiveId} onChange={(e) => setObjectiveId(e.target.value)} className="input"><option value="">{t("questionBank.selectObjective")}</option>{objectives.data?.map((objective) => <option key={objective.id} value={objective.id}>{objective.code} — {objective.name}</option>)}</select></Field>
             <Field label={t("questionBank.explanation")}><textarea value={explanation} onChange={(e) => setExplanation(e.target.value)} rows={3} className="input" placeholder={t("questionBank.explanationPlaceholder")} /></Field>
 
-            <div className="flex items-center justify-between gap-3 border-t border-slate-100 pt-4"><p className="text-xs text-slate-500">{t("questionBank.draftHelp")}</p><button type="button" disabled={!organizationId || createMutation.isPending} onClick={() => createMutation.mutate()} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 disabled:opacity-50"><Sparkles size={16} />{createMutation.isPending ? t("questionBank.saving") : editingQuestionId ? t("questionBank.saveVersion") : t("questionBank.saveDraft")}</button></div>
+            <div className="flex items-center justify-between gap-3 border-t border-slate-100 pt-4"><p className="text-xs text-slate-500">{t("questionBank.draftHelp")}</p><button type="button" disabled={!organizationId || !selectedSubjectId || !objectiveId || objectives.isPending || createMutation.isPending} onClick={() => createMutation.mutate()} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 disabled:opacity-50"><Sparkles size={16} />{createMutation.isPending ? t("questionBank.saving") : editingQuestionId ? t("questionBank.saveVersion") : t("questionBank.saveDraft")}</button></div>
           </div>
         </section>
       </div>
