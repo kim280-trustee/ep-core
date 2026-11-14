@@ -93,9 +93,11 @@ export default function QuestionBankPage() {
       const allowedObjectiveIds = new Set((objectives.data ?? []).map((objective) => objective.id));
       const matches = await Promise.all((questions.data ?? []).map(async (question) => {
         const versions = await learningAssessmentService.listQuestionVersions(question.id);
-        const latestVersion = versions[0];
-        if (!latestVersion) return null;
-        const mappings = await learningAssessmentService.listQuestionObjectives(latestVersion.id);
+        const relevantVersion = question.status === "published"
+          ? versions.find((version) => version.publishedAt !== null)
+          : versions[0];
+        if (!relevantVersion) return null;
+        const mappings = await learningAssessmentService.listQuestionObjectives(relevantVersion.id);
         return mappings.length && mappings.every((mapping) => allowedObjectiveIds.has(mapping.objectiveId))
           ? question.id
           : null;
