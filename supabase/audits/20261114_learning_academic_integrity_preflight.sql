@@ -123,7 +123,7 @@ select
   csub.subject_id,
   csub.status,
   count(distinct cs.id) as active_class_subject_links,
-  count(distinct oa.id) as objective_alignments
+  count(distinct oa.id) filter (where sk.subject_id = csub.subject_id) as objective_alignments
 from public.learning_curriculum_subjects csub
 left join public.learning_class_groups cg
   on cg.curriculum_id = csub.curriculum_id
@@ -140,7 +140,8 @@ left join public.learning_skills sk
  and sk.subject_id = csub.subject_id
 where csub.status = 'inactive'
 group by csub.id, csub.curriculum_id, csub.subject_id, csub.status
-having count(distinct cs.id) > 0 or count(distinct oa.id) > 0
+having count(distinct cs.id) > 0
+    or count(distinct oa.id) filter (where sk.subject_id = csub.subject_id) > 0
 order by csub.curriculum_id, csub.subject_id;
 
 -- 8. Existing assessment question rows attached to published assessments.
