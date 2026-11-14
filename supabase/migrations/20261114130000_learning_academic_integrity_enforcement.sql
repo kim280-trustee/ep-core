@@ -469,4 +469,59 @@ $function$;
 
 revoke all on function private.guard_learning_assessment_publication() from public, anon, authenticated;
 
+
+-- Objective mappings are part of the academic meaning of a question. Once a
+-- question version is used by a published assessment, freeze those mappings
+-- so later edits cannot silently invalidate the published assessment.
+create or replace function private.guard_learning_question_objective_published_assessment()
+returns trigger
+language plpgsql
+security definer
+set search_path = ''
+as $function$
+declare
+  v_question_version_id uuid;
+begin
+  if tg_op = 'DELETE' then
+    v_question_version_id := old.question_version_id;
+  else
+    v_question_version_id := new.question_version_id;
+  end if;
+
+  if exists (
+    select 1
+    from public.learning_assessment_questions aq
+    join public.learning_assessments a on a.id = aq.assessment_id
+    where aq.question_version_id = v_question_version_id
+      and a.status = 'published'
+  ) then
+    raise exception 'Objective mappings for a question version used by a published assessment are immutable';
+  end if;
+
+  if tg_op = 'UPDATE'
+    and old.question_version_id is distinct from new.question_version_id
+    and exists (
+      select 1
+      from public.learning_assessment_questions aq
+      join public.learning_assessments a on a.id = aq.assessment_id
+      where aq.question_version_id = old.question_version_id
+        and a.status = 'published'
+    ) then
+    raise exception 'Objective mappings for a question version used by a published assessment are immutable';
+  end if;
+
+  if tg_op = 'DELETE' then
+    return old;
+  end if;
+  return new;
+end;
+$function$;
+
+revoke all on function private.guard_learning_question_objective_published_assessment() from public, anon, authenticated;
+drop trigger if exists learning_question_objective_published_assessment_guard on public.learning_question_objectives;
+create trigger learning_question_objective_published_assessment_guard
+before insert or update or delete
+on public.learning_question_objectives
+for each row execute function private.guard_learning_question_objective_published_assessment();
+
 commit;
