@@ -246,7 +246,7 @@ export default function TeacherAssessmentBuilderPage() {
         <h2 className="font-semibold text-slate-900">{t("assessmentBuilder.context")}</h2>
         <label className="mt-3 block max-w-xl space-y-2">
           <span className="text-sm font-medium text-slate-700">{t("assessmentBuilder.class")}</span>
-          <select value={activeClassGroupId} onChange={(event) => { setClassGroupId(event.target.value); setActiveAssessmentId(""); setSelectedVersionIds([]); setMessage(null); }} className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm">
+          <select value={activeClassGroupId} onChange={(event) => { setClassGroupId(event.target.value); setSubjectId(""); setActiveAssessmentId(""); setSelectedVersionIds([]); setMessage(null); }} className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm">
             {classesQuery.data.map((item) => <option key={item.classGroup.id} value={item.classGroup.id}>{item.classGroup.name}</option>)}
           </select>
         </label>
@@ -270,7 +270,7 @@ export default function TeacherAssessmentBuilderPage() {
             <Field label={t("assessmentBuilder.createTitle")}><input required value={assessmentTitle} onChange={(event) => setAssessmentTitle(event.target.value)} className="input" placeholder="Present simple diagnostic" /></Field>
             <Field label={t("assessmentBuilder.type")}><select value={assessmentType} onChange={(event) => setAssessmentType(event.target.value as LearningAssessmentType)} className="input">{assessmentTypes.map((type) => <option key={type} value={type}>{t(assessmentTypeTranslationKeys[type])}</option>)}</select></Field>
             <Field label={t("assessmentBuilder.instructions")}><textarea value={assessmentDescription} onChange={(event) => setAssessmentDescription(event.target.value)} rows={3} className="input" placeholder={t("assessmentBuilder.instructionsPlaceholder")} /></Field>
-            <button type="submit" disabled={createMutation.isPending || !organizationId} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">
+            <button type="submit" disabled={createMutation.isPending || !organizationId || !selectedSubjectId} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">
               <Plus size={16} />{createMutation.isPending ? t("assessmentBuilder.creating") : t("assessmentBuilder.createDraftAction")}
             </button>
           </form>
