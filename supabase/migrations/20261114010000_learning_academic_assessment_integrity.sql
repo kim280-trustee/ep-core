@@ -1,5 +1,6 @@
 -- E&P Learning: enforce curriculum/subject integrity for classes, objectives and assessments.
--- Safe for existing pilot records: subject_id is nullable and is not backfilled.
+-- Safe for existing pilot records: subject_id is nullable. Only academic assessments with
+-- exactly one derived subject are backfilled; non-academic and ambiguous records stay null.
 -- Published assessment question sets become immutable; existing published records remain readable.
 
 begin;
@@ -17,6 +18,36 @@ alter table public.learning_assessments
 create index if not exists learning_assessments_subject_id_idx
   on public.learning_assessments (subject_id)
   where subject_id is not null;
+
+-- Backfill only assessments with both academic dimensions and one unambiguous mapped subject.
+-- This leaves general/non-academic assessments (including existing gamified quizzes) unchanged.
+with assessment_subjects as (
+  select
+    a.id as assessment_id,
+    min(sk.subject_id::text)::uuid as subject_id
+  from public.learning_assessments a
+  join public.learning_assessment_questions aq on aq.assessment_id = a.id
+  join public.learning_question_objectives qo on qo.question_version_id = aq.question_version_id
+  join public.learning_objectives obj on obj.id = qo.objective_id
+  join public.learning_topics tp on tp.id = obj.topic_id
+  join public.learning_skills sk on sk.id = tp.skill_id
+  where a.curriculum_id is not null
+    and a.grade_level_id is not null
+  group by a.id
+  having count(distinct sk.subject_id) = 1
+)
+update public.learning_assessments a
+set subject_id = derived.subject_id
+from assessment_subjects derived
+where a.id = derived.assessment_id
+  and a.subject_id is null
+  and exists (
+    select 1
+    from public.learning_curriculum_subjects cs
+    where cs.curriculum_id = a.curriculum_id
+      and cs.subject_id = derived.subject_id
+      and cs.status = 'active'
+  );
 
 -- An active class subject must be part of the class curriculum.
 create or replace function private.guard_learning_class_subject_curriculum()
