@@ -1028,6 +1028,7 @@ export type Database = {
           curriculum_id: string | null
           description: string | null
           grade_level_id: string | null
+          subject_id: string | null
           id: string
           language_code: string
           organization_id: string | null
@@ -1047,6 +1048,7 @@ export type Database = {
           curriculum_id?: string | null
           description?: string | null
           grade_level_id?: string | null
+          subject_id?: string | null
           id?: string
           language_code?: string
           organization_id?: string | null
@@ -1098,6 +1100,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "learning_grade_levels"
             referencedColumns: ["curriculum_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_assessments_curriculum_subject_fk"
+            columns: ["curriculum_id", "subject_id"]
+            isOneToOne: false
+            referencedRelation: "learning_curriculum_subjects"
+            referencedColumns: ["curriculum_id", "subject_id"]
           },
           {
             foreignKeyName: "learning_assessments_organization_id_fkey"
