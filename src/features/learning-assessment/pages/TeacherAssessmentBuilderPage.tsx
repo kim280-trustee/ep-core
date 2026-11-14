@@ -6,6 +6,7 @@ import { useAuth } from "@/core/auth";
 import { useTranslation } from "@/core/i18n";
 import { learningAssessmentService } from "../services/learning-assessment.service";
 import { learningTeacherService } from "@/features/learning-teacher/services/learning-teacher.service";
+import { learningContentService } from "@/features/learning-content";
 import type { LearningAssessmentType } from "../types/learning-assessment.types";
 
 const assessmentTypes: LearningAssessmentType[] = ["diagnostic", "practice", "assignment", "quiz", "test", "mock_exam", "competition"];
@@ -33,6 +34,7 @@ export default function TeacherAssessmentBuilderPage() {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const [classGroupId, setClassGroupId] = useState("");
+  const [subjectId, setSubjectId] = useState("");
   const [assessmentCode, setAssessmentCode] = useState("");
   const [assessmentTitle, setAssessmentTitle] = useState("");
   const [assessmentDescription, setAssessmentDescription] = useState("");
@@ -51,6 +53,7 @@ export default function TeacherAssessmentBuilderPage() {
   const activeClassGroupId = classGroupId || classesQuery.data?.[0]?.classGroup.id || "";
   const selectedClass = classesQuery.data?.find((item) => item.classGroup.id === activeClassGroupId);
   const organizationId = selectedClass?.membership.organizationId;
+  const selectedSubjectId = subjectId || selectedClass?.subjects[0]?.subjectId || "";
 
   const assessmentsQuery = useQuery({
     queryKey: ["learning", "assessment-builder", "assessments", organizationId],
@@ -58,8 +61,23 @@ export default function TeacherAssessmentBuilderPage() {
     enabled: Boolean(organizationId),
   });
   const questionsQuery = useQuery({
-    queryKey: ["learning", "assessment-builder", "questions", organizationId],
+    queryKey: ["learning", "assessment-builder", "questions", organizationId, activeClassGroupId, selectedSubjectId],
     queryFn: async (): Promise<PublishedQuestionOption[]> => {
+      if (!organizationId || !selectedClass || !selectedSubjectId) return [];
+      const skills = await learningContentService.listSkills(selectedSubjectId);
+      const topicsBySkill = await Promise.all(skills.map((skill) => learningContentService.listTopics(skill.id)));
+      const topics = topicsBySkill.flat();
+      const objectivesByTopic = await Promise.all(topics.map((topic) => learningContentService.listObjectives(topic.id)));
+      const objectives = objectivesByTopic.flat();
+      const alignments = await learningContentService.listAlignments(
+        undefined,
+        selectedClass.classGroup.curriculumId,
+        selectedClass.classGroup.gradeLevelId,
+      );
+      const alignedObjectiveIds = new Set(
+        objectives.filter((objective) => alignments.some((alignment) => alignment.objectiveId === objective.id)).map((objective) => objective.id),
+      );
+
       const questions = await learningAssessmentService.listQuestions(organizationId);
       const eligible = questions.filter(
         (question) =>
@@ -71,6 +89,8 @@ export default function TeacherAssessmentBuilderPage() {
           const versions = await learningAssessmentService.listQuestionVersions(question.id);
           const version = versions.find((candidate) => candidate.publishedAt !== null);
           if (!version) return null;
+          const mappings = await learningAssessmentService.listQuestionObjectives(version.id);
+          if (!mappings.length || mappings.some((mapping) => !alignedObjectiveIds.has(mapping.objectiveId))) return null;
           return {
             id: question.id,
             code: question.code,
@@ -82,7 +102,7 @@ export default function TeacherAssessmentBuilderPage() {
       );
       return options.filter((option): option is PublishedQuestionOption => option !== null);
     },
-    enabled: Boolean(organizationId),
+    enabled: Boolean(organizationId && selectedClass && selectedSubjectId),
   });
   const activeAssessment = assessmentsQuery.data?.find((assessment) => assessment.id === activeAssessmentId);
   const activeAssessmentQuestionsQuery = useQuery({
@@ -106,7 +126,7 @@ export default function TeacherAssessmentBuilderPage() {
 
   const createMutation = useMutation({
     mutationFn: async () => {
-      if (!user || !organizationId) throw new Error("Select a teacher class first.");
+      if (!user || !organizationId || !selectedClass || !selectedSubjectId) throw new Error("Select a class with an active subject first.");
       const normalizedCode = assessmentCode.trim().toUpperCase();
       if (!normalizedCode || !assessmentTitle.trim()) throw new Error("Assessment code and title are required.");
       if ((assessmentsQuery.data ?? []).some((item) => item.code.toUpperCase() === normalizedCode)) {
@@ -119,6 +139,9 @@ export default function TeacherAssessmentBuilderPage() {
         description: assessmentDescription.trim() || null,
         assessmentType,
         languageCode: "en",
+        curriculumId: selectedClass!.classGroup.curriculumId,
+        gradeLevelId: selectedClass!.classGroup.gradeLevelId,
+        subjectId: selectedSubjectId,
         createdBy: user.id,
       });
     },
@@ -139,6 +162,9 @@ export default function TeacherAssessmentBuilderPage() {
     mutationFn: async () => {
       if (!activeAssessment || activeAssessment.status === "published") {
         throw new Error("Choose an unpublished draft assessment before adding questions.");
+      }
+      if (activeAssessment.curriculumId !== selectedClass?.classGroup.curriculumId || activeAssessment.gradeLevelId !== selectedClass?.classGroup.gradeLevelId || activeAssessment.subjectId !== selectedSubjectId) {
+        throw new Error("This draft does not match the selected class, grade and subject. Create a new draft for this academic scope; the existing draft has been left unchanged.");
       }
       if (!pendingQuestionOptions.length) {
         throw new Error("Select at least one published question that is not already attached.");
@@ -176,6 +202,9 @@ export default function TeacherAssessmentBuilderPage() {
   const publishMutation = useMutation({
     mutationFn: async () => {
       if (!activeAssessment || activeAssessment.status === "published") throw new Error("Choose an unpublished draft assessment.");
+      if (activeAssessment.curriculumId !== selectedClass?.classGroup.curriculumId || activeAssessment.gradeLevelId !== selectedClass?.classGroup.gradeLevelId || activeAssessment.subjectId !== selectedSubjectId) {
+        throw new Error("This draft does not match the selected class, grade and subject. Create a new draft for this academic scope.");
+      }
       const items = await learningAssessmentService.listAssessmentQuestions(activeAssessment.id);
       if (!items.length) throw new Error("Add at least one question before publishing.");
       return learningAssessmentService.publishAssessment(activeAssessment.id, user!.id);
@@ -221,6 +250,13 @@ export default function TeacherAssessmentBuilderPage() {
             {classesQuery.data.map((item) => <option key={item.classGroup.id} value={item.classGroup.id}>{item.classGroup.name}</option>)}
           </select>
         </label>
+        <label className="mt-3 block max-w-xl space-y-2">
+          <span className="text-sm font-medium text-slate-700">Subject</span>
+          <select value={selectedSubjectId} onChange={(event) => { setSubjectId(event.target.value); setActiveAssessmentId(""); setSelectedVersionIds([]); setMessage(null); }} className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm" disabled={!selectedClass?.subjects.length}>
+            {selectedClass?.subjects.map((item) => <option key={item.subjectId} value={item.subjectId}>{item.subject.name}</option>)}
+          </select>
+          {!selectedClass?.subjects.length && <span className="text-xs text-amber-700">This class has no active subjects assigned.</span>}
+        </label>
       </section>
 
       <div className="grid gap-6 lg:grid-cols-2">
@@ -246,7 +282,7 @@ export default function TeacherAssessmentBuilderPage() {
                 {draftAssessments.map((assessment) => (
                   <div key={assessment.id} className={`flex items-center justify-between gap-3 rounded-xl border p-3 ${assessment.id === activeAssessmentId ? "border-indigo-300 bg-indigo-50" : "border-slate-200"}`}>
                     <div className="min-w-0"><p className="truncate font-semibold text-slate-900">{assessment.title}</p><p className="text-xs text-slate-500">{assessment.code} · {t(assessmentTypeTranslationKeys[assessment.assessmentType])}</p></div>
-                    <button type="button" onClick={() => { setActiveAssessmentId(assessment.id); setSelectedVersionIds([]); setMessage({ kind: "info", text: `${t("assessmentBuilder.editingDraft")}: ${assessment.title}` }); }} className="shrink-0 rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold">{t("assessmentBuilder.continue")}</button>
+                    <button type="button" disabled={assessment.curriculumId !== selectedClass?.classGroup.curriculumId || assessment.gradeLevelId !== selectedClass?.classGroup.gradeLevelId || assessment.subjectId !== selectedSubjectId} onClick={() => { setActiveAssessmentId(assessment.id); setSelectedVersionIds([]); setMessage({ kind: "info", text: `${t("assessmentBuilder.editingDraft")}: ${assessment.title}` }); }} className="shrink-0 rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold disabled:cursor-not-allowed disabled:opacity-40">{assessment.curriculumId !== selectedClass?.classGroup.curriculumId || assessment.gradeLevelId !== selectedClass?.classGroup.gradeLevelId || assessment.subjectId !== selectedSubjectId ? "Different academic scope" : t("assessmentBuilder.continue")}</button>
                   </div>
                 ))}
                 {!draftAssessments.length && <p className="text-sm text-slate-500">{t("assessmentBuilder.noDrafts")}</p>}
