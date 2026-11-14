@@ -87,13 +87,32 @@ export default function QuestionBankPage() {
     enabled: Boolean(selectedClass && selectedSubjectId),
   });
 
+  const academicQuestionIds = useQuery({
+    queryKey: ["learning", "question-bank", "academic-questions", activeClassGroupId, selectedSubjectId, questions.data?.length, objectives.data?.length],
+    queryFn: async () => {
+      const allowedObjectiveIds = new Set((objectives.data ?? []).map((objective) => objective.id));
+      const matches = await Promise.all((questions.data ?? []).map(async (question) => {
+        const versions = await learningAssessmentService.listQuestionVersions(question.id);
+        const latestVersion = versions[0];
+        if (!latestVersion) return null;
+        const mappings = await learningAssessmentService.listQuestionObjectives(latestVersion.id);
+        return mappings.length && mappings.every((mapping) => allowedObjectiveIds.has(mapping.objectiveId))
+          ? question.id
+          : null;
+      }));
+      return new Set(matches.filter((id): id is string => id !== null));
+    },
+    enabled: questions.isSuccess && objectives.isSuccess && Boolean(selectedClass && selectedSubjectId),
+  });
+
   const filteredQuestions = useMemo(() => {
     const term = search.trim().toLowerCase();
     return (questions.data ?? []).filter((question) => {
+      const matchesAcademicScope = academicQuestionIds.data?.has(question.id) ?? false;
       const matchesSearch = !term || question.code.toLowerCase().includes(term) || question.questionType.toLowerCase().includes(term);
-      return matchesSearch && (!typeFilter || question.questionType === typeFilter) && (!statusFilter || question.status === statusFilter);
+      return matchesAcademicScope && matchesSearch && (!typeFilter || question.questionType === typeFilter) && (!statusFilter || question.status === statusFilter);
     });
-  }, [questions.data, search, typeFilter, statusFilter]);
+  }, [questions.data, academicQuestionIds.data, search, typeFilter, statusFilter]);
 
   const resetForm = () => {
     setEditingQuestionId(null); setCode(""); setPrompt(""); setQuestionType("single_choice");
@@ -242,7 +261,7 @@ export default function QuestionBankPage() {
             <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="rounded-xl border border-slate-300 px-3 py-2 text-sm"><option value="">{t("questionBank.allStatus")}</option><option value="draft">Draft</option><option value="review">Review</option><option value="published">Published</option><option value="retired">Retired</option></select>
           </div>
           {(search || typeFilter || statusFilter) && <button type="button" onClick={() => { setSearch(""); setTypeFilter(""); setStatusFilter(""); }} className="mt-2 rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600">{t("questionBank.clearFilters")}</button>}
-          {questions.isPending && <p className="mt-4 text-sm text-slate-500">{t("questionBank.loading")}</p>}
+          {(questions.isPending || objectives.isPending || academicQuestionIds.isPending) && <p className="mt-4 text-sm text-slate-500">Loading questions for this class subject and grade…</p>}
           {questions.isError && <p role="alert" className="mt-4 rounded-xl bg-red-50 p-4 text-sm text-red-800">{t("questionBank.loadError")}</p>}
           <div className="mt-4 space-y-2">
             {filteredQuestions.map((question) => (
