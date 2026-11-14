@@ -1068,6 +1068,7 @@ export type Database = {
           curriculum_id?: string | null
           description?: string | null
           grade_level_id?: string | null
+          subject_id?: string | null
           id?: string
           language_code?: string
           organization_id?: string | null
