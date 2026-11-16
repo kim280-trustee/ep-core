@@ -124,7 +124,7 @@ export interface LearningClassSubject {
   updatedAt: string;
 }
 
-export type LearningAcademicYearInput = Omit<LearningAcademicYear, "id" | "createdAt" | "updatedAt">;
+export type LearningAcademicYearInput = Omit<LearningAcademicYear, "id" | "createdAt" | "updatedAt" | "curriculumId"> & { curriculumId?: string | null };
 export type LearningAcademicYearUpdate = Partial<Omit<LearningAcademicYear, "id" | "organizationId" | "createdAt" | "updatedAt">>;
 export type LearningTermInput = Omit<LearningTerm, "id" | "createdAt" | "updatedAt">;
 export type LearningTermUpdate = Partial<Omit<LearningTerm, "id" | "organizationId" | "academicYearId" | "createdAt" | "updatedAt">>;
