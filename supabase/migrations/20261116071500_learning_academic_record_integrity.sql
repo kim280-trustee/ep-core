@@ -305,6 +305,35 @@ before insert or update of organization_id, class_group_id, student_user_id
 on public.learning_term_grades
 for each row execute function private.guard_learning_gradebook_student_membership();
 
+-- School structure writes require the academic-management permission, not mere membership.
+drop policy if exists learning_academic_years_manage on public.learning_academic_years;
+create policy learning_academic_years_manage
+on public.learning_academic_years
+for all to authenticated
+using (public.learning_can_manage_academic_records(organization_id))
+with check (public.learning_can_manage_academic_records(organization_id));
+
+drop policy if exists learning_terms_manage on public.learning_terms;
+create policy learning_terms_manage
+on public.learning_terms
+for all to authenticated
+using (public.learning_can_manage_academic_records(organization_id))
+with check (public.learning_can_manage_academic_records(organization_id));
+
+drop policy if exists learning_class_groups_manage on public.learning_class_groups;
+create policy learning_class_groups_manage
+on public.learning_class_groups
+for all to authenticated
+using (public.learning_can_manage_academic_records(organization_id))
+with check (public.learning_can_manage_academic_records(organization_id));
+
+drop policy if exists learning_class_subjects_manage on public.learning_class_subjects;
+create policy learning_class_subjects_manage
+on public.learning_class_subjects
+for all to authenticated
+using (public.learning_can_manage_academic_records(organization_id))
+with check (public.learning_can_manage_academic_records(organization_id));
+
 revoke all on function private.guard_learning_term_date_range() from public, anon, authenticated;
 revoke all on function private.guard_learning_academic_year_date_update() from public, anon, authenticated;
 revoke all on function private.guard_learning_gradebook_term_class_year() from public, anon, authenticated;
