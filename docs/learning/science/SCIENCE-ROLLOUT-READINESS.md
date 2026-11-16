@@ -143,3 +143,8 @@ The third verified Physics batch seeds M4 additional-learning outcomes 14–15: 
 ## Upper-secondary staged release — M4 Physics outcomes 16–17
 
 The fourth verified Physics batch seeds M4 additional-learning outcomes 16–17: projectile motion, including independent horizontal and vertical components; and uniform circular motion, centripetal force, angular/linear speed and satellite-orbit applications. The migration adds two objectives with M4 alignments. The companion teacher starter pack contains two lesson starters and six answer-keyed questions. Physics now has eight verified M4 outcomes (8, 9, 11, 12, 14, 15, 16 and 17), eight lesson starters and 24 answer-keyed questions. The official IPST comparison crosswalk maps Group 1 outcomes 16–17 to M4. The national 67-outcome Physics audit remains in progress; no live Supabase migration has been applied.
+
+
+## Upper-secondary staged release — M4 Physics outcome 13
+
+The fifth verified Physics batch seeds M4 additional-learning outcome 13: operation, efficiency and mechanical advantage of selected simple machines, including levers, pulleys, inclined planes, wedges, screws and wheel-and-axle systems. The migration adds one objective with an M4 alignment. The companion teacher starter pack contains one lesson starter and three answer-keyed questions. Physics now has nine verified M4 outcomes (8, 9, 11, 12, 13, 14, 15, 16 and 17), nine lesson starters and 27 answer-keyed questions. Outcomes 1–7 and 10 remain subject to official grade verification. The national 67-outcome Physics audit remains in progress; no live Supabase migration has been applied.
