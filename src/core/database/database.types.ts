@@ -2583,11 +2583,11 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "gradebook_entry_class_subject_fk"
-            columns: ["organization_id", "class_subject_id"]
+            foreignKeyName: "gradebook_entry_class_subject_group_fk"
+            columns: ["organization_id", "class_group_id", "class_subject_id"]
             isOneToOne: false
             referencedRelation: "learning_class_subjects"
-            referencedColumns: ["organization_id", "id"]
+            referencedColumns: ["organization_id", "class_group_id", "id"]
           },
           {
             foreignKeyName: "gradebook_entry_creator_fk"
@@ -3783,11 +3783,11 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "term_grade_class_subject_fk"
-            columns: ["organization_id", "class_subject_id"]
+            foreignKeyName: "term_grade_class_subject_group_fk"
+            columns: ["organization_id", "class_group_id", "class_subject_id"]
             isOneToOne: false
             referencedRelation: "learning_class_subjects"
-            referencedColumns: ["organization_id", "id"]
+            referencedColumns: ["organization_id", "class_group_id", "id"]
           },
           {
             foreignKeyName: "term_grade_creator_fk"
