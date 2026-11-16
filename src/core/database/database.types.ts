@@ -676,7 +676,7 @@ export type Database = {
         Insert: {
           code: string
           created_at?: string
-          curriculum_id: string
+          curriculum_id?: string | null
           ends_on: string
           id?: string
           name: string
