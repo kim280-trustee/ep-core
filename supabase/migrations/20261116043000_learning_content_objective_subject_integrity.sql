@@ -109,6 +109,16 @@ begin
     raise exception 'Only draft content can have its learning-objective mappings changed.';
   end if;
 
+  if tg_op = 'UPDATE' and old.content_item_id is distinct from new.content_item_id
+    and exists (
+      select 1
+      from public.learning_content_items old_content
+      where old_content.id = old.content_item_id
+        and old_content.status <> 'draft'
+    ) then
+    raise exception 'Objective mappings cannot be moved out of non-draft content.';
+  end if;
+
   if exists (
     select 1
     from public.learning_content_objectives existing_mapping
