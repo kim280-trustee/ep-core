@@ -63,6 +63,7 @@ export interface LearningContentRepository {
   listObjectives(topicId?: string): Promise<LearningObjective[]>;
   listPrerequisites(objectiveId: string): Promise<LearningObjectivePrerequisite[]>;
   listAlignments(objectiveId?: string, curriculumId?: string, gradeLevelId?: string): Promise<LearningObjectiveAlignment[]>;
+  createAlignment(input: import("../types/learning-content.types").LearningObjectiveAlignmentInput): Promise<LearningObjectiveAlignment>;
   listContent(organizationId?: string): Promise<LearningContentItem[]>;
   getContent(id: string, organizationId?: string): Promise<LearningContentItem>;
   deleteContent(id: string): Promise<void>;
@@ -114,6 +115,12 @@ export const learningContentRepository: LearningContentRepository = {
   async listObjectives(topicId){let q=supabase.from("learning_objectives").select("*").eq("status","active").order("sequence_no");if(topicId)q=q.eq("topic_id",topicId);const{data,error}=await q;if(error)throw error;return(data??[]).map(mapObjective);},
   async listPrerequisites(objectiveId){const{data,error}=await supabase.from("learning_objective_prerequisites").select("*").eq("objective_id",objectiveId);if(error)throw error;return(data??[]).map(mapPrerequisite);},
   async listAlignments(objectiveId,curriculumId,gradeLevelId){let q=supabase.from("learning_objective_alignments").select("*").order("sequence_no");if(objectiveId)q=q.eq("objective_id",objectiveId);if(curriculumId)q=q.eq("curriculum_id",curriculumId);if(gradeLevelId)q=q.eq("grade_level_id",gradeLevelId);const{data,error}=await q;if(error)throw error;return(data??[]).map(mapAlignment);},
+  async createAlignment(input){
+    if(!Number.isInteger(input.sequenceNo)||input.sequenceNo<1)throw new Error("Alignment sequence must be a positive whole number.");
+    const{data,error}=await supabase.from("learning_objective_alignments").insert({objective_id:input.objectiveId,curriculum_id:input.curriculumId,grade_level_id:input.gradeLevelId,sequence_no:input.sequenceNo,required:input.required,notes:input.notes?.trim()||null}).select("*").single();
+    if(error){if(error.code==="23505")throw new Error("This learning objective is already aligned to that curriculum grade.");throw error;}
+    return mapAlignment(data);
+  },
   async listContent(organizationId){let q=supabase.from("learning_content_items").select("*").order("updated_at",{ascending:false});if(organizationId)q=q.eq("organization_id",organizationId);const{data,error}=await q;if(error)throw error;return(data??[]).map(mapContentItem);},
   async getContent(id,organizationId){let q=supabase.from("learning_content_items").select("*").eq("id",id);if(organizationId)q=q.eq("organization_id",organizationId);const{data,error}=await q.maybeSingle();if(error)throw error;if(!data)throw new Error("Content item not found.");return mapContentItem(data);},
   async deleteContent(id){const{error}=await supabase.from("learning_content_items").delete().eq("id",id);if(error)throw error;},
