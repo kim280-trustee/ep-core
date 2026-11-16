@@ -288,9 +288,8 @@ begin
       and cm.class_group_id = new.class_group_id
       and cm.user_id = new.student_user_id
       and cm.membership_type = 'student'
-      and cm.status = 'active'
   ) then
-    raise exception 'The selected student must have an active student membership in this class';
+    raise exception 'The selected student must have a student membership record in this class';
   end if;
 
   return new;
