@@ -1,6 +1,6 @@
 # E&P Learning — Upper-secondary Physics Curriculum Audit
 
-**Status:** Official scope verified; grade-level extraction and staged seeding are in progress. Four verified M4 outcomes (8, 9, 11 and 12) are now seeded.
+**Status:** Official scope verified; grade-level extraction and staged seeding are in progress. Six verified M4 outcomes (8, 9, 11, 12, 14 and 15) are now seeded.
 
 ## Official curriculum structure
 
@@ -58,3 +58,17 @@ Two further outcomes have been extracted from the official IPST Physics curricul
 Migration: `20261116134500_learning_physics_m4_work_energy.sql`. The companion pack contains two lesson starters and six answer-keyed practice questions: `M4-physics-work-energy-teacher-starter-pack.md`.
 
 M4 now has four verified seeded outcomes (8, 9, 11 and 12), four lesson starters and 12 practice questions. This remains a partial release; the national total is 67 outcomes and grade-by-grade extraction is not complete. The migration is additive and idempotent and has not been applied to Supabase.
+
+
+## Third verified knowledge-graph batch — M4 outcomes 14–15
+
+Two further outcomes are confirmed in the official IPST Physics curriculum-use manual:
+
+| Grade | Outcome | Verified scope | Database objective |
+|---|---:|---|---|
+| M4 | 14 | Momentum; impulse; impulse force; impulse from equations and force–time graph area | `M4-PHY-MOMENTUM-14` |
+| M4 | 15 | One-dimensional elastic/inelastic collisions and separation; conservation of momentum | `M4-PHY-COLLISION-15` |
+
+Migration: `20261116140000_learning_physics_m4_momentum_collisions.sql`. Companion pack: `M4-physics-momentum-collisions-teacher-starter-pack.md`, with two lesson starters and six answer-keyed questions.
+
+M4 now has six verified seeded outcomes (8, 9, 11, 12, 14 and 15), six lesson starters and 18 answer-keyed questions. This is still a partial Physics release; the national total is 67. Grade-level extraction of all remaining outcomes is not complete. Migration remains unapplied to the live database.
