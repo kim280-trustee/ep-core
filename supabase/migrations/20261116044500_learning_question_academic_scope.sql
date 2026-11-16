@@ -144,6 +144,13 @@ begin
     end if;
   end if;
 
+  if tg_op = 'DELETE'
+    and v_curriculum_id is null
+    and v_grade_level_id is null
+    and v_subject_id is null then
+    return old;
+  end if;
+
   if v_curriculum_id is null or v_grade_level_id is null or v_subject_id is null then
     raise exception 'Question objectives can only be linked to versions with a complete academic scope.';
   end if;
@@ -209,6 +216,82 @@ before insert or update or delete
 on public.learning_question_objectives
 for each row
 execute function private.guard_learning_question_objective_academic_scope();
+
+create or replace function private.guard_learning_question_version_publication_academic_scope()
+returns trigger
+language plpgsql
+security definer
+set search_path = ''
+as $function$
+begin
+  if new.published_at is null or old.published_at is not null then
+    return new;
+  end if;
+
+  if new.curriculum_id is null or new.grade_level_id is null or new.subject_id is null then
+    raise exception 'A question version needs a complete academic scope before publishing.';
+  end if;
+
+  if not exists (
+    select 1
+    from public.learning_question_objectives mapping
+    where mapping.question_version_id = new.id
+  ) then
+    raise exception 'A question version needs at least one objective before publishing.';
+  end if;
+
+  if exists (
+    select 1
+    from public.learning_question_objectives mapping
+    join public.learning_objectives objective on objective.id = mapping.objective_id
+    join public.learning_topics topic on topic.id = objective.topic_id
+    join public.learning_skills skill on skill.id = topic.skill_id
+    where mapping.question_version_id = new.id
+      and (
+        objective.status <> 'active'
+        or topic.status <> 'active'
+        or skill.status <> 'active'
+        or skill.subject_id <> new.subject_id
+        or not exists (
+          select 1
+          from public.learning_objective_alignments alignment
+          join public.learning_grade_levels grade
+            on grade.id = alignment.grade_level_id
+           and grade.curriculum_id = alignment.curriculum_id
+           and grade.status = 'active'
+          join public.learning_curricula curriculum
+            on curriculum.id = alignment.curriculum_id
+           and curriculum.status = 'active'
+          join public.learning_curriculum_subjects curriculum_subject
+            on curriculum_subject.curriculum_id = alignment.curriculum_id
+           and curriculum_subject.subject_id = new.subject_id
+           and curriculum_subject.status = 'active'
+          join public.learning_subjects subject
+            on subject.id = new.subject_id
+           and subject.status = 'active'
+          where alignment.objective_id = mapping.objective_id
+            and alignment.curriculum_id = new.curriculum_id
+            and alignment.grade_level_id = new.grade_level_id
+        )
+      )
+  ) then
+    raise exception 'Every question objective must remain active and aligned to its exact curriculum, grade and subject before publishing.';
+  end if;
+
+  return new;
+end;
+$function$;
+
+revoke all on function private.guard_learning_question_version_publication_academic_scope()
+  from public, anon, authenticated;
+
+drop trigger if exists learning_question_version_publication_academic_scope_guard
+  on public.learning_question_versions;
+create trigger learning_question_version_publication_academic_scope_guard
+before update of published_at
+on public.learning_question_versions
+for each row
+execute function private.guard_learning_question_version_publication_academic_scope();
 
 create or replace function private.guard_learning_question_publication_academic_scope()
 returns trigger
