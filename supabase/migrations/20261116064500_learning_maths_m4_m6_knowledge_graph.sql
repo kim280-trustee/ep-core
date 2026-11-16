@@ -20,6 +20,15 @@ begin
       and c.status = 'active'
       and g.code in ('M4', 'M5', 'M6')
       and g.status = 'active'
+      and (
+        select count(*)
+        from public.learning_skills required_skill
+        where required_skill.subject_id = s.id
+          and required_skill.status = 'active'
+          and required_skill.code in ('NUMALG', 'MEASGEO', 'STATPROB')
+      ) = 3
+    group by s.id, c.id
+    having count(distinct g.code) = 3
   ) then
     raise exception 'Active Thai Mathematics curriculum with M4, M5 and M6 grades is required before seeding.';
   end if;
