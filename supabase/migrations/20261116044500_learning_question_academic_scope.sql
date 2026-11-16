@@ -144,6 +144,10 @@ begin
     end if;
   end if;
 
+  if v_published_at is not null then
+    raise exception 'Published question objective mappings are immutable; create a new version.';
+  end if;
+
   if tg_op = 'DELETE'
     and v_curriculum_id is null
     and v_grade_level_id is null
@@ -153,10 +157,6 @@ begin
 
   if v_curriculum_id is null or v_grade_level_id is null or v_subject_id is null then
     raise exception 'Question objectives can only be linked to versions with a complete academic scope.';
-  end if;
-
-  if v_published_at is not null then
-    raise exception 'Published question objective mappings are immutable; create a new version.';
   end if;
 
   if tg_op <> 'DELETE' then
