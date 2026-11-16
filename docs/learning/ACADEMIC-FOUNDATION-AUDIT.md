@@ -204,3 +204,10 @@ This additive seed adds the six official M5 learning outcomes in Additional Chem
 Migration: `20261116130000_learning_chemistry_m6_organic_polymers.sql`
 
 This additive seed adds all 15 official M6 learning outcomes in Additional Chemistry strand 1, covering organic structures, functional groups, IUPAC nomenclature, isomerism, physical properties, hydrocarbon and functional-group reactions, polymerisation, polymer properties, plastics and rubber, polymer modification and environmental impacts. Each objective is aligned to M6 in the Thai Science curriculum. The companion teacher pack contains 15 lesson starters and 45 answer-keyed practice questions. Official source: OBEC revised curriculum B.E. 2560 (2017), Chemistry, p. 117. No migration has been applied to the live Supabase database.
+
+
+## Upper-secondary Biology — M6 biodiversity and taxonomy
+
+Migration: `20261116131500_learning_biology_m6_biodiversity_taxonomy.sql`
+
+This additive seed adds five M6 Biology outcomes in Additional Biology strand 2: biodiversity levels and importance; origin-of-life evidence and early unicellular organisms; major organism groups; taxonomic hierarchy and scientific naming; and dichotomous keys. Each objective is aligned to the M6 grade. The companion teacher pack contains five lesson starters and 15 answer-keyed practice questions. Alignment was cross-checked against the OBEC/IPST revised curriculum B.E. 2560 (2017) and the official IPST upper-secondary Additional Biology curriculum manual. No migration has been applied to the live Supabase database.
