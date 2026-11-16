@@ -215,3 +215,13 @@ The official IPST Physics curriculum-use manual explicitly lists M6 Group 4 outc
 Migration: `20261116174500_learning_physics_m6_thermal_fluids_gases_outcomes_1_9.sql`. Teacher pack: `M6-physics-thermal-fluids-gases-teacher-starter-pack.md`.
 
 This adds nine objectives, nine lesson starters and 27 answer-keyed questions. M6 Physics now has eight Group 3 outcomes and nine Group 4 outcomes staged, with the Group 4 M6 sequence 1–9 verified. Remaining outcome allocations and the rest of the 67-outcome Physics curriculum still require auditing. No Supabase migrations have been applied.
+
+
+
+## M6 Physics staged release — Group 4 modern/atomic/nuclear outcomes 10–14, 16–17
+
+The next M6 Physics batch stages seven verified Group 4 outcomes: Planck's hypothesis and the Bohr atom (10), photoelectric effect (11), wave-particle duality and de Broglie wavelength (12), radioactivity and radiation types (13), activity and half-life (14), nuclear reactions/fission/fusion (16), and nuclear-energy/radiation applications and protection (17). The companion teacher pack contains seven lesson starters and 21 answer-keyed questions. Safety controls prohibit student handling or use of radioactive sources; lessons use simulations and teacher-provided datasets.
+
+Migration: `20261116180000_learning_physics_m6_modern_atomic_nuclear_outcomes_10_14_16_17.sql`. Teacher pack: `M6-physics-modern-atomic-nuclear-teacher-starter-pack.md`.
+
+**Important grade allocation:** the official IPST comparison crosswalk allocates Group 4 outcomes 15 (nuclear forces, stability and binding energy) and 18 (particle physics and the Standard Model) to M5, not M6. They have not been incorrectly aligned to M6 and remain to be staged under M5 after source reconciliation. M6 Group 4 now contains 16 verified outcomes (1–14, 16–17), 16 lesson starters and 48 answer-keyed questions. Combined staged Physics totals: M4 17, M5 12, M6 Group 3 8, and M6 Group 4 16 = **53 objectives, 53 lesson starters and 159 answer-keyed questions**. All migrations remain unapplied to live Supabase.
