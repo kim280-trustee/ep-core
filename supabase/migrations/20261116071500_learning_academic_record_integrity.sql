@@ -185,8 +185,126 @@ before insert or update of organization_id, term_id, class_group_id
 on public.learning_term_grades
 for each row execute function private.guard_learning_gradebook_term_class_year();
 
+
+-- Prevent changing a term's academic year while gradebook records still rely on it.
+create or replace function private.guard_learning_term_year_change()
+returns trigger
+language plpgsql
+set search_path = ''
+as $function$
+begin
+  if exists (
+    select 1
+    from public.learning_gradebook_entries e
+    join public.learning_class_groups cg
+      on cg.id = e.class_group_id and cg.organization_id = e.organization_id
+    where e.term_id = old.id
+      and e.organization_id = old.organization_id
+      and cg.academic_year_id <> new.academic_year_id
+  ) or exists (
+    select 1
+    from public.learning_term_grades g
+    join public.learning_class_groups cg
+      on cg.id = g.class_group_id and cg.organization_id = g.organization_id
+    where g.term_id = old.id
+      and g.organization_id = old.organization_id
+      and cg.academic_year_id <> new.academic_year_id
+  ) then
+    raise exception 'A term cannot move to another academic year while gradebook records depend on it';
+  end if;
+
+  return new;
+end;
+$function$;
+
+drop trigger if exists learning_term_year_change_guard on public.learning_terms;
+create trigger learning_term_year_change_guard
+before update of organization_id, academic_year_id
+on public.learning_terms
+for each row execute function private.guard_learning_term_year_change();
+
+-- Prevent moving a class to another academic year if its gradebook records belong elsewhere.
+create or replace function private.guard_learning_class_group_year_change()
+returns trigger
+language plpgsql
+set search_path = ''
+as $function$
+begin
+  if exists (
+    select 1
+    from public.learning_gradebook_entries e
+    join public.learning_terms t
+      on t.id = e.term_id and t.organization_id = e.organization_id
+    where e.class_group_id = old.id
+      and e.organization_id = old.organization_id
+      and t.academic_year_id <> new.academic_year_id
+  ) or exists (
+    select 1
+    from public.learning_term_grades g
+    join public.learning_terms t
+      on t.id = g.term_id and t.organization_id = g.organization_id
+    where g.class_group_id = old.id
+      and g.organization_id = old.organization_id
+      and t.academic_year_id <> new.academic_year_id
+  ) then
+    raise exception 'A class cannot move to another academic year while gradebook records depend on its current year';
+  end if;
+
+  return new;
+end;
+$function$;
+
+drop trigger if exists learning_class_group_year_change_guard on public.learning_class_groups;
+create trigger learning_class_group_year_change_guard
+before update of organization_id, academic_year_id
+on public.learning_class_groups
+for each row execute function private.guard_learning_class_group_year_change();
+
+-- A manager inserting or reassigning a gradebook record must use a student
+-- who is actively enrolled in that exact class.
+create or replace function private.guard_learning_gradebook_student_membership()
+returns trigger
+language plpgsql
+set search_path = ''
+as $function$
+begin
+  if tg_op = 'INSERT'
+     or row(new.organization_id, new.class_group_id, new.student_user_id)
+        is distinct from row(old.organization_id, old.class_group_id, old.student_user_id) then
+    if not exists (
+      select 1
+      from public.learning_class_memberships cm
+      where cm.organization_id = new.organization_id
+        and cm.class_group_id = new.class_group_id
+        and cm.user_id = new.student_user_id
+        and cm.membership_type = 'student'
+        and cm.status = 'active'
+    ) then
+      raise exception 'The selected student must have an active student membership in this class';
+    end if;
+  end if;
+
+  return new;
+end;
+$function$;
+
+drop trigger if exists learning_gradebook_entry_student_membership_guard on public.learning_gradebook_entries;
+create trigger learning_gradebook_entry_student_membership_guard
+before insert or update of organization_id, class_group_id, student_user_id
+on public.learning_gradebook_entries
+for each row execute function private.guard_learning_gradebook_student_membership();
+
+drop trigger if exists learning_term_grade_student_membership_guard on public.learning_term_grades;
+create trigger learning_term_grade_student_membership_guard
+before insert or update of organization_id, class_group_id, student_user_id
+on public.learning_term_grades
+for each row execute function private.guard_learning_gradebook_student_membership();
+
 revoke all on function private.guard_learning_term_date_range() from public, anon, authenticated;
 revoke all on function private.guard_learning_academic_year_date_update() from public, anon, authenticated;
 revoke all on function private.guard_learning_gradebook_term_class_year() from public, anon, authenticated;
+revoke all on function private.guard_learning_term_year_change() from public, anon, authenticated;
+revoke all on function private.guard_learning_class_group_year_change() from public, anon, authenticated;
+revoke all on function private.guard_learning_gradebook_student_membership() from public, anon, authenticated;
 
 commit;
