@@ -120,7 +120,7 @@ export default function TeacherContentLibraryPage() {
     setSubjectId("");
   }
 
-  const academicFiltersPending = contentObjectiveMap.isPending ||
+  const academicFiltersPending = (content.isSuccess && contentObjectiveMap.isPending) ||
     (Boolean(curriculumId) && (objectiveAlignments.isPending || subjects.isPending)) ||
     (Boolean(subjectId) && academicCatalog.isPending);
   const academicFiltersError = curricula.isError || subjects.isError || academicCatalog.isError ||
