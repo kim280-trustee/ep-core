@@ -138,15 +138,15 @@ join public.learning_subjects objective_subject
  and objective_subject.code = 'MATH'
 join (
   values
-    ('M1-K1_1-01', 1, 'K 1.1 M.1/1'),
-    ('M1-K1_1-02', 2, 'K 1.1 M.1/2'),
-    ('M1-K1_1-03', 3, 'K 1.1 M.1/3'),
-    ('M1-K1_3-01', 4, 'K 1.3 M.1/1'),
-    ('M1-K1_3-02', 5, 'K 1.3 M.1/2'),
-    ('M1-K1_3-03', 6, 'K 1.3 M.1/3'),
-    ('M1-K2_2-01', 7, 'K 2.2 M.1/1'),
-    ('M1-K2_2-02', 8, 'K 2.2 M.1/2'),
-    ('M1-K3_1-01', 9, 'K 3.1 M.1/1')
+    ('M1-K1_1-01', 1, 'ค 1.1 ม.1/1'),
+    ('M1-K1_1-02', 2, 'ค 1.1 ม.1/2'),
+    ('M1-K1_1-03', 3, 'ค 1.1 ม.1/3'),
+    ('M1-K1_3-01', 4, 'ค 1.3 ม.1/1'),
+    ('M1-K1_3-02', 5, 'ค 1.3 ม.1/2'),
+    ('M1-K1_3-03', 6, 'ค 1.3 ม.1/3'),
+    ('M1-K2_2-01', 7, 'ค 2.2 ม.1/1'),
+    ('M1-K2_2-02', 8, 'ค 2.2 ม.1/2'),
+    ('M1-K3_1-01', 9, 'ค 3.1 ม.1/1')
 ) as alignment(objective_code, sequence_no, indicator_code)
   on alignment.objective_code = objective.code
 join public.learning_curricula curriculum
