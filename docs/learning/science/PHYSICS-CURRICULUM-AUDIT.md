@@ -263,3 +263,26 @@ Migration: `20261116173000_learning_physics_m6_electromagnetic_waves_communicati
 The M6 Group 3 electricity/magnetism/electromagnetic-wave sequence is now staged for outcomes 1–8: eight objectives, eight lesson starters and 24 answer-keyed questions across three M6 teacher packs. This is not a claim that all M6 Physics or all 67 national Physics outcomes are complete; the remaining Group 3 outcomes and Group 4 allocations still require grade-by-grade official verification.
 
 Official manual pages: https://www.scimath.org/e-books/8437/flippingbook/187/ and https://www.scimath.org/e-books/8437/flippingbook/188/
+
+
+## M6 verified staged release — Group 4 outcomes 1–9
+
+The official IPST Physics curriculum-use manual explicitly lists Group 4 outcomes 1–9 under M6 in the table beginning on printed p. 37 and continuing through printed pp. 38–43. These outcomes cover heat and phase change; elasticity and Young's modulus; gauge, absolute and atmospheric pressure; buoyancy; surface tension and viscosity; ideal-fluid continuity and Bernoulli; ideal-gas laws; kinetic theory and RMS molecular speed; and gas work and the first law of thermodynamics.
+
+| M6 outcome | Scope | Database objective |
+|---:|---|---|
+| 1 | Heat, temperature change and phase change | `M6-PHY-THERMAL-ENERGY` |
+| 2 | Elasticity, stress, strain and Young's modulus | `M6-PHY-ELASTICITY-YOUNGS-MODULUS` |
+| 3 | Gauge, absolute and atmospheric pressure | `M6-PHY-FLUID-PRESSURE` |
+| 4 | Buoyancy and Archimedes' principle | `M6-PHY-BUOYANCY-ARCHIMEDES` |
+| 5 | Surface tension and viscosity | `M6-PHY-SURFACE-TENSION-VISCOSITY` |
+| 6 | Ideal fluids, continuity and Bernoulli | `M6-PHY-IDEAL-FLUID-BERNOULLI` |
+| 7 | Ideal gas law | `M6-PHY-IDEAL-GAS-LAWS` |
+| 8 | Kinetic theory and RMS molecular speed | `M6-PHY-KINETIC-THEORY-GAS` |
+| 9 | Gas work and first law of thermodynamics | `M6-PHY-THERMODYNAMICS-FIRST-LAW` |
+
+Migration: `20261116174500_learning_physics_m6_thermal_fluids_gases_outcomes_1_9.sql`. Teacher pack: `M6-physics-thermal-fluids-gases-teacher-starter-pack.md`. This batch adds nine M6 objectives, nine lesson starters and 27 answer-keyed questions.
+
+This confirms the Group 4 M6 outcome sequence 1–9. Group 4 outcomes 10 onward are treated separately and still require exact grade extraction. It does not imply that all M6 Physics outcomes or all 67 national Physics outcomes are complete.
+
+Official source: IPST, *Curriculum-use manual for Additional Physics*, M6 Group 4 outcomes table, printed pp. 37–43; official PDF: https://www.academic.obec.go.th/web/images/document/1760950054_d_1.pdf
