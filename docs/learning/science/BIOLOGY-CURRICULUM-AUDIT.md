@@ -2,7 +2,9 @@
 
 **Curriculum:** Thai Basic Education Core Curriculum B.E. 2551 (2008), revised B.E. 2560 (2017), Additional Biology (IPST 2017)
 **Source of truth:** IPST, *Curriculum-use Manual for Additional Science: Biology, Upper Secondary Level* (2017), including the outcome-to-indicator alignment tables and grade-specific learning-outcome tables.
-**Status:** All official upper-secondary Biology outcome allocations in the manual are represented in the staged curriculum catalogue. **108/108 outcomes staged.** Each outcome has one teacher lesson starter and three answer-keyed questions.
+**Status:** All official upper-secondary Biology outcome allocations in the manual are represented in the staged curriculum catalogue. **108/108 objectives staged.** Each objective has one lesson starter and three answer-keyed practice questions in the companion teacher packs. These are authoring resources, not rows inserted into the app's content or question tables.
+**Database/content boundary:** The Biology migration files seed the academic knowledge graph and grade alignments only. Lesson starters and answer-keyed questions are in the Markdown teacher packs; they must be authored under an authenticated school teacher account through the existing generic content and question-bank workflows before they become app content.
+
 
 ## Verified grade and content-strand register
 
