@@ -118,6 +118,8 @@ The live database migration history ends at `20261116015418`. The branch migrati
 9. `20261116064500_learning_maths_m4_m6_knowledge_graph.sql`
 10. `20261116070000_learning_academic_year_multi_curriculum.sql`
 11. `20261116071500_learning_academic_record_integrity.sql`
+12. `20261116080000_learning_science_curriculum_catalog.sql`
+13. `20261116081500_learning_science_m1_knowledge_graph.sql`
 
 The order is important because content and assessment integrity constraints rely on the academic catalogue and knowledge graph.
 
