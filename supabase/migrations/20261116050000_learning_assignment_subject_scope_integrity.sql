@@ -62,7 +62,8 @@ begin
     where assignment.id = new.assignment_id
       and assignment.class_subject_id is not null
       and (
-        (new.class_group_id is not null and class_subject.class_group_id <> new.class_group_id)
+        class_subject.status <> 'active'
+        or (new.class_group_id is not null and class_subject.class_group_id <> new.class_group_id)
         or (new.class_group_id is null and not exists (
           select 1
           from public.learning_class_memberships student_membership
