@@ -2,7 +2,7 @@
 
 **Branch:** `paul/learning-academic-integrity-audit`  
 **Scope:** Thai core Science curriculum catalogue, M1–M3 core knowledge graphs, and staged M4–M6 additional Science subjects  
-**Status:** M1–M3 core Science knowledge graphs are complete. Upper-secondary additional Science staging now has complete, audited Biology (108/108 outcomes; 108 lesson starters; 324 questions), Chemistry (81/81; 81 lesson starters; 243 questions), and Physics (67/67; 67 lesson starters; 201 questions). Earth, Astronomy and Space is in progress: M5 standard 2 outcomes 1–13 and M6 standard 3 astronomy outcomes 1–19 are staged (32 objectives, 32 lesson starters and 96 questions); M4 geology allocations remain under audit. Empty grade/strand combinations are not treated as gaps unless the official manual assigns outcomes there. No migrations have been applied to live Supabase and no school records have been created.
+**Status:** M1–M3 core Science knowledge graphs are complete. Upper-secondary additional Science staging has complete, audited Biology (108/108 outcomes; 108 lesson starters; 324 questions), Chemistry (81/81; 81 lesson starters; 243 questions), Physics (67/67; 67 lesson starters; 201 questions), and Earth, Astronomy and Space (44/44 outcomes; 44 lesson starters; 132 questions). Earth/Space allocation is verified: M4 geology outcomes 1–12, M5 standard 2 outcomes 1–13, and M6 standard 3 astronomy outcomes 1–19. Empty grade/strand combinations are not treated as gaps unless the official manual assigns outcomes there. No migrations have been applied to live Supabase and no school records have been created.
 
 ## M1 coverage delivered
 
@@ -59,7 +59,7 @@ Use teacher supervision for laboratory demonstrations. Do not ask students to ta
 
 - No Supabase migration has been applied.
 - No live school, class, class-subject, teacher, student, content or assessment record has been created.
-- All M1–M3 core Science knowledge graphs are seeded. M4 Biology strands 1–2, M5 Biology strands 3–4 and M6 Biology strands 2, 4 and 5 are seeded: 108 outcomes, with 108 lesson starters and 324 practice questions with answer keys. M4 Biology strands 3–5 and M5 Biology strand 5 have no outcomes in the official curriculum. Remaining M5–M6 Biology, M6 Physics outcomes beyond Group 3 outcome 8 and Group 4 outcome 9, plus remaining M4–M6 Physics content-group outcomes, and all Earth/Space outcomes remain pending. M6 Biology strand 2 outcomes 1–5 are now seeded. Chemistry now has 81 seeded outcomes across M4, M5 and M6. Physics has 17 M4 outcomes, 12 M5 outcomes, eight M6 Group 3 outcomes and nine M6 Group 4 outcomes seeded; the full 67-outcome grade allocation is still being audited.
+- All M1–M3 core Science knowledge graphs are seeded. Upper-secondary specialist tracks are fully staged and audited: Biology 108 outcomes, Chemistry 81, Physics 67, and Earth/Space 44. Earth/Space grade allocations are M4 geology 1–12, M5 standard 2 atmosphere/oceans/climate 1–13, and M6 standard 3 astronomy/space 1–19. Empty grade/strand combinations remain intentional where the official manual assigns no outcomes. No live migrations have been applied.
 - Technology standards ว 4.1 and ว 4.2 are outside this Science batch.
 - No local lint/build result is claimed; consolidated verification remains pending.
 
@@ -271,3 +271,24 @@ The full Earth/Space audit is in `EARTH-SPACE-CURRICULUM-AUDIT.md`. This does no
 The official IPST manual crosswalk (printed pp. 31–32) explicitly assigns the astronomy sequence to M6. Outcomes 1–19 are staged in `20261116190000_learning_earth_space_m6_astronomy_space.sql`. The companion `M6-earth-space-astronomy-space-teacher-starter-pack.md` contains 19 lesson starters and 57 answer-keyed questions. The complete Earth/Space audit is in `EARTH-SPACE-CURRICULUM-AUDIT.md`.
 
 Current upper-secondary Earth/Space staging: M5 atmosphere/oceans/weather/climate 13 outcomes; M6 astronomy/space 19 outcomes; total 32 outcomes, 32 starters and 96 questions. M4 geology remains to be audited and staged. No live Supabase migrations have been applied.
+
+
+## Upper-secondary Earth, Astronomy and Space completion
+
+The official IPST manual grade crosswalk and grade-specific teaching sections have now been reconciled. M4 standard 1 geology outcomes 1–12 are assigned to M4; this includes outcome 12 on topographic and geological map interpretation, which the M4 teaching-analysis page labels explicitly. M5 standard 2 outcomes 1–13 remain assigned to M5. M6 standard 3 astronomy/space outcomes 1–19 remain assigned to M6.
+
+The completed M4 geology batch is staged in `20261116191500_learning_earth_space_m4_geology.sql`. Its companion `M4-earth-space-geology-teacher-starter-pack.md` contains 12 lesson starters and 36 answer-keyed questions.
+
+Earth/Space totals: **44 objectives, 44 lesson starters and 132 answer-keyed questions** across M4–M6.
+
+## Science curriculum staging totals
+
+| Track | Official outcomes | Lesson starters | Answer-keyed questions | Status |
+|---|---:|---:|---:|---|
+| M1–M3 core Science | 142 | 142 | 426 | Complete |
+| Upper-secondary Biology | 108 | 108 | 324 | Complete |
+| Upper-secondary Chemistry | 81 | 81 | 243 | Complete |
+| Upper-secondary Physics | 67 | 67 | 201 | Complete |
+| Upper-secondary Earth, Astronomy and Space | 44 | 44 | 132 | Complete |
+
+These totals are separate tracks; the M1–M3 core Science indicators are not merged with M4–M6 additional specialist outcomes. The staged migration set remains unapplied to live Supabase. Consolidated local lint/build and final migration review remain pending.
