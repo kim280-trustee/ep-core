@@ -1,6 +1,6 @@
 # E&P Learning — Upper-secondary Physics Curriculum Audit
 
-**Status:** Official curriculum scope and grade allocation are being reconciled outcome-by-outcome. M4 is complete; M5 outcomes 1–12 plus Group 4 outcomes 15 and 18, and M6 Group 3 outcomes 1–8 plus Group 4 outcomes 1–14 and 16–17, are staged. The full 67-outcome national register is not yet complete.
+**Status:** Official curriculum scope and grade allocation are being reconciled outcome-by-outcome. M4, M5 and M6 allocations are now fully staged across all four Physics content groups: 67 of 67 official outcomes.
 
 ## Official curriculum structure
 
@@ -317,3 +317,33 @@ The official IPST outcome-to-indicator comparison crosswalk explicitly allocates
 Migration: `20261116181500_learning_physics_m5_group4_outcomes_15_18.sql`. Teacher pack: `M5-physics-nuclear-structure-particle-physics-teacher-starter-pack.md`. This batch adds two M5 objectives, two lesson starters and six answer-keyed questions.
 
 M5 Physics now has 14 staged outcomes across Group 2 outcomes 1–12 and Group 4 outcomes 15 and 18. M6 Group 4 remains 16 outcomes (1–14, 16–17). The official crosswalk is the grade-allocation authority for the two non-contiguous M5 outcomes. No migrations have been applied to live Supabase.
+
+
+
+## Final M5 Physics completion batch — Group 3 outcomes 1–11 and Group 2 outcome 13
+
+The official IPST curriculum-use manual explicitly labels Group 3 outcomes 1–11 as M5, followed by a separate M6 Group 3 sequence that restarts at outcome 1. The same manual lists Group 2 outcome 13 (colour vision, object colour, pigment/light mixing and colour blindness) under M5. This batch fills the final missing M5 Physics allocations.
+
+| Grade | Content group | Outcomes | Scope |
+|---|---|---:|---|
+| M5 | Group 3 | 1–6 | Electrostatic charging, Coulomb's law, electric fields, electric potential, capacitors and electrostatic applications |
+| M5 | Group 3 | 7–11 | Electron drift/current, Ohm's law/resistivity, emf and power, battery circuits and renewable electricity |
+| M5 | Group 2 | 13 | Colour vision, object colours, additive/subtractive mixing and colour-vision deficiency |
+
+Migration: `20261116183000_learning_physics_m5_electricity_and_colour_outcomes.sql`. Teacher pack: `M5-physics-electrostatics-dc-electricity-colour-vision-teacher-starter-pack.md`. This batch adds 12 objectives, 12 lesson starters and 36 answer-keyed questions.
+
+## National Physics outcome register — complete
+
+The staged register now accounts for all **67** additional Physics learning outcomes identified by IPST:
+
+| Grade / group | Staged outcomes | Count |
+|---|---|---:|
+| M4 Group 1 | 1–17 | 17 |
+| M5 Group 2 | 1–13 | 13 |
+| M5 Group 3 | 1–11 | 11 |
+| M5 Group 4 | 15, 18 | 2 |
+| M6 Group 3 | 1–8 | 8 |
+| M6 Group 4 | 1–14, 16–17 | 16 |
+| **Total** | | **67** |
+
+The group number and outcome number are always stored with grade context; outcome numbers restart between grades/content groups and must not be treated as a single global sequence. Each staged outcome has one lesson starter and three answer-keyed questions. Physics total: **67 objectives, 67 lesson starters and 201 answer-keyed questions**. All migrations remain unapplied to live Supabase.
