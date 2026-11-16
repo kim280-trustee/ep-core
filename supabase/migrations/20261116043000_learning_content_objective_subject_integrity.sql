@@ -32,6 +32,8 @@ begin
     join public.learning_skills skill
       on skill.id = topic.skill_id
     where objective.status <> 'active'
+       or topic.status <> 'active'
+       or skill.status <> 'active'
        or not exists (
          select 1
          from public.learning_objective_alignments alignment
@@ -69,6 +71,7 @@ begin
   join public.learning_skills skill on skill.id = topic.skill_id
   where objective.id = new.objective_id
     and objective.status = 'active'
+    and topic.status = 'active'
     and skill.status = 'active';
 
   if v_subject_id is null then
