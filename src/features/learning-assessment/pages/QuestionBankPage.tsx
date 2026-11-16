@@ -63,6 +63,18 @@ export default function QuestionBankPage() {
   const selectedSubjectId = selectedClass?.subjects.some((item) => item.subjectId === subjectId)
     ? subjectId
     : selectedClass?.subjects[0]?.subjectId || "";
+  const academicContext = useQuery({
+    queryKey: ["learning", "question-bank", "academic-context", selectedClass?.classGroup.curriculumId, selectedClass?.classGroup.gradeLevelId],
+    queryFn: async () => {
+      if (!selectedClass) return { curricula: [], gradeLevels: [] };
+      const [curricula, gradeLevels] = await Promise.all([
+        learningContentService.listCurricula(),
+        learningContentService.listGradeLevels(selectedClass.classGroup.curriculumId),
+      ]);
+      return { curricula, gradeLevels };
+    },
+    enabled: Boolean(selectedClass?.classGroup.curriculumId && selectedClass?.classGroup.gradeLevelId),
+  });
 
   const questions = useQuery({
     queryKey: ["learning", "question-bank", "questions", organizationId],
@@ -274,7 +286,8 @@ export default function QuestionBankPage() {
           </label>
         </div>
         {selectedClass && !selectedClass.subjects.length && <p className="mt-2 text-xs text-amber-700">This class has no active subjects assigned.</p>}
-        {selectedClass && selectedSubjectId && <p className="mt-3 text-xs text-slate-500">Academic scope: {selectedClass.classGroup.curriculumId} · Grade {selectedClass.classGroup.gradeLevelId} · {selectedClass.subjects.find((item) => item.subjectId === selectedSubjectId)?.subject.name}</p>}
+        {selectedClass && selectedSubjectId && <p className="mt-3 text-xs text-slate-500">Academic scope: {academicContext.data?.curricula.find((item) => item.id === selectedClass.classGroup.curriculumId)?.name ?? "Curriculum"} · {academicContext.data?.gradeLevels.find((item) => item.id === selectedClass.classGroup.gradeLevelId)?.name ?? "Grade"} · {selectedClass.subjects.find((item) => item.subjectId === selectedSubjectId)?.subject.name}</p>}
+        {academicContext.isError && <p role="alert" className="mt-2 text-xs text-red-700">Curriculum and grade details could not be loaded. Refresh before creating questions.</p>}
       </section>
 
       {message && <div className="rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-700">{message}</div>}
@@ -328,7 +341,7 @@ export default function QuestionBankPage() {
             <Field label={t("questionBank.objective")}><select value={objectiveId} onChange={(e) => setObjectiveId(e.target.value)} className="input"><option value="">{t("questionBank.selectObjective")}</option>{objectives.data?.map((objective) => <option key={objective.id} value={objective.id}>{objective.code} — {objective.name}</option>)}</select></Field>
             <Field label={t("questionBank.explanation")}><textarea value={explanation} onChange={(e) => setExplanation(e.target.value)} rows={3} className="input" placeholder={t("questionBank.explanationPlaceholder")} /></Field>
 
-            <div className="flex items-center justify-between gap-3 border-t border-slate-100 pt-4"><p className="text-xs text-slate-500">{t("questionBank.draftHelp")}</p><button type="button" disabled={!organizationId || !selectedClass?.classGroup.curriculumId || !selectedClass?.classGroup.gradeLevelId || !selectedSubjectId || !selectedClass?.subjects.some((item) => item.subjectId === selectedSubjectId) || !objectiveId || !objectives.isSuccess || objectives.isError || academicQuestionIds.isError || createMutation.isPending} onClick={() => createMutation.mutate()} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 disabled:opacity-50"><Sparkles size={16} />{createMutation.isPending ? t("questionBank.saving") : editingQuestionId ? t("questionBank.saveVersion") : t("questionBank.saveDraft")}</button></div>
+            <div className="flex items-center justify-between gap-3 border-t border-slate-100 pt-4"><p className="text-xs text-slate-500">{t("questionBank.draftHelp")}</p><button type="button" disabled={!organizationId || !selectedClass?.classGroup.curriculumId || !selectedClass?.classGroup.gradeLevelId || !selectedSubjectId || !selectedClass?.subjects.some((item) => item.subjectId === selectedSubjectId) || !objectiveId || !objectives.isSuccess || objectives.isError || academicQuestionIds.isError || academicContext.isError || academicContext.isPending || createMutation.isPending} onClick={() => createMutation.mutate()} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 disabled:opacity-50"><Sparkles size={16} />{createMutation.isPending ? t("questionBank.saving") : editingQuestionId ? t("questionBank.saveVersion") : t("questionBank.saveDraft")}</button></div>
           </div>
         </section>
       </div>
