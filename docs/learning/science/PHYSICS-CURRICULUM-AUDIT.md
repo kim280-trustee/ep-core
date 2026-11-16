@@ -72,3 +72,17 @@ Two further outcomes are confirmed in the official IPST Physics curriculum-use m
 Migration: `20261116140000_learning_physics_m4_momentum_collisions.sql`. Companion pack: `M4-physics-momentum-collisions-teacher-starter-pack.md`, with two lesson starters and six answer-keyed questions.
 
 M4 now has six verified seeded outcomes (8, 9, 11, 12, 14 and 15), six lesson starters and 18 answer-keyed questions. This is still a partial Physics release; the national total is 67. Grade-level extraction of all remaining outcomes is not complete. Migration remains unapplied to the live database.
+
+
+## Fourth verified knowledge-graph batch — M4 outcomes 16–17
+
+Two further M4 outcomes have been checked against the IPST Physics curriculum-use manual and the official IPST outcome-to-indicator crosswalk:
+
+| Grade | Outcome | Verified scope | Database objective |
+|---|---:|---|---|
+| M4 | 16 | Parabolic projectile motion under gravity; independent horizontal and vertical components; investigation and calculation | `M4-PHY-PROJECTILE-16` |
+| M4 | 17 | Uniform circular motion; centripetal force, radius, linear/angular speed and mass; satellite-orbit application | `M4-PHY-CIRCULAR-17` |
+
+Migration: `20261116141500_learning_physics_m4_projectile_circular_motion.sql`. Companion pack: `M4-physics-projectile-circular-motion-teacher-starter-pack.md`, with two lesson starters and six answer-keyed questions.
+
+M4 now has eight verified seeded outcomes (8, 9, 11, 12, 14, 15, 16 and 17), eight lesson starters and 24 answer-keyed questions. This remains a partial Physics release: the national curriculum contains 67 additional-study outcomes, and full grade-by-grade extraction is not complete. The migration is additive and idempotent; it has not been applied to Supabase.
