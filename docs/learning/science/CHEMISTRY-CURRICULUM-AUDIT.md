@@ -2,7 +2,9 @@
 
 **Curriculum:** Thai Basic Education Core Curriculum B.E. 2551 (2008), revised B.E. 2560 (2017), Additional Chemistry (IPST 2017)
 **Source of truth:** IPST, *Curriculum-use Manual for Additional Science: Chemistry, Upper Secondary Level* (2017), including the grade-specific learning outcomes and outcome-to-indicator comparison tables.
-**Status:** All official upper-secondary Chemistry outcome allocations represented in the manual are staged. **81/81 outcomes staged.** Each outcome has one teacher lesson starter and three answer-keyed questions.
+**Status:** All official upper-secondary Chemistry outcome allocations represented in the manual are staged. **81/81 objectives staged.** Each objective has one lesson starter and three answer-keyed practice questions in the companion teacher packs. These are authoring resources, not rows inserted into the app's content or question tables.
+**Database/content boundary:** The Chemistry migration files seed the academic knowledge graph and grade alignments only. Lesson starters and answer-keyed questions are in the Markdown teacher packs; they must be authored under an authenticated school teacher account through the existing generic content and question-bank workflows before they become app content.
+
 
 ## Verified grade and content-strand register
 
