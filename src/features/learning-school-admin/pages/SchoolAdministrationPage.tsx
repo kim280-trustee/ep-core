@@ -606,7 +606,7 @@ export default function SchoolAdministrationPage() {
                 <div className="grid gap-5 lg:grid-cols-2">
                   <form className="space-y-3 rounded-xl border border-slate-200 p-4" onSubmit={submitNewSubject}>
                     <h3 className="font-semibold text-slate-900">Create a global subject</h3>
-                    <Field label="Subject code"><input className={fieldClass} required maxLength={30} value={newSubjectForm.code} onChange={(event) => setNewSubjectForm((current) => ({ ...current, code: event.target.value.toUpperCase().replace(/\\s+/g, "_") }))} placeholder="MATH" /></Field>
+                    <Field label="Subject code"><input className={fieldClass} required maxLength={30} value={newSubjectForm.code} onChange={(event) => setNewSubjectForm((current) => ({ ...current, code: event.target.value.toUpperCase().replace(/\s+/g, "_") }))} placeholder="MATH" /></Field>
                     <Field label="Subject name"><input className={fieldClass} required maxLength={100} value={newSubjectForm.name} onChange={(event) => setNewSubjectForm((current) => ({ ...current, name: event.target.value }))} placeholder="Mathematics" /></Field>
                     <Field label="Description (optional)"><textarea className={fieldClass} rows={2} maxLength={500} value={newSubjectForm.description} onChange={(event) => setNewSubjectForm((current) => ({ ...current, description: event.target.value }))} /></Field>
                     <button type="submit" className={buttonClass} disabled={saveMutation.isPending || !newSubjectForm.code.trim() || !newSubjectForm.name.trim()}>{saveMutation.isPending ? "Saving…" : "Create subject"}</button>
