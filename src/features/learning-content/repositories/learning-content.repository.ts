@@ -61,7 +61,9 @@ export interface LearningContentRepository {
   listSkills(subjectId?: string): Promise<LearningSkill[]>;
   listTopics(skillId?: string): Promise<LearningTopic[]>;
   listObjectives(topicId?: string): Promise<LearningObjective[]>;
-  listPrerequisites(objectiveId: string): Promise<LearningObjectivePrerequisite[]>;
+  listPrerequisites(objectiveId?: string): Promise<LearningObjectivePrerequisite[]>;
+  addPrerequisite(input: { objectiveId: string; prerequisiteObjectiveId: string }): Promise<LearningObjectivePrerequisite>;
+  removePrerequisite(objectiveId: string, prerequisiteObjectiveId: string): Promise<void>;
   listAlignments(objectiveId?: string, curriculumId?: string, gradeLevelId?: string): Promise<LearningObjectiveAlignment[]>;
   createAlignment(input: import("../types/learning-content.types").LearningObjectiveAlignmentInput): Promise<LearningObjectiveAlignment>;
   listContent(organizationId?: string): Promise<LearningContentItem[]>;
@@ -113,7 +115,9 @@ export const learningContentRepository: LearningContentRepository = {
   async listSkills(subjectId){let q=supabase.from("learning_skills").select("*").eq("status","active").order("name");if(subjectId)q=q.eq("subject_id",subjectId);const{data,error}=await q;if(error)throw error;return(data??[]).map(mapSkill);},
   async listTopics(skillId){let q=supabase.from("learning_topics").select("*").eq("status","active").order("sequence_no");if(skillId)q=q.eq("skill_id",skillId);const{data,error}=await q;if(error)throw error;return(data??[]).map(mapTopic);},
   async listObjectives(topicId){let q=supabase.from("learning_objectives").select("*").eq("status","active").order("sequence_no");if(topicId)q=q.eq("topic_id",topicId);const{data,error}=await q;if(error)throw error;return(data??[]).map(mapObjective);},
-  async listPrerequisites(objectiveId){const{data,error}=await supabase.from("learning_objective_prerequisites").select("*").eq("objective_id",objectiveId);if(error)throw error;return(data??[]).map(mapPrerequisite);},
+  async listPrerequisites(objectiveId){let q=supabase.from("learning_objective_prerequisites").select("*");if(objectiveId)q=q.eq("objective_id",objectiveId);const{data,error}=await q;if(error)throw error;return(data??[]).map(mapPrerequisite);},
+  async addPrerequisite(input){if(input.objectiveId===input.prerequisiteObjectiveId)throw new Error("An objective cannot be its own prerequisite.");const{data,error}=await supabase.from("learning_objective_prerequisites").insert({objective_id:input.objectiveId,prerequisite_objective_id:input.prerequisiteObjectiveId}).select("*").single();if(error){if(error.code==="23505")throw new Error("That prerequisite is already linked.");if(error.code==="23514")throw new Error(error.message);throw error;}return mapPrerequisite(data);},
+  async removePrerequisite(objectiveId,prerequisiteObjectiveId){const{error}=await supabase.from("learning_objective_prerequisites").delete().eq("objective_id",objectiveId).eq("prerequisite_objective_id",prerequisiteObjectiveId);if(error)throw error;},
   async listAlignments(objectiveId,curriculumId,gradeLevelId){let q=supabase.from("learning_objective_alignments").select("*").order("sequence_no");if(objectiveId)q=q.eq("objective_id",objectiveId);if(curriculumId)q=q.eq("curriculum_id",curriculumId);if(gradeLevelId)q=q.eq("grade_level_id",gradeLevelId);const{data,error}=await q;if(error)throw error;return(data??[]).map(mapAlignment);},
   async createAlignment(input){
     if(!Number.isInteger(input.sequenceNo)||input.sequenceNo<1)throw new Error("Alignment sequence must be a positive whole number.");
