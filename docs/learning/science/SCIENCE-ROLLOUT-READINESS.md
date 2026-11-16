@@ -23,12 +23,13 @@ The new catalogue uses subject code `SCI` and curriculum code `TH-SCI-M1-M6`, al
 
 This Science subject covers the core Science standards ว 1.x, ว 2.x and ว 3.x. Technology standards ว 4.1 and ว 4.2 are intentionally reserved for the future Design & Technology / Computer Studies workstream, so the same official indicators are not duplicated across subjects.
 
-The curriculum catalogue contains M1–M6 grade levels, but **only M1 objectives have been seeded so far**. M2–M6 Science knowledge graphs and teacher packs remain future implementation work.
+The curriculum catalogue contains M1–M6 grade levels. M1 is fully seeded for its 43 core Science indicators. M2 and M3 currently have 28 biological-science indicators seeded as a staged subset; remaining M2/M3 physical-science and Earth-and-space indicators, and all M4–M6 indicators, remain future implementation work.
 
 ## Migrations
 
 1. `20261116080000_learning_science_curriculum_catalog.sql` — adds the SCI subject, Thai Science curriculum, M1–M6 grade levels and curriculum-subject link.
 2. `20261116081500_learning_science_m1_knowledge_graph.sql` — adds five Science skills, 17 topics, 43 M1 objectives and official curriculum-grade alignments.
+3. `20261116083000_learning_science_m2_m3_biology_knowledge_graph.sql` — adds 28 M2/M3 biological-science objectives and official curriculum-grade alignments.
 
 Apply these after the existing pending academic foundation and Maths migrations, in timestamp order. The seeds are idempotent upserts and require the active Thai Basic Education system.
 
@@ -37,7 +38,8 @@ Apply these after the existing pending academic foundation and Maths migrations,
 The existing generic Teacher Content Create, Teacher Content Library and Question Bank workflows support the new subject and curriculum dimensions. No Science-only authoring module is needed.
 
 After migrations are applied:
-- Select `TH-SCI-M1-M6`, grade `M1` and subject `SCI` when creating Science content.
+- Select `TH-SCI-M1-M6`, the matching grade (`M1`, `M2` or `M3`) and subject `SCI` when creating Science content.
+- For M2/M3, use only the 28 currently seeded biological-science objectives until the remaining standards are implemented.
 - Link each lesson and question to its exact objective code.
 - Save as draft and have a teacher review scientific accuracy, safety and suitability before publishing.
 - Use the Teacher Content Library grade filter to isolate M1 materials.
@@ -50,7 +52,7 @@ Use teacher supervision for laboratory demonstrations. Do not ask students to ta
 
 - No Supabase migration has been applied.
 - No live school, class, class-subject, teacher, student, content or assessment record has been created.
-- M2–M6 Science objectives and packs have not yet been implemented.
+- M2/M3 physical-science and Earth-and-space objectives and packs, and all M4–M6 objectives and packs, have not yet been implemented.
 - Technology standards ว 4.1 and ว 4.2 are outside this Science batch.
 - No local lint/build result is claimed; consolidated verification remains pending.
 
@@ -74,7 +76,6 @@ The companion teacher pack contains 28 lesson starters and 84 practice questions
 
 ### M2–M3 migrations and resources
 
-3. `20261116083000_learning_science_m2_m3_biology_knowledge_graph.sql` — adds 28 M2/M3 biological-science objectives and official curriculum-grade alignments.
 4. `docs/learning/science/M2-M3-science-biological-teacher-starter-pack.md` — 28 lesson starters and 84 practice questions with answers.
 
 This is not complete M2/M3 Science coverage. Remaining M2/M3 physical-science and Earth-and-space indicators are still to be researched and implemented. Technology standards ว 4.1 and ว 4.2 remain outside the Science workstream.
