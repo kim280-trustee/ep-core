@@ -52,9 +52,9 @@ The existing generic workflows already support the new Maths catalogue:
 
 - **Teacher Content Create** loads curricula, grades, subjects, skills, topics and objectives. It checks that the chosen objective is aligned to the exact selected curriculum and grade before saving a draft.
 - **Question Bank** derives available objectives from the selected class's curriculum, grade and subject. It saves those same academic-scope IDs to each question version and links the selected objective.
-- **Teacher Content Library** filters the existing content catalogue by curriculum, grade, subject, content type and status. The grade filter now narrows materials to objectives aligned to the selected grade; no Maths-only content library is required.
+- **Teacher Content Library** filters the existing content catalogue by curriculum, grade, subject, content type and status. The grade filter now narrows materials to objectives aligned to the selected grade, and content cards show the grade tags associated with their objective mappings; no Maths-only content library is required.
 
-No separate Maths authoring module or route is needed. After the migrations are applied, Maths becomes available through the existing generic academic selectors and class-scoped question authoring. The content library's new grade filter also makes M1–M6 teacher resources easier to isolate.
+No separate Maths authoring module or route is needed. After the migrations are applied, Maths becomes available through the existing generic academic selectors and class-scoped question authoring. The content library's grade filter and grade tags also make M1–M6 teacher resources easier to isolate and identify.
 
 ## Pilot setup — ready after migrations and verification
 
