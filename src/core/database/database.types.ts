@@ -688,7 +688,7 @@ export type Database = {
         Update: {
           code?: string
           created_at?: string
-          curriculum_id?: string
+          curriculum_id?: string | null
           ends_on?: string
           id?: string
           name?: string
@@ -1701,13 +1701,6 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "learning_grade_levels"
             referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "class_year_curriculum_fk"
-            columns: ["academic_year_id", "curriculum_id"]
-            isOneToOne: false
-            referencedRelation: "learning_academic_years"
-            referencedColumns: ["id", "curriculum_id"]
           },
           {
             foreignKeyName: "class_year_org_fk"
