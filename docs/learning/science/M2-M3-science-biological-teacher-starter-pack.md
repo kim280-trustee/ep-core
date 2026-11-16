@@ -470,3 +470,345 @@ After the pending academic migrations are reviewed and applied by an authorised 
 This pack covers only the 28 biological-science indicators listed above. Remaining physical-science, Earth-and-space indicators for M2/M3 are not included in this batch. Technology standards ว 4.1 and ว 4.2 remain reserved for the separate Design & Technology / Computer Studies workstream.
 
 Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, Science, pp. 21–94: https://academic.obec.go.th/images/document/1580786277_d_1.pdf
+
+
+## M2 — Physical Science: Forces, Work and Energy
+
+**Standards:** ว 2.2 ม.2/1–15 and ว 2.3 ม.2/1–6  
+**Coverage:** 21 additional M2 indicators; this section extends the earlier M2 biological-science lessons.
+
+### Physical Science Lesson 1 — Predict motion from resultant force
+
+**Objective:** `M2-S2_2-01`  
+**Official indicator:** ว 2.2 ม.2/1  
+**Learning outcome:** Predict motion caused by the resultant of collinear forces using evidence.
+
+**Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
+
+**Independent practice**
+1. Forces of 8 N right and 3 N left give what resultant?  
+   **Answer:** 5 N to the right.
+2. What happens when the resultant force is zero?  
+   **Answer:** There is no acceleration; the object remains at rest or moves at constant velocity.
+3. Which direction is acceleration?  
+   **Answer:** In the direction of the resultant force.
+
+### Physical Science Lesson 2 — Draw collinear force diagrams
+
+**Objective:** `M2-S2_2-02`  
+**Official indicator:** ว 2.2 ม.2/2  
+**Learning outcome:** Draw force diagrams showing forces and their resultant on an object.
+
+**Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
+
+**Independent practice**
+1. What does an arrow in a force diagram represent?  
+   **Answer:** A force, with direction and relative magnitude.
+2. If two opposite forces are equal, what is the resultant?  
+   **Answer:** Zero newtons.
+3. Why label force arrows?  
+   **Answer:** To show which forces act and their directions.
+
+### Physical Science Lesson 3 — Investigate liquid pressure
+
+**Objective:** `M2-S2_2-03`  
+**Official indicator:** ว 2.2 ม.2/3  
+**Learning outcome:** Design a fair investigation of factors affecting liquid pressure.
+
+**Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
+
+**Independent practice**
+1. How does liquid pressure change with depth?  
+   **Answer:** It increases as depth increases.
+2. Name one variable to keep constant when testing depth.  
+   **Answer:** Liquid type or container conditions.
+3. Why use the same liquid in a depth investigation?  
+   **Answer:** To control density as a variable.
+
+### Physical Science Lesson 4 — Explain buoyancy and floating
+
+**Objective:** `M2-S2_2-04`  
+**Official indicator:** ว 2.2 ม.2/4  
+**Learning outcome:** Analyse buoyant force and why objects sink or float in liquids.
+
+**Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
+
+**Independent practice**
+1. What is buoyant force?  
+   **Answer:** The upward force exerted by a fluid on an immersed object.
+2. When does an object float at rest?  
+   **Answer:** When buoyancy balances its weight.
+3. Why can a steel ship float?  
+   **Answer:** Its overall average density, including the air-filled hull, is less than water.
+
+### Physical Science Lesson 5 — Represent forces in a liquid
+
+**Objective:** `M2-S2_2-05`  
+**Official indicator:** ว 2.2 ม.2/5  
+**Learning outcome:** Draw a force diagram for an object in a liquid.
+
+**Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
+
+**Independent practice**
+1. Which two vertical forces act on a floating object?  
+   **Answer:** Weight downward and buoyancy upward.
+2. What is the direction of weight?  
+   **Answer:** Downward, toward Earth's centre.
+3. What does a balanced force diagram show?  
+   **Answer:** Forces are equal in opposite directions.
+
+### Physical Science Lesson 6 — Compare static and kinetic friction
+
+**Objective:** `M2-S2_2-06`  
+**Official indicator:** ว 2.2 ม.2/6  
+**Learning outcome:** Explain static and kinetic friction using evidence.
+
+**Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
+
+**Independent practice**
+1. What is static friction?  
+   **Answer:** Friction that prevents surfaces from starting to slide relative to each other.
+2. What is kinetic friction?  
+   **Answer:** Friction acting while surfaces slide against each other.
+3. Which friction acts before a stationary box begins to slide?  
+   **Answer:** Static friction.
+
+### Physical Science Lesson 7 — Investigate factors affecting friction
+
+**Objective:** `M2-S2_2-07`  
+**Official indicator:** ว 2.2 ม.2/7  
+**Learning outcome:** Design an experiment to investigate factors affecting friction magnitude.
+
+**Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
+
+**Independent practice**
+1. Name one factor that can affect friction.  
+   **Answer:** Surface material or the normal force between surfaces.
+2. What instrument can measure pulling force?  
+   **Answer:** A spring balance or force sensor.
+3. Why change only one factor at a time?  
+   **Answer:** To identify its effect fairly.
+
+### Physical Science Lesson 8 — Draw friction force diagrams
+
+**Objective:** `M2-S2_2-08`  
+**Official indicator:** ว 2.2 ม.2/8  
+**Learning outcome:** Draw diagrams showing friction and other forces acting on an object.
+
+**Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
+
+**Independent practice**
+1. Which way does friction act relative to sliding?  
+   **Answer:** Opposite the direction of relative sliding.
+2. What force acts upward on a book resting on a table?  
+   **Answer:** The normal contact force.
+3. Why include all relevant forces?  
+   **Answer:** To analyse the object's motion correctly.
+
+### Physical Science Lesson 9 — Apply friction in everyday life
+
+**Objective:** `M2-S2_2-09`  
+**Official indicator:** ว 2.2 ม.2/9  
+**Learning outcome:** Explain when friction should be increased or reduced in everyday situations.
+
+**Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
+
+**Independent practice**
+1. Why do shoes have textured soles?  
+   **Answer:** To increase grip and reduce slipping.
+2. Why lubricate moving machine parts?  
+   **Answer:** To reduce friction and wear.
+3. Give one safe way to increase bicycle braking friction.  
+   **Answer:** Use suitable brake pads and maintain the braking system.
+
+### Physical Science Lesson 10 — Investigate moments of force
+
+**Objective:** `M2-S2_2-10`  
+**Official indicator:** ว 2.2 ม.2/10  
+**Learning outcome:** Investigate rotational equilibrium and calculate moment using M = F × l.
+
+**Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
+
+**Independent practice**
+1. Calculate the moment of 10 N acting 0.4 m from a pivot.  
+   **Answer:** 4 N m.
+2. What is the pivot?  
+   **Answer:** The point or axis about which an object rotates.
+3. How can a smaller force create the same moment?  
+   **Answer:** Apply it farther from the pivot.
+
+### Physical Science Lesson 11 — Compare magnetic, electric and gravitational fields
+
+**Objective:** `M2-S2_2-11`  
+**Official indicator:** ว 2.2 ม.2/11  
+**Learning outcome:** Compare sources of magnetic, electric and gravitational fields and the forces they exert.
+
+**Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
+
+**Independent practice**
+1. What produces a gravitational field?  
+   **Answer:** Mass.
+2. What produces an electric field?  
+   **Answer:** Electric charge.
+3. Name a common source of a magnetic field.  
+   **Answer:** A magnet or electric current.
+
+### Physical Science Lesson 12 — Draw field-force diagrams
+
+**Objective:** `M2-S2_2-12`  
+**Official indicator:** ว 2.2 ม.2/12  
+**Learning outcome:** Draw diagrams showing magnetic, electric and gravitational forces on objects.
+
+**Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
+
+**Independent practice**
+1. In which direction does weight act near Earth?  
+   **Answer:** Toward Earth's centre.
+2. How do like electric charges interact?  
+   **Answer:** They repel.
+3. What do field lines help represent?  
+   **Answer:** The direction of a field and, by convention, its relative strength.
+
+### Physical Science Lesson 13 — Compare strengths of non-contact forces
+
+**Objective:** `M2-S2_2-13`  
+**Official indicator:** ว 2.2 ม.2/13  
+**Learning outcome:** Analyse factors affecting magnetic, electric and gravitational force magnitudes.
+
+**Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
+
+**Independent practice**
+1. What happens to gravitational attraction as distance increases?  
+   **Answer:** It decreases.
+2. What happens to electrostatic force when charge magnitude increases, all else equal?  
+   **Answer:** Its magnitude increases.
+3. Why compare forces under controlled conditions?  
+   **Answer:** To isolate how a factor affects force.
+
+### Physical Science Lesson 14 — Calculate speed and velocity
+
+**Objective:** `M2-S2_2-14`  
+**Official indicator:** ว 2.2 ม.2/14  
+**Learning outcome:** Calculate speed and velocity using distance or displacement divided by time.
+
+**Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
+
+**Independent practice**
+1. A runner travels 100 m in 20 s. What is average speed?  
+   **Answer:** 5 m/s.
+2. How does velocity differ from speed?  
+   **Answer:** Velocity includes direction.
+3. A person returns to the starting point. What is displacement?  
+   **Answer:** Zero.
+
+### Physical Science Lesson 15 — Represent displacement and velocity
+
+**Objective:** `M2-S2_2-15`  
+**Official indicator:** ว 2.2 ม.2/15  
+**Learning outcome:** Draw diagrams representing displacement and velocity.
+
+**Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
+
+**Independent practice**
+1. What does a displacement arrow show?  
+   **Answer:** Change in position from start to finish, including direction.
+2. Can displacement be zero after a journey?  
+   **Answer:** Yes, if the final position equals the starting position.
+3. What extra information does a velocity vector include?  
+   **Answer:** Direction as well as magnitude.
+
+### Physical Science Lesson 16 — Calculate work and power
+
+**Objective:** `M2-S2_3-01`  
+**Official indicator:** ว 2.3 ม.2/1  
+**Learning outcome:** Calculate work and power using W = Fs and P = W/t.
+
+**Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
+
+**Independent practice**
+1. A 20 N force moves a box 3 m in its direction. Work done?  
+   **Answer:** 60 J.
+2. If 120 J of work is done in 4 s, what is power?  
+   **Answer:** 30 W.
+3. When is mechanical work zero despite a force?  
+   **Answer:** When there is no displacement in the force direction.
+
+### Physical Science Lesson 17 — Explain simple machines
+
+**Objective:** `M2-S2_3-02`  
+**Official indicator:** ว 2.3 ม.2/2  
+**Learning outcome:** Analyse how simple machines change the size or direction of applied forces.
+
+**Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
+
+**Independent practice**
+1. Name a simple machine that uses a pivot.  
+   **Answer:** A lever.
+2. How can a ramp make lifting easier?  
+   **Answer:** It reduces the force needed by increasing the distance over which it acts.
+3. Does an ideal simple machine create energy?  
+   **Answer:** No; it trades force for distance or changes direction.
+
+### Physical Science Lesson 18 — Apply simple machines
+
+**Objective:** `M2-S2_3-03`  
+**Official indicator:** ว 2.3 ม.2/3  
+**Learning outcome:** Explain benefits and everyday applications of simple machines.
+
+**Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
+
+**Independent practice**
+1. Give one everyday example of a pulley.  
+   **Answer:** A flagpole or lifting system.
+2. Why use a longer wrench handle?  
+   **Answer:** It increases the turning moment for the same force.
+3. What is one limitation of a real simple machine?  
+   **Answer:** Some energy is dissipated, for example through friction.
+
+### Physical Science Lesson 19 — Investigate kinetic and gravitational potential energy
+
+**Objective:** `M2-S2_3-04`  
+**Official indicator:** ว 2.3 ม.2/4  
+**Learning outcome:** Design an investigation of factors affecting kinetic and gravitational potential energy.
+
+**Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
+
+**Independent practice**
+1. What happens to kinetic energy when speed increases?  
+   **Answer:** It increases; kinetic energy is proportional to speed squared.
+2. What two factors determine gravitational potential energy near Earth's surface?  
+   **Answer:** Mass and height.
+3. How can a fair test investigate height and potential energy?  
+   **Answer:** Change height while keeping mass and other conditions constant.
+
+### Physical Science Lesson 20 — Explain conservation of mechanical energy
+
+**Objective:** `M2-S2_3-05`  
+**Official indicator:** ว 2.3 ม.2/5  
+**Learning outcome:** Interpret data showing transfers between gravitational potential and kinetic energy when mechanical energy is conserved.
+
+**Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
+
+**Independent practice**
+1. At the top of a frictionless fall, which energy is greatest?  
+   **Answer:** Gravitational potential energy.
+2. As an object falls, what happens to its kinetic energy?  
+   **Answer:** It increases as gravitational potential energy decreases.
+3. What remains constant in an ideal system with no energy loss?  
+   **Answer:** Total mechanical energy.
+
+### Physical Science Lesson 21 — Apply conservation of energy
+
+**Objective:** `M2-S2_3-06`  
+**Official indicator:** ว 2.3 ม.2/6  
+**Learning outcome:** Analyse energy transformations and transfers using the conservation of energy law.
+
+**Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
+
+**Independent practice**
+1. State the law of conservation of energy.  
+   **Answer:** Energy cannot be created or destroyed; it is transferred or transformed.
+2. Where does mechanical energy go when a moving object slows due to friction?  
+   **Answer:** Mainly into thermal energy and sound in the surroundings.
+3. Does total energy disappear when a battery runs down?  
+   **Answer:** No; stored chemical energy is transferred into other forms.
