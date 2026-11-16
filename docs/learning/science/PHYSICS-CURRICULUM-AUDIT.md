@@ -30,3 +30,17 @@ The Institute for the Promotion of Teaching Science and Technology (IPST) identi
 ## Implementation decision
 
 The existing `PHYSICS` subject track and M4–M6 grade catalogue are already present. This audit adds no database records. The next implementation batch must first produce a grade-by-grade, outcome-numbered register reconciled against the official IPST documents; only then should idempotent knowledge-graph migrations and teacher starter packs be authored.
+
+
+## First verified knowledge-graph batch — M4 outcomes 8–9
+
+Two outcomes have now been extracted directly from the official IPST curriculum-use manual and seeded:
+
+| Grade | Outcome | Verified scope | Database objective |
+|---|---:|---|---|
+| M4 | 8 | Mechanical equilibrium, moments, couples, free-body diagrams and equilibrium of three forces | `M4-PHY-MECH-08` |
+| M4 | 9 | Centre of mass, centre of gravity and object stability | `M4-PHY-MECH-09` |
+
+Migration: `20261116133000_learning_physics_m4_mechanical_equilibrium.sql`. The companion pack contains two lesson starters and six answer-keyed practice questions: `M4-physics-mechanical-equilibrium-teacher-starter-pack.md`.
+
+This is a verified partial release only. The national total remains 67 outcomes; grade-by-grade extraction and implementation of the remaining outcomes are still in progress. The official comparison crosswalk confirms that content-group numbering cannot be treated as grade allocation. The migration is additive and idempotent; it has not been applied to Supabase.
