@@ -51,3 +51,23 @@ The M5 teacher starter pack contains 13 lesson starters and 39 answer-keyed ques
 ## Release boundary
 
 The migration is staged only. It has not been applied to Supabase. No school, class, learner or live content records were created or modified. Final migration review, pull, lint and build remain pending.
+
+
+## Verified M6 astronomy and space allocation
+
+The official IPST manual crosswalk (printed pp. 31–32) explicitly places the additional astronomy sequence under **ผลการเรียนรู้ ม.๖ (M6 learning outcomes)**. It lists the sequence beginning with Big Bang evolution and evidence, then Milky Way structure, stellar formation and properties, parallax, stellar evolution, Solar System formation and planetary motion, solar activity, celestial coordinates, apparent sky motion, solar time, planetary elongation, space technology and sky observation. The complete numbered sequence is 1–19, described across printed pp. 25–30.
+
+| Grade | Standard / strand | Outcomes | Staged | Migration |
+|---|---|---:|---:|---|
+| M6 | Standard 3 — Universe, stars, Solar System and observational astronomy | 1–19 (19) | 19 | `20261116190000_learning_earth_space_m6_astronomy_space.sql` |
+
+The M6 pack `M6-earth-space-astronomy-space-teacher-starter-pack.md` contains 19 lesson starters and 57 answer-keyed questions. Solar observation safety is explicit: never observe the Sun through unfiltered optical equipment; use certified front-mounted solar filters or safe indirect projection under expert supervision.
+
+## Current upper-secondary Earth/Space staging totals
+
+- M5 standard 2 atmosphere, oceans, weather and climate: 13 outcomes, 13 starters, 39 questions.
+- M6 standard 3 astronomy and space: 19 outcomes, 19 starters, 57 questions.
+- **Staged to date: 32 outcomes, 32 starters, 96 questions.**
+- M4 geology and the remaining grade-specific Earth-system allocations still require verification against the official grade/outcome crosswalk. Do not infer assignments from the order of topics in the manual.
+
+No live Supabase migration has been applied.
