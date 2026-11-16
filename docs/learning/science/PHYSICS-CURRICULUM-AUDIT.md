@@ -178,3 +178,17 @@ The official IPST Physics curriculum-use manual and its outcome register confirm
 Migration: `20261116163000_learning_physics_m5_geometrical_optics_outcomes_9_11.sql`. Teacher pack: `M5-physics-geometrical-optics-teacher-starter-pack.md`. This batch adds three objectives, three lesson starters and nine answer-keyed questions. Official source pages: https://www.scimath.org/e-books/8437/flippingbook/151/ through /155/; the outcome register explicitly lists outcomes 9–11 and the grade allocation.
 
 M5 outcome numbers 4–5 remain under audit; the M5 register is deliberately non-contiguous until those outcomes are independently verified.
+
+
+## M5 verified staged release — outcomes 4–5 (water waves and sound production)
+
+The official IPST Physics manual outcome register identifies M5 outcome 4 as observing and explaining reflection, refraction, interference and diffraction of surface water waves, and outcome 5 as explaining sound production, propagation, particle-displacement/pressure relationships and the dependence of sound speed in air on temperature. These are distinct from outcome 3 (general wave motion), outcome 6 (sound intensity/hearing) and outcome 7 (sound phenomena).
+
+| Grade | Outcome | Verified scope | Database objective |
+|---|---:|---|---|
+| M5 | 4 | Surface water-wave reflection, refraction, interference and diffraction | `M5-PHY-WATER-WAVES-04` |
+| M5 | 5 | Sound production and propagation, longitudinal pressure/displacement waves and speed-temperature relationship | `M5-PHY-SOUND-PROPAGATION-05` |
+
+Migration: `20261116164500_learning_physics_m5_water_waves_sound_propagation.sql`. Teacher pack: `M5-physics-water-waves-sound-propagation-teacher-starter-pack.md`. This batch adds two objectives, two lesson starters and six answer-keyed questions. The IPST outcome register source is https://www.scimath.org/e-books/8437/flippingbook/35/; the manual's M5 wave and sound content supports the detailed scope.
+
+M5 outcomes 1–12 are now all represented in the staged objective register. This completes the M5 numbered outcome set; M6 grade allocations and all remaining Physics domains still require verification.
