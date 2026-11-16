@@ -2,7 +2,7 @@
 
 **Curriculum:** Thai Basic Education Core Curriculum B.E. 2551 (2008), revised B.E. 2560 (2017), Additional Earth, Astronomy and Space Science (IPST 2017).
 **Official manual:** IPST, *Curriculum-use Manual for Additional Science: Earth, Astronomy and Space Science, Upper Secondary Level*.
-**Status:** M5 standard 2 outcomes 1–13 have been staged. M4 and M6 grade/strand allocations remain under audit; the total national outcome count is not yet declared complete.
+**Status:** M4 standard 1 geology outcomes 1–12, M5 standard 2 atmosphere/oceans/climate outcomes 1–13, and M6 standard 3 astronomy/space outcomes 1–19 are staged. The official grade allocations are verified against the IPST curriculum-use manual.
 
 ## Verified staged allocation
 
@@ -32,12 +32,12 @@ The official IPST manual lists the 13 M5 standard 2 outcomes in its curriculum a
 
 The M5 teacher starter pack contains 13 lesson starters and 39 answer-keyed questions. Activities use weather maps, official weather observations, radar/satellite examples, climate datasets and simulations. Students are not asked to approach storms or observe lightning outdoors.
 
-## Remaining audit
+## Grade allocation audit
 
-- M4: verify the exact Earth-science grade allocations and all numbered outcomes from the official manual before staging.
-- M6: verify the exact astronomy/space grade allocations, including the complete numbered sequence and any outcome subdivisions.
-- Do not treat the printed manual page numbers as outcome numbers. Outcome numbers restart within each grade/standard.
-- Do not infer a grade allocation from textbook volume order alone.
+- M4 standard 1: outcomes 1–12 are explicitly presented in the M4 section. The teaching analysis for outcomes 1–7 appears on printed pp. 80–86; outcomes 8–12 appear on pp. 87–92. Outcome 12 (topographic and geological map interpretation) is explicitly labelled as M4 on the teaching-analysis page, so it is not allocated to M5/M6.
+- M5 standard 2: outcomes 1–13 are explicitly assigned to M5 in the curriculum crosswalk and teaching section (printed pp. 21–24; analysis pp. 95–110).
+- M6 standard 3: astronomy and space outcomes 1–19 are explicitly assigned to M6 in the crosswalk and teaching section (printed pp. 25–30; crosswalk pp. 31–32).
+- Outcome numbering restarts within each grade/standard; it is not a global subject sequence.
 
 ## Official references
 
@@ -69,5 +69,35 @@ The M6 pack `M6-earth-space-astronomy-space-teacher-starter-pack.md` contains 19
 - M6 standard 3 astronomy and space: 19 outcomes, 19 starters, 57 questions.
 - **Staged to date: 32 outcomes, 32 starters, 96 questions.**
 - M4 geology and the remaining grade-specific Earth-system allocations still require verification against the official grade/outcome crosswalk. Do not infer assignments from the order of topics in the manual.
+
+No live Supabase migration has been applied.
+
+
+## Verified M4 geology allocation and staged release
+
+The official IPST curriculum-use manual places the full geology sequence, outcomes 1–12, under M4 standard 1. The outcome register is:
+
+| M4 outcome | Coverage |
+|---:|---|
+| 1 | Earth’s internal structure and supporting evidence |
+| 2 | Geological evidence for plate movement |
+| 3 | Plate-boundary movement and associated landforms/structures |
+| 4 | Geological evidence, stratigraphy, dating and reconstruction of past events |
+| 5 | Volcanic processes, eruption differences, hazards and safety |
+| 6 | Earthquake processes, magnitude/intensity, hazards and safety |
+| 7 | Tsunami processes, impacts, hazards and safety |
+| 8 | Mineral identification, properties and sustainable uses |
+| 9 | Rock identification, classification and uses |
+| 10 | Petroleum and coal formation and geological exploration |
+| 11 | Properties and appropriate uses of petroleum/coal products |
+| 12 | Topographic and geological map interpretation and applications |
+
+Migration: `20261116191500_learning_earth_space_m4_geology.sql`.
+
+Teacher pack: `M4-earth-space-geology-teacher-starter-pack.md` (12 lesson starters and 36 answer-keyed questions).
+
+**Earth/Space staged totals:** M4 geology 12 + M5 atmosphere/oceans/climate 13 + M6 astronomy/space 19 = **44 objectives, 44 lesson starters and 132 answer-keyed questions**.
+
+The M4 allocation is supported by the official curriculum crosswalk (M4 standard 1, outcomes 1–7) and the M4 teaching analysis (outcomes 8–12, including the explicit M4 heading for outcome 12). The manual's grade tables show no M4 allocation for the M5 weather/climate standard, and the astronomy sequence is separately assigned to M6.
 
 No live Supabase migration has been applied.
