@@ -173,3 +173,8 @@ Two additional M5 Physics outcomes are now seeded: outcome 6 (sound intensity, s
 ## Upper-secondary staged release — M5 Physics light outcomes 8 and 12
 
 Two additional M5 Physics outcomes are now seeded: outcome 8 (light interference and diffraction using double slits, gratings and single slits) and outcome 12 (rainbows, halos, mirages and sky colours). The migration adds two M5-aligned objectives; the teacher pack contains two lesson starters and six answer-keyed questions. M5 Physics now has seven verified seeded outcomes (1, 2, 3, 6, 7, 8 and 12). Outcomes 4–5 and 9–11 remain under official-source audit; M6 is pending. Official alignment: IPST Physics curriculum-use manual, printed pp. 141 and 147. No live Supabase migration has been applied.
+
+
+## M5 Physics staged release — geometrical optics outcomes 9–11
+
+Three additional M5 Physics objectives are now staged: outcome 9 (reflection and mirrors), outcome 10 (refraction, apparent depth and total internal reflection), and outcome 11 (thin lenses and image formation). The migration adds three lesson objectives; the companion pack contains three lesson starters and nine answer-keyed questions. Official alignment is confirmed in the IPST Physics curriculum-use manual, printed pp. 142–146. M5 Physics now has 10 verified outcomes seeded (1, 2, 3, 6, 7, 8, 9, 10, 11 and 12), with 10 lesson starters for those objectives and 30 answer-keyed questions across the M5 packs. Outcomes 4–5 remain to be verified. No migration has been applied to Supabase.
