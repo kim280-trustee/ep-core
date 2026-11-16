@@ -198,12 +198,20 @@ export default function SchoolAdministrationPage() {
   const objectiveGraphObjectiveIdValue = objectiveGraphObjectiveId && alignmentObjectives.some((item) => item.id === objectiveGraphObjectiveId)
     ? objectiveGraphObjectiveId : alignmentObjectives[0]?.id ?? "";
   const objectiveGraphCurrentPrerequisites = objectiveGraphEdges.filter((item) => item.objectiveId === objectiveGraphObjectiveIdValue);
+  const objectiveGraphSelectedObjective = alignmentObjectives.find((item) => item.id === objectiveGraphObjectiveIdValue);
+  const objectiveGraphSelectedTopic = objectiveGraphSelectedObjective
+    ? objectiveTopicById.get(objectiveGraphSelectedObjective.topicId) : undefined;
+  const objectiveGraphSelectedSubjectId = objectiveGraphSelectedTopic
+    ? skillById.get(objectiveGraphSelectedTopic.skillId)?.subjectId : undefined;
   const objectiveGraphPrerequisiteIdValue = objectiveGraphPrerequisiteId && alignmentObjectives.some((item) => item.id === objectiveGraphPrerequisiteId)
     ? objectiveGraphPrerequisiteId : "";
-  const objectiveGraphCandidates = alignmentObjectives.filter((item) =>
-    item.id !== objectiveGraphObjectiveIdValue &&
-    !objectiveGraphCurrentPrerequisites.some((edge) => edge.prerequisiteObjectiveId === item.id)
-  );
+  const objectiveGraphCandidates = alignmentObjectives.filter((item) => {
+    const topic = objectiveTopicById.get(item.topicId);
+    const subjectId = topic ? skillById.get(topic.skillId)?.subjectId : undefined;
+    return subjectId === objectiveGraphSelectedSubjectId &&
+      item.id !== objectiveGraphObjectiveIdValue &&
+      !objectiveGraphCurrentPrerequisites.some((edge) => edge.prerequisiteObjectiveId === item.id);
+  });
   const objectiveGraphLabel = (objectiveId: string) => {
     const objective = alignmentObjectives.find((item) => item.id === objectiveId);
     if (!objective) return objectiveId;
@@ -472,6 +480,13 @@ export default function SchoolAdministrationPage() {
     }
     if (objectiveGraphQuery.isError || alignmentKnowledgeQuery.isError) {
       setActionError("Refresh the objective graph before saving.");
+      return;
+    }
+    const selectedPrerequisite = alignmentObjectives.find((item) => item.id === objectiveGraphPrerequisiteIdValue);
+    const prerequisiteTopic = selectedPrerequisite ? objectiveTopicById.get(selectedPrerequisite.topicId) : undefined;
+    const prerequisiteSubjectId = prerequisiteTopic ? skillById.get(prerequisiteTopic.skillId)?.subjectId : undefined;
+    if (!objectiveGraphSelectedSubjectId || prerequisiteSubjectId !== objectiveGraphSelectedSubjectId) {
+      setActionError("A prerequisite must belong to the same subject as the selected learning objective.");
       return;
     }
     if (objectiveGraphCurrentPrerequisites.some((item) => item.prerequisiteObjectiveId === objectiveGraphPrerequisiteIdValue)) {
@@ -847,7 +862,7 @@ export default function SchoolAdministrationPage() {
                     <Field label="Learning objective"><select className={fieldClass} required value={objectiveGraphObjectiveIdValue} onChange={(event) => { setObjectiveGraphObjectiveId(event.target.value); setObjectiveGraphPrerequisiteId(""); }} disabled={!alignmentObjectives.length}><option value="">Choose objective</option>{alignmentObjectives.map((item) => <option key={item.id} value={item.id}>{objectiveGraphLabel(item.id)}</option>)}</select></Field>
                     <Field label="Must be completed first"><select className={fieldClass} required value={objectiveGraphPrerequisiteIdValue} onChange={(event) => setObjectiveGraphPrerequisiteId(event.target.value)} disabled={!objectiveGraphCandidates.length}><option value="">Choose prerequisite objective</option>{objectiveGraphCandidates.map((item) => <option key={item.id} value={item.id}>{objectiveGraphLabel(item.id)}</option>)}</select></Field>
                     <button type="submit" className={buttonClass} disabled={!objectiveGraphObjectiveIdValue || !objectiveGraphPrerequisiteIdValue || objectiveGraphQuery.isError || alignmentKnowledgeQuery.isError || saveMutation.isPending}>{saveMutation.isPending ? "Saving…" : "Add prerequisite"}</button>
-                    <p className="text-xs text-slate-500">Example: “Fractions” can be a prerequisite for “Adding fractions”. An objective cannot depend on itself or form a circular chain.</p>
+                    <p className="text-xs text-slate-500">Prerequisites must belong to the same subject. Example: “Fractions” can be a prerequisite for “Adding fractions”. An objective cannot depend on itself or form a circular chain.</p>
                     {!alignmentObjectives.length && !alignmentKnowledgeQuery.isPending && <p className="text-xs text-amber-700">Create learning objectives before defining prerequisites.</p>}
                   </form>
                   <div className="space-y-3 rounded-xl border border-slate-200 p-4">
