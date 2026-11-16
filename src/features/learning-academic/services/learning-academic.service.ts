@@ -6,6 +6,8 @@ export const learningAcademicService = {
   listCurricula: (educationSystemId?: string) => learningAcademicRepository.listCurricula(educationSystemId),
   listSubjects: () => learningAcademicRepository.listSubjects(),
   listCurriculumSubjects: (curriculumId: string) => learningAcademicRepository.listCurriculumSubjects(curriculumId),
+  createSubject: learningAcademicRepository.createSubject,
+  addSubjectToCurriculum: learningAcademicRepository.addSubjectToCurriculum,
   listGradeLevels: (curriculumId: string) => learningAcademicRepository.listGradeLevels(curriculumId),
   listAcademicYears: (organizationId: string) => learningAcademicRepository.listAcademicYears(organizationId),
   listTerms: (organizationId: string, academicYearId: string) => learningAcademicRepository.listTerms(organizationId, academicYearId),
