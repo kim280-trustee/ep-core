@@ -2,7 +2,7 @@
 
 **Branch:** `paul/learning-academic-integrity-audit`  
 **Scope:** Thai core Science curriculum catalogue, M1–M3 core knowledge graphs, and staged M4–M6 additional Science subjects  
-**Status:** M1–M3 core Science knowledge graphs are complete. Upper-secondary additional Science staging now has complete, audited Biology (108/108 outcomes; 108 lesson starters; 324 questions), Chemistry (81/81; 81 lesson starters; 243 questions), and Physics (67/67; 67 lesson starters; 201 questions). Earth, Astronomy and Space is in progress: M5 standard 2 outcomes 1–13 are staged (13 objectives, 13 lesson starters and 39 questions); M4 and M6 official allocations remain under audit. Empty grade/strand combinations are not treated as gaps unless the official manual assigns outcomes there. No migrations have been applied to live Supabase and no school records have been created.
+**Status:** M1–M3 core Science knowledge graphs are complete. Upper-secondary additional Science staging now has complete, audited Biology (108/108 outcomes; 108 lesson starters; 324 questions), Chemistry (81/81; 81 lesson starters; 243 questions), and Physics (67/67; 67 lesson starters; 201 questions). Earth, Astronomy and Space is in progress: M5 standard 2 outcomes 1–13 and M6 standard 3 astronomy outcomes 1–19 are staged (32 objectives, 32 lesson starters and 96 questions); M4 geology allocations remain under audit. Empty grade/strand combinations are not treated as gaps unless the official manual assigns outcomes there. No migrations have been applied to live Supabase and no school records have been created.
 
 ## M1 coverage delivered
 
@@ -264,3 +264,10 @@ No new Chemistry seed migration was needed: all 81 outcomes were already staged 
 M5 standard 2 outcomes 1–13 are now staged in `20261116184500_learning_earth_space_m5_atmosphere_oceans_climate.sql`. The accompanying `M5-earth-space-weather-atmosphere-oceans-climate-teacher-starter-pack.md` provides 13 lesson starters and 39 answer-keyed questions. The grade allocation and sequence are verified against the official IPST curriculum-use manual, printed pp. 21–24. Outcomes 8–11 are atmospheric stability/clouds, weather fronts, climate-change drivers/evidence, and climate-change impacts/mitigation; outcomes 12–13 cover weather-map interpretation and weather analysis/forecasting.
 
 The full Earth/Space audit is in `EARTH-SPACE-CURRICULUM-AUDIT.md`. This does not mark the subject complete: M4 Earth-science and M6 astronomy/space outcomes still require exact grade/outcome verification. No migrations have been applied to live Supabase.
+
+
+### Earth, Astronomy and Space — M6 astronomy batch
+
+The official IPST manual crosswalk (printed pp. 31–32) explicitly assigns the astronomy sequence to M6. Outcomes 1–19 are staged in `20261116190000_learning_earth_space_m6_astronomy_space.sql`. The companion `M6-earth-space-astronomy-space-teacher-starter-pack.md` contains 19 lesson starters and 57 answer-keyed questions. The complete Earth/Space audit is in `EARTH-SPACE-CURRICULUM-AUDIT.md`.
+
+Current upper-secondary Earth/Space staging: M5 atmosphere/oceans/weather/climate 13 outcomes; M6 astronomy/space 19 outcomes; total 32 outcomes, 32 starters and 96 questions. M4 geology remains to be audited and staged. No live Supabase migrations have been applied.
