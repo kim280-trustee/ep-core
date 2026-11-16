@@ -2,7 +2,7 @@
 
 **Branch:** `paul/learning-academic-integrity-audit`  
 **Scope:** Thai core Science curriculum catalogue, M1–M3 core knowledge graphs, and staged M4–M6 additional Science subjects  
-**Status:** M1–M3 core Science knowledge graphs are complete. Upper-secondary subject tracks are catalogued and M4 Biology cellular foundations (17 outcomes) are committed. Remaining M4–M6 Biology, Chemistry, Physics and Earth/Space outcomes are pending. No migrations applied to Supabase and no school records created.
+**Status:** M1–M3 core Science knowledge graphs are complete. Upper-secondary subject tracks are catalogued. M4 Biology strand 1 (17 outcomes) and strand 2 (15 outcomes) are committed: 32 M4 outcomes total. Remaining M4–M6 Biology, Chemistry, Physics and Earth/Space outcomes are pending. No migrations applied to Supabase and no school records created.
 
 ## M1 coverage delivered
 
@@ -33,7 +33,7 @@ The curriculum catalogue contains M1–M6 grade levels. M1 is fully seeded for i
 2. `20261116081500_learning_science_m1_knowledge_graph.sql` — adds five Science skills, 17 topics, 43 M1 objectives and official curriculum-grade alignments.
 3. `20261116083000_learning_science_m2_m3_biology_knowledge_graph.sql` — adds 17 M2 and 11 M3 biological-science objectives.
 4. `20261116084500_learning_science_m2_physical_science_knowledge_graph.sql` — adds 15 M2 force objectives and six M2 work/energy objectives.
-5. `20261116090000_learning_science_m2_earth_space_knowledge_graph.sql` — adds ten M2 Earth and Space Science objectives.\n6. `20261116091500_learning_science_m3_matter_chemistry_knowledge_graph.sql` — adds eight M3 materials and chemical-reaction objectives.\n7. `20261116093000_learning_science_m3_energy_earth_space_knowledge_graph.sql` — adds 21 M3 energy/light, four astronomy and seven Earth-system objectives.\n8. `20261116100000_learning_science_upper_secondary_subject_tracks.sql` — adds upper-secondary Biology, Chemistry, Physics and Earth/Space subject catalogue entries.\n9. `20261116101500_learning_biology_m4_cellular_foundations.sql` — adds 17 M4 Biology additional-study outcomes.
+5. `20261116090000_learning_science_m2_earth_space_knowledge_graph.sql` — adds ten M2 Earth and Space Science objectives.\n6. `20261116091500_learning_science_m3_matter_chemistry_knowledge_graph.sql` — adds eight M3 materials and chemical-reaction objectives.\n7. `20261116093000_learning_science_m3_energy_earth_space_knowledge_graph.sql` — adds 21 M3 energy/light, four astronomy and seven Earth-system objectives.\n8. `20261116100000_learning_science_upper_secondary_subject_tracks.sql` — adds upper-secondary Biology, Chemistry, Physics and Earth/Space subject catalogue entries.\n9. `20261116101500_learning_biology_m4_cellular_foundations.sql` — adds 17 M4 Biology additional-study outcomes in strand 1.\n10. `20261116103000_learning_biology_m4_genetics_evolution.sql` — adds 15 M4 Biology additional-study outcomes in strand 2 (Mendelian genetics, DNA, mutation, DNA technology and evolution).
 
 Apply these after the existing pending academic foundation and Maths migrations, in timestamp order. The seeds are idempotent upserts and require the active Thai Basic Education system.
 
@@ -56,7 +56,7 @@ Use teacher supervision for laboratory demonstrations. Do not ask students to ta
 
 - No Supabase migration has been applied.
 - No live school, class, class-subject, teacher, student, content or assessment record has been created.
-- All M1–M3 core Science knowledge graphs are seeded. M4 Biology strand 1 outcomes 1–17 are seeded with a teacher starter pack. Other M4 Biology strands, all Chemistry/Physics/Earth-Space outcomes, and M5–M6 outcomes remain pending.
+- All M1–M3 core Science knowledge graphs are seeded. M4 Biology strands 1–2 are seeded: 32 outcomes, with 32 lesson starters and 96 practice questions with answer keys. Remaining M4 Biology strands, all Chemistry/Physics/Earth-Space outcomes, and M5–M6 outcomes remain pending.
 - Technology standards ว 4.1 and ว 4.2 are outside this Science batch.
 - No local lint/build result is claimed; consolidated verification remains pending.
 
@@ -90,3 +90,4 @@ M2 core Science coverage is complete for its 48 official Science indicators. M3 
 The official 2017 revised curriculum uses additional learning outcomes for upper-secondary specialist Science, rather than the M1–M3 basic-course indicator model. A catalogue migration adds four distinct subject tracks: Biology, Chemistry, Physics, and Earth, Astronomy and Space Science. The first knowledge-graph batch seeds the 17 M4 Biology outcomes in additional Biology strand 1 (nature of life, scientific method, biomolecules, enzymes, microscopy, cell structure and transport, cell division and cellular respiration).
 
 The M4 Biology starter pack contains 17 lesson starters and 51 practice questions with answer keys. These are teacher planning resources, not published app content. Source: OBEC/IPST 2017 revised curriculum, Additional Biology, pp. 134–139.
+\n\n## Upper-secondary staged release — M4 Biology strand 2\n\nThe second M4 Biology batch seeds all 15 outcomes in additional Biology strand 2: Mendelian inheritance, extended inheritance patterns, variation, chromosome-linked genes, DNA replication, protein synthesis, mutation, recombinant-DNA technology, bioethical applications, evolutionary evidence, Lamarck/Darwin, Hardy-Weinberg population genetics and speciation. The companion teacher pack contains 15 lesson starters and 45 practice questions with answer keys. Official alignment: OBEC/IPST 2017 revised curriculum, Additional Biology strand 2, M4 learning outcomes 1–15, pp. 139–140.\n
