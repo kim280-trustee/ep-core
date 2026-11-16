@@ -116,6 +116,27 @@ export default function TeacherContentLibraryPage() {
     () => new Set((gradeObjectiveAlignments.data ?? []).map((alignment) => alignment.objectiveId)),
     [gradeObjectiveAlignments.data],
   );
+  const academicGradeNamesByContent = useMemo(() => {
+    const gradeNamesByObjective = new Map<string, Set<string>>();
+    const gradeNameById = new Map((gradeLevels.data ?? []).map((grade) => [grade.id, grade.name]));
+    for (const alignment of objectiveAlignments.data ?? []) {
+      const gradeName = gradeNameById.get(alignment.gradeLevelId);
+      if (!gradeName) continue;
+      const names = gradeNamesByObjective.get(alignment.objectiveId) ?? new Set<string>();
+      names.add(gradeName);
+      gradeNamesByObjective.set(alignment.objectiveId, names);
+    }
+
+    const result = new Map<string, string[]>();
+    for (const [contentId, objectiveIds] of contentObjectiveMap.data ?? []) {
+      const names = new Set<string>();
+      for (const objectiveId of objectiveIds) {
+        for (const name of gradeNamesByObjective.get(objectiveId) ?? []) names.add(name);
+      }
+      if (names.size) result.set(contentId, [...names].sort((a, b) => a.localeCompare(b)));
+    }
+    return result;
+  }, [gradeLevels.data, objectiveAlignments.data, contentObjectiveMap.data]);
   const filteredContent = useMemo(() => {
     const query = search.trim().toLowerCase();
     return (content.data ?? []).filter((item) => {
@@ -183,6 +204,7 @@ export default function TeacherContentLibraryPage() {
                     const subject = (subjects.data ?? []).find((entry) => entry.id === id);
                     return subject ? <span key={id} className="rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-600">{subject.name}</span> : null;
                   })}
+                  {(academicGradeNamesByContent.get(item.id) ?? []).map((name) => <span key={`grade-${name}`} className="rounded-full bg-indigo-50 px-2 py-0.5 text-xs text-indigo-700">Grade: {name}</span>)}
                 </div>
               </div>
               <div className="flex items-center gap-3"><span className={`inline-flex w-fit rounded-full px-2.5 py-1 text-xs font-semibold ${statusClasses[item.status]}`}>{t(`contentLibrary.status.${item.status}`)}</span><ExternalLink size={16} className="text-slate-400" /></div>
