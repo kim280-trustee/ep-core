@@ -60,6 +60,8 @@ export interface LearningCurriculumSubject {
   updatedAt: string;
 }
 
+export type LearningGradeLevelInput = { curriculumId: string; code: string; name: string; sequenceNo: number; description?: string | null };
+
 export interface LearningGradeLevel {
   id: string;
   curriculumId: string;
