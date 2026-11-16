@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { ArrowLeft, Eye, FileText, Save, Send, Archive, ClipboardPlus } from "lucide-react";
+import { ArrowLeft, Eye, FileText, Save, Send, Archive, ClipboardPlus, Plus, Trash2 } from "lucide-react";
 import type { FormEvent } from "react";
 import { useMemo, useState } from "react";
 import { useAuth } from "@/core/auth";
@@ -31,6 +31,13 @@ export default function TeacherContentDetailPage() {
   const [publishing, setPublishing] = useState(false);
   const [retiring, setRetiring] = useState(false);
   const [preview, setPreview] = useState(false);
+  const [mappingCurriculumId, setMappingCurriculumId] = useState("");
+  const [mappingGradeLevelId, setMappingGradeLevelId] = useState("");
+  const [mappingSubjectId, setMappingSubjectId] = useState("");
+  const [mappingSkillId, setMappingSkillId] = useState("");
+  const [mappingTopicId, setMappingTopicId] = useState("");
+  const [mappingObjectiveId, setMappingObjectiveId] = useState("");
+  const [savingMapping, setSavingMapping] = useState(false);
 
   const classes = useQuery({
     queryKey: ["learning", "teacher-classes", user?.id],
@@ -106,6 +113,37 @@ export default function TeacherContentDetailPage() {
     });
   }, [objectives.data, objectiveAcademicContext.data]);
 
+  const mappingGradeLevels = useQuery({
+    queryKey: ["learning", "content-mapping-grade-levels", mappingCurriculumId],
+    queryFn: () => learningContentService.listGradeLevels(mappingCurriculumId),
+    enabled: Boolean(mappingCurriculumId && content.data?.status === "draft"),
+  });
+  const mappingSubjects = useQuery({
+    queryKey: ["learning", "content-mapping-subjects", mappingCurriculumId],
+    queryFn: () => learningContentService.listSubjects(mappingCurriculumId),
+    enabled: Boolean(mappingCurriculumId && content.data?.status === "draft"),
+  });
+  const mappingSkills = useQuery({
+    queryKey: ["learning", "content-mapping-skills", mappingSubjectId],
+    queryFn: () => learningContentService.listSkills(mappingSubjectId),
+    enabled: Boolean(mappingSubjectId && content.data?.status === "draft"),
+  });
+  const mappingTopics = useQuery({
+    queryKey: ["learning", "content-mapping-topics", mappingSkillId],
+    queryFn: () => learningContentService.listTopics(mappingSkillId),
+    enabled: Boolean(mappingSkillId && content.data?.status === "draft"),
+  });
+  const mappingObjectives = useQuery({
+    queryKey: ["learning", "content-mapping-objectives", mappingTopicId],
+    queryFn: () => learningContentService.listObjectives(mappingTopicId),
+    enabled: Boolean(mappingTopicId && content.data?.status === "draft"),
+  });
+  const mappingAlignments = useQuery({
+    queryKey: ["learning", "content-mapping-alignments", mappingCurriculumId, mappingGradeLevelId],
+    queryFn: () => learningContentService.listAlignments(undefined, mappingCurriculumId, mappingGradeLevelId),
+    enabled: Boolean(mappingCurriculumId && mappingGradeLevelId && content.data?.status === "draft"),
+  });
+
   const latestVersion = versions.data?.[0];
 
   const latestBody = useMemo(() => {
@@ -125,6 +163,15 @@ export default function TeacherContentDetailPage() {
 
   const currentBody = bodyEdited ? body : latestBody;
   const item = content.data;
+  const currentContentSubjectId = objectiveAcademicDetails.find((entry) => entry.subject)?.subject?.id ?? "";
+  const availableMappingSubjects = (mappingSubjects.data ?? []).filter((subject) =>
+    !currentContentSubjectId || subject.id === currentContentSubjectId
+  );
+  const alignedMappingObjectiveIds = new Set((mappingAlignments.data ?? []).map((alignment) => alignment.objectiveId));
+  const availableMappingObjectives = (mappingObjectives.data ?? []).filter((objective) =>
+    alignedMappingObjectiveIds.has(objective.id) &&
+    !(objectives.data ?? []).some((linked) => linked.objectiveId === objective.id)
+  );
   const isRetired = item?.status === "retired";
   const isPublished = item?.status === "published";
   const isReview = item?.status === "review";
@@ -175,6 +222,66 @@ export default function TeacherContentDetailPage() {
       setError(err instanceof Error ? err.message : "Could not save the new version.");
     } finally {
       setSaving(false);
+    }
+  }
+
+  async function addContentObjective(event: FormEvent) {
+    event.preventDefault();
+    setError("");
+    if (!id || !isDraft || !mappingCurriculumId || !mappingGradeLevelId || !mappingSubjectId ||
+      !mappingSkillId || !mappingTopicId || !mappingObjectiveId) {
+      setError("Choose a curriculum, grade, subject and aligned learning objective.");
+      return;
+    }
+    const selectedSkill = mappingSkills.data?.find((entry) => entry.id === mappingSkillId);
+    const selectedTopic = mappingTopics.data?.find((entry) => entry.id === mappingTopicId);
+    const selectedObjective = mappingObjectives.data?.find((entry) => entry.id === mappingObjectiveId);
+    if (
+      !selectedSkill || selectedSkill.subjectId !== mappingSubjectId ||
+      !selectedTopic || selectedTopic.skillId !== mappingSkillId ||
+      !selectedObjective || selectedObjective.topicId !== mappingTopicId ||
+      !alignedMappingObjectiveIds.has(mappingObjectiveId)
+    ) {
+      setError("The selected objective does not match the chosen subject, curriculum and grade.");
+      return;
+    }
+    if (currentContentSubjectId && selectedSkill.subjectId !== currentContentSubjectId) {
+      setError("All objectives linked to this content must belong to the same subject. Remove its existing objectives first to change subject.");
+      return;
+    }
+
+    setSavingMapping(true);
+    try {
+      const nextSequence = Math.max(0, ...(objectives.data ?? []).map((entry) => entry.sequenceNo)) + 1;
+      await learningContentService.addObjective({ contentItemId: id, objectiveId: mappingObjectiveId, sequenceNo: nextSequence });
+      setMappingObjectiveId("");
+      await Promise.all([
+        objectives.refetch(),
+        queryClient.invalidateQueries({ queryKey: ["learning", "teacher-content-library"] }),
+        queryClient.invalidateQueries({ queryKey: ["learning", "content-library-objectives"] }),
+      ]);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not add the learning objective.");
+    } finally {
+      setSavingMapping(false);
+    }
+  }
+
+  async function removeContentObjective(objectiveId: string) {
+    if (!id || !isDraft) return;
+    setError("");
+    setSavingMapping(true);
+    try {
+      await learningContentService.removeObjective(id, objectiveId);
+      await Promise.all([
+        objectives.refetch(),
+        queryClient.invalidateQueries({ queryKey: ["learning", "teacher-content-library"] }),
+        queryClient.invalidateQueries({ queryKey: ["learning", "content-library-objectives"] }),
+      ]);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not remove the learning objective.");
+    } finally {
+      setSavingMapping(false);
     }
   }
 
