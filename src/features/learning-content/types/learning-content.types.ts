@@ -90,6 +90,15 @@ export interface LearningGradeLevel {
   updatedAt: string;
 }
 
+export type LearningObjectiveAlignmentInput = {
+  objectiveId: string;
+  curriculumId: string;
+  gradeLevelId: string;
+  sequenceNo: number;
+  required: boolean;
+  notes?: string | null;
+};
+
 export interface LearningObjectiveAlignment {
   id: string;
   objectiveId: string;
