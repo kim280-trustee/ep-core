@@ -20,14 +20,18 @@ M4–M6 coverage is limited to the eight grade-level indicators in the revised 2
 
 ## Migration order
 
-Apply only after the planned academic-schema audit and approval:
+Apply only after reviewing the audit migration and confirming the live database is consistent:
 
 1. `20261116060000_learning_maths_curriculum_catalog.sql` — Mathematics subject, Thai Maths curriculum, M1–M6 grade catalogue and curriculum-subject link.
 2. `20261116061500_learning_maths_m1_knowledge_graph.sql` — M1 skills, topics, objectives and grade alignments.
 3. `20261116063000_learning_maths_m2_m3_knowledge_graph.sql` — M2 and M3 skills/topics/objectives/alignments.
 4. `20261116064500_learning_maths_m4_m6_knowledge_graph.sql` — M4–M6 core-curriculum topics/objectives/alignments.
+5. `20261116070000_learning_academic_year_multi_curriculum.sql` — makes the school academic year curriculum-independent while preserving existing curriculum values as optional legacy metadata.
+6. `20261116071500_learning_academic_record_integrity.sql` — strengthens term dates, gradebook class/term/student scope and school-structure write permissions.
 
 The graph seeds are idempotent upserts and check for their required curriculum, grade and subject-strand prerequisites. They do not create school-specific academic years, terms, class groups, memberships, content or assessments.
+
+The integrity migration includes preflight checks. It will stop rather than apply if existing terms fall outside their academic-year dates, or if existing gradebook records connect mismatched terms, classes or class subjects. Reconcile any reported records before retrying.
 
 ## Teacher workflow compatibility
 
@@ -39,31 +43,29 @@ The existing generic workflows already support the new Maths catalogue:
 
 No separate Maths authoring module or route is needed. After the migrations are applied, Maths becomes available through the existing generic academic selectors and class-scoped question authoring.
 
-## Pilot setup — blocked pending the academic-schema audit
+## Pilot setup — ready after migrations and verification
 
-Do not create a Maths pilot class yet. The current academic schema ties `learning_academic_years` to one `curriculum_id`. A class group must use the same curriculum as its academic-year record, and academic-year codes are unique per organization.
+The academic-year model has been corrected in code and migration: the school academic year is organization-scoped, while each class group owns its curriculum and grade. Existing curriculum values on academic-year records are preserved as nullable legacy metadata; new school years no longer require a curriculum.
 
-The existing English MEP pilot uses its own curriculum. Creating a Maths class under that same academic-year record would fail the class-year curriculum foreign key. Creating a second academic-year record for the same school year under the Maths curriculum would duplicate the school's year and term records; the current unique organization/year-code rule also means it would need a different code.
+After applying and verifying the migrations:
 
-This is a multi-curriculum data-model issue, not a teacher-page issue. Resolve it during the planned Phase 1 database audit before creating parallel subject classes. The audit should decide whether school academic years and terms should be organization-scoped independently of curriculum, with each class carrying its own curriculum and grade.
-
-### Pilot checklist after the audit
-
-- Confirm the Maths catalogue and all four knowledge-graph migrations are applied successfully.
-- Confirm the existing English pilot's curriculum, academic year, term, class, memberships and published learning records remain unchanged.
-- Create one Maths pilot class using the approved school academic year, Thai Maths curriculum and M1 grade.
+- Select the school's existing academic year; do not create a duplicate year for Maths.
+- Create one Maths pilot class using the Thai Maths curriculum and M1 grade.
 - Assign Mathematics (`MATH`) as the class subject.
 - Add the authorised teacher and a test student to the class.
 - Create one M1 Maths lesson as draft and one M1 Maths question as draft.
 - Verify both appear only in the Maths class's correct curriculum/grade/subject scope.
 - Publish only after teacher review and successful end-to-end testing.
 
+The existing English MEP pilot's class curriculum, grade, term, memberships and published learning records are not changed by these migrations. No pilot records have been created yet.
+
 ## Explicitly not done
 
 - No Supabase migration has been applied.
 - No production or pilot data has been changed.
-- No new school academic year, term, class group, class subject or membership has been created.
-- No new UI feature was added because the existing generic teacher workflows already support the academic dimensions.
+- No new academic year, term, class group, class subject or membership has been created.
+- No separate Maths UI module was added because the existing generic teacher workflows already support the academic dimensions.
+- No local lint/build result is claimed; consolidated local verification remains pending.
 
 ## Official curriculum source
 
