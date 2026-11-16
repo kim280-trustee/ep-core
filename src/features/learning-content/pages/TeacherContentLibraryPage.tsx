@@ -30,6 +30,7 @@ export default function TeacherContentLibraryPage() {
   const [status, setStatus] = useState<LearningContentStatus | "all">("all");
   const [contentType, setContentType] = useState<LearningContentType | "all">("all");
   const [curriculumId, setCurriculumId] = useState("");
+  const [gradeLevelId, setGradeLevelId] = useState("");
   const [subjectId, setSubjectId] = useState("");
 
   const classes = useQuery({ queryKey: ["learning", "teacher-classes", user?.id], queryFn: () => learningTeacherService.listTeacherClasses(user!.id), enabled: Boolean(user?.id) });
@@ -40,6 +41,11 @@ export default function TeacherContentLibraryPage() {
     queryKey: ["learning", "curricula"],
     queryFn: () => learningContentService.listCurricula(),
     enabled: Boolean(user?.id),
+  });
+  const gradeLevels = useQuery({
+    queryKey: ["learning", "grade-levels", curriculumId],
+    queryFn: () => learningContentService.listGradeLevels(curriculumId),
+    enabled: Boolean(user?.id && curriculumId),
   });
   const subjects = useQuery({
     queryKey: ["learning", "subjects", curriculumId],
@@ -60,8 +66,8 @@ export default function TeacherContentLibraryPage() {
     staleTime: 5 * 60 * 1000,
   });
   const objectiveAlignments = useQuery({
-    queryKey: ["learning", "content-library-objective-alignments", curriculumId],
-    queryFn: () => learningContentService.listAlignments(undefined, curriculumId || undefined),
+    queryKey: ["learning", "content-library-objective-alignments", curriculumId, gradeLevelId],
+    queryFn: () => learningContentService.listAlignments(undefined, curriculumId || undefined, gradeLevelId || undefined),
     enabled: Boolean(user?.id && curriculumId),
   });
   const contentObjectiveMap = useQuery({
@@ -111,19 +117,21 @@ export default function TeacherContentLibraryPage() {
       const subjectIds = academicSubjectIdsByContent.get(item.id) ?? new Set<string>();
       const matchesSubject = !subjectId || subjectIds.has(subjectId);
       const matchesCurriculum = !curriculumId || mappedObjectiveIds.some((id) => curriculumObjectiveIds.has(id));
-      return matchesSearch && matchesStatus && matchesType && matchesSubject && matchesCurriculum;
+        const matchesGrade = !gradeLevelId || (mappedObjectiveIds.length > 0 && curriculumObjectiveIds.size > 0 && mappedObjectiveIds.some((id) => curriculumObjectiveIds.has(id)));
+      return matchesSearch && matchesStatus && matchesType && matchesSubject && matchesCurriculum && matchesGrade;
     });
-  }, [content.data, contentObjectiveMap.data, academicSubjectIdsByContent, curriculumObjectiveIds, search, status, contentType, subjectId, curriculumId]);
+  }, [content.data, contentObjectiveMap.data, academicSubjectIdsByContent, curriculumObjectiveIds, search, status, contentType, subjectId, curriculumId, gradeLevelId]);
 
   function changeCurriculum(value: string) {
     setCurriculumId(value);
+    setGradeLevelId("");
     setSubjectId("");
   }
 
   const academicFiltersPending = (content.isSuccess && contentObjectiveMap.isPending) ||
-    (Boolean(curriculumId) && (objectiveAlignments.isPending || subjects.isPending)) ||
+    (Boolean(curriculumId) && (objectiveAlignments.isPending || subjects.isPending || gradeLevels.isPending)) ||
     (Boolean(subjectId) && academicCatalog.isPending);
-  const academicFiltersError = curricula.isError || subjects.isError || academicCatalog.isError ||
+  const academicFiltersError = curricula.isError || subjects.isError || gradeLevels.isError || academicCatalog.isError ||
     (Boolean(curriculumId) && objectiveAlignments.isError) || contentObjectiveMap.isError;
 
   if (!user) return <EmptyState text={t("contentLibrary.signIn")} />;
@@ -140,9 +148,10 @@ export default function TeacherContentLibraryPage() {
         </div>
       </section>
       <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-6">
           <label className="relative block xl:col-span-2"><span className="sr-only">{t("contentLibrary.search")}</span><Search size={17} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" /><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder={t("contentLibrary.searchPlaceholder")} className="input w-full pl-10" /></label>
           <label><span className="sr-only">Curriculum</span><select value={curriculumId} onChange={(event) => changeCurriculum(event.target.value)} className="input w-full"><option value="">All curricula</option>{(curricula.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
+          <label><span className="sr-only">Grade level</span><select value={gradeLevelId} onChange={(event) => setGradeLevelId(event.target.value)} className="input w-full" disabled={!curriculumId || gradeLevels.isPending || !gradeLevels.data?.length}><option value="">All grades</option>{(gradeLevels.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
           <label><span className="sr-only">Subject</span><select value={subjectId} onChange={(event) => setSubjectId(event.target.value)} className="input w-full" disabled={subjects.isPending || !subjects.data?.length}><option value="">All subjects</option>{(subjects.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
           <label><span className="sr-only">{t("contentLibrary.filterStatus")}</span><select value={status} onChange={(event) => setStatus(event.target.value as LearningContentStatus | "all")} className="input w-full">{statuses.map((value) => <option key={value} value={value}>{value === "all" ? t("contentLibrary.allStatuses") : t(`contentLibrary.status.${value}`)}</option>)}</select></label>
           <label><span className="sr-only">{t("contentLibrary.filterType")}</span><select value={contentType} onChange={(event) => setContentType(event.target.value as LearningContentType | "all")} className="input w-full"><option value="all">{t("contentLibrary.allTypes")}</option>{contentTypes.filter((value): value is LearningContentType => value !== "all").map((value) => <option key={value} value={value}>{t(typeLabels[value])}</option>)}</select></label>
