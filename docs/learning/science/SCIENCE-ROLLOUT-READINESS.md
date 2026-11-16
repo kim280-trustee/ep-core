@@ -2,7 +2,7 @@
 
 **Branch:** `paul/learning-academic-integrity-audit`  
 **Scope:** Thai core Science curriculum catalogue, M1–M3 core knowledge graphs, and staged M4–M6 additional Science subjects  
-**Status:** M1–M3 core Science knowledge graphs are complete. Upper-secondary subject tracks are catalogued. M4 Biology strands 1–2 (32 outcomes), M5 Biology plant-structure strand 3 (18 outcomes), M5 Biology animal-physiology strand 4 (21 outcomes), M6 Biology animal-physiology strand 4 (19 outcomes) and M6 Biology ecology strand 5 (13 outcomes) and M6 Biology biodiversity/taxonomy strand 2 (5 outcomes) are committed: 108 Biology outcomes total. Remaining M5–M6 Biology, M6 Chemistry and Earth/Space outcomes are pending; Physics has ten verified M4 outcomes; M4 Biology strands 3–5 and M5 Biology strand 5 have no outcomes in the official curriculum. M4 Chemistry strands 1–2 (28 outcomes), M5 Chemistry strand 1 gas outcomes 1–6 (6 outcomes), all 32 M5 Chemistry strand 2 outcomes and M6 Chemistry strand 1 organic/polymer outcomes 1–15 (15 outcomes) are now committed: 81 Chemistry outcomes total. No migrations applied to Supabase and no school records created.
+**Status:** M1–M3 core Science knowledge graphs are complete. Upper-secondary subject tracks are catalogued. M4 Biology strands 1–2 (32 outcomes), M5 Biology plant-structure strand 3 (18 outcomes), M5 Biology animal-physiology strand 4 (21 outcomes), M6 Biology animal-physiology strand 4 (19 outcomes) and M6 Biology ecology strand 5 (13 outcomes) and M6 Biology biodiversity/taxonomy strand 2 (5 outcomes) are committed: 108 Biology outcomes total. Remaining M5–M6 Biology, M6 Chemistry and Earth/Space outcomes are pending; Physics has all 17 verified M4 outcomes; M4 Biology strands 3–5 and M5 Biology strand 5 have no outcomes in the official curriculum. M4 Chemistry strands 1–2 (28 outcomes), M5 Chemistry strand 1 gas outcomes 1–6 (6 outcomes), all 32 M5 Chemistry strand 2 outcomes and M6 Chemistry strand 1 organic/polymer outcomes 1–15 (15 outcomes) are now committed: 81 Chemistry outcomes total. No migrations applied to Supabase and no school records created.
 
 ## M1 coverage delivered
 
@@ -59,7 +59,7 @@ Use teacher supervision for laboratory demonstrations. Do not ask students to ta
 
 - No Supabase migration has been applied.
 - No live school, class, class-subject, teacher, student, content or assessment record has been created.
-- All M1–M3 core Science knowledge graphs are seeded. M4 Biology strands 1–2, M5 Biology strands 3–4 and M6 Biology strands 2, 4 and 5 are seeded: 108 outcomes, with 108 lesson starters and 324 practice questions with answer keys. M4 Biology strands 3–5 and M5 Biology strand 5 have no outcomes in the official curriculum. Remaining M5–M6 Biology and all Physics/Earth-Space outcomes remain pending. M6 Biology strand 2 outcomes 1–5 are now seeded. Chemistry now has 81 seeded outcomes across M4, M5 and M6. Physics has ten verified M4 outcomes seeded (outcomes 8, 9, 10, 11, 12, 13, 14, 15, 16 and 17); full 67-outcome grade allocation is still being audited.
+- All M1–M3 core Science knowledge graphs are seeded. M4 Biology strands 1–2, M5 Biology strands 3–4 and M6 Biology strands 2, 4 and 5 are seeded: 108 outcomes, with 108 lesson starters and 324 practice questions with answer keys. M4 Biology strands 3–5 and M5 Biology strand 5 have no outcomes in the official curriculum. Remaining M5–M6 Biology and all Physics/Earth-Space outcomes remain pending. M6 Biology strand 2 outcomes 1–5 are now seeded. Chemistry now has 81 seeded outcomes across M4, M5 and M6. Physics has all 17 M4 outcomes seeded (outcomes 1–17); full 67-outcome grade allocation is still being audited.
 - Technology standards ว 4.1 and ว 4.2 are outside this Science batch.
 - No local lint/build result is claimed; consolidated verification remains pending.
 
@@ -122,7 +122,7 @@ This batch adds the five M6 learning outcomes in Additional Biology strand 2: th
 
 ## Upper-secondary Physics curriculum audit
 
-The official IPST Physics curriculum page confirms 67 additional-study learning outcomes across four connected content groups. A separate audit document, `docs/learning/science/PHYSICS-CURRICULUM-AUDIT.md`, records the official group scopes and implementation controls. The groups are content domains, not grade allocations; selected official crosswalk examples place Group 1 outcomes in M4, Group 2 in M5 and Group 3 in M6. Physics is being seeded in verified stages after grade-level extraction. Ten M4 outcomes (8, 9, 10, 11, 12, 13, 14, 15, 16 and 17) are committed; the remaining outcomes still require full official grade-allocation audit.
+The official IPST Physics curriculum page confirms 67 additional-study learning outcomes across four connected content groups. A separate audit document, `docs/learning/science/PHYSICS-CURRICULUM-AUDIT.md`, records the official group scopes and implementation controls. The groups are content domains, not grade allocations; selected official crosswalk examples place Group 1 outcomes in M4, Group 2 in M5 and Group 3 in M6. Physics is being seeded in verified stages after grade-level extraction. All 17 M4 outcomes (1–17) are committed; the remaining outcomes still require full official grade-allocation audit.
 
 
 ## Upper-secondary staged release — M4 Physics outcomes 8–9
@@ -153,3 +153,8 @@ The fifth verified Physics batch seeds M4 additional-learning outcome 13: operat
 ## Upper-secondary staged release — M4 Physics outcome 10
 
 This batch adds verified M4 additional-learning outcome 10: work done by a constant force, work calculated from a force–displacement graph and average power. The migration adds one objective with an official M4 alignment. The companion teacher starter pack contains one lesson starter and three answer-keyed questions. Physics now has ten verified M4 outcomes seeded (8–17, excluding 1–7), ten lesson starters and 30 answer-keyed questions. Official alignment: IPST Physics curriculum-use manual, printed p. 112. Outcomes 1–7 and the remaining M5–M6 Physics allocation are still under audit. No live Supabase migration has been applied.
+
+
+## Upper-secondary staged release — M4 Physics outcomes 1–7
+
+This batch adds all seven remaining M4 additional Physics outcomes: foundations/history of physics; measurement and uncertainty; uniformly accelerated straight-line motion; resultant forces; Newton laws and free-body diagrams; universal gravitation and gravitational fields; and friction. The migration adds seven objectives with official M4 alignments. The companion teacher starter pack contains seven lesson starters and 21 answer-keyed questions. M4 Physics is now complete at 17 of 17 official outcomes, with 17 lesson starters and 51 questions. Official alignment: IPST Physics curriculum-use manual, M4 outcomes 1–7, printed pp. 17–20. The remaining Physics scope is M5–M6; no live Supabase migration has been applied.
