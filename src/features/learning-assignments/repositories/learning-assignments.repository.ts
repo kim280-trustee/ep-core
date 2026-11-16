@@ -24,6 +24,20 @@ async function listAccessibleTargets(studentUserId:string){
 }
 export const learningAssignmentsRepository={
  async listStudentAssignments(studentUserId:string){const targets=await listAccessibleTargets(studentUserId);const ids=[...new Set(targets.map(target=>target.assignmentId))];if(!ids.length)return[];const now=new Date().toISOString();const{data,error}=await supabase.from("learning_assignments").select("*").eq("status","published").in("id",ids).or(`available_from.is.null,available_from.lte.${now}`).order("due_at",{ascending:true,nullsFirst:false});if(error)throw error;return(data??[]).map(mapA);},
+ async listStudentAssignmentSubjects(assignments:LearningAssignment[]){
+  const classSubjectIds=[...new Set(assignments.map(assignment=>assignment.classSubjectId).filter((id):id is string=>Boolean(id)))];
+  if(!classSubjectIds.length)return{} as Record<string,string>;
+  const{data:classSubjects,error:classSubjectError}=await supabase.from("learning_class_subjects").select("id,subject_id").in("id",classSubjectIds);
+  if(classSubjectError)throw classSubjectError;
+  const subjectIds=[...new Set((classSubjects??[]).map(row=>row.subject_id))];
+  if(!subjectIds.length)return{} as Record<string,string>;
+  const{data:subjects,error:subjectError}=await supabase.from("learning_subjects").select("id,name").in("id",subjectIds);
+  if(subjectError)throw subjectError;
+  const names=new Map((subjects??[]).map(subject=>[subject.id,subject.name]));
+  const namesByAssignment:Record<string,string>={};
+  for(const assignment of assignments){const classSubject=(classSubjects??[]).find(row=>row.id===assignment.classSubjectId);const name=classSubject?names.get(classSubject.subject_id):undefined;if(name)namesByAssignment[assignment.id]=name;}
+  return namesByAssignment;
+ },
  async getStudentAssignment(assignmentId:string,studentUserId:string){const[assignments,items,progress]=await Promise.all([learningAssignmentsRepository.listStudentAssignments(studentUserId),learningAssignmentsRepository.listItems(assignmentId),learningAssignmentsRepository.listProgress(studentUserId)]);const assignment=assignments.find(x=>x.id===assignmentId);if(!assignment)throw new Error("Assignment is not available to this student.");return{assignment,items,progress:progress.find(x=>x.assignmentId===assignmentId)??null};},
  async startForStudent(assignmentId:string,studentUserId:string){const targets=await listAccessibleTargets(studentUserId);const target=targets.find(x=>x.assignmentId===assignmentId);if(!target)throw new Error("No active assignment target was found for this student.");return learningAssignmentsRepository.ensureProgress({organizationId:target.organizationId,assignmentId,assignmentTargetId:target.id,studentUserId}).then(p=>p.status==="not_started"?learningAssignmentsRepository.updateProgress(p.id,"in_progress"):p);},
  async listAssignmentHistoryForClass(classGroupId:string){
