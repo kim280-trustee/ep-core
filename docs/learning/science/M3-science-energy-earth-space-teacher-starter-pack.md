@@ -160,62 +160,41 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** Switch off unused appliances or choose efficient devices.
 
 
-## Lesson 10 — Explain energy changes in electrical appliances
+## Lesson 10 — Model wave formation and components
 
 **Objective:** `M3-S2_3-10`  
 **Official indicator:** ว 2.3 ม.3/10  
-**Learning outcome:** Identify useful and wasted energy transfers in appliances.
+**Learning outcome:** Create a model showing how waves transfer energy and identify wavelength, frequency and amplitude.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
 
 **Independent practice**
-1. What energy change occurs in an electric fan?  
-   **Answer:** Electrical energy to kinetic energy and sound/heat.
-2. What energy change occurs in a lamp?  
-   **Answer:** Electrical energy to light and heat.
-3. Is energy destroyed when a device operates?  
-   **Answer:** No; it is transferred or transformed.
-
-
-## Lesson 11 — Explain electrical power ratings
+1. What does a wave transfer?  
+   **Answer:** Energy.
+2. What is wavelength?  
+   **Answer:** The distance between two successive points in phase, such as crest to crest.
+3. What does amplitude measure?  
+   **Answer:** The maximum displacement from the rest position.
+## Lesson 11 — Explain electromagnetic waves and spectrum
 
 **Objective:** `M3-S2_3-11`  
 **Official indicator:** ว 2.3 ม.3/11  
-**Learning outcome:** Interpret power ratings and relate power to energy use.
-
-**Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
-
-**Independent practice**
-1. What is the unit of power?  
-   **Answer:** Watt (W).
-2. Which uses more energy over the same time: 100 W or 500 W?  
-   **Answer:** The 500 W device.
-3. What extra information is needed to calculate energy from power?  
-   **Answer:** Operating time.
-
-
-## Lesson 12 — Explain electromagnetic waves
-
-**Objective:** `M3-S2_3-12`  
-**Official indicator:** ว 2.3 ม.3/12  
-**Learning outcome:** Describe electromagnetic waves and regions of the spectrum.
+**Learning outcome:** Explain electromagnetic waves and identify the regions of the electromagnetic spectrum.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
 
 **Independent practice**
 1. Do electromagnetic waves require a material medium?  
    **Answer:** No.
-2. Name two electromagnetic waves.  
+2. Name two regions of the electromagnetic spectrum.  
    **Answer:** Radio waves and visible light (among others).
 3. In a vacuum, do all electromagnetic waves travel at the same speed?  
    **Answer:** Yes, at the speed of light.
+## Lesson 12 — Evaluate electromagnetic wave applications and hazards
 
-
-## Lesson 13 — Evaluate electromagnetic wave applications and hazards
-
-**Objective:** `M3-S2_3-13`  
-**Official indicator:** ว 2.3 ม.3/13  
-**Learning outcome:** Compare useful applications and possible hazards of electromagnetic waves.
+**Objective:** `M3-S2_3-12`  
+**Official indicator:** ว 2.3 ม.3/12  
+**Learning outcome:** Explain useful applications and potential hazards of electromagnetic waves in daily life.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
 
@@ -226,13 +205,11 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** Skin and eye damage, including increased skin-cancer risk.
 3. Why follow safety procedures for X-rays?  
    **Answer:** They are ionising radiation and can damage tissue.
+## Lesson 13 — Investigate reflection of light
 
-
-## Lesson 14 — Investigate reflection of light
-
-**Objective:** `M3-S2_3-14`  
-**Official indicator:** ว 2.3 ม.3/14  
-**Learning outcome:** Test the law of reflection using safe ray-box equipment.
+**Objective:** `M3-S2_3-13`  
+**Official indicator:** ว 2.3 ม.3/13  
+**Learning outcome:** Design and conduct a suitable experiment to test the law of reflection.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
 
@@ -243,12 +220,10 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** Angle of incidence equals angle of reflection.
 3. What must be kept in the same plane?  
    **Answer:** Incident ray, normal and reflected ray.
+## Lesson 14 — Draw images formed by mirrors
 
-
-## Lesson 15 — Draw images formed by mirrors
-
-**Objective:** `M3-S2_3-15`  
-**Official indicator:** ว 2.3 ม.3/15  
+**Objective:** `M3-S2_3-14`  
+**Official indicator:** ว 2.3 ม.3/14  
 **Learning outcome:** Use ray diagrams to describe mirror images.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -260,12 +235,10 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** A line perpendicular to the mirror at the point of incidence.
 3. What can a concave mirror do?  
    **Answer:** It can form real or virtual images depending on object position.
+## Lesson 15 — Explain refraction and dispersion
 
-
-## Lesson 16 — Explain refraction and dispersion
-
-**Objective:** `M3-S2_3-16`  
-**Official indicator:** ว 2.3 ม.3/16  
+**Objective:** `M3-S2_3-15`  
+**Official indicator:** ว 2.3 ม.3/15  
 **Learning outcome:** Explain bending of light and separation of white light.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -277,12 +250,10 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** It disperses into a spectrum of colours.
 3. Why does light change direction at a boundary?  
    **Answer:** Its speed changes when it enters a different medium at an angle.
+## Lesson 16 — Draw images formed by thin lenses
 
-
-## Lesson 17 — Draw images formed by thin lenses
-
-**Objective:** `M3-S2_3-17`  
-**Official indicator:** ว 2.3 ม.3/17  
+**Objective:** `M3-S2_3-16`  
+**Official indicator:** ว 2.3 ม.3/16  
 **Learning outcome:** Use principal rays to model image formation by thin lenses.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -294,12 +265,10 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** A concave lens.
 3. What is the principal axis?  
    **Answer:** The line through the optical centre and centres of curvature.
+## Lesson 17 — Explain optical instruments and the eye
 
-
-## Lesson 18 — Explain optical instruments and the eye
-
-**Objective:** `M3-S2_3-18`  
-**Official indicator:** ว 2.3 ม.3/18  
+**Objective:** `M3-S2_3-17`  
+**Official indicator:** ว 2.3 ม.3/17  
 **Learning outcome:** Explain how lenses and mirrors support vision and optical instruments.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -311,12 +280,10 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** A concave (diverging) lens.
 3. Name one optical instrument that uses lenses.  
    **Answer:** Microscope, telescope or magnifying glass.
+## Lesson 18 — Draw optical instrument and eye ray diagrams
 
-
-## Lesson 19 — Draw optical instrument and eye ray diagrams
-
-**Objective:** `M3-S2_3-19`  
-**Official indicator:** ว 2.3 ม.3/19  
+**Objective:** `M3-S2_3-18`  
+**Official indicator:** ว 2.3 ม.3/18  
 **Learning outcome:** Represent image formation in the eye and optical instruments.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -328,8 +295,21 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** Its focal length changes to focus near or distant objects.
 3. Where should the final image focus for clear vision?  
    **Answer:** On the retina.
+## Lesson 19 — Explain effects of illuminance on vision
 
+**Objective:** `M3-S2_3-19`  
+**Official indicator:** ว 2.3 ม.3/19  
+**Learning outcome:** Explain how light brightness affects the eyes using researched evidence.
 
+**Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
+
+**Independent practice**
+1. What can happen when a person reads in very dim light?  
+   **Answer:** Eye strain and difficulty seeing comfortably.
+2. Why can very bright light be harmful?  
+   **Answer:** It can damage or discomfort the eyes.
+3. What should be considered when evaluating screen use?  
+   **Answer:** Brightness, viewing distance, duration and regular breaks.
 ## Lesson 20 — Measure illuminance
 
 **Objective:** `M3-S2_3-20`  
@@ -345,8 +325,6 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** A lux meter or light meter.
 3. Why keep the meter position consistent when comparing readings?  
    **Answer:** To make the comparison fair.
-
-
 ## Lesson 21 — Recommend suitable lighting
 
 **Objective:** `M3-S2_3-21`  
@@ -362,8 +340,6 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** It causes discomfort and reduces visual performance.
 3. What evidence supports a lighting recommendation?  
    **Answer:** Measured lux levels and the task being performed.
-
-
 ## Lesson 22 — Explain planetary orbits using gravity
 
 **Objective:** `M3-S3_1-01`  
