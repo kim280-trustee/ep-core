@@ -227,3 +227,23 @@ The official IPST Physics curriculum-use manual explicitly labels these outcomes
 Migration: `20261116170000_learning_physics_m6_magnetic_forces_motors_generators.sql`. Teacher pack: `M6-physics-magnetic-forces-motors-generators-teacher-starter-pack.md`. This batch adds three objectives, three lesson starters and nine answer-keyed questions. Source pages: https://www.scimath.org/e-books/8437/flippingbook/180/ (printed p. 171), /182/ (printed p. 173), and /186/ (printed p. 177).
 
 M6 outcomes 1, 4, 5 and 7 onward remain to be extracted and verified; no unverified outcome numbers are inferred from textbook chapter order.
+
+
+## M6 verified staged release — electricity outcomes 1, 4 and 5
+
+The official IPST comparison crosswalk explicitly maps Group 3 outcome 1 to M6 and maps the Group 3 magnetic/electrical outcomes to the M6 programme. The grade-labelled IPST curriculum-use manual identifies outcome 4 (electromagnetic induction and Faraday's law) on printed p. 174 and outcome 5 (RMS voltage and current in AC circuits) on printed p. 176. Outcome 1 covers magnetic field lines, magnetic flux, and fields produced by straight current-carrying conductors and solenoids.
+
+| Grade | Outcome | Verified scope | Database objective | Evidence |
+|---|---:|---|---|---|
+| M6 | 1 | Magnetic field lines and flux; fields from straight conductors and solenoids | `M6-PHY-MAGNETIC-FIELDS-01` | IPST official comparison crosswalk; M6 Group 3 |
+| M6 | 4 | Induced emf, Faraday's law, Lenz's law and electrical-device applications | `M6-PHY-ELECTROMAGNETIC-INDUCTION-04` | Manual, printed p. 174 |
+| M6 | 5 | Sinusoidal AC voltage/current and RMS values | `M6-PHY-AC-RMS-05` | Manual, printed p. 176 |
+
+Migration: `20261116171500_learning_physics_m6_magnetic_fields_induction_ac.sql`. Teacher pack: `M6-physics-magnetic-fields-induction-ac-teacher-starter-pack.md`. This batch adds three M6 objectives, three lesson starters and nine answer-keyed questions.
+
+M6 Physics outcomes 1–6 are now represented (outcomes 1–6, except no gaps in this range): six objectives, six lesson starters and 18 answer-keyed questions across the two M6 packs. Outcomes 7 onward and the remaining Physics content groups still require grade-by-grade official verification. No migrations have been applied to Supabase.
+
+Official sources:
+- IPST Physics outcome-to-indicator comparison crosswalk: https://www.ipst.ac.th/wp-content/uploads/2022/05/Comparison_PhysicalSciLI_and_PhysicsLO_02-1.pdf
+- IPST curriculum-use manual, outcome 4, printed p. 174: https://www.scimath.org/e-books/8437/flippingbook/183/
+- IPST curriculum-use manual, outcome 5, printed p. 176: https://www.scimath.org/e-books/8437/flippingbook/185/
