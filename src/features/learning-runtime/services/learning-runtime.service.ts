@@ -12,7 +12,8 @@ export const learningRuntimeService = {
       learningMasteryService.listRecommendations(studentUserId),
       learningActivityService.listRecentEvents(studentUserId),
     ]);
-    return {assignments,progress,mastery,recommendations,recentActivity};
+    const assignmentSubjects=await learningAssignmentsService.listStudentAssignmentSubjects(assignments);
+    return {assignments,progress,mastery,recommendations,recentActivity,assignmentSubjects};
   },
   async getTeacherClassOverview(classGroupId:string) {
     const [members,assignments]=await Promise.all([
