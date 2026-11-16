@@ -8,6 +8,7 @@ import { useTranslation } from "@/core/i18n/useTranslation";
 import { LearningLanguageSelector } from "@/features/learning-shared/components/LearningLanguageSelector";
 import { useAuthorization } from "@/features/auth/authorization/useAuthorization";
 import { learningAcademicService } from "@/features/learning-academic";
+import { learningContentService } from "@/features/learning-content";
 import type {
   AcademicPeriodStatus,
   ClassGroupStatus,
@@ -95,6 +96,11 @@ export default function SchoolAdministrationPage() {
   const [newSubjectForm, setNewSubjectForm] = useState({ code: "", name: "", description: "" });
   const [catalogSubjectId, setCatalogSubjectId] = useState("");
   const [newGradeForm, setNewGradeForm] = useState({ code: "", name: "", sequenceNo: "1", description: "" });
+  const [alignmentSubjectId, setAlignmentSubjectId] = useState("");
+  const [alignmentSkillId, setAlignmentSkillId] = useState("");
+  const [alignmentTopicId, setAlignmentTopicId] = useState("");
+  const [alignmentGradeLevelId, setAlignmentGradeLevelId] = useState("");
+  const [alignmentForm, setAlignmentForm] = useState({ objectiveId: "", sequenceNo: "1", required: true, notes: "" });
   const [userToAdd, setUserToAdd] = useState("");
   const [selectedUserIds, setSelectedUserIds] = useState<string[]>([]);
   const [membershipType, setMembershipType] = useState<"student" | "teacher">("student");
@@ -145,6 +151,42 @@ export default function SchoolAdministrationPage() {
     enabled: Boolean(catalogCurriculumIdValue) && canManage,
   });
   const catalogGradeLevels = catalogGradeLevelsQuery.data ?? [];
+  const alignmentKnowledgeQuery = useQuery({
+    queryKey: ["school-admin", "alignment-knowledge-catalog"],
+    queryFn: async () => {
+      const [skills, topics, objectives] = await Promise.all([
+        learningContentService.listSkills(), learningContentService.listTopics(), learningContentService.listObjectives(),
+      ]);
+      return { skills, topics, objectives };
+    },
+    enabled: canManage,
+  });
+  const alignmentSkills = alignmentKnowledgeQuery.data?.skills ?? [];
+  const alignmentTopics = alignmentKnowledgeQuery.data?.topics ?? [];
+  const alignmentObjectives = alignmentKnowledgeQuery.data?.objectives ?? [];
+  const alignmentSubjectIdValue = alignmentSubjectId && catalogCurriculumSubjects.some((item) => item.subjectId === alignmentSubjectId)
+    ? alignmentSubjectId : catalogCurriculumSubjects[0]?.subjectId ?? "";
+  const alignmentSubjectSkills = alignmentSkills.filter((item) => item.subjectId === alignmentSubjectIdValue);
+  const alignmentSkillIdValue = alignmentSkillId && alignmentSubjectSkills.some((item) => item.id === alignmentSkillId)
+    ? alignmentSkillId : alignmentSubjectSkills[0]?.id ?? "";
+  const alignmentSkillTopics = alignmentTopics.filter((item) => item.skillId === alignmentSkillIdValue);
+  const alignmentTopicIdValue = alignmentTopicId && alignmentSkillTopics.some((item) => item.id === alignmentTopicId)
+    ? alignmentTopicId : alignmentSkillTopics[0]?.id ?? "";
+  const alignmentTopicObjectives = alignmentObjectives.filter((item) => item.topicId === alignmentTopicIdValue);
+  const alignmentGradeLevelIdValue = alignmentGradeLevelId && catalogGradeLevels.some((item) => item.id === alignmentGradeLevelId)
+    ? alignmentGradeLevelId : catalogGradeLevels[0]?.id ?? "";
+  const objectiveTopicById = new Map(alignmentTopics.map((item) => [item.id, item]));
+  const skillById = new Map(alignmentSkills.map((item) => [item.id, item]));
+  const alignmentSubjectObjectiveIds = new Set(alignmentObjectives.filter((item) => {
+    const topic = objectiveTopicById.get(item.topicId);
+    return topic ? skillById.get(topic.skillId)?.subjectId === alignmentSubjectIdValue : false;
+  }).map((item) => item.id));
+  const curriculumGradeAlignmentsQuery = useQuery({
+    queryKey: ["school-admin", "curriculum-grade-alignments", catalogCurriculumIdValue, alignmentGradeLevelIdValue],
+    queryFn: () => learningContentService.listAlignments(undefined, catalogCurriculumIdValue, alignmentGradeLevelIdValue),
+    enabled: Boolean(catalogCurriculumIdValue && alignmentGradeLevelIdValue) && canManage,
+  });
+  const curriculumGradeAlignments = (curriculumGradeAlignmentsQuery.data ?? []).filter((item) => alignmentSubjectObjectiveIds.has(item.objectiveId));
   const linkedCatalogSubjectIds = new Set(catalogCurriculumSubjects.map((item) => item.subjectId));
   const subjectsAvailableForCurriculum = subjects.filter((item) => !linkedCatalogSubjectIds.has(item.id));
   const allClassGroups = workspace?.classGroups ?? [];
@@ -365,6 +407,35 @@ export default function SchoolAdministrationPage() {
       }));
       setNewGradeForm({ code: "", name: "", sequenceNo: String(sequenceNo + 1), description: "" });
       setActionNotice("Grade level added to the selected curriculum.");
+    } catch { /* The mutation displays the failure above the forms. */ }
+  };
+
+  const submitObjectiveAlignment = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const sequenceNo = Number(alignmentForm.sequenceNo);
+    if (!catalogCurriculumIdValue || !alignmentGradeLevelIdValue || !alignmentSubjectIdValue || !alignmentForm.objectiveId || !Number.isInteger(sequenceNo) || sequenceNo < 1) {
+      setActionError("Choose a curriculum, grade, subject, learning objective, and positive whole-number sequence.");
+      return;
+    }
+    if (curriculumGradeAlignmentsQuery.isError || alignmentKnowledgeQuery.isError) {
+      setActionError("Refresh the curriculum alignment data before saving.");
+      return;
+    }
+    if ((curriculumGradeAlignmentsQuery.data ?? []).some((item) => item.objectiveId === alignmentForm.objectiveId)) {
+      setActionError("This learning objective is already aligned to the selected curriculum grade.");
+      return;
+    }
+    try {
+      await saveMutation.mutateAsync(() => learningContentService.createAlignment({
+        objectiveId: alignmentForm.objectiveId,
+        curriculumId: catalogCurriculumIdValue,
+        gradeLevelId: alignmentGradeLevelIdValue,
+        sequenceNo,
+        required: alignmentForm.required,
+        notes: alignmentForm.notes,
+      }));
+      setAlignmentForm({ objectiveId: "", sequenceNo: String(sequenceNo + 1), required: true, notes: "" });
+      setActionNotice("Learning objective aligned to the selected curriculum grade.");
     } catch { /* The mutation displays the failure above the forms. */ }
   };
 
@@ -677,6 +748,38 @@ export default function SchoolAdministrationPage() {
                       })}
                       {!catalogCurriculumSubjectsQuery.isPending && !catalogCurriculumSubjectsQuery.isError && !catalogCurriculumSubjects.length && <p className="text-sm text-slate-500">No subjects are linked to this curriculum yet.</p>}
                     </div>
+                  </div>
+                </div>
+              </Section>
+
+              <Section title="Curriculum learning-objective alignment" description="Map each subject's existing learning objectives to the grades where they are taught. These mappings are used to validate academic content and assessments.">
+                <div className="grid gap-5 xl:grid-cols-2">
+                  <form className="space-y-3 rounded-xl border border-slate-200 p-4" onSubmit={submitObjectiveAlignment}>
+                    <h3 className="font-semibold text-slate-900">Add an objective to a grade</h3>
+                    <Field label="Curriculum"><select className={fieldClass} value={catalogCurriculumIdValue} onChange={(event) => { setCatalogCurriculumId(event.target.value); setAlignmentGradeLevelId(""); setAlignmentSubjectId(""); setAlignmentSkillId(""); setAlignmentTopicId(""); setAlignmentForm({ objectiveId: "", sequenceNo: "1", required: true, notes: "" }); }}><option value="">Choose curriculum</option>{curricula.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></Field>
+                    <Field label="Grade level"><select className={fieldClass} value={alignmentGradeLevelIdValue} onChange={(event) => setAlignmentGradeLevelId(event.target.value)} disabled={!catalogGradeLevels.length}><option value="">Choose grade</option>{catalogGradeLevels.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></Field>
+                    <Field label="Subject"><select className={fieldClass} value={alignmentSubjectIdValue} onChange={(event) => { setAlignmentSubjectId(event.target.value); setAlignmentSkillId(""); setAlignmentTopicId(""); setAlignmentForm((current) => ({ ...current, objectiveId: "" })); }} disabled={!catalogCurriculumSubjects.length}><option value="">Choose subject</option>{catalogCurriculumSubjects.map((item) => { const subject = subjects.find((candidate) => candidate.id === item.subjectId); return <option key={item.subjectId} value={item.subjectId}>{subject?.name ?? item.name ?? "Subject"}</option>; })}</select></Field>
+                    {alignmentKnowledgeQuery.isError && <p role="alert" className="text-sm text-red-700">Learning objectives could not be loaded. <button type="button" className="font-semibold underline" onClick={() => void alignmentKnowledgeQuery.refetch()}>Try again</button></p>}
+                    <Field label="Skill"><select className={fieldClass} value={alignmentSkillIdValue} onChange={(event) => { setAlignmentSkillId(event.target.value); setAlignmentTopicId(""); setAlignmentForm((current) => ({ ...current, objectiveId: "" })); }} disabled={!alignmentSubjectSkills.length}><option value="">Choose skill</option>{alignmentSubjectSkills.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></Field>
+                    <Field label="Topic"><select className={fieldClass} value={alignmentTopicIdValue} onChange={(event) => { setAlignmentTopicId(event.target.value); setAlignmentForm((current) => ({ ...current, objectiveId: "" })); }} disabled={!alignmentSkillTopics.length}><option value="">Choose topic</option>{alignmentSkillTopics.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></Field>
+                    <Field label="Learning objective"><select className={fieldClass} required value={alignmentForm.objectiveId} onChange={(event) => setAlignmentForm((current) => ({ ...current, objectiveId: event.target.value }))} disabled={!alignmentTopicObjectives.length}><option value="">Choose objective</option>{alignmentTopicObjectives.map((item) => <option key={item.id} value={item.id}>{item.code} — {item.name}</option>)}</select></Field>
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      <Field label="Sequence number"><input className={fieldClass} type="number" min="1" step="1" required value={alignmentForm.sequenceNo} onChange={(event) => setAlignmentForm((current) => ({ ...current, sequenceNo: event.target.value }))} /></Field>
+                      <label className="flex items-center gap-2 pt-7 text-sm font-medium text-slate-700"><input type="checkbox" checked={alignmentForm.required} onChange={(event) => setAlignmentForm((current) => ({ ...current, required: event.target.checked }))} /> Required learning objective</label>
+                    </div>
+                    <Field label="Notes (optional)"><textarea className={fieldClass} rows={2} maxLength={500} value={alignmentForm.notes} onChange={(event) => setAlignmentForm((current) => ({ ...current, notes: event.target.value }))} placeholder="Teaching expectations or curriculum notes" /></Field>
+                    <button type="submit" className={buttonClass} disabled={!catalogCurriculumIdValue || !alignmentGradeLevelIdValue || !alignmentSubjectIdValue || !alignmentForm.objectiveId || alignmentKnowledgeQuery.isError || curriculumGradeAlignmentsQuery.isError || saveMutation.isPending}>{saveMutation.isPending ? "Saving…" : "Align learning objective"}</button>
+                    {!catalogCurriculumSubjects.length && <p className="text-xs text-amber-700">Add at least one subject to this curriculum before aligning objectives.</p>}
+                    {!alignmentSubjectSkills.length && alignmentSubjectIdValue && !alignmentKnowledgeQuery.isPending && <p className="text-xs text-amber-700">No skills are configured for this subject yet.</p>}
+                  </form>
+                  <div className="space-y-3 rounded-xl border border-slate-200 p-4">
+                    <div><h3 className="font-semibold text-slate-900">Aligned objectives</h3><p className="mt-1 text-xs text-slate-500">{catalogGradeLevels.find((item) => item.id === alignmentGradeLevelIdValue)?.name ?? "Select a grade"} · {subjects.find((item) => item.id === alignmentSubjectIdValue)?.name ?? "Select a subject"}</p></div>
+                    {curriculumGradeAlignmentsQuery.isError && <p role="alert" className="text-sm text-red-700">Grade alignments could not be loaded. <button type="button" className="font-semibold underline" onClick={() => void curriculumGradeAlignmentsQuery.refetch()}>Try again</button></p>}
+                    {curriculumGradeAlignmentsQuery.isPending || alignmentKnowledgeQuery.isPending ? <p className="text-sm text-slate-500">Loading aligned objectives…</p> : curriculumGradeAlignments.map((item) => {
+                      const objective = alignmentObjectives.find((candidate) => candidate.id === item.objectiveId);
+                      return <div key={item.id} className="flex items-start justify-between gap-3 rounded-lg bg-slate-50 px-3 py-2"><div><p className="text-sm font-medium text-slate-800">{objective ? objective.code + " — " + objective.name : item.objectiveId}</p>{item.notes && <p className="mt-1 text-xs text-slate-500">{item.notes}</p>}</div><span className="shrink-0 text-xs text-slate-500">{item.sequenceNo} · {item.required ? "Required" : "Optional"}</span></div>;
+                    })}
+                    {!curriculumGradeAlignmentsQuery.isPending && !alignmentKnowledgeQuery.isPending && !curriculumGradeAlignmentsQuery.isError && !curriculumGradeAlignments.length && <p className="text-sm text-slate-500">No objectives are aligned for this subject and grade yet.</p>}
                   </div>
                 </div>
               </Section>
