@@ -34,6 +34,7 @@ export interface LearningAcademicRepository {
   createSubject(input: import("../types/learning-academic.types").LearningSubjectInput): Promise<LearningSubject>;
   addSubjectToCurriculum(input: import("../types/learning-academic.types").LearningCurriculumSubjectInput): Promise<LearningCurriculumSubject>;
   listGradeLevels(curriculumId: string): Promise<LearningGradeLevel[]>;
+  createGradeLevel(input: import("../types/learning-academic.types").LearningGradeLevelInput): Promise<LearningGradeLevel>;
   listAcademicYears(organizationId: string): Promise<LearningAcademicYear[]>;
   listTerms(organizationId: string, academicYearId: string): Promise<LearningTerm[]>;
   listClassGroups(organizationId: string, academicYearId?: string): Promise<LearningClassGroup[]>;
@@ -155,6 +156,18 @@ export const learningAcademicRepository: LearningAcademicRepository = {
     const { data, error } = await supabase.from("learning_curriculum_subjects").select("*").eq("curriculum_id", curriculumId).eq("status", "active").order("name");
     if (error) throw error;
     return (data ?? []).map(mapCurriculumSubject);
+  },
+  async createGradeLevel(input) {
+    const { data, error } = await supabase.from("learning_grade_levels").insert({
+      curriculum_id: input.curriculumId,
+      code: input.code.trim().toUpperCase(),
+      name: input.name.trim(),
+      sequence_no: input.sequenceNo,
+      description: input.description?.trim() || null,
+      status: "active",
+    }).select("*").single();
+    if (error) throw error;
+    return mapGrade(data);
   },
   async listGradeLevels(curriculumId) {
     const { data, error } = await supabase.from("learning_grade_levels").select("*").eq("curriculum_id", curriculumId).eq("status", "active").order("sequence_no");
