@@ -185,3 +185,8 @@ These migrations follow the M1–M3 Science migrations. Upper-secondary learning
 23. `20261116110000_learning_biology_m5_animal_physiology.sql` — seeds 21 M5 Biology additional-study outcomes in strand 4 and their M5 grade alignments.
 
 The M5 Biology strand 4 migration follows the M5 plant-structure strand migration. The official curriculum contains no M4 outcomes for this strand; all 21 outcomes are aligned to M5. Its companion planning pack contains 21 lesson starters and 63 answer-keyed practice questions. Upper-secondary specialist Science migrations remain pending application to the live database.
+
+
+24. `20261116111500_learning_biology_m6_animal_physiology.sql` — seeds 19 M6 Biology additional-study outcomes in strand 4 and their M6 grade alignments.
+
+The M6 Biology strand 4 migration continues the M5 animal-physiology sequence and aligns the 19 official nervous coordination, movement, reproduction, hormone and behaviour outcomes to M6. The companion planning pack contains 19 lesson starters and 57 answer-keyed practice questions. These are teacher planning resources, not published app content.
