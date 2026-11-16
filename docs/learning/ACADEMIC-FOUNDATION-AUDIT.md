@@ -121,7 +121,7 @@ The live database migration history ends at `20261116015418`. The branch migrati
 12. `20261116080000_learning_science_curriculum_catalog.sql`
 13. `20261116081500_learning_science_m1_knowledge_graph.sql`\n14. `20261116083000_learning_science_m2_m3_biology_knowledge_graph.sql`\n15. `20261116084500_learning_science_m2_physical_science_knowledge_graph.sql`\n16. `20261116090000_learning_science_m2_earth_space_knowledge_graph.sql`\n17. `20261116091500_learning_science_m3_matter_chemistry_knowledge_graph.sql`\n18. `20261116093000_learning_science_m3_energy_earth_space_knowledge_graph.sql`
 
-The order is important because content and assessment integrity constraints rely on the academic catalogue and knowledge graph. The Science knowledge graph migrations extend the existing M1 catalogue through M3 and must be applied in the same timestamp order.
+The order is important because content and assessment integrity constraints rely on the academic catalogue and knowledge graph. The Science knowledge graph migrations extend the existing M1 catalogue through M3 and must be applied in the same timestamp order. Upper-secondary subject-track and learning-outcome migrations follow the M1–M3 Science migrations.
 
 ## Live Supabase read-only verification
 
@@ -172,3 +172,11 @@ A repeatable preflight query is committed at `supabase/verification/learning-aca
 4. Verify the Maths catalogue and knowledge graph, then create the Maths pilot class under the existing school academic year.
 5. Confirm the English pilot remains unchanged.
 6. Run the final local lint and build once the implementation batch is ready.
+
+
+## Upper-secondary Science migrations
+
+19. `20261116100000_learning_science_upper_secondary_subject_tracks.sql` — adds the specialist Biology, Chemistry, Physics and Earth/Space Science subjects to the Thai Science curriculum.
+20. `20261116101500_learning_biology_m4_cellular_foundations.sql` — seeds 17 M4 Biology additional-study outcomes and their grade alignments.
+
+These migrations follow the M1–M3 Science migrations. Upper-secondary learning outcomes are distinct from the M1–M3 basic-course indicators and must be recorded under their specialist subject tracks.
