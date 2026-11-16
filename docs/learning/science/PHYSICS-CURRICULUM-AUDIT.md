@@ -1,6 +1,6 @@
 # E&P Learning — Upper-secondary Physics Curriculum Audit
 
-**Status:** Official scope verified; grade-level outcome extraction is the next gate. No Physics objectives or alignments have been seeded by this audit.
+**Status:** Official scope verified; grade-level extraction and staged seeding are in progress. Four verified M4 outcomes (8, 9, 11 and 12) are now seeded.
 
 ## Official curriculum structure
 
@@ -44,3 +44,17 @@ Two outcomes have now been extracted directly from the official IPST curriculum-
 Migration: `20261116133000_learning_physics_m4_mechanical_equilibrium.sql`. The companion pack contains two lesson starters and six answer-keyed practice questions: `M4-physics-mechanical-equilibrium-teacher-starter-pack.md`.
 
 This is a verified partial release only. The national total remains 67 outcomes; grade-by-grade extraction and implementation of the remaining outcomes are still in progress. The official comparison crosswalk confirms that content-group numbering cannot be treated as grade allocation. The migration is additive and idempotent; it has not been applied to Supabase.
+
+
+## Second verified knowledge-graph batch — M4 outcomes 11–12
+
+Two further outcomes have been extracted from the official IPST Physics curriculum-use manual and seeded:
+
+| Grade | Outcome | Verified scope | Database objective |
+|---|---:|---|---|
+| M4 | 11 | Work; kinetic, gravitational potential and elastic potential energy; work-energy theorem | `M4-PHY-WORK-11` |
+| M4 | 12 | Conservation of mechanical energy and calculations in motion when only conservative forces do work | `M4-PHY-ENERGY-12` |
+
+Migration: `20261116134500_learning_physics_m4_work_energy.sql`. The companion pack contains two lesson starters and six answer-keyed practice questions: `M4-physics-work-energy-teacher-starter-pack.md`.
+
+M4 now has four verified seeded outcomes (8, 9, 11 and 12), four lesson starters and 12 practice questions. This remains a partial release; the national total is 67 outcomes and grade-by-grade extraction is not complete. The migration is additive and idempotent and has not been applied to Supabase.
