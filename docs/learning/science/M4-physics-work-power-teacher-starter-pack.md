@@ -17,7 +17,7 @@
    **Answer:** W = Fd = 20 × 4 = 80 J.
 2. A force of 15 N moves an object 5 m at an angle of 60° to the displacement. Calculate the work done by the force.
    **Answer:** W = Fd cos θ = 15 × 5 × cos 60° = 37.5 J.
-3. A machine transfers 600 J of energy in ง10 seconds. Calculate its average power.
+3. A machine transfers 600 J of energy in 10 seconds. Calculate its average power.
    **Answer:** P = W/t = 600/10 = 60 W.
 
 ## Teaching and assessment notes
