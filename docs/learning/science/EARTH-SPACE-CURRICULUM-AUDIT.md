@@ -2,7 +2,11 @@
 
 **Curriculum:** Thai Basic Education Core Curriculum B.E. 2551 (2008), revised B.E. 2560 (2017), Additional Earth, Astronomy and Space Science (IPST 2017).
 **Official manual:** IPST, *Curriculum-use Manual for Additional Science: Earth, Astronomy and Space Science, Upper Secondary Level*.
-**Status:** M4 standard 1 geology outcomes 1–12, M5 standard 2 atmosphere/oceans/climate outcomes 1–13, and M6 standard 3 astronomy/space outcomes 1–19 are staged. The official grade allocations are verified against the IPST curriculum-use manual.
+**Status:** M4 standard 1 geology outcomes 1–12, M5 standard 2 atmosphere/oceans/climate outcomes 1–13, and M6 standard 3 astronomy/space outcomes 1–19 are staged. All 44 objectives have verified grade allocations. Each has a lesson starter and three answer-keyed practice questions in the companion teacher packs; these are not yet inserted into the app's content/question tables.
+**Database/content boundary:** Earth/Space migrations seed the academic knowledge graph and grade alignments only. Lesson starters and answer-keyed questions remain in the Markdown teacher packs until authored under an authenticated school teacher account through the existing generic content and question-bank workflows.
+
+**Historical checkpoint note:** The earlier 32-outcome subtotal below was the state before the M4 geology release. The final total is 44 outcomes as recorded in the completion section.
+
 
 ## Verified staged allocation
 
