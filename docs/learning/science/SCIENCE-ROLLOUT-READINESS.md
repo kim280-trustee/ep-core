@@ -183,3 +183,8 @@ Three additional M5 Physics objectives are now staged: outcome 9 (reflection and
 ## M5 Physics staged release — outcomes 4–5
 
 Two additional M5 Physics objectives are now staged: outcome 4 (surface-water-wave reflection, refraction, interference and diffraction) and outcome 5 (sound production/propagation, pressure and displacement waves, and sound speed versus air temperature). The migration adds two objectives; the teacher pack contains two lesson starters and six answer-keyed questions. Together with the previously committed M5 objectives, outcomes 1–12 are now represented: 12 objectives, 12 lesson starters and 36 answer-keyed questions. The M5 Physics numbered outcome set is complete at this stage. M6 Physics and remaining Biology/Chemistry/Earth-Space coverage remain subject to official grade-by-grade audit. No migrations have been applied to Supabase.
+
+
+## M6 Physics staged release — verified outcomes 2, 3 and 6
+
+Three M6 Physics outcomes have been verified against the official IPST manual's printed grade-labelled pages and staged: outcome 2 (magnetic forces), outcome 3 (galvanometers and DC motors), and outcome 6 (three-phase AC generators and transformers). The migration adds three curriculum objectives and alignments; the companion pack provides three lesson starters and nine answer-keyed questions. Official manual printed pages: 171, 173 and 177. M6 outcomes 1, 4, 5 and 7 onward remain under audit. No migration has been applied to Supabase.
