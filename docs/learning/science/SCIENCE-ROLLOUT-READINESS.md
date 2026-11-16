@@ -2,7 +2,7 @@
 
 **Branch:** `paul/learning-academic-integrity-audit`  
 **Scope:** Thai core Science curriculum catalogue, M1–M3 core knowledge graphs, and staged M4–M6 additional Science subjects  
-**Status:** M1–M3 core Science knowledge graphs are complete. Upper-secondary additional Science staging now has complete, audited Biology (108/108 outcomes; 108 lesson starters; 324 questions), Chemistry (81/81; 81 lesson starters; 243 questions), and Physics (67/67; 67 lesson starters; 201 questions). Earth, Astronomy and Space remains the final upper-secondary subject track under official outcome/grade-allocation audit. Empty grade/strand combinations are not treated as gaps unless the official manual assigns outcomes there. No migrations have been applied to live Supabase and no school records have been created.
+**Status:** M1–M3 core Science knowledge graphs are complete. Upper-secondary additional Science staging now has complete, audited Biology (108/108 outcomes; 108 lesson starters; 324 questions), Chemistry (81/81; 81 lesson starters; 243 questions), and Physics (67/67; 67 lesson starters; 201 questions). Earth, Astronomy and Space is in progress: M5 standard 2 outcomes 1–13 are staged (13 objectives, 13 lesson starters and 39 questions); M4 and M6 official allocations remain under audit. Empty grade/strand combinations are not treated as gaps unless the official manual assigns outcomes there. No migrations have been applied to live Supabase and no school records have been created.
 
 ## M1 coverage delivered
 
@@ -257,3 +257,10 @@ No new Biology seed migration was needed: all 108 outcomes were already staged i
 The new `CHEMISTRY-CURRICULUM-AUDIT.md` reconciles all staged Chemistry objectives against the official IPST upper-secondary additional Chemistry curriculum-use manual. The grade/strand register confirms M4 28 (Strand 1 outcomes 1–21; Strand 2 outcomes 1–7), M5 38 (Strand 1 outcomes 1–6; Strand 2 outcomes 1–32), and M6 15 (Strand 1 outcomes 1–15): **81/81 official outcomes**. The six existing Chemistry teacher packs contain 81 lesson starters and 243 answer-keyed questions. No additional M6 Strand 2 outcome sequence is allocated in the official tables; no outcomes have been moved across grades to fill an empty strand/grade combination.
 
 No new Chemistry seed migration was needed: all 81 outcomes were already staged in the existing six migrations. No live database changes were made. Earth/Space remains the next additional-science subject track to audit and complete.
+
+
+## Earth, Astronomy and Space — M5 weather and climate batch
+
+M5 standard 2 outcomes 1–13 are now staged in `20261116184500_learning_earth_space_m5_atmosphere_oceans_climate.sql`. The accompanying `M5-earth-space-weather-atmosphere-oceans-climate-teacher-starter-pack.md` provides 13 lesson starters and 39 answer-keyed questions. The grade allocation and sequence are verified against the official IPST curriculum-use manual, printed pp. 21–24. Outcomes 8–11 are atmospheric stability/clouds, weather fronts, climate-change drivers/evidence, and climate-change impacts/mitigation; outcomes 12–13 cover weather-map interpretation and weather analysis/forecasting.
+
+The full Earth/Space audit is in `EARTH-SPACE-CURRICULUM-AUDIT.md`. This does not mark the subject complete: M4 Earth-science and M6 astronomy/space outcomes still require exact grade/outcome verification. No migrations have been applied to live Supabase.
