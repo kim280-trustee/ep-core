@@ -197,3 +197,10 @@ The M6 Biology strand 4 migration continues the M5 animal-physiology sequence an
 Migration: `20261116124500_learning_chemistry_m5_gas_laws.sql`
 
 This additive seed adds the six official M5 learning outcomes in Additional Chemistry strand 1: gas-law relationships, combined gas law, Avogadro and ideal gas laws, Dalton partial pressures, kinetic molecular theory and Graham's law, plus applications. Each objective is aligned to the M5 grade in the Thai Science curriculum. The companion teacher pack contains six lesson starters and 18 answer-keyed practice questions. The source is the OBEC revised curriculum B.E. 2560 (2017), Chemistry, p. 117. No migration has been applied to the live Supabase database.
+
+
+## Upper-secondary Chemistry — M6 organic compounds and polymers
+
+Migration: `20261116130000_learning_chemistry_m6_organic_polymers.sql`
+
+This additive seed adds all 15 official M6 learning outcomes in Additional Chemistry strand 1, covering organic structures, functional groups, IUPAC nomenclature, isomerism, physical properties, hydrocarbon and functional-group reactions, polymerisation, polymer properties, plastics and rubber, polymer modification and environmental impacts. Each objective is aligned to M6 in the Thai Science curriculum. The companion teacher pack contains 15 lesson starters and 45 answer-keyed practice questions. Official source: OBEC revised curriculum B.E. 2560 (2017), Chemistry, p. 117. No migration has been applied to the live Supabase database.
