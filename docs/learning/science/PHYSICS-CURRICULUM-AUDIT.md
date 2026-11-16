@@ -126,3 +126,26 @@ The official IPST Physics curriculum-use manual places outcomes 1–7 under the 
 Migration: `20261116150000_learning_physics_m4_foundations_motion_forces.sql`. Companion pack: `M4-physics-foundations-motion-forces-teacher-starter-pack.md`, with seven lesson starters and 21 answer-keyed questions.
 
 M4 outcomes 1–17 are now all seeded: 17 objectives, 17 lesson starters and 51 answer-keyed questions. This completes the verified M4 outcome set. The national Physics curriculum contains 67 additional-study outcomes; M5 and M6 grade-level extraction and implementation remain outstanding. The migration is additive and idempotent; it has not been applied to Supabase.
+
+
+## M5 verified staged release — outcomes 1–3
+
+The official IPST curriculum-use manual explicitly labels the following additional Physics outcomes as M5:
+
+| Grade | Outcome | Verified scope | Database objective | Manual page |
+|---|---:|---|---|---:|
+| M5 | 1 | Simple harmonic motion of a spring-mass system and simple pendulum; related calculations | `M5-PHY-SHM-01` | 128 |
+| M5 | 2 | Natural frequency and resonance | `M5-PHY-RESONANCE-02` | 129 |
+| M5 | 3 | Wave motion and energy transfer; mechanical/electromagnetic and transverse/longitudinal waves; wave properties; Huygens principle; superposition; wave calculations | `M5-PHY-WAVES-03` | 130 |
+
+Migrations:
+- `20261116151500_learning_physics_m5_simple_harmonic_motion.sql`
+- `20261116153000_learning_physics_m5_natural_frequency_resonance.sql`
+- `20261116154500_learning_physics_m5_wave_properties.sql`
+
+Teacher packs:
+- `M5-physics-simple-harmonic-motion-teacher-starter-pack.md`
+- `M5-physics-natural-frequency-resonance-teacher-starter-pack.md`
+- `M5-physics-wave-properties-teacher-starter-pack.md`
+
+This staged release currently contains three verified M5 outcomes, three objectives, three lesson starters and nine answer-keyed questions. The remaining M5 outcomes and all M6 allocations still require source-by-source verification. These migrations are additive and idempotent and have not been applied to Supabase.
