@@ -129,6 +129,13 @@ select
   true,
   'Thailand Basic Education Core Curriculum B.E. 2551 (2008), Mathematics indicators revised B.E. 2560 (2017); indicator ' || alignment.indicator_code || '.'
 from public.learning_objectives objective
+join public.learning_topics objective_topic
+  on objective_topic.id = objective.topic_id
+join public.learning_skills objective_skill
+  on objective_skill.id = objective_topic.skill_id
+join public.learning_subjects objective_subject
+  on objective_subject.id = objective_skill.subject_id
+ and objective_subject.code = 'MATH'
 join (
   values
     ('M1-K1_1-01', 1, 'K 1.1 M.1/1'),
