@@ -36,7 +36,7 @@ export const learningTeacherRepository = {
       const classSubjects = await learningAcademicService.listClassSubjects(membership.organizationId, membership.classGroupId);
       result.push({
         classGroup, membership,
-        subjects: classSubjects.map((classSubject) => {
+        subjects: classSubjects.filter((classSubject) => classSubject.status === "active").map((classSubject) => {
           const subject = subjectCache.get(classSubject.subjectId);
           return subject ? { ...classSubject, subject } : null;
         }).filter((item): item is LearningTeacherClass["subjects"][number] => Boolean(item)),
