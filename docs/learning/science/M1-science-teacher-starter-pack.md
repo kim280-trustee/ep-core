@@ -613,7 +613,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 2. Which layer contains most of the ozone layer?  
    **Answer:** Stratosphere.
 3. Which upper layer is important for many low-Earth-orbit satellites?  
-   **Answer:** Thermosphere (depending on orbit altitude).
+   **Answer:** Exosphere, as stated in the Thai core-curriculum description.
 
 ## Lesson 38 — Explain factors affecting weather elements
 
