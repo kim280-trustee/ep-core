@@ -1,6 +1,10 @@
 # E&P Learning — Upper-secondary Physics Curriculum Audit
 
-**Status:** Official curriculum scope and grade allocation are being reconciled outcome-by-outcome. M4, M5 and M6 allocations are now fully staged across all four Physics content groups: 67 of 67 official outcomes.
+**Status:** Official curriculum scope and grade allocation are fully reconciled. M4, M5 and M6 allocations are staged across all four Physics content groups: 67 of 67 official outcomes. Each objective has one lesson starter and three answer-keyed practice questions in the companion teacher packs; those resources are not yet inserted into the app's content/question tables.
+**Database/content boundary:** Physics migration files seed the academic knowledge graph and grade alignments only. The lesson starters and answer-keyed questions are Markdown teacher-pack resources. They must be authored under an authenticated school teacher account through the existing generic content and question-bank workflows before they become app content.
+
+**Historical checkpoint note:** Earlier progress entries below record the state at the time each batch was created. The current completion status and 67-outcome register above supersede those earlier partial-progress notes.
+
 
 ## Official curriculum structure
 
