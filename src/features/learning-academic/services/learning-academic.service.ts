@@ -9,6 +9,7 @@ export const learningAcademicService = {
   createSubject: learningAcademicRepository.createSubject,
   addSubjectToCurriculum: learningAcademicRepository.addSubjectToCurriculum,
   listGradeLevels: (curriculumId: string) => learningAcademicRepository.listGradeLevels(curriculumId),
+  createGradeLevel: learningAcademicRepository.createGradeLevel,
   listAcademicYears: (organizationId: string) => learningAcademicRepository.listAcademicYears(organizationId),
   listTerms: (organizationId: string, academicYearId: string) => learningAcademicRepository.listTerms(organizationId, academicYearId),
   listClassGroups: (organizationId: string, academicYearId?: string) => learningAcademicRepository.listClassGroups(organizationId, academicYearId),
