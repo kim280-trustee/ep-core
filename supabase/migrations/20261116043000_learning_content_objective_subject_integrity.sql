@@ -70,8 +70,8 @@ declare
   v_subject_id uuid;
   v_content_status text;
 begin
-  select objective.status, skill.subject_id
-    into v_content_status, v_subject_id
+  select skill.subject_id
+    into v_subject_id
   from public.learning_objectives objective
   join public.learning_topics topic on topic.id = objective.topic_id
   join public.learning_skills skill on skill.id = topic.skill_id
@@ -277,5 +277,65 @@ drop trigger if exists learning_curriculum_content_deactivation_guard
 create trigger learning_curriculum_content_deactivation_guard
 before update of status on public.learning_curricula
 for each row execute function private.guard_learning_content_knowledge_deactivation();
+
+create or replace function private.guard_learning_content_knowledge_reassignment()
+returns trigger
+language plpgsql
+security definer
+set search_path = ''
+as $function$
+declare
+  v_has_content_mapping boolean := false;
+begin
+  if tg_table_name = 'learning_objectives' and new.topic_id is distinct from old.topic_id then
+    select exists (
+      select 1 from public.learning_content_objectives mapping
+      where mapping.objective_id = old.id
+    ) into v_has_content_mapping;
+  elsif tg_table_name = 'learning_topics' and new.skill_id is distinct from old.skill_id then
+    select exists (
+      select 1
+      from public.learning_content_objectives mapping
+      join public.learning_objectives objective on objective.id = mapping.objective_id
+      where objective.topic_id = old.id
+    ) into v_has_content_mapping;
+  elsif tg_table_name = 'learning_skills' and new.subject_id is distinct from old.subject_id then
+    select exists (
+      select 1
+      from public.learning_content_objectives mapping
+      join public.learning_objectives objective on objective.id = mapping.objective_id
+      join public.learning_topics topic on topic.id = objective.topic_id
+      where topic.skill_id = old.id
+    ) into v_has_content_mapping;
+  end if;
+
+  if v_has_content_mapping then
+    raise exception 'This academic hierarchy is used by learning content and cannot be reassigned.';
+  end if;
+
+  return new;
+end;
+$function$;
+
+revoke all on function private.guard_learning_content_knowledge_reassignment()
+  from public, anon, authenticated;
+
+drop trigger if exists learning_objective_content_reassignment_guard
+  on public.learning_objectives;
+create trigger learning_objective_content_reassignment_guard
+before update of topic_id on public.learning_objectives
+for each row execute function private.guard_learning_content_knowledge_reassignment();
+
+drop trigger if exists learning_topic_content_reassignment_guard
+  on public.learning_topics;
+create trigger learning_topic_content_reassignment_guard
+before update of skill_id on public.learning_topics
+for each row execute function private.guard_learning_content_knowledge_reassignment();
+
+drop trigger if exists learning_skill_content_reassignment_guard
+  on public.learning_skills;
+create trigger learning_skill_content_reassignment_guard
+before update of subject_id on public.learning_skills
+for each row execute function private.guard_learning_content_knowledge_reassignment();
 
 commit;
