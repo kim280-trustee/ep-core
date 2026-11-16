@@ -59,7 +59,7 @@ Use teacher supervision for laboratory demonstrations. Do not ask students to ta
 
 - No Supabase migration has been applied.
 - No live school, class, class-subject, teacher, student, content or assessment record has been created.
-- All M1–M3 core Science knowledge graphs are seeded. M4 Biology strands 1–2, M5 Biology strands 3–4 and M6 Biology strands 2, 4 and 5 are seeded: 108 outcomes, with 108 lesson starters and 324 practice questions with answer keys. M4 Biology strands 3–5 and M5 Biology strand 5 have no outcomes in the official curriculum. Remaining M5–M6 Biology and all Physics/Earth-Space outcomes remain pending. M6 Biology strand 2 outcomes 1–5 are now seeded. Chemistry now has 81 seeded outcomes across M4, M5 and M6. Physics has all 17 M4 outcomes seeded (outcomes 1–17); full 67-outcome grade allocation is still being audited.
+- All M1–M3 core Science knowledge graphs are seeded. M4 Biology strands 1–2, M5 Biology strands 3–4 and M6 Biology strands 2, 4 and 5 are seeded: 108 outcomes, with 108 lesson starters and 324 practice questions with answer keys. M4 Biology strands 3–5 and M5 Biology strand 5 have no outcomes in the official curriculum. Remaining M5–M6 Biology, M5–M6 Physics and all Earth/Space outcomes remain pending. M6 Biology strand 2 outcomes 1–5 are now seeded. Chemistry now has 81 seeded outcomes across M4, M5 and M6. Physics has all 17 M4 outcomes seeded (outcomes 1–17); full 67-outcome grade allocation is still being audited.
 - Technology standards ว 4.1 and ว 4.2 are outside this Science batch.
 - No local lint/build result is claimed; consolidated verification remains pending.
 
