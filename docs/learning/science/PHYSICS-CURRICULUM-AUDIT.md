@@ -149,3 +149,10 @@ Teacher packs:
 - `M5-physics-wave-properties-teacher-starter-pack.md`
 
 This staged release currently contains three verified M5 outcomes, three objectives, three lesson starters and nine answer-keyed questions. The remaining M5 outcomes and all M6 allocations still require source-by-source verification. These migrations are additive and idempotent and have not been applied to Supabase.
+
+
+## M5 verified staged release — outcomes 6–7 (sound)
+
+The official IPST manual explicitly labels outcome 6 on printed p. 136 and outcome 7 on printed p. 138 as M5 Physics. Outcome 6 covers sound intensity, sound level, hearing, sound quality and noise pollution, including calculations. Outcome 7 covers resonance of air in a pipe open at one end, beats, standing sound waves, Doppler effect, shock waves, calculations and applications.
+
+Migration: `20261116160000_learning_physics_m5_sound_outcomes_6_7.sql`. Teacher pack: `M5-physics-sound-hearing-teacher-starter-pack.md`. This batch adds two objectives and two lesson starters with six answer-keyed questions. M5 outcomes 4–5 and 8–12 remain to be reconciled and seeded. Official source pages: https://www.scimath.org/e-books/8437/flippingbook/145/ and https://www.scimath.org/e-books/8437/flippingbook/147/.
