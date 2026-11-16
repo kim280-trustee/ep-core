@@ -329,7 +329,7 @@ revoke all on function private.guard_learning_assignment_subject_publication()
 drop trigger if exists learning_assignment_subject_publication_guard
   on public.learning_assignments;
 create trigger learning_assignment_subject_publication_guard
-before update of status
+before insert or update of status
 on public.learning_assignments
 for each row
 execute function private.guard_learning_assignment_subject_publication();
