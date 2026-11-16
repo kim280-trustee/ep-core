@@ -44,7 +44,9 @@ The integrity migration includes preflight checks. It will stop rather than appl
 
 Read-only inspection of the connected `ep-core` database found the current English pilot as one academic year (`2026-2027`), one M1 class (`M1-MEP-A`) under curriculum `TH-MEP-EN`, one term and one class subject. There are 8 gradebook entries and 1 term-grade row.
 
-The current read-only preflight returned **zero mismatches** for term dates, gradebook term/class year alignment, gradebook class-subject/class alignment and student membership references. The academic-management RLS policies are already permission-scoped in the live database.
+The committed read-only preflight script was executed against the live project. All nine integrity checks returned **PASS with zero issues**, covering term dates, gradebook term/class year alignment, class-subject/class alignment, student membership references, and content-objective subject/alignment integrity. The academic-management RLS policies are already permission-scoped in the live database.
+
+The Maths catalogue prerequisite counts are currently zero because the Maths catalogue and knowledge-graph migrations have not yet been applied.
 
 No database rows or migrations were changed during this inspection.
 
