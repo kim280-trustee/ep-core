@@ -247,3 +247,19 @@ Official sources:
 - IPST Physics outcome-to-indicator comparison crosswalk: https://www.ipst.ac.th/wp-content/uploads/2022/05/Comparison_PhysicalSciLI_and_PhysicsLO_02-1.pdf
 - IPST curriculum-use manual, outcome 4, printed p. 174: https://www.scimath.org/e-books/8437/flippingbook/183/
 - IPST curriculum-use manual, outcome 5, printed p. 176: https://www.scimath.org/e-books/8437/flippingbook/185/
+
+
+## M6 verified staged release — electromagnetic-wave outcomes 7–8
+
+The official IPST curriculum-use manual explicitly labels outcome 7 on printed p. 178 and outcome 8 on printed p. 179 as M6.
+
+| Grade | Outcome | Verified scope | Database objective | Printed page |
+|---|---:|---|---|---:|
+| M6 | 7 | Electromagnetic-wave generation and properties; spectrum; unpolarised and linearly polarised light; polaroid sheets and applications | `M6-PHY-ELECTROMAGNETIC-WAVES-07` | 178 |
+| M6 | 8 | Information transmission using electromagnetic waves; analogue and digital signal comparison | `M6-PHY-ELECTROMAGNETIC-COMMUNICATION-08` | 179 |
+
+Migration: `20261116173000_learning_physics_m6_electromagnetic_waves_communication.sql`. Teacher pack: `M6-physics-electromagnetic-waves-communication-teacher-starter-pack.md`. This batch adds two M6 objectives, two lesson starters and six answer-keyed questions.
+
+The M6 Group 3 electricity/magnetism/electromagnetic-wave sequence is now staged for outcomes 1–8: eight objectives, eight lesson starters and 24 answer-keyed questions across three M6 teacher packs. This is not a claim that all M6 Physics or all 67 national Physics outcomes are complete; the remaining Group 3 outcomes and Group 4 allocations still require grade-by-grade official verification.
+
+Official manual pages: https://www.scimath.org/e-books/8437/flippingbook/187/ and https://www.scimath.org/e-books/8437/flippingbook/188/
