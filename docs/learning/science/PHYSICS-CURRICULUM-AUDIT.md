@@ -29,7 +29,7 @@ The Institute for the Promotion of Teaching Science and Technology (IPST) identi
 
 ## Implementation decision
 
-The existing `PHYSICS` subject track and M4–M6 grade catalogue are already present. This audit adds no database records. The next implementation batch must first produce a grade-by-grade, outcome-numbered register reconciled against the official IPST documents; only then should idempotent knowledge-graph migrations and teacher starter packs be authored.
+The existing `PHYSICS` subject track and M4–M6 grade catalogue are already present. This audit adds no database records. The M4 register is now reconciled and seeded. The remaining implementation work is to extract and reconcile M5–M6 outcomes against the official IPST documents before authoring further idempotent knowledge-graph migrations and teacher starter packs.
 
 
 ## First verified knowledge-graph batch — M4 outcomes 8–9
@@ -98,7 +98,7 @@ The official IPST Physics curriculum-use manual identifies M4 outcome 13 as expl
 
 Migration: `20261116143000_learning_physics_m4_simple_machines.sql`. Companion pack: `M4-physics-simple-machines-teacher-starter-pack.md`, with one lesson starter and three answer-keyed questions.
 
-M4 now has nine verified seeded outcomes (8, 9, 11, 12, 13, 14, 15, 16 and 17), nine lesson starters and 27 answer-keyed questions. Outcomes 1–7 and 10 still need to be checked against the grade-labelled official source; no assumption is made that they all belong to M4. The migration is additive and idempotent; it has not been applied to Supabase.
+M4 now has nine verified seeded outcomes (8, 9, 11, 12, 13, 14, 15, 16 and 17), nine lesson starters and 27 answer-keyed questions. At the time of this fifth batch, outcomes 1–7 and 10 had not yet been verified; the subsequent batches below verify and seed them as M4 outcomes. The migration is additive and idempotent; it has not been applied to Supabase.
 
 
 ## Sixth verified knowledge-graph batch — M4 outcome 10
