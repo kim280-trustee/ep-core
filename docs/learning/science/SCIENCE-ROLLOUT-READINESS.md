@@ -23,7 +23,7 @@ The new catalogue uses subject code `SCI` and curriculum code `TH-SCI-M1-M6`, al
 
 This Science subject covers the core Science standards ว 1.x, ว 2.x and ว 3.x. Technology standards ว 4.1 and ว 4.2 are intentionally reserved for the future Design & Technology / Computer Studies workstream, so the same official indicators are not duplicated across subjects.
 
-The curriculum catalogue contains M1–M6 grade levels. M1 is fully seeded for its 43 core Science indicators. M2 is now fully seeded for all 48 core Science indicators across ว 1.2, ว 2.2, ว 2.3 and ว 3.2. M3 currently has 11 biological-science indicators seeded; its remaining standards and all M4–M6 indicators remain future implementation work.
+The curriculum catalogue contains M1–M6 grade levels. M1 is fully seeded for its 43 core Science indicators. M2 is fully seeded for all 48 core Science indicators across ว 1.2, ว 2.2, ว 2.3 and ว 3.2. M3 currently has 19 objectives seeded: 11 biological-science indicators in ว 1.3 and eight materials/chemical-reaction indicators in ว 2.1. M3 standards ว 2.3, ว 3.1 and ว 3.2, plus all M4–M6 indicators, remain future implementation work.
 
 ## Migrations
 
@@ -31,7 +31,7 @@ The curriculum catalogue contains M1–M6 grade levels. M1 is fully seeded for i
 2. `20261116081500_learning_science_m1_knowledge_graph.sql` — adds five Science skills, 17 topics, 43 M1 objectives and official curriculum-grade alignments.
 3. `20261116083000_learning_science_m2_m3_biology_knowledge_graph.sql` — adds 17 M2 and 11 M3 biological-science objectives.
 4. `20261116084500_learning_science_m2_physical_science_knowledge_graph.sql` — adds 15 M2 force objectives and six M2 work/energy objectives.
-5. `20261116090000_learning_science_m2_earth_space_knowledge_graph.sql` — adds ten M2 Earth and Space Science objectives.
+5. `20261116090000_learning_science_m2_earth_space_knowledge_graph.sql` — adds ten M2 Earth and Space Science objectives.\n6. `20261116091500_learning_science_m3_matter_chemistry_knowledge_graph.sql` — adds eight M3 materials and chemical-reaction objectives.
 
 Apply these after the existing pending academic foundation and Maths migrations, in timestamp order. The seeds are idempotent upserts and require the active Thai Basic Education system.
 
@@ -41,7 +41,7 @@ The existing generic Teacher Content Create, Teacher Content Library and Questio
 
 After migrations are applied:
 - Select `TH-SCI-M1-M6`, the matching grade (`M1`, `M2` or `M3`) and subject `SCI` when creating Science content.
-- M2 has complete core Science coverage. M3 currently has only its 11 biological-science objectives seeded; use only the available objectives until its remaining standards are implemented.
+- M2 has complete core Science coverage. M3 currently has 19 objectives seeded across biological science and materials/chemical reactions; use only available objectives until the remaining standards are implemented.
 - Link each lesson and question to its exact objective code.
 - Save as draft and have a teacher review scientific accuracy, safety and suitability before publishing.
 - Use the Teacher Content Library grade filter to isolate M1 materials.
@@ -54,7 +54,7 @@ Use teacher supervision for laboratory demonstrations. Do not ask students to ta
 
 - No Supabase migration has been applied.
 - No live school, class, class-subject, teacher, student, content or assessment record has been created.
-- M3 physical-science and Earth-and-space objectives and packs, and all M4–M6 objectives and packs, have not yet been implemented.
+- M3 physical-science indicators in ว 2.3 and Earth-and-space indicators in ว 3.1/ว 3.2, and all M4–M6 objectives and packs, have not yet been implemented. M3 ว 2.1 is now seeded; its teacher lessons are included in the companion starter pack.
 - Technology standards ว 4.1 and ว 4.2 are outside this Science batch.
 - No local lint/build result is claimed; consolidated verification remains pending.
 
@@ -74,10 +74,10 @@ A second staged batch has been committed. It seeds only the verified biological-
 | M3 | ว 1.3 | 11 | 11 |
 | **Total** | | **59** | **59** |
 
-The companion teacher pack now contains 59 lesson starters and 177 practice questions with answer keys: 48 complete M2 core Science lessons and 11 M3 biological-science lessons. M2 includes human body systems, reproduction, forces, work and energy, fossil fuels, Earth structure, soil, water and hazards. M3 includes genetics, biotechnology and biodiversity. Reproductive-health content requires respectful, age-appropriate delivery and referral of medical questions to qualified professionals.
+The companion teacher pack now contains 67 lesson starters and 201 practice questions with answer keys: 48 complete M2 core Science lessons, 11 M3 biological-science lessons and eight M3 materials/chemical-reaction lessons. M2 includes human body systems, reproduction, forces, work and energy, fossil fuels, Earth structure, soil, water and hazards. M3 includes genetics, biotechnology and biodiversity. Reproductive-health content requires respectful, age-appropriate delivery and referral of medical questions to qualified professionals.
 
 ### M2–M3 migrations and resources
 
-6. `docs/learning/science/M2-M3-science-biological-teacher-starter-pack.md` — includes the 48 M2 lessons and 11 M3 biological-science lessons. — 28 lesson starters and 84 practice questions with answers.
+7. `docs/learning/science/M2-M3-science-biological-teacher-starter-pack.md` — includes 48 M2 lessons and 19 M3 lessons across biological science and materials/chemical reactions, with three answer-keyed practice questions per lesson.
 
-M2 core Science coverage is complete for its 48 official Science indicators. M3 remains partial: its physical-science and Earth-and-space indicators are still to be researched and implemented. Technology standards ว 4.1 and ว 4.2 remain outside the Science workstream.
+M2 core Science coverage is complete for its 48 official Science indicators. M3 remains partial: its ว 2.3 energy/light/electricity and ว 3.1/ว 3.2 astronomy/Earth-system indicators are still to be researched and implemented. Technology standards ว 4.1 and ว 4.2 remain outside the Science workstream.
