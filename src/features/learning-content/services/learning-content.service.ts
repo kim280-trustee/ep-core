@@ -19,6 +19,7 @@ export const learningContentService={
   createContent:(input:Parameters<typeof learningContentRepository.createContent>[0])=>learningContentRepository.createContent(input),
   createVersion:(input:Parameters<typeof learningContentRepository.createVersion>[0])=>learningContentRepository.createVersion(input),
   addObjective:(input:Parameters<typeof learningContentRepository.addObjective>[0])=>learningContentRepository.addObjective(input),
+  removeObjective:(contentItemId:string,objectiveId:string)=>learningContentRepository.removeObjective(contentItemId,objectiveId),
   updateContentStatus:(id:string,status:Parameters<typeof learningContentRepository.updateContentStatus>[1],reviewerId?:string)=>learningContentRepository.updateContentStatus(id,status,reviewerId),
   updateVersionStatus:(id:string,status:Parameters<typeof learningContentRepository.updateVersionStatus>[1],reviewerId?:string)=>learningContentRepository.updateVersionStatus(id,status,reviewerId),
   getStudentResponse:(assignmentId:string,contentItemId:string,studentUserId:string)=>learningContentRepository.getStudentResponse(assignmentId,contentItemId,studentUserId),
