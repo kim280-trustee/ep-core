@@ -1,4 +1,4 @@
-# M2–M3 Science — Biological Science Teacher Starter Pack
+# M2–M3 Science — Biological and Physical Science Teacher Starter Pack
 
 **Curriculum:** Thai Basic Education Core Curriculum B.E. 2551 (2008), revised B.E. 2560 (2017)  
 **Subject:** SCI  
@@ -978,3 +978,134 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
    **Answer:** Slope instability, often intensified by heavy rain or ground disturbance.
 3. Name one practical way to reduce hazard risk.  
    **Answer:** Follow warnings, avoid high-risk areas and use appropriate land planning.
+
+
+## M3 — Materials and chemical reactions
+
+### Lesson 1 — Identify properties and uses of polymers, ceramics and composites
+
+**Objective:** `M3-S2_1-01`  
+**Official indicator:** ว 2.1 ม.3/1  
+**Learning outcome:** Use evidence and information to identify physical properties and uses of polymers, ceramics and composite materials.
+
+**Teaching activity:** Compare everyday objects such as plastic bottles, rubber bands, ceramic tiles and reinforced concrete. Learners record observable properties and connect each property to a suitable use.
+
+**Independent practice**
+1. Name one example of a polymer.  
+   **Answer:** Plastic, rubber or fibre.
+2. Give one common property of ceramics.  
+   **Answer:** They are generally hard and resist wear, but may be brittle.
+3. Why is reinforced concrete a composite?  
+   **Answer:** It combines concrete and steel to provide useful combined properties.
+
+### Lesson 2 — Use materials economically and responsibly
+
+**Objective:** `M3-S2_1-02`  
+**Official indicator:** ว 2.1 ม.3/2  
+**Learning outcome:** Explain the value of polymers, ceramics and composites and recommend economical, responsible use.
+
+**Teaching activity:** Use a product-life-cycle comparison. Ask learners to evaluate durability, repair, reuse, recycling and disposal without assuming that one material is always best.
+
+**Independent practice**
+1. Give one way to reduce unnecessary plastic use.  
+   **Answer:** Reuse suitable containers or choose reusable alternatives.
+2. Why should material choice consider the whole product life cycle?  
+   **Answer:** Production, use and disposal can all affect resources and the environment.
+3. Name one responsible way to extend a product's useful life.  
+   **Answer:** Repair, maintain or reuse it where safe.
+
+### Lesson 3 — Model chemical reactions
+
+**Objective:** `M3-S2_1-03`  
+**Official indicator:** ว 2.1 ม.3/3  
+**Learning outcome:** Explain chemical reactions as rearrangements of atoms and represent them with word equations.
+
+**Teaching activity:** Use coloured counters as atoms to model how atoms are rearranged from reactants into products. Emphasise that atoms are conserved rather than created or destroyed in the reaction.
+
+**Independent practice**
+1. What are reactants?  
+   **Answer:** The starting substances in a chemical reaction.
+2. What are products?  
+   **Answer:** The new substances formed.
+3. What happens to atoms during a chemical reaction?  
+   **Answer:** They are rearranged into new combinations.
+
+### Lesson 4 — Apply the law of conservation of mass
+
+**Objective:** `M3-S2_1-04`  
+**Official indicator:** ว 2.1 ม.3/4  
+**Learning outcome:** Use evidence to explain that total mass is conserved in a chemical reaction.
+
+**Teaching activity:** Compare mass before and after a teacher-supervised reaction in a closed system, or analyse a supplied dataset. Explain why gas escaping from an open container can make measured mass appear to change.
+
+**Independent practice**
+1. State the law of conservation of mass.  
+   **Answer:** Total mass of reactants equals total mass of products in a closed system.
+2. If 12 g of reactants form products, what is their total mass?  
+   **Answer:** 12 g.
+3. Why can an open reaction container show a lower measured mass?  
+   **Answer:** A gas may escape into the surroundings.
+
+### Lesson 5 — Compare endothermic and exothermic reactions
+
+**Objective:** `M3-S2_1-05`  
+**Official indicator:** ว 2.1 ม.3/5  
+**Learning outcome:** Analyse temperature evidence to distinguish heat-absorbing and heat-releasing reactions.
+
+**Teaching activity:** Interpret teacher-provided temperature graphs or use safe, approved demonstrations. Distinguish heat transfer into the system from heat transfer out of the system.
+
+**Independent practice**
+1. What happens to heat in an endothermic reaction?  
+   **Answer:** The reaction system absorbs heat from its surroundings.
+2. What happens to heat in an exothermic reaction?  
+   **Answer:** The reaction system releases heat to its surroundings.
+3. What evidence can help identify the type of reaction?  
+   **Answer:** A suitable temperature measurement and the direction of temperature change in the surroundings.
+
+### Lesson 6 — Explain common chemical reactions
+
+**Objective:** `M3-S2_1-06`  
+**Official indicator:** ว 2.1 ม.3/6  
+**Learning outcome:** Explain rusting, acid-metal, acid-base, base-metal, combustion, acid rain and photosynthesis reactions using evidence and word equations.
+
+**Teaching activity:** Use word-equation cards, diagrams and trusted reference data. Do not ask learners to mix household chemicals, concentrated acids or bases, or produce combustion products.
+
+**Independent practice**
+1. What three things are needed for ordinary iron rusting?  
+   **Answer:** Iron, water and oxygen.
+2. What are common products of complete combustion of a hydrocarbon fuel?  
+   **Answer:** Carbon dioxide and water.
+3. Which substances react in photosynthesis?  
+   **Answer:** Carbon dioxide and water, with light energy.
+
+### Lesson 7 — Evaluate benefits and hazards of chemical reactions
+
+**Objective:** `M3-S2_1-07`  
+**Official indicator:** ว 2.1 ม.3/7  
+**Learning outcome:** Identify benefits and hazards of everyday chemical reactions and recommend prevention or mitigation measures.
+
+**Teaching activity:** Analyse case cards about cooking, rusting, combustion, acid rain and household product labels. Practise identifying hazards and choosing evidence-based prevention measures.
+
+**Independent practice**
+1. Give one useful chemical reaction in daily life.  
+   **Answer:** Cooking or photosynthesis.
+2. Name one hazard associated with uncontrolled combustion.  
+   **Answer:** Fire, burns or harmful gases such as carbon monoxide.
+3. What should learners do before using a household chemical?  
+   **Answer:** Read the label and follow adult or teacher safety instructions; never mix products.
+
+### Lesson 8 — Design a solution using chemical-reaction knowledge
+
+**Objective:** `M3-S2_1-08`  
+**Official indicator:** ว 2.1 ม.3/8  
+**Learning outcome:** Design and evaluate a safe everyday solution using knowledge of chemical reactions, integrating science, mathematics, technology and engineering.
+
+**Teaching activity:** Give teams a safe design brief, such as reducing rust on a model steel object or selecting suitable materials for a reusable product. Learners define criteria, compare evidence, propose a design and evaluate it without hazardous chemical handling.
+
+**Independent practice**
+1. What should a design brief identify?  
+   **Answer:** The problem, users, criteria and constraints.
+2. Why test a proposed solution?  
+   **Answer:** To collect evidence about whether it meets the criteria.
+3. What should be included when presenting a design?  
+   **Answer:** The chosen solution, evidence, limitations and possible improvements.
