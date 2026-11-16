@@ -3058,6 +3058,9 @@ export type Database = {
           configuration: Json
           created_at: string
           created_by: string
+          curriculum_id: string | null
+          grade_level_id: string | null
+          subject_id: string | null
           explanation: Json | null
           id: string
           prompt: Json
@@ -3072,6 +3075,9 @@ export type Database = {
           configuration?: Json
           created_at?: string
           created_by: string
+          curriculum_id?: string | null
+          grade_level_id?: string | null
+          subject_id?: string | null
           explanation?: Json | null
           id?: string
           prompt?: Json
@@ -3086,6 +3092,9 @@ export type Database = {
           configuration?: Json
           created_at?: string
           created_by?: string
+          curriculum_id?: string | null
+          grade_level_id?: string | null
+          subject_id?: string | null
           explanation?: Json | null
           id?: string
           prompt?: Json
@@ -3097,6 +3106,20 @@ export type Database = {
           version_no?: number
         }
         Relationships: [
+          {
+            foreignKeyName: "learning_question_versions_curriculum_grade_fk"
+            columns: ["curriculum_id", "grade_level_id"]
+            isOneToOne: false
+            referencedRelation: "learning_grade_levels"
+            referencedColumns: ["curriculum_id", "id"]
+          },
+          {
+            foreignKeyName: "learning_question_versions_curriculum_subject_fk"
+            columns: ["curriculum_id", "subject_id"]
+            isOneToOne: false
+            referencedRelation: "learning_curriculum_subjects"
+            referencedColumns: ["curriculum_id", "subject_id"]
+          },
           {
             foreignKeyName: "learning_question_versions_created_by_fkey"
             columns: ["created_by"]
