@@ -25,11 +25,11 @@ const fieldClass = "mt-1 w-full rounded-xl border border-slate-300 bg-white px-3
 const buttonClass = "inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50";
 const secondaryButtonClass = "inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-50";
 
-type YearForm = { curriculumId: string; name: string; code: string; startsOn: string; endsOn: string; status: AcademicPeriodStatus };
+type YearForm = { name: string; code: string; startsOn: string; endsOn: string; status: AcademicPeriodStatus };
 type TermForm = { name: string; code: string; sequenceNo: string; startsOn: string; endsOn: string; status: AcademicPeriodStatus };
 type ClassForm = { curriculumId: string; gradeLevelId: string; code: string; name: string; status: ClassGroupStatus };
 
-const emptyYearForm: YearForm = { curriculumId: "", name: "", code: "", startsOn: "", endsOn: "", status: "planned" };
+const emptyYearForm: YearForm = { name: "", code: "", startsOn: "", endsOn: "", status: "planned" };
 const emptyTermForm: TermForm = { name: "", code: "", sequenceNo: "1", startsOn: "", endsOn: "", status: "planned" };
 const emptyClassForm: ClassForm = { curriculumId: "", gradeLevelId: "", code: "", name: "", status: "active" };
 
@@ -239,8 +239,7 @@ export default function SchoolAdministrationPage() {
   });
   const terms = termsQuery.data ?? [];
 
-  const yearCurriculumId = yearForm.curriculumId || curricula[0]?.id || "";
-  const classCurriculumId = classForm.curriculumId || selectedYear?.curriculumId || curricula[0]?.id || "";
+  const classCurriculumId = classForm.curriculumId || curricula[0]?.id || "";
   const gradeLevelsQuery = useQuery({
     queryKey: ["school-admin", "grade-levels", classCurriculumId],
     queryFn: () => learningAcademicService.listGradeLevels(classCurriculumId),
@@ -546,7 +545,7 @@ export default function SchoolAdministrationPage() {
 
   const submitYear = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!organizationId || !yearCurriculumId || !yearForm.name.trim() || !yearForm.code.trim() || !yearForm.startsOn || !yearForm.endsOn) {
+    if (!organizationId || !yearForm.name.trim() || !yearForm.code.trim() || !yearForm.startsOn || !yearForm.endsOn) {
       setActionError("Complete every required academic-year field.");
       return;
     }
@@ -556,7 +555,6 @@ export default function SchoolAdministrationPage() {
     }
     const values = {
       organizationId,
-      curriculumId: yearCurriculumId,
       name: yearForm.name.trim(),
       code: yearForm.code.trim(),
       startsOn: yearForm.startsOn,
@@ -667,7 +665,7 @@ export default function SchoolAdministrationPage() {
 
   const editYear = (year: LearningAcademicYear) => {
     setSelectedAcademicYearId(year.id);
-    setYearForm({ curriculumId: year.curriculumId, name: year.name, code: year.code, startsOn: year.startsOn, endsOn: year.endsOn, status: year.status });
+    setYearForm({ name: year.name, code: year.code, startsOn: year.startsOn, endsOn: year.endsOn, status: year.status });
     setEditingYearId(year.id);
     setActionError("");
     setActionNotice("");
@@ -876,13 +874,12 @@ export default function SchoolAdministrationPage() {
 
               <Section title={t("schoolSetup.academicYearsSection")} description={t("schoolSetup.academicYearsDescription")}>
                 <form className="grid gap-4 md:grid-cols-2 xl:grid-cols-4" onSubmit={submitYear}>
-                  <Field label={t("schoolSetup.curriculum")}><select className={fieldClass} required value={yearCurriculumId} onChange={(event) => setYearForm((form) => ({ ...form, curriculumId: event.target.value }))}><option value="">{t("schoolSetup.chooseCurriculum")}</option>{curricula.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></Field>
                   <Field label={t("schoolSetup.yearName")}><input className={fieldClass} required maxLength={100} value={yearForm.name} onChange={(event) => setYearForm((form) => ({ ...form, name: event.target.value }))} placeholder={t("schoolSetup.yearNamePlaceholder")} /></Field>
                   <Field label={t("schoolSetup.yearCode")}><input className={fieldClass} required maxLength={40} value={yearForm.code} onChange={(event) => setYearForm((form) => ({ ...form, code: event.target.value }))} placeholder="AY-2026" /></Field>
                   <Field label={t("schoolAdmin.status")}><select className={fieldClass} value={yearForm.status} onChange={(event) => setYearForm((form) => ({ ...form, status: event.target.value as AcademicPeriodStatus }))}><option value="planned">{t("schoolSetup.planned")}</option><option value="active">{t("schoolAdmin.active")}</option><option value="closed">{t("schoolSetup.closed")}</option></select></Field>
                   <Field label={t("schoolSetup.startsOn")}><input className={fieldClass} type="date" required value={yearForm.startsOn} onChange={(event) => setYearForm((form) => ({ ...form, startsOn: event.target.value }))} /></Field>
                   <Field label={t("schoolSetup.endsOn")}><input className={fieldClass} type="date" required value={yearForm.endsOn} onChange={(event) => setYearForm((form) => ({ ...form, endsOn: event.target.value }))} /></Field>
-                  <div className="flex items-end gap-2 md:col-span-2"><button className={buttonClass} type="submit" disabled={saveMutation.isPending || !curricula.length}>{saveMutation.isPending ? t("schoolAdmin.saving") : editingYearId ? t("schoolSetup.saveAcademicYear") : t("schoolSetup.createAcademicYear")}</button>{editingYearId && <button className={secondaryButtonClass} type="button" onClick={() => { setEditingYearId(""); setYearForm(emptyYearForm); }}>{t("schoolSetup.cancelEdit")}</button>}</div>
+                  <div className="flex items-end gap-2 md:col-span-2"><button className={buttonClass} type="submit" disabled={saveMutation.isPending}>{saveMutation.isPending ? t("schoolAdmin.saving") : editingYearId ? t("schoolSetup.saveAcademicYear") : t("schoolSetup.createAcademicYear")}</button>{editingYearId && <button className={secondaryButtonClass} type="button" onClick={() => { setEditingYearId(""); setYearForm(emptyYearForm); }}>{t("schoolSetup.cancelEdit")}</button>}</div>
                 </form>
                 <div className="mt-5 overflow-x-auto"><table className="min-w-full text-left text-sm"><thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th className="px-3 py-3">{t("schoolSetup.year")}</th><th className="px-3 py-3">{t("schoolSetup.dates")}</th><th className="px-3 py-3">{t("schoolAdmin.status")}</th><th className="px-3 py-3">{t("schoolAdmin.actions")}</th></tr></thead><tbody className="divide-y divide-slate-100">{academicYears.map((year) => <tr key={year.id} className={year.id === academicYearId ? "bg-slate-50" : ""}><td className="px-3 py-3"><p className="font-semibold text-slate-900">{year.name}</p><p className="text-xs text-slate-500">{year.code}</p></td><td className="px-3 py-3 text-slate-600">{year.startsOn} – {year.endsOn}</td><td className="px-3 py-3"><span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold capitalize text-slate-700">{translateAcademicStatus(year.status)}</span></td><td className="px-3 py-3"><div className="flex flex-wrap gap-2"><button type="button" className={secondaryButtonClass} onClick={() => { setSelectedAcademicYearId(year.id); setSelectedClassGroupId(""); setSelectedUserIds([]); setEditingTermId(""); setTermForm(emptyTermForm); setEditingClassId(""); setClassForm(emptyClassForm); setSubjectToAdd(""); setUserToAdd(""); }}>{t("schoolSetup.select")}</button><button type="button" className={secondaryButtonClass} onClick={() => editYear(year)}>{t("schoolSetup.edit")}</button></div></td></tr>)}</tbody></table>{!academicYears.length && <p className="py-4 text-sm text-slate-500">{t("schoolSetup.noAcademicYears")}</p>}</div>
               </Section>
