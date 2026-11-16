@@ -119,9 +119,9 @@ The live database migration history ends at `20261116015418`. The branch migrati
 10. `20261116070000_learning_academic_year_multi_curriculum.sql`
 11. `20261116071500_learning_academic_record_integrity.sql`
 12. `20261116080000_learning_science_curriculum_catalog.sql`
-13. `20261116081500_learning_science_m1_knowledge_graph.sql`
+13. `20261116081500_learning_science_m1_knowledge_graph.sql`\n14. `20261116083000_learning_science_m2_m3_biology_knowledge_graph.sql`\n15. `20261116084500_learning_science_m2_physical_science_knowledge_graph.sql`\n16. `20261116090000_learning_science_m2_earth_space_knowledge_graph.sql`\n17. `20261116091500_learning_science_m3_matter_chemistry_knowledge_graph.sql`\n18. `20261116093000_learning_science_m3_energy_earth_space_knowledge_graph.sql`
 
-The order is important because content and assessment integrity constraints rely on the academic catalogue and knowledge graph.
+The order is important because content and assessment integrity constraints rely on the academic catalogue and knowledge graph. The Science knowledge graph migrations extend the existing M1 catalogue through M3 and must be applied in the same timestamp order.
 
 ## Live Supabase read-only verification
 
