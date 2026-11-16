@@ -65,6 +65,7 @@ Therefore:
 - [x] Official grade allocations audited for all five Science tracks.
 - [x] Companion teacher packs prepared: 442 starters and 1,326 answer-keyed questions.
 - [x] Readiness and subject audit documents corrected to distinguish database objectives from Markdown teaching resources.
+- [x] Add read-only staging verification SQL: `docs/learning/science/SCIENCE-STAGING-VERIFICATION.sql`.
 - [ ] Run all migrations against a disposable/staging Supabase database and verify expected objective/alignment counts.
 - [ ] Pull the branch locally and run lint/build once.
 - [ ] Resolve any runtime migration or build findings.
