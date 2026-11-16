@@ -22,15 +22,17 @@ M4–M6 coverage is limited to the eight grade-level indicators in the revised 2
 
 The live `ep-core` database migration history currently ends at `20261116015418`. Apply all pending branch migrations in timestamp order after reviewing them:
 
-1. `20261116033000_learning_objective_alignment_manage.sql` — academic-manager objective-alignment insertion.
-2. `20261116043000_learning_content_objective_subject_integrity.sql` — subject-aware content/objective integrity.
-3. `20261116044500_learning_question_academic_scope.sql` — curriculum/grade/subject scope for question versions.
-4. `20261116060000_learning_maths_curriculum_catalog.sql` — Mathematics subject, Thai Maths curriculum, M1–M6 grade catalogue and curriculum-subject link.
-5. `20261116061500_learning_maths_m1_knowledge_graph.sql` — M1 skills, topics, objectives and grade alignments.
-6. `20261116063000_learning_maths_m2_m3_knowledge_graph.sql` — M2 and M3 skills/topics/objectives/alignments.
-7. `20261116064500_learning_maths_m4_m6_knowledge_graph.sql` — M4–M6 core-curriculum topics/objectives/alignments.
-8. `20261116070000_learning_academic_year_multi_curriculum.sql` — makes the school academic year curriculum-independent while preserving existing curriculum values as optional legacy metadata.
-9. `20261116071500_learning_academic_record_integrity.sql` — strengthens term dates and gradebook class/term/student scope. School-structure write policies were already hardened by an earlier applied migration.
+1. `20261116030000_learning_subject_catalog_manage.sql` — enables subject and curriculum-subject creation for academic managers.
+2. `20261116031500_learning_grade_level_catalog_manage.sql` — enables curriculum grade-level creation for academic managers.
+3. `20261116033000_learning_objective_alignment_manage.sql` — enables academic-manager objective alignment.
+4. `20261116043000_learning_content_objective_subject_integrity.sql` — subject-aware content/objective integrity.
+5. `20261116044500_learning_question_academic_scope.sql` — curriculum/grade/subject scope for question versions.
+6. `20261116060000_learning_maths_curriculum_catalog.sql` — Mathematics subject, Thai Maths curriculum, M1–M6 grade catalogue and curriculum-subject link.
+7. `20261116061500_learning_maths_m1_knowledge_graph.sql` — M1 skills, topics, objectives and grade alignments.
+8. `20261116063000_learning_maths_m2_m3_knowledge_graph.sql` — M2 and M3 skills/topics/objectives/alignments.
+9. `20261116064500_learning_maths_m4_m6_knowledge_graph.sql` — M4–M6 core-curriculum topics/objectives/alignments.
+10. `20261116070000_learning_academic_year_multi_curriculum.sql` — makes the school academic year curriculum-independent while preserving existing curriculum values as optional legacy metadata.
+11. `20261116071500_learning_academic_record_integrity.sql` — strengthens term dates and gradebook class/term/student scope. School-structure write policies were already hardened by an earlier applied migration.
 
 The graph seeds are idempotent upserts and check for their required curriculum, grade and subject-strand prerequisites. They do not create school-specific academic years, terms, class groups, memberships, content or assessments.
 
@@ -50,9 +52,9 @@ The existing generic workflows already support the new Maths catalogue:
 
 - **Teacher Content Create** loads curricula, grades, subjects, skills, topics and objectives. It checks that the chosen objective is aligned to the exact selected curriculum and grade before saving a draft.
 - **Question Bank** derives available objectives from the selected class's curriculum, grade and subject. It saves those same academic-scope IDs to each question version and links the selected objective.
-- **Teacher Content Library** filters the existing content catalogue; no Maths-only content library is required.
+- **Teacher Content Library** filters the existing content catalogue by curriculum, grade, subject, content type and status. The grade filter now narrows materials to objectives aligned to the selected grade; no Maths-only content library is required.
 
-No separate Maths authoring module or route is needed. After the migrations are applied, Maths becomes available through the existing generic academic selectors and class-scoped question authoring.
+No separate Maths authoring module or route is needed. After the migrations are applied, Maths becomes available through the existing generic academic selectors and class-scoped question authoring. The content library's new grade filter also makes M1–M6 teacher resources easier to isolate.
 
 ## Pilot setup — ready after migrations and verification
 
