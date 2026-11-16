@@ -812,3 +812,169 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
    **Answer:** Mainly into thermal energy and sound in the surroundings.
 3. Does total energy disappear when a battery runs down?  
    **Answer:** No; stored chemical energy is transferred into other forms.
+
+
+## M2 — Earth and Space Science: Earth resources and surface processes
+
+**Standard:** ว 3.2 ม.2/1–10  
+**Coverage:** 10 additional M2 indicators.
+
+### Earth Science Lesson 1 — Compare fossil fuels
+
+**Objective:** `M2-S3_2-01`  
+**Official indicator:** ว 3.2 ม.2/1  
+**Learning outcome:** Compare formation, properties, uses and impacts of fossil fuels using collected information.
+
+**Teaching activity:** Use maps, diagrams, safe soil/water observations, local case studies and models. For hazard topics, focus on official safety guidance and do not take learners into hazardous areas.
+
+**Independent practice**
+1. Name three fossil fuels.  
+   **Answer:** Coal, petroleum and natural gas.
+2. How do fossil fuels form?  
+   **Answer:** From ancient organic matter transformed over geological time.
+3. Name one environmental impact of fossil-fuel use.  
+   **Answer:** Greenhouse-gas emissions or air pollution.
+
+### Earth Science Lesson 2 — Use fossil fuels responsibly
+
+**Objective:** `M2-S3_2-02`  
+**Official indicator:** ว 3.2 ม.2/2  
+**Learning outcome:** Explain impacts of fossil-fuel use and propose responsible use.
+
+**Teaching activity:** Use maps, diagrams, safe soil/water observations, local case studies and models. For hazard topics, focus on official safety guidance and do not take learners into hazardous areas.
+
+**Independent practice**
+1. Give one way to reduce fossil-fuel use.  
+   **Answer:** Use public transport, save electricity or improve energy efficiency.
+2. Why does burning fossil fuel affect climate?  
+   **Answer:** It releases carbon dioxide and other greenhouse gases.
+3. Why consider local conditions when planning energy use?  
+   **Answer:** Resources, demand and environmental impacts differ by place.
+
+### Earth Science Lesson 3 — Compare renewable energy options
+
+**Objective:** `M2-S3_2-03`  
+**Official indicator:** ว 3.2 ม.2/3  
+**Learning outcome:** Compare benefits and limitations of renewable energy and propose suitable local options.
+
+**Teaching activity:** Use maps, diagrams, safe soil/water observations, local case studies and models. For hazard topics, focus on official safety guidance and do not take learners into hazardous areas.
+
+**Independent practice**
+1. Name three renewable energy sources.  
+   **Answer:** Solar, wind and hydropower.
+2. Give one limitation of solar power.  
+   **Answer:** Output varies with sunlight and weather.
+3. What should guide a local renewable-energy choice?  
+   **Answer:** Local resource availability, cost, reliability and environmental effects.
+
+### Earth Science Lesson 4 — Model Earth's internal structure
+
+**Objective:** `M2-S3_2-04`  
+**Official indicator:** ว 3.2 ม.2/4  
+**Learning outcome:** Create a model of Earth's internal structure based on chemical composition.
+
+**Teaching activity:** Use maps, diagrams, safe soil/water observations, local case studies and models. For hazard topics, focus on official safety guidance and do not take learners into hazardous areas.
+
+**Independent practice**
+1. Name the main compositional layers of Earth.  
+   **Answer:** Crust, mantle and core.
+2. Which layer is mostly silicate rock beneath the crust?  
+   **Answer:** The mantle.
+3. Why is a model useful?  
+   **Answer:** It represents structures that cannot be directly observed in full.
+
+### Earth Science Lesson 5 — Explain weathering, erosion and deposition
+
+**Objective:** `M2-S3_2-05`  
+**Official indicator:** ว 3.2 ม.2/5  
+**Learning outcome:** Explain weathering, erosion and deposition and their effects on landforms.
+
+**Teaching activity:** Use maps, diagrams, safe soil/water observations, local case studies and models. For hazard topics, focus on official safety guidance and do not take learners into hazardous areas.
+
+**Independent practice**
+1. What is weathering?  
+   **Answer:** Breakdown of rock in place.
+2. What is erosion?  
+   **Answer:** Removal and transport of weathered material.
+3. What is deposition?  
+   **Answer:** Settling and accumulation of transported sediment.
+
+### Earth Science Lesson 6 — Explain soil profiles and soil formation
+
+**Objective:** `M2-S3_2-06`  
+**Official indicator:** ว 3.2 ม.2/6  
+**Learning outcome:** Explain soil horizons, soil formation and factors affecting soil properties.
+
+**Teaching activity:** Use maps, diagrams, safe soil/water observations, local case studies and models. For hazard topics, focus on official safety guidance and do not take learners into hazardous areas.
+
+**Independent practice**
+1. What is a soil profile?  
+   **Answer:** A vertical section showing soil layers or horizons.
+2. Name two factors that influence soil formation.  
+   **Answer:** Parent material, climate, organisms, relief and time.
+3. Why does topsoil often contain more organic matter?  
+   **Answer:** Plant and animal remains decompose near the surface.
+
+### Earth Science Lesson 7 — Measure soil properties
+
+**Objective:** `M2-S3_2-07`  
+**Official indicator:** ว 3.2 ม.2/7  
+**Learning outcome:** Use suitable tools to investigate selected soil properties and interpret results.
+
+**Teaching activity:** Use maps, diagrams, safe soil/water observations, local case studies and models. For hazard topics, focus on official safety guidance and do not take learners into hazardous areas.
+
+**Independent practice**
+1. Name one soil property that can be measured.  
+   **Answer:** pH, moisture, texture or permeability.
+2. Why use equal sample amounts in a comparison?  
+   **Answer:** To make the test fair.
+3. What should be recorded during soil testing?  
+   **Answer:** Method, units, observations and results.
+
+### Earth Science Lesson 8 — Explain surface water and groundwater
+
+**Objective:** `M2-S3_2-08`  
+**Official indicator:** ว 3.2 ม.2/8  
+**Learning outcome:** Model the factors and processes that form surface-water and groundwater sources.
+
+**Teaching activity:** Use maps, diagrams, safe soil/water observations, local case studies and models. For hazard topics, focus on official safety guidance and do not take learners into hazardous areas.
+
+**Independent practice**
+1. Give one surface-water source.  
+   **Answer:** River, lake or reservoir.
+2. Where is groundwater stored?  
+   **Answer:** In pores and fractures in soil and rock below ground.
+3. What allows water to recharge an aquifer?  
+   **Answer:** Infiltration and percolation through permeable ground.
+
+### Earth Science Lesson 9 — Plan sustainable local water use
+
+**Objective:** `M2-S3_2-09`  
+**Official indicator:** ว 3.2 ม.2/9  
+**Learning outcome:** Model water use and propose sustainable local water-management practices.
+
+**Teaching activity:** Use maps, diagrams, safe soil/water observations, local case studies and models. For hazard topics, focus on official safety guidance and do not take learners into hazardous areas.
+
+**Independent practice**
+1. Give one way households can conserve water.  
+   **Answer:** Repair leaks or use water efficiently.
+2. Why protect groundwater recharge areas?  
+   **Answer:** They help replenish underground water stores.
+3. What should a local water plan consider?  
+   **Answer:** Supply, demand, quality, ecosystems and seasonal variation.
+
+### Earth Science Lesson 10 — Model geological and water-related hazards
+
+**Objective:** `M2-S3_2-10`  
+**Official indicator:** ว 3.2 ม.2/10  
+**Learning outcome:** Model causes and impacts of floods, coastal erosion, landslides, sinkholes and land subsidence.
+
+**Teaching activity:** Use maps, diagrams, safe soil/water observations, local case studies and models. For hazard topics, focus on official safety guidance and do not take learners into hazardous areas.
+
+**Independent practice**
+1. Name two causes that can contribute to flooding.  
+   **Answer:** Heavy rainfall, blocked drainage or river overflow.
+2. What can trigger a landslide?  
+   **Answer:** Slope instability, often intensified by heavy rain or ground disturbance.
+3. Name one practical way to reduce hazard risk.  
+   **Answer:** Follow warnings, avoid high-risk areas and use appropriate land planning.
