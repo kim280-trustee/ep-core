@@ -17,7 +17,7 @@ export interface LearningQuestion {
   reviewedBy: string | null; reviewedAt: string | null; createdAt: string; updatedAt: string;
 }
 export interface LearningQuestionVersion {
-  id: string; questionId: string; versionNo: number; prompt: Record<string, unknown>;
+  id: string; questionId: string; versionNo: number; curriculumId: string; gradeLevelId: string; subjectId: string; prompt: Record<string, unknown>;
   configuration: Record<string, unknown>; explanation: Record<string, unknown> | null;
   createdBy: string; reviewedBy: string | null; reviewedAt: string | null; publishedAt: string | null;
   createdAt: string; updatedAt: string;
