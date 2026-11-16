@@ -77,7 +77,7 @@ export interface LearningGradeLevel {
 export interface LearningAcademicYear {
   id: string;
   organizationId: string;
-  curriculumId: string;
+  curriculumId: string | null;
   name: string;
   code: string;
   startsOn: string;
