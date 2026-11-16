@@ -4,6 +4,7 @@ import type { LearningRecommendation, LearningStudentMastery } from "@/features/
 
 export interface StudentLearningOverview {
   assignments: LearningAssignment[];
+  assignmentSubjects: Record<string, string>;
   progress: LearningAssignmentProgress[];
   mastery: LearningStudentMastery[];
   recommendations: LearningRecommendation[];
