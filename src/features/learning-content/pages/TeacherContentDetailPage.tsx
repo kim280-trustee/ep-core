@@ -368,7 +368,7 @@ export default function TeacherContentDetailPage() {
 
   if (!user) return <Message text="Sign in to manage learning content." />;
   if (!id) return <Message text="No content item was selected." />;
-  if (classes.isPending || content.isPending || versions.isPending || objectives.isPending || (objectives.isSuccess && objectiveAcademicContext.isPending)) {
+  if (classes.isPending || (Boolean(organizationId) && (content.isPending || versions.isPending || objectives.isPending)) || (objectives.isSuccess && objectiveAcademicContext.isPending)) {
     return <div className="h-96 animate-pulse rounded-2xl bg-slate-200" />;
   }
   if (classes.isError || !organizationId || content.isError || versions.isError || objectives.isError || !content.data) {
