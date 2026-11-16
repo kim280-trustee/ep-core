@@ -194,7 +194,7 @@ export const learningAcademicRepository: LearningAcademicRepository = {
 
   async createAcademicYear(input) {
     const { data, error } = await supabase.from("learning_academic_years").insert({
-      organization_id: input.organizationId, curriculum_id: input.curriculumId, name: input.name.trim(),
+      organization_id: input.organizationId, curriculum_id: input.curriculumId ?? null, name: input.name.trim(),
       code: input.code.trim(), starts_on: input.startsOn, ends_on: input.endsOn, status: input.status,
     }).select("*").single();
     if (error) throw error;
