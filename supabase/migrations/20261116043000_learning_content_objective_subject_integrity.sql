@@ -45,6 +45,9 @@ begin
            on curriculum_subject.curriculum_id = alignment.curriculum_id
           and curriculum_subject.subject_id = skill.subject_id
           and curriculum_subject.status = 'active'
+         join public.learning_subjects subject
+           on subject.id = skill.subject_id
+          and subject.status = 'active'
          where alignment.objective_id = objective.id
        )
   ) then
@@ -89,6 +92,9 @@ begin
       on curriculum_subject.curriculum_id = alignment.curriculum_id
      and curriculum_subject.subject_id = v_subject_id
      and curriculum_subject.status = 'active'
+    join public.learning_subjects subject
+      on subject.id = v_subject_id
+     and subject.status = 'active'
     where alignment.objective_id = new.objective_id
   ) then
     raise exception 'The learning objective must be aligned to an active grade and subject in at least one active curriculum.';
