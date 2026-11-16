@@ -138,14 +138,16 @@ Read-only preflight queries returned zero mismatches for:
 
 The live RLS policy inspection confirmed academic setup writes are already protected by the organization-scoped academic-management permission. No live rows were changed by these checks.
 
-A separate read-only content/assessment preflight found:
+The committed read-only preflight script was also executed against the live project. All nine integrity checks returned `PASS` with zero issues, covering term dates, term/class academic-year consistency, class-subject/class consistency, gradebook student membership and content-objective subject/alignment integrity.
+
+A separate read-only content/assessment snapshot found:
 - 6 content items and 6 content-objective mappings.
 - 0 content items mapped to objectives from multiple subjects.
 - 0 content-objective mappings with inactive knowledge records or without an active curriculum/grade/subject alignment.
 - 2 questions, 2 question versions and 2 question-objective mappings.
 - 0 question versions without an objective mapping.
 
-These results indicate the current pilot data satisfies the preflight conditions checked by the pending content-objective integrity migration.
+These results indicate the current pilot data satisfies the preflight conditions checked by the pending integrity migrations.
 
 ## Safety and verification status
 
