@@ -101,6 +101,8 @@ export default function SchoolAdministrationPage() {
   const [alignmentTopicId, setAlignmentTopicId] = useState("");
   const [alignmentGradeLevelId, setAlignmentGradeLevelId] = useState("");
   const [alignmentForm, setAlignmentForm] = useState({ objectiveId: "", sequenceNo: "1", required: true, notes: "" });
+  const [objectiveGraphObjectiveId, setObjectiveGraphObjectiveId] = useState("");
+  const [objectiveGraphPrerequisiteId, setObjectiveGraphPrerequisiteId] = useState("");
   const [userToAdd, setUserToAdd] = useState("");
   const [selectedUserIds, setSelectedUserIds] = useState<string[]>([]);
   const [membershipType, setMembershipType] = useState<"student" | "teacher">("student");
@@ -187,6 +189,29 @@ export default function SchoolAdministrationPage() {
     enabled: Boolean(catalogCurriculumIdValue && alignmentGradeLevelIdValue) && canManage,
   });
   const curriculumGradeAlignments = (curriculumGradeAlignmentsQuery.data ?? []).filter((item) => alignmentSubjectObjectiveIds.has(item.objectiveId));
+  const objectiveGraphQuery = useQuery({
+    queryKey: ["school-admin", "objective-prerequisite-graph"],
+    queryFn: () => learningContentService.listPrerequisites(),
+    enabled: canManage,
+  });
+  const objectiveGraphEdges = objectiveGraphQuery.data ?? [];
+  const objectiveGraphObjectiveIdValue = objectiveGraphObjectiveId && alignmentObjectives.some((item) => item.id === objectiveGraphObjectiveId)
+    ? objectiveGraphObjectiveId : alignmentObjectives[0]?.id ?? "";
+  const objectiveGraphCurrentPrerequisites = objectiveGraphEdges.filter((item) => item.objectiveId === objectiveGraphObjectiveIdValue);
+  const objectiveGraphPrerequisiteIdValue = objectiveGraphPrerequisiteId && alignmentObjectives.some((item) => item.id === objectiveGraphPrerequisiteId)
+    ? objectiveGraphPrerequisiteId : "";
+  const objectiveGraphCandidates = alignmentObjectives.filter((item) =>
+    item.id !== objectiveGraphObjectiveIdValue &&
+    !objectiveGraphCurrentPrerequisites.some((edge) => edge.prerequisiteObjectiveId === item.id)
+  );
+  const objectiveGraphLabel = (objectiveId: string) => {
+    const objective = alignmentObjectives.find((item) => item.id === objectiveId);
+    if (!objective) return objectiveId;
+    const topic = objectiveTopicById.get(objective.topicId);
+    const skill = topic ? skillById.get(topic.skillId) : undefined;
+    const subject = skill ? subjects.find((item) => item.id === skill.subjectId) : undefined;
+    return [subject?.name, objective.code, objective.name].filter(Boolean).join(" · ");
+  };
   const linkedCatalogSubjectIds = new Set(catalogCurriculumSubjects.map((item) => item.subjectId));
   const subjectsAvailableForCurriculum = subjects.filter((item) => !linkedCatalogSubjectIds.has(item.id));
   const allClassGroups = workspace?.classGroups ?? [];
@@ -437,6 +462,37 @@ export default function SchoolAdministrationPage() {
       setAlignmentForm({ objectiveId: "", sequenceNo: String(sequenceNo + 1), required: true, notes: "" });
       setActionNotice("Learning objective aligned to the selected curriculum grade.");
     } catch { /* The mutation displays the failure above the forms. */ }
+  };
+
+  const submitObjectivePrerequisite = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!objectiveGraphObjectiveIdValue || !objectiveGraphPrerequisiteIdValue || objectiveGraphObjectiveIdValue === objectiveGraphPrerequisiteIdValue) {
+      setActionError("Choose two different learning objectives.");
+      return;
+    }
+    if (objectiveGraphQuery.isError || alignmentKnowledgeQuery.isError) {
+      setActionError("Refresh the objective graph before saving.");
+      return;
+    }
+    if (objectiveGraphCurrentPrerequisites.some((item) => item.prerequisiteObjectiveId === objectiveGraphPrerequisiteIdValue)) {
+      setActionError("That prerequisite is already linked to this objective.");
+      return;
+    }
+    try {
+      await saveMutation.mutateAsync(() => learningContentService.addPrerequisite({
+        objectiveId: objectiveGraphObjectiveIdValue,
+        prerequisiteObjectiveId: objectiveGraphPrerequisiteIdValue,
+      }));
+      setObjectiveGraphPrerequisiteId("");
+      setActionNotice("Objective prerequisite added.");
+    } catch { /* The shared mutation displays the failure. */ }
+  };
+
+  const removeObjectivePrerequisite = async (prerequisiteObjectiveId: string) => {
+    try {
+      await saveMutation.mutateAsync(() => learningContentService.removePrerequisite(objectiveGraphObjectiveIdValue, prerequisiteObjectiveId));
+      setActionNotice("Objective prerequisite removed.");
+    } catch { /* The shared mutation displays the failure. */ }
   };
 
   const submitNewSubject = async (event: FormEvent<HTMLFormElement>) => {
@@ -780,6 +836,25 @@ export default function SchoolAdministrationPage() {
                       return <div key={item.id} className="flex items-start justify-between gap-3 rounded-lg bg-slate-50 px-3 py-2"><div><p className="text-sm font-medium text-slate-800">{objective ? objective.code + " — " + objective.name : item.objectiveId}</p>{item.notes && <p className="mt-1 text-xs text-slate-500">{item.notes}</p>}</div><span className="shrink-0 text-xs text-slate-500">{item.sequenceNo} · {item.required ? "Required" : "Optional"}</span></div>;
                     })}
                     {!curriculumGradeAlignmentsQuery.isPending && !alignmentKnowledgeQuery.isPending && !curriculumGradeAlignmentsQuery.isError && !curriculumGradeAlignments.length && <p className="text-sm text-slate-500">No objectives are aligned for this subject and grade yet.</p>}
+                  </div>
+                </div>
+              </Section>
+
+              <Section title="Objective prerequisite graph" description="Define which learning objectives students should understand before progressing to another objective. Circular prerequisite chains are blocked by the database.">
+                <div className="grid gap-5 xl:grid-cols-2">
+                  <form className="space-y-3 rounded-xl border border-slate-200 p-4" onSubmit={submitObjectivePrerequisite}>
+                    <h3 className="font-semibold text-slate-900">Add a prerequisite</h3>
+                    <Field label="Learning objective"><select className={fieldClass} required value={objectiveGraphObjectiveIdValue} onChange={(event) => { setObjectiveGraphObjectiveId(event.target.value); setObjectiveGraphPrerequisiteId(""); }} disabled={!alignmentObjectives.length}><option value="">Choose objective</option>{alignmentObjectives.map((item) => <option key={item.id} value={item.id}>{objectiveGraphLabel(item.id)}</option>)}</select></Field>
+                    <Field label="Must be completed first"><select className={fieldClass} required value={objectiveGraphPrerequisiteIdValue} onChange={(event) => setObjectiveGraphPrerequisiteId(event.target.value)} disabled={!objectiveGraphCandidates.length}><option value="">Choose prerequisite objective</option>{objectiveGraphCandidates.map((item) => <option key={item.id} value={item.id}>{objectiveGraphLabel(item.id)}</option>)}</select></Field>
+                    <button type="submit" className={buttonClass} disabled={!objectiveGraphObjectiveIdValue || !objectiveGraphPrerequisiteIdValue || objectiveGraphQuery.isError || alignmentKnowledgeQuery.isError || saveMutation.isPending}>{saveMutation.isPending ? "Saving…" : "Add prerequisite"}</button>
+                    <p className="text-xs text-slate-500">Example: “Fractions” can be a prerequisite for “Adding fractions”. An objective cannot depend on itself or form a circular chain.</p>
+                    {!alignmentObjectives.length && !alignmentKnowledgeQuery.isPending && <p className="text-xs text-amber-700">Create learning objectives before defining prerequisites.</p>}
+                  </form>
+                  <div className="space-y-3 rounded-xl border border-slate-200 p-4">
+                    <div><h3 className="font-semibold text-slate-900">Existing prerequisites</h3><p className="mt-1 text-xs text-slate-500">Select an objective to view what students should learn first.</p></div>
+                    {objectiveGraphQuery.isError && <p role="alert" className="text-sm text-red-700">Prerequisite links could not be loaded. <button type="button" className="font-semibold underline" onClick={() => void objectiveGraphQuery.refetch()}>Try again</button></p>}
+                    {objectiveGraphQuery.isPending || alignmentKnowledgeQuery.isPending ? <p className="text-sm text-slate-500">Loading objective graph…</p> : objectiveGraphCurrentPrerequisites.map((item) => <div key={item.objectiveId + item.prerequisiteObjectiveId} className="flex items-center justify-between gap-3 rounded-lg bg-slate-50 px-3 py-2"><span className="min-w-0 text-sm text-slate-800">{objectiveGraphLabel(item.prerequisiteObjectiveId)}</span><button type="button" className="shrink-0 text-xs font-semibold text-red-700 underline disabled:opacity-50" disabled={saveMutation.isPending} onClick={() => void removeObjectivePrerequisite(item.prerequisiteObjectiveId)}>Remove</button></div>)}
+                    {!objectiveGraphQuery.isPending && !alignmentKnowledgeQuery.isPending && !objectiveGraphQuery.isError && !objectiveGraphCurrentPrerequisites.length && <p className="text-sm text-slate-500">No prerequisites have been defined for this objective.</p>}
                   </div>
                 </div>
               </Section>
