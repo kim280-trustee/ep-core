@@ -192,3 +192,23 @@ The official IPST Physics manual outcome register identifies M5 outcome 4 as obs
 Migration: `20261116164500_learning_physics_m5_water_waves_sound_propagation.sql`. Teacher pack: `M5-physics-water-waves-sound-propagation-teacher-starter-pack.md`. This batch adds two objectives, two lesson starters and six answer-keyed questions. The IPST outcome register source is https://www.scimath.org/e-books/8437/flippingbook/35/; the manual's M5 wave and sound content supports the detailed scope.
 
 M5 outcomes 1–12 are now all represented in the staged objective register. This completes the M5 numbered outcome set; M6 grade allocations and all remaining Physics domains still require verification.
+
+
+## M6 Physics — official scope review and grade-allocation checkpoint
+
+The official IPST/OBEC revised-2017 Science curriculum PDF confirms the four Physics content domains and their intended scope. Domain 3 covers electrostatics, electric fields and potential, capacitance, DC circuits, electrical energy and power, renewable electricity, magnetism, electromagnetic induction, AC, electromagnetic waves and communication. Domain 4 covers heat and changes of state, elasticity/Young's modulus, fluid statics and dynamics, gas laws and kinetic theory, Bohr's atom, photoelectric effect, wave-particle duality, radioactivity, nuclear forces/reactions/energy and particle physics. The national Physics programme contains 67 additional learning outcomes in total.
+
+**Important allocation control:** the national curriculum overview is a content-domain description, not a complete grade-level allocation table. The official IPST Physics teacher-guide catalogue confirms M6 Volume 5 covers magnetism/electricity, heat and gases, solids and fluids; M6 Volume 6 covers electromagnetic waves, atomic physics, nuclear physics and particle physics. Those textbook/guide volumes are evidence for M6 topic scope, but they do not by themselves establish the exact numbered learning-outcome allocation. The grade-specific official learning-outcome table and manual pages must be matched before creating any M6 objective.
+
+| M6 evidence source | What it verifies | What it does not establish alone |
+|---|---|---|
+| IPST official revised-2017 curriculum, Physics section, printed pp. 190 onward | The official outcome wording and the full Physics domain scope | Exact grade allocation for every numbered outcome in the extracted PDF table |
+| IPST M6 Physics teacher guide, Volume 5 | M6 instructional scope: magnetism/electricity, heat/gases, solids/fluids | Exact outcome number and alignment for each topic |
+| IPST M6 Physics teacher guide, Volume 6 | M6 instructional scope: electromagnetic waves, atomic/nuclear/particle physics | Exact outcome number and alignment for each topic |
+
+Sources:
+- IPST/OBEC, *ตัวชี้วัดและสาระการเรียนรู้แกนกลาง กลุ่มสาระการเรียนรู้วิทยาศาสตร์ (ฉบับปรับปรุง พ.ศ. 2560)*, Physics outcomes and domain descriptions: https://www.ipst.ac.th/wp-content/uploads/2022/05/SciCurriculum_2560.pdf
+- IPST, M6 Physics teacher guide Volume 5: https://myipst.ipst.ac.th/medias/m6b5_Physics_Teacher_Guide
+- IPST, M6 Physics teacher guide Volume 6: https://uatscimath.ipst.ac.th/?catid=204&id=11559%3A6-6&view=article
+
+No M6 Physics outcomes are seeded in this checkpoint. Do not assign all Group 3 or Group 4 outcomes to M6 solely from their textbook volume; reconcile each official outcome number against the grade-labelled IPST manual and crosswalk first.
