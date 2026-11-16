@@ -23,6 +23,7 @@ export default function TeacherVocabularyAssignmentPage() {
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const [classGroupId, setClassGroupId] = useState("");
+  const [classSubjectId, setClassSubjectId] = useState("");
   const [selectedEntryIds, setSelectedEntryIds] = useState<string[]>([]);
   const [objectiveId, setObjectiveId] = useState("");
   const [title, setTitle] = useState("");
@@ -40,6 +41,10 @@ export default function TeacherVocabularyAssignmentPage() {
   const selectedClass = classesQuery.data?.find((item) => item.classGroup.id === activeClassGroupId);
   const organizationId = selectedClass?.classGroup.organizationId?.trim() || selectedClass?.membership.organizationId?.trim() || "";
   const tenantId = selectedClass?.membership.tenantId?.trim() || "";
+  const activeClassSubjectId = classSubjectId || selectedClass?.subjects[0]?.id || "";
+  const selectedClassSubject = selectedClass?.subjects.find((subject) => subject.id === activeClassSubjectId);
+  const curriculumId = selectedClass?.classGroup.curriculumId || "";
+  const gradeLevelId = selectedClass?.classGroup.gradeLevelId || "";
 
   const entriesQuery = useQuery({
     queryKey: ["learning-vocabulary", "entries", organizationId, "graded-assignment"],
@@ -47,9 +52,20 @@ export default function TeacherVocabularyAssignmentPage() {
     enabled: Boolean(organizationId),
   });
   const objectivesQuery = useQuery({
-    queryKey: ["learning", "vocabulary-assignment", "objectives"],
-    queryFn: () => learningContentService.listObjectives(),
-    enabled: Boolean(user?.id),
+    queryKey: ["learning", "vocabulary-assignment", "objectives", curriculumId, gradeLevelId, activeClassSubjectId],
+    queryFn: async () => {
+      const [skills, topics, objectives, alignments] = await Promise.all([
+        learningContentService.listSkills(activeClassSubjectId),
+        learningContentService.listTopics(),
+        learningContentService.listObjectives(),
+        learningContentService.listAlignments(undefined, curriculumId, gradeLevelId),
+      ]);
+      const skillIds = new Set(skills.filter((skill) => skill.status === "active").map((skill) => skill.id));
+      const topicIds = new Set(topics.filter((topic) => topic.status === "active" && skillIds.has(topic.skillId)).map((topic) => topic.id));
+      const alignedObjectiveIds = new Set(alignments.map((alignment) => alignment.objectiveId));
+      return objectives.filter((objective) => objective.status === "active" && topicIds.has(objective.topicId) && alignedObjectiveIds.has(objective.id));
+    },
+    enabled: Boolean(user?.id && curriculumId && gradeLevelId && activeClassSubjectId),
   });
   const assessmentsQuery = useQuery({
     queryKey: ["learning", "assessment-builder", "assessments", organizationId],
@@ -76,6 +92,9 @@ export default function TeacherVocabularyAssignmentPage() {
       if (!user?.id || !selectedClass || !organizationId || !tenantId) {
         throw new Error("Choose an active teaching class first.");
       }
+      if (!curriculumId || !gradeLevelId || !selectedClassSubject) {
+        throw new Error("The selected class must have an active curriculum, grade level and subject before creating a vocabulary quiz.");
+      }
       if (selectedEntries.length < 4) {
         throw new Error("Select exactly four published vocabulary words to create a four-option graded quiz.");
       }
@@ -86,7 +105,7 @@ export default function TeacherVocabularyAssignmentPage() {
         throw new Error("Each selected word needs a distinct definition so the answer choices are unambiguous.");
       }
       if (!objectiveId || !objectives.some((objective) => objective.id === objectiveId)) {
-        throw new Error("Choose the learning objective this vocabulary quiz assesses.");
+        throw new Error("Choose a learning objective aligned to this class subject, curriculum and grade.");
       }
       const normalizedTitle = title.trim();
       if (!normalizedTitle) throw new Error("Enter an assignment title.");
@@ -111,6 +130,9 @@ export default function TeacherVocabularyAssignmentPage() {
           description: description.trim() || null,
           assessmentType: "assignment",
           languageCode: "en",
+          curriculumId,
+          gradeLevelId,
+          subjectId: selectedClassSubject.subjectId,
           createdBy: user.id,
         });
         assessmentId = assessment.id;
@@ -141,6 +163,9 @@ export default function TeacherVocabularyAssignmentPage() {
           const version = await learningAssessmentService.createQuestionVersion({
             questionId: question.id,
             versionNo: 1,
+            curriculumId,
+            gradeLevelId,
+            subjectId: selectedClassSubject.subjectId,
             prompt: { text: "What is the best definition of “" + entry.word + "”?" },
             configuration: { options: questionChoices.map(({ key, label }) => ({ key, label })) },
             explanation: entry.exampleSentence
@@ -172,7 +197,7 @@ export default function TeacherVocabularyAssignmentPage() {
         const assignment = await learningAssignmentsService.createAssignment({
           tenantId,
           organizationId,
-          classSubjectId: null,
+          classSubjectId: selectedClassSubject.id,
           code: assignmentCode,
           title: normalizedTitle,
           description: description.trim() || null,
@@ -260,12 +285,18 @@ export default function TeacherVocabularyAssignmentPage() {
       <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
         <div className="grid gap-4 md:grid-cols-2">
           <label className="block text-sm font-semibold text-slate-700">Teaching class
-            <select className={fieldClass} value={activeClassGroupId} onChange={(event) => { setClassGroupId(event.target.value); setSelectedEntryIds([]); setCreatedAssignmentId(""); setNotice(null); }}>
+            <select className={fieldClass} value={activeClassGroupId} onChange={(event) => { setClassGroupId(event.target.value); setClassSubjectId(""); setObjectiveId(""); setSelectedEntryIds([]); setCreatedAssignmentId(""); setNotice(null); }}>
               {(classesQuery.data ?? []).map((item) => <option key={item.classGroup.id} value={item.classGroup.id}>{item.classGroup.name} · {item.classGroup.code}</option>)}
             </select>
           </label>
+          <label className="block text-sm font-semibold text-slate-700">Subject
+            <select className={fieldClass} value={activeClassSubjectId} onChange={(event) => { setClassSubjectId(event.target.value); setObjectiveId(""); setCreatedAssignmentId(""); setNotice(null); }} disabled={!selectedClass?.subjects.length}>
+              <option value="">Select a subject</option>
+              {(selectedClass?.subjects ?? []).map((subject) => <option key={subject.id} value={subject.id}>{subject.subject.name}</option>)}
+            </select>
+          </label>
           <label className="block text-sm font-semibold text-slate-700">Learning objective
-            <select className={fieldClass} value={objectiveId} onChange={(event) => setObjectiveId(event.target.value)}>
+            <select className={fieldClass} value={objectiveId} onChange={(event) => setObjectiveId(event.target.value)} disabled={!objectives.length || objectivesQuery.isPending || objectivesQuery.isError}>
               <option value="">Select an objective</option>
               {objectives.map((objective) => <option key={objective.id} value={objective.id}>{objective.name}</option>)}
             </select>
@@ -280,6 +311,9 @@ export default function TeacherVocabularyAssignmentPage() {
             <textarea className={fieldClass} rows={2} value={description} onChange={(event) => setDescription(event.target.value)} maxLength={1000} />
           </label>
         </div>
+        {selectedClass && (!curriculumId || !gradeLevelId || !selectedClassSubject) && <p className="mt-3 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">This class needs an active curriculum, grade level and subject assignment before a graded vocabulary quiz can be created.</p>}
+        {objectivesQuery.isError && <p className="mt-3 rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-800">Learning objectives could not be verified for this class subject. Refresh and try again.</p>}
+        {selectedClassSubject && !objectivesQuery.isPending && !objectivesQuery.isError && objectives.length === 0 && <p className="mt-3 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">No active learning objectives are aligned to this subject, curriculum and grade. Configure the objective alignment before creating the quiz.</p>}
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
@@ -317,7 +351,7 @@ export default function TeacherVocabularyAssignmentPage() {
           <p className="font-semibold text-slate-900">Publish the complete workflow</p>
           <p className="mt-1 text-sm text-slate-500">Creates four objective-linked questions, publishes the assessment, then creates and publishes the class assignment.</p>
         </div>
-        <button type="button" className={primaryClass} disabled={createMutation.isPending || selectedEntries.length !== 4 || !title.trim() || !objectiveId || !organizationId || entriesQuery.isPending || objectivesQuery.isPending} onClick={() => { setNotice(null); createMutation.mutate(); }}>
+        <button type="button" className={primaryClass} disabled={createMutation.isPending || selectedEntries.length !== 4 || !title.trim() || !objectiveId || !organizationId || !selectedClassSubject || !curriculumId || !gradeLevelId || entriesQuery.isPending || objectivesQuery.isPending || objectivesQuery.isError} onClick={() => { setNotice(null); createMutation.mutate(); }}>
           <Languages size={17} /> {createMutation.isPending ? "Creating and publishing…" : "Create graded assignment"}
         </button>
       </section>
