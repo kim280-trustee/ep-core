@@ -35,21 +35,17 @@ Migration: `20261116070000_learning_academic_year_multi_curriculum.sql`
 
 **Expected result:** one school academic year and its terms can contain classes from multiple curricula. Existing English class records retain their original class curriculum and grade.
 
-### 2. School-structure writes were allowed by organization membership alone
+### 2. School-structure write permissions — already hardened before this batch
 
 **Original issue**
 
-The academic foundation's `FOR ALL` manage policies on academic years, terms, class groups and class subjects checked only `is_organization_member`. This was broader than the School Administration UI's `learning.academic.manage` permission gate.
+The original academic-foundation migration created membership-only manage policies. However, this had already been corrected by the existing `20261030040401_scope_learning_rls_admin_permissions.sql` migration, which scopes academic-year, term, class-group and class-subject writes to `public.learning_can_manage_academic_records(organization_id)`.
 
-**Remediation committed**
+**Live verification**
 
-Migration: `20261116071500_learning_academic_record_integrity.sql`
+The connected Supabase database already has separate INSERT, UPDATE and DELETE policies using `learning_can_manage_academic_records`, while member-read policies remain separate. The permission function exists. No additional RLS policy change was needed in this audit batch.
 
-- Replaces the four manage policies with `public.learning_can_manage_academic_records(organization_id)`.
-- Keeps the separate member-read policies.
-- The existing permission function checks the active organization role for `learning.academic.manage` and excludes active student memberships.
-
-**Expected result:** organization membership grants read access; academic setup writes require the explicit academic-management permission.
+**Result:** this item was verified as already resolved. The new audit migration does not duplicate or replace the existing policies.
 
 ### 3. Terms were not constrained to their academic-year date range in the database
 
@@ -101,7 +97,7 @@ The School Administration page exposes controls to create global subjects, add s
 
 This is separate from creating school classes and assigning already-configured subjects. The Maths rollout uses migration-seeded catalogue records, so it does not depend on those controls. A future change should either introduce a narrowly scoped platform-catalogue administrator permission or remove/relocate those controls; it should not grant every school manager global curriculum-editing rights.
 
-Objective-alignment insertion has a separate permission policy. The current UI supports adding alignments; broader catalogue editing remains outside this remediation.
+The branch includes `20261116033000_learning_objective_alignment_manage.sql`, which grants academic managers objective-alignment insertion. That migration is not yet applied to the live database. Broader global catalogue editing remains outside this remediation.
 
 ## Migration sequence added by the audit
 
@@ -110,12 +106,29 @@ Objective-alignment insertion has a separate permission policy. The current UI s
 
 The Maths curriculum and knowledge-graph migrations have earlier timestamps and must run before the Maths rollout is considered complete.
 
+## Live Supabase read-only verification
+
+The connected project is `ep-core`. Its applied migration history currently ends at `20261116015418`; the later branch migrations are not applied.
+
+The live academic data currently contains:
+- 1 academic year (`2026-2027`) using curriculum `TH-MEP-EN`.
+- 1 class (`M1-MEP-A`), grade M1, using `TH-MEP-EN`.
+- 1 term, 1 class subject, 8 gradebook entries and 1 term-grade row.
+
+Read-only preflight queries returned zero mismatches for:
+- term dates outside academic-year dates;
+- gradebook term/class academic-year mismatches;
+- gradebook class-subject/class-group mismatches;
+- gradebook rows without a student membership record.
+
+The live RLS policy inspection confirmed academic setup writes are already protected by the organization-scoped academic-management permission. No live rows were changed by these checks.
+
 ## Safety and verification status
 
 - No migration has been applied to Supabase.
 - No live rows have been changed, deleted or backfilled.
 - The year migration preserves existing curriculum values; it does not rewrite existing classes.
-- The integrity migration has preflight checks and will abort if it detects existing term-date or gradebook relationship mismatches.
+- The integrity migration has preflight checks and will abort if it detects existing term-date or gradebook relationship mismatches. The current read-only preflight returned zero mismatches.
 - Repository files and TypeScript database types were updated together.
 - Local lint/build have not been run in this environment. Run the consolidated local checks only after the full implementation batch is complete.
 
