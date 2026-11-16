@@ -155,6 +155,9 @@ export default function QuestionBankPage() {
     mutationFn: async () => {
       if (!user?.id || !organizationId || !selectedClass || !selectedSubjectId) throw new Error("Select a class and an active subject first.");
       if (!code.trim() || !prompt.trim() || !objectiveId) throw new Error(t("questionBank.required"));
+      if (!objectives.data?.some((objective) => objective.id === objectiveId)) {
+        throw new Error("The selected learning objective is not available for this class and subject. Select a valid objective and try again.");
+      }
       if (questionType === "single_choice" && choices.some((choice) => !choice.label.trim())) throw new Error(t("questionBank.completeOptions"));
       if ((questionType === "single_choice" || questionType === "true_false") && !correctOption) throw new Error(t("questionBank.chooseCorrect"));
       if (questionType === "short_answer" && !shortAnswer.trim()) throw new Error(t("questionBank.enterExpected"));
@@ -301,7 +304,7 @@ export default function QuestionBankPage() {
             <Field label={t("questionBank.objective")}><select value={objectiveId} onChange={(e) => setObjectiveId(e.target.value)} className="input"><option value="">{t("questionBank.selectObjective")}</option>{objectives.data?.map((objective) => <option key={objective.id} value={objective.id}>{objective.code} — {objective.name}</option>)}</select></Field>
             <Field label={t("questionBank.explanation")}><textarea value={explanation} onChange={(e) => setExplanation(e.target.value)} rows={3} className="input" placeholder={t("questionBank.explanationPlaceholder")} /></Field>
 
-            <div className="flex items-center justify-between gap-3 border-t border-slate-100 pt-4"><p className="text-xs text-slate-500">{t("questionBank.draftHelp")}</p><button type="button" disabled={!organizationId || !selectedSubjectId || !objectiveId || objectives.isPending || createMutation.isPending} onClick={() => createMutation.mutate()} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 disabled:opacity-50"><Sparkles size={16} />{createMutation.isPending ? t("questionBank.saving") : editingQuestionId ? t("questionBank.saveVersion") : t("questionBank.saveDraft")}</button></div>
+            <div className="flex items-center justify-between gap-3 border-t border-slate-100 pt-4"><p className="text-xs text-slate-500">{t("questionBank.draftHelp")}</p><button type="button" disabled={!organizationId || !selectedSubjectId || !objectiveId || objectives.isPending || objectives.isError || createMutation.isPending} onClick={() => createMutation.mutate()} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 disabled:opacity-50"><Sparkles size={16} />{createMutation.isPending ? t("questionBank.saving") : editingQuestionId ? t("questionBank.saveVersion") : t("questionBank.saveDraft")}</button></div>
           </div>
         </section>
       </div>
