@@ -169,6 +169,7 @@ export default function SchoolAdministrationPage() {
     enabled: Boolean(organizationId && classGroupId) && canManage,
   });
   const classSubjects = classSubjectsQuery.data ?? [];
+  const activeClassSubjects = classSubjects.filter((item) => item.status === "active");
 
   const rosterQuery = useQuery({
     queryKey: ["school-admin", "roster", organizationId, classGroupId],
