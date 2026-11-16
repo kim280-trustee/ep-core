@@ -463,6 +463,76 @@ export default function TeacherContentDetailPage() {
         </section>
       )}
 
+      {isDraft && (
+        <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="flex items-center gap-2">
+            <Plus size={18} className="text-slate-500" />
+            <h2 className="font-semibold text-slate-900">Manage subject alignment</h2>
+          </div>
+          <p className="mt-1 text-sm text-slate-500">Add or remove objectives while this content is a draft. All linked objectives must belong to the same subject.</p>
+
+          {(objectives.data ?? []).length > 0 && (
+            <div className="mt-4 space-y-2">
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Current objectives</p>
+              {objectiveAcademicDetails.map((entry) => (
+                <div key={entry.objectiveId} className="flex items-center justify-between gap-3 rounded-lg bg-slate-50 px-3 py-2">
+                  <span className="min-w-0 text-sm text-slate-700">{entry.objective?.name ?? entry.objectiveId}</span>
+                  <button type="button" onClick={() => void removeContentObjective(entry.objectiveId)} disabled={savingMapping} className="shrink-0 rounded-lg p-2 text-red-700 hover:bg-red-100 disabled:opacity-50" aria-label="Remove learning objective">
+                    <Trash2 size={16} />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <form onSubmit={addContentObjective} className="mt-4 grid gap-3 md:grid-cols-2">
+            <label className="block text-sm font-medium text-slate-700">Curriculum
+              <select className="input mt-1 w-full" value={mappingCurriculumId} onChange={(event) => { setMappingCurriculumId(event.target.value); setMappingGradeLevelId(""); setMappingSubjectId(""); setMappingSkillId(""); setMappingTopicId(""); setMappingObjectiveId(""); }}>
+                <option value="">Choose curriculum</option>
+                {(objectiveAcademicContext.data?.curricula ?? []).map((entry) => <option key={entry.id} value={entry.id}>{entry.name}</option>)}
+              </select>
+            </label>
+            <label className="block text-sm font-medium text-slate-700">Grade
+              <select className="input mt-1 w-full" value={mappingGradeLevelId} onChange={(event) => { setMappingGradeLevelId(event.target.value); setMappingObjectiveId(""); }} disabled={!mappingCurriculumId || mappingGradeLevels.isPending}>
+                <option value="">Choose grade</option>
+                {(mappingGradeLevels.data ?? []).map((entry) => <option key={entry.id} value={entry.id}>{entry.name}</option>)}
+              </select>
+            </label>
+            <label className="block text-sm font-medium text-slate-700">Subject
+              <select className="input mt-1 w-full" value={mappingSubjectId} onChange={(event) => { setMappingSubjectId(event.target.value); setMappingSkillId(""); setMappingTopicId(""); setMappingObjectiveId(""); }} disabled={!mappingCurriculumId || mappingSubjects.isPending}>
+                <option value="">Choose subject</option>
+                {availableMappingSubjects.map((entry) => <option key={entry.id} value={entry.id}>{entry.name}</option>)}
+              </select>
+            </label>
+            <label className="block text-sm font-medium text-slate-700">Skill
+              <select className="input mt-1 w-full" value={mappingSkillId} onChange={(event) => { setMappingSkillId(event.target.value); setMappingTopicId(""); setMappingObjectiveId(""); }} disabled={!mappingSubjectId || mappingSkills.isPending}>
+                <option value="">Choose skill</option>
+                {(mappingSkills.data ?? []).map((entry) => <option key={entry.id} value={entry.id}>{entry.name}</option>)}
+              </select>
+            </label>
+            <label className="block text-sm font-medium text-slate-700">Topic
+              <select className="input mt-1 w-full" value={mappingTopicId} onChange={(event) => { setMappingTopicId(event.target.value); setMappingObjectiveId(""); }} disabled={!mappingSkillId || mappingTopics.isPending}>
+                <option value="">Choose topic</option>
+                {(mappingTopics.data ?? []).map((entry) => <option key={entry.id} value={entry.id}>{entry.name}</option>)}
+              </select>
+            </label>
+            <label className="block text-sm font-medium text-slate-700">Learning objective
+              <select className="input mt-1 w-full" value={mappingObjectiveId} onChange={(event) => setMappingObjectiveId(event.target.value)} disabled={!mappingTopicId || mappingObjectives.isPending || mappingAlignments.isPending}>
+                <option value="">Choose aligned objective</option>
+                {availableMappingObjectives.map((entry) => <option key={entry.id} value={entry.id}>{entry.name} ({entry.code})</option>)}
+              </select>
+            </label>
+            {mappingAlignments.isError && <p role="alert" className="text-sm text-red-700 md:col-span-2">Grade alignments could not be loaded. Refresh the page and try again.</p>}
+            {currentContentSubjectId && <p className="text-xs text-slate-500 md:col-span-2">This content is currently assigned to {objectiveAcademicDetails.find((entry) => entry.subject?.id === currentContentSubjectId)?.subject?.name}. Select that subject for additional objectives. Remove all existing objectives before changing the content to another subject.</p>}
+            <div className="md:col-span-2">
+              <button type="submit" disabled={savingMapping || !mappingObjectiveId || mappingAlignments.isError || mappingAlignments.isPending} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">
+                <Plus size={16} />{savingMapping ? "Saving…" : "Add objective"}
+              </button>
+            </div>
+          </form>
+        </section>
+      )}
+
       {isRetired && (
         <section className="rounded-2xl border border-red-200 bg-red-50 p-5 text-sm text-red-800">
           {t("contentDetail.retired")}
