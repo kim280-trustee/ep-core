@@ -46,6 +46,9 @@ export interface LearningSubject {
   updatedAt: string;
 }
 
+export type LearningSubjectInput = { code: string; name: string; description?: string | null };
+export type LearningCurriculumSubjectInput = { curriculumId: string; subjectId: string; code?: string | null; name?: string | null };
+
 export interface LearningCurriculumSubject {
   id: string;
   curriculumId: string;
