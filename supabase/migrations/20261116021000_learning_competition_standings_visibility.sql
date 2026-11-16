@@ -54,7 +54,7 @@ begin
     raise exception 'You are not an active member of this school.';
   end if;
 
-  if v_status <> 'active'
+  if v_status is distinct from 'active'
      and not public.learning_can_manage_academic_records(v_org_id) then
     raise exception 'You are not authorized to view this competition.';
   end if;
@@ -156,7 +156,7 @@ begin
       and cm.status = 'active' and cm.membership_type = 'teacher'
   ) into v_is_teacher;
 
-  if v_status <> 'active' and not v_is_teacher then
+  if v_status is distinct from 'active' and not v_is_teacher then
     raise exception 'Only an active teacher in this class can view inactive challenge standings.';
   end if;
 
