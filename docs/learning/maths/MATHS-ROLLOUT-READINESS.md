@@ -18,20 +18,31 @@
 
 M4–M6 coverage is limited to the eight grade-level indicators in the revised 2017 core-curriculum tables. It is not a complete list of additional/elective upper-secondary mathematics course outcomes.
 
-## Migration order
+## Pending migration order
 
-Apply only after reviewing the audit migration and confirming the live database is consistent:
+The live `ep-core` database migration history currently ends at `20261116015418`. Apply all pending branch migrations in timestamp order after reviewing them:
 
-1. `20261116060000_learning_maths_curriculum_catalog.sql` — Mathematics subject, Thai Maths curriculum, M1–M6 grade catalogue and curriculum-subject link.
-2. `20261116061500_learning_maths_m1_knowledge_graph.sql` — M1 skills, topics, objectives and grade alignments.
-3. `20261116063000_learning_maths_m2_m3_knowledge_graph.sql` — M2 and M3 skills/topics/objectives/alignments.
-4. `20261116064500_learning_maths_m4_m6_knowledge_graph.sql` — M4–M6 core-curriculum topics/objectives/alignments.
-5. `20261116070000_learning_academic_year_multi_curriculum.sql` — makes the school academic year curriculum-independent while preserving existing curriculum values as optional legacy metadata.
-6. `20261116071500_learning_academic_record_integrity.sql` — strengthens term dates, gradebook class/term/student scope and school-structure write permissions.
+1. `20261116033000_learning_objective_alignment_manage.sql` — academic-manager objective-alignment insertion.
+2. `20261116043000_learning_content_objective_subject_integrity.sql` — subject-aware content/objective integrity.
+3. `20261116044500_learning_question_academic_scope.sql` — curriculum/grade/subject scope for question versions.
+4. `20261116060000_learning_maths_curriculum_catalog.sql` — Mathematics subject, Thai Maths curriculum, M1–M6 grade catalogue and curriculum-subject link.
+5. `20261116061500_learning_maths_m1_knowledge_graph.sql` — M1 skills, topics, objectives and grade alignments.
+6. `20261116063000_learning_maths_m2_m3_knowledge_graph.sql` — M2 and M3 skills/topics/objectives/alignments.
+7. `20261116064500_learning_maths_m4_m6_knowledge_graph.sql` — M4–M6 core-curriculum topics/objectives/alignments.
+8. `20261116070000_learning_academic_year_multi_curriculum.sql` — makes the school academic year curriculum-independent while preserving existing curriculum values as optional legacy metadata.
+9. `20261116071500_learning_academic_record_integrity.sql` — strengthens term dates and gradebook class/term/student scope. School-structure write policies were already hardened by an earlier applied migration.
 
 The graph seeds are idempotent upserts and check for their required curriculum, grade and subject-strand prerequisites. They do not create school-specific academic years, terms, class groups, memberships, content or assessments.
 
 The integrity migration includes preflight checks. It will stop rather than apply if existing terms fall outside their academic-year dates, or if existing gradebook records connect mismatched terms, classes or class subjects. Reconcile any reported records before retrying.
+
+## Live database preflight
+
+Read-only inspection of the connected `ep-core` database found the current English pilot as one academic year (`2026-2027`), one M1 class (`M1-MEP-A`) under curriculum `TH-MEP-EN`, one term and one class subject. There are 8 gradebook entries and 1 term-grade row.
+
+The current read-only preflight returned **zero mismatches** for term dates, gradebook term/class year alignment, gradebook class-subject/class alignment and student membership references. The academic-management RLS policies are already permission-scoped in the live database.
+
+No database rows or migrations were changed during this inspection.
 
 ## Teacher workflow compatibility
 
