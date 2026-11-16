@@ -120,8 +120,11 @@ export default function TeacherContentLibraryPage() {
     setSubjectId("");
   }
 
-  const academicFiltersPending = Boolean(curriculumId && objectiveAlignments.isPending) || Boolean(subjectId && academicCatalog.isPending);
-  const academicFiltersError = academicCatalog.isError || (Boolean(curriculumId) && objectiveAlignments.isError) || contentObjectiveMap.isError;
+  const academicFiltersPending = contentObjectiveMap.isPending ||
+    (Boolean(curriculumId) && (objectiveAlignments.isPending || subjects.isPending)) ||
+    (Boolean(subjectId) && academicCatalog.isPending);
+  const academicFiltersError = curricula.isError || subjects.isError || academicCatalog.isError ||
+    (Boolean(curriculumId) && objectiveAlignments.isError) || contentObjectiveMap.isError;
 
   if (!user) return <EmptyState text={t("contentLibrary.signIn")} />;
   if (classes.isPending) return <div className="h-64 animate-pulse rounded-2xl bg-slate-200" />;
@@ -151,7 +154,18 @@ export default function TeacherContentLibraryPage() {
           <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4"><div><h2 className="font-semibold text-slate-900">{t("contentLibrary.materials")}</h2><p className="mt-1 text-xs text-slate-500">{filteredContent.length} / {(content.data ?? []).length} {t("contentLibrary.items")}</p></div><button type="button" onClick={() => { void content.refetch(); void contentObjectiveMap.refetch(); }} className="rounded-lg p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900" title={t("contentLibrary.refresh")}><RefreshCw size={17} /></button></div>
           {filteredContent.length ? <div className="divide-y divide-slate-100">{filteredContent.map((item) => (
             <Link key={item.id} to={`/teacher/content/${item.id}`} className="flex flex-col gap-3 px-5 py-4 transition hover:bg-slate-50 sm:flex-row sm:items-center sm:justify-between">
-              <div className="min-w-0"><p className="truncate font-semibold text-slate-900">{item.title}</p><div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-slate-500"><span>{item.code}</span><span>·</span><span>{t(typeLabels[item.contentType])}</span><span>·</span><span>{item.languageCode.toUpperCase()}</span></div></div>
+              <div className="min-w-0">
+                <p className="truncate font-semibold text-slate-900">{item.title}</p>
+                <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-slate-500">
+                  <span>{item.code}</span><span>·</span><span>{t(typeLabels[item.contentType])}</span><span>·</span><span>{item.languageCode.toUpperCase()}</span>
+                </div>
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  {[...(academicSubjectIdsByContent.get(item.id) ?? [])].map((id) => {
+                    const subject = (subjects.data ?? []).find((entry) => entry.id === id);
+                    return subject ? <span key={id} className="rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-600">{subject.name}</span> : null;
+                  })}
+                </div>
+              </div>
               <div className="flex items-center gap-3"><span className={`inline-flex w-fit rounded-full px-2.5 py-1 text-xs font-semibold ${statusClasses[item.status]}`}>{t(`contentLibrary.status.${item.status}`)}</span><ExternalLink size={16} className="text-slate-400" /></div>
             </Link>
           ))}</div> : <div className="px-5 py-12 text-center"><BookOpen size={28} className="mx-auto text-slate-300" /><p className="mt-3 font-medium text-slate-700">{t("contentLibrary.noMatching")}</p><p className="mt-1 text-sm text-slate-500">{t("contentLibrary.changeFilters")}</p></div>}
