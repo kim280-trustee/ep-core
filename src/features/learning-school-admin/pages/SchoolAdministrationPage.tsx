@@ -94,6 +94,7 @@ export default function SchoolAdministrationPage() {
   const [catalogCurriculumId, setCatalogCurriculumId] = useState("");
   const [newSubjectForm, setNewSubjectForm] = useState({ code: "", name: "", description: "" });
   const [catalogSubjectId, setCatalogSubjectId] = useState("");
+  const [newGradeForm, setNewGradeForm] = useState({ code: "", name: "", sequenceNo: "1", description: "" });
   const [userToAdd, setUserToAdd] = useState("");
   const [selectedUserIds, setSelectedUserIds] = useState<string[]>([]);
   const [membershipType, setMembershipType] = useState<"student" | "teacher">("student");
@@ -138,6 +139,12 @@ export default function SchoolAdministrationPage() {
     enabled: Boolean(catalogCurriculumIdValue) && canManage,
   });
   const catalogCurriculumSubjects = catalogCurriculumSubjectsQuery.data ?? [];
+  const catalogGradeLevelsQuery = useQuery({
+    queryKey: ["school-admin", "catalog-grade-levels", catalogCurriculumIdValue],
+    queryFn: () => learningAcademicService.listGradeLevels(catalogCurriculumIdValue),
+    enabled: Boolean(catalogCurriculumIdValue) && canManage,
+  });
+  const catalogGradeLevels = catalogGradeLevelsQuery.data ?? [];
   const linkedCatalogSubjectIds = new Set(catalogCurriculumSubjects.map((item) => item.subjectId));
   const subjectsAvailableForCurriculum = subjects.filter((item) => !linkedCatalogSubjectIds.has(item.id));
   const allClassGroups = workspace?.classGroups ?? [];
@@ -338,6 +345,28 @@ export default function SchoolAdministrationPage() {
     },
     onError: (error) => { setActionNotice(""); setActionError(errorText(error)); },
   });
+
+  const submitNewGradeLevel = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const code = newGradeForm.code.trim().toUpperCase();
+    const name = newGradeForm.name.trim();
+    const sequenceNo = Number(newGradeForm.sequenceNo);
+    if (!catalogCurriculumIdValue || !code || !name || !Number.isInteger(sequenceNo) || sequenceNo < 1) {
+      setActionError("Choose a curriculum and enter a grade code, name, and positive whole-number sequence.");
+      return;
+    }
+    if (catalogGradeLevels.some((item) => item.code.toUpperCase() === code || item.sequenceNo === sequenceNo)) {
+      setActionError("That grade code or sequence number is already used in this curriculum.");
+      return;
+    }
+    try {
+      await saveMutation.mutateAsync(() => learningAcademicService.createGradeLevel({
+        curriculumId: catalogCurriculumIdValue, code, name, sequenceNo, description: newGradeForm.description,
+      }));
+      setNewGradeForm({ code: "", name: "", sequenceNo: String(sequenceNo + 1), description: "" });
+      setActionNotice("Grade level added to the selected curriculum.");
+    } catch { /* The mutation displays the failure above the forms. */ }
+  };
 
   const submitNewSubject = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -602,6 +631,25 @@ export default function SchoolAdministrationPage() {
           {workspaceQuery.isError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-5 text-sm text-red-800">{t("schoolSetup.academicSetupLoadError")} <button type="button" className="font-semibold underline" onClick={() => void workspaceQuery.refetch()}>{t("schoolAdmin.tryAgain")}</button></div>}
           {workspace && (
             <>
+              <Section title="Curriculum grade levels" description="Define the grades or year levels available in each curriculum. These become the grade choices when creating school classes.">
+                <div className="grid gap-5 lg:grid-cols-2">
+                  <div className="space-y-3 rounded-xl border border-slate-200 p-4">
+                    <h3 className="font-semibold text-slate-900">Grades in this curriculum</h3>
+                    <Field label="Curriculum"><select className={fieldClass} value={catalogCurriculumIdValue} onChange={(event) => { setCatalogCurriculumId(event.target.value); setNewGradeForm({ code: "", name: "", sequenceNo: "1", description: "" }); }}><option value="">Choose curriculum</option>{curricula.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></Field>
+                    {catalogGradeLevelsQuery.isError && <p role="alert" className="text-sm text-red-700">Grade levels could not be loaded. <button type="button" className="font-semibold underline" onClick={() => void catalogGradeLevelsQuery.refetch()}>Try again</button></p>}
+                    {catalogGradeLevelsQuery.isPending ? <p className="text-sm text-slate-500">Loading grade levels…</p> : <div className="space-y-2">{catalogGradeLevels.map((item) => <div key={item.id} className="flex items-center justify-between gap-3 rounded-lg bg-slate-50 px-3 py-2"><span className="text-sm font-medium text-slate-800">{item.sequenceNo}. {item.name}</span><span className="text-xs text-slate-500">{item.code}</span></div>)}{!catalogGradeLevelsQuery.isError && !catalogGradeLevels.length && <p className="text-sm text-slate-500">No grade levels are configured for this curriculum yet.</p>}</div>}
+                  </div>
+                  <form className="space-y-3 rounded-xl border border-slate-200 p-4" onSubmit={submitNewGradeLevel}>
+                    <h3 className="font-semibold text-slate-900">Add a grade level</h3>
+                    <Field label="Grade code"><input className={fieldClass} required maxLength={30} value={newGradeForm.code} onChange={(event) => setNewGradeForm((current) => ({ ...current, code: event.target.value.toUpperCase().replace(/\s+/g, "_") }))} placeholder="M1" /></Field>
+                    <Field label="Grade name"><input className={fieldClass} required maxLength={100} value={newGradeForm.name} onChange={(event) => setNewGradeForm((current) => ({ ...current, name: event.target.value }))} placeholder="Mathayom 1" /></Field>
+                    <Field label="Sequence number"><input className={fieldClass} type="number" min="1" step="1" required value={newGradeForm.sequenceNo} onChange={(event) => setNewGradeForm((current) => ({ ...current, sequenceNo: event.target.value }))} /></Field>
+                    <Field label="Description (optional)"><textarea className={fieldClass} rows={2} maxLength={500} value={newGradeForm.description} onChange={(event) => setNewGradeForm((current) => ({ ...current, description: event.target.value }))} /></Field>
+                    <button type="submit" className={buttonClass} disabled={!catalogCurriculumIdValue || catalogGradeLevelsQuery.isError || saveMutation.isPending}>{saveMutation.isPending ? "Saving…" : "Add grade level"}</button>
+                  </form>
+                </div>
+              </Section>
+
               <Section title="Subject catalogue" description="Create reusable subjects and include them in a curriculum before assigning them to classes.">
                 <div className="grid gap-5 lg:grid-cols-2">
                   <form className="space-y-3 rounded-xl border border-slate-200 p-4" onSubmit={submitNewSubject}>
