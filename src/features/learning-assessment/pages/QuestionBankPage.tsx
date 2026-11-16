@@ -112,10 +112,11 @@ export default function QuestionBankPage() {
       const allowedObjectiveIds = new Set((objectives.data ?? []).map((objective) => objective.id));
       const matches = await Promise.all((questions.data ?? []).map(async (question) => {
         const versions = await learningAssessmentService.listQuestionVersions(question.id);
+        const latestVersion = versions[0];
         const relevantVersion = question.status === "published"
           ? versions.find((version) => version.publishedAt !== null)
-          : versions[0];
-        if (!relevantVersion) return null;
+          : latestVersion;
+        if (!relevantVersion || !latestVersion) return null;
         const hasAcademicScope = Boolean(
           relevantVersion.curriculumId && relevantVersion.gradeLevelId && relevantVersion.subjectId
         );
@@ -126,10 +127,14 @@ export default function QuestionBankPage() {
         )) return null;
         const mappings = await learningAssessmentService.listQuestionObjectives(relevantVersion.id);
         return mappings.length && mappings.every((mapping) => allowedObjectiveIds.has(mapping.objectiveId))
-          ? question.id
+          ? { questionId: question.id, latestVersionPublishedAt: latestVersion.publishedAt }
           : null;
       }));
-      return new Set(matches.filter((id): id is string => id !== null));
+      return new Map(
+        matches
+          .filter((match): match is NonNullable<typeof match> => match !== null)
+          .map((match) => [match.questionId, match.latestVersionPublishedAt])
+      );
     },
     enabled: questions.isSuccess && objectives.isSuccess && Boolean(selectedClass && selectedSubjectId),
   });
@@ -316,7 +321,7 @@ export default function QuestionBankPage() {
               <div key={question.id} className="rounded-xl border border-slate-200 p-3">
                 <div className="flex items-start justify-between gap-3"><div><p className="font-semibold text-slate-900">{question.code}</p><p className="text-xs text-slate-500">{questionTypeLabel(question.questionType)} · {questionStatusLabel(question.status)}</p></div><span className="text-xs text-slate-400">{question.languageCode}</span></div>
                 <div className="mt-3 flex flex-wrap gap-2">
-                  {question.status !== "published" && <button type="button" onClick={() => publishMutation.mutate(question.id)} className="rounded-lg bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white">{t("questionBank.publish")}</button>}
+                  {(question.status !== "published" || academicQuestionIds.data?.get(question.id) === null) && <button type="button" disabled={publishMutation.isPending} onClick={() => publishMutation.mutate(question.id)} className="rounded-lg bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white disabled:opacity-50">{t("questionBank.publish")}</button>}
                   <button type="button" onClick={() => prepareNewVersion.mutate(question.id)} className="rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold">{t("questionBank.newVersion")}</button>
                 </div>
               </div>
