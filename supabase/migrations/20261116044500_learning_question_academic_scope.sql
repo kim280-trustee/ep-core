@@ -133,6 +133,17 @@ begin
     where id = new.question_version_id;
   end if;
 
+  if tg_op = 'UPDATE' and old.question_version_id is distinct from new.question_version_id then
+    if exists (
+      select 1
+      from public.learning_question_versions previous_version
+      where previous_version.id = old.question_version_id
+        and previous_version.published_at is not null
+    ) then
+      raise exception 'Published question objective mappings are immutable; create a new version.';
+    end if;
+  end if;
+
   if v_curriculum_id is null or v_grade_level_id is null or v_subject_id is null then
     raise exception 'Question objectives can only be linked to versions with a complete academic scope.';
   end if;
@@ -233,6 +244,44 @@ begin
     where mapping.question_version_id = v_version_id
   ) then
     raise exception 'A question needs at least one aligned learning objective before publishing.';
+  end if;
+
+  if exists (
+    select 1
+    from public.learning_question_objectives mapping
+    join public.learning_objectives objective on objective.id = mapping.objective_id
+    join public.learning_topics topic on topic.id = objective.topic_id
+    join public.learning_skills skill on skill.id = topic.skill_id
+    where mapping.question_version_id = v_version_id
+      and (
+        objective.status <> 'active'
+        or topic.status <> 'active'
+        or skill.status <> 'active'
+        or skill.subject_id <> v_subject_id
+        or not exists (
+          select 1
+          from public.learning_objective_alignments alignment
+          join public.learning_grade_levels grade
+            on grade.id = alignment.grade_level_id
+           and grade.curriculum_id = alignment.curriculum_id
+           and grade.status = 'active'
+          join public.learning_curricula curriculum
+            on curriculum.id = alignment.curriculum_id
+           and curriculum.status = 'active'
+          join public.learning_curriculum_subjects curriculum_subject
+            on curriculum_subject.curriculum_id = alignment.curriculum_id
+           and curriculum_subject.subject_id = v_subject_id
+           and curriculum_subject.status = 'active'
+          join public.learning_subjects subject
+            on subject.id = v_subject_id
+           and subject.status = 'active'
+          where alignment.objective_id = mapping.objective_id
+            and alignment.curriculum_id = v_curriculum_id
+            and alignment.grade_level_id = v_grade_level_id
+        )
+      )
+  ) then
+    raise exception 'Every question objective must remain active and aligned to its exact curriculum, grade and subject before publishing.';
   end if;
 
   return new;
