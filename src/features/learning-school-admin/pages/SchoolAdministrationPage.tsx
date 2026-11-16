@@ -153,6 +153,16 @@ export default function SchoolAdministrationPage() {
   const gradeLevels = gradeLevelsQuery.data ?? [];
   const classGradeLevelId = classForm.gradeLevelId || gradeLevels[0]?.id || "";
 
+  const selectedClassGroup = classGroups.find((group) => group.id === classGroupId);
+  const curriculumSubjectsQuery = useQuery({
+    queryKey: ["school-admin", "curriculum-subjects", organizationId, selectedClassGroup?.curriculumId],
+    queryFn: () => learningAcademicService.listCurriculumSubjects(selectedClassGroup!.curriculumId),
+    enabled: Boolean(organizationId && selectedClassGroup?.curriculumId) && canManage,
+  });
+  const curriculumSubjectIds = new Set(
+    (curriculumSubjectsQuery.data ?? []).filter((item) => item.status === "active").map((item) => item.subjectId),
+  );
+
   const classSubjectsQuery = useQuery({
     queryKey: ["school-admin", "class-subjects", organizationId, classGroupId],
     queryFn: () => learningAcademicService.listClassSubjects(organizationId, classGroupId),
@@ -291,8 +301,9 @@ export default function SchoolAdministrationPage() {
   };
   const existingMembershipKeys = new Set(roster.map((item) => item.userId + ":" + item.membershipType));
   const addableUsers = eligibleUsers.filter((item) => !existingMembershipKeys.has(item.id + ":" + membershipType));
-  const activeClassSubjects = classSubjects.filter((item) => item.status === "active");
-  const availableSubjects = subjects.filter((subject) => !activeClassSubjects.some((item) => item.subjectId === subject.id));
+  const availableSubjects = subjects.filter((subject) =>
+    curriculumSubjectIds.has(subject.id) && !classSubjects.some((item) => item.subjectId === subject.id),
+  );
 
   const saveMutation = useMutation({
     mutationFn: (action: () => Promise<unknown>) => action(),
@@ -528,6 +539,7 @@ export default function SchoolAdministrationPage() {
       {actionNotice && <div role="status" className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-900"><div className="flex items-start justify-between gap-3"><p>{actionNotice}</p><button type="button" className="font-semibold" onClick={() => setActionNotice("")}>{t("schoolSetup.dismiss")}</button></div></div>}
       {termsQuery.isError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">{t("schoolSetup.termsLoadError")} <button type="button" className="font-semibold underline" onClick={() => void termsQuery.refetch()}>{t("schoolAdmin.tryAgain")}</button></div>}
       {classSubjectsQuery.isError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">{t("schoolSetup.classSubjectsLoadError")} <button type="button" className="font-semibold underline" onClick={() => void classSubjectsQuery.refetch()}>{t("schoolAdmin.tryAgain")}</button></div>}
+      {curriculumSubjectsQuery.isError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">Curriculum subjects could not be loaded. Retry before assigning subjects. <button type="button" className="font-semibold underline" onClick={() => void curriculumSubjectsQuery.refetch()}>{t("schoolAdmin.tryAgain")}</button></div>}
       {rosterQuery.isError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">{t("schoolSetup.rosterLoadError")} <button type="button" className="font-semibold underline" onClick={() => void rosterQuery.refetch()}>{t("schoolAdmin.tryAgain")}</button></div>}
       {eligibleUsersQuery.isError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">{t("schoolSetup.accountsLoadError")} <button type="button" className="font-semibold underline" onClick={() => void eligibleUsersQuery.refetch()}>{t("schoolAdmin.tryAgain")}</button></div>}
       {rosterUsersQuery.isError && <div role="alert" className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">{t("schoolSetup.rosterDetailsLoadError")} <button type="button" className="font-semibold underline" onClick={() => void rosterUsersQuery.refetch()}>{t("schoolSetup.retryAccountLookup")}</button></div>}
@@ -584,7 +596,7 @@ export default function SchoolAdministrationPage() {
                     <div className="rounded-xl border border-slate-200 p-4">
                       <h3 className="font-semibold text-slate-900">{classGroups.find((group) => group.id === classGroupId)?.name ?? t("schoolSetup.selectClass")} · Subjects</h3>
                       {classGroupId ? <>
-                        <div className="mt-3 flex flex-wrap gap-2"><select aria-label={t("schoolSetup.subjectToAdd")} className={fieldClass + " min-w-0 flex-1"} value={subjectToAdd} onChange={(event) => setSubjectToAdd(event.target.value)}><option value="">{t("schoolSetup.chooseSubject")}</option>{availableSubjects.map((subject) => <option key={subject.id} value={subject.id}>{subject.name} ({subject.code})</option>)}</select><button type="button" className={buttonClass} disabled={!subjectToAdd || saveMutation.isPending} onClick={async () => { const id = subjectToAdd; try { await saveMutation.mutateAsync(() => learningAcademicService.activateClassSubject(organizationId, classGroupId, id)); setSubjectToAdd(""); } catch { /* The mutation displays the failure above the forms. */ } }}>{t("schoolSetup.addSubject")}</button></div>
+                        <div className="mt-3 flex flex-wrap gap-2"><select aria-label={t("schoolSetup.subjectToAdd")} className={fieldClass + " min-w-0 flex-1"} value={subjectToAdd} onChange={(event) => setSubjectToAdd(event.target.value)} disabled={curriculumSubjectsQuery.isPending || curriculumSubjectsQuery.isError}><option value="">{curriculumSubjectsQuery.isPending ? "Loading curriculum subjects…" : t("schoolSetup.chooseSubject")}</option>{availableSubjects.map((subject) => <option key={subject.id} value={subject.id}>{subject.name} ({subject.code})</option>)}</select><button type="button" className={buttonClass} disabled={!subjectToAdd || curriculumSubjectsQuery.isPending || curriculumSubjectsQuery.isError || saveMutation.isPending} onClick={async () => { const id = subjectToAdd; try { await saveMutation.mutateAsync(() => learningAcademicService.activateClassSubject(organizationId, classGroupId, id)); setSubjectToAdd(""); } catch { /* The mutation displays the failure above the forms. */ } }}>{t("schoolSetup.addSubject")}</button></div>
                         <div className="mt-4 space-y-2">{classSubjectsQuery.isPending ? <p className="text-sm text-slate-500">{t("schoolSetup.loadingSubjects")}</p> : classSubjects.map((item) => { const subject = subjects.find((candidate) => candidate.id === item.subjectId); return <div key={item.id} className="flex items-center justify-between gap-3 rounded-lg bg-slate-50 px-3 py-2"><div><p className="text-sm font-medium text-slate-800">{subject?.name ?? t("schoolSetup.unknownSubject")}</p><p className="text-xs text-slate-500">{translateAcademicStatus(item.status)}</p></div><button type="button" className={secondaryButtonClass} disabled={saveMutation.isPending} onClick={() => saveMutation.mutate(() => learningAcademicService.updateClassSubjectStatus(item.id, item.status === "active" ? "archived" : "active"))}>{item.status === "active" ? t("schoolSetup.archive") : t("schoolSetup.reactivate")}</button></div>; })}{!classSubjectsQuery.isPending && !classSubjectsQuery.isError && !classSubjects.length && <p className="text-sm text-slate-500">{t("schoolSetup.noSubjectsAssigned")}</p>}</div>
                       </> : <p className="mt-3 text-sm text-slate-500">{t("schoolSetup.selectClassManageSubjects")}</p>}
                     </div>
