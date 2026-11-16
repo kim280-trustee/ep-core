@@ -60,7 +60,9 @@ export default function QuestionBankPage() {
   const activeClassGroupId = classGroupId || classes.data?.[0]?.classGroup.id || "";
   const selectedClass = classes.data?.find((x) => x.classGroup.id === activeClassGroupId);
   const organizationId = selectedClass?.membership.organizationId;
-  const selectedSubjectId = subjectId || selectedClass?.subjects[0]?.subjectId || "";
+  const selectedSubjectId = selectedClass?.subjects.some((item) => item.subjectId === subjectId)
+    ? subjectId
+    : selectedClass?.subjects[0]?.subjectId || "";
 
   const questions = useQuery({
     queryKey: ["learning", "question-bank", "questions", organizationId],
@@ -68,7 +70,7 @@ export default function QuestionBankPage() {
     enabled: Boolean(organizationId),
   });
   const objectives = useQuery({
-    queryKey: ["learning", "question-bank", "objectives", activeClassGroupId, selectedSubjectId],
+    queryKey: ["learning", "question-bank", "objectives", activeClassGroupId, selectedClass?.classGroup.curriculumId, selectedClass?.classGroup.gradeLevelId, selectedSubjectId],
     queryFn: async () => {
       if (!selectedClass || !selectedSubjectId) return [];
       const skills = await learningContentService.listSkills(selectedSubjectId);
@@ -88,7 +90,7 @@ export default function QuestionBankPage() {
   });
 
   const academicQuestionIds = useQuery({
-    queryKey: ["learning", "question-bank", "academic-questions", activeClassGroupId, selectedSubjectId, questions.data?.length, objectives.data?.length],
+    queryKey: ["learning", "question-bank", "academic-questions", activeClassGroupId, selectedClass?.classGroup.curriculumId, selectedClass?.classGroup.gradeLevelId, selectedSubjectId, questions.data?.length, objectives.data?.length],
     queryFn: async () => {
       const allowedObjectiveIds = new Set((objectives.data ?? []).map((objective) => objective.id));
       const matches = await Promise.all((questions.data ?? []).map(async (question) => {
@@ -97,6 +99,14 @@ export default function QuestionBankPage() {
           ? versions.find((version) => version.publishedAt !== null)
           : versions[0];
         if (!relevantVersion) return null;
+        const hasAcademicScope = Boolean(
+          relevantVersion.curriculumId && relevantVersion.gradeLevelId && relevantVersion.subjectId
+        );
+        if (hasAcademicScope && (
+          relevantVersion.curriculumId !== selectedClass?.classGroup.curriculumId ||
+          relevantVersion.gradeLevelId !== selectedClass?.classGroup.gradeLevelId ||
+          relevantVersion.subjectId !== selectedSubjectId
+        )) return null;
         const mappings = await learningAssessmentService.listQuestionObjectives(relevantVersion.id);
         return mappings.length && mappings.every((mapping) => allowedObjectiveIds.has(mapping.objectiveId))
           ? question.id
@@ -154,6 +164,12 @@ export default function QuestionBankPage() {
   const createMutation = useMutation({
     mutationFn: async () => {
       if (!user?.id || !organizationId || !selectedClass || !selectedSubjectId) throw new Error("Select a class and an active subject first.");
+      if (!selectedClass.classGroup.curriculumId || !selectedClass.classGroup.gradeLevelId) {
+        throw new Error("The selected class must have a curriculum and grade before questions can be created.");
+      }
+      if (!selectedClass.subjects.some((item) => item.subjectId === selectedSubjectId)) {
+        throw new Error("The selected subject is not actively assigned to this class.");
+      }
       if (!code.trim() || !prompt.trim() || !objectiveId) throw new Error(t("questionBank.required"));
       if (!objectives.data?.some((objective) => objective.id === objectiveId)) {
         throw new Error("The selected learning objective is not available for this class and subject. Select a valid objective and try again.");
@@ -181,7 +197,11 @@ export default function QuestionBankPage() {
           : { response_mode: "manual_review" };
 
       const version = await learningAssessmentService.createQuestionVersion({
-        questionId, versionNo, prompt: { text: prompt.trim() }, configuration,
+        questionId, versionNo,
+        curriculumId: selectedClass.classGroup.curriculumId,
+        gradeLevelId: selectedClass.classGroup.gradeLevelId,
+        subjectId: selectedSubjectId,
+        prompt: { text: prompt.trim() }, configuration,
         explanation: explanation.trim() ? { text: explanation.trim() } : null, createdBy: user.id,
       });
 
@@ -240,19 +260,21 @@ export default function QuestionBankPage() {
         <div className="grid gap-3 sm:grid-cols-2">
           <label className="block space-y-2">
             <span className="text-sm font-medium text-slate-700">{t("questionBank.teacherClass")}</span>
-            <select value={activeClassGroupId} onChange={(e) => { setClassGroupId(e.target.value); setSubjectId(""); setObjectiveId(""); }} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm">
+            <select value={activeClassGroupId} onChange={(e) => { setClassGroupId(e.target.value); setSubjectId(""); resetForm(); setMessage(null); }} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm">
               <option value="">{t("questionBank.selectClass")}</option>
               {classes.data?.map((item) => <option key={item.classGroup.id} value={item.classGroup.id}>{item.classGroup.name}</option>)}
             </select>
           </label>
           <label className="block space-y-2">
             <span className="text-sm font-medium text-slate-700">Subject</span>
-            <select value={selectedSubjectId} onChange={(e) => { setSubjectId(e.target.value); setObjectiveId(""); }} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm" disabled={!selectedClass?.subjects.length}>
+            <select value={selectedSubjectId} onChange={(e) => { setSubjectId(e.target.value); resetForm(); setMessage(null); }} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm" disabled={!selectedClass?.subjects.length}>
+              {!selectedClass?.subjects.length && <option value="">No active subjects</option>}
               {selectedClass?.subjects.map((item) => <option key={item.subjectId} value={item.subjectId}>{item.subject.name}</option>)}
             </select>
           </label>
         </div>
         {selectedClass && !selectedClass.subjects.length && <p className="mt-2 text-xs text-amber-700">This class has no active subjects assigned.</p>}
+        {selectedClass && selectedSubjectId && <p className="mt-3 text-xs text-slate-500">Academic scope: {selectedClass.classGroup.curriculumId} · Grade {selectedClass.classGroup.gradeLevelId} · {selectedClass.subjects.find((item) => item.subjectId === selectedSubjectId)?.subject.name}</p>}
       </section>
 
       {message && <div className="rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-700">{message}</div>}
@@ -268,6 +290,8 @@ export default function QuestionBankPage() {
           {(search || typeFilter || statusFilter) && <button type="button" onClick={() => { setSearch(""); setTypeFilter(""); setStatusFilter(""); }} className="mt-2 rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600">{t("questionBank.clearFilters")}</button>}
           {(questions.isPending || objectives.isPending || academicQuestionIds.isPending) && <p className="mt-4 text-sm text-slate-500">Loading questions for this class subject and grade…</p>}
           {questions.isError && <p role="alert" className="mt-4 rounded-xl bg-red-50 p-4 text-sm text-red-800">{t("questionBank.loadError")}</p>}
+          {objectives.isError && <p role="alert" className="mt-4 rounded-xl bg-red-50 p-4 text-sm text-red-800">Learning objectives for this class, grade and subject could not be loaded. Question authoring is disabled until the academic scope can be verified.</p>}
+          {academicQuestionIds.isError && <p role="alert" className="mt-4 rounded-xl bg-red-50 p-4 text-sm text-red-800">Question academic mappings could not be verified. Refresh the page before using this question bank.</p>}
           <div className="mt-4 space-y-2">
             {filteredQuestions.map((question) => (
               <div key={question.id} className="rounded-xl border border-slate-200 p-3">
@@ -304,7 +328,7 @@ export default function QuestionBankPage() {
             <Field label={t("questionBank.objective")}><select value={objectiveId} onChange={(e) => setObjectiveId(e.target.value)} className="input"><option value="">{t("questionBank.selectObjective")}</option>{objectives.data?.map((objective) => <option key={objective.id} value={objective.id}>{objective.code} — {objective.name}</option>)}</select></Field>
             <Field label={t("questionBank.explanation")}><textarea value={explanation} onChange={(e) => setExplanation(e.target.value)} rows={3} className="input" placeholder={t("questionBank.explanationPlaceholder")} /></Field>
 
-            <div className="flex items-center justify-between gap-3 border-t border-slate-100 pt-4"><p className="text-xs text-slate-500">{t("questionBank.draftHelp")}</p><button type="button" disabled={!organizationId || !selectedSubjectId || !objectiveId || objectives.isPending || objectives.isError || createMutation.isPending} onClick={() => createMutation.mutate()} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 disabled:opacity-50"><Sparkles size={16} />{createMutation.isPending ? t("questionBank.saving") : editingQuestionId ? t("questionBank.saveVersion") : t("questionBank.saveDraft")}</button></div>
+            <div className="flex items-center justify-between gap-3 border-t border-slate-100 pt-4"><p className="text-xs text-slate-500">{t("questionBank.draftHelp")}</p><button type="button" disabled={!organizationId || !selectedClass?.classGroup.curriculumId || !selectedClass?.classGroup.gradeLevelId || !selectedSubjectId || !selectedClass?.subjects.some((item) => item.subjectId === selectedSubjectId) || !objectiveId || !objectives.isSuccess || objectives.isError || academicQuestionIds.isError || createMutation.isPending} onClick={() => createMutation.mutate()} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 disabled:opacity-50"><Sparkles size={16} />{createMutation.isPending ? t("questionBank.saving") : editingQuestionId ? t("questionBank.saveVersion") : t("questionBank.saveDraft")}</button></div>
           </div>
         </section>
       </div>
