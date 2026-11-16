@@ -2,7 +2,7 @@
 
 **Branch:** `paul/learning-academic-integrity-audit`  
 **Scope:** Thai core Science curriculum catalogue and staged M1–M3 knowledge graphs  
-**Status:** M1 knowledge graph and M2–M3 biological-science staged batch committed; remaining M2–M6 indicators are pending. No migrations applied to Supabase and no school records created.
+**Status:** M1–M3 core Science knowledge graphs and teacher starter packs committed; M4–M6 remain pending. No migrations applied to Supabase and no school records created.
 
 ## M1 coverage delivered
 
@@ -17,7 +17,7 @@
 
 The M1 teacher pack contains 43 lesson starters and 129 practice questions with answer keys. Each lesson identifies the corresponding official Thai indicator code.
 
-## Curriculum scope
+## M2 and M3 coverage\n\n| Grade | Official core Science indicators | Seeded objectives | Status |\n|---|---:|---:|---|\n| M2 | 48 | 48 | Complete |\n| M3 | 51 | 51 | Complete |\n| **M2–M3 total** | **99** | **99** | **Complete** |\n\nM3 coverage is 11 indicators in ว 1.3, eight in ว 2.1, 21 in ว 2.3, four in ว 3.1 and seven in ว 3.2. The M2–M3 packs together contain 99 lesson starters and 297 practice questions with answer keys.\n\n## Curriculum scope
 
 The new catalogue uses subject code `SCI` and curriculum code `TH-SCI-M1-M6`, aligned to the Thai Basic Education Core Curriculum B.E. 2551 (2008), revised B.E. 2560 (2017).
 
