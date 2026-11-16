@@ -46,7 +46,7 @@ select
   es.id,
   'TH-MATH-M1-M6',
   'Thai Basic Education — Mathematics M1–M6',
-  '2026.1',
+  'B.E. 2551 (2008), revised 2017',
   'Separate Mathematics curriculum catalogue for Thai lower and upper secondary levels. This curriculum is independent of the English MEP pilot curriculum.',
   'active'
 from public.learning_education_systems es
