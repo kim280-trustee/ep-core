@@ -88,7 +88,7 @@ export default function LearningAssignmentsPage() {
       {filteredAssignments.length ? (
         <div className="grid gap-4 lg:grid-cols-2">
           {filteredAssignments.map((assignment) => (
-            <AssignmentCard key={assignment.id} assignment={assignment} progress={progressByAssignment.get(assignment.id)} />
+            <AssignmentCard key={assignment.id} assignment={assignment} progress={progressByAssignment.get(assignment.id)} subjectName={query.data.assignmentSubjects[assignment.id]} />
           ))}
         </div>
       ) : assignments.length ? (
@@ -100,7 +100,7 @@ export default function LearningAssignmentsPage() {
   );
 }
 
-function AssignmentCard({ assignment, progress }: { assignment: (Awaited<ReturnType<typeof learningRuntimeService.getStudentOverview>>)["assignments"][number]; progress?: LearningAssignmentProgress }) {
+function AssignmentCard({ assignment, progress, subjectName }: { assignment: (Awaited<ReturnType<typeof learningRuntimeService.getStudentOverview>>)["assignments"][number]; progress?: LearningAssignmentProgress; subjectName?: string }) {
   const { t } = useTranslation();
   const status = progress?.status ?? "not_started";
   const statusText = status === "in_progress" ? t("studentAssignments.inProgress") : status === "completed" ? t("studentAssignments.completed") : status === "overdue" ? t("studentAssignments.overdue") : t("studentAssignments.notStarted");
@@ -114,6 +114,7 @@ function AssignmentCard({ assignment, progress }: { assignment: (Awaited<ReturnT
           <div className="min-w-0">
             <h2 className="font-semibold text-slate-900">{assignment.title}</h2>
             <p className="mt-1 text-xs font-medium text-slate-500">{t("studentAssignments.code")}{assignment.code}</p>
+            {subjectName && <p className="mt-1 inline-flex rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-800">{subjectName}</p>}
             <p className="mt-1 text-sm text-slate-500">{assignment.description || t("studentAssignments.learningAssignment")}</p>
           </div>
         </div>
