@@ -267,21 +267,26 @@ returns trigger
 language plpgsql
 set search_path = ''
 as $function$
+declare
+  v_check_membership boolean := false;
 begin
-  if tg_op = 'INSERT'
-     or row(new.organization_id, new.class_group_id, new.student_user_id)
+  if tg_op = 'INSERT' then
+    v_check_membership := true;
+  elsif row(new.organization_id, new.class_group_id, new.student_user_id)
         is distinct from row(old.organization_id, old.class_group_id, old.student_user_id) then
-    if not exists (
-      select 1
-      from public.learning_class_memberships cm
-      where cm.organization_id = new.organization_id
-        and cm.class_group_id = new.class_group_id
-        and cm.user_id = new.student_user_id
-        and cm.membership_type = 'student'
-        and cm.status = 'active'
-    ) then
-      raise exception 'The selected student must have an active student membership in this class';
-    end if;
+    v_check_membership := true;
+  end if;
+
+  if v_check_membership and not exists (
+    select 1
+    from public.learning_class_memberships cm
+    where cm.organization_id = new.organization_id
+      and cm.class_group_id = new.class_group_id
+      and cm.user_id = new.student_user_id
+      and cm.membership_type = 'student'
+      and cm.status = 'active'
+  ) then
+    raise exception 'The selected student must have an active student membership in this class';
   end if;
 
   return new;
