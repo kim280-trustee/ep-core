@@ -46,6 +46,9 @@ export default function CreateTeacherAssignmentPage() {
       }
       const selected = classesQuery.data?.find((item) => item.classGroup.id === classGroupId);
       if (!selected) throw new Error(t("teacherCreateAssignment.selectClass"));
+      if (selected.subjects.length > 0 && !classSubjectId) {
+        throw new Error("Select a subject for this class before creating the assignment.");
+      }
       if (classSubjectId && !selected.subjects.some((subject) => subject.id === classSubjectId)) {
         throw new Error(t("teacherCreateAssignment.subjectMismatch"));
       }
@@ -163,8 +166,9 @@ export default function CreateTeacherAssignmentPage() {
               ))}
             </select>
           </Field>
-          <Field label={t("teacherCreateAssignment.subject")} hint={t("teacherCreateAssignment.optional")}>
+          <Field label={t("teacherCreateAssignment.subject")} hint={selectedClass?.subjects.length ? t("teacherCreateAssignment.required") : t("teacherCreateAssignment.optional")}>
             <select
+              required={Boolean(selectedClass?.subjects.length)}
               value={classSubjectId}
               onChange={(event) => setClassSubjectId(event.target.value)}
               className="input"
