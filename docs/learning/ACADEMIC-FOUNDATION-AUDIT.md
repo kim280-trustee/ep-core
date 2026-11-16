@@ -91,20 +91,35 @@ Migration: `20261116071500_learning_academic_record_integrity.sql`
 - Rechecks membership if the organization, class group or student is changed.
 - Historical membership records remain valid even if their status later becomes inactive.
 
-## Outstanding issue — global academic catalogue administration
+## Global academic catalogue administration — implemented, pending migration
 
-The School Administration page exposes controls to create global subjects, add subjects to curricula and create global grade levels. In the reviewed migrations, authenticated users have read grants for `learning_subjects`, `learning_curriculum_subjects` and `learning_grade_levels`, but no corresponding write policies/grants were found. Those UI actions are therefore not supported by the current database permissions.
+The School Administration page includes controls to create reusable global subjects, attach subjects to curricula and create curriculum grade levels. The branch contains the database grants and insert policies required by these existing workflows:
 
-This is separate from creating school classes and assigning already-configured subjects. The Maths rollout uses migration-seeded catalogue records, so it does not depend on those controls. A future change should either introduce a narrowly scoped platform-catalogue administrator permission or remove/relocate those controls; it should not grant every school manager global curriculum-editing rights.
+- `20261116030000_learning_subject_catalog_manage.sql` grants subject and curriculum-subject inserts to authenticated academic managers.
+- `20261116031500_learning_grade_level_catalog_manage.sql` grants grade-level inserts to authenticated academic managers.
+- `20261116033000_learning_objective_alignment_manage.sql` grants curriculum-grade objective alignment inserts to authenticated academic managers.
 
-The branch includes `20261116033000_learning_objective_alignment_manage.sql`, which grants academic managers objective-alignment insertion. That migration is not yet applied to the live database. Broader global catalogue editing remains outside this remediation.
+These use the existing `learning.academic.manage` permission and do not add a new role. They are not yet applied to the live database. Once applied, the catalogue forms already present in School Administration are enabled; no additional UI module is required.
 
-## Migration sequence added by the audit
+The catalogue is shared across schools, so these permissions are intentionally an administrative capability rather than school-specific catalogue ownership. The platform should keep catalogue changes limited to trusted academic managers and migration-reviewed curriculum data.
 
-1. `20261116070000_learning_academic_year_multi_curriculum.sql`
-2. `20261116071500_learning_academic_record_integrity.sql`
+## Pending migration sequence
 
-The Maths curriculum and knowledge-graph migrations have earlier timestamps and must run before the Maths rollout is considered complete.
+The live database migration history ends at `20261116015418`. The branch migrations from `20261116030000` onward remain pending and must be applied in timestamp order:
+
+1. `20261116030000_learning_subject_catalog_manage.sql`
+2. `20261116031500_learning_grade_level_catalog_manage.sql`
+3. `20261116033000_learning_objective_alignment_manage.sql`
+4. `20261116043000_learning_content_objective_subject_integrity.sql`
+5. `20261116044500_learning_question_academic_scope.sql`
+6. `20261116060000_learning_maths_curriculum_catalog.sql`
+7. `20261116061500_learning_maths_m1_knowledge_graph.sql`
+8. `20261116063000_learning_maths_m2_m3_knowledge_graph.sql`
+9. `20261116064500_learning_maths_m4_m6_knowledge_graph.sql`
+10. `20261116070000_learning_academic_year_multi_curriculum.sql`
+11. `20261116071500_learning_academic_record_integrity.sql`
+
+The order is important because content and assessment integrity constraints rely on the academic catalogue and knowledge graph.
 
 ## Live Supabase read-only verification
 
