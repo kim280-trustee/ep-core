@@ -1,6 +1,6 @@
 # E&P Learning — Upper-secondary Physics Curriculum Audit
 
-**Status:** Official scope verified; grade-level extraction and staged seeding are in progress. Six verified M4 outcomes (8, 9, 11, 12, 14 and 15) are now seeded.
+**Status:** Official scope verified; grade-level extraction and staged seeding are in progress. Eight verified M4 outcomes (8, 9, 11, 12, 14, 15, 16 and 17) are now seeded.
 
 ## Official curriculum structure
 
