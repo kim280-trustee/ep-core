@@ -74,6 +74,7 @@ export interface LearningContentRepository {
   createContent(input: { organizationId: string; code: string; title: string; contentType: LearningContentType; languageCode: string; createdBy: string }): Promise<LearningContentItem>;
   createVersion(input: { contentItemId: string; versionNo: number; body: Record<string, unknown>; changeSummary?: string | null; createdBy: string }): Promise<LearningContentVersion>;
   addObjective(input: { contentItemId: string; objectiveId: string; sequenceNo: number }): Promise<LearningContentObjective>;
+  removeObjective(contentItemId: string, objectiveId: string): Promise<void>;
   updateContentStatus(id: string, status: LearningContentStatus, reviewerId?: string): Promise<LearningContentItem>;
   updateVersionStatus(id: string, status: LearningContentStatus, reviewerId?: string): Promise<LearningContentVersion>;
   getStudentResponse(assignmentId: string, contentItemId: string, studentUserId: string): Promise<LearningContentResponse | null>;
@@ -167,7 +168,8 @@ export const learningContentRepository: LearningContentRepository = {
     }
     return mapContentVersion(data);
   },
-  async addObjective(input){const{data,error}=await supabase.from("learning_content_objectives").insert({content_item_id:input.contentItemId,objective_id:input.objectiveId,sequence_no:input.sequenceNo}).select("*").single();if(error)throw error;return mapContentObjective(data);},
+  async addObjective(input){const{data,error}=await supabase.from("learning_content_objectives").insert({content_item_id:input.contentItemId,objective_id:input.objectiveId,sequence_no:input.sequenceNo}).select("*").single();if(error){if(error.code==="23505")throw new Error("This learning objective is already linked to the content.");throw error;}return mapContentObjective(data);},
+  async removeObjective(contentItemId,objectiveId){const{error}=await supabase.from("learning_content_objectives").delete().eq("content_item_id",contentItemId).eq("objective_id",objectiveId);if(error)throw error;},
   async updateContentStatus(id,status,_reviewerId){
     // The database RPC derives the reviewer from auth.uid(); caller-supplied identity is not trusted.
     void _reviewerId;
