@@ -16,6 +16,8 @@
 | M6 | 1 | 1 |
 | **Total** | **41** | **41** |
 
+Each lesson includes three practice questions with worked or direct answer keys: **123 practice questions and answers** across M1–M6.
+
 M4–M6 coverage is limited to the eight grade-level indicators in the revised 2017 core-curriculum tables. It is not a complete list of additional/elective upper-secondary mathematics course outcomes.
 
 ## Pending migration order
