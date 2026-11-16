@@ -61,6 +61,8 @@ create unique index if not exists learning_class_subjects_org_group_id_id_uq
 
 alter table public.learning_gradebook_entries
   drop constraint if exists gradebook_entry_class_subject_fk;
+alter table public.learning_gradebook_entries
+  drop constraint if exists gradebook_entry_class_subject_group_fk;
 
 alter table public.learning_gradebook_entries
   add constraint gradebook_entry_class_subject_group_fk
@@ -70,6 +72,8 @@ alter table public.learning_gradebook_entries
 
 alter table public.learning_term_grades
   drop constraint if exists term_grade_class_subject_fk;
+alter table public.learning_term_grades
+  drop constraint if exists term_grade_class_subject_group_fk;
 
 alter table public.learning_term_grades
   add constraint term_grade_class_subject_group_fk
