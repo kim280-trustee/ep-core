@@ -163,3 +163,18 @@ Migration: `20261116160000_learning_physics_m5_sound_outcomes_6_7.sql`. Teacher 
 The official IPST Physics curriculum-use manual explicitly labels M5 outcome 8 on printed p. 141 and M5 outcome 12 on printed p. 147. Outcome 8 covers interference and diffraction of light using double slits, diffraction gratings and single slits. Outcome 12 covers natural optical phenomena including rainbows, halos, mirages and sky colours.
 
 Migration: `20261116161500_learning_physics_m5_light_outcomes_8_12.sql`. Teacher pack: `M5-physics-light-optics-teacher-starter-pack.md`. This batch adds two objectives, two lesson starters and six answer-keyed questions. M5 outcomes 4–5 and 9–11 remain to be reconciled against the official manual; the outcome register is intentionally non-contiguous until verification is complete. Official sources: https://www.scimath.org/e-books/8437/flippingbook/150/ and https://www.scimath.org/e-books/8437/flippingbook/156/.
+
+
+## M5 verified staged release — outcomes 9–11 (geometrical optics)
+
+The official IPST Physics curriculum-use manual and its outcome register confirm that M5 outcomes 9, 10 and 11 concern reflection by plane/spherical mirrors, refraction including apparent depth and total internal reflection, and image formation by thin lenses. The manual's M5 grade label appears on the corresponding pages.
+
+| Grade | Outcome | Verified scope | Database objective |
+|---|---:|---|---|
+| M5 | 9 | Law of reflection; ray diagrams and images from plane and spherical mirrors | `M5-PHY-LIGHT-REFLECTION-09` |
+| M5 | 10 | Refractive index, Snell's law, apparent depth, critical angle and total internal reflection | `M5-PHY-LIGHT-REFRACTION-10` |
+| M5 | 11 | Thin-lens ray diagrams, image position/size/type, lens equation and applications | `M5-PHY-LIGHT-LENSES-11` |
+
+Migration: `20261116163000_learning_physics_m5_geometrical_optics_outcomes_9_11.sql`. Teacher pack: `M5-physics-geometrical-optics-teacher-starter-pack.md`. This batch adds three objectives, three lesson starters and nine answer-keyed questions. Official source pages: https://www.scimath.org/e-books/8437/flippingbook/151/ through /155/; the outcome register explicitly lists outcomes 9–11 and the grade allocation.
+
+M5 outcome numbers 4–5 remain under audit; the M5 register is deliberately non-contiguous until those outcomes are independently verified.
