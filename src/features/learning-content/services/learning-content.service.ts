@@ -8,6 +8,7 @@ export const learningContentService={
   listObjectives:(topicId?:string)=>learningContentRepository.listObjectives(topicId),
   listPrerequisites:(objectiveId:string)=>learningContentRepository.listPrerequisites(objectiveId),
   listAlignments:(objectiveId?:string,curriculumId?:string,gradeLevelId?:string)=>learningContentRepository.listAlignments(objectiveId,curriculumId,gradeLevelId),
+  createAlignment:(input:Parameters<typeof learningContentRepository.createAlignment>[0])=>learningContentRepository.createAlignment(input),
   listContent:(organizationId?:string)=>learningContentRepository.listContent(organizationId),
   getContent:(id:string,organizationId?:string)=>learningContentRepository.getContent(id,organizationId),
   deleteContent:(id:string)=>learningContentRepository.deleteContent(id),
