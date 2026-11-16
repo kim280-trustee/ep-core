@@ -2,7 +2,7 @@
 
 **Branch:** `paul/learning-academic-integrity-audit`  
 **Scope:** Thai core Science curriculum catalogue, M1–M3 core knowledge graphs, and staged M4–M6 additional Science subjects  
-**Status:** M1–M3 core Science knowledge graphs are complete. Upper-secondary subject tracks are catalogued. M4 Biology strands 1–2 (32 outcomes), M5 Biology plant-structure strand 3 (18 outcomes), M5 Biology animal-physiology strand 4 (21 outcomes), M6 Biology animal-physiology strand 4 (19 outcomes) and M6 Biology ecology strand 5 (13 outcomes) and M6 Biology biodiversity/taxonomy strand 2 (5 outcomes) are committed: 108 Biology outcomes total. Remaining M5–M6 Biology, M6 Chemistry and Earth/Space outcomes are pending; Physics has all 17 M4 outcomes, all 12 M5 outcomes, and eight verified M6 Group 3 outcomes (1–8), plus nine M6 Group 4 outcomes (1–9); M4 Biology strands 3–5 and M5 Biology strand 5 have no outcomes in the official curriculum. M4 Chemistry strands 1–2 (28 outcomes), M5 Chemistry strand 1 gas outcomes 1–6 (6 outcomes), all 32 M5 Chemistry strand 2 outcomes and M6 Chemistry strand 1 organic/polymer outcomes 1–15 (15 outcomes) are now committed: 81 Chemistry outcomes total. No migrations applied to Supabase and no school records created.
+**Status:** M1–M3 core Science knowledge graphs are complete. Upper-secondary subject tracks are catalogued. M4 Biology strands 1–2 (32 outcomes), M5 Biology plant-structure strand 3 (18 outcomes), M5 Biology animal-physiology strand 4 (21 outcomes), M6 Biology animal-physiology strand 4 (19 outcomes) and M6 Biology ecology strand 5 (13 outcomes) and M6 Biology biodiversity/taxonomy strand 2 (5 outcomes) are committed: 108 Biology outcomes total. Remaining M5–M6 Biology, M6 Chemistry and Earth/Space outcomes are pending; Physics now has all 67 official outcomes staged: M4 Group 1 (17), M5 Group 2 (13), M5 Group 3 (11), M5 Group 4 (15 and 18), M6 Group 3 (8) and M6 Group 4 (16); M4 Biology strands 3–5 and M5 Biology strand 5 have no outcomes in the official curriculum. M4 Chemistry strands 1–2 (28 outcomes), M5 Chemistry strand 1 gas outcomes 1–6 (6 outcomes), all 32 M5 Chemistry strand 2 outcomes and M6 Chemistry strand 1 organic/polymer outcomes 1–15 (15 outcomes) are now committed: 81 Chemistry outcomes total. No migrations applied to Supabase and no school records created.
 
 ## M1 coverage delivered
 
@@ -234,3 +234,12 @@ Two Group 4 outcomes are now staged under M5, not M6, in accordance with the off
 Migration: `20261116181500_learning_physics_m5_group4_outcomes_15_18.sql`. Teacher pack: `M5-physics-nuclear-structure-particle-physics-teacher-starter-pack.md`.
 
 Updated staged Physics totals: M4 17, M5 14 (outcomes 1–12, 15 and 18), M6 Group 3 8, and M6 Group 4 16 = **55 objectives, 55 lesson starters and 165 answer-keyed questions**. Group 4 M5 outcomes 15 and 18 are explicitly excluded from M6. No live Supabase migrations have been applied.
+
+
+## Physics curriculum completion — all 67 official outcomes staged
+
+The final Physics batch adds M5 Group 3 outcomes 1–11 (electrostatics and DC electricity) and M5 Group 2 outcome 13 (colour vision). The official IPST manual labels the Group 3 M5 sequence separately from the M6 Group 3 sequence, which restarts at outcome 1. M5 Group 2 outcome 13 is also explicitly listed in the manual.
+
+Migration: `20261116183000_learning_physics_m5_electricity_and_colour_outcomes.sql`. Teacher pack: `M5-physics-electrostatics-dc-electricity-colour-vision-teacher-starter-pack.md`.
+
+**Physics is now complete at 67/67 national outcomes:** M4 Group 1 (17); M5 Group 2 (13), Group 3 (11), Group 4 (15 and 18); M6 Group 3 (8); M6 Group 4 (1–14, 16–17). Each outcome has one lesson starter and three answer-keyed questions: 67 objectives, 67 lesson starters and 201 questions. All migrations remain pending and unapplied to live Supabase. This completes the Physics track only; the remaining Science subjects and rollout-readiness checks are still separate work.
