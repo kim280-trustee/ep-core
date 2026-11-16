@@ -108,11 +108,11 @@ begin
   select assignment.class_subject_id, class_subject.subject_id, class_group.curriculum_id, class_group.grade_level_id
     into v_assignment_subject_id, v_subject_id, v_curriculum_id, v_grade_level_id
   from public.learning_assignments assignment
-  join public.learning_class_subjects class_subject
+  left join public.learning_class_subjects class_subject
     on class_subject.id = assignment.class_subject_id
    and class_subject.organization_id = assignment.organization_id
    and class_subject.status = 'active'
-  join public.learning_class_groups class_group
+  left join public.learning_class_groups class_group
     on class_group.id = class_subject.class_group_id
    and class_group.organization_id = class_subject.organization_id
    and class_group.status = 'active'
