@@ -91,9 +91,9 @@ The gradebook RPCs checked class membership, but authenticated academic managers
 
 Migration: `20261116071500_learning_academic_record_integrity.sql`
 
-- Adds a trigger requiring an active student membership when a gradebook entry or term grade is inserted.
+- Adds a trigger requiring a student membership record in the exact class when a gradebook entry or term grade is inserted.
 - Rechecks membership if the organization, class group or student is changed.
-- Existing historical rows are not retroactively rejected solely because a membership later became inactive.
+- Historical membership records remain valid even if their status later becomes inactive.
 
 ## Outstanding issue — global academic catalogue administration
 
