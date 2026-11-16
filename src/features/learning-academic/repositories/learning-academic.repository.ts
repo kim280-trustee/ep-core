@@ -31,6 +31,8 @@ export interface LearningAcademicRepository {
   listCurricula(educationSystemId?: string): Promise<LearningCurriculum[]>;
   listSubjects(): Promise<LearningSubject[]>;
   listCurriculumSubjects(curriculumId: string): Promise<LearningCurriculumSubject[]>;
+  createSubject(input: import("../types/learning-academic.types").LearningSubjectInput): Promise<LearningSubject>;
+  addSubjectToCurriculum(input: import("../types/learning-academic.types").LearningCurriculumSubjectInput): Promise<LearningCurriculumSubject>;
   listGradeLevels(curriculumId: string): Promise<LearningGradeLevel[]>;
   listAcademicYears(organizationId: string): Promise<LearningAcademicYear[]>;
   listTerms(organizationId: string, academicYearId: string): Promise<LearningTerm[]>;
@@ -127,6 +129,27 @@ export const learningAcademicRepository: LearningAcademicRepository = {
     const { data, error } = await supabase.from("learning_subjects").select("*").eq("status", "active").order("name");
     if (error) throw error;
     return (data ?? []).map(mapSubject);
+  },
+  async createSubject(input) {
+    const { data, error } = await supabase.from("learning_subjects").insert({
+      code: input.code.trim().toUpperCase(),
+      name: input.name.trim(),
+      description: input.description?.trim() || null,
+      status: "active",
+    }).select("*").single();
+    if (error) throw error;
+    return mapSubject(data);
+  },
+  async addSubjectToCurriculum(input) {
+    const { data, error } = await supabase.from("learning_curriculum_subjects").insert({
+      curriculum_id: input.curriculumId,
+      subject_id: input.subjectId,
+      code: input.code?.trim() || null,
+      name: input.name?.trim() || null,
+      status: "active",
+    }).select("*").single();
+    if (error) throw error;
+    return mapCurriculumSubject(data);
   },
   async listCurriculumSubjects(curriculumId) {
     const { data, error } = await supabase.from("learning_curriculum_subjects").select("*").eq("curriculum_id", curriculumId).eq("status", "active").order("name");
