@@ -87,7 +87,7 @@ revoke all on function private.guard_learning_assignment_target_subject_scope()
 drop trigger if exists learning_assignment_target_subject_scope_guard
   on public.learning_assignment_targets;
 create trigger learning_assignment_target_subject_scope_guard
-before insert or update of assignment_id, class_group_id
+before insert or update of assignment_id, class_group_id, student_user_id
 on public.learning_assignment_targets
 for each row
 execute function private.guard_learning_assignment_target_subject_scope();
@@ -145,7 +145,26 @@ begin
           join public.learning_topics topic on topic.id = objective.topic_id
           join public.learning_skills skill on skill.id = topic.skill_id
           where mapping.content_item_id = content_item.id
-            and skill.subject_id is distinct from v_subject_id
+            and (
+              objective.status <> 'active'
+              or topic.status <> 'active'
+              or skill.status <> 'active'
+              or skill.subject_id is distinct from v_subject_id
+              or not exists (
+                select 1
+                from public.learning_objective_alignments alignment
+                join public.learning_grade_levels grade
+                  on grade.id = alignment.grade_level_id
+                 and grade.curriculum_id = alignment.curriculum_id
+                 and grade.status = 'active'
+                join public.learning_curricula curriculum
+                  on curriculum.id = alignment.curriculum_id
+                 and curriculum.status = 'active'
+                where alignment.objective_id = objective.id
+                  and alignment.curriculum_id = v_curriculum_id
+                  and alignment.grade_level_id = v_grade_level_id
+              )
+            )
         )
     ) then
       raise exception 'Content attached to a subject-specific assignment must have active objective mappings for that same subject.';
