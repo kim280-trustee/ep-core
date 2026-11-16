@@ -212,3 +212,18 @@ Sources:
 - IPST, M6 Physics teacher guide Volume 6: https://uatscimath.ipst.ac.th/?catid=204&id=11559%3A6-6&view=article
 
 No M6 Physics outcomes are seeded in this checkpoint. Do not assign all Group 3 or Group 4 outcomes to M6 solely from their textbook volume; reconcile each official outcome number against the grade-labelled IPST manual and crosswalk first.
+
+
+## M6 verified staged release — Physics outcomes 2, 3 and 6
+
+The official IPST Physics curriculum-use manual explicitly labels these outcomes as M6 on the cited pages:
+
+| Grade | Outcome | Verified scope | Database objective | Printed page |
+|---|---:|---|---|---:|
+| M6 | 2 | Magnetic forces on moving charged particles and current-carrying conductors; circular motion in a magnetic field; parallel-wire forces | `M6-PHY-MAGNETIC-FORCES-02` | 171 |
+| M6 | 3 | Torque on current-carrying coils; galvanometer and DC motor operation | `M6-PHY-MOTORS-GALVANOMETERS-03` | 173 |
+| M6 | 6 | Three-phase AC generators and transformer operation/calculations | `M6-PHY-AC-GENERATORS-TRANSFORMERS-06` | 177 |
+
+Migration: `20261116170000_learning_physics_m6_magnetic_forces_motors_generators.sql`. Teacher pack: `M6-physics-magnetic-forces-motors-generators-teacher-starter-pack.md`. This batch adds three objectives, three lesson starters and nine answer-keyed questions. Source pages: https://www.scimath.org/e-books/8437/flippingbook/180/ (printed p. 171), /182/ (printed p. 173), and /186/ (printed p. 177).
+
+M6 outcomes 1, 4, 5 and 7 onward remain to be extracted and verified; no unverified outcome numbers are inferred from textbook chapter order.
