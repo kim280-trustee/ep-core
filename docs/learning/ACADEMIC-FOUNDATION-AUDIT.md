@@ -156,11 +156,15 @@ These results indicate the current pilot data satisfies the preflight conditions
 - Repository files and TypeScript database types were updated together.
 - Local lint/build have not been run in this environment. Run the consolidated local checks only after the full implementation batch is complete.
 
+## Read-only verification script
+
+A repeatable preflight query is committed at `supabase/verification/learning-academic-maths-preflight.sql`. It checks the same term, class, gradebook, membership and content-objective conditions used by the pending integrity migrations, then reports whether the Maths subject, curriculum and six grade levels are present. It performs SELECT statements only and does not apply migrations or change records.
+
 ## Recommended next sequence
 
-1. Inspect the actual Supabase migration history and live academic-year, term, class-group and gradebook records.
-2. Run the migration preflight queries against a safe database copy or staging environment.
-3. Review any preflight mismatches before applying the two audit migrations.
-4. Apply the curriculum and knowledge-graph migrations in timestamp order.
-5. Create the Maths pilot class under the existing school academic year and verify the English pilot remains unchanged.
+1. Run the read-only preflight script against the target Supabase project and inspect any non-zero issue counts.
+2. Review any preflight mismatches before applying pending migrations.
+3. Apply the branch migrations in timestamp order, first on a safe database copy or staging environment.
+4. Verify the Maths catalogue and knowledge graph, then create the Maths pilot class under the existing school academic year.
+5. Confirm the English pilot remains unchanged.
 6. Run the final local lint and build once the implementation batch is ready.
