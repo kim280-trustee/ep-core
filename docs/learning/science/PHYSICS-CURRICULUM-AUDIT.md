@@ -1,6 +1,6 @@
 # E&P Learning — Upper-secondary Physics Curriculum Audit
 
-**Status:** Official scope verified; grade-level extraction and staged seeding are in progress. Seventeen verified M4 outcomes (1–17) are now seeded; the full M4 outcome set is covered.
+**Status:** Official curriculum scope and grade allocation are being reconciled outcome-by-outcome. M4 is complete; M5 outcomes 1–12 and M6 Group 3 outcomes 1–8 plus Group 4 outcomes 1–14 and 16–17 are staged. The full 67-outcome national register is not yet complete.
 
 ## Official curriculum structure
 
@@ -286,3 +286,25 @@ Migration: `20261116174500_learning_physics_m6_thermal_fluids_gases_outcomes_1_9
 This confirms the Group 4 M6 outcome sequence 1–9. Group 4 outcomes 10 onward are treated separately and still require exact grade extraction. It does not imply that all M6 Physics outcomes or all 67 national Physics outcomes are complete.
 
 Official source: IPST, *Curriculum-use manual for Additional Physics*, M6 Group 4 outcomes table, printed pp. 37–43; official PDF: https://www.academic.obec.go.th/web/images/document/1760950054_d_1.pdf
+
+
+
+## M6 verified staged release — Group 4 modern/atomic/nuclear outcomes 10–14, 16–17
+
+The official IPST curriculum-use manual identifies Group 4 outcomes 10–14 and 16–17 in the M6 sequence. The official comparison crosswalk explicitly allocates Group 4 outcomes **15 and 18 to M5**, while outcomes 16 and 17 are M6. Those two M5 outcomes are therefore excluded from this M6 migration; grade allocation is not inferred from the group number or adjacent sequence.
+
+| Grade | Group 4 outcome | Verified scope | Database objective |
+|---|---:|---|---|
+| M6 | 10 | Planck hypothesis, Bohr atomic model and hydrogen spectral lines | `M6-PHY-10` |
+| M6 | 11 | Photoelectric effect; photon energy, photoelectron kinetic energy and work function | `M6-PHY-11` |
+| M6 | 12 | Wave-particle duality and de Broglie wavelength | `M6-PHY-12` |
+| M6 | 13 | Radioactivity; alpha, beta and gamma radiation | `M6-PHY-13` |
+| M6 | 14 | Activity, radioactive decay and half-life | `M6-PHY-14` |
+| M6 | 16 | Nuclear reactions, fission, fusion and nuclear energy | `M6-PHY-16` |
+| M6 | 17 | Uses and hazards of nuclear energy/radiation; radiation protection | `M6-PHY-17` |
+
+Migration: `20261116180000_learning_physics_m6_modern_atomic_nuclear_outcomes_10_14_16_17.sql`. Teacher pack: `M6-physics-modern-atomic-nuclear-teacher-starter-pack.md`. This batch adds seven M6 objectives, seven lesson starters and 21 answer-keyed questions.
+
+**Grade-allocation correction to preserve:** Group 4 outcomes 15 (nuclear forces, nuclear stability and binding energy) and 18 (particle-physics research and the Standard Model) are M5, not M6. They remain to be staged under M5 after the M5 Group 4 register is reconciled. Official sources: IPST curriculum-use manual, printed pp. 43–45; IPST official outcome-to-indicator comparison crosswalk; https://www.academic.obec.go.th/web/images/document/1760950054_d_1.pdf and https://www.ipst.ac.th/wp-content/uploads/2022/05/Comparison_PhysicalSciLI_and_PhysicsLO_02-1.pdf.
+
+M6 Group 4 now has 16 verified outcomes staged (1–14, 16–17), with 16 lesson starters and 48 answer-keyed questions across the two Group 4 teacher packs. M6 Group 3 has eight staged outcomes. Physics remains a staged curriculum release; no migration has been applied to the live Supabase database.
