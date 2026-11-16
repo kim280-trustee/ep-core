@@ -54,10 +54,6 @@ security definer
 set search_path = ''
 as $function$
 begin
-  if new.class_group_id is null then
-    return new;
-  end if;
-
   if exists (
     select 1
     from public.learning_assignments assignment
@@ -65,9 +61,20 @@ begin
       on class_subject.id = assignment.class_subject_id
     where assignment.id = new.assignment_id
       and assignment.class_subject_id is not null
-      and class_subject.class_group_id <> new.class_group_id
+      and (
+        (new.class_group_id is not null and class_subject.class_group_id <> new.class_group_id)
+        or (new.class_group_id is null and not exists (
+          select 1
+          from public.learning_class_memberships student_membership
+          where student_membership.user_id = new.student_user_id
+            and student_membership.class_group_id = class_subject.class_group_id
+            and student_membership.organization_id = assignment.organization_id
+            and student_membership.membership_type = 'student'
+            and student_membership.status = 'active'
+        ))
+      )
   ) then
-    raise exception 'A subject-specific assignment can only target the class that owns its selected subject.';
+    raise exception 'A subject-specific assignment can only target students enrolled in the class that owns its selected subject.';
   end if;
 
   return new;
@@ -93,12 +100,13 @@ security definer
 set search_path = ''
 as $function$
 declare
+  v_assignment_subject_id uuid;
   v_subject_id uuid;
   v_curriculum_id uuid;
   v_grade_level_id uuid;
 begin
-  select class_subject.subject_id, class_group.curriculum_id, class_group.grade_level_id
-    into v_subject_id, v_curriculum_id, v_grade_level_id
+  select assignment.class_subject_id, class_subject.subject_id, class_group.curriculum_id, class_group.grade_level_id
+    into v_assignment_subject_id, v_subject_id, v_curriculum_id, v_grade_level_id
   from public.learning_assignments assignment
   join public.learning_class_subjects class_subject
     on class_subject.id = assignment.class_subject_id
@@ -111,8 +119,12 @@ begin
   where assignment.id = new.assignment_id
     and assignment.organization_id = new.organization_id;
 
-  if v_subject_id is null then
+  if v_assignment_subject_id is null then
     return new;
+  end if;
+
+  if v_subject_id is null then
+    raise exception 'The assignment subject must remain active and linked to an active class.';
   end if;
 
   if new.item_type = 'content' then
