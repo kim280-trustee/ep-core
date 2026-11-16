@@ -1,6 +1,6 @@
 # E&P Learning — Upper-secondary Physics Curriculum Audit
 
-**Status:** Official scope verified; grade-level extraction and staged seeding are in progress. Eight verified M4 outcomes (8, 9, 11, 12, 14, 15, 16 and 17) are now seeded.
+**Status:** Official scope verified; grade-level extraction and staged seeding are in progress. Ten verified M4 outcomes (8, 9, 10, 11, 12, 13, 14, 15, 16 and 17) are now seeded.
 
 ## Official curriculum structure
 
@@ -99,3 +99,16 @@ The official IPST Physics curriculum-use manual identifies M4 outcome 13 as expl
 Migration: `20261116143000_learning_physics_m4_simple_machines.sql`. Companion pack: `M4-physics-simple-machines-teacher-starter-pack.md`, with one lesson starter and three answer-keyed questions.
 
 M4 now has nine verified seeded outcomes (8, 9, 11, 12, 13, 14, 15, 16 and 17), nine lesson starters and 27 answer-keyed questions. Outcomes 1–7 and 10 still need to be checked against the grade-labelled official source; no assumption is made that they all belong to M4. The migration is additive and idempotent; it has not been applied to Supabase.
+
+
+## Sixth verified knowledge-graph batch — M4 outcome 10
+
+The official IPST Physics curriculum-use manual confirms M4 outcome 10: analyse and calculate work done by a constant force using the equation and the area under a force–displacement graph, and explain and calculate average power. The outcome is explicitly labelled M4 in the manual (printed page 112).
+
+| Grade | Outcome | Verified scope | Database objective |
+|---|---:|---|---|
+| M4 | 10 | Work by a constant force, force–displacement graph area and average power | `M4-PHY-WORK-10` |
+
+Migration: `20261116144500_learning_physics_m4_work_power.sql`. Companion pack: `M4-physics-work-power-teacher-starter-pack.md`, with one lesson starter and three answer-keyed questions.
+
+M4 now has ten verified seeded outcomes (8, 9, 10, 11, 12, 13, 14, 15, 16 and 17), ten lesson starters and 30 answer-keyed questions. Outcomes 1–7 remain to be checked against the grade-labelled official source. The migration is additive and idempotent; it has not been applied to Supabase.
