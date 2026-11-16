@@ -180,3 +180,8 @@ A repeatable preflight query is committed at `supabase/verification/learning-aca
 20. `20261116101500_learning_biology_m4_cellular_foundations.sql` — seeds 17 M4 Biology additional-study outcomes in strand 1 and their grade alignments.\n21. `20261116103000_learning_biology_m4_genetics_evolution.sql` — seeds 15 M4 Biology additional-study outcomes in strand 2 and their grade alignments.\n22. `20261116104500_learning_biology_m5_plant_structure_function.sql` — seeds 18 M5 Biology additional-study outcomes in strand 3 and their grade alignments.
 
 These migrations follow the M1–M3 Science migrations. Upper-secondary learning outcomes are distinct from the M1–M3 basic-course indicators and must be recorded under their specialist subject tracks. The M4 Biology strand 1 and strand 2 migrations seed 32 M4 outcomes. The M5 Biology strand 3 migration adds 18 outcomes; the official curriculum has no M4 outcomes in strand 3. Remaining specialist-subject and grade coverage is still pending.
+
+
+23. `20261116110000_learning_biology_m5_animal_physiology.sql` — seeds 21 M5 Biology additional-study outcomes in strand 4 and their M5 grade alignments.
+
+The M5 Biology strand 4 migration follows the M5 plant-structure strand migration. The official curriculum contains no M4 outcomes for this strand; all 21 outcomes are aligned to M5. Its companion planning pack contains 21 lesson starters and 63 answer-keyed practice questions. Upper-secondary specialist Science migrations remain pending application to the live database.
