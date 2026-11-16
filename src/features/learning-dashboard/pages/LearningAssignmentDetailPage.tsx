@@ -35,8 +35,10 @@ export default function LearningAssignmentDetailPage() {
         learningContentService.listStudentResponses(user!.id),
       ]);
       const attemptIds = new Set(attempts.filter((attempt) => assessmentIds.includes(attempt.assessmentId)).map((attempt) => attempt.id));
+      const subjectNames=await learningAssignmentsService.listStudentAssignmentSubjects([result.assignment]);
       return {
         ...result,
+        subjectName:subjectNames[result.assignment.id]??null,
         assessmentResults: results.filter((item) => attemptIds.has(item.attemptId)).sort((a, b) => new Date(b.evaluatedAt).getTime() - new Date(a.evaluatedAt).getTime()),
         contentResponses: contentResponses.filter((response) => response.assignmentId === id),
       };
@@ -149,6 +151,7 @@ export default function LearningAssignmentDetailPage() {
         <h1 className="mt-1 text-2xl font-bold sm:text-3xl">
           {assignment.title}
         </h1>
+        {query.data.subjectName && <p className="mt-2 inline-flex rounded-full bg-white/10 px-3 py-1 text-sm font-semibold text-white">{query.data.subjectName}</p>}
 
         <p className="mt-2 max-w-2xl text-sm text-slate-300">
           {assignment.description ||
