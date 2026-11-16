@@ -1,8 +1,8 @@
 # E&P Learning — Science Rollout Readiness
 
 **Branch:** `paul/learning-academic-integrity-audit`  
-**Scope:** Thai core Science curriculum catalogue and M1 knowledge graph  
-**Status:** M1 catalogue and knowledge graph migrations and teacher starter pack committed; no migrations applied to Supabase and no school records created.
+**Scope:** Thai core Science curriculum catalogue and staged M1–M3 knowledge graphs  
+**Status:** M1 knowledge graph and M2–M3 biological-science staged batch committed; remaining M2–M6 indicators are pending. No migrations applied to Supabase and no school records created.
 
 ## M1 coverage delivered
 
@@ -58,3 +58,23 @@ Use teacher supervision for laboratory demonstrations. Do not ask students to ta
 
 Office of the Basic Education Commission, Ministry of Education, *Learning Standards and Indicators (Revised B.E. 2560)*, Science, pp. 21–94:  
 https://www.academic.obec.go.th/images/document/1580786506_d_1.pdf
+
+
+## M2–M3 biological-science staged release
+
+A second staged batch has been committed. It seeds only the verified biological-science indicators in these grades:
+
+| Grade | Standard | Indicators | Objectives |
+|---|---|---:|---:|
+| M2 | ว 1.2 | 17 | 17 |
+| M3 | ว 1.3 | 11 | 11 |
+| **Total** | | **28** | **28** |
+
+The companion teacher pack contains 28 lesson starters and 84 practice questions with answer keys. Topics include human body systems and reproductive health for M2, and genetics, biotechnology and biodiversity for M3. Reproductive-health content requires respectful, age-appropriate delivery and referral of medical questions to qualified professionals.
+
+### M2–M3 migrations and resources
+
+3. `20261116083000_learning_science_m2_m3_biology_knowledge_graph.sql` — adds 28 M2/M3 biological-science objectives and official curriculum-grade alignments.
+4. `docs/learning/science/M2-M3-science-biological-teacher-starter-pack.md` — 28 lesson starters and 84 practice questions with answers.
+
+This is not complete M2/M3 Science coverage. Remaining M2/M3 physical-science and Earth-and-space indicators are still to be researched and implemented. Technology standards ว 4.1 and ว 4.2 remain outside the Science workstream.
