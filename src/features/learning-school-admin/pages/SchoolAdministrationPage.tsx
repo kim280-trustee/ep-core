@@ -91,6 +91,9 @@ export default function SchoolAdministrationPage() {
   const [classForm, setClassForm] = useState<ClassForm>(emptyClassForm);
   const [editingClassId, setEditingClassId] = useState("");
   const [subjectToAdd, setSubjectToAdd] = useState("");
+  const [catalogCurriculumId, setCatalogCurriculumId] = useState("");
+  const [newSubjectForm, setNewSubjectForm] = useState({ code: "", name: "", description: "" });
+  const [catalogSubjectId, setCatalogSubjectId] = useState("");
   const [userToAdd, setUserToAdd] = useState("");
   const [selectedUserIds, setSelectedUserIds] = useState<string[]>([]);
   const [membershipType, setMembershipType] = useState<"student" | "teacher">("student");
@@ -126,6 +129,17 @@ export default function SchoolAdministrationPage() {
   const academicYears = workspace?.academicYears ?? [];
   const curricula = workspace?.curricula ?? [];
   const subjects = workspace?.subjects ?? [];
+  const catalogCurriculumIdValue = catalogCurriculumId && curricula.some((item) => item.id === catalogCurriculumId)
+    ? catalogCurriculumId
+    : curricula[0]?.id ?? "";
+  const catalogCurriculumSubjectsQuery = useQuery({
+    queryKey: ["school-admin", "catalog-curriculum-subjects", catalogCurriculumIdValue],
+    queryFn: () => learningAcademicService.listCurriculumSubjects(catalogCurriculumIdValue),
+    enabled: Boolean(catalogCurriculumIdValue) && canManage,
+  });
+  const catalogCurriculumSubjects = catalogCurriculumSubjectsQuery.data ?? [];
+  const linkedCatalogSubjectIds = new Set(catalogCurriculumSubjects.map((item) => item.subjectId));
+  const subjectsAvailableForCurriculum = subjects.filter((item) => !linkedCatalogSubjectIds.has(item.id));
   const allClassGroups = workspace?.classGroups ?? [];
   const academicYearId = selectedAcademicYearId && academicYears.some((year) => year.id === selectedAcademicYearId)
     ? selectedAcademicYearId
@@ -324,6 +338,40 @@ export default function SchoolAdministrationPage() {
     },
     onError: (error) => { setActionNotice(""); setActionError(errorText(error)); },
   });
+
+  const submitNewSubject = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const code = newSubjectForm.code.trim().toUpperCase();
+    const name = newSubjectForm.name.trim();
+    if (!code || !name) {
+      setActionError("Enter both a subject code and subject name.");
+      return;
+    }
+    if (subjects.some((item) => item.code.toUpperCase() === code || item.name.trim().toLowerCase() === name.toLowerCase())) {
+      setActionError("A subject with that code or name already exists.");
+      return;
+    }
+    try {
+      const created = await saveMutation.mutateAsync(() => learningAcademicService.createSubject({
+        code, name, description: newSubjectForm.description,
+      })) as { id: string };
+      setNewSubjectForm({ code: "", name: "", description: "" });
+      setCatalogSubjectId(created.id);
+      setActionNotice("Subject created. Select a curriculum below to include it in that curriculum.");
+    } catch { /* The mutation displays the failure above the forms. */ }
+  };
+
+  const addCatalogSubjectToCurriculum = async () => {
+    if (!catalogCurriculumIdValue || !catalogSubjectId || linkedCatalogSubjectIds.has(catalogSubjectId)) return;
+    try {
+      await saveMutation.mutateAsync(() => learningAcademicService.addSubjectToCurriculum({
+        curriculumId: catalogCurriculumIdValue,
+        subjectId: catalogSubjectId,
+      }));
+      setCatalogSubjectId("");
+      setActionNotice("Subject added to the selected curriculum.");
+    } catch { /* The mutation displays the failure above the forms. */ }
+  };
 
   const submitYear = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -554,6 +602,37 @@ export default function SchoolAdministrationPage() {
           {workspaceQuery.isError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-5 text-sm text-red-800">{t("schoolSetup.academicSetupLoadError")} <button type="button" className="font-semibold underline" onClick={() => void workspaceQuery.refetch()}>{t("schoolAdmin.tryAgain")}</button></div>}
           {workspace && (
             <>
+              <Section title="Subject catalogue" description="Create reusable subjects and include them in a curriculum before assigning them to classes.">
+                <div className="grid gap-5 lg:grid-cols-2">
+                  <form className="space-y-3 rounded-xl border border-slate-200 p-4" onSubmit={submitNewSubject}>
+                    <h3 className="font-semibold text-slate-900">Create a global subject</h3>
+                    <Field label="Subject code"><input className={fieldClass} required maxLength={30} value={newSubjectForm.code} onChange={(event) => setNewSubjectForm((current) => ({ ...current, code: event.target.value.toUpperCase().replace(/\\s+/g, "_") }))} placeholder="MATH" /></Field>
+                    <Field label="Subject name"><input className={fieldClass} required maxLength={100} value={newSubjectForm.name} onChange={(event) => setNewSubjectForm((current) => ({ ...current, name: event.target.value }))} placeholder="Mathematics" /></Field>
+                    <Field label="Description (optional)"><textarea className={fieldClass} rows={2} maxLength={500} value={newSubjectForm.description} onChange={(event) => setNewSubjectForm((current) => ({ ...current, description: event.target.value }))} /></Field>
+                    <button type="submit" className={buttonClass} disabled={saveMutation.isPending || !newSubjectForm.code.trim() || !newSubjectForm.name.trim()}>{saveMutation.isPending ? "Saving…" : "Create subject"}</button>
+                  </form>
+                  <div className="space-y-3 rounded-xl border border-slate-200 p-4">
+                    <h3 className="font-semibold text-slate-900">Add a subject to a curriculum</h3>
+                    <Field label="Curriculum"><select className={fieldClass} value={catalogCurriculumIdValue} onChange={(event) => { setCatalogCurriculumId(event.target.value); setCatalogSubjectId(""); }}><option value="">Choose curriculum</option>{curricula.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></Field>
+                    <div className="flex flex-wrap gap-2">
+                      <select aria-label="Subject to include in curriculum" className={fieldClass + " min-w-0 flex-1"} value={catalogSubjectId} onChange={(event) => setCatalogSubjectId(event.target.value)} disabled={!catalogCurriculumIdValue || catalogCurriculumSubjectsQuery.isPending || catalogCurriculumSubjectsQuery.isError}>
+                        <option value="">Choose an existing subject</option>
+                        {subjectsAvailableForCurriculum.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
+                      </select>
+                      <button type="button" className={buttonClass} disabled={!catalogSubjectId || !catalogCurriculumIdValue || catalogCurriculumSubjectsQuery.isPending || catalogCurriculumSubjectsQuery.isError || saveMutation.isPending} onClick={() => void addCatalogSubjectToCurriculum()}>{saveMutation.isPending ? "Saving…" : "Add to curriculum"}</button>
+                    </div>
+                    {catalogCurriculumSubjectsQuery.isError && <p role="alert" className="text-sm text-red-700">Curriculum subjects could not be loaded. <button type="button" className="font-semibold underline" onClick={() => void catalogCurriculumSubjectsQuery.refetch()}>Try again</button></p>}
+                    <div className="space-y-2">
+                      {catalogCurriculumSubjectsQuery.isPending ? <p className="text-sm text-slate-500">Loading curriculum subjects…</p> : catalogCurriculumSubjects.map((item) => {
+                        const subject = subjects.find((candidate) => candidate.id === item.subjectId);
+                        return <div key={item.id} className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 text-sm"><span className="font-medium text-slate-800">{subject?.name ?? item.name ?? "Subject"} <span className="text-xs text-slate-500">({subject?.code ?? item.code ?? "—"})</span></span><span className="text-xs text-slate-500">{item.status}</span></div>;
+                      })}
+                      {!catalogCurriculumSubjectsQuery.isPending && !catalogCurriculumSubjectsQuery.isError && !catalogCurriculumSubjects.length && <p className="text-sm text-slate-500">No subjects are linked to this curriculum yet.</p>}
+                    </div>
+                  </div>
+                </div>
+              </Section>
+
               <Section title={t("schoolSetup.academicYearsSection")} description={t("schoolSetup.academicYearsDescription")}>
                 <form className="grid gap-4 md:grid-cols-2 xl:grid-cols-4" onSubmit={submitYear}>
                   <Field label={t("schoolSetup.curriculum")}><select className={fieldClass} required value={yearCurriculumId} onChange={(event) => setYearForm((form) => ({ ...form, curriculumId: event.target.value }))}><option value="">{t("schoolSetup.chooseCurriculum")}</option>{curricula.map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}</select></Field>
