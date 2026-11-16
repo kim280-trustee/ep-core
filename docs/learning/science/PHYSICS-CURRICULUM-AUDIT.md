@@ -1,6 +1,6 @@
 # E&P Learning — Upper-secondary Physics Curriculum Audit
 
-**Status:** Official scope verified; grade-level extraction and staged seeding are in progress. Ten verified M4 outcomes (8, 9, 10, 11, 12, 13, 14, 15, 16 and 17) are now seeded.
+**Status:** Official scope verified; grade-level extraction and staged seeding are in progress. Seventeen verified M4 outcomes (1–17) are now seeded; the full M4 outcome set is covered.
 
 ## Official curriculum structure
 
@@ -112,3 +112,17 @@ The official IPST Physics curriculum-use manual confirms M4 outcome 10: analyse 
 Migration: `20261116144500_learning_physics_m4_work_power.sql`. Companion pack: `M4-physics-work-power-teacher-starter-pack.md`, with one lesson starter and three answer-keyed questions.
 
 M4 now has ten verified seeded outcomes (8, 9, 10, 11, 12, 13, 14, 15, 16 and 17), ten lesson starters and 30 answer-keyed questions. Outcomes 1–7 remain to be checked against the grade-labelled official source. The migration is additive and idempotent; it has not been applied to Supabase.
+
+
+## Seventh verified knowledge-graph batch — M4 outcomes 1–7
+
+The official IPST Physics curriculum-use manual places outcomes 1–7 under the M4 grade heading (printed pp. 17–20). The outcomes cover the nature and development of physics; measurement, uncertainty and graph interpretation; uniformly accelerated straight-line motion; resultant forces; Newton laws and free-body diagrams; universal gravitation and gravitational fields; and friction.
+
+| Grade | Outcomes | Database objectives |
+|---|---|---|
+| M4 | 1–2 | `M4-PHY-FOUNDATIONS-01`, `M4-PHY-MEASUREMENT-02` |
+| M4 | 3–7 | `M4-PHY-MOTION-03`, `M4-PHY-FORCES-04`, `M4-PHY-NEWTON-05`, `M4-PHY-GRAVITATION-06`, `M4-PHY-FRICTION-07` |
+
+Migration: `20261116150000_learning_physics_m4_foundations_motion_forces.sql`. Companion pack: `M4-physics-foundations-motion-forces-teacher-starter-pack.md`, with seven lesson starters and 21 answer-keyed questions.
+
+M4 outcomes 1–17 are now all seeded: 17 objectives, 17 lesson starters and 51 answer-keyed questions. This completes the verified M4 outcome set. The national Physics curriculum contains 67 additional-study outcomes; M5 and M6 grade-level extraction and implementation remain outstanding. The migration is additive and idempotent; it has not been applied to Supabase.
