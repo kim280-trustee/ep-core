@@ -107,7 +107,7 @@ export default function QuestionBankPage() {
   });
 
   const academicQuestionIds = useQuery({
-    queryKey: ["learning", "question-bank", "academic-questions", activeClassGroupId, selectedClass?.classGroup.curriculumId, selectedClass?.classGroup.gradeLevelId, selectedSubjectId, questions.data?.length, objectives.data?.length],
+    queryKey: ["learning", "question-bank", "academic-questions", activeClassGroupId, selectedClass?.classGroup.curriculumId, selectedClass?.classGroup.gradeLevelId, selectedSubjectId, questions.dataUpdatedAt, objectives.dataUpdatedAt],
     queryFn: async () => {
       const allowedObjectiveIds = new Set((objectives.data ?? []).map((objective) => objective.id));
       const matches = await Promise.all((questions.data ?? []).map(async (question) => {
