@@ -1,8 +1,8 @@
 # E&P Learning — Science Rollout Readiness
 
 **Branch:** `paul/learning-academic-integrity-audit`  
-**Scope:** Thai core Science curriculum catalogue and staged M1–M3 knowledge graphs  
-**Status:** M1–M3 core Science knowledge graphs and teacher starter packs committed; M4–M6 remain pending. No migrations applied to Supabase and no school records created.
+**Scope:** Thai core Science curriculum catalogue, M1–M3 core knowledge graphs, and staged M4–M6 additional Science subjects  
+**Status:** M1–M3 core Science knowledge graphs are complete. Upper-secondary subject tracks are catalogued and M4 Biology cellular foundations (17 outcomes) are committed. Remaining M4–M6 Biology, Chemistry, Physics and Earth/Space outcomes are pending. No migrations applied to Supabase and no school records created.
 
 ## M1 coverage delivered
 
@@ -17,13 +17,15 @@
 
 The M1 teacher pack contains 43 lesson starters and 129 practice questions with answer keys. Each lesson identifies the corresponding official Thai indicator code.
 
-## M2 and M3 coverage\n\n| Grade | Official core Science indicators | Seeded objectives | Status |\n|---|---:|---:|---|\n| M2 | 48 | 48 | Complete |\n| M3 | 51 | 51 | Complete |\n| **M2–M3 total** | **99** | **99** | **Complete** |\n\nM3 coverage is 11 indicators in ว 1.3, eight in ว 2.1, 21 in ว 2.3, four in ว 3.1 and seven in ว 3.2. The M2–M3 packs together contain 99 lesson starters and 297 practice questions with answer keys.\n\n## Curriculum scope
+## M2 and M3 coverage
 
-The new catalogue uses subject code `SCI` and curriculum code `TH-SCI-M1-M6`, aligned to the Thai Basic Education Core Curriculum B.E. 2551 (2008), revised B.E. 2560 (2017).
+| Grade | Official core Science indicators | Seeded objectives | Status |\n|---|---:|---:|---|\n| M2 | 48 | 48 | Complete |\n| M3 | 51 | 51 | Complete |\n| **M2–M3 total** | **99** | **99** | **Complete** |\n\nM3 coverage is 11 indicators in ว 1.3, eight in ว 2.1, 21 in ว 2.3, four in ว 3.1 and seven in ว 3.2. The M2–M3 packs together contain 99 lesson starters and 297 practice questions with answer keys.\n\n## Curriculum scope
+
+The lower-secondary core catalogue uses subject code `SCI` and curriculum code `TH-SCI-M1-M6`, aligned to the Thai Basic Education Core Curriculum B.E. 2551 (2008), revised B.E. 2560 (2017). The official upper-secondary section is structured as additional learning outcomes in four distinct strands. These are represented by separate subject codes `BIOLOGY`, `CHEMISTRY`, `PHYSICS` and `EARTH_SPACE`, linked to the same Thai curriculum catalogue and M4–M6 grade levels. This avoids incorrectly treating upper-secondary additional learning outcomes as lower-secondary core indicators or combining four specialist subjects into one generic Science subject.
 
 This Science subject covers the core Science standards ว 1.x, ว 2.x and ว 3.x. Technology standards ว 4.1 and ว 4.2 are intentionally reserved for the future Design & Technology / Computer Studies workstream, so the same official indicators are not duplicated across subjects.
 
-The curriculum catalogue contains M1–M6 grade levels. M1 is fully seeded for its 43 core Science indicators. M2 is fully seeded for all 48 core Science indicators across ว 1.2, ว 2.2, ว 2.3 and ว 3.2. M3 is now fully seeded for all 51 core Science indicators: 11 biological-science indicators in ว 1.3, eight materials/chemical-reaction indicators in ว 2.1, 21 energy/light indicators in ว 2.3, four astronomy indicators in ว 3.1 and seven Earth-system indicators in ว 3.2. M4–M6 indicators remain future implementation work.
+The curriculum catalogue contains M1–M6 grade levels. M1 is fully seeded for its 43 core Science indicators. M2 is fully seeded for all 48 core Science indicators across ว 1.2, ว 2.2, ว 2.3 and ว 3.2. M3 is now fully seeded for all 51 core Science indicators: 11 biological-science indicators in ว 1.3, eight materials/chemical-reaction indicators in ว 2.1, 21 energy/light indicators in ว 2.3, four astronomy indicators in ว 3.1 and seven Earth-system indicators in ว 3.2. M4–M6 additional learning outcomes are being implemented separately by specialist subject and grade.
 
 ## Migrations
 
@@ -31,7 +33,7 @@ The curriculum catalogue contains M1–M6 grade levels. M1 is fully seeded for i
 2. `20261116081500_learning_science_m1_knowledge_graph.sql` — adds five Science skills, 17 topics, 43 M1 objectives and official curriculum-grade alignments.
 3. `20261116083000_learning_science_m2_m3_biology_knowledge_graph.sql` — adds 17 M2 and 11 M3 biological-science objectives.
 4. `20261116084500_learning_science_m2_physical_science_knowledge_graph.sql` — adds 15 M2 force objectives and six M2 work/energy objectives.
-5. `20261116090000_learning_science_m2_earth_space_knowledge_graph.sql` — adds ten M2 Earth and Space Science objectives.\n6. `20261116091500_learning_science_m3_matter_chemistry_knowledge_graph.sql` — adds eight M3 materials and chemical-reaction objectives.\n7. `20261116093000_learning_science_m3_energy_earth_space_knowledge_graph.sql` — adds 21 M3 energy/light, four astronomy and seven Earth-system objectives.
+5. `20261116090000_learning_science_m2_earth_space_knowledge_graph.sql` — adds ten M2 Earth and Space Science objectives.\n6. `20261116091500_learning_science_m3_matter_chemistry_knowledge_graph.sql` — adds eight M3 materials and chemical-reaction objectives.\n7. `20261116093000_learning_science_m3_energy_earth_space_knowledge_graph.sql` — adds 21 M3 energy/light, four astronomy and seven Earth-system objectives.\n8. `20261116100000_learning_science_upper_secondary_subject_tracks.sql` — adds upper-secondary Biology, Chemistry, Physics and Earth/Space subject catalogue entries.\n9. `20261116101500_learning_biology_m4_cellular_foundations.sql` — adds 17 M4 Biology additional-study outcomes.
 
 Apply these after the existing pending academic foundation and Maths migrations, in timestamp order. The seeds are idempotent upserts and require the active Thai Basic Education system.
 
@@ -40,7 +42,7 @@ Apply these after the existing pending academic foundation and Maths migrations,
 The existing generic Teacher Content Create, Teacher Content Library and Question Bank workflows support the new subject and curriculum dimensions. No Science-only authoring module is needed.
 
 After migrations are applied:
-- Select `TH-SCI-M1-M6`, the matching grade (`M1`, `M2` or `M3`) and subject `SCI` when creating Science content.
+- Select `TH-SCI-M1-M6`, the matching grade and subject `SCI` for M1–M3 core Science. For M4–M6, select the relevant specialist subject (`BIOLOGY`, `CHEMISTRY`, `PHYSICS` or `EARTH_SPACE`) and matching upper-secondary grade.
 - M2 has complete core Science coverage. M3 now has all 51 core Science objectives seeded across biological science, physical science, astronomy and Earth science.
 - Link each lesson and question to its exact objective code.
 - Save as draft and have a teacher review scientific accuracy, safety and suitability before publishing.
@@ -54,7 +56,7 @@ Use teacher supervision for laboratory demonstrations. Do not ask students to ta
 
 - No Supabase migration has been applied.
 - No live school, class, class-subject, teacher, student, content or assessment record has been created.
-- All M1–M3 core Science knowledge graphs are seeded. M4–M6 objectives and teacher packs have not yet been implemented.
+- All M1–M3 core Science knowledge graphs are seeded. M4 Biology strand 1 outcomes 1–17 are seeded with a teacher starter pack. Other M4 Biology strands, all Chemistry/Physics/Earth-Space outcomes, and M5–M6 outcomes remain pending.
 - Technology standards ว 4.1 and ว 4.2 are outside this Science batch.
 - No local lint/build result is claimed; consolidated verification remains pending.
 
@@ -81,3 +83,10 @@ The M2–M3 companion pack contains 67 lesson starters and 201 practice question
 8. `docs/learning/science/M2-M3-science-biological-teacher-starter-pack.md` — includes 48 M2 lessons and 19 M3 lessons across biological science and materials/chemical reactions, with three answer-keyed practice questions per lesson.\n9. `docs/learning/science/M3-science-energy-earth-space-teacher-starter-pack.md` — includes 32 M3 lessons across electricity, light, astronomy, rocks, weather and natural hazards, with three answer-keyed practice questions per lesson.
 
 M2 core Science coverage is complete for its 48 official Science indicators. M3 core Science is complete. The remaining Science rollout is M4–M6; Technology standards ว 4.1 and ว 4.2 remain outside this subject. Technology standards ว 4.1 and ว 4.2 remain outside the Science workstream.
+
+
+## Upper-secondary staged release — M4 Biology
+
+The official 2017 revised curriculum uses additional learning outcomes for upper-secondary specialist Science, rather than the M1–M3 basic-course indicator model. A catalogue migration adds four distinct subject tracks: Biology, Chemistry, Physics, and Earth, Astronomy and Space Science. The first knowledge-graph batch seeds the 17 M4 Biology outcomes in additional Biology strand 1 (nature of life, scientific method, biomolecules, enzymes, microscopy, cell structure and transport, cell division and cellular respiration).
+
+The M4 Biology starter pack contains 17 lesson starters and 51 practice questions with answer keys. These are teacher planning resources, not published app content. Source: OBEC/IPST 2017 revised curriculum, Additional Biology, pp. 134–139.
