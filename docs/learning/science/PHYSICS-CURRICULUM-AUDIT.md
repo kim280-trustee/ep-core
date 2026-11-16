@@ -1,6 +1,6 @@
 # E&P Learning — Upper-secondary Physics Curriculum Audit
 
-**Status:** Official curriculum scope and grade allocation are being reconciled outcome-by-outcome. M4 is complete; M5 outcomes 1–12 and M6 Group 3 outcomes 1–8 plus Group 4 outcomes 1–14 and 16–17 are staged. The full 67-outcome national register is not yet complete.
+**Status:** Official curriculum scope and grade allocation are being reconciled outcome-by-outcome. M4 is complete; M5 outcomes 1–12 plus Group 4 outcomes 15 and 18, and M6 Group 3 outcomes 1–8 plus Group 4 outcomes 1–14 and 16–17, are staged. The full 67-outcome national register is not yet complete.
 
 ## Official curriculum structure
 
@@ -308,3 +308,12 @@ Migration: `20261116180000_learning_physics_m6_modern_atomic_nuclear_outcomes_10
 **Grade-allocation correction to preserve:** Group 4 outcomes 15 (nuclear forces, nuclear stability and binding energy) and 18 (particle-physics research and the Standard Model) are M5, not M6. They remain to be staged under M5 after the M5 Group 4 register is reconciled. Official sources: IPST curriculum-use manual, printed pp. 43–45; IPST official outcome-to-indicator comparison crosswalk; https://www.academic.obec.go.th/web/images/document/1760950054_d_1.pdf and https://www.ipst.ac.th/wp-content/uploads/2022/05/Comparison_PhysicalSciLI_and_PhysicsLO_02-1.pdf.
 
 M6 Group 4 now has 16 verified outcomes staged (1–14, 16–17), with 16 lesson starters and 48 answer-keyed questions across the two Group 4 teacher packs. M6 Group 3 has eight staged outcomes. Physics remains a staged curriculum release; no migration has been applied to the live Supabase database.
+
+
+## M5 verified staged release — Group 4 outcomes 15 and 18
+
+The official IPST outcome-to-indicator comparison crosswalk explicitly allocates Group 4 outcome 15 (nuclear forces, nuclear stability and binding energy) and outcome 18 (particle-physics research, the Standard Model and applications) to M5. These are not M6 outcomes, even though adjacent Group 4 outcomes 16 and 17 are assigned to M6.
+
+Migration: `20261116181500_learning_physics_m5_group4_outcomes_15_18.sql`. Teacher pack: `M5-physics-nuclear-structure-particle-physics-teacher-starter-pack.md`. This batch adds two M5 objectives, two lesson starters and six answer-keyed questions.
+
+M5 Physics now has 14 staged outcomes across Group 2 outcomes 1–12 and Group 4 outcomes 15 and 18. M6 Group 4 remains 16 outcomes (1–14, 16–17). The official crosswalk is the grade-allocation authority for the two non-contiguous M5 outcomes. No migrations have been applied to live Supabase.
