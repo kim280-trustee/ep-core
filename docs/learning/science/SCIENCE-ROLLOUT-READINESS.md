@@ -270,7 +270,7 @@ The full Earth/Space audit is in `EARTH-SPACE-CURRICULUM-AUDIT.md`. This does no
 
 The official IPST manual crosswalk (printed pp. 31–32) explicitly assigns the astronomy sequence to M6. Outcomes 1–19 are staged in `20261116190000_learning_earth_space_m6_astronomy_space.sql`. The companion `M6-earth-space-astronomy-space-teacher-starter-pack.md` contains 19 lesson starters and 57 answer-keyed questions. The complete Earth/Space audit is in `EARTH-SPACE-CURRICULUM-AUDIT.md`.
 
-Current upper-secondary Earth/Space staging: M5 atmosphere/oceans/weather/climate 13 outcomes; M6 astronomy/space 19 outcomes; total 32 outcomes, 32 starters and 96 questions. M4 geology remains to be audited and staged. No live Supabase migrations have been applied.
+Historical checkpoint: M5 atmosphere/oceans/weather/climate 13 outcomes and M6 astronomy/space 19 outcomes were staged first (32 outcomes, 32 starters and 96 questions). The subsequent M4 geology batch completed the subject; see the Earth/Space completion section below. No live Supabase migrations have been applied.
 
 
 ## Upper-secondary Earth, Astronomy and Space completion
