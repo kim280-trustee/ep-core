@@ -156,3 +156,10 @@ This staged release currently contains three verified M5 outcomes, three objecti
 The official IPST manual explicitly labels outcome 6 on printed p. 136 and outcome 7 on printed p. 138 as M5 Physics. Outcome 6 covers sound intensity, sound level, hearing, sound quality and noise pollution, including calculations. Outcome 7 covers resonance of air in a pipe open at one end, beats, standing sound waves, Doppler effect, shock waves, calculations and applications.
 
 Migration: `20261116160000_learning_physics_m5_sound_outcomes_6_7.sql`. Teacher pack: `M5-physics-sound-hearing-teacher-starter-pack.md`. This batch adds two objectives and two lesson starters with six answer-keyed questions. M5 outcomes 4–5 and 8–12 remain to be reconciled and seeded. Official source pages: https://www.scimath.org/e-books/8437/flippingbook/145/ and https://www.scimath.org/e-books/8437/flippingbook/147/.
+
+
+## M5 verified staged release — outcomes 8 and 12 (light)
+
+The official IPST Physics curriculum-use manual explicitly labels M5 outcome 8 on printed p. 141 and M5 outcome 12 on printed p. 147. Outcome 8 covers interference and diffraction of light using double slits, diffraction gratings and single slits. Outcome 12 covers natural optical phenomena including rainbows, halos, mirages and sky colours.
+
+Migration: `20261116161500_learning_physics_m5_light_outcomes_8_12.sql`. Teacher pack: `M5-physics-light-optics-teacher-starter-pack.md`. This batch adds two objectives, two lesson starters and six answer-keyed questions. M5 outcomes 4–5 and 9–11 remain to be reconciled against the official manual; the outcome register is intentionally non-contiguous until verification is complete. Official sources: https://www.scimath.org/e-books/8437/flippingbook/150/ and https://www.scimath.org/e-books/8437/flippingbook/156/.
