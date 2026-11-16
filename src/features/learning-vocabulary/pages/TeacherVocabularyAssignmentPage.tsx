@@ -88,7 +88,7 @@ export default function TeacherVocabularyAssignmentPage() {
   const objectives = objectivesQuery.data ?? [];
 
   const createMutation = useMutation({
-    mutationFn: async () => {
+    mutationFn: async ({ assignmentCode, assessmentCode }: { assignmentCode: string; assessmentCode: string }) => {
       if (!user?.id || !selectedClass || !organizationId || !tenantId) {
         throw new Error("Choose an active teaching class first.");
       }
@@ -109,8 +109,6 @@ export default function TeacherVocabularyAssignmentPage() {
       }
       const normalizedTitle = title.trim();
       if (!normalizedTitle) throw new Error("Enter an assignment title.");
-      const assignmentCode = "VOC-" + Date.now().toString(36).toUpperCase();
-      const assessmentCode = "VOCQ-" + Date.now().toString(36).toUpperCase();
       if ((assignmentsQuery.data ?? []).some((item) => item.code.toUpperCase() === assignmentCode)) {
         throw new Error("A generated assignment code already exists. Please retry.");
       }
@@ -351,7 +349,7 @@ export default function TeacherVocabularyAssignmentPage() {
           <p className="font-semibold text-slate-900">Publish the complete workflow</p>
           <p className="mt-1 text-sm text-slate-500">Creates four objective-linked questions, publishes the assessment, then creates and publishes the class assignment.</p>
         </div>
-        <button type="button" className={primaryClass} disabled={createMutation.isPending || selectedEntries.length !== 4 || !title.trim() || !objectiveId || !organizationId || !selectedClassSubject || !curriculumId || !gradeLevelId || entriesQuery.isPending || objectivesQuery.isPending || objectivesQuery.isError} onClick={() => { setNotice(null); createMutation.mutate(); }}>
+        <button type="button" className={primaryClass} disabled={createMutation.isPending || selectedEntries.length !== 4 || !title.trim() || !objectiveId || !organizationId || !selectedClassSubject || !curriculumId || !gradeLevelId || entriesQuery.isPending || objectivesQuery.isPending || objectivesQuery.isError} onClick={() => { const codeSuffix = Date.now().toString(36).toUpperCase(); setNotice(null); createMutation.mutate({ assignmentCode: "VOC-" + codeSuffix, assessmentCode: "VOCQ-" + codeSuffix }); }}>
           <Languages size={17} /> {createMutation.isPending ? "Creating and publishing…" : "Create graded assignment"}
         </button>
       </section>
