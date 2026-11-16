@@ -66,9 +66,14 @@ export default function TeacherContentLibraryPage() {
     staleTime: 5 * 60 * 1000,
   });
   const objectiveAlignments = useQuery({
-    queryKey: ["learning", "content-library-objective-alignments", curriculumId, gradeLevelId],
-    queryFn: () => learningContentService.listAlignments(undefined, curriculumId || undefined, gradeLevelId || undefined),
+    queryKey: ["learning", "content-library-objective-alignments", curriculumId],
+    queryFn: () => learningContentService.listAlignments(undefined, curriculumId || undefined),
     enabled: Boolean(user?.id && curriculumId),
+  });
+  const gradeObjectiveAlignments = useQuery({
+    queryKey: ["learning", "content-library-grade-objective-alignments", curriculumId, gradeLevelId],
+    queryFn: () => learningContentService.listAlignments(undefined, curriculumId, gradeLevelId),
+    enabled: Boolean(user?.id && curriculumId && gradeLevelId),
   });
   const contentObjectiveMap = useQuery({
     queryKey: ["learning", "content-library-objectives", organizationId, content.data?.map((item) => item.id).join(",")],
@@ -107,6 +112,10 @@ export default function TeacherContentLibraryPage() {
     () => new Set((objectiveAlignments.data ?? []).map((alignment) => alignment.objectiveId)),
     [objectiveAlignments.data],
   );
+  const gradeObjectiveIds = useMemo(
+    () => new Set((gradeObjectiveAlignments.data ?? []).map((alignment) => alignment.objectiveId)),
+    [gradeObjectiveAlignments.data],
+  );
   const filteredContent = useMemo(() => {
     const query = search.trim().toLowerCase();
     return (content.data ?? []).filter((item) => {
@@ -117,10 +126,10 @@ export default function TeacherContentLibraryPage() {
       const subjectIds = academicSubjectIdsByContent.get(item.id) ?? new Set<string>();
       const matchesSubject = !subjectId || subjectIds.has(subjectId);
       const matchesCurriculum = !curriculumId || mappedObjectiveIds.some((id) => curriculumObjectiveIds.has(id));
-        const matchesGrade = !gradeLevelId || (mappedObjectiveIds.length > 0 && curriculumObjectiveIds.size > 0 && mappedObjectiveIds.some((id) => curriculumObjectiveIds.has(id)));
+      const matchesGrade = !gradeLevelId || mappedObjectiveIds.some((id) => gradeObjectiveIds.has(id));
       return matchesSearch && matchesStatus && matchesType && matchesSubject && matchesCurriculum && matchesGrade;
     });
-  }, [content.data, contentObjectiveMap.data, academicSubjectIdsByContent, curriculumObjectiveIds, search, status, contentType, subjectId, curriculumId, gradeLevelId]);
+  }, [content.data, contentObjectiveMap.data, academicSubjectIdsByContent, curriculumObjectiveIds, gradeObjectiveIds, search, status, contentType, subjectId, curriculumId, gradeLevelId]);
 
   function changeCurriculum(value: string) {
     setCurriculumId(value);
@@ -130,9 +139,10 @@ export default function TeacherContentLibraryPage() {
 
   const academicFiltersPending = (content.isSuccess && contentObjectiveMap.isPending) ||
     (Boolean(curriculumId) && (objectiveAlignments.isPending || subjects.isPending || gradeLevels.isPending)) ||
+    (Boolean(gradeLevelId) && gradeObjectiveAlignments.isPending) ||
     (Boolean(subjectId) && academicCatalog.isPending);
   const academicFiltersError = curricula.isError || subjects.isError || gradeLevels.isError || academicCatalog.isError ||
-    (Boolean(curriculumId) && objectiveAlignments.isError) || contentObjectiveMap.isError;
+    (Boolean(curriculumId) && objectiveAlignments.isError) || (Boolean(gradeLevelId) && gradeObjectiveAlignments.isError) || contentObjectiveMap.isError;
 
   if (!user) return <EmptyState text={t("contentLibrary.signIn")} />;
   if (classes.isPending) return <div className="h-64 animate-pulse rounded-2xl bg-slate-200" />;
