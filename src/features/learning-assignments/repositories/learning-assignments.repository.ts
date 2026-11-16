@@ -23,7 +23,21 @@ async function listAccessibleTargets(studentUserId:string){
   return [...targetsByAssignment.values()].map(mapT);
 }
 export const learningAssignmentsRepository={
- async listStudentAssignments(studentUserId:string){const targets=await listAccessibleTargets(studentUserId);const ids=[...new Set(targets.map(target=>target.assignmentId))];if(!ids.length)return[];const now=new Date().toISOString();const{data,error}=await supabase.from("learning_assignments").select("*").eq("status","published").in("id",ids).or(`available_from.is.null,available_from.lte.${now}`).order("due_at",{ascending:true,nullsFirst:false});if(error)throw error;return(data??[]).map(mapA);},
+ async listStudentAssignments(studentUserId:string){
+  const targets=await listAccessibleTargets(studentUserId);const ids=[...new Set(targets.map(target=>target.assignmentId))];if(!ids.length)return[];
+  const now=new Date().toISOString();const{data,error}=await supabase.from("learning_assignments").select("*").eq("status","published").in("id",ids).or(`available_from.is.null,available_from.lte.${now}`).order("due_at",{ascending:true,nullsFirst:false});if(error)throw error;
+  const assignments=(data??[]).map(mapA);
+  const scopedAssignments=assignments.filter(assignment=>Boolean(assignment.classSubjectId));
+  if(!scopedAssignments.length)return assignments;
+  const{data:memberships,error:membershipError}=await supabase.from("learning_class_memberships").select("class_group_id").eq("user_id",studentUserId).eq("membership_type","student").eq("status","active");
+  if(membershipError)throw membershipError;
+  const classGroupIds=[...new Set((memberships??[]).map(row=>row.class_group_id).filter((id):id is string=>Boolean(id)))];
+  if(!classGroupIds.length)return assignments.filter(assignment=>!assignment.classSubjectId);
+  const{data:activeClassSubjects,error:subjectError}=await supabase.from("learning_class_subjects").select("id").in("class_group_id",classGroupIds).eq("status","active");
+  if(subjectError)throw subjectError;
+  const allowedSubjectIds=new Set((activeClassSubjects??[]).map(row=>row.id));
+  return assignments.filter(assignment=>!assignment.classSubjectId||allowedSubjectIds.has(assignment.classSubjectId));
+ },
  async listStudentAssignmentSubjects(assignments:LearningAssignment[]){
   const classSubjectIds=[...new Set(assignments.map(assignment=>assignment.classSubjectId).filter((id):id is string=>Boolean(id)))];
   if(!classSubjectIds.length)return{} as Record<string,string>;
