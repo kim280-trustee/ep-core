@@ -62,6 +62,50 @@ export default function TeacherContentDetailPage() {
     enabled: Boolean(id && organizationId),
   });
 
+  const objectiveAcademicContext = useQuery({
+    queryKey: ["learning", "content-objective-academic-context", id],
+    queryFn: async () => {
+      const [subjects, curricula, gradeLevels, skills, topics, learningObjectives, alignments] = await Promise.all([
+        learningContentService.listSubjects(),
+        learningContentService.listCurricula(),
+        learningContentService.listGradeLevels(),
+        learningContentService.listSkills(),
+        learningContentService.listTopics(),
+        learningContentService.listObjectives(),
+        learningContentService.listAlignments(),
+      ]);
+      return { subjects, curricula, gradeLevels, skills, topics, learningObjectives, alignments };
+    },
+    enabled: Boolean(id && organizationId && objectives.data),
+    staleTime: 5 * 60 * 1000,
+  });
+
+  const objectiveAcademicDetails = useMemo(() => {
+    const context = objectiveAcademicContext.data;
+    if (!context) return [];
+    const subjectById = new Map(context.subjects.map((entry) => [entry.id, entry]));
+    const curriculumById = new Map(context.curricula.map((entry) => [entry.id, entry]));
+    const gradeById = new Map(context.gradeLevels.map((entry) => [entry.id, entry]));
+    const skillById = new Map(context.skills.map((entry) => [entry.id, entry]));
+    const topicById = new Map(context.topics.map((entry) => [entry.id, entry]));
+    const objectiveById = new Map(context.learningObjectives.map((entry) => [entry.id, entry]));
+
+    return (objectives.data ?? []).map((link) => {
+      const objective = objectiveById.get(link.objectiveId);
+      const topic = objective ? topicById.get(objective.topicId) : undefined;
+      const skill = topic ? skillById.get(topic.skillId) : undefined;
+      const subject = skill ? subjectById.get(skill.subjectId) : undefined;
+      const alignments = context.alignments
+        .filter((alignment) => alignment.objectiveId === link.objectiveId)
+        .map((alignment) => ({
+          curriculum: curriculumById.get(alignment.curriculumId),
+          grade: gradeById.get(alignment.gradeLevelId),
+        }))
+        .filter((alignment) => alignment.curriculum && alignment.grade);
+      return { ...link, objective, topic, skill, subject, alignments };
+    });
+  }, [objectives.data, objectiveAcademicContext.data]);
+
   const latestVersion = versions.data?.[0];
 
   const latestBody = useMemo(() => {
@@ -217,7 +261,7 @@ export default function TeacherContentDetailPage() {
 
   if (!user) return <Message text="Sign in to manage learning content." />;
   if (!id) return <Message text="No content item was selected." />;
-  if (classes.isPending || content.isPending || versions.isPending || objectives.isPending) {
+  if (classes.isPending || content.isPending || versions.isPending || objectives.isPending || objectiveAcademicContext.isPending) {
     return <div className="h-96 animate-pulse rounded-2xl bg-slate-200" />;
   }
   if (classes.isError || !organizationId || content.isError || versions.isError || objectives.isError || !content.data) {
@@ -279,14 +323,32 @@ export default function TeacherContentDetailPage() {
 
       {objectives.data?.length ? (
         <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <h2 className="font-semibold text-slate-900">{t("contentDetail.objectives")}</h2>
-          <div className="mt-4 space-y-2">
-            {objectives.data.map((link) => (
-              <div key={link.objectiveId} className="rounded-xl bg-slate-50 px-4 py-3 text-sm text-slate-700">
-                {t("contentDetail.objective")} {link.sequenceNo}: {link.objectiveId}
-              </div>
-            ))}
-          </div>
+          <h2 className="font-semibold text-slate-900">{t("contentDetail.objectives")} and academic alignment</h2>
+          {objectiveAcademicContext.isError ? (
+            <p role="alert" className="mt-3 text-sm text-red-700">Subject and curriculum details could not be loaded. Refresh the page to verify this content's academic alignment.</p>
+          ) : (
+            <div className="mt-4 space-y-3">
+              {objectiveAcademicDetails.map((link) => (
+                <div key={link.objectiveId} className="rounded-xl bg-slate-50 px-4 py-3">
+                  <p className="font-semibold text-slate-900">{link.objective?.name ?? "Learning objective unavailable"}</p>
+                  <p className="mt-1 text-xs text-slate-600">
+                    {[link.subject?.name, link.skill?.name, link.topic?.name, link.objective?.code].filter(Boolean).join(" · ") || link.objectiveId}
+                  </p>
+                  {link.alignments.length ? (
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {link.alignments.map((alignment) => (
+                        <span key={alignment.curriculum!.id + alignment.grade!.id} className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs text-slate-600">
+                          {alignment.curriculum!.name} · {alignment.grade!.name}
+                        </span>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="mt-2 text-xs font-medium text-amber-700">No active curriculum and grade alignment was found.</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
         </section>
       ) : (
         <section className="rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm text-amber-900">
