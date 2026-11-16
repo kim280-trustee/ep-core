@@ -2,7 +2,7 @@
 
 **Branch:** `paul/learning-academic-integrity-audit`  
 **Scope:** Thai core Science curriculum catalogue, M1–M3 core knowledge graphs, and staged M4–M6 additional Science subjects  
-**Status:** M1–M3 core Science knowledge graphs are complete. Upper-secondary subject tracks are catalogued. M4 Biology strands 1–2 (32 outcomes), M5 Biology plant-structure strand 3 (18 outcomes), M5 Biology animal-physiology strand 4 (21 outcomes) and M6 Biology animal-physiology strand 4 (19 outcomes) and M6 Biology ecology strand 5 (13 outcomes) are committed: 103 Biology outcomes total. Remaining M5–M6 Biology, Chemistry, Physics and Earth/Space outcomes are pending; M4 Biology strands 3–5 and M5 Biology strand 5 have no outcomes in the official curriculum. No migrations applied to Supabase and no school records created.
+**Status:** M1–M3 core Science knowledge graphs are complete. Upper-secondary subject tracks are catalogued. M4 Biology strands 1–2 (32 outcomes), M5 Biology plant-structure strand 3 (18 outcomes), M5 Biology animal-physiology strand 4 (21 outcomes), M6 Biology animal-physiology strand 4 (19 outcomes) and M6 Biology ecology strand 5 (13 outcomes) are committed: 103 Biology outcomes total. Remaining M5–M6 Biology, Chemistry, Physics and Earth/Space outcomes are pending; M4 Biology strands 3–5 and M5 Biology strand 5 have no outcomes in the official curriculum. No migrations applied to Supabase and no school records created.
 
 ## M1 coverage delivered
 
