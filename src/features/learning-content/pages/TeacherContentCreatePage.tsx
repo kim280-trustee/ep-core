@@ -154,7 +154,20 @@ export default function TeacherContentCreatePage() {
       return;
     }
 
-    if (!alignedObjectiveIds.has(objectiveId)) {
+    if (
+      selectedSkill.subjectId !== subjectId ||
+      selectedTopic.skillId !== skillId ||
+      selectedObjective.topicId !== topicId
+    ) {
+      setError(t("contentCreate.alignmentUnavailable"));
+      return;
+    }
+
+    if (
+      !selectedAlignment ||
+      selectedAlignment.curriculumId !== curriculumId ||
+      selectedAlignment.gradeLevelId !== gradeLevelId
+    ) {
       setError(t("contentCreate.objectiveAlignment"));
       return;
     }
