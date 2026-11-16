@@ -86,3 +86,16 @@ Two further M4 outcomes have been checked against the IPST Physics curriculum-us
 Migration: `20261116141500_learning_physics_m4_projectile_circular_motion.sql`. Companion pack: `M4-physics-projectile-circular-motion-teacher-starter-pack.md`, with two lesson starters and six answer-keyed questions.
 
 M4 now has eight verified seeded outcomes (8, 9, 11, 12, 14, 15, 16 and 17), eight lesson starters and 24 answer-keyed questions. This remains a partial Physics release: the national curriculum contains 67 additional-study outcomes, and full grade-by-grade extraction is not complete. The migration is additive and idempotent; it has not been applied to Supabase.
+
+
+## Fifth verified knowledge-graph batch — M4 outcome 13
+
+The official IPST Physics curriculum-use manual identifies M4 outcome 13 as explaining the operation, efficiency and mechanical advantage of selected simple machines using work and mechanical equilibrium, and calculating efficiency and mechanical advantage.
+
+| Grade | Outcome | Verified scope | Database objective |
+|---|---:|---|---|
+| M4 | 13 | Levers, pulleys, inclined planes, wedges, screws and wheel-and-axle; work, efficiency and mechanical advantage | `M4-PHY-SIMPLE-MACHINES-13` |
+
+Migration: `20261116143000_learning_physics_m4_simple_machines.sql`. Companion pack: `M4-physics-simple-machines-teacher-starter-pack.md`, with one lesson starter and three answer-keyed questions.
+
+M4 now has nine verified seeded outcomes (8, 9, 11, 12, 13, 14, 15, 16 and 17), nine lesson starters and 27 answer-keyed questions. Outcomes 1–7 and 10 still need to be checked against the grade-labelled official source; no assumption is made that they all belong to M4. The migration is additive and idempotent; it has not been applied to Supabase.
