@@ -118,3 +118,8 @@ This Chemistry batch seeds all 15 official M6 learning outcomes in additional Ch
 ## Upper-secondary staged release — M6 Biology biodiversity and taxonomy
 
 This batch adds the five M6 learning outcomes in Additional Biology strand 2: the importance and levels of biodiversity; scientific hypotheses and evidence concerning early cells and unicellular life; characteristics of bacteria, protists, plants, fungi and animals; taxonomic hierarchy and binomial nomenclature; and construction of dichotomous identification keys. The companion teacher pack contains five lesson starters and 15 answer-keyed practice questions. The outcomes are aligned to M6 in the Thai Science curriculum. Official source: OBEC/IPST revised curriculum B.E. 2560 (2017), Biology additional-learning outcomes; cross-checked against the official curriculum manual published by IPST.
+
+
+## Upper-secondary Physics curriculum audit
+
+The official IPST Physics curriculum page confirms 67 additional-study learning outcomes across four connected content groups. A separate audit document, `docs/learning/science/PHYSICS-CURRICULUM-AUDIT.md`, records the official group scopes and implementation controls. The groups are content domains, not grade allocations; selected official crosswalk examples place Group 1 outcomes in M4, Group 2 in M5 and Group 3 in M6. Physics objective seeding remains pending until all 67 outcomes have been extracted and reconciled to their official grade allocations. No Physics database records have been added.
