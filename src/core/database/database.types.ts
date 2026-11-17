@@ -5675,6 +5675,10 @@ export type Database = {
         }
         Returns: undefined
       }
+      grade_learning_attempt_answer: {
+        Args: { p_answer_id: string; p_awarded_points: number; p_teacher_feedback?: string | null }
+        Returns: Json
+      }
       submit_learning_attempt: { Args: { p_attempt_id: string }; Returns: Json }
       update_learning_manual_gradebook_entry: {
         Args: {
