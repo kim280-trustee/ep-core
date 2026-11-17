@@ -50,6 +50,12 @@ The live Maths catalogue is verified: one active `MATH` subject, one active `TH-
 
 The preflight itself was read-only. The subsequent migrations added academic catalogue, integrity and multi-curriculum support; they did not create or modify school academic years, terms, classes, memberships, authored content, assessments or student records.
 
+## Teacher pack import readiness
+
+The three existing teacher packs have been checked against the importer parser: 41 lessons, 123 answer-keyed questions, 41 unique objective codes and no lesson-format errors. All 41 objective codes were found in the live Mathematics catalogue. Import instructions are in `MATHS-TEACHER-PACK-IMPORT-GUIDE.md`; the packs remain source material until an authorized teacher imports them into the target organization as unpublished drafts.
+
+Read-only database verification is in `supabase/verification/learning-academic-maths-verification.sql`. The live database currently reports 41 active objectives, 41 aligned objectives, zero duplicate codes and zero unaligned objectives.
+
 ## Teacher workflow compatibility
 
 The existing generic workflows already support the new Maths catalogue:
@@ -79,6 +85,8 @@ The existing English MEP pilot's class curriculum, grade, term, memberships and 
 ## Explicitly not done
 
 - [x] The 11 additive prerequisite, academic-integrity and Mathematics migrations have been applied and verified.
+- [x] Three teacher packs parser-validated: 41 lessons, 123 questions, 41 objective codes matched to the live catalogue.
+- [ ] Import the three packs into the school's organization through an authorized teacher session.
 - No new Maths pilot class, term, subject assignment or student membership has been created.
 - No new academic year, term, class group, class subject or membership has been created.
 - No separate Maths UI module was added because the existing generic teacher workflows already support the academic dimensions.
