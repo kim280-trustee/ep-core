@@ -44,7 +44,7 @@ cross join (values
  ('M5-PHY-G3-09','EMF-ENERGY-POWER','EMF, Electrical Energy and Power','M5 Group 3 outcome 9: investigate and calculate DC-source emf, electrical energy and electrical power.',9),
  ('M5-PHY-G3-10','BATTERY-DC-CIRCUITS','Series and Parallel Batteries in DC Circuits','M5 Group 3 outcome 10: calculate equivalent emf and internal resistance for series/parallel batteries and solve DC circuits with batteries and resistors.',10),
  ('M5-PHY-G3-11','RENEWABLE-ELECTRICITY','Renewable Energy Conversion to Electricity','M5 Group 3 outcome 11: explain renewable-energy conversion to electricity and discuss technologies addressing electricity needs.',11)
-) as v(code,name,description,seq)
+) as v(code,topic_code,name,description,seq)
 where s.code='PHYSICS' and sk.code='M5-ELECTROSTATICS-DC'
 on conflict(skill_id,code) do update
 set name=excluded.name,description=excluded.description,sequence_no=excluded.sequence_no,status='active',updated_at=now();
