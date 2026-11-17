@@ -82,7 +82,7 @@ The coding workspace, practical project submissions, teacher review, marking and
 - [x] Replace the staged national Technology knowledge graph with 29 book-chapter objectives and grade alignments.
 - [x] Replace M1, M2 and M3 teacher packs with book-aligned lesson starters.
 - [x] Keep sample papers separate as assessment resources.
-- [ ] Retire or quarantine obsolete M4–M6 packs and the former national digital-literacy question pack from import discovery.
+- [x] Delete obsolete M4–M6 national Technology packs and the former national digital-literacy assessment pack from this Computer Studies curriculum.
 - [ ] Apply migrations to a disposable/staging Supabase database.
 - [ ] Verify curriculum, grade, topic, objective and alignment counts.
 - [ ] Import and review M1–M3 packs through the existing teacher workflow.
