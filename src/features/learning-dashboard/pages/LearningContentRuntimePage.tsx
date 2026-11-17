@@ -14,7 +14,12 @@ function textSections(body: Record<string, unknown>) {
     if (!section || typeof section !== "object") return [];
     const record = section as Record<string, unknown>;
     // Teacher-only pack guidance must never be included in student lesson content.
-    if (record.type === "teacher_only" || record.audience === "teacher") return [];
+    const title = typeof record.title === "string" ? record.title.toLowerCase() : "";
+    if (
+      record.type === "teacher_only" ||
+      record.audience === "teacher" ||
+      /safety and teaching guidance|teacher guidance|teacher notes|teaching notes/.test(title)
+    ) return [];
     const bodyText = typeof record.body === "string" ? record.body.trim() : "";
     if (!bodyText) return [];
     return [{
