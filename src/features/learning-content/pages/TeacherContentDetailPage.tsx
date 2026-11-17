@@ -152,6 +152,11 @@ export default function TeacherContentDetailPage() {
       ? latestVersion.body.sections
       : [];
     return sections
+      .filter((section) => {
+        if (!section || typeof section !== "object") return false;
+        const record = section as Record<string, unknown>;
+        return record.type !== "teacher_only" && record.audience !== "teacher";
+      })
       .map((section) => {
         if (!section || typeof section !== "object") return "";
         const value = (section as Record<string, unknown>).body;
@@ -159,6 +164,21 @@ export default function TeacherContentDetailPage() {
       })
       .filter(Boolean)
       .join("\n\n");
+  }, [latestVersion]);
+
+  const latestTeacherGuidance = useMemo(() => {
+    if (!latestVersion?.body || !Array.isArray(latestVersion.body.sections)) return [];
+    return latestVersion.body.sections.flatMap((section) => {
+      if (!section || typeof section !== "object") return [];
+      const record = section as Record<string, unknown>;
+      if (record.type !== "teacher_only" && record.audience !== "teacher") return [];
+      const bodyText = typeof record.body === "string" ? record.body.trim() : "";
+      if (!bodyText) return [];
+      return [{
+        title: typeof record.title === "string" ? record.title : "Teacher guidance",
+        body: bodyText,
+      }];
+    });
   }, [latestVersion]);
 
   const currentBody = bodyEdited ? body : latestBody;
@@ -200,7 +220,15 @@ export default function TeacherContentDetailPage() {
         contentItemId: id,
         versionNo: latestVersion.versionNo + 1,
         body: {
-          sections: [{ type: "text", title: "Content", body: currentBody.trim() }],
+          sections: [
+            { type: "text", title: "Content", body: currentBody.trim() },
+            ...latestTeacherGuidance.map((section) => ({
+              type: "teacher_only",
+              audience: "teacher",
+              title: section.title,
+              body: section.body,
+            })),
+          ],
         },
         changeSummary: changeSummary.trim() || "Updated content",
         createdBy: user.id,
@@ -534,6 +562,24 @@ export default function TeacherContentDetailPage() {
               </button>
             </div>
           </form>
+        </section>
+      )}
+
+      {latestTeacherGuidance.length > 0 && (
+        <section className="rounded-2xl border border-amber-200 bg-amber-50 p-6 shadow-sm">
+          <div className="flex items-center gap-2">
+            <span className="rounded-lg bg-amber-100 px-2 py-1 text-xs font-bold uppercase tracking-wide text-amber-900">Teacher only</span>
+            <h2 className="font-semibold text-amber-950">Safety and teaching guidance</h2>
+          </div>
+          <p className="mt-1 text-sm text-amber-900">This guidance is visible to authorized teachers and is excluded from the student lesson.</p>
+          <div className="mt-4 space-y-4">
+            {latestTeacherGuidance.map((section, index) => (
+              <article key={index}>
+                <h3 className="text-sm font-semibold text-amber-950">{section.title}</h3>
+                <p className="mt-1 whitespace-pre-wrap text-sm leading-7 text-amber-900">{section.body}</p>
+              </article>
+            ))}
+          </div>
         </section>
       )}
 
