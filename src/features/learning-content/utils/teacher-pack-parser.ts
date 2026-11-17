@@ -48,7 +48,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
     ].filter((value): value is string => Boolean(value));
     const activity = activityParts.join("\n\n");
 
-    const practiceMatch = section.match(/^\*\*(?:Independent practice|Questions|Practice)\*\*\s*$/mi);
+    const practiceMatch = section.match(/^\*\*(?:Independent practice|Questions|Practice(?: questions)?|Answer-keyed questions)\*\*\s*$/mi);
     const practice = practiceMatch ? section.slice(practiceMatch.index! + practiceMatch[0].length) : "";
     const questions: ParsedTeacherPackQuestion[] = [];
     const lines = practice.split(/\r?\n/);
