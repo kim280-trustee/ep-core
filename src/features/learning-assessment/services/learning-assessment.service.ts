@@ -107,4 +107,7 @@ export const learningAssessmentService = {
 
   submitAttempt: (id: string) =>
     learningAssessmentRepository.submitAttempt(id),
+
+  gradeAttemptAnswer: (input: { answerId: string; awardedPoints: number; teacherFeedback?: string | null }) =>
+    learningAssessmentRepository.gradeAttemptAnswer(input),
 };
