@@ -44,6 +44,20 @@ with check (
       and a.organization_id = ai.organization_id
       and a.status = 'published'
       and (a.available_from is null or a.available_from <= now())
+      and exists (
+        select 1
+        from public.learning_content_versions cv
+        where cv.content_item_id = ai.content_item_id
+          and cv.status = 'published'
+          and exists (
+            select 1
+            from jsonb_array_elements(
+              case when jsonb_typeof(cv.body->'sections') = 'array'
+                then cv.body->'sections' else '[]'::jsonb end
+            ) section
+            where section->>'type' = 'project_activity'
+          )
+      )
       and private.learning_student_has_assignment_target(a.id, public.learning_current_user_id())
   )
 );
