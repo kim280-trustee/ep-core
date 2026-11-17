@@ -137,17 +137,11 @@ export const learningPackImportRepository = {
           explanation: null,
           created_by: input.createdBy,
         }));
-      const { error: questionVersionError } = await supabase
+      const { data: versions, error: questionVersionError } = await supabase
         .from("learning_question_versions")
-        .insert(questionVersionRows);
+        .insert(questionVersionRows)
+        .select("id,question_id");
       if (questionVersionError) throw questionVersionError;
-
-      const questionIds = (questions ?? []).map((question) => question.id);
-      const { data: versions, error: versionsError } = await supabase
-        .from("learning_question_versions")
-        .select("id,question_id")
-        .in("question_id", questionIds);
-      if (versionsError) throw versionsError;
       const versionByQuestionId = new Map((versions ?? []).map((version) => [version.question_id, version.id]));
       if (versionByQuestionId.size !== questionInputs.length) {
         throw new Error("The question-version insert did not return every created version.");
