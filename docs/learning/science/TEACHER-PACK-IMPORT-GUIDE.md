@@ -11,10 +11,25 @@ Open **Teacher Content Library → Import teacher pack**, or use the route `/tea
 - Sign in with a real, active teacher account.
 - Select an assigned teacher class to identify the organization where the drafts will be created.
 - Select the Thai Science curriculum, the pack's subject and its fallback grade.
-- Upload one Markdown (`.md`) teacher pack at a time.
+- Upload one consolidated Markdown (`.md`) pack at a time. The complete Science corpus is consolidated into five subject-specific files so each import uses the correct subject scope.
 - Check every objective code and grade shown in the preview. Code-less official outcomes are matched against the selected subject/grade catalogue; ambiguous matches block the import.
 
 The selected class is used only to establish the teacher's organization access. It does not change that class, add a subject to it, or assign content to its students.
+
+## Consolidated Science import files
+
+Import each file separately, selecting the exact subject shown below while keeping curriculum `TH-SCI-M1-M6`. The objective codes carry the grade mapping, so one file can cover multiple grades within the same subject.
+
+| Import file | Subject | Grades | Lessons | Questions |
+|---|---|---|---:|---:|
+| `SCIENCE-M1-M3-COMPLETE-IMPORT.md` | `SCI` — Science | M1–M3 | 142 | 426 |
+| `BIOLOGY-M4-M6-COMPLETE-IMPORT.md` | `BIOLOGY` — Biology | M4–M6 | 108 | 324 |
+| `CHEMISTRY-M4-M6-COMPLETE-IMPORT.md` | `CHEMISTRY` — Chemistry | M4–M6 | 81 | 243 |
+| `PHYSICS-M4-M6-COMPLETE-IMPORT.md` | `PHYSICS` — Physics | M4–M6 | 67 | 201 |
+| `EARTH-SPACE-M4-M6-COMPLETE-IMPORT.md` | `EARTH_SPACE` — Earth, Astronomy and Space Science | M4–M6 | 44 | 132 |
+| **Total** | **5 subject imports** | **M1–M6** | **442** | **1,326** |
+
+Each consolidated file includes the original source pack sections. Import one subject at a time; do not combine different subject codes in a single import because the importer validates against the selected subject.
 
 ## What the importer creates
 
@@ -51,4 +66,4 @@ The Question Bank now lets an authorized teacher select a curriculum, grade and 
 
 The importer uses the authenticated Supabase client and existing row-level security policies. It does not use a service-role key, invent a system teacher, bypass RLS, publish records, create school/class/student rows, or modify live pilot data automatically.
 
-The importer is implemented in the repository, but it has **not yet been run against a staging or live database**. Until a teacher explicitly uses it, the 442 lesson starters and 1,326 questions remain Markdown source material only. Staging migration execution, import smoke tests, and final local lint/build are still required before release.
+The importer is implemented in the repository. The 45 Science curriculum migrations and the M2/M3 strand-integrity correction have been applied to the existing Supabase project; all 442 objectives and alignments have been verified. The five consolidated import files are prepared, but the 442 lesson drafts and 1,326 question drafts have **not** been imported. That final authoring step must be performed by an authorized teacher in the target organization. Import smoke tests, end-to-end student/teacher checks, and final local lint/build remain pending.
