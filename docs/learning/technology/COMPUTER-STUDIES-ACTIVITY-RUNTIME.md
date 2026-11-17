@@ -22,3 +22,16 @@ Coding and project responses are saved through `learning_content_responses`. The
 ## Current runtime boundary
 
 The first coding runner supports JavaScript only. It is an isolated browser execution surface for learning and manual teacher review; it is not a server-side code execution service or an automated correctness/grading engine. Teachers must inspect the submitted code/output or open the project evidence before awarding a final mark. Additional languages and automated test runners require a separately reviewed sandbox design.
+
+## End-to-end verification checklist
+
+Run this only after the remaining Computer Studies implementation batch is complete:
+
+1. Create and publish a JavaScript coding activity linked to a Technology objective; confirm teacher-only answer guidance is absent from the student view.
+2. Open the activity as a student, edit and run the starter code, confirm output is captured, and confirm an endless loop is stopped by the runner timeout.
+3. Save a draft, reload and confirm code is restored; submit and confirm the response becomes read-only.
+4. Review the submitted code and output as the assigned teacher, award a mark and feedback, then confirm gradebook and student feedback are updated.
+5. Create and publish a practical project activity; submit an HTTPS link, reflection and up to three allowed evidence files.
+6. Confirm the storage layer rejects files over 15 MB, disallowed formats, invalid paths and a fourth evidence file; confirm only the student, assigned teacher and authorized academic manager can read evidence.
+7. Open signed evidence links as the teacher, grade the project and confirm gradebook and student feedback updates.
+8. Build and publish a Computer Studies digital-literacy assessment using the existing question bank and manual-review question workflow; submit a student attempt, mark it and confirm gradebook/progress synchronization.
