@@ -14,7 +14,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 
 ## Lesson starters
 
-### Lesson 1 — Share information safely and analyse technology's social impact
+## Lesson 1 — Share information safely and analyse technology's social impact
 
 **Objective:** `M6-W4_2-01` — Share information safely and analyse technology's social impact  
 **Official indicator:** ว 4.2 ม.6/1  
