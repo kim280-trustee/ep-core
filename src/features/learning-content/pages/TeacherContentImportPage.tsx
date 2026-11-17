@@ -184,6 +184,7 @@ export default function TeacherContentImportPage() {
         title: lesson.title,
         learningOutcome: lesson.learningOutcome,
         activity: lesson.activity,
+        teacherGuidance: lesson.packGuidance,
         questions: lesson.questions.map((question) => ({
           code: makeImportCode(`EP-${objective!.code}-Q${String(question.number).padStart(2, "0")}`),
           prompt: question.prompt,
