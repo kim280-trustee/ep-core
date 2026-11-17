@@ -14,7 +14,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 
 ## Lesson starters
 
-### Lesson 1 — Predict technology trends and evaluate their impacts
+## Lesson 1 — Predict technology trends and evaluate their impacts
 
 **Objective:** `M2-W4_1-01` — Predict technology trends and evaluate their impacts  
 **Official indicator:** ว 4.1 ม.2/1  
@@ -30,7 +30,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. Name one possible negative impact of an otherwise useful technology.  
    **Answer:** It may increase waste, inequality, energy use or privacy risks.
 
-### Lesson 2 — Define community problems and analyse related information
+## Lesson 2 — Define community problems and analyse related information
 
 **Objective:** `M2-W4_1-02` — Define community problems and analyse related information  
 **Official indicator:** ว 4.1 ม.2/2  
@@ -46,7 +46,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. What should students do if two sources disagree?  
    **Answer:** Check their reliability, date, method and supporting evidence before deciding.
 
-### Lesson 3 — Design solutions within constraints and available resources
+## Lesson 3 — Design solutions within constraints and available resources
 
 **Objective:** `M2-W4_1-03` — Design solutions within constraints and available resources  
 **Official indicator:** ว 4.1 ม.2/3  
@@ -62,7 +62,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. What belongs in a work plan?  
    **Answer:** Tasks, sequence, materials, responsibilities and time.
 
-### Lesson 4 — Test and improve solutions against defined conditions
+## Lesson 4 — Test and improve solutions against defined conditions
 
 **Objective:** `M2-W4_1-04` — Test and improve solutions against defined conditions  
 **Official indicator:** ว 4.1 ม.2/4  
@@ -78,7 +78,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. What should be included when presenting test results?  
    **Answer:** The method, conditions, observations, results, defects and proposed improvements.
 
-### Lesson 5 — Select and use tools and technologies safely
+## Lesson 5 — Select and use tools and technologies safely
 
 **Objective:** `M2-W4_1-05` — Select and use tools and technologies safely  
 **Official indicator:** ว 4.1 ม.2/5  
@@ -94,7 +94,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. Why should damaged electrical components not be used?  
    **Answer:** They can cause overheating, short circuits or electric shock.
 
-### Lesson 6 — Design algorithms using computational thinking
+## Lesson 6 — Design algorithms using computational thinking
 
 **Objective:** `M2-W4_2-01` — Design algorithms using computational thinking  
 **Official indicator:** ว 4.2 ม.2/1  
@@ -110,7 +110,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. How does an algorithm help automate a task?  
    **Answer:** It gives precise steps that a computer or person can follow consistently.
 
-### Lesson 7 — Program with logic and functions
+## Lesson 7 — Program with logic and functions
 
 **Objective:** `M2-W4_2-02` — Program with logic and functions  
 **Official indicator:** ว 4.2 ม.2/2  
@@ -126,7 +126,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. What should happen when a score is below the threshold?  
    **Answer:** The program should follow the alternative branch of the condition.
 
-### Lesson 8 — Explain computer systems and communication technology
+## Lesson 8 — Explain computer systems and communication technology
 
 **Objective:** `M2-W4_2-03` — Explain computer systems and communication technology  
 **Official indicator:** ว 4.2 ม.2/3  
@@ -142,7 +142,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. What does a router help a network do?  
    **Answer:** It directs data between networks or devices.
 
-### Lesson 9 — Use information technology responsibly and respect intellectual property
+## Lesson 9 — Use information technology responsibly and respect intellectual property
 
 **Objective:** `M2-W4_2-04` — Use information technology responsibly and respect intellectual property  
 **Official indicator:** ว 4.2 ม.2/4  
