@@ -12,6 +12,7 @@ export type ParsedTeacherPackLesson = {
   outcomeNumber: number;
   learningOutcome: string;
   activity: string;
+  packGuidance: string;
   questions: ParsedTeacherPackQuestion[];
 };
 
@@ -21,6 +22,14 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
 
   const headingPattern = /^#{2,3}\s+(?:(?:(?:Physical|Earth) Science\s+)?(?:Lesson|Outcome)\s+(\d+)\s+[—–-]\s+(.+)|Group\s+\d+\s+[—–-]\s+Outcome\s+(\d+)\s*[:—–-]\s*(.+)|(\d+)\.\s+(.+)|(?:Lesson|Outcome)\s+[—–-]\s+(.+))$/gm;
   const headings = [...markdown.matchAll(headingPattern)];
+  const guidanceHeadings = [...markdown.matchAll(/^##\\s+([^#\\n]*(?:safety|assessment|safeguarding|teacher guidance|teacher notes|teaching notes)[^#\\n]*)\\s*$/gim)];
+  const packGuidance = guidanceHeadings.map((match) => {
+    const start = (match.index ?? 0) + match[0].length;
+    const remainder = markdown.slice(start);
+    const nextHeading = remainder.search(/^##\\s+/m);
+    const body = (nextHeading >= 0 ? remainder.slice(0, nextHeading) : remainder).trim();
+    return body ? `${match[1].trim()}:\\n${body}` : "";
+  }).filter(Boolean).join("\\n\\n");
   if (!headings.length) {
     throw new Error("No lesson sections were found. Use numbered Lesson/Outcome headings or headings such as '### 1. Lesson title'.");
   }
@@ -99,6 +108,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
       outcomeNumber: number,
       learningOutcome,
       activity,
+      packGuidance,
       questions,
     };
   });
