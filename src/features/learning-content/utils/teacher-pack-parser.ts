@@ -19,15 +19,18 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
   if (!markdown.trim()) throw new Error("The selected Markdown file is empty.");
   if (markdown.length > 5_000_000) throw new Error("Teacher packs must be smaller than 5 MB.");
 
-  const headings = [...markdown.matchAll(/^#{2,3}\s+(?:(?:Physical|Earth) Science\s+)?(?:Lesson|Outcome)\s+(\d+)\s+[—–-]\s+(.+)$/gm)];
+  const headingPattern = /^#{2,3}\s+(?:(?:(?:Physical|Earth) Science\s+)?(?:Lesson|Outcome)\s+(\d+)\s+[—–-]\s+(.+)|(\d+)\.\s+(.+))$/gm;
+  const headings = [...markdown.matchAll(headingPattern)];
   if (!headings.length) {
-    throw new Error("No lesson or outcome sections were found. Use headings such as '## Lesson 1 — Title' or '## Outcome 1 — Title'.");
+    throw new Error("No lesson sections were found. Use numbered Lesson/Outcome headings or headings such as '### 1. Lesson title'.");
   }
 
   return headings.map((heading, index) => {
     const start = (heading.index ?? 0) + heading[0].length;
     const end = headings[index + 1]?.index ?? markdown.length;
     const section = markdown.slice(start, end);
+    const number = Number(heading[1] ?? heading[3]);
+    const title = (heading[2] ?? heading[4]).trim();
     const objectiveLine = section.match(/^\*\*Objective:\*\*\s*(.+)$/mi)?.[1]?.trim() ?? "";
     const codeMatch = objectiveLine.match(/[\x60]([A-Z0-9][A-Z0-9_-]{2,})[\x60]/i)
       ?? objectiveLine.match(/\b(M[1-6][A-Z0-9_-]+)\b/i);
@@ -38,19 +41,30 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
       .replace(/^[\s—–:-]+/, "")
       .replace(/\s+/g, " ")
       .trim();
+
     const learningOutcome = section.match(/^\*\*Learning outcome:\*\*\s*(.+)$/mi)?.[1]?.trim()
       ?? section.match(/^\*\*Outcome:\*\*\s*(.+)$/mi)?.[1]?.trim()
-      ?? (objectiveText || heading[2].trim());
+      ?? section.match(/^\*\*Learning focus:\*\*\s*(.+)$/mi)?.[1]?.trim()
+      ?? (objectiveText || title);
 
     const activityParts = [
       section.match(/^\*\*Teaching activity:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Starter(?:\s*\/\s*learning task)?:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Teach(?: and practi[cs]e)?:\*\*\s*(.+)$/mi)?.[1]?.trim(),
+      section.match(/^\*\*Learning task:\*\*\s*(.+)$/mi)?.[1]?.trim(),
+      section.match(/^\*\*Check for understanding:\*\*\s*(.+)$/mi)?.[1]?.trim(),
+      section.match(/^\*\*Learning focus:\*\*\s*(.+)$/mi)?.[1]?.trim(),
     ].filter((value): value is string => Boolean(value));
-    const activity = activityParts.join("\n\n");
+    const activity = activityParts.join("\n\n") || learningOutcome;
 
-    const practiceMatch = section.match(/^\*\*(?:Independent practice|Questions|Practice(?: questions)?|Answer-keyed questions)\*\*\s*$/mi);
-    const practice = practiceMatch ? section.slice(practiceMatch.index! + practiceMatch[0].length) : "";
+    const practicePattern = /^\*\*(?:Independent practice|Questions|Practice(?: questions)?|Answer-keyed questions)\*\*\s*$/mi;
+    const practiceMatch = section.match(practicePattern);
+    const firstQuestion = section.search(/^\s*1\.\s+/m);
+    const practice = practiceMatch
+      ? section.slice(practiceMatch.index! + practiceMatch[0].length)
+      : firstQuestion >= 0
+        ? section.slice(firstQuestion)
+        : "";
     const questions: ParsedTeacherPackQuestion[] = [];
     const lines = practice.split(/\r?\n/);
     for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
@@ -69,20 +83,19 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
       if (prompt && expectedAnswer) questions.push({ number: Number(questionLine[1]), prompt, expectedAnswer });
     }
 
-    const number = Number(heading[1]);
     if (!objectiveCode && !objectiveText) throw new Error(\`Lesson \${number} is missing its **Objective:** line.\`);
-    if (!activity) throw new Error(\`Lesson \${number} is missing teaching activity or starter/teach notes.\`);
+    if (!activity) throw new Error(\`Lesson \${number} is missing teaching notes or a learning focus.\`);
     if (questions.length !== 3) {
       throw new Error(\`Lesson \${number} has \${questions.length} answer-keyed questions; exactly 3 are required.\`);
     }
 
     return {
       number,
-      title: heading[2].trim(),
+      title,
       objectiveCode,
       objectiveText: objectiveCode ? null : objectiveText,
       outcomeNumber: number,
-      learningOutcome: learningOutcome || heading[2].trim(),
+      learningOutcome,
       activity,
       questions,
     };
