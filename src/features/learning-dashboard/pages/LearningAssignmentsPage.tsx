@@ -27,6 +27,7 @@ export default function LearningAssignmentsPage() {
   const { user } = useAuth();
   const [filter, setFilter] = useState<AssignmentFilter>("all");
   const [searchText, setSearchText] = useState("");
+  const [subjectFilter, setSubjectFilter] = useState("all");
   const studentUserId = user?.id ?? "";
   const query = useQuery({
     queryKey: ["learning", "student-overview", studentUserId],
@@ -40,18 +41,20 @@ export default function LearningAssignmentsPage() {
 
   const { assignments, progress } = query.data;
   const progressByAssignment = new Map(progress.map((item) => [item.assignmentId, item]));
+  const subjectNames = [...new Set(Object.values(query.data.assignmentSubjects))].sort((a, b) => a.localeCompare(b));
+  const subjectScopedAssignments = assignments.filter((assignment) => subjectFilter === "all" || query.data.assignmentSubjects[assignment.id] === subjectFilter);
   const counts = {
-    all: assignments.length,
-    not_started: assignments.filter((item) => (progressByAssignment.get(item.id)?.status ?? "not_started") === "not_started").length,
-    in_progress: assignments.filter((item) => progressByAssignment.get(item.id)?.status === "in_progress").length,
-    completed: assignments.filter((item) => progressByAssignment.get(item.id)?.status === "completed").length,
-    overdue: assignments.filter((item) => progressByAssignment.get(item.id)?.status === "overdue").length,
+    all: subjectScopedAssignments.length,
+    not_started: subjectScopedAssignments.filter((item) => (progressByAssignment.get(item.id)?.status ?? "not_started") === "not_started").length,
+    in_progress: subjectScopedAssignments.filter((item) => progressByAssignment.get(item.id)?.status === "in_progress").length,
+    completed: subjectScopedAssignments.filter((item) => progressByAssignment.get(item.id)?.status === "completed").length,
+    overdue: subjectScopedAssignments.filter((item) => progressByAssignment.get(item.id)?.status === "overdue").length,
   };
   const search = searchText.trim().toLocaleLowerCase();
-  const filteredAssignments = assignments.filter((assignment) => {
+  const filteredAssignments = subjectScopedAssignments.filter((assignment) => {
     const status = progressByAssignment.get(assignment.id)?.status ?? "not_started";
     const matchesFilter = filter === "all" || status === filter;
-    const matchesSearch = !search || [assignment.title, assignment.code, assignment.description ?? ""]
+    const matchesSearch = !search || [assignment.title, assignment.code, assignment.description ?? "", query.data.assignmentSubjects[assignment.id] ?? ""]
       .some((value) => value.toLocaleLowerCase().includes(search));
     return matchesFilter && matchesSearch;
   }).sort((a, b) => {
@@ -76,6 +79,15 @@ export default function LearningAssignmentsPage() {
             </label>
             <div className="flex items-center gap-2 text-sm text-slate-500"><SlidersHorizontal size={16} /> {filteredAssignments.length} of {assignments.length}</div>
           </div>
+          {subjectNames.length > 1 && (
+            <label className="block max-w-sm space-y-1.5">
+              <span className="text-xs font-semibold text-slate-600">Subject</span>
+              <select value={subjectFilter} onChange={(event) => setSubjectFilter(event.target.value)} className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200">
+                <option value="all">All subjects</option>
+                {subjectNames.map((subject) => <option key={subject} value={subject}>{subject}</option>)}
+              </select>
+            </label>
+          )}
           <div className="flex flex-wrap gap-2" role="group" aria-label={t("studentAssignments.status")}>
             {filterOptions.map((option) => (
               <button key={option.value} type="button" onClick={() => setFilter(option.value)} aria-pressed={filter === option.value} className={"rounded-full border px-3 py-2 text-xs font-semibold transition " + (filter === option.value ? "border-slate-900 bg-slate-900 text-white" : "border-slate-200 bg-white text-slate-600 hover:bg-slate-50")}>
@@ -92,7 +104,7 @@ export default function LearningAssignmentsPage() {
           ))}
         </div>
       ) : assignments.length ? (
-        <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center"><p className="font-semibold text-slate-800">{t("studentAssignments.noMatch")}</p><p className="mt-1 text-sm text-slate-500">{t("studentAssignments.tryFilters")}</p><button type="button" onClick={() => { setFilter("all"); setSearchText(""); }} className="mt-4 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white">{t("studentAssignments.clearFilters")}</button></div>
+        <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center"><p className="font-semibold text-slate-800">{t("studentAssignments.noMatch")}</p><p className="mt-1 text-sm text-slate-500">{t("studentAssignments.tryFilters")}</p><button type="button" onClick={() => { setFilter("all"); setSearchText(""); setSubjectFilter("all"); }} className="mt-4 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white">{t("studentAssignments.clearFilters")}</button></div>
       ) : (
         <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center text-sm text-slate-500">{t("studentAssignments.nonePublished")}</div>
       )}
