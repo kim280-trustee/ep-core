@@ -44,7 +44,6 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
 
     const learningOutcome = section.match(/^\*\*Learning outcome:\*\*\s*(.+)$/mi)?.[1]?.trim()
       ?? section.match(/^\*\*Outcome:\*\*\s*(.+)$/mi)?.[1]?.trim()
-      ?? section.match(/^\*\*Learning focus:\*\*\s*(.+)$/mi)?.[1]?.trim()
       ?? (objectiveText || title);
 
     const keyRelationships = section.match(/^\*\*Key relationships\*\*\s*([\s\S]*?)(?=^\*\*|^#{1,3}\s|(?![\s\S]))/mi)?.[1]?.trim();
