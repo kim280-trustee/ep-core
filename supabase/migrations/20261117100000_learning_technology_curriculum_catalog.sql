@@ -19,7 +19,7 @@ end;
 $$;
 
 insert into public.learning_subjects (code, name, description, status)
-values ('TECH', 'Computer Studies',
+values ('COMPUTER-STUDIES', 'Computer Studies',
   'School Computer Studies sequence based on Cambridge Click Start International Edition Learner''s Books 4, 5 and 6 for M1, M2 and M3.',
   'active')
 on conflict (code) do update
@@ -52,10 +52,10 @@ set name=excluded.name, sequence_no=excluded.sequence_no, description=excluded.d
     status='active', updated_at=now();
 
 insert into public.learning_curriculum_subjects (curriculum_id, subject_id, code, name, status)
-select curriculum.id, subject.id, 'TECH', 'Computer Studies', 'active'
+select curriculum.id, subject.id, 'COMPUTER-STUDIES', 'Computer Studies', 'active'
 from public.learning_curricula curriculum
 join public.learning_education_systems es on es.id=curriculum.education_system_id
-join public.learning_subjects subject on subject.code='TECH'
+join public.learning_subjects subject on subject.code='COMPUTER-STUDIES'
 where curriculum.code='CLICK-START-M1-M3' and es.code='TH_BASIC'
 on conflict (curriculum_id, subject_id) do update
 set code=excluded.code, name=excluded.name, status='active', updated_at=now();
