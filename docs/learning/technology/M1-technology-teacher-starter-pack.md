@@ -14,7 +14,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 
 ## Lesson starters
 
-### Lesson 1 — Explain technology concepts and factors that change technology
+## Lesson 1 — Explain technology concepts and factors that change technology
 
 **Objective:** `M1-W4_1-01` — Explain technology concepts and factors that change technology  
 **Official indicator:** ว 4.1 ม.1/1  
@@ -30,7 +30,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. Why should people consider the effects of a new technology?  
    **Answer:** It can affect people, society and the environment.
 
-### Lesson 2 — Identify everyday problems and gather relevant information
+## Lesson 2 — Identify everyday problems and gather relevant information
 
 **Objective:** `M1-W4_1-02` — Identify everyday problems and gather relevant information  
 **Official indicator:** ว 4.1 ม.1/2  
@@ -46,7 +46,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. Why collect evidence before choosing a solution?  
    **Answer:** It helps ensure the solution addresses the real problem rather than an assumption.
 
-### Lesson 3 — Design and plan a solution to an everyday problem
+## Lesson 3 — Design and plan a solution to an everyday problem
 
 **Objective:** `M1-W4_1-03` — Design and plan a solution to an everyday problem  
 **Official indicator:** ว 4.1 ม.1/3  
@@ -62,7 +62,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. Why compare more than one design?  
    **Answer:** To select the option that best meets the criteria and constraints.
 
-### Lesson 4 — Test, evaluate and improve a solution
+## Lesson 4 — Test, evaluate and improve a solution
 
 **Objective:** `M1-W4_1-04` — Test, evaluate and improve a solution  
 **Official indicator:** ว 4.1 ม.1/4  
@@ -78,7 +78,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. Why test a revised design again?  
    **Answer:** To check whether the change improved performance and did not create another problem.
 
-### Lesson 5 — Use materials, tools and mechanisms safely
+## Lesson 5 — Use materials, tools and mechanisms safely
 
 **Objective:** `M1-W4_1-05` — Use materials, tools and mechanisms safely  
 **Official indicator:** ว 4.1 ม.1/5  
@@ -94,7 +94,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. Name one safe practice when using a mechanism or electrical kit.  
    **Answer:** Follow instructions, keep hands clear of moving parts and use only low-voltage school kits under supervision.
 
-### Lesson 6 — Design abstract algorithms for real-life problems
+## Lesson 6 — Design abstract algorithms for real-life problems
 
 **Objective:** `M1-W4_2-01` — Design abstract algorithms for real-life problems  
 **Official indicator:** ว 4.2 ม.1/1  
@@ -110,7 +110,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. Why use a flowchart?  
    **Answer:** It shows the sequence and decisions in an algorithm visually.
 
-### Lesson 7 — Design and write simple programs for mathematics or science
+## Lesson 7 — Design and write simple programs for mathematics or science
 
 **Objective:** `M1-W4_2-02` — Design and write simple programs for mathematics or science  
 **Official indicator:** ว 4.2 ม.1/2  
@@ -126,7 +126,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. Why test a program with different values?  
    **Answer:** To check that it works correctly for more than one case.
 
-### Lesson 8 — Collect, process and present primary data
+## Lesson 8 — Collect, process and present primary data
 
 **Objective:** `M1-W4_2-03` — Collect, process and present primary data  
 **Official indicator:** ว 4.2 ม.1/3  
@@ -142,7 +142,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. Which chart is suitable for comparing categories?  
    **Answer:** A bar chart.
 
-### Lesson 9 — Use information technology safely and follow source rules
+## Lesson 9 — Use information technology safely and follow source rules
 
 **Objective:** `M1-W4_2-04` — Use information technology safely and follow source rules  
 **Official indicator:** ว 4.2 ม.1/4  
