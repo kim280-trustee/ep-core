@@ -16,6 +16,7 @@ import {
 type ResolvedLesson = LearningPackImportLesson & {
   sourceNumber: number;
   sourceTitle: string;
+  objectiveName: string;
 };
 
 const CHUNK_SIZE = 40;
@@ -178,6 +179,7 @@ export default function TeacherContentImportPage() {
         sourceTitle: lesson.title,
         objectiveId: objective.id,
         objectiveCode: objective.code,
+        objectiveName: objective.name,
         gradeLevelId: targetGradeLevelId,
         title: lesson.title,
         learningOutcome: lesson.learningOutcome,
@@ -365,7 +367,10 @@ export default function TeacherContentImportPage() {
             {resolved.rows.map((lesson) => (
               <div key={lesson.objectiveCode} className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-slate-200 px-3 py-2 text-sm">
                 <span className="font-medium text-slate-800">{lesson.sourceNumber}. {lesson.sourceTitle}</span>
-                <span className="text-xs text-slate-500">{lesson.objectiveCode} · {gradeLevels.data?.find((item) => item.id === lesson.gradeLevelId)?.code}</span>
+                <div className="text-right">
+                  <p className="text-xs font-medium text-slate-600">{lesson.objectiveCode} · {gradeLevels.data?.find((item) => item.id === lesson.gradeLevelId)?.code}</p>
+                  <p className="max-w-md text-xs text-slate-500">{lesson.objectiveName}</p>
+                </div>
               </div>
             ))}
           </div>
