@@ -305,7 +305,7 @@ export default function LearningContentRuntimePage() {
   const isProjectActivity = sections.some((section) => section.type === "project_activity");
   const projectSubmissionValid = isValidHttpsUrl(projectUrl) && Boolean(projectReflection.trim());
   const fillInPattern = /(?:\\?_){3,}/g;
-  const isFillInActivity = !isCodingActivity && sections.some((section) => fillInPattern.test(section.body));
+  const isFillInActivity = !isCodingActivity && !isProjectActivity && sections.some((section) => fillInPattern.test(section.body));
   fillInPattern.lastIndex = 0;
   const buildFillInResponse = (answers: string[]) => {
     let answerIndex = 0;
