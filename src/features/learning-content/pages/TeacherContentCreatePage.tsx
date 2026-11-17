@@ -348,7 +348,7 @@ export default function TeacherContentCreatePage() {
 
         <Section number="3" title={t("contentCreate.contentBody")} description={t("contentCreate.contentBodyHelp")} full>
           <Field label="Activity format">
-            <select value={activityMode} onChange={(event) => setActivityMode(event.target.value as "lesson" | "coding" | "project")} className="input w-full">
+            <select value={activityMode} onChange={(event) => { const nextMode = event.target.value as "lesson" | "coding" | "project"; setActivityMode(nextMode); if (nextMode !== "lesson") setContentType("interactive"); }} className="input w-full">
               <option value="lesson">Lesson / reading activity</option>
               <option value="coding">Student coding activity (JavaScript)</option>
               <option value="project">Practical project (link + reflection)</option>
