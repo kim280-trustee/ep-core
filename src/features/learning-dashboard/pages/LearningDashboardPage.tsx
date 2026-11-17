@@ -168,7 +168,7 @@ export default function LearningDashboardPage() {
               <div className="h-full rounded-full bg-slate-800" style={{ width: percentage + "%" }} />
             </div>
             <p className="mt-2 text-xs text-slate-500">{stats.completed} completed · {stats.inProgress} in progress · {stats.total - stats.completed - stats.inProgress} not started</p>
-            <Link to="/learning/assignments" className="mt-3 inline-flex text-sm font-medium text-slate-700 underline underline-offset-4 hover:text-slate-900">View assignments</Link>
+            <Link to={"/learning/assignments?subject=" + encodeURIComponent(subject)} className="mt-3 inline-flex text-sm font-medium text-slate-700 underline underline-offset-4 hover:text-slate-900">View assignments</Link>
           </div>;
         })}
       </div>
