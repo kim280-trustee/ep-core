@@ -21,7 +21,7 @@ The selected class is used only to establish the teacher's organization access. 
 For each validated lesson:
 
 1. One `learning_content_items` row with content type `lesson`.
-2. One initial `learning_content_versions` row containing the learning outcome, teaching activity/notes and the three student-facing practice prompts (never the answer keys).
+2. One initial `learning_content_versions` row containing the learning outcome, teaching activity/notes, the three student-facing practice prompts (never the answer keys), and any pack-level safety/teaching/assessment guidance.
 3. One `learning_content_objectives` link to the exact curriculum objective.
 4. Three `learning_questions` rows using the existing `short_answer` question type.
 5. Three `learning_question_versions` rows with exact curriculum, grade and subject scope.
