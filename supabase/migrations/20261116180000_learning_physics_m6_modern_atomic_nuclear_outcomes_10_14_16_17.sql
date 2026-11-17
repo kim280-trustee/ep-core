@@ -32,7 +32,7 @@ cross join (values
  ('M6-PHY-14','ACTIVITY-DECAY-HALF-LIFE','Activity, Radioactive Decay and Half-Life','M6 Group 4 outcome 14: calculate activity, remaining radioactive nuclei and half-life; interpret radioactive-decay evidence.',14),
  ('M6-PHY-16','NUCLEAR-REACTIONS-FISSION-FUSION','Nuclear Reactions, Fission and Fusion','M6 Group 4 outcome 16: explain nuclear reactions, fission and fusion, and calculate nuclear energy from mass-energy equivalence.',16),
  ('M6-PHY-17','NUCLEAR-APPLICATIONS-RADIATION-SAFETY','Nuclear Energy, Radiation Applications and Protection','M6 Group 4 outcome 17: explain uses of nuclear energy and radiation, associated hazards and appropriate radiation-protection principles.',17)
-) as v(code,name,description,seq)
+) as v(code,skill_code,name,description,seq)
 where s.code='PHYSICS' and sk.code='MODERN-NUCLEAR-PHYSICS'
 on conflict(skill_id,code) do update
 set name=excluded.name,description=excluded.description,sequence_no=excluded.sequence_no,status='active',updated_at=now();
