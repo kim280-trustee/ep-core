@@ -24,7 +24,7 @@ const assessmentTypeTranslationKeys: Record<LearningAssessmentType, string> = {
 type PublishedQuestionOption = {
   id: string;
   code: string;
-  type: "single_choice" | "true_false";
+  type: "single_choice" | "true_false" | "short_answer";
   prompt: string;
   versionId: string;
 };
@@ -42,7 +42,7 @@ export default function TeacherAssessmentBuilderPage() {
   const [activeAssessmentId, setActiveAssessmentId] = useState("");
   const [selectedVersionIds, setSelectedVersionIds] = useState<string[]>([]);
   const [questionSearch, setQuestionSearch] = useState("");
-  const [questionTypeFilter, setQuestionTypeFilter] = useState<"all" | "single_choice" | "true_false">("all");
+  const [questionTypeFilter, setQuestionTypeFilter] = useState<"all" | "single_choice" | "true_false" | "short_answer">("all");
   const [message, setMessage] = useState<{ kind: "success" | "error" | "info"; text: string } | null>(null);
 
   const classesQuery = useQuery({
@@ -82,7 +82,7 @@ export default function TeacherAssessmentBuilderPage() {
       const eligible = questions.filter(
         (question) =>
           question.status === "published" &&
-          (question.questionType === "single_choice" || question.questionType === "true_false"),
+          (question.questionType === "single_choice" || question.questionType === "true_false" || question.questionType === "short_answer"),
       );
       const options = await Promise.all(
         eligible.map(async (question) => {
@@ -94,7 +94,7 @@ export default function TeacherAssessmentBuilderPage() {
           return {
             id: question.id,
             code: question.code,
-            type: question.questionType as "single_choice" | "true_false",
+            type: question.questionType as "single_choice" | "true_false" | "short_answer",
             prompt: typeof version.prompt.text === "string" ? version.prompt.text : question.code,
             versionId: version.id,
           } satisfies PublishedQuestionOption;
@@ -336,7 +336,7 @@ export default function TeacherAssessmentBuilderPage() {
                   <input type="search" value={questionSearch} onChange={(event) => setQuestionSearch(event.target.value)} placeholder={t("assessmentBuilder.searchPlaceholder")} className="mt-1 block w-full rounded-xl border border-slate-300 px-3 py-2 font-normal" />
                 </label>
                 <label className="text-sm font-medium text-slate-700">{t("assessmentBuilder.questionType")}
-                  <select value={questionTypeFilter} onChange={(event) => setQuestionTypeFilter(event.target.value as typeof questionTypeFilter)} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-normal"><option value="all">{t("assessmentBuilder.allTypes")}</option><option value="single_choice">{t("questionBank.single")}</option><option value="true_false">{t("questionBank.trueFalse")}</option></select>
+                  <select value={questionTypeFilter} onChange={(event) => setQuestionTypeFilter(event.target.value as typeof questionTypeFilter)} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-normal"><option value="all">{t("assessmentBuilder.allTypes")}</option><option value="single_choice">{t("questionBank.single")}</option><option value="true_false">{t("questionBank.trueFalse")}</option><option value="short_answer">Short answer (teacher-marked)</option></select>
                 </label>
                 <p className="text-xs text-slate-500 sm:col-span-2" aria-live="polite">{t("assessmentBuilder.showing")} {visibleQuestionOptions.length} {t("assessmentBuilder.ofCount")} {questionsQuery.data?.length ?? 0} {t("assessmentBuilder.questions")} · {selectedVersionIds.length} {t("assessmentBuilder.selected")} · {pendingQuestionOptions.length} {t("assessmentBuilder.readyToAdd")}</p>
                 {(questionSearch || questionTypeFilter !== "all" || selectedVersionIds.length > 0) && <div className="flex flex-wrap gap-2 sm:col-span-2"><button type="button" onClick={() => { setQuestionSearch(""); setQuestionTypeFilter("all"); }} className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold">{t("assessmentBuilder.clearFilters")}</button>{selectedVersionIds.length > 0 && <button type="button" onClick={() => setSelectedVersionIds([])} className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold">{t("assessmentBuilder.clearSelection")}</button>}</div>}
@@ -349,13 +349,13 @@ export default function TeacherAssessmentBuilderPage() {
                   <label key={question.versionId} className={`flex gap-3 rounded-xl border p-3 ${attached ? "border-emerald-200 bg-emerald-50/60" : checked ? "border-indigo-300 bg-indigo-50/60" : "border-slate-200"}`}>
                     <input type="checkbox" checked={checked} disabled={!activeAssessment || activeAssessment.status === "published" || attached} onChange={(event) => setSelectedVersionIds((current) => event.target.checked ? [...current, question.versionId] : current.filter((id) => id !== question.versionId))} className="mt-1 size-4 accent-indigo-600" />
                     <span className="min-w-0 flex-1">
-                      <span className="block text-xs font-semibold text-slate-500">{question.code} · {t(question.type === "single_choice" ? "questionBank.single" : "questionBank.trueFalse")}{attached ? ` · ${t("assessmentBuilder.alreadyAttached")}` : ""}</span>
+                      <span className="block text-xs font-semibold text-slate-500">{question.code} · {question.type === "single_choice" ? t("questionBank.single") : question.type === "true_false" ? t("questionBank.trueFalse") : "Short answer · teacher-marked"}{attached ? ` · ${t("assessmentBuilder.alreadyAttached")}` : ""}</span>
                       <span className="mt-1 block text-sm font-medium text-slate-900">{question.prompt}</span>
                     </span>
                   </label>
                 );
               })}
-              {!questionsQuery.data?.length && <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-600">No published auto-scored questions are available. Create and publish questions in the <Link className="font-semibold underline" to="/teacher/question-bank">{t("assessmentBuilder.questionBank")}</Link>{" "}{t("assessmentBuilder.first")}</p>}
+              {!questionsQuery.data?.length && <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-600">No published questions are available. Create and publish questions in the <Link className="font-semibold underline" to="/teacher/question-bank">{t("assessmentBuilder.questionBank")}</Link>{" "}{t("assessmentBuilder.first")}</p>}
               {Boolean(questionsQuery.data?.length) && !visibleQuestionOptions.length && <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-600">{t("assessmentBuilder.noMatches")}</p>}
               </div>
             </>
