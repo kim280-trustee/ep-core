@@ -24,7 +24,7 @@ function parseCodeSubmission(value: string) {
 
 function parseProjectSubmission(value: string) {
   try {
-    const parsed = JSON.parse(value) as { kind?: unknown; url?: unknown; reflection?: unknown };
+    const parsed = JSON.parse(value) as { kind?: unknown; url?: unknown; reflection?: unknown; attachments?: unknown };
     if (parsed.kind !== "project_submission" || typeof parsed.url !== "string") return null;
     const url = new URL(parsed.url);
     if (url.protocol !== "https:") return null;
@@ -58,7 +58,7 @@ export default function TeacherContentResponsesPage() {
         const project = parseProjectSubmission(row.responseText);
         const responseAttachments = await Promise.all((project?.attachments ?? []).map(async (file) => {
           const { data, error } = await supabase.storage.from("learning-project-submissions").createSignedUrl(file.path, 3600);
-          return { ...file, signedUrl: error ? null : data.signedUrl };
+          return { ...file, signedUrl: error ? null : data?.signedUrl ?? null };
         }));
         return { ...row, responseAttachments };
       }));
