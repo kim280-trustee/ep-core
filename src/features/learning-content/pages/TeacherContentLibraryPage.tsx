@@ -27,6 +27,7 @@ export default function TeacherContentLibraryPage() {
   const { user } = useAuth();
   const { t } = useTranslation();
   const [search, setSearch] = useState("");
+  const [classGroupId, setClassGroupId] = useState("");
   const [status, setStatus] = useState<LearningContentStatus | "all">("all");
   const [contentType, setContentType] = useState<LearningContentType | "all">("all");
   const [curriculumId, setCurriculumId] = useState("");
@@ -34,7 +35,9 @@ export default function TeacherContentLibraryPage() {
   const [subjectId, setSubjectId] = useState("");
 
   const classes = useQuery({ queryKey: ["learning", "teacher-classes", user?.id], queryFn: () => learningTeacherService.listTeacherClasses(user!.id), enabled: Boolean(user?.id) });
-  const organizationId = classes.data?.[0]?.membership.organizationId;
+  const activeClassGroupId = classGroupId || classes.data?.[0]?.classGroup.id || "";
+  const selectedClass = classes.data?.find((item) => item.classGroup.id === activeClassGroupId);
+  const organizationId = selectedClass?.membership.organizationId;
   const content = useQuery({ queryKey: ["learning", "teacher-content-library", organizationId], queryFn: () => learningContentService.listContent(organizationId), enabled: Boolean(organizationId), refetchOnMount: "always" });
 
   const curricula = useQuery({
@@ -175,7 +178,13 @@ export default function TeacherContentLibraryPage() {
       <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div><div className="flex items-center gap-2 text-sm font-medium text-slate-500"><BookOpen size={18} />{t("contentLibrary.teacherContent")}</div><h1 className="mt-1 text-2xl font-bold text-slate-900">{t("contentLibrary.title")}</h1><p className="mt-2 max-w-2xl text-sm text-slate-500">{t("contentLibrary.intro")}</p></div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <label className="block">
+              <span className="sr-only">Organization access class</span>
+              <select value={activeClassGroupId} onChange={(event) => { setClassGroupId(event.target.value); setCurriculumId(""); setGradeLevelId(""); setSubjectId(""); }} className="input max-w-56">
+                {(classes.data ?? []).map((item) => <option key={item.classGroup.id} value={item.classGroup.id}>{item.classGroup.name}</option>)}
+              </select>
+            </label>
             <Link to="/teacher/content/import" className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50"><Plus size={17} />Import teacher pack</Link>
             <Link to="/teacher/content/new" className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"><Plus size={17} />{t("contentLibrary.create")}</Link>
           </div>
