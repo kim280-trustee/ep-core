@@ -232,12 +232,12 @@ export default function TeacherContentImportPage() {
         learningContentService.listContent(organizationId),
         learningAssessmentService.listQuestions(organizationId),
       ]);
-      const contentCodes = new Set(existingContent.map((item) => item.code.toUpperCase()));
-      const questionCodes = new Set(existingQuestions.map((item) => item.code.toUpperCase()));
+      const contentCodes = new Set(existingContent.map((item) => makeImportCode(item.code)));
+      const questionCodes = new Set(existingQuestions.map((item) => makeImportCode(item.code)));
       const duplicateContent = resolved.rows.find((item) => contentCodes.has(makeImportCode(`EP-${item.objectiveCode}-LESSON`)));
       const duplicateQuestion = resolved.rows.flatMap((item) => item.questions).find((item) => questionCodes.has(item.code.toUpperCase()));
       if (duplicateContent || duplicateQuestion) {
-        throw new Error(`Import stopped because a code already exists in this organization: ${duplicateContent ? `EP-${duplicateContent.objectiveCode}-LESSON` : duplicateQuestion?.code}. Existing content is not overwritten.`);
+        throw new Error(`Import stopped because a code already exists in this organization: ${duplicateContent ? makeImportCode(`EP-${duplicateContent.objectiveCode}-LESSON`) : duplicateQuestion?.code}. Existing content is not overwritten.`);
       }
 
       for (let offset = 0; offset < resolved.rows.length; offset += CHUNK_SIZE) {
