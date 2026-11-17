@@ -1,76 +1,91 @@
-# Thai Technology M1–M6 — Curriculum Audit
+# Computer Studies M1–M3 — Curriculum Audit
 
-**Subject code:** `TECH` — Technology  
-**Curriculum code:** `TH-TECH-M1-M6`  
-**Curriculum version:** Thai Basic Education Core Curriculum B.E. 2551 (2008), revised B.E. 2560 (2017)  
-**Scope:** Design & Technology (ว 4.1) and Computing Science (ว 4.2)  
+**Subject code:** `TECH` — Computer Studies  
+**Curriculum code:** `CLICK-START-M1-M3`  
+**Textbook:** Cambridge Click Start International Edition  
 **Implementation branch:** `paul/learning-academic-integrity-audit`
 
-## Official scope and grade allocation
+## Confirmed school textbook mapping
 
-The Ministry's revised 2017 standards place Design & Technology and Computing Science under Technology, strand 4. They remain separate standards and are represented as separate skills under the E&P Technology subject.
+| School grade | Textbook | Teaching chapters | Sample paper |
+|---|---|---:|---|
+| M1 | Learner's Book 4 | 8 | Chapter 9 |
+| M2 | Learner's Book 5 | 9 | Chapter 10 |
+| M3 | Learner's Book 6 | 12 | Chapter 13 |
+| **Total** | | **29** | **3** |
 
-| Grade | Design & Technology ว 4.1 | Computing Science ว 4.2 | Total indicators |
-|---|---:|---:|---:|
-| M1 | 5 | 4 | 9 |
-| M2 | 5 | 4 | 9 |
-| M3 | 5 | 4 | 9 |
-| M4 | 5 | 1 | 6 |
-| M5 | 1 | 1 | 2 |
-| M6 | 0 | 1 | 1 |
-| **Total** | **21** | **15** | **36** |
+The chapter titles are based on the published contents of the three Cambridge books. The teacher packs provide original lesson starters and practice questions mapped to those chapter titles. They do not reproduce the full textbook, and they do not claim that independently created activities are verbatim book exercises. Teachers should check the physical/digital learner's book for the exact subtopic sequence, worked examples, screenshots and exercise wording.
 
-The empty M6 Design & Technology allocation is intentional: the official W 4.1 indicator table has no M6 indicator. It has not been copied forward from M5 or invented.
+## M1 — Learner's Book 4
+1. Know Your Computer
+2. Using Windows
+3. MS Word 2010 — Formatting Text
+4. Fun with Tux Paint
+5. MSWLogo — Drawing Polygons and Circles
+6. MSWLogo — Using PenColors and PenSizes
+7. MSWLogo — Text Commands and Arithmetic Operations
+8. Introduction to MS PowerPoint 2010
+9. Sample Paper (assessment resource)
 
-Computing Science follows the IPST M1–M6 course descriptions: four grade-specific indicators in each of M1, M2 and M3, followed by one indicator in each of M4, M5 and M6. The upper-secondary course description specifies 40 hours per grade and notes that schools may flexibly sequence the three upper-secondary indicators within the M4–M6 period; the published M4, M5 and M6 course descriptions are retained as the grade mapping for this seed.
+## M2 — Learner's Book 5
+1. Know Your Computer
+2. Using Windows
+3. MS Office at a Glance
+4. MS Word 2010 — Inserting Objects and Drawing
+5. MS PowerPoint 2010 — Editing and Formatting Slides
+6. Introduction to MS Excel 2010
+7. The Internet
+8. Learning Algorithms
+9. Introduction to Scratch
+10. Sample Paper (assessment resource)
 
-## Knowledge graph structure
+## M3 — Learner's Book 6
+1. Know Your Computer
+2. Operating System
+3. MS Word 2010 — Advanced Features
+4. MS Word 2010 — Mail Merge
+5. MS PowerPoint 2010 — Advanced Features
+6. More About MS Excel 2010
+7. More About Scratch
+8. Introduction to QB64
+9. QB64 — Statements
+10. QB64 — Programming Statements
+11. Introduction to Macromedia Flash
+12. Introduction to Email
+13. Sample Paper (assessment resource)
 
-- Subject: `TECH` — Technology
-- Curriculum: `TH-TECH-M1-M6`
-- Skills:
-  - `DESIGN` — Design & Technology (ว 4.1)
-  - `COMPUTING` — Computing Science (ว 4.2)
-- Topics: one grade-specific topic per standard/grade with official indicators.
-- Objectives: 36, each identified by a stable grade/standard/objective code such as `M1-W4_1-01` or `M6-W4_2-01`.
-- Alignments: each objective is linked to its exact M1–M6 grade and official Thai indicator code.
+## Knowledge graph and teacher resources
 
-## Teacher resources
+- Subject: `TECH` — Computer Studies.
+- Curriculum: `CLICK-START-M1-M3`.
+- Skill: `COMPUTER-STUDIES`.
+- One grade topic per book, with one objective for each teaching chapter.
+- 29 objectives aligned to the matching school grade.
+- Three teacher packs: 29 lesson starters and 87 original answer-keyed practice questions.
+- Sample papers are identified as assessment resources, not additional teaching chapters.
 
-Six grade-specific starter packs are staged:
+## Scope and retirement of earlier content
 
-| Pack | Lessons | Answer-keyed questions |
-|---|---:|---:|
-| M1 | 9 | 27 |
-| M2 | 9 | 27 |
-| M3 | 9 | 27 |
-| M4 | 6 | 18 |
-| M5 | 2 | 6 |
-| M6 | 1 | 3 |
-| **Total** | **36** | **108** |
+The earlier Thai national Technology W 4.1/W 4.2 catalogue and its M1–M6 teacher pack content did not represent the user's actual school teaching sequence. It has been replaced in the two staged curriculum migrations and the M1–M3 teacher packs. Do not import the old M4–M6 packs or the old digital-literacy question pack. M4–M6 remain out of scope until their actual school textbooks are confirmed.
 
-Each lesson includes the exact objective code, official indicator code, a teaching activity and three answer-keyed practice questions. Packs are Markdown source resources; they are not published app content and have not been imported by an authorized teacher.
+The coding workspace, practical project submissions, teacher review, marking and gradebook synchronization are application features. They remain available as tools to support book-aligned practical activities; they are not a substitute for the textbook's actual content.
 
 ## Source register
 
-1. Office of the Basic Education Commission, *Learning Standards and Indicators for Mathematics, Science and Geography (Revised B.E. 2560)*, Technology strand, pp. 82–87. This is the authoritative source for W 4.1 and W 4.2 grade allocations and indicator wording.  
-   https://www.academic.obec.go.th/web/images/document/1580786277_d_1.pdf
-2. Institute for the Promotion of Teaching Science and Technology (IPST), *Curriculum Guide: Technology (Computing Science)*, including the M1–M3 indicators and M4–M6 teaching guidance.  
-   https://oho.ipst.ac.th/download/mediaBook/tg-curr-cs.pdf
-3. IPST, *Sample Course Descriptions: Technology (Computing Science), M1–M6*. This provides the grade-level course descriptions and upper-secondary sequencing note.  
-   https://oho.ipst.ac.th/download/mediaBook/CS-course-description-M1-M6.pdf
-4. IPST, *Curriculum Guide: Technology (Design & Technology)*, lower- and upper-secondary levels.  
-   https://uatscimath.ipst.ac.th/ebook-technology/item/8377-2560-2551-8377
+1. Cambridge Click Start International Edition Learner's Book 4, ISBN 9781108951869. Published contents and description: https://www.kriso.lv/click-start-international-edition-learners-book-db-9781108951869.html
+2. Cambridge Click Start International Edition Learner's Book 5, ISBN 9781108951883. Published contents and description: https://www.emobooks.com/9781108951883-Click-Start-International-Edition-Learners-Book-5-with-Digital-Access-1-Year
+3. Cambridge Click Start International Edition Learner's Book 6, ISBN 9781108951906. Published contents and description: https://kitaabnow.com/product/click-start-international-edition-learners-book-6-with-digital-access-1-year/
 
 ## Implementation status
 
-- [x] Separate Technology curriculum catalogue and M1–M6 grade levels staged.
-- [x] 36 objectives staged with official grade and indicator alignments.
-- [x] Six teacher starter packs staged: 36 lesson starters and 108 questions.
-- [ ] Apply the two Technology migrations to a disposable/staging Supabase database.
-- [ ] Verify objective, topic, skill and alignment counts after migration.
-- [ ] Import teacher packs through an authorized teacher account.
-- [ ] Review and publish lessons/questions through the existing teacher workflow.
-- [ ] Run the full feature test round after the subject implementation work is complete.
+- [x] Replace the staged national Technology curriculum catalogue with the Cambridge Click Start M1–M3 catalogue.
+- [x] Replace the staged national Technology knowledge graph with 29 book-chapter objectives and grade alignments.
+- [x] Replace M1, M2 and M3 teacher packs with book-aligned lesson starters.
+- [x] Keep sample papers separate as assessment resources.
+- [ ] Retire or quarantine obsolete M4–M6 packs and the former national digital-literacy question pack from import discovery.
+- [ ] Apply migrations to a disposable/staging Supabase database.
+- [ ] Verify curriculum, grade, topic, objective and alignment counts.
+- [ ] Import and review M1–M3 packs through the existing teacher workflow.
+- [ ] Run full tests, lint and build after Computer Studies implementation is complete.
 
-No live Supabase changes or school records have been created by this batch. No tests, lint or builds have been run.
+No Supabase migration has been run and no live school or learner records have been changed. Tests, lint and build have not been run.
