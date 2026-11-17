@@ -19,7 +19,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
   if (!markdown.trim()) throw new Error("The selected Markdown file is empty.");
   if (markdown.length > 5_000_000) throw new Error("Teacher packs must be smaller than 5 MB.");
 
-  const headingPattern = /^#{2,3}\s+(?:(?:(?:Physical|Earth) Science\s+)?(?:Lesson|Outcome)\s+(\d+)\s+[—–-]\s+(.+)|(\d+)\.\s+(.+))$/gm;
+  const headingPattern = /^#{2,3}\s+(?:(?:(?:Physical|Earth) Science\s+)?(?:Lesson|Outcome)\s+(\d+)\s+[—–-]\s+(.+)|Group\s+\d+\s+[—–-]\s+Outcome\s+(\d+)\s*[:—–-]\s*(.+)|(\d+)\.\s+(.+))$/gm;
   const headings = [...markdown.matchAll(headingPattern)];
   if (!headings.length) {
     throw new Error("No lesson sections were found. Use numbered Lesson/Outcome headings or headings such as '### 1. Lesson title'.");
@@ -29,9 +29,9 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
     const start = (heading.index ?? 0) + heading[0].length;
     const end = headings[index + 1]?.index ?? markdown.length;
     const section = markdown.slice(start, end);
-    const number = Number(heading[1] ?? heading[3]);
-    const title = (heading[2] ?? heading[4]).trim();
-    const objectiveLine = section.match(/^\*\*Objective:\*\*\s*(.+)$/mi)?.[1]?.trim() ?? "";
+    const number = Number(heading[1] ?? heading[3] ?? heading[5]);
+    const title = (heading[2] ?? heading[4] ?? heading[6]).trim();
+    const objectiveLine = section.match(/^\*\*(?:Objective|Learning objective):\*\*\s*(.+)$/mi)?.[1]?.trim() ?? "";
     const codeMatch = objectiveLine.match(/[\x60]([A-Z0-9][A-Z0-9_-]{2,})[\x60]/i)
       ?? objectiveLine.match(/\b(M[1-6][A-Z0-9_-]+)\b/i);
     const objectiveCode = codeMatch?.[1]?.toUpperCase() ?? null;
@@ -50,6 +50,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
     const activityParts = [
       section.match(/^\*\*Teaching activity:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Starter(?:\s*\/\s*learning task)?:\*\*\s*(.+)$/mi)?.[1]?.trim(),
+      section.match(/^\*\*Lesson starter(?:\s*\(\d+\s*minutes?\))?:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Teach(?: and practi[cs]e)?:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Learning task:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Check for understanding:\*\*\s*(.+)$/mi)?.[1]?.trim(),
@@ -83,7 +84,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
       if (prompt && expectedAnswer) questions.push({ number: Number(questionLine[1]), prompt, expectedAnswer });
     }
 
-    if (!objectiveCode && !objectiveText) throw new Error(\`Lesson \${number} is missing its **Objective:** line.\`);
+    if (!objectiveCode && !objectiveText) throw new Error(\`Lesson \${number} is missing its objective line.\`);
     if (!activity) throw new Error(\`Lesson \${number} is missing teaching notes or a learning focus.\`);
     if (questions.length !== 3) {
       throw new Error(\`Lesson \${number} has \${questions.length} answer-keyed questions; exactly 3 are required.\`);
