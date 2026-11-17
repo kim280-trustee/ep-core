@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, Eye, FileText, Save, Send, Archive, ClipboardPlus, Plus, Trash2 } from "lucide-react";
 import type { FormEvent } from "react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useAuth } from "@/core/auth";
 import { useTranslation } from "@/core/i18n";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -24,6 +24,8 @@ export default function TeacherContentDetailPage() {
   const queryClient = useQueryClient();
   const [body, setBody] = useState("");
   const [bodyEdited, setBodyEdited] = useState(false);
+  const [starterCodeDraft, setStarterCodeDraft] = useState("");
+  const [projectRequirementsDraft, setProjectRequirementsDraft] = useState("");
   const [changeSummary, setChangeSummary] = useState("");
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
@@ -145,6 +147,20 @@ export default function TeacherContentDetailPage() {
   });
 
   const latestVersion = versions.data?.[0];
+  const latestStructuredActivity = useMemo(() => {
+    if (!latestVersion?.body || !Array.isArray(latestVersion.body.sections)) return null;
+    const section = latestVersion.body.sections.find((item) => Boolean(
+      item && typeof item === "object" &&
+      ["code_activity", "project_activity"].includes(String((item as Record<string, unknown>).type)),
+    ));
+    return section && typeof section === "object" ? section as Record<string, unknown> : null;
+  }, [latestVersion]);
+
+  useEffect(() => {
+    if (!latestStructuredActivity) return;
+    setStarterCodeDraft(typeof latestStructuredActivity.starterCode === "string" ? latestStructuredActivity.starterCode : "");
+    setProjectRequirementsDraft(typeof latestStructuredActivity.requirements === "string" ? latestStructuredActivity.requirements : "");
+  }, [latestStructuredActivity]);
 
   const latestBody = useMemo(() => {
     if (!latestVersion?.body) return "";
@@ -235,10 +251,10 @@ export default function TeacherContentDetailPage() {
               body: currentBody.trim(),
               instructions: currentBody.trim(),
               ...(existingStructuredSection.type === "code_activity" ? {
-                starterCode: typeof existingStructuredSection.starterCode === "string" ? existingStructuredSection.starterCode : "",
+                starterCode: starterCodeDraft,
                 language: typeof existingStructuredSection.language === "string" ? existingStructuredSection.language : "javascript",
               } : {
-                requirements: typeof existingStructuredSection.requirements === "string" ? existingStructuredSection.requirements : "",
+                requirements: projectRequirementsDraft,
               }),
             }] : [{ type: "text", title: "Content", body: currentBody.trim() }]),
             ...latestTeacherGuidance.map((section) => ({
@@ -647,6 +663,19 @@ export default function TeacherContentDetailPage() {
                 placeholder={t("contentDetail.writeContent")}
                 required
               />
+
+              {latestStructuredActivity?.type === "code_activity" && (
+                <label className="mt-4 block">
+                  <span className="mb-1.5 block text-sm font-medium text-slate-700">Student starter code (JavaScript)</span>
+                  <textarea value={starterCodeDraft} onChange={(event) => setStarterCodeDraft(event.target.value)} maxLength={12000} spellCheck={false} className="input min-h-56 w-full resize-y font-mono text-sm" />
+                </label>
+              )}
+              {latestStructuredActivity?.type === "project_activity" && (
+                <label className="mt-4 block">
+                  <span className="mb-1.5 block text-sm font-medium text-slate-700">Project submission requirements</span>
+                  <textarea value={projectRequirementsDraft} onChange={(event) => setProjectRequirementsDraft(event.target.value)} maxLength={3000} rows={4} className="input w-full resize-y" />
+                </label>
+              )}
 
               <label className="mt-4 block">
                 <span className="mb-1.5 block text-sm font-medium text-slate-700">{t("contentDetail.changeSummary")}</span>
