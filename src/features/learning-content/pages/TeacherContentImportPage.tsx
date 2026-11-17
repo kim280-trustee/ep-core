@@ -68,10 +68,8 @@ export default function TeacherContentImportPage() {
   });
   const activeSubjectId = subjectId && subjects.data?.some((item) => item.id === subjectId)
     ? subjectId
-    : selectedClass?.subjects.some((item) => item.subjectId === subjectId)
-      ? subjectId
-      : selectedClass?.subjects.find((item) => subjects.data?.some((subject) => subject.id === item.subjectId))?.subjectId
-        || subjects.data?.[0]?.id || "";
+    : selectedClass?.subjects.find((item) => subjects.data?.some((subject) => subject.id === item.subjectId))?.subjectId
+      || subjects.data?.[0]?.id || "";
 
   const catalogue = useQuery({
     queryKey: ["learning", "teacher-pack-import", "catalogue", activeSubjectId],
@@ -122,7 +120,22 @@ export default function TeacherContentImportPage() {
           normalizeText(item.name) === normalizedText ||
           normalizeText(item.description ?? "") === normalizedText
         );
-        if (exactTextMatches.length === 1) objective = exactTextMatches[0];
+        if (exactTextMatches.length === 1) {
+          objective = exactTextMatches[0];
+        } else if (!exactTextMatches.length) {
+          const alignedCandidates = objectives.filter((item) => alignedToGrade(item.id, targetGradeLevelId));
+          const scored = alignedCandidates
+            .map((item) => ({
+              item,
+              score: textSimilarity(lesson.objectiveText!, item.description || item.name),
+            }))
+            .sort((left, right) => right.score - left.score);
+          const best = scored[0];
+          const runnerUp = scored[1];
+          if (best && best.score >= 0.72 && (!runnerUp || best.score - runnerUp.score >= 0.08)) {
+            objective = best.item;
+          }
+        }
       }
 
       if (!objective && lesson.objectiveCode) {
@@ -371,6 +384,16 @@ export default function TeacherContentImportPage() {
 
 function normalizeText(value: string) {
   return value.toLowerCase().replace(/[’']/g, "").replace(/[^a-z0-9]+/g, " ").trim();
+}
+
+function textSimilarity(left: string, right: string) {
+  const ignored = new Set(["the", "and", "of", "to", "a", "an", "in", "for", "using", "use", "how", "what", "with", "from", "by", "on", "at", "as", "is", "are", "be", "that", "this", "their", "its", "into", "across"]);
+  const leftTokens = new Set(normalizeText(left).split(" ").filter((token) => token.length > 2 && !ignored.has(token)));
+  const rightTokens = new Set(normalizeText(right).split(" ").filter((token) => token.length > 2 && !ignored.has(token)));
+  if (!leftTokens.size || !rightTokens.size) return 0;
+  let intersection = 0;
+  leftTokens.forEach((token) => { if (rightTokens.has(token)) intersection += 1; });
+  return (2 * intersection) / (leftTokens.size + rightTokens.size);
 }
 
 function Field({ label, children }: { label: string; children: ReactNode }) {
