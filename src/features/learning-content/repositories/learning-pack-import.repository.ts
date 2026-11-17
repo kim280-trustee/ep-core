@@ -80,7 +80,7 @@ export const learningPackImportRepository = {
               {
                 type: "text",
                 title: "Practice questions",
-                body: lesson.questions.map((question, index) => `${index + 1}. ${question.prompt}`).join("\\n"),
+                body: lesson.questions.map((question, index) => `${index + 1}. ${question.prompt}`).join("\n"),
               },
             ],
             source: { type: "teacher_pack", objective_code: lesson.objectiveCode },
