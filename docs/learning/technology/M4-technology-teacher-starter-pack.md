@@ -14,7 +14,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 
 ## Lesson starters
 
-### Lesson 1 — Analyse core technology concepts and their impacts
+## Lesson 1 — Analyse core technology concepts and their impacts
 
 **Objective:** `M4-W4_1-01` — Analyse core technology concepts and their impacts  
 **Official indicator:** ว 4.1 ม.4/1  
@@ -30,7 +30,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. Name one way science and mathematics influence technology.  
    **Answer:** They provide principles, measurements and models used in design and testing.
 
-### Lesson 2 — Define complex problems that affect society
+## Lesson 2 — Define complex problems that affect society
 
 **Objective:** `M4-W4_1-02` — Define complex problems that affect society  
 **Official indicator:** ว 4.1 ม.4/2  
@@ -46,7 +46,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. What should a good problem definition include?  
    **Answer:** Context, affected users, evidence, constraints and the intended outcome.
 
-### Lesson 3 — Design solutions with software and available resources
+## Lesson 3 — Design solutions with software and available resources
 
 **Objective:** `M4-W4_1-03` — Design solutions with software and available resources  
 **Official indicator:** ว 4.1 ม.4/3  
@@ -62,7 +62,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. What should a prototype plan specify?  
    **Answer:** Design requirements, materials, tools, sequence, roles and safety controls.
 
-### Lesson 4 — Test, analyse and improve solutions for further development
+## Lesson 4 — Test, analyse and improve solutions for further development
 
 **Objective:** `M4-W4_1-04` — Test, analyse and improve solutions for further development  
 **Official indicator:** ว 4.1 ม.4/4  
@@ -78,7 +78,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. What evidence supports a recommendation for further development?  
    **Answer:** Repeatable test results, user feedback and comparison against requirements.
 
-### Lesson 5 — Use advanced materials, mechanisms and electrical technologies safely
+## Lesson 5 — Use advanced materials, mechanisms and electrical technologies safely
 
 **Objective:** `M4-W4_1-05` — Use advanced materials, mechanisms and electrical technologies safely  
 **Official indicator:** ว 4.1 ม.4/5  
@@ -94,7 +94,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. Why consider material properties in a design?  
    **Answer:** Strength, weight, durability, conductivity and cost affect performance and safety.
 
-### Lesson 6 — Apply computational thinking in an integrated project
+## Lesson 6 — Apply computational thinking in an integrated project
 
 **Objective:** `M4-W4_2-01` — Apply computational thinking in an integrated project  
 **Official indicator:** ว 4.2 ม.4/1  
