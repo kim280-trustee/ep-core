@@ -14,7 +14,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 
 ## Lesson starters
 
-### Lesson 1 — Apply interdisciplinary knowledge in a technology project
+## Lesson 1 — Apply interdisciplinary knowledge in a technology project
 
 **Objective:** `M5-W4_1-01` — Apply interdisciplinary knowledge in a technology project  
 **Official indicator:** ว 4.1 ม.5/1  
