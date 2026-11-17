@@ -107,6 +107,8 @@ revoke all on function private.guard_learning_assessment_publication() from publ
 alter function public.submit_learning_attempt(uuid)
   rename to submit_learning_attempt_auto_v1;
 
+revoke all on function public.submit_learning_attempt_auto_v1(uuid) from public, anon, authenticated;
+
 create or replace function public.submit_learning_attempt(p_attempt_id uuid)
 returns jsonb
 language plpgsql
@@ -374,29 +376,34 @@ begin
     for update;
 
     if found then
+      v_new_score := round(
+        ((v_previous_score * greatest((
+          select sm.attempts_count from public.learning_student_mastery sm
+          where sm.student_user_id = v_answer.student_user_id
+            and sm.objective_id = v_objective.objective_id
+            and sm.organization_id is not distinct from v_answer.organization_id
+        ), 0)) + ((v_objective.correct_count::numeric / greatest(v_objective.evidence_count, 1)) * 100))
+        / greatest((
+          select sm.attempts_count + v_objective.evidence_count
+          from public.learning_student_mastery sm
+          where sm.student_user_id = v_answer.student_user_id
+            and sm.objective_id = v_objective.objective_id
+            and sm.organization_id is not distinct from v_answer.organization_id
+        ), 1), 3);
       update public.learning_student_mastery sm
-      set mastery_score = round(
-            ((sm.mastery_score * greatest(sm.attempts_count, 0))
-              + ((v_objective.correct_count::numeric / greatest(v_objective.evidence_count, 1)) * 100))
-            / greatest(sm.attempts_count + v_objective.evidence_count, 1), 3),
+      set mastery_score = v_new_score,
           confidence_score = least(100, (sm.attempts_count + v_objective.evidence_count) * 20),
           state = case
-            when round(((sm.mastery_score * greatest(sm.attempts_count, 0))
-              + ((v_objective.correct_count::numeric / greatest(v_objective.evidence_count, 1)) * 100))
-              / greatest(sm.attempts_count + v_objective.evidence_count, 1), 3) >= 80 then 'mastered'
-            when round(((sm.mastery_score * greatest(sm.attempts_count, 0))
-              + ((v_objective.correct_count::numeric / greatest(v_objective.evidence_count, 1)) * 100))
-              / greatest(sm.attempts_count + v_objective.evidence_count, 1), 3) >= 60 then 'proficient'
-            when round(((sm.mastery_score * greatest(sm.attempts_count, 0))
-              + ((v_objective.correct_count::numeric / greatest(v_objective.evidence_count, 1)) * 100))
-              / greatest(sm.attempts_count + v_objective.evidence_count, 1), 3) >= 40 then 'developing'
+            when v_new_score >= 80 then 'mastered'
+            when v_new_score >= 60 then 'proficient'
+            when v_new_score >= 40 then 'developing'
             else 'needs_review' end,
           attempts_count = sm.attempts_count + v_objective.evidence_count,
           correct_count = sm.correct_count + v_objective.correct_count,
           last_assessed_at = v_now,
           next_review_at = case
-            when sm.mastery_score < 60 then v_now + interval '3 days'
-            when sm.mastery_score < 80 then v_now + interval '7 days'
+            when v_new_score < 60 then v_now + interval '3 days'
+            when v_new_score < 80 then v_now + interval '7 days'
             else v_now + interval '30 days' end,
           updated_at = v_now
       where sm.student_user_id = v_answer.student_user_id
@@ -430,7 +437,7 @@ begin
     ) values (
       v_answer.tenant_id, v_answer.organization_id, v_answer.student_user_id,
       v_objective.objective_id, v_answer.attempt_id, v_previous_score,
-      coalesce(v_new_score, (v_objective.correct_count::numeric / greatest(v_objective.evidence_count, 1)) * 100),
+      v_new_score,
       jsonb_build_object('source', 'teacher_review', 'assessment_id', v_answer.assessment_id,
         'evidence_count', v_objective.evidence_count, 'correct_count', v_objective.correct_count)
     );
