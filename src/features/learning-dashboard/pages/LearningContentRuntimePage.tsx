@@ -6,6 +6,7 @@ import { useAuth } from "@/core/auth";
 import { learningAssignmentsService } from "@/features/learning-assignments";
 import { learningActivityService } from "@/features/learning-activity";
 import { learningContentService } from "@/features/learning-content";
+import CodeActivityWorkspace from "../components/CodeActivityWorkspace";
 
 function textSections(body: Record<string, unknown>) {
   const raw = body.sections;
@@ -20,11 +21,24 @@ function textSections(body: Record<string, unknown>) {
       record.audience === "teacher" ||
       /safety and teaching guidance|teacher guidance|teacher notes|teaching notes/.test(title)
     ) return [];
+    const sectionType = typeof record.type === "string" ? record.type : "text";
     const bodyText = typeof record.body === "string" ? record.body.trim() : "";
+    if (sectionType === "code_activity") {
+      return [{
+        type: sectionType,
+        title: typeof record.title === "string" ? record.title : "Coding activity",
+        body: bodyText,
+        instructions: typeof record.instructions === "string" ? record.instructions : "",
+        starterCode: typeof record.starterCode === "string" ? record.starterCode : "",
+      }];
+    }
     if (!bodyText) return [];
     return [{
+      type: sectionType,
       title: typeof record.title === "string" ? record.title : null,
       body: bodyText,
+      instructions: "",
+      starterCode: "",
     }];
   });
 }
@@ -46,6 +60,9 @@ export default function LearningContentRuntimePage() {
   const content = contentId ?? "";
   const queryClient = useQueryClient();
   const [responseText, setResponseText] = useState("");
+  const [codeDraft, setCodeDraft] = useState("");
+  const [codeRunOutput, setCodeRunOutput] = useState("");
+  const [codeRunSucceeded, setCodeRunSucceeded] = useState(false);
   const [fillInAnswerDrafts, setFillInAnswerDrafts] = useState<Record<string, string[]>>({});
 
   useEffect(() => {
@@ -110,6 +127,23 @@ export default function LearningContentRuntimePage() {
     enabled: Boolean(id && content && user?.id),
   });
 
+  useEffect(() => {
+    const codingSection = query.data?.sections.find((section) => section.type === "code_activity");
+    if (!codingSection) return;
+    let savedCode = codingSection.starterCode;
+    if (responseQuery.data?.responseText) {
+      try {
+        const saved = JSON.parse(responseQuery.data.responseText) as { code?: unknown; output?: unknown };
+        if (typeof saved.code === "string") savedCode = saved.code;
+        if (typeof saved.output === "string") setCodeRunOutput(saved.output);
+      } catch {
+        // Older free-text responses are not treated as executable code.
+      }
+    }
+    setCodeDraft(savedCode);
+    setCodeRunSucceeded(false);
+  }, [query.data, responseQuery.data]);
+
   const fillInDraftKey = `${id}:${content}`;
   const savedFillInAnswers = useMemo(() => {
     if (!responseQuery.data || !query.data) return [];
@@ -129,7 +163,12 @@ export default function LearningContentRuntimePage() {
       // Fill-in activities keep their answers in the individual blank controls.
       // Build the persisted response from those controls instead of relying on the
       // separate free-text state, which is intentionally unused for fill-in lessons.
-      const text = isFillInActivity ? buildFillInResponse(fillInAnswers).trim() : responseText.trim();
+      const text = isCodingActivity
+        ? JSON.stringify({ kind: "code_submission", language: "javascript", code: codeDraft.trim(), output: codeRunOutput })
+        : isFillInActivity ? buildFillInResponse(fillInAnswers).trim() : responseText.trim();
+      if (isCodingActivity && (!codeDraft.trim() || !codeRunSucceeded)) {
+        throw new Error("Run your code successfully before saving or submitting it.");
+      }
       if (!text || (isFillInActivity && !fillInComplete)) {
         throw new Error(isFillInActivity ? "Complete every blank before saving." : "Write your response before saving.");
       }
@@ -223,8 +262,9 @@ export default function LearningContentRuntimePage() {
   }
 
   const { assignment, content: currentContent, version, sections } = query.data;
+  const isCodingActivity = sections.some((section) => section.type === "code_activity");
   const fillInPattern = /(?:\\?_){3,}/g;
-  const isFillInActivity = sections.some((section) => fillInPattern.test(section.body));
+  const isFillInActivity = !isCodingActivity && sections.some((section) => fillInPattern.test(section.body));
   fillInPattern.lastIndex = 0;
   const buildFillInResponse = (answers: string[]) => {
     let answerIndex = 0;
@@ -267,18 +307,29 @@ export default function LearningContentRuntimePage() {
           {sections.length ? sections.map((section, index) => (
             <article key={`${version.id}-${index}`} className="space-y-2">
               {section.title && <h2 className="text-lg font-semibold text-slate-900">{section.title}</h2>}
-              <div className="whitespace-pre-wrap text-base leading-8 text-slate-700">
-                {isFillInActivity ? section.body.split(/((?:\\?_){3,})/g).map((part, partIndex) => {
-                  if (!/(?:\\?_){3,}/.test(part)) return <span key={`${index}-text-${partIndex}`}>{part}</span>;
-                  const answerIndex = renderedBlankIndex++;
-                  return <input key={`${index}-blank-${answerIndex}`} aria-label={`Answer blank ${answerIndex + 1}`} value={fillInAnswers[answerIndex] ?? ""} disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending} onChange={(event) => {
-                    const nextAnswers = [...fillInAnswers];
-                    nextAnswers[answerIndex] = event.target.value;
-                    setFillInAnswerDrafts((current) => ({ ...current, [fillInDraftKey]: nextAnswers }));
-                    setResponseText(buildFillInResponse(nextAnswers));
-                  }} className="mx-1 inline-block min-w-28 max-w-full rounded-md border border-slate-400 bg-white px-2 py-1 text-slate-900 outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200" placeholder={`Blank ${answerIndex + 1}`} />
-                }) : section.body}
-              </div>
+              {section.type === "code_activity" ? (
+                <CodeActivityWorkspace
+                  instructions={section.instructions || section.body}
+                  starterCode={section.starterCode}
+                  value={codeDraft}
+                  disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending}
+                  onChange={(nextCode) => { setCodeDraft(nextCode); setCodeRunOutput(""); setCodeRunSucceeded(false); }}
+                  onRunResult={(result) => { setCodeRunOutput(result.output); setCodeRunSucceeded(result.success); }}
+                />
+              ) : (
+                <div className="whitespace-pre-wrap text-base leading-8 text-slate-700">
+                  {isFillInActivity ? section.body.split(/((?:\\?_){3,})/g).map((part, partIndex) => {
+                    if (!/(?:\\?_){3,}/.test(part)) return <span key={`${index}-text-${partIndex}`}>{part}</span>;
+                    const answerIndex = renderedBlankIndex++;
+                    return <input key={`${index}-blank-${answerIndex}`} aria-label={`Answer blank ${answerIndex + 1}`} value={fillInAnswers[answerIndex] ?? ""} disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending} onChange={(event) => {
+                      const nextAnswers = [...fillInAnswers];
+                      nextAnswers[answerIndex] = event.target.value;
+                      setFillInAnswerDrafts((current) => ({ ...current, [fillInDraftKey]: nextAnswers }));
+                      setResponseText(buildFillInResponse(nextAnswers));
+                    }} className="mx-1 inline-block min-w-28 max-w-full rounded-md border border-slate-400 bg-white px-2 py-1 text-slate-900 outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200" placeholder={`Blank ${answerIndex + 1}`} />
+                  }) : section.body}
+                </div>
+              )}
             </article>
           )) : (
             <p className="text-sm text-slate-500">This content version is currently empty.</p>
@@ -286,15 +337,15 @@ export default function LearningContentRuntimePage() {
         </div>
       </section>
 
-      {currentContent.contentType === "writing" || isFillInActivity ? (
+      {currentContent.contentType === "writing" || isFillInActivity || isCodingActivity ? (
         <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
-          <h2 className="text-lg font-semibold text-slate-900">{isFillInActivity ? "Submit your completed activity" : "Your response"}</h2>
-          <p className="mt-1 text-sm text-slate-500">{isFillInActivity ? "Fill in each blank in the content above, then save your draft or submit the completed activity." : "Write your answer below. You can save a draft and return later."}</p>
-          {!isFillInActivity && <textarea value={responseText} onChange={e => setResponseText(e.target.value)} disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending} className="input mt-4 min-h-40 w-full resize-y" placeholder="Write your answer here..." />}
+          <h2 className="text-lg font-semibold text-slate-900">{isCodingActivity ? "Submit your code" : isFillInActivity ? "Submit your completed activity" : "Your response"}</h2>
+          <p className="mt-1 text-sm text-slate-500">{isCodingActivity ? "Run your code in the isolated workspace above, then save a draft or submit it for teacher review." : isFillInActivity ? "Fill in each blank in the content above, then save your draft or submit the completed activity." : "Write your answer below. You can save a draft and return later."}</p>
+          {!isFillInActivity && !isCodingActivity && <textarea value={responseText} onChange={e => setResponseText(e.target.value)} disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending} className="input mt-4 min-h-40 w-full resize-y" placeholder="Write your answer here..." />}
           <div className="mt-4 flex flex-wrap items-center gap-3">
             {responseQuery.data?.status === "submitted" ? <span className="text-sm font-medium text-emerald-700">Response submitted.</span> : <>
-              <button type="button" disabled={(isFillInActivity ? !fillInComplete : !responseText.trim()) || responseMutation.isPending} onClick={() => responseMutation.mutate("draft")} className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold disabled:opacity-50">Save draft</button>
-              <button type="button" disabled={(isFillInActivity ? !fillInComplete : !responseText.trim()) || responseMutation.isPending} onClick={() => responseMutation.mutate("submitted")} className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{responseMutation.isPending ? "Submitting..." : "Submit response"}</button>
+              <button type="button" disabled={(isCodingActivity ? !codeDraft.trim() || !codeRunSucceeded : isFillInActivity ? !fillInComplete : !responseText.trim()) || responseMutation.isPending} onClick={() => responseMutation.mutate("draft")} className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold disabled:opacity-50">Save draft</button>
+              <button type="button" disabled={(isCodingActivity ? !codeDraft.trim() || !codeRunSucceeded : isFillInActivity ? !fillInComplete : !responseText.trim()) || responseMutation.isPending} onClick={() => responseMutation.mutate("submitted")} className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{responseMutation.isPending ? "Submitting..." : "Submit response"}</button>
             </>}
           </div>
           {responseMutation.isError && <p className="mt-3 text-sm text-red-600">{mutationErrorMessage(responseMutation.error, "Could not save your response.")}</p>}
