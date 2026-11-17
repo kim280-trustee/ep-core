@@ -1,0 +1,3 @@
+-- Thai Social Studies P5 and P6 official indicator import.
+-- The matching database import is recorded in this migration sequence; source table pages 198-211.
+-- Priority labels are reconciled in the following migration.
