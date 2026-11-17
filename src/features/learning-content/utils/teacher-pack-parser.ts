@@ -51,12 +51,13 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
       .replace(/\s+/g, " ")
       .trim();
 
-    const learningOutcome = section.match(/^\*\*Learning outcome:\*\*\s*(.+)$/mi)?.[1]?.trim()
+    const learningOutcome = section.match(/^\*\*Learning outcomes?:\*\*\s*(.+)$/mi)?.[1]?.trim()
       ?? section.match(/^\*\*Outcome:\*\*\s*(.+)$/mi)?.[1]?.trim()
       ?? (objectiveText || title);
 
     const keyRelationships = section.match(/^\*\*Key relationships\*\*\s*([\s\S]*?)(?=^\*\*|^#{1,3}\s|(?![\s\S]))/mi)?.[1]?.trim();
     const activityParts = [
+      section.match(/^\*\*Practical activity:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Teaching activity:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Starter(?:\s*\/\s*learning task)?:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Lesson starter(?:\s*\(\d+\s*minutes?\))?:\*\*\s*(.+)$/mi)?.[1]?.trim(),
