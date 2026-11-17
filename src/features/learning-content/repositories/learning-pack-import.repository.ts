@@ -37,7 +37,7 @@ export const learningPackImportRepository = {
     )) {
       throw new Error("Every imported lesson needs an exact academic objective, grade, teaching content and three answer-keyed questions.");
     }
-    const contentCodes = input.lessons.map((lesson) => `EP-${lesson.objectiveCode}-LESSON`);
+    const contentCodes = input.lessons.map((lesson) => makeImportCode(makeImportCode(`EP-${lesson.objectiveCode}-LESSON`)));
     const questionCodes = input.lessons.flatMap((lesson) => lesson.questions.map((question) => question.code));
     if (new Set(contentCodes).size !== contentCodes.length || new Set(questionCodes).size !== questionCodes.length) {
       throw new Error("The import chunk contains duplicate content or question codes.");
@@ -50,7 +50,7 @@ export const learningPackImportRepository = {
       const contentRows: Database["public"]["Tables"]["learning_content_items"]["Insert"][] =
         input.lessons.map((lesson) => ({
           organization_id: input.organizationId,
-          code: `EP-${lesson.objectiveCode}-LESSON`,
+          code: makeImportCode(makeImportCode(`EP-${lesson.objectiveCode}-LESSON`)),
           title: lesson.title,
           content_type: "lesson",
           language_code: "en",
@@ -71,7 +71,7 @@ export const learningPackImportRepository = {
 
       const contentVersionRows: Database["public"]["Tables"]["learning_content_versions"]["Insert"][] =
         input.lessons.map((lesson) => ({
-          content_item_id: contentByCode.get(`EP-${lesson.objectiveCode}-LESSON`)!,
+          content_item_id: contentByCode.get(makeImportCode(makeImportCode(`EP-${lesson.objectiveCode}-LESSON`)))!,
           version_no: 1,
           body: {
             sections: [
@@ -90,7 +90,7 @@ export const learningPackImportRepository = {
 
       const contentObjectiveRows: Database["public"]["Tables"]["learning_content_objectives"]["Insert"][] =
         input.lessons.map((lesson) => ({
-          content_item_id: contentByCode.get(`EP-${lesson.objectiveCode}-LESSON`)!,
+          content_item_id: contentByCode.get(makeImportCode(makeImportCode(`EP-${lesson.objectiveCode}-LESSON`)))!,
           objective_id: lesson.objectiveId,
           sequence_no: 1,
         }));
@@ -197,3 +197,7 @@ export const learningPackImportRepository = {
     }
   },
 };
+
+function makeImportCode(value: string) {
+  return value.toUpperCase().replace(/[^A-Z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
