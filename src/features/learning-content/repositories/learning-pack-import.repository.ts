@@ -27,11 +27,20 @@ export type LearningPackImportChunk = {
 
 export const learningPackImportRepository = {
   async importChunk(input: LearningPackImportChunk) {
-    if (!input.organizationId || !input.createdBy || !input.lessons.length) {
-      throw new Error("A teacher, organization and at least one lesson are required.");
+    if (!input.organizationId || !input.createdBy || !input.curriculumId || !input.subjectId || !input.lessons.length) {
+      throw new Error("A teacher, organization, curriculum, subject and at least one lesson are required.");
     }
-    if (input.lessons.some((lesson) => lesson.questions.length !== 3)) {
-      throw new Error("Every lesson must contain exactly three answer-keyed questions.");
+    if (input.lessons.some((lesson) =>
+      !lesson.objectiveId || !lesson.objectiveCode || !lesson.gradeLevelId ||
+      !lesson.title.trim() || !lesson.learningOutcome.trim() || !lesson.activity.trim() ||
+      lesson.questions.length !== 3
+    )) {
+      throw new Error("Every imported lesson needs an exact academic objective, grade, teaching content and three answer-keyed questions.");
+    }
+    const contentCodes = input.lessons.map((lesson) => `EP-${lesson.objectiveCode}-LESSON`);
+    const questionCodes = input.lessons.flatMap((lesson) => lesson.questions.map((question) => question.code));
+    if (new Set(contentCodes).size !== contentCodes.length || new Set(questionCodes).size !== questionCodes.length) {
+      throw new Error("The import chunk contains duplicate content or question codes.");
     }
 
     const createdContentIds: string[] = [];
