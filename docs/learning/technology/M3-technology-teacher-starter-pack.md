@@ -14,7 +14,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 
 ## Lesson starters
 
-### Lesson 1 — Analyse technological change and links with other disciplines
+## Lesson 1 — Analyse technological change and links with other disciplines
 
 **Objective:** `M3-W4_1-01` — Analyse technological change and links with other disciplines  
 **Official indicator:** ว 4.1 ม.3/1  
@@ -30,7 +30,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. Why analyse more than one factor behind technological change?  
    **Answer:** Technology changes through interacting scientific, social, economic and environmental factors.
 
-### Lesson 2 — Define local problems for work or career development
+## Lesson 2 — Define local problems for work or career development
 
 **Objective:** `M3-W4_1-02` — Define local problems for work or career development  
 **Official indicator:** ว 4.1 ม.3/2  
@@ -46,7 +46,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. How can a student avoid misusing another person's design?  
    **Answer:** Check ownership and licence terms, request permission when required and acknowledge sources.
 
-### Lesson 3 — Design solutions using varied communication techniques
+## Lesson 3 — Design solutions using varied communication techniques
 
 **Objective:** `M3-W4_1-03` — Design solutions using varied communication techniques  
 **Official indicator:** ว 4.1 ม.3/3  
@@ -62,7 +62,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. Why plan the build sequence?  
    **Answer:** It helps organise tasks, resources and safe construction.
 
-### Lesson 4 — Evaluate, improve and extend a designed solution
+## Lesson 4 — Evaluate, improve and extend a designed solution
 
 **Objective:** `M3-W4_1-04` — Evaluate, improve and extend a designed solution  
 **Official indicator:** ว 4.1 ม.3/4  
@@ -78,7 +78,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. What is further development?  
    **Answer:** A next-stage improvement or new capability based on evaluation.
 
-### Lesson 5 — Use complex tools and technologies safely
+## Lesson 5 — Use complex tools and technologies safely
 
 **Objective:** `M3-W4_1-05` — Use complex tools and technologies safely  
 **Official indicator:** ว 4.1 ม.3/5  
@@ -94,7 +94,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. Why should complex tools be used only with approved supervision?  
    **Answer:** Incorrect use can cause injury, equipment damage or unsafe operation.
 
-### Lesson 6 — Develop an integrated application
+## Lesson 6 — Develop an integrated application
 
 **Objective:** `M3-W4_2-01` — Develop an integrated application  
 **Official indicator:** ว 4.2 ม.3/1  
@@ -110,7 +110,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. What is one example of cross-subject integration?  
    **Answer:** An app that collects local weather data and presents a science-based summary.
 
-### Lesson 7 — Collect, process, evaluate and present data
+## Lesson 7 — Collect, process, evaluate and present data
 
 **Objective:** `M3-W4_2-02` — Collect, process, evaluate and present data  
 **Official indicator:** ว 4.2 ม.3/2  
@@ -126,7 +126,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. What is one way to evaluate a result?  
    **Answer:** Check the method, data quality, calculations and whether the evidence supports the conclusion.
 
-### Lesson 8 — Evaluate information reliability and media misinformation
+## Lesson 8 — Evaluate information reliability and media misinformation
 
 **Objective:** `M3-W4_2-03` — Evaluate information reliability and media misinformation  
 **Official indicator:** ว 4.2 ม.3/3  
@@ -142,7 +142,7 @@ Use school-approved, teacher-supervised materials and tools for design activitie
 3. Why should a dramatic headline be checked against the full report?  
    **Answer:** The headline may omit context or exaggerate what the evidence shows.
 
-### Lesson 9 — Use technology safely and comply with computer law and copyright
+## Lesson 9 — Use technology safely and comply with computer law and copyright
 
 **Objective:** `M3-W4_2-04` — Use technology safely and comply with computer law and copyright  
 **Official indicator:** ว 4.2 ม.3/4  
