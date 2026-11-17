@@ -28,6 +28,7 @@ const TeacherAssignmentHistoryPage = lazy(() => import("../pages/TeacherAssignme
 const TeacherParentLinksPage = lazy(() => import("../pages/TeacherParentLinksPage"));
 const TeacherContentLibraryPage = lazy(() => import("../../learning-content/pages/TeacherContentLibraryPage"));
 const TeacherContentCreatePage = lazy(() => import("../../learning-content/pages/TeacherContentCreatePage"));
+const TeacherContentImportPage = lazy(() => import("../../learning-content/pages/TeacherContentImportPage"));
 const TeacherContentDetailPage = lazy(() => import("../../learning-content/pages/TeacherContentDetailPage"));
 const TeacherContentResponsesPage = lazy(() => import("../../learning-content/pages/TeacherContentResponsesPage"));
 const TeacherClassGamificationPage = lazy(() => import("../pages/TeacherClassGamificationPage"));
@@ -54,6 +55,7 @@ export const learningTeacherRoutes: RouteObject[] = [
       { path: "vocabulary", element: <LearningVocabularyPage audience="teacher" /> },
       { path: "vocabulary/assignments/new", element: <TeacherVocabularyAssignmentPage /> },
       { path: "content/new", element: <TeacherContentCreatePage /> },
+      { path: "content/import", element: <TeacherContentImportPage /> },
       { path: "content/:id", element: <TeacherContentDetailPage /> },
       { path: "question-bank", element: <QuestionBankPage /> },
       { path: "assessments", element: <TeacherAssessmentBuilderPage /> },
