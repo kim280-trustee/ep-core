@@ -12,8 +12,8 @@ Only these three grade packs are in scope. M4–M6 and the former Thai national 
 
 The following migrations have been applied to the existing E&P Supabase project:
 
-- `20261117100000_learning_technology_curriculum_catalog.sql`
-- `20261117101500_learning_technology_m1_m6_knowledge_graph.sql` (database migration name: `learning_computer_studies_m1_m3_knowledge_graph`)
+- `20261117042948_learning_technology_curriculum_catalog.sql`
+- `20261117042949_learning_computer_studies_m1_m3_knowledge_graph.sql` (database migration name: `learning_computer_studies_m1_m3_knowledge_graph`)
 
 The active curriculum code is `CLICK-START-M1-M3`; the subject code is `COMPUTER-STUDIES`. The database currently contains three grades, three grade topics, 29 objectives and 29 grade alignments.
 
