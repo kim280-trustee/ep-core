@@ -1,160 +1,125 @@
-# M3 Technology — Teacher Starter Pack
+# M3 Computer Studies — Cambridge Click Start International Edition
 
-**Curriculum:** Thai Basic Education — Technology M1–M6  
-**Subject:** TECH — Technology  
+**Textbook:** Learner's Book 6 (ISBN 9781108951906)  
+**Subject:** Computer Studies  
 **Grade:** M3 (Mathayom 3)  
-**Curriculum version:** B.E. 2551 (2008), revised 2017  
-**Coverage:** 9 official indicators across Design & Technology (ว 4.1) and Computing Science (ว 4.2).
+**Source:** Cambridge Click Start International Edition, Learner's Book 6  
+**Coverage:** The twelve teaching chapters in the published contents. The sample paper is an assessment resource.
 
-This pack contains one starter lesson for every official indicator allocated to this grade. Each lesson includes a teaching activity and three practice questions with answer keys. It is a teacher planning resource, not published app content.
+This pack follows the published chapter sequence. Practical tasks are original classroom activities based on chapter titles and published book descriptions, not verbatim textbook exercises. The learner's book remains the authority for exact subtopics, worked examples, screenshots and exercise order.
 
-## Teacher safety and assessment guidance
-
-Use school-approved, teacher-supervised materials and tools for design activities. Do not use mains electricity, exposed high-voltage components, hazardous chemicals, uncontrolled heat sources or unsafe cutting tools in student activities. Prefer simulations, low-voltage kits and prepared data when appropriate. For Computing Science, use fictional or anonymised datasets; never ask students to share passwords, private messages, addresses or other personal information. Require students to check source reliability, respect intellectual property and follow school and applicable computer-use rules. Review every lesson for local school resources, accessibility and age suitability before publishing.
+## Teacher guidance
+The book references Windows, Word 2010, PowerPoint 2010, Excel 2010, Scratch, QB64, Macromedia Flash and email. Some products are legacy software. Use a school-approved compatible environment; where a named application is unavailable, teach the underlying concept using an approved alternative and clearly identify the substitution. Do not require students to create personal email accounts or share personal contact details.
 
 ## Lesson starters
 
-## Lesson 1 — Analyse technological change and links with other disciplines
+## Lesson 1 — Know Your Computer
+**Book chapter:** 1  
+**Learning outcomes:** Consolidate understanding of computer components, processing, memory, storage, uses and limitations.  
+**Practical activity:** Trace a data task from input to processing, storage and output; explain how hardware and software work together.  
+**Practice**
+1. What is the role of the CPU? **Answer:** It executes instructions and processes data.
+2. How is RAM different from secondary storage? **Answer:** RAM is temporary working memory; secondary storage retains data without power.
+3. Why are backups important? **Answer:** They help restore data after loss, corruption or device failure.
 
-**Objective:** `M3-W4_1-01` — Analyse technological change and links with other disciplines  
-**Official indicator:** ว 4.1 ม.3/1  
-**Suggested duration:** 45–60 minutes  
-**Learning outcome:** Analyse technological change and links with other disciplines  
-**Teaching activity:** Students analyse a local agricultural technology and identify how science, mathematics and user needs influenced its development.
+## Lesson 2 — Operating System
+**Book chapter:** 2  
+**Learning outcomes:** Explain the purpose of an operating system and identify its role in managing files, applications and hardware.  
+**Practical activity:** Identify operating-system functions while opening applications, managing windows and organising files.  
+**Practice**
+1. What is an operating system? **Answer:** System software that manages computer hardware and provides services for applications.
+2. Give one example of an operating system. **Answer:** Windows, macOS or Linux.
+3. Why are operating-system updates important? **Answer:** They can improve security, stability and compatibility.
 
-**Independent practice**
-1. Give one example of science contributing to a technology.  
-   **Answer:** Knowledge of materials or energy can inform the design of a device.
-2. How can mathematics support technology design?  
-   **Answer:** It helps measure, model, calculate and compare performance.
-3. Why analyse more than one factor behind technological change?  
-   **Answer:** Technology changes through interacting scientific, social, economic and environmental factors.
+## Lesson 3 — MS Word 2010: Advanced Features
+**Book chapter:** 3  
+**Learning outcomes:** Apply advanced document features available in the installed Word version to produce a structured document.  
+**Practical activity:** Prepare a multi-section report with consistent styles, page layout and appropriate document elements supported by the installed version.  
+**Practice**
+1. Why use styles in a long document? **Answer:** They keep headings and formatting consistent and support navigation.
+2. What is the purpose of page layout settings? **Answer:** To control page size, margins, orientation and arrangement.
+3. Why proofread before sharing a document? **Answer:** To correct errors and improve clarity and presentation.
 
-## Lesson 2 — Define local problems for work or career development
+## Lesson 4 — MS Word 2010: Mail Merge
+**Book chapter:** 4  
+**Learning outcomes:** Explain the purpose of mail merge and combine a main document with a data source to produce personalised documents.  
+**Practical activity:** Use a teacher-provided fictional contact list to create personalised invitation letters; do not use real student addresses.  
+**Practice**
+1. What is mail merge? **Answer:** A feature that combines a main document with a data source to create personalised copies.
+2. What is a data source? **Answer:** The table or list containing variable information such as names.
+3. Why preview merged documents? **Answer:** To check that fields and records appear correctly before completing the merge.
 
-**Objective:** `M3-W4_1-02` — Define local problems for work or career development  
-**Official indicator:** ว 4.1 ม.3/2  
-**Suggested duration:** 45–60 minutes  
-**Learning outcome:** Define local problems for work or career development  
-**Teaching activity:** Students define a local service or production problem, review evidence and identify intellectual-property considerations.
+## Lesson 5 — MS PowerPoint 2010: Advanced Features
+**Book chapter:** 5  
+**Learning outcomes:** Use advanced presentation features available in the installed version to create a coherent presentation.  
+**Practical activity:** Build a short topic presentation using suitable transitions, animations and media without distracting from the message.  
+**Practice**
+1. What is the difference between a transition and an animation? **Answer:** A transition affects how a slide changes; an animation affects an object on a slide.
+2. Why should animation be used carefully? **Answer:** Too much movement distracts the audience.
+3. What should be checked before presenting on another computer? **Answer:** Fonts, media, layout, playback and file compatibility.
 
-**Independent practice**
-1. What is the purpose of a problem framework?  
-   **Answer:** It defines the need, users, context, constraints and desired result.
-2. What is intellectual property?  
-   **Answer:** Legal rights associated with creations such as designs, writing, inventions and software.
-3. How can a student avoid misusing another person's design?  
-   **Answer:** Check ownership and licence terms, request permission when required and acknowledge sources.
+## Lesson 6 — More About MS Excel 2010
+**Book chapter:** 6  
+**Learning outcomes:** Extend spreadsheet skills using formulas, functions, cell references and suitable data presentation.  
+**Practical activity:** Use fictional shop sales data to calculate totals and averages, then create a chart that answers a stated question.  
+**Practice**
+1. What does a formula usually begin with in Excel? **Answer:** An equals sign (=).
+2. What does SUM do? **Answer:** Adds the values in selected cells.
+3. Why use a chart? **Answer:** To communicate patterns or comparisons in data.
 
-## Lesson 3 — Design solutions using varied communication techniques
+## Lesson 7 — More About Scratch
+**Book chapter:** 7  
+**Learning outcomes:** Extend Scratch projects using events, control, sensing, variables and multiple sprites as supported by the editor.  
+**Practical activity:** Create a short interactive quiz or game with a score variable, user input and a clear end condition.  
+**Practice**
+1. What is a variable used for? **Answer:** Storing a value that can change while a project runs.
+2. What does a loop do? **Answer:** Repeats a set of instructions.
+3. Why test a Scratch project with different inputs? **Answer:** To find errors and check that all expected interactions work.
 
-**Objective:** `M3-W4_1-03` — Design solutions using varied communication techniques  
-**Official indicator:** ว 4.1 ม.3/3  
-**Suggested duration:** 45–60 minutes  
-**Learning outcome:** Design solutions using varied communication techniques  
-**Teaching activity:** Teams design a simple assistive product and communicate it using a sketch, labelled diagram or digital model.
+## Lesson 8 — Introduction to QB64
+**Book chapter:** 8  
+**Learning outcomes:** Explain what QB64 is and create, run and save a simple program in an approved QB64 environment.  
+**Practical activity:** Write a small program that displays a welcome message and explain how the program is run.  
+**Practice**
+1. What is QB64? **Answer:** A BASIC programming environment compatible with the QBasic language family.
+2. What is source code? **Answer:** Human-readable instructions written in a programming language.
+3. Why save source code? **Answer:** So it can be edited, reused and run again.
 
-**Independent practice**
-1. Why use more than one design communication technique?  
-   **Answer:** Different representations make structure, function and details easier to understand.
-2. What should a labelled design show?  
-   **Answer:** Main parts, dimensions, materials and how the design works.
-3. Why plan the build sequence?  
-   **Answer:** It helps organise tasks, resources and safe construction.
+## Lesson 9 — QB64: Statements
+**Book chapter:** 9  
+**Learning outcomes:** Recognise and use introductory QB64 statements as taught in the textbook.  
+**Practical activity:** Recreate a short textbook-style program in the approved environment and annotate what each statement does.  
+**Practice**
+1. What is a programming statement? **Answer:** An instruction written in a programming language.
+2. Why does statement order matter? **Answer:** The computer follows instructions in sequence unless control statements change the flow.
+3. What is a syntax error? **Answer:** An error caused by code that does not follow the language's rules.
 
-## Lesson 4 — Evaluate, improve and extend a designed solution
+## Lesson 10 — QB64: Programming Statements
+**Book chapter:** 10  
+**Learning outcomes:** Apply the programming statements covered in the chapter to control a simple program.  
+**Practical activity:** Build a small menu-driven or calculation program using only statements introduced in the learner's book; test normal and boundary inputs.  
+**Practice**
+1. What is selection in programming? **Answer:** Choosing which instructions to run based on a condition.
+2. What is iteration? **Answer:** Repeating instructions.
+3. Why test boundary values? **Answer:** To check behaviour at the limits of the expected input range.
 
-**Objective:** `M3-W4_1-04` — Evaluate, improve and extend a designed solution  
-**Official indicator:** ว 4.1 ม.3/4  
-**Suggested duration:** 45–60 minutes  
-**Learning outcome:** Evaluate, improve and extend a designed solution  
-**Teaching activity:** Students compare prototype performance against criteria, explain defects and propose a next development cycle.
+## Lesson 11 — Introduction to Macromedia Flash
+**Book chapter:** 11  
+**Learning outcomes:** Understand the purpose of Flash as a multimedia/animation authoring tool and identify basic animation concepts in the book.  
+**Practical activity:** Analyse a simple teacher-provided animation and storyboard its frames or motion. If Flash is unavailable, use an approved animation tool and label it as an alternative.  
+**Practice**
+1. What is an animation? **Answer:** A sequence of images or states that creates the appearance of movement.
+2. What is a frame in an animation timeline? **Answer:** One individual step or image in the sequence.
+3. Why is Macromedia Flash considered legacy software? **Answer:** Flash Player has been discontinued; old files may require safe, offline or alternative viewing methods.
 
-**Independent practice**
-1. What is the difference between a defect and a design constraint?  
-   **Answer:** A defect is a weakness in the solution; a constraint is a limit the design must work within.
-2. How should a team justify an improvement?  
-   **Answer:** Use test evidence to show how the change addresses a defect or unmet criterion.
-3. What is further development?  
-   **Answer:** A next-stage improvement or new capability based on evaluation.
+## Lesson 12 — Introduction to Email
+**Book chapter:** 12  
+**Learning outcomes:** Explain email, identify message fields and practise safe, appropriate email communication.  
+**Practical activity:** Draft (do not send) a formal email using a fictional recipient; identify subject, greeting, message and sign-off, and inspect a sample suspicious message.  
+**Practice**
+1. What is the subject field used for? **Answer:** A short description of the email's purpose.
+2. What is an attachment? **Answer:** A file sent with an email.
+3. Give one warning sign of a phishing email. **Answer:** Unexpected urgency, suspicious links, requests for passwords or an unfamiliar sender.
 
-## Lesson 5 — Use complex tools and technologies safely
-
-**Objective:** `M3-W4_1-05` — Use complex tools and technologies safely  
-**Official indicator:** ว 4.1 ม.3/5  
-**Suggested duration:** 45–60 minutes  
-**Learning outcome:** Use complex tools and technologies safely  
-**Teaching activity:** Students plan a supervised prototype using a microcontroller simulator or low-voltage kit and document tool and component safety.
-
-**Independent practice**
-1. Why use a simulator before building a circuit?  
-   **Answer:** It allows logic and connections to be checked without unnecessary physical risk.
-2. What is a risk assessment?  
-   **Answer:** A process for identifying hazards, estimating risk and choosing controls.
-3. Why should complex tools be used only with approved supervision?  
-   **Answer:** Incorrect use can cause injury, equipment damage or unsafe operation.
-
-## Lesson 6 — Develop an integrated application
-
-**Objective:** `M3-W4_2-01` — Develop an integrated application  
-**Official indicator:** ว 4.2 ม.3/1  
-**Suggested duration:** 45–60 minutes  
-**Learning outcome:** Develop an integrated application  
-**Teaching activity:** Students plan a simple application that combines a subject topic with user input, data and a useful output.
-
-**Independent practice**
-1. What is an application?  
-   **Answer:** Software designed to help users complete tasks or solve problems.
-2. Why identify users before designing an application?  
-   **Answer:** User needs determine useful features, inputs and outputs.
-3. What is one example of cross-subject integration?  
-   **Answer:** An app that collects local weather data and presents a science-based summary.
-
-## Lesson 7 — Collect, process, evaluate and present data
-
-**Objective:** `M3-W4_2-02` — Collect, process, evaluate and present data  
-**Official indicator:** ว 4.2 ม.3/2  
-**Suggested duration:** 45–60 minutes  
-**Learning outcome:** Collect, process, evaluate and present data  
-**Teaching activity:** Students use a supplied dataset to clean records, calculate summaries and present findings with an appropriate chart.
-
-**Independent practice**
-1. What is data cleaning?  
-   **Answer:** Finding and correcting or handling errors, duplicates and missing values.
-2. Why choose a chart based on the question?  
-   **Answer:** The chart should make the relevant comparison, pattern or relationship clear.
-3. What is one way to evaluate a result?  
-   **Answer:** Check the method, data quality, calculations and whether the evidence supports the conclusion.
-
-## Lesson 8 — Evaluate information reliability and media misinformation
-
-**Objective:** `M3-W4_2-03` — Evaluate information reliability and media misinformation  
-**Official indicator:** ว 4.2 ม.3/3  
-**Suggested duration:** 45–60 minutes  
-**Learning outcome:** Evaluate information reliability and media misinformation  
-**Teaching activity:** Students compare a viral claim with primary sources, check evidence and identify misleading presentation techniques.
-
-**Independent practice**
-1. Name two checks for source reliability.  
-   **Answer:** Check author expertise, evidence, date, purpose and corroboration by independent sources.
-2. What is misinformation?  
-   **Answer:** False or inaccurate information, whether shared intentionally or unintentionally.
-3. Why should a dramatic headline be checked against the full report?  
-   **Answer:** The headline may omit context or exaggerate what the evidence shows.
-
-## Lesson 9 — Use technology safely and comply with computer law and copyright
-
-**Objective:** `M3-W4_2-04` — Use technology safely and comply with computer law and copyright  
-**Official indicator:** ว 4.2 ม.3/4  
-**Suggested duration:** 45–60 minutes  
-**Learning outcome:** Use technology safely and comply with computer law and copyright  
-**Teaching activity:** Students review a fictional online project and identify privacy, lawful access, copyright and responsible reporting actions.
-
-**Independent practice**
-1. Why is consent important before sharing another person's photo?  
-   **Answer:** It respects privacy and may be required by law or platform rules.
-2. What is copyright?  
-   **Answer:** A legal right that protects original creative works and controls certain uses.
-3. What should a student do before reusing software or media?  
-   **Answer:** Check the licence and permitted uses, obtain permission when required and credit the creator.
-
+## Assessment resource
+**Sample Paper:** Chapter 13 in the book. Use the textbook sample paper for revision and assessment; it is not an additional teaching chapter.
