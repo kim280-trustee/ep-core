@@ -33,6 +33,7 @@ export default function TeacherContentCreatePage() {
   const [activityMode, setActivityMode] = useState<"lesson" | "coding" | "project">("lesson");
   const [codingInstructions, setCodingInstructions] = useState("");
   const [starterCode, setStarterCode] = useState("console.log(\"Hello, world!\");");
+  const [codingTemplate, setCodingTemplate] = useState("hello");
   const [projectInstructions, setProjectInstructions] = useState("");
   const [projectRequirements, setProjectRequirements] = useState("");
   const [teacherGuidance, setTeacherGuidance] = useState("");
@@ -358,6 +359,33 @@ export default function TeacherContentCreatePage() {
             <>
               <Field label="Student instructions">
                 <textarea value={codingInstructions} onChange={(event) => setCodingInstructions(event.target.value)} maxLength={5000} className="input min-h-28 w-full resize-y" placeholder="Explain the task, what the student should build, and what they should observe." required />
+              </Field>
+              <Field label="Starter-code template">
+                <select
+                  value={codingTemplate}
+                  onChange={(event) => {
+                    const templates: Record<string, string> = {
+                      hello: 'console.log("Hello, world!");',
+                      variables: 'const studentName = "Alex";\\nconst score = 85;\\nconsole.log(studentName + " scored " + score);',
+                      conditionals: 'const score = 75;\\nif (score >= 50) {\\n  console.log("Pass");\\n} else {\\n  console.log("Try again");\\n}',
+                      loops: 'for (let number = 1; number <= 5; number += 1) {\\n  console.log(number);\\n}',
+                      functions: 'function greet(name) {\\n  return "Hello, " + name + "!";\\n}\\n\\nconsole.log(greet("Alex"));',
+                      arrays: 'const subjects = ["English", "Maths", "Science"];\\nsubjects.forEach((subject) => console.log(subject));',
+                    };
+                    const nextTemplate = event.target.value;
+                    setCodingTemplate(nextTemplate);
+                    setStarterCode(templates[nextTemplate] ?? templates.hello);
+                  }}
+                  className="input w-full"
+                >
+                  <option value="hello">Hello world</option>
+                  <option value="variables">Variables and output</option>
+                  <option value="conditionals">If / else decisions</option>
+                  <option value="loops">Loops</option>
+                  <option value="functions">Functions</option>
+                  <option value="arrays">Arrays</option>
+                </select>
+                <p className="mt-1 text-xs text-slate-500">Selecting a template replaces the starter code below. You can edit it before saving.</p>
               </Field>
               <Field label="Starter code">
                 <textarea value={starterCode} onChange={(event) => setStarterCode(event.target.value)} maxLength={12000} spellCheck={false} className="input min-h-56 w-full resize-y font-mono text-sm" placeholder="console.log(\"Hello, world!\");" required />
