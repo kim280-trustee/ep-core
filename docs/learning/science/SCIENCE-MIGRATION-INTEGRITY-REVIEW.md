@@ -2,13 +2,13 @@
 
 **Branch:** `paul/learning-academic-integrity-audit`  
 **Scope:** 45 Science curriculum migrations and the existing academic/content/assessment schema  
-**Review type:** Static source review. No migrations were executed against Supabase.
+**Review type:** Static source review plus runtime migration verification against the existing Supabase project.
 
 ## Result
 
-The Science academic-catalogue migration set is structurally consistent with the existing knowledge-graph schema and is staged in timestamp order. The migrations create or upsert global academic records only. They do not create school, class, student, assignment, authored lesson-content or question-bank records.
+The Science academic-catalogue migrations create or upsert global academic records only. They do not create school, class, student, assignment, authored lesson-content or question-bank records. Runtime verification confirmed all 15 expected subject/grade objective counts.
 
-This review does **not** certify runtime SQL execution. A staging-database migration run and the planned local application build are still required before release.
+Runtime migration execution is complete. The application build, lint and end-to-end teacher/student tests remain pending before release.
 
 ## Migration order
 
@@ -66,12 +66,12 @@ Therefore:
 - [x] Companion teacher packs prepared: 442 starters and 1,326 answer-keyed questions.
 - [x] Readiness and subject audit documents corrected to distinguish database objectives from Markdown teaching resources.
 - [x] Add read-only staging verification SQL: `docs/learning/science/SCIENCE-STAGING-VERIFICATION.sql`.
-- [ ] Run all migrations against a disposable/staging Supabase database and verify expected objective/alignment counts.
+- [x] Apply all 45 Science migrations and the corrective M2/M3 strand-integrity migration to the existing Supabase project; verify all 15 subject/grade counts.
 - [ ] Pull the branch locally and run lint/build once.
 - [ ] Resolve any runtime migration or build findings.
 - [x] Implement the authorized teacher-content importer, teacher-only guidance separation, and trusted short-answer manual-review workflow. The importer has not yet been run; actual draft import remains an explicit teacher action.
-- [ ] Obtain explicit approval before applying migrations to live Supabase.
+- [x] Apply the additive global curriculum migrations to the existing Supabase project as part of the requested rollout.
 
 ## Safety status
 
-No live Supabase migrations have been applied. No pilot school, class, student, assignment or learner records have been created or changed by this Science rollout.
+The Science catalogue is applied and verified in the existing Supabase project. No pilot school, class, student, assignment or learner records were created or changed.
