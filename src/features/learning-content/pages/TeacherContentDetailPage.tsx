@@ -215,8 +215,11 @@ export default function TeacherContentDetailPage() {
       return;
     }
 
-    const existingCodingSection = Array.isArray(latestVersion.body.sections)
-      ? latestVersion.body.sections.find((section) => Boolean(section && typeof section === "object" && (section as Record<string, unknown>).type === "code_activity")) as Record<string, unknown> | undefined
+    const existingStructuredSection = Array.isArray(latestVersion.body.sections)
+      ? latestVersion.body.sections.find((section) => Boolean(
+          section && typeof section === "object" &&
+          ["code_activity", "project_activity"].includes(String((section as Record<string, unknown>).type)),
+        )) as Record<string, unknown> | undefined
       : undefined;
 
     setSaving(true);
@@ -226,13 +229,17 @@ export default function TeacherContentDetailPage() {
         versionNo: latestVersion.versionNo + 1,
         body: {
           sections: [
-            ...(existingCodingSection ? [{
-              type: "code_activity",
-              title: typeof existingCodingSection.title === "string" ? existingCodingSection.title : "Coding activity",
+            ...(existingStructuredSection ? [{
+              type: String(existingStructuredSection.type),
+              title: typeof existingStructuredSection.title === "string" ? existingStructuredSection.title : "Practical activity",
               body: currentBody.trim(),
               instructions: currentBody.trim(),
-              starterCode: typeof existingCodingSection.starterCode === "string" ? existingCodingSection.starterCode : "",
-              language: typeof existingCodingSection.language === "string" ? existingCodingSection.language : "javascript",
+              ...(existingStructuredSection.type === "code_activity" ? {
+                starterCode: typeof existingStructuredSection.starterCode === "string" ? existingStructuredSection.starterCode : "",
+                language: typeof existingStructuredSection.language === "string" ? existingStructuredSection.language : "javascript",
+              } : {
+                requirements: typeof existingStructuredSection.requirements === "string" ? existingStructuredSection.requirements : "",
+              }),
             }] : [{ type: "text", title: "Content", body: currentBody.trim() }]),
             ...latestTeacherGuidance.map((section) => ({
               type: "teacher_only",
