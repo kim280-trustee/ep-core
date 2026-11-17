@@ -14,6 +14,7 @@ export type LearningPackImportLesson = {
   title: string;
   learningOutcome: string;
   activity: string;
+  teacherGuidance?: string;
   questions: LearningPackImportQuestion[];
 };
 
@@ -77,6 +78,7 @@ export const learningPackImportRepository = {
             sections: [
               { type: "text", title: "Learning outcome", body: lesson.learningOutcome },
               { type: "text", title: "Teaching activity", body: lesson.activity },
+              ...(lesson.teacherGuidance ? [{ type: "text", title: "Safety and teaching guidance", body: lesson.teacherGuidance }] : []),
               {
                 type: "text",
                 title: "Practice questions",
