@@ -103,8 +103,8 @@ join (
     ('CS-M3', 'M3-W4_2-03', 'Evaluate information reliability and media misinformation', 'Evaluate information reliability, analyse media and the effects of misinformation, and use information critically.', 3),
     ('CS-M3', 'M3-W4_2-04', 'Use technology safely and comply with computer law and copyright', 'Use information technology safely and responsibly, comply with computer-related law and use others'' copyrighted work lawfully.', 4),
     ('CS-M4', 'M4-W4_2-01', 'Apply computational thinking in an integrated project', 'Apply computational thinking to develop a project that creatively integrates other subjects and connects with real life.', 1),
-    ('CS-M5', 'M5-W4_2-02', 'Use data science to solve problems and create value', 'Collect and analyse data and use computer science, digital media and information technology to solve problems or add value to real-life services or products.', 2),
-    ('CS-M6', 'M6-W4_2-03', 'Share information safely and analyse technology''s social impact', 'Use information technology to present and share information safely and ethically, and analyse changes in information technology that affect life, careers, society and culture.', 3)
+    ('CS-M5', 'M5-W4_2-01', 'Use data science to solve problems and create value', 'Collect and analyse data and use computer science, digital media and information technology to solve problems or add value to real-life services or products.', 1),
+    ('CS-M6', 'M6-W4_2-01', 'Share information safely and analyse technology''s social impact', 'Use information technology to present and share information safely and ethically, and analyse changes in information technology that affect life, careers, society and culture.', 1)
 ) as objectives(topic_code, code, name, description, sequence_no)
   on true
 join public.learning_topics topic on topic.skill_id = skill.id and topic.code = objectives.topic_code
@@ -166,8 +166,8 @@ join (
     ('M3-W4_2-03', 3, 'ว 4.2 ม.3/3', 'M3'),
     ('M3-W4_2-04', 4, 'ว 4.2 ม.3/4', 'M3'),
     ('M4-W4_2-01', 1, 'ว 4.2 ม.4/1', 'M4'),
-    ('M5-W4_2-02', 2, 'ว 4.2 ม.5/1', 'M5'),
-    ('M6-W4_2-03', 3, 'ว 4.2 ม.6/1', 'M6')
+    ('M5-W4_2-01', 1, 'ว 4.2 ม.5/1', 'M5'),
+    ('M6-W4_2-01', 1, 'ว 4.2 ม.6/1', 'M6')
 ) as alignment(objective_code, sequence_no, indicator_code, grade_code)
   on alignment.objective_code = objective.code
 join public.learning_curricula curriculum on curriculum.code = 'TH-TECH-M1-M6'
