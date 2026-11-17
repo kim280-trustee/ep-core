@@ -30,7 +30,7 @@ For each validated lesson:
 
 Short-answer scoring uses `manual_review`. Answer keys are stored in the protected evaluation-key table and are not included in student-facing lesson content. The current auto-scored assessment builder selects `single_choice` and `true_false` items, not `short_answer`; imported short-answer items therefore appear in the Question Bank and as prompts in lesson content, but are not automatically added to digital assessments by this importer. Interactive short-answer assignment submission is a separate capability.
 
-All imported content and questions remain **drafts**. The importer does not submit items for review or publish them. Teachers and authorized academic reviewers continue to use the existing review/publication lifecycle.
+All imported content and questions remain **drafts**. The importer does not submit items for review or publish them. Pack-level safety/teaching/assessment guidance is included as a normal lesson section; review it for student suitability before publishing because the current content format does not mark that section as teacher-only. Teachers and authorized academic reviewers continue to use the existing review/publication lifecycle.
 
 ## Validation and failure handling
 
