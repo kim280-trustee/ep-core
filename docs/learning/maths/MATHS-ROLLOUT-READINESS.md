@@ -48,7 +48,7 @@ The committed read-only preflight script was executed against the live project. 
 
 The live Maths catalogue is verified: one active `MATH` subject, one active `TH-MATH-M1-M6` curriculum, six grade levels and 41 aligned objectives (M1=9, M2=12, M3=12, M4=3, M5=4, M6=1).
 
-No database rows or migrations were changed during this inspection.
+The preflight itself was read-only. The subsequent migrations added academic catalogue, integrity and multi-curriculum support; they did not create or modify school academic years, terms, classes, memberships, authored content, assessments or student records.
 
 ## Teacher workflow compatibility
 
@@ -58,9 +58,9 @@ The existing generic workflows already support the new Maths catalogue:
 - **Question Bank** derives available objectives from the selected class's curriculum, grade and subject. It saves those same academic-scope IDs to each question version and links the selected objective.
 - **Teacher Content Library** filters the existing content catalogue by curriculum, grade, subject, content type and status. The grade filter now narrows materials to objectives aligned to the selected grade, and content cards show the grade tags associated with their objective mappings; no Maths-only content library is required.
 
-No separate Maths authoring module or route is needed. After the migrations are applied, Maths becomes available through the existing generic academic selectors and class-scoped question authoring. The content library's grade filter and grade tags also make M1–M6 teacher resources easier to isolate and identify.
+No separate Maths authoring module or route is needed. With the migrations now applied, Maths is available through the existing generic academic selectors and class-scoped question authoring. The content library's grade filter and grade tags also make M1–M6 teacher resources easier to isolate and identify.
 
-## Pilot setup — ready after migrations and verification
+## Pilot setup — ready for a separate school-level action
 
 The academic-year model has been corrected in code and migration: the school academic year is organization-scoped, while each class group owns its curriculum and grade. Existing curriculum values on academic-year records are preserved as nullable legacy metadata; new school years no longer require a curriculum.
 
