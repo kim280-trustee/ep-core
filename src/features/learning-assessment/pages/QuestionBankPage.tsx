@@ -7,6 +7,7 @@ import { useTranslation } from "@/core/i18n";
 import { learningContentService } from "@/features/learning-content";
 import { learningTeacherService } from "@/features/learning-teacher/services/learning-teacher.service";
 import { learningAssessmentService } from "../services/learning-assessment.service";
+import { learningAssessmentAcademicService } from "../services/learning-assessment-academic.service";
 import type { LearningQuestionType } from "../types/learning-assessment.types";
 
 type Choice = { key: string; label: string };
@@ -114,32 +115,55 @@ export default function QuestionBankPage() {
   const academicQuestionIds = useQuery({
     queryKey: ["learning", "question-bank", "academic-questions", activeClassGroupId, activeCurriculumId, activeGradeLevelId, selectedSubjectId, questions.dataUpdatedAt, objectives.dataUpdatedAt],
     queryFn: async () => {
+      const questionRows = questions.data ?? [];
+      if (!questionRows.length) return new Map<string, string | null>();
       const allowedObjectiveIds = new Set((objectives.data ?? []).map((objective) => objective.id));
-      const matches = await Promise.all((questions.data ?? []).map(async (question) => {
-        const versions = await learningAssessmentService.listQuestionVersions(question.id);
+      const versionRows = await learningAssessmentAcademicService.listVersionScopeRows(questionRows.map((question) => question.id));
+      const versionsByQuestion = new Map<string, typeof versionRows>();
+      for (const version of versionRows) {
+        const group = versionsByQuestion.get(version.question_id) ?? [];
+        group.push(version);
+        versionsByQuestion.set(version.question_id, group);
+      }
+
+      const selectedVersions: Array<{ questionId: string; versionId: string; publishedAt: string | null }> = [];
+      for (const question of questionRows) {
+        const versions = (versionsByQuestion.get(question.id) ?? []).sort((left, right) => right.version_no - left.version_no);
         const latestVersion = versions[0];
         const relevantVersion = question.status === "published"
-          ? versions.find((version) => version.publishedAt !== null)
+          ? versions.find((version) => version.published_at !== null)
           : latestVersion;
-        if (!relevantVersion || !latestVersion) return null;
-        const hasAcademicScope = Boolean(
-          relevantVersion.curriculumId && relevantVersion.gradeLevelId && relevantVersion.subjectId
-        );
-        if (hasAcademicScope && (
-          relevantVersion.curriculumId !== activeCurriculumId ||
-          relevantVersion.gradeLevelId !== activeGradeLevelId ||
-          relevantVersion.subjectId !== selectedSubjectId
-        )) return null;
-        const mappings = await learningAssessmentService.listQuestionObjectives(relevantVersion.id);
-        return mappings.length && mappings.every((mapping) => allowedObjectiveIds.has(mapping.objectiveId))
-          ? { questionId: question.id, latestVersionPublishedAt: latestVersion.publishedAt }
-          : null;
-      }));
-      return new Map(
-        matches
-          .filter((match): match is NonNullable<typeof match> => match !== null)
-          .map((match) => [match.questionId, match.latestVersionPublishedAt])
+        if (!relevantVersion) continue;
+        if (
+          relevantVersion.curriculum_id !== activeCurriculumId ||
+          relevantVersion.grade_level_id !== activeGradeLevelId ||
+          relevantVersion.subject_id !== selectedSubjectId
+        ) continue;
+        selectedVersions.push({
+          questionId: question.id,
+          versionId: relevantVersion.id,
+          publishedAt: relevantVersion.published_at,
+        });
+      }
+
+      const objectiveRows = await learningAssessmentAcademicService.listObjectiveScopeRows(
+        selectedVersions.map((version) => version.versionId),
       );
+      const objectivesByVersion = new Map<string, string[]>();
+      for (const mapping of objectiveRows) {
+        const group = objectivesByVersion.get(mapping.question_version_id) ?? [];
+        group.push(mapping.objective_id);
+        objectivesByVersion.set(mapping.question_version_id, group);
+      }
+
+      const matches = new Map<string, string | null>();
+      for (const selected of selectedVersions) {
+        const mappedObjectives = objectivesByVersion.get(selected.versionId) ?? [];
+        if (mappedObjectives.length && mappedObjectives.every((objectiveId) => allowedObjectiveIds.has(objectiveId))) {
+          matches.set(selected.questionId, selected.publishedAt);
+        }
+      }
+      return matches;
     },
     enabled: questions.isSuccess && objectives.isSuccess && Boolean(selectedClass && activeCurriculumId && activeGradeLevelId && selectedSubjectId),
   });
