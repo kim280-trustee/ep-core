@@ -2,7 +2,7 @@
 
 **Branch:** `paul/learning-academic-integrity-audit`  
 **Scope:** Thai Mathematics M1–M6 core-curriculum knowledge graph and teacher authoring readiness  
-**Status:** Code and documentation committed; migrations have not been applied to Supabase; no Maths pilot class or student records have been created.
+**Status:** All 11 prerequisite, academic-integrity and Mathematics catalogue migrations are applied to the existing Supabase project. All 41 objective-to-grade alignments are verified. No Maths pilot class or student records have been created.
 
 ## Curriculum coverage delivered
 
@@ -20,9 +20,9 @@ Each lesson includes three practice questions with worked or direct answer keys:
 
 M4–M6 coverage is limited to the eight grade-level indicators in the revised 2017 core-curriculum tables. It is not a complete list of additional/elective upper-secondary mathematics course outcomes.
 
-## Pending migration order
+## Applied migration order
 
-The live `ep-core` database migration history currently ends at `20261116015418`. Apply all pending branch migrations in timestamp order after reviewing them:
+The 11 migrations below were applied in timestamp order after the live-database preflight returned PASS for all nine integrity checks:
 
 1. `20261116030000_learning_subject_catalog_manage.sql` — enables subject and curriculum-subject creation for academic managers.
 2. `20261116031500_learning_grade_level_catalog_manage.sql` — enables curriculum grade-level creation for academic managers.
@@ -46,7 +46,7 @@ Read-only inspection of the connected `ep-core` database found the current Engli
 
 The committed read-only preflight script was executed against the live project. All nine integrity checks returned **PASS with zero issues**, covering term dates, gradebook term/class year alignment, class-subject/class alignment, student membership references, and content-objective subject/alignment integrity. The academic-management RLS policies are already permission-scoped in the live database.
 
-The Maths catalogue prerequisite counts are currently zero because the Maths catalogue and knowledge-graph migrations have not yet been applied.
+The live Maths catalogue is verified: one active `MATH` subject, one active `TH-MATH-M1-M6` curriculum, six grade levels and 41 aligned objectives (M1=9, M2=12, M3=12, M4=3, M5=4, M6=1).
 
 No database rows or migrations were changed during this inspection.
 
@@ -64,7 +64,7 @@ No separate Maths authoring module or route is needed. After the migrations are 
 
 The academic-year model has been corrected in code and migration: the school academic year is organization-scoped, while each class group owns its curriculum and grade. Existing curriculum values on academic-year records are preserved as nullable legacy metadata; new school years no longer require a curriculum.
 
-After applying and verifying the migrations:
+The migrations are applied and verified. Pilot setup is still a separate school-level action:
 
 - Select the school's existing academic year; do not create a duplicate year for Maths.
 - Create one Maths pilot class using the Thai Maths curriculum and M1 grade.
@@ -78,8 +78,8 @@ The existing English MEP pilot's class curriculum, grade, term, memberships and 
 
 ## Explicitly not done
 
-- No Supabase migration has been applied.
-- No production or pilot data has been changed.
+- [x] The 11 additive prerequisite, academic-integrity and Mathematics migrations have been applied and verified.
+- No new Maths pilot class, term, subject assignment or student membership has been created.
 - No new academic year, term, class group, class subject or membership has been created.
 - No separate Maths UI module was added because the existing generic teacher workflows already support the academic dimensions.
 - No local lint/build result is claimed; consolidated local verification remains pending.
