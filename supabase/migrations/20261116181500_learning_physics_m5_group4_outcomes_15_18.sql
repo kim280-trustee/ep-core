@@ -27,7 +27,7 @@ join public.learning_subjects s on s.id=sk.subject_id
 cross join (values
  ('M5-PHY-15','NUCLEAR-FORCES-BINDING-ENERGY','Nuclear Forces, Stability and Binding Energy','M5 Group 4 outcome 15: explain nuclear forces, nuclear stability and binding energy; calculate related quantities.',15),
  ('M5-PHY-18','PARTICLE-PHYSICS-STANDARD-MODEL','Particle Physics Research and the Standard Model','M5 Group 4 outcome 18: explain particle-physics research, the Standard Model and applications of particle-physics research.',18)
-) as v(code,name,description,seq)
+) as v(code,topic_code,name,description,seq)
 where s.code='PHYSICS' and sk.code='M5-MODERN-NUCLEAR-PHYSICS'
 on conflict(skill_id,code) do update
 set name=excluded.name,description=excluded.description,sequence_no=excluded.sequence_no,status='active',updated_at=now();
