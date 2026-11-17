@@ -1,95 +1,63 @@
--- E&P Learning: separate Thai Technology curriculum catalogue.
--- Scope: Design & Technology (ว 4.1) and Computing Science (ว 4.2).
--- Official basis: OBEC 2017 revised standards, pp. 82-87; IPST Computing Science course descriptions.
--- This is separate from the SCI catalogue and creates no school or learner records.
+-- E&P Learning: Cambridge Click Start International Edition Computer Studies catalogue.
+-- M1 uses Learner's Book 4; M2 uses Learner's Book 5; M3 uses Learner's Book 6.
+-- This replaces the previously staged Thai national Technology catalogue.
+-- Do not add M4-M6 until the school's books for those grades are confirmed.
 
 begin;
 
 do $$
 begin
   if not exists (
-    select 1
-    from public.learning_education_systems es
+    select 1 from public.learning_education_systems es
     join public.learning_countries c on c.id = es.country_id
-    where es.code = 'TH_BASIC'
-      and c.code = 'TH'
-      and es.status = 'active'
-      and c.status = 'active'
+    where es.code = 'TH_BASIC' and c.code = 'TH'
+      and es.status = 'active' and c.status = 'active'
   ) then
-    raise exception 'Active Thai Basic Education system (TH_BASIC) is required before creating the Technology curriculum.';
+    raise exception 'Active Thai Basic Education system (TH_BASIC) is required before creating the Computer Studies curriculum.';
   end if;
 end;
 $$;
 
 insert into public.learning_subjects (code, name, description, status)
-values (
-  'TECH',
-  'Technology',
-  'Thai Technology curriculum: Design & Technology (ว 4.1) and Computing Science (ว 4.2) across M1–M6.',
-  'active'
-)
+values ('TECH', 'Computer Studies',
+  'School Computer Studies sequence based on Cambridge Click Start International Edition Learner''s Books 4, 5 and 6 for M1, M2 and M3.',
+  'active')
 on conflict (code) do update
-set name = excluded.name,
-    description = excluded.description,
-    status = 'active',
-    updated_at = now();
+set name=excluded.name, description=excluded.description, status='active', updated_at=now();
 
-insert into public.learning_curricula (
-  education_system_id, code, name, version, description, status
-)
-select
-  es.id,
-  'TH-TECH-M1-M6',
-  'Thai Basic Education — Technology M1–M6',
-  'B.E. 2551 (2008), revised 2017',
-  'Thai Technology curriculum covering Design & Technology standard ว 4.1 and Computing Science standard ว 4.2. Grade allocations follow the OBEC indicator tables and IPST course guidance.',
+insert into public.learning_curricula (education_system_id, code, name, version, description, status)
+select es.id, 'CLICK-START-M1-M3', 'Cambridge Click Start International Edition — Computer Studies M1–M3',
+  'Learner''s Books 4–6',
+  'M1: Learner''s Book 4; M2: Learner''s Book 5; M3: Learner''s Book 6. This is the school textbook sequence, not a Thai national Technology curriculum.',
   'active'
 from public.learning_education_systems es
-join public.learning_countries c on c.id = es.country_id
-where es.code = 'TH_BASIC' and c.code = 'TH'
+join public.learning_countries c on c.id=es.country_id
+where es.code='TH_BASIC' and c.code='TH'
 on conflict (education_system_id, code) do update
-set name = excluded.name,
-    version = excluded.version,
-    description = excluded.description,
-    status = 'active',
-    updated_at = now();
+set name=excluded.name, version=excluded.version, description=excluded.description,
+    status='active', updated_at=now();
 
-insert into public.learning_grade_levels (
-  curriculum_id, code, name, sequence_no, description, status
-)
-select
-  curriculum.id, grades.code, grades.name, grades.sequence_no, grades.description, 'active'
+insert into public.learning_grade_levels (curriculum_id, code, name, sequence_no, description, status)
+select curriculum.id, grades.code, grades.name, grades.sequence_no, grades.description, 'active'
 from public.learning_curricula curriculum
-join public.learning_education_systems es on es.id = curriculum.education_system_id
-cross join (
-  values
-    ('M1', 'Mathayom 1', 1, 'Lower secondary year 1.'),
-    ('M2', 'Mathayom 2', 2, 'Lower secondary year 2.'),
-    ('M3', 'Mathayom 3', 3, 'Lower secondary year 3.'),
-    ('M4', 'Mathayom 4', 4, 'Upper secondary year 1.'),
-    ('M5', 'Mathayom 5', 5, 'Upper secondary year 2.'),
-    ('M6', 'Mathayom 6', 6, 'Upper secondary year 3.')
-) as grades(code, name, sequence_no, description)
-where curriculum.code = 'TH-TECH-M1-M6' and es.code = 'TH_BASIC'
+join public.learning_education_systems es on es.id=curriculum.education_system_id
+cross join (values
+ ('M1','Mathayom 1',1,'Cambridge Click Start International Edition Learner''s Book 4.'),
+ ('M2','Mathayom 2',2,'Cambridge Click Start International Edition Learner''s Book 5.'),
+ ('M3','Mathayom 3',3,'Cambridge Click Start International Edition Learner''s Book 6.')
+) as grades(code,name,sequence_no,description)
+where curriculum.code='CLICK-START-M1-M3' and es.code='TH_BASIC'
 on conflict (curriculum_id, code) do update
-set name = excluded.name,
-    sequence_no = excluded.sequence_no,
-    description = excluded.description,
-    status = 'active',
-    updated_at = now();
+set name=excluded.name, sequence_no=excluded.sequence_no, description=excluded.description,
+    status='active', updated_at=now();
 
-insert into public.learning_curriculum_subjects (
-  curriculum_id, subject_id, code, name, status
-)
-select curriculum.id, subject.id, 'TECH', 'Technology', 'active'
+insert into public.learning_curriculum_subjects (curriculum_id, subject_id, code, name, status)
+select curriculum.id, subject.id, 'TECH', 'Computer Studies', 'active'
 from public.learning_curricula curriculum
-join public.learning_education_systems es on es.id = curriculum.education_system_id
-join public.learning_subjects subject on subject.code = 'TECH'
-where curriculum.code = 'TH-TECH-M1-M6' and es.code = 'TH_BASIC'
+join public.learning_education_systems es on es.id=curriculum.education_system_id
+join public.learning_subjects subject on subject.code='TECH'
+where curriculum.code='CLICK-START-M1-M3' and es.code='TH_BASIC'
 on conflict (curriculum_id, subject_id) do update
-set code = excluded.code,
-    name = excluded.name,
-    status = 'active',
-    updated_at = now();
+set code=excluded.code, name=excluded.name, status='active', updated_at=now();
 
 commit;
