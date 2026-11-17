@@ -1,7 +1,7 @@
 # E&P Learning — Science Migration Integrity Review
 
 **Branch:** `paul/learning-academic-integrity-audit`  
-**Scope:** 45 Science curriculum migrations and the existing academic/content/assessment schema  
+**Scope:** 45 Science curriculum migrations, one corrective M2/M3 integrity migration, and the existing academic/content/assessment schema  
 **Review type:** Static source review plus runtime migration verification against the existing Supabase project.
 
 ## Result
@@ -12,7 +12,9 @@ Runtime migration execution is complete. The application build, lint and end-to-
 
 ## Migration order
 
-The 45 files are timestamped in dependency order:
+The 45 curriculum files are timestamped in dependency order. The final corrective migration, `20261117130000_learning_science_m2_m3_skill_topic_integrity.sql`, runs after them and removes out-of-strand M2/M3 duplicate topics, objectives and alignments. The original M2/M3 topic migrations have also been corrected in source so fresh resets seed each topic only under its intended skill.
+
+The 45 curriculum files are ordered as follows:
 
 1. Thai Science curriculum catalogue and M1–M3 core knowledge graph.
 2. Upper-secondary specialist subject tracks (Biology, Chemistry, Physics, Earth/Space).
