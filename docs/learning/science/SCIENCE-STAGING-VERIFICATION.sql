@@ -90,6 +90,23 @@ where subject.code in ('SCI','BIOLOGY','CHEMISTRY','PHYSICS','EARTH_SPACE')
   )
 order by subject.code;
 
+-- Report duplicate objective codes inside a Science subject.
+-- Expected result: zero rows. This catches objectives duplicated across skill
+-- strands when a topic insert is not correctly scoped to its declared skill.
+select
+  subject.code as subject_code,
+  objective.code as objective_code,
+  count(distinct skill.id)::integer as skill_count,
+  array_agg(distinct skill.code order by skill.code) as skill_codes
+from public.learning_objectives objective
+join public.learning_topics topic on topic.id = objective.topic_id
+join public.learning_skills skill on skill.id = topic.skill_id
+join public.learning_subjects subject on subject.id = skill.subject_id
+where subject.code in ('SCI','BIOLOGY','CHEMISTRY','PHYSICS','EARTH_SPACE')
+group by subject.code, objective.code
+having count(distinct skill.id) > 1
+order by subject.code, objective.code;
+
 -- Content and question records are intentionally not seeded by the curriculum
 -- migrations. These counts are informational and can be non-zero if teachers
 -- have already authored Science resources in this staging environment.
