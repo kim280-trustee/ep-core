@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import type { ReactNode } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, CheckCircle2, ClipboardCheck, Loader2 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
@@ -190,6 +191,6 @@ export default function TeacherAssessmentReviewPage() {
   );
 }
 
-function Panel({ children }: { children: React.ReactNode }) {
+function Panel({ children }: { children: ReactNode }) {
   return <div className="rounded-2xl border border-slate-200 bg-white p-6 text-sm text-slate-600">{children}</div>;
 }
