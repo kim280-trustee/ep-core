@@ -18,6 +18,7 @@ const TeacherInterventionsPage = lazy(() => import("../pages/TeacherIntervention
 const TeacherAIAssistantPage = lazy(() => import("../pages/TeacherAIAssistantPage"));
 const QuestionBankPage = lazy(() => import("../../learning-assessment/pages/QuestionBankPage"));
 const TeacherAssessmentBuilderPage = lazy(() => import("../../learning-assessment/pages/TeacherAssessmentBuilderPage"));
+const TeacherAssessmentReviewPage = lazy(() => import("../../learning-assessment/pages/TeacherAssessmentReviewPage"));
 const TeacherGradebookPage = lazy(() => import("../../learning-gradebook/pages/TeacherGradebookPage"));
 const TeacherStudentPerformancePage = lazy(() => import("../../learning-gradebook/pages/TeacherStudentPerformancePage"));
 const TeacherGradebookSettingsPage = lazy(() => import("../../learning-gradebook/pages/TeacherGradebookSettingsPage"));
@@ -59,6 +60,7 @@ export const learningTeacherRoutes: RouteObject[] = [
       { path: "content/:id", element: <TeacherContentDetailPage /> },
       { path: "question-bank", element: <QuestionBankPage /> },
       { path: "assessments", element: <TeacherAssessmentBuilderPage /> },
+      { path: "assessments/:assessmentId/review", element: <TeacherAssessmentReviewPage /> },
       { path: "classes/:classGroupId/assignments/history", element: <TeacherAssignmentHistoryPage /> },
       { path: "classes/:classGroupId/parents", element: <TeacherParentLinksPage /> },
       { path: "classes/:classGroupId/gradebook", element: <TeacherGradebookPage /> },
