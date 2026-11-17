@@ -10,7 +10,7 @@ select s.id,'THERMAL-FLUIDS','Thermal Physics, Solids, Fluids and Gases','M6 add
 from public.learning_subjects s where s.code='PHYSICS'
 on conflict(subject_id,code) do update set name=excluded.name,description=excluded.description,status='active',updated_at=now();
 insert into public.learning_topics(skill_id,code,name,description,sequence_no,status)
-select sk.id,v.code,v.name,v.description,v.seq,'active'
+select sk.id,v.code,v.name,v.description,v.seq::integer,'active'
 from public.learning_skills sk join public.learning_subjects s on s.id=sk.subject_id
 cross join (values
  ('M6-PHY-01','THERMAL-ENERGY','Heat, Temperature Change and Phase Change','M6 additional Physics outcome 1: Explain and calculate heat that changes temperature, heat that changes state, and heat transfer using conservation of energy.',1::integer),
@@ -26,7 +26,7 @@ cross join (values
 where s.code='PHYSICS' and sk.code='THERMAL-FLUIDS'
 on conflict(skill_id,code) do update set name=excluded.name,description=excluded.description,sequence_no=excluded.sequence_no,status='active',updated_at=now();
 insert into public.learning_objectives(topic_id,code,name,description,sequence_no,status)
-select tp.id,v.code,v.name,v.description,v.seq,'active'
+select tp.id,v.code,v.name,v.description,v.seq::integer,'active'
 from public.learning_topics tp join public.learning_skills sk on sk.id=tp.skill_id join public.learning_subjects s on s.id=sk.subject_id
 cross join (values
  ('M6-PHY-01','Heat, Temperature Change and Phase Change','Explain and calculate heat that changes temperature, heat that changes state, and heat transfer using conservation of energy.',1::integer,'M6-PHY-01'),
