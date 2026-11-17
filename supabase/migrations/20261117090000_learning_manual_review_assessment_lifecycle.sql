@@ -438,8 +438,33 @@ begin
       jsonb_build_object('source', 'teacher_review', 'assessment_id', v_answer.assessment_id,
         'evidence_count', v_objective.evidence_count, 'correct_count', v_objective.correct_count)
     );
+
+    if v_new_score < 80
+       and not exists (
+         select 1
+         from public.learning_recommendations existing_recommendation
+         where existing_recommendation.student_user_id = v_answer.student_user_id
+           and existing_recommendation.objective_id = v_objective.objective_id
+           and existing_recommendation.status = 'active'
+       )
+    then
+      insert into public.learning_recommendations (
+        tenant_id, organization_id, student_user_id, recommendation_type,
+        objective_id, assessment_id, priority, reason, status, generated_at
+      ) values (
+        v_answer.tenant_id, v_answer.organization_id, v_answer.student_user_id,
+        case when v_new_score < 60 then 'practice' else 'review' end,
+        v_objective.objective_id, v_answer.assessment_id,
+        case when v_new_score < 60 then 90 else 70 end,
+        jsonb_build_object('source', 'teacher_review', 'mastery_score', v_new_score,
+          'assessment_id', v_answer.assessment_id),
+        'active', v_now
+      );
+    end if;
+
     v_new_score := null;
     v_previous_score := null;
+    v_previous_attempts := null;
   end loop;
 
   return jsonb_build_object(
