@@ -13,6 +13,8 @@ function textSections(body: Record<string, unknown>) {
   return raw.flatMap((section) => {
     if (!section || typeof section !== "object") return [];
     const record = section as Record<string, unknown>;
+    // Teacher-only pack guidance must never be included in student lesson content.
+    if (record.type === "teacher_only" || record.audience === "teacher") return [];
     const bodyText = typeof record.body === "string" ? record.body.trim() : "";
     if (!bodyText) return [];
     return [{
