@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AlertCircle, ArrowLeft, BookOpen, CheckCircle2 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
@@ -288,6 +288,11 @@ export default function LearningContentRuntimePage() {
       }
     },
   });
+  const handleCodeRunResult = useCallback((result: { output: string; success: boolean }) => {
+    setCodeRunOutput(result.output);
+    setCodeRunSucceeded(result.success);
+  }, []);
+
   const completeMutation = useMutation({
     mutationFn: async () => {
       if (!user?.id) throw new Error("You must be signed in.");
@@ -399,7 +404,7 @@ export default function LearningContentRuntimePage() {
                   value={codeDraft}
                   disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending}
                   onChange={(nextCode) => { setCodeDraft(nextCode); setCodeRunOutput(""); setCodeRunSucceeded(false); }}
-                  onRunResult={(result) => { setCodeRunOutput(result.output); setCodeRunSucceeded(result.success); }}
+                  onRunResult={handleCodeRunResult}
                 />
               ) : section.type === "project_activity" ? (
                 <div className="space-y-3">
