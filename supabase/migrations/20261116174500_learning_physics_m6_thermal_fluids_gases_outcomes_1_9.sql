@@ -14,11 +14,11 @@ select sk.id,v.code,v.name,v.description,v.seq,'active'
 from public.learning_skills sk join public.learning_subjects s on s.id=sk.subject_id
 cross join (values
  ('M6-PHY-01','THERMAL-ENERGY','Heat, Temperature Change and Phase Change','M6 additional Physics outcome 1: Explain and calculate heat that changes temperature, heat that changes state, and heat transfer using conservation of energy.',1),
- ('M6-PHY-02','ELASTICITY-YOUNGS-MODULUS','Elasticity, Stress, Strain and Young's Modulus','M6 additional Physics outcome 2: Explain elastic deformation and calculate longitudinal stress, strain and Young''s modulus; apply material elasticity to everyday contexts.',2),
+ ('M6-PHY-02','ELASTICITY-YOUNGS-MODULUS','Elasticity, Stress, Strain and Young''s Modulus','M6 additional Physics outcome 2: Explain elastic deformation and calculate longitudinal stress, strain and Young''s modulus; apply material elasticity to everyday contexts.',2),
  ('M6-PHY-03','FLUID-PRESSURE','Gauge, Absolute and Atmospheric Pressure','M6 additional Physics outcome 3: Calculate gauge and absolute pressure and explain manometers, barometers and hydraulic presses.',3),
- ('M6-PHY-04','BUOYANCY-ARCHIMEDES','Buoyancy and Archimedes' Principle','M6 additional Physics outcome 4: Investigate, explain and calculate buoyant force from a fluid using Archimedes'' principle.',4),
+ ('M6-PHY-04','BUOYANCY-ARCHIMEDES','Buoyancy and Archimedes'' Principle','M6 additional Physics outcome 4: Investigate, explain and calculate buoyant force from a fluid using Archimedes'' principle.',4),
  ('M6-PHY-05','SURFACE-TENSION-VISCOSITY','Surface Tension and Viscosity','M6 additional Physics outcome 5: Investigate and calculate surface tension and explain viscous force in liquids.',5),
- ('M6-PHY-06','IDEAL-FLUID-BERNOULLI','Ideal Fluids, Continuity and Bernoulli's Equation','M6 additional Physics outcome 6: Explain ideal-fluid properties, apply continuity and Bernoulli equations, and connect them to devices.',6),
+ ('M6-PHY-06','IDEAL-FLUID-BERNOULLI','Ideal Fluids, Continuity and Bernoulli''s Equation','M6 additional Physics outcome 6: Explain ideal-fluid properties, apply continuity and Bernoulli equations, and connect them to devices.',6),
  ('M6-PHY-07','IDEAL-GAS-LAWS','Ideal Gas Law','M6 additional Physics outcome 7: Explain the ideal-gas model and calculate pressure, volume, temperature or amount using PV = nRT.',7),
  ('M6-PHY-08','KINETIC-THEORY-GAS','Kinetic Theory and RMS Molecular Speed','M6 additional Physics outcome 8: Explain the ideal-gas molecular model, kinetic theory, and calculate mean kinetic energy and RMS molecular speed.',8),
  ('M6-PHY-09','THERMODYNAMICS-FIRST-LAW','Gas Work and the First Law of Thermodynamics','M6 additional Physics outcome 9: Calculate work by a gas at constant pressure and explain the relationship among heat, internal energy and work; apply internal energy to everyday devices.',9)
