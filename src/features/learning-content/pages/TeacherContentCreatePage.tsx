@@ -35,6 +35,7 @@ export default function TeacherContentCreatePage() {
   const [starterCode, setStarterCode] = useState("console.log(\"Hello, world!\");");
   const [projectInstructions, setProjectInstructions] = useState("");
   const [projectRequirements, setProjectRequirements] = useState("");
+  const [teacherGuidance, setTeacherGuidance] = useState("");
   const [changeSummary, setChangeSummary] = useState("");
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
@@ -216,11 +217,19 @@ export default function TeacherContentCreatePage() {
         contentItemId: content.id,
         versionNo: 1,
         body: {
-          sections: activityMode === "coding"
-            ? [{ type: "code_activity", title: "Coding activity", body: codingInstructions.trim(), instructions: codingInstructions.trim(), starterCode: starterCode, language: "javascript" }]
-            : activityMode === "project"
-              ? [{ type: "project_activity", title: "Practical project", body: projectInstructions.trim(), instructions: projectInstructions.trim(), requirements: projectRequirements.trim() }]
-              : [{ type: "text", title: "Content", body: body.trim() }],
+          sections: [
+            ...(activityMode === "coding"
+              ? [{ type: "code_activity", title: "Coding activity", body: codingInstructions.trim(), instructions: codingInstructions.trim(), starterCode, language: "javascript" }]
+              : activityMode === "project"
+                ? [{ type: "project_activity", title: "Practical project", body: projectInstructions.trim(), instructions: projectInstructions.trim(), requirements: projectRequirements.trim() }]
+                : [{ type: "text", title: "Content", body: body.trim() }]),
+            ...(teacherGuidance.trim() ? [{
+              type: "teacher_only",
+              audience: "teacher",
+              title: "Teacher guidance and answer key",
+              body: teacherGuidance.trim(),
+            }] : []),
+          ],
         },
         changeSummary: changeSummary.trim() || t("contentCreate.initialDraft"),
         createdBy: user.id,
@@ -370,6 +379,9 @@ export default function TeacherContentCreatePage() {
               <textarea value={body} onChange={(e) => setBody(e.target.value)} className="input min-h-64 w-full resize-y" placeholder={t("contentCreate.bodyPlaceholder")} required />
             </Field>
           )}
+          <Field label="Teacher-only guidance / answer key (optional)">
+            <textarea value={teacherGuidance} onChange={(event) => setTeacherGuidance(event.target.value)} maxLength={10000} rows={4} className="input w-full resize-y" placeholder="Add teacher notes, expected solutions, marking guidance or safety reminders. Students cannot see this section." />
+          </Field>
           <Field label={t("contentCreate.changeSummary")}>
             <input value={changeSummary} onChange={(e) => setChangeSummary(e.target.value)} className="input w-full" placeholder={t("contentCreate.initialDraft")} />
           </Field>
