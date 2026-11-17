@@ -29,6 +29,7 @@ export default function TeacherContentImportPage() {
   const [gradeLevelId, setGradeLevelId] = useState("");
   const [subjectId, setSubjectId] = useState("");
   const [parsedLessons, setParsedLessons] = useState<ParsedTeacherPackLesson[]>([]);
+  const [questionsOnly, setQuestionsOnly] = useState(false);
   const [fileName, setFileName] = useState("");
   const [fileError, setFileError] = useState("");
   const [importing, setImporting] = useState(false);
@@ -186,7 +187,7 @@ export default function TeacherContentImportPage() {
         activity: lesson.activity,
         teacherGuidance: lesson.packGuidance,
         questions: lesson.questions.map((question) => ({
-          code: makeImportCode(`EP-${objective!.code}-Q${String(question.number).padStart(2, "0")}`),
+          code: makeImportCode(`EP-${objective!.code}-${questionsOnly ? "DL-" : ""}Q${String(question.number).padStart(2, "0")}`),
           prompt: question.prompt,
           expectedAnswer: question.expectedAnswer,
         })),
@@ -194,7 +195,7 @@ export default function TeacherContentImportPage() {
     }
 
     return { rows, errors };
-  }, [parsedLessons, catalogue.data, alignments.data, activeCurriculumId, activeGradeLevelId, gradeLevels.data]);
+  }, [parsedLessons, catalogue.data, alignments.data, activeCurriculumId, activeGradeLevelId, gradeLevels.data, questionsOnly]);
 
   async function handleFileChange(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
@@ -232,38 +233,57 @@ export default function TeacherContentImportPage() {
 
     try {
       const [existingContent, existingQuestions] = await Promise.all([
-        learningContentService.listContent(organizationId),
+        questionsOnly ? Promise.resolve([]) : learningContentService.listContent(organizationId),
         learningAssessmentService.listQuestions(organizationId),
       ]);
       const contentCodes = new Set(existingContent.map((item) => makeImportCode(item.code)));
       const questionCodes = new Set(existingQuestions.map((item) => makeImportCode(item.code)));
-      const duplicateContent = resolved.rows.find((item) => contentCodes.has(makeImportCode(`EP-${item.objectiveCode}-LESSON`)));
+      const duplicateContent = questionsOnly ? undefined : resolved.rows.find((item) => contentCodes.has(makeImportCode(`EP-${item.objectiveCode}-LESSON`)));
       const duplicateQuestion = resolved.rows.flatMap((item) => item.questions).find((item) => questionCodes.has(makeImportCode(item.code)));
       if (duplicateContent || duplicateQuestion) {
-        throw new Error(`Import stopped because a code already exists in this organization: ${duplicateContent ? makeImportCode(`EP-${duplicateContent.objectiveCode}-LESSON`) : duplicateQuestion?.code}. Existing content is not overwritten.`);
+        throw new Error(`Import stopped because a code already exists in this organization: ${duplicateContent ? makeImportCode(`EP-${duplicateContent.objectiveCode}-LESSON`) : duplicateQuestion?.code}. Existing records are not overwritten.`);
       }
 
-      for (let offset = 0; offset < resolved.rows.length; offset += CHUNK_SIZE) {
-        const chunk = resolved.rows.slice(offset, offset + CHUNK_SIZE);
-        const result = await learningPackImportService.importChunk({
-          organizationId,
-          createdBy: user.id,
-          curriculumId: activeCurriculumId,
-          subjectId: activeSubjectId,
-          lessons: chunk,
-        });
-        importedLessons += result.lessons;
-        importedQuestions += result.questions;
-        setImportProgress({ lessons: importedLessons, questions: importedQuestions });
+      if (questionsOnly) {
+        const questions = resolved.rows.flatMap((lesson) => lesson.questions.map((question) => ({
+          ...question,
+          objectiveId: lesson.objectiveId,
+          gradeLevelId: lesson.gradeLevelId,
+        })));
+        for (let offset = 0; offset < questions.length; offset += CHUNK_SIZE) {
+          const result = await learningPackImportService.importQuestionsOnly({
+            organizationId,
+            createdBy: user.id,
+            curriculumId: activeCurriculumId,
+            subjectId: activeSubjectId,
+            questions: questions.slice(offset, offset + CHUNK_SIZE),
+          });
+          importedQuestions += result.questions;
+          setImportProgress({ lessons: 0, questions: importedQuestions });
+        }
+        setMessage(`Imported ${importedQuestions} digital-literacy assessment question drafts. All remain unpublished for teacher review.`);
+      } else {
+        for (let offset = 0; offset < resolved.rows.length; offset += CHUNK_SIZE) {
+          const chunk = resolved.rows.slice(offset, offset + CHUNK_SIZE);
+          const result = await learningPackImportService.importChunk({
+            organizationId,
+            createdBy: user.id,
+            curriculumId: activeCurriculumId,
+            subjectId: activeSubjectId,
+            lessons: chunk,
+          });
+          importedLessons += result.lessons;
+          importedQuestions += result.questions;
+          setImportProgress({ lessons: importedLessons, questions: importedQuestions });
+        }
+        setMessage(`Imported ${importedLessons} lesson drafts and ${importedQuestions} question drafts. All items remain unpublished for teacher review.`);
       }
-
-      setMessage(`Imported ${importedLessons} lesson drafts and ${importedQuestions} question drafts. All items remain unpublished for teacher review.`);
       await queryClient.invalidateQueries({ queryKey: ["learning", "teacher-content-library", organizationId] });
       await queryClient.invalidateQueries({ queryKey: ["learning", "question-bank"] });
       await queryClient.invalidateQueries({ queryKey: ["learning", "authoring", "questions"] });
     } catch (error) {
       const reason = error instanceof Error ? error.message : "Unknown import error.";
-      setMessage(importedLessons
+      setMessage(importedLessons || importedQuestions
         ? `Partial import: ${importedLessons} lesson drafts and ${importedQuestions} question drafts were saved in completed chunks. The next chunk stopped: ${reason}`
         : `Nothing was imported: ${reason}`);
     } finally {
@@ -297,7 +317,7 @@ export default function TeacherContentImportPage() {
         <div>
           <div className="flex items-center gap-2 text-sm font-medium text-slate-500"><FileUp size={18} />Teacher Content Library</div>
           <h1 className="mt-1 text-2xl font-bold text-slate-900">Import a teacher pack</h1>
-          <p className="mt-1 text-sm text-slate-500">Convert a Markdown teacher pack into linked lesson drafts and protected-answer practice questions.</p>
+          <p className="mt-1 text-sm text-slate-500">Import curriculum lesson packs or add a separate, objective-aligned assessment question pack without duplicating existing lessons.</p>
         </div>
       </header>
 
@@ -336,6 +356,10 @@ export default function TeacherContentImportPage() {
       <section className="rounded-2xl border border-slate-200 bg-white p-5">
         <h2 className="font-semibold text-slate-900">2. Select the Markdown teacher pack</h2>
         <p className="mt-1 text-sm text-slate-500">The importer recognises Lesson and Outcome sections, objective codes or grade-scoped outcome numbers, teaching notes, and three answer-keyed questions per lesson.</p>
+        <label className="mt-4 flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 p-3 text-sm text-slate-700">
+          <input type="checkbox" checked={questionsOnly} onChange={(event) => setQuestionsOnly(event.target.checked)} className="mt-0.5" />
+          <span><strong>Import assessment questions only</strong><span className="mt-1 block text-xs text-slate-500">Use for a separate digital-literacy question pack. This creates question-bank drafts only and does not create duplicate lesson content.</span></span>
+        </label>
         <label className="mt-4 flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-slate-300 px-5 py-8 text-center hover:bg-slate-50">
           <Upload size={24} className="text-slate-500" />
           <span className="mt-2 text-sm font-semibold text-slate-800">Choose one .md teacher pack</span>
@@ -380,8 +404,8 @@ export default function TeacherContentImportPage() {
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5">
         <h2 className="font-semibold text-slate-900">4. Import as drafts</h2>
-        <p className="mt-1 text-sm text-slate-500">Each lesson is linked to its exact objective. Its three questions are created as manual-review short answers, and answer keys remain in the protected evaluation-key table. Nothing is published.</p>
-        {importProgress.lessons > 0 && <p className="mt-3 text-sm text-slate-700">Saved so far: {importProgress.lessons} lessons and {importProgress.questions} questions.</p>}
+        <p className="mt-1 text-sm text-slate-500">{questionsOnly ? "Each question is linked to its exact grade-level objective and saved as a manual-review question. Answer keys remain protected. No lessons are created and nothing is published." : "Each lesson is linked to its exact objective. Its three questions are created as manual-review short answers, and answer keys remain in the protected evaluation-key table. Nothing is published."}</p>
+        {(importProgress.lessons > 0 || importProgress.questions > 0) && <p className="mt-3 text-sm text-slate-700">Saved so far: {importProgress.lessons} lessons and {importProgress.questions} questions.</p>}
         {message && <p className="mt-3 rounded-lg bg-slate-50 p-3 text-sm text-slate-700">{message}</p>}
         <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
           <Link to="/teacher/content" className="text-sm font-medium text-slate-600 hover:text-slate-900">Cancel</Link>
