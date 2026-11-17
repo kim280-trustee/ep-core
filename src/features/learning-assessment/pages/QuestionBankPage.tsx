@@ -35,6 +35,8 @@ export default function QuestionBankPage() {
           ? t("questionBank.statusRetired")
           : value;
   const [classGroupId, setClassGroupId] = useState("");
+  const [curriculumId, setCurriculumId] = useState("");
+  const [gradeLevelId, setGradeLevelId] = useState("");
   const [subjectId, setSubjectId] = useState("");
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
