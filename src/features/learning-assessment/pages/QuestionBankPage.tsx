@@ -127,7 +127,7 @@ export default function QuestionBankPage() {
         versionsByQuestion.set(version.question_id, group);
       }
 
-      const selectedVersions: Array<{ questionId: string; versionId: string; publishedAt: string | null }> = [];
+      const selectedVersions: Array<{ questionId: string; versionId: string; latestVersionPublishedAt: string | null }> = [];
       for (const question of questionRows) {
         const versions = (versionsByQuestion.get(question.id) ?? []).sort((left, right) => right.version_no - left.version_no);
         const latestVersion = versions[0];
@@ -146,7 +146,7 @@ export default function QuestionBankPage() {
         selectedVersions.push({
           questionId: question.id,
           versionId: relevantVersion.id,
-          publishedAt: relevantVersion.published_at,
+          latestVersionPublishedAt: latestVersion?.published_at ?? null,
         });
       }
 
@@ -164,7 +164,7 @@ export default function QuestionBankPage() {
       for (const selected of selectedVersions) {
         const mappedObjectives = objectivesByVersion.get(selected.versionId) ?? [];
         if (mappedObjectives.length && mappedObjectives.every((objectiveId) => allowedObjectiveIds.has(objectiveId))) {
-          matches.set(selected.questionId, selected.publishedAt);
+          matches.set(selected.questionId, selected.latestVersionPublishedAt);
         }
       }
       return matches;
