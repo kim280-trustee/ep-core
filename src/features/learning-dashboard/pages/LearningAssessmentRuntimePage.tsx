@@ -718,10 +718,6 @@ export default function LearningAssessmentRuntimePage() {
                       [question.assessmentQuestionId]: value,
                     }));
                   }}
-                  onBlur={(event) => {
-                    const value = event.currentTarget.value;
-                    if (value.trim()) void persistAnswer(question.assessmentQuestionId, value, question.questionType);
-                  }}
                   rows={4}
                   maxLength={10000}
                   className="input min-h-28 w-full resize-y"
