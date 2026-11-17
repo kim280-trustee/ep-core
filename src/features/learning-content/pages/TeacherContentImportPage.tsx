@@ -306,7 +306,7 @@ export default function TeacherContentImportPage() {
         <p className="mt-1 text-sm text-slate-500">The organization is taken from one of your assigned teacher classes. The selected class is not changed and no student or school records are created.</p>
         <div className="mt-4 grid gap-4 md:grid-cols-2">
           <Field label="Organization access (teacher class)">
-            <select value={selectedClassGroupId} onChange={(event) => setClassGroupId(event.target.value)} className="input w-full">
+            <select value={selectedClassGroupId} onChange={(event) => { setClassGroupId(event.target.value); setCurriculumId(""); setGradeLevelId(""); setSubjectId(""); }} className="input w-full">
               {(classes.data ?? []).map((item) => (
                 <option key={item.classGroup.id} value={item.classGroup.id}>
                   {item.classGroup.name} — {item.membership.organizationId.slice(0, 8)}
