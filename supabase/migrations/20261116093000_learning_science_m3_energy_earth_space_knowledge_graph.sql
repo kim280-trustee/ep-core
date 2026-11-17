@@ -20,7 +20,7 @@ join (values
  ('ENERGY','M3-LIGHT-AND-EM','Electromagnetic Waves and Light','Electromagnetic spectrum, reflection, refraction, lenses, optical instruments and illumination.',5),
  ('EARTH','M3-SOLAR-SYSTEM','Solar System and Space Technology','Gravity, planetary motion, seasons, lunar phases, tides and space technology.',6),
  ('EARTH','M3-ROCKS-AND-HAZARDS','Rocks, Fossils, Weather and Natural Hazards','Rock cycle, mineral resources, fossils, monsoons, Thai seasons and natural hazard preparedness.',7)
-) as t(skill_code,code,name,description,seq) on true
+) as t(skill_code,code,name,description,seq) on sk.code=t.skill_code
 where s.code='SCI'
 on conflict(skill_id,code) do update set name=excluded.name,description=excluded.description,sequence_no=excluded.sequence_no,status='active',updated_at=now();
 
