@@ -346,6 +346,12 @@ begin
       updated_at = v_now
   returning id into v_result_id;
 
+  -- The existing result trigger writes the gradebook entry; correct its
+  -- provenance flag for teacher-marked work in the same transaction.
+  update public.learning_gradebook_entries
+  set notes = jsonb_set(coalesce(notes, '{}'::jsonb), '{automatic}', 'false'::jsonb, true)
+  where assessment_result_id = v_result_id;
+
   update public.learning_attempts
   set status = 'evaluated',
       score = v_score,
