@@ -215,6 +215,10 @@ export default function TeacherContentDetailPage() {
       return;
     }
 
+    const existingCodingSection = Array.isArray(latestVersion.body.sections)
+      ? latestVersion.body.sections.find((section) => Boolean(section && typeof section === "object" && (section as Record<string, unknown>).type === "code_activity")) as Record<string, unknown> | undefined
+      : undefined;
+
     setSaving(true);
     try {
       await learningContentService.createVersion({
@@ -222,7 +226,14 @@ export default function TeacherContentDetailPage() {
         versionNo: latestVersion.versionNo + 1,
         body: {
           sections: [
-            { type: "text", title: "Content", body: currentBody.trim() },
+            ...(existingCodingSection ? [{
+              type: "code_activity",
+              title: typeof existingCodingSection.title === "string" ? existingCodingSection.title : "Coding activity",
+              body: currentBody.trim(),
+              instructions: currentBody.trim(),
+              starterCode: typeof existingCodingSection.starterCode === "string" ? existingCodingSection.starterCode : "",
+              language: typeof existingCodingSection.language === "string" ? existingCodingSection.language : "javascript",
+            }] : [{ type: "text", title: "Content", body: currentBody.trim() }]),
             ...latestTeacherGuidance.map((section) => ({
               type: "teacher_only",
               audience: "teacher",
