@@ -171,11 +171,18 @@ export const learningPackImportRepository = {
         questions: questions?.length ?? 0,
       };
     } catch (error) {
+      const cleanupErrors: string[] = [];
       if (createdQuestionIds.length) {
-        await supabase.from("learning_questions").delete().in("id", createdQuestionIds);
+        const { error: cleanupQuestionError } = await supabase.from("learning_questions").delete().in("id", createdQuestionIds);
+        if (cleanupQuestionError) cleanupErrors.push(cleanupQuestionError.message);
       }
       if (createdContentIds.length) {
-        await supabase.from("learning_content_items").delete().in("id", createdContentIds);
+        const { error: cleanupContentError } = await supabase.from("learning_content_items").delete().in("id", createdContentIds);
+        if (cleanupContentError) cleanupErrors.push(cleanupContentError.message);
+      }
+      if (cleanupErrors.length) {
+        const original = error instanceof Error ? error.message : "Unknown database error.";
+        throw new Error(`${original} Cleanup also reported: ${cleanupErrors.join("; ")}. Check the draft libraries before retrying.`);
       }
       throw error;
     }
