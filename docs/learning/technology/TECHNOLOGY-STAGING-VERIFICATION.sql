@@ -13,7 +13,7 @@ order by g.sequence_no;
 
 select sk.code as skill_code, t.code as grade_topic, count(o.id) as chapter_objectives
 from public.learning_skills sk
-join public.learning_subjects s on s.id=sk.subject_id and s.code='TECH'
+join public.learning_subjects s on s.id=sk.subject_id and s.code='COMPUTER-STUDIES'
 join public.learning_topics t on t.skill_id=sk.id
 left join public.learning_objectives o on o.topic_id=t.id
 where sk.code='COMPUTER-STUDIES'
