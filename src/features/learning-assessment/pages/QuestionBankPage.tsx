@@ -60,26 +60,33 @@ export default function QuestionBankPage() {
   const activeClassGroupId = classGroupId || classes.data?.[0]?.classGroup.id || "";
   const selectedClass = classes.data?.find((x) => x.classGroup.id === activeClassGroupId);
   const organizationId = selectedClass?.membership.organizationId;
-  const selectedSubjectId = selectedClass?.subjects.some((item) => item.subjectId === subjectId)
-    ? subjectId
-    : selectedClass?.subjects[0]?.subjectId || "";
-  const academicContext = useQuery({
-    queryKey: ["learning", "question-bank", "academic-context", selectedClass?.classGroup.curriculumId, selectedClass?.classGroup.gradeLevelId],
-    queryFn: async () => {
-      if (!selectedClass) return { curricula: [], gradeLevels: [] };
-      const [curricula, gradeLevels] = await Promise.all([
-        learningContentService.listCurricula(),
-        learningContentService.listGradeLevels(selectedClass.classGroup.curriculumId),
-      ]);
-      return { curricula, gradeLevels };
-    },
-    enabled: Boolean(selectedClass?.classGroup.curriculumId && selectedClass?.classGroup.gradeLevelId),
+  const curricula = useQuery({
+    queryKey: ["learning", "curricula"],
+    queryFn: () => learningContentService.listCurricula(),
+    enabled: Boolean(user?.id),
   });
-  const academicScopeReady = Boolean(
-    selectedClass &&
-    academicContext.data?.curricula.some((item) => item.id === selectedClass.classGroup.curriculumId) &&
-    academicContext.data?.gradeLevels.some((item) => item.id === selectedClass.classGroup.gradeLevelId)
-  );
+  const activeCurriculumId = curriculumId || selectedClass?.classGroup.curriculumId || curricula.data?.[0]?.id || "";
+  const gradeLevels = useQuery({
+    queryKey: ["learning", "grade-levels", activeCurriculumId],
+    queryFn: () => learningContentService.listGradeLevels(activeCurriculumId),
+    enabled: Boolean(activeCurriculumId),
+  });
+  const activeGradeLevelId = gradeLevelId && gradeLevels.data?.some((item) => item.id === gradeLevelId)
+    ? gradeLevelId
+    : selectedClass && selectedClass.classGroup.curriculumId === activeCurriculumId &&
+      gradeLevels.data?.some((item) => item.id === selectedClass.classGroup.gradeLevelId)
+      ? selectedClass.classGroup.gradeLevelId
+      : gradeLevels.data?.[0]?.id || "";
+  const subjects = useQuery({
+    queryKey: ["learning", "subjects", activeCurriculumId],
+    queryFn: () => learningContentService.listSubjects(activeCurriculumId),
+    enabled: Boolean(activeCurriculumId),
+  });
+  const selectedSubjectId = subjectId && subjects.data?.some((item) => item.id === subjectId)
+    ? subjectId
+    : selectedClass?.subjects.find((item) => subjects.data?.some((subject) => subject.id === item.subjectId))?.subjectId
+      || subjects.data?.[0]?.id || "";
+  const academicScopeReady = Boolean(activeCurriculumId && activeGradeLevelId && selectedSubjectId);
 
   const questions = useQuery({
     queryKey: ["learning", "question-bank", "questions", organizationId],
@@ -87,27 +94,23 @@ export default function QuestionBankPage() {
     enabled: Boolean(organizationId),
   });
   const objectives = useQuery({
-    queryKey: ["learning", "question-bank", "objectives", activeClassGroupId, selectedClass?.classGroup.curriculumId, selectedClass?.classGroup.gradeLevelId, selectedSubjectId],
+    queryKey: ["learning", "question-bank", "objectives", activeCurriculumId, activeGradeLevelId, selectedSubjectId],
     queryFn: async () => {
-      if (!selectedClass || !selectedSubjectId) return [];
+      if (!selectedSubjectId || !activeCurriculumId || !activeGradeLevelId) return [];
       const skills = await learningContentService.listSkills(selectedSubjectId);
       const topicsBySkill = await Promise.all(skills.map((skill) => learningContentService.listTopics(skill.id)));
       const topics = topicsBySkill.flat();
       const objectivesByTopic = await Promise.all(topics.map((topic) => learningContentService.listObjectives(topic.id)));
-      const classObjectives = objectivesByTopic.flat();
-      const alignments = await learningContentService.listAlignments(
-        undefined,
-        selectedClass.classGroup.curriculumId,
-        selectedClass.classGroup.gradeLevelId,
-      );
+      const subjectObjectives = objectivesByTopic.flat();
+      const alignments = await learningContentService.listAlignments(undefined, activeCurriculumId, activeGradeLevelId);
       const alignedIds = new Set(alignments.map((alignment) => alignment.objectiveId));
-      return classObjectives.filter((objective) => alignedIds.has(objective.id));
+      return subjectObjectives.filter((objective) => alignedIds.has(objective.id));
     },
-    enabled: Boolean(selectedClass && selectedSubjectId),
+    enabled: Boolean(selectedSubjectId && activeCurriculumId && activeGradeLevelId),
   });
 
   const academicQuestionIds = useQuery({
-    queryKey: ["learning", "question-bank", "academic-questions", activeClassGroupId, selectedClass?.classGroup.curriculumId, selectedClass?.classGroup.gradeLevelId, selectedSubjectId, questions.dataUpdatedAt, objectives.dataUpdatedAt],
+    queryKey: ["learning", "question-bank", "academic-questions", activeClassGroupId, activeCurriculumId, activeGradeLevelId, selectedSubjectId, questions.dataUpdatedAt, objectives.dataUpdatedAt],
     queryFn: async () => {
       const allowedObjectiveIds = new Set((objectives.data ?? []).map((objective) => objective.id));
       const matches = await Promise.all((questions.data ?? []).map(async (question) => {
@@ -121,8 +124,8 @@ export default function QuestionBankPage() {
           relevantVersion.curriculumId && relevantVersion.gradeLevelId && relevantVersion.subjectId
         );
         if (hasAcademicScope && (
-          relevantVersion.curriculumId !== selectedClass?.classGroup.curriculumId ||
-          relevantVersion.gradeLevelId !== selectedClass?.classGroup.gradeLevelId ||
+          relevantVersion.curriculumId !== activeCurriculumId ||
+          relevantVersion.gradeLevelId !== activeGradeLevelId ||
           relevantVersion.subjectId !== selectedSubjectId
         )) return null;
         const mappings = await learningAssessmentService.listQuestionObjectives(relevantVersion.id);
@@ -136,7 +139,7 @@ export default function QuestionBankPage() {
           .map((match) => [match.questionId, match.latestVersionPublishedAt])
       );
     },
-    enabled: questions.isSuccess && objectives.isSuccess && Boolean(selectedClass && selectedSubjectId),
+    enabled: questions.isSuccess && objectives.isSuccess && Boolean(selectedClass && activeCurriculumId && activeGradeLevelId && selectedSubjectId),
   });
 
   const filteredQuestions = useMemo(() => {
@@ -185,16 +188,12 @@ export default function QuestionBankPage() {
 
   const createMutation = useMutation({
     mutationFn: async () => {
-      if (!user?.id || !organizationId || !selectedClass || !selectedSubjectId) throw new Error("Select a class and an active subject first.");
-      if (!selectedClass.classGroup.curriculumId || !selectedClass.classGroup.gradeLevelId || !academicScopeReady) {
-        throw new Error("The selected class must have an active curriculum and grade before questions can be created.");
-      }
-      if (!selectedClass.subjects.some((item) => item.subjectId === selectedSubjectId)) {
-        throw new Error("The selected subject is not actively assigned to this class.");
+      if (!user?.id || !organizationId || !selectedClass || !selectedSubjectId || !academicScopeReady) {
+        throw new Error("Select an organization class, curriculum, grade and subject before creating questions.");
       }
       if (!code.trim() || !prompt.trim() || !objectiveId) throw new Error(t("questionBank.required"));
       if (!objectives.data?.some((objective) => objective.id === objectiveId)) {
-        throw new Error("The selected learning objective is not available for this class and subject. Select a valid objective and try again.");
+        throw new Error("The selected learning objective is not available for this curriculum, grade and subject. Select a valid objective and try again.");
       }
       if (questionType === "single_choice" && choices.some((choice) => !choice.label.trim())) throw new Error(t("questionBank.completeOptions"));
       if ((questionType === "single_choice" || questionType === "true_false") && !correctOption) throw new Error(t("questionBank.chooseCorrect"));
@@ -220,8 +219,8 @@ export default function QuestionBankPage() {
 
       const version = await learningAssessmentService.createQuestionVersion({
         questionId, versionNo,
-        curriculumId: selectedClass.classGroup.curriculumId,
-        gradeLevelId: selectedClass.classGroup.gradeLevelId,
+        curriculumId: activeCurriculumId,
+        gradeLevelId: activeGradeLevelId,
         subjectId: selectedSubjectId,
         prompt: { text: prompt.trim() }, configuration,
         explanation: explanation.trim() ? { text: explanation.trim() } : null, createdBy: user.id,
@@ -275,30 +274,42 @@ export default function QuestionBankPage() {
           <h1 className="mt-2 text-2xl font-bold text-slate-900">{t("questionBank.title")}</h1>
           <p className="mt-1 text-sm text-slate-500">{t("questionBank.intro")}</p>
         </div>
-        <button type="button" onClick={resetForm} className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800"><Plus size={16} />{t("questionBank.new")}</button>
+        <div className="flex flex-wrap gap-2">
+          <Link to="/teacher/content/import" className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">Import teacher pack</Link>
+          <button type="button" onClick={resetForm} className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800"><Plus size={16} />{t("questionBank.new")}</button>
+        </div>
       </div>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5">
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           <label className="block space-y-2">
-            <span className="text-sm font-medium text-slate-700">{t("questionBank.teacherClass")}</span>
-            <select value={activeClassGroupId} onChange={(e) => { setClassGroupId(e.target.value); setSubjectId(""); resetForm(); setMessage(null); }} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm">
-              <option value="">{t("questionBank.selectClass")}</option>
+            <span className="text-sm font-medium text-slate-700">Organization access class</span>
+            <select value={activeClassGroupId} onChange={(e) => { setClassGroupId(e.target.value); setCurriculumId(""); setGradeLevelId(""); setSubjectId(""); resetForm(); setMessage(null); }} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm">
               {classes.data?.map((item) => <option key={item.classGroup.id} value={item.classGroup.id}>{item.classGroup.name}</option>)}
             </select>
           </label>
           <label className="block space-y-2">
+            <span className="text-sm font-medium text-slate-700">Curriculum</span>
+            <select value={activeCurriculumId} onChange={(e) => { setCurriculumId(e.target.value); setGradeLevelId(""); setSubjectId(""); resetForm(); }} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm">
+              {(curricula.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}
+            </select>
+          </label>
+          <label className="block space-y-2">
+            <span className="text-sm font-medium text-slate-700">Grade</span>
+            <select value={activeGradeLevelId} onChange={(e) => { setGradeLevelId(e.target.value); resetForm(); }} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm">
+              {(gradeLevels.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
+            </select>
+          </label>
+          <label className="block space-y-2">
             <span className="text-sm font-medium text-slate-700">Subject</span>
-            <select value={selectedSubjectId} onChange={(e) => { setSubjectId(e.target.value); resetForm(); setMessage(null); }} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm" disabled={!selectedClass?.subjects.length}>
-              {!selectedClass?.subjects.length && <option value="">No active subjects</option>}
-              {selectedClass?.subjects.map((item) => <option key={item.subjectId} value={item.subjectId}>{item.subject.name}</option>)}
+            <select value={selectedSubjectId} onChange={(e) => { setSubjectId(e.target.value); resetForm(); setMessage(null); }} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm">
+              {(subjects.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
             </select>
           </label>
         </div>
-        {selectedClass && !selectedClass.subjects.length && <p className="mt-2 text-xs text-amber-700">This class has no active subjects assigned.</p>}
-        {selectedClass && selectedSubjectId && <p className="mt-3 text-xs text-slate-500">Academic scope: {academicContext.data?.curricula.find((item) => item.id === selectedClass.classGroup.curriculumId)?.name ?? "Curriculum"} · {academicContext.data?.gradeLevels.find((item) => item.id === selectedClass.classGroup.gradeLevelId)?.name ?? "Grade"} · {selectedClass.subjects.find((item) => item.subjectId === selectedSubjectId)?.subject.name}</p>}
-        {academicContext.isError && <p role="alert" className="mt-2 text-xs text-red-700">Curriculum and grade details could not be loaded. Refresh before creating questions.</p>}
-        {academicContext.isSuccess && selectedClass && !academicScopeReady && <p role="alert" className="mt-2 text-xs text-amber-700">This class is linked to an inactive or unavailable curriculum/grade. Contact your school administrator.</p>}
+        {selectedClass && selectedSubjectId && <p className="mt-3 text-xs text-slate-500">Organization: {organizationId} · Academic scope: {curricula.data?.find((item) => item.id === activeCurriculumId)?.name ?? "Curriculum"} · {gradeLevels.data?.find((item) => item.id === activeGradeLevelId)?.name ?? "Grade"} · {subjects.data?.find((item) => item.id === selectedSubjectId)?.name}</p>}
+        {(curricula.isError || gradeLevels.isError || subjects.isError) && <p role="alert" className="mt-2 text-xs text-red-700">Curriculum, grade or subject options could not be loaded. Refresh before creating questions.</p>}
+        {selectedClass && !academicScopeReady && <p role="alert" className="mt-2 text-xs text-amber-700">Select an active curriculum, grade and subject before creating questions.</p>}
       </section>
 
       {message && <div className="rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-700">{message}</div>}
@@ -312,7 +323,7 @@ export default function QuestionBankPage() {
             <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="rounded-xl border border-slate-300 px-3 py-2 text-sm"><option value="">{t("questionBank.allStatus")}</option><option value="draft">Draft</option><option value="review">Review</option><option value="published">Published</option><option value="retired">Retired</option></select>
           </div>
           {(search || typeFilter || statusFilter) && <button type="button" onClick={() => { setSearch(""); setTypeFilter(""); setStatusFilter(""); }} className="mt-2 rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600">{t("questionBank.clearFilters")}</button>}
-          {(questions.isPending || objectives.isPending || academicQuestionIds.isPending) && <p className="mt-4 text-sm text-slate-500">Loading questions for this class subject and grade…</p>}
+          {(questions.isPending || objectives.isPending || academicQuestionIds.isPending) && <p className="mt-4 text-sm text-slate-500">Loading questions for this organization, curriculum, grade and subject…</p>}
           {questions.isError && <p role="alert" className="mt-4 rounded-xl bg-red-50 p-4 text-sm text-red-800">{t("questionBank.loadError")}</p>}
           {objectives.isError && <p role="alert" className="mt-4 rounded-xl bg-red-50 p-4 text-sm text-red-800">Learning objectives for this class, grade and subject could not be loaded. Question authoring is disabled until the academic scope can be verified.</p>}
           {academicQuestionIds.isError && <p role="alert" className="mt-4 rounded-xl bg-red-50 p-4 text-sm text-red-800">Question academic mappings could not be verified. Refresh the page before using this question bank.</p>}
