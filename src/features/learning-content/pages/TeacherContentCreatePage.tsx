@@ -30,9 +30,11 @@ export default function TeacherContentCreatePage() {
   const [contentType, setContentType] = useState<LearningContentType>("lesson");
   const [languageCode, setLanguageCode] = useState("en");
   const [body, setBody] = useState("");
-  const [activityMode, setActivityMode] = useState<"lesson" | "coding">("lesson");
+  const [activityMode, setActivityMode] = useState<"lesson" | "coding" | "project">("lesson");
   const [codingInstructions, setCodingInstructions] = useState("");
   const [starterCode, setStarterCode] = useState("console.log(\"Hello, world!\");");
+  const [projectInstructions, setProjectInstructions] = useState("");
+  const [projectRequirements, setProjectRequirements] = useState("");
   const [changeSummary, setChangeSummary] = useState("");
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
@@ -137,7 +139,7 @@ export default function TeacherContentCreatePage() {
       setError(t("contentCreate.organizationMissing"));
       return;
     }
-    if (!curriculumId || !gradeLevelId || !subjectId || !skillId || !topicId || !objectiveId || !title.trim() || !code.trim() || (activityMode === "coding" ? !codingInstructions.trim() || !starterCode.trim() : !body.trim())) {
+    if (!curriculumId || !gradeLevelId || !subjectId || !skillId || !topicId || !objectiveId || !title.trim() || !code.trim() || (activityMode === "coding" ? !codingInstructions.trim() || !starterCode.trim() : activityMode === "project" ? !projectInstructions.trim() || !projectRequirements.trim() : !body.trim())) {
       setError(t("contentCreate.requiredFields"));
       return;
     }
@@ -146,6 +148,10 @@ export default function TeacherContentCreatePage() {
       return;
     }
 
+    if (activityMode === "project" && (projectInstructions.length > 5000 || projectRequirements.length > 3000)) {
+      setError("Project instructions must be 5,000 characters or fewer and requirements must be 3,000 characters or fewer.");
+      return;
+    }
     if (activityMode === "coding" && (codingInstructions.length > 5000 || starterCode.length > 12000)) {
       setError("Coding instructions must be 5,000 characters or fewer and starter code must be 12,000 characters or fewer.");
       return;
@@ -212,7 +218,9 @@ export default function TeacherContentCreatePage() {
         body: {
           sections: activityMode === "coding"
             ? [{ type: "code_activity", title: "Coding activity", body: codingInstructions.trim(), instructions: codingInstructions.trim(), starterCode: starterCode, language: "javascript" }]
-            : [{ type: "text", title: "Content", body: body.trim() }],
+            : activityMode === "project"
+              ? [{ type: "project_activity", title: "Practical project", body: projectInstructions.trim(), instructions: projectInstructions.trim(), requirements: projectRequirements.trim() }]
+              : [{ type: "text", title: "Content", body: body.trim() }],
         },
         changeSummary: changeSummary.trim() || t("contentCreate.initialDraft"),
         createdBy: user.id,
@@ -331,9 +339,10 @@ export default function TeacherContentCreatePage() {
 
         <Section number="3" title={t("contentCreate.contentBody")} description={t("contentCreate.contentBodyHelp")} full>
           <Field label="Activity format">
-            <select value={activityMode} onChange={(event) => setActivityMode(event.target.value as "lesson" | "coding")} className="input w-full">
+            <select value={activityMode} onChange={(event) => setActivityMode(event.target.value as "lesson" | "coding" | "project")} className="input w-full">
               <option value="lesson">Lesson / reading activity</option>
               <option value="coding">Student coding activity (JavaScript)</option>
+              <option value="project">Practical project (link + reflection)</option>
             </select>
           </Field>
           {activityMode === "coding" ? (
@@ -345,6 +354,16 @@ export default function TeacherContentCreatePage() {
                 <textarea value={starterCode} onChange={(event) => setStarterCode(event.target.value)} maxLength={12000} spellCheck={false} className="input min-h-56 w-full resize-y font-mono text-sm" placeholder="console.log(\"Hello, world!\");" required />
               </Field>
               <p className="text-xs leading-5 text-slate-500">Students receive the instructions and starter code. Teacher-only notes and solutions must be stored in a separate teacher-only section, never in the student activity section.</p>
+            </>
+          ) : activityMode === "project" ? (
+            <>
+              <Field label="Project instructions">
+                <textarea value={projectInstructions} onChange={(event) => setProjectInstructions(event.target.value)} maxLength={5000} className="input min-h-28 w-full resize-y" placeholder="Describe the practical task and what students must create." required />
+              </Field>
+              <Field label="Submission requirements">
+                <textarea value={projectRequirements} onChange={(event) => setProjectRequirements(event.target.value)} maxLength={3000} className="input min-h-24 w-full resize-y" placeholder="Explain what the project link must show and what evidence students should include." required />
+              </Field>
+              <p className="text-xs leading-5 text-slate-500">Students will submit a secure HTTPS project link and a short explanation. Do not include private student information in public project links.</p>
             </>
           ) : (
             <Field label={t("contentCreate.learningContent")}>
