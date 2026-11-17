@@ -20,6 +20,8 @@ export type LearningPackImportLesson = {
 export type LearningPackImportChunk = {
   organizationId: string;
   createdBy: string;
+  curriculumId: string;
+  subjectId: string;
   lessons: LearningPackImportLesson[];
 };
 
@@ -118,9 +120,9 @@ export const learningPackImportRepository = {
         questionInputs.map((question) => ({
           question_id: questionByCode.get(question.code)!,
           version_no: 1,
-          curriculum_id: input.lessons.find((lesson) => lesson.objectiveId === question.objectiveId) ? undefined : undefined,
+          curriculum_id: input.curriculumId,
           grade_level_id: question.curriculumGradeLevelId,
-          subject_id: undefined,
+          subject_id: input.subjectId,
           prompt: { text: question.prompt } as unknown as Json,
           configuration: { response_mode: "manual_review" } as unknown as Json,
           explanation: null,
