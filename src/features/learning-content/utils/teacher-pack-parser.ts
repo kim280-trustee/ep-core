@@ -47,7 +47,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
       ?? section.match(/^\*\*Learning focus:\*\*\s*(.+)$/mi)?.[1]?.trim()
       ?? (objectiveText || title);
 
-    const keyRelationships = section.match(/^\*\*Key relationships\*\*\s*([\s\S]*?)(?=^\*\*|^#{1,3}\s|$)/mi)?.[1]?.trim();
+    const keyRelationships = section.match(/^\*\*Key relationships\*\*\s*([\s\S]*?)(?=^\*\*|^#{1,3}\s|(?![\s\S]))/mi)?.[1]?.trim();
     const activityParts = [
       section.match(/^\*\*Teaching activity:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Starter(?:\s*\/\s*learning task)?:\*\*\s*(.+)$/mi)?.[1]?.trim(),
