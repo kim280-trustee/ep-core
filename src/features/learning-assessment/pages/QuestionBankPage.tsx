@@ -134,11 +134,14 @@ export default function QuestionBankPage() {
           ? versions.find((version) => version.published_at !== null)
           : latestVersion;
         if (!relevantVersion) continue;
-        if (
+        const hasAcademicScope = Boolean(
+          relevantVersion.curriculum_id && relevantVersion.grade_level_id && relevantVersion.subject_id
+        );
+        if (hasAcademicScope && (
           relevantVersion.curriculum_id !== activeCurriculumId ||
           relevantVersion.grade_level_id !== activeGradeLevelId ||
           relevantVersion.subject_id !== selectedSubjectId
-        ) continue;
+        )) continue;
         selectedVersions.push({
           questionId: question.id,
           versionId: relevantVersion.id,
