@@ -123,6 +123,12 @@ export default function TeacherAssessmentBuilderPage() {
     return matchesSearch && (questionTypeFilter === "all" || question.type === questionTypeFilter);
   });
   const draftAssessments = (assessmentsQuery.data ?? []).filter((assessment) => assessment.status !== "published");
+  const publishedAssessments = (assessmentsQuery.data ?? []).filter((assessment) =>
+    assessment.status === "published" &&
+    assessment.curriculumId === selectedClass?.classGroup.curriculumId &&
+    assessment.gradeLevelId === selectedClass?.classGroup.gradeLevelId &&
+    assessment.subjectId === selectedSubjectId
+  );
 
   const createMutation = useMutation({
     mutationFn: async () => {
@@ -287,6 +293,22 @@ export default function TeacherAssessmentBuilderPage() {
                 ))}
                 {!draftAssessments.length && <p className="text-sm text-slate-500">{t("assessmentBuilder.noDrafts")}</p>}
               </div>
+              {publishedAssessments.length > 0 && (
+                <div className="mt-5 border-t border-slate-200 pt-4">
+                  <h4 className="text-sm font-semibold text-slate-900">Published assessments · written-response marking</h4>
+                  <div className="mt-2 space-y-2">
+                    {publishedAssessments.map((assessment) => (
+                      <div key={assessment.id} className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 p-3">
+                        <div className="min-w-0">
+                          <p className="truncate text-sm font-semibold text-slate-900">{assessment.title}</p>
+                          <p className="text-xs text-slate-500">{assessment.code}</p>
+                        </div>
+                        <Link to={`/teacher/assessments/${assessment.id}/review`} className="shrink-0 rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50">Review responses</Link>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             )}
           </div>
         </section>
