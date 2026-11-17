@@ -130,6 +130,23 @@ export default function LearningDashboardPage() {
     .sort((a, b) => new Date(a.dueAt!).getTime() - new Date(b.dueAt!).getTime())
     .slice(0, 5);
 
+  // Subject-level progress uses the same published assignments and progress
+  // records as the dashboard totals, so unpublished work is never exposed.
+  const subjectProgress = Object.entries(
+    overview.assignments
+      .filter((assignment) => assignment.status === "published")
+      .reduce<Record<string, { total: number; completed: number; inProgress: number }>>((groups, assignment) => {
+        const subject = overview.assignmentSubjects[assignment.id] || "Other";
+        const group = groups[subject] ?? { total: 0, completed: 0, inProgress: 0 };
+        const status = activeProgress.find((item) => item.assignmentId === assignment.id)?.status;
+        group.total += 1;
+        if (status === "completed") group.completed += 1;
+        if (status === "in_progress") group.inProgress += 1;
+        groups[subject] = group;
+        return groups;
+      }, {}),
+  ).sort(([a], [b]) => a.localeCompare(b));
+
   return <div className="space-y-6">
     <section className="rounded-2xl bg-slate-900 p-6 text-white shadow-sm sm:p-8"><div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between"><div><p className="text-sm font-medium text-slate-300">{t("studentDashboard.studentLearning")}</p><h1 className="mt-1 text-2xl font-bold sm:text-3xl">{t("studentDashboard.welcome")}{user.name || t("studentDashboard.student")}</h1><p className="mt-2 max-w-2xl text-sm text-slate-300">Continue your learning, review your progress, and see what should come next.</p></div>{continueItems.length > 0 && <Link to={`/learning/assignments/${continueItems[0].assignment.id}`} className="inline-flex w-fit items-center rounded-lg bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100">{t("studentDashboard.continueLearning")}</Link>}</div></section>
     <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -138,6 +155,24 @@ export default function LearningDashboardPage() {
       <Stat icon={<CheckCircle2 size={19} />} label={t("studentDashboard.completed")} value={String(completed.length)} detail={t("studentDashboard.assignmentProgress")} />
       <Stat icon={<TrendingUp size={19} />} label={t("studentDashboard.recommendations")} value={String(overview.recommendations.length)} detail={t("studentDashboard.readyForYou")} />
     </section>
+    {subjectProgress.length > 0 && <DashboardCard title="Progress by subject" icon={<BookOpen size={20} />}>
+      <div className="grid gap-4 sm:grid-cols-2">
+        {subjectProgress.map(([subject, stats]) => {
+          const percentage = stats.total ? Math.round((stats.completed / stats.total) * 100) : 0;
+          return <div key={subject} className="rounded-xl border border-slate-200 p-4">
+            <div className="flex items-start justify-between gap-3">
+              <h3 className="font-semibold text-slate-900">{subject}</h3>
+              <span className="text-sm font-semibold tabular-nums text-slate-700">{percentage}%</span>
+            </div>
+            <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-100" role="progressbar" aria-label={subject + " completion"} aria-valuemin={0} aria-valuemax={100} aria-valuenow={percentage}>
+              <div className="h-full rounded-full bg-slate-800" style={{ width: percentage + "%" }} />
+            </div>
+            <p className="mt-2 text-xs text-slate-500">{stats.completed} completed · {stats.inProgress} in progress · {stats.total - stats.completed - stats.inProgress} not started</p>
+            <Link to="/learning/assignments" className="mt-3 inline-flex text-sm font-medium text-slate-700 underline underline-offset-4 hover:text-slate-900">View assignments</Link>
+          </div>;
+        })}
+      </div>
+    </DashboardCard>}
     {rewardsQuery.isSuccess && <section aria-labelledby="dashboard-rewards-heading" className="rounded-2xl border border-amber-200 bg-gradient-to-r from-amber-50 to-white p-5 shadow-sm sm:p-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
