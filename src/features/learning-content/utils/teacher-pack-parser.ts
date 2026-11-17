@@ -19,7 +19,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
   if (!markdown.trim()) throw new Error("The selected Markdown file is empty.");
   if (markdown.length > 5_000_000) throw new Error("Teacher packs must be smaller than 5 MB.");
 
-  const headingPattern = /^#{2,3}\s+(?:(?:(?:Physical|Earth) Science\s+)?(?:Lesson|Outcome)\s+(\d+)\s+[—–-]\s+(.+)|Group\s+\d+\s+[—–-]\s+Outcome\s+(\d+)\s*[:—–-]\s*(.+)|(\d+)\.\s+(.+))$/gm;
+  const headingPattern = /^#{2,3}\s+(?:(?:(?:Physical|Earth) Science\s+)?(?:Lesson|Outcome)\s+(\d+)\s+[—–-]\s+(.+)|Group\s+\d+\s+[—–-]\s+Outcome\s+(\d+)\s*[:—–-]\s*(.+)|(\d+)\.\s+(.+)|(?:Lesson|Outcome)\s+[—–-]\s+(.+))$/gm;
   const headings = [...markdown.matchAll(headingPattern)];
   if (!headings.length) {
     throw new Error("No lesson sections were found. Use numbered Lesson/Outcome headings or headings such as '### 1. Lesson title'.");
@@ -29,8 +29,8 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
     const start = (heading.index ?? 0) + heading[0].length;
     const end = headings[index + 1]?.index ?? markdown.length;
     const section = markdown.slice(start, end);
-    const number = Number(heading[1] ?? heading[3] ?? heading[5]);
-    const title = (heading[2] ?? heading[4] ?? heading[6]).trim();
+    const number = Number(heading[1] ?? heading[3] ?? heading[5] ?? index + 1);
+    const title = (heading[2] ?? heading[4] ?? heading[6] ?? heading[7]).trim();
     const objectiveLine = section.match(/^\*\*(?:Objective|Learning objective):\*\*\s*(.+)$/mi)?.[1]?.trim() ?? "";
     const codeMatch = objectiveLine.match(/[\x60]([A-Z0-9][A-Z0-9_-]{2,})[\x60]/i)
       ?? objectiveLine.match(/\b(M[1-6][A-Z0-9_-]+)\b/i);
@@ -47,6 +47,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
       ?? section.match(/^\*\*Learning focus:\*\*\s*(.+)$/mi)?.[1]?.trim()
       ?? (objectiveText || title);
 
+    const keyRelationships = section.match(/^\*\*Key relationships\*\*\s*([\s\S]*?)(?=^\*\*|^#{1,3}\s|$)/mi)?.[1]?.trim();
     const activityParts = [
       section.match(/^\*\*Teaching activity:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Starter(?:\s*\/\s*learning task)?:\*\*\s*(.+)$/mi)?.[1]?.trim(),
@@ -55,6 +56,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
       section.match(/^\*\*Learning task:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Check for understanding:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Learning focus:\*\*\s*(.+)$/mi)?.[1]?.trim(),
+      keyRelationships,
     ].filter((value): value is string => Boolean(value));
     const activity = activityParts.join("\n\n") || learningOutcome;
 
