@@ -166,7 +166,7 @@ export default function TeacherContentImportPage() {
         continue;
       }
 
-      const contentCode = `EP-${objective.code}-LESSON`;
+      const contentCode = makeImportCode(`EP-${objective.code}-LESSON`);
       if (seenCodes.has(contentCode)) {
         errors.push(`Objective ${objective.code} appears more than once in this pack.`);
         continue;
@@ -183,7 +183,7 @@ export default function TeacherContentImportPage() {
         learningOutcome: lesson.learningOutcome,
         activity: lesson.activity,
         questions: lesson.questions.map((question) => ({
-          code: `EP-${objective!.code}-Q${String(question.number).padStart(2, "0")}`,
+          code: makeImportCode(`EP-${objective!.code}-Q${String(question.number).padStart(2, "0")}`),
           prompt: question.prompt,
           expectedAnswer: question.expectedAnswer,
         })),
@@ -234,7 +234,7 @@ export default function TeacherContentImportPage() {
       ]);
       const contentCodes = new Set(existingContent.map((item) => item.code.toUpperCase()));
       const questionCodes = new Set(existingQuestions.map((item) => item.code.toUpperCase()));
-      const duplicateContent = resolved.rows.find((item) => contentCodes.has(`EP-${item.objectiveCode}-LESSON`.toUpperCase()));
+      const duplicateContent = resolved.rows.find((item) => contentCodes.has(makeImportCode(`EP-${item.objectiveCode}-LESSON`)));
       const duplicateQuestion = resolved.rows.flatMap((item) => item.questions).find((item) => questionCodes.has(item.code.toUpperCase()));
       if (duplicateContent || duplicateQuestion) {
         throw new Error(`Import stopped because a code already exists in this organization: ${duplicateContent ? `EP-${duplicateContent.objectiveCode}-LESSON` : duplicateQuestion?.code}. Existing content is not overwritten.`);
@@ -415,4 +415,8 @@ function Field({ label, children }: { label: string; children: ReactNode }) {
 
 function Panel({ children }: { children: ReactNode }) {
   return <div className="rounded-2xl border border-slate-200 bg-white p-8 text-sm text-slate-600">{children}</div>;
+}
+
+function makeImportCode(value: string) {
+  return value.toUpperCase().replace(/[^A-Z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
