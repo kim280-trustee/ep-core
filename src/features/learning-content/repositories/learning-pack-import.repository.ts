@@ -77,6 +77,11 @@ export const learningPackImportRepository = {
             sections: [
               { type: "text", title: "Learning outcome", body: lesson.learningOutcome },
               { type: "text", title: "Teaching activity", body: lesson.activity },
+              {
+                type: "text",
+                title: "Practice questions",
+                body: lesson.questions.map((question, index) => `${index + 1}. ${question.prompt}`).join("\\n"),
+              },
             ],
             source: { type: "teacher_pack", objective_code: lesson.objectiveCode },
           } as unknown as Json,
