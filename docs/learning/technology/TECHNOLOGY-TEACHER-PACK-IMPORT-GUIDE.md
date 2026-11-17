@@ -28,6 +28,22 @@ The six Technology starter packs are teacher planning resources. They are not li
 
 Each lesson has one official objective code and indicator code, one teaching activity and three answer-keyed questions. The parser expects exactly three answer-keyed questions per lesson.
 
+## Digital-literacy assessment question pack
+
+A separate question-only pack is available at `TECHNOLOGY-DIGITAL-LITERACY-ASSESSMENT-PACK.md`. It adds 21 short-answer questions across seven official Computing Science objectives in M1–M6. The questions cover privacy, safe technology use, source reliability, misinformation, intellectual property, responsible data science and technology's social impact.
+
+Import it through the same Teacher Content Import page:
+
+1. Select curriculum `TH-TECH-M1-M6` and subject `TECH`.
+2. Select **Import assessment questions only** before choosing the Markdown pack.
+3. Confirm that every objective code resolves to the intended grade and subject. The importer blocks unresolved or unaligned mappings.
+4. Import the questions as unpublished manual-review drafts. This mode creates no lesson records and uses a separate `-DL-Q` code namespace to avoid collisions with the regular lesson-pack questions.
+5. Review and publish the question drafts in the Question Bank.
+6. Open the Assessment Builder, select the target class, grade and Technology subject, create a digital-literacy quiz or test, and attach the published questions for that academic scope.
+7. Publish the assessment through the existing teacher review workflow. Student attempts use the existing manual-review grading and gradebook synchronization lifecycle.
+
+The pack contains seven objective sections, three questions each. M1 and M2 address safe information-technology use; M3 has separate information-evaluation and legal/copyright sections; M4 applies responsible digital practice in a project; M5 addresses ethical data science; M6 addresses safe information sharing and social impact.
+
 ## Teacher-only guidance and safety
 
 Each pack includes teacher-only safety and assessment guidance. The importer stores that guidance separately from student-facing lesson text. Review the guidance before importing or publishing.
