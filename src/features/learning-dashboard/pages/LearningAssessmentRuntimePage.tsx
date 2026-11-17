@@ -321,6 +321,13 @@ export default function LearningAssessmentRuntimePage() {
           // Submission has succeeded; telemetry failures must not hide the result.
         }
       }
+      if (attempt.status !== "evaluated") {
+        await queryClient.invalidateQueries({
+          queryKey: ["learning", "assessment-attempts", assessment, user?.id],
+        });
+        return;
+      }
+
       const wasCompleted = assignmentQuery.data?.progress?.status === "completed";
       let progress: Awaited<ReturnType<typeof learningAssignmentsService.refreshProgressForStudent>> | null = null;
       try {
