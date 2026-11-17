@@ -13,7 +13,7 @@ insert into public.learning_topics(skill_id,code,name,description,sequence_no,st
 select sk.id,v.code,v.name,v.description,v.seq,'active'
 from public.learning_skills sk join public.learning_subjects s on s.id=sk.subject_id
 cross join (values
- ('M6-PHY-01','THERMAL-ENERGY','Heat, Temperature Change and Phase Change','M6 additional Physics outcome 1: Explain and calculate heat that changes temperature, heat that changes state, and heat transfer using conservation of energy.',1),
+ ('M6-PHY-01','THERMAL-ENERGY','Heat, Temperature Change and Phase Change','M6 additional Physics outcome 1: Explain and calculate heat that changes temperature, heat that changes state, and heat transfer using conservation of energy.',1::integer),
  ('M6-PHY-02','ELASTICITY-YOUNGS-MODULUS','Elasticity, Stress, Strain and Young''s Modulus','M6 additional Physics outcome 2: Explain elastic deformation and calculate longitudinal stress, strain and Young''s modulus; apply material elasticity to everyday contexts.',2),
  ('M6-PHY-03','FLUID-PRESSURE','Gauge, Absolute and Atmospheric Pressure','M6 additional Physics outcome 3: Calculate gauge and absolute pressure and explain manometers, barometers and hydraulic presses.',3),
  ('M6-PHY-04','BUOYANCY-ARCHIMEDES','Buoyancy and Archimedes'' Principle','M6 additional Physics outcome 4: Investigate, explain and calculate buoyant force from a fluid using Archimedes'' principle.',4),
@@ -29,7 +29,7 @@ insert into public.learning_objectives(topic_id,code,name,description,sequence_n
 select tp.id,v.code,v.name,v.description,v.seq,'active'
 from public.learning_topics tp join public.learning_skills sk on sk.id=tp.skill_id join public.learning_subjects s on s.id=sk.subject_id
 cross join (values
- ('M6-PHY-01','Heat, Temperature Change and Phase Change','Explain and calculate heat that changes temperature, heat that changes state, and heat transfer using conservation of energy.',1,'M6-PHY-01'),
+ ('M6-PHY-01','Heat, Temperature Change and Phase Change','Explain and calculate heat that changes temperature, heat that changes state, and heat transfer using conservation of energy.',1::integer,'M6-PHY-01'),
  ('M6-PHY-02','Elasticity, Stress, Strain and Young''s Modulus','Explain elastic deformation and calculate longitudinal stress, strain and Young''s modulus; apply material elasticity to everyday contexts.',2,'M6-PHY-02'),
  ('M6-PHY-03','Gauge, Absolute and Atmospheric Pressure','Calculate gauge and absolute pressure and explain manometers, barometers and hydraulic presses.',3,'M6-PHY-03'),
  ('M6-PHY-04','Buoyancy and Archimedes'' Principle','Investigate, explain and calculate buoyant force from a fluid using Archimedes'' principle.',4,'M6-PHY-04'),
