@@ -1,5 +1,5 @@
 -- Read-only verification for the E&P Learning Science curriculum migrations.
--- Run only AFTER the 45 Science migrations have been applied to a disposable/staging DB.
+-- Run only AFTER the 45 Science migrations and M2/M3 strand-integrity correction are applied.
 -- This script does not insert, update or delete data.
 
 with expected(subject_code, grade_code, expected_objectives) as (
