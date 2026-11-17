@@ -30,6 +30,9 @@ export default function TeacherContentCreatePage() {
   const [contentType, setContentType] = useState<LearningContentType>("lesson");
   const [languageCode, setLanguageCode] = useState("en");
   const [body, setBody] = useState("");
+  const [activityMode, setActivityMode] = useState<"lesson" | "coding">("lesson");
+  const [codingInstructions, setCodingInstructions] = useState("");
+  const [starterCode, setStarterCode] = useState("console.log(\"Hello, world!\");");
   const [changeSummary, setChangeSummary] = useState("");
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
@@ -134,12 +137,17 @@ export default function TeacherContentCreatePage() {
       setError(t("contentCreate.organizationMissing"));
       return;
     }
-    if (!curriculumId || !gradeLevelId || !subjectId || !skillId || !topicId || !objectiveId || !title.trim() || !code.trim() || !body.trim()) {
+    if (!curriculumId || !gradeLevelId || !subjectId || !skillId || !topicId || !objectiveId || !title.trim() || !code.trim() || (activityMode === "coding" ? !codingInstructions.trim() || !starterCode.trim() : !body.trim())) {
       setError(t("contentCreate.requiredFields"));
       return;
     }
     if (title.trim().length < 3 || title.trim().length > 200) {
       setError(t("contentCreate.titleLength"));
+      return;
+    }
+
+    if (activityMode === "coding" && (codingInstructions.length > 5000 || starterCode.length > 12000)) {
+      setError("Coding instructions must be 5,000 characters or fewer and starter code must be 12,000 characters or fewer.");
       return;
     }
 
@@ -202,7 +210,9 @@ export default function TeacherContentCreatePage() {
         contentItemId: content.id,
         versionNo: 1,
         body: {
-          sections: [{ type: "text", title: "Content", body: body.trim() }],
+          sections: activityMode === "coding"
+            ? [{ type: "code_activity", title: "Coding activity", body: codingInstructions.trim(), instructions: codingInstructions.trim(), starterCode: starterCode, language: "javascript" }]
+            : [{ type: "text", title: "Content", body: body.trim() }],
         },
         changeSummary: changeSummary.trim() || t("contentCreate.initialDraft"),
         createdBy: user.id,
@@ -320,9 +330,27 @@ export default function TeacherContentCreatePage() {
         </Section>
 
         <Section number="3" title={t("contentCreate.contentBody")} description={t("contentCreate.contentBodyHelp")} full>
-          <Field label={t("contentCreate.learningContent")}>
-            <textarea value={body} onChange={(e) => setBody(e.target.value)} className="input min-h-64 w-full resize-y" placeholder={t("contentCreate.bodyPlaceholder")} required />
+          <Field label="Activity format">
+            <select value={activityMode} onChange={(event) => setActivityMode(event.target.value as "lesson" | "coding")} className="input w-full">
+              <option value="lesson">Lesson / reading activity</option>
+              <option value="coding">Student coding activity (JavaScript)</option>
+            </select>
           </Field>
+          {activityMode === "coding" ? (
+            <>
+              <Field label="Student instructions">
+                <textarea value={codingInstructions} onChange={(event) => setCodingInstructions(event.target.value)} maxLength={5000} className="input min-h-28 w-full resize-y" placeholder="Explain the task, what the student should build, and what they should observe." required />
+              </Field>
+              <Field label="Starter code">
+                <textarea value={starterCode} onChange={(event) => setStarterCode(event.target.value)} maxLength={12000} spellCheck={false} className="input min-h-56 w-full resize-y font-mono text-sm" placeholder="console.log(\"Hello, world!\");" required />
+              </Field>
+              <p className="text-xs leading-5 text-slate-500">Students receive the instructions and starter code. Teacher-only notes and solutions must be stored in a separate teacher-only section, never in the student activity section.</p>
+            </>
+          ) : (
+            <Field label={t("contentCreate.learningContent")}>
+              <textarea value={body} onChange={(e) => setBody(e.target.value)} className="input min-h-64 w-full resize-y" placeholder={t("contentCreate.bodyPlaceholder")} required />
+            </Field>
+          )}
           <Field label={t("contentCreate.changeSummary")}>
             <input value={changeSummary} onChange={(e) => setChangeSummary(e.target.value)} className="input w-full" placeholder={t("contentCreate.initialDraft")} />
           </Field>
