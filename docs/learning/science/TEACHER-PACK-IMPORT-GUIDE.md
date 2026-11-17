@@ -18,18 +18,26 @@ The selected class is used only to establish the teacher's organization access. 
 
 ## Consolidated Science import files
 
-Import each file separately, selecting the exact subject shown below while keeping curriculum `TH-SCI-M1-M6`. The objective codes carry the grade mapping, so one file can cover multiple grades within the same subject.
+Import these 13 files using curriculum `TH-SCI-M1-M6`. The M1–M3 core pack uses explicit objective codes across all three grades. Upper-secondary packs are grade-scoped because some official outcomes are intentionally code-less in the original teacher material; select the exact grade shown so the importer can resolve them safely.
 
-| Import file | Subject | Grades | Lessons | Questions |
-|---|---|---|---:|---:|
+| Import file | Subject | Grade | Lessons | Questions |
+|---|---|---:|---:|---:|
 | `SCIENCE-M1-M3-COMPLETE-IMPORT.md` | `SCI` — Science | M1–M3 | 142 | 426 |
-| `BIOLOGY-M4-M6-COMPLETE-IMPORT.md` | `BIOLOGY` — Biology | M4–M6 | 108 | 324 |
-| `CHEMISTRY-M4-M6-COMPLETE-IMPORT.md` | `CHEMISTRY` — Chemistry | M4–M6 | 81 | 243 |
-| `PHYSICS-M4-M6-COMPLETE-IMPORT.md` | `PHYSICS` — Physics | M4–M6 | 67 | 201 |
-| `EARTH-SPACE-M4-M6-COMPLETE-IMPORT.md` | `EARTH_SPACE` — Earth, Astronomy and Space Science | M4–M6 | 44 | 132 |
-| **Total** | **5 subject imports** | **M1–M6** | **442** | **1,326** |
+| `BIOLOGY-M4-IMPORT.md` | `BIOLOGY` — Biology | M4 | 32 | 96 |
+| `BIOLOGY-M5-IMPORT.md` | `BIOLOGY` — Biology | M5 | 39 | 117 |
+| `BIOLOGY-M6-IMPORT.md` | `BIOLOGY` — Biology | M6 | 37 | 111 |
+| `CHEMISTRY-M4-IMPORT.md` | `CHEMISTRY` — Chemistry | M4 | 28 | 84 |
+| `CHEMISTRY-M5-IMPORT.md` | `CHEMISTRY` — Chemistry | M5 | 38 | 114 |
+| `CHEMISTRY-M6-IMPORT.md` | `CHEMISTRY` — Chemistry | M6 | 15 | 45 |
+| `PHYSICS-M4-IMPORT.md` | `PHYSICS` — Physics | M4 | 17 | 51 |
+| `PHYSICS-M5-IMPORT.md` | `PHYSICS` — Physics | M5 | 26 | 78 |
+| `PHYSICS-M6-IMPORT.md` | `PHYSICS` — Physics | M6 | 24 | 72 |
+| `EARTH-SPACE-M4-IMPORT.md` | `EARTH_SPACE` — Earth, Astronomy and Space Science | M4 | 12 | 36 |
+| `EARTH-SPACE-M5-IMPORT.md` | `EARTH_SPACE` — Earth, Astronomy and Space Science | M5 | 13 | 39 |
+| `EARTH-SPACE-M6-IMPORT.md` | `EARTH_SPACE` — Earth, Astronomy and Space Science | M6 | 19 | 57 |
+| **Total** | **5 subject tracks** | **M1–M6** | **442** | **1,326** |
 
-Each consolidated file includes the original source pack sections. Import one subject at a time; do not combine different subject codes in a single import because the importer validates against the selected subject.
+Import one file at a time and select the exact subject and grade shown in the table. Do not use a mixed-grade upper-secondary file: the grade selector is part of code-less outcome resolution. All imported records remain unpublished drafts.
 
 ## What the importer creates
 
