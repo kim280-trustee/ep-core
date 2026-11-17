@@ -235,7 +235,7 @@ export default function TeacherContentImportPage() {
       const contentCodes = new Set(existingContent.map((item) => makeImportCode(item.code)));
       const questionCodes = new Set(existingQuestions.map((item) => makeImportCode(item.code)));
       const duplicateContent = resolved.rows.find((item) => contentCodes.has(makeImportCode(`EP-${item.objectiveCode}-LESSON`)));
-      const duplicateQuestion = resolved.rows.flatMap((item) => item.questions).find((item) => questionCodes.has(item.code.toUpperCase()));
+      const duplicateQuestion = resolved.rows.flatMap((item) => item.questions).find((item) => questionCodes.has(makeImportCode(item.code)));
       if (duplicateContent || duplicateQuestion) {
         throw new Error(`Import stopped because a code already exists in this organization: ${duplicateContent ? makeImportCode(`EP-${duplicateContent.objectiveCode}-LESSON`) : duplicateQuestion?.code}. Existing content is not overwritten.`);
       }
