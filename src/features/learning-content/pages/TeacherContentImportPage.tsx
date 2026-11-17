@@ -261,7 +261,7 @@ export default function TeacherContentImportPage() {
           importedQuestions += result.questions;
           setImportProgress({ lessons: 0, questions: importedQuestions });
         }
-        setMessage(`Imported ${importedQuestions} digital-literacy assessment question drafts. All remain unpublished for teacher review.`);
+        setMessage(`Imported ${importedQuestions} assessment question drafts. All remain unpublished for teacher review.`);
       } else {
         for (let offset = 0; offset < resolved.rows.length; offset += CHUNK_SIZE) {
           const chunk = resolved.rows.slice(offset, offset + CHUNK_SIZE);
@@ -358,7 +358,7 @@ export default function TeacherContentImportPage() {
         <p className="mt-1 text-sm text-slate-500">The importer recognises Lesson and Outcome sections, objective codes or grade-scoped outcome numbers, teaching notes, and three answer-keyed questions per lesson.</p>
         <label className="mt-4 flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 p-3 text-sm text-slate-700">
           <input type="checkbox" checked={questionsOnly} onChange={(event) => setQuestionsOnly(event.target.checked)} className="mt-0.5" />
-          <span><strong>Import assessment questions only</strong><span className="mt-1 block text-xs text-slate-500">Use for a separate digital-literacy question pack. This creates question-bank drafts only and does not create duplicate lesson content.</span></span>
+          <span><strong>Import assessment questions only</strong><span className="mt-1 block text-xs text-slate-500">Use for a separate assessment question pack. This creates question-bank drafts only and does not create duplicate lesson content.</span></span>
         </label>
         <label className="mt-4 flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-slate-300 px-5 py-8 text-center hover:bg-slate-50">
           <Upload size={24} className="text-slate-500" />
