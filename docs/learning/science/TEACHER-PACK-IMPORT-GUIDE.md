@@ -21,14 +21,14 @@ The selected class is used only to establish the teacher's organization access. 
 For each validated lesson:
 
 1. One `learning_content_items` row with content type `lesson`.
-2. One initial `learning_content_versions` row containing the learning outcome and teaching activity/notes.
+2. One initial `learning_content_versions` row containing the learning outcome, teaching activity/notes and the three student-facing practice prompts (never the answer keys).
 3. One `learning_content_objectives` link to the exact curriculum objective.
 4. Three `learning_questions` rows using the existing `short_answer` question type.
 5. Three `learning_question_versions` rows with exact curriculum, grade and subject scope.
 6. Three protected `learning_question_evaluation_keys` rows containing the teacher-pack expected answers.
 7. Three `learning_question_objectives` links to the same objective.
 
-Short-answer scoring uses `manual_review`. Answer keys are stored in the protected evaluation-key table and are not included in student-facing prompts.
+Short-answer scoring uses `manual_review`. Answer keys are stored in the protected evaluation-key table and are not included in student-facing lesson content. The current auto-scored assessment builder selects `single_choice` and `true_false` items, not `short_answer`; imported short-answer items therefore appear in the Question Bank and as prompts in lesson content, but are not automatically added to digital assessments by this importer. Interactive short-answer assignment submission is a separate capability.
 
 All imported content and questions remain **drafts**. The importer does not submit items for review or publish them. Teachers and authorized academic reviewers continue to use the existing review/publication lifecycle.
 
