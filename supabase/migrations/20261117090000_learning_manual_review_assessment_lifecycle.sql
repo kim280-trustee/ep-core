@@ -212,6 +212,7 @@ declare
   v_now timestamptz := now();
   v_objective record;
   v_previous_score numeric(6,3);
+  v_previous_attempts integer;
   v_new_score numeric(6,3);
   v_confidence numeric(6,3);
 begin
@@ -368,7 +369,7 @@ begin
       and aa.evaluation_status in ('auto_evaluated', 'manual_reviewed')
     group by qo.objective_id
   loop
-    select sm.mastery_score into v_previous_score
+    select sm.mastery_score, sm.attempts_count into v_previous_score, v_previous_attempts
     from public.learning_student_mastery sm
     where sm.student_user_id = v_answer.student_user_id
       and sm.objective_id = v_objective.objective_id
@@ -377,19 +378,9 @@ begin
 
     if found then
       v_new_score := round(
-        ((v_previous_score * greatest((
-          select sm.attempts_count from public.learning_student_mastery sm
-          where sm.student_user_id = v_answer.student_user_id
-            and sm.objective_id = v_objective.objective_id
-            and sm.organization_id is not distinct from v_answer.organization_id
-        ), 0)) + ((v_objective.correct_count::numeric / greatest(v_objective.evidence_count, 1)) * 100))
-        / greatest((
-          select sm.attempts_count + v_objective.evidence_count
-          from public.learning_student_mastery sm
-          where sm.student_user_id = v_answer.student_user_id
-            and sm.objective_id = v_objective.objective_id
-            and sm.organization_id is not distinct from v_answer.organization_id
-        ), 1), 3);
+        ((v_previous_score * greatest(v_previous_attempts, 0))
+          + ((v_objective.correct_count::numeric / greatest(v_objective.evidence_count, 1)) * 100))
+        / greatest(v_previous_attempts + v_objective.evidence_count, 1), 3);
       update public.learning_student_mastery sm
       set mastery_score = v_new_score,
           confidence_score = least(100, (sm.attempts_count + v_objective.evidence_count) * 20),
