@@ -108,4 +108,46 @@ using (
   )
 );
 
+create or replace function private.enforce_learning_project_submission_file_limit()
+returns trigger
+language plpgsql
+security definer
+set search_path = ''
+as $function$
+declare
+  v_folders text[];
+  v_existing_count integer;
+begin
+  if new.bucket_id <> 'learning-project-submissions' then
+    return new;
+  end if;
+
+  v_folders := storage.foldername(new.name);
+  if cardinality(v_folders) <> 4 then
+    raise exception 'Invalid project evidence storage path';
+  end if;
+
+  perform pg_catalog.pg_advisory_xact_lock(
+    pg_catalog.hashtext(array_to_string(v_folders, '/'))::bigint
+  );
+
+  select count(*)::integer into v_existing_count
+  from storage.objects o
+  where o.bucket_id = 'learning-project-submissions'
+    and storage.foldername(o.name) = v_folders;
+
+  if v_existing_count >= 3 then
+    raise exception 'A practical project can include no more than 3 evidence files';
+  end if;
+
+  return new;
+end;
+$function$;
+
+drop trigger if exists learning_project_submission_file_limit on storage.objects;
+create trigger learning_project_submission_file_limit
+before insert on storage.objects
+for each row
+execute function private.enforce_learning_project_submission_file_limit();
+
 commit;
