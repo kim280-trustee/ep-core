@@ -402,6 +402,7 @@ export default function LearningContentRuntimePage() {
                   instructions={section.instructions || section.body}
                   starterCode={section.starterCode}
                   value={codeDraft}
+                  initialOutput={codeRunOutput}
                   disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending}
                   onChange={(nextCode) => { setCodeDraft(nextCode); setCodeRunOutput(""); setCodeRunSucceeded(false); }}
                   onRunResult={handleCodeRunResult}
