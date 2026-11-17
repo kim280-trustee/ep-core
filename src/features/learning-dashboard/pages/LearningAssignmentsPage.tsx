@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { AlertCircle, ArrowRight, BookOpen, CheckCircle2, Clock3, Search, SlidersHorizontal } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningRuntimeService } from "@/features/learning-runtime";
 import type { LearningAssignmentProgress } from "@/features/learning-assignments";
@@ -25,9 +25,10 @@ const filterOptions: { value: AssignmentFilter; label: string }[] = [
 export default function LearningAssignmentsPage() {
   const { t } = useTranslation();
   const { user } = useAuth();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [filter, setFilter] = useState<AssignmentFilter>("all");
   const [searchText, setSearchText] = useState("");
-  const [subjectFilter, setSubjectFilter] = useState("all");
+  const [subjectFilter, setSubjectFilter] = useState(searchParams.get("subject") || "all");
   const studentUserId = user?.id ?? "";
   const query = useQuery({
     queryKey: ["learning", "student-overview", studentUserId],
@@ -82,7 +83,7 @@ export default function LearningAssignmentsPage() {
           {subjectNames.length > 1 && (
             <label className="block max-w-sm space-y-1.5">
               <span className="text-xs font-semibold text-slate-600">Subject</span>
-              <select value={subjectFilter} onChange={(event) => setSubjectFilter(event.target.value)} className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200">
+              <select value={subjectFilter} onChange={(event) => { const nextSubject = event.target.value; setSubjectFilter(nextSubject); setSearchParams((current) => { const next = new URLSearchParams(current); if (nextSubject === "all") next.delete("subject"); else next.set("subject", nextSubject); return next; }, { replace: true }); }} className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200">
                 <option value="all">All subjects</option>
                 {subjectNames.map((subject) => <option key={subject} value={subject}>{subject}</option>)}
               </select>
@@ -104,7 +105,7 @@ export default function LearningAssignmentsPage() {
           ))}
         </div>
       ) : assignments.length ? (
-        <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center"><p className="font-semibold text-slate-800">{t("studentAssignments.noMatch")}</p><p className="mt-1 text-sm text-slate-500">{t("studentAssignments.tryFilters")}</p><button type="button" onClick={() => { setFilter("all"); setSearchText(""); setSubjectFilter("all"); }} className="mt-4 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white">{t("studentAssignments.clearFilters")}</button></div>
+        <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center"><p className="font-semibold text-slate-800">{t("studentAssignments.noMatch")}</p><p className="mt-1 text-sm text-slate-500">{t("studentAssignments.tryFilters")}</p><button type="button" onClick={() => { setFilter("all"); setSearchText(""); setSubjectFilter("all"); setSearchParams((current) => { const next = new URLSearchParams(current); next.delete("subject"); return next; }, { replace: true }); }} className="mt-4 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white">{t("studentAssignments.clearFilters")}</button></div>
       ) : (
         <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center text-sm text-slate-500">{t("studentAssignments.nonePublished")}</div>
       )}
