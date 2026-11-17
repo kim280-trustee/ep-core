@@ -57,7 +57,10 @@ export default function TeacherAssessmentReviewPage() {
         return { attempt, answers: manualAnswers };
       }));
       return attemptsWithAnswers
-        .filter((row) => row.attempt.status === "evaluating" || row.answers.length > 0)
+        .filter((row) =>
+          row.attempt.status === "evaluating" ||
+          (row.attempt.status === "evaluated" && row.answers.length > 0)
+        )
         .sort((a, b) => b.attempt.createdAt.localeCompare(a.attempt.createdAt));
     },
   });
