@@ -22,7 +22,7 @@ cross join (values
  ('M6-PHY-07','IDEAL-GAS-LAWS','Ideal Gas Law','M6 additional Physics outcome 7: Explain the ideal-gas model and calculate pressure, volume, temperature or amount using PV = nRT.',7),
  ('M6-PHY-08','KINETIC-THEORY-GAS','Kinetic Theory and RMS Molecular Speed','M6 additional Physics outcome 8: Explain the ideal-gas molecular model, kinetic theory, and calculate mean kinetic energy and RMS molecular speed.',8),
  ('M6-PHY-09','THERMODYNAMICS-FIRST-LAW','Gas Work and the First Law of Thermodynamics','M6 additional Physics outcome 9: Calculate work by a gas at constant pressure and explain the relationship among heat, internal energy and work; apply internal energy to everyday devices.',9)
-) as v(code,name,description,seq)
+) as v(code,skill_code,name,description,seq)
 where s.code='PHYSICS' and sk.code='THERMAL-FLUIDS'
 on conflict(skill_id,code) do update set name=excluded.name,description=excluded.description,sequence_no=excluded.sequence_no,status='active',updated_at=now();
 insert into public.learning_objectives(topic_id,code,name,description,sequence_no,status)
