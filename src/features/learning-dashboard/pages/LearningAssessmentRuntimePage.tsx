@@ -53,8 +53,10 @@ function optionsFromConfiguration(value: Record<string, unknown>) {
   });
 }
 
-function answerPayload(value: string) {
-  return { option_id: value };
+function answerPayload(value: string, questionType: string) {
+  return questionType === "short_answer"
+    ? { text_response: value }
+    : { option_id: value };
 }
 
 export default function LearningAssessmentRuntimePage() {
@@ -114,7 +116,7 @@ export default function LearningAssessmentRuntimePage() {
           if (!question) {
             throw new Error("A question could not be loaded.");
           }
-          if (question.questionType !== "single_choice" && question.questionType !== "true_false") {
+          if (question.questionType !== "single_choice" && question.questionType !== "true_false" && question.questionType !== "short_answer") {
             throw new Error("This assessment contains a question type that is not supported yet. Please contact your teacher.");
           }
 
@@ -172,8 +174,8 @@ export default function LearningAssessmentRuntimePage() {
   const answers = useMemo(() => {
     const restoredAnswers = Object.fromEntries(
       (attemptAnswersQuery.data ?? []).flatMap((answer) => {
-        const optionId = answer.answer.option_id;
-        return typeof optionId === "string" ? [[answer.assessmentQuestionId, optionId]] : [];
+        const savedValue = answer.answer.text_response ?? answer.answer.option_id;
+        return typeof savedValue === "string" ? [[answer.assessmentQuestionId, savedValue]] : [];
       }),
     );
     return { ...restoredAnswers, ...answerDrafts };
@@ -249,21 +251,22 @@ export default function LearningAssessmentRuntimePage() {
     }: {
       questionId: string;
       value: string;
+      questionType: string;
     }) => {
       if (!attemptId) throw new Error("Assessment attempt has not started.");
 
       return learningAssessmentService.saveAnswer({
         attemptId,
         assessmentQuestionId: questionId,
-        answer: answerPayload(value),
+        answer: answerPayload(value, questionType),
       });
     },
   });
 
-  const persistAnswer = async (questionId: string, value: string) => {
+  const persistAnswer = async (questionId: string, value: string, questionType: string) => {
     setPendingAnswerSaves((count) => count + 1);
     try {
-      await saveAnswerMutation.mutateAsync({ questionId, value });
+      await saveAnswerMutation.mutateAsync({ questionId, value, questionType });
     } catch {
       // The mutation error is shown below; keep the rejection handled here.
     } finally {
@@ -280,15 +283,15 @@ export default function LearningAssessmentRuntimePage() {
       for (const question of questions) {
         const value = answers[question.assessmentQuestionId];
 
-        if (question.required && !value) {
+        if (question.required && !value?.trim()) {
           throw new Error(`Please answer question ${questions.indexOf(question) + 1}.`);
         }
 
-        if (value) {
+        if (value?.trim()) {
           await learningAssessmentService.saveAnswer({
             attemptId,
             assessmentQuestionId: question.assessmentQuestionId,
-            answer: answerPayload(value),
+            answer: answerPayload(value, question.questionType),
           });
         }
       }
@@ -454,24 +457,33 @@ export default function LearningAssessmentRuntimePage() {
           <CheckCircle2 size={28} />
           <h1 className="mt-3 text-2xl font-bold">Assessment submitted</h1>
           <p className="mt-2 text-sm text-slate-300">
-            Your answers were submitted and evaluated.
+            {submittedAttempt.status === "evaluated" ? "Your answers were marked and evaluated." : "Your answers were submitted. Your teacher will review the written responses."}
           </p>
         </section>
 
         <section className="rounded-2xl border border-slate-200 bg-white p-6">
           <div className="grid gap-4 sm:grid-cols-3">
-            <div>
-              <p className="text-sm text-slate-500">Score</p>
-              <p className="mt-1 text-2xl font-bold text-slate-900">
-                {submittedAttempt.score ?? 0} / {submittedAttempt.maxScore ?? 0}
-              </p>
-            </div>
-            <div>
-              <p className="text-sm text-slate-500">Percentage</p>
-              <p className="mt-1 text-2xl font-bold text-slate-900">
-                {submittedAttempt.percentage ?? 0}%
-              </p>
-            </div>
+            {submittedAttempt.status === "evaluated" ? (
+              <>
+                <div>
+                  <p className="text-sm text-slate-500">Score</p>
+                  <p className="mt-1 text-2xl font-bold text-slate-900">
+                    {submittedAttempt.score ?? 0} / {submittedAttempt.maxScore ?? 0}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm text-slate-500">Percentage</p>
+                  <p className="mt-1 text-2xl font-bold text-slate-900">
+                    {submittedAttempt.percentage ?? 0}%
+                  </p>
+                </div>
+              </>
+            ) : (
+              <div className="sm:col-span-2">
+                <p className="text-sm text-slate-500">Result</p>
+                <p className="mt-1 text-lg font-semibold text-amber-700">Awaiting teacher review</p>
+              </div>
+            )}
             <div>
               <p className="text-sm text-slate-500">Status</p>
               <p className="mt-1 text-2xl font-bold capitalize text-slate-900">
@@ -675,7 +687,7 @@ export default function LearningAssessmentRuntimePage() {
                           ...current,
                           [question.assessmentQuestionId]: value,
                         }));
-                        void persistAnswer(question.assessmentQuestionId, value);
+                        void persistAnswer(question.assessmentQuestionId, value, question.questionType);
                       }}
                     />
                     <span className="text-sm text-slate-700">
@@ -684,6 +696,29 @@ export default function LearningAssessmentRuntimePage() {
                   </label>
                 ))}
               </div>
+            )}
+
+            {question.questionType === "short_answer" && (
+              <label className="mt-5 block">
+                <span className="mb-2 block text-sm font-medium text-slate-700">Your written answer</span>
+                <textarea
+                  value={answers[question.assessmentQuestionId] ?? ""}
+                  disabled={submitMutation.isPending || Boolean(submittedAttempt)}
+                  onChange={(event) => {
+                    const value = event.target.value;
+                    setAnswerDrafts((current) => ({
+                      ...current,
+                      [question.assessmentQuestionId]: value,
+                    }));
+                    void persistAnswer(question.assessmentQuestionId, value, question.questionType);
+                  }}
+                  rows={4}
+                  maxLength={10000}
+                  className="input min-h-28 w-full resize-y"
+                  placeholder="Write your answer here…"
+                />
+                <span className="mt-1 block text-xs text-slate-500">Your teacher will mark this written response.</span>
+              </label>
             )}
 
           </section>
