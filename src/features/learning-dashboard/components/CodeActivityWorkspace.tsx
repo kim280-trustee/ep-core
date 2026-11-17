@@ -23,16 +23,20 @@ const RUNNER_DOCUMENT = `<!doctype html>
     if (!event.data || event.data.channel !== "ep-code-run") return;
     const lines = [];
     const format = (value) => {
-      if (typeof value === "string") return value;
-      try { return JSON.stringify(value); } catch { return String(value); }
+      if (typeof value === "string") return value.slice(0, 1000);
+      if (typeof value === "number" || typeof value === "boolean" || value == null) return String(value);
+      return Object.prototype.toString.call(value);
+    };
+    const appendOutput = (value) => {
+      if (lines.length < 50) lines.push(value);
     };
     const originalLog = console.log;
-    console.log = (...values) => lines.push(values.map(format).join(" "));
+    console.log = (...values) => appendOutput(values.map(format).join(" ").slice(0, 1000));
     try {
       const execute = new Function('"use strict";\\n' + String(event.data.code || ""));
       const result = execute();
-      if (result !== undefined) lines.push(format(result));
-      send({ success: true, output: lines.join("\\n") || "Code ran successfully. No output was produced." });
+      if (result !== undefined) appendOutput(format(result));
+      send({ success: true, output: (lines.join("\\n").slice(0, 5000)) || "Code ran successfully. No output was produced." });
     } catch (error) {
       send({ success: false, output: error && error.stack ? error.stack : String(error) });
     } finally {
@@ -110,6 +114,7 @@ export default function CodeActivityWorkspace({
           id="student-code-editor"
           aria-label="JavaScript code editor"
           spellCheck={false}
+          maxLength={12000}
           autoCapitalize="off"
           autoCorrect="off"
           value={value}
