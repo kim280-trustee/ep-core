@@ -67,6 +67,6 @@ from seed join upserted u on u.code=seed.code
 join public.learning_topics t on t.code=seed.standard_code
 join public.learning_skills sk on sk.id=t.skill_id and sk.code='SOCIAL-STUDIES'
 join public.learning_curricula c on c.code='TH-BASIC-CORE-2008-2017'
-join public.learning_grade_levels g on g.code='M3'
+join public.learning_grade_levels g on g.code='M3' and g.curriculum_id=c.id
 on conflict(objective_id,curriculum_id,grade_level_id) do update
 set sequence_no=excluded.sequence_no,notes=excluded.notes,indicator_classification=excluded.indicator_classification,updated_at=now();
