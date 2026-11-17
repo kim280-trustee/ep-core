@@ -1,88 +1,31 @@
--- Read-only checks for the Thai Technology M1-M6 catalogue.
--- Run only after applying 20261117100000 and 20261117101500 migrations to staging.
+-- Staging verification for Cambridge Click Start International Edition Computer Studies.
+-- Run only after applying the two curriculum migrations on a disposable/staging database.
 
--- 1. Catalogue, skill, topic, objective and alignment totals.
-select
-  curriculum.code as curriculum_code,
-  subject.code as subject_code,
-  count(distinct grade.id) as grade_levels,
-  count(distinct skill.id) as skills,
-  count(distinct topic.id) as topics,
-  count(distinct objective.id) as objectives,
-  count(distinct alignment.id) as objective_alignments
-from public.learning_curricula curriculum
-join public.learning_education_systems education_system
-  on education_system.id = curriculum.education_system_id
-join public.learning_curriculum_subjects curriculum_subject
-  on curriculum_subject.curriculum_id = curriculum.id
-join public.learning_subjects subject
-  on subject.id = curriculum_subject.subject_id
-left join public.learning_grade_levels grade
-  on grade.curriculum_id = curriculum.id
-left join public.learning_skills skill
-  on skill.subject_id = subject.id
-left join public.learning_topics topic
-  on topic.skill_id = skill.id
-left join public.learning_objectives objective
-  on objective.topic_id = topic.id
-left join public.learning_objective_alignments alignment
-  on alignment.objective_id = objective.id
- and alignment.curriculum_id = curriculum.id
- and alignment.grade_level_id = grade.id
-where education_system.code = 'TH_BASIC'
-  and curriculum.code = 'TH-TECH-M1-M6'
-  and subject.code = 'TECH'
-group by curriculum.code, subject.code;
+select c.code as curriculum_code, c.name, c.status
+from public.learning_curricula c
+where c.code='CLICK-START-M1-M3';
 
--- 2. Grade and standard coverage. Expected:
--- M1 9 (5 D&T + 4 CS); M2 9; M3 9; M4 6; M5 2; M6 1.
-select
-  grade.code as grade,
-  count(distinct alignment.objective_id) as total_indicators,
-  count(distinct alignment.objective_id) filter (
-    where alignment.notes like '%indicator ว 4.1%'
-  ) as design_and_technology,
-  count(distinct alignment.objective_id) filter (
-    where alignment.notes like '%indicator ว 4.2%'
-  ) as computing_science
-from public.learning_objective_alignments alignment
-join public.learning_curricula curriculum
-  on curriculum.id = alignment.curriculum_id
-join public.learning_education_systems education_system
-  on education_system.id = curriculum.education_system_id
-join public.learning_grade_levels grade
-  on grade.id = alignment.grade_level_id
-where education_system.code = 'TH_BASIC'
-  and curriculum.code = 'TH-TECH-M1-M6'
-group by grade.code, grade.sequence_no
-order by grade.sequence_no;
+select g.code as grade_code, g.name, g.sequence_no
+from public.learning_grade_levels g
+join public.learning_curricula c on c.id=g.curriculum_id
+where c.code='CLICK-START-M1-M3'
+order by g.sequence_no;
 
--- 3. List any active Technology objectives that have no alignment in this curriculum.
-select objective.code, objective.name
-from public.learning_objectives objective
-join public.learning_topics topic on topic.id = objective.topic_id
-join public.learning_skills skill on skill.id = topic.skill_id
-join public.learning_subjects subject on subject.id = skill.subject_id
-join public.learning_curricula curriculum on curriculum.code = 'TH-TECH-M1-M6'
-where subject.code = 'TECH'
-  and objective.status = 'active'
-  and not exists (
-    select 1
-    from public.learning_objective_alignments alignment
-    where alignment.objective_id = objective.id
-      and alignment.curriculum_id = curriculum.id
-  )
-order by objective.code;
+select sk.code as skill_code, t.code as grade_topic, count(o.id) as chapter_objectives
+from public.learning_skills sk
+join public.learning_subjects s on s.id=sk.subject_id and s.code='TECH'
+join public.learning_topics t on t.skill_id=sk.id
+left join public.learning_objectives o on o.topic_id=t.id
+where sk.code='COMPUTER-STUDIES'
+group by sk.code,t.code
+order by t.code;
 
--- 4. Check that W 4.1 has no M6 allocation and W 4.2 has exactly one M4, M5 and M6 allocation.
-select
-  grade.code as grade,
-  count(*) filter (where alignment.notes like '%indicator ว 4.1%') as w41_count,
-  count(*) filter (where alignment.notes like '%indicator ว 4.2%') as w42_count
-from public.learning_objective_alignments alignment
-join public.learning_curricula curriculum on curriculum.id = alignment.curriculum_id
-join public.learning_grade_levels grade on grade.id = alignment.grade_level_id
-where curriculum.code = 'TH-TECH-M1-M6'
-  and grade.code in ('M4', 'M5', 'M6')
-group by grade.code, grade.sequence_no
-order by grade.sequence_no;
+select g.code as grade_code, count(distinct a.objective_id) as aligned_chapters
+from public.learning_objective_alignments a
+join public.learning_curricula c on c.id=a.curriculum_id and c.code='CLICK-START-M1-M3'
+join public.learning_grade_levels g on g.id=a.grade_level_id
+group by g.code
+order by g.code;
+
+-- Expected grade objective/alignment counts: M1=8, M2=9, M3=12 (29 total).
+-- Confirm obsolete Thai national Technology objectives are not part of this curriculum.
