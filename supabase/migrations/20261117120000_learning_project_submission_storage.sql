@@ -56,7 +56,15 @@ using (
   and cardinality(storage.foldername(name)) = 4
   and (
     (storage.foldername(name))[4] = public.learning_current_user_id()::text
-    or public.learning_can_manage_academic_records(((storage.foldername(name))[1])::uuid)
+    or exists (
+      select 1
+      from public.learning_content_responses admin_response
+      where admin_response.organization_id::text = (storage.foldername(name))[1]
+        and admin_response.assignment_id::text = (storage.foldername(name))[2]
+        and admin_response.content_item_id::text = (storage.foldername(name))[3]
+        and admin_response.student_user_id::text = (storage.foldername(name))[4]
+        and public.learning_can_manage_academic_records(admin_response.organization_id)
+    )
     or exists (
       select 1
       from public.learning_content_responses r
