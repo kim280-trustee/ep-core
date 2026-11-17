@@ -114,7 +114,7 @@ export default function CodeActivityWorkspace({
           autoCorrect="off"
           value={value}
           disabled={disabled}
-          onChange={(event) => onChange(event.target.value)}
+          onChange={(event) => { setOutput(""); setRunState("idle"); onChange(event.target.value); }}
           className="min-h-64 w-full resize-y rounded-xl border border-slate-700 bg-slate-950 p-4 font-mono text-sm leading-6 text-emerald-100 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 disabled:opacity-70"
         />
         <div className="mt-3 flex flex-wrap items-center gap-3">
