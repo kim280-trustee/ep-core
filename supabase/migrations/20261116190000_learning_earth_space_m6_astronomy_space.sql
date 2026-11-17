@@ -23,7 +23,7 @@ set name=excluded.name,description=excluded.description,status='active',updated_
 
 insert into public.learning_topics(skill_id,code,name,description,sequence_no,status)
 select sk.id,'M6-ASTRONOMY-OUTCOMES-01-19','Universe, Stars, Solar System and Observational Astronomy',
- 'Official M6 standard 3 learning outcomes 1–19. Includes Big Bang evidence, Milky Way, stellar physics and evolution, planetary orbits, solar activity, celestial coordinates, solar time, apparent planetary positions and space exploration.','active'
+ 'Official M6 standard 3 learning outcomes 1–19. Includes Big Bang evidence, Milky Way, stellar physics and evolution, planetary orbits, solar activity, celestial coordinates, solar time, apparent planetary positions and space exploration.',1,'active'
 from public.learning_skills sk join public.learning_subjects s on s.id=sk.subject_id
 where s.code='EARTH_SPACE' and sk.code='M6-ASTRONOMY-SPACE'
 on conflict(skill_id,code) do update
