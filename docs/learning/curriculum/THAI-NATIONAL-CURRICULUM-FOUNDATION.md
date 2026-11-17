@@ -34,7 +34,16 @@ OBEC Order 921/2561 removed the Design and Technology and ICT strands from the f
 - Basic Education Core Curriculum B.E. 2551 (English PDF): https://academic.obec.go.th/images/document/1559638535_d_1.pdf
 - Basic Education Core Curriculum B.E. 2551 (official PDF): https://academic.obec.go.th/web/images/document/1559878841_d_1.pdf
 - OBEC curriculum support document collection: https://www.academic.obec.go.th/web/document/7/
+- Thai Language indicators (B.E. 2551): https://www.academic.obec.go.th/web/document/download/618
+- Social Studies, Religion and Culture indicators (B.E. 2551): https://www.academic.obec.go.th/web/document/download/619
+- Health and Physical Education indicators (B.E. 2551): https://www.academic.obec.go.th/web/document/download/620
+- Arts indicators (B.E. 2551): https://www.academic.obec.go.th/web/document/download/621
+- Career and Technology indicators (B.E. 2551; apply later scope changes): https://www.academic.obec.go.th/web/document/download/622
+- Foreign Languages indicators (B.E. 2551): https://www.academic.obec.go.th/web/document/download/623
+- 2017 revised Mathematics, Science and Geography standards: https://www.academic.obec.go.th/web/document/download/624
 - OBEC early-primary B.E. 2568 (2025) curriculum documents: https://www.academic.obec.go.th/web/document/collection/1/document/view/311
+
+Use the 2018 Order 921/2561 to reconcile the old Career and Technology source: the former Design and Technology and ICT strands were removed from that learning area and relocated to Science and Technology. The historical PDF remains a source record, not the current scope for those strands.
 
 The OBEC landing page identifies the source documents for Thai Language, Social Studies, Health and Physical Education, Arts, Career, Foreign Languages, and the revised Mathematics, Science and Geography indicators. Use the exact official document for each learning area when transcribing indicators.
 
