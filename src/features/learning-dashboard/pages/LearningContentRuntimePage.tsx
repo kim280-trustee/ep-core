@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AlertCircle, ArrowLeft, BookOpen, CheckCircle2 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
+import { supabase } from "@/core/infrastructure/supabase/client";
 import { learningAssignmentsService } from "@/features/learning-assignments";
 import { learningActivityService } from "@/features/learning-activity";
 import { learningContentService } from "@/features/learning-content";
@@ -56,6 +57,13 @@ function textSections(body: Record<string, unknown>) {
 }
 
 
+const ALLOWED_PROJECT_FILE_TYPES = new Set([
+  "application/pdf", "image/png", "image/jpeg", "image/webp", "text/plain", "application/zip",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+]);
+
 function isValidHttpsUrl(value: string) {
   try {
     const parsed = new URL(value.trim());
@@ -86,6 +94,9 @@ export default function LearningContentRuntimePage() {
   const [codeRunSucceeded, setCodeRunSucceeded] = useState(false);
   const [projectUrl, setProjectUrl] = useState("");
   const [projectReflection, setProjectReflection] = useState("");
+  const [projectFiles, setProjectFiles] = useState<File[]>([]);
+  const [projectAttachments, setProjectAttachments] = useState<Array<{ path: string; name: string; size: number; type: string }>>([]);
+  const [projectFileError, setProjectFileError] = useState("");
   const [fillInAnswerDrafts, setFillInAnswerDrafts] = useState<Record<string, string[]>>({});
 
   useEffect(() => {
@@ -168,9 +179,16 @@ export default function LearningContentRuntimePage() {
       setCodeRunSucceeded(false);
     } else {
       try {
-        const saved = JSON.parse(responseQuery.data?.responseText ?? "{}") as { url?: unknown; reflection?: unknown };
+        const saved = JSON.parse(responseQuery.data?.responseText ?? "{}") as { url?: unknown; reflection?: unknown; attachments?: unknown };
         setProjectUrl(typeof saved.url === "string" ? saved.url : "");
         setProjectReflection(typeof saved.reflection === "string" ? saved.reflection : "");
+        const attachments = Array.isArray(saved.attachments) ? saved.attachments.flatMap((item) => {
+          if (!item || typeof item !== "object") return [];
+          const file = item as Record<string, unknown>;
+          if (typeof file.path !== "string" || typeof file.name !== "string" || typeof file.size !== "number" || typeof file.type !== "string") return [];
+          return [{ path: file.path, name: file.name, size: file.size, type: file.type }];
+        }) : [];
+        setProjectAttachments(attachments);
       } catch {
         setProjectUrl("");
         setProjectReflection("");
@@ -197,10 +215,10 @@ export default function LearningContentRuntimePage() {
       // Fill-in activities keep their answers in the individual blank controls.
       // Build the persisted response from those controls instead of relying on the
       // separate free-text state, which is intentionally unused for fill-in lessons.
-      const text = isCodingActivity
+      let text = isCodingActivity
         ? JSON.stringify({ kind: "code_submission", language: "javascript", code: codeDraft.trim(), output: codeRunOutput })
         : isProjectActivity
-          ? JSON.stringify({ kind: "project_submission", url: projectUrl.trim(), reflection: projectReflection.trim() })
+          ? JSON.stringify({ kind: "project_submission", url: projectUrl.trim(), reflection: projectReflection.trim(), attachments: projectAttachments })
           : isFillInActivity ? buildFillInResponse(fillInAnswers).trim() : responseText.trim();
       if (isCodingActivity && (!codeDraft.trim() || !codeRunSucceeded)) {
         throw new Error("Run your code successfully before saving or submitting it.");
@@ -211,10 +229,36 @@ export default function LearningContentRuntimePage() {
       if (!text || (isFillInActivity && !fillInComplete)) {
         throw new Error(isFillInActivity ? "Complete every blank before saving." : "Write your response before saving.");
       }
-      return learningContentService.saveStudentResponse({
-        organizationId: query.data.assignment.organizationId, assignmentId: id, contentItemId: content,
-        contentVersionId: query.data.version.id, studentUserId: user.id, responseText: text, status,
-      });
+      const uploadedPaths: string[] = [];
+      try {
+        let attachments = [...projectAttachments];
+        if (isProjectActivity && projectFiles.length) {
+          if (attachments.length + projectFiles.length > 3) throw new Error("A project can include up to 3 files.");
+          for (const file of projectFiles) {
+            if (file.size > 15 * 1024 * 1024 || !ALLOWED_PROJECT_FILE_TYPES.has(file.type)) {
+              throw new Error("Each file must be 15 MB or smaller and use an allowed document, image, text or ZIP format.");
+            }
+            const safeName = file.name.replace(/[^A-Za-z0-9._-]/g, "_").slice(-100) || "project-evidence";
+            const objectPath = `${query.data.assignment.organizationId}/${id}/${content}/${user.id}/${crypto.randomUUID()}-${safeName}`;
+            const { error } = await supabase.storage.from("learning-project-submissions").upload(objectPath, file, { contentType: file.type, upsert: false });
+            if (error) throw error;
+            uploadedPaths.push(objectPath);
+            attachments.push({ path: objectPath, name: file.name, size: file.size, type: file.type });
+          }
+          text = JSON.stringify({ kind: "project_submission", url: projectUrl.trim(), reflection: projectReflection.trim(), attachments });
+        }
+        const saved = await learningContentService.saveStudentResponse({
+          organizationId: query.data.assignment.organizationId, assignmentId: id, contentItemId: content,
+          contentVersionId: query.data.version.id, studentUserId: user.id, responseText: text, status,
+        });
+        setProjectFiles([]);
+        return saved;
+      } catch (error) {
+        if (uploadedPaths.length) {
+          await supabase.storage.from("learning-project-submissions").remove(uploadedPaths).catch(() => undefined);
+        }
+        throw error;
+      }
     },
     onSuccess: async (saved) => {
       // Refresh the response immediately after the database save. Completion is a
@@ -368,6 +412,21 @@ export default function LearningContentRuntimePage() {
                     <label className="block text-sm font-medium text-slate-700 sm:col-span-2">Explain what you created and how it works
                       <textarea value={projectReflection} onChange={(event) => setProjectReflection(event.target.value)} maxLength={4000} rows={4} disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending} className="input mt-1 w-full resize-y" placeholder="Describe your project and the work you completed." />
                     </label>
+                    <label className="block text-sm font-medium text-slate-700 sm:col-span-2">Attach project evidence (up to 3 files, 15 MB each)
+                      <input type="file" multiple accept=".pdf,.png,.jpg,.jpeg,.webp,.txt,.zip,.docx,.pptx,.xlsx" disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending} onChange={(event) => {
+                        const selected = Array.from(event.target.files ?? []);
+                        setProjectFileError("");
+                        if (projectAttachments.length + selected.length > 3) { setProjectFileError("A project can include up to 3 files."); event.target.value = ""; return; }
+                        const invalid = selected.find((file) => file.size > 15 * 1024 * 1024 || !ALLOWED_PROJECT_FILE_TYPES.has(file.type));
+                        if (invalid) { setProjectFileError("Each file must be 15 MB or smaller and use an allowed document, image, text or ZIP format."); event.target.value = ""; return; }
+                        setProjectFiles(selected);
+                      }} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm file:mr-3 file:rounded-lg file:border-0 file:bg-slate-100 file:px-3 file:py-2 file:text-xs file:font-semibold" />
+                    </label>
+                    {projectFileError && <p role="alert" className="text-xs text-red-700 sm:col-span-2">{projectFileError}</p>}
+                    {(projectAttachments.length > 0 || projectFiles.length > 0) && <div className="space-y-1 text-xs text-slate-600 sm:col-span-2">
+                      {projectAttachments.map((file) => <p key={file.path}>Saved: {file.name}</p>)}
+                      {projectFiles.map((file) => <p key={file.name}>Ready to upload: {file.name} ({(file.size / 1024 / 1024).toFixed(1)} MB)</p>)}
+                    </div>}
                   </div>
                 </div>
               ) : (
@@ -398,7 +457,7 @@ export default function LearningContentRuntimePage() {
           {!isFillInActivity && !isCodingActivity && !isProjectActivity && <textarea value={responseText} onChange={e => setResponseText(e.target.value)} disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending} className="input mt-4 min-h-40 w-full resize-y" placeholder="Write your answer here..." />}
           <div className="mt-4 flex flex-wrap items-center gap-3">
             {responseQuery.data?.status === "submitted" ? <span className="text-sm font-medium text-emerald-700">Response submitted.</span> : <>
-              <button type="button" disabled={(isCodingActivity ? !codeDraft.trim() || !codeRunSucceeded : isProjectActivity ? !projectSubmissionValid : isFillInActivity ? !fillInComplete : !responseText.trim()) || responseMutation.isPending} onClick={() => responseMutation.mutate("draft")} className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold disabled:opacity-50">Save draft</button>
+              <button type="button" disabled={(isCodingActivity ? !codeDraft.trim() || !codeRunSucceeded : isProjectActivity ? !projectSubmissionValid || Boolean(projectFileError) : isFillInActivity ? !fillInComplete : !responseText.trim()) || responseMutation.isPending} onClick={() => responseMutation.mutate("draft")} className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold disabled:opacity-50">Save draft</button>
               <button type="button" disabled={(isCodingActivity ? !codeDraft.trim() || !codeRunSucceeded : isFillInActivity ? !fillInComplete : !responseText.trim()) || responseMutation.isPending} onClick={() => responseMutation.mutate("submitted")} className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{responseMutation.isPending ? "Submitting..." : "Submit response"}</button>
             </>}
           </div>
