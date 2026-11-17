@@ -4,6 +4,7 @@ import { ArrowLeft, CheckCircle2, ClipboardCheck, Loader2 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningTeacherService } from "@/features/learning-teacher/services/learning-teacher.service";
+import { learningAssignmentsService } from "@/features/learning-assignments";
 import { learningAssessmentService } from "../services/learning-assessment.service";
 
 type GradeDraft = { score: string; feedback: string };
@@ -66,12 +67,20 @@ export default function TeacherAssessmentReviewPage() {
   });
 
   const gradeMutation = useMutation({
-    mutationFn: (input: { answerId: string; awardedPoints: number; teacherFeedback: string }) =>
-      learningAssessmentService.gradeAttemptAnswer(input),
-    onSuccess: async () => {
+    mutationFn: (input: { answerId: string; awardedPoints: number; teacherFeedback: string; assignmentId: string | null; studentUserId: string }) =>
+      learningAssessmentService.gradeAttemptAnswer({
+        answerId: input.answerId,
+        awardedPoints: input.awardedPoints,
+        teacherFeedback: input.teacherFeedback,
+      }),
+    onSuccess: async (result, variables) => {
+      if (result.status === "evaluated" && variables.assignmentId) {
+        await learningAssignmentsService.refreshProgressForStudent(variables.assignmentId, variables.studentUserId);
+      }
       await queryClient.invalidateQueries({ queryKey: ["learning", "assessment-review", assessmentId] });
       await queryClient.invalidateQueries({ queryKey: ["learning", "assessment-attempts"] });
       await queryClient.invalidateQueries({ queryKey: ["learning", "progress"] });
+      await queryClient.invalidateQueries({ queryKey: ["learning", "assignment"] });
       await queryClient.invalidateQueries({ queryKey: ["learning", "gradebook"] });
     },
   });
@@ -149,7 +158,7 @@ export default function TeacherAssessmentReviewPage() {
                             <label className="text-sm font-medium text-slate-700">Feedback
                               <textarea rows={2} value={draft.feedback} onChange={(event) => setDrafts((current) => ({ ...current, [answer.id]: { ...draft, feedback: event.target.value } }))} className="input mt-1 w-full resize-y" placeholder="Give constructive feedback (optional)" />
                             </label>
-                            <button type="button" disabled={!validScore || gradeMutation.isPending} onClick={() => gradeMutation.mutate({ answerId: answer.id, awardedPoints: score, teacherFeedback: draft.feedback })} className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">
+                            <button type="button" disabled={!validScore || gradeMutation.isPending} onClick={() => gradeMutation.mutate({ answerId: answer.id, awardedPoints: score, teacherFeedback: draft.feedback, assignmentId: attempt.assignmentId ?? null, studentUserId: attempt.studentUserId })} className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">
                               {gradeMutation.isPending && gradeMutation.variables?.answerId === answer.id ? <Loader2 size={15} className="animate-spin" /> : <CheckCircle2 size={15} />}Save mark
                             </button>
                           </div>
