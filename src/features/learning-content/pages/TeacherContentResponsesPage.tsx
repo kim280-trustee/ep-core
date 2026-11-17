@@ -28,7 +28,13 @@ function parseProjectSubmission(value: string) {
     if (parsed.kind !== "project_submission" || typeof parsed.url !== "string") return null;
     const url = new URL(parsed.url);
     if (url.protocol !== "https:") return null;
-    return { url: url.toString(), reflection: typeof parsed.reflection === "string" ? parsed.reflection : "" };
+    const attachments = Array.isArray(parsed.attachments) ? parsed.attachments.flatMap((item) => {
+      if (!item || typeof item !== "object") return [];
+      const file = item as Record<string, unknown>;
+      if (typeof file.path !== "string" || typeof file.name !== "string" || typeof file.size !== "number") return [];
+      return [{ path: file.path, name: file.name, size: file.size }];
+    }) : [];
+    return { url: url.toString(), reflection: typeof parsed.reflection === "string" ? parsed.reflection : "", attachments };
   } catch {
     return null;
   }
@@ -46,7 +52,17 @@ export default function TeacherContentResponsesPage() {
   const [aiSuggestions, setAiSuggestions] = useState<Record<string, string>>({});
   const responses = useQuery({
     queryKey: ["learning", "teacher-content-responses", assignmentId],
-    queryFn: () => learningContentService.listTeacherResponses(assignmentId),
+    queryFn: async () => {
+      const rows = await learningContentService.listTeacherResponses(assignmentId);
+      return Promise.all(rows.map(async (row) => {
+        const project = parseProjectSubmission(row.responseText);
+        const responseAttachments = await Promise.all((project?.attachments ?? []).map(async (file) => {
+          const { data, error } = await supabase.storage.from("learning-project-submissions").createSignedUrl(file.path, 3600);
+          return { ...file, signedUrl: error ? null : data.signedUrl };
+        }));
+        return { ...row, responseAttachments };
+      }));
+    },
     enabled: Boolean(assignmentId),
   });
   const suggestMarking = useMutation({
@@ -171,13 +187,14 @@ export default function TeacherContentResponsesPage() {
                     <div className="mt-3 space-y-3">
                       <div><p className="text-xs font-semibold text-slate-600">Submitted project</p><a href={projectSubmission.url} target="_blank" rel="noopener noreferrer" className="mt-1 inline-flex break-all text-sm font-semibold text-blue-700 underline">{projectSubmission.url}</a></div>
                       <div><p className="text-xs font-semibold text-slate-600">Student explanation</p><p className="mt-1 whitespace-pre-wrap text-sm leading-6 text-slate-800">{projectSubmission.reflection}</p></div>
-                      <p className="text-xs text-amber-800">Open and inspect the project link before awarding a final mark.</p>
+                      {r.responseAttachments.length > 0 && <div><p className="text-xs font-semibold text-slate-600">Attached evidence</p><ul className="mt-1 space-y-1">{r.responseAttachments.map((file) => <li key={file.path}>{file.signedUrl ? <a href={file.signedUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-blue-700 underline">{file.name}</a> : <span className="text-sm text-slate-600">{file.name} · preview unavailable</span>} <span className="text-xs text-slate-500">({(file.size / 1024 / 1024).toFixed(1)} MB)</span></li>)}</ul></div>}
+                      <p className="text-xs text-amber-800">Open and inspect the project link and attached evidence before awarding a final mark.</p>
                     </div>
                   ) : (
                     <p className="mt-2 whitespace-pre-wrap text-sm leading-7 text-slate-800">{r.responseText || t("contentResponses.noResponseText")}</p>
                   )}
                 </div>
-                <section className="mt-4 rounded-xl border border-indigo-100 bg-indigo-50/50 p-4"><div className="flex flex-wrap items-center justify-between gap-3"><div><h3 className="text-sm font-semibold text-slate-900">AI marking assistant / ผู้ช่วยตรวจคำตอบ</h3><p className="mt-1 text-xs text-slate-600">Get a suggested mark and feedback. The teacher must make the final grading decision.</p></div><button type="button" disabled={r.status !== "submitted" || !r.responseText.trim() || suggestMarking.isPending} onClick={() => { setAiSuggestions((current) => { const next = { ...current }; delete next[r.id]; return next; }); suggestMarking.mutate({ responseId: r.id, organizationId: r.organizationId, studentResponse: codeSubmission ? `Student ${codeSubmission.language} code:\n${codeSubmission.code}\n\nProgram output:\n${codeSubmission.output}` : projectSubmission ? `Student project link (not opened by this assistant): ${projectSubmission.url}\n\nStudent explanation:\n${projectSubmission.reflection}` : r.responseText, markingCriteria: markingCriteria[r.id] ?? "", maxMarks: numbersValid ? numericMaxScore : 10 }); }} className="inline-flex items-center gap-2 rounded-lg bg-indigo-700 px-3 py-2 text-xs font-semibold text-white disabled:opacity-40"><Sparkles size={14} />{suggestMarking.isPending && suggestMarking.variables?.responseId === r.id ? "Preparing suggestion..." : "Suggest marks & feedback"}</button></div><label className="mt-3 block text-xs font-medium text-slate-700">Marking criteria / rubric (optional)<textarea value={markingCriteria[r.id] ?? ""} onChange={(event) => setMarkingCriteria((current) => ({ ...current, [r.id]: event.target.value }))} maxLength={2000} rows={2} placeholder="Paste the rubric or explain what a good answer should include." className="mt-1 block w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm" /></label><p className="mt-2 text-xs text-amber-800">Remove student names and personal details before using AI. The suggestion is not saved as a grade.</p>{aiSuggestions[r.id] && <div className="mt-3 rounded-lg border border-indigo-200 bg-white p-3"><p className="text-xs font-semibold uppercase tracking-wide text-indigo-700">AI suggestion — teacher review required</p><pre className="mt-2 whitespace-pre-wrap font-sans text-sm leading-6 text-slate-800">{aiSuggestions[r.id]}</pre><button type="button" onClick={() => set({ feedback: aiSuggestions[r.id] })} className="mt-3 rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700">Use suggested feedback as a draft</button></div>}{suggestMarking.isError && suggestMarking.variables?.responseId === r.id && <p role="alert" className="mt-2 text-xs text-red-700">{suggestMarking.error instanceof Error ? suggestMarking.error.message : "AI suggestion could not be generated."}</p>}</section>
+                <section className="mt-4 rounded-xl border border-indigo-100 bg-indigo-50/50 p-4"><div className="flex flex-wrap items-center justify-between gap-3"><div><h3 className="text-sm font-semibold text-slate-900">AI marking assistant / ผู้ช่วยตรวจคำตอบ</h3><p className="mt-1 text-xs text-slate-600">Get a suggested mark and feedback. The teacher must make the final grading decision.</p></div><button type="button" disabled={r.status !== "submitted" || !r.responseText.trim() || suggestMarking.isPending} onClick={() => { setAiSuggestions((current) => { const next = { ...current }; delete next[r.id]; return next; }); suggestMarking.mutate({ responseId: r.id, organizationId: r.organizationId, studentResponse: codeSubmission ? `Student ${codeSubmission.language} code:\n${codeSubmission.code}\n\nProgram output:\n${codeSubmission.output}` : projectSubmission ? `Student project link (not opened by this assistant): ${projectSubmission.url}\n\nStudent explanation:\n${projectSubmission.reflection}\n\nAttached evidence files: ${projectSubmission.attachments.map((file) => file.name).join(", ") || "none"}` : r.responseText, markingCriteria: markingCriteria[r.id] ?? "", maxMarks: numbersValid ? numericMaxScore : 10 }); }} className="inline-flex items-center gap-2 rounded-lg bg-indigo-700 px-3 py-2 text-xs font-semibold text-white disabled:opacity-40"><Sparkles size={14} />{suggestMarking.isPending && suggestMarking.variables?.responseId === r.id ? "Preparing suggestion..." : "Suggest marks & feedback"}</button></div><label className="mt-3 block text-xs font-medium text-slate-700">Marking criteria / rubric (optional)<textarea value={markingCriteria[r.id] ?? ""} onChange={(event) => setMarkingCriteria((current) => ({ ...current, [r.id]: event.target.value }))} maxLength={2000} rows={2} placeholder="Paste the rubric or explain what a good answer should include." className="mt-1 block w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm" /></label><p className="mt-2 text-xs text-amber-800">Remove student names and personal details before using AI. The suggestion is not saved as a grade.</p>{aiSuggestions[r.id] && <div className="mt-3 rounded-lg border border-indigo-200 bg-white p-3"><p className="text-xs font-semibold uppercase tracking-wide text-indigo-700">AI suggestion — teacher review required</p><pre className="mt-2 whitespace-pre-wrap font-sans text-sm leading-6 text-slate-800">{aiSuggestions[r.id]}</pre><button type="button" onClick={() => set({ feedback: aiSuggestions[r.id] })} className="mt-3 rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700">Use suggested feedback as a draft</button></div>}{suggestMarking.isError && suggestMarking.variables?.responseId === r.id && <p role="alert" className="mt-2 text-xs text-red-700">{suggestMarking.error instanceof Error ? suggestMarking.error.message : "AI suggestion could not be generated."}</p>}</section>
                 <div className="mt-5 grid gap-4 md:grid-cols-[120px_120px_1fr]">
                   <label className="text-sm font-medium text-slate-700">{t("contentResponses.score")}<input type="number" min="0" step="0.01" value={d.score} onChange={(e) => set({ score: e.target.value })} className="input mt-1 w-full" /></label>
                   <label className="text-sm font-medium text-slate-700">{t("contentResponses.maxScore")}<input type="number" min="0.01" step="0.01" value={d.maxScore} onChange={(e) => set({ maxScore: e.target.value })} className="input mt-1 w-full" /></label>
