@@ -110,9 +110,15 @@ export default function TeacherContentImportPage() {
           alignment.gradeLevelId === gradeId
         );
 
-      let objective = lesson.objectiveCode
-        ? objectives.find((item) => item.code.toUpperCase() === lesson.objectiveCode)
-        : undefined;
+      let objective: (typeof objectives)[number] | undefined;
+      if (lesson.objectiveCode) {
+        const codeMatches = objectives.filter((item) => item.code.toUpperCase() === lesson.objectiveCode);
+        if (codeMatches.length > 1) {
+          errors.push(`Section ${lesson.number} “${lesson.title}”: objective code ${lesson.objectiveCode} is not unique in this subject. The importer will not guess.`);
+          continue;
+        }
+        objective = codeMatches[0];
+      }
 
       if (!objective && lesson.objectiveText) {
         const normalizedText = normalizeText(lesson.objectiveText);
