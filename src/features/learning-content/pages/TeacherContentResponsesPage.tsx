@@ -56,7 +56,9 @@ export default function TeacherContentResponsesPage() {
       const rows = await learningContentService.listTeacherResponses(assignmentId);
       return Promise.all(rows.map(async (row) => {
         const project = parseProjectSubmission(row.responseText);
-        const responseAttachments = await Promise.all((project?.attachments ?? []).map(async (file) => {
+        const expectedPathPrefix = `${row.organizationId}/${row.assignmentId}/${row.contentItemId}/${row.studentUserId}/`;
+        const ownedAttachments = (project?.attachments ?? []).filter((file) => file.path.startsWith(expectedPathPrefix));
+        const responseAttachments = await Promise.all(ownedAttachments.map(async (file) => {
           const { data, error } = await supabase.storage.from("learning-project-submissions").createSignedUrl(file.path, 3600);
           return { ...file, signedUrl: error ? null : data?.signedUrl ?? null };
         }));
