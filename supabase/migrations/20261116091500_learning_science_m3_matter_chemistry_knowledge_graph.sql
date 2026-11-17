@@ -20,7 +20,7 @@ join public.learning_skills sk on sk.subject_id=s.id
 join (values
  ('MATTER','M3-MATERIALS','Polymers, Ceramics and Composites','Properties, uses, value and responsible use of modern materials.',5),
  ('MATTER','M3-CHEMICAL-REACTIONS','Chemical Reactions and Applications','Chemical change, conservation of mass, energy transfer, common reactions and safe applications.',6)
-) as t(skill_code,code,name,description,seq) on true
+) as t(skill_code,code,name,description,seq) on sk.code=t.skill_code
 where s.code='SCI'
 on conflict(skill_id,code) do update set name=excluded.name,description=excluded.description,sequence_no=excluded.sequence_no,status='active',updated_at=now();
 
