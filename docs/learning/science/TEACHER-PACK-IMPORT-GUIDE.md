@@ -21,7 +21,7 @@ The selected class is used only to establish the teacher's organization access. 
 For each validated lesson:
 
 1. One `learning_content_items` row with content type `lesson`.
-2. One initial `learning_content_versions` row containing the learning outcome, teaching activity/notes, the three student-facing practice prompts (never the answer keys), and any pack-level safety/teaching/assessment guidance.
+2. One initial `learning_content_versions` row containing the learning outcome, teaching activity/notes and the three student-facing practice prompts (never the answer keys). Pack-level safety/teaching/assessment guidance is stored in a separate `teacher_only` section.
 3. One `learning_content_objectives` link to the exact curriculum objective.
 4. Three `learning_questions` rows using the existing `short_answer` question type.
 5. Three `learning_question_versions` rows with exact curriculum, grade and subject scope.
@@ -30,7 +30,7 @@ For each validated lesson:
 
 Short-answer scoring uses `manual_review`. Answer keys are stored in the protected evaluation-key table and are not included in student-facing lesson content. The current auto-scored assessment builder selects `single_choice` and `true_false` items, not `short_answer`; imported short-answer items therefore appear in the Question Bank and as prompts in lesson content, but are not automatically added to digital assessments by this importer. Interactive short-answer assignment submission is a separate capability.
 
-All imported content and questions remain **drafts**. The importer does not submit items for review or publish them. Pack-level safety/teaching/assessment guidance is included as a normal lesson section; review it for student suitability before publishing because the current content format does not mark that section as teacher-only. Teachers and authorized academic reviewers continue to use the existing review/publication lifecycle.
+All imported content and questions remain **drafts**. The importer does not submit items for review or publish them. Pack-level safety/teaching/assessment guidance is marked with `type: teacher_only` and `audience: teacher`. The student content runtime excludes these sections, including legacy guidance sections identified by their teacher-guidance titles. The teacher content detail page displays the guidance in a clearly labelled teacher-only panel and preserves it when a new content version is saved. Teachers and authorized academic reviewers continue to use the existing review/publication lifecycle.
 
 ## Validation and failure handling
 
