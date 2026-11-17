@@ -51,7 +51,7 @@ The OBEC landing page identifies the source documents for Thai Language, Social 
 
 | Area | Foundation catalogue | Official indicators transcribed into master curriculum |
 |---|---|---|
-| Thai Language | Added | Pending |
+| Thai Language | Added | M1–M3 loaded: 101 indicators across five standards; P1–P6 and M4–M6 pending |
 | Mathematics | Added; existing M1–M6 objective records reused where aligned | Partial — 41 existing objectives |
 | Science and Technology | Added; existing lower-secondary Science objectives reused where aligned | Partial — 142 existing M1–M3 objectives; upper-secondary tracks require reconciliation |
 | Social Studies, Religion and Culture | Added | Pending; Geography must use 2017 revision |
@@ -61,6 +61,13 @@ The OBEC landing page identifies the source documents for Thai Language, Social 
 | Foreign Languages | Added | Pending |
 
 The curriculum remains **draft** until all eight learning areas have their official standards, indicators and grade/interval allocations transcribed and validated. Do not mark it active merely because the grade and subject catalogue exists.
+
+## Thai Language — M1 to M3 implementation
+
+- Official source: OBEC Basic Education Core Curriculum B.E. 2551 (2008), Thai Language section, printed pages 45–55.
+- Five standards registered: TH1.1 Reading, TH2.1 Writing, TH3.1 Listening/Viewing/Speaking, TH4.1 Principles of Thai Language Usage, and TH5.1 Literature and Literary Works.
+- 101 official Thai indicator records are aligned to M1, M2 and M3: TH1.1 (25), TH2.1 (27), TH3.1 (18), TH4.1 (17), TH5.1 (14).
+- Upper-secondary M4–M6 indicators are a grade-span set in the official curriculum and will be mapped separately; P1–P6 are also pending.
 
 ## Indicator transcription rules
 
