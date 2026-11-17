@@ -23,6 +23,12 @@ Coding and project responses are saved through `learning_content_responses`. The
 
 The first coding runner supports JavaScript only. It is an isolated browser execution surface for learning and manual teacher review; it is not a server-side code execution service or an automated correctness/grading engine. Teachers must inspect the submitted code/output or open the project evidence before awarding a final mark. Additional languages and automated test runners require a separately reviewed sandbox design.
 
+## Digital-literacy assessment workflow
+
+The existing Teacher Content Import page now supports a question-only mode for assessment packs. It validates each objective against the selected curriculum, subject and grade, then creates unpublished short-answer question drafts with protected manual-review answer keys. It does not create lesson records. Question-only imports use a distinct `-DL-Q` code namespace.
+
+The M1–M6 question pack is `TECHNOLOGY-DIGITAL-LITERACY-ASSESSMENT-PACK.md` and contains 21 questions across seven grade-specific objective sections. After import, teachers review and publish questions in the Question Bank, attach the published questions to a grade- and subject-matched assessment in the Assessment Builder, and publish it through the existing workflow. Student responses use the existing teacher manual-review and gradebook synchronization lifecycle.
+
 ## End-to-end verification checklist
 
 Run this only after the remaining Computer Studies implementation batch is complete:
