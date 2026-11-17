@@ -19,7 +19,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
   if (!markdown.trim()) throw new Error("The selected Markdown file is empty.");
   if (markdown.length > 5_000_000) throw new Error("Teacher packs must be smaller than 5 MB.");
 
-  const headings = [...markdown.matchAll(/^#{2,3}\s+(?:Lesson|Outcome)\s+(\d+)\s+[—–-]\s+(.+)$/gm)];
+  const headings = [...markdown.matchAll(/^#{2,3}\s+(?:(?:Physical|Earth) Science\s+)?(?:Lesson|Outcome)\s+(\d+)\s+[—–-]\s+(.+)$/gm)];
   if (!headings.length) {
     throw new Error("No lesson or outcome sections were found. Use headings such as '## Lesson 1 — Title' or '## Outcome 1 — Title'.");
   }
@@ -39,6 +39,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
       .replace(/\s+/g, " ")
       .trim();
     const learningOutcome = section.match(/^\*\*Learning outcome:\*\*\s*(.+)$/mi)?.[1]?.trim()
+      ?? section.match(/^\*\*Outcome:\*\*\s*(.+)$/mi)?.[1]?.trim()
       ?? (objectiveText || heading[2].trim());
 
     const activityParts = [
