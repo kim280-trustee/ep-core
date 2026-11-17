@@ -41,3 +41,16 @@ Run this only after the remaining Computer Studies implementation batch is compl
 6. Confirm the storage layer rejects files over 15 MB, disallowed formats, invalid paths and a fourth evidence file; confirm only the student, assigned teacher and authorized academic manager can read evidence.
 7. Open signed evidence links as the teacher, grade the project and confirm gradebook and student feedback updates.
 8. Build and publish a Computer Studies digital-literacy assessment using the existing question bank and manual-review question workflow; submit a student attempt, mark it and confirm gradebook/progress synchronization.
+
+
+## Teacher coding starter templates
+
+The teacher content authoring page provides JavaScript starter templates for:
+- Hello-world output
+- Variables and output
+- If/else decisions
+- Loops
+- Functions
+- Arrays
+
+Selecting a template populates the editable starter-code field. Teachers can modify the code and instructions before saving the draft. Templates are authoring conveniences only; student execution remains within the existing restricted browser sandbox and submissions continue through teacher review.
