@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ChangeEvent, type ReactNode } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, FileUp, Upload } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -56,7 +56,7 @@ export default function TeacherContentImportPage() {
   });
   const activeGradeLevelId = gradeLevelId && gradeLevels.data?.some((item) => item.id === gradeLevelId)
     ? gradeLevelId
-    : selectedClass?.classGroup.curriculumId === activeCurriculumId &&
+    : selectedClass && selectedClass.classGroup.curriculumId === activeCurriculumId &&
       gradeLevels.data?.some((item) => item.id === selectedClass.classGroup.gradeLevelId)
       ? selectedClass.classGroup.gradeLevelId
       : gradeLevels.data?.[0]?.id || "";
@@ -125,6 +125,11 @@ export default function TeacherContentImportPage() {
         if (exactTextMatches.length === 1) objective = exactTextMatches[0];
       }
 
+      if (!objective && lesson.objectiveCode) {
+        errors.push(`Section ${lesson.number} “${lesson.title}”: objective code ${lesson.objectiveCode} was not found in the selected subject. The importer will not guess a replacement.`);
+        continue;
+      }
+
       if (!objective) {
         const candidates = objectives.filter((item) =>
           item.sequenceNo === lesson.outcomeNumber &&
@@ -169,7 +174,7 @@ export default function TeacherContentImportPage() {
     return { rows, errors };
   }, [parsedLessons, catalogue.data, alignments.data, activeCurriculumId, activeGradeLevelId, gradeLevels.data]);
 
-  async function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
+  async function handleFileChange(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
     setParsedLessons([]);
     setFileName("");
@@ -368,10 +373,10 @@ function normalizeText(value: string) {
   return value.toLowerCase().replace(/[’']/g, "").replace(/[^a-z0-9]+/g, " ").trim();
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({ label, children }: { label: string; children: ReactNode }) {
   return <label className="block"><span className="mb-1.5 block text-sm font-medium text-slate-700">{label}</span>{children}</label>;
 }
 
-function Panel({ children }: { children: React.ReactNode }) {
+function Panel({ children }: { children: ReactNode }) {
   return <div className="rounded-2xl border border-slate-200 bg-white p-8 text-sm text-slate-600">{children}</div>;
 }
