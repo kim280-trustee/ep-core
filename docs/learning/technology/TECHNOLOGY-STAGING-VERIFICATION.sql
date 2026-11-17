@@ -1,5 +1,5 @@
--- Staging verification for Cambridge Click Start International Edition Computer Studies.
--- Run only after applying the two curriculum migrations on a disposable/staging database.
+-- Verification for Cambridge Click Start International Edition Computer Studies.
+-- Safe to run as a read-only check after the Computer Studies migrations.
 
 select c.code as curriculum_code, c.name, c.status
 from public.learning_curricula c
@@ -17,21 +17,22 @@ join public.learning_curricula c on c.id=g.curriculum_id
 where c.code='CLICK-START-M1-M3'
 order by g.sequence_no;
 
-select sk.code as skill_code, t.code as grade_topic, count(o.id) as chapter_objectives
-from public.learning_skills sk
-join public.learning_subjects s on s.id=sk.subject_id and s.code='COMPUTER-STUDIES'
-join public.learning_topics t on t.skill_id=sk.id
-left join public.learning_objectives o on o.topic_id=t.id
-where sk.code='COMPUTER-STUDIES'
-group by sk.code,t.code
-order by t.code;
+select
+  g.code as grade_code,
+  count(distinct o.id) as chapter_objectives,
+  count(distinct a.id) as grade_alignments
+from public.learning_grade_levels g
+join public.learning_curricula c on c.id=g.curriculum_id and c.code='CLICK-START-M1-M3'
+left join public.learning_topics t on t.code=g.code
+left join public.learning_skills sk on sk.id=t.skill_id
+  and sk.code='COMPUTER-STUDIES'
+  and sk.subject_id=(select id from public.learning_subjects where code='COMPUTER-STUDIES')
+left join public.learning_objectives o on o.topic_id=t.id and o.status='active'
+left join public.learning_objective_alignments a
+  on a.objective_id=o.id and a.curriculum_id=c.id and a.grade_level_id=g.id
+group by g.code,g.sequence_no
+order by g.sequence_no;
 
-select g.code as grade_code, count(distinct a.objective_id) as aligned_chapters
-from public.learning_objective_alignments a
-join public.learning_curricula c on c.id=a.curriculum_id and c.code='CLICK-START-M1-M3'
-join public.learning_grade_levels g on g.id=a.grade_level_id
-group by g.code
-order by g.code;
-
--- Expected grade objective/alignment counts: M1=8, M2=9, M3=12 (29 total).
--- Confirm obsolete Thai national Technology objectives are not part of this curriculum.
+-- Expected: M1=8, M2=9, M3=12; total=29 objectives and 29 alignments.
+-- After the teacher import, check organization-scoped lesson/question draft counts
+-- in the Teacher Content Library and Question Bank. Drafts must remain unpublished.
