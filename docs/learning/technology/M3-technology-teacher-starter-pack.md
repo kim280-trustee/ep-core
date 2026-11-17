@@ -14,6 +14,8 @@ The book references Windows, Word 2010, PowerPoint 2010, Excel 2010, Scratch, QB
 ## Lesson starters
 
 ## Lesson 1 — Know Your Computer
+
+**Objective:** `M3-01` — Demonstrate the knowledge and practical skills for Know Your Computer.
 **Book chapter:** 1  
 **Learning outcomes:** Consolidate understanding of computer components, processing, memory, storage, uses and limitations.  
 **Practical activity:** Trace a data task from input to processing, storage and output; explain how hardware and software work together.  
@@ -23,6 +25,8 @@ The book references Windows, Word 2010, PowerPoint 2010, Excel 2010, Scratch, QB
 3. Why are backups important? **Answer:** They help restore data after loss, corruption or device failure.
 
 ## Lesson 2 — Operating System
+
+**Objective:** `M3-02` — Demonstrate the knowledge and practical skills for Operating System.
 **Book chapter:** 2  
 **Learning outcomes:** Explain the purpose of an operating system and identify its role in managing files, applications and hardware.  
 **Practical activity:** Identify operating-system functions while opening applications, managing windows and organising files.  
@@ -32,6 +36,8 @@ The book references Windows, Word 2010, PowerPoint 2010, Excel 2010, Scratch, QB
 3. Why are operating-system updates important? **Answer:** They can improve security, stability and compatibility.
 
 ## Lesson 3 — MS Word 2010: Advanced Features
+
+**Objective:** `M3-03` — Demonstrate the knowledge and practical skills for MS Word 2010: Advanced Features.
 **Book chapter:** 3  
 **Learning outcomes:** Apply advanced document features available in the installed Word version to produce a structured document.  
 **Practical activity:** Prepare a multi-section report with consistent styles, page layout and appropriate document elements supported by the installed version.  
@@ -41,6 +47,8 @@ The book references Windows, Word 2010, PowerPoint 2010, Excel 2010, Scratch, QB
 3. Why proofread before sharing a document? **Answer:** To correct errors and improve clarity and presentation.
 
 ## Lesson 4 — MS Word 2010: Mail Merge
+
+**Objective:** `M3-04` — Demonstrate the knowledge and practical skills for MS Word 2010: Mail Merge.
 **Book chapter:** 4  
 **Learning outcomes:** Explain the purpose of mail merge and combine a main document with a data source to produce personalised documents.  
 **Practical activity:** Use a teacher-provided fictional contact list to create personalised invitation letters; do not use real student addresses.  
@@ -50,6 +58,8 @@ The book references Windows, Word 2010, PowerPoint 2010, Excel 2010, Scratch, QB
 3. Why preview merged documents? **Answer:** To check that fields and records appear correctly before completing the merge.
 
 ## Lesson 5 — MS PowerPoint 2010: Advanced Features
+
+**Objective:** `M3-05` — Demonstrate the knowledge and practical skills for MS PowerPoint 2010: Advanced Features.
 **Book chapter:** 5  
 **Learning outcomes:** Use advanced presentation features available in the installed version to create a coherent presentation.  
 **Practical activity:** Build a short topic presentation using suitable transitions, animations and media without distracting from the message.  
@@ -59,6 +69,8 @@ The book references Windows, Word 2010, PowerPoint 2010, Excel 2010, Scratch, QB
 3. What should be checked before presenting on another computer? **Answer:** Fonts, media, layout, playback and file compatibility.
 
 ## Lesson 6 — More About MS Excel 2010
+
+**Objective:** `M3-06` — Demonstrate the knowledge and practical skills for More About MS Excel 2010.
 **Book chapter:** 6  
 **Learning outcomes:** Extend spreadsheet skills using formulas, functions, cell references and suitable data presentation.  
 **Practical activity:** Use fictional shop sales data to calculate totals and averages, then create a chart that answers a stated question.  
@@ -68,6 +80,8 @@ The book references Windows, Word 2010, PowerPoint 2010, Excel 2010, Scratch, QB
 3. Why use a chart? **Answer:** To communicate patterns or comparisons in data.
 
 ## Lesson 7 — More About Scratch
+
+**Objective:** `M3-07` — Demonstrate the knowledge and practical skills for More About Scratch.
 **Book chapter:** 7  
 **Learning outcomes:** Extend Scratch projects using events, control, sensing, variables and multiple sprites as supported by the editor.  
 **Practical activity:** Create a short interactive quiz or game with a score variable, user input and a clear end condition.  
@@ -77,6 +91,8 @@ The book references Windows, Word 2010, PowerPoint 2010, Excel 2010, Scratch, QB
 3. Why test a Scratch project with different inputs? **Answer:** To find errors and check that all expected interactions work.
 
 ## Lesson 8 — Introduction to QB64
+
+**Objective:** `M3-08` — Demonstrate the knowledge and practical skills for Introduction to QB64.
 **Book chapter:** 8  
 **Learning outcomes:** Explain what QB64 is and create, run and save a simple program in an approved QB64 environment.  
 **Practical activity:** Write a small program that displays a welcome message and explain how the program is run.  
@@ -86,6 +102,8 @@ The book references Windows, Word 2010, PowerPoint 2010, Excel 2010, Scratch, QB
 3. Why save source code? **Answer:** So it can be edited, reused and run again.
 
 ## Lesson 9 — QB64: Statements
+
+**Objective:** `M3-09` — Demonstrate the knowledge and practical skills for QB64: Statements.
 **Book chapter:** 9  
 **Learning outcomes:** Recognise and use introductory QB64 statements as taught in the textbook.  
 **Practical activity:** Recreate a short textbook-style program in the approved environment and annotate what each statement does.  
@@ -95,6 +113,8 @@ The book references Windows, Word 2010, PowerPoint 2010, Excel 2010, Scratch, QB
 3. What is a syntax error? **Answer:** An error caused by code that does not follow the language's rules.
 
 ## Lesson 10 — QB64: Programming Statements
+
+**Objective:** `M3-10` — Demonstrate the knowledge and practical skills for QB64: Programming Statements.
 **Book chapter:** 10  
 **Learning outcomes:** Apply the programming statements covered in the chapter to control a simple program.  
 **Practical activity:** Build a small menu-driven or calculation program using only statements introduced in the learner's book; test normal and boundary inputs.  
@@ -104,6 +124,8 @@ The book references Windows, Word 2010, PowerPoint 2010, Excel 2010, Scratch, QB
 3. Why test boundary values? **Answer:** To check behaviour at the limits of the expected input range.
 
 ## Lesson 11 — Introduction to Macromedia Flash
+
+**Objective:** `M3-11` — Demonstrate the knowledge and practical skills for Introduction to Macromedia Flash.
 **Book chapter:** 11  
 **Learning outcomes:** Understand the purpose of Flash as a multimedia/animation authoring tool and identify basic animation concepts in the book.  
 **Practical activity:** Analyse a simple teacher-provided animation and storyboard its frames or motion. If Flash is unavailable, use an approved animation tool and label it as an alternative.  
@@ -113,6 +135,8 @@ The book references Windows, Word 2010, PowerPoint 2010, Excel 2010, Scratch, QB
 3. Why is Macromedia Flash considered legacy software? **Answer:** Flash Player has been discontinued; old files may require safe, offline or alternative viewing methods.
 
 ## Lesson 12 — Introduction to Email
+
+**Objective:** `M3-12` — Demonstrate the knowledge and practical skills for Introduction to Email.
 **Book chapter:** 12  
 **Learning outcomes:** Explain email, identify message fields and practise safe, appropriate email communication.  
 **Practical activity:** Draft (do not send) a formal email using a fictional recipient; identify subject, greeting, message and sign-off, and inspect a sample suspicious message.  
