@@ -1,160 +1,98 @@
-# M2 Technology — Teacher Starter Pack
+# M2 Computer Studies — Cambridge Click Start International Edition
 
-**Curriculum:** Thai Basic Education — Technology M1–M6  
-**Subject:** TECH — Technology  
+**Textbook:** Learner's Book 5 (ISBN 9781108951883)  
+**Subject:** Computer Studies  
 **Grade:** M2 (Mathayom 2)  
-**Curriculum version:** B.E. 2551 (2008), revised 2017  
-**Coverage:** 9 official indicators across Design & Technology (ว 4.1) and Computing Science (ว 4.2).
+**Source:** Cambridge Click Start International Edition, Learner's Book 5  
+**Coverage:** The nine teaching chapters in the published contents. The sample paper is an assessment resource.
 
-This pack contains one starter lesson for every official indicator allocated to this grade. Each lesson includes a teaching activity and three practice questions with answer keys. It is a teacher planning resource, not published app content.
+This pack follows the published chapter sequence. Practical tasks are original classroom activities based on chapter titles and published book descriptions, not verbatim textbook exercises. Use the learner's book to confirm exact subtopics, examples and exercise order.
 
-## Teacher safety and assessment guidance
-
-Use school-approved, teacher-supervised materials and tools for design activities. Do not use mains electricity, exposed high-voltage components, hazardous chemicals, uncontrolled heat sources or unsafe cutting tools in student activities. Prefer simulations, low-voltage kits and prepared data when appropriate. For Computing Science, use fictional or anonymised datasets; never ask students to share passwords, private messages, addresses or other personal information. Require students to check source reliability, respect intellectual property and follow school and applicable computer-use rules. Review every lesson for local school resources, accessibility and age suitability before publishing.
+## Teacher guidance
+The book references Windows, MS Office 2010, Word, PowerPoint, Excel and Scratch. Use the school's installed versions and explain differences in newer interfaces. Use fictional sample data and do not ask learners to publish personal information online.
 
 ## Lesson starters
 
-## Lesson 1 — Predict technology trends and evaluate their impacts
+## Lesson 1 — Know Your Computer
+**Book chapter:** 1  
+**Learning outcomes:** Review computer components, input/output, processing, memory, uses and limitations.  
+**Practical activity:** Learners map a familiar task (typing and printing a document) to input, processing, storage and output.  
+**Practice**
+1. Give one input and one output device. **Answer:** Keyboard and monitor (or printer).
+2. What is the difference between hardware and software? **Answer:** Hardware is the physical equipment; software is the programs and instructions.
+3. Why does a computer need memory? **Answer:** To hold data and instructions while work is being processed.
 
-**Objective:** `M2-W4_1-01` — Predict technology trends and evaluate their impacts  
-**Official indicator:** ว 4.1 ม.2/1  
-**Suggested duration:** 45–60 minutes  
-**Learning outcome:** Predict technology trends and evaluate their impacts  
-**Teaching activity:** Compare two possible future school transport technologies. Students identify drivers of change and assess benefits and risks.
+## Lesson 2 — Using Windows
+**Book chapter:** 2  
+**Learning outcomes:** Manage the Windows desktop, files, folders and common system tools.  
+**Practical activity:** Create a subject folder structure, copy and rename a file, and locate a saved document.  
+**Practice**
+1. What is a folder used for? **Answer:** Organising files and other folders.
+2. What is the difference between copying and moving a file? **Answer:** Copying makes another copy; moving changes its location.
+3. Why should files be backed up? **Answer:** To recover work if the original is lost or damaged.
 
-**Independent practice**
-1. Name two factors that influence technology trends.  
-   **Answer:** Scientific knowledge, user demand, cost, resources, policy or environmental pressures.
-2. What is a technology forecast?  
-   **Answer:** A reasoned prediction about how a technology may develop.
-3. Name one possible negative impact of an otherwise useful technology.  
-   **Answer:** It may increase waste, inequality, energy use or privacy risks.
+## Lesson 3 — MS Office at a Glance
+**Book chapter:** 3  
+**Learning outcomes:** Recognise common Office applications and choose an appropriate application for a task.  
+**Practical activity:** Match classroom tasks to Word, PowerPoint or Excel and explain each choice.  
+**Practice**
+1. Which application is mainly used for documents? **Answer:** MS Word.
+2. Which application is mainly used for slide presentations? **Answer:** MS PowerPoint.
+3. Which application organises data in worksheets and cells? **Answer:** MS Excel.
 
-## Lesson 2 — Define community problems and analyse related information
+## Lesson 4 — MS Word 2010: Inserting Objects and Drawing
+**Book chapter:** 4  
+**Learning outcomes:** Insert suitable objects and use drawing tools to create a clear document.  
+**Practical activity:** Produce a one-page event flyer with a title, paragraph, picture or shape and a simple labelled diagram.  
+**Practice**
+1. Why insert a picture into a document? **Answer:** To illustrate or support the information.
+2. What is a shape object? **Answer:** A drawing element such as a line, arrow, rectangle or circle.
+3. What should you check when placing an object? **Answer:** Its size, position, text wrapping and relevance.
 
-**Objective:** `M2-W4_1-02` — Define community problems and analyse related information  
-**Official indicator:** ว 4.1 ม.2/2  
-**Suggested duration:** 45–60 minutes  
-**Learning outcome:** Define community problems and analyse related information  
-**Teaching activity:** Students investigate a fictional local waste-sorting problem and define its scope using observation and supplied data.
+## Lesson 5 — MS PowerPoint 2010: Editing and Formatting Slides
+**Book chapter:** 5  
+**Learning outcomes:** Edit slide content and format text and slide elements consistently.  
+**Practical activity:** Create a four-slide presentation with a title slide, clear headings, readable text and relevant visuals.  
+**Practice**
+1. What is a slide layout? **Answer:** A predefined arrangement of placeholders on a slide.
+2. Why use consistent formatting? **Answer:** It makes a presentation easier to follow.
+3. What is one feature of an effective slide? **Answer:** Short readable text with relevant supporting visuals.
 
-**Independent practice**
-1. What makes a problem statement specific?  
-   **Answer:** It identifies who is affected, what is happening and where or when it occurs.
-2. Why define the scope of a community problem?  
-   **Answer:** To keep the project focused and manageable.
-3. What should students do if two sources disagree?  
-   **Answer:** Check their reliability, date, method and supporting evidence before deciding.
+## Lesson 6 — Introduction to MS Excel 2010
+**Book chapter:** 6  
+**Learning outcomes:** Identify workbooks, worksheets, rows, columns and cells; enter and edit simple data.  
+**Practical activity:** Create a class stationery table with item, quantity and price columns; format headings and save the workbook.  
+**Practice**
+1. What is a cell? **Answer:** The box formed where a row and column meet.
+2. What is a worksheet? **Answer:** A spreadsheet page made of rows and columns.
+3. How is a cell identified? **Answer:** By its column letter and row number, such as A1.
 
-## Lesson 3 — Design solutions within constraints and available resources
+## Lesson 7 — The Internet
+**Book chapter:** 7  
+**Learning outcomes:** Explain basic internet use, navigate websites and apply safe, responsible browsing habits.  
+**Practical activity:** Compare two teacher-selected websites on the same topic and record author, date, evidence and purpose.  
+**Practice**
+1. What is a web browser? **Answer:** Software used to access websites.
+2. What is a URL? **Answer:** The address of a resource on the web.
+3. Give one way to assess a website's reliability. **Answer:** Check its author, evidence, date and agreement with other trustworthy sources.
 
-**Objective:** `M2-W4_1-03` — Design solutions within constraints and available resources  
-**Official indicator:** ว 4.1 ม.2/3  
-**Suggested duration:** 45–60 minutes  
-**Learning outcome:** Design solutions within constraints and available resources  
-**Teaching activity:** Teams design a low-cost rainwater collection model and present a plan that respects size, budget and material limits.
+## Lesson 8 — Learning Algorithms
+**Book chapter:** 8  
+**Learning outcomes:** Describe an algorithm and represent the steps of an everyday task in a clear sequence or flowchart.  
+**Practical activity:** Draw a flowchart for borrowing a library book, including a decision such as whether the book is available.  
+**Practice**
+1. What is an algorithm? **Answer:** A clear, ordered set of steps for completing a task or solving a problem.
+2. What does a decision symbol represent in a flowchart? **Answer:** A question or condition with possible branches.
+3. Why should an algorithm be tested? **Answer:** To find missing, incorrect or unclear steps.
 
-**Independent practice**
-1. What is a design constraint?  
-   **Answer:** A limit such as budget, time, space, safety or available materials.
-2. How can a decision matrix help?  
-   **Answer:** It compares design options against agreed criteria in a consistent way.
-3. What belongs in a work plan?  
-   **Answer:** Tasks, sequence, materials, responsibilities and time.
+## Lesson 9 — Introduction to Scratch
+**Book chapter:** 9  
+**Learning outcomes:** Recognise the Scratch interface, sprites, stage and blocks, and create a simple block-based program.  
+**Practical activity:** Create a sprite that moves, speaks and responds to a start event. Save the project.  
+**Practice**
+1. What is a sprite? **Answer:** A character or object controlled in a Scratch project.
+2. What is a script? **Answer:** A sequence of blocks that tells a sprite or project what to do.
+3. What does an event block do? **Answer:** Starts a script when an event occurs, such as clicking the green flag.
 
-## Lesson 4 — Test and improve solutions against defined conditions
-
-**Objective:** `M2-W4_1-04` — Test and improve solutions against defined conditions  
-**Official indicator:** ว 4.1 ม.2/4  
-**Suggested duration:** 45–60 minutes  
-**Learning outcome:** Test and improve solutions against defined conditions  
-**Teaching activity:** Students test a model packaging design using a standard drop height and compare damage results.
-
-**Independent practice**
-1. Why must test conditions be consistent?  
-   **Answer:** So differences in results are caused by the design change rather than other factors.
-2. What evidence can show a design has improved?  
-   **Answer:** Measured performance against the original criteria.
-3. What should be included when presenting test results?  
-   **Answer:** The method, conditions, observations, results, defects and proposed improvements.
-
-## Lesson 5 — Select and use tools and technologies safely
-
-**Objective:** `M2-W4_1-05` — Select and use tools and technologies safely  
-**Official indicator:** ว 4.1 ม.2/5  
-**Suggested duration:** 45–60 minutes  
-**Learning outcome:** Select and use tools and technologies safely  
-**Teaching activity:** Students match materials, measuring tools and simple electrical components to a supervised model-building task.
-
-**Independent practice**
-1. Why choose a tool suited to the material?  
-   **Answer:** It improves accuracy and reduces the risk of damage or injury.
-2. What should happen before using a low-voltage circuit kit?  
-   **Answer:** Check instructions and components, keep the supply switched off during assembly and ask for teacher approval.
-3. Why should damaged electrical components not be used?  
-   **Answer:** They can cause overheating, short circuits or electric shock.
-
-## Lesson 6 — Design algorithms using computational thinking
-
-**Objective:** `M2-W4_2-01` — Design algorithms using computational thinking  
-**Official indicator:** ว 4.2 ม.2/1  
-**Suggested duration:** 45–60 minutes  
-**Learning outcome:** Design algorithms using computational thinking  
-**Teaching activity:** Students break a school-library checkout problem into smaller tasks, identify repeated patterns and write pseudocode.
-
-**Independent practice**
-1. What is decomposition?  
-   **Answer:** Breaking a complex problem into smaller manageable parts.
-2. What is pattern recognition?  
-   **Answer:** Finding similarities or repeated structures that help solve a problem.
-3. How does an algorithm help automate a task?  
-   **Answer:** It gives precise steps that a computer or person can follow consistently.
-
-## Lesson 7 — Program with logic and functions
-
-**Objective:** `M2-W4_2-02` — Program with logic and functions  
-**Official indicator:** ว 4.2 ม.2/2  
-**Suggested duration:** 45–60 minutes  
-**Learning outcome:** Program with logic and functions  
-**Teaching activity:** Write a small program that checks whether a score meets a threshold and uses a function to calculate an average.
-
-**Independent practice**
-1. What does a Boolean expression produce?  
-   **Answer:** A true or false result.
-2. Why use a function?  
-   **Answer:** To group reusable instructions and make a program easier to organise.
-3. What should happen when a score is below the threshold?  
-   **Answer:** The program should follow the alternative branch of the condition.
-
-## Lesson 8 — Explain computer systems and communication technology
-
-**Objective:** `M2-W4_2-03` — Explain computer systems and communication technology  
-**Official indicator:** ว 4.2 ม.2/3  
-**Suggested duration:** 45–60 minutes  
-**Learning outcome:** Explain computer systems and communication technology  
-**Teaching activity:** Use a block diagram to trace data from input devices through processing and storage to output and network communication.
-
-**Independent practice**
-1. What is the role of a processor?  
-   **Answer:** It executes instructions and processes data.
-2. What is the difference between RAM and long-term storage?  
-   **Answer:** RAM temporarily holds active data; storage keeps data when power is off.
-3. What does a router help a network do?  
-   **Answer:** It directs data between networks or devices.
-
-## Lesson 9 — Use information technology responsibly and respect intellectual property
-
-**Objective:** `M2-W4_2-04` — Use information technology responsibly and respect intellectual property  
-**Official indicator:** ว 4.2 ม.2/4  
-**Suggested duration:** 45–60 minutes  
-**Learning outcome:** Use information technology responsibly and respect intellectual property  
-**Teaching activity:** Students evaluate a fictional group project involving copied images and shared passwords, then propose ethical alternatives.
-
-**Independent practice**
-1. What is intellectual property?  
-   **Answer:** A creation of the mind, such as writing, images, music or software, that may be legally protected.
-2. Why should a student credit an image creator?  
-   **Answer:** To acknowledge ownership and comply with the licence or permission terms.
-3. Why should passwords not be shared in a group chat?  
-   **Answer:** It weakens account security and makes actions difficult to attribute.
-
+## Assessment resource
+**Sample Paper:** Chapter 10 in the book. Use the textbook sample paper for revision and assessment; it is not an additional teaching chapter.
