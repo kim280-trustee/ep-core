@@ -69,7 +69,7 @@ Therefore:
 - [ ] Run all migrations against a disposable/staging Supabase database and verify expected objective/alignment counts.
 - [ ] Pull the branch locally and run lint/build once.
 - [ ] Resolve any runtime migration or build findings.
-- [ ] Decide and complete the authorized teacher-content bulk-authoring/import workflow.
+- [x] Implement the authorized teacher-content importer, teacher-only guidance separation, and trusted short-answer manual-review workflow. The importer has not yet been run; actual draft import remains an explicit teacher action.
 - [ ] Obtain explicit approval before applying migrations to live Supabase.
 
 ## Safety status
