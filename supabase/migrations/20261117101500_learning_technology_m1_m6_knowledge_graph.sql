@@ -12,7 +12,7 @@ begin
     join public.learning_curricula c on c.code='CLICK-START-M1-M3'
     join public.learning_education_systems es on es.id=c.education_system_id
     join public.learning_grade_levels g on g.curriculum_id=c.id and g.code='M1'
-    where s.code='TECH' and es.code='TH_BASIC'
+    where s.code='COMPUTER-STUDIES' and es.code='TH_BASIC'
       and s.status='active' and c.status='active' and g.status='active'
   ) then
     raise exception 'Active Computer Studies subject, CLICK-START-M1-M3 curriculum and M1 grade are required.';
@@ -24,14 +24,14 @@ insert into public.learning_skills (subject_id, code, name, description, status)
 select s.id, 'COMPUTER-STUDIES', 'Computer Studies',
  'Computer systems, operating systems, productivity software, digital art, algorithms, block-based and text-based programming, spreadsheets, internet and email.',
  'active'
-from public.learning_subjects s where s.code='TECH'
+from public.learning_subjects s where s.code='COMPUTER-STUDIES'
 on conflict (subject_id, code) do update
 set name=excluded.name, description=excluded.description, status='active', updated_at=now();
 
 insert into public.learning_topics (skill_id, code, name, description, sequence_no, status)
 select sk.id, t.code, t.name, t.description, t.sequence_no, 'active'
 from public.learning_skills sk
-join public.learning_subjects s on s.id=sk.subject_id and s.code='TECH'
+join public.learning_subjects s on s.id=sk.subject_id and s.code='COMPUTER-STUDIES'
 join (values
  ('M1','M1','M1 — Cambridge Click Start Learner''s Book 4','Cambridge Click Start International Edition Learner''s Book 4 chapter sequence.',1),
  ('M2','M2','M2 — Cambridge Click Start Learner''s Book 5','Cambridge Click Start International Edition Learner''s Book 5 chapter sequence.',2),
@@ -46,7 +46,7 @@ insert into public.learning_objectives (topic_id, code, name, description, seque
 select topic.id, obj.code, obj.name, obj.description, obj.sequence_no, 'active'
 from public.learning_topics topic
 join public.learning_skills sk on sk.id=topic.skill_id
-join public.learning_subjects s on s.id=sk.subject_id and s.code='TECH'
+join public.learning_subjects s on s.id=sk.subject_id and s.code='COMPUTER-STUDIES'
 join (values
     ('M1-01','Know Your Computer','Learners study and practise the skills and concepts in the corresponding Cambridge Click Start International Edition Learner''s Book chapter.',1,'M1'),
     ('M1-02','Using Windows','Learners study and practise the skills and concepts in the corresponding Cambridge Click Start International Edition Learner''s Book chapter.',2,'M1'),
@@ -92,7 +92,7 @@ select o.id, c.id, g.id, o.sequence_no, true,
 from public.learning_objectives o
 join public.learning_topics t on t.id=o.topic_id
 join public.learning_skills sk on sk.id=t.skill_id
-join public.learning_subjects s on s.id=sk.subject_id and s.code='TECH'
+join public.learning_subjects s on s.id=sk.subject_id and s.code='COMPUTER-STUDIES'
 join public.learning_curricula c on c.code='CLICK-START-M1-M3'
 join public.learning_education_systems es on es.id=c.education_system_id and es.code='TH_BASIC'
 join public.learning_grade_levels g on g.curriculum_id=c.id and g.code=t.code
