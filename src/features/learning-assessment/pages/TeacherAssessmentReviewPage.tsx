@@ -75,7 +75,11 @@ export default function TeacherAssessmentReviewPage() {
       }),
     onSuccess: async (result, variables) => {
       if (result.status === "evaluated" && variables.assignmentId) {
-        await learningAssignmentsService.refreshProgressForStudent(variables.assignmentId, variables.studentUserId);
+        try {
+          await learningAssignmentsService.refreshProgressForStudent(variables.assignmentId, variables.studentUserId);
+        } catch {
+          // Marking is already persisted; assignment progress can be refreshed separately.
+        }
       }
       await queryClient.invalidateQueries({ queryKey: ["learning", "assessment-review", assessmentId] });
       await queryClient.invalidateQueries({ queryKey: ["learning", "assessment-attempts"] });
