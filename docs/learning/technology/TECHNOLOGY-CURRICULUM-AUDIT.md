@@ -83,9 +83,13 @@ The coding workspace, practical project submissions, teacher review, marking and
 - [x] Replace M1, M2 and M3 teacher packs with book-aligned lesson starters.
 - [x] Keep sample papers separate as assessment resources.
 - [x] Delete obsolete M4–M6 national Technology packs and the former national digital-literacy assessment pack from this Computer Studies curriculum.
-- [ ] Apply migrations to a disposable/staging Supabase database.
-- [ ] Verify curriculum, grade, topic, objective and alignment counts.
-- [ ] Import and review M1–M3 packs through the existing teacher workflow.
-- [ ] Run full tests, lint and build after Computer Studies implementation is complete.
+- [x] Apply the Computer Studies curriculum catalogue migration to the existing E&P Supabase project.
+- [x] Apply the M1–M3 Computer Studies knowledge-graph migration.
+- [x] Verify database counts: M1=8, M2=9, M3=12 objectives and 29 matching grade alignments.
+- [x] Prepare one combined teacher import file containing 29 lessons and 87 answer-keyed questions.
+- [x] Validate the combined file against the existing importer parsing rules: 29 lessons, 87 questions, 29 unique objective codes, no parsing errors.
+- [ ] Import the combined pack into the target school's organization through an authorized teacher session; drafts remain unpublished.
+- [ ] Review the imported lessons and question drafts in the teacher interface.
+- [ ] Run full tests, lint and build after the content import and remaining implementation are complete.
 
-No Supabase migration has been run and no live school or learner records have been changed. Tests, lint and build have not been run.
+The two additive curriculum migrations have been applied to the existing Supabase project. They created only the Computer Studies subject/curriculum/grade/topic/objective catalogue; they did not modify English MEP, school classes, memberships, student records or published learning content. The 29 lesson drafts and 87 question drafts have not yet been imported because that step must run in an authorized teacher session for the target organization. Tests, lint and build have not been run.
