@@ -15,7 +15,7 @@ Only these three grade packs are in scope. Do not import the former national Tha
    - `20261117101500_learning_technology_m1_m6_knowledge_graph.sql`
 2. Sign in as an authorized teacher in the target organization.
 3. Open the existing Teacher Content Import page.
-4. Select curriculum `CLICK-START-M1-M3`, subject `TECH`, and the matching grade.
+4. Select curriculum `CLICK-START-M1-M3`, subject `COMPUTER-STUDIES`, and the matching grade.
 5. Import only the matching pack from `docs/learning/technology/`.
 6. Review generated lessons and questions as unpublished drafts. Confirm that each chapter is mapped to the correct grade and objective.
 7. Use the existing teacher review and publication workflow. Import does not publish content.
