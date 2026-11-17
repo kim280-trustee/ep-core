@@ -5,6 +5,7 @@ interface CodeActivityWorkspaceProps {
   instructions?: string;
   starterCode: string;
   value: string;
+  initialOutput?: string;
   disabled: boolean;
   onChange: (value: string) => void;
   onRunResult: (result: { output: string; success: boolean }) => void;
@@ -53,6 +54,7 @@ export default function CodeActivityWorkspace({
   instructions,
   starterCode,
   value,
+  initialOutput = "",
   disabled,
   onChange,
   onRunResult,
@@ -62,6 +64,8 @@ export default function CodeActivityWorkspace({
   const [ready, setReady] = useState(false);
   const [output, setOutput] = useState("");
   const [runState, setRunState] = useState<"idle" | "running" | "success" | "error" | "timeout">("idle");
+
+  useEffect(() => { setOutput(initialOutput); }, [initialOutput]);
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
