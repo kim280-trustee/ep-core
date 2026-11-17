@@ -155,7 +155,9 @@ export default function TeacherContentDetailPage() {
       .filter((section) => {
         if (!section || typeof section !== "object") return false;
         const record = section as Record<string, unknown>;
-        return record.type !== "teacher_only" && record.audience !== "teacher";
+        const title = typeof record.title === "string" ? record.title.toLowerCase() : "";
+        const legacyTeacherSection = /safety and teaching guidance|teacher guidance|teacher notes|teaching notes/.test(title);
+        return record.type !== "teacher_only" && record.audience !== "teacher" && !legacyTeacherSection;
       })
       .map((section) => {
         if (!section || typeof section !== "object") return "";
@@ -171,13 +173,12 @@ export default function TeacherContentDetailPage() {
     return latestVersion.body.sections.flatMap((section) => {
       if (!section || typeof section !== "object") return [];
       const record = section as Record<string, unknown>;
-      if (record.type !== "teacher_only" && record.audience !== "teacher") return [];
+      const title = typeof record.title === "string" ? record.title : "Teacher guidance";
+      const legacyTeacherSection = /safety and teaching guidance|teacher guidance|teacher notes|teaching notes/i.test(title);
+      if (record.type !== "teacher_only" && record.audience !== "teacher" && !legacyTeacherSection) return [];
       const bodyText = typeof record.body === "string" ? record.body.trim() : "";
       if (!bodyText) return [];
-      return [{
-        title: typeof record.title === "string" ? record.title : "Teacher guidance",
-        body: bodyText,
-      }];
+      return [{ title, body: bodyText }];
     });
   }, [latestVersion]);
 
