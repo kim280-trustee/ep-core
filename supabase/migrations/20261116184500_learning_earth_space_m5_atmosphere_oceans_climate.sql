@@ -23,7 +23,7 @@ set name=excluded.name,description=excluded.description,status='active',updated_
 
 insert into public.learning_topics(skill_id,code,name,description,sequence_no,status)
 select sk.id,'M5-WEATHER-CLIMATE-OUTCOMES-01-13','Weather, Atmosphere, Oceans and Climate',
- 'Official M5 standard 2 learning outcomes 1–13. Covers solar-energy distribution and global energy balance; atmospheric and ocean circulation; cloud stability and fronts; climate change; weather-map interpretation and forecasting.','active'
+ 'Official M5 standard 2 learning outcomes 1–13. Covers solar-energy distribution and global energy balance; atmospheric and ocean circulation; cloud stability and fronts; climate change; weather-map interpretation and forecasting.',1,'active'
 from public.learning_skills sk join public.learning_subjects s on s.id=sk.subject_id
 where s.code='EARTH_SPACE' and sk.code='M5-ATMOSPHERE-OCEANS-CLIMATE'
 on conflict(skill_id,code) do update
