@@ -44,7 +44,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
     const activityParts = [
       section.match(/^\\*\\*Teaching activity:\\*\\*\\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\\*\\*Starter(?:\\s*\\/\\s*learning task)?:\\*\\*\\s*(.+)$/mi)?.[1]?.trim(),
-      section.match(/^\\*\\*Teach:\\*\\*\\s*(.+)$/mi)?.[1]?.trim(),
+      section.match(/^\\*\\*Teach(?: and practi[cs]e)?:\\*\\*\\s*(.+)$/mi)?.[1]?.trim(),
     ].filter((value): value is string => Boolean(value));
     const activity = activityParts.join("\\n\\n");
 
