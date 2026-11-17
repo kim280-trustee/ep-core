@@ -42,6 +42,7 @@ export default function QuestionBankPage() {
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
+  const [questionPage, setQuestionPage] = useState(0);
   const [editingQuestionId, setEditingQuestionId] = useState<string | null>(null);
   const [code, setCode] = useState("");
   const [prompt, setPrompt] = useState("");
@@ -179,6 +180,13 @@ export default function QuestionBankPage() {
       return matchesAcademicScope && matchesSearch && (!typeFilter || question.questionType === typeFilter) && (!statusFilter || question.status === statusFilter);
     });
   }, [questions.data, academicQuestionIds.data, search, typeFilter, statusFilter]);
+  const questionPageSize = 50;
+  const questionPageCount = Math.max(1, Math.ceil(filteredQuestions.length / questionPageSize));
+  const currentQuestionPage = Math.min(questionPage, questionPageCount - 1);
+  const visibleQuestions = filteredQuestions.slice(
+    currentQuestionPage * questionPageSize,
+    (currentQuestionPage + 1) * questionPageSize,
+  );
 
   const resetForm = () => {
     setEditingQuestionId(null); setCode(""); setPrompt(""); setQuestionType("single_choice");
@@ -313,25 +321,25 @@ export default function QuestionBankPage() {
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           <label className="block space-y-2">
             <span className="text-sm font-medium text-slate-700">Organization access class</span>
-            <select value={activeClassGroupId} onChange={(e) => { setClassGroupId(e.target.value); setCurriculumId(""); setGradeLevelId(""); setSubjectId(""); resetForm(); setMessage(null); }} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm">
+            <select value={activeClassGroupId} onChange={(e) => { setClassGroupId(e.target.value); setCurriculumId(""); setGradeLevelId(""); setSubjectId(""); setQuestionPage(0); resetForm(); setMessage(null); }} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm">
               {classes.data?.map((item) => <option key={item.classGroup.id} value={item.classGroup.id}>{item.classGroup.name}</option>)}
             </select>
           </label>
           <label className="block space-y-2">
             <span className="text-sm font-medium text-slate-700">Curriculum</span>
-            <select value={activeCurriculumId} onChange={(e) => { setCurriculumId(e.target.value); setGradeLevelId(""); setSubjectId(""); resetForm(); }} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm">
+            <select value={activeCurriculumId} onChange={(e) => { setCurriculumId(e.target.value); setGradeLevelId(""); setSubjectId(""); setQuestionPage(0); resetForm(); }} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm">
               {(curricula.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}
             </select>
           </label>
           <label className="block space-y-2">
             <span className="text-sm font-medium text-slate-700">Grade</span>
-            <select value={activeGradeLevelId} onChange={(e) => { setGradeLevelId(e.target.value); resetForm(); }} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm">
+            <select value={activeGradeLevelId} onChange={(e) => { setGradeLevelId(e.target.value); setQuestionPage(0); resetForm(); }} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm">
               {(gradeLevels.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
             </select>
           </label>
           <label className="block space-y-2">
             <span className="text-sm font-medium text-slate-700">Subject</span>
-            <select value={selectedSubjectId} onChange={(e) => { setSubjectId(e.target.value); resetForm(); setMessage(null); }} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm">
+            <select value={selectedSubjectId} onChange={(e) => { setSubjectId(e.target.value); setQuestionPage(0); resetForm(); setMessage(null); }} className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm">
               {(subjects.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
             </select>
           </label>
@@ -347,17 +355,25 @@ export default function QuestionBankPage() {
         <section className="rounded-2xl border border-slate-200 bg-white p-5">
           <div className="flex items-start justify-between gap-3"><div><h2 className="flex items-center gap-2 font-semibold text-slate-900"><FileQuestion size={18} />{t("questionBank.library")}</h2><p className="mt-1 text-xs text-slate-500">{t("questionBank.libraryHelp")}</p></div><span className="text-xs text-slate-500">{filteredQuestions.length} {t("questionBank.shown")}</span></div>
           <div className="mt-4 grid gap-2 sm:grid-cols-[1fr_auto_auto]">
-            <label className="relative"><Search size={16} className="absolute left-3 top-2.5 text-slate-400" /><input value={search} onChange={(e) => setSearch(e.target.value)} className="w-full rounded-xl border border-slate-300 py-2 pl-9 pr-3 text-sm" placeholder={t("questionBank.searchPlaceholder")} /></label>
-            <select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} className="rounded-xl border border-slate-300 px-3 py-2 text-sm"><option value="">{t("questionBank.allTypes")}</option>{teacherTypes.map((type) => <option key={type} value={type}>{questionTypeLabel(type)}</option>)}</select>
-            <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="rounded-xl border border-slate-300 px-3 py-2 text-sm"><option value="">{t("questionBank.allStatus")}</option><option value="draft">Draft</option><option value="review">Review</option><option value="published">Published</option><option value="retired">Retired</option></select>
+            <label className="relative"><Search size={16} className="absolute left-3 top-2.5 text-slate-400" /><input value={search} onChange={(e) => { setSearch(e.target.value); setQuestionPage(0); }} className="w-full rounded-xl border border-slate-300 py-2 pl-9 pr-3 text-sm" placeholder={t("questionBank.searchPlaceholder")} /></label>
+            <select value={typeFilter} onChange={(e) => { setTypeFilter(e.target.value); setQuestionPage(0); }} className="rounded-xl border border-slate-300 px-3 py-2 text-sm"><option value="">{t("questionBank.allTypes")}</option>{teacherTypes.map((type) => <option key={type} value={type}>{questionTypeLabel(type)}</option>)}</select>
+            <select value={statusFilter} onChange={(e) => { setStatusFilter(e.target.value); setQuestionPage(0); }} className="rounded-xl border border-slate-300 px-3 py-2 text-sm"><option value="">{t("questionBank.allStatus")}</option><option value="draft">Draft</option><option value="review">Review</option><option value="published">Published</option><option value="retired">Retired</option></select>
           </div>
-          {(search || typeFilter || statusFilter) && <button type="button" onClick={() => { setSearch(""); setTypeFilter(""); setStatusFilter(""); }} className="mt-2 rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600">{t("questionBank.clearFilters")}</button>}
+          {(search || typeFilter || statusFilter) && <button type="button" onClick={() => { setSearch(""); setTypeFilter(""); setStatusFilter(""); setQuestionPage(0); }} className="mt-2 rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600">{t("questionBank.clearFilters")}</button>}
           {(questions.isPending || objectives.isPending || academicQuestionIds.isPending) && <p className="mt-4 text-sm text-slate-500">Loading questions for this organization, curriculum, grade and subject…</p>}
           {questions.isError && <p role="alert" className="mt-4 rounded-xl bg-red-50 p-4 text-sm text-red-800">{t("questionBank.loadError")}</p>}
           {objectives.isError && <p role="alert" className="mt-4 rounded-xl bg-red-50 p-4 text-sm text-red-800">Learning objectives for this class, grade and subject could not be loaded. Question authoring is disabled until the academic scope can be verified.</p>}
           {academicQuestionIds.isError && <p role="alert" className="mt-4 rounded-xl bg-red-50 p-4 text-sm text-red-800">Question academic mappings could not be verified. Refresh the page before using this question bank.</p>}
+          <div className="mt-4 flex items-center justify-between gap-3 border-t border-slate-100 pt-3 text-xs text-slate-500">
+            <span>Showing {filteredQuestions.length ? currentQuestionPage * questionPageSize + 1 : 0}–{Math.min((currentQuestionPage + 1) * questionPageSize, filteredQuestions.length)} of {filteredQuestions.length}</span>
+            <div className="flex gap-2">
+              <button type="button" disabled={currentQuestionPage === 0} onClick={() => setQuestionPage(currentQuestionPage - 1)} className="rounded-lg border border-slate-200 px-3 py-1.5 disabled:opacity-40">Previous</button>
+              <span className="px-1 py-1.5">Page {currentQuestionPage + 1} / {questionPageCount}</span>
+              <button type="button" disabled={currentQuestionPage + 1 >= questionPageCount} onClick={() => setQuestionPage(currentQuestionPage + 1)} className="rounded-lg border border-slate-200 px-3 py-1.5 disabled:opacity-40">Next</button>
+            </div>
+          </div>
           <div className="mt-4 space-y-2">
-            {filteredQuestions.map((question) => (
+            {visibleQuestions.map((question) => (
               <div key={question.id} className="rounded-xl border border-slate-200 p-3">
                 <div className="flex items-start justify-between gap-3"><div><p className="font-semibold text-slate-900">{question.code}</p><p className="text-xs text-slate-500">{questionTypeLabel(question.questionType)} · {questionStatusLabel(question.status)}</p></div><span className="text-xs text-slate-400">{question.languageCode}</span></div>
                 <div className="mt-3 flex flex-wrap gap-2">
