@@ -1,6 +1,6 @@
 # Computer Studies M1–M3 — Curriculum Audit
 
-**Subject code:** `TECH` — Computer Studies  
+**Subject code:** `COMPUTER-STUDIES` — Computer Studies  
 **Curriculum code:** `CLICK-START-M1-M3`  
 **Textbook:** Cambridge Click Start International Edition  
 **Implementation branch:** `paul/learning-academic-integrity-audit`
@@ -56,7 +56,7 @@ The chapter titles are based on the published contents of the three Cambridge bo
 
 ## Knowledge graph and teacher resources
 
-- Subject: `TECH` — Computer Studies.
+- Subject: `COMPUTER-STUDIES` — Computer Studies.
 - Curriculum: `CLICK-START-M1-M3`.
 - Skill: `COMPUTER-STUDIES`.
 - One grade topic per book, with one objective for each teaching chapter.
