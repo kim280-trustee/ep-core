@@ -64,6 +64,7 @@ Therefore:
 - [x] 45 timestamped curriculum migrations staged.
 - [x] Official grade allocations audited for all five Science tracks.
 - [x] Companion teacher packs prepared: 442 starters and 1,326 answer-keyed questions.
+- [x] Consolidate and parser-validate 13 subject/grade import files; retain grade-specific selection for code-less upper-secondary outcomes.
 - [x] Readiness and subject audit documents corrected to distinguish database objectives from Markdown teaching resources.
 - [x] Add read-only staging verification SQL: `docs/learning/science/SCIENCE-STAGING-VERIFICATION.sql`.
 - [x] Apply all 45 Science migrations and the corrective M2/M3 strand-integrity migration to the existing Supabase project; verify all 15 subject/grade counts.
