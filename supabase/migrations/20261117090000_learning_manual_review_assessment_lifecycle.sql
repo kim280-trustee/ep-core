@@ -120,6 +120,10 @@ declare
   v_student_user_id uuid;
   v_status text;
   v_result jsonb;
+  v_score numeric(10,2);
+  v_max_score numeric(10,2);
+  v_percentage numeric(7,4);
+  v_result_id uuid;
 begin
   if v_auth_user_id is null then
     raise exception 'Authentication is required';
@@ -178,6 +182,74 @@ begin
       submitted_at = coalesce(submitted_at, now()),
       updated_at = now()
   where id = p_attempt_id;
+
+  -- If the student submitted no written responses (for example, every manual
+  -- question was optional and left blank), there is nothing for a teacher to
+  -- mark. Finalize the empty submission rather than leaving it in review.
+  if not exists (
+    select 1
+    from public.learning_attempt_answers aa
+    join public.learning_assessment_questions aq on aq.id = aa.assessment_question_id
+    join public.learning_question_versions qv on qv.id = aq.question_version_id
+    join public.learning_questions q on q.id = qv.question_id
+    join public.learning_question_evaluation_keys ek on ek.question_version_id = qv.id
+    where aa.attempt_id = p_attempt_id
+      and q.question_type = 'short_answer'
+      and ek.scoring_rules->>'method' = 'manual_review'
+      and aa.evaluation_status = 'pending'
+  ) then
+    select
+      coalesce(sum(coalesce(aa.awarded_points, 0)), 0),
+      coalesce(sum(aq.points) filter (where aa.id is not null or aq.required), 0)
+    into v_score, v_max_score
+    from public.learning_assessment_questions aq
+    left join public.learning_attempt_answers aa
+      on aa.attempt_id = p_attempt_id
+     and aa.assessment_question_id = aq.id
+    where aq.assessment_id = (
+      select assessment_id from public.learning_attempts where id = p_attempt_id
+    );
+
+    v_percentage := case when v_max_score > 0
+      then round((v_score / v_max_score) * 100, 4) else 0 end;
+
+    insert into public.learning_assessment_results (
+      attempt_id, student_user_id, organization_id, score, max_score,
+      percentage, passed, evaluated_at, summary
+    )
+    select
+      a.id, a.student_user_id, a.organization_id, v_score, v_max_score,
+      v_percentage, v_percentage >= 60, now(),
+      jsonb_build_object('evaluation', 'automatic', 'note', 'No responses required manual review')
+    from public.learning_attempts a
+    where a.id = p_attempt_id
+    on conflict (attempt_id) do update
+    set score = excluded.score,
+        max_score = excluded.max_score,
+        percentage = excluded.percentage,
+        passed = excluded.passed,
+        evaluated_at = excluded.evaluated_at,
+        summary = excluded.summary,
+        updated_at = now()
+    returning id into v_result_id;
+
+    update public.learning_attempts
+    set status = 'evaluated',
+        score = v_score,
+        max_score = v_max_score,
+        percentage = v_percentage,
+        updated_at = now()
+    where id = p_attempt_id;
+
+    return jsonb_build_object(
+      'attempt_id', p_attempt_id,
+      'result_id', v_result_id,
+      'status', 'evaluated',
+      'score', v_score,
+      'max_score', v_max_score,
+      'percentage', v_percentage
+    );
+  end if;
 
   return jsonb_build_object(
     'attempt_id', p_attempt_id,
