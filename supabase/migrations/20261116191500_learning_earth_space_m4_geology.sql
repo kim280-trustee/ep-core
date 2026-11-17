@@ -24,7 +24,7 @@ set name=excluded.name,description=excluded.description,status='active',updated_
 
 insert into public.learning_topics(skill_id,code,name,description,sequence_no,status)
 select sk.id,'M4-GEOLOGY-OUTCOMES-01-12','Earth Structure, Tectonics, Geohazards and Geological Resources',
- 'Official M4 standard 1 learning outcomes 1–12. Includes evidence-based geological interpretation, resource identification and map literacy.','active'
+ 'Official M4 standard 1 learning outcomes 1–12. Includes evidence-based geological interpretation, resource identification and map literacy.',1,'active'
 from public.learning_skills sk join public.learning_subjects s on s.id=sk.subject_id
 where s.code='EARTH_SPACE' and sk.code='M4-GEOLOGY'
 on conflict(skill_id,code) do update
