@@ -50,8 +50,8 @@ The 2021 OBEC must-know / should-know classification is a separate classificatio
 ## Classification status at audit start
 
 - P1–P6, M1 and M2: existing must_know / should_know values were present and matched the 2021 OBEC grade-level summary totals.
-- M3: all 50 alignments lacked a classification value.
-- M4–M6: 59 of 61 shared indicators lacked a between-learning / terminal classification; two geography indicators had been tagged as between-learning.
+- M3: all 50 indicators reconciled against the OBEC pathway table: 33 between-learning and 17 terminal; zero unclassified.
+- M4–M6: 59 of 61 shared indicators remain unclassified; two geography indicators retain an existing between-learning tag. The M4–M6 code-by-code reconciliation remains open.
 - This audit deliberately does not guess the later classification from the older must-know / should-know flags. Individual between-learning / terminal assignments still require a code-by-code reconciliation against the OBEC pathway tables.
 
 ## Teacher starter packs added
@@ -74,9 +74,9 @@ Each lesson retains the database indicator code, standard code and original Thai
 
 ## Remaining acceptance criteria
 
-- Complete code-by-code between-learning / terminal classification for all 418 unique indicators.
-- Verify grade-level totals against OBEC: 278 between-learning and 140 terminal across P1–M6.
-- Re-run the database audit and confirm zero unclassified alignments.
+- Complete code-by-code between-learning / terminal classification for the 61 shared M4–M6 indicators.
+- Verify all grade-level totals against OBEC: 278 between-learning and 140 terminal across P1–M6.
+- Current verified state: M3 has zero unclassified indicators; M4–M6 still has 177 unclassified grade alignments (59 shared indicators × 3 grades). Re-run the complete audit after M4–M6 reconciliation.
 - Upgrade prompt stems into fully authored, indicator-specific assessment items and answer guidance where required.
 - Do not begin app-wide feature testing until all curriculum rollouts are complete.
 
