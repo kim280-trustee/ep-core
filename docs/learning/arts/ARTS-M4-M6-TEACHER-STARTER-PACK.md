@@ -376,7 +376,7 @@ Award credit for accurate subject vocabulary, evidence from the artwork/music/pe
 
 - **Objective code:** `ARTS-M46-18`
 - **OBEC standard:** ศ 2.1
-- **Classification:** Must-know
+- **Classification:** Should-know
 - **Learning intention:** Students can อ่าน เขียน โน้ตดนตรีไทยและสากลในอัตราจังหวะต่าง ๆ.
 - **Key content:** อ่าน เขียน โน้ตดนตรีไทยและสากลในอัตราจังหวะต่าง ๆ. Connect the concept to Thai cultural examples and relevant contemporary practice.
 - **Teacher input:** Introduce the vocabulary and model one worked example. Use a local artwork, Thai musical example, or Thai performance where appropriate, then compare with an international example.
