@@ -50,8 +50,8 @@ order by
 
 -- OBEC 2021 priority-classification coverage for lower-secondary core Science.
 -- M1 and M2 are complete. M3 currently has its biology/materials, energy/light and astronomy subsets classified;
--- the remaining M3 energy and Earth-space indicators are intentionally reported
--- as pending rather than assigned a guessed priority.
+-- the nine M3 W3.2 Earth-system indicators are absent from the OBEC 2021 priority
+-- table and are intentionally left unclassified rather than assigned guessed labels.
 with expected(grade_code, expected_must, expected_should, expected_pending) as (
   values ('M1',29,14,0), ('M2',37,11,0), ('M3',33,11,9)
 ), actual as (
