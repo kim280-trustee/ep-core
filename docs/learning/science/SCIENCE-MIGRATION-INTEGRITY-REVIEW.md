@@ -69,7 +69,7 @@ Therefore:
 - [x] Consolidate and parser-validate 13 subject/grade import files; retain grade-specific selection for code-less upper-secondary outcomes.
 - [x] Readiness and subject audit documents corrected to distinguish database objectives from Markdown teaching resources.
 - [x] Add read-only staging verification SQL: `docs/learning/science/SCIENCE-STAGING-VERIFICATION.sql`.
-- [x] Apply all 45 Science migrations and the corrective M2/M3 strand-integrity migration to the existing Supabase project; verify all 15 subject/grade counts.\n- [x] Apply OBEC 2021 priority classifications to all M1/M2 indicators and the verified M3 biological/materials, energy/light and astronomy/space indicators.\n- [ ] Complete exact OBEC priority classification for the remaining nine M3 Earth-system indicators.
+- [x] Apply all 45 Science migrations and the corrective M2/M3 strand-integrity migration to the existing Supabase project; verify all 15 subject/grade counts.\n- [x] Apply OBEC 2021 priority classifications to all M1/M2 indicators and the verified M3 biological/materials, energy/light and astronomy/space indicators.\n- [x] Confirm that the nine M3 Earth-system indicators are absent from the OBEC 2021 priority table and leave their priority field null rather than infer a classification.
 - [ ] Pull the branch locally and run lint/build once.
 - [ ] Resolve any runtime migration or build findings.
 - [x] Implement the authorized teacher-content importer, teacher-only guidance separation, and trusted short-answer manual-review workflow. The importer has not yet been run; actual draft import remains an explicit teacher action.
@@ -77,4 +77,4 @@ Therefore:
 
 ## Safety status
 
-The Science catalogue is applied and verified in the existing Supabase project. M1/M2 and part of M3 priority classifications are applied; remaining M3 classifications are not guessed. No pilot school, class, student, assignment or learner records were created or changed.
+The Science catalogue is applied and verified in the existing Supabase project. All indicators represented in the OBEC 2021 priority table are classified. The nine M3 W3.2 indicators absent from that table remain intentionally unclassified. No pilot school, class, student, assignment or learner records were created or changed.
