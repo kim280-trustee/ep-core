@@ -76,3 +76,14 @@ These 300 outcomes are additional upper-secondary specialist content. They remai
 - [ ] All Science teacher packs cover the completed official indicator set; specialist packs remain separately identified.
 - [ ] Only after every curriculum rollout is complete: run app-wide tests, local lint/build and teacher-import smoke tests.
 
+
+
+## Primary P4–P6 source lock — OBEC 2021
+
+Primary source for the remaining primary indicators is the OBEC/Institute for the Promotion of Teaching Science and Technology 2021 document, “ตัวชี้วัดและสาระการเรียนรู้แกนกลางต้องรู้และควรรู้”, Science and Technology section. The verified grade sections are printed pages 71–76 (P4), 77–83 (P5), and 84 onward (P6). The summary table reports P4=21, P5=32, P6=30; W4.2 already contributes 5, 5 and 4 respectively, leaving W1–W3 gaps of 16, 27 and 26.
+
+**Source exceptions that must survive data modelling:** P4 ว 2.1 ป.4/1 is explicitly both Must-Know and Should-Know. Preserve the dual classification in source metadata/notes; do not flatten it into a single exclusive priority. The source summary also identifies P6 ว 2.1 ป.6/1 as dual-classified. Existing alignment schema stores one `indicator_classification` value, so the migration must record the second priority in notes or a dedicated metadata field rather than silently discarding it.
+
+The source gives the national unique total as 415, with 308 Must-Know and 113 Should-Know classifications; the difference is explained by dual-classified indicators. These are classification counts, not mutually exclusive objective counts.
+
+No P4–P6 W1–W3 seed should be committed until all 69 Thai indicator statements and their priority flags have been transcribed from these grade sections and reviewed against the official codes. Source pages are not interchangeable with the 2017 curriculum PDF.
