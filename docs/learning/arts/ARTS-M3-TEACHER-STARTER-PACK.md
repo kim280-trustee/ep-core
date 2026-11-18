@@ -343,7 +343,7 @@ Each lesson uses a 50-minute structure: 5 min warm-up/stimulus, 10 min explicit 
 
 ### Lesson 29: นำเสนอแนวคิดจากเนื้อเรื่องของการแสดงที่สามารถนำไปปรับใช้ในชีวิตประจำวัน
 
-- **Official indicator:** ARTS-M3-29 (ศ 3.1) — should_know.
+- **Official indicator:** ARTS-M3-29 (ศ 3.1) — must_know.
 - **Learning outcome:** Students can demonstrate: นำเสนอแนวคิดจากเนื้อเรื่องของการแสดงที่สามารถนำไปปรับใช้ในชีวิตประจำวัน.
 - **Materials:** Board, paper, pencils/colours, safe classroom materials, and relevant audio/visual examples.
 - **Teaching sequence:** Introduce a familiar example; model the target skill; guide students through a short task; let students produce or perform independently; use peer feedback and an exit check.
