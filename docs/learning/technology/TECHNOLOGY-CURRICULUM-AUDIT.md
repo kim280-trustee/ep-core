@@ -64,11 +64,13 @@ The chapter titles are based on the published contents of the three Cambridge bo
 - Three teacher packs: 29 lesson starters and 87 original answer-keyed practice questions.
 - Sample papers are identified as assessment resources, not additional teaching chapters.
 
-## Scope and retirement of earlier content
+## Scope separation: international Computer Studies vs Thai national Science and Technology
 
-The earlier Thai national Technology W 4.1/W 4.2 catalogue and its M1–M6 teacher pack content did not represent the user's actual school teaching sequence. It has been replaced in the two staged curriculum migrations and the M1–M3 teacher packs. Do not import the old M4–M6 packs or the old digital-literacy question pack. M4–M6 remain out of scope until their actual school textbooks are confirmed.
+The `COMPUTER-STUDIES` subject and `CLICK-START-M1-M3` curriculum are the user's international textbook sequence. The Cambridge Click Start M1–M3 packs are not Thai national curriculum content. Do not import the retired standalone M4–M6 Technology packs into this international textbook course.
 
-The coding workspace, practical project submissions, teacher review, marking and gradebook synchronization are application features. They remain available as tools to support book-aligned practical activities; they are not a substitute for the textbook's actual content.
+The Thai national curriculum's standards ว 4.1 Design & Technology and ว 4.2 Computing Science belong inside the national `SCI` Science and Technology learning area. They must not be recreated as a separate `TECHNOLOGY` or `COMPUTER-STUDIES` curriculum, and must not be replaced by Click Start. A separate Science rollout now adds the 28 primary W4.2 indicators under `SCI`; the remaining W4.1/W4.2 secondary indicators and the other Science core gaps are tracked in `docs/learning/science/SCIENCE-CORE-CURRICULUM-GAP-AUDIT.md`.
+
+The coding workspace, practical project submissions, teacher review, marking and gradebook synchronization are application features. They support practical activities in either course but do not make the international textbook equivalent to the Thai national indicators.
 
 ## Source register
 
@@ -82,7 +84,7 @@ The coding workspace, practical project submissions, teacher review, marking and
 - [x] Replace the staged national Technology knowledge graph with 29 book-chapter objectives and grade alignments.
 - [x] Replace M1, M2 and M3 teacher packs with book-aligned lesson starters.
 - [x] Keep sample papers separate as assessment resources.
-- [x] Delete obsolete M4–M6 national Technology packs and the former national digital-literacy assessment pack from this Computer Studies curriculum.
+- [x] Keep the retired standalone M4–M6 Technology packs out of the Click Start international Computer Studies course.\n- [x] Route national W4.1/W4.2 standards to the SCI Science and Technology learning area, not to Click Start.
 - [x] Apply the Computer Studies curriculum catalogue migration to the existing E&P Supabase project.
 - [x] Apply the M1–M3 Computer Studies knowledge-graph migration.
 - [x] Verify database counts: M1=8, M2=9, M3=12 objectives and 29 matching grade alignments.
