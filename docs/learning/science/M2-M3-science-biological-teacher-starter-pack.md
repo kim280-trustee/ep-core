@@ -2,7 +2,7 @@
 
 **Curriculum:** Thai Basic Education Core Curriculum B.E. 2551 (2008), revised B.E. 2560 (2017)  
 **Subject:** SCI  
-**Coverage:** All 48 M2 core Science indicators and 19 M3 indicators (11 biological/genetics and 8 materials). The remaining 32 M3 Science indicators are in the separate energy and Earth-space pack. M2's 48 indicators and these 19 M3 indicators now carry OBEC 2021 must-know / should-know labels. M2's 17 indicators now include verified OBEC 2021 must-know / should-know labels.
+**Coverage:** All 48 M2 core Science indicators and 19 M3 indicators (11 biological/genetics and 8 materials). The remaining 32 M3 indicators are in the separate energy and Earth-space pack. M2's 48 indicators and the 19 M3 biological/materials indicators in this pack carry OBEC 2021 priority labels. The separate M3 energy pack now also has verified labels for all 21 energy/light indicators; the 11 M3 Earth-space indicators remain under exact source reconciliation.
 
 Each lesson maps to one official indicator and includes three practice questions with answer keys. Reproductive-health topics must be taught respectfully and age-appropriately. Do not ask learners to disclose personal experiences or health information; refer medical questions to qualified professionals.
 
