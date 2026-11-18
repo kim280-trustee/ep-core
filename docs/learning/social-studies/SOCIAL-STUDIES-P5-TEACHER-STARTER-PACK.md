@@ -200,7 +200,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO1.2
 - **Priority classification:** should_know
-- **OBEC pathway classification:** between_learning
+- **OBEC pathway classification:** terminal
 - **Official indicator:** ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนาตามที่กำหนด และอภิปรายประโยชน์ที่ได้รับจากการเข้าร่วมกิจกรรม
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -223,7 +223,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO1.2
 - **Priority classification:** should_know
-- **OBEC pathway classification:** terminal
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** มีมรรยาทของความเป็นศาสนิกชนที่ดีตามที่กำหนด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -522,7 +522,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO4.1
 - **Priority classification:** should_know
-- **OBEC pathway classification:** between_learning
+- **OBEC pathway classification:** terminal
 - **Official indicator:** สืบค้นความเป็นมาของท้องถิ่นโดยใช้หลักฐานที่หลากหลาย
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -545,7 +545,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO4.1
 - **Priority classification:** should_know
-- **OBEC pathway classification:** between_learning
+- **OBEC pathway classification:** terminal
 - **Official indicator:** รวบรวมข้อมูลจากแหล่งต่าง ๆ เพื่อตอบคำถามทางประวัติศาสตร์อย่างมีเหตุผล
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -637,7 +637,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO4.3
 - **Priority classification:** must_know
-- **OBEC pathway classification:** between_learning
+- **OBEC pathway classification:** terminal
 - **Official indicator:** อธิบายพัฒนาการของอาณาจักรอยุธยาและธนบุรีโดยสังเขป
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -660,7 +660,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO4.3
 - **Priority classification:** must_know
-- **OBEC pathway classification:** terminal
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** อธิบายปัจจัยที่ส่งเสริมความเจริญรุ่งเรืองทางเศรษฐกิจและการปกครองของอาณาจักรอยุธยา
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -683,7 +683,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO4.3
 - **Priority classification:** should_know
-- **OBEC pathway classification:** terminal
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** บอกประวัติและผลงานของบุคคลสำคัญสมัยอยุธยาและธนบุรีที่น่าภาคภูมิใจ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -706,7 +706,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO4.3
 - **Priority classification:** should_know
-- **OBEC pathway classification:** terminal
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** อธิบายภูมิปัญญาไทยที่สำคัญสมัยอยุธยาและธนบุรีที่น่าภาคภูมิใจและควรค่าแก่การอนุรักษ์ไว้
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
