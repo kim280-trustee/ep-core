@@ -46,6 +46,46 @@ order by
     when 'PHYSICS' then 4 else 5 end,
   expected.grade_code;
 
+
+-- OBEC 2021 priority-classification coverage for lower-secondary core Science.
+-- M1 and M2 are complete. M3 currently has its biology/materials subset classified;
+-- the remaining M3 energy and Earth-space indicators are intentionally reported
+-- as pending rather than assigned a guessed priority.
+with expected(grade_code, expected_must, expected_should, expected_pending) as (
+  values ('M1',29,14,0), ('M2',37,11,0), ('M3',15,4,32)
+), actual as (
+  select
+    grade.code as grade_code,
+    count(*) filter (where alignment.indicator_classification='must_know')::integer as must_know,
+    count(*) filter (where alignment.indicator_classification='should_know')::integer as should_know,
+    count(*) filter (where alignment.indicator_classification is null)::integer as pending
+  from public.learning_objective_alignments alignment
+  join public.learning_curricula curriculum on curriculum.id=alignment.curriculum_id
+  join public.learning_grade_levels grade
+    on grade.id=alignment.grade_level_id and grade.curriculum_id=alignment.curriculum_id
+  join public.learning_objectives objective on objective.id=alignment.objective_id
+  join public.learning_topics topic on topic.id=objective.topic_id
+  join public.learning_skills skill on skill.id=topic.skill_id
+  join public.learning_subjects subject on subject.id=skill.subject_id
+  where curriculum.code='TH-SCI-M1-M6' and subject.code='SCI'
+    and grade.code in ('M1','M2','M3')
+  group by grade.code
+)
+select
+  expected.grade_code,
+  expected.expected_must,
+  coalesce(actual.must_know,0) as actual_must,
+  expected.expected_should,
+  coalesce(actual.should_know,0) as actual_should,
+  expected.expected_pending,
+  coalesce(actual.pending,0) as actual_pending,
+  case when coalesce(actual.must_know,0)=expected.expected_must
+      and coalesce(actual.should_know,0)=expected.expected_should
+      and coalesce(actual.pending,0)=expected.expected_pending
+    then 'PASS' else 'CHECK' end as result
+from expected left join actual using (grade_code)
+order by expected.grade_code;
+
 -- Report any active objective in the five Science tracks with no Thai Science
 -- curriculum/grade alignment. Expected result: zero rows.
 select
