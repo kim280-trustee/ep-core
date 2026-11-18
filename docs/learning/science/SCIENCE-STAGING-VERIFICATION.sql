@@ -52,7 +52,7 @@ order by
 -- the remaining M3 energy and Earth-space indicators are intentionally reported
 -- as pending rather than assigned a guessed priority.
 with expected(grade_code, expected_must, expected_should, expected_pending) as (
-  values ('M1',29,14,0), ('M2',37,11,0), ('M3',15,4,32)
+  values ('M1',29,14,0), ('M2',37,11,0), ('M3',14,5,32)
 ), actual as (
   select
     grade.code as grade_code,
