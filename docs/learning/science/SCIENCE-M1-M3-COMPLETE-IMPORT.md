@@ -2067,8 +2067,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** Measured lux levels and the task being performed.
 ## Lesson 22 — Explain planetary orbits using gravity
 
-**Objective:** `M3-S3_1-01`  
-**Official indicator:** ว 3.1 ม.3/1  
+**Objective:** `M3-S3_1-01`  \n**Official indicator:** ว 3.1 ม.3/1  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain orbital motion using gravitational attraction and the inverse-square relationship.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -2084,8 +2083,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ## Lesson 23 — Model seasons and apparent solar motion
 
-**Objective:** `M3-S3_1-02`  
-**Official indicator:** ว 3.1 ม.3/2  
+**Objective:** `M3-S3_1-02`  \n**Official indicator:** ว 3.1 ม.3/2  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Model seasons using Earth's axial tilt and orbit.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -2101,8 +2099,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ## Lesson 24 — Model lunar phases and tides
 
-**Objective:** `M3-S3_1-03`  
-**Official indicator:** ว 3.1 ม.3/3  
+**Objective:** `M3-S3_1-03`  \n**Official indicator:** ว 3.1 ม.3/3  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain lunar phases, moonrise timing and tides.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -2118,8 +2115,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ## Lesson 25 — Evaluate space technology
 
-**Objective:** `M3-S3_1-04`  
-**Official indicator:** ว 3.6 ม.3/4  
+**Objective:** `M3-S3_1-04`  \n**Official indicator:** ว 3.1 ม.3/4  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Describe uses of satellites and space exploration.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -2250,3 +2246,37 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** An emergency plan, essential supplies and safe evacuation arrangements.
 3. What should learners do during an official evacuation order?  
    **Answer:** Follow instructions promptly and move to the designated safe area.
+
+
+## Lesson 33 — Model the greenhouse effect and its impacts
+
+**Objective:** `M3-S3_2-08`  
+**Official indicator:** ว 3.2 ม.3/8  
+**Learning outcome:** Create a model that explains the greenhouse effect and describe its effects on living organisms.
+
+**Teaching activity:** Compare two identical transparent containers under the same safe light source, one covered and one open, using thermometers and teacher supervision. Record temperature changes, discuss the limits of the model, and connect the evidence to greenhouse gases absorbing and re-emitting outgoing infrared radiation.
+
+**Independent practice**
+1. What do greenhouse gases do in Earth's atmosphere?  
+   **Answer:** They absorb and re-emit some outgoing infrared radiation, warming the lower atmosphere and surface.
+2. Name two greenhouse gases.  
+   **Answer:** Carbon dioxide and methane.
+3. Give one possible effect of an enhanced greenhouse effect on living organisms.  
+   **Answer:** Heat stress, changing habitats or ranges, disrupted growing seasons, or reduced water availability.
+
+
+## Lesson 34 — Propose actions to reduce greenhouse gas emissions
+
+**Objective:** `M3-S3_2-09`  
+**Official indicator:** ว 3.2 ม.3/9  
+**Learning outcome:** Explain impacts of the greenhouse effect and propose practical actions that reduce activities producing greenhouse gases.
+
+**Teaching activity:** Use a simple school energy and transport audit. Identify activities that produce greenhouse gases, compare practical reduction options, and select actions that can be measured over time.
+
+**Independent practice**
+1. Give two human activities that increase greenhouse gas emissions.  
+   **Answer:** Burning fossil fuels for electricity or transport, and deforestation.
+2. Suggest one action a school can take to reduce emissions.  
+   **Answer:** Reduce unnecessary electricity use, improve energy efficiency, encourage lower-emission travel, or reduce waste.
+3. Why should a climate action plan use evidence and measurable targets?  
+   **Answer:** To check whether the action is effective and improve it using results.
