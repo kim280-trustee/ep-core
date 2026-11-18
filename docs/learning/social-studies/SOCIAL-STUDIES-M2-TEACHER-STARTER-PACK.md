@@ -16,6 +16,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO1.1
 - **Priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** อธิบายการเผยแผ่พระพุทธศาสนาหรือศาสนาที่ตนนับถือสู่ประเทศเพื่อนบ้าน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -38,6 +39,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO1.1
 - **Priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** วิเคราะห์ความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือที่ช่วยเสริมสร้างความเข้าใจอันดีกับประเทศเพื่อนบ้าน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -60,6 +62,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO1.1
 - **Priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** วิเคราะห์ความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือในฐานะที่เป็นรากฐานของวัฒนธรรม เอกลักษณ์ของชาติและมรดกของชาติ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -82,6 +85,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO1.1
 - **Priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** อภิปรายความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือกับการพัฒนาชุมชนและการจัดระเบียบสังคม
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -104,6 +108,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO1.1
 - **Priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** วิเคราะห์พุทธประวัติหรือประวัติศาสดาของศาสนาที่ตนนับถือตามที่กำหนด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -126,6 +131,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO1.1
 - **Priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** วิเคราะห์และประพฤติตนตามแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดก เรื่องเล่าและศาสนิกชนตัวอย่างตามที่กำหนด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -148,6 +154,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO1.1
 - **Priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** อธิบายโครงสร้างและสาระโดยสังเขปของพระไตรปิฎกหรือคัมภีร์ของศาสนาที่ตนนับถือ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -170,6 +177,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO1.1
 - **Priority classification:** must_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** อธิบายธรรมคุณและข้อธรรมสำคัญในกรอบอริยสัจ ๔ หรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด เห็นคุณค่าและนำไปพัฒนาแก้ปัญหาของชุมชนและสังคม
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -192,6 +200,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO1.1
 - **Priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** เห็นคุณค่าของการพัฒนาจิตเพื่อการเรียนรู้และดำเนินชีวิตด้วยวิธีคิดแบบโยนิโสมนสิการ หรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -214,6 +223,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO1.1
 - **Priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** สวดมนต์ แผ่เมตตา บริหารจิตและเจริญปัญญาด้วยอานาปานสติ หรือตามแนวทางของศาสนาที่ตนนับถือ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -236,6 +246,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO1.1
 - **Priority classification:** should_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** วิเคราะห์การปฏิบัติตนตามหลักธรรมทางศาสนาที่ตนนับถือเพื่อการดำรงตนอย่างเหมาะสมในกระแสความเปลี่ยนแปลงของโลกและการอยู่ร่วมกันอย่างสันติสุข
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -258,6 +269,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO1.2
 - **Priority classification:** should_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** ปฏิบัติตนอย่างเหมาะสมต่อบุคคลต่าง ๆ ตามหลักศาสนาที่ตนนับถือตามที่กำหนด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -280,6 +292,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO1.2
 - **Priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** มีมรรยาทของความเป็นศาสนิกชนที่ดีตามที่กำหนด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -302,6 +315,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO1.2
 - **Priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** วิเคราะห์คุณค่าของศาสนพิธีและปฏิบัติตนได้ถูกต้อง
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -324,6 +338,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO1.2
 - **Priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** อธิบายคำสอนที่เกี่ยวเนื่องกับวันสำคัญทางศาสนาและปฏิบัติตนได้ถูกต้อง
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -346,6 +361,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO1.2
 - **Priority classification:** must_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** อธิบายความแตกต่างของศาสนพิธี พิธีกรรมตามแนวปฏิบัติของศาสนาอื่น ๆ เพื่อนำไปสู่การยอมรับและความเข้าใจซึ่งกันและกัน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -368,6 +384,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO2.1
 - **Priority classification:** must_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** อธิบายและปฏิบัติตนตามกฎหมายที่เกี่ยวข้องกับตนเอง ครอบครัว ชุมชนและประเทศ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -390,6 +407,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO2.1
 - **Priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** เห็นคุณค่าในการปฏิบัติตนตามสถานภาพ บทบาท สิทธิเสรีภาพ หน้าที่ในฐานะพลเมืองดีตามวิถีประชาธิปไตย
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -412,6 +430,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO2.1
 - **Priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** วิเคราะห์บทบาท ความสำคัญ และความสัมพันธ์ของสถาบันทางสังคม
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -434,6 +453,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO2.1
 - **Priority classification:** must_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** อธิบายความคล้ายคลึงและความแตกต่างของวัฒนธรรมไทยและวัฒนธรรมของประเทศในภูมิภาคเอเชีย เพื่อนำไปสู่ความเข้าใจอันดีระหว่างกัน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -456,6 +476,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO2.2
 - **Priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** อธิบายกระบวนการในการตรากฎหมาย
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -478,6 +499,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO2.2
 - **Priority classification:** must_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** วิเคราะห์ข้อมูล ข่าวสารทางการเมืองการปกครองที่มีผลกระทบต่อสังคมไทยสมัยปัจจุบัน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -500,6 +522,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO3.1
 - **Priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** วิเคราะห์ปัจจัยที่มีผลต่อการลงทุนและการออม
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -522,6 +545,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO3.1
 - **Priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** อธิบายปัจจัยการผลิตสินค้าและบริการ และปัจจัยที่มีอิทธิพลต่อการผลิตสินค้าและบริการ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -544,6 +568,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO3.1
 - **Priority classification:** must_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** เสนอแนวทางการพัฒนาการผลิตในท้องถิ่นตามปรัชญาของเศรษฐกิจพอเพียง
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -566,6 +591,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO3.1
 - **Priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** อภิปรายแนวทางการคุ้มครองสิทธิของตนเองในฐานะผู้บริโภค
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -588,6 +614,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO3.2
 - **Priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** อธิบายระบบเศรษฐกิจแบบต่าง ๆ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -610,6 +637,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO3.2
 - **Priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** ยกตัวอย่างที่สะท้อนให้เห็นการพึ่งพาอาศัยกันและการแข่งขันกันทางเศรษฐกิจในภูมิภาคเอเชีย
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -632,6 +660,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO3.2
 - **Priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** วิเคราะห์การกระจายของทรัพยากรในโลกที่ส่งผลต่อความสัมพันธ์ทางเศรษฐกิจระหว่างประเทศ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -654,6 +683,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO3.2
 - **Priority classification:** must_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** วิเคราะห์การแข่งขันทางการค้าในประเทศและต่างประเทศที่ส่งผลต่อคุณภาพสินค้า ปริมาณการผลิตและราคาสินค้า
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -676,6 +706,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO4.1
 - **Priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** ประเมินความน่าเชื่อถือของหลักฐานทางประวัติศาสตร์ในลักษณะต่าง ๆ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -698,6 +729,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO4.1
 - **Priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** วิเคราะห์ความแตกต่างระหว่างความจริงกับข้อเท็จจริงของเหตุการณ์ทางประวัติศาสตร์
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -720,6 +752,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO4.1
 - **Priority classification:** should_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** เห็นความสำคัญของการตีความหลักฐานทางประวัติศาสตร์ที่น่าเชื่อถือ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -742,6 +775,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO4.2
 - **Priority classification:** must_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** อธิบายพัฒนาการทางสังคม เศรษฐกิจ และการเมืองของภูมิภาคเอเชีย
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -764,6 +798,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO4.2
 - **Priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** ระบุความสำคัญของแหล่งอารยธรรมโบราณในภูมิภาคเอเชีย
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -786,6 +821,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO4.3
 - **Priority classification:** must_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** วิเคราะห์พัฒนาการของอาณาจักรอยุธยาและธนบุรีในด้านต่าง ๆ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -808,6 +844,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO4.3
 - **Priority classification:** must_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** วิเคราะห์ปัจจัยที่ส่งผลต่อความมั่นคงและความเจริญรุ่งเรืองของอาณาจักรอยุธยา
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -830,6 +867,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO4.3
 - **Priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** ระบุภูมิปัญญาและวัฒนธรรมไทยสมัยอยุธยาและธนบุรี และอิทธิพลของภูมิปัญญาดังกล่าวต่อการพัฒนาชาติไทยในยุคต่อมา
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -852,6 +890,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO5.1
 - **Priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** วิเคราะห์ลักษณะทางกายภาพของทวีปยุโรปและทวีปแอฟริกาโดยใช้เครื่องมือทางภูมิศาสตร์สืบค้นข้อมูล
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -874,6 +913,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO5.1
 - **Priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** อธิบายมาตราส่วน ทิศ และสัญลักษณ์ในแผนที่
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -896,6 +936,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO5.1
 - **Priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** วิเคราะห์สาเหตุการเกิดภัยพิบัติและผลกระทบในทวีปยุโรปและทวีปแอฟริกา
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -918,6 +959,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO5.2
 - **Priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** สำรวจและระบุทำเลที่ตั้งของกิจกรรมทางเศรษฐกิจและสังคมในทวีปยุโรปและทวีปแอฟริกา
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -940,6 +982,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO5.2
 - **Priority classification:** must_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** วิเคราะห์ปัจจัยทางกายภาพและปัจจัยทางสังคมที่ส่งผลต่อทำเลที่ตั้งของกิจกรรมทางเศรษฐกิจและสังคมในทวีปยุโรปและทวีปแอฟริกา
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -962,6 +1005,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO5.2
 - **Priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** สืบค้นและอภิปรายประเด็นปัญหาจากปฏิสัมพันธ์ระหว่างสิ่งแวดล้อมทางกายภาพกับมนุษย์ที่เกิดขึ้นในทวีปยุโรปและทวีปแอฟริกา
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -984,6 +1028,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 - **Standard:** SO5.2
 - **Priority classification:** must_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** วิเคราะห์แนวทางการจัดการภัยพิบัติและการจัดการทรัพยากรและสิ่งแวดล้อมในทวีปยุโรปและทวีปแอฟริกาที่ยั่งยืน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
