@@ -6,6 +6,10 @@
 
 The existing 13 Science import files contain 444 lesson starters and 1,332 answer-keyed practice questions. The new `SCIENCE-TECHNOLOGY-W4.2-P1-P6-TEACHER-STARTER-PACK.md` adds 28 lessons and 84 formative tasks. These resources are still Markdown source material until an authorized teacher imports them through `/teacher/content/import`. No school, class or student records have been created.
 
+
+
+**Database execution status:** This readiness document records repository content and historical rollout notes. It does not prove which migrations are currently present in live Supabase. Treat all staging/application claims in older batch notes as historical until the Supabase migration ledger and representative catalogue counts are checked directly. Do not report a migration as applied based only on its presence in this branch.
+
 ## Official national Science and Technology coverage
 
 OBEC's 2021 must-know / should-know table reports these grade totals:
@@ -25,6 +29,9 @@ OBEC's 2021 must-know / should-know table reports these grade totals:
 | **Total unique indicators** | **415** |
 
 The M4–M6 total is a shared grade-band set of 102 indicators, not 102 separate indicators per grade.
+
+Primary priority-count checks from the OBEC 2021 summary: P4 has 16 Must-Know and 6 Should-Know classifications; P5 has 24 and 8; P6 has 20 and 11. P4 ว 2.1 ป.4/1 and P6 ว 2.1 ป.6/1 are dual-classified, so classification counts are not mutually exclusive. The read-only reconciliation query is in `SCIENCE-STAGING-VERIFICATION.sql`.
+
 
 ## Current implementation status
 
@@ -174,7 +181,7 @@ The fifth verified Physics batch seeds M4 additional-learning outcome 13: operat
 
 ## Upper-secondary staged release — M4 Physics outcome 10
 
-This batch adds verified M4 additional-learning outcome 10: work done by a constant force, work calculated from a force–displacement graph and average power. The migration adds one objective with an official M4 alignment. The companion teacher starter pack contains one lesson starter and three answer-keyed questions. Physics now has ten verified M4 outcomes seeded (8–17, excluding 1–7), ten lesson starters and 30 answer-keyed questions. Official alignment: IPST Physics curriculum-use manual, printed p. 112. Outcomes 1–7 and the remaining M5–M6 Physics allocation are still under audit. Historical staging note: the Science migrations have since been applied to live Supabase.
+This batch adds verified M4 additional-learning outcome 10: work done by a constant force, work calculated from a force–displacement graph and average power. The migration adds one objective with an official M4 alignment. The companion teacher starter pack contains one lesson starter and three answer-keyed questions. Physics now has ten verified M4 outcomes seeded (8–17, excluding 1–7), ten lesson starters and 30 answer-keyed questions. Official alignment: IPST Physics curriculum-use manual, printed p. 112. Outcomes 1–7 and the remaining M5–M6 Physics allocation are still under audit. Historical note: an earlier rollout log recorded the migrations as applied; the current live database state has not been independently verified in this readiness record.
 
 
 ## Upper-secondary staged release — M4 Physics outcomes 1–7
@@ -184,17 +191,17 @@ This batch adds all seven remaining M4 additional Physics outcomes: foundations/
 
 ## Upper-secondary staged release — M5 Physics outcomes 1–3
 
-The first M5 Physics batch adds three verified additional-learning outcomes: simple harmonic motion of spring-mass systems and simple pendulums; natural frequency and resonance; and wave motion, wave properties, Huygens principle and superposition. Three migrations add three objectives with official M5 alignments. The companion teacher starter packs contain three lesson starters and nine answer-keyed questions. M4 Physics remains complete at 17 of 17 outcomes; M5 now has three verified outcomes. Official alignment: IPST Physics curriculum-use manual, printed pp. 128–130. Remaining M5 and M6 allocations are still under audit. Historical staging note: the Science migrations have since been applied to live Supabase.
+The first M5 Physics batch adds three verified additional-learning outcomes: simple harmonic motion of spring-mass systems and simple pendulums; natural frequency and resonance; and wave motion, wave properties, Huygens principle and superposition. Three migrations add three objectives with official M5 alignments. The companion teacher starter packs contain three lesson starters and nine answer-keyed questions. M4 Physics remains complete at 17 of 17 outcomes; M5 now has three verified outcomes. Official alignment: IPST Physics curriculum-use manual, printed pp. 128–130. Remaining M5 and M6 allocations are still under audit. Historical note: an earlier rollout log recorded the migrations as applied; the current live database state has not been independently verified in this readiness record.
 
 
 ## Upper-secondary staged release — M5 Physics sound outcomes 6–7
 
-Two additional M5 Physics outcomes are now seeded: outcome 6 (sound intensity, sound level, hearing, sound quality and noise pollution) and outcome 7 (air-column resonance, beats, standing waves, Doppler effect and shock waves). The migration adds two M5-aligned objectives; the teacher pack contains two lesson starters and six answer-keyed questions. M5 Physics now has five verified seeded outcomes (1, 2, 3, 6 and 7), with M5 outcomes 4–5 and 8–12 and all M6 allocations still to be audited. Official alignment: IPST Physics curriculum-use manual, printed pp. 136 and 138. Historical staging note: the Science migrations have since been applied to live Supabase.
+Two additional M5 Physics outcomes are now seeded: outcome 6 (sound intensity, sound level, hearing, sound quality and noise pollution) and outcome 7 (air-column resonance, beats, standing waves, Doppler effect and shock waves). The migration adds two M5-aligned objectives; the teacher pack contains two lesson starters and six answer-keyed questions. M5 Physics now has five verified seeded outcomes (1, 2, 3, 6 and 7), with M5 outcomes 4–5 and 8–12 and all M6 allocations still to be audited. Official alignment: IPST Physics curriculum-use manual, printed pp. 136 and 138. Historical note: an earlier rollout log recorded the migrations as applied; the current live database state has not been independently verified in this readiness record.
 
 
 ## Upper-secondary staged release — M5 Physics light outcomes 8 and 12
 
-Two additional M5 Physics outcomes are now seeded: outcome 8 (light interference and diffraction using double slits, gratings and single slits) and outcome 12 (rainbows, halos, mirages and sky colours). The migration adds two M5-aligned objectives; the teacher pack contains two lesson starters and six answer-keyed questions. M5 Physics now has seven verified seeded outcomes (1, 2, 3, 6, 7, 8 and 12). Outcomes 4–5 and 9–11 remain under official-source audit; M6 is pending. Official alignment: IPST Physics curriculum-use manual, printed pp. 141 and 147. Historical staging note: the Science migrations have since been applied to live Supabase.
+Two additional M5 Physics outcomes are now seeded: outcome 8 (light interference and diffraction using double slits, gratings and single slits) and outcome 12 (rainbows, halos, mirages and sky colours). The migration adds two M5-aligned objectives; the teacher pack contains two lesson starters and six answer-keyed questions. M5 Physics now has seven verified seeded outcomes (1, 2, 3, 6, 7, 8 and 12). Outcomes 4–5 and 9–11 remain under official-source audit; M6 is pending. Official alignment: IPST Physics curriculum-use manual, printed pp. 141 and 147. Historical note: an earlier rollout log recorded the migrations as applied; the current live database state has not been independently verified in this readiness record.
 
 
 ## M5 Physics staged release — geometrical optics outcomes 9–11
@@ -204,7 +211,7 @@ Three additional M5 Physics objectives are now staged: outcome 9 (reflection and
 
 ## M5 Physics staged release — outcomes 4–5
 
-Two additional M5 Physics objectives are now staged: outcome 4 (surface-water-wave reflection, refraction, interference and diffraction) and outcome 5 (sound production/propagation, pressure and displacement waves, and sound speed versus air temperature). The migration adds two objectives; the teacher pack contains two lesson starters and six answer-keyed questions. Together with the previously committed M5 objectives, outcomes 1–12 are now represented: 12 objectives, 12 lesson starters and 36 answer-keyed questions. The M5 Physics numbered outcome set is complete at this stage. M6 Physics and remaining Biology/Chemistry/Earth-Space coverage remain subject to official grade-by-grade audit. Historical staging note: the Science migrations have since been applied to live Supabase.
+Two additional M5 Physics objectives are now staged: outcome 4 (surface-water-wave reflection, refraction, interference and diffraction) and outcome 5 (sound production/propagation, pressure and displacement waves, and sound speed versus air temperature). The migration adds two objectives; the teacher pack contains two lesson starters and six answer-keyed questions. Together with the previously committed M5 objectives, outcomes 1–12 are now represented: 12 objectives, 12 lesson starters and 36 answer-keyed questions. The M5 Physics numbered outcome set is complete at this stage. M6 Physics and remaining Biology/Chemistry/Earth-Space coverage remain subject to official grade-by-grade audit. Historical note: an earlier rollout log recorded the migrations as applied; the current live database state has not been independently verified in this readiness record.
 
 
 ## M6 Physics staged release — verified outcomes 2, 3 and 6
@@ -218,7 +225,7 @@ This batch adds M6 Physics outcome 1 (magnetic fields and magnetic flux), outcom
 
 Migration: `20261116171500_learning_physics_m6_magnetic_fields_induction_ac.sql`. Teacher pack: `M6-physics-magnetic-fields-induction-ac-teacher-starter-pack.md`.
 
-M6 Physics now has six verified outcomes staged (1–6), six lesson starters and 18 answer-keyed questions across two packs. Outcomes 7 onward and the remaining Physics content groups still require official grade-by-grade verification. Historical staging note: the Science migrations have since been applied to live Supabase.
+M6 Physics now has six verified outcomes staged (1–6), six lesson starters and 18 answer-keyed questions across two packs. Outcomes 7 onward and the remaining Physics content groups still require official grade-by-grade verification. Historical note: an earlier rollout log recorded the migrations as applied; the current live database state has not been independently verified in this readiness record.
 
 
 ## M6 Physics staged release — electromagnetic-wave outcomes 7–8
@@ -227,7 +234,7 @@ This batch adds M6 Physics outcome 7 (electromagnetic waves, spectrum, polarisat
 
 Migration: `20261116173000_learning_physics_m6_electromagnetic_waves_communication.sql`. Teacher pack: `M6-physics-electromagnetic-waves-communication-teacher-starter-pack.md`.
 
-M6 Physics outcomes 1–8 are now staged: eight objectives, eight lesson starters and 24 answer-keyed questions across three teacher packs. Outcomes beyond 8 and the remaining Physics content groups still require official grade-by-grade verification. Historical staging note: the Science migrations have since been applied to live Supabase.
+M6 Physics outcomes 1–8 are now staged: eight objectives, eight lesson starters and 24 answer-keyed questions across three teacher packs. Outcomes beyond 8 and the remaining Physics content groups still require official grade-by-grade verification. Historical note: an earlier rollout log recorded the migrations as applied; the current live database state has not been independently verified in this readiness record.
 
 
 ## M6 Physics staged release — Group 4 outcomes 1–9
@@ -236,7 +243,7 @@ The official IPST Physics curriculum-use manual explicitly lists M6 Group 4 outc
 
 Migration: `20261116174500_learning_physics_m6_thermal_fluids_gases_outcomes_1_9.sql`. Teacher pack: `M6-physics-thermal-fluids-gases-teacher-starter-pack.md`.
 
-This adds nine objectives, nine lesson starters and 27 answer-keyed questions. M6 Physics now has eight Group 3 outcomes and nine Group 4 outcomes staged, with the Group 4 M6 sequence 1–9 verified. Remaining outcome allocations and the rest of the 67-outcome Physics curriculum still require auditing. Historical staging note: the Science migrations have since been applied to live Supabase.
+This adds nine objectives, nine lesson starters and 27 answer-keyed questions. M6 Physics now has eight Group 3 outcomes and nine Group 4 outcomes staged, with the Group 4 M6 sequence 1–9 verified. Remaining outcome allocations and the rest of the 67-outcome Physics curriculum still require auditing. Historical note: an earlier rollout log recorded the migrations as applied; the current live database state has not been independently verified in this readiness record.
 
 
 
@@ -246,7 +253,7 @@ The next M6 Physics batch stages seven verified Group 4 outcomes: Planck's hypot
 
 Migration: `20261116180000_learning_physics_m6_modern_atomic_nuclear_outcomes_10_14_16_17.sql`. Teacher pack: `M6-physics-modern-atomic-nuclear-teacher-starter-pack.md`.
 
-**Important grade allocation:** the official IPST comparison crosswalk allocates Group 4 outcomes 15 (nuclear forces, stability and binding energy) and 18 (particle physics and the Standard Model) to M5, not M6. They have not been incorrectly aligned to M6 and remain to be staged under M5 after source reconciliation. M6 Group 4 now contains 16 verified outcomes (1–14, 16–17), 16 lesson starters and 48 answer-keyed questions. Combined staged Physics totals: M4 17, M5 12, M6 Group 3 8, and M6 Group 4 16 = **53 objectives, 53 lesson starters and 159 answer-keyed questions**. The Science migrations have since been applied to live Supabase.
+**Important grade allocation:** the official IPST comparison crosswalk allocates Group 4 outcomes 15 (nuclear forces, stability and binding energy) and 18 (particle physics and the Standard Model) to M5, not M6. They have not been incorrectly aligned to M6 and remain to be staged under M5 after source reconciliation. M6 Group 4 now contains 16 verified outcomes (1–14, 16–17), 16 lesson starters and 48 answer-keyed questions. Combined staged Physics totals: M4 17, M5 12, M6 Group 3 8, and M6 Group 4 16 = **53 objectives, 53 lesson starters and 159 answer-keyed questions**. An earlier rollout log recorded these migrations as applied; the current live database state has not been independently verified in this readiness record.
 
 
 ## M5 Physics staged release — Group 4 outcomes 15 and 18
@@ -255,7 +262,7 @@ Two Group 4 outcomes are now staged under M5, not M6, in accordance with the off
 
 Migration: `20261116181500_learning_physics_m5_group4_outcomes_15_18.sql`. Teacher pack: `M5-physics-nuclear-structure-particle-physics-teacher-starter-pack.md`.
 
-Updated staged Physics totals: M4 17, M5 14 (outcomes 1–12, 15 and 18), M6 Group 3 8, and M6 Group 4 16 = **55 objectives, 55 lesson starters and 165 answer-keyed questions**. Group 4 M5 outcomes 15 and 18 are explicitly excluded from M6. Historical staging note: the Science migrations have since been applied to live Supabase.
+Updated staged Physics totals: M4 17, M5 14 (outcomes 1–12, 15 and 18), M6 Group 3 8, and M6 Group 4 16 = **55 objectives, 55 lesson starters and 165 answer-keyed questions**. Group 4 M5 outcomes 15 and 18 are explicitly excluded from M6. Historical note: an earlier rollout log recorded the migrations as applied; the current live database state has not been independently verified in this readiness record.
 
 
 ## Physics curriculum completion — all 67 official outcomes staged
@@ -271,28 +278,28 @@ Migration: `20261116183000_learning_physics_m5_electricity_and_colour_outcomes.s
 
 The new `BIOLOGY-CURRICULUM-AUDIT.md` reconciles all staged Biology objectives against the official IPST upper-secondary additional Biology curriculum-use manual. The grade/strand register confirms M4 32 (Strands 1 and 2), M5 39 (Strands 3 and 4), and M6 37 (Strands 2, 4 and 5): **108/108 official outcomes**. The seven existing Biology teacher packs contain 108 lesson starters and 324 answer-keyed questions. Outcome numbering is grade- and strand-specific; M4 and M6 Strand 2 and M5 and M6 Strand 4 are separate sequences. The manual does not assign Biology outcomes to M4 Strands 3–5 or M5 Strand 5, so these are not missing outcomes.
 
-No new Biology seed migration was needed: all 108 outcomes were already staged in the existing seven migrations. The Science catalogue is already applied to live Supabase. Next subject audit: complete M6 Chemistry and Earth/Space allocation verification before any further seeding.
+No new Biology seed migration was needed: all 108 outcomes were already staged in the existing seven migrations. An earlier rollout log recorded the Science catalogue as applied; the current live database state has not been independently verified in this readiness record. Next subject audit: complete M6 Chemistry and Earth/Space allocation verification before any further seeding.
 
 
 ## Chemistry curriculum audit — complete (81/81)
 
 The new `CHEMISTRY-CURRICULUM-AUDIT.md` reconciles all staged Chemistry objectives against the official IPST upper-secondary additional Chemistry curriculum-use manual. The grade/strand register confirms M4 28 (Strand 1 outcomes 1–21; Strand 2 outcomes 1–7), M5 38 (Strand 1 outcomes 1–6; Strand 2 outcomes 1–32), and M6 15 (Strand 1 outcomes 1–15): **81/81 official outcomes**. The six existing Chemistry teacher packs contain 81 lesson starters and 243 answer-keyed questions. No additional M6 Strand 2 outcome sequence is allocated in the official tables; no outcomes have been moved across grades to fill an empty strand/grade combination.
 
-No new Chemistry seed migration was needed: all 81 outcomes were already staged in the existing six migrations. The Science catalogue is already applied to live Supabase. Earth/Space remains the next additional-science subject track to audit and complete.
+No new Chemistry seed migration was needed: all 81 outcomes were already staged in the existing six migrations. An earlier rollout log recorded the Science catalogue as applied; the current live database state has not been independently verified in this readiness record. Earth/Space remains the next additional-science subject track to audit and complete.
 
 
 ## Earth, Astronomy and Space — M5 weather and climate batch
 
 M5 standard 2 outcomes 1–13 are now staged in `20261116184500_learning_earth_space_m5_atmosphere_oceans_climate.sql`. The accompanying `M5-earth-space-weather-atmosphere-oceans-climate-teacher-starter-pack.md` provides 13 lesson starters and 39 answer-keyed questions. The grade allocation and sequence are verified against the official IPST curriculum-use manual, printed pp. 21–24. Outcomes 8–11 are atmospheric stability/clouds, weather fronts, climate-change drivers/evidence, and climate-change impacts/mitigation; outcomes 12–13 cover weather-map interpretation and weather analysis/forecasting.
 
-The full Earth/Space audit is in `EARTH-SPACE-CURRICULUM-AUDIT.md`. This does not mark the subject complete: M4 Earth-science and M6 astronomy/space outcomes still require exact grade/outcome verification. The Science catalogue migrations have been applied to live Supabase.
+The full Earth/Space audit is in `EARTH-SPACE-CURRICULUM-AUDIT.md`. This does not mark the subject complete: M4 Earth-science and M6 astronomy/space outcomes still require exact grade/outcome verification. An earlier rollout log recorded these catalogue migrations as applied; the current live database state has not been independently verified in this readiness record.
 
 
 ### Earth, Astronomy and Space — M6 astronomy batch
 
 The official IPST manual crosswalk (printed pp. 31–32) explicitly assigns the astronomy sequence to M6. Outcomes 1–19 are staged in `20261116190000_learning_earth_space_m6_astronomy_space.sql`. The companion `M6-earth-space-astronomy-space-teacher-starter-pack.md` contains 19 lesson starters and 57 answer-keyed questions. The complete Earth/Space audit is in `EARTH-SPACE-CURRICULUM-AUDIT.md`.
 
-Historical checkpoint: M5 atmosphere/oceans/weather/climate 13 outcomes and M6 astronomy/space 19 outcomes were staged first (32 outcomes, 32 starters and 96 questions). The subsequent M4 geology batch completed the subject; see the Earth/Space completion section below. The resulting catalogue migrations have been applied to live Supabase.
+Historical checkpoint: M5 atmosphere/oceans/weather/climate 13 outcomes and M6 astronomy/space 19 outcomes were staged first (32 outcomes, 32 starters and 96 questions). The subsequent M4 geology batch completed the subject; see the Earth/Space completion section below. An earlier rollout log recorded these catalogue migrations as applied; the current live database state has not been independently verified in this readiness record.
 
 
 ## Upper-secondary Earth, Astronomy and Space completion
