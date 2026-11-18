@@ -1748,7 +1748,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 **Curriculum:** Thai Basic Education Core Curriculum B.E. 2551 (2008), revised B.E. 2560 (2017)  
 **Subject:** SCI  
-**Coverage:** 21 indicators in ว 2.3, four in ว 3.1 and seven in ว 3.2. This pack completes the 51 core Science indicators currently identified for M3 when combined with the 11 ว 1.3 and eight ว 2.1 lessons in the companion pack.
+**Coverage:** 21 indicators in ว 2.3, four in ว 3.1 and nine in ว 3.2. This pack completes the 53 core Science indicators currently identified for M3 when combined with the 11 ว 1.3 and eight ว 2.1 lessons in the companion pack.
 
 Each lesson maps to one official indicator and includes three practice questions with answer keys. Electrical activities must use teacher-approved low-voltage supplies; no mains electricity. Never look directly at the Sun or direct lasers at eyes. Hazard lessons use official safety guidance and classroom case studies, not field visits to dangerous locations.
 
