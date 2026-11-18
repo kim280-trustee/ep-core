@@ -175,7 +175,7 @@ Each lesson uses a 50-minute structure: 5 min warm-up/stimulus, 10 min explicit 
 
 ### Lesson 15: ด้นสดง่าย ๆ โดยใช้ประโยคเพลงแบบถาม - ตอบ
 
-- **Official indicator:** ARTS-P5-15 (ศ 2.1) — must_know.
+- **Official indicator:** ARTS-P5-15 (ศ 2.1) — should_know.
 - **Learning outcome:** Students can demonstrate: ด้นสดง่าย ๆ โดยใช้ประโยคเพลงแบบถาม - ตอบ.
 - **Materials:** Board, paper, pencils/colours, safe classroom materials, and relevant audio/visual examples.
 - **Teaching sequence:** Introduce a familiar example; model the target skill; guide students through a short task; let students produce or perform independently; use peer feedback and an exit check.
@@ -187,7 +187,7 @@ Each lesson uses a 50-minute structure: 5 min warm-up/stimulus, 10 min explicit 
 
 ### Lesson 16: ใช้ดนตรีร่วมกับกิจกรรมในการแสดงออกตามจินตนาการ
 
-- **Official indicator:** ARTS-P5-16 (ศ 2.1) — must_know.
+- **Official indicator:** ARTS-P5-16 (ศ 2.1) — should_know.
 - **Learning outcome:** Students can demonstrate: ใช้ดนตรีร่วมกับกิจกรรมในการแสดงออกตามจินตนาการ.
 - **Materials:** Board, paper, pencils/colours, safe classroom materials, and relevant audio/visual examples.
 - **Teaching sequence:** Introduce a familiar example; model the target skill; guide students through a short task; let students produce or perform independently; use peer feedback and an exit check.
@@ -235,7 +235,7 @@ Each lesson uses a 50-minute structure: 5 min warm-up/stimulus, 10 min explicit 
 
 ### Lesson 20: แสดงท่าทางประกอบเพลงหรือเรื่องราวตามความคิดของตน
 
-- **Official indicator:** ARTS-P5-20 (ศ 3.1) — must_know.
+- **Official indicator:** ARTS-P5-20 (ศ 3.1) — should_know.
 - **Learning outcome:** Students can demonstrate: แสดงท่าทางประกอบเพลงหรือเรื่องราวตามความคิดของตน.
 - **Materials:** Board, paper, pencils/colours, safe classroom materials, and relevant audio/visual examples.
 - **Teaching sequence:** Introduce a familiar example; model the target skill; guide students through a short task; let students produce or perform independently; use peer feedback and an exit check.
