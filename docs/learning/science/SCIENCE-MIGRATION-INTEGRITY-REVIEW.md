@@ -1,18 +1,22 @@
 # E&P Learning — Science Migration Integrity Review
 
 **Branch:** `paul/thai-national-curriculum-foundation`  
-**Scope:** 45 Science curriculum migrations, one corrective M2/M3 integrity migration, one additive M3 greenhouse-effect migration, four OBEC priority-classification migrations, one national-core alignment/priority reconciliation migration, and the existing academic/content/assessment schema  
+**Scope:** 45 original Science curriculum migrations, one corrective M2/M3 integrity migration, one additive M3 greenhouse-effect migration, four OBEC priority-classification migrations, one national-core alignment/priority reconciliation migration, and the primary W4.2 indicator migration  
 **Review type:** Static source review plus runtime migration verification against the existing Supabase project.
 
 ## Result
 
-The Science academic-catalogue migrations create or upsert global academic records only. They do not create school, class, student, assignment, authored lesson-content or question-bank records. Runtime verification confirmed all 15 expected subject/grade objective counts across the five subject tracks. The 144 lower-secondary core Science indicators are now aligned identically in both the Science-specific curriculum and the national-core curriculum (M1=43, M2=48, M3=53). OBEC 2021 priority classification is verified for M1 (29 must / 14 should), M2 (37 / 11), and 44 M3 indicators: biology/materials (14 / 5), energy/light (16 / 5) and astronomy/space (3 / 1). The nine M3 Earth-system indicators are not present in the OBEC 2021 priority table and remain intentionally unclassified; they are not missing classifications.
+The academic-catalogue migrations create or upsert global curriculum records only; they do not create school, class, student, assignment or learner-progress records. The original M1–M3 Science records and 300 M4–M6 specialist outcomes are present. A new migration adds 28 primary W4.2 indicators (P1–P6), each aligned to the national core curriculum and classified against the OBEC 2021 priority table.
 
-Runtime migration execution is complete. The application build, lint and end-to-end teacher/student tests remain pending before release.
+**The full national Science and Technology curriculum is not complete.** OBEC's 2021 table reports 415 core indicators across P1–M6. The current catalogue still lacks 111 primary W1–W3 indicators, 27 lower-secondary W4.1/W4.2 indicators, the M2/M3 W1–W3 code-level corrections, and the 102 shared M4–M6 core indicators. The 300 Biology/Chemistry/Physics/Earth-Space outcomes are additional specialist content and do not replace the upper-secondary core set. See `SCIENCE-CORE-CURRICULUM-GAP-AUDIT.md`.
+
+The current M3 set also requires reconciliation: the official standard table has six M3 W1.1 indicators, eight W1.3 indicators, three W2.2 indicators and no M3 W3.2 indicator set, while the current database has 11 W1.3-coded and nine W3.2-coded records. Do not treat the current 53 as an accepted official count.
+
+Runtime migration execution for the existing batches is complete. Application build, lint, importer smoke tests and app-wide end-to-end testing remain deferred until all curriculum rollouts are complete.
 
 ## Migration order
 
-The 45 curriculum files are timestamped in dependency order. The final corrective migration, `20261117130000_learning_science_m2_m3_skill_topic_integrity.sql`, runs after them and removes out-of-strand M2/M3 duplicate topics, objectives and alignments. The additive M3 greenhouse-effect migration adds the two omitted ว 3.2 ม.3/8–9 indicators. Four later priority migrations update classification metadata only. A final reconciliation migration mirrors the complete lower-secondary Science alignments and their priority metadata into the national-core curriculum catalogue. The original M2/M3 topic migrations have also been corrected in source so fresh resets seed each topic only under its intended skill.
+The 45 curriculum files are timestamped in dependency order. The final corrective migration, `20261117130000_learning_science_m2_m3_skill_topic_integrity.sql`, runs after them and removes out-of-strand M2/M3 duplicate topics, objectives and alignments. The additive M3 greenhouse-effect migration adds two legacy M3 Earth-system records that now require official-standard reconciliation. Four later priority migrations update classification metadata. A reconciliation migration mirrors the existing lower-secondary SCI records into the national-core curriculum. The latest primary W4.2 migration adds 28 official computational-science indicators to P1–P6; it does not close the remaining primary or upper-secondary core gaps. The original M2/M3 topic migrations have also been corrected in source so fresh resets seed each topic only under its intended skill.
 
 The 45 curriculum files are ordered as follows:
 
@@ -40,16 +44,16 @@ The M4 geology migration is last in the current batch and assigns outcomes 1–1
 
 ## Curriculum coverage register
 
-| Track | Objectives | Grade allocation |
+| Track | Current objectives | Grade allocation / status |
 |---|---:|---|
-| M1–M3 core Science | 144 | M1 43; M2 48; M3 53 |
+| SCI core and W4.2 | 172 | P1–P6 W4.2: 28; M1 43; M2 48; M3 53 (M3 code reconciliation open) |
 | Biology | 108 | M4 32; M5 39; M6 37 |
 | Chemistry | 81 | M4 28; M5 38; M6 15 |
 | Physics | 67 | M4 17; M5 26; M6 24 |
 | Earth, Astronomy and Space | 44 | M4 12; M5 13; M6 19 |
-| **Total** | **444** | **All allocations audited** |
+| **Current total** | **472** | **Partial national-core coverage; 300 specialist outcomes remain separate** |
 
-The teacher-pack corpus contains 444 lesson starters and 1,332 answer-keyed practice questions. These are source materials in Markdown, not database rows.
+Existing Science packs contain 444 lesson starters and 1,332 answer-keyed practice questions. The new primary W4.2 pack adds 28 lesson starters and 84 formative tasks with expected evidence. These are Markdown source materials, not database rows.
 
 ## Content and assessment insertion boundary
 
