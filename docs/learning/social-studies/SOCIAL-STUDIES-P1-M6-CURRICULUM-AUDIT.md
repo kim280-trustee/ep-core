@@ -47,14 +47,26 @@ The OBEC-authored Social Studies pathway document reports the following totals:
 
 The 2021 OBEC must-know / should-know classification is a separate classification system and is not interchangeable with the later between-learning / terminal classification. The 2021 PDF's printed grand total (408) is an arithmetic discrepancy: its grade rows add to 418, and the must-know / should-know column totals add to 418.
 
-## Classification status at audit start
+## Verified pathway classification status
 
-- P1: 31 indicators reconciled against the OBEC-authored pathway table: 22 between-learning and 9 terminal; zero unclassified.
-- P2: 34 indicators reconciled against the OBEC-authored pathway table: 22 between-learning and 12 terminal; zero unclassified.
-- P4–P6, M1 and M2: existing must_know / should_know values remain preserved; independent pathway mapping remains outstanding.
-- M3: all 50 indicators reconciled: 33 between-learning and 17 terminal; zero unclassified.
-- M4–M6: all 61 shared indicators reconciled: 42 between-learning and 19 terminal; zero unclassified in each of the three grade alignments.
-- The older must-know / should-know values remain separate and are never used as substitutes for pathway classifications.
+All 12 grade levels are now reconciled against the OBEC between-learning / terminal tables. Every grade alignment has a pathway value; there are zero missing classifications.
+
+| Grade | Total | Between-learning | Terminal | Missing |
+|---|---:|---:|---:|---:|
+| P1 | 31 | 22 | 9 | 0 |
+| P2 | 34 | 22 | 12 | 0 |
+| P3 | 39 | 30 | 9 | 0 |
+| P4 | 38 | 26 | 12 | 0 |
+| P5 | 36 | 22 | 14 | 0 |
+| P6 | 39 | 24 | 15 | 0 |
+| M1 | 45 | 27 | 18 | 0 |
+| M2 | 45 | 30 | 15 | 0 |
+| M3 | 50 | 33 | 17 | 0 |
+| M4 | 61 | 42 | 19 | 0 |
+| M5 | 61 | 42 | 19 | 0 |
+| M6 | 61 | 42 | 19 | 0 |
+
+The original 2021 must_know / should_know classifications remain in the separate `indicator_classification` field for P1–M2. Database verification confirms their per-grade counts are unchanged. M3–M6 pathway labels are stored only in `pathway_classification`, as designed.
 
 ## Teacher starter packs added
 
@@ -78,15 +90,17 @@ Each lesson retains the database indicator code, standard code and original Thai
 
 The alignment table now has a dedicated `pathway_classification` field for `between_learning` / `terminal`. The existing `indicator_classification` field retains the separate `must_know` / `should_know` priority classification. This avoids treating the two OBEC classification systems as interchangeable.
 
-Current pathway classification coverage: P1 = 22 / 9; P2 = 22 / 12; P3 = 30 / 9; M3 = 33 / 17; M4–M6 = 42 / 19 each. P4–P6 and M1–M2 remain unclassified in the pathway field (203 grade alignments).
+Current pathway classification coverage: all 540 grade-level alignments are classified (362 between-learning and 178 terminal alignment rows). Across the 418 unique indicators, the official grade-level summary is 278 between-learning and 140 terminal; M4–M6 share 61 indicators aligned across three grades.
 
-## Remaining acceptance criteria
+## Acceptance status and remaining work
 
-- Complete code-by-code between-learning / terminal classification for P3–P6, M1 and M2 (242 alignments).
-- Verify all grade-level totals against OBEC: 278 between-learning and 140 terminal across the 418 unique indicator set, with M4–M6 shared indicators aligned to all three grades.
-- Current verified state: P1–P3 and M3–M6 have zero unclassified pathway alignments; P4–P6 and M1–M2 remain outstanding.
-- Upgrade prompt stems into fully authored, indicator-specific assessment items and answer guidance where required.
-- Do not begin app-wide feature testing until all curriculum rollouts are complete.
+- [x] All 418 unique indicators are mapped to the official OBEC between-learning / terminal pathway.
+- [x] All 540 grade-level alignments have a pathway classification; zero missing.
+- [x] Official totals reconcile to 278 between-learning and 140 terminal indicators.
+- [x] All eight teacher starter packs contain the pathway labels for their covered indicators.
+- [x] The separate 2021 must_know / should_know priority classification remains preserved.
+- [ ] Upgrade the existing assessment prompt stems into fully authored, indicator-specific assessment items and answer guidance where required.
+- [ ] Do not begin app-wide feature testing until all curriculum rollouts are complete.
 
 ## Sources
 
