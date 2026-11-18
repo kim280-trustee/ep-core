@@ -2250,7 +2250,7 @@ Each lesson maps to one official indicator and includes three practice questions
 ## Lesson 25 — Evaluate space technology
 
 **Objective:** `M3-S3_1-04`  
-**Official indicator:** ว 3.1 ม.3/4  
+**Official indicator:** ว 3.6 ม.3/4  
 **Learning outcome:** Describe uses of satellites and space exploration.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
