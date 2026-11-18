@@ -2,7 +2,7 @@
 
 **Curriculum:** Thai Basic Education Core Curriculum B.E. 2551 (2008), revised 2017  
 **Source:** OBEC / IPST, *Indicators and Core Learning Content: Must-Know and Should-Know*, 2021  
-**Official source PDF:** https://spmuncn.obec.go.th/wp-content/uploads/2021/06/ตัวชี้วัดต้องรู้และควรรู้-หลักสูตรฯ-2551-สำหรับ.pdf  
+**Official source PDF:** https://www.academic.obec.go.th/images/official/1622514876_d_1.pdf  
 **Status:** Open — do not mark Science complete
 
 ## Official grade totals
@@ -43,6 +43,20 @@ The teacher pack `SCIENCE-TECHNOLOGY-W4.2-P1-P6-TEACHER-STARTER-PACK.md` contain
 The existing migration `20261118208000_seed_science_technology_primary_p1_p3_indicators.sql` already seeds the official P1–P3 W1–W3 set: 10 P1, 12 P2 and 20 P3 indicators (42 total). Together with the 28 primary W4.2 indicators, P1–P3 now reconcile to their full official grade totals (15, 16 and 25). This corrects the previous gap estimate, which counted these 42 records as missing.
 
 The remaining primary W1–W3 work is P4–P6 only: 16 P4, 27 P5 and 26 P6 indicators (69 total). Their Thai source wording and must/should classifications must be transcribed from the OBEC 2021 table before migration authoring; do not synthesize or infer official indicator text.
+
+
+
+### Primary priority totals and dual-classification exceptions
+
+The OBEC 2021 summary table reports the following classification totals for the remaining primary grades:
+
+| Grade | Unique indicators | Must-Know classifications | Should-Know classifications | Dual-classified indicator |
+|---|---:|---:|---:|---|
+| P4 | 21 | 16 | 6 | ว 2.1 ป.4/1 |
+| P5 | 32 | 24 | 8 | None listed |
+| P6 | 30 | 20 | 11 | ว 2.1 ป.6/1 |
+
+Must-Know and Should-Know counts are not mutually exclusive. P4 and P6 each have one indicator included in both classifications. The current alignment schema stores one classification value; any seed must preserve the second classification explicitly in notes/metadata. The SQL verification script checks the expected totals and flags these exceptions for review.
 
 ## Remaining national-core implementation
 
