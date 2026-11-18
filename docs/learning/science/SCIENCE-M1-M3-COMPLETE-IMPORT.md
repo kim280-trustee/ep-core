@@ -1,11 +1,11 @@
-# Science M1–M3 — Complete Teacher Import Pack
+# Science M1–M3 — Complete Lower-Secondary Core Import Pack
 
-**Curriculum:** `TH-SCI-M1-M6`  
+**Curriculum:** `TH-SCI-M1-M6` and `TH-BASIC-CORE-2008-2017`  
 **Subject:** `SCI` — Science  
-**Scope:** M1, M2 and M3 core Science only.  
+**Scope:** M1, M2 and M3 core Science content currently staged in the three source packs.  
 **Contents:** 144 lesson starters and 432 original answer-keyed practice questions.
 
-This file consolidates the three lower-secondary core Science packs for one authenticated teacher import. It contains original teacher-created material mapped to official Thai Science objectives. Review all objective mappings in the importer before importing; the resulting records are unpublished drafts.
+This combined file is rebuilt directly from all three grade/strand source packs to avoid omissions during consolidation. It preserves each lesson's objective code, official Thai indicator, activity and answer-keyed questions. The national Science and Technology rollout is still open; this file does not yet include the missing W4.1/W4.2 secondary indicators or the final M3 code reconciliation. See `SCIENCE-CORE-CURRICULUM-GAP-AUDIT.md`.
 
 # SOURCE PACK 1: M1-science-teacher-starter-pack.md
 
@@ -17,7 +17,7 @@ This file consolidates the three lower-secondary core Science packs for one auth
 **Curriculum version:** B.E. 2551 (2008), revised 2017  
 **Coverage:** 43 M1 core Science indicators across standards ว 1.2, ว 2.1, ว 2.2, ว 2.3 and ว 3.2.
 
-This pack provides one starter lesson per M1 indicator. Each lesson includes a suggested classroom activity and three practice questions with answers. It is a teacher planning resource, not published app content.
+This pack provides one starter lesson per M1 indicator. Each lesson records the OBEC 2021 must-know / should-know classification. Each lesson includes a suggested classroom activity and three practice questions with answers. It is a teacher planning resource, not published app content.
 
 ## Teacher authoring guidance
 
@@ -690,15 +690,13 @@ Office of the Basic Education Commission, Ministry of Education, *Learning Stand
 https://www.academic.obec.go.th/images/document/1580786506_d_1.pdf
 
 
----
-
 # SOURCE PACK 2: M2-M3-science-biological-teacher-starter-pack.md
 
 # M2–M3 Science — Biological and Physical Science Teacher Starter Pack
 
 **Curriculum:** Thai Basic Education Core Curriculum B.E. 2551 (2008), revised B.E. 2560 (2017)  
 **Subject:** SCI  
-**Coverage:** 17 M2 indicators in ว 1.2 and 11 M3 indicators in ว 1.3. This is a staged biological-science release, not complete M2/M3 Science coverage.
+**Coverage:** All 48 M2 core Science indicators and 19 M3 indicators (11 biological/genetics and 8 materials). The remaining 34 M3 indicators are in the separate energy and Earth-space pack. M2's 48 indicators and the 19 M3 biological/materials indicators in this pack carry OBEC 2021 priority labels. The separate M3 energy pack now also has verified labels for all 21 energy/light indicators; the nine M3 W3.2 Earth-system indicators are not listed in the OBEC 2021 priority table and are intentionally left without priority labels.
 
 Each lesson maps to one official indicator and includes three practice questions with answer keys. Reproductive-health topics must be taught respectfully and age-appropriately. Do not ask learners to disclose personal experiences or health information; refer medical questions to qualified professionals.
 
@@ -1740,8 +1738,6 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
    **Answer:** The chosen solution, evidence, limitations and possible improvements.
 
 
----
-
 # SOURCE PACK 3: M3-science-energy-earth-space-teacher-starter-pack.md
 
 # M3 Science — Energy, Light, Astronomy and Earth Science Teacher Starter Pack
@@ -2280,3 +2276,5 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** Reduce unnecessary electricity use, improve energy efficiency, encourage lower-emission travel, or reduce waste.
 3. Why should a climate action plan use evidence and measurable targets?  
    **Answer:** To check whether the action is effective and improve it using results.
+
+
