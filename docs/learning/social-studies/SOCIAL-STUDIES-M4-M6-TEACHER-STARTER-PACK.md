@@ -15,7 +15,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 1. SO1.1-M46-01
 
 - **Standard:** SO1.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์สังคมชมพูทวีป และคติความเชื่อทางศาสนาสมัยก่อนพระพุทธเจ้า หรือสังคมสมัยของศาสดาที่ตนนับถือ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -37,7 +37,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 2. SO1.1-M46-02
 
 - **Standard:** SO1.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์พระพุทธเจ้าในฐานะเป็นมนุษย์ผู้ฝึกตนได้อย่างสูงสุดในการตรัสรู้ การก่อตั้ง วิธีการสอน และการเผยแผ่พระพุทธศาสนา หรือวิเคราะห์ประวัติศาสดาที่ตนนับถือตามที่กำหนด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -59,7 +59,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 3. SO1.1-M46-03
 
 - **Standard:** SO1.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์พุทธประวัติด้านการบริหารและการธำรงรักษาศาสนา หรือวิเคราะห์ประวัติศาสดาที่ตนนับถือตามที่กำหนด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -81,7 +81,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 4. SO1.1-M46-04
 
 - **Standard:** SO1.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์ข้อปฏิบัติทางสายกลางในพระพุทธศาสนาหรือแนวคิดของศาสนาที่ตนนับถือตามที่กำหนด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -103,7 +103,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 5. SO1.1-M46-05
 
 - **Standard:** SO1.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์การพัฒนาศรัทธาและปัญญาที่ถูกต้องในพระพุทธศาสนา หรือแนวคิดของศาสนาที่ตนนับถือตามที่กำหนด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -125,7 +125,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 6. SO1.1-M46-06
 
 - **Standard:** SO1.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์ลักษณะประชาธิปไตยในพระพุทธศาสนา หรือแนวคิดของศาสนาที่ตนนับถือตามที่กำหนด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -147,7 +147,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 7. SO1.1-M46-07
 
 - **Standard:** SO1.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์หลักการของพระพุทธศาสนากับหลักวิทยาศาสตร์ หรือแนวคิดของศาสนาที่ตนนับถือตามที่กำหนด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -169,7 +169,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 8. SO1.1-M46-08
 
 - **Standard:** SO1.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์การฝึกฝนและพัฒนาตนเอง การพึ่งตนเอง และการมุ่งอิสรภาพในพระพุทธศาสนา หรือแนวคิดของศาสนาที่ตนนับถือ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -191,7 +191,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 9. SO1.1-M46-09
 
 - **Standard:** SO1.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์พระพุทธศาสนาว่าเป็นศาสตร์แห่งการศึกษา ซึ่งเน้นความสัมพันธ์ของเหตุปัจจัยกับวิธีการแก้ปัญหา หรือแนวคิดของศาสนาที่ตนนับถือ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -213,7 +213,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 10. SO1.1-M46-10
 
 - **Standard:** SO1.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์พระพุทธศาสนาในการฝึกตนไม่ให้ประมาท มุ่งประโยชน์และสันติภาพบุคคล สังคม และโลก หรือแนวคิดของศาสนาที่ตนนับถือ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -235,7 +235,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 11. SO1.1-M46-11
 
 - **Standard:** SO1.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์พระพุทธศาสนากับปรัชญาของเศรษฐกิจพอเพียง และการพัฒนาประเทศแบบยั่งยืน หรือแนวคิดของศาสนาที่ตนนับถือ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -257,7 +257,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 12. SO1.1-M46-12
 
 - **Standard:** SO1.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์ความสำคัญของพระพุทธศาสนาเกี่ยวกับการศึกษาที่สมบูรณ์ การเมืองและสันติภาพ หรือแนวคิดของศาสนาที่ตนนับถือ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -279,7 +279,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 13. SO1.1-M46-13
 
 - **Standard:** SO1.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** terminal
 - **Official indicator:** วิเคราะห์หลักธรรมในกรอบอริยสัจ ๔ หรือหลักคำสอนของศาสนาที่ตนนับถือ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -301,7 +301,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 14. SO1.1-M46-14
 
 - **Standard:** SO1.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์ข้อคิดและแบบอย่างการดำเนินชีวิตจากประวัติสาวก ชาดก เรื่องเล่า และศาสนิกชนตัวอย่างตามที่กำหนด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -323,7 +323,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 15. SO1.1-M46-15
 
 - **Standard:** SO1.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์คุณค่าและความสำคัญของการสังคายนา พระไตรปิฎก หรือคัมภีร์ของศาสนาที่ตนนับถือ และการเผยแผ่
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -345,7 +345,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 16. SO1.1-M46-16
 
 - **Standard:** SO1.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** terminal
 - **Official indicator:** เชื่อมั่นต่อผลของการทำความดี ความชั่ว สามารถวิเคราะห์สถานการณ์ที่ต้องเผชิญและตัดสินใจเลือกดำเนินการหรือปฏิบัติตนได้อย่างมีเหตุผลถูกต้องตามหลักธรรม จริยธรรม
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -367,7 +367,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 17. SO1.1-M46-17
 
 - **Standard:** SO1.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** อธิบายประวัติศาสดาของศาสนาอื่น ๆ โดยสังเขป
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -389,7 +389,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 18. SO1.1-M46-18
 
 - **Standard:** SO1.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** ตระหนักในคุณค่าและความสำคัญของค่านิยม จริยธรรมที่เป็นตัวกำหนดความเชื่อและพฤติกรรมที่แตกต่างกันของศาสนิกชนศาสนาต่าง ๆ เพื่อขจัดความขัดแย้งและอยู่ร่วมกันในสังคมอย่างสันติสุข
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -411,7 +411,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 19. SO1.1-M46-19
 
 - **Standard:** SO1.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** เห็นคุณค่า เชื่อมั่น และมุ่งมั่นพัฒนาชีวิตด้วยการพัฒนาจิตและพัฒนาการเรียนรู้ด้วยวิธีคิดแบบโยนิโสมนสิการ หรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -433,7 +433,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 20. SO1.1-M46-20
 
 - **Standard:** SO1.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** สวดมนต์ แผ่เมตตา และบริหารจิตและเจริญปัญญาตามหลักสติปัฏฐาน หรือตามแนวทางของศาสนาที่ตนนับถือ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -455,7 +455,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 21. SO1.1-M46-21
 
 - **Standard:** SO1.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** terminal
 - **Official indicator:** วิเคราะห์หลักธรรมสำคัญในการอยู่ร่วมกันอย่างสันติสุขของศาสนาอื่น ๆ และชักชวน ส่งเสริม สนับสนุนให้บุคคลอื่นเห็นความสำคัญของการทำความดีต่อกัน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -477,7 +477,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 22. SO1.1-M46-22
 
 - **Standard:** SO1.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** เสนอแนวทางการจัดกิจกรรมความร่วมมือของทุกศาสนาในการแก้ปัญหาและพัฒนาสังคม
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -499,7 +499,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 23. SO1.2-M46-01
 
 - **Standard:** SO1.2
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** ปฏิบัติตนเป็นศาสนิกชนที่ดีต่อสาวก สมาชิกในครอบครัวและคนรอบข้าง
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -521,7 +521,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 24. SO1.2-M46-02
 
 - **Standard:** SO1.2
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** ปฏิบัติตนถูกต้องตามศาสนพิธี พิธีกรรมตามหลักศาสนาที่ตนนับถือ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -543,7 +543,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 25. SO1.2-M46-03
 
 - **Standard:** SO1.2
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** แสดงตนเป็นพุทธมามกะหรือแสดงตนเป็นศาสนิกชนของศาสนาที่ตนนับถือ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -565,7 +565,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 26. SO1.2-M46-04
 
 - **Standard:** SO1.2
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์หลักธรรม คติธรรมที่เกี่ยวเนื่องกับวันสำคัญทางศาสนาและเทศกาลที่สำคัญของศาสนาที่ตนนับถือ และปฏิบัติตนได้ถูกต้อง
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -587,7 +587,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 27. SO1.2-M46-05
 
 - **Standard:** SO1.2
-- **Priority classification:** Classification audit pending
+- **Priority classification:** terminal
 - **Official indicator:** สัมมนาและเสนอแนะแนวทางในการธำรงรักษาศาสนาที่ตนนับถือ อันส่งผลถึงการพัฒนาตน พัฒนาชาติ และโลก
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -609,7 +609,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 28. SO2.1-M46-01
 
 - **Standard:** SO2.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์และปฏิบัติตนตามกฎหมายที่เกี่ยวข้องกับตนเอง ครอบครัว ชุมชน ประเทศชาติและสังคมโลก
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -631,7 +631,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 29. SO2.1-M46-02
 
 - **Standard:** SO2.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์ความสำคัญของโครงสร้างทางสังคม การขัดเกลาทางสังคม และการเปลี่ยนแปลงทางสังคม
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -653,7 +653,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 30. SO2.1-M46-03
 
 - **Standard:** SO2.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** terminal
 - **Official indicator:** ปฏิบัติตนและมีส่วนสนับสนุนให้ผู้อื่นประพฤติปฏิบัติเพื่อเป็นพลเมืองดีของประเทศชาติและสังคมโลก
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -675,7 +675,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 31. SO2.1-M46-04
 
 - **Standard:** SO2.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** ประเมินสถานการณ์สิทธิมนุษยชนในประเทศไทยและเสนอแนวทางพัฒนา
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -697,7 +697,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 32. SO2.1-M46-05
 
 - **Standard:** SO2.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** terminal
 - **Official indicator:** วิเคราะห์ความจำเป็นที่จะต้องมีการปรับปรุงเปลี่ยนแปลงและอนุรักษ์วัฒนธรรมไทยและเลือกรับวัฒนธรรมสากล
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -719,7 +719,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 33. SO2.2-M46-01
 
 - **Standard:** SO2.2
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์ปัญหาการเมืองที่สำคัญในประเทศจากแหล่งข้อมูลต่าง ๆ พร้อมทั้งเสนอแนวทางแก้ไข
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -741,7 +741,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 34. SO2.2-M46-02
 
 - **Standard:** SO2.2
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** เสนอแนวทางทางการเมืองการปกครองที่นำไปสู่ความเข้าใจและการประสานประโยชน์ร่วมกันระหว่างประเทศ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -763,7 +763,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 35. SO2.2-M46-03
 
 - **Standard:** SO2.2
-- **Priority classification:** Classification audit pending
+- **Priority classification:** terminal
 - **Official indicator:** วิเคราะห์ความสำคัญและความจำเป็นที่ต้องธำรงรักษาไว้ซึ่งการปกครองตามระบอบประชาธิปไตยอันมีพระมหากษัตริย์ทรงเป็นประมุข
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -785,7 +785,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 36. SO2.2-M46-04
 
 - **Standard:** SO2.2
-- **Priority classification:** Classification audit pending
+- **Priority classification:** terminal
 - **Official indicator:** เสนอแนวทางและมีส่วนร่วมในการตรวจสอบการใช้อำนาจรัฐ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -807,7 +807,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 37. SO3.1-M46-01
 
 - **Standard:** SO3.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** terminal
 - **Official indicator:** อภิปรายการกำหนดราคาและค่าจ้างในระบบเศรษฐกิจ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -829,7 +829,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 38. SO3.1-M46-02
 
 - **Standard:** SO3.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** ตระหนักถึงความสำคัญของปรัชญาของเศรษฐกิจพอเพียงที่มีต่อเศรษฐกิจสังคมของประเทศ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -851,7 +851,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 39. SO3.1-M46-03
 
 - **Standard:** SO3.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** terminal
 - **Official indicator:** ตระหนักถึงความสำคัญของระบบสหกรณ์ในการพัฒนาเศรษฐกิจในระดับชุมชนและประเทศ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -873,7 +873,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 40. SO3.1-M46-04
 
 - **Standard:** SO3.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์ปัญหาทางเศรษฐกิจในชุมชนและเสนอแนวทางแก้ไข
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -895,7 +895,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 41. SO3.2-M46-01
 
 - **Standard:** SO3.2
-- **Priority classification:** Classification audit pending
+- **Priority classification:** terminal
 - **Official indicator:** อธิบายบทบาทของรัฐบาลเกี่ยวกับนโยบายการเงินการคลังในการพัฒนาเศรษฐกิจของประเทศ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -917,7 +917,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 42. SO3.2-M46-02
 
 - **Standard:** SO3.2
-- **Priority classification:** Classification audit pending
+- **Priority classification:** terminal
 - **Official indicator:** วิเคราะห์ผลกระทบของการเปิดเสรีทางเศรษฐกิจในยุคโลกาภิวัตน์ที่มีผลต่อสังคมไทย
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -939,7 +939,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 43. SO3.2-M46-03
 
 - **Standard:** SO3.2
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์ผลดี ผลเสียของความร่วมมือทางเศรษฐกิจระหว่างประเทศในรูปแบบต่าง ๆ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -961,7 +961,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 44. SO4.1-M46-01
 
 - **Standard:** SO4.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** ตระหนักถึงความสำคัญของเวลาและยุคสมัยทางประวัติศาสตร์ที่แสดงถึงการเปลี่ยนแปลงของมนุษยชาติ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -983,7 +983,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 45. SO4.1-M46-02
 
 - **Standard:** SO4.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** สร้างองค์ความรู้ใหม่ทางประวัติศาสตร์โดยใช้วิธีการทางประวัติศาสตร์อย่างเป็นระบบ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1005,7 +1005,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 46. SO4.2-M46-01
 
 - **Standard:** SO4.2
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์อิทธิพลของอารยธรรมโบราณและการติดต่อระหว่างโลกตะวันออกกับโลกตะวันตกที่มีผลต่อพัฒนาการและการเปลี่ยนแปลงของโลก
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1027,7 +1027,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 47. SO4.2-M46-02
 
 - **Standard:** SO4.2
-- **Priority classification:** Classification audit pending
+- **Priority classification:** terminal
 - **Official indicator:** วิเคราะห์เหตุการณ์สำคัญต่าง ๆ ที่ส่งผลต่อการเปลี่ยนแปลงทางสังคม เศรษฐกิจและการเมืองเข้าสู่โลกสมัยปัจจุบัน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1049,7 +1049,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 48. SO4.2-M46-03
 
 - **Standard:** SO4.2
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์ผลกระทบของการขยายอิทธิพลของประเทศในยุโรปไปยังทวีปอเมริกา แอฟริกาและเอเชีย
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1071,7 +1071,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 49. SO4.2-M46-04
 
 - **Standard:** SO4.2
-- **Priority classification:** Classification audit pending
+- **Priority classification:** terminal
 - **Official indicator:** วิเคราะห์สถานการณ์ของโลกในคริสต์ศตวรรษที่ ๒๑
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1093,7 +1093,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 50. SO4.3-M46-01
 
 - **Standard:** SO4.3
-- **Priority classification:** Classification audit pending
+- **Priority classification:** terminal
 - **Official indicator:** วิเคราะห์ประเด็นสำคัญของประวัติศาสตร์ไทย
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1115,7 +1115,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 51. SO4.3-M46-02
 
 - **Standard:** SO4.3
-- **Priority classification:** Classification audit pending
+- **Priority classification:** terminal
 - **Official indicator:** วิเคราะห์ความสำคัญของสถาบันพระมหากษัตริย์ต่อชาติไทย
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1137,7 +1137,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 52. SO4.3-M46-03
 
 - **Standard:** SO4.3
-- **Priority classification:** Classification audit pending
+- **Priority classification:** terminal
 - **Official indicator:** วิเคราะห์ปัจจัยที่ส่งเสริมการสร้างสรรค์ภูมิปัญญาไทยและวัฒนธรรมไทย ซึ่งมีผลต่อสังคมไทยในยุคปัจจุบัน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1159,7 +1159,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 53. SO4.3-M46-04
 
 - **Standard:** SO4.3
-- **Priority classification:** Classification audit pending
+- **Priority classification:** terminal
 - **Official indicator:** วิเคราะห์ผลงานของบุคคลสำคัญทั้งชาวไทยและต่างประเทศที่มีส่วนสร้างสรรค์วัฒนธรรมไทยและประวัติศาสตร์ไทย
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1181,7 +1181,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 54. SO4.3-M46-05
 
 - **Standard:** SO4.3
-- **Priority classification:** Classification audit pending
+- **Priority classification:** terminal
 - **Official indicator:** วางแผนกำหนดแนวทางและการมีส่วนร่วมการอนุรักษ์ภูมิปัญญาไทยและวัฒนธรรมไทย
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1203,7 +1203,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 55. SO5.1-M46-01
 
 - **Standard:** SO5.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์การเปลี่ยนแปลงทางกายภาพในประเทศไทยและภูมิภาคต่าง ๆ ของโลก ซึ่งได้รับอิทธิพลจากปัจจัยทางภูมิศาสตร์
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1225,7 +1225,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 56. SO5.1-M46-02
 
 - **Standard:** SO5.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์ลักษณะทางกายภาพซึ่งทำให้เกิดปัญหาและภัยพิบัติทางธรรมชาติในประเทศไทยและภูมิภาคต่าง ๆ ของโลก
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1247,7 +1247,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 57. SO5.1-M46-03
 
 - **Standard:** SO5.1
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** ใช้แผนที่และเครื่องมือทางภูมิศาสตร์ในการค้นหา วิเคราะห์ และสรุปข้อมูล ตามกระบวนการทางภูมิศาสตร์ และนำภูมิสารสนเทศมาใช้ประโยชน์ในชีวิตประจำวัน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1269,7 +1269,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 58. SO5.2-M46-01
 
 - **Standard:** SO5.2
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์ปฏิสัมพันธ์ระหว่างสิ่งแวดล้อมทางกายภาพกับกิจกรรมของมนุษย์ในการสร้างสรรค์วิถีการดำเนินชีวิตของท้องถิ่นทั้งในประเทศไทยและภูมิภาคต่าง ๆ ของโลก และเห็นความสำคัญของสิ่งแวดล้อมที่มีผลต่อการดำรงชีวิตของมนุษย์
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1313,7 +1313,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 60. SO5.2-M46-04
 
 - **Standard:** SO5.2
-- **Priority classification:** Classification audit pending
+- **Priority classification:** between_learning
 - **Official indicator:** วิเคราะห์แนวทางและมีส่วนร่วมในการจัดการทรัพยากรธรรมชาติและสิ่งแวดล้อมเพื่อการพัฒนาที่ยั่งยืน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
