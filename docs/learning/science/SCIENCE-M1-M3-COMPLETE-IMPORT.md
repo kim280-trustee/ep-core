@@ -3,7 +3,7 @@
 **Curriculum:** `TH-SCI-M1-M6`  
 **Subject:** `SCI` — Science  
 **Scope:** M1, M2 and M3 core Science only.  
-**Contents:** 142 lesson starters and 426 original answer-keyed practice questions.
+**Contents:** 144 lesson starters and 432 original answer-keyed practice questions.
 
 This file consolidates the three lower-secondary core Science packs for one authenticated teacher import. It contains original teacher-created material mapped to official Thai Science objectives. Review all objective mappings in the importer before importing; the resulting records are unpublished drafts.
 
