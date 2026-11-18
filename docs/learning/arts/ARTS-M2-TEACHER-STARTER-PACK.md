@@ -283,7 +283,7 @@ Each lesson uses a 50-minute structure: 5 min warm-up/stimulus, 10 min explicit 
 
 ### Lesson 24: เชื่อมโยงการเรียนรู้ระหว่างนาฏศิลป์และการละครกับสาระการเรียนรู้อื่น ๆ
 
-- **Official indicator:** ARTS-M2-24 (ศ 3.1) — should_know.
+- **Official indicator:** ARTS-M2-24 (ศ 3.1) — must_know.
 - **Learning outcome:** Students can demonstrate: เชื่อมโยงการเรียนรู้ระหว่างนาฏศิลป์และการละครกับสาระการเรียนรู้อื่น ๆ.
 - **Materials:** Board, paper, pencils/colours, safe classroom materials, and relevant audio/visual examples.
 - **Teaching sequence:** Introduce a familiar example; model the target skill; guide students through a short task; let students produce or perform independently; use peer feedback and an exit check.
