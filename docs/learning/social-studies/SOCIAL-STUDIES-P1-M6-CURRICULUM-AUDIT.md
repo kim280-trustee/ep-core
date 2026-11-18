@@ -51,7 +51,7 @@ The 2021 OBEC must-know / should-know classification is a separate classificatio
 
 - P1: 31 indicators reconciled against the OBEC-authored pathway table: 22 between-learning and 9 terminal; zero unclassified.
 - P2: 34 indicators reconciled against the OBEC-authored pathway table: 22 between-learning and 12 terminal; zero unclassified.
-- P3–P6, M1 and M2: existing must_know / should_know values remain preserved; independent pathway mapping remains outstanding.
+- P4–P6, M1 and M2: existing must_know / should_know values remain preserved; independent pathway mapping remains outstanding.
 - M3: all 50 indicators reconciled: 33 between-learning and 17 terminal; zero unclassified.
 - M4–M6: all 61 shared indicators reconciled: 42 between-learning and 19 terminal; zero unclassified in each of the three grade alignments.
 - The older must-know / should-know values remain separate and are never used as substitutes for pathway classifications.
@@ -78,13 +78,13 @@ Each lesson retains the database indicator code, standard code and original Thai
 
 The alignment table now has a dedicated `pathway_classification` field for `between_learning` / `terminal`. The existing `indicator_classification` field retains the separate `must_know` / `should_know` priority classification. This avoids treating the two OBEC classification systems as interchangeable.
 
-Current pathway classification coverage: P1 = 22 / 9; P2 = 22 / 12; M3 = 33 / 17; M4–M6 = 42 / 19 each. P3–P6 and M1–M2 remain unclassified in the pathway field (242 grade alignments).
+Current pathway classification coverage: P1 = 22 / 9; P2 = 22 / 12; P3 = 30 / 9; M3 = 33 / 17; M4–M6 = 42 / 19 each. P4–P6 and M1–M2 remain unclassified in the pathway field (203 grade alignments).
 
 ## Remaining acceptance criteria
 
 - Complete code-by-code between-learning / terminal classification for P3–P6, M1 and M2 (242 alignments).
 - Verify all grade-level totals against OBEC: 278 between-learning and 140 terminal across the 418 unique indicator set, with M4–M6 shared indicators aligned to all three grades.
-- Current verified state: P1, P2 and M3–M6 have zero unclassified pathway alignments; P3–P6 and M1–M2 remain outstanding.
+- Current verified state: P1–P3 and M3–M6 have zero unclassified pathway alignments; P4–P6 and M1–M2 remain outstanding.
 - Upgrade prompt stems into fully authored, indicator-specific assessment items and answer guidance where required.
 - Do not begin app-wide feature testing until all curriculum rollouts are complete.
 
