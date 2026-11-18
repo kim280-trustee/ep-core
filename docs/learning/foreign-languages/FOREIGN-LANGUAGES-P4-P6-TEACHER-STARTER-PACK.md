@@ -19,7 +19,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 1. FL-P4-01 — ปฏิบัติตามคำสั่ง คำขอร้อง และคำแนะนำ (instructions) ง่าย ๆ ที่ฟังหรืออ่าน
 
-- **Official indicator:** `ต 1.1 ป`
+- **Official indicator:** `ต 1.1 ป.4/1`
 - **Standard:** ต 1.1 — Listening and reading comprehension
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** ปฏิบัติตามคำสั่ง คำขอร้อง และคำแนะนำ (instructions) ง่าย ๆ ที่ฟังหรืออ่าน
@@ -37,7 +37,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 2. FL-P4-02 — อ่านออกเสียงคำ สะกดคำ อ่านกลุ่มคำ ประโยค ข้อความง่าย ๆ และบทพูดเข้าจังหวะถูกต้องตามหลักการอ่าน
 
-- **Official indicator:** `ต 1.1 ป`
+- **Official indicator:** `ต 1.1 ป.4/2`
 - **Standard:** ต 1.1 — Listening and reading comprehension
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** อ่านออกเสียงคำ สะกดคำ อ่านกลุ่มคำ ประโยค ข้อความง่าย ๆ และบทพูดเข้าจังหวะถูกต้องตามหลักการอ่าน
@@ -55,7 +55,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 3. FL-P4-03 — เลือก/ระบุภาพหรือสัญลักษณ์ หรือเครื่องหมายตรงตามความหมายของประโยคและข้อความสั้น ๆ ที่ฟังหรืออ่าน
 
-- **Official indicator:** `ต 1.1 ป`
+- **Official indicator:** `ต 1.1 ป.4/3`
 - **Standard:** ต 1.1 — Listening and reading comprehension
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** เลือก/ระบุภาพหรือสัญลักษณ์ หรือเครื่องหมายตรงตามความหมายของประโยคและข้อความสั้น ๆ ที่ฟังหรืออ่าน
@@ -73,7 +73,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 4. FL-P4-04 — ตอบคำถามจากการฟังและอ่านประโยค บทสนทนา นิทานง่าย ๆ
 
-- **Official indicator:** `ต 1.1 ป`
+- **Official indicator:** `ต 1.1 ป.4/4`
 - **Standard:** ต 1.1 — Listening and reading comprehension
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** ตอบคำถามจากการฟังและอ่านประโยค บทสนทนา นิทานง่าย ๆ
@@ -91,7 +91,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 5. FL-P4-05 — พูด/เขียนโต้ตอบในการสื่อสารระหว่างบุคคล
 
-- **Official indicator:** `ต 1.2 ป`
+- **Official indicator:** `ต 1.2 ป.4/1`
 - **Standard:** ต 1.2 — Interpersonal communication
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** พูด/เขียนโต้ตอบในการสื่อสารระหว่างบุคคล
@@ -109,7 +109,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 6. FL-P4-06 — ใช้คำสั่ง คำขอร้อง และคำขออนุญาตง่าย ๆ
 
-- **Official indicator:** `ต 1.2 ป`
+- **Official indicator:** `ต 1.2 ป.4/2`
 - **Standard:** ต 1.2 — Interpersonal communication
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** ใช้คำสั่ง คำขอร้อง และคำขออนุญาตง่าย ๆ
@@ -127,7 +127,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 7. FL-P4-07 — พูด/เขียนแสดงความต้องการของตนเอง และขอความช่วยเหลือในสถานการณ์ง่าย ๆ
 
-- **Official indicator:** `ต 1.2 ป`
+- **Official indicator:** `ต 1.2 ป.4/3`
 - **Standard:** ต 1.2 — Interpersonal communication
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** พูด/เขียนแสดงความต้องการของตนเอง และขอความช่วยเหลือในสถานการณ์ง่าย ๆ
@@ -145,7 +145,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 8. FL-P4-08 — พูด/เขียนเพื่อขอและให้ข้อมูลเกี่ยวกับตนเอง เพื่อนและครอบครัว
 
-- **Official indicator:** `ต 1.2 ป`
+- **Official indicator:** `ต 1.2 ป.4/4`
 - **Standard:** ต 1.2 — Interpersonal communication
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** พูด/เขียนเพื่อขอและให้ข้อมูลเกี่ยวกับตนเอง เพื่อนและครอบครัว
@@ -163,7 +163,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 9. FL-P4-09 — พูดแสดงความรู้สึกของตนเองเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัวและกิจกรรมต่าง ๆ ตามแบบที่ฟัง
 
-- **Official indicator:** `ต 1.2 ป`
+- **Official indicator:** `ต 1.2 ป.4/5`
 - **Standard:** ต 1.2 — Interpersonal communication
 - **OBEC 2021 priority:** `should_know`
 - **Original Thai indicator:** พูดแสดงความรู้สึกของตนเองเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัวและกิจกรรมต่าง ๆ ตามแบบที่ฟัง
@@ -181,7 +181,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 10. FL-P4-10 — พูด/เขียนให้ข้อมูลเกี่ยวกับตนเองและเรื่องใกล้ตัว
 
-- **Official indicator:** `ต 1.3 ป`
+- **Official indicator:** `ต 1.3 ป.4/1`
 - **Standard:** ต 1.3 — Presenting information and opinions
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** พูด/เขียนให้ข้อมูลเกี่ยวกับตนเองและเรื่องใกล้ตัว
@@ -199,7 +199,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 11. FL-P4-11 — พูด/วาดภาพแสดงความสัมพันธ์ของสิ่งต่าง ๆ ใกล้ตัวตามที่ฟังหรืออ่าน
 
-- **Official indicator:** `ต 1.3 ป`
+- **Official indicator:** `ต 1.3 ป.4/2`
 - **Standard:** ต 1.3 — Presenting information and opinions
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** พูด/วาดภาพแสดงความสัมพันธ์ของสิ่งต่าง ๆ ใกล้ตัวตามที่ฟังหรืออ่าน
@@ -217,7 +217,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 12. FL-P4-12 — พูดแสดงความคิดเห็นง่าย ๆ เกี่ยวกับเรื่องต่าง ๆ ใกล้ตัว
 
-- **Official indicator:** `ต 1.3 ป`
+- **Official indicator:** `ต 1.3 ป.4/3`
 - **Standard:** ต 1.3 — Presenting information and opinions
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** พูดแสดงความคิดเห็นง่าย ๆ เกี่ยวกับเรื่องต่าง ๆ ใกล้ตัว
@@ -235,7 +235,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 13. FL-P4-13 — พูดและทำท่าประกอบอย่างสุภาพตามมารยาทสังคม/วัฒนธรรมของเจ้าของภาษา
 
-- **Official indicator:** `ต 2.1 ป`
+- **Official indicator:** `ต 2.1 ป.4/1`
 - **Standard:** ต 2.1 — Language, culture and social conventions
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** พูดและทำท่าประกอบอย่างสุภาพตามมารยาทสังคม/วัฒนธรรมของเจ้าของภาษา
@@ -253,7 +253,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 14. FL-P4-14 — ตอบคำถามเกี่ยวกับเทศกาล/วันสำคัญ/งานฉลอง และชีวิตความเป็นอยู่ของเจ้าของภาษา
 
-- **Official indicator:** `ต 2.1 ป`
+- **Official indicator:** `ต 2.1 ป.4/2`
 - **Standard:** ต 2.1 — Language, culture and social conventions
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** ตอบคำถามเกี่ยวกับเทศกาล/วันสำคัญ/งานฉลอง และชีวิตความเป็นอยู่ของเจ้าของภาษา
@@ -271,7 +271,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 15. FL-P4-15 — เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมที่เหมาะกับวัย
 
-- **Official indicator:** `ต 2.1 ป`
+- **Official indicator:** `ต 2.1 ป.4/3`
 - **Standard:** ต 2.1 — Language, culture and social conventions
 - **OBEC 2021 priority:** `should_know`
 - **Original Thai indicator:** เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมที่เหมาะกับวัย
@@ -289,7 +289,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 16. FL-P4-16 — บอกความแตกต่างของเสียงตัวอักษร คำ กลุ่มคำ ประโยค และข้อความของภาษาต่างประเทศและภาษาไทย
 
-- **Official indicator:** `ต 2.2 ป`
+- **Official indicator:** `ต 2.2 ป.4/1`
 - **Standard:** ต 2.2 — Comparing language and culture
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** บอกความแตกต่างของเสียงตัวอักษร คำ กลุ่มคำ ประโยค และข้อความของภาษาต่างประเทศและภาษาไทย
@@ -307,7 +307,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 17. FL-P4-17 — บอกความเหมือน/ความแตกต่างระหว่างเทศกาลและงานฉลองตามวัฒนธรรมของเจ้าของภาษากับของไทย
 
-- **Official indicator:** `ต 2.2 ป`
+- **Official indicator:** `ต 2.2 ป.4/2`
 - **Standard:** ต 2.2 — Comparing language and culture
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** บอกความเหมือน/ความแตกต่างระหว่างเทศกาลและงานฉลองตามวัฒนธรรมของเจ้าของภาษากับของไทย
@@ -325,7 +325,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 18. FL-P4-18 — ค้นคว้า/รวบรวมคำศัพท์ที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่น และนำเสนอด้วยการพูด/การเขียน
 
-- **Official indicator:** `ต 3.1 ป`
+- **Official indicator:** `ต 3.1 ป.4/1`
 - **Standard:** ต 3.1 — Cross-curricular language learning
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** ค้นคว้า/รวบรวมคำศัพท์ที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่น และนำเสนอด้วยการพูด/การเขียน
@@ -343,7 +343,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 19. FL-P4-19 — ฟังและพูด/อ่านในสถานการณ์ที่เกิดขึ้นในห้องเรียนและสถานศึกษา
 
-- **Official indicator:** `ต 4.1 ป`
+- **Official indicator:** `ต 4.1 ป.4/1`
 - **Standard:** ต 4.1 — Using English in real-life situations
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** ฟังและพูด/อ่านในสถานการณ์ที่เกิดขึ้นในห้องเรียนและสถานศึกษา
@@ -361,7 +361,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 20. FL-P4-20 — ใช้ภาษาต่างประเทศในการสืบค้นและรวบรวมข้อมูลต่าง ๆ
 
-- **Official indicator:** `ต 4.2 ป`
+- **Official indicator:** `ต 4.2 ป.4/1`
 - **Standard:** ต 4.2 — Using English for research and further learning
 - **OBEC 2021 priority:** `should_know`
 - **Original Thai indicator:** ใช้ภาษาต่างประเทศในการสืบค้นและรวบรวมข้อมูลต่าง ๆ
@@ -379,7 +379,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 21. FL-P5-01 — ปฏิบัติตามคำสั่ง คำขอร้อง และคำแนะนำง่าย ๆ ที่ฟังและอ่าน
 
-- **Official indicator:** `ต 1.1 ป`
+- **Official indicator:** `ต 1.1 ป.5/1`
 - **Standard:** ต 1.1 — Listening and reading comprehension
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** ปฏิบัติตามคำสั่ง คำขอร้อง และคำแนะนำง่าย ๆ ที่ฟังและอ่าน
@@ -397,7 +397,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 22. FL-P5-02 — อ่านออกเสียงประโยค ข้อความ และบทกลอนสั้น ๆ ถูกต้องตามหลักการอ่าน
 
-- **Official indicator:** `ต 1.1 ป`
+- **Official indicator:** `ต 1.1 ป.5/2`
 - **Standard:** ต 1.1 — Listening and reading comprehension
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** อ่านออกเสียงประโยค ข้อความ และบทกลอนสั้น ๆ ถูกต้องตามหลักการอ่าน
@@ -415,7 +415,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 23. FL-P5-03 — ระบุ/วาดภาพ สัญลักษณ์ หรือเครื่องหมายตรงตามความหมายของประโยคและข้อความสั้น ๆ ที่ฟังหรืออ่าน
 
-- **Official indicator:** `ต 1.1 ป`
+- **Official indicator:** `ต 1.1 ป.5/3`
 - **Standard:** ต 1.1 — Listening and reading comprehension
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** ระบุ/วาดภาพ สัญลักษณ์ หรือเครื่องหมายตรงตามความหมายของประโยคและข้อความสั้น ๆ ที่ฟังหรืออ่าน
@@ -433,7 +433,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 24. FL-P5-04 — บอกใจความสำคัญและตอบคำถามจากการฟังและอ่านบทสนทนา นิทานง่าย ๆ หรือเรื่องสั้น ๆ
 
-- **Official indicator:** `ต 1.1 ป`
+- **Official indicator:** `ต 1.1 ป.5/4`
 - **Standard:** ต 1.1 — Listening and reading comprehension
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** บอกใจความสำคัญและตอบคำถามจากการฟังและอ่านบทสนทนา นิทานง่าย ๆ หรือเรื่องสั้น ๆ
@@ -451,7 +451,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 25. FL-P5-05 — พูด/เขียนโต้ตอบในการสื่อสารระหว่างบุคคล
 
-- **Official indicator:** `ต 1.2 ป`
+- **Official indicator:** `ต 1.2 ป.5/1`
 - **Standard:** ต 1.2 — Interpersonal communication
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** พูด/เขียนโต้ตอบในการสื่อสารระหว่างบุคคล
@@ -469,7 +469,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 26. FL-P5-06 — ใช้คำสั่ง คำขอร้อง คำขออนุญาต และให้คำแนะนำง่าย ๆ
 
-- **Official indicator:** `ต 1.2 ป`
+- **Official indicator:** `ต 1.2 ป.5/2`
 - **Standard:** ต 1.2 — Interpersonal communication
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** ใช้คำสั่ง คำขอร้อง คำขออนุญาต และให้คำแนะนำง่าย ๆ
@@ -487,7 +487,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 27. FL-P5-07 — พูด/เขียนแสดงความต้องการ ขอความช่วยเหลือ ตอบรับและปฏิเสธการให้ความช่วยเหลือในสถานการณ์ง่าย ๆ
 
-- **Official indicator:** `ต 1.2 ป`
+- **Official indicator:** `ต 1.2 ป.5/3`
 - **Standard:** ต 1.2 — Interpersonal communication
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** พูด/เขียนแสดงความต้องการ ขอความช่วยเหลือ ตอบรับและปฏิเสธการให้ความช่วยเหลือในสถานการณ์ง่าย ๆ
@@ -505,7 +505,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 28. FL-P5-08 — พูด/เขียนเพื่อขอและให้ข้อมูลเกี่ยวกับตนเอง เพื่อน ครอบครัว และเรื่องใกล้ตัว
 
-- **Official indicator:** `ต 1.2 ป`
+- **Official indicator:** `ต 1.2 ป.5/4`
 - **Standard:** ต 1.2 — Interpersonal communication
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** พูด/เขียนเพื่อขอและให้ข้อมูลเกี่ยวกับตนเอง เพื่อน ครอบครัว และเรื่องใกล้ตัว
@@ -523,7 +523,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 29. FL-P5-09 — พูด/เขียนแสดงความรู้สึกของตนเองเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัวและกิจกรรมต่าง ๆ พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ
 
-- **Official indicator:** `ต 1.2 ป`
+- **Official indicator:** `ต 1.2 ป.5/5`
 - **Standard:** ต 1.2 — Interpersonal communication
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** พูด/เขียนแสดงความรู้สึกของตนเองเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัวและกิจกรรมต่าง ๆ พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ
@@ -541,7 +541,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 30. FL-P5-10 — พูด/เขียนให้ข้อมูลเกี่ยวกับตนเองและเรื่องใกล้ตัว
 
-- **Official indicator:** `ต 1.3 ป`
+- **Official indicator:** `ต 1.3 ป.5/1`
 - **Standard:** ต 1.3 — Presenting information and opinions
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** พูด/เขียนให้ข้อมูลเกี่ยวกับตนเองและเรื่องใกล้ตัว
@@ -559,7 +559,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 31. FL-P5-11 — เขียนภาพ แผนผัง และแผนภูมิแสดงข้อมูลต่าง ๆ ตามที่ฟังหรืออ่าน
 
-- **Official indicator:** `ต 1.3 ป`
+- **Official indicator:** `ต 1.3 ป.5/2`
 - **Standard:** ต 1.3 — Presenting information and opinions
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** เขียนภาพ แผนผัง และแผนภูมิแสดงข้อมูลต่าง ๆ ตามที่ฟังหรืออ่าน
@@ -577,7 +577,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 32. FL-P5-12 — พูดแสดงความคิดเห็นเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัว
 
-- **Official indicator:** `ต 1.3 ป`
+- **Official indicator:** `ต 1.3 ป.5/3`
 - **Standard:** ต 1.3 — Presenting information and opinions
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** พูดแสดงความคิดเห็นเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัว
@@ -595,7 +595,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 33. FL-P5-13 — ใช้ถ้อยคำ น้ำเสียง และกิริยาท่าทางอย่างสุภาพตามมารยาทสังคมและวัฒนธรรมของเจ้าของภาษา
 
-- **Official indicator:** `ต 2.1 ป`
+- **Official indicator:** `ต 2.1 ป.5/1`
 - **Standard:** ต 2.1 — Language, culture and social conventions
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** ใช้ถ้อยคำ น้ำเสียง และกิริยาท่าทางอย่างสุภาพตามมารยาทสังคมและวัฒนธรรมของเจ้าของภาษา
@@ -613,7 +613,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 34. FL-P5-14 — ตอบคำถาม/บอกความสำคัญของเทศกาล/วันสำคัญ/งานฉลองและชีวิตความเป็นอยู่ของเจ้าของภาษา
 
-- **Official indicator:** `ต 2.1 ป`
+- **Official indicator:** `ต 2.1 ป.5/2`
 - **Standard:** ต 2.1 — Language, culture and social conventions
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** ตอบคำถาม/บอกความสำคัญของเทศกาล/วันสำคัญ/งานฉลองและชีวิตความเป็นอยู่ของเจ้าของภาษา
@@ -631,7 +631,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 35. FL-P5-15 — เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมตามความสนใจ
 
-- **Official indicator:** `ต 2.1 ป`
+- **Official indicator:** `ต 2.1 ป.5/3`
 - **Standard:** ต 2.1 — Language, culture and social conventions
 - **OBEC 2021 priority:** `should_know`
 - **Original Thai indicator:** เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมตามความสนใจ
@@ -649,7 +649,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 36. FL-P5-16 — บอกความเหมือน/ความแตกต่างระหว่างการออกเสียงประโยคชนิดต่าง ๆ การใช้เครื่องหมายวรรคตอน และการลำดับคำตามโครงสร้างประโยคของภาษาต่างประเทศและภาษาไทย
 
-- **Official indicator:** `ต 2.2 ป`
+- **Official indicator:** `ต 2.2 ป.5/1`
 - **Standard:** ต 2.2 — Comparing language and culture
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** บอกความเหมือน/ความแตกต่างระหว่างการออกเสียงประโยคชนิดต่าง ๆ การใช้เครื่องหมายวรรคตอน และการลำดับคำตามโครงสร้างประโยคของภาษาต่างประเทศและภาษาไทย
@@ -667,7 +667,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 37. FL-P5-17 — บอกความเหมือน/ความแตกต่างระหว่างเทศกาลและงานฉลองตามวัฒนธรรมของเจ้าของภาษากับของไทย
 
-- **Official indicator:** `ต 2.2 ป`
+- **Official indicator:** `ต 2.2 ป.5/2`
 - **Standard:** ต 2.2 — Comparing language and culture
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** บอกความเหมือน/ความแตกต่างระหว่างเทศกาลและงานฉลองตามวัฒนธรรมของเจ้าของภาษากับของไทย
@@ -685,7 +685,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 38. FL-P5-18 — ค้นคว้า รวบรวมคำศัพท์ที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่น และนำเสนอด้วยการพูด/การเขียน
 
-- **Official indicator:** `ต 3.1 ป`
+- **Official indicator:** `ต 3.1 ป.5/1`
 - **Standard:** ต 3.1 — Cross-curricular language learning
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** ค้นคว้า รวบรวมคำศัพท์ที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่น และนำเสนอด้วยการพูด/การเขียน
@@ -703,7 +703,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 39. FL-P5-19 — ฟัง พูด และอ่าน/เขียนในสถานการณ์ต่าง ๆ ที่เกิดขึ้นในห้องเรียนและสถานศึกษา
 
-- **Official indicator:** `ต 4.1 ป`
+- **Official indicator:** `ต 4.1 ป.5/1`
 - **Standard:** ต 4.1 — Using English in real-life situations
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** ฟัง พูด และอ่าน/เขียนในสถานการณ์ต่าง ๆ ที่เกิดขึ้นในห้องเรียนและสถานศึกษา
@@ -721,7 +721,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 40. FL-P5-20 — ใช้ภาษาต่างประเทศในการสืบค้นและรวบรวมข้อมูลต่าง ๆ
 
-- **Official indicator:** `ต 4.2 ป`
+- **Official indicator:** `ต 4.2 ป.5/1`
 - **Standard:** ต 4.2 — Using English for research and further learning
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** ใช้ภาษาต่างประเทศในการสืบค้นและรวบรวมข้อมูลต่าง ๆ
@@ -739,7 +739,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 41. FL-P6-01 — ปฏิบัติตามคำสั่ง คำขอร้อง และคำแนะนำที่ฟังและอ่าน
 
-- **Official indicator:** `ต 1.1 ป`
+- **Official indicator:** `ต 1.1 ป.6/1`
 - **Standard:** ต 1.1 — Listening and reading comprehension
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** ปฏิบัติตามคำสั่ง คำขอร้อง และคำแนะนำที่ฟังและอ่าน
@@ -757,7 +757,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 42. FL-P6-02 — อ่านออกเสียงข้อความ นิทาน และบทกลอนสั้น ๆ ถูกต้องตามหลักการอ่าน
 
-- **Official indicator:** `ต 1.1 ป`
+- **Official indicator:** `ต 1.1 ป.6/2`
 - **Standard:** ต 1.1 — Listening and reading comprehension
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** อ่านออกเสียงข้อความ นิทาน และบทกลอนสั้น ๆ ถูกต้องตามหลักการอ่าน
@@ -775,7 +775,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 43. FL-P6-03 — เลือก/ระบุประโยคหรือข้อความสั้น ๆ ตรงตามภาพ สัญลักษณ์ หรือเครื่องหมายที่อ่าน
 
-- **Official indicator:** `ต 1.1 ป`
+- **Official indicator:** `ต 1.1 ป.6/3`
 - **Standard:** ต 1.1 — Listening and reading comprehension
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** เลือก/ระบุประโยคหรือข้อความสั้น ๆ ตรงตามภาพ สัญลักษณ์ หรือเครื่องหมายที่อ่าน
@@ -793,7 +793,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 44. FL-P6-04 — บอกใจความสำคัญและตอบคำถามจากการฟังและอ่านบทสนทนา นิทานง่าย ๆ และเรื่องเล่า
 
-- **Official indicator:** `ต 1.1 ป`
+- **Official indicator:** `ต 1.1 ป.6/4`
 - **Standard:** ต 1.1 — Listening and reading comprehension
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** บอกใจความสำคัญและตอบคำถามจากการฟังและอ่านบทสนทนา นิทานง่าย ๆ และเรื่องเล่า
@@ -811,7 +811,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 45. FL-P6-05 — พูด/เขียนโต้ตอบในการสื่อสารระหว่างบุคคล
 
-- **Official indicator:** `ต 1.2 ป`
+- **Official indicator:** `ต 1.2 ป.6/1`
 - **Standard:** ต 1.2 — Interpersonal communication
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** พูด/เขียนโต้ตอบในการสื่อสารระหว่างบุคคล
@@ -829,7 +829,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 46. FL-P6-06 — ใช้คำสั่ง คำขอร้อง คำขออนุญาต และคำแนะนำ
 
-- **Official indicator:** `ต 1.2 ป`
+- **Official indicator:** `ต 1.2 ป.6/2`
 - **Standard:** ต 1.2 — Interpersonal communication
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** ใช้คำสั่ง คำขอร้อง คำขออนุญาต และคำแนะนำ
@@ -847,7 +847,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 47. FL-P6-07 — พูด/เขียนแสดงความต้องการ ขอความช่วยเหลือ ตอบรับและปฏิเสธการให้ความช่วยเหลือในสถานการณ์ง่าย ๆ
 
-- **Official indicator:** `ต 1.2 ป`
+- **Official indicator:** `ต 1.2 ป.6/3`
 - **Standard:** ต 1.2 — Interpersonal communication
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** พูด/เขียนแสดงความต้องการ ขอความช่วยเหลือ ตอบรับและปฏิเสธการให้ความช่วยเหลือในสถานการณ์ง่าย ๆ
@@ -865,7 +865,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 48. FL-P6-08 — พูดและเขียนเพื่อขอและให้ข้อมูลเกี่ยวกับตนเอง เพื่อน ครอบครัว และเรื่องใกล้ตัว
 
-- **Official indicator:** `ต 1.2 ป`
+- **Official indicator:** `ต 1.2 ป.6/4`
 - **Standard:** ต 1.2 — Interpersonal communication
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** พูดและเขียนเพื่อขอและให้ข้อมูลเกี่ยวกับตนเอง เพื่อน ครอบครัว และเรื่องใกล้ตัว
@@ -883,7 +883,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 49. FL-P6-09 — พูด/เขียนแสดงความรู้สึกของตนเองเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัวและกิจกรรมต่าง ๆ พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ
 
-- **Official indicator:** `ต 1.2 ป`
+- **Official indicator:** `ต 1.2 ป.6/5`
 - **Standard:** ต 1.2 — Interpersonal communication
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** พูด/เขียนแสดงความรู้สึกของตนเองเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัวและกิจกรรมต่าง ๆ พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ
@@ -901,7 +901,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 50. FL-P6-10 — พูด/เขียนให้ข้อมูลเกี่ยวกับตนเอง เพื่อน และสิ่งแวดล้อมใกล้ตัว
 
-- **Official indicator:** `ต 1.3 ป`
+- **Official indicator:** `ต 1.3 ป.6/1`
 - **Standard:** ต 1.3 — Presenting information and opinions
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** พูด/เขียนให้ข้อมูลเกี่ยวกับตนเอง เพื่อน และสิ่งแวดล้อมใกล้ตัว
@@ -919,7 +919,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 51. FL-P6-11 — เขียนภาพ แผนผัง แผนภูมิ และตารางแสดงข้อมูลต่าง ๆ ที่ฟังหรืออ่าน
 
-- **Official indicator:** `ต 1.3 ป`
+- **Official indicator:** `ต 1.3 ป.6/2`
 - **Standard:** ต 1.3 — Presenting information and opinions
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** เขียนภาพ แผนผัง แผนภูมิ และตารางแสดงข้อมูลต่าง ๆ ที่ฟังหรืออ่าน
@@ -937,7 +937,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 52. FL-P6-12 — พูด/เขียนแสดงความคิดเห็นเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัว
 
-- **Official indicator:** `ต 1.3 ป`
+- **Official indicator:** `ต 1.3 ป.6/3`
 - **Standard:** ต 1.3 — Presenting information and opinions
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** พูด/เขียนแสดงความคิดเห็นเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัว
@@ -955,7 +955,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 53. FL-P6-13 — ใช้ถ้อยคำ น้ำเสียง และกิริยาท่าทางอย่างสุภาพ เหมาะสม ตามมารยาทสังคมและวัฒนธรรมของเจ้าของภาษา
 
-- **Official indicator:** `ต 2.1 ป`
+- **Official indicator:** `ต 2.1 ป.6/1`
 - **Standard:** ต 2.1 — Language, culture and social conventions
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** ใช้ถ้อยคำ น้ำเสียง และกิริยาท่าทางอย่างสุภาพ เหมาะสม ตามมารยาทสังคมและวัฒนธรรมของเจ้าของภาษา
@@ -973,7 +973,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 54. FL-P6-14 — ให้ข้อมูลเกี่ยวกับเทศกาล/วันสำคัญ/งานฉลอง/ชีวิตความเป็นอยู่ของเจ้าของภาษา
 
-- **Official indicator:** `ต 2.1 ป`
+- **Official indicator:** `ต 2.1 ป.6/2`
 - **Standard:** ต 2.1 — Language, culture and social conventions
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** ให้ข้อมูลเกี่ยวกับเทศกาล/วันสำคัญ/งานฉลอง/ชีวิตความเป็นอยู่ของเจ้าของภาษา
@@ -991,7 +991,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 55. FL-P6-15 — เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมตามความสนใจ
 
-- **Official indicator:** `ต 2.1 ป`
+- **Official indicator:** `ต 2.1 ป.6/3`
 - **Standard:** ต 2.1 — Language, culture and social conventions
 - **OBEC 2021 priority:** `should_know`
 - **Original Thai indicator:** เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมตามความสนใจ
@@ -1009,7 +1009,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 56. FL-P6-16 — บอกความเหมือน/ความแตกต่างระหว่างการออกเสียงประโยคชนิดต่าง ๆ การใช้เครื่องหมายวรรคตอน และการลำดับคำตามโครงสร้างประโยคของภาษาต่างประเทศและภาษาไทย
 
-- **Official indicator:** `ต 2.2 ป`
+- **Official indicator:** `ต 2.2 ป.6/1`
 - **Standard:** ต 2.2 — Comparing language and culture
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** บอกความเหมือน/ความแตกต่างระหว่างการออกเสียงประโยคชนิดต่าง ๆ การใช้เครื่องหมายวรรคตอน และการลำดับคำตามโครงสร้างประโยคของภาษาต่างประเทศและภาษาไทย
@@ -1027,7 +1027,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 57. FL-P6-17 — เปรียบเทียบความเหมือน/ความแตกต่างระหว่างเทศกาล งานฉลองและประเพณีของเจ้าของภาษากับของไทย
 
-- **Official indicator:** `ต 2.2 ป`
+- **Official indicator:** `ต 2.2 ป.6/2`
 - **Standard:** ต 2.2 — Comparing language and culture
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** เปรียบเทียบความเหมือน/ความแตกต่างระหว่างเทศกาล งานฉลองและประเพณีของเจ้าของภาษากับของไทย
@@ -1045,7 +1045,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 58. FL-P6-18 — ค้นคว้า รวบรวมคำศัพท์ที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่นจากแหล่งเรียนรู้ และนำเสนอด้วยการพูด/การเขียน
 
-- **Official indicator:** `ต 3.1 ป`
+- **Official indicator:** `ต 3.1 ป.6/1`
 - **Standard:** ต 3.1 — Cross-curricular language learning
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** ค้นคว้า รวบรวมคำศัพท์ที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่นจากแหล่งเรียนรู้ และนำเสนอด้วยการพูด/การเขียน
@@ -1063,7 +1063,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 59. FL-P6-19 — ใช้ภาษาสื่อสารในสถานการณ์ต่าง ๆ ที่เกิดขึ้นในห้องเรียนและสถานศึกษา
 
-- **Official indicator:** `ต 4.1 ป`
+- **Official indicator:** `ต 4.1 ป.6/1`
 - **Standard:** ต 4.1 — Using English in real-life situations
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** ใช้ภาษาสื่อสารในสถานการณ์ต่าง ๆ ที่เกิดขึ้นในห้องเรียนและสถานศึกษา
@@ -1081,7 +1081,7 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 ### 60. FL-P6-20 — ใช้ภาษาต่างประเทศในการสืบค้นและรวบรวมข้อมูลต่าง ๆ
 
-- **Official indicator:** `ต 4.2 ป`
+- **Official indicator:** `ต 4.2 ป.6/1`
 - **Standard:** ต 4.2 — Using English for research and further learning
 - **OBEC 2021 priority:** `must_know`
 - **Original Thai indicator:** ใช้ภาษาต่างประเทศในการสืบค้นและรวบรวมข้อมูลต่าง ๆ
