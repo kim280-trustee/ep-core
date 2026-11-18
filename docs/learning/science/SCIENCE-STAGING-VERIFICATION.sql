@@ -4,7 +4,7 @@
 
 with expected(subject_code, grade_code, expected_objectives) as (
   values
-    ('SCI','M1',43), ('SCI','M2',48), ('SCI','M3',51),
+    ('SCI','M1',43), ('SCI','M2',48), ('SCI','M3',53),
     ('BIOLOGY','M4',32), ('BIOLOGY','M5',39), ('BIOLOGY','M6',37),
     ('CHEMISTRY','M4',28), ('CHEMISTRY','M5',38), ('CHEMISTRY','M6',15),
     ('PHYSICS','M4',17), ('PHYSICS','M5',26), ('PHYSICS','M6',24),
@@ -48,11 +48,11 @@ order by
 
 
 -- OBEC 2021 priority-classification coverage for lower-secondary core Science.
--- M1 and M2 are complete. M3 currently has its biology/materials and energy/light subsets classified;
+-- M1 and M2 are complete. M3 currently has its biology/materials, energy/light and astronomy subsets classified;
 -- the remaining M3 energy and Earth-space indicators are intentionally reported
 -- as pending rather than assigned a guessed priority.
 with expected(grade_code, expected_must, expected_should, expected_pending) as (
-  values ('M1',29,14,0), ('M2',37,11,0), ('M3',30,10,11)
+  values ('M1',29,14,0), ('M2',37,11,0), ('M3',33,11,9)
 ), actual as (
   select
     grade.code as grade_code,
