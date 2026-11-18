@@ -305,9 +305,21 @@ Each lesson uses a 50-minute structure: 5 min warm-up/stimulus, 10 min explicit 
 2. Demonstrate or give an example of มีทักษะในการแปลความและการสื่อสารผ่านการแสดง. **Expected:** A relevant, observable example or performance.
 3. How can you improve your work or explain your choices? **Expected:** One specific improvement or reason connected to the indicator.
 
-### Lesson 26: วิจารณ์เปรียบเทียบงานนาฏศิลป์ที่มีความแตกต่างกัน โดยใช้ความรู้เรื่ององค์ประกอบนาฏศิลป์
+### Lesson 26: มีทักษะในการใช้ความคิดในการพัฒนารูปแบบการแสดง
 
 - **Official indicator:** ARTS-M3-26 (ศ 3.1) — must_know.
+- **Learning outcome:** Students can demonstrate: มีทักษะในการใช้ความคิดในการพัฒนารูปแบบการแสดง.
+- **Materials:** Board, paper, pencils/colours, safe classroom materials, and relevant audio/visual examples.
+- **Teaching sequence:** Introduce a familiar example; model the target skill; guide students through a short task; let students produce or perform independently; use peer feedback and an exit check.
+
+**Assessment questions and expected evidence**
+1. Explain the main skill in this indicator. **Expected:** A clear explanation that includes the indicator's key idea.
+2. Demonstrate or give an example of มีทักษะในการใช้ความคิดในการพัฒนารูปแบบการแสดง. **Expected:** A relevant, observable example or performance.
+3. How can you improve your work or explain your choices? **Expected:** One specific improvement or reason connected to the indicator.
+
+### Lesson 27: วิจารณ์เปรียบเทียบงานนาฏศิลป์ที่มีความแตกต่างกัน โดยใช้ความรู้เรื่ององค์ประกอบนาฏศิลป์
+
+- **Official indicator:** ARTS-M3-27 (ศ 3.1) — must_know.
 - **Learning outcome:** Students can demonstrate: วิจารณ์เปรียบเทียบงานนาฏศิลป์ที่มีความแตกต่างกัน โดยใช้ความรู้เรื่ององค์ประกอบนาฏศิลป์.
 - **Materials:** Board, paper, pencils/colours, safe classroom materials, and relevant audio/visual examples.
 - **Teaching sequence:** Introduce a familiar example; model the target skill; guide students through a short task; let students produce or perform independently; use peer feedback and an exit check.
@@ -317,9 +329,9 @@ Each lesson uses a 50-minute structure: 5 min warm-up/stimulus, 10 min explicit 
 2. Demonstrate or give an example of วิจารณ์เปรียบเทียบงานนาฏศิลป์ที่มีความแตกต่างกัน โดยใช้ความรู้เรื่ององค์ประกอบนาฏศิลป์. **Expected:** A relevant, observable example or performance.
 3. How can you improve your work or explain your choices? **Expected:** One specific improvement or reason connected to the indicator.
 
-### Lesson 27: ร่วมจัดงานการแสดงในบทบาทหน้าที่ต่าง ๆ
+### Lesson 28: ร่วมจัดงานการแสดงในบทบาทหน้าที่ต่าง ๆ
 
-- **Official indicator:** ARTS-M3-27 (ศ 3.1) — must_know.
+- **Official indicator:** ARTS-M3-28 (ศ 3.1) — must_know.
 - **Learning outcome:** Students can demonstrate: ร่วมจัดงานการแสดงในบทบาทหน้าที่ต่าง ๆ.
 - **Materials:** Board, paper, pencils/colours, safe classroom materials, and relevant audio/visual examples.
 - **Teaching sequence:** Introduce a familiar example; model the target skill; guide students through a short task; let students produce or perform independently; use peer feedback and an exit check.
@@ -329,9 +341,9 @@ Each lesson uses a 50-minute structure: 5 min warm-up/stimulus, 10 min explicit 
 2. Demonstrate or give an example of ร่วมจัดงานการแสดงในบทบาทหน้าที่ต่าง ๆ. **Expected:** A relevant, observable example or performance.
 3. How can you improve your work or explain your choices? **Expected:** One specific improvement or reason connected to the indicator.
 
-### Lesson 28: นำเสนอแนวคิดจากเนื้อเรื่องของการแสดงที่สามารถนำไปปรับใช้ในชีวิตประจำวัน
+### Lesson 29: นำเสนอแนวคิดจากเนื้อเรื่องของการแสดงที่สามารถนำไปปรับใช้ในชีวิตประจำวัน
 
-- **Official indicator:** ARTS-M3-28 (ศ 3.1) — should_know.
+- **Official indicator:** ARTS-M3-29 (ศ 3.1) — should_know.
 - **Learning outcome:** Students can demonstrate: นำเสนอแนวคิดจากเนื้อเรื่องของการแสดงที่สามารถนำไปปรับใช้ในชีวิตประจำวัน.
 - **Materials:** Board, paper, pencils/colours, safe classroom materials, and relevant audio/visual examples.
 - **Teaching sequence:** Introduce a familiar example; model the target skill; guide students through a short task; let students produce or perform independently; use peer feedback and an exit check.
@@ -341,9 +353,9 @@ Each lesson uses a 50-minute structure: 5 min warm-up/stimulus, 10 min explicit 
 2. Demonstrate or give an example of นำเสนอแนวคิดจากเนื้อเรื่องของการแสดงที่สามารถนำไปปรับใช้ในชีวิตประจำวัน. **Expected:** A relevant, observable example or performance.
 3. How can you improve your work or explain your choices? **Expected:** One specific improvement or reason connected to the indicator.
 
-### Lesson 29: ออกแบบ และสร้างสรรค์อุปกรณ์และเครื่องแต่งกาย เพื่อแสดงนาฏศิลป์และละครที่มาจากวัฒนธรรมต่าง ๆ
+### Lesson 30: ออกแบบ และสร้างสรรค์อุปกรณ์และเครื่องแต่งกาย เพื่อแสดงนาฏศิลป์และละครที่มาจากวัฒนธรรมต่าง ๆ
 
-- **Official indicator:** ARTS-M3-29 (ศ 3.2) — must_know.
+- **Official indicator:** ARTS-M3-30 (ศ 3.2) — must_know.
 - **Learning outcome:** Students can demonstrate: ออกแบบ และสร้างสรรค์อุปกรณ์และเครื่องแต่งกาย เพื่อแสดงนาฏศิลป์และละครที่มาจากวัฒนธรรมต่าง ๆ.
 - **Materials:** Board, paper, pencils/colours, safe classroom materials, and relevant audio/visual examples.
 - **Teaching sequence:** Introduce a familiar example; model the target skill; guide students through a short task; let students produce or perform independently; use peer feedback and an exit check.
@@ -353,9 +365,9 @@ Each lesson uses a 50-minute structure: 5 min warm-up/stimulus, 10 min explicit 
 2. Demonstrate or give an example of ออกแบบ และสร้างสรรค์อุปกรณ์และเครื่องแต่งกาย เพื่อแสดงนาฏศิลป์และละครที่มาจากวัฒนธรรมต่าง ๆ. **Expected:** A relevant, observable example or performance.
 3. How can you improve your work or explain your choices? **Expected:** One specific improvement or reason connected to the indicator.
 
-### Lesson 30: อธิบายความสำคัญและบทบาทของนาฏศิลป์และการละครในชีวิตประจำวัน
+### Lesson 31: อธิบายความสำคัญและบทบาทของนาฏศิลป์และการละครในชีวิตประจำวัน
 
-- **Official indicator:** ARTS-M3-30 (ศ 3.2) — must_know.
+- **Official indicator:** ARTS-M3-31 (ศ 3.2) — must_know.
 - **Learning outcome:** Students can demonstrate: อธิบายความสำคัญและบทบาทของนาฏศิลป์และการละครในชีวิตประจำวัน.
 - **Materials:** Board, paper, pencils/colours, safe classroom materials, and relevant audio/visual examples.
 - **Teaching sequence:** Introduce a familiar example; model the target skill; guide students through a short task; let students produce or perform independently; use peer feedback and an exit check.
@@ -365,9 +377,9 @@ Each lesson uses a 50-minute structure: 5 min warm-up/stimulus, 10 min explicit 
 2. Demonstrate or give an example of อธิบายความสำคัญและบทบาทของนาฏศิลป์และการละครในชีวิตประจำวัน. **Expected:** A relevant, observable example or performance.
 3. How can you improve your work or explain your choices? **Expected:** One specific improvement or reason connected to the indicator.
 
-### Lesson 31: แสดงความคิดเห็นในการอนุรักษ์นาฏศิลป์
+### Lesson 32: แสดงความคิดเห็นในการอนุรักษ์นาฏศิลป์
 
-- **Official indicator:** ARTS-M3-31 (ศ 3.2) — must_know.
+- **Official indicator:** ARTS-M3-32 (ศ 3.2) — should_know.
 - **Learning outcome:** Students can demonstrate: แสดงความคิดเห็นในการอนุรักษ์นาฏศิลป์.
 - **Materials:** Board, paper, pencils/colours, safe classroom materials, and relevant audio/visual examples.
 - **Teaching sequence:** Introduce a familiar example; model the target skill; guide students through a short task; let students produce or perform independently; use peer feedback and an exit check.
@@ -375,17 +387,5 @@ Each lesson uses a 50-minute structure: 5 min warm-up/stimulus, 10 min explicit 
 **Assessment questions and expected evidence**
 1. Explain the main skill in this indicator. **Expected:** A clear explanation that includes the indicator's key idea.
 2. Demonstrate or give an example of แสดงความคิดเห็นในการอนุรักษ์นาฏศิลป์. **Expected:** A relevant, observable example or performance.
-3. How can you improve your work or explain your choices? **Expected:** One specific improvement or reason connected to the indicator.
-
-### Lesson 32: อธิบายและเปรียบเทียบการแสดงนาฏศิลป์จากวัฒนธรรมต่าง ๆ
-
-- **Official indicator:** ARTS-M3-32 (ศ 3.2) — should_know.
-- **Learning outcome:** Students can demonstrate: อธิบายและเปรียบเทียบการแสดงนาฏศิลป์จากวัฒนธรรมต่าง ๆ.
-- **Materials:** Board, paper, pencils/colours, safe classroom materials, and relevant audio/visual examples.
-- **Teaching sequence:** Introduce a familiar example; model the target skill; guide students through a short task; let students produce or perform independently; use peer feedback and an exit check.
-
-**Assessment questions and expected evidence**
-1. Explain the main skill in this indicator. **Expected:** A clear explanation that includes the indicator's key idea.
-2. Demonstrate or give an example of อธิบายและเปรียบเทียบการแสดงนาฏศิลป์จากวัฒนธรรมต่าง ๆ. **Expected:** A relevant, observable example or performance.
 3. How can you improve your work or explain your choices? **Expected:** One specific improvement or reason connected to the indicator.
 
