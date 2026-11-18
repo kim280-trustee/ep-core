@@ -77,16 +77,16 @@ Each lesson uses a 50-minute structure: 5 min warm-up/stimulus, 10 min explicit 
 2. Demonstrate or give an example of วาดภาพแสดงบุคลิกลักษณะของตัวละคร. **Expected:** A relevant, observable example or performance.
 3. How can you improve your work or explain your choices? **Expected:** One specific improvement or reason connected to the indicator.
 
-### Lesson 7: บรรยายวิธีการใช้งานทัศนศิลป์ในการโฆษณาเพื่อนำมานำใจและนำเสนอตัวอย่างประกอบ
+### Lesson 7: บรรยายวิธีการใช้งานทัศนศิลป์ในการโฆษณาเพื่อโน้มน้าวใจ และนำเสนอตัวอย่างประกอบ
 
 - **Official indicator:** ARTS-M2-07 (ศ 1.1) — should_know.
-- **Learning outcome:** Students can demonstrate: บรรยายวิธีการใช้งานทัศนศิลป์ในการโฆษณาเพื่อนำมานำใจและนำเสนอตัวอย่างประกอบ.
+- **Learning outcome:** Students can demonstrate: บรรยายวิธีการใช้งานทัศนศิลป์ในการโฆษณาเพื่อโน้มน้าวใจ และนำเสนอตัวอย่างประกอบ.
 - **Materials:** Board, paper, pencils/colours, safe classroom materials, and relevant audio/visual examples.
 - **Teaching sequence:** Introduce a familiar example; model the target skill; guide students through a short task; let students produce or perform independently; use peer feedback and an exit check.
 
 **Assessment questions and expected evidence**
 1. Explain the main skill in this indicator. **Expected:** A clear explanation that includes the indicator's key idea.
-2. Demonstrate or give an example of บรรยายวิธีการใช้งานทัศนศิลป์ในการโฆษณาเพื่อนำมานำใจและนำเสนอตัวอย่างประกอบ. **Expected:** A relevant, observable example or performance.
+2. Demonstrate or give an example of บรรยายวิธีการใช้งานทัศนศิลป์ในการโฆษณาเพื่อโน้มน้าวใจ และนำเสนอตัวอย่างประกอบ. **Expected:** A relevant, observable example or performance.
 3. How can you improve your work or explain your choices? **Expected:** One specific improvement or reason connected to the indicator.
 
 ### Lesson 8: ระบุและบรรยายเกี่ยวกับวัฒนธรรมต่าง ๆ ที่สะท้อนถึงงานทัศนศิลป์ในปัจจุบัน
@@ -103,7 +103,7 @@ Each lesson uses a 50-minute structure: 5 min warm-up/stimulus, 10 min explicit 
 
 ### Lesson 9: บรรยายถึงการเปลี่ยนแปลงของงานทัศนศิลป์ของไทยในแต่ละยุคสมัยโดยเน้นถึงแนวคิดและเนื้อหาของงาน
 
-- **Official indicator:** ARTS-M2-09 (ศ 1.2) — should_know.
+- **Official indicator:** ARTS-M2-09 (ศ 1.2) — must_know.
 - **Learning outcome:** Students can demonstrate: บรรยายถึงการเปลี่ยนแปลงของงานทัศนศิลป์ของไทยในแต่ละยุคสมัยโดยเน้นถึงแนวคิดและเนื้อหาของงาน.
 - **Materials:** Board, paper, pencils/colours, safe classroom materials, and relevant audio/visual examples.
 - **Teaching sequence:** Introduce a familiar example; model the target skill; guide students through a short task; let students produce or perform independently; use peer feedback and an exit check.
@@ -271,7 +271,7 @@ Each lesson uses a 50-minute structure: 5 min warm-up/stimulus, 10 min explicit 
 
 ### Lesson 23: เสนอข้อคิดเห็นในการปรับปรุงการแสดง
 
-- **Official indicator:** ARTS-M2-23 (ศ 3.1) — should_know.
+- **Official indicator:** ARTS-M2-23 (ศ 3.1) — must_know.
 - **Learning outcome:** Students can demonstrate: เสนอข้อคิดเห็นในการปรับปรุงการแสดง.
 - **Materials:** Board, paper, pencils/colours, safe classroom materials, and relevant audio/visual examples.
 - **Teaching sequence:** Introduce a familiar example; model the target skill; guide students through a short task; let students produce or perform independently; use peer feedback and an exit check.
@@ -319,7 +319,7 @@ Each lesson uses a 50-minute structure: 5 min warm-up/stimulus, 10 min explicit 
 
 ### Lesson 27: อธิบายอิทธิพลของวัฒนธรรมที่มีผลต่อเนื้อหาของละคร
 
-- **Official indicator:** ARTS-M2-27 (ศ 3.2) — must_know.
+- **Official indicator:** ARTS-M2-27 (ศ 3.2) — should_know.
 - **Learning outcome:** Students can demonstrate: อธิบายอิทธิพลของวัฒนธรรมที่มีผลต่อเนื้อหาของละคร.
 - **Materials:** Board, paper, pencils/colours, safe classroom materials, and relevant audio/visual examples.
 - **Teaching sequence:** Introduce a familiar example; model the target skill; guide students through a short task; let students produce or perform independently; use peer feedback and an exit check.
