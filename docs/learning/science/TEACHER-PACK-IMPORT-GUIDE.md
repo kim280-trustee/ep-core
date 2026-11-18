@@ -11,7 +11,7 @@ Open **Teacher Content Library → Import teacher pack**, or use the route `/tea
 - Sign in with a real, active teacher account.
 - Select an assigned teacher class to identify the organization where the drafts will be created.
 - Select the Thai Science curriculum, the pack's subject and its fallback grade.
-- Upload one consolidated Markdown (`.md`) pack at a time. The complete Science corpus is consolidated into five subject-specific files so each import uses the correct subject scope.
+- Upload one consolidated Markdown (`.md`) pack at a time. The complete Science corpus is provided as 13 subject/grade import files across five subject tracks so each import uses the correct subject and grade scope.
 - Check every objective code and grade shown in the preview. Code-less official outcomes are matched against the selected subject/grade catalogue; ambiguous matches block the import.
 
 The selected class is used only to establish the teacher's organization access. It does not change that class, add a subject to it, or assign content to its students.
@@ -74,4 +74,4 @@ The Question Bank now lets an authorized teacher select a curriculum, grade and 
 
 The importer uses the authenticated Supabase client and existing row-level security policies. It does not use a service-role key, invent a system teacher, bypass RLS, publish records, create school/class/student rows, or modify live pilot data automatically.
 
-The importer is implemented in the repository. The 45 Science curriculum migrations and the M2/M3 strand-integrity correction have been applied to the existing Supabase project; all 444 objectives and alignments have been verified. The five consolidated import files are prepared, but the 444 lesson drafts and 1,332 question drafts have **not** been imported. That final authoring step must be performed by an authorized teacher in the target organization. Import smoke tests, end-to-end student/teacher checks, and final local lint/build remain pending.
+The importer is implemented in the repository. The 45 Science curriculum migrations and the M2/M3 strand-integrity correction have been applied to the existing Supabase project; all 444 objectives and alignments have been verified. The 13 subject/grade import files are prepared, but the 444 lesson drafts and 1,332 question drafts have **not** been imported. That final authoring step must be performed by an authorized teacher in the target organization. Import smoke tests, end-to-end student/teacher checks, and final local lint/build remain pending.
