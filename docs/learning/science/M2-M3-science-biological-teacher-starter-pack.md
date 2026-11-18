@@ -2,7 +2,7 @@
 
 **Curriculum:** Thai Basic Education Core Curriculum B.E. 2551 (2008), revised B.E. 2560 (2017)  
 **Subject:** SCI  
-**Coverage:** 17 M2 indicators in ว 1.2 and 11 M3 indicators in ว 1.3. This is a staged biological-science release, not complete M2/M3 Science coverage. M2's 17 indicators now include verified OBEC 2021 must-know / should-know labels.
+**Coverage:** All 48 M2 core Science indicators and 19 M3 indicators (11 biological/genetics and 8 materials). The remaining 32 M3 Science indicators are in the separate energy and Earth-space pack. M2's 48 indicators and these 19 M3 indicators now carry OBEC 2021 must-know / should-know labels. M2's 17 indicators now include verified OBEC 2021 must-know / should-know labels.
 
 Each lesson maps to one official indicator and includes three practice questions with answer keys. Reproductive-health topics must be taught respectfully and age-appropriately. Do not ask learners to disclose personal experiences or health information; refer medical questions to qualified professionals.
 
@@ -269,8 +269,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 1 — Relate genes, DNA and chromosomes
 
-**Objective:** `M3-S1_3-01`  
-**Official indicator:** ว 1.3 ม.3/1  
+**Objective:** `M3-S1_3-01`  \n**Official indicator:** ว 1.3 ม.3/1  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain relationships among genes, DNA and chromosomes.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -285,8 +284,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 2 — Explain dominant and recessive inheritance
 
-**Objective:** `M3-S1_3-02`  
-**Official indicator:** ว 1.3 ม.3/2  
+**Objective:** `M3-S1_3-02`  \n**Official indicator:** ว 1.3 ม.3/2  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain single-character inheritance with complete dominance.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -301,8 +299,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 3 — Calculate inheritance ratios
 
-**Objective:** `M3-S1_3-03`  
-**Official indicator:** ว 1.3 ม.3/3  
+**Objective:** `M3-S1_3-03`  \n**Official indicator:** ว 1.3 ม.3/3  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Determine offspring genotypes and phenotypes for a single-gene cross.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -317,8 +314,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 4 — Compare mitosis and meiosis
 
-**Objective:** `M3-S1_3-04`  
-**Official indicator:** ว 1.3 ม.3/4  
+**Objective:** `M3-S1_3-04`  \n**Official indicator:** ว 1.3 ม.3/4  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Compare cell division processes and their roles.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -333,8 +329,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 5 — Explain genetic disorders
 
-**Objective:** `M3-S1_3-05`  
-**Official indicator:** ว 1.3 ม.3/5  
+**Objective:** `M3-S1_3-05`  \n**Official indicator:** ว 1.3 ม.3/5  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain how gene or chromosome changes can cause genetic disorders.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -349,8 +344,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 6 — Recognise genetic counselling
 
-**Objective:** `M3-S1_3-06`  
-**Official indicator:** ว 1.3 ม.3/6  
+**Objective:** `M3-S1_3-06`  \n**Official indicator:** ว 1.3 ม.3/6  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Explain how consultation and testing can help assess inherited risks.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -365,8 +359,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 7 — Explain uses of genetically modified organisms
 
-**Objective:** `M3-S1_3-07`  
-**Official indicator:** ว 1.3 ม.3/7  
+**Objective:** `M3-S1_3-07`  \n**Official indicator:** ว 1.3 ม.3/7  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Describe applications of genetic modification in organisms.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -381,8 +374,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 8 — Evaluate GMO benefits and impacts
 
-**Objective:** `M3-S1_3-08`  
-**Official indicator:** ว 1.3 ม.3/8  
+**Objective:** `M3-S1_3-08`  \n**Official indicator:** ว 1.3 ม.3/8  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Communicate evidence-based benefits and possible impacts of GMOs.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -397,8 +389,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 9 — Compare biodiversity among ecosystems
 
-**Objective:** `M3-S1_3-09`  
-**Official indicator:** ว 1.3 ม.3/9  
+**Objective:** `M3-S1_3-09`  \n**Official indicator:** ว 1.3 ม.3/9  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Compare species diversity using observations or data.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -413,8 +404,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 10 — Explain the importance of biodiversity
 
-**Objective:** `M3-S1_3-10`  
-**Official indicator:** ว 1.3 ม.3/10  
+**Objective:** `M3-S1_3-10`  \n**Official indicator:** ว 1.3 ม.3/10  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain how biodiversity supports ecosystems and people.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -429,8 +419,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 11 — Conserve biodiversity
 
-**Objective:** `M3-S1_3-11`  
-**Official indicator:** ว 1.3 ม.3/11  
+**Objective:** `M3-S1_3-11`  \n**Official indicator:** ว 1.3 ม.3/11  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Propose or participate in practical biodiversity conservation.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -936,8 +925,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Lesson 1 — Identify properties and uses of polymers, ceramics and composites
 
-**Objective:** `M3-S2_1-01`  
-**Official indicator:** ว 2.1 ม.3/1  
+**Objective:** `M3-S2_1-01`  \n**Official indicator:** ว 2.1 ม.3/1  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Use evidence and information to identify physical properties and uses of polymers, ceramics and composite materials.
 
 **Teaching activity:** Compare everyday objects such as plastic bottles, rubber bands, ceramic tiles and reinforced concrete. Learners record observable properties and connect each property to a suitable use.
@@ -952,8 +940,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Lesson 2 — Use materials economically and responsibly
 
-**Objective:** `M3-S2_1-02`  
-**Official indicator:** ว 2.1 ม.3/2  
+**Objective:** `M3-S2_1-02`  \n**Official indicator:** ว 2.1 ม.3/2  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Explain the value of polymers, ceramics and composites and recommend economical, responsible use.
 
 **Teaching activity:** Use a product-life-cycle comparison. Ask learners to evaluate durability, repair, reuse, recycling and disposal without assuming that one material is always best.
@@ -968,8 +955,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Lesson 3 — Model chemical reactions
 
-**Objective:** `M3-S2_1-03`  
-**Official indicator:** ว 2.1 ม.3/3  
+**Objective:** `M3-S2_1-03`  \n**Official indicator:** ว 2.1 ม.3/3  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain chemical reactions as rearrangements of atoms and represent them with word equations.
 
 **Teaching activity:** Use coloured counters as atoms to model how atoms are rearranged from reactants into products. Emphasise that atoms are conserved rather than created or destroyed in the reaction.
@@ -984,8 +970,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Lesson 4 — Apply the law of conservation of mass
 
-**Objective:** `M3-S2_1-04`  
-**Official indicator:** ว 2.1 ม.3/4  
+**Objective:** `M3-S2_1-04`  \n**Official indicator:** ว 2.1 ม.3/4  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Use evidence to explain that total mass is conserved in a chemical reaction.
 
 **Teaching activity:** Compare mass before and after a teacher-supervised reaction in a closed system, or analyse a supplied dataset. Explain why gas escaping from an open container can make measured mass appear to change.
@@ -1000,8 +985,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Lesson 5 — Compare endothermic and exothermic reactions
 
-**Objective:** `M3-S2_1-05`  
-**Official indicator:** ว 2.1 ม.3/5  
+**Objective:** `M3-S2_1-05`  \n**Official indicator:** ว 2.1 ม.3/5  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Analyse temperature evidence to distinguish heat-absorbing and heat-releasing reactions.
 
 **Teaching activity:** Interpret teacher-provided temperature graphs or use safe, approved demonstrations. Distinguish heat transfer into the system from heat transfer out of the system.
@@ -1016,8 +1000,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Lesson 6 — Explain common chemical reactions
 
-**Objective:** `M3-S2_1-06`  
-**Official indicator:** ว 2.1 ม.3/6  
+**Objective:** `M3-S2_1-06`  \n**Official indicator:** ว 2.1 ม.3/6  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain rusting, acid-metal, acid-base, base-metal, combustion, acid rain and photosynthesis reactions using evidence and word equations.
 
 **Teaching activity:** Use word-equation cards, diagrams and trusted reference data. Do not ask learners to mix household chemicals, concentrated acids or bases, or produce combustion products.
@@ -1032,8 +1015,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Lesson 7 — Evaluate benefits and hazards of chemical reactions
 
-**Objective:** `M3-S2_1-07`  
-**Official indicator:** ว 2.1 ม.3/7  
+**Objective:** `M3-S2_1-07`  \n**Official indicator:** ว 2.1 ม.3/7  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Identify benefits and hazards of everyday chemical reactions and recommend prevention or mitigation measures.
 
 **Teaching activity:** Analyse case cards about cooking, rusting, combustion, acid rain and household product labels. Practise identifying hazards and choosing evidence-based prevention measures.
@@ -1048,8 +1030,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Lesson 8 — Design a solution using chemical-reaction knowledge
 
-**Objective:** `M3-S2_1-08`  
-**Official indicator:** ว 2.1 ม.3/8  
+**Objective:** `M3-S2_1-08`  \n**Official indicator:** ว 2.1 ม.3/8  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Design and evaluate a safe everyday solution using knowledge of chemical reactions, integrating science, mathematics, technology and engineering.
 
 **Teaching activity:** Give teams a safe design brief, such as reducing rust on a model steel object or selecting suitable materials for a reusable product. Learners define criteria, compare evidence, propose a design and evaluate it without hazardous chemical handling.
