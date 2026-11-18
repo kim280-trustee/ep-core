@@ -1,39 +1,52 @@
 # E&P Learning — Science Rollout Readiness
 
 **Branch:** `paul/thai-national-curriculum-foundation`  
-**Scope:** Thai core Science curriculum catalogue, M1–M3 core knowledge graphs, and staged M4–M6 additional Science subjects  
-**Status:** All M1–M3 core Science knowledge-graph objectives and all M4–M6 additional specialist Science objectives have been applied to the existing Supabase project through 45 ordered curriculum migrations plus one corrective M2/M3 strand-integrity migration. Four additional OBEC priority-classification migrations have since been applied. Verified upper-secondary totals: Biology 108, Chemistry 81, Physics 67, and Earth, Astronomy and Space 44. Across the complete Science workstream there are 444 curriculum objectives, 444 lesson starters and 1,332 answer-keyed practice questions. The generic authenticated teacher-pack importer is implemented at `/teacher/content/import`; it validates academic mappings and creates draft lesson/question records in chunks using the existing content and assessment tables. The 444 starters and 1,332 questions are consolidated into 13 subject/grade import files and remain Markdown source material until an authorized teacher imports them. The global curriculum migrations and the priority-classification migrations are applied and verified. A final reconciliation migration now mirrors all 144 M1–M3 SCI indicators and their OBEC priority labels into both `TH-SCI-M1-M6` and `TH-BASIC-CORE-2008-2017`; all 144 alignments match by grade and objective code. No school records have been created.
+**Scope:** Full Thai national Science and Technology learning area (P1–M6), plus separately catalogued M4–M6 specialist outcomes  
+**Status:** **Core national Science rollout is still incomplete.** The existing work covers 144 M1–M3 SCI records and 300 M4–M6 specialist outcomes. A new primary-grade W4.2 batch has added 28 official computational-science indicators, but the full OBEC 2021 Science and Technology set contains 415 indicators across P1–M6. Primary W1–W3, missing lower-secondary indicators, lower-secondary W4.1/W4.2, and the 102 upper-secondary core indicators still require implementation and code-level reconciliation. The 300 Biology, Chemistry, Physics and Earth/Space specialist outcomes are additional curriculum content and do not replace the M4–M6 core set.
+
+The existing 13 Science import files contain 444 lesson starters and 1,332 answer-keyed practice questions. The new `SCIENCE-TECHNOLOGY-W4.2-P1-P6-TEACHER-STARTER-PACK.md` adds 28 lessons and 84 formative tasks. These resources are still Markdown source material until an authorized teacher imports them through `/teacher/content/import`. No school, class or student records have been created.
+
+## Official national Science and Technology coverage
+
+OBEC's 2021 must-know / should-know table reports these grade totals:
+
+| Grade | Official indicators |
+|---|---:|
+| P1 | 15 |
+| P2 | 16 |
+| P3 | 25 |
+| P4 | 21 |
+| P5 | 32 |
+| P6 | 30 |
+| M1 | 52 |
+| M2 | 63 |
+| M3 | 59 |
+| M4–M6 shared | 102 |
+| **Total unique indicators** | **415** |
+
+The M4–M6 total is a shared grade-band set of 102 indicators, not 102 separate indicators per grade.
+
+## Current implementation status
+
+- P1–P6: 28 W4.2 computational-science indicators seeded and classified; 111 W1–W3 indicators remain to be seeded.
+- M1: 43 existing W1–W3 indicators; the 9 W4.1/W4.2 indicators are not yet seeded.
+- M2: 48 existing W1–W3 indicators; six W2.1 indicators and nine W4.1/W4.2 indicators remain to be reconciled/seeded.
+- M3: 53 existing records require code-level reconciliation against the official standard table. The official table has six W1.1 indicators, eight W1.3 indicators, three W2.2 indicators and no M3 W3.2 indicator set; the current records include 11 W1.3 and nine W3.2 entries. Do not treat the present 53 as a verified official count.
+- M1–M3 W4.1/W4.2: 27 official indicators remain.
+- M4–M6 core Science and Technology: 102 shared indicators remain to be seeded.
+- M4–M6 additional specialist outcomes: Biology 108, Chemistry 81, Physics 67 and Earth/Space 44 are already catalogued separately (300 total).
+
+The `TECH` skill is part of the `SCI` subject. The 28 new P1–P6 W4.2 objectives are national Science and Technology indicators and must not be merged with the separate Click Start international Computer Studies course.
+
 ## Consolidated integrity review
 
-The 45-file curriculum migration set, corrective integrity migration, four priority-classification migrations, M3 greenhouse-effect indicator migration and final national-core alignment/priority reconciliation migration have been executed against the existing Supabase project. The review report is `SCIENCE-MIGRATION-INTEGRITY-REVIEW.md`; read-only checks are in `SCIENCE-STAGING-VERIFICATION.sql`. All 15 subject/grade objective counts now match their expected totals. Application lint/build and end-to-end teacher/student tests remain pending.
+The existing migration history, importer implementation and specialist-subject counts remain documented in `SCIENCE-MIGRATION-INTEGRITY-REVIEW.md`. The current lower-secondary SCI catalogue has been mirrored into both `TH-SCI-M1-M6` and `TH-BASIC-CORE-2008-2017`; that earlier mirror must be reconciled as part of the M3 indicator correction. Read-only checks are in `SCIENCE-STAGING-VERIFICATION.sql`.
+
+Application lint/build, importer smoke tests and app-wide end-to-end tests remain deferred until all curriculum rollouts are complete.
 
 ## Content and authoring boundary
 
-The existing app deliberately scopes authored content and question records to a real organization and an authenticated teacher account. Global curriculum objectives can be seeded safely by migrations, but `learning_content_items`, `learning_questions` and their version records require a valid `created_by` user and organization membership. The generic bulk importer now uses the authenticated client and existing RLS policies, creates lesson and short-answer question drafts, stores expected answers in the protected evaluation-key table, and leaves all items unpublished for the normal review lifecycle. It does not invent a system user, borrow a teacher identity, or create pilot school/class/student records. The importer implementation and operating rules are documented in `TEACHER-PACK-IMPORT-GUIDE.md`. The 444 starters and 1,332 questions remain Markdown-only until an authorized teacher explicitly runs the importer. Import smoke tests and final local lint/build remain pending. The app now separates teacher-only pack guidance from student lesson content and includes a trusted short-answer assessment lifecycle: protected manual-review keys, student written responses, teacher marking, and result/gradebook finalization after marking. These changes are committed but have not been tested or applied to Supabase.
-
-
-## M1 coverage delivered
-
-| Strand / standard | Official indicators | Seeded objectives |
-|---|---:|---:|
-| Life Science — ว 1.2 | 18 | 18 |
-| Matter and Materials — ว 2.1 | 10 | 10 |
-| Forces and Pressure — ว 2.2 | 1 | 1 |
-| Energy and Heat — ว 2.3 | 7 | 7 |
-| Earth and Atmosphere — ว 3.2 | 7 | 7 |
-| **Total M1 Science** | **43** | **43** |
-
-The M1 teacher pack contains 43 lesson starters and 129 practice questions with answer keys. OBEC 2021 priority classification is verified and stored for all 43 alignments: 29 must-know and 14 should-know.
-
-## M2 and M3 coverage
-
-| Grade | Official core Science indicators | Seeded objectives | Status |\n|---|---:|---:|---|\n| M2 | 48 | 48 | Complete |\n| M3 | 53 | 53 | Complete |\n| **M2–M3 total** | **99** | **99** | **Complete** |\n\nM3 coverage is 11 indicators in ว 1.3, eight in ว 2.1, 21 in ว 2.3, four in ว 3.1 and nine in ว 3.2. The two additional ว 3.2 indicators cover the greenhouse effect and actions to reduce greenhouse-gas emissions. The M2–M3 packs together contain 101 lesson starters and 303 practice questions with answer keys. M2 priority classification is complete for all 48 indicators (37 must-know, 11 should-know). M3 priority classification is complete for 44 indicators: the 19 biological/materials indicators (14 must-know, 5 should-know), 21 energy/light indicators (16 must-know, 5 should-know), and four astronomy indicators (3 must-know, 1 should-know). The nine M3 Earth-system indicators (ว 3.2 ม.3/1–9) are included in the 2017 curriculum but are absent from the OBEC 2021 priority table, so their priority field is intentionally left null rather than inferred.\n\n## Curriculum scope
-
-The lower-secondary core catalogue uses subject code `SCI` and curriculum code `TH-SCI-M1-M6`, aligned to the Thai Basic Education Core Curriculum B.E. 2551 (2008), revised B.E. 2560 (2017). The official upper-secondary section is structured as additional learning outcomes in four distinct strands. These are represented by separate subject codes `BIOLOGY`, `CHEMISTRY`, `PHYSICS` and `EARTH_SPACE`, linked to the same Thai curriculum catalogue and M4–M6 grade levels. This avoids incorrectly treating upper-secondary additional learning outcomes as lower-secondary core indicators or combining four specialist subjects into one generic Science subject.
-
-This Science subject covers the core Science standards ว 1.x, ว 2.x and ว 3.x. Technology standards ว 4.1 and ว 4.2 are intentionally reserved for the future Design & Technology / Computer Studies workstream, so the same official indicators are not duplicated across subjects.
-
-The curriculum catalogue contains M1–M6 grade levels. M1 is fully seeded for its 43 core Science indicators. M2 is fully seeded for all 48 core Science indicators across ว 1.2, ว 2.2, ว 2.3 and ว 3.2. M3 is now fully seeded for all 53 core Science indicators: 11 biological-science indicators in ว 1.3, eight materials/chemical-reaction indicators in ว 2.1, 21 energy/light indicators in ว 2.3, four astronomy indicators in ว 3.1 and nine Earth-system indicators in ว 3.2. M4–M6 additional learning outcomes are being implemented separately by specialist subject and grade.
+The existing app scopes authored content and question records to a real organization and an authenticated teacher account. Global curriculum objectives can be seeded safely by migrations, but `learning_content_items`, `learning_questions` and their version records require a valid `created_by` user and organization membership. The generic bulk importer uses the authenticated client and existing RLS policies, creates unpublished lesson and short-answer question drafts, and leaves them in the normal review lifecycle. It does not invent a system user, borrow a teacher identity, or create pilot school/class/student records.
 
 ## Migrations
 
