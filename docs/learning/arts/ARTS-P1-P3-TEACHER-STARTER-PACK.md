@@ -336,7 +336,7 @@ Use observation, short oral answers, drawings, practical performance and simple 
 
 - **Objective:** `ARTS-P1-16`
 - **OBEC standard:** ศ 3.1
-- **Priority:** Must-know
+- **Priority:** Should-know
 - **Learning intention:** Learners can demonstrate: บอกสิ่งที่ตนเองชอบ จากการดูหรือร่วมการแสดง.
 - **Key teaching points:** Dance and Drama. Explain the idea with concrete examples, model the action, and connect it to familiar Thai/local objects, songs or performances.
 - **Teacher demonstration:** Show one clear example. Think aloud using simple language; model safe handling of materials, respectful listening or appropriate audience behaviour.
@@ -357,7 +357,7 @@ Use observation, short oral answers, drawings, practical performance and simple 
 
 - **Objective:** `ARTS-P1-17`
 - **OBEC standard:** ศ 3.2
-- **Priority:** Must-know
+- **Priority:** Should-know
 - **Learning intention:** Learners can demonstrate: ระบุและเล่นการละเล่นของเด็กไทย.
 - **Key teaching points:** Dance and Drama. Explain the idea with concrete examples, model the action, and connect it to familiar Thai/local objects, songs or performances.
 - **Teacher demonstration:** Show one clear example. Think aloud using simple language; model safe handling of materials, respectful listening or appropriate audience behaviour.
@@ -378,7 +378,7 @@ Use observation, short oral answers, drawings, practical performance and simple 
 
 - **Objective:** `ARTS-P1-18`
 - **OBEC standard:** ศ 3.2
-- **Priority:** Must-know
+- **Priority:** Should-know
 - **Learning intention:** Learners can demonstrate: บอกสิ่งที่ตนเองชอบในการแสดงนาฏศิลป์.
 - **Key teaching points:** Dance and Drama. Explain the idea with concrete examples, model the action, and connect it to familiar Thai/local objects, songs or performances.
 - **Teacher demonstration:** Show one clear example. Think aloud using simple language; model safe handling of materials, respectful listening or appropriate audience behaviour.
