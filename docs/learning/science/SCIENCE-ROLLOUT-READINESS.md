@@ -1,11 +1,11 @@
 # E&P Learning — Science Rollout Readiness
 
-**Branch:** `paul/learning-academic-integrity-audit`  
+**Branch:** `paul/thai-national-curriculum-foundation`  
 **Scope:** Thai core Science curriculum catalogue, M1–M3 core knowledge graphs, and staged M4–M6 additional Science subjects  
-**Status:** All M1–M3 core Science knowledge-graph objectives and all M4–M6 additional specialist Science objectives have been applied to the existing Supabase project through 45 ordered migrations plus one corrective M2/M3 strand-integrity migration. Verified upper-secondary totals: Biology 108, Chemistry 81, Physics 67, and Earth, Astronomy and Space 44. Across the complete Science workstream there are 442 curriculum objectives, 442 lesson starters and 1,326 answer-keyed practice questions. The generic authenticated teacher-pack importer is implemented at `/teacher/content/import`; it validates academic mappings and creates draft lesson/question records in chunks using the existing content and assessment tables. The 442 starters and 1,326 questions are consolidated into 13 subject/grade import files and remain Markdown source material until an authorized teacher imports them. The global curriculum migrations are applied and verified; no school records have been created.
+**Status:** All M1–M3 core Science knowledge-graph objectives and all M4–M6 additional specialist Science objectives have been applied to the existing Supabase project through 45 ordered curriculum migrations plus one corrective M2/M3 strand-integrity migration. Two additional OBEC priority-classification migrations have since been applied. Verified upper-secondary totals: Biology 108, Chemistry 81, Physics 67, and Earth, Astronomy and Space 44. Across the complete Science workstream there are 442 curriculum objectives, 442 lesson starters and 1,326 answer-keyed practice questions. The generic authenticated teacher-pack importer is implemented at `/teacher/content/import`; it validates academic mappings and creates draft lesson/question records in chunks using the existing content and assessment tables. The 442 starters and 1,326 questions are consolidated into 13 subject/grade import files and remain Markdown source material until an authorized teacher imports them. The global curriculum migrations and the priority-classification migrations are applied and verified; no school records have been created.
 ## Consolidated integrity review
 
-The 45-file migration set and the corrective integrity migration have been executed against the existing Supabase project. The review report is `SCIENCE-MIGRATION-INTEGRITY-REVIEW.md`; read-only checks are in `SCIENCE-STAGING-VERIFICATION.sql`. All 15 subject/grade objective counts now match their expected totals. Application lint/build and end-to-end teacher/student tests remain pending.
+The 45-file curriculum migration set, corrective integrity migration and two priority-classification migrations have been executed against the existing Supabase project. The review report is `SCIENCE-MIGRATION-INTEGRITY-REVIEW.md`; read-only checks are in `SCIENCE-STAGING-VERIFICATION.sql`. All 15 subject/grade objective counts now match their expected totals. Application lint/build and end-to-end teacher/student tests remain pending.
 
 ## Content and authoring boundary
 
@@ -23,11 +23,11 @@ The existing app deliberately scopes authored content and question records to a 
 | Earth and Atmosphere — ว 3.2 | 7 | 7 |
 | **Total M1 Science** | **43** | **43** |
 
-The M1 teacher pack contains 43 lesson starters and 129 practice questions with answer keys. Each lesson identifies the corresponding official Thai indicator code.
+The M1 teacher pack contains 43 lesson starters and 129 practice questions with answer keys. OBEC 2021 priority classification is verified and stored for all 43 alignments: 29 must-know and 14 should-know.
 
 ## M2 and M3 coverage
 
-| Grade | Official core Science indicators | Seeded objectives | Status |\n|---|---:|---:|---|\n| M2 | 48 | 48 | Complete |\n| M3 | 51 | 51 | Complete |\n| **M2–M3 total** | **99** | **99** | **Complete** |\n\nM3 coverage is 11 indicators in ว 1.3, eight in ว 2.1, 21 in ว 2.3, four in ว 3.1 and seven in ว 3.2. The M2–M3 packs together contain 99 lesson starters and 297 practice questions with answer keys.\n\n## Curriculum scope
+| Grade | Official core Science indicators | Seeded objectives | Status |\n|---|---:|---:|---|\n| M2 | 48 | 48 | Complete |\n| M3 | 51 | 51 | Complete |\n| **M2–M3 total** | **99** | **99** | **Complete** |\n\nM3 coverage is 11 indicators in ว 1.3, eight in ว 2.1, 21 in ว 2.3, three in ว 3.1, one in ว 3.6 and seven in ว 3.2. The space-technology indicator is ว 3.6 ม.3/4, not ว 3.1 ม.3/4. The M2–M3 packs together contain 99 lesson starters and 297 practice questions with answer keys. M2 priority classification is complete for all 48 indicators (37 must-know, 11 should-know). M3 priority classification is complete for its 19 biological/materials indicators (15 must-know, 4 should-know); the remaining 32 M3 energy and Earth-space indicators still require exact code-level OBEC classification.\n\n## Curriculum scope
 
 The lower-secondary core catalogue uses subject code `SCI` and curriculum code `TH-SCI-M1-M6`, aligned to the Thai Basic Education Core Curriculum B.E. 2551 (2008), revised B.E. 2560 (2017). The official upper-secondary section is structured as additional learning outcomes in four distinct strands. These are represented by separate subject codes `BIOLOGY`, `CHEMISTRY`, `PHYSICS` and `EARTH_SPACE`, linked to the same Thai curriculum catalogue and M4–M6 grade levels. This avoids incorrectly treating upper-secondary additional learning outcomes as lower-secondary core indicators or combining four specialist subjects into one generic Science subject.
 
@@ -44,7 +44,7 @@ The curriculum catalogue contains M1–M6 grade levels. M1 is fully seeded for i
 5. `20261116090000_learning_science_m2_earth_space_knowledge_graph.sql` — adds ten M2 Earth and Space Science objectives.\n6. `20261116091500_learning_science_m3_matter_chemistry_knowledge_graph.sql` — adds eight M3 materials and chemical-reaction objectives.\n7. `20261116093000_learning_science_m3_energy_earth_space_knowledge_graph.sql` — adds 21 M3 energy/light, four astronomy and seven Earth-system objectives.\n8. `20261116100000_learning_science_upper_secondary_subject_tracks.sql` — adds upper-secondary Biology, Chemistry, Physics and Earth/Space subject catalogue entries.\n9. `20261116101500_learning_biology_m4_cellular_foundations.sql` — adds 17 M4 Biology additional-study outcomes in strand 1.\n10. `20261116103000_learning_biology_m4_genetics_evolution.sql` — adds 15 M4 Biology additional-study outcomes in strand 2 (Mendelian genetics, DNA, mutation, DNA technology and evolution).\n11. `20261116104500_learning_biology_m5_plant_structure_function.sql` — adds 18 M5 Biology outcomes in strand 3 (plant tissues, transport, photosynthesis, reproduction and responses).\n12. `20261116110000_learning_biology_m5_animal_physiology.sql` — adds 21 M5 Biology outcomes in strand 4 (digestion, gas exchange, circulation, blood, immunity and excretion).\n13. `20261116111500_learning_biology_m6_animal_physiology.sql` — adds 19 M6 Biology outcomes in strand 4 (nervous coordination, sensory systems, movement, reproduction, hormones and behaviour).\n14. `20261116113000_learning_biology_m6_ecology_biodiversity.sql` — adds 13 M6 Biology outcomes in strand 5 (ecosystem energy, nutrient cycles, biomes, succession, population ecology and environmental sustainability).\n15. `20261116114500_learning_chemistry_m4_atomic_structure_bonding.sql` — adds 21 M4 Chemistry outcomes in strand 1 (atomic structure, periodicity, radioactivity and chemical bonding).\n16. `20261116120000_learning_chemistry_m4_reactions_stoichiometry.sql` — adds 7 M4 Chemistry outcomes in strand 2 (chemical equations, stoichiometry, limiting reactants and percentage yield).\n17. `20261116121500_learning_chemistry_m5_kinetics_equilibrium.sql` — adds M5 Chemistry outcomes 1–13 in strand 2 (reaction rates, collision theory, dynamic equilibrium, equilibrium calculations and applications).\n18. `20261116123000_learning_chemistry_m5_acids_bases_redox_electrochemistry.sql` — adds M5 Chemistry strand 2 outcomes 14–32 (acid–base chemistry, redox reactions and electrochemical cells).
 19. `20261116124500_learning_chemistry_m5_gas_laws.sql` — adds M5 Chemistry strand 1 outcomes 1–6 (gas laws, ideal gases, partial pressures, diffusion and applications).
 20. `20261116130000_learning_chemistry_m6_organic_polymers.sql` — adds M6 Chemistry strand 1 outcomes 1–15 (organic structures, functional groups, nomenclature, reactions and polymers).
-21. `20261116131500_learning_biology_m6_biodiversity_taxonomy.sql` — adds M6 Biology strand 2 outcomes 1–5 (biodiversity, origin of early cells, organism groups, taxonomy and dichotomous keys).
+21. `20261116131500_learning_biology_m6_biodiversity_taxonomy.sql` — adds M6 Biology strand 2 outcomes 1–5 (biodiversity, origin of early cells, organism groups, taxonomy and dichotomous keys).\n22. `20261118200000_classify_science_m1_m2_obec_priority.sql` — applies OBEC 2021 must-know / should-know labels to all 43 M1 and 48 M2 core Science indicators.\n23. `20261118201000_classify_science_m3_biology_matter_obec_priority.sql` — applies OBEC 2021 priority labels to the 11 M3 biological and eight M3 materials indicators.
 
 Apply these after the existing pending academic foundation and Maths migrations, in timestamp order. The seeds are idempotent upserts and require the active Thai Basic Education system.
 
@@ -65,9 +65,9 @@ Use teacher supervision for laboratory demonstrations. Do not ask students to ta
 
 ## Explicitly not done
 
-- No Supabase migration has been applied.
+- No app-wide lint/build or end-to-end tests have been run; those remain deferred until the curriculum rollout is complete.
 - No live school, class, class-subject, teacher, student, content or assessment record has been created.
-- All M1–M3 core Science knowledge graphs are seeded. Upper-secondary specialist tracks are fully staged and audited: Biology 108 outcomes, Chemistry 81, Physics 67, and Earth/Space 44. Earth/Space grade allocations are M4 geology 1–12, M5 standard 2 atmosphere/oceans/climate 1–13, and M6 standard 3 astronomy/space 1–19. Empty grade/strand combinations remain intentional where the official manual assigns no outcomes. No live migrations have been applied.
+- All M1–M3 core Science knowledge graphs are seeded. Upper-secondary specialist tracks are seeded and audited: Biology 108 outcomes, Chemistry 81, Physics 67, and Earth/Space 44.\n- All M1 and M2 OBEC priority classifications are verified; M3 biological/materials classifications are verified. M3 energy/Earth-space classifications remain outstanding. Earth/Space grade allocations are M4 geology 1–12, M5 standard 2 atmosphere/oceans/climate 1–13, and M6 standard 3 astronomy/space 1–19. Empty grade/strand combinations remain intentional where the official manual assigns no outcomes. No live migrations have been applied.
 - Technology standards ว 4.1 and ว 4.2 are outside this Science batch.
 - No local lint/build result is claimed; consolidated verification remains pending.
 
@@ -257,28 +257,28 @@ Migration: `20261116183000_learning_physics_m5_electricity_and_colour_outcomes.s
 
 The new `BIOLOGY-CURRICULUM-AUDIT.md` reconciles all staged Biology objectives against the official IPST upper-secondary additional Biology curriculum-use manual. The grade/strand register confirms M4 32 (Strands 1 and 2), M5 39 (Strands 3 and 4), and M6 37 (Strands 2, 4 and 5): **108/108 official outcomes**. The seven existing Biology teacher packs contain 108 lesson starters and 324 answer-keyed questions. Outcome numbering is grade- and strand-specific; M4 and M6 Strand 2 and M5 and M6 Strand 4 are separate sequences. The manual does not assign Biology outcomes to M4 Strands 3–5 or M5 Strand 5, so these are not missing outcomes.
 
-No new Biology seed migration was needed: all 108 outcomes were already staged in the existing seven migrations. No live database changes were made. Next subject audit: complete M6 Chemistry and Earth/Space allocation verification before any further seeding.
+No new Biology seed migration was needed: all 108 outcomes were already staged in the existing seven migrations. The Science catalogue is already applied to live Supabase. Next subject audit: complete M6 Chemistry and Earth/Space allocation verification before any further seeding.
 
 
 ## Chemistry curriculum audit — complete (81/81)
 
 The new `CHEMISTRY-CURRICULUM-AUDIT.md` reconciles all staged Chemistry objectives against the official IPST upper-secondary additional Chemistry curriculum-use manual. The grade/strand register confirms M4 28 (Strand 1 outcomes 1–21; Strand 2 outcomes 1–7), M5 38 (Strand 1 outcomes 1–6; Strand 2 outcomes 1–32), and M6 15 (Strand 1 outcomes 1–15): **81/81 official outcomes**. The six existing Chemistry teacher packs contain 81 lesson starters and 243 answer-keyed questions. No additional M6 Strand 2 outcome sequence is allocated in the official tables; no outcomes have been moved across grades to fill an empty strand/grade combination.
 
-No new Chemistry seed migration was needed: all 81 outcomes were already staged in the existing six migrations. No live database changes were made. Earth/Space remains the next additional-science subject track to audit and complete.
+No new Chemistry seed migration was needed: all 81 outcomes were already staged in the existing six migrations. The Science catalogue is already applied to live Supabase. Earth/Space remains the next additional-science subject track to audit and complete.
 
 
 ## Earth, Astronomy and Space — M5 weather and climate batch
 
 M5 standard 2 outcomes 1–13 are now staged in `20261116184500_learning_earth_space_m5_atmosphere_oceans_climate.sql`. The accompanying `M5-earth-space-weather-atmosphere-oceans-climate-teacher-starter-pack.md` provides 13 lesson starters and 39 answer-keyed questions. The grade allocation and sequence are verified against the official IPST curriculum-use manual, printed pp. 21–24. Outcomes 8–11 are atmospheric stability/clouds, weather fronts, climate-change drivers/evidence, and climate-change impacts/mitigation; outcomes 12–13 cover weather-map interpretation and weather analysis/forecasting.
 
-The full Earth/Space audit is in `EARTH-SPACE-CURRICULUM-AUDIT.md`. This does not mark the subject complete: M4 Earth-science and M6 astronomy/space outcomes still require exact grade/outcome verification. No migrations have been applied to live Supabase.
+The full Earth/Space audit is in `EARTH-SPACE-CURRICULUM-AUDIT.md`. This does not mark the subject complete: M4 Earth-science and M6 astronomy/space outcomes still require exact grade/outcome verification. The Science catalogue migrations have been applied to live Supabase.
 
 
 ### Earth, Astronomy and Space — M6 astronomy batch
 
 The official IPST manual crosswalk (printed pp. 31–32) explicitly assigns the astronomy sequence to M6. Outcomes 1–19 are staged in `20261116190000_learning_earth_space_m6_astronomy_space.sql`. The companion `M6-earth-space-astronomy-space-teacher-starter-pack.md` contains 19 lesson starters and 57 answer-keyed questions. The complete Earth/Space audit is in `EARTH-SPACE-CURRICULUM-AUDIT.md`.
 
-Historical checkpoint: M5 atmosphere/oceans/weather/climate 13 outcomes and M6 astronomy/space 19 outcomes were staged first (32 outcomes, 32 starters and 96 questions). The subsequent M4 geology batch completed the subject; see the Earth/Space completion section below. No live Supabase migrations have been applied.
+Historical checkpoint: M5 atmosphere/oceans/weather/climate 13 outcomes and M6 astronomy/space 19 outcomes were staged first (32 outcomes, 32 starters and 96 questions). The subsequent M4 geology batch completed the subject; see the Earth/Space completion section below. The resulting catalogue migrations have been applied to live Supabase.
 
 
 ## Upper-secondary Earth, Astronomy and Space completion
@@ -299,4 +299,4 @@ Earth/Space totals: **44 objectives, 44 lesson starters and 132 answer-keyed que
 | Upper-secondary Physics | 67 | 67 | 201 | Complete |
 | Upper-secondary Earth, Astronomy and Space | 44 | 44 | 132 | Complete |
 
-These totals are separate tracks; the M1–M3 core Science indicators are not merged with M4–M6 additional specialist outcomes. The staged migration set remains unapplied to live Supabase. Consolidated local lint/build and final migration review remain pending.
+These totals are separate tracks; the M1–M3 core Science indicators are not merged with M4–M6 additional specialist outcomes. All 45 curriculum migrations, the corrective strand-integrity migration and both priority-classification migrations are applied to live Supabase. Consolidated local lint/build and final app testing remain pending and are intentionally deferred until all curriculum rollouts are complete.
