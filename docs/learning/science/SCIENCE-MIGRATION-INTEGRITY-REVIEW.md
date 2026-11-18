@@ -1,18 +1,18 @@
 # E&P Learning — Science Migration Integrity Review
 
 **Branch:** `paul/thai-national-curriculum-foundation`  
-**Scope:** 45 Science curriculum migrations, one corrective M2/M3 integrity migration, three OBEC priority-classification migrations, and the existing academic/content/assessment schema  
+**Scope:** 45 Science curriculum migrations, one corrective M2/M3 integrity migration, four OBEC priority-classification migrations, and the existing academic/content/assessment schema  
 **Review type:** Static source review plus runtime migration verification against the existing Supabase project.
 
 ## Result
 
-The Science academic-catalogue migrations create or upsert global academic records only. They do not create school, class, student, assignment, authored lesson-content or question-bank records. Runtime verification confirmed all 15 expected subject/grade objective counts. OBEC 2021 priority classification is now verified for M1 (29 must / 14 should), M2 (37 / 11), and 40 M3 indicators: biology/materials (14 / 5) plus energy/light (16 / 5). The remaining nine M3 Earth-system indicators still need exact code-level classification.
+The Science academic-catalogue migrations create or upsert global academic records only. They do not create school, class, student, assignment, authored lesson-content or question-bank records. Runtime verification confirmed all 15 expected subject/grade objective counts. OBEC 2021 priority classification is now verified for M1 (29 must / 14 should), M2 (37 / 11), and 44 M3 indicators: biology/materials (14 / 5), energy/light (16 / 5) and astronomy/space (3 / 1). The remaining nine M3 Earth-system indicators still need exact code-level classification.
 
 Runtime migration execution is complete. The application build, lint and end-to-end teacher/student tests remain pending before release.
 
 ## Migration order
 
-The 45 curriculum files are timestamped in dependency order. The final corrective migration, `20261117130000_learning_science_m2_m3_skill_topic_integrity.sql`, runs after them and removes out-of-strand M2/M3 duplicate topics, objectives and alignments. Three later migrations add priority metadata only; they do not alter objective counts or curriculum alignments. The original M2/M3 topic migrations have also been corrected in source so fresh resets seed each topic only under its intended skill.
+The 45 curriculum files are timestamped in dependency order. The final corrective migration, `20261117130000_learning_science_m2_m3_skill_topic_integrity.sql`, runs after them and removes out-of-strand M2/M3 duplicate topics, objectives and alignments. Four later migrations add priority metadata only; they do not alter objective counts or curriculum alignments. The original M2/M3 topic migrations have also been corrected in source so fresh resets seed each topic only under its intended skill.
 
 The 45 curriculum files are ordered as follows:
 
@@ -69,7 +69,7 @@ Therefore:
 - [x] Consolidate and parser-validate 13 subject/grade import files; retain grade-specific selection for code-less upper-secondary outcomes.
 - [x] Readiness and subject audit documents corrected to distinguish database objectives from Markdown teaching resources.
 - [x] Add read-only staging verification SQL: `docs/learning/science/SCIENCE-STAGING-VERIFICATION.sql`.
-- [x] Apply all 45 Science migrations and the corrective M2/M3 strand-integrity migration to the existing Supabase project; verify all 15 subject/grade counts.\n- [x] Apply OBEC 2021 priority classifications to all M1/M2 indicators and M3 biological/materials indicators.\n- [ ] Complete exact OBEC priority classification for the remaining nine M3 Earth-system indicators.
+- [x] Apply all 45 Science migrations and the corrective M2/M3 strand-integrity migration to the existing Supabase project; verify all 15 subject/grade counts.\n- [x] Apply OBEC 2021 priority classifications to all M1/M2 indicators and the verified M3 biological/materials, energy/light and astronomy/space indicators.\n- [ ] Complete exact OBEC priority classification for the remaining nine M3 Earth-system indicators.
 - [ ] Pull the branch locally and run lint/build once.
 - [ ] Resolve any runtime migration or build findings.
 - [x] Implement the authorized teacher-content importer, teacher-only guidance separation, and trusted short-answer manual-review workflow. The importer has not yet been run; actual draft import remains an explicit teacher action.
