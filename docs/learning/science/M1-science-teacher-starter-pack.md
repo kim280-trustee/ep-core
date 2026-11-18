@@ -6,7 +6,7 @@
 **Curriculum version:** B.E. 2551 (2008), revised 2017  
 **Coverage:** 43 M1 core Science indicators across standards ว 1.2, ว 2.1, ว 2.2, ว 2.3 and ว 3.2.
 
-This pack provides one starter lesson per M1 indicator. Each lesson includes a suggested classroom activity and three practice questions with answers. It is a teacher planning resource, not published app content.
+This pack provides one starter lesson per M1 indicator. Each lesson records the OBEC 2021 must-know / should-know classification. Each lesson includes a suggested classroom activity and three practice questions with answers. It is a teacher planning resource, not published app content.
 
 ## Teacher authoring guidance
 
@@ -25,8 +25,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 1 — Compare plant and animal cells
 
-**Objective:** `M1-S1_2-01`  
-**Official indicator:** ว 1.2 ม.1/1  
+**Objective:** `M1-S1_2-01`  \n**Official indicator:** ว 1.2 ม.1/1  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Compare plant and animal cells  
 **Teaching activity:** Compare labelled diagrams or prepared slides. Match cell wall, membrane, cytoplasm, nucleus, vacuole, mitochondria and chloroplast to functions.
@@ -41,8 +40,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 2 — Use a light microscope to study cells
 
-**Objective:** `M1-S1_2-02`  
-**Official indicator:** ว 1.2 ม.1/2  
+**Objective:** `M1-S1_2-02`  \n**Official indicator:** ว 1.2 ม.1/2  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Use a light microscope to study cells  
 **Teaching activity:** Demonstrate safe handling and low-power focusing; students draw and label a prepared specimen.
@@ -57,8 +55,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 3 — Relate cell shape to cell function
 
-**Objective:** `M1-S1_2-03`  
-**Official indicator:** ว 1.2 ม.1/3  
+**Objective:** `M1-S1_2-03`  \n**Official indicator:** ว 1.2 ม.1/3  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Relate cell shape to cell function  
 **Teaching activity:** Compare nerve, root-hair and red blood cells; link adaptations to functions.
@@ -73,8 +70,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 4 — Explain levels of organisation
 
-**Objective:** `M1-S1_2-04`  
-**Official indicator:** ว 1.2 ม.1/4  
+**Objective:** `M1-S1_2-04`  \n**Official indicator:** ว 1.2 ม.1/4  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Explain levels of organisation  
 **Teaching activity:** Use picture cards to order cell, tissue, organ, organ system and organism.
@@ -89,8 +85,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 5 — Explain diffusion and osmosis
 
-**Objective:** `M1-S1_2-05`  
-**Official indicator:** ว 1.2 ม.1/5  
+**Objective:** `M1-S1_2-05`  \n**Official indicator:** ว 1.2 ม.1/5  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Explain diffusion and osmosis  
 **Teaching activity:** Model diffusion with food colouring and osmosis with potato strips in different solutions; do not taste materials.
@@ -105,8 +100,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 6 — Identify requirements and products of photosynthesis
 
-**Objective:** `M1-S1_2-06`  
-**Official indicator:** ว 1.2 ม.1/6  
+**Objective:** `M1-S1_2-06`  \n**Official indicator:** ว 1.2 ม.1/6  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Identify requirements and products of photosynthesis  
 **Teaching activity:** Build an input-output diagram for light, water, carbon dioxide, chlorophyll, sugar and oxygen.
@@ -121,8 +115,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 7 — Explain the importance of photosynthesis
 
-**Objective:** `M1-S1_2-07`  
-**Official indicator:** ว 1.2 ม.1/7  
+**Objective:** `M1-S1_2-07`  \n**Official indicator:** ว 1.2 ม.1/7  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Explain the importance of photosynthesis  
 **Teaching activity:** Trace energy from sunlight to plants and through a food chain.
@@ -137,8 +130,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 8 — Value and care for plants
 
-**Objective:** `M1-S1_2-08`  
-**Official indicator:** ว 1.2 ม.1/8  
+**Objective:** `M1-S1_2-08`  \n**Official indicator:** ว 1.2 ม.1/8  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Value and care for plants  
 **Teaching activity:** Plan a class planting or plant-care activity; identify suitable light, water and soil.
@@ -153,8 +145,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 9 — Describe xylem and phloem
 
-**Objective:** `M1-S1_2-09`  
-**Official indicator:** ว 1.2 ม.1/9  
+**Objective:** `M1-S1_2-09`  \n**Official indicator:** ว 1.2 ม.1/9  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Describe xylem and phloem  
 **Teaching activity:** Compare tube diagrams and colour-code water/mineral and sugar transport.
@@ -169,8 +160,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 10 — Represent transport in xylem and phloem
 
-**Objective:** `M1-S1_2-10`  
-**Official indicator:** ว 1.2 ม.1/10  
+**Objective:** `M1-S1_2-10`  \n**Official indicator:** ว 1.2 ม.1/10  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Represent transport in xylem and phloem  
 **Teaching activity:** Annotate a root-stem-leaf diagram with arrows and a key.
@@ -185,8 +175,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 11 — Explain reproduction in flowering plants
 
-**Objective:** `M1-S1_2-11`  
-**Official indicator:** ว 1.2 ม.1/11  
+**Objective:** `M1-S1_2-11`  \n**Official indicator:** ว 1.2 ม.1/11  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Explain reproduction in flowering plants  
 **Teaching activity:** Compare seed formation with vegetative propagation such as runners or cuttings.
@@ -201,8 +190,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 12 — Explain pollination and seed formation
 
-**Objective:** `M1-S1_2-12`  
-**Official indicator:** ว 1.2 ม.1/12  
+**Objective:** `M1-S1_2-12`  \n**Official indicator:** ว 1.2 ม.1/12  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Explain pollination and seed formation  
 **Teaching activity:** Sequence flower parts, pollination, fertilisation, fruit/seed formation, dispersal and germination.
@@ -217,8 +205,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 13 — Recognise the importance of pollinators
 
-**Objective:** `M1-S1_2-13`  
-**Official indicator:** ว 1.2 ม.1/13  
+**Objective:** `M1-S1_2-13`  \n**Official indicator:** ว 1.2 ม.1/13  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Recognise the importance of pollinators  
 **Teaching activity:** Study pollinator images and design a pollinator-friendly school garden poster.
@@ -233,8 +220,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 14 — Explain the importance of plant nutrients
 
-**Objective:** `M1-S1_2-14`  
-**Official indicator:** ว 1.2 ม.1/14  
+**Objective:** `M1-S1_2-14`  \n**Official indicator:** ว 1.2 ม.1/14  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Explain the importance of plant nutrients  
 **Teaching activity:** Compare healthy and nutrient-deficient plant images; introduce major mineral nutrients.
@@ -249,8 +235,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 15 — Select suitable fertilisers
 
-**Objective:** `M1-S1_2-15`  
-**Official indicator:** ว 1.2 ม.1/15  
+**Objective:** `M1-S1_2-15`  \n**Official indicator:** ว 1.2 ม.1/15  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Select suitable fertilisers  
 **Teaching activity:** Read a sample N-P-K label and match nutrient needs to a plant scenario.
@@ -265,8 +250,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 16 — Select suitable plant propagation methods
 
-**Objective:** `M1-S1_2-16`  
-**Official indicator:** ว 1.2 ม.1/16  
+**Objective:** `M1-S1_2-16`  \n**Official indicator:** ว 1.2 ม.1/16  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Select suitable plant propagation methods  
 **Teaching activity:** Compare seeds, cuttings, grafting and layering; choose methods for scenarios.
@@ -281,8 +265,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 17 — Explain uses of plant tissue culture
 
-**Objective:** `M1-S1_2-17`  
-**Official indicator:** ว 1.2 ม.1/17  
+**Objective:** `M1-S1_2-17`  \n**Official indicator:** ว 1.2 ม.1/17  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Explain uses of plant tissue culture  
 **Teaching activity:** Use a sterile-culture sequence diagram and discuss agriculture and conservation.
@@ -297,8 +280,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 18 — Apply plant propagation knowledge
 
-**Objective:** `M1-S1_2-18`  
-**Official indicator:** ว 1.2 ม.1/18  
+**Objective:** `M1-S1_2-18`  \n**Official indicator:** ว 1.2 ม.1/18  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Apply plant propagation knowledge  
 **Teaching activity:** Give plant-production scenarios; students choose and justify propagation methods.
@@ -313,8 +295,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 19 — Classify metals, non-metals and metalloids
 
-**Objective:** `M1-S2_1-01`  
-**Official indicator:** ว 2.1 ม.1/1  
+**Objective:** `M1-S2_1-01`  \n**Official indicator:** ว 2.1 ม.1/1  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Classify metals, non-metals and metalloids  
 **Teaching activity:** Compare safe samples or property cards for lustre, conductivity, malleability and brittleness.
@@ -329,8 +310,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 20 — Evaluate impacts of using elements
 
-**Objective:** `M1-S2_1-02`  
-**Official indicator:** ว 2.1 ม.1/2  
+**Objective:** `M1-S2_1-02`  \n**Official indicator:** ว 2.1 ม.1/2  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Evaluate impacts of using elements  
 **Teaching activity:** Use a case study such as copper wiring, aluminium cans or medical radioisotopes.
@@ -345,8 +325,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 21 — Promote safe and responsible use of elements
 
-**Objective:** `M1-S2_1-03`  
-**Official indicator:** ว 2.1 ม.1/3  
+**Objective:** `M1-S2_1-03`  \n**Official indicator:** ว 2.1 ม.1/3  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Promote safe and responsible use of elements  
 **Teaching activity:** Create a safety checklist for handling, storage, recycling and disposal; teacher handles unknown substances.
@@ -361,8 +340,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 22 — Compare boiling and melting points
 
-**Objective:** `M1-S2_1-04`  
-**Official indicator:** ว 2.1 ม.1/4  
+**Objective:** `M1-S2_1-04`  \n**Official indicator:** ว 2.1 ม.1/4  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Compare boiling and melting points  
 **Teaching activity:** Use teacher-provided temperature-time data; identify plateaus on graphs.
@@ -377,8 +355,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 23 — Compare density of pure substances and mixtures
 
-**Objective:** `M1-S2_1-05`  
-**Official indicator:** ว 2.1 ม.1/5  
+**Objective:** `M1-S2_1-05`  \n**Official indicator:** ว 2.1 ม.1/5  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Compare density of pure substances and mixtures  
 **Teaching activity:** Measure mass and volume of safe objects; calculate density.
@@ -393,8 +370,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 24 — Measure mass and volume
 
-**Objective:** `M1-S2_1-06`  
-**Official indicator:** ว 2.1 ม.1/6  
+**Objective:** `M1-S2_1-06`  \n**Official indicator:** ว 2.1 ม.1/6  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Measure mass and volume  
 **Teaching activity:** Practise using a balance and measuring cylinder; read the meniscus at eye level.
@@ -409,8 +385,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 25 — Relate atoms, elements and compounds
 
-**Objective:** `M1-S2_1-07`  
-**Official indicator:** ว 2.1 ม.1/7  
+**Objective:** `M1-S2_1-07`  \n**Official indicator:** ว 2.1 ม.1/7  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Relate atoms, elements and compounds  
 **Teaching activity:** Build particle diagrams with coloured counters.
@@ -425,8 +400,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 26 — Model atomic structure
 
-**Objective:** `M1-S2_1-08`  
-**Official indicator:** ว 2.1 ม.1/8  
+**Objective:** `M1-S2_1-08`  \n**Official indicator:** ว 2.1 ม.1/8  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Model atomic structure  
 **Teaching activity:** Build a simplified atom model with a nucleus and electrons around it.
@@ -441,8 +415,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 27 — Compare particles in solids, liquids and gases
 
-**Objective:** `M1-S2_1-09`  
-**Official indicator:** ว 2.1 ม.1/9  
+**Objective:** `M1-S2_1-09`  \n**Official indicator:** ว 2.1 ม.1/9  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Compare particles in solids, liquids and gases  
 **Teaching activity:** Draw particle arrangements and describe movement and attraction in each state.
@@ -457,8 +430,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 28 — Explain heat energy and changes of state
 
-**Objective:** `M1-S2_1-10`  
-**Official indicator:** ว 2.1 ม.1/10  
+**Objective:** `M1-S2_1-10`  \n**Official indicator:** ว 2.1 ม.1/10  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Explain heat energy and changes of state  
 **Teaching activity:** Use a state-change diagram and temperature-time graph.
@@ -473,8 +445,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 29 — Model air pressure and altitude
 
-**Objective:** `M1-S2_2-01`  
-**Official indicator:** ว 2.2 ม.1/1  
+**Objective:** `M1-S2_2-01`  \n**Official indicator:** ว 2.2 ม.1/1  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Model air pressure and altitude  
 **Teaching activity:** Use a syringe demonstration or diagram; relate pressure to the weight of air above.
@@ -489,8 +460,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 30 — Calculate heat in temperature and state changes
 
-**Objective:** `M1-S2_3-01`  
-**Official indicator:** ว 2.3 ม.1/1  
+**Objective:** `M1-S2_3-01`  \n**Official indicator:** ว 2.3 ม.1/1  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Calculate heat in temperature and state changes  
 **Teaching activity:** Practise Q = mcΔT and Q = mL, identifying units and known values.
@@ -505,8 +475,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 31 — Measure temperature with a thermometer
 
-**Objective:** `M1-S2_3-02`  
-**Official indicator:** ว 2.3 ม.1/2  
+**Objective:** `M1-S2_3-02`  \n**Official indicator:** ว 2.3 ม.1/2  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Measure temperature with a thermometer  
 **Teaching activity:** Demonstrate safe use; allow the reading to stabilise before recording.
@@ -521,8 +490,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 32 — Model thermal expansion and contraction
 
-**Objective:** `M1-S2_3-03`  
-**Official indicator:** ว 2.3 ม.1/3  
+**Objective:** `M1-S2_3-03`  \n**Official indicator:** ว 2.3 ม.1/3  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Model thermal expansion and contraction  
 **Teaching activity:** Use a diagram or teacher demonstration to explain particle movement during heating and cooling.
@@ -537,8 +505,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 33 — Apply thermal expansion knowledge
 
-**Objective:** `M1-S2_3-04`  
-**Official indicator:** ว 2.3 ม.1/4  
+**Objective:** `M1-S2_3-04`  \n**Official indicator:** ว 2.3 ม.1/4  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Apply thermal expansion knowledge  
 **Teaching activity:** Analyse expansion gaps in bridges, tracks and pipelines.
@@ -553,8 +520,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 34 — Calculate heat transfer at thermal equilibrium
 
-**Objective:** `M1-S2_3-05`  
-**Official indicator:** ว 2.3 ม.1/5  
+**Objective:** `M1-S2_3-05`  \n**Official indicator:** ว 2.3 ม.1/5  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Calculate heat transfer at thermal equilibrium  
 **Teaching activity:** Solve simple mixing-water problems; assume no heat loss when stated.
@@ -569,8 +535,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 35 — Model the three modes of heat transfer
 
-**Objective:** `M1-S2_3-06`  
-**Official indicator:** ว 2.3 ม.1/6  
+**Objective:** `M1-S2_3-06`  \n**Official indicator:** ว 2.3 ม.1/6  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Model the three modes of heat transfer  
 **Teaching activity:** Classify examples: metal spoon, moving warm air and sunlight.
@@ -585,8 +550,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 36 — Design a device using heat-transfer knowledge
 
-**Objective:** `M1-S2_3-07`  
-**Official indicator:** ว 2.3 ม.1/7  
+**Objective:** `M1-S2_3-07`  \n**Official indicator:** ว 2.3 ม.1/7  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Design a device using heat-transfer knowledge  
 **Teaching activity:** Design an insulated lunch container or solar warmer using safe materials; test temperature change.
@@ -601,8 +565,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 37 — Model the layers of the atmosphere
 
-**Objective:** `M1-S3_2-01`  
-**Official indicator:** ว 3.2 ม.1/1  
+**Objective:** `M1-S3_2-01`  \n**Official indicator:** ว 3.2 ม.1/1  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Model the layers of the atmosphere  
 **Teaching activity:** Create a labelled model of the five main atmospheric layers and their roles.
@@ -617,8 +580,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 38 — Explain factors affecting weather elements
 
-**Objective:** `M1-S3_2-02`  
-**Official indicator:** ว 3.2 ม.1/2  
+**Objective:** `M1-S3_2-02`  \n**Official indicator:** ว 3.2 ม.1/2  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Explain factors affecting weather elements  
 **Teaching activity:** Use local weather observations or a sample dataset to connect temperature, pressure, wind, humidity and clouds.
@@ -633,8 +595,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 39 — Compare thunderstorms and tropical cyclones
 
-**Objective:** `M1-S3_2-03`  
-**Official indicator:** ว 3.2 ม.1/3  
+**Objective:** `M1-S3_2-03`  \n**Official indicator:** ว 3.2 ม.1/3  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Compare thunderstorms and tropical cyclones  
 **Teaching activity:** Use formation diagrams and official safety guidance; practise a storm-safety scenario.
@@ -649,8 +610,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 40 — Make a simple weather forecast
 
-**Objective:** `M1-S3_2-04`  
-**Official indicator:** ว 3.2 ม.1/4  
+**Objective:** `M1-S3_2-04`  \n**Official indicator:** ว 3.2 ม.1/4  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Make a simple weather forecast  
 **Teaching activity:** Interpret a small table of temperature, cloud, wind and rainfall data; write a short forecast.
@@ -665,8 +625,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 41 — Use weather forecasts responsibly
 
-**Objective:** `M1-S3_2-05`  
-**Official indicator:** ว 3.2 ม.1/5  
+**Objective:** `M1-S3_2-05`  \n**Official indicator:** ว 3.2 ม.1/5  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Use weather forecasts responsibly  
 **Teaching activity:** Plan clothing, travel or farming actions from sample forecasts.
@@ -681,8 +640,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 42 — Explain global climate change and its impacts
 
-**Objective:** `M1-S3_2-06`  
-**Official indicator:** ว 3.2 ม.1/6  
+**Objective:** `M1-S3_2-06`  \n**Official indicator:** ว 3.2 ม.1/6  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Explain global climate change and its impacts  
 **Teaching activity:** Compare long-term temperature or rainfall graphs; distinguish climate from daily weather.
@@ -697,8 +655,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson 43 — Respond to global climate change
 
-**Objective:** `M1-S3_2-07`  
-**Official indicator:** ว 3.2 ม.1/7  
+**Objective:** `M1-S3_2-07`  \n**Official indicator:** ว 3.2 ม.1/7  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
 **Learning outcome:** Respond to global climate change  
 **Teaching activity:** Create a school action plan for energy, transport, waste and heat/flood preparedness.
