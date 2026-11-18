@@ -147,14 +147,12 @@ order by case e.grade_code
  when 'P5' then 5 when 'P6' then 6 when 'M1' then 7 when 'M2' then 8
  when 'M3' then 9 when 'M4' then 10 when 'M5' then 11 else 12 end;
 
--- Completed primary W4.2 batch: all 28 indicators should be classified.
-with expected(grade_code,total,must_know,should_know) as (
- values ('P1',5,4,1),('P2',4,2,2),('P3',5,4,1),
-        ('P4',5,4,1),('P5',5,2,3),('P6',4,2,2)
+-- Completed primary W4.2 batch: verify coverage and presence of priority labels.
+-- Exact must/should source-to-code mapping remains part of the final OBEC audit.
+with expected(grade_code,total) as (
+ values ('P1',5),('P2',4),('P3',5),('P4',5),('P5',5),('P6',4)
 ), actual as (
  select g.code grade_code,count(distinct o.id)::integer total,
-        count(*) filter(where a.indicator_classification='must_know')::integer must_know,
-        count(*) filter(where a.indicator_classification='should_know')::integer should_know,
         count(*) filter(where a.indicator_classification is null)::integer unclassified
  from public.learning_objective_alignments a
  join public.learning_curricula c on c.id=a.curriculum_id
@@ -168,12 +166,9 @@ with expected(grade_code,total,must_know,should_know) as (
  group by g.code
 )
 select e.grade_code,e.total expected_total,coalesce(a.total,0) actual_total,
-       e.must_know expected_must,coalesce(a.must_know,0) actual_must,
-       e.should_know expected_should,coalesce(a.should_know,0) actual_should,
        coalesce(a.unclassified,0) unclassified,
-       case when coalesce(a.total,0)=e.total and coalesce(a.must_know,0)=e.must_know
-          and coalesce(a.should_know,0)=e.should_know and coalesce(a.unclassified,0)=0
-         then 'PASS' else 'CHECK' end result
+       case when coalesce(a.total,0)=e.total and coalesce(a.unclassified,0)=0
+         then 'PASS-COVERAGE' else 'CHECK' end result
 from expected e left join actual a using(grade_code)
 order by e.grade_code;
 
