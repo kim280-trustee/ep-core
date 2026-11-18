@@ -26,17 +26,17 @@ The official total is 415 unique indicators. The M4–M6 row is a shared grade-b
 
 The 28 primary W4.2 indicators have been added under the existing `SCI` subject and `TECH` skill, aligned to the national curriculum:
 
-| Grade | W4.2 indicators | Must-know | Should-know |
-|---|---:|---:|---:|
-| P1 | 5 | 4 | 1 |
-| P2 | 4 | 2 | 2 |
-| P3 | 5 | 4 | 1 |
-| P4 | 5 | 4 | 1 |
-| P5 | 5 | 2 | 3 |
-| P6 | 4 | 2 | 2 |
-| **Total** | **28** | **18** | **10** |
+| Grade | W4.2 indicators seeded | Priority labels |
+|---|---:|---|
+| P1 | 5 | Applied from OBEC 2021 table; code-level recheck pending |
+| P2 | 4 | Applied from OBEC 2021 table; code-level recheck pending |
+| P3 | 5 | Applied from OBEC 2021 table; code-level recheck pending |
+| P4 | 5 | Applied from OBEC 2021 table; code-level recheck pending |
+| P5 | 5 | Applied from OBEC 2021 table; code-level recheck pending |
+| P6 | 4 | Applied from OBEC 2021 table; code-level recheck pending |
+| **Total** | **28** | **28 currently classified; final source-to-code reconciliation remains open** |
 
-The teacher pack `SCIENCE-TECHNOLOGY-W4.2-P1-P6-TEACHER-STARTER-PACK.md` contains 28 lesson starters and 84 formative tasks with expected evidence. This is national Science and Technology standard ว 4.2, not Click Start international Computer Studies.
+The teacher pack `SCIENCE-TECHNOLOGY-W4.2-P1-P6-TEACHER-STARTER-PACK.md` contains 28 lesson starters and 84 formative tasks with expected evidence. This is national Science and Technology standard ว 4.2, not Click Start international Computer Studies. The indicator records have priority labels, but the exact code-level must/should mapping must be reconciled against the full OBEC table before the Science area is accepted.
 
 ## Remaining national-core implementation
 
