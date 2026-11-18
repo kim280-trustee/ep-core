@@ -122,6 +122,61 @@ select expected.grade_code,expected.expected_total,coalesce(actual.total,0) actu
 from expected left join actual using(grade_code)
 order by expected.grade_code;
 
+-- Current national-core gap check against OBEC's 2021 Science and Technology
+-- grade totals. CHECK is expected until all W1-W4 indicators are seeded.
+with expected(grade_code,expected_indicators) as (
+ values ('P1',15),('P2',16),('P3',25),('P4',21),('P5',32),('P6',30),
+        ('M1',52),('M2',63),('M3',59),('M4',102),('M5',102),('M6',102)
+), actual as (
+ select g.code grade_code,count(distinct o.id)::integer actual_indicators
+ from public.learning_objective_alignments a
+ join public.learning_curricula c on c.id=a.curriculum_id
+ join public.learning_grade_levels g on g.id=a.grade_level_id and g.curriculum_id=c.id
+ join public.learning_objectives o on o.id=a.objective_id
+ join public.learning_topics t on t.id=o.topic_id
+ join public.learning_skills s on s.id=t.skill_id
+ join public.learning_subjects sub on sub.id=s.subject_id
+ where c.code='TH-BASIC-CORE-2008-2017' and sub.code='SCI'
+ group by g.code
+)
+select e.grade_code,e.expected_indicators,coalesce(a.actual_indicators,0) actual_indicators,
+       case when coalesce(a.actual_indicators,0)=e.expected_indicators then 'PASS' else 'GAP' end result
+from expected e left join actual a using(grade_code)
+order by case e.grade_code
+ when 'P1' then 1 when 'P2' then 2 when 'P3' then 3 when 'P4' then 4
+ when 'P5' then 5 when 'P6' then 6 when 'M1' then 7 when 'M2' then 8
+ when 'M3' then 9 when 'M4' then 10 when 'M5' then 11 else 12 end;
+
+-- Completed primary W4.2 batch: all 28 indicators should be classified.
+with expected(grade_code,total,must_know,should_know) as (
+ values ('P1',5,4,1),('P2',4,2,2),('P3',5,4,1),
+        ('P4',5,4,1),('P5',5,2,3),('P6',4,2,2)
+), actual as (
+ select g.code grade_code,count(distinct o.id)::integer total,
+        count(*) filter(where a.indicator_classification='must_know')::integer must_know,
+        count(*) filter(where a.indicator_classification='should_know')::integer should_know,
+        count(*) filter(where a.indicator_classification is null)::integer unclassified
+ from public.learning_objective_alignments a
+ join public.learning_curricula c on c.id=a.curriculum_id
+ join public.learning_grade_levels g on g.id=a.grade_level_id and g.curriculum_id=c.id
+ join public.learning_objectives o on o.id=a.objective_id
+ join public.learning_topics t on t.id=o.topic_id
+ join public.learning_skills s on s.id=t.skill_id
+ join public.learning_subjects sub on sub.id=s.subject_id
+ where c.code='TH-BASIC-CORE-2008-2017' and sub.code='SCI'
+   and o.code like 'P%-S4_2-%'
+ group by g.code
+)
+select e.grade_code,e.total expected_total,coalesce(a.total,0) actual_total,
+       e.must_know expected_must,coalesce(a.must_know,0) actual_must,
+       e.should_know expected_should,coalesce(a.should_know,0) actual_should,
+       coalesce(a.unclassified,0) unclassified,
+       case when coalesce(a.total,0)=e.total and coalesce(a.must_know,0)=e.must_know
+          and coalesce(a.should_know,0)=e.should_know and coalesce(a.unclassified,0)=0
+         then 'PASS' else 'CHECK' end result
+from expected e left join actual a using(grade_code)
+order by e.grade_code;
+
 -- Report any active objective in the five Science tracks with no Thai Science
 -- curriculum/grade alignment. Expected result: zero rows.
 select
