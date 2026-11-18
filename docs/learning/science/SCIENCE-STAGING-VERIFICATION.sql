@@ -78,13 +78,48 @@ select
   coalesce(actual.must_know,0) as actual_must,
   expected.expected_should,
   coalesce(actual.should_know,0) as actual_should,
-  expected.expected_pending,
-  coalesce(actual.pending,0) as actual_not_in_priority_table,
+  expected.expected_not_in_priority_table,
+  coalesce(actual.not_in_priority_table,0) as actual_not_in_priority_table,
   case when coalesce(actual.must_know,0)=expected.expected_must
       and coalesce(actual.should_know,0)=expected.expected_should
-      and coalesce(actual.pending,0)=expected.expected_pending
+      and coalesce(actual.not_in_priority_table,0)=expected.expected_not_in_priority_table
     then 'PASS' else 'CHECK' end as result
 from expected left join actual using (grade_code)
+order by expected.grade_code;
+
+
+-- National Basic Education Core Curriculum Science cross-check.
+-- M1-M3 must mirror the complete 144-indicator SCI track exactly. This catches
+-- any future omission when an indicator is added to the subject-specific track.
+with expected(grade_code,expected_total,expected_must,expected_should,expected_not_in_priority_table) as (
+ values ('M1',43,29,14,0),('M2',48,37,11,0),('M3',53,33,11,9)
+), actual as (
+ select grade.code grade_code,
+        count(*)::integer total,
+        count(*) filter(where alignment.indicator_classification='must_know')::integer must_know,
+        count(*) filter(where alignment.indicator_classification='should_know')::integer should_know,
+        count(*) filter(where alignment.indicator_classification is null)::integer not_in_priority_table
+ from public.learning_objective_alignments alignment
+ join public.learning_curricula curriculum on curriculum.id=alignment.curriculum_id
+ join public.learning_grade_levels grade on grade.id=alignment.grade_level_id and grade.curriculum_id=curriculum.id
+ join public.learning_objectives objective on objective.id=alignment.objective_id
+ join public.learning_topics topic on topic.id=objective.topic_id
+ join public.learning_skills skill on skill.id=topic.skill_id
+ join public.learning_subjects subject on subject.id=skill.subject_id
+ where curriculum.code='TH-BASIC-CORE-2008-2017' and subject.code='SCI'
+   and grade.code in ('M1','M2','M3')
+ group by grade.code
+)
+select expected.grade_code,expected.expected_total,coalesce(actual.total,0) actual_total,
+       expected.expected_must,coalesce(actual.must_know,0) actual_must,
+       expected.expected_should,coalesce(actual.should_know,0) actual_should,
+       expected.expected_not_in_priority_table,coalesce(actual.not_in_priority_table,0) actual_not_in_priority_table,
+       case when coalesce(actual.total,0)=expected.expected_total
+          and coalesce(actual.must_know,0)=expected.expected_must
+          and coalesce(actual.should_know,0)=expected.expected_should
+          and coalesce(actual.not_in_priority_table,0)=expected.expected_not_in_priority_table
+         then 'PASS' else 'CHECK' end result
+from expected left join actual using(grade_code)
 order by expected.grade_code;
 
 -- Report any active objective in the five Science tracks with no Thai Science
