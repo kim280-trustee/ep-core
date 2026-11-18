@@ -69,7 +69,7 @@ Therefore:
 - [x] Consolidate and parser-validate 13 subject/grade import files; retain grade-specific selection for code-less upper-secondary outcomes.
 - [x] Readiness and subject audit documents corrected to distinguish database objectives from Markdown teaching resources.
 - [x] Add read-only staging verification SQL: `docs/learning/science/SCIENCE-STAGING-VERIFICATION.sql`.
-- [x] Apply all 45 Science migrations and the corrective M2/M3 strand-integrity migration to the existing Supabase project; verify all 15 subject/grade counts.\n- [x] Apply OBEC 2021 priority classifications to all M1/M2 indicators and M3 biological/materials indicators.\n- [ ] Complete exact OBEC priority classification for the remaining 32 M3 energy and Earth-space indicators.
+- [x] Apply all 45 Science migrations and the corrective M2/M3 strand-integrity migration to the existing Supabase project; verify all 15 subject/grade counts.\n- [x] Apply OBEC 2021 priority classifications to all M1/M2 indicators and M3 biological/materials indicators.\n- [ ] Complete exact OBEC priority classification for the remaining nine M3 Earth-system indicators.
 - [ ] Pull the branch locally and run lint/build once.
 - [ ] Resolve any runtime migration or build findings.
 - [x] Implement the authorized teacher-content importer, teacher-only guidance separation, and trusted short-answer manual-review workflow. The importer has not yet been run; actual draft import remains an explicit teacher action.
