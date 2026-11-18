@@ -6,7 +6,7 @@
 
 ## Result
 
-The Science academic-catalogue migrations create or upsert global academic records only. They do not create school, class, student, assignment, authored lesson-content or question-bank records. Runtime verification confirmed all 15 expected subject/grade objective counts. OBEC 2021 priority classification is now verified for M1 (29 must / 14 should), M2 (37 / 11), and the M3 biological/materials subset (15 / 4); M3 energy and Earth-space classification remains outstanding.
+The Science academic-catalogue migrations create or upsert global academic records only. They do not create school, class, student, assignment, authored lesson-content or question-bank records. Runtime verification confirmed all 15 expected subject/grade objective counts. OBEC 2021 priority classification is now verified for M1 (29 must / 14 should), M2 (37 / 11), and the M3 biological/materials subset (14 / 5); M3 energy and Earth-space classification remains outstanding.
 
 Runtime migration execution is complete. The application build, lint and end-to-end teacher/student tests remain pending before release.
 
