@@ -6,7 +6,7 @@
 
 ## Result
 
-The Science academic-catalogue migrations create or upsert global academic records only. They do not create school, class, student, assignment, authored lesson-content or question-bank records. Runtime verification confirmed all 15 expected subject/grade objective counts. OBEC 2021 priority classification is now verified for M1 (29 must / 14 should), M2 (37 / 11), and 40 M3 indicators: biology/materials (14 / 5) plus energy/light (16 / 5). The remaining 11 M3 Earth-space indicators still need exact code-level classification.
+The Science academic-catalogue migrations create or upsert global academic records only. They do not create school, class, student, assignment, authored lesson-content or question-bank records. Runtime verification confirmed all 15 expected subject/grade objective counts. OBEC 2021 priority classification is now verified for M1 (29 must / 14 should), M2 (37 / 11), and 40 M3 indicators: biology/materials (14 / 5) plus energy/light (16 / 5). The remaining nine M3 Earth-system indicators still need exact code-level classification.
 
 Runtime migration execution is complete. The application build, lint and end-to-end teacher/student tests remain pending before release.
 
@@ -42,14 +42,14 @@ The M4 geology migration is last in the current batch and assigns outcomes 1–1
 
 | Track | Objectives | Grade allocation |
 |---|---:|---|
-| M1–M3 core Science | 142 | M1 43; M2 48; M3 51 |
+| M1–M3 core Science | 144 | M1 43; M2 48; M3 53 |
 | Biology | 108 | M4 32; M5 39; M6 37 |
 | Chemistry | 81 | M4 28; M5 38; M6 15 |
 | Physics | 67 | M4 17; M5 26; M6 24 |
 | Earth, Astronomy and Space | 44 | M4 12; M5 13; M6 19 |
-| **Total** | **442** | **All allocations audited** |
+| **Total** | **444** | **All allocations audited** |
 
-The teacher-pack corpus contains 442 lesson starters and 1,326 answer-keyed practice questions. These are source materials in Markdown, not database rows.
+The teacher-pack corpus contains 444 lesson starters and 1,332 answer-keyed practice questions. These are source materials in Markdown, not database rows.
 
 ## Content and assessment insertion boundary
 
