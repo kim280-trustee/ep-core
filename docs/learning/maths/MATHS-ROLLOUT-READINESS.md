@@ -1,8 +1,8 @@
 # E&P Learning — Mathematics Rollout Readiness
 
-**Branch:** `paul/learning-academic-integrity-audit`  
+**Branch:** `paul/thai-national-curriculum-foundation`  
 **Scope:** Thai Mathematics M1–M6 core-curriculum knowledge graph and teacher authoring readiness  
-**Status:** All 11 prerequisite, academic-integrity and Mathematics catalogue migrations are applied to the existing Supabase project. All 41 objective-to-grade alignments are verified. No Maths pilot class or student records have been created.
+**Status:** All 11 prerequisite, academic-integrity and Mathematics catalogue migrations are applied to the existing Supabase project. All 41 objective-to-grade alignments are verified in both the national-core and Maths-specific curriculum catalogues. All 82 alignment rows are classified `must_know` per OBEC. No Maths pilot class or student records have been created.
 
 ## Curriculum coverage delivered
 
@@ -22,7 +22,7 @@ M4–M6 coverage is limited to the eight grade-level indicators in the revised 2
 
 ## Applied migration order
 
-The 11 migrations below were applied in timestamp order after the live-database preflight returned PASS for all nine integrity checks:
+The 12 migrations below were applied in timestamp order after the live-database preflight returned PASS for all nine integrity checks:
 
 1. `20261116030000_learning_subject_catalog_manage.sql` — enables subject and curriculum-subject creation for academic managers.
 2. `20261116031500_learning_grade_level_catalog_manage.sql` — enables curriculum grade-level creation for academic managers.
@@ -34,7 +34,7 @@ The 11 migrations below were applied in timestamp order after the live-database 
 8. `20261116063000_learning_maths_m2_m3_knowledge_graph.sql` — M2 and M3 skills/topics/objectives/alignments.
 9. `20261116064500_learning_maths_m4_m6_knowledge_graph.sql` — M4–M6 core-curriculum topics/objectives/alignments.
 10. `20261116070000_learning_academic_year_multi_curriculum.sql` — makes the school academic year curriculum-independent while preserving existing curriculum values as optional legacy metadata.
-11. `20261116071500_learning_academic_record_integrity.sql` — strengthens term dates and gradebook class/term/student scope. School-structure write policies were already hardened by an earlier applied migration.
+11. `20261116071500_learning_academic_record_integrity.sql` — strengthens term dates and gradebook class/term/student scope. School-structure write policies were already hardened by an earlier applied migration.\n12. `20261118198000_classify_thai_mathematics_m1_m6_must_know.sql` — classifies the 41 Mathematics indicators as `must_know` in both curriculum catalogues, matching OBEC's M1–M6 summary.
 
 The graph seeds are idempotent upserts and check for their required curriculum, grade and subject-strand prerequisites. They do not create school-specific academic years, terms, class groups, memberships, content or assessments.
 
@@ -46,7 +46,7 @@ Read-only inspection of the connected `ep-core` database found the current Engli
 
 The committed read-only preflight script was executed against the live project. All nine integrity checks returned **PASS with zero issues**, covering term dates, gradebook term/class year alignment, class-subject/class alignment, student membership references, and content-objective subject/alignment integrity. The academic-management RLS policies are already permission-scoped in the live database.
 
-The live Maths catalogue is verified: one active `MATH` subject, one active `TH-MATH-M1-M6` curriculum, six grade levels and 41 aligned objectives (M1=9, M2=12, M3=12, M4=3, M5=4, M6=1).
+The live Maths catalogue is verified: one active `MATH` subject, one active `TH-MATH-M1-M6` curriculum, six grade levels and 41 aligned objectives (M1=9, M2=12, M3=12, M4=3, M5=4, M6=1). The same 41 objectives are also aligned to `TH-BASIC-CORE-2008-2017`, for 82 alignment rows across both catalogues. OBEC's 2021 summary classifies all secondary Mathematics indicators as must-know (M1=9/9, M2=12/12, M3=12/12, M4–M6=8/8); both catalogues now reflect that classification with zero unclassified rows.
 
 The preflight itself was read-only. The subsequent migrations added academic catalogue, integrity and multi-curriculum support; they did not create or modify school academic years, terms, classes, memberships, authored content, assessments or student records.
 
@@ -85,7 +85,7 @@ The existing English MEP pilot's class curriculum, grade, term, memberships and 
 ## Explicitly not done
 
 - [x] The 11 additive prerequisite, academic-integrity and Mathematics migrations have been applied and verified.
-- [x] Three teacher packs parser-validated: 41 lessons, 123 questions, 41 objective codes matched to the live catalogue.
+- [x] Three teacher packs parser-validated: 41 lessons, 123 answer-keyed questions, 41 objective codes matched to the live catalogue.\n- [x] OBEC must-know classification applied and verified across both curriculum catalogues (82 alignments; zero unclassified).
 - [ ] Import the three packs into the school's organization through an authorized teacher session.
 - No new Maths pilot class, term, subject assignment or student membership has been created.
 - No new academic year, term, class group, class subject or membership has been created.
