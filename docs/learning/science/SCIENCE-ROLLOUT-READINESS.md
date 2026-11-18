@@ -2,7 +2,7 @@
 
 **Branch:** `paul/thai-national-curriculum-foundation`  
 **Scope:** Full Thai national Science and Technology learning area (P1–M6), plus separately catalogued M4–M6 specialist outcomes  
-**Status:** **Core national Science rollout is still incomplete.** The existing work covers 144 M1–M3 SCI records and 300 M4–M6 specialist outcomes. A new primary-grade W4.2 batch has added 28 official computational-science indicators, but the full OBEC 2021 Science and Technology set contains 415 indicators across P1–M6. Primary W1–W3, missing lower-secondary indicators, lower-secondary W4.1/W4.2, and the 102 upper-secondary core indicators still require implementation and code-level reconciliation. The 300 Biology, Chemistry, Physics and Earth/Space specialist outcomes are additional curriculum content and do not replace the M4–M6 core set.
+**Status:** **Core national Science rollout is still incomplete.** The existing work covers 144 M1–M3 SCI records and 300 M4–M6 specialist outcomes. A new primary-grade W4.2 batch has added 28 official computational-science indicators, but the full OBEC 2021 Science and Technology set contains 415 indicators across P1–M6. Primary P1–P3 W1–W3 are seeded (42 indicators), and P1–P6 W4.2 is seeded (28 indicators). P4–P6 W1–W3 (69 indicators), missing lower-secondary W1–W4 indicators and the 102 shared upper-secondary core indicators still require implementation and code-level reconciliation. The 300 Biology, Chemistry, Physics and Earth/Space specialist outcomes are additional curriculum content and do not replace the M4–M6 core set.
 
 The existing 13 Science import files contain 444 lesson starters and 1,332 answer-keyed practice questions. The new `SCIENCE-TECHNOLOGY-W4.2-P1-P6-TEACHER-STARTER-PACK.md` adds 28 lessons and 84 formative tasks. These resources are still Markdown source material until an authorized teacher imports them through `/teacher/content/import`. No school, class or student records have been created.
 
@@ -28,11 +28,12 @@ The M4–M6 total is a shared grade-band set of 102 indicators, not 102 separate
 
 ## Current implementation status
 
-- P1–P6: 28 W4.2 computational-science indicators seeded and classified; 111 W1–W3 indicators remain to be seeded.
+- P1–P3: 42 W1–W3 indicators seeded (10 P1, 12 P2, 20 P3); together with W4.2 these grades reconcile to 15, 16 and 25 indicators respectively.
+- P4–P6: 28 W4.2 indicators seeded (5, 5 and 4); 69 W1–W3 indicators remain (16 P4, 27 P5, 26 P6).
 - M1: 43 existing W1–W3 indicators; the 9 W4.1/W4.2 indicators are not yet seeded.
 - M2: 48 existing W1–W3 indicators; six W2.1 indicators and nine W4.1/W4.2 indicators remain to be reconciled/seeded.
 - M3: 53 existing records require code-level reconciliation against the official standard table. The official table has six W1.1 indicators, eight W1.3 indicators, three W2.2 indicators and no M3 W3.2 indicator set; the current records include 11 W1.3 and nine W3.2 entries. Do not treat the present 53 as a verified official count.
-- M1–M3 W4.1/W4.2: 27 official indicators remain.
+- M1–M3 W4.1/W4.2: 27 official indicators remain (M1: 9; M2: 9; M3: 9).
 - M4–M6 core Science and Technology: 102 shared indicators remain to be seeded.
 - M4–M6 additional specialist outcomes: Biology 108, Chemistry 81, Physics 67 and Earth/Space 44 are already catalogued separately (300 total).
 
@@ -67,7 +68,7 @@ The existing generic Teacher Content Create, Teacher Content Library and Questio
 
 After migrations are applied:
 - Select `TH-SCI-M1-M6`, the matching grade and subject `SCI` for M1–M3 core Science. For M4–M6, select the relevant specialist subject (`BIOLOGY`, `CHEMISTRY`, `PHYSICS` or `EARTH_SPACE`) and matching upper-secondary grade.
-- M2 has complete core Science coverage. M3 now has all 53 core Science objectives seeded across biological science, physical science, astronomy and Earth science.
+- M2 has 48 currently catalogued W1–W3 objectives; six W2.1 indicators and nine W4 indicators remain. M3 has 53 currently catalogued records, but these require official code reconciliation before they can be counted as complete.
 - Link each lesson and question to its exact objective code.
 - Save as draft and have a teacher review scientific accuracy, safety and suitability before publishing.
 - Use the Teacher Content Library grade filter to isolate M1 materials.
@@ -80,7 +81,7 @@ Use teacher supervision for laboratory demonstrations. Do not ask students to ta
 
 - No app-wide lint/build or end-to-end tests have been run; those remain deferred until the curriculum rollout is complete.
 - No live school, class, class-subject, teacher, student, content or assessment record has been created.
-- All M1–M3 core Science knowledge graphs are seeded. Upper-secondary specialist tracks are seeded and audited: Biology 108 outcomes, Chemistry 81, Physics 67, and Earth/Space 44.\n- All M1 and M2 OBEC priority classifications are verified; M3 biological/materials classifications are verified. M3 energy/Earth-space classifications remain outstanding. Earth/Space grade allocations are M4 geology 1–12, M5 standard 2 atmosphere/oceans/climate 1–13, and M6 standard 3 astronomy/space 1–19. Empty grade/strand combinations remain intentional where the official manual assigns no outcomes. No live migrations have been applied.
+- M1–M3 knowledge graphs contain 144 existing SCI objectives (43 M1, 48 M2, 53 M3); this is not the complete official national-core total because the technology standards and identified strand gaps remain open. Upper-secondary specialist tracks are separately catalogued: Biology 108 outcomes, Chemistry 81, Physics 67, and Earth/Space 44.\n- M1 and M2 W1–W3 OBEC priority classifications are present; M3 priority classification is only partially reconciled. The 2021 must/should table must be checked independently from the 2017 core-standard wording. No live migrations have been applied.
 - Technology standards ว 4.1 and ว 4.2 are outside this Science batch.
 - No local lint/build result is claimed; consolidated verification remains pending.
 
