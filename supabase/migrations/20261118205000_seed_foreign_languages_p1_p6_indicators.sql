@@ -137,7 +137,7 @@ join public.learning_subjects sub on sub.code='FOREIGN-LANGUAGES'
 join public.learning_skills sk on sk.subject_id=sub.id
 join public.learning_topics t on t.skill_id=sk.id and t.code=s.standard_code
 join upserted u on u.topic_id=t.id and u.code=s.objective_code
-join public.learning_curricula c on c.code='TH-BASIC-CORE-2008-2017' and c.status='active'
+join public.learning_curricula c on c.code='TH-BASIC-CORE-2008-2017' 
 join public.learning_grade_levels g on g.curriculum_id=c.id and g.code=s.grade_code and g.status='active'
 on conflict(objective_id,curriculum_id,grade_level_id) do update
 set sequence_no=excluded.sequence_no,required=excluded.required,
