@@ -49,17 +49,17 @@ order by
 
 
 -- OBEC 2021 priority-classification coverage for lower-secondary core Science.
--- M1 and M2 are complete. M3 currently has its biology/materials, energy/light and astronomy subsets classified;
+-- M1 and M2 are complete. M3 has 44 indicators classified across biology/materials, energy/light and astronomy;
 -- the nine M3 W3.2 Earth-system indicators are absent from the OBEC 2021 priority
 -- table and are intentionally left unclassified rather than assigned guessed labels.
-with expected(grade_code, expected_must, expected_should, expected_pending) as (
+with expected(grade_code, expected_must, expected_should, expected_not_in_priority_table) as (
   values ('M1',29,14,0), ('M2',37,11,0), ('M3',33,11,9)
 ), actual as (
   select
     grade.code as grade_code,
     count(*) filter (where alignment.indicator_classification='must_know')::integer as must_know,
     count(*) filter (where alignment.indicator_classification='should_know')::integer as should_know,
-    count(*) filter (where alignment.indicator_classification is null)::integer as pending
+    count(*) filter (where alignment.indicator_classification is null)::integer as not_in_priority_table
   from public.learning_objective_alignments alignment
   join public.learning_curricula curriculum on curriculum.id=alignment.curriculum_id
   join public.learning_grade_levels grade
@@ -79,7 +79,7 @@ select
   expected.expected_should,
   coalesce(actual.should_know,0) as actual_should,
   expected.expected_pending,
-  coalesce(actual.pending,0) as actual_pending,
+  coalesce(actual.pending,0) as actual_not_in_priority_table,
   case when coalesce(actual.must_know,0)=expected.expected_must
       and coalesce(actual.should_know,0)=expected.expected_should
       and coalesce(actual.pending,0)=expected.expected_pending
