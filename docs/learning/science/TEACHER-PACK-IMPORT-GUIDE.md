@@ -22,7 +22,7 @@ Import these 13 files using curriculum `TH-SCI-M1-M6`. The M1–M3 core pack use
 
 | Import file | Subject | Grade | Lessons | Questions |
 |---|---|---:|---:|---:|
-| `SCIENCE-M1-M3-COMPLETE-IMPORT.md` | `SCI` — Science | M1–M3 | 142 | 426 |
+| `SCIENCE-M1-M3-COMPLETE-IMPORT.md` | `SCI` — Science | M1–M3 | 144 | 432 |
 | `BIOLOGY-M4-IMPORT.md` | `BIOLOGY` — Biology | M4 | 32 | 96 |
 | `BIOLOGY-M5-IMPORT.md` | `BIOLOGY` — Biology | M5 | 39 | 117 |
 | `BIOLOGY-M6-IMPORT.md` | `BIOLOGY` — Biology | M6 | 37 | 111 |
@@ -35,7 +35,7 @@ Import these 13 files using curriculum `TH-SCI-M1-M6`. The M1–M3 core pack use
 | `EARTH-SPACE-M4-IMPORT.md` | `EARTH_SPACE` — Earth, Astronomy and Space Science | M4 | 12 | 36 |
 | `EARTH-SPACE-M5-IMPORT.md` | `EARTH_SPACE` — Earth, Astronomy and Space Science | M5 | 13 | 39 |
 | `EARTH-SPACE-M6-IMPORT.md` | `EARTH_SPACE` — Earth, Astronomy and Space Science | M6 | 19 | 57 |
-| **Total** | **5 subject tracks** | **M1–M6** | **442** | **1,326** |
+| **Total** | **5 subject tracks** | **M1–M6** | **444** | **1,332** |
 
 Import one file at a time and select the exact subject and grade shown in the table. Do not use a mixed-grade upper-secondary file: the grade selector is part of code-less outcome resolution. All imported records remain unpublished drafts.
 
