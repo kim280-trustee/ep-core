@@ -319,3 +319,34 @@ select e.grade_code,e.expected_total,coalesce(a.actual_total,0) actual_total,
          then 'PASS' else 'CHECK' end result
 from expected e left join actual a using(grade_code)
 order by e.grade_code;
+
+
+-- OBEC 2021 dual-priority exceptions that must not be flattened into one label.
+-- P4 ว 2.1 ป.4/1 and P6 ว 2.1 ป.6/1 are each both Must-Know and Should-Know.
+-- The current schema has one classification column; notes must preserve the second label
+-- until a dedicated multi-classification model is introduced. This query is diagnostic.
+select
+  grade.code as grade_code,
+  objective.code as objective_code,
+  alignment.indicator_classification as stored_classification,
+  alignment.notes,
+  case
+    when alignment.notes ilike '%both must-know and should-know%'
+      or alignment.notes ilike '%both must know and should know%'
+      or alignment.notes ilike '%ต้องรู้และควรรู้%'
+    then 'DUAL-PRIORITY-NOTED'
+    else 'REVIEW-DUAL-PRIORITY-METADATA'
+  end as source_exception_check
+from public.learning_objective_alignments alignment
+join public.learning_curricula curriculum on curriculum.id=alignment.curriculum_id
+join public.learning_grade_levels grade
+  on grade.id=alignment.grade_level_id and grade.curriculum_id=curriculum.id
+join public.learning_objectives objective on objective.id=alignment.objective_id
+join public.learning_topics topic on topic.id=objective.topic_id
+join public.learning_skills skill on skill.id=topic.skill_id
+join public.learning_subjects subject on subject.id=skill.subject_id
+where curriculum.code='TH-BASIC-CORE-2008-2017'
+  and subject.code='SCI'
+  and ((grade.code='P4' and objective.code='P4-S2_1-01')
+    or (grade.code='P6' and objective.code='P6-S2_1-01'))
+order by grade.code;
