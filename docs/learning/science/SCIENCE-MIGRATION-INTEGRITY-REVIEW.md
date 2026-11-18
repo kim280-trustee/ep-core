@@ -1,7 +1,7 @@
 # E&P Learning — Science Migration Integrity Review
 
 **Branch:** `paul/thai-national-curriculum-foundation`  
-**Scope:** 45 Science curriculum migrations, one corrective M2/M3 integrity migration, two OBEC priority-classification migrations, and the existing academic/content/assessment schema  
+**Scope:** 45 Science curriculum migrations, one corrective M2/M3 integrity migration, three OBEC priority-classification migrations, and the existing academic/content/assessment schema  
 **Review type:** Static source review plus runtime migration verification against the existing Supabase project.
 
 ## Result
@@ -12,7 +12,7 @@ Runtime migration execution is complete. The application build, lint and end-to-
 
 ## Migration order
 
-The 45 curriculum files are timestamped in dependency order. The final corrective migration, `20261117130000_learning_science_m2_m3_skill_topic_integrity.sql`, runs after them and removes out-of-strand M2/M3 duplicate topics, objectives and alignments. Two later migrations add priority metadata only; they do not alter objective counts or curriculum alignments. The original M2/M3 topic migrations have also been corrected in source so fresh resets seed each topic only under its intended skill.
+The 45 curriculum files are timestamped in dependency order. The final corrective migration, `20261117130000_learning_science_m2_m3_skill_topic_integrity.sql`, runs after them and removes out-of-strand M2/M3 duplicate topics, objectives and alignments. Three later migrations add priority metadata only; they do not alter objective counts or curriculum alignments. The original M2/M3 topic migrations have also been corrected in source so fresh resets seed each topic only under its intended skill.
 
 The 45 curriculum files are ordered as follows:
 
