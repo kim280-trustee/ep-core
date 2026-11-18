@@ -6,7 +6,7 @@
 **Coverage:** 28 official indicators across P1–P6  
 **Formative assessment tasks:** 84 with expected evidence
 
-This is the Thai national curriculum W4.2 pack. It is separate from the Click Start international Computer Studies course. Each lesson preserves the official Thai indicator wording and the OBEC 2021 must-know / should-know classification.
+This is the Thai national curriculum W4.2 pack. It is separate from the Click Start international Computer Studies course. Each lesson preserves the official Thai indicator wording and a provisional OBEC 2021 priority label. Recheck the exact code-level must-know / should-know assignment against the full OBEC table before final teacher import.
 
 ## Teacher guidance
 
