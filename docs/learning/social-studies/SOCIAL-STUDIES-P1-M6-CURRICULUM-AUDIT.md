@@ -72,6 +72,12 @@ Eight teacher starter packs were added, covering all 418 unique indicators:
 
 Each lesson retains the database indicator code, standard code and original Thai indicator wording, with a suggested teaching sequence, three differentiated assessment prompt types, expected evidence and a teacher check. These are teacher-planning prompt stems, not individually authored answer-keyed examination items.
 
+## Classification data model
+
+The alignment table now has a dedicated `pathway_classification` field for `between_learning` / `terminal`. The existing `indicator_classification` field retains the separate `must_know` / `should_know` priority classification. This avoids treating the two OBEC classification systems as interchangeable.
+
+Current pathway classification coverage: M3 = 33 between-learning / 17 terminal; M4–M6 = 42 / 19 each. P1–P6 and M1–M2 retain their must-know / should-know labels and still need the independent pathway mapping.
+
 ## Remaining acceptance criteria
 
 - Complete code-by-code between-learning / terminal classification for the 61 shared M4–M6 indicators.
