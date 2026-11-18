@@ -1,7 +1,7 @@
 # E&P Learning — Science Migration Integrity Review
 
 **Branch:** `paul/thai-national-curriculum-foundation`  
-**Scope:** 45 Science curriculum migrations, one corrective M2/M3 integrity migration, four OBEC priority-classification migrations, and the existing academic/content/assessment schema  
+**Scope:** 45 Science curriculum migrations, one corrective M2/M3 integrity migration, one additive M3 greenhouse-effect migration, four OBEC priority-classification migrations, and the existing academic/content/assessment schema  
 **Review type:** Static source review plus runtime migration verification against the existing Supabase project.
 
 ## Result
@@ -12,7 +12,7 @@ Runtime migration execution is complete. The application build, lint and end-to-
 
 ## Migration order
 
-The 45 curriculum files are timestamped in dependency order. The final corrective migration, `20261117130000_learning_science_m2_m3_skill_topic_integrity.sql`, runs after them and removes out-of-strand M2/M3 duplicate topics, objectives and alignments. Four later migrations add priority metadata only; they do not alter objective counts or curriculum alignments. The original M2/M3 topic migrations have also been corrected in source so fresh resets seed each topic only under its intended skill.
+The 45 curriculum files are timestamped in dependency order. The final corrective migration, `20261117130000_learning_science_m2_m3_skill_topic_integrity.sql`, runs after them and removes out-of-strand M2/M3 duplicate topics, objectives and alignments. The additive M3 greenhouse-effect migration adds the two omitted ว 3.2 ม.3/8–9 indicators. Four later priority migrations update classification metadata only. The original M2/M3 topic migrations have also been corrected in source so fresh resets seed each topic only under its intended skill.
 
 The 45 curriculum files are ordered as follows:
 
@@ -69,7 +69,7 @@ Therefore:
 - [x] Consolidate and parser-validate 13 subject/grade import files; retain grade-specific selection for code-less upper-secondary outcomes.
 - [x] Readiness and subject audit documents corrected to distinguish database objectives from Markdown teaching resources.
 - [x] Add read-only staging verification SQL: `docs/learning/science/SCIENCE-STAGING-VERIFICATION.sql`.
-- [x] Apply all 45 Science migrations and the corrective M2/M3 strand-integrity migration to the existing Supabase project; verify all 15 subject/grade counts.\n- [x] Apply OBEC 2021 priority classifications to all M1/M2 indicators and the verified M3 biological/materials, energy/light and astronomy/space indicators.\n- [x] Confirm that the nine M3 Earth-system indicators are absent from the OBEC 2021 priority table and leave their priority field null rather than infer a classification.
+- [x] Apply all 45 Science migrations, the corrective M2/M3 strand-integrity migration and the additive M3 greenhouse-effect migration; verify all 15 subject/grade counts.\n- [x] Confirm all 144 M1–M3 core Science objectives have one correct grade alignment and no duplicate skill assignments.\n- [x] Apply OBEC 2021 priority classifications to all M1/M2 indicators and the verified M3 biological/materials, energy/light and astronomy/space indicators.\n- [x] Confirm that the nine M3 Earth-system indicators are absent from the OBEC 2021 priority table and leave their priority field null rather than infer a classification.
 - [ ] Pull the branch locally and run lint/build once.
 - [ ] Resolve any runtime migration or build findings.
 - [x] Implement the authorized teacher-content importer, teacher-only guidance separation, and trusted short-answer manual-review workflow. The importer has not yet been run; actual draft import remains an explicit teacher action.
