@@ -2,7 +2,7 @@
 
 **Curriculum:** Thai Basic Education Core Curriculum B.E. 2551 (2008), revised B.E. 2560 (2017)  
 **Subject:** SCI  
-**Coverage:** 17 M2 indicators in ว 1.2 and 11 M3 indicators in ว 1.3. This is a staged biological-science release, not complete M2/M3 Science coverage.
+**Coverage:** 17 M2 indicators in ว 1.2 and 11 M3 indicators in ว 1.3. This is a staged biological-science release, not complete M2/M3 Science coverage. M2's 17 indicators now include verified OBEC 2021 must-know / should-know labels.
 
 Each lesson maps to one official indicator and includes three practice questions with answer keys. Reproductive-health topics must be taught respectfully and age-appropriately. Do not ask learners to disclose personal experiences or health information; refer medical questions to qualified professionals.
 
@@ -11,8 +11,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 1 — Identify respiratory organs
 
-**Objective:** `M2-S1_2-01`  
-**Official indicator:** ว 1.2 ม.2/1  
+**Objective:** `M2-S1_2-01`  \n**Official indicator:** ว 1.2 ม.2/1  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Identify respiratory organs and describe their functions.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -27,8 +26,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 2 — Explain breathing and gas exchange
 
-**Objective:** `M2-S1_2-02`  
-**Official indicator:** ว 1.2 ม.2/2  
+**Objective:** `M2-S1_2-02`  \n**Official indicator:** ว 1.2 ม.2/2  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain inhalation, exhalation and gas exchange.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -43,8 +41,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 3 — Care for the respiratory system
 
-**Objective:** `M2-S1_2-03`  
-**Official indicator:** ว 1.2 ม.2/3  
+**Objective:** `M2-S1_2-03`  \n**Official indicator:** ว 1.2 ม.2/3  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain respiratory health and ways to protect the lungs.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -59,8 +56,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 4 — Describe the urinary system
 
-**Objective:** `M2-S1_2-04`  
-**Official indicator:** ว 1.2 ม.2/4  
+**Objective:** `M2-S1_2-04`  \n**Official indicator:** ว 1.2 ม.2/4  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Identify urinary organs and explain how kidneys filter blood.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -75,8 +71,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 5 — Maintain kidney health
 
-**Objective:** `M2-S1_2-05`  
-**Official indicator:** ว 1.2 ม.2/5  
+**Objective:** `M2-S1_2-05`  \n**Official indicator:** ว 1.2 ม.2/5  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain kidney health and responsible health behaviours.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -91,8 +86,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 6 — Describe heart, blood vessels and blood
 
-**Objective:** `M2-S1_2-06`  
-**Official indicator:** ว 1.2 ม.2/6  
+**Objective:** `M2-S1_2-06`  \n**Official indicator:** ว 1.2 ม.2/6  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Describe structures and functions of the heart, blood vessels and blood.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -107,8 +101,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 7 — Model blood circulation
 
-**Objective:** `M2-S1_2-07`  
-**Official indicator:** ว 1.2 ม.2/7  
+**Objective:** `M2-S1_2-07`  \n**Official indicator:** ว 1.2 ม.2/7  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain how circulation transports substances around the body.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -123,8 +116,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 8 — Investigate heart rate
 
-**Objective:** `M2-S1_2-08`  
-**Official indicator:** ว 1.2 ม.2/8  
+**Objective:** `M2-S1_2-08`  \n**Official indicator:** ว 1.2 ม.2/8  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Plan a fair investigation of heart rate before and after activity.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -139,8 +131,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 9 — Care for the circulatory system
 
-**Objective:** `M2-S1_2-09`  
-**Official indicator:** ว 1.2 ม.2/9  
+**Objective:** `M2-S1_2-09`  \n**Official indicator:** ว 1.2 ม.2/9  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain circulatory health and preventive behaviours.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -155,8 +146,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 10 — Describe the central nervous system
 
-**Objective:** `M2-S1_2-10`  
-**Official indicator:** ว 1.2 ม.2/10  
+**Objective:** `M2-S1_2-10`  \n**Official indicator:** ว 1.2 ม.2/10  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Identify the brain and spinal cord and explain their roles.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -171,8 +161,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 11 — Protect the nervous system
 
-**Objective:** `M2-S1_2-11`  
-**Official indicator:** ว 1.2 ม.2/11  
+**Objective:** `M2-S1_2-11`  \n**Official indicator:** ว 1.2 ม.2/11  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain the importance of protecting the brain and spinal cord.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -187,8 +176,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 12 — Identify reproductive organs
 
-**Objective:** `M2-S1_2-12`  
-**Official indicator:** ว 1.2 ม.2/12  
+**Objective:** `M2-S1_2-12`  \n**Official indicator:** ว 1.2 ม.2/12  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Identify male and female reproductive organs and their functions.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -203,8 +191,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 13 — Explain sex hormones
 
-**Objective:** `M2-S1_2-13`  
-**Official indicator:** ว 1.2 ม.2/13  
+**Objective:** `M2-S1_2-13`  \n**Official indicator:** ว 1.2 ม.2/13  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain how sex hormones contribute to puberty.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -219,8 +206,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 14 — Understand puberty and personal care
 
-**Objective:** `M2-S1_2-14`  
-**Official indicator:** ว 1.2 ม.2/14  
+**Objective:** `M2-S1_2-14`  \n**Official indicator:** ว 1.2 ม.2/14  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Explain puberty changes and healthy physical and mental care.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -235,8 +221,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 15 — Explain the menstrual cycle and early development
 
-**Objective:** `M2-S1_2-15`  
-**Official indicator:** ว 1.2 ม.2/15  
+**Objective:** `M2-S1_2-15`  \n**Official indicator:** ว 1.2 ม.2/15  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain ovulation, menstruation, fertilisation and early embryo development.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -251,8 +236,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 16 — Compare contraception methods
 
-**Objective:** `M2-S1_2-16`  
-**Official indicator:** ว 1.2 ม.2/16  
+**Objective:** `M2-S1_2-16`  \n**Official indicator:** ว 1.2 ม.2/16  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Select contraception using reliable health information.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -267,8 +251,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### Lesson 17 — Recognise impacts of adolescent pregnancy
 
-**Objective:** `M2-S1_2-17`  
-**Official indicator:** ว 1.2 ม.2/17  
+**Objective:** `M2-S1_2-17`  \n**Official indicator:** ว 1.2 ม.2/17  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain potential impacts and identify responsible sources of support.
 
 **Teaching activity:** Use labelled diagrams, models, guided data tasks or evidence cards. Ask learners to explain their reasoning and connect the concept to safe, responsible everyday decisions.
@@ -479,8 +462,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Physical Science Lesson 1 — Predict motion from resultant force
 
-**Objective:** `M2-S2_2-01`  
-**Official indicator:** ว 2.2 ม.2/1  
+**Objective:** `M2-S2_2-01`  \n**Official indicator:** ว 2.2 ม.2/1  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Predict motion caused by the resultant of collinear forces using evidence.
 
 **Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
@@ -495,8 +477,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Physical Science Lesson 2 — Draw collinear force diagrams
 
-**Objective:** `M2-S2_2-02`  
-**Official indicator:** ว 2.2 ม.2/2  
+**Objective:** `M2-S2_2-02`  \n**Official indicator:** ว 2.2 ม.2/2  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Draw force diagrams showing forces and their resultant on an object.
 
 **Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
@@ -511,8 +492,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Physical Science Lesson 3 — Investigate liquid pressure
 
-**Objective:** `M2-S2_2-03`  
-**Official indicator:** ว 2.2 ม.2/3  
+**Objective:** `M2-S2_2-03`  \n**Official indicator:** ว 2.2 ม.2/3  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Design a fair investigation of factors affecting liquid pressure.
 
 **Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
@@ -527,8 +507,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Physical Science Lesson 4 — Explain buoyancy and floating
 
-**Objective:** `M2-S2_2-04`  
-**Official indicator:** ว 2.2 ม.2/4  
+**Objective:** `M2-S2_2-04`  \n**Official indicator:** ว 2.2 ม.2/4  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Analyse buoyant force and why objects sink or float in liquids.
 
 **Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
@@ -543,8 +522,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Physical Science Lesson 5 — Represent forces in a liquid
 
-**Objective:** `M2-S2_2-05`  
-**Official indicator:** ว 2.2 ม.2/5  
+**Objective:** `M2-S2_2-05`  \n**Official indicator:** ว 2.2 ม.2/5  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Draw a force diagram for an object in a liquid.
 
 **Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
@@ -559,8 +537,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Physical Science Lesson 6 — Compare static and kinetic friction
 
-**Objective:** `M2-S2_2-06`  
-**Official indicator:** ว 2.2 ม.2/6  
+**Objective:** `M2-S2_2-06`  \n**Official indicator:** ว 2.2 ม.2/6  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain static and kinetic friction using evidence.
 
 **Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
@@ -575,8 +552,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Physical Science Lesson 7 — Investigate factors affecting friction
 
-**Objective:** `M2-S2_2-07`  
-**Official indicator:** ว 2.2 ม.2/7  
+**Objective:** `M2-S2_2-07`  \n**Official indicator:** ว 2.2 ม.2/7  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Design an experiment to investigate factors affecting friction magnitude.
 
 **Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
@@ -591,8 +567,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Physical Science Lesson 8 — Draw friction force diagrams
 
-**Objective:** `M2-S2_2-08`  
-**Official indicator:** ว 2.2 ม.2/8  
+**Objective:** `M2-S2_2-08`  \n**Official indicator:** ว 2.2 ม.2/8  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Draw diagrams showing friction and other forces acting on an object.
 
 **Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
@@ -607,8 +582,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Physical Science Lesson 9 — Apply friction in everyday life
 
-**Objective:** `M2-S2_2-09`  
-**Official indicator:** ว 2.2 ม.2/9  
+**Objective:** `M2-S2_2-09`  \n**Official indicator:** ว 2.2 ม.2/9  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain when friction should be increased or reduced in everyday situations.
 
 **Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
@@ -623,8 +597,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Physical Science Lesson 10 — Investigate moments of force
 
-**Objective:** `M2-S2_2-10`  
-**Official indicator:** ว 2.2 ม.2/10  
+**Objective:** `M2-S2_2-10`  \n**Official indicator:** ว 2.2 ม.2/10  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Investigate rotational equilibrium and calculate moment using M = F × l.
 
 **Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
@@ -639,8 +612,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Physical Science Lesson 11 — Compare magnetic, electric and gravitational fields
 
-**Objective:** `M2-S2_2-11`  
-**Official indicator:** ว 2.2 ม.2/11  
+**Objective:** `M2-S2_2-11`  \n**Official indicator:** ว 2.2 ม.2/11  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Compare sources of magnetic, electric and gravitational fields and the forces they exert.
 
 **Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
@@ -655,8 +627,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Physical Science Lesson 12 — Draw field-force diagrams
 
-**Objective:** `M2-S2_2-12`  
-**Official indicator:** ว 2.2 ม.2/12  
+**Objective:** `M2-S2_2-12`  \n**Official indicator:** ว 2.2 ม.2/12  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Draw diagrams showing magnetic, electric and gravitational forces on objects.
 
 **Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
@@ -671,8 +642,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Physical Science Lesson 13 — Compare strengths of non-contact forces
 
-**Objective:** `M2-S2_2-13`  
-**Official indicator:** ว 2.2 ม.2/13  
+**Objective:** `M2-S2_2-13`  \n**Official indicator:** ว 2.2 ม.2/13  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Analyse factors affecting magnetic, electric and gravitational force magnitudes.
 
 **Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
@@ -687,8 +657,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Physical Science Lesson 14 — Calculate speed and velocity
 
-**Objective:** `M2-S2_2-14`  
-**Official indicator:** ว 2.2 ม.2/14  
+**Objective:** `M2-S2_2-14`  \n**Official indicator:** ว 2.2 ม.2/14  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Calculate speed and velocity using distance or displacement divided by time.
 
 **Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
@@ -703,8 +672,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Physical Science Lesson 15 — Represent displacement and velocity
 
-**Objective:** `M2-S2_2-15`  
-**Official indicator:** ว 2.2 ม.2/15  
+**Objective:** `M2-S2_2-15`  \n**Official indicator:** ว 2.2 ม.2/15  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Draw diagrams representing displacement and velocity.
 
 **Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
@@ -719,8 +687,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Physical Science Lesson 16 — Calculate work and power
 
-**Objective:** `M2-S2_3-01`  
-**Official indicator:** ว 2.3 ม.2/1  
+**Objective:** `M2-S2_3-01`  \n**Official indicator:** ว 2.3 ม.2/1  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Calculate work and power using W = Fs and P = W/t.
 
 **Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
@@ -735,8 +702,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Physical Science Lesson 17 — Explain simple machines
 
-**Objective:** `M2-S2_3-02`  
-**Official indicator:** ว 2.3 ม.2/2  
+**Objective:** `M2-S2_3-02`  \n**Official indicator:** ว 2.3 ม.2/2  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Analyse how simple machines change the size or direction of applied forces.
 
 **Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
@@ -751,8 +717,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Physical Science Lesson 18 — Apply simple machines
 
-**Objective:** `M2-S2_3-03`  
-**Official indicator:** ว 2.3 ม.2/3  
+**Objective:** `M2-S2_3-03`  \n**Official indicator:** ว 2.3 ม.2/3  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain benefits and everyday applications of simple machines.
 
 **Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
@@ -767,8 +732,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Physical Science Lesson 19 — Investigate kinetic and gravitational potential energy
 
-**Objective:** `M2-S2_3-04`  
-**Official indicator:** ว 2.3 ม.2/4  
+**Objective:** `M2-S2_3-04`  \n**Official indicator:** ว 2.3 ม.2/4  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Design an investigation of factors affecting kinetic and gravitational potential energy.
 
 **Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
@@ -783,8 +747,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Physical Science Lesson 20 — Explain conservation of mechanical energy
 
-**Objective:** `M2-S2_3-05`  
-**Official indicator:** ว 2.3 ม.2/5  
+**Objective:** `M2-S2_3-05`  \n**Official indicator:** ว 2.3 ม.2/5  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Interpret data showing transfers between gravitational potential and kinetic energy when mechanical energy is conserved.
 
 **Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
@@ -799,8 +762,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Physical Science Lesson 21 — Apply conservation of energy
 
-**Objective:** `M2-S2_3-06`  
-**Official indicator:** ว 2.3 ม.2/6  
+**Objective:** `M2-S2_3-06`  \n**Official indicator:** ว 2.3 ม.2/6  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Analyse energy transformations and transfers using the conservation of energy law.
 
 **Teaching activity:** Use a safe demonstration, force diagram, simple-machine model, measurement task or worked numerical example. Learners should show units and explain their reasoning.
@@ -821,8 +783,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Earth Science Lesson 1 — Compare fossil fuels
 
-**Objective:** `M2-S3_2-01`  
-**Official indicator:** ว 3.2 ม.2/1  
+**Objective:** `M2-S3_2-01`  \n**Official indicator:** ว 3.2 ม.2/1  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Compare formation, properties, uses and impacts of fossil fuels using collected information.
 
 **Teaching activity:** Use maps, diagrams, safe soil/water observations, local case studies and models. For hazard topics, focus on official safety guidance and do not take learners into hazardous areas.
@@ -837,8 +798,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Earth Science Lesson 2 — Use fossil fuels responsibly
 
-**Objective:** `M2-S3_2-02`  
-**Official indicator:** ว 3.2 ม.2/2  
+**Objective:** `M2-S3_2-02`  \n**Official indicator:** ว 3.2 ม.2/2  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Explain impacts of fossil-fuel use and propose responsible use.
 
 **Teaching activity:** Use maps, diagrams, safe soil/water observations, local case studies and models. For hazard topics, focus on official safety guidance and do not take learners into hazardous areas.
@@ -853,8 +813,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Earth Science Lesson 3 — Compare renewable energy options
 
-**Objective:** `M2-S3_2-03`  
-**Official indicator:** ว 3.2 ม.2/3  
+**Objective:** `M2-S3_2-03`  \n**Official indicator:** ว 3.2 ม.2/3  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Compare benefits and limitations of renewable energy and propose suitable local options.
 
 **Teaching activity:** Use maps, diagrams, safe soil/water observations, local case studies and models. For hazard topics, focus on official safety guidance and do not take learners into hazardous areas.
@@ -869,8 +828,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Earth Science Lesson 4 — Model Earth's internal structure
 
-**Objective:** `M2-S3_2-04`  
-**Official indicator:** ว 3.2 ม.2/4  
+**Objective:** `M2-S3_2-04`  \n**Official indicator:** ว 3.2 ม.2/4  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Create a model of Earth's internal structure based on chemical composition.
 
 **Teaching activity:** Use maps, diagrams, safe soil/water observations, local case studies and models. For hazard topics, focus on official safety guidance and do not take learners into hazardous areas.
@@ -885,8 +843,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Earth Science Lesson 5 — Explain weathering, erosion and deposition
 
-**Objective:** `M2-S3_2-05`  
-**Official indicator:** ว 3.2 ม.2/5  
+**Objective:** `M2-S3_2-05`  \n**Official indicator:** ว 3.2 ม.2/5  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain weathering, erosion and deposition and their effects on landforms.
 
 **Teaching activity:** Use maps, diagrams, safe soil/water observations, local case studies and models. For hazard topics, focus on official safety guidance and do not take learners into hazardous areas.
@@ -901,8 +858,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Earth Science Lesson 6 — Explain soil profiles and soil formation
 
-**Objective:** `M2-S3_2-06`  
-**Official indicator:** ว 3.2 ม.2/6  
+**Objective:** `M2-S3_2-06`  \n**Official indicator:** ว 3.2 ม.2/6  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain soil horizons, soil formation and factors affecting soil properties.
 
 **Teaching activity:** Use maps, diagrams, safe soil/water observations, local case studies and models. For hazard topics, focus on official safety guidance and do not take learners into hazardous areas.
@@ -917,8 +873,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Earth Science Lesson 7 — Measure soil properties
 
-**Objective:** `M2-S3_2-07`  
-**Official indicator:** ว 3.2 ม.2/7  
+**Objective:** `M2-S3_2-07`  \n**Official indicator:** ว 3.2 ม.2/7  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Use suitable tools to investigate selected soil properties and interpret results.
 
 **Teaching activity:** Use maps, diagrams, safe soil/water observations, local case studies and models. For hazard topics, focus on official safety guidance and do not take learners into hazardous areas.
@@ -933,8 +888,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Earth Science Lesson 8 — Explain surface water and groundwater
 
-**Objective:** `M2-S3_2-08`  
-**Official indicator:** ว 3.2 ม.2/8  
+**Objective:** `M2-S3_2-08`  \n**Official indicator:** ว 3.2 ม.2/8  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Model the factors and processes that form surface-water and groundwater sources.
 
 **Teaching activity:** Use maps, diagrams, safe soil/water observations, local case studies and models. For hazard topics, focus on official safety guidance and do not take learners into hazardous areas.
@@ -949,8 +903,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Earth Science Lesson 9 — Plan sustainable local water use
 
-**Objective:** `M2-S3_2-09`  
-**Official indicator:** ว 3.2 ม.2/9  
+**Objective:** `M2-S3_2-09`  \n**Official indicator:** ว 3.2 ม.2/9  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Model water use and propose sustainable local water-management practices.
 
 **Teaching activity:** Use maps, diagrams, safe soil/water observations, local case studies and models. For hazard topics, focus on official safety guidance and do not take learners into hazardous areas.
@@ -965,8 +918,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ### Earth Science Lesson 10 — Model geological and water-related hazards
 
-**Objective:** `M2-S3_2-10`  
-**Official indicator:** ว 3.2 ม.2/10  
+**Objective:** `M2-S3_2-10`  \n**Official indicator:** ว 3.2 ม.2/10  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Model causes and impacts of floods, coastal erosion, landslides, sinkholes and land subsidence.
 
 **Teaching activity:** Use maps, diagrams, safe soil/water observations, local case studies and models. For hazard topics, focus on official safety guidance and do not take learners into hazardous areas.
