@@ -1755,8 +1755,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ## Lesson 1 — Apply Ohm's law
 
-**Objective:** `M3-S2_3-01`  
-**Official indicator:** ว 2.3 ม.3/1  
+**Objective:** `M3-S2_3-01`  \n**Official indicator:** ว 2.3 ม.3/1  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Use V = IR to solve for voltage, current or resistance.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -1772,8 +1771,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ## Lesson 2 — Graph current and potential difference
 
-**Objective:** `M3-S2_3-02`  
-**Official indicator:** ว 2.3 ม.3/2  
+**Objective:** `M3-S2_3-02`  \n**Official indicator:** ว 2.3 ม.3/2  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Plot and interpret current–voltage data for a conductor.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -1789,8 +1787,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ## Lesson 3 — Measure electrical quantities
 
-**Objective:** `M3-S2_3-03`  
-**Official indicator:** ว 2.3 ม.3/3  
+**Objective:** `M3-S2_3-03`  \n**Official indicator:** ว 2.3 ม.3/3  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Use meters correctly in low-voltage learning circuits.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -1806,8 +1803,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ## Lesson 4 — Analyse series and parallel circuits
 
-**Objective:** `M3-S2_3-04`  
-**Official indicator:** ว 2.3 ม.3/4  
+**Objective:** `M3-S2_3-04`  \n**Official indicator:** ว 2.3 ม.3/4  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Compare current and potential difference in series and parallel circuits.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -1823,8 +1819,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ## Lesson 5 — Draw series and parallel circuits
 
-**Objective:** `M3-S2_3-05`  
-**Official indicator:** ว 2.3 ม.3/5  
+**Objective:** `M3-S2_3-05`  \n**Official indicator:** ว 2.3 ม.3/5  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Represent circuit arrangements with standard symbols.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -1840,8 +1835,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ## Lesson 6 — Explain basic electronic components
 
-**Objective:** `M3-S2_3-06`  
-**Official indicator:** ว 2.3 ม.3/6  
+**Objective:** `M3-S2_3-06`  \n**Official indicator:** ว 2.3 ม.3/6  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Describe the roles of resistors, diodes, transistors and capacitors.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -1857,8 +1851,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ## Lesson 7 — Build a simple electronic circuit
 
-**Objective:** `M3-S2_3-07`  
-**Official indicator:** ว 2.3 ม.3/7  
+**Objective:** `M3-S2_3-07`  \n**Official indicator:** ว 2.3 ม.3/7  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Plan and assemble a basic low-voltage circuit safely.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -1874,8 +1867,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ## Lesson 8 — Calculate electrical energy and cost
 
-**Objective:** `M3-S2_3-08`  
-**Official indicator:** ว 2.3 ม.3/8  
+**Objective:** `M3-S2_3-08`  \n**Official indicator:** ว 2.3 ม.3/8  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Use E = Pt and appliance data to estimate energy and cost.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -1891,8 +1883,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ## Lesson 9 — Use electrical appliances efficiently and safely
 
-**Objective:** `M3-S2_3-09`  
-**Official indicator:** ว 2.3 ม.3/9  
+**Objective:** `M3-S2_3-09`  \n**Official indicator:** ว 2.3 ม.3/9  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Recommend efficient appliance choices and safe practices.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -1908,8 +1899,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ## Lesson 10 — Model wave formation and components
 
-**Objective:** `M3-S2_3-10`  
-**Official indicator:** ว 2.3 ม.3/10  
+**Objective:** `M3-S2_3-10`  \n**Official indicator:** ว 2.3 ม.3/10  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Create a model showing how waves transfer energy and identify wavelength, frequency and amplitude.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -1923,8 +1913,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** The maximum displacement from the rest position.
 ## Lesson 11 — Explain electromagnetic waves and spectrum
 
-**Objective:** `M3-S2_3-11`  
-**Official indicator:** ว 2.3 ม.3/11  
+**Objective:** `M3-S2_3-11`  \n**Official indicator:** ว 2.3 ม.3/11  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain electromagnetic waves and identify the regions of the electromagnetic spectrum.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -1938,8 +1927,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** Yes, at the speed of light.
 ## Lesson 12 — Evaluate electromagnetic wave applications and hazards
 
-**Objective:** `M3-S2_3-12`  
-**Official indicator:** ว 2.3 ม.3/12  
+**Objective:** `M3-S2_3-12`  \n**Official indicator:** ว 2.3 ม.3/12  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain useful applications and potential hazards of electromagnetic waves in daily life.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -1953,8 +1941,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** They are ionising radiation and can damage tissue.
 ## Lesson 13 — Investigate reflection of light
 
-**Objective:** `M3-S2_3-13`  
-**Official indicator:** ว 2.3 ม.3/13  
+**Objective:** `M3-S2_3-13`  \n**Official indicator:** ว 2.3 ม.3/13  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Design and conduct a suitable experiment to test the law of reflection.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -1968,8 +1955,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** Incident ray, normal and reflected ray.
 ## Lesson 14 — Draw images formed by mirrors
 
-**Objective:** `M3-S2_3-14`  
-**Official indicator:** ว 2.3 ม.3/14  
+**Objective:** `M3-S2_3-14`  \n**Official indicator:** ว 2.3 ม.3/14  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Use ray diagrams to describe mirror images.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -1983,8 +1969,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** It can form real or virtual images depending on object position.
 ## Lesson 15 — Explain refraction and dispersion
 
-**Objective:** `M3-S2_3-15`  
-**Official indicator:** ว 2.3 ม.3/15  
+**Objective:** `M3-S2_3-15`  \n**Official indicator:** ว 2.3 ม.3/15  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain bending of light and separation of white light.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -1998,8 +1983,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** Its speed changes when it enters a different medium at an angle.
 ## Lesson 16 — Draw images formed by thin lenses
 
-**Objective:** `M3-S2_3-16`  
-**Official indicator:** ว 2.3 ม.3/16  
+**Objective:** `M3-S2_3-16`  \n**Official indicator:** ว 2.3 ม.3/16  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Use principal rays to model image formation by thin lenses.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -2013,8 +1997,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** The line through the optical centre and centres of curvature.
 ## Lesson 17 — Explain optical instruments and the eye
 
-**Objective:** `M3-S2_3-17`  
-**Official indicator:** ว 2.3 ม.3/17  
+**Objective:** `M3-S2_3-17`  \n**Official indicator:** ว 2.3 ม.3/17  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain how lenses and mirrors support vision and optical instruments.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -2028,8 +2011,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** Microscope, telescope or magnifying glass.
 ## Lesson 18 — Draw optical instrument and eye ray diagrams
 
-**Objective:** `M3-S2_3-18`  
-**Official indicator:** ว 2.3 ม.3/18  
+**Objective:** `M3-S2_3-18`  \n**Official indicator:** ว 2.3 ม.3/18  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Represent image formation in the eye and optical instruments.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -2043,8 +2025,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** On the retina.
 ## Lesson 19 — Explain effects of illuminance on vision
 
-**Objective:** `M3-S2_3-19`  
-**Official indicator:** ว 2.3 ม.3/19  
+**Objective:** `M3-S2_3-19`  \n**Official indicator:** ว 2.3 ม.3/19  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Explain how light brightness affects the eyes using researched evidence.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -2058,8 +2039,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** Brightness, viewing distance, duration and regular breaks.
 ## Lesson 20 — Measure illuminance
 
-**Objective:** `M3-S2_3-20`  
-**Official indicator:** ว 2.3 ม.3/20  
+**Objective:** `M3-S2_3-20`  \n**Official indicator:** ว 2.3 ม.3/20  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Use a light meter and record illuminance in lux.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
@@ -2073,8 +2053,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** To make the comparison fair.
 ## Lesson 21 — Recommend suitable lighting
 
-**Objective:** `M3-S2_3-21`  
-**Official indicator:** ว 2.3 ม.3/21  
+**Objective:** `M3-S2_3-21`  \n**Official indicator:** ว 2.3 ม.3/21  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Use illuminance evidence to recommend lighting for tasks.
 
 **Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
