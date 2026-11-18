@@ -4,7 +4,7 @@
 **Coverage:** 104 official indicator lessons
 **Source alignment:** Each lesson retains the indicator code, learning standard and original Thai indicator wording from the curriculum database.
 
-> Classification labels are shown as currently stored. Items marked “Classification audit pending” are not presented as verified; the subject audit is reconciling these against OBEC's between-learning / terminal indicator framework.
+> Classification labels are shown as currently stored. P1–P2 now include verified OBEC between-learning / terminal classifications. P3 remains pending its independent code-by-code reconciliation.
 
 ## Teaching guidance
 
@@ -15,7 +15,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 1. SO1.1-P1-01
 
 - **Standard:** SO1.1
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** บอกพุทธประวัติ หรือประวัติของศาสดาที่ตนนับถือโดยสังเขป
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -37,7 +38,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 2. SO1.1-P1-02
 
 - **Standard:** SO1.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** ชื่นชมและบอกแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดก/เรื่องเล่า และศาสนิกชนตัวอย่างตามที่กำหนด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -59,7 +61,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 3. SO1.1-P1-03
 
 - **Standard:** SO1.1
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** บอกความหมาย ความสำคัญ และเคารพพระรัตนตรัย ปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนาหรือหลักธรรมของศาสนาที่ตนนับถือ ตามที่กำหนด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -81,7 +84,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 4. SO1.1-P1-04
 
 - **Standard:** SO1.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** เห็นคุณค่าและสวดมนต์ แผ่เมตตา มีสติที่เป็นพื้นฐานของสมาธิในพระพุทธศาสนาหรือการพัฒนาจิต ตามแนวทางของศาสนาที่ตนนับถือ ตามที่กำหนด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -103,7 +107,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 5. SO1.2-P1-01
 
 - **Standard:** SO1.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** บำเพ็ญประโยชน์ต่อวัด หรือศาสนสถานของศาสนาที่ตนนับถือ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -125,7 +130,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 6. SO1.2-P1-02
 
 - **Standard:** SO1.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** แสดงตนเป็นพุทธมามกะ หรือแสดงตนเป็นศาสนิกชนของศาสนาที่ตนนับถือ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -147,7 +153,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 7. SO1.2-P1-03
 
 - **Standard:** SO1.2
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนา ตามที่กำหนดได้ถูกต้อง
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -169,7 +176,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 8. SO2.1-P1-01
 
 - **Standard:** SO2.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** บอกประโยชน์และปฏิบัติตนเป็นสมาชิกที่ดีของครอบครัวและโรงเรียน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -191,7 +199,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 9. SO2.1-P1-02
 
 - **Standard:** SO2.1
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** ยกตัวอย่างความสามารถ และความดีของตนเอง ผู้อื่น และบอกผลจากการกระทำนั้น
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -213,7 +222,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 10. SO2.2-P1-01
 
 - **Standard:** SO2.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** บอกโครงสร้าง บทบาทและหน้าที่ของสมาชิกในครอบครัวและโรงเรียน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -235,7 +245,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 11. SO2.2-P1-02
 
 - **Standard:** SO2.2
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** ระบุบทบาท สิทธิ หน้าที่ของตนเองในครอบครัวและโรงเรียน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -257,7 +268,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 12. SO2.2-P1-03
 
 - **Standard:** SO2.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** มีส่วนร่วมในการตัดสินใจและทำกิจกรรมในครอบครัวและโรงเรียนตามกระบวนการประชาธิปไตย
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -279,7 +291,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 13. SO3.1-P1-01
 
 - **Standard:** SO3.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** ระบุสินค้า และบริการที่ใช้ประโยชน์ในชีวิตประจำวัน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -301,7 +314,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 14. SO3.1-P1-02
 
 - **Standard:** SO3.1
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** ยกตัวอย่างการใช้จ่ายเงินในชีวิตประจำวันที่ไม่เกินตัวและเห็นประโยชน์ของการออม
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -323,7 +337,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 15. SO3.1-P1-03
 
 - **Standard:** SO3.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** ยกตัวอย่างการใช้ทรัพยากรในชีวิตประจำวันอย่างประหยัด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -345,7 +360,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 16. SO3.2-P1-01
 
 - **Standard:** SO3.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** อธิบายเหตุผลความจำเป็นที่คนต้องทำงานอย่างสุจริต
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -367,7 +383,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 17. SO4.1-P1-01
 
 - **Standard:** SO4.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** บอกวัน เดือน ปี และการนับช่วงเวลาตามปฏิทินที่ใช้ในชีวิตประจำวัน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -389,7 +406,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 18. SO4.1-P1-02
 
 - **Standard:** SO4.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** เรียงลำดับเหตุการณ์ในชีวิตประจำวัน ตามวันเวลาที่เกิดขึ้น
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -411,7 +429,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 19. SO4.1-P1-03
 
 - **Standard:** SO4.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** บอกประวัติความเป็นมาของตนเองและครอบครัวโดยสอบถามผู้เกี่ยวข้อง
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -433,7 +452,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 20. SO4.2-P1-01
 
 - **Standard:** SO4.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** บอกความเปลี่ยนแปลงของสภาพแวดล้อม สิ่งของเครื่องใช้ หรือการดำเนินชีวิตของตนเองกับสมัยของพ่อแม่ ปู่ย่า ตายาย
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -455,7 +475,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 21. SO4.2-P1-02
 
 - **Standard:** SO4.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** บอกเหตุการณ์ที่เกิดขึ้นในอดีตที่มีผลกระทบต่อตนเองในปัจจุบัน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -477,7 +498,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 22. SO4.3-P1-01
 
 - **Standard:** SO4.3
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** อธิบายความหมายและความสำคัญของสัญลักษณ์สำคัญของชาติไทยและปฏิบัติได้ถูกต้อง
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -499,7 +521,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 23. SO4.3-P1-02
 
 - **Standard:** SO4.3
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** บอกสถานที่สำคัญซึ่งเป็นแหล่งวัฒนธรรมในชุมชน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -521,7 +544,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 24. SO4.3-P1-03
 
 - **Standard:** SO4.3
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** ระบุสิ่งที่ตนรักและภาคภูมิใจในท้องถิ่น
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -543,7 +567,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 25. SO5.1-P1-01
 
 - **Standard:** SO5.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** จำแนกสิ่งแวดล้อมรอบตัวที่เกิดขึ้นเองตามธรรมชาติและที่มนุษย์สร้างขึ้น
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -565,7 +590,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 26. SO5.1-P1-02
 
 - **Standard:** SO5.1
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** ระบุความสัมพันธ์ของตำแหน่ง ระยะ และทิศของสิ่งต่าง ๆ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -587,7 +613,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 27. SO5.1-P1-03
 
 - **Standard:** SO5.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** ใช้แผนผังแสดงตำแหน่งของสิ่งต่าง ๆ ในห้องเรียน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -609,7 +636,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 28. SO5.1-P1-04
 
 - **Standard:** SO5.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** สังเกตและบอกการเปลี่ยนแปลงของสภาพอากาศในรอบวัน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -631,7 +659,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 29. SO5.2-P1-01
 
 - **Standard:** SO5.2
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** บอกสิ่งแวดล้อมที่เกิดตามธรรมชาติที่ส่งผลต่อความเป็นอยู่ของมนุษย์
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -653,7 +682,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 30. SO5.2-P1-02
 
 - **Standard:** SO5.2
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** สังเกตและเปรียบเทียบการเปลี่ยนแปลงของสิ่งแวดล้อมเพื่อการปฏิบัติตนอย่างเหมาะสม
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -675,7 +705,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 31. SO5.2-P1-03
 
 - **Standard:** SO5.2
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** มีส่วนร่วมในการดูแลสิ่งแวดล้อมที่บ้านและห้องเรียน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -697,7 +728,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 32. SO1.1-P2-01
 
 - **Standard:** SO1.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** บอกความสำคัญของพระพุทธศาสนา หรือศาสนาที่ตนนับถือ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -719,7 +751,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 33. SO1.1-P2-02
 
 - **Standard:** SO1.1
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** สรุปพุทธประวัติ ตั้งแต่ประสูติ จนถึงการออกผนวช หรือประวัติศาสดาที่ตนนับถือตามที่กำหนด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -741,7 +774,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 34. SO1.1-P2-03
 
 - **Standard:** SO1.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** ชื่นชมและบอกแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดก เรื่องเล่า และศาสนิกชนตัวอย่างตามที่กำหนด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -763,7 +797,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 35. SO1.1-P2-04
 
 - **Standard:** SO1.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** บอกความหมาย ความสำคัญ และเคารพพระรัตนตรัย ปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนา หรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -785,7 +820,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 36. SO1.1-P2-05
 
 - **Standard:** SO1.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** ชื่นชมการทำความดีของตนเอง บุคคลในครอบครัวและในโรงเรียนตามหลักศาสนา
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -807,7 +843,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 37. SO1.1-P2-06
 
 - **Standard:** SO1.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** เห็นคุณค่าและสวดมนต์ แผ่เมตตา มีสติที่เป็นพื้นฐานของสมาธิ ในพระพุทธศาสนาหรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือตามที่กำหนด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -829,7 +866,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 38. SO1.1-P2-07
 
 - **Standard:** SO1.1
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** บอกชื่อศาสนา ศาสดา และความสำคัญของคัมภีร์ของศาสนาที่ตนนับถือ และศาสนาอื่น ๆ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -851,7 +889,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 39. SO1.2-P2-01
 
 - **Standard:** SO1.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** ปฏิบัติตนอย่างเหมาะสมต่อสาวกของศาสนาที่ตนนับถือ ตามที่กำหนดได้ถูกต้อง
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -873,7 +912,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 40. SO1.2-P2-02
 
 - **Standard:** SO1.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนา ตามที่กำหนดได้ถูกต้อง
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -895,7 +935,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 41. SO2.1-P2-01
 
 - **Standard:** SO2.1
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** ปฏิบัติตนตามข้อตกลง กติกา กฎ ระเบียบและหน้าที่ ที่ต้องปฏิบัติในชีวิตประจำวัน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -917,7 +958,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 42. SO2.1-P2-02
 
 - **Standard:** SO2.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** ปฏิบัติตนตามมารยาทไทย
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -939,7 +981,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 43. SO2.1-P2-03
 
 - **Standard:** SO2.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** แสดงพฤติกรรมในการยอมรับความคิด ความเชื่อ และการปฏิบัติของบุคคลอื่นที่แตกต่างกันโดยปราศจากอคติ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -961,7 +1004,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 44. SO2.1-P2-04
 
 - **Standard:** SO2.1
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** เคารพในสิทธิ เสรีภาพของตนเองและผู้อื่น
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -983,7 +1027,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 45. SO2.2-P2-01
 
 - **Standard:** SO2.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** อธิบายความสัมพันธ์ของตนเองและสมาชิกในครอบครัวในฐานะเป็นส่วนหนึ่งของชุมชน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1005,7 +1050,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 46. SO2.2-P2-02
 
 - **Standard:** SO2.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** ระบุผู้มีบทบาท อำนาจในการตัดสินใจในโรงเรียนและชุมชน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1027,7 +1073,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 47. SO3.1-P2-01
 
 - **Standard:** SO3.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** ระบุทรัพยากรที่นำมาผลิตสินค้าและบริการที่ใช้ในชีวิตประจำวัน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1049,7 +1096,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 48. SO3.1-P2-02
 
 - **Standard:** SO3.1
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** บอกที่มาของรายได้และรายจ่ายของตนเองและครอบครัว
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1071,7 +1119,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 49. SO3.1-P2-03
 
 - **Standard:** SO3.1
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** บันทึกรายรับ-รายจ่ายของตนเอง
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1093,7 +1142,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 50. SO3.1-P2-04
 
 - **Standard:** SO3.1
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** สรุปผลดีของการใช้จ่ายที่เหมาะสมกับรายได้และการออม
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1115,7 +1165,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 51. SO3.2-P2-01
 
 - **Standard:** SO3.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** อธิบายการแลกเปลี่ยนสินค้าและบริการโดยวิธีต่าง ๆ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1137,7 +1188,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 52. SO3.2-P2-02
 
 - **Standard:** SO3.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** บอกความสัมพันธ์ระหว่างผู้ซื้อและผู้ขาย
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1159,7 +1211,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 53. SO4.1-P2-01
 
 - **Standard:** SO4.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** ใช้คำระบุเวลาที่แสดงเหตุการณ์ในอดีต ปัจจุบัน และอนาคต
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1181,7 +1234,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 54. SO4.1-P2-02
 
 - **Standard:** SO4.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** ลำดับเหตุการณ์ที่เกิดขึ้นในครอบครัว หรือในชีวิตของตนเองโดยใช้หลักฐานที่เกี่ยวข้อง
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1203,7 +1257,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 55. SO4.2-P2-01
 
 - **Standard:** SO4.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** สืบค้นถึงการเปลี่ยนแปลงในวิถีชีวิตประจำวันของคนในชุมชนของตนจากอดีตถึงปัจจุบัน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1225,7 +1280,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 56. SO4.2-P2-02
 
 - **Standard:** SO4.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** อธิบายผลกระทบของการเปลี่ยนแปลงที่มีต่อวิถีชีวิตของคนในชุมชน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1247,7 +1303,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 57. SO4.3-P2-01
 
 - **Standard:** SO4.3
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** ระบุบุคคลที่ทำประโยชน์ต่อท้องถิ่นหรือประเทศชาติ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1269,7 +1326,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 58. SO4.3-P2-02
 
 - **Standard:** SO4.3
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** ยกตัวอย่างวัฒนธรรม ประเพณีและภูมิปัญญาไทยที่ภาคภูมิใจและควรอนุรักษ์ไว้
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1291,7 +1349,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 59. SO5.1-P2-01
 
 - **Standard:** SO5.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** ระบุสิ่งแวดล้อมทางธรรมชาติและที่มนุษย์สร้างขึ้น ซึ่งปรากฏระหว่างบ้านกับโรงเรียน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1313,7 +1372,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 60. SO5.1-P2-02
 
 - **Standard:** SO5.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** ระบุตำแหน่งและลักษณะทางกายภาพของสิ่งต่าง ๆ ที่ปรากฏในแผนผัง แผนที่ รูปถ่าย และลูกโลก
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1335,7 +1395,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 61. SO5.1-P2-03
 
 - **Standard:** SO5.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** สังเกตและแสดงความสัมพันธ์ระหว่างโลก ดวงอาทิตย์และดวงจันทร์ที่ทำให้เกิดปรากฏการณ์
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1357,7 +1418,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 62. SO5.2-P2-01
 
 - **Standard:** SO5.2
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** อธิบายความสำคัญของสิ่งแวดล้อมทางธรรมชาติและที่มนุษย์สร้างขึ้น
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1379,7 +1441,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 63. SO5.2-P2-02
 
 - **Standard:** SO5.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
+- **OBEC pathway classification:** between_learning
 - **Official indicator:** จำแนกและใช้ทรัพยากรธรรมชาติที่ใช้แล้วไม่หมดไป ที่ใช้แล้วหมดไป และสร้างทดแทนขึ้นใหม่ได้อย่างคุ้มค่า
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1401,7 +1464,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 64. SO5.2-P2-03
 
 - **Standard:** SO5.2
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** อธิบายความสัมพันธ์ระหว่างฤดูกาล กับการดำเนินชีวิตของมนุษย์
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1423,7 +1487,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 65. SO5.2-P2-04
 
 - **Standard:** SO5.2
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
+- **OBEC pathway classification:** terminal
 - **Official indicator:** มีส่วนร่วมในการจัดการสิ่งแวดล้อมในโรงเรียน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1445,7 +1510,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 66. SO1.1-P3-01
 
 - **Standard:** SO1.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** อธิบายความสำคัญของพระพุทธศาสนา หรือศาสนาที่ตนนับถือ ในฐานะที่เป็นรากฐานสำคัญของวัฒนธรรมไทย
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1467,7 +1532,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 67. SO1.1-P3-02
 
 - **Standard:** SO1.1
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
 - **Official indicator:** สรุปพุทธประวัติตั้งแต่การบำเพ็ญเพียร จนถึงปรินิพพาน หรือประวัติของศาสดาที่ตนนับถือ ตามที่กำหนด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1489,7 +1554,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 68. SO1.1-P3-03
 
 - **Standard:** SO1.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** ชื่นชมและบอกแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดก เรื่องเล่า และศาสนิกชนตัวอย่าง ตามที่กำหนด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1511,7 +1576,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 69. SO1.1-P3-04
 
 - **Standard:** SO1.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** บอกความหมาย ความสำคัญของพระไตรปิฎก หรือคัมภีร์ของศาสนาที่ตนนับถือ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1533,7 +1598,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 70. SO1.1-P3-05
 
 - **Standard:** SO1.1
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
 - **Official indicator:** แสดงความเคารพพระรัตนตรัยและปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนาหรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1555,7 +1620,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 71. SO1.1-P3-06
 
 - **Standard:** SO1.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** เห็นคุณค่าและสวดมนต์ แผ่เมตตามีสติที่เป็นพื้นฐานของสมาธิ ในพระพุทธศาสนา หรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือตามที่กำหนด
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1577,7 +1642,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 72. SO1.1-P3-07
 
 - **Standard:** SO1.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** บอกชื่อ ความสำคัญและปฏิบัติตนได้อย่างเหมาะสมต่อศาสนวัตถุ ศาสนสถาน และศาสนบุคคลของศาสนาอื่น ๆ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1599,7 +1664,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 73. SO1.2-P3-01
 
 - **Standard:** SO1.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** ปฏิบัติตนอย่างเหมาะสมต่อสาวก ศาสนสถาน ศาสนวัตถุของศาสนาที่ตนนับถือได้ถูกต้อง
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1621,7 +1686,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 74. SO1.2-P3-02
 
 - **Standard:** SO1.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** เห็นคุณค่าและปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนาตามที่กำหนดได้ถูกต้อง
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1643,7 +1708,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 75. SO1.2-P3-03
 
 - **Standard:** SO1.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** แสดงตนเป็นพุทธมามกะหรือแสดงตนเป็นศาสนิกชนของศาสนาที่ตนนับถือ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1665,7 +1730,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 76. SO2.1-P3-01
 
 - **Standard:** SO2.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** สรุปประโยชน์และปฏิบัติตนตามประเพณีและวัฒนธรรมในครอบครัวและท้องถิ่น
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1687,7 +1752,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 77. SO2.1-P3-02
 
 - **Standard:** SO2.1
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
 - **Official indicator:** บอกพฤติกรรมการดำเนินชีวิตของตนเองและผู้อื่นที่อยู่ในกระแสวัฒนธรรมที่หลากหลาย
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1709,7 +1774,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 78. SO2.1-P3-03
 
 - **Standard:** SO2.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** อธิบายความสำคัญของวันหยุดราชการที่สำคัญ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1731,7 +1796,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 79. SO2.1-P3-04
 
 - **Standard:** SO2.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** ยกตัวอย่างบุคคลซึ่งมีผลงานที่เป็นประโยชน์แก่ชุมชนและท้องถิ่นของตน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1753,7 +1818,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 80. SO2.2-P3-01
 
 - **Standard:** SO2.2
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
 - **Official indicator:** ระบุบทบาทหน้าที่ของสมาชิกของชุมชนในการมีส่วนร่วมในกิจกรรมต่าง ๆ ตามกระบวนการประชาธิปไตย
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1775,7 +1840,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 81. SO2.2-P3-02
 
 - **Standard:** SO2.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** วิเคราะห์ความแตกต่างของกระบวนการการตัดสินใจในชั้นเรียน โรงเรียนและชุมชน โดยวิธีการออกเสียงโดยตรงและการเลือกตัวแทนออกเสียง
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1797,7 +1862,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 82. SO2.2-P3-03
 
 - **Standard:** SO2.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** ยกตัวอย่างการเปลี่ยนแปลงในชั้นเรียน โรงเรียนและชุมชนที่เป็นผลจากการตัดสินใจของบุคคลและกลุ่ม
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1819,7 +1884,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 83. SO3.1-P3-01
 
 - **Standard:** SO3.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** จำแนกความต้องการและความจำเป็นในการใช้สินค้าและบริการในการดำรงชีวิต
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1841,7 +1906,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 84. SO3.1-P3-02
 
 - **Standard:** SO3.1
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
 - **Official indicator:** วิเคราะห์การใช้จ่ายของตนเอง
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1863,7 +1928,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 85. SO3.1-P3-03
 
 - **Standard:** SO3.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** อธิบายได้ว่าทรัพยากรที่มีอยู่จำกัดมีผลต่อการผลิตและบริโภคสินค้าและบริการ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1885,7 +1950,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 86. SO3.2-P3-01
 
 - **Standard:** SO3.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** บอกสินค้าและบริการที่รัฐจัดหาและให้บริการแก่ประชาชน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1907,7 +1972,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 87. SO3.2-P3-02
 
 - **Standard:** SO3.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** บอกความสำคัญของภาษีและบทบาทของประชาชนในการเสียภาษี
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1929,7 +1994,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 88. SO3.2-P3-03
 
 - **Standard:** SO3.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** อธิบายเหตุผลการแข่งขันทางการค้า ที่มีผลทำให้ราคาสินค้าลดลง
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1951,7 +2016,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 89. SO4.1-P3-01
 
 - **Standard:** SO4.1
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
 - **Official indicator:** เทียบศักราชที่สำคัญตามปฏิทินที่ใช้ในชีวิตประจำวัน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1973,7 +2038,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 90. SO4.1-P3-02
 
 - **Standard:** SO4.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** แสดงลำดับเหตุการณ์สำคัญของโรงเรียนและชุมชน โดยระบุหลักฐานและแหล่งข้อมูลที่เกี่ยวข้อง
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -1995,7 +2060,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 91. SO4.2-P3-01
 
 - **Standard:** SO4.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** ระบุปัจจัยที่มีอิทธิพลต่อการตั้งถิ่นฐานและพัฒนาการของชุมชน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -2017,7 +2082,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 92. SO4.2-P3-02
 
 - **Standard:** SO4.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** สรุปลักษณะที่สำคัญของขนบธรรมเนียมประเพณีและวัฒนธรรมของชุมชน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -2039,7 +2104,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 93. SO4.2-P3-03
 
 - **Standard:** SO4.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** เปรียบเทียบความเหมือนและความต่างทางวัฒนธรรมของชุมชนตนเองกับชุมชนอื่น ๆ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -2061,7 +2126,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 94. SO4.3-P3-01
 
 - **Standard:** SO4.3
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
 - **Official indicator:** ระบุพระนามและพระราชกรณียกิจโดยสังเขปของพระมหากษัตริย์ไทยที่เป็นผู้สถาปนาอาณาจักรไทย
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -2083,7 +2148,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 95. SO4.3-P3-02
 
 - **Standard:** SO4.3
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
 - **Official indicator:** อธิบายพระราชประวัติและพระราชกรณียกิจของพระมหากษัตริย์ในรัชกาลปัจจุบัน โดยสังเขป
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -2105,7 +2170,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 96. SO4.3-P3-03
 
 - **Standard:** SO4.3
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** เล่าวีรกรรมของบรรพบุรุษไทยที่มีส่วนปกป้องประเทศชาติ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -2127,7 +2192,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 97. SO5.1-P3-01
 
 - **Standard:** SO5.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** สำรวจข้อมูลทางภูมิศาสตร์ในโรงเรียนและชุมชน โดยใช้แผนผัง แผนที่ และรูปถ่าย เพื่อแสดงความสัมพันธ์ของตำแหน่ง ระยะ ทิศทาง
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -2149,7 +2214,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 98. SO5.1-P3-02
 
 - **Standard:** SO5.1
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** วาดแผนผังเพื่อแสดงตำแหน่งที่ตั้งของสถานที่สำคัญในบริเวณโรงเรียนและชุมชน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -2171,7 +2236,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 99. SO5.2-P3-01
 
 - **Standard:** SO5.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** เปรียบเทียบการเปลี่ยนแปลงสิ่งแวดล้อมของชุมชนในอดีตกับปัจจุบัน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -2193,7 +2258,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 100. SO5.2-P3-02
 
 - **Standard:** SO5.2
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
 - **Official indicator:** อธิบายการใช้ประโยชน์จากสิ่งแวดล้อม และทรัพยากรธรรมชาติในการสนองความต้องการพื้นฐานของมนุษย์ และการประกอบอาชีพ
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -2215,7 +2280,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 101. SO5.2-P3-03
 
 - **Standard:** SO5.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** อธิบายสาเหตุที่ทำให้เกิดมลพิษโดยมนุษย์
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -2237,7 +2302,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 102. SO5.2-P3-04
 
 - **Standard:** SO5.2
-- **Priority classification:** should_know
+- **2021 priority classification:** should_know
 - **Official indicator:** อธิบายความแตกต่างของลักษณะเมืองและชนบท
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -2259,7 +2324,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 103. SO5.2-P3-05
 
 - **Standard:** SO5.2
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
 - **Official indicator:** อธิบายความสัมพันธ์ระหว่างลักษณะทางกายภาพกับการดำเนินชีวิตของคนในชุมชน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
@@ -2281,7 +2346,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 ### 104. SO5.2-P3-06
 
 - **Standard:** SO5.2
-- **Priority classification:** must_know
+- **2021 priority classification:** must_know
 - **Official indicator:** มีส่วนร่วมในการจัดการสิ่งแวดล้อมในชุมชน
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
