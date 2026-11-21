@@ -122,7 +122,7 @@ The official OBEC 2021 M3 source table (printed page 127) marks ว 1.1 ม.3/6 
 
 Migration: `20261121103000_classify_science_m3_ecosystem_indicator_6.sql`.
 
-The remaining nine M3 unclassified rows are the legacy W3.2 records (`M3-S3_2-01` through `M3-S3_2-09`). They remain intentionally unclassified pending a verified source-to-indicator crosswalk. Do not assign priorities merely to force the M3 summary to 41 Must-Know / 18 Should-Know; first establish that each legacy row corresponds to an indicator in the OBEC M3 set.
+The nine legacy W3.2 records (`M3-S3_2-01` through `M3-S3_2-09`) have been retained as non-required supplementary outcomes. The nine official M3 technology indicators (W4.1/1–5 and W4.2/1–4) are now seeded and aligned in both curricula. M3 has 59 required official indicators and reconciled priorities of 41 Must-Know / 18 Should-Know.
 
 
 ## M3 official technology coverage completed — 21 November 2026
