@@ -2293,6 +2293,8 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### M1-S4_1-01 — Explain technology in everyday life
 
+**Objective:** `M1-S4_1-01`
+
 **Priority:** must know  
 **Activity:** Map a familiar object as input → process → output; add feedback that improves it.
 
@@ -2302,6 +2304,8 @@ Each lesson maps to one official indicator and includes three practice questions
 3. Give one example of feedback. **Answer:** A thermostat switches heating off when the target temperature is reached.
 
 ### M1-S4_1-02 — Identify a community problem or need
+
+**Objective:** `M1-S4_1-02`
 
 **Priority:** must know  
 **Activity:** Observe a school or community situation; write a clear problem statement and list reliable information sources.
@@ -2313,6 +2317,8 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### M1-S4_1-03 — Design and plan a solution
 
+**Objective:** `M1-S4_1-03`
+
 **Priority:** must know  
 **Activity:** Teams compare two solutions to a local problem, sketch the best one and create a simple task timeline.
 
@@ -2323,6 +2329,8 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### M1-S4_1-04 — Test and improve a solution
 
+**Objective:** `M1-S4_1-04`
+
 **Priority:** must know  
 **Activity:** Test a paper bridge with equal weights, record results, identify a weakness and revise the design.
 
@@ -2332,6 +2340,8 @@ Each lesson maps to one official indicator and includes three practice questions
 3. What should happen after a weakness is found? **Answer:** Modify the design and test again.
 
 ### M1-S4_1-05 — Choose and use tools safely
+
+**Objective:** `M1-S4_1-05`
 
 **Priority:** should know  
 **Activity:** Match materials and tools to a simple classroom model; practise safe handling and storage.
@@ -2346,6 +2356,8 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### M1-S4_2-01 — Design an algorithm using abstraction
 
+**Objective:** `M1-S4_2-01`
+
 **Priority:** must know  
 **Activity:** Break a school-day task into essential steps; ignore irrelevant details and draw a flowchart.
 
@@ -2355,6 +2367,8 @@ Each lesson maps to one official indicator and includes three practice questions
 3. Name one way to represent an algorithm. **Answer:** A flowchart or pseudocode.
 
 ### M1-S4_2-02 — Write a simple program
+
+**Objective:** `M1-S4_2-02`
 
 **Priority:** must know  
 **Activity:** Use Scratch or pseudocode to calculate an area using a variable and a condition; test sample inputs.
@@ -2366,6 +2380,8 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### M1-S4_2-03 — Collect and present data digitally
 
+**Objective:** `M1-S4_2-03`
+
 **Priority:** should know  
 **Activity:** Collect anonymous class preference data, calculate totals or averages and create a chart.
 
@@ -2375,6 +2391,8 @@ Each lesson maps to one official indicator and includes three practice questions
 3. Name one suitable way to present data. **Answer:** A bar chart or table.
 
 ### M1-S4_2-04 — Use information technology safely
+
+**Objective:** `M1-S4_2-04`
 
 **Priority:** should know  
 **Activity:** Review example websites and messages; identify privacy risks, unsuitable content and source-use rules.
@@ -2389,6 +2407,8 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### M2-S2_1-01 — Explain methods for separating mixtures
 
+**Objective:** `M2-S2_1-01`
+
 **Priority:** must know  
 **Activity:** Demonstrate with diagrams how evaporation, crystallisation, distillation, paper chromatography and solvent extraction separate mixtures.
 
@@ -2398,6 +2418,8 @@ Each lesson maps to one official indicator and includes three practice questions
 3. What does paper chromatography separate? **Answer:** Components of a mixture based on their movement through paper and solvent.
 
 ### M2-S2_1-02 — Separate mixtures using suitable methods
+
+**Objective:** `M2-S2_1-02`
 
 **Priority:** must know  
 **Activity:** Use safe teacher-prepared mixtures to select and demonstrate filtration, evaporation or chromatography; record observations.
@@ -2409,6 +2431,8 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### M2-S2_1-03 — Apply separation methods to daily problems
 
+**Objective:** `M2-S2_1-03`
+
 **Priority:** must know  
 **Activity:** Design a method to recover clean water or separate a useful substance from a mixture; explain the choice.
 
@@ -2418,6 +2442,8 @@ Each lesson maps to one official indicator and includes three practice questions
 3. How can mathematics help? **Answer:** By measuring quantities, time or recovery rate.
 
 ### M2-S2_1-04 — Investigate factors affecting solubility
+
+**Objective:** `M2-S2_1-04`
 
 **Priority:** must know  
 **Activity:** Plan a controlled investigation of temperature or solute type and compare the amount dissolved; discuss pressure in gases.
@@ -2429,6 +2455,8 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### M2-S2_1-05 — Calculate concentration as a percentage
 
+**Objective:** `M2-S2_1-05`
+
 **Priority:** must know  
 **Activity:** Solve simple percentage concentration examples using labelled classroom-safe solutions and units.
 
@@ -2438,6 +2466,8 @@ Each lesson maps to one official indicator and includes three practice questions
 3. Why include units? **Answer:** To show what quantities are being compared.
 
 ### M2-S2_1-06 — Use solutions safely in everyday life
+
+**Objective:** `M2-S2_1-06`
 
 **Priority:** should know  
 **Activity:** Compare product labels and discuss why dilution instructions and concentration matter; do not mix household chemicals.
@@ -2452,6 +2482,8 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### M2-S4_1-01 — Predict technology trends and impacts
 
+**Objective:** `M2-S4_1-01`
+
 **Priority:** must know  
 **Activity:** Compare two technologies used in farming or transport and predict likely benefits and risks.
 
@@ -2461,6 +2493,8 @@ Each lesson maps to one official indicator and includes three practice questions
 3. What should guide technology choice? **Answer:** Suitability and its effects on people, society and the environment.
 
 ### M2-S4_1-02 — Define a local problem or need
+
+**Objective:** `M2-S4_1-02`
 
 **Priority:** must know  
 **Activity:** Interview or observe a school/community user; define the need and collect relevant evidence.
@@ -2472,6 +2506,8 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### M2-S4_1-03 — Design and plan a solution within constraints
 
+**Objective:** `M2-S4_1-03`
+
 **Priority:** must know  
 **Activity:** Compare design options against a budget, time and available materials; draw a plan and timeline.
 
@@ -2482,6 +2518,8 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### M2-S4_1-04 — Evaluate and improve a designed solution
 
+**Objective:** `M2-S4_1-04`
+
 **Priority:** must know  
 **Activity:** Test a prototype against agreed criteria; record defects, make changes and present evidence.
 
@@ -2491,6 +2529,8 @@ Each lesson maps to one official indicator and includes three practice questions
 3. Why retest after an improvement? **Answer:** To check whether the change solved the problem.
 
 ### M2-S4_1-05 — Use materials and mechanisms safely
+
+**Objective:** `M2-S4_1-05`
 
 **Priority:** should know  
 **Activity:** Inspect safe classroom tools and low-voltage components; choose suitable materials and demonstrate safe use.
@@ -2505,6 +2545,8 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### M2-S4_2-01 — Design a computational algorithm
 
+**Objective:** `M2-S4_2-01`
+
 **Priority:** must know  
 **Activity:** Plan steps for sorting classroom records or finding the shortest route; represent decisions and repetition.
 
@@ -2514,6 +2556,8 @@ Each lesson maps to one official indicator and includes three practice questions
 3. What is a decision in a flowchart? **Answer:** A point where a condition selects a path.
 
 ### M2-S4_2-02 — Write a program using logic and functions
+
+**Objective:** `M2-S4_2-02`
 
 **Priority:** must know  
 **Activity:** Write pseudocode or a short program using Boolean conditions and a reusable function; test edge cases.
@@ -2525,6 +2569,8 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ### M2-S4_2-03 — Explain computer systems and communication technology
 
+**Objective:** `M2-S4_2-03`
+
 **Priority:** should know  
 **Activity:** Label input, processing, storage and output components; trace how a message travels across a network.
 
@@ -2534,6 +2580,8 @@ Each lesson maps to one official indicator and includes three practice questions
 3. Why use communication protocols? **Answer:** They set shared rules for exchanging information.
 
 ### M2-S4_2-04 — Use information technology responsibly
+
+**Objective:** `M2-S4_2-04`
 
 **Priority:** should know  
 **Activity:** Review a sample digital project; add creator credit, licence information and safe-sharing choices.
