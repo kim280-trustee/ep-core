@@ -31,7 +31,7 @@ OBEC's 2021 must-know / should-know table reports these grade totals:
 | M4–M6 shared | 102 |
 | **Total unique indicators** | **415** |
 
-The M4–M6 total is a shared grade-band set of 102 indicators, not 102 separate indicators per grade.
+The 102 M4–M6 indicators are an aggregate across grade-specific M4, M5 and M6 source tables. Each indicator must be mapped to its actual grade, not copied across the band.
 
 Primary priority-count checks from the OBEC 2021 summary: P4 has 16 Must-Know and 6 Should-Know classifications; P5 has 24 and 8; P6 has 20 and 11. P4 ว 2.1 ป.4/1 and P6 ว 2.1 ป.6/1 are dual-classified, so classification counts are not mutually exclusive. The read-only reconciliation query is in `SCIENCE-STAGING-VERIFICATION.sql`.
 
@@ -322,4 +322,4 @@ Earth/Space totals: **44 objectives, 44 lesson starters and 132 answer-keyed que
 | Upper-secondary Physics | 67 | 67 | 201 | Complete |
 | Upper-secondary Earth, Astronomy and Space | 44 | 44 | 132 | Complete |
 
-These totals are separate tracks; the M1–M3 core Science indicators are not merged with M4–M6 additional specialist outcomes. The repository contains the staged curriculum migration set, but the live Supabase ledger has not yet caught up with this branch. Current live lower-secondary core catalogue counts are 43/48/53 in both curriculum records; primary live counts remain 5/4/5/5/5/4 until the pending primary W1–W3 seed migration is deployed. The nine M3 W3.2 Earth-system indicators remain intentionally unclassified because they are absent from the OBEC 2021 priority table. Consolidated local lint/build and final app testing remain pending and are intentionally deferred until all curriculum rollouts are complete.
+These totals are separate tracks; the M1–M3 core Science indicators are not merged with M4–M6 additional specialist outcomes. Live Supabase now contains 139 primary and 174 lower-secondary core indicators in both curriculum catalogues. M1 and M2 priority labels reconcile exactly to OBEC; M3 has 10 intentionally unclassified labels pending source reconciliation (nine W3.2 records and W1.1 ม.3/6). The 102 upper-secondary indicators still need grade-specific transcription and alignment. Consolidated local lint/build and final app testing remain pending and are intentionally deferred until all curriculum rollouts are complete.
