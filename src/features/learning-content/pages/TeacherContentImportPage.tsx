@@ -209,6 +209,10 @@ export default function TeacherContentImportPage() {
     setMessage("");
     setImportProgress({ lessons: 0, questions: 0 });
     if (!file) return;
+    if (file.size > 5_000_000) {
+      setFileError("Choose a Markdown teacher pack no larger than 5 MB (5,000,000 bytes).");
+      return;
+    }
     if (!file.name.toLowerCase().endsWith(".md")) {
       setFileError("Choose a Markdown (.md) teacher pack.");
       return;
@@ -369,7 +373,7 @@ export default function TeacherContentImportPage() {
         <label className="mt-4 flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-slate-300 px-5 py-8 text-center hover:bg-slate-50">
           <Upload size={24} className="text-slate-500" />
           <span className="mt-2 text-sm font-semibold text-slate-800">Choose one .md teacher pack</span>
-          <span className="mt-1 text-xs text-slate-500">Maximum file size: 5 MB</span>
+          <span className="mt-1 text-xs text-slate-500">Maximum file size: 5 MB (5,000,000 bytes)</span>
           <input type="file" accept=".md,text/markdown,text/plain" onChange={handleFileChange} className="sr-only" />
         </label>
         {fileName && <p className="mt-3 text-sm text-slate-700">Selected: <strong>{fileName}</strong></p>}
