@@ -9,6 +9,7 @@ import {
   learningPackImportService,
   parseTeacherPackMarkdown,
   extractTeacherPackGradeCode,
+  extractTeacherPackGradeCodes,
   type LearningPackImportLesson,
   type ParsedTeacherPackLesson,
 } from "@/features/learning-content";
@@ -99,10 +100,9 @@ export default function TeacherContentImportPage() {
     const seenCodes = new Set<string>();
 
     for (const lesson of parsedLessons) {
-      const isSharedM46Outcome = Boolean(lesson.objectiveCode?.match(/-M46-/));
-      const targetGradeCodes = isSharedM46Outcome
-        ? ["M4", "M5", "M6"]
-        : [extractTeacherPackGradeCode(lesson.objectiveCode)];
+      const resolvedGradeCodes = extractTeacherPackGradeCodes(lesson.objectiveCode);
+      const targetGradeCodes: Array<string | null> = resolvedGradeCodes.length ? resolvedGradeCodes : [null];
+      const isSharedM46Outcome = targetGradeCodes.length > 1;
       for (const targetGradeCode of targetGradeCodes) {
         let targetGradeLevelId = activeGradeLevelId;
         if (targetGradeCode) {
@@ -331,7 +331,7 @@ export default function TeacherContentImportPage() {
 
   const ready = Boolean(
     fileName &&
-    resolved.rows.length === parsedLessons.reduce((count, lesson) => count + (lesson.objectiveCode?.match(/-M46-/) ? 3 : 1), 0) &&
+    resolved.rows.length === parsedLessons.reduce((count, lesson) => count + Math.max(1, extractTeacherPackGradeCodes(lesson.objectiveCode).length), 0) &&
     parsedLessons.length > 0 &&
     resolved.errors.length === 0 &&
     !subjects.isPending &&
@@ -412,7 +412,7 @@ export default function TeacherContentImportPage() {
           <div className="mt-3 flex flex-wrap gap-4 text-sm text-slate-600">
             <span>{parsedLessons.length} lessons detected</span>
             <span>{parsedLessons.length * 3} questions detected</span>
-            <span>{resolved.rows.length} objectives matched</span>
+            <span>{resolved.rows.length} grade-specific outcomes matched</span>
           </div>
           {gradeLevels.isPending || catalogue.isPending || alignments.isPending ? <p className="mt-4 text-sm text-slate-500">Checking active curriculum grades and objective alignments…</p> : null}
           {(gradeLevels.isError || catalogue.isError || alignments.isError) && <p className="mt-4 text-sm text-red-700">Academic catalogue could not be loaded. No import is allowed.</p>}
