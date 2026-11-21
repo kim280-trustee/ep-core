@@ -139,9 +139,9 @@ Students can:
 
 ### Practice questions
 1. Compare 254,000 and 254,125 using <, > or =.
-   **Answer:**  254,000 < 254,125.
-2. Which is greater: 254,125 or 254,050?
-   **Answer:**  254,125 is greater.
+   **Answer:** 254,000 < 254,125.
+2. Which is greater: 254,002 or 254,125?
+   **Answer:** 254,125 is greater.
 3. Two teams score 254,000 and 254,125 points. Which team has the higher score?
    **Answer:** The team with 254,125 points has the higher score.
 
@@ -767,7 +767,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use a small class survey and a prepared table or graph. Read values, compare categories, explain conclusions and create a correctly labelled representation.
+**Teaching sequence:** Use a bar chart and a two-way table with two categories. Learners read values from labelled axes, compare rows and columns and explain a conclusion.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -777,13 +777,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. A pictograph or table shows Monday = 4, Tuesday = 6 and Wednesday = 3. Which day has the greatest value?
-   **Answer:** Tuesday, with 6.
-2. Using the same data, how many more were recorded on Tuesday than Wednesday?
-   **Answer:** 3 more.
-3. What is the total for the three days, and what should a suitable graph include?
-   **Answer:** 13 in total. A suitable graph needs a clear title, labelled categories, a scale/key and correctly plotted values.
-
+1. A bar chart shows 12 books read in January and 18 in February. How many more books were read in February?
+   **Answer:** 18 − 12 = 6 more books.
+2. A two-way table records 9 boys and 7 girls choosing football. How many learners chose football?
+   **Answer:** 9 + 7 = 16 learners.
+3. Why must a bar chart have a labelled scale and category names?
+   **Answer:** They show what each bar represents and how to read its value accurately.
 ---
 
 ## Lesson 23 — Convert between common fractions and decimals
@@ -1339,7 +1338,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use a small class survey and a prepared table or graph. Read values, compare categories, explain conclusions and create a correctly labelled representation.
+**Teaching sequence:** Read a line graph with time on the horizontal axis and a measured quantity on the vertical axis. Learners identify values, describe rises and falls and compare changes.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -1349,13 +1348,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. A pictograph or table shows Monday = 4, Tuesday = 6 and Wednesday = 3. Which day has the greatest value?
-   **Answer:** Tuesday, with 6.
-2. Using the same data, how many more were recorded on Tuesday than Wednesday?
-   **Answer:** 3 more.
-3. What is the total for the three days, and what should a suitable graph include?
-   **Answer:** 13 in total. A suitable graph needs a clear title, labelled categories, a scale/key and correctly plotted values.
-
+1. A line graph shows a temperature of 24°C at 9:00 and 29°C at 12:00. By how many degrees did it rise?
+   **Answer:** 29 − 24 = 5°C.
+2. The temperature falls from 29°C at noon to 26°C at 15:00. What is the change?
+   **Answer:** It falls by 3°C.
+3. What does a rising line segment show when time is on the horizontal axis?
+   **Answer:** The measured value is increasing over that time interval.
 ---
 
 ## Lesson 41 — Create and interpret bar graphs
@@ -1371,7 +1369,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use a small class survey and a prepared table or graph. Read values, compare categories, explain conclusions and create a correctly labelled representation.
+**Teaching sequence:** Use a small data set to create a bar graph. Learners choose a suitable scale, label both axes, draw bars accurately and interpret the results.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -1381,13 +1379,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. A pictograph or table shows Monday = 4, Tuesday = 6 and Wednesday = 3. Which day has the greatest value?
-   **Answer:** Tuesday, with 6.
-2. Using the same data, how many more were recorded on Tuesday than Wednesday?
-   **Answer:** 3 more.
-3. What is the total for the three days, and what should a suitable graph include?
-   **Answer:** 13 in total. A suitable graph needs a clear title, labelled categories, a scale/key and correctly plotted values.
-
+1. A class survey records 4 votes for reading, 7 for football and 5 for music. Which bar should be tallest?
+   **Answer:** Football, with 7 votes.
+2. How many more votes did football receive than reading?
+   **Answer:** 7 − 4 = 3 votes.
+3. Name three features of a clear bar graph.
+   **Answer:** A title, labelled axes/categories and a consistent scale with correctly drawn bars.
 ---
 
 ## Lesson 42 — Compare and order fractions and mixed numbers
@@ -1882,7 +1879,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use grid paper and shape cut-outs. Identify base and height or length and width, calculate area or perimeter, and label square units correctly.
+**Teaching sequence:** Use circular templates, string and grid paper. Learners connect diameter and radius, estimate circumference and calculate circumference and area using π.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -1892,13 +1889,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. Find the area of a rectangle that is 8 cm long and 5 cm wide.
-   **Answer:** 40 cm².
-2. A parallelogram has a base of 8 cm and a perpendicular height of 4 cm. Find its area.
-   **Answer:** 32 cm².
-3. A rectangle is 8 cm by 5 cm. Find its perimeter.
-   **Answer:** 26 cm.
-
+1. A circle has radius 7 cm. Find its circumference using π = 22/7.
+   **Answer:** 2 × 22/7 × 7 = 44 cm.
+2. A circle has radius 7 cm. Find its area using π = 22/7.
+   **Answer:** 22/7 × 7 × 7 = 154 cm².
+3. If the radius of a circle doubles, what happens to its diameter?
+   **Answer:** The diameter also doubles because diameter = 2 × radius.
 ---
 
 ## Lesson 58 — Classify triangles using their properties
@@ -2010,7 +2006,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use solid models and real packages. Count faces, edges and vertices, compare properties and match solids to real objects.
+**Teaching sequence:** Use printed nets and foldable card models. Learners predict the solid, fold the net, count faces and check that the faces meet without overlap or gaps.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -2020,13 +2016,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. How many faces, edges and vertices does a cube have?
-   **Answer:** 6 faces, 12 edges and 8 vertices.
-2. Name a solid with two circular flat faces and one curved surface.
-   **Answer:** A cylinder.
-3. Which solid is suitable for a ball, and which for a drinks can?
-   **Answer:** A sphere for a ball; a cylinder for a drinks can.
-
+1. How many square faces are needed in a net of a cube?
+   **Answer:** 6 square faces.
+2. What solid can be made from a net containing six equal squares arranged correctly?
+   **Answer:** A cube.
+3. Why must the squares in a cube net be connected in a foldable arrangement?
+   **Answer:** So the six squares fold to form the six faces without overlapping or leaving a gap.
 ---
 
 ## Lesson 62 — Read and interpret pie charts to solve problems
@@ -2042,7 +2037,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use a small class survey and a prepared table or graph. Read values, compare categories, explain conclusions and create a correctly labelled representation.
+**Teaching sequence:** Read a pie chart by linking each sector to its fraction or percentage of the whole. Learners use the total to calculate quantities and compare sectors.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
