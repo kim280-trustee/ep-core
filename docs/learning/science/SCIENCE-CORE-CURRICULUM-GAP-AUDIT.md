@@ -5,7 +5,7 @@
 **Official source PDF:** https://www.academic.obec.go.th/images/official/1622514876_d_1.pdf  
 **Status:** Open — do not mark Science complete
 
-**Repository/live distinction (verified 21 November 2026):** Live Supabase contains all 139 primary P1–P6 indicators and all 174 lower-secondary M1–M3 indicators in both the canonical Science curriculum and the draft national master curriculum. M1 and M2 priority totals match OBEC exactly. M3 has 59 aligned indicators, but 10 priority labels remain unclassified pending source-level reconciliation. The 102 grade-specific M4–M6 core indicators remain outstanding.
+**Repository/live distinction (verified 21 November 2026):** Live Supabase contains all 139 primary P1–P6 indicators and all 174 lower-secondary M1–M3 indicators in both the canonical Science curriculum and the draft national master curriculum. M1 and M2 priority totals match OBEC exactly. M3 has 59 required official indicators in both catalogues with 41 Must-Know and 18 Should-Know labels. Nine legacy W3.2 outcomes are retained as non-required supplementary records and are excluded from the national-core count. The 102 grade-specific M4–M6 core indicators remain outstanding.
 
 
 ## Official grade totals
@@ -20,7 +20,7 @@
 | P6 | 30 | 26 W1–W3 + 4 W4.2; complete in live staging |
 | M1 | 52 | 43 existing W1–W3; 9 W4.1/W4.2 missing |
 | M2 | 63 | 48 existing W1–W3; 6 W2.1 plus 9 W4.1/W4.2 missing |
-| M3 | 59 | 53 existing records; code-level reconciliation required before accepting the count |
+| M3 | 59 | 59 official indicators including W4.1 (5) and W4.2 (4); nine legacy W3.2 records are supplementary/non-required |
 | M4–M6 aggregate | 102 | Grade-specific M4, M5 and M6 indicators; exact grade split and codes must be transcribed before seeding |
 
 The official total is 415 unique indicators. The 102 is an aggregate across the M4, M5 and M6 grade-specific tables in the OBEC source. Each indicator must be aligned only to its actual grade; do not duplicate one shared set across all three grades. The source summary also notes ว 3.1 ม.6/4 is dual-classified.
@@ -90,3 +90,10 @@ Primary source for the remaining primary indicators is the OBEC/Institute for th
 The source gives the national unique total as 415, with 308 Must-Know and 113 Should-Know classifications; the difference is explained by dual-classified indicators. These are classification counts, not mutually exclusive objective counts.
 
 The P4–P6 W1–W3 seed has now been transcribed from these grade sections and applied. The live catalogue passes all six primary grade totals; the read-only SQL verification remains the acceptance check for future changes.
+
+
+## M3 W4.1/W4.2 completion — 21 November 2026
+
+The official M3 source table (page 127, rows 51–59) includes five W4.1 indicators and four W4.2 indicators. All nine have now been seeded and aligned in both curricula. The nine former M3 W3.2 alignments are retained as non-required supplementary outcomes pending a separate crosswalk; no legacy content was deleted. M3 now has 59 required official indicators, 41 Must-Know and 18 Should-Know, with zero unclassified or duplicate core alignments.
+
+The consolidated M1–M3 teacher import remains 174 lessons and 522 answer-keyed questions: nine official technology lessons replace the nine legacy W3.2 lessons in the core import. Legacy W3.2 teaching material is preserved separately.
