@@ -22,7 +22,7 @@ Official source PDF: https://academic.obec.go.th/web/images/official/1622514876_
 | P6 | 21 | 15 | 6 |
 | **Total** | **116** | **82** | **34** |
 
-The six grade totals establish 116 primary Mathematics indicators. The current database has none of them.
+The six grade totals establish 116 primary Mathematics indicators. At the pre-seed baseline described in this historical gap audit, the database had none of them.
 
 ## P6 priority reconciliation — resolved
 
