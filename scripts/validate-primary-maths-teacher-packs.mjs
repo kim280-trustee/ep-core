@@ -58,7 +58,7 @@ for (const pack of packs) {
   for (const block of lessonBlocks) {
     const code = block.match(/^\*\*Objective:\*\* `(P[1-6]-K[1-3]_[1-3]-\d{2})`/m)?.[1];
     const official = block.match(/^\*\*Official indicator:\*\* (ค [1-3]\.\d ป\.[1-6]\/\d+)/m)?.[1];
-    const priority = block.match(/^\*\*Priority:\*\* (Must-Know|Should-Know)$/m)?.[1];
+    const priority = block.match(/^\*\*Priority:\*\* (Must-Know|Should-Know)\s*$/m)?.[1];
     if (!code || !official || !priority) {
       failures.push(pack.path + ": a lesson is missing objective code, official indicator or priority label");
       continue;
