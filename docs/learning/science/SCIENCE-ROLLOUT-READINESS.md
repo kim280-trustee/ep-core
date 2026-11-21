@@ -54,7 +54,9 @@ Upper-secondary source transcription and grade allocation are complete; priority
 
 The existing migration history, importer implementation and specialist-subject counts remain documented in `SCIENCE-MIGRATION-INTEGRITY-REVIEW.md`. The lower-secondary SCI catalogue is now mirrored into both `TH-SCI-M1-M6` and `TH-BASIC-CORE-2008-2017`, including the 30 new M1–M3 indicators. The national master curriculum is still draft; do not change its status as part of this rollout. Read-only checks are in `SCIENCE-STAGING-VERIFICATION.sql`.
 
-Application lint/build, importer smoke tests and app-wide end-to-end tests remain deferred until all curriculum rollouts are complete.
+**Teacher-pack import preflight — 21 November 2026:** The repository parser rules were exercised against the two consolidated core packs: M1–M3 produced 174 lessons / 522 answer-keyed questions; M4–M6 produced 102 lessons / 306 answer-keyed questions. Both had zero parser failures and zero duplicate objective codes. A read-only live Supabase reconciliation then checked all 276 M1–M6 pack objective codes against both `TH-SCI-M1-M6` and `TH-BASIC-CORE-2008-2017`: 276 unique objective matches and 276 exact grade alignments per curriculum, with zero missing, ambiguous or wrong-grade mappings. This is source/parser and database preflight validation, not an authenticated browser import. The importer now explicitly blocks grade-coded lessons when the selected curriculum does not contain that grade, and its import-ready state waits for grade-level data to finish loading.
+
+**Still open:** An authenticated teacher must exercise the actual `/teacher/content/import` preview and draft-save flow for both packs in the browser. Do not publish the imported drafts. Local `npm.cmd run build` and `npm.cmd run lint` have not yet been run in this environment; app-wide end-to-end testing also remains open.
 
 ## Content and authoring boundary
 
