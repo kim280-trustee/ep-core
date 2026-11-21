@@ -360,3 +360,10 @@ M6 standards W3.1 (10), W3.2 (14) and W4.2 (1) are staged and aligned only to M6
 Official OBEC 2021 Science and Technology source page 127 confirms ว 1.1 ม.3/6 as Should-Know. Both catalogue alignments have been corrected and verified. Nine legacy W3.2 rows remain unclassified until their mapping to the official M3 indicator list is established; they are not to be assigned priority labels just to force aggregate totals.
 
 Migration: `20261121103000_classify_science_m3_ecosystem_indicator_6.sql`.
+
+
+## M3 official technology indicators completed — 21 November 2026
+
+The official OBEC M3 W4.1/W4.2 indicators (five plus four) are now seeded in both curricula. M3 now has 59 required official indicators, with 41 Must-Know and 18 Should-Know, zero unclassified and zero duplicate required alignments. The nine legacy W3.2 records remain preserved as non-required supplementary outcomes pending separate crosswalk validation. The lower-secondary import pack remains 174 lessons / 522 answer-keyed questions because the nine official technology lessons replace the nine legacy W3.2 lessons in the core import.
+
+Migration: `20261121110000_seed_science_m3_official_technology_indicators_and_archive_legacy_w3_2.sql`.
