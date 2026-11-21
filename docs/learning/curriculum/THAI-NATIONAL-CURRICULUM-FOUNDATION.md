@@ -9,9 +9,9 @@ This document defines the official curriculum source register and implementation
 | Curriculum code | Official source | Grades | Platform status |
 |---|---|---|---|
 | `TH-BASIC-CORE-2008-2017` | Basic Education Core Curriculum B.E. 2551 (2008), applicable 2017 revisions and later OBEC orders | P1–P6, M1–M6 | Draft foundation |
-| `TH-PRIMARY-2025-P1-P3` | Primary Education Curriculum B.E. 2568 (2025) | P1–P3 | Draft source record |
+| `TH-PRIMARY-2025-P1-P3` | Primary Education Curriculum B.E. 2568 (2025), competency-based early-primary framework | P1–P3 | Draft; 24 annual capability outcomes and 25 illustrative knowledge topics seeded |
 
-The 2025 P1–P3 framework is deliberately separate. Do not merge its outcomes into the 2008/2017 framework. Confirm any later expansion from OBEC before adding further grades.
+The 2025 P1–P3 framework is deliberately separate. Do not merge its outcomes into the 2008/2017 framework. OBEC publishes eight capability outcomes per grade, not eight replacement subjects. The official knowledge foundations are illustrative and may be adapted by schools.
 
 ## Eight learning areas in the 2008/2017 framework
 
@@ -41,7 +41,8 @@ OBEC Order 921/2561 removed the Design and Technology and ICT strands from the f
 - Career and Technology indicators (B.E. 2551; apply later scope changes): https://www.academic.obec.go.th/web/document/download/622
 - Foreign Languages indicators (B.E. 2551): https://www.academic.obec.go.th/web/document/download/623
 - 2017 revised Mathematics, Science and Geography standards: https://www.academic.obec.go.th/web/document/download/624
-- OBEC early-primary B.E. 2568 (2025) curriculum documents: https://www.academic.obec.go.th/web/document/collection/1/document/view/311
+- OBEC early-primary B.E. 2568 (2025) curriculum collection: https://www.academic.obec.go.th/web/document/collection/1/document/view/311
+- Official B.E. 2568 P1–P3 curriculum PDF: https://academic.obec.go.th/web/images/document/1760950927_d_1.pdf
 
 Use the 2018 Order 921/2561 to reconcile the old Career and Technology source: the former Design and Technology and ICT strands were removed from that learning area and relocated to Science and Technology. The historical PDF remains a source record, not the current scope for those strands.
 
@@ -51,16 +52,18 @@ The OBEC landing page identifies the source documents for Thai Language, Social 
 
 | Area | Foundation catalogue | Official indicators transcribed into master curriculum |
 |---|---|---|
-| Thai Language | Added | M1–M3 loaded: 101 indicators across five standards; P1–P6 and M4–M6 pending |
-| Mathematics | Added; existing M1–M6 objective records reused where aligned | Partial — 41 existing objectives |
-| Science and Technology | Added; existing lower-secondary Science objectives reused where aligned | Partial — 142 existing M1–M3 objectives; upper-secondary tracks require reconciliation |
-| Social Studies, Religion and Culture | Added | Pending; Geography must use 2017 revision |
-| Health and Physical Education | Added | Pending |
-| Arts | Added | Pending |
-| Career | Added | Pending; use the post-Order 921/2561 scope |
-| Foreign Languages | Added | Pending |
+| Thai Language | Complete | 319 unique indicators / 391 grade alignments |
+| Mathematics | Complete; separate Maths-specific catalogue retained | 41 unique indicators / 82 alignments across the national and Maths-specific catalogues |
+| Science and Technology | Complete; specialist upper-secondary tracks remain separate | 415 official core indicators / 415 national-master alignments; 276 secondary core alignments |
+| Social Studies, Religion and Culture | Complete | 418 unique indicators / 540 grade alignments; pathway classifications reconciled |
+| Health and Physical Education | Complete | 221 unique indicators / 279 grade alignments |
+| Arts | Complete | 279 unique indicators / 357 grade alignments |
+| Career | Complete; post-Order 921/2561 scope applied | 54 unique indicators / 76 grade alignments |
+| Foreign Languages | Complete | 193 unique indicators / 235 grade alignments |
 
-The curriculum remains **draft** until all eight learning areas have their official standards, indicators and grade/interval allocations transcribed and validated. Do not mark it active merely because the grade and subject catalogue exists.
+The 2008/2017 national master now contains 1,940 unique official indicators and 2,334 grade alignments across all eight learning areas. Its catalogue remains **draft** pending consolidated source review and final application release testing; do not mark it active merely because the catalogue is populated.
+
+The separate B.E. 2568 (2025) P1–P3 curriculum is competency-based, not a second eight-subject indicator set. It now contains 8 official capability skills, 24 annual grade outcomes, 24 exact grade alignments, 24 illustrative grade-specific knowledge topics and five cross-cutting desirable characteristics. See `thai-primary-2025/THAI-PRIMARY-2025-CURRICULUM-AUDIT.md`.
 
 ## Thai Language — M1 to M3 implementation
 
