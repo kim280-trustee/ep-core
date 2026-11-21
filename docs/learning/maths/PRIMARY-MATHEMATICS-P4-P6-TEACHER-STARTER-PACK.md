@@ -192,7 +192,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use fraction strips, paper folding and area models. Learners name equal parts, represent the fraction and explain the whole being considered.
+**Teaching sequence:** Use fraction strips, mixed-number models and common denominators. Learners compare fractions and mixed numbers, then place them on a number line.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -202,13 +202,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. A shape is divided into 4 equal parts and 3 parts are shaded. What fraction is shaded?
-   **Answer:** 3/4.
-2. Are 1/2 and 2/4 equivalent fractions? Explain briefly.
-   **Answer:** Yes. Both represent one half; 1/2 = 2/4.
-3. A pizza is cut into 4 equal slices. A learner eats 3 slices. What fraction is eaten?
-   **Answer:** 3/4.
-
+1. Which is greater: 3/4 or 2/3?
+   **Answer:** 3/4 is greater because 9/12 > 8/12.
+2. Order 1/2, 3/4 and 2/5 from smallest to largest.
+   **Answer:** 2/5, 1/2, 3/4.
+3. Compare 1 1/4 and 1 1/2.
+   **Answer:** 1 1/2 is greater because 1/2 > 1/4.
 ---
 
 ## Lesson 5 — Read and write decimals to three decimal places
@@ -224,7 +223,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use place-value grids and money or measurement examples. Align decimal places, calculate carefully and estimate to check the result.
+**Teaching sequence:** Use decimal place-value charts and thousandths grids. Learners read, write and expand decimals, keeping tenths, hundredths and thousandths in their correct places.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -234,13 +233,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. Calculate 2.35 + 1.40.
-   **Answer:** 3.75.
-2. Which is greater: 3.05 or 3.5?
-   **Answer:** 3.5 is greater because 3.50 > 3.05.
-3. A notebook costs 12.50 baht and a pen costs 8.75 baht. What is the total?
-   **Answer:** 21.25 baht.
-
+1. Write 3.405 in words and expanded form.
+   **Answer:** Three and four hundred five thousandths; 3 + 0.4 + 0.005.
+2. What is the value of the digit 5 in 3.405?
+   **Answer:** Five thousandths, or 0.005.
+3. Write 2 + 0.06 + 0.008 as a decimal.
+   **Answer:** 2.068.
 ---
 
 ## Lesson 6 — Compare and order decimals
@@ -256,7 +254,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use place-value grids and money or measurement examples. Align decimal places, calculate carefully and estimate to check the result.
+**Teaching sequence:** Use decimal grids and place-value charts to compare decimals. Add trailing zeros where helpful and order values on a number line.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -266,13 +264,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. Calculate 2.35 + 1.40.
-   **Answer:** 3.75.
-2. Which is greater: 3.05 or 3.5?
-   **Answer:** 3.5 is greater because 3.50 > 3.05.
-3. A notebook costs 12.50 baht and a pen costs 8.75 baht. What is the total?
-   **Answer:** 21.25 baht.
-
+1. Which is greater: 3.405 or 3.45?
+   **Answer:** 3.45 = 3.450, so 3.45 is greater.
+2. Order 0.75, 0.705 and 0.8 from smallest to largest.
+   **Answer:** 0.705, 0.75, 0.8.
+3. Explain why 2.50 and 2.5 have the same value.
+   **Answer:** A zero at the end of a decimal does not change its value; both equal two and five tenths.
 ---
 
 ## Lesson 7 — Estimate results of the four basic operations
@@ -480,7 +477,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use fraction strips, paper folding and area models. Learners name equal parts, represent the fraction and explain the whole being considered.
+**Teaching sequence:** Model fraction and mixed-number addition and subtraction with fraction strips and number lines. Learners find common denominators before calculating.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -490,13 +487,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. A shape is divided into 4 equal parts and 3 parts are shaded. What fraction is shaded?
-   **Answer:** 3/4.
-2. Are 1/2 and 2/4 equivalent fractions? Explain briefly.
-   **Answer:** Yes. Both represent one half; 1/2 = 2/4.
-3. A pizza is cut into 4 equal slices. A learner eats 3 slices. What fraction is eaten?
-   **Answer:** 3/4.
-
+1. Calculate 1/2 + 1/4.
+   **Answer:** 2/4 + 1/4 = 3/4.
+2. Calculate 1 1/2 − 3/4.
+   **Answer:** 1 1/2 = 6/4; 6/4 − 3/4 = 3/4.
+3. A path is 2 1/4 km long. A learner walks 1 1/2 km. How much remains?
+   **Answer:** 2 1/4 − 1 1/2 = 3/4 km.
 ---
 
 ## Lesson 14 — Solve word problems involving fractions and mixed numbers
@@ -512,7 +508,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use fraction strips, paper folding and area models. Learners name equal parts, represent the fraction and explain the whole being considered.
+**Teaching sequence:** Present fraction and mixed-number situations with diagrams. Learners identify the operation, represent the quantities and check that the answer is reasonable.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -522,13 +518,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. A shape is divided into 4 equal parts and 3 parts are shaded. What fraction is shaded?
-   **Answer:** 3/4.
-2. Are 1/2 and 2/4 equivalent fractions? Explain briefly.
-   **Answer:** Yes. Both represent one half; 1/2 = 2/4.
-3. A pizza is cut into 4 equal slices. A learner eats 3 slices. What fraction is eaten?
-   **Answer:** 3/4.
-
+1. A recipe needs 3/4 cup of milk for one batch. How much is needed for two batches?
+   **Answer:** 2 × 3/4 = 1 1/2 cups.
+2. A rope is 2 1/2 m long. A piece of 3/4 m is cut off. How much remains?
+   **Answer:** 2 1/2 − 3/4 = 1 3/4 m.
+3. Why is it useful to convert mixed numbers to fractions with a common denominator before subtracting?
+   **Answer:** It makes the parts the same size so they can be subtracted accurately.
 ---
 
 ## Lesson 15 — Add and subtract decimals
@@ -544,7 +539,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use place-value grids and money or measurement examples. Align decimal places, calculate carefully and estimate to check the result.
+**Teaching sequence:** Align decimal places in place-value columns. Learners add and subtract decimals and estimate the result before calculating.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -554,13 +549,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. Calculate 2.35 + 1.40.
-   **Answer:** 3.75.
-2. Which is greater: 3.05 or 3.5?
-   **Answer:** 3.5 is greater because 3.50 > 3.05.
-3. A notebook costs 12.50 baht and a pen costs 8.75 baht. What is the total?
-   **Answer:** 21.25 baht.
-
+1. Calculate 12.35 + 4.6.
+   **Answer:** 12.35 + 4.60 = 16.95.
+2. Calculate 20.00 − 7.85.
+   **Answer:** 12.15.
+3. A rope is 3.75 m long and another is 2.6 m long. What is their combined length?
+   **Answer:** 3.75 + 2.60 = 6.35 m.
 ---
 
 ## Lesson 16 — Solve word problems involving decimal operations
@@ -576,7 +570,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use coloured counters, recipe cards or scale drawings. Represent the relationship in order, make equivalent ratios and explain what each term counts.
+**Teaching sequence:** Use measurement and shopping stories involving decimal quantities. Learners select addition or subtraction, align decimal places and interpret the answer with units.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -586,13 +580,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. There are 2 red counters and 3 blue counters. Write the ratio of red to blue.
-   **Answer:** 2:3.
-2. Write a ratio equivalent to 2:3 with the first term equal to 8.
-   **Answer:** 8:12.
-3. A drink uses 2 cups of syrup for every 3 cups of water. How much water is needed for 4 cups of syrup?
-   **Answer:** 6 cups of water.
-
+1. A bottle contains 1.25 L of water. Another 0.75 L is added. How much water is there?
+   **Answer:** 2.00 L.
+2. A fabric roll is 8.5 m long. A tailor uses 3.75 m. How much remains?
+   **Answer:** 4.75 m.
+3. Why should decimal points be aligned when adding or subtracting decimal measurements?
+   **Answer:** It keeps tenths, hundredths and other place values in the correct columns.
 ---
 
 ## Lesson 17 — Solve problems involving time and duration
@@ -862,7 +855,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use fraction strips, paper folding and area models. Learners name equal parts, represent the fraction and explain the whole being considered.
+**Teaching sequence:** Use fraction strips and common-denominator models. Learners add and subtract fractions and mixed numbers, simplifying the result where possible.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -872,13 +865,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. A shape is divided into 4 equal parts and 3 parts are shaded. What fraction is shaded?
-   **Answer:** 3/4.
-2. Are 1/2 and 2/4 equivalent fractions? Explain briefly.
-   **Answer:** Yes. Both represent one half; 1/2 = 2/4.
-3. A pizza is cut into 4 equal slices. A learner eats 3 slices. What fraction is eaten?
-   **Answer:** 3/4.
-
+1. Calculate 2/3 + 1/6.
+   **Answer:** 4/6 + 1/6 = 5/6.
+2. Calculate 1 1/4 − 2/3.
+   **Answer:** 15/12 − 8/12 = 7/12.
+3. A container has 3/4 litre of juice. Another 2/8 litre is added. How much is there altogether?
+   **Answer:** 3/4 + 2/8 = 6/8 + 2/8 = 1 litre.
 ---
 
 ## Lesson 26 — Multiply and divide fractions
@@ -894,7 +886,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use fraction strips, paper folding and area models. Learners name equal parts, represent the fraction and explain the whole being considered.
+**Teaching sequence:** Use area models and fraction strips to model multiplication and division of fractions. Connect the models to the calculation rules and simplify answers.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -904,13 +896,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. A shape is divided into 4 equal parts and 3 parts are shaded. What fraction is shaded?
-   **Answer:** 3/4.
-2. Are 1/2 and 2/4 equivalent fractions? Explain briefly.
-   **Answer:** Yes. Both represent one half; 1/2 = 2/4.
-3. A pizza is cut into 4 equal slices. A learner eats 3 slices. What fraction is eaten?
-   **Answer:** 3/4.
-
+1. Calculate 2/3 × 3/4.
+   **Answer:** 6/12 = 1/2.
+2. Calculate 3/4 ÷ 1/2.
+   **Answer:** 3/4 × 2/1 = 6/4 = 1 1/2.
+3. Find 2/5 of 20.
+   **Answer:** 2/5 × 20 = 8.
 ---
 
 ## Lesson 27 — Solve two-step fraction word problems
@@ -926,7 +917,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use fraction strips, paper folding and area models. Learners name equal parts, represent the fraction and explain the whole being considered.
+**Teaching sequence:** Use multi-step stories involving fractional quantities. Learners underline the information, plan the sequence of operations and estimate before calculating.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -936,13 +927,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. A shape is divided into 4 equal parts and 3 parts are shaded. What fraction is shaded?
-   **Answer:** 3/4.
-2. Are 1/2 and 2/4 equivalent fractions? Explain briefly.
-   **Answer:** Yes. Both represent one half; 1/2 = 2/4.
-3. A pizza is cut into 4 equal slices. A learner eats 3 slices. What fraction is eaten?
-   **Answer:** 3/4.
-
+1. A recipe uses 3/4 cup of flour per batch. How much flour is needed for 2 batches?
+   **Answer:** 2 × 3/4 = 1 1/2 cups.
+2. A ribbon is 2 1/2 m long. A learner cuts off 3/4 m and then 1/2 m. How much remains?
+   **Answer:** 2 1/2 − 3/4 − 1/2 = 1 1/4 m.
+3. Explain why the operations must be completed in the correct order in a two-step fraction problem.
+   **Answer:** The first result is needed for the next step; changing the order can change the quantity being calculated.
 ---
 
 ## Lesson 28 — Multiply decimals
@@ -958,7 +948,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use place-value grids and money or measurement examples. Align decimal places, calculate carefully and estimate to check the result.
+**Teaching sequence:** Use area grids and place-value models to multiply decimals. Estimate first, multiply as whole numbers, then place the decimal point using place-value reasoning.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -968,13 +958,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. Calculate 2.35 + 1.40.
-   **Answer:** 3.75.
-2. Which is greater: 3.05 or 3.5?
-   **Answer:** 3.5 is greater because 3.50 > 3.05.
-3. A notebook costs 12.50 baht and a pen costs 8.75 baht. What is the total?
-   **Answer:** 21.25 baht.
-
+1. Calculate 2.4 × 1.5.
+   **Answer:** 3.6.
+2. Calculate 0.6 × 0.4.
+   **Answer:** 0.24.
+3. A ribbon costs 2.5 baht per metre. What is the cost of 3.2 metres?
+   **Answer:** 2.5 × 3.2 = 8 baht.
 ---
 
 ## Lesson 29 — Divide decimals
@@ -990,7 +979,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use place-value grids and money or measurement examples. Align decimal places, calculate carefully and estimate to check the result.
+**Teaching sequence:** Use place-value charts and equivalent whole-number divisions to divide decimals. Check each quotient by multiplication.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -1000,13 +989,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. Calculate 2.35 + 1.40.
-   **Answer:** 3.75.
-2. Which is greater: 3.05 or 3.5?
-   **Answer:** 3.5 is greater because 3.50 > 3.05.
-3. A notebook costs 12.50 baht and a pen costs 8.75 baht. What is the total?
-   **Answer:** 21.25 baht.
-
+1. Calculate 6.4 ÷ 0.8.
+   **Answer:** 8.
+2. Calculate 4.5 ÷ 0.5.
+   **Answer:** 9.
+3. A 7.2 L container is poured into bottles of 0.3 L each. How many bottles can be filled?
+   **Answer:** 7.2 ÷ 0.3 = 24 bottles.
 ---
 
 ## Lesson 30 — Solve two-step decimal word problems
@@ -1022,7 +1010,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use place-value grids and money or measurement examples. Align decimal places, calculate carefully and estimate to check the result.
+**Teaching sequence:** Present shopping, distance and measurement problems with decimal quantities. Learners plan two steps, show aligned calculations and interpret the final unit.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -1032,13 +1020,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. Calculate 2.35 + 1.40.
-   **Answer:** 3.75.
-2. Which is greater: 3.05 or 3.5?
-   **Answer:** 3.5 is greater because 3.50 > 3.05.
-3. A notebook costs 12.50 baht and a pen costs 8.75 baht. What is the total?
-   **Answer:** 21.25 baht.
-
+1. A notebook costs 12.75 baht and a pen costs 8.50 baht. What is the total cost of 2 notebooks and 1 pen?
+   **Answer:** 2 × 12.75 + 8.50 = 34 baht.
+2. A 10 m rope is cut into pieces of 1.25 m. How many complete pieces can be made?
+   **Answer:** 10 ÷ 1.25 = 8 pieces.
+3. A runner completes 2.75 km on Monday and 3.5 km on Tuesday. How far altogether?
+   **Answer:** 2.75 + 3.50 = 6.25 km.
 ---
 
 ## Lesson 31 — Solve percentage word problems
@@ -1400,7 +1387,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use fraction strips, paper folding and area models. Learners name equal parts, represent the fraction and explain the whole being considered.
+**Teaching sequence:** Use fraction strips and number lines to compare fractions and mixed numbers. Convert to equivalent fractions or compare whole-number and fractional parts.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -1410,13 +1397,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. A shape is divided into 4 equal parts and 3 parts are shaded. What fraction is shaded?
-   **Answer:** 3/4.
-2. Are 1/2 and 2/4 equivalent fractions? Explain briefly.
-   **Answer:** Yes. Both represent one half; 1/2 = 2/4.
-3. A pizza is cut into 4 equal slices. A learner eats 3 slices. What fraction is eaten?
-   **Answer:** 3/4.
-
+1. Which is greater: 5/6 or 7/9?
+   **Answer:** 5/6 = 15/18 and 7/9 = 14/18, so 5/6 is greater.
+2. Order 1 1/4, 1 2/3 and 1 1/2 from smallest to largest.
+   **Answer:** 1 1/4, 1 1/2, 1 2/3.
+3. Explain how a common denominator helps compare 3/4 and 5/8.
+   **Answer:** 3/4 = 6/8; since 6/8 > 5/8, 3/4 is greater.
 ---
 
 ## Lesson 43 — Represent comparisons of two quantities using ratios
@@ -1592,7 +1578,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use coloured counters, recipe cards or scale drawings. Represent the relationship in order, make equivalent ratios and explain what each term counts.
+**Teaching sequence:** Use fraction bars and worked examples to evaluate expressions with more than one operation. Learners apply the order of operations and simplify results.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -1602,13 +1588,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. There are 2 red counters and 3 blue counters. Write the ratio of red to blue.
-   **Answer:** 2:3.
-2. Write a ratio equivalent to 2:3 with the first term equal to 8.
-   **Answer:** 8:12.
-3. A drink uses 2 cups of syrup for every 3 cups of water. How much water is needed for 4 cups of syrup?
-   **Answer:** 6 cups of water.
-
+1. Evaluate 1/2 + 3/4 × 2/3.
+   **Answer:** Multiply first: 3/4 × 2/3 = 1/2; then 1/2 + 1/2 = 1.
+2. Evaluate (2/3 + 1/3) ÷ 1/2.
+   **Answer:** 1 ÷ 1/2 = 2.
+3. Why do brackets affect the result of a mixed-operation fraction expression?
+   **Answer:** Brackets show which operation must be completed first and can change the value of the expression.
 ---
 
 ## Lesson 49 — Solve multi-step fraction and mixed-number word problems
@@ -1624,7 +1609,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use fraction strips, paper folding and area models. Learners name equal parts, represent the fraction and explain the whole being considered.
+**Teaching sequence:** Use multi-step fraction and mixed-number situations. Learners represent each step, keep units visible and check the final result against the context.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -1634,13 +1619,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. A shape is divided into 4 equal parts and 3 parts are shaded. What fraction is shaded?
-   **Answer:** 3/4.
-2. Are 1/2 and 2/4 equivalent fractions? Explain briefly.
-   **Answer:** Yes. Both represent one half; 1/2 = 2/4.
-3. A pizza is cut into 4 equal slices. A learner eats 3 slices. What fraction is eaten?
-   **Answer:** 3/4.
-
+1. A tank is 3/4 full. A family uses 1/3 of the tank's full capacity. What fraction of the tank remains?
+   **Answer:** 3/4 − 1/3 = 9/12 − 4/12 = 5/12.
+2. A hiker walks 1 1/2 km in the morning and 2 1/4 km in the afternoon. How far does the hiker walk altogether?
+   **Answer:** 1 1/2 + 2 1/4 = 3 3/4 km.
+3. A recipe needs 2/3 cup of rice per serving. How much rice is needed for 3 servings?
+   **Answer:** 3 × 2/3 = 2 cups.
 ---
 
 ## Lesson 50 — Divide decimals to three decimal places
@@ -1656,7 +1640,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use place-value grids and money or measurement examples. Align decimal places, calculate carefully and estimate to check the result.
+**Teaching sequence:** Use decimal place-value reasoning to divide decimals accurately to three decimal places. Estimate the quotient and verify by multiplying.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -1666,13 +1650,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. Calculate 2.35 + 1.40.
-   **Answer:** 3.75.
-2. Which is greater: 3.05 or 3.5?
-   **Answer:** 3.5 is greater because 3.50 > 3.05.
-3. A notebook costs 12.50 baht and a pen costs 8.75 baht. What is the total?
-   **Answer:** 21.25 baht.
-
+1. Calculate 7.2 ÷ 0.3.
+   **Answer:** 24.
+2. Calculate 4.375 ÷ 1.25.
+   **Answer:** 3.5.
+3. Calculate 9.6 ÷ 0.8 and check by multiplication.
+   **Answer:** 12; check: 12 × 0.8 = 9.6.
 ---
 
 ## Lesson 51 — Solve multi-step decimal word problems
@@ -1688,7 +1671,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use place-value grids and money or measurement examples. Align decimal places, calculate carefully and estimate to check the result.
+**Teaching sequence:** Use multi-step real-life problems with decimal quantities. Learners select operations, keep units consistent and check the result using estimation.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -1698,13 +1681,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. Calculate 2.35 + 1.40.
-   **Answer:** 3.75.
-2. Which is greater: 3.05 or 3.5?
-   **Answer:** 3.5 is greater because 3.50 > 3.05.
-3. A notebook costs 12.50 baht and a pen costs 8.75 baht. What is the total?
-   **Answer:** 21.25 baht.
-
+1. A shop buys 2.5 kg of rice at 42.50 baht per kilogram. What is the total cost?
+   **Answer:** 2.5 × 42.50 = 106.25 baht.
+2. A 12.6 L container is filled equally into 0.9 L bottles. How many bottles are filled?
+   **Answer:** 12.6 ÷ 0.9 = 14 bottles.
+3. A learner walks 3.75 km in the morning and 2.8 km in the afternoon for 4 days. What is the total distance?
+   **Answer:** (3.75 + 2.8) × 4 = 26.2 km.
 ---
 
 ## Lesson 52 — Solve ratio and scale problems
