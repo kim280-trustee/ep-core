@@ -1,6 +1,6 @@
 # Primary Mathematics — Curriculum Coverage Gap Audit
 
-**Status: official P1–P6 source and priorities reconciled; no primary Mathematics records seeded yet.**
+**Status: complete. Official P1–P6 source and priorities reconciled; 116 objectives and 348 teacher tasks seeded/authored and verified.**
 
 ## Verified database state — 21 November 2026
 
@@ -52,17 +52,22 @@ The apparent P6 priority count discrepancy in the initial manual review was also
 
 The final primary totals reconcile exactly: 116 indicators, 82 Must-Know and 34 Should-Know. Per-grade totals are P1 10 (6/4), P2 16 (13/3), P3 28 (22/6), P4 22 (15/7), P5 19 (11/8), and P6 21 (15/6).
 
-## Implementation scope after source reconciliation
+## Implementation delivered — 21 November 2026
 
-1. Verify the complete official P1–P6 indicator-code list and each grade-level priority against the 2017 curriculum and OBEC 2021 detailed tables.
-2. Resolve the P6 15/6 versus 14/7 discrepancy.
-3. Create a separate `TH-MATH-P1-P6` catalogue; keep `TH-MATH-M1-M6` secondary-only.
-4. Reuse the existing Mathematics subject and the national-master P1–P6 grade levels. Add primary standard/topic mappings only where absent.
-5. Seed 116 unique primary objectives and their required grade alignments in both the national master and the primary Maths catalogue. Preserve the verified Must-Know / Should-Know classification per indicator.
-6. Author P1–P3 and P4–P6 teacher packs with three original answer-keyed formative tasks per indicator (348 tasks total).
-7. Add parser validation for 116 codes, 348 tasks, grade alignment and priority totals.
-8. Keep all content as catalogue and teacher-pack drafts. Do not import or publish to a school until the single consolidated application-testing phase.
+1. Verified the P1–P6 indicator counts against the OBEC 2021 priority tables and the 2017 revised Mathematics standards.
+2. Corrected seven code-column transcription errors by using the official 2017 standard/grade numbering while retaining the corresponding 2021 Must-Know / Should-Know row labels.
+3. Reconciled P6 detailed priority rows: 15 Must-Know and 6 Should-Know; the earlier 14/7 count was a manual counting error.
+4. Seeded migration `20261121160000_seed_primary_mathematics_p1_p6.sql`.
+5. Created the separate draft catalogue `TH-MATH-P1-P6`; retained the existing `TH-MATH-M1-M6` secondary catalogue unchanged.
+6. Added 116 unique primary objectives to the Mathematics knowledge graph and required alignments in both the national master and primary Mathematics catalogue.
+7. Verified 82 Must-Know and 34 Should-Know classifications, with zero unclassified rows and zero duplicate official indicator codes.
+8. Authored two teacher packs: 54 P1–P3 lessons and 62 P4–P6 lessons, each with three original answer-keyed formative tasks (348 total).
+9. Added `npm run validate:maths-primary-packs`, which executes the actual TypeScript importer parser and verifies grade extraction, official-code crosswalks, lesson counts, answer keys and priority totals.
+10. Updated the national curriculum validator and read-only staging verification. The national master now contains 2,056 unique required indicators and 2,450 grade alignments.
+11. GitHub Actions run 326 passed the full curriculum validators, production build and ESLint.
+
+**Still intentionally deferred:** authenticated teacher import, preview, draft-save, student submission and teacher review. Those will be tested once after all curriculum source work is complete. The new catalogue remains draft; no school, class, student or learner-progress data was changed.
 
 ## Verification artifact
 
-Run `PRIMARY-MATH-GAP-VERIFICATION.sql` to reproduce the current coverage gap. It is read-only and confirms the 41 existing M1–M6 Mathematics objectives and zero P1–P6 Mathematics alignments. All 18 grade/catalogue checks passed against live Supabase. No live curriculum records were changed during this audit.
+Run `PRIMARY-MATH-STAGING-VERIFICATION.sql` to verify the completed state. It is read-only and confirms 116 primary objectives and 116 required alignments in both the national master and `TH-MATH-P1-P6`, correct 82/34 priorities, zero unclassified or duplicate official codes, and the corrected P3 money indicator code. The national staging verification passes with 2,056 required indicators and 2,450 alignments.
