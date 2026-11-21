@@ -2,7 +2,7 @@
 
 **Branch:** `paul/thai-national-curriculum-foundation`  
 **Scope:** Full Thai national Science and Technology learning area (P1–M6), plus separately catalogued M4–M6 specialist outcomes  
-**Status:** **Primary P1–P6 and lower-secondary M1–M3 indicator totals are now aligned in live staging; national Science remains open.** Primary coverage is 139/139. Lower-secondary coverage is 174/174 (M1 52, M2 63, M3 59) in both the canonical Science curriculum and the draft national master curriculum. M1/M2 priority totals match OBEC; M3 still has 10 priority classifications pending source-level reconciliation. M4 upper-secondary core Science is complete at 22/22 grade-specific indicators. M5 and M6 remain to be transcribed and seeded; 80 of the 102 upper-secondary core indicators remain. These are grade-specific records in the OBEC source, not one shared set to be aligned to all three grades. The 300 Biology, Chemistry, Physics and Earth/Space specialist outcomes are additional curriculum content and do not replace the M4–M6 core set.
+**Status:** **Primary P1–P6 and lower-secondary M1–M3 indicator totals are now aligned in live staging; national Science remains open.** Primary coverage is 139/139. Lower-secondary coverage is 174/174 (M1 52, M2 63, M3 59) in both the canonical Science curriculum and the draft national master curriculum. M1/M2 priority totals match OBEC; M3 still has 10 priority classifications pending source-level reconciliation. M4 upper-secondary core Science is complete at 22/22 grade-specific indicators. M5 W2.1 is staged at 22 source-listed indicators; the remaining M5 standards and M6 are still in progress. 58 of the 102 upper-secondary core indicators remain. These are grade-specific records in the OBEC source, not one shared set to be aligned to all three grades. The 300 Biology, Chemistry, Physics and Earth/Space specialist outcomes are additional curriculum content and do not replace the M4–M6 core set.
 
 The existing 13 Science import files contain 444 lesson starters and 1,332 answer-keyed practice questions. The primary packs add 139 lesson starters and 417 formative tasks. The lower-secondary completion packs add 30 lesson starters and 90 formative tasks (24 M1/M2 indicators and six M3 ecosystem indicators). The W4.2 seed was reapplied so corrected priority labels are present in live staging. These resources remain Markdown source material until an authorized teacher imports them through `/teacher/content/import`. No school, class or student records have been created.
 
@@ -336,3 +336,10 @@ Migration: 20261121034100_seed_science_m4_ecology_core_indicators_1_4.sql. Verif
 ## M4 core Science completion — 22/22 indicators
 
 M4 core Science indicators are fully represented in staging: W1.1 (4), W1.2 (12) and W1.3 (6). All 22 are aligned only to M4 in both curriculum catalogues. Priority reconciliation: 15 Must-Know and 7 Should-Know. The two M4 packs contain 22 lesson starters and 66 answer-keyed formative questions. M4 is complete at the core-indicator layer. M5 and M6 still require their own source-specific transcription; no M4 indicators have been cross-mapped.
+
+
+## M5 core Science — W2.1 tranche staged
+
+The 22 source-listed M5 W2.1 indicators (M5/1–10 and M5/14–25) are staged in both curricula, aligned only to M5. Priority labels reconcile to 17 Must-Know and 5 Should-Know, with zero unclassified records. The source does not list M5/11–13 in this table; those gaps remain unseeded. Teacher resource: 22 lesson starters and 66 answer-keyed formative questions. M5 is not yet complete; other M5 standards remain to be transcribed.
+
+Migration: 20261121052000_seed_science_m5_w2_1_chemistry_core_indicators.sql.
