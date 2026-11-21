@@ -3,7 +3,7 @@
 **Curriculum:** Thai Basic Education Core Curriculum B.E. 2551 (2008), revised 2017  
 **Official source:** OBEC / IPST, *Indicators and Core Learning Content: Must-Know and Should-Know* (2021)  
 **Source PDF:** https://www.academic.obec.go.th/images/official/1622514876_d_1.pdf  
-**Status:** M4 is complete at 28/28 grade-specific indicators (22 W1.1–W1.3 plus 6 technology indicators). M5 is complete at 49/49 (47 W2.1–W2.3 plus 2 technology indicators). Both grades are verified in both curricula. M6 has 25 source indicators remaining; 25 of 102 upper-secondary indicators remain.
+**Status:** All 102 upper-secondary core indicators are now staged and verified in both curricula: M4 28/28, M5 49/49 and M6 25/25. Every objective is aligned only to its source grade. One priority-summary discrepancy remains open: detailed row classifications currently total 86 Must-Know and 17 Should-Know, plus the dual classification for M6/4; the official summary reports 85 Must-Know and 18 Should-Know.
 
 ## Correct interpretation of the 102 indicators
 
@@ -13,9 +13,9 @@ The 102 is an aggregate of grade-specific M4, M5 and M6 indicators. It is **not*
 
 ## Live database baseline — 21 November 2026
 
-- TH-SCI-M1-M6 has active grade levels M4, M5 and M6, but no core SCI objective alignments for those grades.
-- TH-BASIC-CORE-2008-2017 also has active M4, M5 and M6 grade levels, but no core SCI objective alignments for those grades.
-- The existing 300 Biology, Chemistry, Physics and Earth/Space specialist outcomes are separate subject tracks. They do not satisfy the 102 national core indicators.
+- At the baseline audit date, TH-SCI-M1-M6 had active M4–M6 grade levels but no core SCI objective alignments. Current status: 102/102 grade-specific alignments are present.
+- At the baseline audit date, TH-BASIC-CORE-2008-2017 also had active M4–M6 grade levels but no core SCI objective alignments. Current status: the same 102/102 grade-specific alignments are now present.
+- The existing 300 Biology, Chemistry, Physics and Earth/Space specialist outcomes are separate subject tracks. They do not replace or duplicate the 102 national core indicators.
 - Do not modify specialist outcomes or treat their grade counts as core Science coverage.
 
 ## Required extraction and implementation sequence
@@ -94,3 +94,23 @@ Migration: 20261121082000_seed_science_m4_m5_technology_core_indicators.sql. Tea
 | **Total** | **102** | **77** | **62** | **15** | **25** |
 
 Priority totals are not yet reconciled to the official upper-secondary summary (85 Must-Know / 18 Should-Know, with one dual-classified indicator). The M6 source transcription must establish the remaining priority distribution before final acceptance; do not infer or force the aggregate totals.
+
+
+## Final grade implementation — M6 and 102/102 coverage
+
+The final grade-specific tranche adds all 25 M6 indicators: W3.1 (10), W3.2 (14) and W4.2 (1). They are aligned only to M6 in both curricula (50 alignments). The companion M6 pack contains 25 lesson starters and 75 answer-keyed formative questions.
+
+Migration: `20261121093000_seed_science_m6_universe_earth_climate_core_indicators.sql`. Teacher pack: `M6-science-universe-earth-climate-teacher-starter-pack.md`.
+
+**Coverage verification — both curricula**
+
+| Grade | Official total | Staged | Stored Must-Know | Stored Should-Know | Dual note |
+|---|---:|---:|---:|---:|---:|
+| M4 | 28 | 28 | 20 | 8 | 0 |
+| M5 | 49 | 49 | 42 | 7 | 0 |
+| M6 | 25 | 25 | 24 | 1 | 1 |
+| **Total** | **102** | **102** | **86** | **16** | **1** |
+
+The M6 stored counts show 24 Must-Know and 1 Should-Know; M6 ว 3.1 ม.6/4 is additionally marked Should-Know in notes, so priority labels including that dual are 86 Must-Know and 17 Should-Know. The official upper-secondary summary on page 58 reports 85 Must-Know and 18 Should-Know, with the same dual indicator. Therefore **coverage and grade mapping are complete, but the aggregate priority tally still differs by one Must/Should assignment**. Do not silently force the totals; retain this as a source-reconciliation issue for final acceptance.
+
+Teacher resources for this core grade band now total 102 lesson starters and 306 answer-keyed formative questions (M4 28/84, M5 49/147, M6 25/75). These remain Markdown teacher resources; no school, class, student or learner-progress records were touched.
