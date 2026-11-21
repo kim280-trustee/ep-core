@@ -32,6 +32,10 @@ The apparent 14/7 count in the initial manual review was a counting error. Recou
 
 The official primary totals therefore reconcile exactly: 116 indicators, 82 Must-Know and 34 Should-Know. P6 remains 21 / 15 / 6.
 
+## P3 code crosswalk correction
+
+The 2021 OBEC priority PDF contains a transcription error on the P3 Mathematics measurement row: the money indicator is printed as `ค ๒.๑ ป.๓/๓`, duplicating the following length indicator's code. The controlling 2017 revised Mathematics standards document (OBEC PDF, printed pages 20–22) confirms the sequence: `ค ๒.๑ ป.๓/๑` is the money problem outcome, `ป.๓/๒` is time, and `ป.๓/๓` is length. The catalogue must therefore use the 2017 official code `ค ๒.๑ ป.๓/๑` for money and retain the 2021 row's Must-Know priority. Do not seed the duplicated `ป.๓/๓` code twice.
+
 
 ## Implementation scope after source reconciliation
 
