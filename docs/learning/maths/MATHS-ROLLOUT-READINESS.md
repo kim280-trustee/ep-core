@@ -1,19 +1,33 @@
 # E&P Learning — Mathematics Rollout Readiness
 
-## Current coverage warning — 21 November 2026
+## Current coverage — 21 November 2026
 
-The existing Mathematics implementation is complete only for M1–M6: 41 objectives, 41 grade alignments in the national master and 41 in `TH-MATH-M1-M6`. A read-only audit confirmed zero P1–P6 Mathematics objectives or alignments in the national master. The separate M1–M6 catalogue remains correctly secondary-only.
+**Primary and secondary Mathematics are now seeded and source-reconciled.** The national master contains 157 unique Mathematics objectives: 116 primary indicators (P1–P6) and 41 secondary indicators (M1–M6). The new primary-specific `TH-MATH-P1-P6` catalogue contains 116 required alignments; the existing secondary-specific `TH-MATH-M1-M6` catalogue remains unchanged at 41.
 
-OBEC's official 2021 summary lists 116 primary Mathematics indicators: P1 10, P2 16, P3 28, P4 22, P5 19 and P6 21. Its summary priority totals are 82 Must-Know and 34 Should-Know. The P6 detailed table appears to total 14/7 while the summary says 15/6. This one-indicator source discrepancy is unresolved; do not seed primary priorities until reconciled.
+The 116 primary indicators are classified 82 Must-Know and 34 Should-Know, exactly matching the OBEC 2021 grade summaries. The 2017 revised Mathematics standards are used for official indicator numbering; seven code-column transcription errors in the 2021 priority PDF are cross-walked in `PRIMARY-MATH-CURRICULUM-GAP-AUDIT.md`. The apparent P6 14/7 discrepancy was a manual counting error; the detailed table confirms 15/6.
 
-See [`PRIMARY-MATH-CURRICULUM-GAP-AUDIT.md`](PRIMARY-MATH-CURRICULUM-GAP-AUDIT.md) and run [`PRIMARY-MATH-GAP-VERIFICATION.sql`](PRIMARY-MATH-GAP-VERIFICATION.sql) to reproduce the live gap. The query currently passes all 18 expected grade/catalogue rows (zero primary, 41 secondary).
+| Grade | Primary objectives | Must-Know | Should-Know | Teacher lessons |
+|---|---:|---:|---:|---:|
+| P1 | 10 | 6 | 4 | 10 |
+| P2 | 16 | 13 | 3 | 16 |
+| P3 | 28 | 22 | 6 | 28 |
+| P4 | 22 | 15 | 7 | 22 |
+| P5 | 19 | 11 | 8 | 19 |
+| P6 | 21 | 15 | 6 | 21 |
+| **Primary total** | **116** | **82** | **34** | **116** |
+| **Secondary M1–M6** | **41** | **41** | **0** | **41** |
+| **All Mathematics** | **157** | **123** | **34** | **157** |
 
-**Next implementation gate:** reconcile the official P6 Must/Should classification, then add the 116 primary objectives to the national master and a new `TH-MATH-P1-P6` catalogue, with 348 original answer-keyed formative tasks. Keep the existing `TH-MATH-M1-M6` catalogue unchanged.
+The two primary teacher packs contain 116 lessons and 348 answer-keyed formative tasks. The secondary packs contain 41 lessons and 123 answer-keyed questions. Total Mathematics authoring coverage is 157 lessons and 471 tasks.
+
+The live national staging verification returns 2,056 unique required indicators and 2,450 grade alignments across all eight learning areas, with zero unclassified required alignments. Mathematics-specific verification confirms 116/116 primary alignments in both the national master and `TH-MATH-P1-P6`, plus the existing 41/41 secondary alignments in both the national master and `TH-MATH-M1-M6`.
+
+The full importer-parser validation, production build and ESLint passed in GitHub Actions run 326. Authenticated teacher import, preview, draft-save and student/teacher end-to-end tests remain deferred to the single consolidated application-testing phase.
 
 
 **Branch:** `paul/thai-national-curriculum-foundation`  
-**Scope:** Thai Mathematics M1–M6 core-curriculum knowledge graph and teacher authoring readiness  
-**Status:** All 11 prerequisite, academic-integrity and Mathematics catalogue migrations are applied to the existing Supabase project. All 41 objective-to-grade alignments are verified in both the national-core and Maths-specific curriculum catalogues. All 82 alignment rows are classified `must_know` per OBEC. No Maths pilot class or student records have been created.
+**Scope:** Thai Mathematics P1–M6 core-curriculum knowledge graph and teacher authoring readiness  
+**Status:** All prerequisite, academic-integrity, secondary Mathematics and primary Mathematics catalogue migrations are applied to the existing Supabase project. All 157 national-master objective-to-grade alignments are verified; the 116 primary and 41 secondary objectives are also aligned in their separate Maths-specific catalogues. All 82 alignment rows are classified `must_know` per OBEC. No Maths pilot class or student records have been created.
 
 ## Curriculum coverage delivered
 
@@ -33,7 +47,7 @@ M4–M6 coverage is limited to the eight grade-level indicators in the revised 2
 
 ## Applied migration order
 
-The 12 migrations below were applied in timestamp order after the live-database preflight returned PASS for all nine integrity checks:
+The 13 migrations below were applied in timestamp order after the live-database preflight returned PASS for all nine integrity checks:
 
 1. `20261116030000_learning_subject_catalog_manage.sql` — enables subject and curriculum-subject creation for academic managers.
 2. `20261116031500_learning_grade_level_catalog_manage.sql` — enables curriculum grade-level creation for academic managers.
@@ -108,3 +122,17 @@ The existing English MEP pilot's class curriculum, grade, term, memberships and 
 
 Office of the Basic Education Commission (OBEC), Ministry of Education, *Learning Standards and Indicators (Revised B.E. 2560)*, Mathematics, pp. 17–29:  
 https://www.academic.obec.go.th/images/document/1580786277_d_1.pdf
+
+
+## Primary Mathematics implementation — completed
+
+- Migration: `20261121160000_seed_primary_mathematics_p1_p6.sql`.
+- New separate catalogue: `TH-MATH-P1-P6` (draft).
+- 116 primary objectives seeded once in the Mathematics knowledge graph and aligned to both `TH-BASIC-CORE-2008-2017` and `TH-MATH-P1-P6`.
+- All 116 alignments are required; 82 are Must-Know and 34 are Should-Know. No unclassified rows or duplicate official codes.
+- Primary teacher packs: `PRIMARY-MATHEMATICS-P1-P3-TEACHER-STARTER-PACK.md` (54 lessons) and `PRIMARY-MATHEMATICS-P4-P6-TEACHER-STARTER-PACK.md` (62 lessons). Each lesson contains three answer-keyed tasks.
+- Automated validator: `npm run validate:maths-primary-packs`; it uses the actual TypeScript importer parser and checks 116 internal codes, 116 official indicator crosswalks, 348 questions, grade coverage and 82/34 priorities.
+- Read-only verification: `PRIMARY-MATH-STAGING-VERIFICATION.sql`. All 12 catalogue/grade rows, both 116-objective catalogue totals, priority totals and the P3 money code crosswalk pass.
+- GitHub Actions run 326 passed curriculum validators, specialist and Click Start pack checks, production build and ESLint.
+
+The original gap check is retained for audit history; use `PRIMARY-MATH-STAGING-VERIFICATION.sql` for current-state verification. No content has been imported or published to a school.
