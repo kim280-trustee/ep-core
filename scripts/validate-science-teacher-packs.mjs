@@ -104,9 +104,9 @@ for (const pack of packs) {
 }
 
 if (failures.length) {
-  process.stderr.write(`\\nScience teacher-pack validation failed (${failures.length} issue(s)):\\n`);
-  for (const failure of failures) process.stderr.write(`- ${failure}\\n`);
+  process.stderr.write(`\nScience teacher-pack validation failed (${failures.length} issue(s)):\n`);
+  for (const failure of failures) process.stderr.write(`- ${failure}\n`);
   process.exitCode = 1;
 } else {
-  process.stdout.write(`\\nPASS: ${totalLessons} lessons and ${totalQuestions} answer-keyed questions parsed by the actual TypeScript importer parser.\\n`);
+  process.stdout.write(`\nPASS: ${totalLessons} lessons and ${totalQuestions} answer-keyed questions parsed by the actual TypeScript importer parser.\n`);
 }
