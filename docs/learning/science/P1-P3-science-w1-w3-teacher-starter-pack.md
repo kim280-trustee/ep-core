@@ -960,7 +960,7 @@ This pack uses the Thai indicator wording stored in the corresponding curriculum
 - **Grade:** P3
 - **Official indicator:** ว 3.2 ป.3/2
 - **Official Thai wording:** ตระหนักถึงความสำคัญของอากาศ โดยนำเสนอแนวทางการปฏิบัติตนในการลดการเกิดมลพิษทางอากาศ
-- **OBEC 2021 priority:** Should-know
+- **OBEC 2021 priority:** Must-know
 - **Learning focus:** โลก ดิน หิน อากาศ และทรัพยากรธรรมชาติ
 - **Suggested activity:** ใช้ตัวอย่างดิน หิน น้ำ หรือภาพสภาพอากาศ ให้ผู้เรียนสำรวจสมบัติและการเปลี่ยนแปลง เชื่อมโยงกับการใช้ประโยชน์และการดูแลทรัพยากร
 
