@@ -343,7 +343,7 @@ group by x.curriculum_code order by x.curriculum_code;
 -- M5 W2.1 complete verification: M5/1–25, including page-151 recovered indicators 11–13.
 -- Expected: 25 indicators, 20 Must-Know, 5 Should-Know.
 with expected(code,classification) as (values
-('M5-S2_1-01','must_know'),('M5-S2_1-02','should_know'),('M5-S2_1-03','must_know'),('M5-S2_1-04','must_know'),('M5-S2_1-05','must_know'),('M5-S2_1-06','must_know'),('M5-S2_1-07','must_know'),('M5-S2_1-08','must_know'),('M5-S2_1-09','must_know'),('M5-S2_1-10','must_know'),('M5-S2_1-11','must_know'),('M5-S2_1-12','must_know'),('M5-S2_1-13','must_know'),('M5-S2_1-14','must_know'),('M5-S2_1-15','must_know'),('M5-S2_1-16','must_know'),('M5-S2_1-17','must_know'),('M5-S2_1-18','must_know'),('M5-S2_1-19','should_know'),('M5-S2_1-20','must_know'),('M5-S2_1-21','must_know'),('M5-S2_1-22','should_know'),('M5-S2_1-23','should_know'),('M5-S2_1-24','must_know'),('M5-S2_1-25','should_know')
+('M5-S2_1-01','must_know'),('M5-S2_1-02','should_know'),('M5-S2_1-03','must_know'),('M5-S2_1-04','must_know'),('M5-S2_1-05','must_know'),('M5-S2_1-06','must_know'),('M5-S2_1-07','must_know'),('M5-S2_1-08','must_know'),('M5-S2_1-09','must_know'),('M5-S2_1-10','should_know'),('M5-S2_1-11','must_know'),('M5-S2_1-12','must_know'),('M5-S2_1-13','must_know'),('M5-S2_1-14','must_know'),('M5-S2_1-15','must_know'),('M5-S2_1-16','must_know'),('M5-S2_1-17','must_know'),('M5-S2_1-18','must_know'),('M5-S2_1-19','should_know'),('M5-S2_1-20','must_know'),('M5-S2_1-21','must_know'),('M5-S2_1-22','should_know'),('M5-S2_1-23','should_know'),('M5-S2_1-24','must_know'),('M5-S2_1-25','should_know')
 ), actual as (
  select c.code curriculum_code,g.code grade_code,o.code,a.indicator_classification,count(*) alignment_rows
  from public.learning_objective_alignments a join public.learning_curricula c on c.id=a.curriculum_id
@@ -359,8 +359,8 @@ select x.curriculum_code,count(*)::integer expected_indicators,
  count(*) filter(where e.classification='should_know' and a.grade_code='M5' and a.indicator_classification=e.classification and a.alignment_rows=1)::integer should_know,
  count(*) filter(where a.grade_code is null or a.grade_code<>'M5' or a.alignment_rows<>1 or a.indicator_classification<>e.classification)::integer exceptions,
  case when count(*)=25 and count(*) filter(where a.grade_code='M5' and a.alignment_rows=1)=25
- and count(*) filter(where a.grade_code='M5' and a.indicator_classification='must_know')=20
- and count(*) filter(where a.grade_code='M5' and a.indicator_classification='should_know')=5 then 'PASS' else 'CHECK' end result
+ and count(*) filter(where a.grade_code='M5' and a.indicator_classification='must_know')=19
+ and count(*) filter(where a.grade_code='M5' and a.indicator_classification='should_know')=7 then 'PASS' else 'CHECK' end result
 from expected e cross join (values ('TH-SCI-M1-M6'),('TH-BASIC-CORE-2008-2017')) x(curriculum_code)
 left join actual a on a.curriculum_code=x.curriculum_code and a.code=e.code
 group by x.curriculum_code order by x.curriculum_code;
@@ -430,7 +430,7 @@ select x.curriculum_code,count(*)::integer expected_indicators,
  count(*) filter(where e.classification='should_know' and a.grade_code='M5' and a.indicator_classification=e.classification and a.alignment_rows=1)::integer should_know,
  count(*) filter(where a.grade_code is null or a.grade_code<>'M5' or a.alignment_rows<>1 or a.indicator_classification<>e.classification)::integer exceptions,
  case when count(*)=47 and count(*) filter(where a.grade_code='M5' and a.alignment_rows=1)=47
- and count(*) filter(where a.grade_code='M5' and a.indicator_classification='must_know')=41
+ and count(*) filter(where a.grade_code='M5' and a.indicator_classification='must_know')=42
  and count(*) filter(where a.grade_code='M5' and a.indicator_classification='should_know')=6 then 'PASS' else 'CHECK' end result
 from expected e cross join (values ('TH-SCI-M1-M6'),('TH-BASIC-CORE-2008-2017')) x(curriculum_code)
 left join actual a on a.curriculum_code=x.curriculum_code and a.code=e.code
