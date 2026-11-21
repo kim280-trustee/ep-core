@@ -18,7 +18,7 @@ The selected class is used only to establish the teacher's organization access. 
 
 ## Consolidated Science import files
 
-Import these 14 files using curriculum `TH-SCI-M1-M6`. The M1–M3 and M4–M6 core Science packs use explicit grade-coded objective IDs, so each lesson resolves to its source grade within the mixed-grade core pack. The M1–M3 pack includes nine official M3 W4.1/W4.2 technology lessons; nine legacy W3.2 lessons are preserved separately and excluded from the core import. The upper-secondary specialist Biology, Chemistry, Physics and Earth/Space packs remain grade-scoped because some outcomes are intentionally code-less in the original teacher material; select the exact grade shown for those files.
+Import these 14 files using curriculum `TH-SCI-M1-M6`. The M1–M3 and M4–M6 core Science packs use explicit grade-coded objective IDs and sequentially numbered lesson headings, so each lesson resolves to its source grade within the mixed-grade core pack. Both consolidated packs have passed a source-level parser compatibility check for lesson headings, objective codes and three answer-keyed questions per lesson. The M1–M3 pack includes nine official M3 W4.1/W4.2 technology lessons; nine legacy W3.2 lessons are preserved separately and excluded from the core import. The upper-secondary specialist Biology, Chemistry, Physics and Earth/Space packs remain grade-scoped because some outcomes are intentionally code-less in the original teacher material; select the exact grade shown for those files.
 
 | Import file | Subject | Grade | Lessons | Questions |
 |---|---|---:|---:|---:|
