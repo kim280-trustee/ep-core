@@ -3,7 +3,7 @@
 **Curriculum:** Thai Basic Education Core Curriculum B.E. 2551 (2008), revised 2017  
 **Official source:** OBEC / IPST, *Indicators and Core Learning Content: Must-Know and Should-Know* (2021)  
 **Source PDF:** https://www.academic.obec.go.th/images/official/1622514876_d_1.pdf  
-**Status:** Source transcription and grade allocation required; no M4/M5/M6 core SCI objectives are currently aligned in either curriculum.
+**Status:** In progress. The first four source-verified M4 indicators (W1.1) are implemented and verified in both curricula. The remaining 98 indicators require grade-specific transcription and implementation.
 
 ## Correct interpretation of the 102 indicators
 
@@ -35,3 +35,23 @@ The 102 is an aggregate of grade-specific M4, M5 and M6 indicators. It is **not*
 - 85 Must-Know and 18 Should-Know classifications, with ว 3.1 ม.6/4 explicitly dual-classified.
 - The same 102 grade-specific alignments present in the canonical Science curriculum and the draft national master curriculum.
 - No changes to the 300 specialist outcomes, school, class, student or learner-progress data.
+
+
+## Implemented tranche 1 — M4 ecology (W1.1 indicators 1–4)
+
+Source pages 143–144 of the OBEC 2021 Must-Know / Should-Know PDF. The source classifies M4/1 as Should-Know, M4/2 and M4/3 as Must-Know, and M4/4 as Should-Know.
+
+| Official code | Grade | Classification | Objective |
+|---|---|---|---|
+| ว 1.1 ม.4/1 | M4 | Should-Know | Geography and biome diversity |
+| ว 1.1 ม.4/2 | M4 | Must-Know | Ecological succession |
+| ว 1.1 ม.4/3 | M4 | Must-Know | Physical/biological factors affecting population size |
+| ว 1.1 ม.4/4 | M4 | Should-Know | Environmental impacts and conservation |
+
+Live staging: 4 unique objectives, aligned once each to M4 in both TH-SCI-M1-M6 and TH-BASIC-CORE-2008-2017 (8 alignments total). Read-only verification returned all eight expected rows with exact grade and priority. No M5/M6 alignment was created.
+
+Resources: M4-science-ecology-environment-teacher-starter-pack.md contains four lesson starters and 12 original answer-keyed formative questions.
+
+Migration: 20261121034100_seed_science_m4_ecology_core_indicators_1_4.sql.
+
+Remaining upper-secondary core indicators: 98 of 102. Do not extrapolate M4 wording or classifications to M5/M6.
