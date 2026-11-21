@@ -124,3 +124,8 @@ The shared upper-secondary pack uses 61 M46 outcome codes aligned to M4, M5 and 
 ## Shared M4–M6 import handling
 
 The parser exposes an explicit multi-grade scope helper: `SOx.y-M46-nn` resolves to M4, M5 and M6, while grade-specific Social Studies codes resolve to exactly one grade. The teacher importer expands each shared outcome into three grade-specific draft rows and generates distinct grade-scoped lesson and question codes, so importing the shared pack does not collide with itself or suppress later grades. The official Thai indicator wording is used as the imported lesson title. This mapping is covered by the Social Studies pack validator and is included in the consolidated CI build.
+
+
+## CI result
+
+GitHub Actions run 157 passed the national pack checks, Social Studies importer-parser validation, production build and ESLint. The Social Studies validator confirms 418 unique codes, all 1,254 task prompts linked to their exact official Thai indicator, 1,254 non-empty answer-guidance entries, and correct M4–M6 shared-grade scope.
