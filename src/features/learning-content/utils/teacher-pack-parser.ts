@@ -68,9 +68,12 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
       .replace(/\s+/g, " ")
       .trim();
 
+    const displayTitle = /^SO[1-5]\.\d-(?:P[1-6]|M[1-6]|M46)-\d+$/i.test(title)
+      ? objectiveText || title
+      : title;
     const learningOutcome = section.match(/^\*\*Learning outcomes?:\*\*\s*(.+)$/mi)?.[1]?.trim()
       ?? section.match(/^\*\*Outcome:\*\*\s*(.+)$/mi)?.[1]?.trim()
-      ?? (objectiveText || title);
+      ?? (objectiveText || displayTitle);
 
     const keyRelationships = section.match(/^\*\*Key relationships\*\*\s*([\s\S]*?)(?=^\*\*|^#{1,3}\s|(?![\s\S]))/mi)?.[1]?.trim();
     const activityParts = [
@@ -120,7 +123,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
 
     return {
       number,
-      title,
+      title: displayTitle,
       objectiveCode,
       objectiveText: objectiveCode ? null : objectiveText,
       outcomeNumber: number,
