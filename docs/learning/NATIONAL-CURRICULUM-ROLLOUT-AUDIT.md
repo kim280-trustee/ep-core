@@ -83,7 +83,7 @@ The eight 2008/2017 learning areas have 39 teacher-pack files covering 1,940 uni
 - `npm run validate:thai-2025-packs` — validates the 24 annual outcomes, P1/P2/P3 grade mapping and 72 answer-keyed questions in the separate B.E. 2568 pack.
 - CI also runs the production build and ESLint.
 
-The all-eight-area source-pack validator, Science parser validator, production build and ESLint passed together in GitHub Actions run 47 before the new 2025 pack was added. The 2025 pack validator has been added to CI; its run is pending. Do not treat source-pack validation as an authenticated application import test.
+The all-eight-area source-pack validator, Thai B.E. 2568 competency-pack validator, Science parser validator, production build and ESLint all passed together in GitHub Actions run 95. The run confirms 39 existing packs cover 1,940 unique official codes, the 2025 pack parses to 24 outcomes and 72 answer-keyed questions, and the Science parser validates 276 secondary lessons and 828 questions. Do not treat source-pack validation as an authenticated application import test.
 
 ## 5. Scope boundaries and release plan
 
