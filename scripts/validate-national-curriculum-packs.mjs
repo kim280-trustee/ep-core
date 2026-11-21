@@ -79,7 +79,7 @@ let totalLessons = 0;
 
 for (const pack of packs) {
   const markdown = await readFile(resolve(root, pack.path), "utf8");
-  const headings = [...markdown.matchAll(/^#{2,4}\\s+(?:Lesson\\s+)?0*(\\d+)\\s*(?:[.:\\-—]|—)/gm)];
+  const headings = [...markdown.matchAll(/^#{2,4}\s+(?:Lesson\s+)?0*(\d+)\s*(?:[.:\-—]|—)/gm)];
   const seenCodes = new Set();
 
   if (pack.mode === "codes") {
@@ -93,7 +93,7 @@ for (const pack of packs) {
     if (seenCodes.size !== pack.expected) {
       failures.push(pack.path + ": expected " + pack.expected + " unique objective codes, found " + seenCodes.size);
     }
-    process.stdout.write("Checked " + pack.path + ": " + seenCodes.size + " unique objective codes (indicator-list format).\\n");
+    process.stdout.write("Checked " + pack.path + ": " + seenCodes.size + " unique objective codes (indicator-list format).\n");
   } else {
     if (headings.length !== pack.expected) {
       failures.push(pack.path + ": expected " + pack.expected + " lesson headings, found " + headings.length);
@@ -122,7 +122,7 @@ for (const pack of packs) {
     if (seenCodes.size !== pack.expected) {
       failures.push(pack.path + ": expected " + pack.expected + " unique objective codes, found " + seenCodes.size);
     }
-    process.stdout.write("Checked " + pack.path + ": " + headings.length + " lessons, " + seenCodes.size + " unique objective codes.\\n");
+    process.stdout.write("Checked " + pack.path + ": " + headings.length + " lessons, " + seenCodes.size + " unique objective codes.\n");
   }
 
   areaTotals.set(pack.area, (areaTotals.get(pack.area) ?? 0) + seenCodes.size);
