@@ -3,7 +3,7 @@
 **Curriculum:** Thai Basic Education Core Curriculum B.E. 2551 (2008), revised 2017  
 **Official source:** OBEC / IPST, *Indicators and Core Learning Content: Must-Know and Should-Know* (2021)  
 **Source PDF:** https://www.academic.obec.go.th/images/official/1622514876_d_1.pdf  
-**Status:** M4 is complete (22/22 grade-specific core indicators) and verified in both curricula. M5 W2.1 has 22 source-listed indicators implemented; M5's remaining standards and M6 still require transcription. 58 of the 102 upper-secondary core indicators remain.
+**Status:** M4 is complete (22/22 grade-specific core indicators) and verified in both curricula. M5 W2.1 is complete at 25/25 indicators; M5 W2.2 and W2.3 add 22 further indicators. M5 has 47/47 source-sequenced indicators represented across these three standards. M6 remains to be completed; 33 of the 102 upper-secondary indicators remain.
 
 ## Correct interpretation of the 102 indicators
 
@@ -69,3 +69,10 @@ Migration: 20261121042000_seed_science_m4_cell_biology_genetics_core_indicators_
 The source-listed M5 W2.1 indicators are implemented: M5/1–10 and M5/14–25 (22 indicators). The source table does not list M5/11–13; these codes were deliberately not inferred or seeded. The priority split is 17 Must-Know and 5 Should-Know. Each indicator is aligned only to M5 in both curricula (44 alignments total). The teacher pack contains 22 lesson starters and 66 answer-keyed formative questions.
 
 Migration: 20261121052000_seed_science_m5_w2_1_chemistry_core_indicators.sql. Teacher pack: M5-science-matter-chemistry-teacher-starter-pack.md.
+
+
+## M5 W2.1 source recovery — indicators 11–13
+
+The first text extraction of printed page 151 skipped a scanned segment. A subsequent official-source search recovered the rows for ว 2.1 ม.5/11–13 and confirmed all three as Must-Know. They are now seeded as a corrective migration, not treated as absent from the curriculum. M5 W2.1 is complete at 25 indicators: 20 Must-Know and 5 Should-Know.
+
+Migration: 20261121073000_seed_science_m5_w2_1_indicators_11_13.sql. Source: OBEC 2021 official PDF, printed p. 151.
