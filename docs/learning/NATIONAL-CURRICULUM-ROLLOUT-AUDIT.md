@@ -1,89 +1,92 @@
-# Thai National Curriculum — P1–M6 Rollout Audit
+# Thai National Curriculum — P1–M6 and Early-Primary 2025 Rollout Audit
 
-**Curriculum:** Thai Basic Education Core Curriculum B.E. 2551 (2008), revised 2017  
+**Repository:** `kim280-trustee/ep-core`  
 **Branch:** `paul/thai-national-curriculum-foundation`  
-**Status:** Seven learning areas have complete curriculum catalogues and teacher packs. Science and Technology remains open because its official 415-indicator core set is only partially seeded.
+**Audit date:** 21 November 2026  
+**Implementation status:** All eight B.E. 2551 (2008), revised B.E. 2560 (2017), learning-area catalogues are complete. The separate B.E. 2568 (2025) P1–P3 competency framework is now seeded as a draft. Consolidated authenticated application testing is intentionally deferred until curriculum source work is complete.
 
-## Eight national learning areas
+## 1. Eight learning areas — 2008/2017 national core
 
-| National learning area | Subject code | Unique indicators currently catalogued | Grade alignments | Teacher-pack status | Rollout status |
-|---|---|---:|---:|---|---|
-| Thai Language | `THAI-LANGUAGE` | 319 | 391 | 319 lessons / 957 formative tasks | Complete |
-| Mathematics | `MATH` | 41 | 82 across national and Maths-specific catalogues | 41 lessons / 123 answer-keyed questions | Complete |
-| Science and Technology | `SCI` plus specialist tracks | 472 current objectives across core and additional tracks | See Science gap audit | 472 current lesson starters / 1,416 questions and tasks | **Open — 415 official core indicators not yet reconciled** |
-| Social Studies, Religion and Culture | `SOCIAL-STUDIES` | 418 | 540 | 418 lessons / 1,254 assessment stems | Complete |
-| Health and Physical Education | `HEALTH-PE` | 221 | 279 | 221 lessons / 663 formative tasks | Complete |
-| Arts | `ARTS` | 279 | 357 | 279 lessons / 837 assessment prompts | Complete |
-| Occupations and Career | `CAREER` | 54 | 76 | 54 lessons / 162 answer-keyed questions | Complete |
-| Foreign Languages | `FOREIGN-LANGUAGES` | 193 | 235 | 193 lessons / 579 formative tasks | Complete |
+| National learning area | Subject code | Unique official indicators | Grade alignments | Teacher resources |
+|---|---|---:|---:|---|
+| Thai Language | `THAI-LANGUAGE` | 319 | 391 | 319 lessons / 957 formative tasks |
+| Mathematics | `MATH` | 41 | 41 in national master; 82 across national and Maths-specific catalogues | 41 lessons / 123 answer-keyed questions |
+| Science and Technology | `SCI` | 415 | 415 in national master; 276 in canonical secondary catalogue | 415 core lessons / 1,245 formative tasks |
+| Social Studies, Religion and Culture | `SOCIAL-STUDIES` | 418 | 540 | 418 lessons / 1,254 assessment stems |
+| Health and Physical Education | `HEALTH-PE` | 221 | 279 | 221 lessons / 663 formative tasks |
+| Arts | `ARTS` | 279 | 357 | 279 lessons / 837 assessment prompts |
+| Occupations and Career | `CAREER` | 54 | 76 | 54 lessons / 162 answer-keyed questions |
+| Foreign Languages | `FOREIGN-LANGUAGES` | 193 | 235 | 193 lessons / 579 formative tasks |
+| **Total** | **8 learning areas** | **1,940** | **2,334** | **1,940 lessons / 5,820 tasks and prompts** |
 
-The Science figure includes 144 existing lower-secondary SCI records, 28 newly seeded primary W4.2 indicators and 300 separate M4–M6 specialist outcomes (Biology, Chemistry, Physics and Earth/Space). It is not the final official national Science total. See `science/SCIENCE-CORE-CURRICULUM-GAP-AUDIT.md`.
+The 41 Mathematics objectives have 41 alignments in the national master and are also retained in the separate Maths-specific catalogue, giving 82 alignments across both catalogues. Do not add those duplicate catalogue views to the 2,334 national-master alignment total.
 
-## Verified completed areas
+Science's 415 core indicators are separate from 300 additional M4–M6 specialist outcomes across Biology, Chemistry, Physics and Earth/Space. Those specialist outcomes remain in their own subject tracks and are not part of the 415 national Science core total.
 
-### Thai Language
-- 319 unique indicators and 391 grade alignments.
-- 261 must-know and 58 should-know unique indicators.
-- Four teacher packs: 80 P1–P3, 100 P4–P6, 103 M1–M3 and 36 shared M4–M6 lessons.
-- 957 formative assessment tasks with expected evidence.
-- Audit: `thai-language/THAI-LANGUAGE-P1-M6-CURRICULUM-AUDIT.md`.
+## 2. Science and Technology — closed curriculum gap
 
-### Mathematics
-- 41 M1–M6 indicators and 82 alignments across the national-core and Maths-specific catalogues.
-- All 82 alignments classified must-know.
-- Three teacher packs: 41 lessons and 123 answer-keyed questions.
-- Audit/readiness: `maths/MATHS-ROLLOUT-READINESS.md`.
+OBEC's 2021 source reports 415 unique core indicators:
 
-### Social Studies
-- 418 unique indicators and 540 grade alignments.
-- OBEC pathway classification complete: 278 between-learning and 140 terminal unique indicators; zero missing pathway alignments.
-- Eight teacher packs: 418 lessons and 1,254 assessment stems.
-- Audit: `social-studies/SOCIAL-STUDIES-P1-M6-CURRICULUM-AUDIT.md`.
+| Grade | Indicators | Priority reconciliation |
+|---|---:|---|
+| P1 | 15 | 9 Must, 6 stored Should + 1 dual |
+| P2 | 16 | 11 Must, 5 stored Should + 1 dual |
+| P3 | 25 | 19 Must, 6 stored Should + 1 dual |
+| P4 | 21 | 16 Must, 5 stored Should + 1 dual |
+| P5 | 32 | 24 Must, 8 Should |
+| P6 | 30 | 20 Must, 10 stored Should + 1 dual |
+| M1 | 52 | 35 Must, 17 Should |
+| M2 | 63 | 48 Must, 15 Should |
+| M3 | 59 | 41 Must, 18 Should |
+| M4 | 28 | 19 Must, 9 Should |
+| M5 | 49 | 42 Must, 7 Should |
+| M6 | 25 | 24 Must, 1 stored Should + 1 dual |
+| **Total** | **415** | **308 Must / 107 stored Should + 6 dual Should labels = 113 Should classifications** |
 
-### Health and Physical Education
-- 221 unique indicators and 279 alignments.
-- All priority classifications verified.
-- Four teacher packs: 221 lessons and 663 formative tasks.
-- Audit: `health-pe/HEALTH-PE-P1-M6-CURRICULUM-AUDIT.md`.
+All 415 required official core indicators are present in the draft national master curriculum. The canonical secondary Science catalogue contains all 276 M1–M6 core indicators. The nine legacy M3 W3.2 outcomes remain non-required supplementary material and are excluded from the official core count.
 
-### Arts
-- 279 unique indicators and 357 alignments.
-- Priority classifications reconciled.
-- Eight teacher packs cover all 279 indicators.
-- Audit: `arts/ARTS-P1-M6-CURRICULUM-AUDIT.md`.
+The 102 upper-secondary core indicators are grade-specific: M4 28, M5 49, M6 25. They are not copied as 102 indicators into each grade. The six dual-classified exceptions across the full core are preserved in catalogue notes.
 
-### Occupations and Career
-- 54 unique indicators and 76 alignments.
-- Priority classifications verified.
-- Three teacher packs: 54 lessons and 162 answer-keyed questions.
-- Subject audit is in `career/`.
+Teacher-pack coverage: 139 primary, 174 M1–M3 and 102 M4–M6 core lessons, for 415 unique objective codes and 1,245 formative tasks. The 300 specialist upper-secondary lessons remain separate.
 
-### Foreign Languages
-- 193 unique indicators and 235 alignments.
-- All 235 alignments classified.
-- Four teacher packs: 193 lessons and 579 formative tasks.
-- Audit: `foreign-languages/FOREIGN-LANGUAGES-P1-M6-CURRICULUM-AUDIT.md`.
+Audit and read-only SQL: `science/SCIENCE-CORE-CURRICULUM-GAP-AUDIT.md`, `science/M4-M6-SCIENCE-CORE-SOURCE-AUDIT.md`, and `science/SCIENCE-STAGING-VERIFICATION.sql`.
 
-## Science and Technology — open work
+## 3. Separate B.E. 2568 (2025) P1–P3 competency framework
 
-OBEC's 2021 Science and Technology summary reports 415 unique indicators:
-P1 15, P2 16, P3 25, P4 21, P5 32, P6 30, M1 52, M2 63, M3 59 and a shared M4–M6 set of 102.
+The official OBEC early-primary curriculum is competency-based and is not a replacement set of eight subject indicators. It is published for schools that are ready and voluntarily adopt it.
 
-Current work includes the M1–M3 SCI seed, 300 additional upper-secondary specialist outcomes and 28 primary W4.2 indicators. Still required:
-- Primary W1–W3 indicators (111).
-- M1–M3 W4.1/W4.2 (27) and the remaining M2/M3 W1–W3 code corrections.
-- Shared M4–M6 core Science and Technology indicators (102).
-- Reconcile the existing M3 W1.3/W3.2 records to the official indicator table.
-- Update the complete Science teacher pack set and verification script after seeding.
+The catalogue keeps it separate under `TH-PRIMARY-2025-P1-P3` and represents:
 
-The national W4.1 Design & Technology and W4.2 Computing standards belong within the `SCI` learning area. The separate `COMPUTER-STUDIES` / `CLICK-START-M1-M3` course is an international textbook track and is not a substitute for national Science and Technology indicators. The 300 upper-secondary specialist outcomes are also separate from the 102 shared M4–M6 core indicators.
+- Three foundational capabilities: Reading Literacy, Writing Literacy and Numeracy.
+- Five functional-literacy capabilities: Science/Environment/Technology; Society/Citizenship; Economy/Finance; Physical/Mental Health; Arts/Culture for Aesthetics.
+- Eight annual outcomes per grade: P1 8, P2 8, P3 8 — 24 total.
+- Twenty-four grade-specific illustrative knowledge topics from official section 8.
+- Five cross-cutting desirable characteristics, not a ninth annual capability.
+- Twenty-four exact grade alignments and 72 E&P-authored formative questions.
 
-Science gap audit: `science/SCIENCE-CORE-CURRICULUM-GAP-AUDIT.md`.
+The integrated subject in E&P is an internal navigation grouping only; it is not an official OBEC subject. E&P-generated codes such as `P1-TH68-READ-01` are internal identifiers, not official OBEC indicator codes. The curriculum remains draft and has not been activated for a school.
 
-## Scope boundaries
+Audit and pack: `thai-primary-2025/THAI-PRIMARY-2025-CURRICULUM-AUDIT.md` and `thai-primary-2025/TH-PRIMARY-2025-P1-P3-COMPETENCY-IMPORT.md`.
 
-- Thai Studies remains untouched.
-- Cambridge Click Start Computer Studies remains a separate international course.
-- No school, class, student, assignment or learner-progress records are created by curriculum seed migrations.
-- Teacher packs remain Markdown source until an authorized teacher imports them as unpublished drafts.
-- Do not begin app-wide testing until all eight national learning areas are complete.
+## 4. Source-pack and automated validation
+
+The eight 2008/2017 learning areas have 39 teacher-pack files covering 1,940 unique official objective codes. The cross-curriculum validator checks expected pack counts, grade-section coverage, one unique objective code per lesson and cross-pack duplicates.
+
+- `npm run validate:national-curriculum-packs` — all eight learning areas.
+- `npm run validate:science-packs` — executes the actual TypeScript importer parser against the 276 consolidated secondary Science lessons and 828 answer-keyed questions.
+- `npm run validate:thai-2025-packs` — validates the 24 annual outcomes, P1/P2/P3 grade mapping and 72 answer-keyed questions in the separate B.E. 2568 pack.
+- CI also runs the production build and ESLint.
+
+The all-eight-area source-pack validator, Science parser validator, production build and ESLint passed together in GitHub Actions run 47 before the new 2025 pack was added. The 2025 pack validator has been added to CI; its run is pending. Do not treat source-pack validation as an authenticated application import test.
+
+## 5. Scope boundaries and release plan
+
+- The 2008/2017 eight learning areas and the 2025 competency-based P1–P3 framework remain separate curriculum versions.
+- Thai Studies remains outside this rollout and is not represented as complete.
+- Cambridge Click Start Computer Studies remains a separate international course; it is not a substitute for national Science and Technology indicators.
+- The 300 specialist upper-secondary Science outcomes remain separate from the 415 core Science indicators.
+- Social Studies' 1,254 assessment stems are teacher prompts, not a claim that every stem is a fully standardized or externally validated examination item.
+- Teacher packs remain Markdown source. No pack has been imported into a school organization or published as part of this batch.
+- No school, class, student, assignment, publication or learner-progress records were created or changed by the curriculum work.
+- Do not begin repeated subject-by-subject UI tests. Finish curriculum source and pack work first, then perform one consolidated authenticated teacher import, student assessment, teacher review, gradebook and progress-reporting test.
+- Keep PR #173 open and in draft until the consolidated review is complete. Do not merge or activate curricula automatically.
