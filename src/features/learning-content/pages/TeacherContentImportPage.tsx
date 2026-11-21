@@ -8,6 +8,7 @@ import {
   learningContentService,
   learningPackImportService,
   parseTeacherPackMarkdown,
+  extractTeacherPackGradeCode,
   type LearningPackImportLesson,
   type ParsedTeacherPackLesson,
 } from "@/features/learning-content";
@@ -98,7 +99,7 @@ export default function TeacherContentImportPage() {
 
     for (const lesson of parsedLessons) {
       let targetGradeLevelId = activeGradeLevelId;
-      const gradeCode = lesson.objectiveCode?.match(/^(M[1-6])[-_]/i)?.[1]?.toUpperCase();
+      const gradeCode = extractTeacherPackGradeCode(lesson.objectiveCode);
       if (gradeCode) {
         const grade = gradeLevels.data?.find((item) => item.code.toUpperCase() === gradeCode);
         if (!grade) {
