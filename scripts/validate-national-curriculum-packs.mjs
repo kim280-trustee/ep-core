@@ -3,14 +3,14 @@ import { resolve } from "node:path";
 
 const root = process.cwd();
 const patterns = {
-  thai: /\\bTH[1-5]\\.\\d-(?:P[1-6]|M[1-6]|M4-6)-\\d{2}\\b/g,
-  maths: /\\bM[1-6]-K[1-3]_[1-3]-\\d{2}\\b/g,
-  science: /\\b(?:P[1-6]|M[1-6])-S[1-4]_[1-4]-\\d{2}\\b/g,
-  social: /\\bSO[1-5]\\.\\d-(?:P[1-6]|M[1-6]|M46)-\\d{2}\\b/g,
-  health: /\\bHPE-(?:P[1-6]|M[1-6]|M46)-\\d{2}\\b/g,
-  arts: /\\bARTS-(?:P[1-6]|M[1-6]|M46)-\\d{2}\\b/g,
-  career: /\\bCAREER-(?:P[1-6]|M[1-6]|M46)-\\d{2}\\b/g,
-  foreign: /\\bFL-(?:P[1-6]|M[1-6]|M46)-\\d{2}\\b/g,
+  thai: /\bTH[1-5]\.\d-(?:P[1-6]|M[1-6]|M4-6)-\d{2}\b/g,
+  maths: /\bM[1-6]-K[1-3]_[1-3]-\d{2}\b/g,
+  science: /\b(?:P[1-6]|M[1-6])-S[1-4]_[1-4]-\d{2}\b/g,
+  social: /\bSO[1-5]\.\d-(?:P[1-6]|M[1-6]|M46)-\d{2}\b/g,
+  health: /\bHPE-(?:P[1-6]|M[1-6]|M46)-\d{2}\b/g,
+  arts: /\bARTS-(?:P[1-6]|M[1-6]|M46)-\d{2}\b/g,
+  career: /\bCAREER-(?:P[1-6]|M[1-6]|M46)-\d{2}\b/g,
+  foreign: /\bFL-(?:P[1-6]|M[1-6]|M46)-\d{2}\b/g,
 };
 
 const packs = [
@@ -79,7 +79,7 @@ let totalLessons = 0;
 
 for (const pack of packs) {
   const markdown = await readFile(resolve(root, pack.path), "utf8");
-  const headings = [...markdown.matchAll(/^#{2,4}\\s+(?:Lesson\\s+)?0*(\\d+)\\s*(?:[.:\\-—]|—)/gm)];
+  const headings = [...markdown.matchAll(/^#{2,4}\s+(?:Lesson\s+)?0*(\d+)\s*(?:[.:\-—]|—)/gm)];
   const expectedHeadingNumbers = Array.from({ length: pack.expected }, (_, index) => index + 1);
 
   if (headings.length !== pack.expected) {
@@ -120,19 +120,19 @@ for (const pack of packs) {
 
   areaTotals.set(pack.area, (areaTotals.get(pack.area) ?? 0) + seenCodes.size);
   totalLessons += seenCodes.size;
-  process.stdout.write("Checked " + pack.path + ": " + headings.length + " lessons, " + seenCodes.size + " unique objective codes.\\n");
+  process.stdout.write("Checked " + pack.path + ": " + headings.length + " lessons, " + seenCodes.size + " unique objective codes.\n");
 }
 
 for (const [area, expected] of Object.entries(expectedAreaTotals)) {
   const actual = areaTotals.get(area) ?? 0;
   if (actual !== expected) failures.push(area + ": expected " + expected + " unique indicators across teacher packs, found " + actual);
-  process.stdout.write(area + ": " + actual + "/" + expected + " unique indicators.\\n");
+  process.stdout.write(area + ": " + actual + "/" + expected + " unique indicators.\n");
 }
 
 if (failures.length) {
-  process.stderr.write("\\nNational curriculum teacher-pack validation failed (" + failures.length + " issue(s)):\\n");
-  for (const failure of failures) process.stderr.write("- " + failure + "\\n");
+  process.stderr.write("\nNational curriculum teacher-pack validation failed (" + failures.length + " issue(s)):\n");
+  for (const failure of failures) process.stderr.write("- " + failure + "\n");
   process.exitCode = 1;
 } else {
-  process.stdout.write("\\nPASS: " + packs.length + " teacher packs cover " + totalLessons + " unique national curriculum indicators across all eight learning areas.\\n");
+  process.stdout.write("\nPASS: " + packs.length + " teacher packs cover " + totalLessons + " unique national curriculum indicators across all eight learning areas.\n");
 }
