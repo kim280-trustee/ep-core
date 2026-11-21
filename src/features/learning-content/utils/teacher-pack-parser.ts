@@ -95,10 +95,10 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
       if (prompt && expectedAnswer) questions.push({ number: Number(questionLine[1]), prompt, expectedAnswer });
     }
 
-    if (!objectiveCode && !objectiveText) throw new Error(\`Lesson \${number} is missing its objective line.\`);
-    if (!activity) throw new Error(\`Lesson \${number} is missing teaching notes or a learning focus.\`);
+    if (!objectiveCode && !objectiveText) throw new Error(`Lesson ${number} is missing its objective line.`);
+    if (!activity) throw new Error(`Lesson ${number} is missing teaching notes or a learning focus.`);
     if (questions.length !== 3) {
-      throw new Error(\`Lesson \${number} has \${questions.length} answer-keyed questions; exactly 3 are required.\`);
+      throw new Error(`Lesson ${number} has ${questions.length} answer-keyed questions; exactly 3 are required.`);
     }
 
     return {
