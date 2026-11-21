@@ -68,7 +68,7 @@
 
 **Objective:** `M3-S1_1-06`  
 **Official indicator:** ว 1.1 ม.3/6  
-**Priority:** Unclassified pending visual confirmation of the original table's final priority cell  
+**Priority:** Should-Know  
 **Activity:** Review a local environmental case and propose practical actions that protect organisms and ecosystem balance.
 
 **Formative questions**
@@ -80,4 +80,4 @@
 
 - Use local examples and prepared diagrams; do not disturb wildlife or damage habitats during surveys.
 - Do not collect or handle unknown pollutants. Use hypothetical datasets for toxin-accumulation activities.
-- The priority for ว 1.1 ม.3/6 is marked for source recheck because the parsed OBEC table's final row has an ambiguous priority column. Do not publish that label as final until visually checked against page 127.
+- OBEC 2021 page 127 marks ว 1.1 ม.3/6 as Should-Know. This has been visually verified and applied in both curriculum catalogues.
