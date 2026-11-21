@@ -20,8 +20,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** วิเคราะห์ความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือในฐานะที่เป็นมรดกทางวัฒนธรรมและหลักในการพัฒนาชาติไทย
 
 **Objective:** `SO1.1-P5-01` — วิเคราะห์ความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือในฐานะที่เป็นมรดกทางวัฒนธรรมและหลักในการพัฒนาชาติไทย
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: วิเคราะห์ความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือในฐานะที่เป็นมรดกทางวัฒนธรรมและหลักในการพัฒนาชาติไทย
 **Suggested teaching sequence**
 
 1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
@@ -31,7 +30,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์ความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือในฐานะที่เป็นมรดกทางวัฒนธรรมและหลักในการพัฒนาชาติไทย
 
@@ -53,8 +52,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** สรุปพุทธประวัติตั้งแต่เสด็จกรุงกบิลพัสดุ์จนถึงพุทธกิจสำคัญ หรือประวัติศาสดาที่ตนนับถือตามที่กำหนด
 
 **Objective:** `SO1.1-P5-02` — สรุปพุทธประวัติตั้งแต่เสด็จกรุงกบิลพัสดุ์จนถึงพุทธกิจสำคัญ หรือประวัติศาสดาที่ตนนับถือตามที่กำหนด
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: สรุปพุทธประวัติตั้งแต่เสด็จกรุงกบิลพัสดุ์จนถึงพุทธกิจสำคัญ หรือประวัติศาสดาที่ตนนับถือตามที่กำหนด
 **Suggested teaching sequence**
 
 1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
@@ -64,7 +62,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: สรุปพุทธประวัติตั้งแต่เสด็จกรุงกบิลพัสดุ์จนถึงพุทธกิจสำคัญ หรือประวัติศาสดาที่ตนนับถือตามที่กำหนด
 
@@ -86,8 +84,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** เห็นคุณค่าและประพฤติตนตามแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดก เรื่องเล่า และศาสนิกชนตัวอย่างตามที่กำหนด
 
 **Objective:** `SO1.1-P5-03` — เห็นคุณค่าและประพฤติตนตามแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดก เรื่องเล่า และศาสนิกชนตัวอย่างตามที่กำหนด
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: เห็นคุณค่าและประพฤติตนตามแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดก เรื่องเล่า และศาสนิกชนตัวอย่างตามที่กำหนด
 **Suggested teaching sequence**
 
 1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
@@ -97,7 +94,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: เห็นคุณค่าและประพฤติตนตามแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดก เรื่องเล่า และศาสนิกชนตัวอย่างตามที่กำหนด
 
@@ -119,8 +116,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** อธิบายองค์ประกอบและความสำคัญของพระไตรปิฎกหรือคัมภีร์ของศาสนาที่ตนนับถือ
 
 **Objective:** `SO1.1-P5-04` — อธิบายองค์ประกอบและความสำคัญของพระไตรปิฎกหรือคัมภีร์ของศาสนาที่ตนนับถือ
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: อธิบายองค์ประกอบและความสำคัญของพระไตรปิฎกหรือคัมภีร์ของศาสนาที่ตนนับถือ
 **Suggested teaching sequence**
 
 1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
@@ -130,7 +126,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายองค์ประกอบและความสำคัญของพระไตรปิฎกหรือคัมภีร์ของศาสนาที่ตนนับถือ
 
@@ -152,8 +148,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** แสดงความเคารพพระรัตนตรัยและปฏิบัติตามไตรสิกขาและหลักธรรมโอวาท ๓ ในพระพุทธศาสนาหรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด
 
 **Objective:** `SO1.1-P5-05` — แสดงความเคารพพระรัตนตรัยและปฏิบัติตามไตรสิกขาและหลักธรรมโอวาท ๓ ในพระพุทธศาสนาหรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: แสดงความเคารพพระรัตนตรัยและปฏิบัติตามไตรสิกขาและหลักธรรมโอวาท ๓ ในพระพุทธศาสนาหรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด
 **Suggested teaching sequence**
 
 1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
@@ -163,7 +158,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: แสดงความเคารพพระรัตนตรัยและปฏิบัติตามไตรสิกขาและหลักธรรมโอวาท ๓ ในพระพุทธศาสนาหรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด
 
@@ -185,8 +180,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** เห็นคุณค่าและสวดมนต์ แผ่เมตตา มีสติที่เป็นพื้นฐานของสมาธิในพระพุทธศาสนาหรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือตามที่กำหนด
 
 **Objective:** `SO1.1-P5-06` — เห็นคุณค่าและสวดมนต์ แผ่เมตตา มีสติที่เป็นพื้นฐานของสมาธิในพระพุทธศาสนาหรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือตามที่กำหนด
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: เห็นคุณค่าและสวดมนต์ แผ่เมตตา มีสติที่เป็นพื้นฐานของสมาธิในพระพุทธศาสนาหรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือตามที่กำหนด
 **Suggested teaching sequence**
 
 1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
@@ -196,7 +190,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: เห็นคุณค่าและสวดมนต์ แผ่เมตตา มีสติที่เป็นพื้นฐานของสมาธิในพระพุทธศาสนาหรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือตามที่กำหนด
 
@@ -218,8 +212,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** ปฏิบัติตนตามหลักธรรมของศาสนาที่ตนนับถือเพื่อการพัฒนาตนเองและสิ่งแวดล้อม
 
 **Objective:** `SO1.1-P5-07` — ปฏิบัติตนตามหลักธรรมของศาสนาที่ตนนับถือเพื่อการพัฒนาตนเองและสิ่งแวดล้อม
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: ปฏิบัติตนตามหลักธรรมของศาสนาที่ตนนับถือเพื่อการพัฒนาตนเองและสิ่งแวดล้อม
 **Suggested teaching sequence**
 
 1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
@@ -229,7 +222,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: ปฏิบัติตนตามหลักธรรมของศาสนาที่ตนนับถือเพื่อการพัฒนาตนเองและสิ่งแวดล้อม
 
@@ -251,8 +244,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** จัดพิธีกรรมตามศาสนาที่ตนนับถืออย่างเรียบง่าย มีประโยชน์ และปฏิบัติตนถูกต้อง
 
 **Objective:** `SO1.2-P5-01` — จัดพิธีกรรมตามศาสนาที่ตนนับถืออย่างเรียบง่าย มีประโยชน์ และปฏิบัติตนถูกต้อง
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: จัดพิธีกรรมตามศาสนาที่ตนนับถืออย่างเรียบง่าย มีประโยชน์ และปฏิบัติตนถูกต้อง
 **Suggested teaching sequence**
 
 1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
@@ -262,7 +254,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: จัดพิธีกรรมตามศาสนาที่ตนนับถืออย่างเรียบง่าย มีประโยชน์ และปฏิบัติตนถูกต้อง
 
@@ -284,8 +276,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนาตามที่กำหนด และอภิปรายประโยชน์ที่ได้รับจากการเข้าร่วมกิจกรรม
 
 **Objective:** `SO1.2-P5-02` — ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนาตามที่กำหนด และอภิปรายประโยชน์ที่ได้รับจากการเข้าร่วมกิจกรรม
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนาตามที่กำหนด และอภิปรายประโยชน์ที่ได้รับจากการเข้าร่วมกิจกรรม
 **Suggested teaching sequence**
 
 1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
@@ -295,7 +286,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนาตามที่กำหนด และอภิปรายประโยชน์ที่ได้รับจากการเข้าร่วมกิจกรรม
 
@@ -317,8 +308,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** มีมรรยาทของความเป็นศาสนิกชนที่ดีตามที่กำหนด
 
 **Objective:** `SO1.2-P5-03` — มีมรรยาทของความเป็นศาสนิกชนที่ดีตามที่กำหนด
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: มีมรรยาทของความเป็นศาสนิกชนที่ดีตามที่กำหนด
 **Suggested teaching sequence**
 
 1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
@@ -328,7 +318,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: มีมรรยาทของความเป็นศาสนิกชนที่ดีตามที่กำหนด
 
@@ -350,8 +340,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** ยกตัวอย่างและปฏิบัติตนตามสถานภาพ บทบาท สิทธิเสรีภาพ และหน้าที่ในฐานะพลเมืองดี
 
 **Objective:** `SO2.1-P5-01` — ยกตัวอย่างและปฏิบัติตนตามสถานภาพ บทบาท สิทธิเสรีภาพ และหน้าที่ในฐานะพลเมืองดี
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: ยกตัวอย่างและปฏิบัติตนตามสถานภาพ บทบาท สิทธิเสรีภาพ และหน้าที่ในฐานะพลเมืองดี
 **Suggested teaching sequence**
 
 1. Introduce a realistic school or community situation in which a right, duty, rule or public responsibility matters. Ask who is affected.
@@ -361,7 +350,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a school/community case card, a stakeholder chart and the relevant child-rights, school-rule or civic-process extract.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: ยกตัวอย่างและปฏิบัติตนตามสถานภาพ บทบาท สิทธิเสรีภาพ และหน้าที่ในฐานะพลเมืองดี
 
@@ -383,8 +372,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** เสนอวิธีการปกป้องคุ้มครองตนเองหรือผู้อื่นจากการละเมิดสิทธิเด็ก
 
 **Objective:** `SO2.1-P5-02` — เสนอวิธีการปกป้องคุ้มครองตนเองหรือผู้อื่นจากการละเมิดสิทธิเด็ก
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: เสนอวิธีการปกป้องคุ้มครองตนเองหรือผู้อื่นจากการละเมิดสิทธิเด็ก
 **Suggested teaching sequence**
 
 1. Introduce a realistic school or community situation in which a right, duty, rule or public responsibility matters. Ask who is affected.
@@ -394,7 +382,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a school/community case card, a stakeholder chart and the relevant child-rights, school-rule or civic-process extract.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: เสนอวิธีการปกป้องคุ้มครองตนเองหรือผู้อื่นจากการละเมิดสิทธิเด็ก
 
@@ -416,8 +404,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** เห็นคุณค่าวัฒนธรรมไทยที่มีผลต่อการดำเนินชีวิตในสังคมไทย
 
 **Objective:** `SO2.1-P5-03` — เห็นคุณค่าวัฒนธรรมไทยที่มีผลต่อการดำเนินชีวิตในสังคมไทย
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: เห็นคุณค่าวัฒนธรรมไทยที่มีผลต่อการดำเนินชีวิตในสังคมไทย
 **Suggested teaching sequence**
 
 1. Introduce a realistic school or community situation in which a right, duty, rule or public responsibility matters. Ask who is affected.
@@ -427,7 +414,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a school/community case card, a stakeholder chart and the relevant child-rights, school-rule or civic-process extract.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: เห็นคุณค่าวัฒนธรรมไทยที่มีผลต่อการดำเนินชีวิตในสังคมไทย
 
@@ -449,8 +436,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** มีส่วนร่วมในการอนุรักษ์และเผยแพร่ภูมิปัญญาท้องถิ่นของชุมชน
 
 **Objective:** `SO2.1-P5-04` — มีส่วนร่วมในการอนุรักษ์และเผยแพร่ภูมิปัญญาท้องถิ่นของชุมชน
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: มีส่วนร่วมในการอนุรักษ์และเผยแพร่ภูมิปัญญาท้องถิ่นของชุมชน
 **Suggested teaching sequence**
 
 1. Introduce a realistic school or community situation in which a right, duty, rule or public responsibility matters. Ask who is affected.
@@ -460,7 +446,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a school/community case card, a stakeholder chart and the relevant child-rights, school-rule or civic-process extract.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: มีส่วนร่วมในการอนุรักษ์และเผยแพร่ภูมิปัญญาท้องถิ่นของชุมชน
 
@@ -482,8 +468,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** อธิบายโครงสร้าง อำนาจหน้าที่ และความสำคัญของการปกครองส่วนท้องถิ่น
 
 **Objective:** `SO2.2-P5-01` — อธิบายโครงสร้าง อำนาจหน้าที่ และความสำคัญของการปกครองส่วนท้องถิ่น
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: อธิบายโครงสร้าง อำนาจหน้าที่ และความสำคัญของการปกครองส่วนท้องถิ่น
 **Suggested teaching sequence**
 
 1. Introduce a realistic school or community situation in which a right, duty, rule or public responsibility matters. Ask who is affected.
@@ -493,7 +478,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a school/community case card, a stakeholder chart and the relevant child-rights, school-rule or civic-process extract.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายโครงสร้าง อำนาจหน้าที่ และความสำคัญของการปกครองส่วนท้องถิ่น
 
@@ -515,8 +500,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** ระบุบทบาท หน้าที่ และวิธีการเข้าดำรงตำแหน่งของผู้บริหารท้องถิ่น
 
 **Objective:** `SO2.2-P5-02` — ระบุบทบาท หน้าที่ และวิธีการเข้าดำรงตำแหน่งของผู้บริหารท้องถิ่น
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: ระบุบทบาท หน้าที่ และวิธีการเข้าดำรงตำแหน่งของผู้บริหารท้องถิ่น
 **Suggested teaching sequence**
 
 1. Introduce a realistic school or community situation in which a right, duty, rule or public responsibility matters. Ask who is affected.
@@ -526,7 +510,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a school/community case card, a stakeholder chart and the relevant child-rights, school-rule or civic-process extract.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: ระบุบทบาท หน้าที่ และวิธีการเข้าดำรงตำแหน่งของผู้บริหารท้องถิ่น
 
@@ -548,8 +532,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** วิเคราะห์ประโยชน์ที่ชุมชนจะได้รับจากองค์กรปกครองส่วนท้องถิ่น
 
 **Objective:** `SO2.2-P5-03` — วิเคราะห์ประโยชน์ที่ชุมชนจะได้รับจากองค์กรปกครองส่วนท้องถิ่น
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: วิเคราะห์ประโยชน์ที่ชุมชนจะได้รับจากองค์กรปกครองส่วนท้องถิ่น
 **Suggested teaching sequence**
 
 1. Introduce a realistic school or community situation in which a right, duty, rule or public responsibility matters. Ask who is affected.
@@ -559,7 +542,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a school/community case card, a stakeholder chart and the relevant child-rights, school-rule or civic-process extract.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์ประโยชน์ที่ชุมชนจะได้รับจากองค์กรปกครองส่วนท้องถิ่น
 
@@ -581,8 +564,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** อธิบายปัจจัยการผลิตสินค้าและบริการ
 
 **Objective:** `SO3.1-P5-01` — อธิบายปัจจัยการผลิตสินค้าและบริการ
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: อธิบายปัจจัยการผลิตสินค้าและบริการ
 **Suggested teaching sequence**
 
 1. Present a familiar choice involving needs, wants, limited resources, work, goods, services or money. Ask learners what must be decided.
@@ -592,7 +574,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a household, school or community decision card, a simple budget/resource table and a price, needs or production example.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายปัจจัยการผลิตสินค้าและบริการ
 
@@ -614,8 +596,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** ประยุกต์ใช้แนวคิดของปรัชญาเศรษฐกิจพอเพียงในการทำกิจกรรมต่าง ๆ ในครอบครัว โรงเรียน และชุมชน
 
 **Objective:** `SO3.1-P5-02` — ประยุกต์ใช้แนวคิดของปรัชญาเศรษฐกิจพอเพียงในการทำกิจกรรมต่าง ๆ ในครอบครัว โรงเรียน และชุมชน
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: ประยุกต์ใช้แนวคิดของปรัชญาเศรษฐกิจพอเพียงในการทำกิจกรรมต่าง ๆ ในครอบครัว โรงเรียน และชุมชน
 **Suggested teaching sequence**
 
 1. Present a familiar choice involving needs, wants, limited resources, work, goods, services or money. Ask learners what must be decided.
@@ -625,7 +606,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a household, school or community decision card, a simple budget/resource table and a price, needs or production example.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: ประยุกต์ใช้แนวคิดของปรัชญาเศรษฐกิจพอเพียงในการทำกิจกรรมต่าง ๆ ในครอบครัว โรงเรียน และชุมชน
 
@@ -647,8 +628,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** อธิบายหลักการสำคัญและประโยชน์ของสหกรณ์
 
 **Objective:** `SO3.1-P5-03` — อธิบายหลักการสำคัญและประโยชน์ของสหกรณ์
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: อธิบายหลักการสำคัญและประโยชน์ของสหกรณ์
 **Suggested teaching sequence**
 
 1. Present a familiar choice involving needs, wants, limited resources, work, goods, services or money. Ask learners what must be decided.
@@ -658,7 +638,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a household, school or community decision card, a simple budget/resource table and a price, needs or production example.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายหลักการสำคัญและประโยชน์ของสหกรณ์
 
@@ -680,8 +660,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** อธิบายบทบาทหน้าที่เบื้องต้นของธนาคารโดยสังเขป
 
 **Objective:** `SO3.2-P5-01` — อธิบายบทบาทหน้าที่เบื้องต้นของธนาคารโดยสังเขป
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: อธิบายบทบาทหน้าที่เบื้องต้นของธนาคารโดยสังเขป
 **Suggested teaching sequence**
 
 1. Present a familiar choice involving needs, wants, limited resources, work, goods, services or money. Ask learners what must be decided.
@@ -691,7 +670,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a household, school or community decision card, a simple budget/resource table and a price, needs or production example.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายบทบาทหน้าที่เบื้องต้นของธนาคารโดยสังเขป
 
@@ -713,8 +692,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** จำแนกผลดีและผลเสียของการกู้ยืมทั้งนอกระบบและในระบบ
 
 **Objective:** `SO3.2-P5-02` — จำแนกผลดีและผลเสียของการกู้ยืมทั้งนอกระบบและในระบบ
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: จำแนกผลดีและผลเสียของการกู้ยืมทั้งนอกระบบและในระบบ
 **Suggested teaching sequence**
 
 1. Present a familiar choice involving needs, wants, limited resources, work, goods, services or money. Ask learners what must be decided.
@@ -724,7 +702,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a household, school or community decision card, a simple budget/resource table and a price, needs or production example.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: จำแนกผลดีและผลเสียของการกู้ยืมทั้งนอกระบบและในระบบ
 
@@ -746,8 +724,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** สืบค้นความเป็นมาของท้องถิ่นโดยใช้หลักฐานที่หลากหลาย
 
 **Objective:** `SO4.1-P5-01` — สืบค้นความเป็นมาของท้องถิ่นโดยใช้หลักฐานที่หลากหลาย
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: สืบค้นความเป็นมาของท้องถิ่นโดยใช้หลักฐานที่หลากหลาย
 **Suggested teaching sequence**
 
 1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
@@ -757,7 +734,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: สืบค้นความเป็นมาของท้องถิ่นโดยใช้หลักฐานที่หลากหลาย
 
@@ -779,8 +756,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** รวบรวมข้อมูลจากแหล่งต่าง ๆ เพื่อตอบคำถามทางประวัติศาสตร์อย่างมีเหตุผล
 
 **Objective:** `SO4.1-P5-02` — รวบรวมข้อมูลจากแหล่งต่าง ๆ เพื่อตอบคำถามทางประวัติศาสตร์อย่างมีเหตุผล
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: รวบรวมข้อมูลจากแหล่งต่าง ๆ เพื่อตอบคำถามทางประวัติศาสตร์อย่างมีเหตุผล
 **Suggested teaching sequence**
 
 1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
@@ -790,7 +766,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: รวบรวมข้อมูลจากแหล่งต่าง ๆ เพื่อตอบคำถามทางประวัติศาสตร์อย่างมีเหตุผล
 
@@ -812,8 +788,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** อธิบายความแตกต่างระหว่างความจริงกับข้อเท็จจริงเกี่ยวกับเรื่องราวในท้องถิ่น
 
 **Objective:** `SO4.1-P5-03` — อธิบายความแตกต่างระหว่างความจริงกับข้อเท็จจริงเกี่ยวกับเรื่องราวในท้องถิ่น
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: อธิบายความแตกต่างระหว่างความจริงกับข้อเท็จจริงเกี่ยวกับเรื่องราวในท้องถิ่น
 **Suggested teaching sequence**
 
 1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
@@ -823,7 +798,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายความแตกต่างระหว่างความจริงกับข้อเท็จจริงเกี่ยวกับเรื่องราวในท้องถิ่น
 
@@ -845,8 +820,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** อธิบายอิทธิพลของอารยธรรมอินเดียและจีนที่มีต่อไทยและเอเชียตะวันออกเฉียงใต้โดยสังเขป
 
 **Objective:** `SO4.2-P5-01` — อธิบายอิทธิพลของอารยธรรมอินเดียและจีนที่มีต่อไทยและเอเชียตะวันออกเฉียงใต้โดยสังเขป
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: อธิบายอิทธิพลของอารยธรรมอินเดียและจีนที่มีต่อไทยและเอเชียตะวันออกเฉียงใต้โดยสังเขป
 **Suggested teaching sequence**
 
 1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
@@ -856,7 +830,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายอิทธิพลของอารยธรรมอินเดียและจีนที่มีต่อไทยและเอเชียตะวันออกเฉียงใต้โดยสังเขป
 
@@ -878,8 +852,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** อภิปรายอิทธิพลของวัฒนธรรมต่างชาติที่มีต่อสังคมไทยปัจจุบันโดยสังเขป
 
 **Objective:** `SO4.2-P5-02` — อภิปรายอิทธิพลของวัฒนธรรมต่างชาติที่มีต่อสังคมไทยปัจจุบันโดยสังเขป
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: อภิปรายอิทธิพลของวัฒนธรรมต่างชาติที่มีต่อสังคมไทยปัจจุบันโดยสังเขป
 **Suggested teaching sequence**
 
 1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
@@ -889,7 +862,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อภิปรายอิทธิพลของวัฒนธรรมต่างชาติที่มีต่อสังคมไทยปัจจุบันโดยสังเขป
 
@@ -911,8 +884,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** อธิบายพัฒนาการของอาณาจักรอยุธยาและธนบุรีโดยสังเขป
 
 **Objective:** `SO4.3-P5-01` — อธิบายพัฒนาการของอาณาจักรอยุธยาและธนบุรีโดยสังเขป
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: อธิบายพัฒนาการของอาณาจักรอยุธยาและธนบุรีโดยสังเขป
 **Suggested teaching sequence**
 
 1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
@@ -922,7 +894,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายพัฒนาการของอาณาจักรอยุธยาและธนบุรีโดยสังเขป
 
@@ -944,8 +916,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** อธิบายปัจจัยที่ส่งเสริมความเจริญรุ่งเรืองทางเศรษฐกิจและการปกครองของอาณาจักรอยุธยา
 
 **Objective:** `SO4.3-P5-02` — อธิบายปัจจัยที่ส่งเสริมความเจริญรุ่งเรืองทางเศรษฐกิจและการปกครองของอาณาจักรอยุธยา
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: อธิบายปัจจัยที่ส่งเสริมความเจริญรุ่งเรืองทางเศรษฐกิจและการปกครองของอาณาจักรอยุธยา
 **Suggested teaching sequence**
 
 1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
@@ -955,7 +926,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายปัจจัยที่ส่งเสริมความเจริญรุ่งเรืองทางเศรษฐกิจและการปกครองของอาณาจักรอยุธยา
 
@@ -977,8 +948,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** บอกประวัติและผลงานของบุคคลสำคัญสมัยอยุธยาและธนบุรีที่น่าภาคภูมิใจ
 
 **Objective:** `SO4.3-P5-03` — บอกประวัติและผลงานของบุคคลสำคัญสมัยอยุธยาและธนบุรีที่น่าภาคภูมิใจ
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: บอกประวัติและผลงานของบุคคลสำคัญสมัยอยุธยาและธนบุรีที่น่าภาคภูมิใจ
 **Suggested teaching sequence**
 
 1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
@@ -988,7 +958,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: บอกประวัติและผลงานของบุคคลสำคัญสมัยอยุธยาและธนบุรีที่น่าภาคภูมิใจ
 
@@ -1010,8 +980,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** อธิบายภูมิปัญญาไทยที่สำคัญสมัยอยุธยาและธนบุรีที่น่าภาคภูมิใจและควรค่าแก่การอนุรักษ์ไว้
 
 **Objective:** `SO4.3-P5-04` — อธิบายภูมิปัญญาไทยที่สำคัญสมัยอยุธยาและธนบุรีที่น่าภาคภูมิใจและควรค่าแก่การอนุรักษ์ไว้
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: อธิบายภูมิปัญญาไทยที่สำคัญสมัยอยุธยาและธนบุรีที่น่าภาคภูมิใจและควรค่าแก่การอนุรักษ์ไว้
 **Suggested teaching sequence**
 
 1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
@@ -1021,7 +990,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายภูมิปัญญาไทยที่สำคัญสมัยอยุธยาและธนบุรีที่น่าภาคภูมิใจและควรค่าแก่การอนุรักษ์ไว้
 
@@ -1043,8 +1012,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** สืบค้นและอธิบายข้อมูลลักษณะทางกายภาพในภูมิภาคของตนด้วยแผนที่และรูปถ่าย
 
 **Objective:** `SO5.1-P5-01` — สืบค้นและอธิบายข้อมูลลักษณะทางกายภาพในภูมิภาคของตนด้วยแผนที่และรูปถ่าย
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: สืบค้นและอธิบายข้อมูลลักษณะทางกายภาพในภูมิภาคของตนด้วยแผนที่และรูปถ่าย
 **Suggested teaching sequence**
 
 1. Begin with a place, landscape, route or environmental issue familiar to learners. Locate it and ask what spatial information would help explain it.
@@ -1054,7 +1022,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a labelled map or atlas extract, a local photograph, a simple map/data set and a geographic vocabulary frame.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: สืบค้นและอธิบายข้อมูลลักษณะทางกายภาพในภูมิภาคของตนด้วยแผนที่และรูปถ่าย
 
@@ -1076,8 +1044,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** อธิบายลักษณะทางกายภาพที่ส่งผลต่อแหล่งทรัพยากรและสถานที่สำคัญในภูมิภาคของตน
 
 **Objective:** `SO5.1-P5-02` — อธิบายลักษณะทางกายภาพที่ส่งผลต่อแหล่งทรัพยากรและสถานที่สำคัญในภูมิภาคของตน
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: อธิบายลักษณะทางกายภาพที่ส่งผลต่อแหล่งทรัพยากรและสถานที่สำคัญในภูมิภาคของตน
 **Suggested teaching sequence**
 
 1. Begin with a place, landscape, route or environmental issue familiar to learners. Locate it and ask what spatial information would help explain it.
@@ -1087,7 +1054,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a labelled map or atlas extract, a local photograph, a simple map/data set and a geographic vocabulary frame.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายลักษณะทางกายภาพที่ส่งผลต่อแหล่งทรัพยากรและสถานที่สำคัญในภูมิภาคของตน
 
@@ -1109,8 +1076,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** วิเคราะห์สิ่งแวดล้อมทางกายภาพที่มีอิทธิพลต่อลักษณะการตั้งถิ่นฐานและการย้ายถิ่นของประชากรในภูมิภาคของตน
 
 **Objective:** `SO5.2-P5-01` — วิเคราะห์สิ่งแวดล้อมทางกายภาพที่มีอิทธิพลต่อลักษณะการตั้งถิ่นฐานและการย้ายถิ่นของประชากรในภูมิภาคของตน
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: วิเคราะห์สิ่งแวดล้อมทางกายภาพที่มีอิทธิพลต่อลักษณะการตั้งถิ่นฐานและการย้ายถิ่นของประชากรในภูมิภาคของตน
 **Suggested teaching sequence**
 
 1. Begin with a place, landscape, route or environmental issue familiar to learners. Locate it and ask what spatial information would help explain it.
@@ -1120,7 +1086,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a labelled map or atlas extract, a local photograph, a simple map/data set and a geographic vocabulary frame.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์สิ่งแวดล้อมทางกายภาพที่มีอิทธิพลต่อลักษณะการตั้งถิ่นฐานและการย้ายถิ่นของประชากรในภูมิภาคของตน
 
@@ -1142,8 +1108,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** วิเคราะห์อิทธิพลของสิ่งแวดล้อมทางธรรมชาติที่ก่อให้เกิดวิถีการดำเนินชีวิตในภูมิภาคของตน
 
 **Objective:** `SO5.2-P5-02` — วิเคราะห์อิทธิพลของสิ่งแวดล้อมทางธรรมชาติที่ก่อให้เกิดวิถีการดำเนินชีวิตในภูมิภาคของตน
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: วิเคราะห์อิทธิพลของสิ่งแวดล้อมทางธรรมชาติที่ก่อให้เกิดวิถีการดำเนินชีวิตในภูมิภาคของตน
 **Suggested teaching sequence**
 
 1. Begin with a place, landscape, route or environmental issue familiar to learners. Locate it and ask what spatial information would help explain it.
@@ -1153,7 +1118,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a labelled map or atlas extract, a local photograph, a simple map/data set and a geographic vocabulary frame.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์อิทธิพลของสิ่งแวดล้อมทางธรรมชาติที่ก่อให้เกิดวิถีการดำเนินชีวิตในภูมิภาคของตน
 
@@ -1175,8 +1140,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Official indicator:** นำเสนอตัวอย่างที่สะท้อนให้เห็นผลจากการรักษาและทำลายสิ่งแวดล้อม และเสนอแนวทางในการจัดการสิ่งแวดล้อมในภูมิภาคของตน
 
 **Objective:** `SO5.2-P5-03` — นำเสนอตัวอย่างที่สะท้อนให้เห็นผลจากการรักษาและทำลายสิ่งแวดล้อม และเสนอแนวทางในการจัดการสิ่งแวดล้อมในภูมิภาคของตน
-- **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
-
+- **Learning intention:** Learners will demonstrate: นำเสนอตัวอย่างที่สะท้อนให้เห็นผลจากการรักษาและทำลายสิ่งแวดล้อม และเสนอแนวทางในการจัดการสิ่งแวดล้อมในภูมิภาคของตน
 **Suggested teaching sequence**
 
 1. Begin with a place, landscape, route or environmental issue familiar to learners. Locate it and ask what spatial information would help explain it.
@@ -1186,7 +1150,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Resources:** a labelled map or atlas extract, a local photograph, a simple map/data set and a geographic vocabulary frame.
 
-**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+**Differentiation:** For upper primary learners: Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: นำเสนอตัวอย่างที่สะท้อนให้เห็นผลจากการรักษาและทำลายสิ่งแวดล้อม และเสนอแนวทางในการจัดการสิ่งแวดล้อมในภูมิภาคของตน
 
