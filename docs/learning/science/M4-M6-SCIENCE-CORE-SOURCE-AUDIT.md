@@ -90,10 +90,10 @@ Migration: 20261121082000_seed_science_m4_m5_technology_core_indicators.sql. Tea
 |---|---:|---:|---:|---:|---:|
 | M4 | 28 | 28 | 19 | 9 | 0 |
 | M5 | 49 | 49 | 42 | 7 | 0 |
-| M6 | 25 | 0 | Pending reconciliation | Pending reconciliation | 25 |
-| **Total** | **102** | **77** | **62** | **15** | **25** |
+| M6 | 25 | 25 | 24 | 1 | 0 |
+| **Total** | **102** | **102** | **85** | **17** | **0** |
 
-Priority totals are not yet reconciled to the official upper-secondary summary (85 Must-Know / 18 Should-Know, with one dual-classified indicator). The M6 source transcription must establish the remaining priority distribution before final acceptance; do not infer or force the aggregate totals.
+Priority totals are reconciled to the official upper-secondary summary: 85 Must-Know and 18 Should-Know classifications, including the dual M6/4 label. M4/11 was corrected to Should-Know using the official page-146 row.
 
 
 ## Final grade implementation — M6 and 102/102 coverage
@@ -106,7 +106,7 @@ Migration: `20261121093000_seed_science_m6_universe_earth_climate_core_indicator
 
 | Grade | Official total | Staged | Stored Must-Know | Stored Should-Know | Dual note |
 |---|---:|---:|---:|---:|---:|
-| M4 | 28 | 28 | 20 | 8 | 0 |
+| M4 | 28 | 28 | 19 | 9 | 0 |
 | M5 | 49 | 49 | 42 | 7 | 0 |
 | M6 | 25 | 25 | 24 | 1 | 1 |
 | **Total** | **102** | **102** | **85** | **17** | **1** |
