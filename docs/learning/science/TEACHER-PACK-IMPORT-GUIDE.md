@@ -18,11 +18,11 @@ The selected class is used only to establish the teacher's organization access. 
 
 ## Consolidated Science import files
 
-Import these 13 files using curriculum `TH-SCI-M1-M6`. The M1–M3 core pack uses explicit objective codes across all three grades. Upper-secondary packs are grade-scoped because some official outcomes are intentionally code-less in the original teacher material; select the exact grade shown so the importer can resolve them safely.
+Import these 13 files using curriculum `TH-SCI-M1-M6`. The M1–M3 core pack uses explicit objective codes across all three grades. It includes nine official M3 W4.1/W4.2 technology lessons; the nine legacy W3.2 lessons are preserved in a separate supplementary pack and are not included in the core import. Upper-secondary packs are grade-scoped because some official outcomes are intentionally code-less in the original teacher material; select the exact grade shown so the importer can resolve them safely.
 
 | Import file | Subject | Grade | Lessons | Questions |
 |---|---|---:|---:|---:|
-| `SCIENCE-M1-M3-COMPLETE-IMPORT.md` | `SCI` — Science | M1–M3 | 144 | 432 |
+| `SCIENCE-M1-M3-COMPLETE-IMPORT.md` | `SCI` — Science | M1–M3 | 174 | 522 |
 | `BIOLOGY-M4-IMPORT.md` | `BIOLOGY` — Biology | M4 | 32 | 96 |
 | `BIOLOGY-M5-IMPORT.md` | `BIOLOGY` — Biology | M5 | 39 | 117 |
 | `BIOLOGY-M6-IMPORT.md` | `BIOLOGY` — Biology | M6 | 37 | 111 |
