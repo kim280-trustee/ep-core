@@ -61,10 +61,28 @@ for (const pack of packs) {
     const sourceSection = markdown.slice(sectionStart, sectionEnd);
     const indicator = sourceSection.match(/^\s*-\s+\*\*Official indicator:\*\*\s*(.+)$/m)?.[1]?.trim();
     if (indicator) indicatorByCode.set(heading[2], indicator);
-    const teachingSteps = [...sourceSection.matchAll(/^\d+\.\s+.+$/gm)];
-    if (teachingSteps.length < 4) failures.push(heading[2] + ": expected at least four explicit teaching-sequence steps");
-    if (!sourceSection.includes("**Resources:**")) failures.push(heading[2] + ": strand-specific lesson resources are missing");
-    if (!sourceSection.includes("**Differentiation:**")) failures.push(heading[2] + ": grade-band differentiation guidance is missing");
+    const sequenceBlock = sourceSection.match(/\*\*Suggested teaching sequence\*\*([\s\S]*?)(?=\*\*Resources:\*\*)/)?.[1] ?? "";
+    const teachingSteps = [...sequenceBlock.matchAll(/^(\d+)\.\s+.+$/gm)].map((match) => Number(match[1]));
+    if (JSON.stringify(teachingSteps) !== JSON.stringify([1, 2, 3, 4])) {
+      failures.push(heading[2] + ": expected exactly four numbered teaching-sequence steps");
+    }
+    const standard = sourceSection.match(/^\s*-\s+\*\*Standard:\*\*\s*(SO[1-5])\.\d+/m)?.[1];
+    const resources = sourceSection.match(/\*\*Resources:\*\*\s*(.+)$/m)?.[1] ?? "";
+    const expectedResource = {
+      SO1: "tradition", SO2: "school/community case card", SO3: "decision card",
+      SO4: "historical source", SO5: "map or atlas extract",
+    }[standard];
+    if (!expectedResource || !resources.toLowerCase().includes(expectedResource.toLowerCase())) {
+      failures.push(heading[2] + ": resources do not match the Social Studies strand");
+    }
+    const gradeCode = heading[2].match(/-(P[1-6]|M[1-6]|M46)-/)?.[1];
+    const expectedBand = gradeCode === "M46" || /^M[4-6]$/.test(gradeCode ?? "") ? "upper secondary"
+      : /^M[1-3]$/.test(gradeCode ?? "") ? "lower secondary"
+      : /^P[4-6]$/.test(gradeCode ?? "") ? "upper primary" : "early primary";
+    const differentiation = sourceSection.match(/\*\*Differentiation:\*\*\s*(.+)$/m)?.[1] ?? "";
+    if (!differentiation.toLowerCase().includes(expectedBand)) {
+      failures.push(heading[2] + ": differentiation does not match grade band " + expectedBand);
+    }
     if (!indicator || !sourceSection.includes("**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: " + indicator)) {
       failures.push(heading[2] + ": learning intention is not tied to the exact official indicator");
     }
