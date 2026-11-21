@@ -34,7 +34,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 
 ## Lesson starters
 
-## Lesson 1 — Compare plant and animal cells
+## Lesson 1 — [M1] Compare plant and animal cells
 
 **Objective:** `M1-S1_2-01`  \n**Official indicator:** ว 1.2 ม.1/1  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -49,7 +49,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. What does the nucleus do?  
    **Answer:** Controls cell activities.
 
-## Lesson 2 — Use a light microscope to study cells
+## Lesson 2 — [M1] Use a light microscope to study cells
 
 **Objective:** `M1-S1_2-02`  \n**Official indicator:** ว 1.2 ม.1/2  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -64,7 +64,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Why carry a microscope with two hands?  
    **Answer:** To prevent dropping and damage.
 
-## Lesson 3 — Relate cell shape to cell function
+## Lesson 3 — [M1] Relate cell shape to cell function
 
 **Objective:** `M1-S1_2-03`  \n**Official indicator:** ว 1.2 ม.1/3  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
@@ -79,7 +79,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Give one example of a specialised cell.  
    **Answer:** A red blood cell transports oxygen; a root-hair cell absorbs water.
 
-## Lesson 4 — Explain levels of organisation
+## Lesson 4 — [M1] Explain levels of organisation
 
 **Objective:** `M1-S1_2-04`  \n**Official indicator:** ว 1.2 ม.1/4  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
@@ -94,7 +94,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Give one organ and its system.  
    **Answer:** Heart — circulatory system.
 
-## Lesson 5 — Explain diffusion and osmosis
+## Lesson 5 — [M1] Explain diffusion and osmosis
 
 **Objective:** `M1-S1_2-05`  \n**Official indicator:** ว 1.2 ม.1/5  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -109,7 +109,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Why do potato strips change in different solutions?  
    **Answer:** Water enters or leaves the cells depending on solution concentration.
 
-## Lesson 6 — Identify requirements and products of photosynthesis
+## Lesson 6 — [M1] Identify requirements and products of photosynthesis
 
 **Objective:** `M1-S1_2-06`  \n**Official indicator:** ว 1.2 ม.1/6  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -124,7 +124,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Name two products.  
    **Answer:** Sugar (glucose) and oxygen.
 
-## Lesson 7 — Explain the importance of photosynthesis
+## Lesson 7 — [M1] Explain the importance of photosynthesis
 
 **Objective:** `M1-S1_2-07`  \n**Official indicator:** ว 1.2 ม.1/7  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
@@ -139,7 +139,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Which gas is released?  
    **Answer:** Oxygen.
 
-## Lesson 8 — Value and care for plants
+## Lesson 8 — [M1] Value and care for plants
 
 **Objective:** `M1-S1_2-08`  \n**Official indicator:** ว 1.2 ม.1/8  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
@@ -154,7 +154,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Suggest one school plant-care action.  
    **Answer:** Water appropriately, weed or protect plants from damage.
 
-## Lesson 9 — Describe xylem and phloem
+## Lesson 9 — [M1] Describe xylem and phloem
 
 **Objective:** `M1-S1_2-09`  \n**Official indicator:** ว 1.2 ม.1/9  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -169,7 +169,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Which tissue mainly carries water from roots upward?  
    **Answer:** Xylem.
 
-## Lesson 10 — Represent transport in xylem and phloem
+## Lesson 10 — [M1] Represent transport in xylem and phloem
 
 **Objective:** `M1-S1_2-10`  \n**Official indicator:** ว 1.2 ม.1/10  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -184,7 +184,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Can phloem transport food to roots?  
    **Answer:** Yes, from sources to growing or storage parts.
 
-## Lesson 11 — Explain reproduction in flowering plants
+## Lesson 11 — [M1] Explain reproduction in flowering plants
 
 **Objective:** `M1-S1_2-11`  \n**Official indicator:** ว 1.2 ม.1/11  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -199,7 +199,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Give one advantage of asexual propagation.  
    **Answer:** It can preserve useful parent characteristics.
 
-## Lesson 12 — Explain pollination and seed formation
+## Lesson 12 — [M1] Explain pollination and seed formation
 
 **Objective:** `M1-S1_2-12`  \n**Official indicator:** ว 1.2 ม.1/12  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -214,7 +214,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Name one seed-dispersal method.  
    **Answer:** Wind, water, animals or explosive splitting.
 
-## Lesson 13 — Recognise the importance of pollinators
+## Lesson 13 — [M1] Recognise the importance of pollinators
 
 **Objective:** `M1-S1_2-13`  \n**Official indicator:** ว 1.2 ม.1/13  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
@@ -229,7 +229,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Give one way to protect pollinators.  
    **Answer:** Plant flowering species and avoid unnecessary pesticide use.
 
-## Lesson 14 — Explain the importance of plant nutrients
+## Lesson 14 — [M1] Explain the importance of plant nutrients
 
 **Objective:** `M1-S1_2-14`  \n**Official indicator:** ว 1.2 ม.1/14  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
@@ -244,7 +244,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Do mineral nutrients replace sunlight?  
    **Answer:** No.
 
-## Lesson 15 — Select suitable fertilisers
+## Lesson 15 — [M1] Select suitable fertilisers
 
 **Objective:** `M1-S1_2-15`  \n**Official indicator:** ว 1.2 ม.1/15  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
@@ -259,7 +259,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. What can excessive fertiliser runoff cause?  
    **Answer:** Water pollution and excessive algal growth.
 
-## Lesson 16 — Select suitable plant propagation methods
+## Lesson 16 — [M1] Select suitable plant propagation methods
 
 **Objective:** `M1-S1_2-16`  \n**Official indicator:** ว 1.2 ม.1/16  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
@@ -274,7 +274,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Why can seed-grown offspring differ from the parent?  
    **Answer:** Sexual reproduction combines genetic material.
 
-## Lesson 17 — Explain uses of plant tissue culture
+## Lesson 17 — [M1] Explain uses of plant tissue culture
 
 **Objective:** `M1-S1_2-17`  \n**Official indicator:** ว 1.2 ม.1/17  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
@@ -289,7 +289,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Give one application.  
    **Answer:** Conservation or rapid crop propagation.
 
-## Lesson 18 — Apply plant propagation knowledge
+## Lesson 18 — [M1] Apply plant propagation knowledge
 
 **Objective:** `M1-S1_2-18`  \n**Official indicator:** ว 1.2 ม.1/18  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
@@ -304,7 +304,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Give one everyday use.  
    **Answer:** Producing fruit trees or ornamental plants.
 
-## Lesson 19 — Classify metals, non-metals and metalloids
+## Lesson 19 — [M1] Classify metals, non-metals and metalloids
 
 **Objective:** `M1-S2_1-01`  \n**Official indicator:** ว 2.1 ม.1/1  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -319,7 +319,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Why use several properties to classify?  
    **Answer:** One property alone may be misleading.
 
-## Lesson 20 — Evaluate impacts of using elements
+## Lesson 20 — [M1] Evaluate impacts of using elements
 
 **Objective:** `M1-S2_1-02`  \n**Official indicator:** ว 2.1 ม.1/2  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -334,7 +334,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Name one environmental factor in mining.  
    **Answer:** Waste, pollution, energy use or habitat damage.
 
-## Lesson 21 — Promote safe and responsible use of elements
+## Lesson 21 — [M1] Promote safe and responsible use of elements
 
 **Objective:** `M1-S2_1-03`  \n**Official indicator:** ว 2.1 ม.1/3  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
@@ -349,7 +349,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. What should you do with an unknown chemical container?  
    **Answer:** Do not open it; inform the teacher.
 
-## Lesson 22 — Compare boiling and melting points
+## Lesson 22 — [M1] Compare boiling and melting points
 
 **Objective:** `M1-S2_1-04`  \n**Official indicator:** ว 2.1 ม.1/4  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -364,7 +364,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Why can a mixture melt over a range?  
    **Answer:** Its components have different melting behaviours.
 
-## Lesson 23 — Compare density of pure substances and mixtures
+## Lesson 23 — [M1] Compare density of pure substances and mixtures
 
 **Objective:** `M1-S2_1-05`  \n**Official indicator:** ว 2.1 ม.1/5  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -379,7 +379,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Why can mixture density vary?  
    **Answer:** Its composition and proportions can vary.
 
-## Lesson 24 — Measure mass and volume
+## Lesson 24 — [M1] Measure mass and volume
 
 **Objective:** `M1-S2_1-06`  \n**Official indicator:** ว 2.1 ม.1/6  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -394,7 +394,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Why read the meniscus at eye level?  
    **Answer:** To reduce parallax error.
 
-## Lesson 25 — Relate atoms, elements and compounds
+## Lesson 25 — [M1] Relate atoms, elements and compounds
 
 **Objective:** `M1-S2_1-07`  \n**Official indicator:** ว 2.1 ม.1/7  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -409,7 +409,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Can filtering separate a compound into elements?  
    **Answer:** No, chemical methods are needed.
 
-## Lesson 26 — Model atomic structure
+## Lesson 26 — [M1] Model atomic structure
 
 **Objective:** `M1-S2_1-08`  \n**Official indicator:** ว 2.1 ม.1/8  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -424,7 +424,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. When is an atom neutral?  
    **Answer:** When protons equal electrons.
 
-## Lesson 27 — Compare particles in solids, liquids and gases
+## Lesson 27 — [M1] Compare particles in solids, liquids and gases
 
 **Objective:** `M1-S2_1-09`  \n**Official indicator:** ว 2.1 ม.1/9  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -439,7 +439,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Why does gas fill its container?  
    **Answer:** Gas particles move freely and spread out.
 
-## Lesson 28 — Explain heat energy and changes of state
+## Lesson 28 — [M1] Explain heat energy and changes of state
 
 **Objective:** `M1-S2_1-10`  \n**Official indicator:** ว 2.1 ม.1/10  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -454,7 +454,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. What is condensation?  
    **Answer:** A gas changes into a liquid.
 
-## Lesson 29 — Model air pressure and altitude
+## Lesson 29 — [M1] Model air pressure and altitude
 
 **Objective:** `M1-S2_2-01`  \n**Official indicator:** ว 2.2 ม.1/1  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -469,7 +469,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Why is air thinner at high altitude?  
    **Answer:** There is less air mass above and lower air density.
 
-## Lesson 30 — Calculate heat in temperature and state changes
+## Lesson 30 — [M1] Calculate heat in temperature and state changes
 
 **Objective:** `M1-S2_3-01`  \n**Official indicator:** ว 2.3 ม.1/1  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -484,7 +484,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. What does L represent?  
    **Answer:** Specific latent heat.
 
-## Lesson 31 — Measure temperature with a thermometer
+## Lesson 31 — [M1] Measure temperature with a thermometer
 
 **Objective:** `M1-S2_3-02`  \n**Official indicator:** ว 2.3 ม.1/2  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -499,7 +499,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. When should you record the reading?  
    **Answer:** After it stabilises.
 
-## Lesson 32 — Model thermal expansion and contraction
+## Lesson 32 — [M1] Model thermal expansion and contraction
 
 **Objective:** `M1-S2_3-03`  \n**Official indicator:** ว 2.3 ม.1/3  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -514,7 +514,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Why does heating cause expansion?  
    **Answer:** Particles vibrate more and average separation increases.
 
-## Lesson 33 — Apply thermal expansion knowledge
+## Lesson 33 — [M1] Apply thermal expansion knowledge
 
 **Objective:** `M1-S2_3-04`  \n**Official indicator:** ว 2.3 ม.1/4  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -529,7 +529,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Name one structure that must allow for expansion.  
    **Answer:** Railway tracks, bridges or pipelines.
 
-## Lesson 34 — Calculate heat transfer at thermal equilibrium
+## Lesson 34 — [M1] Calculate heat transfer at thermal equilibrium
 
 **Objective:** `M1-S2_3-05`  \n**Official indicator:** ว 2.3 ม.1/5  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -544,7 +544,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. If one object loses 300 J in an isolated exchange, how much does the other gain?  
    **Answer:** 300 J.
 
-## Lesson 35 — Model the three modes of heat transfer
+## Lesson 35 — [M1] Model the three modes of heat transfer
 
 **Objective:** `M1-S2_3-06`  \n**Official indicator:** ว 2.3 ม.1/6  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -559,7 +559,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Which method can transfer energy through a vacuum?  
    **Answer:** Radiation.
 
-## Lesson 36 — Design a device using heat-transfer knowledge
+## Lesson 36 — [M1] Design a device using heat-transfer knowledge
 
 **Objective:** `M1-S2_3-07`  \n**Official indicator:** ว 2.3 ม.1/7  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
@@ -574,7 +574,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Name one variable to keep constant in a fair test.  
    **Answer:** Starting temperature, water amount or container size.
 
-## Lesson 37 — Model the layers of the atmosphere
+## Lesson 37 — [M1] Model the layers of the atmosphere
 
 **Objective:** `M1-S3_2-01`  \n**Official indicator:** ว 3.2 ม.1/1  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
@@ -589,7 +589,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Which upper layer is important for many low-Earth-orbit satellites?  
    **Answer:** Exosphere, as stated in the Thai core-curriculum description.
 
-## Lesson 38 — Explain factors affecting weather elements
+## Lesson 38 — [M1] Explain factors affecting weather elements
 
 **Objective:** `M1-S3_2-02`  \n**Official indicator:** ว 3.2 ม.1/2  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -604,7 +604,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. How do pressure differences affect wind?  
    **Answer:** Air generally moves from higher toward lower pressure.
 
-## Lesson 39 — Compare thunderstorms and tropical cyclones
+## Lesson 39 — [M1] Compare thunderstorms and tropical cyclones
 
 **Objective:** `M1-S3_2-03`  \n**Official indicator:** ว 3.2 ม.1/3  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -619,7 +619,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Name one safe action during a severe storm warning.  
    **Answer:** Move to safe shelter and follow official warnings.
 
-## Lesson 40 — Make a simple weather forecast
+## Lesson 40 — [M1] Make a simple weather forecast
 
 **Objective:** `M1-S3_2-04`  \n**Official indicator:** ว 3.2 ม.1/4  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -634,7 +634,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Why state time and location?  
    **Answer:** Weather varies by place and time.
 
-## Lesson 41 — Use weather forecasts responsibly
+## Lesson 41 — [M1] Use weather forecasts responsibly
 
 **Objective:** `M1-S3_2-05`  \n**Official indicator:** ว 3.2 ม.1/5  \n**Priority classification (OBEC 2021):** should_know
 **Suggested duration:** 45–60 minutes  
@@ -649,7 +649,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Why follow official severe-weather warnings?  
    **Answer:** They provide safety guidance based on monitored conditions.
 
-## Lesson 42 — Explain global climate change and its impacts
+## Lesson 42 — [M1] Explain global climate change and its impacts
 
 **Objective:** `M1-S3_2-06`  \n**Official indicator:** ว 3.2 ม.1/6  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -664,7 +664,7 @@ For experiments involving heat, microscopes or materials, use teacher supervisio
 3. Name a major human-produced greenhouse gas.  
    **Answer:** Carbon dioxide.
 
-## Lesson 43 — Respond to global climate change
+## Lesson 43 — [M1] Respond to global climate change
 
 **Objective:** `M1-S3_2-07`  \n**Official indicator:** ว 3.2 ม.1/7  \n**Priority classification (OBEC 2021):** must_know
 **Suggested duration:** 45–60 minutes  
@@ -703,7 +703,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ## M2 — Human body systems and reproduction
 
-### Lesson 1 — Identify respiratory organs
+## Lesson 44 — [M2] Identify respiratory organs
 
 **Objective:** `M2-S1_2-01`  \n**Official indicator:** ว 1.2 ม.2/1  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Identify respiratory organs and describe their functions.
@@ -718,7 +718,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. What carries oxygen in red blood cells?  
    **Answer:** Haemoglobin.
 
-### Lesson 2 — Explain breathing and gas exchange
+## Lesson 45 — [M2] Explain breathing and gas exchange
 
 **Objective:** `M2-S1_2-02`  \n**Official indicator:** ว 1.2 ม.2/2  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain inhalation, exhalation and gas exchange.
@@ -733,7 +733,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. Which gas moves from blood into alveoli?  
    **Answer:** Carbon dioxide.
 
-### Lesson 3 — Care for the respiratory system
+## Lesson 46 — [M2] Care for the respiratory system
 
 **Objective:** `M2-S1_2-03`  \n**Official indicator:** ว 1.2 ม.2/3  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain respiratory health and ways to protect the lungs.
@@ -748,7 +748,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. How can a mask help in dusty conditions?  
    **Answer:** It reduces inhalation of airborne particles.
 
-### Lesson 4 — Describe the urinary system
+## Lesson 47 — [M2] Describe the urinary system
 
 **Objective:** `M2-S1_2-04`  \n**Official indicator:** ว 1.2 ม.2/4  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Identify urinary organs and explain how kidneys filter blood.
@@ -763,7 +763,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. Where is urine stored?  
    **Answer:** In the urinary bladder.
 
-### Lesson 5 — Maintain kidney health
+## Lesson 48 — [M2] Maintain kidney health
 
 **Objective:** `M2-S1_2-05`  \n**Official indicator:** ว 1.2 ม.2/5  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain kidney health and responsible health behaviours.
@@ -778,7 +778,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. Can urine colour diagnose kidney disease?  
    **Answer:** No; it is only a rough hydration clue.
 
-### Lesson 6 — Describe heart, blood vessels and blood
+## Lesson 49 — [M2] Describe heart, blood vessels and blood
 
 **Objective:** `M2-S1_2-06`  \n**Official indicator:** ว 1.2 ม.2/6  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Describe structures and functions of the heart, blood vessels and blood.
@@ -793,7 +793,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. What do red blood cells transport?  
    **Answer:** Oxygen, using haemoglobin.
 
-### Lesson 7 — Model blood circulation
+## Lesson 50 — [M2] Model blood circulation
 
 **Objective:** `M2-S1_2-07`  \n**Official indicator:** ว 1.2 ม.2/7  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain how circulation transports substances around the body.
@@ -808,7 +808,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. Why is circulation important to cells?  
    **Answer:** It delivers oxygen and nutrients and removes wastes.
 
-### Lesson 8 — Investigate heart rate
+## Lesson 51 — [M2] Investigate heart rate
 
 **Objective:** `M2-S1_2-08`  \n**Official indicator:** ว 1.2 ม.2/8  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Plan a fair investigation of heart rate before and after activity.
@@ -823,7 +823,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. 18 beats in 15 seconds equals how many per minute?  
    **Answer:** 72 beats per minute.
 
-### Lesson 9 — Care for the circulatory system
+## Lesson 52 — [M2] Care for the circulatory system
 
 **Objective:** `M2-S1_2-09`  \n**Official indicator:** ว 1.2 ม.2/9  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain circulatory health and preventive behaviours.
@@ -838,7 +838,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. Why rest after strenuous exercise?  
    **Answer:** To support recovery.
 
-### Lesson 10 — Describe the central nervous system
+## Lesson 53 — [M2] Describe the central nervous system
 
 **Objective:** `M2-S1_2-10`  \n**Official indicator:** ว 1.2 ม.2/10  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Identify the brain and spinal cord and explain their roles.
@@ -853,7 +853,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. What protects the brain?  
    **Answer:** The skull.
 
-### Lesson 11 — Protect the nervous system
+## Lesson 54 — [M2] Protect the nervous system
 
 **Objective:** `M2-S1_2-11`  \n**Official indicator:** ว 1.2 ม.2/11  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain the importance of protecting the brain and spinal cord.
@@ -868,7 +868,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. What do you do after a suspected serious spinal injury?  
    **Answer:** Avoid unnecessary movement and seek emergency medical help.
 
-### Lesson 12 — Identify reproductive organs
+## Lesson 55 — [M2] Identify reproductive organs
 
 **Objective:** `M2-S1_2-12`  \n**Official indicator:** ว 1.2 ม.2/12  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Identify male and female reproductive organs and their functions.
@@ -883,7 +883,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. What is the uterus's role?  
    **Answer:** It is where an embryo can implant and develop.
 
-### Lesson 13 — Explain sex hormones
+## Lesson 56 — [M2] Explain sex hormones
 
 **Objective:** `M2-S1_2-13`  \n**Official indicator:** ว 1.2 ม.2/13  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain how sex hormones contribute to puberty.
@@ -898,7 +898,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. Why do bodies change during puberty?  
    **Answer:** Hormones trigger physical and reproductive development.
 
-### Lesson 14 — Understand puberty and personal care
+## Lesson 57 — [M2] Understand puberty and personal care
 
 **Objective:** `M2-S1_2-14`  \n**Official indicator:** ว 1.2 ม.2/14  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Explain puberty changes and healthy physical and mental care.
@@ -913,7 +913,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. Who can help with puberty concerns?  
    **Answer:** A trusted adult or qualified health professional.
 
-### Lesson 15 — Explain the menstrual cycle and early development
+## Lesson 58 — [M2] Explain the menstrual cycle and early development
 
 **Objective:** `M2-S1_2-15`  \n**Official indicator:** ว 1.2 ม.2/15  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain ovulation, menstruation, fertilisation and early embryo development.
@@ -928,7 +928,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. What forms when sperm fertilises an egg?  
    **Answer:** A zygote.
 
-### Lesson 16 — Compare contraception methods
+## Lesson 59 — [M2] Compare contraception methods
 
 **Objective:** `M2-S1_2-16`  \n**Official indicator:** ว 1.2 ม.2/16  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Select contraception using reliable health information.
@@ -943,7 +943,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. Do all contraception methods prevent STIs?  
    **Answer:** No.
 
-### Lesson 17 — Recognise impacts of adolescent pregnancy
+## Lesson 60 — [M2] Recognise impacts of adolescent pregnancy
 
 **Objective:** `M2-S1_2-17`  \n**Official indicator:** ว 1.2 ม.2/17  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain potential impacts and identify responsible sources of support.
@@ -961,7 +961,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ## M3 — Genetics and biodiversity
 
-### Lesson 1 — Relate genes, DNA and chromosomes
+## Lesson 61 — [M3] Relate genes, DNA and chromosomes
 
 **Objective:** `M3-S1_3-01`  \n**Official indicator:** ว 1.3 ม.3/1  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain relationships among genes, DNA and chromosomes.
@@ -976,7 +976,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. What is a gene?  
    **Answer:** A section of DNA with information for a functional product or inherited characteristic.
 
-### Lesson 2 — Explain dominant and recessive inheritance
+## Lesson 62 — [M3] Explain dominant and recessive inheritance
 
 **Objective:** `M3-S1_3-02`  \n**Official indicator:** ว 1.3 ม.3/2  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain single-character inheritance with complete dominance.
@@ -991,7 +991,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. If T is dominant, which genotypes show the dominant trait?  
    **Answer:** TT and Tt.
 
-### Lesson 3 — Calculate inheritance ratios
+## Lesson 63 — [M3] Calculate inheritance ratios
 
 **Objective:** `M3-S1_3-03`  \n**Official indicator:** ว 1.3 ม.3/3  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Determine offspring genotypes and phenotypes for a single-gene cross.
@@ -1006,7 +1006,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. Which tool organises allele combinations?  
    **Answer:** A Punnett square.
 
-### Lesson 4 — Compare mitosis and meiosis
+## Lesson 64 — [M3] Compare mitosis and meiosis
 
 **Objective:** `M3-S1_3-04`  \n**Official indicator:** ว 1.3 ม.3/4  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Compare cell division processes and their roles.
@@ -1021,7 +1021,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. Which process produces gametes?  
    **Answer:** Meiosis.
 
-### Lesson 5 — Explain genetic disorders
+## Lesson 65 — [M3] Explain genetic disorders
 
 **Objective:** `M3-S1_3-05`  \n**Official indicator:** ว 1.3 ม.3/5  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain how gene or chromosome changes can cause genetic disorders.
@@ -1036,7 +1036,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. Are all genetic conditions inherited?  
    **Answer:** No, some arise from new changes.
 
-### Lesson 6 — Recognise genetic counselling
+## Lesson 66 — [M3] Recognise genetic counselling
 
 **Objective:** `M3-S1_3-06`  \n**Official indicator:** ว 1.3 ม.3/6  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Explain how consultation and testing can help assess inherited risks.
@@ -1051,7 +1051,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. Who should interpret genetic test results?  
    **Answer:** A qualified health professional or genetic counsellor.
 
-### Lesson 7 — Explain uses of genetically modified organisms
+## Lesson 67 — [M3] Explain uses of genetically modified organisms
 
 **Objective:** `M3-S1_3-07`  \n**Official indicator:** ว 1.3 ม.3/7  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Describe applications of genetic modification in organisms.
@@ -1066,7 +1066,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. Why assess each GMO individually?  
    **Answer:** Benefits and risks depend on organism, trait and context.
 
-### Lesson 8 — Evaluate GMO benefits and impacts
+## Lesson 68 — [M3] Evaluate GMO benefits and impacts
 
 **Objective:** `M3-S1_3-08`  \n**Official indicator:** ว 1.3 ม.3/8  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Communicate evidence-based benefits and possible impacts of GMOs.
@@ -1081,7 +1081,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. What makes a responsible science explanation?  
    **Answer:** It presents evidence, uncertainties and relevant viewpoints.
 
-### Lesson 9 — Compare biodiversity among ecosystems
+## Lesson 69 — [M3] Compare biodiversity among ecosystems
 
 **Objective:** `M3-S1_3-09`  \n**Official indicator:** ว 1.3 ม.3/9  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Compare species diversity using observations or data.
@@ -1096,7 +1096,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. Why use the same sampling method?  
    **Answer:** To make comparisons fair.
 
-### Lesson 10 — Explain the importance of biodiversity
+## Lesson 70 — [M3] Explain the importance of biodiversity
 
 **Objective:** `M3-S1_3-10`  \n**Official indicator:** ว 1.3 ม.3/10  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain how biodiversity supports ecosystems and people.
@@ -1111,7 +1111,7 @@ Each lesson maps to one official indicator and includes three practice questions
 3. What may happen if a key species disappears?  
    **Answer:** Food webs and ecosystem functions may be disrupted.
 
-### Lesson 11 — Conserve biodiversity
+## Lesson 71 — [M3] Conserve biodiversity
 
 **Objective:** `M3-S1_3-11`  \n**Official indicator:** ว 1.3 ม.3/11  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Propose or participate in practical biodiversity conservation.
@@ -1143,7 +1143,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 **Standards:** ว 2.2 ม.2/1–15 and ว 2.3 ม.2/1–6  
 **Coverage:** 21 additional M2 indicators; this section extends the earlier M2 biological-science lessons.
 
-### Physical Science Lesson 1 — Predict motion from resultant force
+## Lesson 72 — [M2] Predict motion from resultant force
 
 **Objective:** `M2-S2_2-01`  \n**Official indicator:** ว 2.2 ม.2/1  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Predict motion caused by the resultant of collinear forces using evidence.
@@ -1158,7 +1158,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. Which direction is acceleration?  
    **Answer:** In the direction of the resultant force.
 
-### Physical Science Lesson 2 — Draw collinear force diagrams
+## Lesson 73 — [M2] Draw collinear force diagrams
 
 **Objective:** `M2-S2_2-02`  \n**Official indicator:** ว 2.2 ม.2/2  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Draw force diagrams showing forces and their resultant on an object.
@@ -1173,7 +1173,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. Why label force arrows?  
    **Answer:** To show which forces act and their directions.
 
-### Physical Science Lesson 3 — Investigate liquid pressure
+## Lesson 74 — [M2] Investigate liquid pressure
 
 **Objective:** `M2-S2_2-03`  \n**Official indicator:** ว 2.2 ม.2/3  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Design a fair investigation of factors affecting liquid pressure.
@@ -1188,7 +1188,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. Why use the same liquid in a depth investigation?  
    **Answer:** To control density as a variable.
 
-### Physical Science Lesson 4 — Explain buoyancy and floating
+## Lesson 75 — [M2] Explain buoyancy and floating
 
 **Objective:** `M2-S2_2-04`  \n**Official indicator:** ว 2.2 ม.2/4  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Analyse buoyant force and why objects sink or float in liquids.
@@ -1203,7 +1203,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. Why can a steel ship float?  
    **Answer:** Its overall average density, including the air-filled hull, is less than water.
 
-### Physical Science Lesson 5 — Represent forces in a liquid
+## Lesson 76 — [M2] Represent forces in a liquid
 
 **Objective:** `M2-S2_2-05`  \n**Official indicator:** ว 2.2 ม.2/5  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Draw a force diagram for an object in a liquid.
@@ -1218,7 +1218,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. What does a balanced force diagram show?  
    **Answer:** Forces are equal in opposite directions.
 
-### Physical Science Lesson 6 — Compare static and kinetic friction
+## Lesson 77 — [M2] Compare static and kinetic friction
 
 **Objective:** `M2-S2_2-06`  \n**Official indicator:** ว 2.2 ม.2/6  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain static and kinetic friction using evidence.
@@ -1233,7 +1233,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. Which friction acts before a stationary box begins to slide?  
    **Answer:** Static friction.
 
-### Physical Science Lesson 7 — Investigate factors affecting friction
+## Lesson 78 — [M2] Investigate factors affecting friction
 
 **Objective:** `M2-S2_2-07`  \n**Official indicator:** ว 2.2 ม.2/7  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Design an experiment to investigate factors affecting friction magnitude.
@@ -1248,7 +1248,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. Why change only one factor at a time?  
    **Answer:** To identify its effect fairly.
 
-### Physical Science Lesson 8 — Draw friction force diagrams
+## Lesson 79 — [M2] Draw friction force diagrams
 
 **Objective:** `M2-S2_2-08`  \n**Official indicator:** ว 2.2 ม.2/8  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Draw diagrams showing friction and other forces acting on an object.
@@ -1263,7 +1263,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. Why include all relevant forces?  
    **Answer:** To analyse the object's motion correctly.
 
-### Physical Science Lesson 9 — Apply friction in everyday life
+## Lesson 80 — [M2] Apply friction in everyday life
 
 **Objective:** `M2-S2_2-09`  \n**Official indicator:** ว 2.2 ม.2/9  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain when friction should be increased or reduced in everyday situations.
@@ -1278,7 +1278,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. Give one safe way to increase bicycle braking friction.  
    **Answer:** Use suitable brake pads and maintain the braking system.
 
-### Physical Science Lesson 10 — Investigate moments of force
+## Lesson 81 — [M2] Investigate moments of force
 
 **Objective:** `M2-S2_2-10`  \n**Official indicator:** ว 2.2 ม.2/10  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Investigate rotational equilibrium and calculate moment using M = F × l.
@@ -1293,7 +1293,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. How can a smaller force create the same moment?  
    **Answer:** Apply it farther from the pivot.
 
-### Physical Science Lesson 11 — Compare magnetic, electric and gravitational fields
+## Lesson 82 — [M2] Compare magnetic, electric and gravitational fields
 
 **Objective:** `M2-S2_2-11`  \n**Official indicator:** ว 2.2 ม.2/11  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Compare sources of magnetic, electric and gravitational fields and the forces they exert.
@@ -1308,7 +1308,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. Name a common source of a magnetic field.  
    **Answer:** A magnet or electric current.
 
-### Physical Science Lesson 12 — Draw field-force diagrams
+## Lesson 83 — [M2] Draw field-force diagrams
 
 **Objective:** `M2-S2_2-12`  \n**Official indicator:** ว 2.2 ม.2/12  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Draw diagrams showing magnetic, electric and gravitational forces on objects.
@@ -1323,7 +1323,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. What do field lines help represent?  
    **Answer:** The direction of a field and, by convention, its relative strength.
 
-### Physical Science Lesson 13 — Compare strengths of non-contact forces
+## Lesson 84 — [M2] Compare strengths of non-contact forces
 
 **Objective:** `M2-S2_2-13`  \n**Official indicator:** ว 2.2 ม.2/13  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Analyse factors affecting magnetic, electric and gravitational force magnitudes.
@@ -1338,7 +1338,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. Why compare forces under controlled conditions?  
    **Answer:** To isolate how a factor affects force.
 
-### Physical Science Lesson 14 — Calculate speed and velocity
+## Lesson 85 — [M2] Calculate speed and velocity
 
 **Objective:** `M2-S2_2-14`  \n**Official indicator:** ว 2.2 ม.2/14  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Calculate speed and velocity using distance or displacement divided by time.
@@ -1353,7 +1353,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. A person returns to the starting point. What is displacement?  
    **Answer:** Zero.
 
-### Physical Science Lesson 15 — Represent displacement and velocity
+## Lesson 86 — [M2] Represent displacement and velocity
 
 **Objective:** `M2-S2_2-15`  \n**Official indicator:** ว 2.2 ม.2/15  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Draw diagrams representing displacement and velocity.
@@ -1368,7 +1368,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. What extra information does a velocity vector include?  
    **Answer:** Direction as well as magnitude.
 
-### Physical Science Lesson 16 — Calculate work and power
+## Lesson 87 — [M2] Calculate work and power
 
 **Objective:** `M2-S2_3-01`  \n**Official indicator:** ว 2.3 ม.2/1  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Calculate work and power using W = Fs and P = W/t.
@@ -1383,7 +1383,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. When is mechanical work zero despite a force?  
    **Answer:** When there is no displacement in the force direction.
 
-### Physical Science Lesson 17 — Explain simple machines
+## Lesson 88 — [M2] Explain simple machines
 
 **Objective:** `M2-S2_3-02`  \n**Official indicator:** ว 2.3 ม.2/2  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Analyse how simple machines change the size or direction of applied forces.
@@ -1398,7 +1398,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. Does an ideal simple machine create energy?  
    **Answer:** No; it trades force for distance or changes direction.
 
-### Physical Science Lesson 18 — Apply simple machines
+## Lesson 89 — [M2] Apply simple machines
 
 **Objective:** `M2-S2_3-03`  \n**Official indicator:** ว 2.3 ม.2/3  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain benefits and everyday applications of simple machines.
@@ -1413,7 +1413,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. What is one limitation of a real simple machine?  
    **Answer:** Some energy is dissipated, for example through friction.
 
-### Physical Science Lesson 19 — Investigate kinetic and gravitational potential energy
+## Lesson 90 — [M2] Investigate kinetic and gravitational potential energy
 
 **Objective:** `M2-S2_3-04`  \n**Official indicator:** ว 2.3 ม.2/4  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Design an investigation of factors affecting kinetic and gravitational potential energy.
@@ -1428,7 +1428,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. How can a fair test investigate height and potential energy?  
    **Answer:** Change height while keeping mass and other conditions constant.
 
-### Physical Science Lesson 20 — Explain conservation of mechanical energy
+## Lesson 91 — [M2] Explain conservation of mechanical energy
 
 **Objective:** `M2-S2_3-05`  \n**Official indicator:** ว 2.3 ม.2/5  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Interpret data showing transfers between gravitational potential and kinetic energy when mechanical energy is conserved.
@@ -1443,7 +1443,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. What remains constant in an ideal system with no energy loss?  
    **Answer:** Total mechanical energy.
 
-### Physical Science Lesson 21 — Apply conservation of energy
+## Lesson 92 — [M2] Apply conservation of energy
 
 **Objective:** `M2-S2_3-06`  \n**Official indicator:** ว 2.3 ม.2/6  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Analyse energy transformations and transfers using the conservation of energy law.
@@ -1464,7 +1464,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 **Standard:** ว 3.2 ม.2/1–10  
 **Coverage:** 10 additional M2 indicators.
 
-### Earth Science Lesson 1 — Compare fossil fuels
+## Lesson 93 — [M2] Compare fossil fuels
 
 **Objective:** `M2-S3_2-01`  \n**Official indicator:** ว 3.2 ม.2/1  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Compare formation, properties, uses and impacts of fossil fuels using collected information.
@@ -1479,7 +1479,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. Name one environmental impact of fossil-fuel use.  
    **Answer:** Greenhouse-gas emissions or air pollution.
 
-### Earth Science Lesson 2 — Use fossil fuels responsibly
+## Lesson 94 — [M2] Use fossil fuels responsibly
 
 **Objective:** `M2-S3_2-02`  \n**Official indicator:** ว 3.2 ม.2/2  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Explain impacts of fossil-fuel use and propose responsible use.
@@ -1494,7 +1494,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. Why consider local conditions when planning energy use?  
    **Answer:** Resources, demand and environmental impacts differ by place.
 
-### Earth Science Lesson 3 — Compare renewable energy options
+## Lesson 95 — [M2] Compare renewable energy options
 
 **Objective:** `M2-S3_2-03`  \n**Official indicator:** ว 3.2 ม.2/3  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Compare benefits and limitations of renewable energy and propose suitable local options.
@@ -1509,7 +1509,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. What should guide a local renewable-energy choice?  
    **Answer:** Local resource availability, cost, reliability and environmental effects.
 
-### Earth Science Lesson 4 — Model Earth's internal structure
+## Lesson 96 — [M2] Model Earth's internal structure
 
 **Objective:** `M2-S3_2-04`  \n**Official indicator:** ว 3.2 ม.2/4  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Create a model of Earth's internal structure based on chemical composition.
@@ -1524,7 +1524,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. Why is a model useful?  
    **Answer:** It represents structures that cannot be directly observed in full.
 
-### Earth Science Lesson 5 — Explain weathering, erosion and deposition
+## Lesson 97 — [M2] Explain weathering, erosion and deposition
 
 **Objective:** `M2-S3_2-05`  \n**Official indicator:** ว 3.2 ม.2/5  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain weathering, erosion and deposition and their effects on landforms.
@@ -1539,7 +1539,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. What is deposition?  
    **Answer:** Settling and accumulation of transported sediment.
 
-### Earth Science Lesson 6 — Explain soil profiles and soil formation
+## Lesson 98 — [M2] Explain soil profiles and soil formation
 
 **Objective:** `M2-S3_2-06`  \n**Official indicator:** ว 3.2 ม.2/6  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain soil horizons, soil formation and factors affecting soil properties.
@@ -1554,7 +1554,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. Why does topsoil often contain more organic matter?  
    **Answer:** Plant and animal remains decompose near the surface.
 
-### Earth Science Lesson 7 — Measure soil properties
+## Lesson 99 — [M2] Measure soil properties
 
 **Objective:** `M2-S3_2-07`  \n**Official indicator:** ว 3.2 ม.2/7  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Use suitable tools to investigate selected soil properties and interpret results.
@@ -1569,7 +1569,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. What should be recorded during soil testing?  
    **Answer:** Method, units, observations and results.
 
-### Earth Science Lesson 8 — Explain surface water and groundwater
+## Lesson 100 — [M2] Explain surface water and groundwater
 
 **Objective:** `M2-S3_2-08`  \n**Official indicator:** ว 3.2 ม.2/8  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Model the factors and processes that form surface-water and groundwater sources.
@@ -1584,7 +1584,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. What allows water to recharge an aquifer?  
    **Answer:** Infiltration and percolation through permeable ground.
 
-### Earth Science Lesson 9 — Plan sustainable local water use
+## Lesson 101 — [M2] Plan sustainable local water use
 
 **Objective:** `M2-S3_2-09`  \n**Official indicator:** ว 3.2 ม.2/9  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Model water use and propose sustainable local water-management practices.
@@ -1599,7 +1599,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. What should a local water plan consider?  
    **Answer:** Supply, demand, quality, ecosystems and seasonal variation.
 
-### Earth Science Lesson 10 — Model geological and water-related hazards
+## Lesson 102 — [M2] Model geological and water-related hazards
 
 **Objective:** `M2-S3_2-10`  \n**Official indicator:** ว 3.2 ม.2/10  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Model causes and impacts of floods, coastal erosion, landslides, sinkholes and land subsidence.
@@ -1617,7 +1617,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 
 ## M3 — Materials and chemical reactions
 
-### Lesson 1 — Identify properties and uses of polymers, ceramics and composites
+## Lesson 103 — [M3] Identify properties and uses of polymers, ceramics and composites
 
 **Objective:** `M3-S2_1-01`  \n**Official indicator:** ว 2.1 ม.3/1  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Use evidence and information to identify physical properties and uses of polymers, ceramics and composite materials.
@@ -1632,7 +1632,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. Why is reinforced concrete a composite?  
    **Answer:** It combines concrete and steel to provide useful combined properties.
 
-### Lesson 2 — Use materials economically and responsibly
+## Lesson 104 — [M3] Use materials economically and responsibly
 
 **Objective:** `M3-S2_1-02`  \n**Official indicator:** ว 2.1 ม.3/2  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Explain the value of polymers, ceramics and composites and recommend economical, responsible use.
@@ -1647,7 +1647,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. Name one responsible way to extend a product's useful life.  
    **Answer:** Repair, maintain or reuse it where safe.
 
-### Lesson 3 — Model chemical reactions
+## Lesson 105 — [M3] Model chemical reactions
 
 **Objective:** `M3-S2_1-03`  \n**Official indicator:** ว 2.1 ม.3/3  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain chemical reactions as rearrangements of atoms and represent them with word equations.
@@ -1662,7 +1662,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. What happens to atoms during a chemical reaction?  
    **Answer:** They are rearranged into new combinations.
 
-### Lesson 4 — Apply the law of conservation of mass
+## Lesson 106 — [M3] Apply the law of conservation of mass
 
 **Objective:** `M3-S2_1-04`  \n**Official indicator:** ว 2.1 ม.3/4  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Use evidence to explain that total mass is conserved in a chemical reaction.
@@ -1677,7 +1677,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. Why can an open reaction container show a lower measured mass?  
    **Answer:** A gas may escape into the surroundings.
 
-### Lesson 5 — Compare endothermic and exothermic reactions
+## Lesson 107 — [M3] Compare endothermic and exothermic reactions
 
 **Objective:** `M3-S2_1-05`  \n**Official indicator:** ว 2.1 ม.3/5  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Analyse temperature evidence to distinguish heat-absorbing and heat-releasing reactions.
@@ -1692,7 +1692,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. What evidence can help identify the type of reaction?  
    **Answer:** A suitable temperature measurement and the direction of temperature change in the surroundings.
 
-### Lesson 6 — Explain common chemical reactions
+## Lesson 108 — [M3] Explain common chemical reactions
 
 **Objective:** `M3-S2_1-06`  \n**Official indicator:** ว 2.1 ม.3/6  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain rusting, acid-metal, acid-base, base-metal, combustion, acid rain and photosynthesis reactions using evidence and word equations.
@@ -1707,7 +1707,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. Which substances react in photosynthesis?  
    **Answer:** Carbon dioxide and water, with light energy.
 
-### Lesson 7 — Evaluate benefits and hazards of chemical reactions
+## Lesson 109 — [M3] Evaluate benefits and hazards of chemical reactions
 
 **Objective:** `M3-S2_1-07`  \n**Official indicator:** ว 2.1 ม.3/7  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Identify benefits and hazards of everyday chemical reactions and recommend prevention or mitigation measures.
@@ -1722,7 +1722,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 3. What should learners do before using a household chemical?  
    **Answer:** Read the label and follow adult or teacher safety instructions; never mix products.
 
-### Lesson 8 — Design a solution using chemical-reaction knowledge
+## Lesson 110 — [M3] Design a solution using chemical-reaction knowledge
 
 **Objective:** `M3-S2_1-08`  \n**Official indicator:** ว 2.1 ม.3/8  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Design and evaluate a safe everyday solution using knowledge of chemical reactions, integrating science, mathematics, technology and engineering.
@@ -1749,7 +1749,7 @@ Official source: OBEC, *Learning Standards and Indicators (Revised B.E. 2560)*, 
 Each lesson maps to one official indicator and includes three practice questions with answer keys. Electrical activities must use teacher-approved low-voltage supplies; no mains electricity. Never look directly at the Sun or direct lasers at eyes. Hazard lessons use official safety guidance and classroom case studies, not field visits to dangerous locations.
 
 
-## Lesson 1 — Apply Ohm's law
+## Lesson 111 — [M3] Apply Ohm's law
 
 **Objective:** `M3-S2_3-01`  \n**Official indicator:** ว 2.3 ม.3/1  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Use V = IR to solve for voltage, current or resistance.
@@ -1765,7 +1765,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** It rises proportionally.
 
 
-## Lesson 2 — Graph current and potential difference
+## Lesson 112 — [M3] Graph current and potential difference
 
 **Objective:** `M3-S2_3-02`  \n**Official indicator:** ว 2.3 ม.3/2  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Plot and interpret current–voltage data for a conductor.
@@ -1781,7 +1781,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** Conductance (1/R).
 
 
-## Lesson 3 — Measure electrical quantities
+## Lesson 113 — [M3] Measure electrical quantities
 
 **Objective:** `M3-S2_3-03`  \n**Official indicator:** ว 2.3 ม.3/3  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Use meters correctly in low-voltage learning circuits.
@@ -1797,7 +1797,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** To reduce electric-shock and injury risk.
 
 
-## Lesson 4 — Analyse series and parallel circuits
+## Lesson 114 — [M3] Analyse series and parallel circuits
 
 **Objective:** `M3-S2_3-04`  \n**Official indicator:** ว 2.3 ม.3/4  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Compare current and potential difference in series and parallel circuits.
@@ -1813,7 +1813,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** It increases.
 
 
-## Lesson 5 — Draw series and parallel circuits
+## Lesson 115 — [M3] Draw series and parallel circuits
 
 **Objective:** `M3-S2_3-05`  \n**Official indicator:** ว 2.3 ม.3/5  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Represent circuit arrangements with standard symbols.
@@ -1829,7 +1829,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** A standard lamp symbol.
 
 
-## Lesson 6 — Explain basic electronic components
+## Lesson 116 — [M3] Explain basic electronic components
 
 **Objective:** `M3-S2_3-06`  \n**Official indicator:** ว 2.3 ม.3/6  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Describe the roles of resistors, diodes, transistors and capacitors.
@@ -1845,7 +1845,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** Store and release electric charge.
 
 
-## Lesson 7 — Build a simple electronic circuit
+## Lesson 117 — [M3] Build a simple electronic circuit
 
 **Objective:** `M3-S2_3-07`  \n**Official indicator:** ว 2.3 ม.3/7  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Plan and assemble a basic low-voltage circuit safely.
@@ -1861,7 +1861,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** Disconnect power safely and tell the teacher.
 
 
-## Lesson 8 — Calculate electrical energy and cost
+## Lesson 118 — [M3] Calculate electrical energy and cost
 
 **Objective:** `M3-S2_3-08`  \n**Official indicator:** ว 2.3 ม.3/8  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Use E = Pt and appliance data to estimate energy and cost.
@@ -1877,7 +1877,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** Energy used in kWh multiplied by the tariff.
 
 
-## Lesson 9 — Use electrical appliances efficiently and safely
+## Lesson 119 — [M3] Use electrical appliances efficiently and safely
 
 **Objective:** `M3-S2_3-09`  \n**Official indicator:** ว 2.3 ม.3/9  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Recommend efficient appliance choices and safe practices.
@@ -1893,7 +1893,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** Switch off unused appliances or choose efficient devices.
 
 
-## Lesson 10 — Model wave formation and components
+## Lesson 120 — [M3] Model wave formation and components
 
 **Objective:** `M3-S2_3-10`  \n**Official indicator:** ว 2.3 ม.3/10  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Create a model showing how waves transfer energy and identify wavelength, frequency and amplitude.
@@ -1907,7 +1907,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** The distance between two successive points in phase, such as crest to crest.
 3. What does amplitude measure?  
    **Answer:** The maximum displacement from the rest position.
-## Lesson 11 — Explain electromagnetic waves and spectrum
+## Lesson 121 — [M3] Explain electromagnetic waves and spectrum
 
 **Objective:** `M3-S2_3-11`  \n**Official indicator:** ว 2.3 ม.3/11  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain electromagnetic waves and identify the regions of the electromagnetic spectrum.
@@ -1921,7 +1921,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** Radio waves and visible light (among others).
 3. In a vacuum, do all electromagnetic waves travel at the same speed?  
    **Answer:** Yes, at the speed of light.
-## Lesson 12 — Evaluate electromagnetic wave applications and hazards
+## Lesson 122 — [M3] Evaluate electromagnetic wave applications and hazards
 
 **Objective:** `M3-S2_3-12`  \n**Official indicator:** ว 2.3 ม.3/12  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain useful applications and potential hazards of electromagnetic waves in daily life.
@@ -1935,7 +1935,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** Skin and eye damage, including increased skin-cancer risk.
 3. Why follow safety procedures for X-rays?  
    **Answer:** They are ionising radiation and can damage tissue.
-## Lesson 13 — Investigate reflection of light
+## Lesson 123 — [M3] Investigate reflection of light
 
 **Objective:** `M3-S2_3-13`  \n**Official indicator:** ว 2.3 ม.3/13  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Design and conduct a suitable experiment to test the law of reflection.
@@ -1949,7 +1949,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** Angle of incidence equals angle of reflection.
 3. What must be kept in the same plane?  
    **Answer:** Incident ray, normal and reflected ray.
-## Lesson 14 — Draw images formed by mirrors
+## Lesson 124 — [M3] Draw images formed by mirrors
 
 **Objective:** `M3-S2_3-14`  \n**Official indicator:** ว 2.3 ม.3/14  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Use ray diagrams to describe mirror images.
@@ -1963,7 +1963,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** A line perpendicular to the mirror at the point of incidence.
 3. What can a concave mirror do?  
    **Answer:** It can form real or virtual images depending on object position.
-## Lesson 15 — Explain refraction and dispersion
+## Lesson 125 — [M3] Explain refraction and dispersion
 
 **Objective:** `M3-S2_3-15`  \n**Official indicator:** ว 2.3 ม.3/15  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain bending of light and separation of white light.
@@ -1977,7 +1977,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** It disperses into a spectrum of colours.
 3. Why does light change direction at a boundary?  
    **Answer:** Its speed changes when it enters a different medium at an angle.
-## Lesson 16 — Draw images formed by thin lenses
+## Lesson 126 — [M3] Draw images formed by thin lenses
 
 **Objective:** `M3-S2_3-16`  \n**Official indicator:** ว 2.3 ม.3/16  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Use principal rays to model image formation by thin lenses.
@@ -1991,7 +1991,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** A concave lens.
 3. What is the principal axis?  
    **Answer:** The line through the optical centre and centres of curvature.
-## Lesson 17 — Explain optical instruments and the eye
+## Lesson 127 — [M3] Explain optical instruments and the eye
 
 **Objective:** `M3-S2_3-17`  \n**Official indicator:** ว 2.3 ม.3/17  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain how lenses and mirrors support vision and optical instruments.
@@ -2005,7 +2005,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** A concave (diverging) lens.
 3. Name one optical instrument that uses lenses.  
    **Answer:** Microscope, telescope or magnifying glass.
-## Lesson 18 — Draw optical instrument and eye ray diagrams
+## Lesson 128 — [M3] Draw optical instrument and eye ray diagrams
 
 **Objective:** `M3-S2_3-18`  \n**Official indicator:** ว 2.3 ม.3/18  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Represent image formation in the eye and optical instruments.
@@ -2019,7 +2019,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** Its focal length changes to focus near or distant objects.
 3. Where should the final image focus for clear vision?  
    **Answer:** On the retina.
-## Lesson 19 — Explain effects of illuminance on vision
+## Lesson 129 — [M3] Explain effects of illuminance on vision
 
 **Objective:** `M3-S2_3-19`  \n**Official indicator:** ว 2.3 ม.3/19  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Explain how light brightness affects the eyes using researched evidence.
@@ -2033,7 +2033,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** It can damage or discomfort the eyes.
 3. What should be considered when evaluating screen use?  
    **Answer:** Brightness, viewing distance, duration and regular breaks.
-## Lesson 20 — Measure illuminance
+## Lesson 130 — [M3] Measure illuminance
 
 **Objective:** `M3-S2_3-20`  \n**Official indicator:** ว 2.3 ม.3/20  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Use a light meter and record illuminance in lux.
@@ -2047,7 +2047,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** A lux meter or light meter.
 3. Why keep the meter position consistent when comparing readings?  
    **Answer:** To make the comparison fair.
-## Lesson 21 — Recommend suitable lighting
+## Lesson 131 — [M3] Recommend suitable lighting
 
 **Objective:** `M3-S2_3-21`  \n**Official indicator:** ว 2.3 ม.3/21  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Use illuminance evidence to recommend lighting for tasks.
@@ -2061,7 +2061,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** It causes discomfort and reduces visual performance.
 3. What evidence supports a lighting recommendation?  
    **Answer:** Measured lux levels and the task being performed.
-## Lesson 22 — Explain planetary orbits using gravity
+## Lesson 132 — [M3] Explain planetary orbits using gravity
 
 **Objective:** `M3-S3_1-01`  \n**Official indicator:** ว 3.1 ม.3/1  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain orbital motion using gravitational attraction and the inverse-square relationship.
@@ -2077,7 +2077,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** It becomes one quarter.
 
 
-## Lesson 23 — Model seasons and apparent solar motion
+## Lesson 133 — [M3] Model seasons and apparent solar motion
 
 **Objective:** `M3-S3_1-02`  \n**Official indicator:** ว 3.1 ม.3/2  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Model seasons using Earth's axial tilt and orbit.
@@ -2093,7 +2093,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** The tilted axis changes daylight duration in each hemisphere.
 
 
-## Lesson 24 — Model lunar phases and tides
+## Lesson 134 — [M3] Model lunar phases and tides
 
 **Objective:** `M3-S3_1-03`  \n**Official indicator:** ว 3.1 ม.3/3  \n**Priority classification (OBEC 2021):** must_know
 **Learning outcome:** Explain lunar phases, moonrise timing and tides.
@@ -2109,7 +2109,7 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** A tide with a larger tidal range near new and full moons.
 
 
-## Lesson 25 — Evaluate space technology
+## Lesson 135 — [M3] Evaluate space technology
 
 **Objective:** `M3-S3_1-04`  \n**Official indicator:** ว 3.1 ม.3/4  \n**Priority classification (OBEC 2021):** should_know
 **Learning outcome:** Describe uses of satellites and space exploration.
@@ -2136,7 +2136,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ## M1 — Design and Technology (W4.1)
 
-### M1-S4_1-01 — Explain technology in everyday life
+## Lesson 136 — [M1] Explain technology in everyday life
 
 **Objective:** `M1-S4_1-01`
 
@@ -2148,7 +2148,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. What are the three main parts of a simple technology system? **Answer:** Input, process and output.
 3. Give one example of feedback. **Answer:** A thermostat switches heating off when the target temperature is reached.
 
-### M1-S4_1-02 — Identify a community problem or need
+## Lesson 137 — [M1] Identify a community problem or need
 
 **Objective:** `M1-S4_1-02`
 
@@ -2160,7 +2160,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. Why define the problem before designing? **Answer:** To understand what must be solved and for whom.
 3. What is intellectual property? **Answer:** A person's legally protected creation or work.
 
-### M1-S4_1-03 — Design and plan a solution
+## Lesson 138 — [M1] Design and plan a solution
 
 **Objective:** `M1-S4_1-03`
 
@@ -2172,7 +2172,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. Why compare more than one solution? **Answer:** To choose the option that best fits the needs and limits.
 3. What should a plan include? **Answer:** Tasks, resources, responsibilities and time.
 
-### M1-S4_1-04 — Test and improve a solution
+## Lesson 139 — [M1] Test and improve a solution
 
 **Objective:** `M1-S4_1-04`
 
@@ -2184,7 +2184,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. Why record test results? **Answer:** To use evidence when improving the design.
 3. What should happen after a weakness is found? **Answer:** Modify the design and test again.
 
-### M1-S4_1-05 — Choose and use tools safely
+## Lesson 140 — [M1] Choose and use tools safely
 
 **Objective:** `M1-S4_1-05`
 
@@ -2199,7 +2199,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ## M1 — Computational Thinking (W4.2)
 
-### M1-S4_2-01 — Design an algorithm using abstraction
+## Lesson 141 — [M1] Design an algorithm using abstraction
 
 **Objective:** `M1-S4_2-01`
 
@@ -2211,7 +2211,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. What does abstraction mean? **Answer:** Focusing on important details and ignoring unnecessary ones.
 3. Name one way to represent an algorithm. **Answer:** A flowchart or pseudocode.
 
-### M1-S4_2-02 — Write a simple program
+## Lesson 142 — [M1] Write a simple program
 
 **Objective:** `M1-S4_2-02`
 
@@ -2223,7 +2223,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. What does an IF condition do? **Answer:** Chooses an action based on whether a test is true.
 3. Why test a program with different inputs? **Answer:** To find errors and check expected results.
 
-### M1-S4_2-03 — Collect and present data digitally
+## Lesson 143 — [M1] Collect and present data digitally
 
 **Objective:** `M1-S4_2-03`
 
@@ -2235,7 +2235,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. Why process data? **Answer:** To make it useful and meaningful.
 3. Name one suitable way to present data. **Answer:** A bar chart or table.
 
-### M1-S4_2-04 — Use information technology safely
+## Lesson 144 — [M1] Use information technology safely
 
 **Objective:** `M1-S4_2-04`
 
@@ -2250,7 +2250,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ## M2 — Matter and Solutions (W2.1)
 
-### M2-S2_1-01 — Explain methods for separating mixtures
+## Lesson 145 — [M2] Explain methods for separating mixtures
 
 **Objective:** `M2-S2_1-01`
 
@@ -2262,7 +2262,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. Which method separates liquids with different boiling points? **Answer:** Simple distillation.
 3. What does paper chromatography separate? **Answer:** Components of a mixture based on their movement through paper and solvent.
 
-### M2-S2_1-02 — Separate mixtures using suitable methods
+## Lesson 146 — [M2] Separate mixtures using suitable methods
 
 **Objective:** `M2-S2_1-02`
 
@@ -2274,7 +2274,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. Which method separates coloured dyes? **Answer:** Paper chromatography.
 3. Why must the method match the mixture? **Answer:** Separation depends on differences in physical properties.
 
-### M2-S2_1-03 — Apply separation methods to daily problems
+## Lesson 147 — [M2] Apply separation methods to daily problems
 
 **Objective:** `M2-S2_1-03`
 
@@ -2286,7 +2286,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. What should be considered when choosing a method? **Answer:** Safety, cost, time and properties of the mixture.
 3. How can mathematics help? **Answer:** By measuring quantities, time or recovery rate.
 
-### M2-S2_1-04 — Investigate factors affecting solubility
+## Lesson 148 — [M2] Investigate factors affecting solubility
 
 **Objective:** `M2-S2_1-04`
 
@@ -2298,7 +2298,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. Name one factor affecting the solubility of many solids. **Answer:** Temperature.
 3. How can a fair test be maintained? **Answer:** Change one variable and keep others constant.
 
-### M2-S2_1-05 — Calculate concentration as a percentage
+## Lesson 149 — [M2] Calculate concentration as a percentage
 
 **Objective:** `M2-S2_1-05`
 
@@ -2310,7 +2310,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. What does percentage volume/volume compare? **Answer:** Solute volume with total solution volume.
 3. Why include units? **Answer:** To show what quantities are being compared.
 
-### M2-S2_1-06 — Use solutions safely in everyday life
+## Lesson 150 — [M2] Use solutions safely in everyday life
 
 **Objective:** `M2-S2_1-06`
 
@@ -2325,7 +2325,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ## M2 — Design and Technology (W4.1)
 
-### M2-S4_1-01 — Predict technology trends and impacts
+## Lesson 151 — [M2] Predict technology trends and impacts
 
 **Objective:** `M2-S4_1-01`
 
@@ -2337,7 +2337,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. Give one possible environmental impact. **Answer:** More electronic waste or lower fuel use.
 3. What should guide technology choice? **Answer:** Suitability and its effects on people, society and the environment.
 
-### M2-S4_1-02 — Define a local problem or need
+## Lesson 152 — [M2] Define a local problem or need
 
 **Objective:** `M2-S4_1-02`
 
@@ -2349,7 +2349,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. Why gather information from users? **Answer:** To understand the real need.
 3. Name one reliable source. **Answer:** Direct observation, an interview or a trusted report.
 
-### M2-S4_1-03 — Design and plan a solution within constraints
+## Lesson 153 — [M2] Design and plan a solution within constraints
 
 **Objective:** `M2-S4_1-03`
 
@@ -2361,7 +2361,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. Why compare options? **Answer:** To choose the most suitable solution.
 3. What does a project timeline show? **Answer:** Tasks and when they should be completed.
 
-### M2-S4_1-04 — Evaluate and improve a designed solution
+## Lesson 154 — [M2] Evaluate and improve a designed solution
 
 **Objective:** `M2-S4_1-04`
 
@@ -2373,7 +2373,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. What is evaluation? **Answer:** Judging performance against criteria.
 3. Why retest after an improvement? **Answer:** To check whether the change solved the problem.
 
-### M2-S4_1-05 — Use materials and mechanisms safely
+## Lesson 155 — [M2] Use materials and mechanisms safely
 
 **Objective:** `M2-S4_1-05`
 
@@ -2388,7 +2388,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 ## M2 — Computational Thinking (W4.2)
 
-### M2-S4_2-01 — Design a computational algorithm
+## Lesson 156 — [M2] Design a computational algorithm
 
 **Objective:** `M2-S4_2-01`
 
@@ -2400,7 +2400,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. What does a loop do? **Answer:** Repeats instructions.
 3. What is a decision in a flowchart? **Answer:** A point where a condition selects a path.
 
-### M2-S4_2-02 — Write a program using logic and functions
+## Lesson 157 — [M2] Write a program using logic and functions
 
 **Objective:** `M2-S4_2-02`
 
@@ -2412,7 +2412,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. What is a function? **Answer:** A named reusable block of instructions.
 3. Why use a function? **Answer:** To reuse code and organise a program.
 
-### M2-S4_2-03 — Explain computer systems and communication technology
+## Lesson 158 — [M2] Explain computer systems and communication technology
 
 **Objective:** `M2-S4_2-03`
 
@@ -2424,7 +2424,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. What is a network? **Answer:** Connected devices that exchange data.
 3. Why use communication protocols? **Answer:** They set shared rules for exchanging information.
 
-### M2-S4_2-04 — Use information technology responsibly
+## Lesson 159 — [M2] Use information technology responsibly
 
 **Objective:** `M2-S4_2-04`
 
@@ -2453,7 +2453,7 @@ Each lesson maps to one official indicator and includes three practice questions
 **Source:** OBEC / IPST, *Indicators and Core Learning Content: Must-Know and Should-Know* (2021), M3 page 127.  
 **Coverage:** Six official indicators under standard ว 1.1. Each lesson includes one activity and three answer-keyed formative questions.
 
-## Lesson 1 — Explain interactions among ecosystem components
+## Lesson 160 — [M3] Explain interactions among ecosystem components
 
 **Objective:** `M3-S1_1-01`  
 **Official indicator:** ว 1.1 ม.3/1  
@@ -2465,7 +2465,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. Why do plants need sunlight and water? **Answer:** They use light energy and water in photosynthesis
 3. How can temperature affect organisms? **Answer:** It affects growth, activity and survival
 
-## Lesson 2 — Explain relationships among organisms
+## Lesson 161 — [M3] Explain relationships among organisms
 
 **Objective:** `M3-S1_1-02`  
 **Official indicator:** ว 1.1 ม.3/2  
@@ -2477,7 +2477,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. Give an example of mutualism. **Answer:** Bees obtain nectar while flowers are pollinated
 3. What is a population? **Answer:** Members of the same species living in the same area at the same time
 
-## Lesson 3 — Model energy transfer in food webs
+## Lesson 162 — [M3] Model energy transfer in food webs
 
 **Objective:** `M3-S1_1-03`  
 **Official indicator:** ว 1.1 ม.3/3  
@@ -2489,7 +2489,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. What does an arrow in a food chain show? **Answer:** The direction energy moves from food to consumer
 3. What may happen if one important prey species disappears? **Answer:** Predator populations may fall and the food web may change
 
-## Lesson 4 — Explain producers, consumers and decomposers
+## Lesson 163 — [M3] Explain producers, consumers and decomposers
 
 **Objective:** `M3-S1_1-04`  
 **Official indicator:** ว 1.1 ม.3/4  
@@ -2501,7 +2501,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. Give one decomposer. **Answer:** A fungus or bacterium
 3. Why are decomposers important? **Answer:** They break down dead material and return nutrients to the environment
 
-## Lesson 5 — Explain toxin accumulation in food chains
+## Lesson 164 — [M3] Explain toxin accumulation in food chains
 
 **Objective:** `M3-S1_1-05`  
 **Official indicator:** ว 1.1 ม.3/5  
@@ -2513,7 +2513,7 @@ Each lesson maps to one official indicator and includes three practice questions
 2. Why can top predators have high pollutant concentrations? **Answer:** They may consume many contaminated organisms and accumulate persistent substances
 3. Name one way to reduce this risk. **Answer:** Prevent pollutants from entering waterways and food webs
 
-## Lesson 6 — Protect ecosystem balance
+## Lesson 165 — [M3] Protect ecosystem balance
 
 **Objective:** `M3-S1_1-06`  
 **Official indicator:** ว 1.1 ม.3/6  
@@ -2542,7 +2542,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 Use accessible school and community examples. For practical design tasks, use teacher-approved materials and tools. Do not connect student projects to mains electricity. Respect privacy, intellectual property and school digital-safety rules.
 
-## Lesson 1 — Analyse technology change and its links to other subjects
+## Lesson 166 — [M3] Analyse technology change and its links to other subjects
 
 **Objective:** `M3-S4_1-01`  
 **Official indicator:** ว 4.1 ม.3/1  
@@ -2559,7 +2559,7 @@ Use accessible school and community examples. For practical design tasks, use te
 3. Give one way mathematics is used in technology.  
    **Answer:** Measuring, calculating cost, comparing performance or analysing data.
 
-## Lesson 2 — Identify a community problem or need
+## Lesson 167 — [M3] Identify a community problem or need
 
 **Objective:** `M3-S4_1-02`  
 **Official indicator:** ว 4.1 ม.3/2  
@@ -2576,7 +2576,7 @@ Use accessible school and community examples. For practical design tasks, use te
 3. Why must students credit information or images created by others?  
    **Answer:** To respect intellectual-property rights and avoid plagiarism.
 
-## Lesson 3 — Design and plan a step-by-step solution
+## Lesson 168 — [M3] Design and plan a step-by-step solution
 
 **Objective:** `M3-S4_1-03`  
 **Official indicator:** ว 4.1 ม.3/3  
@@ -2593,7 +2593,7 @@ Use accessible school and community examples. For practical design tasks, use te
 3. What should a work plan include?  
    **Answer:** The steps, resources and time needed for each step.
 
-## Lesson 4 — Test, evaluate and improve a solution
+## Lesson 169 — [M3] Test, evaluate and improve a solution
 
 **Objective:** `M3-S4_1-04`  
 **Official indicator:** ว 4.1 ม.3/4  
@@ -2610,7 +2610,7 @@ Use accessible school and community examples. For practical design tasks, use te
 3. Why should a team record test results?  
    **Answer:** To compare performance and choose improvements using evidence.
 
-## Lesson 5 — Use materials, mechanisms and tools safely
+## Lesson 170 — [M3] Use materials, mechanisms and tools safely
 
 **Objective:** `M3-S4_1-05`  
 **Official indicator:** ว 4.1 ม.3/5  
@@ -2627,7 +2627,7 @@ Use accessible school and community examples. For practical design tasks, use te
 3. Give one rule for using a hand tool safely.  
    **Answer:** Use the correct tool, follow the teacher's instructions and keep hands clear of sharp edges.
 
-## Lesson 6 — Develop an interdisciplinary application
+## Lesson 171 — [M3] Develop an interdisciplinary application
 
 **Objective:** `M3-S4_2-01`  
 **Official indicator:** ว 4.2 ม.3/1  
@@ -2644,7 +2644,7 @@ Use accessible school and community examples. For practical design tasks, use te
 3. Why should an application have a clear user and purpose?  
    **Answer:** So its features solve a real need.
 
-## Lesson 7 — Collect, process and present data
+## Lesson 172 — [M3] Collect, process and present data
 
 **Objective:** `M3-S4_2-02`  
 **Official indicator:** ว 4.2 ม.3/2  
@@ -2661,7 +2661,7 @@ Use accessible school and community examples. For practical design tasks, use te
 3. Which chart could compare the number of students choosing different activities?  
    **Answer:** A bar chart.
 
-## Lesson 8 — Evaluate information and media reliability
+## Lesson 173 — [M3] Evaluate information and media reliability
 
 **Objective:** `M3-S4_2-03`  
 **Official indicator:** ว 4.2 ม.3/3  
@@ -2678,7 +2678,7 @@ Use accessible school and community examples. For practical design tasks, use te
 3. Give one possible harm caused by sharing false information.  
    **Answer:** It can mislead people, create fear or lead to unsafe decisions.
 
-## Lesson 9 — Use information technology safely and responsibly
+## Lesson 174 — [M3] Use information technology safely and responsibly
 
 **Objective:** `M3-S4_2-04`  
 **Official indicator:** ว 4.2 ม.3/4  
