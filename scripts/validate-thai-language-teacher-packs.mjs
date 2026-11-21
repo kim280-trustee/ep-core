@@ -45,7 +45,9 @@ for (const pack of packs) {
     const section = markdown.slice(start, end);
     const objectiveLine = section.match(/^\*\*Objective:\*\*\s+(.+)$/m)?.[1] ?? "";
     const code = objectiveLine.match(/TH[1-5]\.\d-(?:P[1-6]|M[1-6]|M4-6)-\d+/)?.[0];
-    const indicator = code ? objectiveLine.replace(code, "").replace(/[\`]/g, "").replace(/^[\s—–:-]+/, "").trim() : "";
+    const indicator = code
+      ? objectiveLine.replace(code, "").replace(/[`]/g, "").replace(/^[\s—–:-]+/, "").trim() || heading[3]?.trim() || ""
+      : "";
     if (code && indicator) indicators.set(code, indicator);
   }
   const lessons = parseTeacherPackMarkdown(markdown);
