@@ -6,7 +6,7 @@ This section supersedes older historical rollout notes lower in this file. Live 
 
 The four specialist tracks are separately staged: Biology 108, Chemistry 81, Physics 67 and Earth/Space 44 outcomes (300 total). The 14 consolidated Science import files contain 546 lessons and 1,638 answer-keyed questions, including the separate specialist packs. The 415 official core objective codes match the core teacher packs exactly.
 
-The current repository has automated checks for all eight national learning-area pack sets and the two consolidated Science imports. GitHub Actions run 204 passed all-eight-pack validation, Thai B.E. 2568 competency-pack validation, Science, Social Studies, Health & PE and Arts parser validation, production build and ESLint. The final Science read-only SQL verification also passed all grade/priority checks, specialist totals and duplicate checks.
+The current repository has automated checks for all eight national learning-area pack sets and the two consolidated Science imports. GitHub Actions run 238 passed all-eight-pack validation, Thai B.E. 2568 competency-pack validation, Science, Social Studies, Health & PE, Arts, Foreign Languages and Thai Language parser validation, Mathematics and Career pack checks, production build and ESLint. The final Science read-only SQL verification also passed all grade/priority checks, specialist totals and duplicate checks.
 
 **Still intentionally deferred:** authenticated teacher preview/import, draft-save verification, student assessment, teacher review, gradebook and progress-reporting tests. These will be performed once after all curriculum source work is complete. No Science pack records have been imported or published; no school, class, student or progress data has been changed.
 
