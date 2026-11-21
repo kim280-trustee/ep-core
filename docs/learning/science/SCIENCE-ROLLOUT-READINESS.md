@@ -41,7 +41,7 @@ Primary priority-count checks from the OBEC 2021 summary: P4 has 16 Must-Know an
 - **Primary P1–P6:** complete in live staging — 139 official indicators aligned (15, 16, 25, 21, 32, 30). All 139 have a priority classification; the five dual-classified indicators are explicitly noted.
 - **Primary W1–W3:** 111 indicators complete — 10 P1, 12 P2, 20 P3, 16 P4, 27 P5, 26 P6. Corrective migrations now sequence topic and objective writes safely.
 - **Primary W4.2:** 28 indicators complete — 5, 4, 5, 5, 5, 4 by grade. Corrected P4/P5/P6 priority rows are applied in live staging.
-- **M1–M3:** 144 existing alignments (43, 48, 53) remain against official grade totals 52, 63 and 59. M1 has 9 missing; M2 has 15 missing; M3 requires code-level reconciliation because nine W3.2 records are outside the official 2021 indicator list and remain unclassified.
+- **M1–M3:** 144 existing alignments (43, 48, 53) remain against official grade totals 52, 63 and 59. M1 has 9 missing; M2 has 15 missing; M3 requires code-level reconciliation because nine W3.2 records remain unclassified pending exact mapping to the official 2021 indicator codes.
 - **M4–M6 core Science and Technology:** 102 shared indicators remain to be seeded once and aligned to all three grades.
 - **M4–M6 specialist outcomes:** Biology 108, Chemistry 81, Physics 67 and Earth/Space 44 are already catalogued separately (300 total).
 The `TECH` skill is part of the `SCI` subject. The 28 new P1–P6 W4.2 objectives are national Science and Technology indicators and must not be merged with the separate Click Start international Computer Studies course.
