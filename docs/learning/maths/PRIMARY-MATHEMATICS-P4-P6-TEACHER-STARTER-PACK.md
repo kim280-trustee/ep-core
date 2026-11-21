@@ -92,7 +92,7 @@
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate read and write whole numbers greater than 100,000.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -107,11 +107,11 @@ Students can:
 
 ### Practice questions
 1. Write 242,000 in expanded form.
-   **Answer:** The expanded form is 2,000,000 + 400,000 + 20,000.
+   **Answer:** 200,000 + 40,000 + 2,000.
 2. What is the value of the digit in the tens place in 242,000?
    **Answer:** The tens digit is 0; its value is 0.
 3. A class collects 242,000 bottle caps. Show the number using place-value groups.
-   **Answer:** Use the place-value groups shown by the expanded form: 2,000,000 + 400,000 + 20,000.
+   **Answer:** 200,000 + 40,000 + 2,000.
 
 ---
 
@@ -124,7 +124,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate compare and order large whole numbers.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -156,7 +156,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate represent fractions and mixed numbers.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -188,7 +188,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate compare and order fractions and mixed numbers.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -220,7 +220,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate read and write decimals to three decimal places.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -252,7 +252,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate compare and order decimals.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -284,7 +284,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate estimate results of the four basic operations.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -316,7 +316,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate find unknown values in addition and subtraction equations.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -348,7 +348,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate find unknown values in multiplication and division equations.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -380,7 +380,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate evaluate mixed-operation expressions.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -412,7 +412,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve two-step whole-number word problems.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -427,7 +427,7 @@ Students can:
 
 ### Practice questions
 1. A library has 92 storybooks and receives 23 more. How many storybooks are there now?
-   **Answer:**  104 storybooks.
+   **Answer:** 115 storybooks.
 2. There are 111 pencils. Students use 26 pencils. How many remain?
    **Answer:**  85 pencils remain.
 3. Write an equation for a situation where 36 items are joined by 18 more items, then solve it.
@@ -444,7 +444,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate create and solve two-step word problems.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -459,7 +459,7 @@ Students can:
 
 ### Practice questions
 1. A library has 94 storybooks and receives 24 more. How many storybooks are there now?
-   **Answer:**  106 storybooks.
+   **Answer:** 118 storybooks.
 2. There are 112 pencils. Students use 27 pencils. How many remain?
    **Answer:**  85 pencils remain.
 3. Write an equation for a situation where 37 items are joined by 18 more items, then solve it.
@@ -476,7 +476,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate add and subtract fractions and mixed numbers.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -508,7 +508,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve word problems involving fractions and mixed numbers.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -540,7 +540,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate add and subtract decimals.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -572,7 +572,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve word problems involving decimal operations.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -604,7 +604,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve problems involving time and duration.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -636,7 +636,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate measure and construct angles using a protractor.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -668,7 +668,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate find perimeter and area of rectangles.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -700,7 +700,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate classify angles by their measures.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -732,11 +732,11 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate construct rectangles from given side lengths.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use angle cards and a protractor. Identify the vertex and arms, classify the angle, measure it and construct a requested angle.
+**Teaching sequence:** Use rulers, set squares and squared paper. Model how opposite sides are parallel and equal and how all four angles are right angles; learners construct and check rectangles.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -746,13 +746,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. Classify angles of 45°, 90° and 120°.
-   **Answer:** 45° is acute, 90° is right, and 120° is obtuse.
-2. What tool is used to measure an angle accurately?
-   **Answer:** A protractor.
-3. Draw or describe an angle measuring 60°.
-   **Answer:** An acute angle measuring 60°; the two rays meet at one vertex.
-
+1. Construct a rectangle with length 6 cm and width 3 cm. What are the lengths of the opposite sides?
+   **Answer:** Opposite sides are 6 cm and 6 cm, and 3 cm and 3 cm; all four angles are 90°.
+2. State two properties that make a quadrilateral a rectangle.
+   **Answer:** Opposite sides are parallel and equal, and each interior angle is 90°.
+3. Find the perimeter of a rectangle measuring 6 cm by 3 cm.
+   **Answer:** 2 × (6 + 3) = 18 cm.
 ---
 
 ## Lesson 22 — Read and interpret bar charts and two-way tables
@@ -764,7 +763,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate read and interpret bar charts and two-way tables.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -796,7 +795,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate convert between common fractions and decimals.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -828,7 +827,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate use proportions to solve problems.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -860,7 +859,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate add and subtract fractions and mixed numbers.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -892,7 +891,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate multiply and divide fractions.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -924,7 +923,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve two-step fraction word problems.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -956,7 +955,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate multiply decimals.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -988,7 +987,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate divide decimals.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1020,7 +1019,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve two-step decimal word problems.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1052,7 +1051,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve percentage word problems.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1084,7 +1083,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate convert length measurements between metric units.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1116,7 +1115,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate convert weight measurements between metric units.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1148,11 +1147,11 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate find volume of rectangular prisms and solve capacity problems.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use solid models and real packages. Count faces, edges and vertices, compare properties and match solids to real objects.
+**Teaching sequence:** Build rectangular prisms with unit cubes. Count layers and cubes, connect the model to length × width × height, and relate cubic centimetres to millilitres when appropriate.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -1162,13 +1161,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. How many faces, edges and vertices does a cube have?
-   **Answer:** 6 faces, 12 edges and 8 vertices.
-2. Name a solid with two circular flat faces and one curved surface.
-   **Answer:** A cylinder.
-3. Which solid is suitable for a ball, and which for a drinks can?
-   **Answer:** A sphere for a ball; a cylinder for a drinks can.
-
+1. Find the volume of a rectangular prism measuring 5 cm × 4 cm × 3 cm.
+   **Answer:** 5 × 4 × 3 = 60 cm³.
+2. A container has a volume of 60 cm³. What volume is this in millilitres?
+   **Answer:** 60 mL, because 1 cm³ = 1 mL.
+3. A box measures 6 cm × 4 cm × 3 cm. How much greater is its volume than the first box?
+   **Answer:** 72 − 60 = 12 cm³ greater.
 ---
 
 ## Lesson 35 — Find perimeter and area of parallelograms and rhombi
@@ -1180,7 +1178,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate find perimeter and area of parallelograms and rhombi.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1212,11 +1210,11 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate construct parallel lines.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use base-ten blocks, place-value charts and number cards. Model each number in more than one form, then ask learners to explain how the place values determine its size.
+**Teaching sequence:** Use a ruler and set square to draw a line and construct a second line at a fixed distance that never meets it. Learners check the equal perpendicular distance and identify parallel lines in the classroom.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -1226,13 +1224,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. Write 2,410,000 in expanded form.
-   **Answer:** The expanded form is 200,000,000 + 4,000,000 + 100,000.
-2. What is the value of the digit in the tens place in 2,410,000?
-   **Answer:** The tens digit is 0; its value is 0.
-3. A class collects 2,410,000 bottle caps. Show the number using place-value groups.
-   **Answer:** Use the place-value groups shown by the expanded form: 200,000,000 + 4,000,000 + 100,000.
-
+1. Draw a line and construct a second line 2 cm away that is parallel to it. What tool can help?
+   **Answer:** Use a ruler and set square; keep the set square aligned while sliding it to draw the second line.
+2. How can you tell that two straight lines are parallel?
+   **Answer:** They stay the same distance apart and do not meet, even when extended.
+3. Name one pair of parallel lines in a familiar object or place.
+   **Answer:** The two long edges of a ruler or the two rails of a straight railway track are parallel.
 ---
 
 ## Lesson 37 — Classify quadrilaterals by their properties
@@ -1244,11 +1241,11 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate classify quadrilaterals by their properties.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use base-ten blocks, place-value charts and number cards. Model each number in more than one form, then ask learners to explain how the place values determine its size.
+**Teaching sequence:** Use quadrilateral cut-outs and property tables. Learners compare side lengths, parallel sides and right angles to classify squares, rectangles, parallelograms, rhombi and trapezoids.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -1258,13 +1255,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. Write 2,520,000 in expanded form.
-   **Answer:** The expanded form is 200,000,000 + 5,000,000 + 200,000.
-2. What is the value of the digit in the tens place in 2,520,000?
-   **Answer:** The tens digit is 0; its value is 0.
-3. A class collects 2,520,000 bottle caps. Show the number using place-value groups.
-   **Answer:** Use the place-value groups shown by the expanded form: 200,000,000 + 5,000,000 + 200,000.
-
+1. Which quadrilateral has four equal sides and four right angles?
+   **Answer:** A square.
+2. State one property shared by every parallelogram.
+   **Answer:** Both pairs of opposite sides are parallel.
+3. A quadrilateral has exactly one pair of parallel sides. Which common type could it be?
+   **Answer:** A trapezoid (trapezium, depending on the naming convention used in class).
 ---
 
 ## Lesson 38 — Construct quadrilaterals from given measurements
@@ -1276,11 +1272,11 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate construct quadrilaterals from given measurements.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use base-ten blocks, place-value charts and number cards. Model each number in more than one form, then ask learners to explain how the place values determine its size.
+**Teaching sequence:** Use rulers, protractors and squared paper to construct quadrilaterals from given side lengths and angles. Learners label measurements and verify the completed figure against the conditions.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -1290,13 +1286,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. Write 2,630,000 in expanded form.
-   **Answer:** The expanded form is 200,000,000 + 6,000,000 + 300,000.
-2. What is the value of the digit in the tens place in 2,630,000?
-   **Answer:** The tens digit is 0; its value is 0.
-3. A class collects 2,630,000 bottle caps. Show the number using place-value groups.
-   **Answer:** Use the place-value groups shown by the expanded form: 200,000,000 + 6,000,000 + 300,000.
-
+1. Construct a rectangle with sides 6 cm and 4 cm. What are the four interior angles?
+   **Answer:** Each interior angle is 90°.
+2. Construct a square with side length 4 cm. What is its perimeter?
+   **Answer:** 4 × 4 = 16 cm.
+3. How can you check that your constructed quadrilateral matches the measurements?
+   **Answer:** Measure each required side and angle, then check that opposite sides and the stated parallel/right-angle conditions are satisfied.
 ---
 
 ## Lesson 39 — Identify prisms and describe their properties
@@ -1308,7 +1303,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate identify prisms and describe their properties.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1340,7 +1335,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate read and interpret line graphs.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1372,7 +1367,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate create and interpret bar graphs.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1404,7 +1399,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate compare and order fractions and mixed numbers.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1436,7 +1431,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate represent comparisons of two quantities using ratios.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1468,7 +1463,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate find equivalent ratios.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1500,7 +1495,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate find the greatest common divisor of whole numbers.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1532,7 +1527,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate find the least common multiple of whole numbers.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1564,7 +1559,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve problems using greatest common divisors and least common multiples.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1596,7 +1591,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate evaluate mixed operations with fractions and mixed numbers.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1628,7 +1623,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve multi-step fraction and mixed-number word problems.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1660,7 +1655,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate divide decimals to three decimal places.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1692,7 +1687,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve multi-step decimal word problems.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1724,7 +1719,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve ratio and scale problems.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1756,7 +1751,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve percentage word problems in real-life contexts.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1788,7 +1783,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate extend and solve problems involving number patterns.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1820,11 +1815,11 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve volume problems involving composite rectangular prisms.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use solid models and real packages. Count faces, edges and vertices, compare properties and match solids to real objects.
+**Teaching sequence:** Build composite rectangular prisms from unit cubes or diagrams. Split each solid into non-overlapping rectangular prisms, calculate each volume and add the parts.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -1834,13 +1829,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. How many faces, edges and vertices does a cube have?
-   **Answer:** 6 faces, 12 edges and 8 vertices.
-2. Name a solid with two circular flat faces and one curved surface.
-   **Answer:** A cylinder.
-3. Which solid is suitable for a ball, and which for a drinks can?
-   **Answer:** A sphere for a ball; a cylinder for a drinks can.
-
+1. A composite solid is made from two joined prisms measuring 4 × 3 × 2 cm and 2 × 3 × 2 cm. Find its total volume.
+   **Answer:** (4 × 3 × 2) + (2 × 3 × 2) = 24 + 12 = 36 cm³.
+2. Why can a composite rectangular prism be split into smaller rectangular prisms to find its volume?
+   **Answer:** The parts do not overlap and together make the whole solid, so their volumes can be added.
+3. A solid is split into parts with volumes 48 cm³ and 30 cm³. What is the total volume?
+   **Answer:** 48 + 30 = 78 cm³.
 ---
 
 ## Lesson 56 — Find perimeter and area of polygons
@@ -1852,7 +1846,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate find perimeter and area of polygons.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1884,7 +1878,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve problems involving circumference and area of circles.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1916,7 +1910,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate classify triangles using their properties.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1948,7 +1942,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate construct triangles from given side lengths and angles.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1980,7 +1974,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate identify and describe three-dimensional solids.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -2012,7 +2006,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate match nets to three-dimensional solids.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -2044,7 +2038,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate read and interpret pie charts to solve problems.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
