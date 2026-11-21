@@ -1,5 +1,12 @@
 export function extractTeacherPackGradeCode(objectiveCode: string | null | undefined): string | null {
-  return objectiveCode?.match(/^([PM][1-6])[-_]/i)?.[1]?.toUpperCase() ?? null;
+  if (!objectiveCode) return null;
+
+  const directGrade = objectiveCode.match(/^([PM][1-6])[-_]/i)?.[1];
+  if (directGrade) return directGrade.toUpperCase();
+
+  // Social Studies codes place the grade after the standard (for example SO2.1-P4-03).
+  // M46 is intentionally not collapsed to one grade: those outcomes align to M4, M5 and M6.
+  return objectiveCode.match(/^SO[1-5]\.\d-([PM][1-6])-\d+$/i)?.[1]?.toUpperCase() ?? null;
 }
 
 export type ParsedTeacherPackQuestion = {
