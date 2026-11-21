@@ -134,3 +134,8 @@ Migration: `20261121114500_correct_science_m4_w1_2_indicator_11_priority.sql`.
 OBEC 2021 printed page 65 confirms ว 4.2 ป.2/3 is Must-Know; printed page 68 confirms ว 3.2 ป.3/2 is Must-Know. Both had been stored as Should-Know and are now corrected in both catalogues and in their teacher packs. Primary priority totals reconcile to 99 Must-Know and 45 Should-Know classifications (five dual-classified indicators) across 139 unique indicators.
 
 Migration: `20261121122000_correct_primary_science_p2_p3_must_know_priorities.sql`.
+
+
+## Official core teacher-pack parity verification
+
+The primary packs contain 139/139 unique P1–P6 objective codes and 417 formative tasks. The lower-secondary consolidated import contains 174/174 objective codes and 522 answer-keyed questions. The new upper-secondary consolidated import `SCIENCE-M4-M6-COMPLETE-IMPORT.md` contains 102/102 objective codes and 306 answer-keyed questions. Across P1–M6, all 415 official core objective codes match the live national master catalogue with no missing, extra or duplicate codes (1,245 formative tasks). Nine legacy M3 W3.2 outcomes are kept separately as supplementary content.
