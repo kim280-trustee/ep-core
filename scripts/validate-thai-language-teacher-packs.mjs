@@ -44,7 +44,7 @@ for (const pack of packs) {
     const end = headings[index + 1]?.index ?? markdown.length;
     const section = markdown.slice(start, end);
     const objectiveLine = section.match(/^\*\*Objective:\*\*\s+(.+)$/m)?.[1] ?? "";
-    const code = objectiveLine.match(/TH[1-5]\.\d-(?:P[1-6]|M4-6|M[1-6])-\d+/)?.[0];
+    const code = objectiveLine.match(/TH[1-5]\.\d-(?:M4-6|P[1-6]|M[1-6])-\d+(?=\s|$)/)?.[0];
     const indicator = code
       ? objectiveLine.replace(code, "").replace(/[`]/g, "").replace(/^[\s—–:-]+/, "").trim() || heading[3]?.trim() || ""
       : "";
