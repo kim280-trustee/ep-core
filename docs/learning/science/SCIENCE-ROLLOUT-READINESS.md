@@ -38,7 +38,7 @@ Primary priority-count checks from the OBEC 2021 summary: P4 has 16 Must-Know an
 
 ## Current implementation status
 
-- P1–P3: 42 W1–W3 indicators seeded (10 P1, 12 P2, 20 P3); together with W4.2 these grades reconcile to 15, 16 and 25 indicators respectively.
+- P1–P3: 42 W1–W3 indicators seeded (10 P1, 12 P2, 20 P3); together with W4.2 these grades reconcile to 15, 16 and 25 indicators respectively. The companion `P1-P3-science-w1-w3-teacher-starter-pack.md` now covers all 42 indicators with 42 lesson starters and 126 formative tasks.
 - P4–P6: 28 W4.2 indicators seeded (5, 5 and 4); 69 W1–W3 indicators remain (16 P4, 27 P5, 26 P6).
 - M1: 43 existing W1–W3 indicators; the 9 W4.1/W4.2 indicators are not yet seeded.
 - M2: 48 existing W1–W3 indicators; six W2.1 indicators and nine W4.1/W4.2 indicators remain to be reconciled/seeded.
