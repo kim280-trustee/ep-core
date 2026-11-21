@@ -15,7 +15,7 @@ const compiled = ts.transpileModule(parserSource, {
 const diagnostics = compiled.diagnostics ?? [];
 if (diagnostics.length) {
   for (const diagnostic of diagnostics) {
-    process.stderr.write("Parser TypeScript error: " + ts.flattenDiagnosticMessageText(diagnostic.messageText, "\\n") + "\\n");
+    process.stderr.write("Parser TypeScript error: " + ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n") + "\n");
   }
   process.exit(1);
 }
@@ -52,7 +52,7 @@ for (const lesson of lessons) {
     grades[grade] = (grades[grade] ?? 0) + 1;
   }
 
-  const titleGrade = lesson.title.match(/^\\[(P[1-3])\\]/)?.[1];
+  const titleGrade = lesson.title.match(/^\[(P[1-3])\]/)?.[1];
   if (titleGrade !== grade) failures.push("Lesson " + lesson.number + " heading grade " + titleGrade + " does not match objective grade " + grade);
   if (!lesson.learningOutcome.trim()) failures.push("Lesson " + lesson.number + " has no annual outcome text");
   if (!lesson.activity.trim()) failures.push("Lesson " + lesson.number + " has no teaching activity");
@@ -82,9 +82,9 @@ for (const grade of ["P1", "P2", "P3"]) {
 if (questionCount !== 72) failures.push("Expected 72 answer-keyed formative questions, parsed " + questionCount);
 
 if (failures.length) {
-  process.stderr.write("Thai 2025 competency pack validation failed (" + failures.length + " issue(s)):\\n");
-  for (const failure of failures) process.stderr.write("- " + failure + "\\n");
+  process.stderr.write("Thai 2025 competency pack validation failed (" + failures.length + " issue(s)):\n");
+  for (const failure of failures) process.stderr.write("- " + failure + "\n");
   process.exitCode = 1;
 } else {
-  process.stdout.write("PASS: Thai B.E. 2568 P1-P3 pack has 24 annual outcomes (8 per grade), 24 unique internal objective codes and 72 answer-keyed formative questions.\\n");
+  process.stdout.write("PASS: Thai B.E. 2568 P1-P3 pack has 24 annual outcomes (8 per grade), 24 unique internal objective codes and 72 answer-keyed formative questions.\n");
 }
