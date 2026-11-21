@@ -80,10 +80,11 @@ The eight 2008/2017 learning areas have 39 teacher-pack files covering 1,940 uni
 
 - `npm run validate:national-curriculum-packs` — all eight learning areas.
 - `npm run validate:science-packs` — executes the actual TypeScript importer parser against the 276 consolidated secondary Science lessons and 828 answer-keyed questions.
+- `npm run validate:social-studies-packs` — executes the actual TypeScript importer parser against all 418 Social Studies indicators and 1,254 answer-keyed tasks, checking every task includes its exact official Thai indicator.
 - `npm run validate:thai-2025-packs` — validates the 24 annual outcomes, P1/P2/P3 grade mapping and 72 answer-keyed questions in the separate B.E. 2568 pack.
 - CI also runs the production build and ESLint.
 
-The all-eight-area source-pack validator, Thai B.E. 2568 competency-pack validator, Science parser validator, production build and ESLint all passed together in GitHub Actions run 95. The run confirms 39 existing packs cover 1,940 unique official codes, the 2025 pack parses to 24 outcomes and 72 answer-keyed questions, and the Science parser validates 276 secondary lessons and 828 questions. Do not treat source-pack validation as an authenticated application import test.
+The all-eight-area source-pack validator, Thai B.E. 2568 competency-pack validator, Science parser validator, Social Studies parser validator, production build and ESLint are run together in GitHub Actions. Run 95 passed the first three validators, production build and ESLint before Social Studies answer authoring was added. The new Social Studies parser check is now included in CI and its result is pending. Do not treat source-pack validation as an authenticated application import test.
 
 ## 5. Scope boundaries and release plan
 
@@ -91,7 +92,7 @@ The all-eight-area source-pack validator, Thai B.E. 2568 competency-pack validat
 - Thai Studies remains outside this rollout and is not represented as complete.
 - Cambridge Click Start Computer Studies remains a separate international course; it is not a substitute for national Science and Technology indicators.
 - The 300 specialist upper-secondary Science outcomes remain separate from the 415 core Science indicators.
-- Social Studies' 1,254 assessment stems are currently generic teacher prompts, not fully authored indicator-specific assessment items. The next curriculum-content batch is to author three specific assessment tasks and answer/evidence guidance for each of its 418 indicators; this is distinct from the final application-testing phase.
+- Social Studies now has 418 lessons and 1,254 indicator-linked formative tasks with answer/evidence guidance. The remaining Social Studies importer item is expansion of the 61 shared M4–M6 outcomes across their three grade alignments using grade-scoped record codes.
 - Teacher packs remain Markdown source. No pack has been imported into a school organization or published as part of this batch.
 - No school, class, student, assignment, publication or learner-progress records were created or changed by the curriculum work.
 - Do not begin repeated subject-by-subject UI tests. Finish curriculum source and pack work first, then perform one consolidated authenticated teacher import, student assessment, teacher review, gradebook and progress-reporting test.
