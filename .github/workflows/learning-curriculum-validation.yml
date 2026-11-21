@@ -49,6 +49,9 @@ jobs:
       - name: Validate Health and PE teacher packs through importer parser
         run: npm run validate:health-pe-packs
 
+      - name: Validate Arts teacher packs through importer parser
+        run: npm run validate:arts-packs
+
       - name: Build production application
         run: npm run build
 
