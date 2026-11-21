@@ -84,9 +84,9 @@ with seed(grade_code,seq,code,classification) as (
  ('P1',1,'P1-S4_2-01','must_know'),('P1',2,'P1-S4_2-02','must_know'),('P1',3,'P1-S4_2-03','must_know'),('P1',4,'P1-S4_2-04','must_know'),('P1',5,'P1-S4_2-05','should_know'),
  ('P2',1,'P2-S4_2-01','must_know'),('P2',2,'P2-S4_2-02','must_know'),('P2',3,'P2-S4_2-03','should_know'),('P2',4,'P2-S4_2-04','should_know'),
  ('P3',1,'P3-S4_2-01','must_know'),('P3',2,'P3-S4_2-02','must_know'),('P3',3,'P3-S4_2-03','must_know'),('P3',4,'P3-S4_2-04','must_know'),('P3',5,'P3-S4_2-05','should_know'),
- ('P4',1,'P4-S4_2-01','must_know'),('P4',2,'P4-S4_2-02','must_know'),('P4',3,'P4-S4_2-03','must_know'),('P4',4,'P4-S4_2-04','must_know'),('P4',5,'P4-S4_2-05','should_know'),
- ('P5',1,'P5-S4_2-01','must_know'),('P5',2,'P5-S4_2-02','must_know'),('P5',3,'P5-S4_2-03','should_know'),('P5',4,'P5-S4_2-04','should_know'),('P5',5,'P5-S4_2-05','should_know'),
- ('P6',1,'P6-S4_2-01','must_know'),('P6',2,'P6-S4_2-02','must_know'),('P6',3,'P6-S4_2-03','should_know'),('P6',4,'P6-S4_2-04','should_know')
+ ('P4',1,'P4-S4_2-01','must_know'),('P4',2,'P4-S4_2-02','must_know'),('P4',3,'P4-S4_2-03','should_know'),('P4',4,'P4-S4_2-04','must_know'),('P4',5,'P4-S4_2-05','should_know'),
+ ('P5',1,'P5-S4_2-01','must_know'),('P5',2,'P5-S4_2-02','must_know'),('P5',3,'P5-S4_2-03','should_know'),('P5',4,'P5-S4_2-04','must_know'),('P5',5,'P5-S4_2-05','should_know'),
+ ('P6',1,'P6-S4_2-01','must_know'),('P6',2,'P6-S4_2-02','must_know'),('P6',3,'P6-S4_2-03','must_know'),('P6',4,'P6-S4_2-04','should_know')
 ),
 target as (
  select s.grade_code,s.seq,s.classification,o.id objective_id
