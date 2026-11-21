@@ -66,7 +66,7 @@ Migration: 20261121042000_seed_science_m4_cell_biology_genetics_core_indicators_
 
 ## Implemented tranche 3 — M5 W2.1 matter and chemical change
 
-The source-listed M5 W2.1 indicators are implemented: M5/1–10 and M5/14–25 (22 indicators). The source table does not list M5/11–13; these codes were deliberately not inferred or seeded. The priority split is 17 Must-Know and 5 Should-Know. Each indicator is aligned only to M5 in both curricula (44 alignments total). The teacher pack contains 22 lesson starters and 66 answer-keyed formative questions.
+The initial text extraction recovered M5 W2.1 M5/1–10 and M5/14–25 (22 indicators). A scanned segment containing M5/11–13 was skipped by that extraction and is now recovered and implemented in a corrective migration. The completed W2.1 set has 25 indicators (20 Must-Know, 5 Should-Know), aligned only to M5 in both curricula (50 alignments total). The teacher pack contains 25 lesson starters and 75 answer-keyed formative questions.
 
 Migration: 20261121052000_seed_science_m5_w2_1_chemistry_core_indicators.sql. Teacher pack: M5-science-matter-chemistry-teacher-starter-pack.md.
 
