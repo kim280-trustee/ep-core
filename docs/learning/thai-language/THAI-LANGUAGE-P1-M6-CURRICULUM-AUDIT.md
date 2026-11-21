@@ -62,3 +62,12 @@ OBEC's official curriculum portal lists the Thai Language indicator document and
 https://www.academic.obec.go.th/web/news/view/75
 
 The Thai indicator wording and priority labels in the database are retained as the source-of-truth curriculum records. Teaching activities and formative assessment tasks are teacher-created supporting materials.
+
+
+## Indicator-specific assessment authoring — 21 November 2026
+
+All 319 lessons now contain three Thai-language formative tasks (957 total). Each task includes the exact official Thai indicator text and a Thai answer/evidence guide. Tasks are aligned to the five Thai Language standards: reading, writing, listening/viewing/speaking, Thai language principles and literature. They are differentiated across early primary, upper primary, lower secondary and upper secondary. Task types include reading comprehension and evidence, genre-specific writing and revision, listening/viewing response, grammar and language-use application, and literature interpretation/recitation.
+
+The importer parser now recognises Thai activity, practice and answer-guidance labels. It supports the shared code form `THx.y-M4-6-nn`; the importer expands each of the 36 shared outcomes into three grade-specific content drafts with unique question codes.
+
+GitHub Actions run 238 passed all curriculum pack validators, including Thai Language, Social Studies, Health & PE, Arts, Foreign Languages, Science, Mathematics and Career, plus the Thai B.E. 2568 competency pack, production build and ESLint.
