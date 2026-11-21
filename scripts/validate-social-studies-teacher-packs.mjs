@@ -47,10 +47,14 @@ for (const pack of packs) {
   const markdown = await readFile(resolve(root, pack.path), "utf8");
   const lessons = parseTeacherPackMarkdown(markdown);
   const indicatorByCode = new Map();
-  const sourceSections = [...markdown.matchAll(/^### \d+\. (SO[1-5]\.\d-(?:P[1-6]|M[1-6]|M46)-\d+)\s*\n([\s\S]*?)(?=^### \d+\.|\s*$)/gm)];
-  for (const section of sourceSections) {
-    const indicator = section[2].match(/^\s*-\s+\*\*Official indicator:\*\*\s*(.+)$/m)?.[1]?.trim();
-    if (indicator) indicatorByCode.set(section[1], indicator);
+  const sourceHeadings = [...markdown.matchAll(/^### (\d+)\. (SO[1-5]\.\d-(?:P[1-6]|M[1-6]|M46)-\d+)\s*$/gm)];
+  for (let index = 0; index < sourceHeadings.length; index += 1) {
+    const heading = sourceHeadings[index];
+    const sectionStart = (heading.index ?? 0) + heading[0].length;
+    const sectionEnd = sourceHeadings[index + 1]?.index ?? markdown.length;
+    const sourceSection = markdown.slice(sectionStart, sectionEnd);
+    const indicator = sourceSection.match(/^\s*-\s+\*\*Official indicator:\*\*\s*(.+)$/m)?.[1]?.trim();
+    if (indicator) indicatorByCode.set(heading[2], indicator);
   }
   const counts = {};
   if (lessons.length !== pack.count) failures.push(pack.path + ": expected " + pack.count + " lessons, parsed " + lessons.length);
