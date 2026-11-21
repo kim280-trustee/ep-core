@@ -5,6 +5,9 @@
 **Official source PDF:** https://www.academic.obec.go.th/images/official/1622514876_d_1.pdf  
 **Status:** Open — do not mark Science complete
 
+**Repository/live distinction (verified 21 November 2026):** The branch contains a pending P1–P3 W1–W3 seed migration (42 indicators), but the connected live Supabase catalogue currently shows only the 28 P1–P6 W4.2 rows (P1 5, P2 4, P3 5, P4 5, P5 5, P6 4). Thus the branch-level target after its pending migration is P1–P3 complete, while the live database remains short by those 42 rows. P4–P6 W1–W3 (69), M1–M3 W4 (27) and shared M4–M6 core (102) remain additional branch-level gaps. The live migration ledger must be rechecked after deployment; file presence is not deployment evidence.
+
+
 ## Official grade totals
 
 | Grade | Official indicators | Current catalogue state |
