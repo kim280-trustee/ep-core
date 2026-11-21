@@ -104,7 +104,7 @@ Current pathway classification coverage: all 540 grade-level alignments are clas
 - [x] All 540 official Social Studies alignments are marked required; pathway and priority classifications are preserved.
 - [x] Replace generic prompt stems with three indicator-linked formative tasks and answer guidance for every one of the 418 indicators (1,254 tasks total).
 - [x] Add objective-code, practical-activity and answer-keyed independent-practice sections compatible with the shared Markdown teacher-pack parser.
-- [ ] Extend the final import workflow to expand the 61 shared M4–M6 outcomes across all three grade alignments without duplicate content/question codes.
+- [x] Extend the import workflow to expand the 61 shared M4–M6 outcomes across all three grade alignments with grade-scoped content/question codes.
 - [ ] Do not begin app-wide feature testing until all curriculum rollouts are complete.
 
 ## Sources
@@ -119,3 +119,8 @@ All eight packs have now been upgraded. The 418 lesson sections contain 418 obje
 The answer guidance is formative marking guidance: it describes the evidence required for credit and permits equivalent correct responses. It does not claim a single fixed answer for open-ended civic, ethical, economic, historical or geographic tasks. Religion-related tasks explicitly do not grade personal faith or require worship.
 
 The shared upper-secondary pack uses 61 M46 outcome codes aligned to M4, M5 and M6 (183 grade alignments). The parser deliberately does not collapse M46 to one grade. A remaining importer enhancement must expand these shared outcomes across the three aligned grade levels with grade-scoped content and question codes before the consolidated import test.
+
+
+## Shared M4–M6 import handling
+
+The parser exposes an explicit multi-grade scope helper: `SOx.y-M46-nn` resolves to M4, M5 and M6, while grade-specific Social Studies codes resolve to exactly one grade. The teacher importer expands each shared outcome into three grade-specific draft rows and generates distinct grade-scoped lesson and question codes, so importing the shared pack does not collide with itself or suppress later grades. The official Thai indicator wording is used as the imported lesson title. This mapping is covered by the Social Studies pack validator and is included in the consolidated CI build.
