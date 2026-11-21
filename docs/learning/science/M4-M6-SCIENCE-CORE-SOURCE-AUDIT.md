@@ -1,0 +1,37 @@
+# M4–M6 Science and Technology Core — Source Audit
+
+**Curriculum:** Thai Basic Education Core Curriculum B.E. 2551 (2008), revised 2017  
+**Official source:** OBEC / IPST, *Indicators and Core Learning Content: Must-Know and Should-Know* (2021)  
+**Source PDF:** https://www.academic.obec.go.th/images/official/1622514876_d_1.pdf  
+**Status:** Source transcription and grade allocation required; no M4/M5/M6 core SCI objectives are currently aligned in either curriculum.
+
+## Correct interpretation of the 102 indicators
+
+The OBEC summary on page 58 reports **102 indicators across the upper-secondary band M4–M6**, with 85 Must-Know and 18 Should-Know classifications. The summary notes that ว 3.1 ม.6/4 is dual-classified, explaining why the two priority totals sum to 103 while the unique indicator total is 102.
+
+The 102 is an aggregate of grade-specific M4, M5 and M6 indicators. It is **not** one shared 102-row set to duplicate across all three grades. The detailed source uses grade-specific codes such as ว 1.1 ม.4/1, ว 2.1 ม.5/14 and ว 3.1 ม.6/4. Each objective must be linked only to its actual grade.
+
+## Live database baseline — 21 November 2026
+
+- TH-SCI-M1-M6 has active grade levels M4, M5 and M6, but no core SCI objective alignments for those grades.
+- TH-BASIC-CORE-2008-2017 also has active M4, M5 and M6 grade levels, but no core SCI objective alignments for those grades.
+- The existing 300 Biology, Chemistry, Physics and Earth/Space specialist outcomes are separate subject tracks. They do not satisfy the 102 national core indicators.
+- Do not modify specialist outcomes or treat their grade counts as core Science coverage.
+
+## Required extraction and implementation sequence
+
+1. Transcribe all 102 official rows from the M4, M5 and M6 sections of the OBEC source PDF (pages 143–170).
+2. Capture, for every row: source grade, exact Thai indicator code, exact Thai indicator wording, Must-Know / Should-Know flag, and a concise English learning objective.
+3. Reconcile the grade-specific counts so they total exactly 102 unique indicators.
+4. Reconcile priority totals to 85 Must-Know and 18 Should-Know classifications, preserving the dual classification for ว 3.1 ม.6/4 in notes/metadata.
+5. Create grade-specific topic/objective records under the existing SCI subject and align each objective to only its source grade in both curricula.
+6. Add teacher lesson starters and three answer-keyed formative questions per indicator, then verify the source pack against the database codes.
+7. Execute read-only verification for 102 unique indicators, all grade mappings, priority totals and zero duplicate objective/grade alignments.
+
+## Acceptance criteria
+
+- Exactly 102 unique upper-secondary core indicators.
+- Each indicator mapped to its actual grade M4, M5 or M6; no blanket cross-grade duplication.
+- 85 Must-Know and 18 Should-Know classifications, with ว 3.1 ม.6/4 explicitly dual-classified.
+- The same 102 grade-specific alignments present in the canonical Science curriculum and the draft national master curriculum.
+- No changes to the 300 specialist outcomes, school, class, student or learner-progress data.
