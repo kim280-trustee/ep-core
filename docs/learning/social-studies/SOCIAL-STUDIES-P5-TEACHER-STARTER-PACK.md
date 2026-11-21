@@ -23,10 +23,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
+2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
+3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
+4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+
+**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์ความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือในฐานะที่เป็นมรดกทางวัฒนธรรมและหลักในการพัฒนาชาติไทย
 
 **Practical activity:** Use a respectful account or case from an appropriate tradition; connect the relevant teaching, value or practice to a real-life choice without assessing personal belief. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -49,10 +56,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
+2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
+3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
+4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+
+**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: สรุปพุทธประวัติตั้งแต่เสด็จกรุงกบิลพัสดุ์จนถึงพุทธกิจสำคัญ หรือประวัติศาสดาที่ตนนับถือตามที่กำหนด
 
 **Practical activity:** Use a respectful account or case from an appropriate tradition; connect the relevant teaching, value or practice to a real-life choice without assessing personal belief. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -75,10 +89,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
+2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
+3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
+4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+
+**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: เห็นคุณค่าและประพฤติตนตามแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดก เรื่องเล่า และศาสนิกชนตัวอย่างตามที่กำหนด
 
 **Practical activity:** Use a respectful account or case from an appropriate tradition; connect the relevant teaching, value or practice to a real-life choice without assessing personal belief. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -101,10 +122,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
+2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
+3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
+4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+
+**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายองค์ประกอบและความสำคัญของพระไตรปิฎกหรือคัมภีร์ของศาสนาที่ตนนับถือ
 
 **Practical activity:** Use a respectful account or case from an appropriate tradition; connect the relevant teaching, value or practice to a real-life choice without assessing personal belief. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -127,10 +155,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
+2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
+3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
+4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+
+**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: แสดงความเคารพพระรัตนตรัยและปฏิบัติตามไตรสิกขาและหลักธรรมโอวาท ๓ ในพระพุทธศาสนาหรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด
 
 **Practical activity:** Use a respectful account or case from an appropriate tradition; connect the relevant teaching, value or practice to a real-life choice without assessing personal belief. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -153,10 +188,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
+2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
+3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
+4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+
+**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: เห็นคุณค่าและสวดมนต์ แผ่เมตตา มีสติที่เป็นพื้นฐานของสมาธิในพระพุทธศาสนาหรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือตามที่กำหนด
 
 **Practical activity:** Use a respectful account or case from an appropriate tradition; connect the relevant teaching, value or practice to a real-life choice without assessing personal belief. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -179,10 +221,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
+2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
+3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
+4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+
+**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: ปฏิบัติตนตามหลักธรรมของศาสนาที่ตนนับถือเพื่อการพัฒนาตนเองและสิ่งแวดล้อม
 
 **Practical activity:** Use a respectful account or case from an appropriate tradition; connect the relevant teaching, value or practice to a real-life choice without assessing personal belief. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -205,10 +254,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
+2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
+3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
+4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+
+**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: จัดพิธีกรรมตามศาสนาที่ตนนับถืออย่างเรียบง่าย มีประโยชน์ และปฏิบัติตนถูกต้อง
 
 **Practical activity:** Use a respectful account or case from an appropriate tradition; connect the relevant teaching, value or practice to a real-life choice without assessing personal belief. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -231,10 +287,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
+2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
+3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
+4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+
+**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนาตามที่กำหนด และอภิปรายประโยชน์ที่ได้รับจากการเข้าร่วมกิจกรรม
 
 **Practical activity:** Use a respectful account or case from an appropriate tradition; connect the relevant teaching, value or practice to a real-life choice without assessing personal belief. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -257,10 +320,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
+2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
+3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
+4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+
+**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: มีมรรยาทของความเป็นศาสนิกชนที่ดีตามที่กำหนด
 
 **Practical activity:** Use a respectful account or case from an appropriate tradition; connect the relevant teaching, value or practice to a real-life choice without assessing personal belief. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -283,10 +353,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Introduce a realistic school or community situation in which a right, duty, rule or public responsibility matters. Ask who is affected.
+2. Read the case and relevant rule/process together. Identify the people involved, the right or duty at stake, and the authority or process that applies.
+3. Model a stakeholder chart. Groups compare possible responses for fairness, rights, responsibilities and consequences, citing the relevant rule.
+4. Each learner proposes and justifies a fair, lawful next step. Check that the recommendation protects affected people and uses the relevant civic process.
+
+**Resources:** a school/community case card, a stakeholder chart and the relevant child-rights, school-rule or civic-process extract.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: ยกตัวอย่างและปฏิบัติตนตามสถานภาพ บทบาท สิทธิเสรีภาพ และหน้าที่ในฐานะพลเมืองดี
 
 **Practical activity:** Present a realistic school or community case; identify people involved, rights, duties, rules or civic processes, and a fair next step. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -309,10 +386,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Introduce a realistic school or community situation in which a right, duty, rule or public responsibility matters. Ask who is affected.
+2. Read the case and relevant rule/process together. Identify the people involved, the right or duty at stake, and the authority or process that applies.
+3. Model a stakeholder chart. Groups compare possible responses for fairness, rights, responsibilities and consequences, citing the relevant rule.
+4. Each learner proposes and justifies a fair, lawful next step. Check that the recommendation protects affected people and uses the relevant civic process.
+
+**Resources:** a school/community case card, a stakeholder chart and the relevant child-rights, school-rule or civic-process extract.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: เสนอวิธีการปกป้องคุ้มครองตนเองหรือผู้อื่นจากการละเมิดสิทธิเด็ก
 
 **Practical activity:** Present a realistic school or community case; identify people involved, rights, duties, rules or civic processes, and a fair next step. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -335,10 +419,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Introduce a realistic school or community situation in which a right, duty, rule or public responsibility matters. Ask who is affected.
+2. Read the case and relevant rule/process together. Identify the people involved, the right or duty at stake, and the authority or process that applies.
+3. Model a stakeholder chart. Groups compare possible responses for fairness, rights, responsibilities and consequences, citing the relevant rule.
+4. Each learner proposes and justifies a fair, lawful next step. Check that the recommendation protects affected people and uses the relevant civic process.
+
+**Resources:** a school/community case card, a stakeholder chart and the relevant child-rights, school-rule or civic-process extract.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: เห็นคุณค่าวัฒนธรรมไทยที่มีผลต่อการดำเนินชีวิตในสังคมไทย
 
 **Practical activity:** Present a realistic school or community case; identify people involved, rights, duties, rules or civic processes, and a fair next step. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -361,10 +452,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Introduce a realistic school or community situation in which a right, duty, rule or public responsibility matters. Ask who is affected.
+2. Read the case and relevant rule/process together. Identify the people involved, the right or duty at stake, and the authority or process that applies.
+3. Model a stakeholder chart. Groups compare possible responses for fairness, rights, responsibilities and consequences, citing the relevant rule.
+4. Each learner proposes and justifies a fair, lawful next step. Check that the recommendation protects affected people and uses the relevant civic process.
+
+**Resources:** a school/community case card, a stakeholder chart and the relevant child-rights, school-rule or civic-process extract.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: มีส่วนร่วมในการอนุรักษ์และเผยแพร่ภูมิปัญญาท้องถิ่นของชุมชน
 
 **Practical activity:** Present a realistic school or community case; identify people involved, rights, duties, rules or civic processes, and a fair next step. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -387,10 +485,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Introduce a realistic school or community situation in which a right, duty, rule or public responsibility matters. Ask who is affected.
+2. Read the case and relevant rule/process together. Identify the people involved, the right or duty at stake, and the authority or process that applies.
+3. Model a stakeholder chart. Groups compare possible responses for fairness, rights, responsibilities and consequences, citing the relevant rule.
+4. Each learner proposes and justifies a fair, lawful next step. Check that the recommendation protects affected people and uses the relevant civic process.
+
+**Resources:** a school/community case card, a stakeholder chart and the relevant child-rights, school-rule or civic-process extract.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายโครงสร้าง อำนาจหน้าที่ และความสำคัญของการปกครองส่วนท้องถิ่น
 
 **Practical activity:** Present a realistic school or community case; identify people involved, rights, duties, rules or civic processes, and a fair next step. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -413,10 +518,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Introduce a realistic school or community situation in which a right, duty, rule or public responsibility matters. Ask who is affected.
+2. Read the case and relevant rule/process together. Identify the people involved, the right or duty at stake, and the authority or process that applies.
+3. Model a stakeholder chart. Groups compare possible responses for fairness, rights, responsibilities and consequences, citing the relevant rule.
+4. Each learner proposes and justifies a fair, lawful next step. Check that the recommendation protects affected people and uses the relevant civic process.
+
+**Resources:** a school/community case card, a stakeholder chart and the relevant child-rights, school-rule or civic-process extract.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: ระบุบทบาท หน้าที่ และวิธีการเข้าดำรงตำแหน่งของผู้บริหารท้องถิ่น
 
 **Practical activity:** Present a realistic school or community case; identify people involved, rights, duties, rules or civic processes, and a fair next step. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -439,10 +551,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Introduce a realistic school or community situation in which a right, duty, rule or public responsibility matters. Ask who is affected.
+2. Read the case and relevant rule/process together. Identify the people involved, the right or duty at stake, and the authority or process that applies.
+3. Model a stakeholder chart. Groups compare possible responses for fairness, rights, responsibilities and consequences, citing the relevant rule.
+4. Each learner proposes and justifies a fair, lawful next step. Check that the recommendation protects affected people and uses the relevant civic process.
+
+**Resources:** a school/community case card, a stakeholder chart and the relevant child-rights, school-rule or civic-process extract.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์ประโยชน์ที่ชุมชนจะได้รับจากองค์กรปกครองส่วนท้องถิ่น
 
 **Practical activity:** Present a realistic school or community case; identify people involved, rights, duties, rules or civic processes, and a fair next step. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -465,10 +584,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Present a familiar choice involving needs, wants, limited resources, work, goods, services or money. Ask learners what must be decided.
+2. Identify the resources and constraints in the case. Model the relevant economic concept using a simple table, picture, calculation or flow diagram.
+3. Pairs compare at least two choices, considering costs, benefits, opportunity, scarcity or effects on people as required by the indicator.
+4. Learners complete an individual decision or recommendation and justify it with evidence from the case. Assess the economic reasoning, not merely the selected option.
+
+**Resources:** a household, school or community decision card, a simple budget/resource table and a price, needs or production example.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายปัจจัยการผลิตสินค้าและบริการ
 
 **Practical activity:** Use a familiar household, workplace or community decision; identify resources, choices, costs, benefits or economic relationships. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -491,10 +617,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Present a familiar choice involving needs, wants, limited resources, work, goods, services or money. Ask learners what must be decided.
+2. Identify the resources and constraints in the case. Model the relevant economic concept using a simple table, picture, calculation or flow diagram.
+3. Pairs compare at least two choices, considering costs, benefits, opportunity, scarcity or effects on people as required by the indicator.
+4. Learners complete an individual decision or recommendation and justify it with evidence from the case. Assess the economic reasoning, not merely the selected option.
+
+**Resources:** a household, school or community decision card, a simple budget/resource table and a price, needs or production example.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: ประยุกต์ใช้แนวคิดของปรัชญาเศรษฐกิจพอเพียงในการทำกิจกรรมต่าง ๆ ในครอบครัว โรงเรียน และชุมชน
 
 **Practical activity:** Use a familiar household, workplace or community decision; identify resources, choices, costs, benefits or economic relationships. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -517,10 +650,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Present a familiar choice involving needs, wants, limited resources, work, goods, services or money. Ask learners what must be decided.
+2. Identify the resources and constraints in the case. Model the relevant economic concept using a simple table, picture, calculation or flow diagram.
+3. Pairs compare at least two choices, considering costs, benefits, opportunity, scarcity or effects on people as required by the indicator.
+4. Learners complete an individual decision or recommendation and justify it with evidence from the case. Assess the economic reasoning, not merely the selected option.
+
+**Resources:** a household, school or community decision card, a simple budget/resource table and a price, needs or production example.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายหลักการสำคัญและประโยชน์ของสหกรณ์
 
 **Practical activity:** Use a familiar household, workplace or community decision; identify resources, choices, costs, benefits or economic relationships. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -543,10 +683,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Present a familiar choice involving needs, wants, limited resources, work, goods, services or money. Ask learners what must be decided.
+2. Identify the resources and constraints in the case. Model the relevant economic concept using a simple table, picture, calculation or flow diagram.
+3. Pairs compare at least two choices, considering costs, benefits, opportunity, scarcity or effects on people as required by the indicator.
+4. Learners complete an individual decision or recommendation and justify it with evidence from the case. Assess the economic reasoning, not merely the selected option.
+
+**Resources:** a household, school or community decision card, a simple budget/resource table and a price, needs or production example.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายบทบาทหน้าที่เบื้องต้นของธนาคารโดยสังเขป
 
 **Practical activity:** Use a familiar household, workplace or community decision; identify resources, choices, costs, benefits or economic relationships. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -569,10 +716,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Present a familiar choice involving needs, wants, limited resources, work, goods, services or money. Ask learners what must be decided.
+2. Identify the resources and constraints in the case. Model the relevant economic concept using a simple table, picture, calculation or flow diagram.
+3. Pairs compare at least two choices, considering costs, benefits, opportunity, scarcity or effects on people as required by the indicator.
+4. Learners complete an individual decision or recommendation and justify it with evidence from the case. Assess the economic reasoning, not merely the selected option.
+
+**Resources:** a household, school or community decision card, a simple budget/resource table and a price, needs or production example.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: จำแนกผลดีและผลเสียของการกู้ยืมทั้งนอกระบบและในระบบ
 
 **Practical activity:** Use a familiar household, workplace or community decision; identify resources, choices, costs, benefits or economic relationships. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -595,10 +749,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
+2. Model how to identify source type, author/context, date and relevant detail. Separate what the source directly shows from an inference or opinion.
+3. Learners sequence events or compare two sources, recording details that support a cause, consequence, change, continuity or historical interpretation relevant to the indicator.
+4. Each learner writes, explains or presents a short conclusion supported by source evidence. Check chronology and whether the evidence actually supports the claim.
+
+**Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: สืบค้นความเป็นมาของท้องถิ่นโดยใช้หลักฐานที่หลากหลาย
 
 **Practical activity:** Use an age-appropriate historical source, image or timeline; identify evidence, sequence events and distinguish evidence from opinion. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -621,10 +782,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
+2. Model how to identify source type, author/context, date and relevant detail. Separate what the source directly shows from an inference or opinion.
+3. Learners sequence events or compare two sources, recording details that support a cause, consequence, change, continuity or historical interpretation relevant to the indicator.
+4. Each learner writes, explains or presents a short conclusion supported by source evidence. Check chronology and whether the evidence actually supports the claim.
+
+**Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: รวบรวมข้อมูลจากแหล่งต่าง ๆ เพื่อตอบคำถามทางประวัติศาสตร์อย่างมีเหตุผล
 
 **Practical activity:** Use an age-appropriate historical source, image or timeline; identify evidence, sequence events and distinguish evidence from opinion. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -647,10 +815,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
+2. Model how to identify source type, author/context, date and relevant detail. Separate what the source directly shows from an inference or opinion.
+3. Learners sequence events or compare two sources, recording details that support a cause, consequence, change, continuity or historical interpretation relevant to the indicator.
+4. Each learner writes, explains or presents a short conclusion supported by source evidence. Check chronology and whether the evidence actually supports the claim.
+
+**Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายความแตกต่างระหว่างความจริงกับข้อเท็จจริงเกี่ยวกับเรื่องราวในท้องถิ่น
 
 **Practical activity:** Use an age-appropriate historical source, image or timeline; identify evidence, sequence events and distinguish evidence from opinion. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -673,10 +848,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
+2. Model how to identify source type, author/context, date and relevant detail. Separate what the source directly shows from an inference or opinion.
+3. Learners sequence events or compare two sources, recording details that support a cause, consequence, change, continuity or historical interpretation relevant to the indicator.
+4. Each learner writes, explains or presents a short conclusion supported by source evidence. Check chronology and whether the evidence actually supports the claim.
+
+**Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายอิทธิพลของอารยธรรมอินเดียและจีนที่มีต่อไทยและเอเชียตะวันออกเฉียงใต้โดยสังเขป
 
 **Practical activity:** Use an age-appropriate historical source, image or timeline; identify evidence, sequence events and distinguish evidence from opinion. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -699,10 +881,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
+2. Model how to identify source type, author/context, date and relevant detail. Separate what the source directly shows from an inference or opinion.
+3. Learners sequence events or compare two sources, recording details that support a cause, consequence, change, continuity or historical interpretation relevant to the indicator.
+4. Each learner writes, explains or presents a short conclusion supported by source evidence. Check chronology and whether the evidence actually supports the claim.
+
+**Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อภิปรายอิทธิพลของวัฒนธรรมต่างชาติที่มีต่อสังคมไทยปัจจุบันโดยสังเขป
 
 **Practical activity:** Use an age-appropriate historical source, image or timeline; identify evidence, sequence events and distinguish evidence from opinion. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -725,10 +914,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
+2. Model how to identify source type, author/context, date and relevant detail. Separate what the source directly shows from an inference or opinion.
+3. Learners sequence events or compare two sources, recording details that support a cause, consequence, change, continuity or historical interpretation relevant to the indicator.
+4. Each learner writes, explains or presents a short conclusion supported by source evidence. Check chronology and whether the evidence actually supports the claim.
+
+**Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายพัฒนาการของอาณาจักรอยุธยาและธนบุรีโดยสังเขป
 
 **Practical activity:** Use an age-appropriate historical source, image or timeline; identify evidence, sequence events and distinguish evidence from opinion. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -751,10 +947,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
+2. Model how to identify source type, author/context, date and relevant detail. Separate what the source directly shows from an inference or opinion.
+3. Learners sequence events or compare two sources, recording details that support a cause, consequence, change, continuity or historical interpretation relevant to the indicator.
+4. Each learner writes, explains or presents a short conclusion supported by source evidence. Check chronology and whether the evidence actually supports the claim.
+
+**Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายปัจจัยที่ส่งเสริมความเจริญรุ่งเรืองทางเศรษฐกิจและการปกครองของอาณาจักรอยุธยา
 
 **Practical activity:** Use an age-appropriate historical source, image or timeline; identify evidence, sequence events and distinguish evidence from opinion. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -777,10 +980,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
+2. Model how to identify source type, author/context, date and relevant detail. Separate what the source directly shows from an inference or opinion.
+3. Learners sequence events or compare two sources, recording details that support a cause, consequence, change, continuity or historical interpretation relevant to the indicator.
+4. Each learner writes, explains or presents a short conclusion supported by source evidence. Check chronology and whether the evidence actually supports the claim.
+
+**Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: บอกประวัติและผลงานของบุคคลสำคัญสมัยอยุธยาและธนบุรีที่น่าภาคภูมิใจ
 
 **Practical activity:** Use an age-appropriate historical source, image or timeline; identify evidence, sequence events and distinguish evidence from opinion. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -803,10 +1013,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
+2. Model how to identify source type, author/context, date and relevant detail. Separate what the source directly shows from an inference or opinion.
+3. Learners sequence events or compare two sources, recording details that support a cause, consequence, change, continuity or historical interpretation relevant to the indicator.
+4. Each learner writes, explains or presents a short conclusion supported by source evidence. Check chronology and whether the evidence actually supports the claim.
+
+**Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายภูมิปัญญาไทยที่สำคัญสมัยอยุธยาและธนบุรีที่น่าภาคภูมิใจและควรค่าแก่การอนุรักษ์ไว้
 
 **Practical activity:** Use an age-appropriate historical source, image or timeline; identify evidence, sequence events and distinguish evidence from opinion. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -829,10 +1046,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Begin with a place, landscape, route or environmental issue familiar to learners. Locate it and ask what spatial information would help explain it.
+2. Model how to read the map, key, scale, direction, photograph or data display needed for the indicator. Demonstrate the geographic terms accurately.
+3. Pairs identify a location, pattern or relationship and use at least two visible details from the map, image or data to explain it.
+4. Learners produce an annotated map, short interpretation or evidence-based response. Assess correct use of geographic evidence and the link between people and place.
+
+**Resources:** a labelled map or atlas extract, a local photograph, a simple map/data set and a geographic vocabulary frame.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: สืบค้นและอธิบายข้อมูลลักษณะทางกายภาพในภูมิภาคของตนด้วยแผนที่และรูปถ่าย
 
 **Practical activity:** Use a local map, photograph, spatial data or environmental case; identify location/pattern, explain the relationship and propose an evidence-based action. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -855,10 +1079,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Begin with a place, landscape, route or environmental issue familiar to learners. Locate it and ask what spatial information would help explain it.
+2. Model how to read the map, key, scale, direction, photograph or data display needed for the indicator. Demonstrate the geographic terms accurately.
+3. Pairs identify a location, pattern or relationship and use at least two visible details from the map, image or data to explain it.
+4. Learners produce an annotated map, short interpretation or evidence-based response. Assess correct use of geographic evidence and the link between people and place.
+
+**Resources:** a labelled map or atlas extract, a local photograph, a simple map/data set and a geographic vocabulary frame.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายลักษณะทางกายภาพที่ส่งผลต่อแหล่งทรัพยากรและสถานที่สำคัญในภูมิภาคของตน
 
 **Practical activity:** Use a local map, photograph, spatial data or environmental case; identify location/pattern, explain the relationship and propose an evidence-based action. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -881,10 +1112,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Begin with a place, landscape, route or environmental issue familiar to learners. Locate it and ask what spatial information would help explain it.
+2. Model how to read the map, key, scale, direction, photograph or data display needed for the indicator. Demonstrate the geographic terms accurately.
+3. Pairs identify a location, pattern or relationship and use at least two visible details from the map, image or data to explain it.
+4. Learners produce an annotated map, short interpretation or evidence-based response. Assess correct use of geographic evidence and the link between people and place.
+
+**Resources:** a labelled map or atlas extract, a local photograph, a simple map/data set and a geographic vocabulary frame.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์สิ่งแวดล้อมทางกายภาพที่มีอิทธิพลต่อลักษณะการตั้งถิ่นฐานและการย้ายถิ่นของประชากรในภูมิภาคของตน
 
 **Practical activity:** Use a local map, photograph, spatial data or environmental case; identify location/pattern, explain the relationship and propose an evidence-based action. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -907,10 +1145,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Begin with a place, landscape, route or environmental issue familiar to learners. Locate it and ask what spatial information would help explain it.
+2. Model how to read the map, key, scale, direction, photograph or data display needed for the indicator. Demonstrate the geographic terms accurately.
+3. Pairs identify a location, pattern or relationship and use at least two visible details from the map, image or data to explain it.
+4. Learners produce an annotated map, short interpretation or evidence-based response. Assess correct use of geographic evidence and the link between people and place.
+
+**Resources:** a labelled map or atlas extract, a local photograph, a simple map/data set and a geographic vocabulary frame.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์อิทธิพลของสิ่งแวดล้อมทางธรรมชาติที่ก่อให้เกิดวิถีการดำเนินชีวิตในภูมิภาคของตน
 
 **Practical activity:** Use a local map, photograph, spatial data or environmental case; identify location/pattern, explain the relationship and propose an evidence-based action. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
@@ -933,10 +1178,17 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners demonstrate the knowledge or performance stated in this indicator.
 
 **Suggested teaching sequence**
-1. Activate prior knowledge with a familiar home, school, community, Thai-history, civic, economic, religious or geographical example relevant to the indicator.
-2. Model the key idea using a short explanation, visual, source, map, timeline, case study or practical example.
-3. Guide learners to practise the indicator in pairs or small groups.
-4. Check individual understanding before the lesson ends.
+
+1. Begin with a place, landscape, route or environmental issue familiar to learners. Locate it and ask what spatial information would help explain it.
+2. Model how to read the map, key, scale, direction, photograph or data display needed for the indicator. Demonstrate the geographic terms accurately.
+3. Pairs identify a location, pattern or relationship and use at least two visible details from the map, image or data to explain it.
+4. Learners produce an annotated map, short interpretation or evidence-based response. Assess correct use of geographic evidence and the link between people and place.
+
+**Resources:** a labelled map or atlas extract, a local photograph, a simple map/data set and a geographic vocabulary frame.
+
+**Differentiation:** Use short written directions, labelled visuals and a simple organiser; move from a modelled example to an independent response.
+
+**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: นำเสนอตัวอย่างที่สะท้อนให้เห็นผลจากการรักษาและทำลายสิ่งแวดล้อม และเสนอแนวทางในการจัดการสิ่งแวดล้อมในภูมิภาคของตน
 
 **Practical activity:** Use a local map, photograph, spatial data or environmental case; identify location/pattern, explain the relationship and propose an evidence-based action. Adjust the complexity to upper primary learners and use a source or response format appropriate to their age.
 
