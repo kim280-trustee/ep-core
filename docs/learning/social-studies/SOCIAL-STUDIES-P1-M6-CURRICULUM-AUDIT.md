@@ -86,7 +86,7 @@ Eight teacher starter packs were added, covering all 418 unique indicators:
 | M4–M6 | 61 |
 | **Total** | **418** |
 
-Each lesson retains the database indicator code, standard code and original Thai indicator wording, with a suggested teaching sequence, three differentiated assessment prompt types, expected evidence and a teacher check. These are teacher-planning prompt stems, not individually authored answer-keyed examination items.
+Each lesson retains the database indicator code, standard code and original Thai indicator wording, with a practical activity, expected evidence, teacher check and three answer-keyed, indicator-linked formative tasks. All three task prompts quote the exact Thai indicator. Task design varies by Social Studies strand (religion/ethics, civics, economics, history or geography) and by grade band; answer guidance states the expected evidence and acceptable reasoning rather than imposing one wording as the only correct response. These are formative classroom tasks, not standardized examination items.
 
 ## Classification data model
 
@@ -102,10 +102,20 @@ Current pathway classification coverage: all 540 grade-level alignments are clas
 - [x] All eight teacher starter packs contain the pathway labels for their covered indicators.
 - [x] The separate 2021 must_know / should_know priority classification remains preserved.
 - [x] All 540 official Social Studies alignments are marked required; pathway and priority classifications are preserved.
-- [ ] Upgrade the existing assessment prompt stems into fully authored, indicator-specific assessment items and answer guidance where required.
+- [x] Replace generic prompt stems with three indicator-linked formative tasks and answer guidance for every one of the 418 indicators (1,254 tasks total).
+- [x] Add objective-code, practical-activity and answer-keyed independent-practice sections compatible with the shared Markdown teacher-pack parser.
+- [ ] Extend the final import workflow to expand the 61 shared M4–M6 outcomes across all three grade alignments without duplicate content/question codes.
 - [ ] Do not begin app-wide feature testing until all curriculum rollouts are complete.
 
 ## Sources
 
 1. OBEC, *ตัวชี้วัดระหว่างทางและตัวชี้วัดปลายทาง กลุ่มสาระการเรียนรู้สังคมศึกษา ศาสนาและวัฒนธรรม*, authored by the Bureau of Academic Affairs and Educational Standards, OBEC, Ministry of Education. Source copy: https://web.tpp.ac.th/60/wp-content/uploads/2020/12/ตัวชี้วัดระหว่างทางและปลายทางกลุ่มสาระการเรียนรู้สังคมศึกษา-ศาสนาและวัฒนธรรม.pdf
 2. OBEC, *ตัวชี้วัดและสาระการเรียนรู้แกนกลางที่ต้องรู้และควรรู้ กลุ่มสาระการเรียนรู้สังคมศึกษา ศาสนา และวัฒนธรรม*, 2021. https://academic.obec.go.th/images/official/1622514876_d_1.pdf
+
+## Assessment authoring completion — 21 November 2026
+
+All eight packs have now been upgraded. The 418 lesson sections contain 418 objective-code declarations, 418 practical activities, 418 expected-evidence statements, 418 teacher checks and exactly 1,254 answer-keyed independent-practice tasks. Every task prompt explicitly includes its exact official Thai indicator text. The task sequence covers recall/identification, explanation/analysis and application/demonstration. The application task is differentiated by Social Studies standard and grade band.
+
+The answer guidance is formative marking guidance: it describes the evidence required for credit and permits equivalent correct responses. It does not claim a single fixed answer for open-ended civic, ethical, economic, historical or geographic tasks. Religion-related tasks explicitly do not grade personal faith or require worship.
+
+The shared upper-secondary pack uses 61 M46 outcome codes aligned to M4, M5 and M6 (183 grade alignments). The parser deliberately does not collapse M46 to one grade. A remaining importer enhancement must expand these shared outcomes across the three aligned grade levels with grade-scoped content and question codes before the consolidated import test.
