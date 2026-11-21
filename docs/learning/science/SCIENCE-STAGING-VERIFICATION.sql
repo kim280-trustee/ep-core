@@ -249,3 +249,40 @@ select e.grade_code,e.total expected_total,coalesce(a.total,0) actual_total,
          then 'PASS' else 'CHECK' end result
 from expected e left join actual a using(grade_code)
 order by e.grade_code;
+
+
+-- Lower-secondary Science completion: exact grade totals and classification
+-- integrity in both the canonical Science curriculum and draft national master.
+-- M3's 10 unclassified rows are intentionally held pending source reconciliation.
+with expected(curriculum_code,grade_code,total,must_know,should_know,unclassified) as (
+ values
+ ('TH-SCI-M1-M6','M1',52,35,17,0),('TH-SCI-M1-M6','M2',63,48,15,0),('TH-SCI-M1-M6','M3',59,35,14,10),
+ ('TH-BASIC-CORE-2008-2017','M1',52,35,17,0),('TH-BASIC-CORE-2008-2017','M2',63,48,15,0),('TH-BASIC-CORE-2008-2017','M3',59,35,14,10)
+), actual as (
+ select c.code curriculum_code,g.code grade_code,
+        count(distinct o.id)::integer total,
+        count(distinct o.id) filter(where a.indicator_classification='must_know')::integer must_know,
+        count(distinct o.id) filter(where a.indicator_classification='should_know')::integer should_know,
+        count(distinct o.id) filter(where a.indicator_classification is null)::integer unclassified
+ from public.learning_objective_alignments a
+ join public.learning_curricula c on c.id=a.curriculum_id
+ join public.learning_grade_levels g on g.id=a.grade_level_id and g.curriculum_id=c.id
+ join public.learning_objectives o on o.id=a.objective_id
+ join public.learning_topics t on t.id=o.topic_id
+ join public.learning_skills sk on sk.id=t.skill_id
+ join public.learning_subjects sub on sub.id=sk.subject_id
+ where c.code in ('TH-SCI-M1-M6','TH-BASIC-CORE-2008-2017')
+   and sub.code='SCI' and g.code in ('M1','M2','M3')
+ group by c.code,g.code
+)
+select e.curriculum_code,e.grade_code,e.total expected_total,coalesce(a.total,0) actual_total,
+       e.must_know expected_must,coalesce(a.must_know,0) actual_must,
+       e.should_know expected_should,coalesce(a.should_know,0) actual_should,
+       e.unclassified expected_unclassified,coalesce(a.unclassified,0) actual_unclassified,
+       case when coalesce(a.total,0)=e.total
+              and coalesce(a.must_know,0)=e.must_know
+              and coalesce(a.should_know,0)=e.should_know
+              and coalesce(a.unclassified,0)=e.unclassified
+         then 'PASS' else 'CHECK' end result
+from expected e left join actual a using(curriculum_code,grade_code)
+order by e.curriculum_code,e.grade_code;
