@@ -58,18 +58,21 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
     const section = markdown.slice(start, end);
     const number = Number(heading[1] ?? heading[3] ?? heading[5] ?? index + 1);
     const title = (heading[2] ?? heading[4] ?? heading[6] ?? heading[7] ?? `Lesson ${number}`).trim();
-    const objectiveLine = section.match(/^\*\*(?:Objective(?: code)?|Learning objective):\*\*\s*(.+)$/mi)?.[1]?.trim() ?? "";
+    const objectiveLine = section.match(/^\*\*(?:Objective(?: code)?|Learning objective|Indicator(?: code)?):\*\*\s*(.+)$/mi)?.[1]?.trim() ?? "";
+    const headingObjective = title.match(/^([A-Z][A-Z0-9._-]{3,})\s*[—–-]\s*(.+)$/i);
     const codeMatch = objectiveLine.match(/[\x60]([A-Z0-9][A-Z0-9._-]{2,})[\x60]/i)
+      ?? objectiveLine.match(/^([A-Z][A-Z0-9._-]{3,})\s*(?:[—–:-]|$)/i)
       ?? objectiveLine.match(/\b(M[1-6][A-Z0-9_-]+)\b/i);
-    const objectiveCode = codeMatch?.[1]?.toUpperCase() ?? null;
-    const objectiveText = objectiveLine
-      .replace(codeMatch?.[0] ?? "", "")
+    const objectiveCode = (codeMatch?.[1] ?? headingObjective?.[1] ?? null)?.toUpperCase() ?? null;
+    const objectiveText = (objectiveLine
+      ? objectiveLine.replace(codeMatch?.[0] ?? "", "")
+      : headingObjective?.[2] ?? "")
       .replace(/[\x60]/g, "")
       .replace(/^[\s—–:-]+/, "")
       .replace(/\s+/g, " ")
       .trim();
 
-    const displayTitle = /^SO[1-5]\.\d-(?:P[1-6]|M[1-6]|M46)-\d+$/i.test(title)
+    const displayTitle = headingObjective || /^SO[1-5]\.\d-(?:P[1-6]|M[1-6]|M46)-\d+$/i.test(title)
       ? objectiveText || title
       : title;
     const learningOutcome = section.match(/^\*\*Learning outcomes?:\*\*\s*(.+)$/mi)?.[1]?.trim()
@@ -81,6 +84,9 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
       section.match(/^\*\*Practical activity:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*(?:กิจกรรมการเรียนรู้|กิจกรรมฝึกปฏิบัติ):\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Teaching activity:\*\*\s*(.+)$/mi)?.[1]?.trim(),
+      section.match(/^\*\*Teaching sequence:\*\*\s*(.+)$/mi)?.[1]?.trim(),
+      section.match(/^\*\*Practical task:\*\*\s*(.+)$/mi)?.[1]?.trim(),
+      section.match(/^\*\*กิจกรรมการเรียนรู้:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Starter(?:\s*\/\s*learning task)?:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Lesson starter(?:\s*\(\d+\s*minutes?\))?:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Teach(?: and practi[cs]e)?:\*\*\s*(.+)$/mi)?.[1]?.trim(),
