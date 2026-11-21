@@ -18,10 +18,10 @@
 | P4 | 21 | 16 W1–W3 + 5 W4.2; complete in live staging |
 | P5 | 32 | 27 W1–W3 + 5 W4.2; complete in live staging |
 | P6 | 30 | 26 W1–W3 + 4 W4.2; complete in live staging |
-| M1 | 52 | 43 existing W1–W3; 9 W4.1/W4.2 missing |
-| M2 | 63 | 48 existing W1–W3; 6 W2.1 plus 9 W4.1/W4.2 missing |
+| M1 | 52 | 52 official indicators; W4.1 (5) and W4.2 (4) complete |
+| M2 | 63 | 63 official indicators; W2.1 (6), W4.1 (5) and W4.2 (4) complete |
 | M3 | 59 | 59 official indicators including W4.1 (5) and W4.2 (4); nine legacy W3.2 records are supplementary/non-required |
-| M4–M6 aggregate | 102 | Grade-specific M4, M5 and M6 indicators; exact grade split and codes must be transcribed before seeding |
+| M4–M6 aggregate | 102 | Complete: M4 28, M5 49, M6 25; all aligned to their actual grade |
 
 The official total is 415 unique indicators. The 102 is an aggregate across the M4, M5 and M6 grade-specific tables in the OBEC source. Each indicator must be aligned only to its actual grade; do not duplicate one shared set across all three grades. The source summary also notes ว 3.1 ม.6/4 is dual-classified.
 
@@ -56,7 +56,24 @@ The OBEC 2021 summary table reports the following classification totals for the 
 
 Must-Know and Should-Know counts are not mutually exclusive. P4 and P6 each have one indicator included in both classifications. The current alignment schema stores one classification value; any seed must preserve the second classification explicitly in notes/metadata. The SQL verification script checks the expected totals and flags these exceptions for review.
 
-## Remaining national-core implementation\n\n1. **Primary P1–P6:** complete in live staging (139/139); teacher packs reconcile to 139 lesson starters and 417 formative tasks.\n2. **M1:** complete (52/52); new nine-indicator W4.1/W4.2 batch is aligned and priority totals reconcile to OBEC 35 Must-Know / 17 Should-Know.\n3. **M2:** complete (63/63); six W2.1 and nine W4.1/W4.2 indicators are aligned; priority totals reconcile to OBEC 48 Must-Know / 15 Should-Know.\n4. **M3:** complete indicator count (59/59) after adding six W1.1 ecosystem indicators. Ten priority labels remain intentionally unresolved: nine existing W3.2 rows and the source-ambiguous W1.1 ม.3/6 row. Do not infer their Must/Should classification.\n5. **M4–M6 core:** transcribe and seed the 102 grade-specific Science and Technology indicators across M4, M5 and M6. First reconcile exact per-grade totals and priority flags from the OBEC tables. Do not duplicate the same 102 rows into all three grades or substitute the 300 specialist Biology/Chemistry/Physics/Earth-Space outcomes.\n## Lower-secondary completion batch — M1–M3\n\n- M1: nine missing W4.1/W4.2 indicators seeded; grade total now 52/52.\n- M2: six W2.1 indicators and nine W4.1/W4.2 indicators seeded; grade total now 63/63.\n- M3: six W1.1 ecosystem indicators seeded; grade total now 59/59.\n- Both the canonical `TH-SCI-M1-M6` curriculum and the draft `TH-BASIC-CORE-2008-2017` master curriculum now carry the same M1/M2/M3 totals. The draft master remains draft.\n- New teacher packs add 30 lesson starters and 90 answer-keyed formative questions. Combined M1–M3 import pack now contains 174 lesson starters and 522 questions.\n- M3 priority labels: nine legacy W3.2 rows and W1.1 ม.3/6 are held unclassified until the official source table is reconciled.\n\n## Existing specialist outcomes — separate from the core set
+## Current national-core implementation status
+
+1. **Primary P1–P6:** 139/139 official indicators staged and required in both catalogues. The 42 Should-Know alignments were corrected to `required=true`; Should-Know is a priority label, not an optional curriculum status.
+2. **M1:** 52/52 official indicators complete, including nine W4.1/W4.2 indicators; priorities 35 Must-Know / 17 Should-Know.
+3. **M2:** 63/63 official indicators complete, including six W2.1 and nine W4.1/W4.2 indicators; priorities 48 Must-Know / 15 Should-Know.
+4. **M3:** 59/59 official indicators complete, including five W4.1 and four W4.2 indicators; priorities 41 Must-Know / 18 Should-Know. Nine legacy W3.2 outcomes remain preserved as non-required supplementary records.
+5. **M4–M6 core:** 102/102 grade-specific indicators staged in both catalogues (M4 28, M5 49, M6 25). The row-level priority tally (86 Must-Know / 17 Should-Know including the dual classification) differs from the official summary (85 / 18); keep this source-summary discrepancy open.
+
+## Lower-secondary completion batch — M1–M3
+
+- M1: 52 official indicators, including nine W4.1/W4.2 indicators; complete.
+- M2: 63 official indicators, including six W2.1 and nine W4.1/W4.2 indicators; complete.
+- M3: 59 official indicators, including six W1.1 ecosystem indicators and nine W4.1/W4.2 technology indicators; complete.
+- Nine legacy W3.2 records are preserved separately as non-required supplementary outcomes and excluded from the official core import.
+- Both the canonical `TH-SCI-M1-M6` curriculum and the draft `TH-BASIC-CORE-2008-2017` master curriculum carry the same M1/M2/M3 required-core totals. The draft master remains draft.
+- The consolidated M1–M3 import pack contains 174 official-core lesson starters and 522 answer-keyed formative questions. The nine official M3 technology lessons replace the nine legacy W3.2 lessons in the core import.
+
+## Existing specialist outcomes — separate from the core set
 
 | Specialist subject | M4–M6 outcomes |
 |---|---:|
