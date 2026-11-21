@@ -389,3 +389,33 @@ select e.grade_code,e.expected_total,coalesce(a.total,0) actual_total,
          then 'PASS' else 'GAP-OR-CLASSIFICATION-REVIEW' end result
 from expected e left join actual a using(grade_code)
 order by e.grade_code;
+
+-- Primary W1-W3 indicator coverage. The expected counts are the official
+-- OBEC 2021 totals excluding the separately seeded W4.2 indicators:
+-- P1 10, P2 12, P3 20, P4 16, P5 27, P6 26 (111 total).
+-- This query deliberately reports CHECK until the P4-P6 source-verified
+-- indicators are seeded. It also catches a branch migration that has not
+-- yet been deployed to the connected staging database.
+with expected(grade_code,expected_w1_w3) as (
+  values ('P1',10),('P2',12),('P3',20),('P4',16),('P5',27),('P6',26)
+), actual as (
+  select g.code grade_code,count(distinct o.id)::integer actual_w1_w3
+  from public.learning_objective_alignments a
+  join public.learning_curricula c on c.id=a.curriculum_id
+  join public.learning_grade_levels g on g.id=a.grade_level_id and g.curriculum_id=c.id
+  join public.learning_objectives o on o.id=a.objective_id
+  join public.learning_topics t on t.id=o.topic_id
+  join public.learning_skills s on s.id=t.skill_id
+  join public.learning_subjects sub on sub.id=s.subject_id
+  where c.code='TH-BASIC-CORE-2008-2017'
+    and sub.code='SCI'
+    and g.code in ('P1','P2','P3','P4','P5','P6')
+    and o.code ~ '^P[1-6]-S[123]_'
+  group by g.code
+)
+select e.grade_code,e.expected_w1_w3,coalesce(a.actual_w1_w3,0) actual_w1_w3,
+       e.expected_w1_w3-coalesce(a.actual_w1_w3,0) remaining,
+       case when coalesce(a.actual_w1_w3,0)=e.expected_w1_w3
+         then 'PASS' else 'GAP' end result
+from expected e left join actual a using(grade_code)
+order by e.grade_code;
