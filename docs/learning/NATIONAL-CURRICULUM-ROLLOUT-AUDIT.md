@@ -84,7 +84,7 @@ The eight 2008/2017 learning areas have 39 teacher-pack files covering 1,940 uni
 - `npm run validate:thai-2025-packs` — validates the 24 annual outcomes, P1/P2/P3 grade mapping and 72 answer-keyed questions in the separate B.E. 2568 pack.
 - CI also runs the production build and ESLint.
 
-The all-eight-area source-pack validator, Thai B.E. 2568 competency-pack validator, Science parser validator, Social Studies parser validator, production build and ESLint are run together in GitHub Actions. Run 95 passed the first three validators, production build and ESLint before Social Studies answer authoring was added. The new Social Studies parser check is now included in CI and its result is pending. Do not treat source-pack validation as an authenticated application import test.
+GitHub Actions run 157 passed all eight learning-area pack validation, Thai B.E. 2568 competency-pack validation, Science parser validation, Social Studies parser validation, production build and ESLint. The Social Studies check parsed all 418 unique indicators and 1,254 answer-keyed tasks through the actual TypeScript importer parser. The importer now expands the 61 shared M4–M6 outcomes into 183 grade-specific rows with unique content/question codes. Do not treat source-pack validation as an authenticated application import test.
 
 ## 5. Scope boundaries and release plan
 
