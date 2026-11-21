@@ -67,6 +67,10 @@ All imported content and questions remain **drafts**. The importer does not subm
 - Inserts run in chunks of up to 40 lessons (up to 120 questions). If a chunk fails, the importer attempts to delete that chunk's newly created parent records so dependent versions and mappings cascade. If cleanup fails, the UI reports that the draft libraries must be checked before retrying.
 - If a later chunk fails after earlier chunks succeeded, the UI reports the completed lesson/question counts. Do not blindly retry a partially completed pack; inspect the content and question libraries first.
 
+## Repeatable parser validation
+
+Run `npm.cmd run validate:science-packs` from the repository root before importing the two consolidated core Science packs. This command transpiles and executes the actual TypeScript teacher-pack parser, then verifies lesson counts, grade distribution, unique objective codes, sequential question numbers and all three non-empty answer keys per lesson. Expected result: 174 M1–M3 lessons plus 102 M4–M6 lessons, with 828 answer-keyed questions in total. This is a source-pack/parser check; it does not replace the authenticated preview and draft-save test in the teacher application.
+
 ## Question Bank access
 
 The Question Bank now lets an authorized teacher select a curriculum, grade and subject independently of the selected access class. The class still establishes the organization context. Academic filtering uses batched version/objective lookups so large imported packs do not cause one database request per question.
