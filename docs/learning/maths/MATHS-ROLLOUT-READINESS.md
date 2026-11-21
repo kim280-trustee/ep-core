@@ -90,7 +90,8 @@ The existing English MEP pilot's class curriculum, grade, term, memberships and 
 - No new Maths pilot class, term, subject assignment or student membership has been created.
 - No new academic year, term, class group, class subject or membership has been created.
 - No separate Maths UI module was added because the existing generic teacher workflows already support the academic dimensions.
-- No local lint/build result is claimed; consolidated local verification remains pending.
+- [x] Dedicated `validate:maths-packs` executes the actual TypeScript importer parser against all three packs: 41 unique M1–M6 objectives, correct grade counts and 123 answer-keyed questions.
+- [x] GitHub Actions run 258 passed the full curriculum validation suite, production build and ESLint. Authenticated teacher import and end-to-end UI tests remain deferred to the consolidated testing phase.
 
 ## Official curriculum source
 
