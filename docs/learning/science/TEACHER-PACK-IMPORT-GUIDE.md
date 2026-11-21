@@ -11,18 +11,19 @@ Open **Teacher Content Library → Import teacher pack**, or use the route `/tea
 - Sign in with a real, active teacher account.
 - Select an assigned teacher class to identify the organization where the drafts will be created.
 - Select the Thai Science curriculum, the pack's subject and its fallback grade.
-- Upload one consolidated Markdown (`.md`) pack at a time. The complete Science corpus is provided as 13 subject/grade import files across five subject tracks so each import uses the correct subject and grade scope.
+- Upload one consolidated Markdown (`.md`) pack at a time. The complete Science corpus is provided as 14 subject/grade import files across five subject tracks so each import uses the correct subject and grade scope.
 - Check every objective code and grade shown in the preview. Code-less official outcomes are matched against the selected subject/grade catalogue; ambiguous matches block the import.
 
 The selected class is used only to establish the teacher's organization access. It does not change that class, add a subject to it, or assign content to its students.
 
 ## Consolidated Science import files
 
-Import these 13 files using curriculum `TH-SCI-M1-M6`. The M1–M3 core pack uses explicit objective codes across all three grades. It includes nine official M3 W4.1/W4.2 technology lessons; the nine legacy W3.2 lessons are preserved in a separate supplementary pack and are not included in the core import. Upper-secondary packs are grade-scoped because some official outcomes are intentionally code-less in the original teacher material; select the exact grade shown so the importer can resolve them safely.
+Import these 14 files using curriculum `TH-SCI-M1-M6`. The M1–M3 and M4–M6 core Science packs use explicit grade-coded objective IDs, so each lesson resolves to its source grade within the mixed-grade core pack. The M1–M3 pack includes nine official M3 W4.1/W4.2 technology lessons; nine legacy W3.2 lessons are preserved separately and excluded from the core import. The upper-secondary specialist Biology, Chemistry, Physics and Earth/Space packs remain grade-scoped because some outcomes are intentionally code-less in the original teacher material; select the exact grade shown for those files.
 
 | Import file | Subject | Grade | Lessons | Questions |
 |---|---|---:|---:|---:|
 | `SCIENCE-M1-M3-COMPLETE-IMPORT.md` | `SCI` — Science | M1–M3 | 174 | 522 |
+| `SCIENCE-M4-M6-COMPLETE-IMPORT.md` | `SCI` — Science | M4–M6 | 102 | 306 |
 | `BIOLOGY-M4-IMPORT.md` | `BIOLOGY` — Biology | M4 | 32 | 96 |
 | `BIOLOGY-M5-IMPORT.md` | `BIOLOGY` — Biology | M5 | 39 | 117 |
 | `BIOLOGY-M6-IMPORT.md` | `BIOLOGY` — Biology | M6 | 37 | 111 |
@@ -35,9 +36,9 @@ Import these 13 files using curriculum `TH-SCI-M1-M6`. The M1–M3 core pack use
 | `EARTH-SPACE-M4-IMPORT.md` | `EARTH_SPACE` — Earth, Astronomy and Space Science | M4 | 12 | 36 |
 | `EARTH-SPACE-M5-IMPORT.md` | `EARTH_SPACE` — Earth, Astronomy and Space Science | M5 | 13 | 39 |
 | `EARTH-SPACE-M6-IMPORT.md` | `EARTH_SPACE` — Earth, Astronomy and Space Science | M6 | 19 | 57 |
-| **Total** | **5 subject tracks** | **M1–M6** | **444** | **1,332** |
+| **Total** | **5 subject tracks** | **M1–M6** | **546** | **1,638** |
 
-Import one file at a time and select the exact subject and grade shown in the table. Do not use a mixed-grade upper-secondary file: the grade selector is part of code-less outcome resolution. All imported records remain unpublished drafts.
+Import one file at a time and select the exact subject and grade shown in the table. The mixed-grade M4–M6 core Science file is intentional: every objective code carries its source grade. Do not combine the grade-specific specialist import files; their grade selector is part of code-less outcome resolution. All imported records remain unpublished drafts.
 
 ## What the importer creates
 
