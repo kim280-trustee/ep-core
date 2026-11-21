@@ -435,3 +435,50 @@ select x.curriculum_code,count(*)::integer expected_indicators,
 from expected e cross join (values ('TH-SCI-M1-M6'),('TH-BASIC-CORE-2008-2017')) x(curriculum_code)
 left join actual a on a.curriculum_code=x.curriculum_code and a.code=e.code
 group by x.curriculum_code order by x.curriculum_code;
+
+-- Verify the eight M4/M5 upper-secondary technology indicators.
+with expected(code,grade_code,classification) as (values
+('M4-S4_1-09','M4','must_know'),('M4-S4_1-02','M4','must_know'),
+('M4-S4_1-03','M4','must_know'),('M4-S4_1-04','M4','must_know'),
+('M4-S4_1-05','M4','should_know'),('M4-S4_2-01','M4','must_know'),
+('M5-S4_1-01','M5','must_know'),('M5-S4_2-01','M5','must_know')
+), actual as (
+ select c.code curriculum_code,g.code grade_code,o.code,a.indicator_classification,count(*) alignment_rows
+ from public.learning_objective_alignments a join public.learning_curricula c on c.id=a.curriculum_id
+ join public.learning_grade_levels g on g.id=a.grade_level_id and g.curriculum_id=c.id
+ join public.learning_objectives o on o.id=a.objective_id join public.learning_topics t on t.id=o.topic_id
+ join public.learning_skills sk on sk.id=t.skill_id join public.learning_subjects sub on sub.id=sk.subject_id
+ where c.code in ('TH-SCI-M1-M6','TH-BASIC-CORE-2008-2017') and sub.code='SCI'
+ and o.code in ('M4-S4_1-09','M4-S4_1-02','M4-S4_1-03','M4-S4_1-04','M4-S4_1-05','M4-S4_2-01','M5-S4_1-01','M5-S4_2-01')
+ group by c.code,g.code,o.code,a.indicator_classification
+)
+select x.curriculum_code,e.code expected_objective,e.grade_code expected_grade,
+ coalesce(a.grade_code,'MISSING') actual_grade,e.classification expected_priority,
+ a.indicator_classification actual_priority,coalesce(a.alignment_rows,0) alignment_rows,
+ case when a.grade_code=e.grade_code and a.indicator_classification=e.classification and a.alignment_rows=1 then 'PASS' else 'CHECK' end result
+from expected e cross join (values ('TH-SCI-M1-M6'),('TH-BASIC-CORE-2008-2017')) x(curriculum_code)
+left join actual a on a.curriculum_code=x.curriculum_code and a.code=e.code
+order by x.curriculum_code,e.code;
+
+-- Upper-secondary grade totals currently staged (M6 intentionally remains open).
+with expected(curriculum_code,grade_code,total,must_know,should_know) as (values
+('TH-SCI-M1-M6','M4',28,20,8),('TH-SCI-M1-M6','M5',49,42,7),
+('TH-BASIC-CORE-2008-2017','M4',28,20,8),('TH-BASIC-CORE-2008-2017','M5',49,42,7)
+), actual as (
+ select c.code curriculum_code,g.code grade_code,count(distinct o.id)::int total,
+ count(distinct o.id) filter(where a.indicator_classification='must_know')::int must_know,
+ count(distinct o.id) filter(where a.indicator_classification='should_know')::int should_know
+ from public.learning_objective_alignments a join public.learning_curricula c on c.id=a.curriculum_id
+ join public.learning_grade_levels g on g.id=a.grade_level_id and g.curriculum_id=c.id
+ join public.learning_objectives o on o.id=a.objective_id join public.learning_topics t on t.id=o.topic_id
+ join public.learning_skills sk on sk.id=t.skill_id join public.learning_subjects sub on sub.id=sk.subject_id
+ where c.code in ('TH-SCI-M1-M6','TH-BASIC-CORE-2008-2017') and sub.code='SCI'
+ and ((g.code='M4' and o.code like 'M4-S%') or (g.code='M5' and o.code like 'M5-S%'))
+ group by c.code,g.code
+)
+select e.curriculum_code,e.grade_code,e.total expected_total,coalesce(a.total,0) actual_total,
+ e.must_know expected_must,coalesce(a.must_know,0) actual_must,
+ e.should_know expected_should,coalesce(a.should_know,0) actual_should,
+ case when coalesce(a.total,0)=e.total and coalesce(a.must_know,0)=e.must_know and coalesce(a.should_know,0)=e.should_know then 'PASS' else 'CHECK' end result
+from expected e left join actual a using(curriculum_code,grade_code)
+order by e.curriculum_code,e.grade_code;
