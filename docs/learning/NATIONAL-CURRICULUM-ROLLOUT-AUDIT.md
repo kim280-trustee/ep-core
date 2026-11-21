@@ -76,7 +76,7 @@ Audit and pack: `thai-primary-2025/THAI-PRIMARY-2025-CURRICULUM-AUDIT.md` and `t
 
 ## 4. Source-pack and automated validation
 
-The eight 2008/2017 learning areas have 39 teacher-pack files covering 1,940 unique official objective codes. The cross-curriculum validator checks expected pack counts, grade-section coverage, one unique objective code per lesson and cross-pack duplicates.
+The eight 2008/2017 learning areas have 39 teacher-pack files covering 1,940 unique official objective codes. The cross-curriculum validator checks expected pack counts, grade-section or indicator-list coverage, one unique objective code per lesson where the pack is lesson-structured, and cross-pack duplicates.
 
 - `npm run validate:national-curriculum-packs` — all eight learning areas.
 - `npm run validate:science-packs` — executes the actual TypeScript importer parser against the 276 consolidated secondary Science lessons and 828 answer-keyed questions.
@@ -91,7 +91,7 @@ The all-eight-area source-pack validator, Thai B.E. 2568 competency-pack validat
 - Thai Studies remains outside this rollout and is not represented as complete.
 - Cambridge Click Start Computer Studies remains a separate international course; it is not a substitute for national Science and Technology indicators.
 - The 300 specialist upper-secondary Science outcomes remain separate from the 415 core Science indicators.
-- Social Studies' 1,254 assessment stems are teacher prompts, not a claim that every stem is a fully standardized or externally validated examination item.
+- Social Studies' 1,254 assessment stems are currently generic teacher prompts, not fully authored indicator-specific assessment items. The next curriculum-content batch is to author three specific assessment tasks and answer/evidence guidance for each of its 418 indicators; this is distinct from the final application-testing phase.
 - Teacher packs remain Markdown source. No pack has been imported into a school organization or published as part of this batch.
 - No school, class, student, assignment, publication or learner-progress records were created or changed by the curriculum work.
 - Do not begin repeated subject-by-subject UI tests. Finish curriculum source and pack work first, then perform one consolidated authenticated teacher import, student assessment, teacher review, gradebook and progress-reporting test.
