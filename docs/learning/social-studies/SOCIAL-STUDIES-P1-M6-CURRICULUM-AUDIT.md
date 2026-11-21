@@ -51,6 +51,8 @@ The 2021 OBEC must-know / should-know classification is a separate classificatio
 
 All 12 grade levels are now reconciled against the OBEC between-learning / terminal tables. Every grade alignment has a pathway value; there are zero missing classifications.
 
+The live-catalogue required-flag correction also marks all 540 official Social Studies grade alignments as required. This includes all 405 alignments that previously had `required=false`: 172 Should-Know indicators and 111 indicators that carry an official pathway classification but no Must-Know / Should-Know priority label. The priority and pathway classifications were not changed. The catalogue now contains 418 required unique indicators and 540 required grade alignments.
+
 | Grade | Total | Between-learning | Terminal | Missing |
 |---|---:|---:|---:|---:|
 | P1 | 31 | 22 | 9 | 0 |
@@ -99,6 +101,7 @@ Current pathway classification coverage: all 540 grade-level alignments are clas
 - [x] Official totals reconcile to 278 between-learning and 140 terminal indicators.
 - [x] All eight teacher starter packs contain the pathway labels for their covered indicators.
 - [x] The separate 2021 must_know / should_know priority classification remains preserved.
+- [x] All 540 official Social Studies alignments are marked required; pathway and priority classifications are preserved.
 - [ ] Upgrade the existing assessment prompt stems into fully authored, indicator-specific assessment items and answer guidance where required.
 - [ ] Do not begin app-wide feature testing until all curriculum rollouts are complete.
 
