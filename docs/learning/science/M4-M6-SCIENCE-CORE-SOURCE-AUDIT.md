@@ -3,7 +3,7 @@
 **Curriculum:** Thai Basic Education Core Curriculum B.E. 2551 (2008), revised 2017  
 **Official source:** OBEC / IPST, *Indicators and Core Learning Content: Must-Know and Should-Know* (2021)  
 **Source PDF:** https://www.academic.obec.go.th/images/official/1622514876_d_1.pdf  
-**Status:** M4 is complete (22/22 grade-specific core indicators) and verified in both curricula. M5 W2.1 is complete at 25/25 indicators; M5 W2.2 and W2.3 add 22 further indicators. M5 has 47/47 source-sequenced indicators represented across these three standards. M6 remains to be completed; 33 of the 102 upper-secondary indicators remain.
+**Status:** M4 is complete at 28/28 grade-specific indicators (22 W1.1–W1.3 plus 6 technology indicators). M5 is complete at 49/49 (47 W2.1–W2.3 plus 2 technology indicators). Both grades are verified in both curricula. M6 has 25 source indicators remaining; 25 of 102 upper-secondary indicators remain.
 
 ## Correct interpretation of the 102 indicators
 
@@ -76,3 +76,21 @@ Migration: 20261121052000_seed_science_m5_w2_1_chemistry_core_indicators.sql. Te
 The first text extraction of printed page 151 skipped a scanned segment. A subsequent official-source search recovered the rows for ว 2.1 ม.5/11–13 and confirmed all three as Must-Know. They are now seeded as a corrective migration, not treated as absent from the curriculum. M5 W2.1 is complete at 25 indicators: 20 Must-Know and 5 Should-Know.
 
 Migration: 20261121073000_seed_science_m5_w2_1_indicators_11_13.sql. Source: OBEC 2021 official PDF, printed p. 151.
+
+
+## Implemented tranche 4 — M4/M5 technology and computational thinking
+
+The official OBEC technology rows are now aligned to their source grades: M4 has five W4.1 indicators (M4/2, /3, /4, /5, /9) and one W4.2 indicator (M4/1); M5 has one W4.1 indicator (M5/1) and one W4.2 indicator (M5/1). This adds six M4 indicators and two M5 indicators. The M4 total is now 28/28; the M5 total is 49/49. All eight rows are aligned only to their actual grade in both curricula. The companion pack contains eight lesson starters and 24 answer-keyed questions.
+
+Migration: 20261121082000_seed_science_m4_m5_technology_core_indicators.sql. Teacher pack: M4-M5-science-technology-computational-thinking-teacher-starter-pack.md.
+
+## Current upper-secondary coverage
+
+| Grade | Expected | Staged | Must-Know | Should-Know | Remaining |
+|---|---:|---:|---:|---:|---:|
+| M4 | 28 | 28 | 20 | 8 | 0 |
+| M5 | 49 | 49 | 42 | 7 | 0 |
+| M6 | 25 | 0 | Pending reconciliation | Pending reconciliation | 25 |
+| **Total** | **102** | **77** | **62** | **15** | **25** |
+
+Priority totals are not yet reconciled to the official upper-secondary summary (85 Must-Know / 18 Should-Know, with one dual-classified indicator). The M6 source transcription must establish the remaining priority distribution before final acceptance; do not infer or force the aggregate totals.
