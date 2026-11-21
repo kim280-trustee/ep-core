@@ -5,7 +5,7 @@
 with expected(subject_code, expected_unique, expected_alignments) as (
   values
     ('THAI-LANGUAGE',319,391),
-    ('MATH',41,41),
+    ('MATH',157,157),
     ('SCI',415,415),
     ('SOCIAL-STUDIES',418,540),
     ('HEALTH-PE',221,279),
@@ -45,12 +45,12 @@ from expected e
 left join actual a using(subject_code)
 order by e.subject_code;
 
--- National-master aggregate: 1,940 unique indicators and 2,334 grade alignments.
+-- National-master aggregate: 2,056 unique indicators and 2,450 grade alignments.
 select count(distinct o.id) filter(where a.required)::integer unique_required_indicators,
        count(distinct a.id) filter(where a.required)::integer required_grade_alignments,
        count(distinct a.id) filter(where a.required and a.indicator_classification is null and a.pathway_classification is null)::integer unclassified,
-       case when count(distinct o.id) filter(where a.required)=1940
-              and count(distinct a.id) filter(where a.required)=2334
+       case when count(distinct o.id) filter(where a.required)=2056
+              and count(distinct a.id) filter(where a.required)=2450
               and count(distinct a.id) filter(where a.required and a.indicator_classification is null and a.pathway_classification is null)=0
             then 'PASS' else 'CHECK' end result
 from public.learning_objective_alignments a
@@ -64,7 +64,7 @@ where c.code='TH-BASIC-CORE-2008-2017'
   and a.required
   and sub.code in ('THAI-LANGUAGE','MATH','SCI','SOCIAL-STUDIES','HEALTH-PE','ARTS','CAREER','FOREIGN-LANGUAGES');
 
--- Mathematics-specific catalogue remains a separate 41-objective / 41-alignment view.
+-- Secondary Mathematics-specific catalogue remains a separate 41-objective / 41-alignment view.
 select c.code curriculum,count(distinct o.id) filter(where a.required)::integer unique_objectives,
        count(distinct a.id) filter(where a.required)::integer grade_alignments,
        case when count(distinct o.id) filter(where a.required)=41
@@ -77,6 +77,27 @@ join public.learning_topics t on t.id=o.topic_id
 join public.learning_skills sk on sk.id=t.skill_id
 join public.learning_subjects sub on sub.id=sk.subject_id
 where c.code='TH-MATH-M1-M6' and sub.code='MATH'
+group by c.code;
+
+-- Primary Mathematics-specific catalogue: 116 P1-P6 objectives and 116 required alignments.
+select c.code curriculum,count(distinct o.id) filter(where a.required)::integer unique_objectives,
+       count(distinct a.id) filter(where a.required)::integer grade_alignments,
+       count(distinct a.id) filter(where a.required and a.indicator_classification='must_know')::integer must_know,
+       count(distinct a.id) filter(where a.required and a.indicator_classification='should_know')::integer should_know,
+       count(distinct a.id) filter(where a.required and a.indicator_classification is null)::integer unclassified,
+       case when count(distinct o.id) filter(where a.required)=116
+              and count(distinct a.id) filter(where a.required)=116
+              and count(distinct a.id) filter(where a.required and a.indicator_classification='must_know')=82
+              and count(distinct a.id) filter(where a.required and a.indicator_classification='should_know')=34
+              and count(distinct a.id) filter(where a.required and a.indicator_classification is null)=0
+            then 'PASS' else 'CHECK' end result
+from public.learning_objective_alignments a
+join public.learning_objectives o on o.id=a.objective_id
+join public.learning_curricula c on c.id=a.curriculum_id
+join public.learning_topics t on t.id=o.topic_id
+join public.learning_skills sk on sk.id=t.skill_id
+join public.learning_subjects sub on sub.id=sk.subject_id
+where c.code='TH-MATH-P1-P6' and sub.code='MATH'
 group by c.code;
 
 -- Canonical secondary Science core: 276 required M1-M6 indicators.
