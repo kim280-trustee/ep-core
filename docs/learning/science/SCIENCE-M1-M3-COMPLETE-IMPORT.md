@@ -2672,7 +2672,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 **Objective:** `M3-S1_1-06`  
 **Official indicator:** ว 1.1 ม.3/6  
-**Priority:** Should-Know (verify priority mark against the original table before publication)  
+**Priority:** Unclassified pending visual confirmation of the original table's final priority cell  
 **Activity:** Review a local environmental case and propose practical actions that protect organisms and ecosystem balance.
 
 **Formative questions**
