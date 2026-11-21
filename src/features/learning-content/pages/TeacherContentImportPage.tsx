@@ -301,7 +301,7 @@ export default function TeacherContentImportPage() {
 
   if (!user) return <Panel>Sign in with an authorized teacher account to import curriculum materials.</Panel>;
   if (classes.isPending || curricula.isPending) return <div className="h-64 animate-pulse rounded-2xl bg-slate-200" />;
-  if (classes.isError || !classes.data?.length || curricula.isError) {
+  if (classes.isError || !classes.data?.length || curricula.isError || subjects.isError) {
     return <Panel>Teacher organization or curriculum access could not be loaded. No content has been imported.</Panel>;
   }
 
@@ -310,9 +310,11 @@ export default function TeacherContentImportPage() {
     resolved.rows.length === parsedLessons.length &&
     parsedLessons.length > 0 &&
     resolved.errors.length === 0 &&
+    !subjects.isPending &&
     !gradeLevels.isPending &&
     !catalogue.isPending &&
     !alignments.isPending &&
+    !subjects.isError &&
     !gradeLevels.isError &&
     !catalogue.isError &&
     !alignments.isError
