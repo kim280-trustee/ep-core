@@ -482,3 +482,83 @@ select e.curriculum_code,e.grade_code,e.total expected_total,coalesce(a.total,0)
  case when coalesce(a.total,0)=e.total and coalesce(a.must_know,0)=e.must_know and coalesce(a.should_know,0)=e.should_know then 'PASS' else 'CHECK' end result
 from expected e left join actual a using(curriculum_code,grade_code)
 order by e.curriculum_code,e.grade_code;
+
+-- M6 complete core Science verification: W3.1=10, W3.2=14, W4.2=1.
+-- M6/4 is dual-classified: its stored primary label is Must-Know and notes retain Should-Know.
+with expected(code,classification) as (values
+('M6-S3_1-01','must_know'),
+('M6-S3_1-02','must_know'),
+('M6-S3_1-03','must_know'),
+('M6-S3_1-04','must_know'),
+('M6-S3_1-05','must_know'),
+('M6-S3_1-06','must_know'),
+('M6-S3_1-07','must_know'),
+('M6-S3_1-08','must_know'),
+('M6-S3_1-09','must_know'),
+('M6-S3_1-10','must_know'),
+('M6-S3_2-01','must_know'),
+('M6-S3_2-02','must_know'),
+('M6-S3_2-03','must_know'),
+('M6-S3_2-04','must_know'),
+('M6-S3_2-05','must_know'),
+('M6-S3_2-06','must_know'),
+('M6-S3_2-07','should_know'),
+('M6-S3_2-08','must_know'),
+('M6-S3_2-09','must_know'),
+('M6-S3_2-10','must_know'),
+('M6-S3_2-11','must_know'),
+('M6-S3_2-12','must_know'),
+('M6-S3_2-13','must_know'),
+('M6-S3_2-14','must_know'),
+('M6-S4_2-01','must_know')
+), actual as (
+ select c.code curriculum_code,g.code grade_code,o.code,a.indicator_classification,
+        count(*) alignment_rows,count(*) filter(where a.notes ilike '%Dual-classified%') dual_note_rows
+ from public.learning_objective_alignments a join public.learning_curricula c on c.id=a.curriculum_id
+ join public.learning_grade_levels g on g.id=a.grade_level_id and g.curriculum_id=c.id
+ join public.learning_objectives o on o.id=a.objective_id join public.learning_topics t on t.id=o.topic_id
+ join public.learning_skills sk on sk.id=t.skill_id join public.learning_subjects sub on sub.id=sk.subject_id
+ where c.code in ('TH-SCI-M1-M6','TH-BASIC-CORE-2008-2017') and sub.code='SCI' and o.code like 'M6-S%'
+ group by c.code,g.code,o.code,a.indicator_classification
+)
+select x.curriculum_code,count(*)::integer expected_indicators,
+ count(*) filter(where a.grade_code='M6' and a.alignment_rows=1 and a.indicator_classification=e.classification)::integer passing,
+ count(*) filter(where e.classification='must_know' and a.grade_code='M6' and a.indicator_classification=e.classification and a.alignment_rows=1)::integer must_know,
+ count(*) filter(where e.classification='should_know' and a.grade_code='M6' and a.indicator_classification=e.classification and a.alignment_rows=1)::integer should_know,
+ count(*) filter(where a.grade_code is null or a.grade_code<>'M6' or a.alignment_rows<>1 or a.indicator_classification<>e.classification)::integer exceptions,
+ count(*) filter(where a.dual_note_rows>0)::integer dual_classified,
+ case when count(*)=25 and count(*) filter(where a.grade_code='M6' and a.alignment_rows=1)=25
+ and count(*) filter(where a.grade_code='M6' and a.indicator_classification='must_know')=24
+ and count(*) filter(where a.grade_code='M6' and a.indicator_classification='should_know')=1
+ and count(*) filter(where a.dual_note_rows>0)=1 then 'PASS' else 'CHECK' end result
+from expected e cross join (values ('TH-SCI-M1-M6'),('TH-BASIC-CORE-2008-2017')) x(curriculum_code)
+left join actual a on a.curriculum_code=x.curriculum_code and a.code=e.code
+group by x.curriculum_code order by x.curriculum_code;
+
+-- Full upper-secondary coverage gate: exactly 28 M4 + 49 M5 + 25 M6 = 102.
+-- Priority summary is surfaced separately; do not force it if the source row audit differs.
+with expected(curriculum_code,grade_code,total) as (values
+('TH-SCI-M1-M6','M4',28),('TH-SCI-M1-M6','M5',49),('TH-SCI-M1-M6','M6',25),
+('TH-BASIC-CORE-2008-2017','M4',28),('TH-BASIC-CORE-2008-2017','M5',49),('TH-BASIC-CORE-2008-2017','M6',25)
+), actual as (
+ select c.code curriculum_code,g.code grade_code,count(distinct o.id)::integer total,
+ count(*)-count(distinct o.id)::integer duplicate_rows,
+ count(distinct o.id) filter(where a.indicator_classification is null)::integer unclassified,
+ count(distinct o.id) filter(where a.indicator_classification='must_know')::integer must_know,
+ count(distinct o.id) filter(where a.indicator_classification='should_know')::integer should_know,
+ count(distinct o.id) filter(where a.notes ilike '%Dual-classified%')::integer dual_noted
+ from public.learning_objective_alignments a join public.learning_curricula c on c.id=a.curriculum_id
+ join public.learning_grade_levels g on g.id=a.grade_level_id and g.curriculum_id=c.id
+ join public.learning_objectives o on o.id=a.objective_id join public.learning_topics t on t.id=o.topic_id
+ join public.learning_skills sk on sk.id=t.skill_id join public.learning_subjects sub on sub.id=sk.subject_id
+ where c.code in ('TH-SCI-M1-M6','TH-BASIC-CORE-2008-2017') and sub.code='SCI'
+ and g.code in ('M4','M5','M6') and o.code like 'M%'
+ group by c.code,g.code
+)
+select e.curriculum_code,e.grade_code,e.total expected_total,coalesce(a.total,0) actual_total,
+ coalesce(a.must_know,0) stored_must,coalesce(a.should_know,0) stored_should,
+ coalesce(a.unclassified,0) unclassified,coalesce(a.duplicate_rows,0) duplicate_rows,
+ coalesce(a.dual_noted,0) dual_noted,
+ case when coalesce(a.total,0)=e.total and coalesce(a.unclassified,0)=0 and coalesce(a.duplicate_rows,0)=0 then 'PASS' else 'CHECK' end coverage_result
+from expected e left join actual a using(curriculum_code,grade_code)
+order by e.curriculum_code,e.grade_code;
