@@ -8,7 +8,8 @@
     "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "validate:science-packs": "node scripts/validate-science-teacher-packs.mjs"
+    "validate:science-packs": "node scripts/validate-science-teacher-packs.mjs",
+    "validate:national-curriculum-packs": "node scripts/validate-national-curriculum-packs.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
