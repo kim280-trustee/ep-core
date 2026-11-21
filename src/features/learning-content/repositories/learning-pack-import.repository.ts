@@ -43,6 +43,28 @@ export type LearningPackQuestionOnlyChunk = {
 };
 
 export const learningPackImportRepository = {
+  async findExistingImportCodes(input: {
+    organizationId: string;
+    contentCodes: string[];
+    questionCodes: string[];
+  }) {
+    const [contentResult, questionResult] = await Promise.all([
+      input.contentCodes.length
+        ? supabase.from("learning_content_items").select("code")
+            .eq("organization_id", input.organizationId).in("code", input.contentCodes)
+        : Promise.resolve({ data: [], error: null }),
+      input.questionCodes.length
+        ? supabase.from("learning_questions").select("code")
+            .eq("organization_id", input.organizationId).in("code", input.questionCodes)
+        : Promise.resolve({ data: [], error: null }),
+    ]);
+    if (contentResult.error) throw contentResult.error;
+    if (questionResult.error) throw questionResult.error;
+    return {
+      contentCodes: new Set((contentResult.data ?? []).map((item) => makeImportCode(item.code))),
+      questionCodes: new Set((questionResult.data ?? []).map((item) => makeImportCode(item.code))),
+    };
+  },
   async importQuestionsOnly(input: LearningPackQuestionOnlyChunk) {
     if (!input.organizationId || !input.createdBy || !input.curriculumId || !input.subjectId || !input.questions.length) {
       throw new Error("A teacher, organization, curriculum, subject and at least one question are required.");
