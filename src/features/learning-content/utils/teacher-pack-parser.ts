@@ -1,3 +1,7 @@
+export function extractTeacherPackGradeCode(objectiveCode: string | null | undefined): string | null {
+  return objectiveCode?.match(/^([PM][1-6])[-_]/i)?.[1]?.toUpperCase() ?? null;
+}
+
 export type ParsedTeacherPackQuestion = {
   number: number;
   prompt: string;
