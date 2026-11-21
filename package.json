@@ -14,7 +14,8 @@
     "validate:social-studies-packs": "node scripts/validate-social-studies-teacher-packs.mjs",
     "validate:health-pe-packs": "node scripts/validate-health-pe-teacher-packs.mjs",
     "validate:arts-packs": "node scripts/validate-arts-teacher-packs.mjs",
-    "validate:foreign-languages-packs": "node scripts/validate-foreign-languages-packs.mjs"
+    "validate:foreign-languages-packs": "node scripts/validate-foreign-languages-packs.mjs",
+    "validate:maths-packs": "node scripts/validate-maths-teacher-packs.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
