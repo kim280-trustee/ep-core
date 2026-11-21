@@ -114,3 +114,12 @@ Migration: `20261121093000_seed_science_m6_universe_earth_climate_core_indicator
 The M6 stored counts show 24 Must-Know and 1 Should-Know; M6 ว 3.1 ม.6/4 is additionally marked Should-Know in notes, so priority labels including that dual are 86 Must-Know and 17 Should-Know. The official upper-secondary summary on page 58 reports 85 Must-Know and 18 Should-Know, with the same dual indicator. Therefore **coverage and grade mapping are complete, but the aggregate priority tally still differs by one Must/Should assignment**. Do not silently force the totals; retain this as a source-reconciliation issue for final acceptance.
 
 Teacher resources for this core grade band now total 102 lesson starters and 306 answer-keyed formative questions (M4 28/84, M5 49/147, M6 25/75). These remain Markdown teacher resources; no school, class, student or learner-progress records were touched.
+
+
+## M3 priority reconciliation — ecosystem indicator ว 1.1 ม.3/6
+
+The official OBEC 2021 M3 source table (printed page 127) marks ว 1.1 ม.3/6 as **Should-Know**. Both curriculum catalogues previously had this indicator unclassified. The classification has now been corrected in both catalogues and verified.
+
+Migration: `20261121103000_classify_science_m3_ecosystem_indicator_6.sql`.
+
+The remaining nine M3 unclassified rows are the legacy W3.2 records (`M3-S3_2-01` through `M3-S3_2-09`). They remain intentionally unclassified pending a verified source-to-indicator crosswalk. Do not assign priorities merely to force the M3 summary to 41 Must-Know / 18 Should-Know; first establish that each legacy row corresponds to an indicator in the OBEC M3 set.
