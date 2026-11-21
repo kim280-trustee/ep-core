@@ -114,7 +114,6 @@ cross join (values
 
   ('TH68-VALUES','TH68-VALUES-CHARACTERISTICS','Cross-cutting desirable characteristics','Five official desirable characteristics from sections 5.3 and 6.3: love of nation, religion and monarchy (รักชาติ ศาสน์ กษัตริย์); honesty and integrity (ซื่อสัตย์สุจริต); discipline and responsibility (มีวินัย); moderation and sufficiency (อยู่อย่างพอเพียง); public-mindedness and helping others (มีจิตสาธารณะ). These are developed across learning, not grade-coded subject indicators. Source: OBEC B.E. 2568, printed pp. 5-6.',1)
 ) as topic(skill_code,code,name,description,sequence_no)
-on true
 where subject.code = 'TH68-INTEGRATED-COMPETENCIES'
   and skill.subject_id = subject.id
   and skill.code = topic.skill_code
@@ -165,7 +164,6 @@ cross join (values
   ('TH68-ARTS-CULTURE','P2-TH68-ARTS-KNOWLEDGE','P2-TH68-ARTS-01','P2 Arts and Culture Annual Outcome','Official Thai: ปฏิบัติกิจกรรมทางศิลปะและวัฒนธรรมในท้องถิ่นอย่างเห็นคุณค่า และแสดงความชื่นชมต่องานศิลปะอย่างสร้างสรรค์. E&P working translation: Participate in local arts and cultural activities with appreciation and express thoughtful appreciation of artworks. Source: OBEC B.E. 2568, section 7.2, printed p. 9.'),
   ('TH68-ARTS-CULTURE','P3-TH68-ARTS-KNOWLEDGE','P3-TH68-ARTS-01','P3 Arts and Culture Annual Outcome','Official Thai: ปฏิบัติกิจกรรมทางศิลปะและวัฒนธรรมในท้องถิ่นอย่างเห็นคุณค่าและถ่ายทอดเรื่องราวผ่านงานศิลปะอย่างสร้างสรรค์ด้วยความภาคภูมิใจ. E&P working translation: Participate in local arts and cultural activities with appreciation and creatively communicate stories through art with pride. Source: OBEC B.E. 2568, section 7.2, printed p. 9.')
 ) as outcome(skill_code,topic_code,code,name,description)
-on true
 where subject.code = 'TH68-INTEGRATED-COMPETENCIES'
   and skill.subject_id = subject.id
   and skill.code = outcome.skill_code
