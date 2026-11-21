@@ -324,7 +324,7 @@ Earth/Space totals: **44 objectives, 44 lesson starters and 132 answer-keyed que
 | Upper-secondary Physics | 67 | 67 | 201 | Complete |
 | Upper-secondary Earth, Astronomy and Space | 44 | 44 | 132 | Complete |
 
-These totals are separate tracks; the M1–M3 core Science indicators are not merged with M4–M6 additional specialist outcomes. Live Supabase now contains 139 primary and 174 lower-secondary core indicators in both curriculum catalogues. M1 and M2 priority labels reconcile exactly to OBEC; M3 has 10 intentionally unclassified labels pending source reconciliation (nine W3.2 records and W1.1 ม.3/6). The 102 upper-secondary indicators are grade-specifically aligned; priority-summary reconciliation remains open. Consolidated local lint/build and final app testing remain pending and are intentionally deferred until all curriculum rollouts are complete.
+These totals are separate tracks; the M1–M3 core Science indicators are not merged with M4–M6 additional specialist outcomes. Live Supabase now contains 139 primary and 174 lower-secondary core indicators in both curriculum catalogues. M1 and M2 priority labels reconcile exactly to OBEC. M3 ว 1.1 ม.3/6 is now confirmed Should-Know and classified in both curricula; nine legacy W3.2 records remain unclassified pending a verified source-to-indicator crosswalk. The 102 upper-secondary indicators are grade-specifically aligned; the one-row priority-summary reconciliation remains open. Consolidated local lint/build and final app testing remain pending and are intentionally deferred until all curriculum rollouts are complete.
 
 ## Upper-secondary core Science — first implemented tranche
 
@@ -353,3 +353,10 @@ M5 standards W2.1, W2.2 and W2.3 are now represented in both curricula: 25 + 10 
 ## M6 core Science — 25/25 indicators staged
 
 M6 standards W3.1 (10), W3.2 (14) and W4.2 (1) are staged and aligned only to M6 in both curricula. The teacher pack contains 25 lesson starters and 75 answer-keyed formative questions. The full M4–M6 core indicator set is now 102/102: M4 28, M5 49, M6 25. Both curriculum catalogues have the same 102 grade-specific alignments, with no duplicate alignment rows or unclassified priority labels. One aggregate priority discrepancy remains: detailed classifications yield 86 Must-Know and 17 Should-Know including the dual-classified M6/4, whereas the official summary reports 85 and 18. Do not mark priority reconciliation closed until that one-row difference is resolved.
+
+
+## M3 ecosystem priority correction — 21 November 2026
+
+Official OBEC 2021 Science and Technology source page 127 confirms ว 1.1 ม.3/6 as Should-Know. Both catalogue alignments have been corrected and verified. Nine legacy W3.2 rows remain unclassified until their mapping to the official M3 indicator list is established; they are not to be assigned priority labels just to force aggregate totals.
+
+Migration: `20261121103000_classify_science_m3_ecosystem_indicator_6.sql`.
