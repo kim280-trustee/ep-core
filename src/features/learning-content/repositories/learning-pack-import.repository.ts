@@ -144,7 +144,7 @@ export const learningPackImportRepository = {
         const { error: cleanupError } = await supabase.from("learning_questions").delete().in("id", createdQuestionIds);
         if (cleanupError) {
           const original = error instanceof Error ? error.message : "Unknown database error.";
-          throw new Error(`${original} Cleanup also failed: ${cleanupError.message}. Check the draft question bank before retrying.`);
+          throw new Error(`${original} Cleanup also failed: ${cleanupError.message}. Check the draft question bank before retrying.`, { cause: error });
         }
       }
       throw error;
@@ -316,7 +316,7 @@ export const learningPackImportRepository = {
       }
       if (cleanupErrors.length) {
         const original = error instanceof Error ? error.message : "Unknown database error.";
-        throw new Error(`${original} Cleanup also reported: ${cleanupErrors.join("; ")}. Check the draft libraries before retrying.`);
+        throw new Error(`${original} Cleanup also reported: ${cleanupErrors.join("; ")}. Check the draft libraries before retrying.`, { cause: error });
       }
       throw error;
     }
