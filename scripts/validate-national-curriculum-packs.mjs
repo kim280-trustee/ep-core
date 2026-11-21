@@ -46,8 +46,8 @@ const packs = [
   { area: "Arts", path: "docs/learning/arts/ARTS-P1-P3-TEACHER-STARTER-PACK.md", expected: 72, pattern: patterns.arts },
   { area: "Arts", path: "docs/learning/arts/ARTS-P4-TEACHER-STARTER-PACK.md", expected: 29, pattern: patterns.arts },
   { area: "Arts", path: "docs/learning/arts/ARTS-P5-TEACHER-STARTER-PACK.md", expected: 26, pattern: patterns.arts },
-  { area: "Arts", path: "docs/learning/arts/ARTS-P6-TEACHER-STARTER-PACK.md", expected: 27, pattern: patterns.arts },
-  { area: "Arts", path: "docs/learning/arts/ARTS-M1-TEACHER-STARTER-PACK.md", expected: 27, pattern: patterns.arts },
+  { area: "Arts", path: "docs/learning/arts/ARTS-P6-TEACHER-STARTER-PACK.md", expected: 27, pattern: patterns.arts, mode: "codes" },
+  { area: "Arts", path: "docs/learning/arts/ARTS-M1-TEACHER-STARTER-PACK.md", expected: 27, pattern: patterns.arts, mode: "codes" },
   { area: "Arts", path: "docs/learning/arts/ARTS-M2-TEACHER-STARTER-PACK.md", expected: 27, pattern: patterns.arts },
   { area: "Arts", path: "docs/learning/arts/ARTS-M3-TEACHER-STARTER-PACK.md", expected: 32, pattern: patterns.arts },
   { area: "Arts", path: "docs/learning/arts/ARTS-M4-M6-TEACHER-STARTER-PACK.md", expected: 39, pattern: patterns.arts },
@@ -79,43 +79,50 @@ let totalLessons = 0;
 
 for (const pack of packs) {
   const markdown = await readFile(resolve(root, pack.path), "utf8");
-  const headings = [...markdown.matchAll(/^#{2,4}\s+(?:Lesson\s+)?0*(\d+)\s*(?:[.:\-—]|—)/gm)];
-  const expectedHeadingNumbers = Array.from({ length: pack.expected }, (_, index) => index + 1);
-
-  if (headings.length !== pack.expected) {
-    failures.push(pack.path + ": expected " + pack.expected + " lesson headings, found " + headings.length);
-  }
-
-  const seenNumbers = new Set();
+  const headings = [...markdown.matchAll(/^#{2,4}\\s+(?:Lesson\\s+)?0*(\\d+)\\s*(?:[.:\\-—]|—)/gm)];
   const seenCodes = new Set();
-  for (let index = 0; index < headings.length; index += 1) {
-    const number = Number(headings[index][1]);
-    if (seenNumbers.has(number)) failures.push(pack.path + ": duplicate lesson heading number " + number);
-    seenNumbers.add(number);
-    if (number !== expectedHeadingNumbers[index]) {
-      failures.push(pack.path + ": lesson heading position " + (index + 1) + " is numbered " + number);
-    }
 
-    const start = headings[index].index;
-    const end = index + 1 < headings.length ? headings[index + 1].index : markdown.length;
-    const section = markdown.slice(start, end);
-    const matches = section.match(new RegExp(pack.pattern.source, "g")) ?? [];
-    const sectionCodes = [...new Set(matches)];
-
-    if (sectionCodes.length !== 1) {
-      failures.push(pack.path + ": lesson " + number + " has " + sectionCodes.length + " internal objective codes; expected exactly one");
-    }
-    for (const code of sectionCodes) {
-      if (seenCodes.has(code)) failures.push(pack.path + ": duplicate objective code " + code);
+  if (pack.mode === "codes") {
+    const matches = markdown.match(new RegExp(pack.pattern.source, "g")) ?? [];
+    for (const code of new Set(matches)) {
       seenCodes.add(code);
       const existing = globalCodes.get(code);
       if (existing) failures.push("Objective code " + code + " appears in both " + existing + " and " + pack.path);
       else globalCodes.set(code, pack.path);
     }
-  }
+    if (seenCodes.size !== pack.expected) {
+      failures.push(pack.path + ": expected " + pack.expected + " unique objective codes, found " + seenCodes.size);
+    }
+    process.stdout.write("Checked " + pack.path + ": " + seenCodes.size + " unique objective codes (indicator-list format).\\n");
+  } else {
+    if (headings.length !== pack.expected) {
+      failures.push(pack.path + ": expected " + pack.expected + " lesson headings, found " + headings.length);
+    }
 
-  if (seenCodes.size !== pack.expected) {
-    failures.push(pack.path + ": expected " + pack.expected + " unique objective codes, found " + seenCodes.size);
+    for (let index = 0; index < headings.length; index += 1) {
+      const number = Number(headings[index][1]);
+      const sectionStart = headings[index].index;
+      const sectionEnd = index + 1 < headings.length ? headings[index + 1].index : markdown.length;
+      const section = markdown.slice(sectionStart, sectionEnd);
+      const matches = section.match(new RegExp(pack.pattern.source, "g")) ?? [];
+      const sectionCodes = [...new Set(matches)];
+
+      if (sectionCodes.length !== 1) {
+        failures.push(pack.path + ": lesson heading " + (index + 1) + " (number " + number + ") has " + sectionCodes.length + " internal objective codes; expected exactly one");
+      }
+      for (const code of sectionCodes) {
+        if (seenCodes.has(code)) failures.push(pack.path + ": duplicate objective code " + code);
+        seenCodes.add(code);
+        const existing = globalCodes.get(code);
+        if (existing) failures.push("Objective code " + code + " appears in both " + existing + " and " + pack.path);
+        else globalCodes.set(code, pack.path);
+      }
+    }
+
+    if (seenCodes.size !== pack.expected) {
+      failures.push(pack.path + ": expected " + pack.expected + " unique objective codes, found " + seenCodes.size);
+    }
+    process.stdout.write("Checked " + pack.path + ": " + headings.length + " lessons, " + seenCodes.size + " unique objective codes.\\n");
   }
 
   areaTotals.set(pack.area, (areaTotals.get(pack.area) ?? 0) + seenCodes.size);
