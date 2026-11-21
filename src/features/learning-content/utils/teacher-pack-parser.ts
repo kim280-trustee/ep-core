@@ -37,7 +37,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
   if (!markdown.trim()) throw new Error("The selected Markdown file is empty.");
   if (markdown.length > 5_000_000) throw new Error("Teacher packs must be smaller than 5 MB.");
 
-  const headingPattern = /^#{2,3}\s+(?:(?:(?:Physical|Earth) Science\s+)?(?:Lesson|Outcome)\s+(\d+)\s+[—–-]\s+(.+)|Group\s+\d+\s+[—–-]\s+Outcome\s+(\d+)\s*[:—–-]\s*(.+)|(\d+)\.\s+(.+)|(?:Lesson|Outcome)\s+[—–-]\s+(.+))$/gm;
+  const headingPattern = /^#{2,3}\s+(?:(?:(?:Physical|Earth) Science\s+)?(?:Lesson|Outcome)\s+(\d+)\s*[:—–-]\s*(.+)|Group\s+\d+\s+[—–-]\s+Outcome\s+(\d+)\s*[:—–-]\s*(.+)|(\d+)\.\s+(.+)|(?:Lesson|Outcome)\s+[—–-]\s+(.+))$/gm;
   const headings = [...markdown.matchAll(headingPattern)];
   const guidanceHeadings = [...markdown.matchAll(/^##\s+(?!(?:(?:Physical|Earth) Science\s+)?(?:Lesson|Outcome)\s+\d|Group\s+\d+\s+[—–-]\s+Outcome\s+\d)([^#\n]*(?:safety|assessment|safeguarding|teacher guidance|teacher notes|teaching notes)[^#\n]*)\s*$/gim)];
   const packGuidance = guidanceHeadings.map((match) => {
