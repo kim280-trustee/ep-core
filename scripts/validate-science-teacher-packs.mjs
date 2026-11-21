@@ -21,7 +21,15 @@ if (parserDiagnostics.length) {
 }
 const parserJavaScript = compiled.outputText;
 const parserUrl = `data:text/javascript;base64,${Buffer.from(parserJavaScript).toString("base64")}`;
-const { parseTeacherPackMarkdown } = await import(parserUrl);
+const { parseTeacherPackMarkdown, extractTeacherPackGradeCode } = await import(parserUrl);
+
+for (const [code, expected] of [["P1-TH68-READ-01", "P1"], ["P3-TH68-ARTS-01", "P3"], ["M4-S1_1-01", "M4"], ["M6-S4_2-25", "M6"], ["UNSCOPED-CODE", null]]) {
+  const actual = extractTeacherPackGradeCode(code);
+  if (actual !== expected) {
+    process.stderr.write("Grade-code parser mismatch for " + code + ": expected " + expected + ", received " + actual + "\\n");
+    process.exit(1);
+  }
+}
 
 const packs = [
   {
@@ -73,7 +81,7 @@ for (const pack of packs) {
       }
       allObjectiveCodes.add(lesson.objectiveCode);
 
-      const grade = lesson.objectiveCode.match(/^(M[1-6])[-_]/)?.[1];
+      const grade = extractTeacherPackGradeCode(lesson.objectiveCode);
       if (!grade) {
         failures.push(`${pack.path}: objective code ${lesson.objectiveCode} has no recognized M1–M6 grade prefix`);
       } else {
