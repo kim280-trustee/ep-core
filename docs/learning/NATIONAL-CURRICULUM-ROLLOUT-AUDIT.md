@@ -21,6 +21,12 @@
 
 The 41 Mathematics objectives have 41 alignments in the national master and are also retained in the separate Maths-specific catalogue, giving 82 alignments across both catalogues. Do not add those duplicate catalogue views to the 2,334 national-master alignment total.
 
+### Official-indicator required-flag reconciliation
+
+A live database audit found that 839 official grade alignments in six learning areas had been marked `required=false` because their Must-Know / Should-Know priority had been treated as curriculum inclusion. This was incorrect: Should-Know indicators remain official curriculum indicators, and Social Studies also contains official pathway-classified indicators without a priority label.
+
+Migration `20261121052847_mark_official_2008_learning_area_indicators_required.sql` changed only the required flag for the affected official alignments: Thai Language 68, Social Studies 405, Health and Physical Education 140, Arts 146, Career 39 and Foreign Languages 41. All original priority and pathway classifications were preserved. Live verification now returns 1,940 required unique indicators, 2,334 required grade alignments and zero rows with both priority and pathway classifications missing. The nine legacy M3 W3.2 Science supplementary outcomes remain non-required.
+
 Science's 415 core indicators are separate from 300 additional M4–M6 specialist outcomes across Biology, Chemistry, Physics and Earth/Space. Those specialist outcomes remain in their own subject tracks and are not part of the 415 national Science core total.
 
 ## 2. Science and Technology — closed curriculum gap
