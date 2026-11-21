@@ -71,3 +71,8 @@ All 319 lessons now contain three Thai-language formative tasks (957 total). Eac
 The importer parser now recognises Thai activity, practice and answer-guidance labels. It supports the shared code form `THx.y-M4-6-nn`; the importer expands each of the 36 shared outcomes into three grade-specific content drafts with unique question codes.
 
 GitHub Actions run 238 passed all curriculum pack validators, including Thai Language, Social Studies, Health & PE, Arts, Foreign Languages, Science, Mathematics and Career, plus the Thai B.E. 2568 competency pack, production build and ESLint.
+
+
+## Importer parser verification — 21 November 2026
+
+The actual TypeScript teacher-pack parser now reads all four Thai Language packs: 319 unique objectives and 957 answer-keyed formative tasks. The dedicated validator checks each official Thai indicator code, exact Thai indicator wording in all three assessment prompts, non-empty answer/evidence guidance, and grade-scope extraction. The 36 shared `M4-6` outcomes correctly resolve to M4, M5 and M6 rather than being incorrectly collapsed to M4. GitHub Actions run 258 passed this validator together with the other curriculum validators, production build and ESLint. No authenticated import or publication was performed.
