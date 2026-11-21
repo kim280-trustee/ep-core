@@ -43,6 +43,9 @@ jobs:
       - name: Validate consolidated Science teacher packs
         run: npm run validate:science-packs
 
+      - name: Validate Social Studies teacher packs through importer parser
+        run: npm run validate:social-studies-packs
+
       - name: Build production application
         run: npm run build
 
