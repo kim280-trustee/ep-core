@@ -96,7 +96,7 @@ GitHub Actions run 258 passed all curriculum source validators, all eight learni
 - Thai Studies remains outside this rollout and is not represented as complete.
 - Cambridge Click Start Computer Studies remains a separate international course; it is not a substitute for national Science and Technology indicators.
 - The 300 specialist upper-secondary Science outcomes remain separate from the 415 core Science indicators.
-- Social Studies now has 418 lessons and 1,254 indicator-linked formative tasks with answer/evidence guidance. The importer expands its 61 shared M4–M6 outcomes into 183 grade-specific draft lessons and 549 grade-scoped questions using collision-safe codes.
+- Social Studies now has 418 lessons, 1,254 indicator-linked formative tasks with answer/evidence guidance, four-step strand-specific teaching sequences, grade-band differentiation and a teacher implementation guide. The importer expands its 61 shared M4–M6 outcomes into 183 grade-specific draft lessons and 549 grade-scoped questions using collision-safe codes.
 - Health and Physical Education now has 221 lessons and 663 indicator-specific formative tasks with answer/evidence guidance. Its 29 shared M4–M6 indicators expand into 87 grade-specific draft lessons and 261 grade-scoped questions.
 - Arts now has 279 lessons and 837 indicator-specific formative tasks with answer/evidence guidance. Its 39 shared M4–M6 indicators expand into 117 grade-specific draft lessons and 351 grade-scoped questions.
 - Foreign Languages now has 193 lessons and 579 indicator-specific formative tasks with answer/evidence guidance. Its 21 shared M4–M6 indicators expand into 63 grade-specific draft lessons and 189 grade-scoped questions.
