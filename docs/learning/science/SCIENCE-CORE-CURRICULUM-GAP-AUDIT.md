@@ -5,7 +5,7 @@
 **Official source PDF:** https://www.academic.obec.go.th/images/official/1622514876_d_1.pdf  
 **Status:** Open — do not mark Science complete
 
-**Repository/live distinction (verified 21 November 2026):** Live Supabase contains all 415 required official P1–M6 Science and Technology core indicators in the draft national master curriculum and all 276 required M1–M6 indicators in the canonical secondary Science curriculum. The 139 primary indicators and 174 lower-secondary indicators are present in both catalogues. M1 and M2 priority totals match OBEC exactly. M3 has 59 required official indicators in both catalogues with 41 Must-Know and 18 Should-Know labels. Nine legacy W3.2 outcomes are retained as non-required supplementary records and are excluded from the national-core count. The 102 grade-specific M4–M6 core indicators are now staged and aligned in both curricula (M4 28, M5 49, M6 25). Upper-secondary priority totals now match the official 85 Must-Know / 18 Should-Know summary, including the dual-classified M6/4 indicator; separate M4–M6 specialist subject outcomes are tracked outside this core indicator total.
+**Repository/live distinction (verified 21 November 2026):** Live Supabase contains all 415 required official P1–M6 Science and Technology core indicators in the draft national master curriculum and all 276 required M1–M6 indicators in the canonical secondary Science curriculum. The 139 primary indicators and 174 lower-secondary indicators are present in both catalogues. Primary P1–P6 priority totals now match OBEC: 99 Must-Know and 45 Should-Know classifications across 139 indicators, including five dual-classified indicators. P2 ว 4.2 ป.2/3 and P3 ว 3.2 ป.3/2 were corrected to Must-Know from the official page 65 and 68 rows. M1 and M2 priority totals match OBEC exactly. M3 has 59 required official indicators in both catalogues with 41 Must-Know and 18 Should-Know labels. Nine legacy W3.2 outcomes are retained as non-required supplementary records and are excluded from the national-core count. The 102 grade-specific M4–M6 core indicators are now staged and aligned in both curricula (M4 28, M5 49, M6 25). Upper-secondary priority totals now match the official 85 Must-Know / 18 Should-Know summary, including the dual-classified M6/4 indicator; separate M4–M6 specialist subject outcomes are tracked outside this core indicator total.
 
 
 ## Official grade totals
@@ -127,3 +127,10 @@ Migration: `20261121113000_correct_primary_science_should_know_required_flag.sql
 OBEC 2021 printed page 146 classifies ว 1.2 ม.4/11 as Should-Know. Both catalogue rows and the M4 teacher starter pack were corrected. The resulting M4–M6 totals are 85 Must-Know and 18 Should-Know classifications (including dual M6/4), with 102 unique indicators.
 
 Migration: `20261121114500_correct_science_m4_w1_2_indicator_11_priority.sql`.
+
+
+## Primary priority reconciliation completed
+
+OBEC 2021 printed page 65 confirms ว 4.2 ป.2/3 is Must-Know; printed page 68 confirms ว 3.2 ป.3/2 is Must-Know. Both had been stored as Should-Know and are now corrected in both catalogues and in their teacher packs. Primary priority totals reconcile to 99 Must-Know and 45 Should-Know classifications (five dual-classified indicators) across 139 unique indicators.
+
+Migration: `20261121122000_correct_primary_science_p2_p3_must_know_priorities.sql`.
