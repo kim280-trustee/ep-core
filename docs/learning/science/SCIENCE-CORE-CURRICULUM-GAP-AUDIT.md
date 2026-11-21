@@ -5,7 +5,7 @@
 **Official source PDF:** https://www.academic.obec.go.th/images/official/1622514876_d_1.pdf  
 **Status:** Open — do not mark Science complete
 
-**Repository/live distinction (verified 21 November 2026):** Live Supabase contains all 139 primary P1–P6 indicators and all 174 lower-secondary M1–M3 indicators in both the canonical Science curriculum and the draft national master curriculum. M1 and M2 priority totals match OBEC exactly. M3 has 59 required official indicators in both catalogues with 41 Must-Know and 18 Should-Know labels. Nine legacy W3.2 outcomes are retained as non-required supplementary records and are excluded from the national-core count. The 102 grade-specific M4–M6 core indicators remain outstanding.
+**Repository/live distinction (verified 21 November 2026):** Live Supabase contains all 139 primary P1–P6 indicators and all 174 lower-secondary M1–M3 indicators in both the canonical Science curriculum and the draft national master curriculum. M1 and M2 priority totals match OBEC exactly. M3 has 59 required official indicators in both catalogues with 41 Must-Know and 18 Should-Know labels. Nine legacy W3.2 outcomes are retained as non-required supplementary records and are excluded from the national-core count. The 102 grade-specific M4–M6 core indicators are now staged and aligned in both curricula (M4 28, M5 49, M6 25). One aggregate priority-summary discrepancy remains open; separate M4–M6 specialist subject outcomes are tracked outside this core indicator total.
 
 
 ## Official grade totals
