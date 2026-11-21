@@ -388,7 +388,7 @@ export default function TeacherContentCreatePage() {
                 <p className="mt-1 text-xs text-slate-500">Selecting a template replaces the starter code below. You can edit it before saving.</p>
               </Field>
               <Field label="Starter code">
-                <textarea value={starterCode} onChange={(event) => setStarterCode(event.target.value)} maxLength={12000} spellCheck={false} className="input min-h-56 w-full resize-y font-mono text-sm" placeholder="console.log(\"Hello, world!\");" required />
+                <textarea value={starterCode} onChange={(event) => setStarterCode(event.target.value)} maxLength={12000} spellCheck={false} className="input min-h-56 w-full resize-y font-mono text-sm" placeholder={'console.log("Hello, world!");'} required />
               </Field>
               <p className="text-xs leading-5 text-slate-500">Students receive the instructions and starter code. Teacher-only notes and solutions must be stored in a separate teacher-only section, never in the student activity section.</p>
             </>
