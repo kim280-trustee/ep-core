@@ -118,7 +118,7 @@ All eight packs have now been upgraded. The 418 lesson sections contain 418 obje
 
 The answer guidance is formative marking guidance: it describes the evidence required for credit and permits equivalent correct responses. It does not claim a single fixed answer for open-ended civic, ethical, economic, historical or geographic tasks. Religion-related tasks explicitly do not grade personal faith or require worship.
 
-The shared upper-secondary pack uses 61 M46 outcome codes aligned to M4, M5 and M6 (183 grade alignments). The parser deliberately does not collapse M46 to one grade. A remaining importer enhancement must expand these shared outcomes across the three aligned grade levels with grade-scoped content and question codes before the consolidated import test.
+The shared upper-secondary pack uses 61 M46 outcome codes aligned to M4, M5 and M6 (183 grade alignments). The parser deliberately does not collapse M46 to one grade. The importer expands each shared outcome into three grade-specific draft lessons and generates distinct grade-scoped lesson and question codes.
 
 
 ## Shared M4–M6 import handling
@@ -129,3 +129,10 @@ The parser exposes an explicit multi-grade scope helper: `SOx.y-M46-nn` resolves
 ## CI result
 
 GitHub Actions run 157 passed the national pack checks, Social Studies importer-parser validation, production build and ESLint. The Social Studies validator confirms 418 unique codes, all 1,254 task prompts linked to their exact official Thai indicator, 1,254 non-empty answer-guidance entries, and correct M4–M6 shared-grade scope.
+
+
+## Teaching-sequence and differentiation enhancement — 21 November 2026
+
+All 418 lessons now include a four-step teaching sequence tailored to the relevant Social Studies strand: religion/ethics, civics, economics, history or geography. Each sequence identifies the type of source or case to use, models the target reasoning, includes guided practice and ends with an individual demonstration of learning. Each lesson also lists strand-specific resources, grade-band differentiation and a learning intention that repeats the exact official indicator.
+
+The eight packs now carry this additional lesson-planning structure without changing the official Thai indicator text, objective codes, priority labels, OBEC pathway classifications or grade alignments. The Social Studies validator has been strengthened to check the four-step sequence, resources, differentiation, exact-indicator learning intention, all three question numbers and the existing answer-keyed task/source linkage.
