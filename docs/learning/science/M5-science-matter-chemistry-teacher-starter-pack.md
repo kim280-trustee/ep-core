@@ -2,8 +2,8 @@
 
 **Source:** OBEC / IPST, *Indicators and Core Learning Content: Must-Know and Should-Know* (2021), pp. 149–151  
 **Grade:** M5 only  
-**This tranche:** 22 W2.1 indicators (17 Must-Know, 5 Should-Know)  
-**Source note:** The source table lists W2.1 M5/1–10 and M5/14–25. Indicators M5/11–13 are not listed in this table and have not been invented.
+**Complete W2.1 set:** 25 indicators (20 Must-Know, 5 Should-Know)  
+**Source note:** M5/11–13 were recovered from the official OBEC 2021 PDF page 151 after the initial text extraction skipped that portion of the page.
 
 ## Lesson 1 — Classify elements and compounds from chemical formulae
 
@@ -336,3 +336,47 @@
    **Answer:** Reduce exposure time, increase distance and use appropriate shielding.
 
 **Teacher note:** Follow laboratory safety procedures for chemical handling and demonstrations. Radioactivity content is conceptual and should use safe, approved learning resources only.
+
+## Additional source-recovered indicators — M5/11–13
+
+### Lesson 23 — Explain boiling points of covalent substances
+
+**Objective:** `M5-S2_1-11`  
+**Official indicator:** ว 2.1 ม.5/11 | **Priority:** Must-Know  
+**Learning outcome:** Explain how molecular polarity and intermolecular forces, including hydrogen bonding, affect boiling points of covalent substances.  
+**Starter:** Compare water and hydrogen sulfide. Ask students why water has a much higher boiling point.
+
+1. What kind of attraction helps explain water's relatively high boiling point?
+   **Answer:** Hydrogen bonding between water molecules.
+2. How can molecular polarity affect boiling point?
+   **Answer:** Greater intermolecular attractions generally require more energy to separate molecules, increasing boiling point.
+3. Which bond types within a molecule can enable hydrogen bonding between molecules?
+   **Answer:** N–H, O–H or F–H bonds.
+
+### Lesson 24 — Write formulae for ions and ionic compounds
+
+**Objective:** `M5-S2_1-12`  
+**Official indicator:** ว 2.1 ม.5/12 | **Priority:** Must-Know  
+**Learning outcome:** Write chemical formulae for common ions and ionic compounds, using charge balance to produce electrically neutral formula units.  
+**Starter:** Give students positive and negative ion cards. They combine them in ratios that make the total charge zero.
+
+1. What is the charge on a calcium ion?
+   **Answer:** Ca²⁺ has a 2+ charge.
+2. What is the formula of calcium chloride?
+   **Answer:** CaCl₂.
+3. What is the formula of magnesium oxide?
+   **Answer:** MgO.
+
+### Lesson 25 — Classify dissociation and electrolyte solutions
+
+**Objective:** `M5-S2_1-13`  
+**Official indicator:** ว 2.1 ม.5/13 | **Priority:** Must-Know  
+**Learning outcome:** Determine whether a substance dissolves by dissociation or without dissociation, explain the reason, and classify the resulting solution as an electrolyte or non-electrolyte.  
+**Starter:** Compare salt water and sugar water using a safe conductivity demonstration or simulation.
+
+1. What happens when sodium chloride dissolves in water?
+   **Answer:** It dissociates into mobile Na⁺ and Cl⁻ ions.
+2. Does sugar solution normally contain ions formed by dissociation?
+   **Answer:** No. Sugar molecules dissolve without dissociating into ions.
+3. Which solution conducts electricity: salt water or sugar water?
+   **Answer:** Salt water conducts because it contains mobile ions; sugar water is a non-electrolyte solution.
