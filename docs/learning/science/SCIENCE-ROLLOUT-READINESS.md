@@ -2,15 +2,15 @@
 
 **Branch:** `paul/thai-national-curriculum-foundation`  
 **Scope:** Full Thai national Science and Technology learning area (P1–M6), plus separately catalogued M4–M6 specialist outcomes  
-**Status:** **Core national Science rollout is still incomplete.** The existing work covers 144 M1–M3 SCI records and 300 M4–M6 specialist outcomes. A new primary-grade W4.2 batch has added 28 official computational-science indicators, but the full OBEC 2021 Science and Technology set contains 415 indicators across P1–M6. Primary P1–P3 W1–W3 are seeded (42 indicators), and P1–P6 W4.2 is seeded (28 indicators). P4–P6 W1–W3 (69 indicators), missing lower-secondary W1–W4 indicators and the 102 shared upper-secondary core indicators still require implementation and code-level reconciliation. The 300 Biology, Chemistry, Physics and Earth/Space specialist outcomes are additional curriculum content and do not replace the M4–M6 core set.
+**Status:** **Primary P1–P6 Science is complete and verified in live staging; national Science remains open.** The 139 primary indicators reconcile by grade (P1 15, P2 16, P3 25, P4 21, P5 32, P6 30). Lower-secondary M1–M3 still needs official indicator completion and code-level reconciliation against 174 indicators (52, 63 and 59). The 102 shared M4–M6 core indicators remain unseeded. The 300 Biology, Chemistry, Physics and Earth/Space specialist outcomes are additional curriculum content and do not replace the M4–M6 core set.
 
-The existing 13 Science import files contain 444 lesson starters and 1,332 answer-keyed practice questions. The new `SCIENCE-TECHNOLOGY-W4.2-P1-P6-TEACHER-STARTER-PACK.md` adds 28 lessons and 84 formative tasks. Its 28 Must-Know / Should-Know labels have now been reconciled to the OBEC 2021 grade tables; the seed migration, teacher pack and read-only verification checks were corrected together. The live staging database still has the older P4/P5/P6 labels until the updated branch migration is deployed. These resources are still Markdown source material until an authorized teacher imports them through `/teacher/content/import`. No school, class or student records have been created.
+The existing 13 Science import files contain 444 lesson starters and 1,332 answer-keyed practice questions. The primary packs add 139 lesson starters and 417 formative tasks across P1–P6: 42 P1–P3 W1–W3, 69 P4–P6 W1–W3, and 28 W4.2. The W4.2 seed was reapplied so corrected priority labels are present in live staging. These resources remain Markdown source material until an authorized teacher imports them through `/teacher/content/import`. No school, class or student records have been created.
 
 
 
-**Database execution status:** This readiness document records repository content and historical rollout notes. It does not prove which migrations are currently present in live Supabase. Treat all staging/application claims in older batch notes as historical until the Supabase migration ledger and representative catalogue counts are checked directly. Do not report a migration as applied based only on its presence in this branch.
+**Database execution status:** Live Supabase was read directly on 21 November 2026. The migration ledger records the primary P1–P3, P4–P6 and W4.2 seeds plus corrective migrations for P1–P3 and P4–P6 objective alignment. The P4–P6 correction fixes a PostgreSQL data-modifying-CTE ordering defect in the original migration. The current national-core primary Science catalogue has 139 aligned indicators and zero unclassified primary rows.
 
-**Verified live staging reconciliation — 21 November 2026:** The connected Supabase project `ep-core` is healthy. Its migration ledger currently ends at the curriculum-era migration `learning_gradebook_audit_select_grant` (version `20261118081715`); the newer Science seed/classification migrations in this branch are not yet recorded under their branch filenames. Direct catalogue reads show national-core Science alignment counts of P1 5, P2 4, P3 5, P4 5, P5 5, P6 4, M1 43, M2 48 and M3 53. The 28 primary rows currently visible are W4.2; the 42 P1–P3 W1–W3 records in this branch's `20261118208000_seed_science_technology_primary_p1_p3_indicators.sql` are not yet reflected in the live catalogue. Therefore live primary coverage is 28/139, not 139/139. Do not mark primary Science complete until the pending branch migrations are deployed and the 15/16/25/21/32/30 grade totals pass the read-only verification query. M1–M3 lower-secondary counts are visible in both curricula; M3's nine W3.2 rows remain unclassified as documented.
+**Verified live staging reconciliation — 21 November 2026:** The connected Supabase project `ep-core` is healthy. The migration ledger records the primary seeds and corrections through `seed_science_primary_computing_w4_2_indicators` (version `20261121032523`). Direct catalogue reads show P1 15, P2 16, P3 25, P4 21, P5 32 and P6 30 aligned Science indicators, with no unclassified primary rows. M1 43, M2 48 and M3 53 remain the current lower-secondary counts; M3 includes nine W3.2 records outside the official 2021 indicator set and those nine remain unclassified. The 102 shared M4–M6 core indicators remain outstanding.
 
 
 ## Official national Science and Technology coverage
@@ -38,15 +38,12 @@ Primary priority-count checks from the OBEC 2021 summary: P4 has 16 Must-Know an
 
 ## Current implementation status
 
-- P1–P3: 42 W1–W3 indicators seeded (10 P1, 12 P2, 20 P3); together with W4.2 these grades reconcile to 15, 16 and 25 indicators respectively. The companion `P1-P3-science-w1-w3-teacher-starter-pack.md` now covers all 42 indicators with 42 lesson starters and 126 formative tasks.
-- P4–P6: 28 W4.2 indicators seeded (5, 5 and 4); 69 W1–W3 indicators remain (16 P4, 27 P5, 26 P6).
-- M1: 43 existing W1–W3 indicators; the 9 W4.1/W4.2 indicators are not yet seeded.
-- M2: 48 existing W1–W3 indicators; six W2.1 indicators and nine W4.1/W4.2 indicators remain to be reconciled/seeded.
-- M3: 53 existing records require code-level reconciliation against the official standard table. The official table has six W1.1 indicators, eight W1.3 indicators, three W2.2 indicators and no M3 W3.2 indicator set; the current records include 11 W1.3 and nine W3.2 entries. Do not treat the present 53 as a verified official count.
-- M1–M3 W4.1/W4.2: 27 official indicators remain (M1: 9; M2: 9; M3: 9).
-- M4–M6 core Science and Technology: 102 shared indicators remain to be seeded.
-- M4–M6 additional specialist outcomes: Biology 108, Chemistry 81, Physics 67 and Earth/Space 44 are already catalogued separately (300 total).
-
+- **Primary P1–P6:** complete in live staging — 139 official indicators aligned (15, 16, 25, 21, 32, 30). All 139 have a priority classification; the five dual-classified indicators are explicitly noted.
+- **Primary W1–W3:** 111 indicators complete — 10 P1, 12 P2, 20 P3, 16 P4, 27 P5, 26 P6. Corrective migrations now sequence topic and objective writes safely.
+- **Primary W4.2:** 28 indicators complete — 5, 4, 5, 5, 5, 4 by grade. Corrected P4/P5/P6 priority rows are applied in live staging.
+- **M1–M3:** 144 existing alignments (43, 48, 53) remain against official grade totals 52, 63 and 59. M1 has 9 missing; M2 has 15 missing; M3 requires code-level reconciliation because nine W3.2 records are outside the official 2021 indicator list and remain unclassified.
+- **M4–M6 core Science and Technology:** 102 shared indicators remain to be seeded once and aligned to all three grades.
+- **M4–M6 specialist outcomes:** Biology 108, Chemistry 81, Physics 67 and Earth/Space 44 are already catalogued separately (300 total).
 The `TECH` skill is part of the `SCI` subject. The 28 new P1–P6 W4.2 objectives are national Science and Technology indicators and must not be merged with the separate Click Start international Computer Studies course.
 
 ## Consolidated integrity review
