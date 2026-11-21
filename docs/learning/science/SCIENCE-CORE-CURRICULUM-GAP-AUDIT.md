@@ -3,7 +3,7 @@
 **Curriculum:** Thai Basic Education Core Curriculum B.E. 2551 (2008), revised 2017  
 **Source:** OBEC / IPST, *Indicators and Core Learning Content: Must-Know and Should-Know*, 2021  
 **Official source PDF:** https://www.academic.obec.go.th/images/official/1622514876_d_1.pdf  
-**Status:** Open — do not mark Science complete
+**Status:** Official P1–M6 core indicator coverage and priority reconciliation are complete; authenticated importer and application release validation remain open.
 
 **Repository/live distinction (verified 21 November 2026):** Live Supabase contains all 415 required official P1–M6 Science and Technology core indicators in the draft national master curriculum and all 276 required M1–M6 indicators in the canonical secondary Science curriculum. The 139 primary indicators and 174 lower-secondary indicators are present in both catalogues. Primary P1–P6 priority totals now match OBEC: 99 Must-Know and 45 Should-Know classifications across 139 indicators, including five dual-classified indicators. P2 ว 4.2 ป.2/3 and P3 ว 3.2 ป.3/2 were corrected to Must-Know from the official page 65 and 68 rows. M1 and M2 priority totals match OBEC exactly. M3 has 59 required official indicators in both catalogues with 41 Must-Know and 18 Should-Know labels. Nine legacy W3.2 outcomes are retained as non-required supplementary records and are excluded from the national-core count. The 102 grade-specific M4–M6 core indicators are now staged and aligned in both curricula (M4 28, M5 49, M6 25). Upper-secondary priority totals now match the official 85 Must-Know / 18 Should-Know summary, including the dual-classified M6/4 indicator; separate M4–M6 specialist subject outcomes are tracked outside this core indicator total.
 
@@ -139,3 +139,8 @@ Migration: `20261121122000_correct_primary_science_p2_p3_must_know_priorities.sq
 ## Official core teacher-pack parity verification
 
 The primary packs contain 139/139 unique P1–P6 objective codes and 417 formative tasks. The lower-secondary consolidated import contains 174/174 objective codes and 522 answer-keyed questions. The new upper-secondary consolidated import `SCIENCE-M4-M6-COMPLETE-IMPORT.md` contains 102/102 objective codes and 306 answer-keyed questions. Across P1–M6, all 415 official core objective codes match the live national master catalogue with no missing, extra or duplicate codes (1,245 formative tasks). Nine legacy M3 W3.2 outcomes are kept separately as supplementary content.
+
+
+## Consolidated teacher-import parser check
+
+The repository parser rules were checked against the two mixed-grade Science core import files. The M1–M3 file was corrected so all 174 lessons have numbered headings; all 174 objective codes are recognized and all 522 answer keys are extracted as three questions per lesson. The M4–M6 file contains 102 numbered lessons, 102 recognized grade-coded objective codes and 306 answer keys. Both pass the parser-rule smoke check with no duplicate codes or lesson numbers. This is a source-level parser check, not an authenticated UI import; the latter remains part of final release validation.
