@@ -19,7 +19,8 @@
     "validate:thai-career-packs": "node scripts/validate-thai-language-career-packs.mjs",
     "validate:thai-language-packs": "node scripts/validate-thai-language-teacher-packs.mjs",
     "validate:computer-studies-packs": "node scripts/validate-computer-studies-teacher-pack.mjs",
-    "validate:science-specialist-packs": "node scripts/validate-science-specialist-packs.mjs"
+    "validate:science-specialist-packs": "node scripts/validate-science-specialist-packs.mjs",
+    "validate:maths-primary-packs": "node scripts/validate-primary-maths-teacher-packs.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
