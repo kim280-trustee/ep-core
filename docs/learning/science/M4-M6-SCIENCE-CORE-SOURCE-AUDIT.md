@@ -3,7 +3,7 @@
 **Curriculum:** Thai Basic Education Core Curriculum B.E. 2551 (2008), revised 2017  
 **Official source:** OBEC / IPST, *Indicators and Core Learning Content: Must-Know and Should-Know* (2021)  
 **Source PDF:** https://www.academic.obec.go.th/images/official/1622514876_d_1.pdf  
-**Status:** All 102 upper-secondary core indicators are now staged and verified in both curricula: M4 28/28, M5 49/49 and M6 25/25. Every objective is aligned only to its source grade. One priority-summary discrepancy remains open: detailed row classifications currently total 86 Must-Know and 17 Should-Know, plus the dual classification for M6/4; the official summary reports 85 Must-Know and 18 Should-Know.
+**Status:** All 102 upper-secondary core indicators are now staged and verified in both curricula: M4 28/28, M5 49/49 and M6 25/25. Every objective is aligned only to its source grade. Priority reconciliation is complete: detailed rows now total 85 Must-Know and 17 Should-Know, plus the dual Should-Know classification for M6/4, matching the official summary of 85 Must-Know and 18 Should-Know.
 
 ## Correct interpretation of the 102 indicators
 
@@ -59,7 +59,7 @@ Remaining upper-secondary core indicators: 98 of 102. Do not extrapolate M4 word
 
 ## Implemented tranche 2 — M4 cell biology, plant physiology, genetics and evolution
 
-The second tranche adds all 18 remaining M4 indicators in standards W1.2 and W1.3. M4 now has 22/22 unique indicators: 15 Must-Know and 7 Should-Know. Each new objective is aligned only to M4 in both curriculum catalogues (36 new alignments). The companion pack adds 18 lesson starters and 54 answer-keyed formative questions. Source priority flags were transcribed from OBEC 2021 pp. 143–148.
+The second tranche adds all 18 remaining M4 indicators in standards W1.2 and W1.3. M4 now has 22/22 unique indicators: 14 Must-Know and 8 Should-Know after the page-146 correction to M4/11. Each new objective is aligned only to M4 in both curriculum catalogues (36 new alignments). The companion pack adds 18 lesson starters and 54 answer-keyed formative questions. Source priority flags were transcribed from OBEC 2021 pp. 143–148.
 
 Migration: 20261121042000_seed_science_m4_cell_biology_genetics_core_indicators_5_22.sql. Teacher pack: M4-science-cell-biology-genetics-evolution-teacher-starter-pack.md.
 
@@ -88,7 +88,7 @@ Migration: 20261121082000_seed_science_m4_m5_technology_core_indicators.sql. Tea
 
 | Grade | Expected | Staged | Must-Know | Should-Know | Remaining |
 |---|---:|---:|---:|---:|---:|
-| M4 | 28 | 28 | 20 | 8 | 0 |
+| M4 | 28 | 28 | 19 | 9 | 0 |
 | M5 | 49 | 49 | 42 | 7 | 0 |
 | M6 | 25 | 0 | Pending reconciliation | Pending reconciliation | 25 |
 | **Total** | **102** | **77** | **62** | **15** | **25** |
@@ -109,9 +109,9 @@ Migration: `20261121093000_seed_science_m6_universe_earth_climate_core_indicator
 | M4 | 28 | 28 | 20 | 8 | 0 |
 | M5 | 49 | 49 | 42 | 7 | 0 |
 | M6 | 25 | 25 | 24 | 1 | 1 |
-| **Total** | **102** | **102** | **86** | **16** | **1** |
+| **Total** | **102** | **102** | **85** | **17** | **1** |
 
-The M6 stored counts show 24 Must-Know and 1 Should-Know; M6 ว 3.1 ม.6/4 is additionally marked Should-Know in notes, so priority labels including that dual are 86 Must-Know and 17 Should-Know. The official upper-secondary summary on page 58 reports 85 Must-Know and 18 Should-Know, with the same dual indicator. Therefore **coverage and grade mapping are complete, but the aggregate priority tally still differs by one Must/Should assignment**. Do not silently force the totals; retain this as a source-reconciliation issue for final acceptance.
+The M6 stored counts are 24 Must-Know and 1 Should-Know; M6 ว 3.1 ม.6/4 is additionally marked Should-Know in notes. Following the correction of M4 ว 1.2 ม.4/11 from Must-Know to Should-Know (official page 146), the upper-secondary totals are 85 Must-Know and 17 stored Should-Know, plus the dual Should-Know label for M6/4 = 18. This matches the official page-58 summary exactly.
 
 Teacher resources for this core grade band now total 102 lesson starters and 306 answer-keyed formative questions (M4 28/84, M5 49/147, M6 25/75). These remain Markdown teacher resources; no school, class, student or learner-progress records were touched.
 
@@ -130,3 +130,10 @@ The nine legacy W3.2 records (`M3-S3_2-01` through `M3-S3_2-09`) have been retai
 The OBEC 2021 M3 source table on printed page 127 contains five W4.1 and four W4.2 indicators (rows 51–59). These nine official indicators are now aligned to M3 in both curricula. The nine legacy W3.2 records remain in the database but are marked non-required and unclassified; they are not part of the official M3 core count. M3 now has 59 required indicators, 41 Must-Know and 18 Should-Know, matching the official M3 summary.
 
 Migration: `20261121110000_seed_science_m3_official_technology_indicators_and_archive_legacy_w3_2.sql`.
+
+
+## Upper-secondary priority reconciliation completed — 21 November 2026
+
+The remaining one-row difference was traced to ว 1.2 ม.4/11. The database and M4 teacher pack had labelled it Must-Know, but the official OBEC 2021 table on printed page 146 places it in the Should-Know column. Both catalogue alignments have been corrected. Verified grade totals are M4 19 Must-Know / 9 Should-Know, M5 42 / 7, and M6 24 / 1 plus the dual M6/4 Should-Know label. Aggregate totals are 85 Must-Know and 18 Should-Know classifications, with 102 unique indicators.
+
+Migration: `20261121114500_correct_science_m4_w1_2_indicator_11_priority.sql`.
