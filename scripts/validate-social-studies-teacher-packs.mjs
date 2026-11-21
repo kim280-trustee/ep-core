@@ -80,8 +80,11 @@ for (const pack of packs) {
       : /^M[1-3]$/.test(gradeCode ?? "") ? "lower secondary"
       : /^P[4-6]$/.test(gradeCode ?? "") ? "upper primary" : "early primary";
     const differentiation = sourceSection.match(/\*\*Differentiation:\*\*\s*(.+)$/m)?.[1] ?? "";
-    if (!differentiation.toLowerCase().includes(expectedBand)) {
-      failures.push(heading[2] + ": differentiation does not match grade band " + expectedBand);
+    if (!differentiation.toLowerCase().startsWith("for " + expectedBand + " learners:")) {
+      failures.push(heading[2] + ": differentiation does not explicitly start with grade band " + expectedBand);
+    }
+    if (sourceSection.includes("Learners demonstrate the knowledge or performance stated in this indicator.")) {
+      failures.push(heading[2] + ": generic learning intention was not replaced");
     }
     if (!indicator || !sourceSection.includes("**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: " + indicator)) {
       failures.push(heading[2] + ": learning intention is not tied to the exact official indicator");
