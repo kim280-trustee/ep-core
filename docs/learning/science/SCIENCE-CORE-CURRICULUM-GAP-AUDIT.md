@@ -31,12 +31,12 @@ The 28 primary W4.2 indicators have been added under the existing `SCI` subject 
 
 | Grade | W4.2 indicators seeded | Priority labels |
 |---|---:|---|
-| P1 | 5 | Applied from OBEC 2021 table; code-level recheck pending |
-| P2 | 4 | Applied from OBEC 2021 table; code-level recheck pending |
-| P3 | 5 | Applied from OBEC 2021 table; code-level recheck pending |
-| P4 | 5 | Applied from OBEC 2021 table; code-level recheck pending |
-| P5 | 5 | Applied from OBEC 2021 table; code-level recheck pending |
-| P6 | 4 | Applied from OBEC 2021 table; code-level recheck pending |
+| P1 | 5 | Reconciled against OBEC 2021; code-level verified |
+| P2 | 4 | Reconciled against OBEC 2021; code-level verified |
+| P3 | 5 | Reconciled against OBEC 2021; code-level verified |
+| P4 | 5 | Reconciled against OBEC 2021; code-level verified |
+| P5 | 5 | Reconciled against OBEC 2021; code-level verified |
+| P6 | 4 | Reconciled against OBEC 2021; code-level verified |
 | **Total** | **28** | **28 classified and code-level labels reconciled against the OBEC 2021 grade tables** |
 
 The teacher pack `SCIENCE-TECHNOLOGY-W4.2-P1-P6-TEACHER-STARTER-PACK.md` contains 28 lesson starters and 84 formative tasks with expected evidence. This is national Science and Technology standard ว 4.2, not Click Start international Computer Studies. The indicator records and teacher pack now use the source-checked priority mapping. Corrections: P4 ว 4.2 ป.4/3 is Should-Know; P5 ว 4.2 ป.5/4 is Must-Know; P6 ว 4.2 ป.6/3 is Must-Know. The read-only verification script asserts per-grade Must-Know and Should-Know totals for all 28 indicators.
@@ -144,3 +144,10 @@ The primary packs contain 139/139 unique P1–P6 objective codes and 417 formati
 ## Consolidated teacher-import parser check
 
 The repository parser rules were checked against the two mixed-grade Science core import files. The M1–M3 file was corrected so all 174 lessons have numbered headings; all 174 objective codes are recognized and all 522 answer keys are extracted as three questions per lesson. The M4–M6 file contains 102 numbered lessons, 102 recognized grade-coded objective codes and 306 answer keys. Both pass the parser-rule smoke check with no duplicate codes or lesson numbers. This is a source-level parser check, not an authenticated UI import; the latter remains part of final release validation.
+
+
+## Final source and catalogue closure — 21 November 2026
+
+The full read-only verification in `SCIENCE-STAGING-VERIFICATION.sql` has now been executed against live Supabase. All 18 curriculum/grade core checks pass: 12 national-master grade rows and six canonical secondary rows. Primary W1–W3 and W4.2 grade splits pass; all 415 national-master core indicators and all 276 canonical secondary core indicators are required, grade-aligned and classified. Priority totals match OBEC, including all six dual-classified labels. The 300 specialist outcomes also match their grade-specific subject totals. The only non-required SCI rows are the nine preserved legacy M3 W3.2 supplementary outcomes in each curriculum. The duplicate-alignment query returns zero rows.
+
+The repository now has a repeatable parser check for both consolidated core packs, and the full curriculum CI also validates all eight subject-pack sets, builds the application and runs ESLint. Authenticated teacher import and end-to-end application testing remain intentionally deferred until the complete curriculum rollout is ready for one consolidated test.
