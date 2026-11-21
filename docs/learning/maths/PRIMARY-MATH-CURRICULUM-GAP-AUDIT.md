@@ -32,10 +32,25 @@ The apparent 14/7 count in the initial manual review was a counting error. Recou
 
 The official primary totals therefore reconcile exactly: 116 indicators, 82 Must-Know and 34 Should-Know. P6 remains 21 / 15 / 6.
 
-## P3 code crosswalk correction
+## Official code crosswalk corrections
 
-The 2021 OBEC priority PDF contains a transcription error on the P3 Mathematics measurement row: the money indicator is printed as `ค ๒.๑ ป.๓/๓`, duplicating the following length indicator's code. The controlling 2017 revised Mathematics standards document (OBEC PDF, printed pages 20–22) confirms the sequence: `ค ๒.๑ ป.๓/๑` is the money problem outcome, `ป.๓/๒` is time, and `ป.๓/๓` is length. The catalogue must therefore use the 2017 official code `ค ๒.๑ ป.๓/๑` for money and retain the 2021 row's Must-Know priority. Do not seed the duplicated `ป.๓/๓` code twice.
+The 2021 OBEC priority PDF contains several code-column transcription errors. The 2017 revised Mathematics standards document (OBEC PDF, printed pages 20–28) is the controlling source for standard/grade indicator numbering; the 2021 PDF is used for Must-Know / Should-Know classification. Use the corrected 2017 codes below while retaining each matching 2021 row's priority label:
 
+| Grade | 2021 priority-table row | Correct 2017 indicator code | Subject of indicator | Priority |
+|---|---:|---|---|---|
+| P2 | 9 | ค 2.1 ป.2/1 | Time problems | Must |
+| P2 | 15 | ค 2.2 ป.2/1 | Classify polygons and circles | Must |
+| P3 | 13 | ค 2.1 ป.3/1 | Money problems | Must |
+| P4 | 17 | ค 2.1 ป.4/1 | Time problems | Must |
+| P5 | 14 | ค 2.2 ป.5/1 | Construct parallel lines | Should |
+| P5 | 18 | ค 3.1 ป.5/1 | Interpret line graphs | Must |
+| P6 | 21 | ค 3.1 ป.6/1 | Interpret pie charts | Must |
+
+The 2021 PDF's original values for those rows are respectively P2/9, P2/9, P3/3, P4/9, P5/5, P5/4 and P6/9. Do not seed these erroneous suffixes. The 2017 standards matrix confirms that these are the first indicators under their respective standards. The P3 money row is particularly important: the 2021 table repeats P3/3, while the 2017 sequence clearly assigns money to P3/1 and length to P3/3.
+
+The apparent P6 priority count discrepancy in the initial manual review was also a counting error. Recounting the detailed P6 table gives 15 Must-Know and 6 Should-Know, matching its explicit subtotal and summary row. No priority correction is needed.
+
+The final primary totals reconcile exactly: 116 indicators, 82 Must-Know and 34 Should-Know. Per-grade totals are P1 10 (6/4), P2 16 (13/3), P3 28 (22/6), P4 22 (15/7), P5 19 (11/8), and P6 21 (15/6).
 
 ## Implementation scope after source reconciliation
 
