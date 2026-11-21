@@ -84,7 +84,7 @@ The eight 2008/2017 learning areas have 39 teacher-pack files covering 1,940 uni
 - `npm run validate:thai-2025-packs` — validates the 24 annual outcomes, P1/P2/P3 grade mapping and 72 answer-keyed questions in the separate B.E. 2568 pack.
 - CI also runs the production build and ESLint.
 
-GitHub Actions run 204 passed all eight learning-area pack validation, Thai B.E. 2568 competency-pack validation, Science, Social Studies, Health & PE and Arts importer-parser validation, production build and ESLint. The Social Studies check parsed all 418 unique indicators and 1,254 answer-keyed tasks through the actual TypeScript importer parser. The importer now expands the 61 shared M4–M6 outcomes into 183 grade-specific rows with unique content/question codes. Do not treat source-pack validation as an authenticated application import test.
+GitHub Actions run 220 passed all eight learning-area pack validation, Thai B.E. 2568 competency-pack validation, Science, Social Studies, Health & PE, Arts and Foreign Languages importer-parser validation, production build and ESLint. The Social Studies check parsed all 418 unique indicators and 1,254 answer-keyed tasks through the actual TypeScript importer parser. The importer now expands the 61 shared M4–M6 outcomes into 183 grade-specific rows with unique content/question codes. Do not treat source-pack validation as an authenticated application import test.
 
 ## 5. Scope boundaries and release plan
 
@@ -95,6 +95,7 @@ GitHub Actions run 204 passed all eight learning-area pack validation, Thai B.E.
 - Social Studies now has 418 lessons and 1,254 indicator-linked formative tasks with answer/evidence guidance. The importer expands its 61 shared M4–M6 outcomes into 183 grade-specific draft lessons and 549 grade-scoped questions using collision-safe codes.
 - Health and Physical Education now has 221 lessons and 663 indicator-specific formative tasks with answer/evidence guidance. Its 29 shared M4–M6 indicators expand into 87 grade-specific draft lessons and 261 grade-scoped questions.
 - Arts now has 279 lessons and 837 indicator-specific formative tasks with answer/evidence guidance. Its 39 shared M4–M6 indicators expand into 117 grade-specific draft lessons and 351 grade-scoped questions.
+- Foreign Languages now has 193 lessons and 579 indicator-specific formative tasks with answer/evidence guidance. Its 21 shared M4–M6 indicators expand into 63 grade-specific draft lessons and 189 grade-scoped questions.
 - Teacher packs remain Markdown source. No pack has been imported into a school organization or published as part of this batch.
 - No school, class, student, assignment, publication or learner-progress records were created or changed by the curriculum work.
 - Do not begin repeated subject-by-subject UI tests. Finish curriculum source and pack work first, then perform one consolidated authenticated teacher import, student assessment, teacher review, gradebook and progress-reporting test.
