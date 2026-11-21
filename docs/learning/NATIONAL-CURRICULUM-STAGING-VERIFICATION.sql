@@ -38,6 +38,8 @@ select e.subject_code,e.expected_unique,coalesce(a.unique_objectives,0) actual_u
        case when coalesce(a.unique_objectives,0)=e.expected_unique
               and coalesce(a.grade_alignments,0)=e.expected_alignments
               and coalesce(a.unclassified_alignments,0)=0
+              and (e.subject_code<>'SOCIAL-STUDIES'
+                   or (coalesce(a.between_learning,0)=278 and coalesce(a.terminal,0)=140))
             then 'PASS' else 'CHECK' end result
 from expected e
 left join actual a using(subject_code)
