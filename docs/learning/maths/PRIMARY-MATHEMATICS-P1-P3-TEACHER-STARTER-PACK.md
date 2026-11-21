@@ -131,9 +131,9 @@ Students can:
 
 ### Practice questions
 1. Compare 29 and 36 using <, > or =.
-   **Answer:**  29 < 36.
-2. Which is greater: 36 or 101?
-   **Answer:**  36 is greater.
+   **Answer:** 29 < 36.
+2. Which is greater: 31 or 36?
+   **Answer:** 36 is greater.
 3. Two teams score 29 and 36 points. Which team has the higher score?
    **Answer:** The team with 36 points has the higher score.
 
@@ -375,7 +375,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use a small class survey and a prepared table or graph. Read values, compare categories, explain conclusions and create a correctly labelled representation.
+**Teaching sequence:** Use a simple pictograph with a key of one picture for one item. Learners count symbols, compare categories and explain what the picture graph shows.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -385,13 +385,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. A pictograph or table shows Monday = 4, Tuesday = 6 and Wednesday = 3. Which day has the greatest value?
-   **Answer:** Tuesday, with 6.
-2. Using the same data, how many more were recorded on Tuesday than Wednesday?
-   **Answer:** 3 more.
-3. What is the total for the three days, and what should a suitable graph include?
-   **Answer:** 13 in total. A suitable graph needs a clear title, labelled categories, a scale/key and correctly plotted values.
-
+1. A pictograph shows cats = 3 pictures, dogs = 5 pictures and birds = 2 pictures. Which animal is most popular?
+   **Answer:** Dogs, with 5.
+2. How many more learners chose dogs than birds?
+   **Answer:** 5 − 2 = 3 more learners.
+3. How many learners are represented altogether?
+   **Answer:** 3 + 5 + 2 = 10 learners.
 ---
 
 ## Lesson 11 — Read, write and represent numbers up to 1,000
@@ -450,9 +449,9 @@ Students can:
 
 ### Practice questions
 1. Compare 292 and 299 using <, > or =.
-   **Answer:**  292 < 299.
-2. Which is greater: 299 or 390?
-   **Answer:**  299 is greater.
+   **Answer:** 292 < 299.
+2. Which is greater: 294 or 299?
+   **Answer:** 299 is greater.
 3. Two teams score 292 and 299 points. Which team has the higher score?
    **Answer:** The team with 299 points has the higher score.
 
@@ -886,7 +885,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use a small class survey and a prepared table or graph. Read values, compare categories, explain conclusions and create a correctly labelled representation.
+**Teaching sequence:** Use a picture graph with a key showing that each symbol represents 2, 5 or 10 items. Learners convert symbols to totals before comparing categories.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -896,13 +895,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. A pictograph or table shows Monday = 4, Tuesday = 6 and Wednesday = 3. Which day has the greatest value?
-   **Answer:** Tuesday, with 6.
-2. Using the same data, how many more were recorded on Tuesday than Wednesday?
-   **Answer:** 3 more.
-3. What is the total for the three days, and what should a suitable graph include?
-   **Answer:** 13 in total. A suitable graph needs a clear title, labelled categories, a scale/key and correctly plotted values.
-
+1. A graph uses one picture to represent 2 books. The library has 4 pictures for storybooks. How many storybooks are shown?
+   **Answer:** 4 × 2 = 8 storybooks.
+2. The graph shows 5 pictures for comics and 3 pictures for poems. Each picture represents 2 books. How many more comics than poems are shown?
+   **Answer:** (5 − 3) × 2 = 4 more books.
+3. Why must you read the key before answering a picture-graph question?
+   **Answer:** The key tells how many items each picture represents; counting pictures alone may give the wrong total.
 ---
 
 ## Lesson 27 — Read, write and represent numbers up to 100,000
@@ -961,9 +959,9 @@ Students can:
 
 ### Practice questions
 1. Compare 25,600 and 25,725 using <, > or =.
-   **Answer:**  25,600 < 25,725.
-2. Which is greater: 25,725 or 25,650?
-   **Answer:**  25,725 is greater.
+   **Answer:** 25,600 < 25,725.
+2. Which is greater: 25,602 or 25,725?
+   **Answer:** 25,725 is greater.
 3. Two teams score 25,600 and 25,725 points. Which team has the higher score?
    **Answer:** The team with 25,725 points has the higher score.
 
@@ -1750,7 +1748,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use a small class survey and a prepared table or graph. Read values, compare categories, explain conclusions and create a correctly labelled representation.
+**Teaching sequence:** Use pictographs with a stated key. Learners translate symbols into quantities, compare categories and explain how the key affects the total.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -1760,13 +1758,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. A pictograph or table shows Monday = 4, Tuesday = 6 and Wednesday = 3. Which day has the greatest value?
-   **Answer:** Tuesday, with 6.
-2. Using the same data, how many more were recorded on Tuesday than Wednesday?
-   **Answer:** 3 more.
-3. What is the total for the three days, and what should a suitable graph include?
-   **Answer:** 13 in total. A suitable graph needs a clear title, labelled categories, a scale/key and correctly plotted values.
-
+1. A pictograph uses one picture to represent 5 pupils. Four pictures are shown for football. How many pupils chose football?
+   **Answer:** 4 × 5 = 20 pupils.
+2. There are 6 pictures for swimming and 4 for cycling. Each picture represents 5 pupils. How many more chose swimming?
+   **Answer:** (6 − 4) × 5 = 10 pupils.
+3. What must be written beside a pictograph so readers can interpret it correctly?
+   **Answer:** A clear title, category labels and a key showing the value of each picture.
 ---
 
 ## Lesson 54 — Create and interpret one-way tables
@@ -1782,7 +1779,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use a small class survey and a prepared table or graph. Read values, compare categories, explain conclusions and create a correctly labelled representation.
+**Teaching sequence:** Collect a small class data set and organise it in a one-way table. Learners label categories, enter totals and answer questions using the table.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
