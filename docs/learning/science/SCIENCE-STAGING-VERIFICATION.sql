@@ -562,3 +562,36 @@ select e.curriculum_code,e.grade_code,e.total expected_total,coalesce(a.total,0)
  case when coalesce(a.total,0)=e.total and coalesce(a.unclassified,0)=0 and coalesce(a.duplicate_rows,0)=0 then 'PASS' else 'CHECK' end coverage_result
 from expected e left join actual a using(curriculum_code,grade_code)
 order by e.curriculum_code,e.grade_code;
+
+
+-- M3 official core gate: 59 required indicators, 41 Must-Know, 18 Should-Know.
+-- Nine legacy W3.2 rows remain supplementary (required=false) and unclassified.
+with actual as (
+ select c.code curriculum,o.code,a.indicator_classification,a.required,count(*) alignment_rows
+ from public.learning_objective_alignments a
+ join public.learning_curricula c on c.id=a.curriculum_id
+ join public.learning_grade_levels g on g.id=a.grade_level_id and g.curriculum_id=c.id
+ join public.learning_objectives o on o.id=a.objective_id
+ join public.learning_topics t on t.id=o.topic_id
+ join public.learning_skills sk on sk.id=t.skill_id
+ join public.learning_subjects sub on sub.id=sk.subject_id
+ where c.code in ('TH-SCI-M1-M6','TH-BASIC-CORE-2008-2017')
+   and sub.code='SCI' and g.code='M3'
+ group by c.code,o.code,a.indicator_classification,a.required
+)
+select c.code curriculum,
+ count(*) filter(where a.required)::integer required_core,
+ count(*) filter(where not a.required)::integer legacy_supplementary,
+ count(*) filter(where a.required and a.indicator_classification='must_know')::integer must_know,
+ count(*) filter(where a.required and a.indicator_classification='should_know')::integer should_know,
+ count(*) filter(where a.required and a.indicator_classification is null)::integer unclassified_core,
+ case when count(*) filter(where a.required)=59
+   and count(*) filter(where a.required and a.indicator_classification='must_know')=41
+   and count(*) filter(where a.required and a.indicator_classification='should_know')=18
+   and count(*) filter(where a.required and a.indicator_classification is null)=0
+   and count(*) filter(where not a.required)=9
+ then 'PASS' else 'CHECK' end result
+from public.learning_curricula c
+left join actual a on a.curriculum=c.code
+where c.code in ('TH-SCI-M1-M6','TH-BASIC-CORE-2008-2017')
+group by c.code order by c.code;
