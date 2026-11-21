@@ -48,6 +48,8 @@ Primary priority-count checks from the OBEC 2021 summary: P4 has 16 Must-Know an
 - **M4–M6 specialist outcomes:** Biology 108, Chemistry 81, Physics 67 and Earth/Space 44 are already catalogued separately (300 total).
 The `TECH` skill is part of the `SCI` subject. The 28 new P1–P6 W4.2 objectives are national Science and Technology indicators and must not be merged with the separate Click Start international Computer Studies course.
 
+Upper-secondary source transcription and grade allocation are tracked in M4-M6-SCIENCE-CORE-SOURCE-AUDIT.md.
+
 ## Consolidated integrity review
 
 The existing migration history, importer implementation and specialist-subject counts remain documented in `SCIENCE-MIGRATION-INTEGRITY-REVIEW.md`. The lower-secondary SCI catalogue is now mirrored into both `TH-SCI-M1-M6` and `TH-BASIC-CORE-2008-2017`, including the 30 new M1–M3 indicators. The national master curriculum is still draft; do not change its status as part of this rollout. Read-only checks are in `SCIENCE-STAGING-VERIFICATION.sql`.
