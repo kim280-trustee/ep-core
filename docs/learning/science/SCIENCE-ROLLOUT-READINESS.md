@@ -28,7 +28,7 @@ OBEC's 2021 must-know / should-know table reports these grade totals:
 | M1 | 52 |
 | M2 | 63 |
 | M3 | 59 |
-| M4–M6 shared | 102 |
+| M4–M6 aggregate | 102 | Grade-specific M4, M5 and M6 indicators; see M4-M6-SCIENCE-CORE-SOURCE-AUDIT.md |
 | **Total unique indicators** | **415** |
 
 The 102 M4–M6 indicators are an aggregate across grade-specific M4, M5 and M6 source tables. Each indicator must be mapped to its actual grade, not copied across the band.
