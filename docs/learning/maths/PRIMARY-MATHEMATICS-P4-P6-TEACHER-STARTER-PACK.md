@@ -285,7 +285,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use coloured counters, recipe cards or scale drawings. Represent the relationship in order, make equivalent ratios and explain what each term counts.
+**Teaching sequence:** Use rounding and benchmark numbers to estimate addition, subtraction, multiplication and division. Learners explain why an estimate is reasonable before finding an exact answer.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -295,13 +295,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. There are 2 red counters and 3 blue counters. Write the ratio of red to blue.
-   **Answer:** 2:3.
-2. Write a ratio equivalent to 2:3 with the first term equal to 8.
-   **Answer:** 8:12.
-3. A drink uses 2 cups of syrup for every 3 cups of water. How much water is needed for 4 cups of syrup?
-   **Answer:** 6 cups of water.
-
+1. Estimate 398 + 205 by rounding to the nearest hundred.
+   **Answer:** About 400 + 200 = 600.
+2. Estimate 49 × 21 by rounding to friendly numbers.
+   **Answer:** About 50 × 20 = 1,000.
+3. A shop sells 198 items each day for 5 days. Estimate the total number sold.
+   **Answer:** About 200 × 5 = 1,000 items.
 ---
 
 ## Lesson 8 — Find unknown values in addition and subtraction equations
@@ -349,7 +348,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Share counters into equal groups. Connect the sharing model to division, multiplication facts and checking the quotient.
+**Teaching sequence:** Use number balances and inverse-operation cards. Learners solve equations with an unknown factor or quotient and check each result using the inverse operation.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -359,13 +358,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. Calculate 40 ÷ 8.
-   **Answer:**  5.
-2. A division gives 6. If the divisor is 7, what is the dividend?
-   **Answer:**  42.
-3. Share 48 cards equally among 8 learners. How many cards does each learner receive?
-   **Answer:** 6 cards each.
-
+1. Find the missing number: 7 × □ = 56.
+   **Answer:** 8.
+2. Find the missing number: □ ÷ 6 = 9.
+   **Answer:** 54.
+3. A number multiplied by 8 gives 72. What is the number, and how can you check?
+   **Answer:** 9; check 9 × 8 = 72.
 ---
 
 ## Lesson 10 — Evaluate mixed-operation expressions
@@ -791,7 +789,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use place-value grids and money or measurement examples. Align decimal places, calculate carefully and estimate to check the result.
+**Teaching sequence:** Use fraction strips and a decimal place-value chart. Learners rename fractions as equivalent tenths or hundredths and write the corresponding decimal.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -801,13 +799,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. Calculate 2.35 + 1.40.
-   **Answer:** 3.75.
-2. Which is greater: 3.05 or 3.5?
-   **Answer:** 3.5 is greater because 3.50 > 3.05.
-3. A notebook costs 12.50 baht and a pen costs 8.75 baht. What is the total?
-   **Answer:** 21.25 baht.
-
+1. Convert 3/4 to a decimal.
+   **Answer:** 3/4 = 75/100 = 0.75.
+2. Convert 0.2 to a fraction in simplest form.
+   **Answer:** 0.2 = 2/10 = 1/5.
+3. Convert 7/10 and 35/100 to decimals.
+   **Answer:** 0.7 and 0.35.
 ---
 
 ## Lesson 24 — Use proportions to solve problems
@@ -1546,7 +1543,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** List factors and use factor pairs. Compare the factors of the given numbers, identify the greatest common factor and connect it to equal grouping.
+**Teaching sequence:** Use factor lists and multiples tables in practical grouping and scheduling problems. Learners decide whether a greatest common divisor or least common multiple is needed and justify the choice.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -1556,13 +1553,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. Find the greatest common divisor of 18 and 24.
-   **Answer:** 6.
-2. List the common factors of 18 and 24.
-   **Answer:** 1, 2, 3 and 6.
-3. Arrange 18 red and 24 blue counters into the greatest possible number of identical groups without leftovers. How many groups can be made?
-   **Answer:** 6 groups.
-
+1. Two ribbons are 24 cm and 36 cm long. What is the greatest length of equal pieces that can cut both ribbons without waste?
+   **Answer:** GCD(24,36) = 12 cm.
+2. Two lights flash every 6 seconds and 8 seconds. After how many seconds will they flash together again?
+   **Answer:** LCM(6,8) = 24 seconds.
+3. Explain when to use a greatest common divisor and when to use a least common multiple.
+   **Answer:** Use GCD to make the largest equal groups or pieces; use LCM to find the first shared repeat or meeting time.
 ---
 
 ## Lesson 48 — Evaluate mixed operations with fractions and mixed numbers
