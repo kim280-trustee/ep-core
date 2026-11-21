@@ -240,24 +240,25 @@ export default function TeacherContentImportPage() {
     let importedQuestions = 0;
 
     try {
-      const [existingContent, existingQuestions] = await Promise.all([
-        questionsOnly ? Promise.resolve([]) : learningContentService.listContent(organizationId),
-        learningAssessmentService.listQuestions(organizationId),
-      ]);
-      const contentCodes = new Set(existingContent.map((item) => makeImportCode(item.code)));
-      const questionCodes = new Set(existingQuestions.map((item) => makeImportCode(item.code)));
-      const duplicateContent = questionsOnly ? undefined : resolved.rows.find((item) => contentCodes.has(makeImportCode(`EP-${item.objectiveCode}-LESSON`)));
-      const duplicateQuestion = resolved.rows.flatMap((item) => item.questions).find((item) => questionCodes.has(makeImportCode(item.code)));
-      if (duplicateContent || duplicateQuestion) {
-        throw new Error(`Import stopped because a code already exists in this organization: ${duplicateContent ? makeImportCode(`EP-${duplicateContent.objectiveCode}-LESSON`) : duplicateQuestion?.code}. Existing records are not overwritten.`);
-      }
+      const requestedContentCodes = questionsOnly ? [] : resolved.rows.map((lesson) =>
+        makeImportCode(`EP-${lesson.objectiveCode}-LESSON`),
+      );
+      const requestedQuestionCodes = resolved.rows.flatMap((lesson) =>
+        lesson.questions.map((question) => makeImportCode(question.code)),
+      );
+      const existing = await learningPackImportService.findExistingImportCodes({
+        organizationId,
+        contentCodes: requestedContentCodes,
+        questionCodes: requestedQuestionCodes,
+      });
 
       if (questionsOnly) {
         const questions = resolved.rows.flatMap((lesson) => lesson.questions.map((question) => ({
           ...question,
           objectiveId: lesson.objectiveId,
           gradeLevelId: lesson.gradeLevelId,
-        })));
+        }))).filter((question) => !existing.questionCodes.has(makeImportCode(question.code)));
+        const skippedQuestions = requestedQuestionCodes.length - questions.length;
         for (let offset = 0; offset < questions.length; offset += CHUNK_SIZE) {
           const result = await learningPackImportService.importQuestionsOnly({
             organizationId,
@@ -269,10 +270,26 @@ export default function TeacherContentImportPage() {
           importedQuestions += result.questions;
           setImportProgress({ lessons: 0, questions: importedQuestions });
         }
-        setMessage(`Imported ${importedQuestions} assessment question drafts. All remain unpublished for teacher review.`);
+        setMessage(`Imported ${importedQuestions} new assessment question drafts; skipped ${skippedQuestions} existing question codes. All new items remain unpublished for teacher review.`);
       } else {
-        for (let offset = 0; offset < resolved.rows.length; offset += CHUNK_SIZE) {
-          const chunk = resolved.rows.slice(offset, offset + CHUNK_SIZE);
+        const newLessons: ResolvedLesson[] = [];
+        let skippedLessons = 0;
+        for (const lesson of resolved.rows) {
+          const contentExists = existing.contentCodes.has(makeImportCode(`EP-${lesson.objectiveCode}-LESSON`));
+          const existingQuestionCount = lesson.questions.filter((question) =>
+            existing.questionCodes.has(makeImportCode(question.code))
+          ).length;
+          if (contentExists && existingQuestionCount === lesson.questions.length) {
+            skippedLessons += 1;
+            continue;
+          }
+          if (contentExists || existingQuestionCount > 0) {
+            throw new Error(`The saved records for ${lesson.objectiveCode} are incomplete (lesson record: ${contentExists ? "yes" : "no"}; existing questions: ${existingQuestionCount}/3). No records were overwritten. Inspect this objective's drafts before retrying.`);
+          }
+          newLessons.push(lesson);
+        }
+        for (let offset = 0; offset < newLessons.length; offset += CHUNK_SIZE) {
+          const chunk = newLessons.slice(offset, offset + CHUNK_SIZE);
           const result = await learningPackImportService.importChunk({
             organizationId,
             createdBy: user.id,
@@ -284,7 +301,7 @@ export default function TeacherContentImportPage() {
           importedQuestions += result.questions;
           setImportProgress({ lessons: importedLessons, questions: importedQuestions });
         }
-        setMessage(`Imported ${importedLessons} lesson drafts and ${importedQuestions} question drafts. All items remain unpublished for teacher review.`);
+        setMessage(`Imported ${importedLessons} new lesson drafts and ${importedQuestions} new question drafts; safely skipped ${skippedLessons} complete lessons from an earlier run. All new items remain unpublished for teacher review.`);
       }
       await queryClient.invalidateQueries({ queryKey: ["learning", "teacher-content-library", organizationId] });
       await queryClient.invalidateQueries({ queryKey: ["learning", "question-bank"] });
