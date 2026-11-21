@@ -286,3 +286,28 @@ select e.curriculum_code,e.grade_code,e.total expected_total,coalesce(a.total,0)
          then 'PASS' else 'CHECK' end result
 from expected e left join actual a using(curriculum_code,grade_code)
 order by e.curriculum_code,e.grade_code;
+
+
+-- Upper-secondary core Science — M4 ecology indicators 1–4.
+-- Expected once in each curriculum, M4 only, two Must-Know and two Should-Know.
+with expected(code,classification) as (
+ values ('M4-S1_1-01','should_know'),('M4-S1_1-02','must_know'),('M4-S1_1-03','must_know'),('M4-S1_1-04','should_know')
+), actual as (
+ select c.code curriculum_code,g.code grade_code,o.code,a.indicator_classification,count(*) alignment_rows
+ from public.learning_objective_alignments a
+ join public.learning_curricula c on c.id=a.curriculum_id
+ join public.learning_grade_levels g on g.id=a.grade_level_id and g.curriculum_id=c.id
+ join public.learning_objectives o on o.id=a.objective_id
+ join public.learning_topics t on t.id=o.topic_id
+ join public.learning_skills sk on sk.id=t.skill_id
+ join public.learning_subjects sub on sub.id=sk.subject_id
+ where c.code in ('TH-SCI-M1-M6','TH-BASIC-CORE-2008-2017') and sub.code='SCI' and o.code like 'M4-S1_1-%'
+ group by c.code,g.code,o.code,a.indicator_classification
+)
+select e.code expected_objective,e.classification expected_classification,x.curriculum_code,
+ coalesce(a.grade_code,'MISSING') actual_grade,a.indicator_classification actual_classification,
+ coalesce(a.alignment_rows,0) alignment_rows,
+ case when a.grade_code='M4' and a.indicator_classification=e.classification and a.alignment_rows=1 then 'PASS' else 'CHECK' end result
+from expected e cross join (values ('TH-SCI-M1-M6'),('TH-BASIC-CORE-2008-2017')) x(curriculum_code)
+left join actual a on a.curriculum_code=x.curriculum_code and a.code=e.code
+order by e.code,x.curriculum_code;
