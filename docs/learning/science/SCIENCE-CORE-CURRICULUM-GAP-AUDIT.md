@@ -37,9 +37,9 @@ The 28 primary W4.2 indicators have been added under the existing `SCI` subject 
 | P4 | 5 | Applied from OBEC 2021 table; code-level recheck pending |
 | P5 | 5 | Applied from OBEC 2021 table; code-level recheck pending |
 | P6 | 4 | Applied from OBEC 2021 table; code-level recheck pending |
-| **Total** | **28** | **28 currently classified; final source-to-code reconciliation remains open** |
+| **Total** | **28** | **28 classified and code-level labels reconciled against the OBEC 2021 grade tables** |
 
-The teacher pack `SCIENCE-TECHNOLOGY-W4.2-P1-P6-TEACHER-STARTER-PACK.md` contains 28 lesson starters and 84 formative tasks with expected evidence. This is national Science and Technology standard ว 4.2, not Click Start international Computer Studies. The indicator records have priority labels, but the exact code-level must/should mapping must be reconciled against the full OBEC table before the Science area is accepted.
+The teacher pack `SCIENCE-TECHNOLOGY-W4.2-P1-P6-TEACHER-STARTER-PACK.md` contains 28 lesson starters and 84 formative tasks with expected evidence. This is national Science and Technology standard ว 4.2, not Click Start international Computer Studies. The indicator records and teacher pack now use the source-checked priority mapping. Corrections: P4 ว 4.2 ป.4/3 is Should-Know; P5 ว 4.2 ป.5/4 is Must-Know; P6 ว 4.2 ป.6/3 is Must-Know. The read-only verification script asserts per-grade Must-Know and Should-Know totals for all 28 indicators.
 
 ## Primary W1–W3 seed reconciliation
 
