@@ -10,7 +10,7 @@ The existing 13 Science import files contain 444 lesson starters and 1,332 answe
 
 **Database execution status:** Live Supabase was read directly on 21 November 2026. The migration ledger records the primary P1–P3, P4–P6 and W4.2 seeds plus corrective migrations for P1–P3 and P4–P6 objective alignment. The P4–P6 correction fixes a PostgreSQL data-modifying-CTE ordering defect in the original migration. The current national-core catalogue has 139 aligned primary indicators and 174 aligned lower-secondary indicators. Primary and M1/M2 rows are fully classified; M3 has 10 rows intentionally held for priority-source reconciliation.
 
-**Verified live staging reconciliation — 21 November 2026:** The national master curriculum contains 415 required official indicators: 139 primary and 276 secondary. The canonical secondary catalogue contains 276/276 M1–M6 indicators. P1 15, P2 16, P3 25, P4 21, P5 32 and P6 30 are all aligned with no unclassified primary rows. M1 has 52 indicators (35 Must-Know, 17 Should-Know); M2 has 63 (48, 15); M3 has 59 (41, 18). Nine legacy M3 W3.2 outcomes remain preserved as non-required supplementary records. M4 has 28 indicators (19 Must-Know, 9 Should-Know), M5 has 49 (42, 7), and M6 has 25 (24, 1 plus the dual M6/4 label). Upper-secondary totals now match OBEC: 85 Must-Know / 18 Should-Know classifications.
+**Verified live staging reconciliation — 21 November 2026:** The national master curriculum contains 415 required official indicators: 139 primary and 276 secondary. The canonical secondary catalogue contains 276/276 M1–M6 indicators. P1 15, P2 16, P3 25, P4 21, P5 32 and P6 30 are all aligned with no unclassified primary rows. Primary priorities now reconcile to 99 Must-Know and 40 stored Should-Know rows plus five dual labels = 99/45 official priority classifications. M1 has 52 indicators (35 Must-Know, 17 Should-Know); M2 has 63 (48, 15); M3 has 59 (41, 18). Nine legacy M3 W3.2 outcomes remain preserved as non-required supplementary records. M4 has 28 indicators (19 Must-Know, 9 Should-Know), M5 has 49 (42, 7), and M6 has 25 (24, 1 plus the dual M6/4 label). Upper-secondary totals now match OBEC: 85 Must-Know / 18 Should-Know classifications. National priority labels now reconcile to 308 Must-Know and 113 Should-Know across 415 unique indicators, with six dual-classified indicators.
 
 
 ## Official national Science and Technology coverage
@@ -381,3 +381,10 @@ Migration: `20261121113000_correct_primary_science_should_know_required_flag.sql
 Official OBEC 2021 printed page 146 confirms ว 1.2 ม.4/11 as Should-Know. Its classification has been corrected in both curricula and in the M4 teacher pack. The grade-level tally now reads M4 19/9, M5 42/7 and M6 24/1, with M6/4 dual-classified. Aggregate: 85 Must-Know / 18 Should-Know classifications across 102 unique indicators.
 
 Migration: `20261121114500_correct_science_m4_w1_2_indicator_11_priority.sql`.
+
+
+## Primary priority corrections completed — 21 November 2026
+
+A row-level source audit found two primary priority errors. OBEC 2021 printed page 65 classifies ว 4.2 ป.2/3 as Must-Know (not Should-Know); printed page 68 classifies ว 3.2 ป.3/2 as Must-Know (not Should-Know). Both rows were corrected in both catalogues and in their teacher starter packs. The primary totals now reconcile: P1 9/6 plus one dual, P2 11/5 plus one dual, P3 19/6 plus one dual, P4 16/5 plus one dual, P5 24/8, P6 20/10 plus one dual. This yields 99 Must-Know and 45 Should-Know classifications across 139 unique primary indicators.
+
+Migration: `20261121122000_correct_primary_science_p2_p3_must_know_priorities.sql`.
