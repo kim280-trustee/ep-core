@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "validate:science-packs": "node scripts/validate-science-teacher-packs.mjs",
     "validate:national-curriculum-packs": "node scripts/validate-national-curriculum-packs.mjs",
-    "validate:thai-2025-packs": "node scripts/validate-thai-2025-competency-pack.mjs"
+    "validate:thai-2025-packs": "node scripts/validate-thai-2025-competency-pack.mjs",
+    "validate:social-studies-packs": "node scripts/validate-social-studies-teacher-packs.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
