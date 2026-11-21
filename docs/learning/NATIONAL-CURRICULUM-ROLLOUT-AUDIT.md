@@ -10,22 +10,22 @@
 | National learning area | Subject code | Unique official indicators | Grade alignments | Teacher resources |
 |---|---|---:|---:|---|
 | Thai Language | `THAI-LANGUAGE` | 319 | 391 | 319 lessons / 957 formative tasks |
-| Mathematics | `MATH` | 41 | 41 in national master; 82 across national and Maths-specific catalogues | 41 lessons / 123 answer-keyed questions |
+| Mathematics | `MATH` | 157 | 157 in national master; 157 additional grade alignments across the primary and secondary Maths-specific catalogues | 157 lessons / 471 answer-keyed questions |
 | Science and Technology | `SCI` | 415 | 415 in national master; 276 in canonical secondary catalogue | 415 core lessons / 1,245 formative tasks |
 | Social Studies, Religion and Culture | `SOCIAL-STUDIES` | 418 | 540 | 418 lessons / 1,254 assessment stems |
 | Health and Physical Education | `HEALTH-PE` | 221 | 279 | 221 lessons / 663 formative tasks |
 | Arts | `ARTS` | 279 | 357 | 279 lessons / 837 assessment prompts |
 | Occupations and Career | `CAREER` | 54 | 76 | 54 lessons / 162 answer-keyed questions |
 | Foreign Languages | `FOREIGN-LANGUAGES` | 193 | 235 | 193 lessons / 579 formative tasks |
-| **Total** | **8 learning areas** | **1,940** | **2,334** | **1,940 lessons / 5,820 tasks and prompts** |
+| **Total** | **8 learning areas** | **2,056** | **2,450** | **2,056 lessons / 6,168 tasks and prompts** |
 
-The 41 Mathematics objectives have 41 alignments in the national master and are also retained in the separate Maths-specific catalogue, giving 82 alignments across both catalogues. Do not add those duplicate catalogue views to the 2,334 national-master alignment total.
+Mathematics now has 157 unique P1–M6 indicators and 157 grade alignments in the national master: 116 primary and 41 secondary. The same objectives are also retained in two separate Maths-specific catalogues (116 primary and 41 secondary alignments), adding 157 catalogue-view alignments but no additional unique national indicators. Do not add those duplicate views to the national-master totals.
 
 ### Official-indicator required-flag reconciliation
 
 A live database audit found that 839 official grade alignments in six learning areas had been marked `required=false` because their Must-Know / Should-Know priority had been treated as curriculum inclusion. This was incorrect: Should-Know indicators remain official curriculum indicators, and Social Studies also contains official pathway-classified indicators without a priority label.
 
-Migration `20261121052847_mark_official_2008_learning_area_indicators_required.sql` changed only the required flag for the affected official alignments: Thai Language 68, Social Studies 405, Health and Physical Education 140, Arts 146, Career 39 and Foreign Languages 41. All original priority and pathway classifications were preserved. Live verification now returns 1,940 required unique indicators, 2,334 required grade alignments and zero rows with both priority and pathway classifications missing. The nine legacy M3 W3.2 Science supplementary outcomes remain non-required.
+Migration `20261121052847_mark_official_2008_learning_area_indicators_required.sql` changed only the required flag for 839 affected official alignments: Thai Language 68, Social Studies 405, Health and Physical Education 140, Arts 146, Career 39 and Foreign Languages 41. All original priority and pathway classifications were preserved. The subsequent primary Mathematics seed added 116 required indicators and grade alignments, already classified 82 Must-Know and 34 Should-Know. Current live verification therefore returns 2,056 required unique indicators, 2,450 required grade alignments and zero rows with both priority and pathway classifications missing. The nine legacy M3 W3.2 Science supplementary outcomes remain non-required.
 
 Science's 415 core indicators are separate from 300 additional M4–M6 specialist outcomes across Biology, Chemistry, Physics and Earth/Space. Those specialist outcomes remain in their own subject tracks and are not part of the 415 national Science core total.
 
@@ -76,12 +76,12 @@ Audit and pack: `thai-primary-2025/THAI-PRIMARY-2025-CURRICULUM-AUDIT.md` and `t
 
 ## 4. Source-pack and automated validation
 
-The eight 2008/2017 learning areas have 39 teacher-pack files covering 1,940 unique official objective codes. The cross-curriculum validator checks expected pack counts, grade-section or indicator-list coverage, one unique objective code per lesson where the pack is lesson-structured, and cross-pack duplicates.
+The eight 2008/2017 learning areas have 39 teacher-pack files covering 2,056 unique official objective codes. The cross-curriculum validator checks expected pack counts, grade-section or indicator-list coverage, one unique objective code per lesson where the pack is lesson-structured, and cross-pack duplicates.
 
-- `npm run validate:national-curriculum-packs` — all 39 source packs across the eight learning areas, 1,940 unique official objective codes.
+- `npm run validate:national-curriculum-packs` — all 39 source packs across the eight learning areas, 2,056 unique official objective codes.
 - `npm run validate:thai-career-packs` — actual TypeScript importer-parser checks for Thai Language (319 lessons / 957 tasks) and Career (54 / 162), including shared-grade expansion.
 - `npm run validate:thai-language-packs` — dedicated Thai Language validation of all 319 objective codes, exact official Thai indicator wording in every task and all 957 answer-keyed tasks.
-- `npm run validate:maths-packs` — actual parser validation of 41 M1–M6 Mathematics lessons and 123 answer-keyed questions.
+- `npm run validate:maths-packs` and `npm run validate:maths-primary-packs` — actual parser validation of all 157 Mathematics lessons (116 primary and 41 secondary) and 471 answer-keyed questions.
 - `npm run validate:science-packs` — actual parser validation of 276 consolidated secondary Science lessons and 828 answer-keyed questions; the national validator also covers all 415 core Science objectives.
 - `npm run validate:social-studies-packs` — actual parser validation of 418 indicators and 1,254 tasks, checking each task includes its exact official Thai indicator and shared M4–M6 grade expansion.
 - `npm run validate:health-pe-packs`, `npm run validate:arts-packs` and `npm run validate:foreign-languages-packs` — actual parser checks of 221/663, 279/837 and 193/579 respectively, including shared upper-secondary grade expansion.
