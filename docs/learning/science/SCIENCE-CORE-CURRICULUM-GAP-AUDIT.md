@@ -5,7 +5,7 @@
 **Official source PDF:** https://www.academic.obec.go.th/images/official/1622514876_d_1.pdf  
 **Status:** Open — do not mark Science complete
 
-**Repository/live distinction (verified 21 November 2026):** Live Supabase contains all 139 primary P1–P6 indicators and all 174 lower-secondary M1–M3 indicators in both the canonical Science curriculum and the draft national master curriculum. M1 and M2 priority totals match OBEC exactly. M3 has 59 aligned indicators, but 10 priority labels remain unclassified pending source-level reconciliation. The 102 shared M4–M6 core indicators remain outstanding.
+**Repository/live distinction (verified 21 November 2026):** Live Supabase contains all 139 primary P1–P6 indicators and all 174 lower-secondary M1–M3 indicators in both the canonical Science curriculum and the draft national master curriculum. M1 and M2 priority totals match OBEC exactly. M3 has 59 aligned indicators, but 10 priority labels remain unclassified pending source-level reconciliation. The 102 grade-specific M4–M6 core indicators remain outstanding.
 
 
 ## Official grade totals
@@ -66,14 +66,14 @@ Must-Know and Should-Know counts are not mutually exclusive. P4 and P6 each have
 | Earth, Astronomy and Space | 44 |
 | **Total additional outcomes** | **300** |
 
-These 300 outcomes are additional upper-secondary specialist content. They remain separate from the 102 shared M4–M6 core Science and Technology indicators.
+These 300 outcomes are additional upper-secondary specialist content. They remain separate from the 102 grade-specific M4–M6 core Science and Technology indicators.
 
 ## Acceptance criteria before Science can close
 
 - [x] P1–P6 W1–W3 indicators seeded, aligned and classified (111 total).
 - [x] P1–P6 W4.2 indicators seeded, aligned and classified (28).
 - [ ] M1–M3 W1–W4 indicator codes reconciled exactly to OBEC.
-- [ ] M4–M6 102 shared core indicators seeded and aligned to all three grades.
+- [ ] Transcribe all 102 upper-secondary core indicators from the OBEC M4/M5/M6 tables, verify per-grade counts and priorities, then seed each indicator only to its source grade.
 - [ ] Both `TH-BASIC-CORE-2008-2017` and `TH-SCI-M1-M6` have consistent M1–M6 SCI core alignments.
 - [ ] The final unique-indicator and grade-alignment totals reconcile to the official 415-indicator table.
 - [ ] All Science teacher packs cover the completed official indicator set; specialist packs remain separately identified.
