@@ -46,6 +46,9 @@ jobs:
       - name: Validate Social Studies teacher packs through importer parser
         run: npm run validate:social-studies-packs
 
+      - name: Validate Health and PE teacher packs through importer parser
+        run: npm run validate:health-pe-packs
+
       - name: Build production application
         run: npm run build
 
