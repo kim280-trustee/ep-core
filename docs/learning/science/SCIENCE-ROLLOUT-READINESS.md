@@ -340,11 +340,11 @@ M4 core Science indicators are fully represented in staging: W1.1 (4), W1.2 (12)
 
 ## M5 core Science — W2.1 tranche staged
 
-The 22 source-listed M5 W2.1 indicators (M5/1–10 and M5/14–25) are staged in both curricula, aligned only to M5. Priority labels reconcile to 17 Must-Know and 5 Should-Know, with zero unclassified records. The source does not list M5/11–13 in this table; those gaps remain unseeded. Teacher resource: 22 lesson starters and 66 answer-keyed formative questions. M5 is not yet complete; other M5 standards remain to be transcribed.
+The complete 25 M5 W2.1 indicators (M5/1–25) are staged in both curricula, aligned only to M5. Priority labels reconcile to 20 Must-Know and 5 Should-Know, with zero unclassified records. M5/11–13 were recovered from the scanned section of official page 151 and seeded in a corrective migration. Teacher resource: 25 lesson starters and 75 answer-keyed formative questions.
 
 Migration: 20261121052000_seed_science_m5_w2_1_chemistry_core_indicators.sql.
 
 
 ## M5 core Science — 47/47 source-sequenced indicators
 
-M5 standards W2.1, W2.2 and W2.3 are now represented in both curricula: 25 + 10 + 12 = 47 indicators. All are aligned only to M5. Priority reconciliation: 41 Must-Know and 6 Should-Know, zero unclassified. The two M5 teacher packs contain 44 lesson starters and 132 answer-keyed formative questions; the three recovered W2.1 indicators are included in the matter/chemistry pack, bringing its total to 25 lessons and 75 questions. M5's technology standard rows, if any, are not assumed; the 47-count here is the grade sequence confirmed in the OBEC table. M6 remains the next grade to transcribe.
+M5 standards W2.1, W2.2 and W2.3 are now represented in both curricula: 25 + 10 + 12 = 47 indicators. All are aligned only to M5. Priority reconciliation: 41 Must-Know and 6 Should-Know, zero unclassified. The two M5 teacher packs contain 47 lesson starters and 141 answer-keyed formative questions. The M5 grade sequence is complete at 47 indicators across W2.1 (25), W2.2 (10) and W2.3 (12). M6 remains the next grade to transcribe.
