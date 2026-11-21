@@ -1,6 +1,6 @@
 -- M5 upper-secondary core Science tranche 1: OBEC standard W2.1 indicators 1–10 and 14–25.
 -- 22 official grade-specific indicators; source pages 149–151.
--- Codes W2.1 M5/11–13 are not listed in this source table and are intentionally not inferred.
+-- M5/11–13 are seeded by a corrective migration after their rows were recovered from the official PDF page 151.
 begin;
 insert into public.learning_skills(subject_id,code,name,description,status)
 select s.id,'MATTER-CHEMISTRY','Matter, Atomic Structure and Chemical Change','Atomic structure, periodic properties, bonding, organic compounds, polymers, chemical reactions and radioactivity.','active'
