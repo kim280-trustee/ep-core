@@ -641,3 +641,40 @@ where sub.code='SCI' and a.required=true
   and g.code in ('P1','P2','P3','P4','P5','P6','M1','M2','M3','M4','M5','M6')
   and c.code in ('TH-SCI-M1-M6','TH-BASIC-CORE-2008-2017')
 group by c.code order by c.code;
+
+
+-- Upper-secondary classification gate: M4/11 is Should-Know per OBEC 2021 p.146.
+-- M6/4 is stored as Must-Know and carries the additional Should-Know label in notes.
+with upper_secondary as (
+ select c.code curriculum,g.code grade,o.code,
+        a.indicator_classification,a.notes
+ from public.learning_objective_alignments a
+ join public.learning_objectives o on o.id=a.objective_id
+ join public.learning_grade_levels g on g.id=a.grade_level_id
+ join public.learning_curricula c on c.id=a.curriculum_id
+ join public.learning_topics t on t.id=o.topic_id
+ join public.learning_skills sk on sk.id=t.skill_id
+ join public.learning_subjects sub on sub.id=sk.subject_id
+ where sub.code='SCI' and a.required=true
+   and g.code in ('M4','M5','M6')
+   and c.code in ('TH-SCI-M1-M6','TH-BASIC-CORE-2008-2017')
+)
+select curriculum,
+ count(*) total_rows,
+ count(distinct code) unique_indicators,
+ count(*) filter(where indicator_classification='must_know') must_know,
+ count(*) filter(where indicator_classification='should_know') stored_should_know,
+ count(*) filter(where notes ilike '%Dual-classified: Must-Know and Should-Know%') dual_should_know,
+ count(*) filter(where indicator_classification is null) unclassified,
+ count(*) filter(where grade='M4' and code='M4-S1_2-11'
+   and indicator_classification='should_know') m4_11_should_know,
+ case when count(*)=102 and count(distinct code)=102
+   and count(*) filter(where indicator_classification='must_know')=85
+   and count(*) filter(where indicator_classification='should_know')=17
+   and count(*) filter(where notes ilike '%Dual-classified: Must-Know and Should-Know%')=1
+   and count(*) filter(where indicator_classification is null)=0
+   and count(*) filter(where grade='M4' and code='M4-S1_2-11'
+     and indicator_classification='should_know')=1
+ then 'PASS' else 'CHECK' end result
+from upper_secondary
+group by curriculum order by curriculum;
