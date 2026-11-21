@@ -16,7 +16,8 @@
     "validate:arts-packs": "node scripts/validate-arts-teacher-packs.mjs",
     "validate:foreign-languages-packs": "node scripts/validate-foreign-languages-packs.mjs",
     "validate:maths-packs": "node scripts/validate-maths-teacher-packs.mjs",
-    "validate:thai-career-packs": "node scripts/validate-thai-language-career-packs.mjs"
+    "validate:thai-career-packs": "node scripts/validate-thai-language-career-packs.mjs",
+    "validate:thai-language-packs": "node scripts/validate-thai-language-teacher-packs.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
