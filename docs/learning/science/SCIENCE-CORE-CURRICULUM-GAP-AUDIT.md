@@ -5,7 +5,7 @@
 **Official source PDF:** https://www.academic.obec.go.th/images/official/1622514876_d_1.pdf  
 **Status:** Open — do not mark Science complete
 
-**Repository/live distinction (verified 21 November 2026):** Live Supabase now contains all 139 primary P1–P6 indicators. P1–P3 W1–W3, P4–P6 W1–W3 and W4.2 seeds are applied, with corrective migrations fixing topic/objective CTE ordering. All six primary grade totals pass. Remaining scope is lower-secondary M1–M3 completion and code-level reconciliation, plus the 102 shared M4–M6 core indicators.
+**Repository/live distinction (verified 21 November 2026):** Live Supabase contains all 139 primary P1–P6 indicators and all 174 lower-secondary M1–M3 indicators in both the canonical Science curriculum and the draft national master curriculum. M1 and M2 priority totals match OBEC exactly. M3 has 59 aligned indicators, but 10 priority labels remain unclassified pending source-level reconciliation. The 102 shared M4–M6 core indicators remain outstanding.
 
 
 ## Official grade totals
@@ -56,14 +56,7 @@ The OBEC 2021 summary table reports the following classification totals for the 
 
 Must-Know and Should-Know counts are not mutually exclusive. P4 and P6 each have one indicator included in both classifications. The current alignment schema stores one classification value; any seed must preserve the second classification explicitly in notes/metadata. The SQL verification script checks the expected totals and flags these exceptions for review.
 
-## Remaining national-core implementation
-
-1. **Primary P1–P6:** complete in live staging (139/139); teacher packs reconcile to 139 lesson starters and 417 formative tasks.
-2. **M1:** 43 of 52 official indicators aligned; nine technology indicators remain to be transcribed and seeded from the official source.
-3. **M2:** 48 of 63 official indicators aligned; 15 indicators remain, including six W2.1 and nine W4.1/W4.2 indicators.
-4. **M3:** 53 current records against 59 official indicators, but code-level mismatch must be resolved before seeding. Nine existing W3.2 records remain unclassified pending exact mapping to the official M3 indicator codes; preserve useful content, but do not count it as verified official coverage until that mapping is complete.
-5. **M4–M6 core:** add the 102 shared Science and Technology indicators. Do not substitute the 300 specialist Biology/Chemistry/Physics/Earth-Space outcomes for this core set.
-## Existing specialist outcomes — separate from the core set
+## Remaining national-core implementation\n\n1. **Primary P1–P6:** complete in live staging (139/139); teacher packs reconcile to 139 lesson starters and 417 formative tasks.\n2. **M1:** complete (52/52); new nine-indicator W4.1/W4.2 batch is aligned and priority totals reconcile to OBEC 35 Must-Know / 17 Should-Know.\n3. **M2:** complete (63/63); six W2.1 and nine W4.1/W4.2 indicators are aligned; priority totals reconcile to OBEC 48 Must-Know / 15 Should-Know.\n4. **M3:** complete indicator count (59/59) after adding six W1.1 ecosystem indicators. Ten priority labels remain intentionally unresolved: nine existing W3.2 rows and the source-ambiguous W1.1 ม.3/6 row. Do not infer their Must/Should classification.\n5. **M4–M6 core:** add the 102 shared Science and Technology indicators. Do not substitute the 300 specialist Biology/Chemistry/Physics/Earth-Space outcomes for this core set.\n## Lower-secondary completion batch — M1–M3\n\n- M1: nine missing W4.1/W4.2 indicators seeded; grade total now 52/52.\n- M2: six W2.1 indicators and nine W4.1/W4.2 indicators seeded; grade total now 63/63.\n- M3: six W1.1 ecosystem indicators seeded; grade total now 59/59.\n- Both the canonical `TH-SCI-M1-M6` curriculum and the draft `TH-BASIC-CORE-2008-2017` master curriculum now carry the same M1/M2/M3 totals. The draft master remains draft.\n- New teacher packs add 30 lesson starters and 90 answer-keyed formative questions. Combined M1–M3 import pack now contains 174 lesson starters and 522 questions.\n- M3 priority labels: nine legacy W3.2 rows and W1.1 ม.3/6 are held unclassified until the official source table is reconciled.\n\n## Existing specialist outcomes — separate from the core set
 
 | Specialist subject | M4–M6 outcomes |
 |---|---:|
