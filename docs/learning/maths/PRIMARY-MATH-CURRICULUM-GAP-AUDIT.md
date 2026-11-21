@@ -1,6 +1,6 @@
 # Primary Mathematics — Curriculum Coverage Gap Audit
 
-**Status: source reconciliation required; no primary Mathematics records seeded.**
+**Status: official P1–P6 source and priorities reconciled; no primary Mathematics records seeded yet.**
 
 ## Verified database state — 21 November 2026
 
@@ -26,11 +26,12 @@ Official source PDF: https://academic.obec.go.th/web/images/official/1622514876_
 
 The six grade totals establish 116 primary Mathematics indicators. The current database has none of them.
 
-## Source discrepancy requiring resolution
+## P6 priority reconciliation — resolved
 
-The P6 summary row reports 21 indicators split 15 Must-Know / 6 Should-Know. Counting the individual P6 rows in the detailed table appears to produce 14 Must-Know / 7 Should-Know. This one-indicator discrepancy must be reconciled against an authoritative OBEC correction or a second official source before assigning final P6 priority labels.
+The apparent 14/7 count in the initial manual review was a counting error. Recounting the detailed P6 table row by row gives **15 Must-Know and 6 Should-Know**, exactly matching the P6 summary row. The detailed table also ends with an explicit P6 subtotal of 21 indicators, 15 Must-Know and 6 Should-Know (OBEC 2021 PDF, printed page 48). No priority correction or assumed label is needed.
 
-Do not silently force the detailed rows to match the summary, and do not seed an assumed priority for any P6 indicator.
+The official primary totals therefore reconcile exactly: 116 indicators, 82 Must-Know and 34 Should-Know. P6 remains 21 / 15 / 6.
+
 
 ## Implementation scope after source reconciliation
 
