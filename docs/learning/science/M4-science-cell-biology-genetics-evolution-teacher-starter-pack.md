@@ -2,8 +2,8 @@
 
 **Source:** OBEC / IPST, *Indicators and Core Learning Content: Must-Know and Should-Know* (2021), pp. 143–148  
 **Grade:** M4 only  
-**This tranche:** 18 indicators (13 Must-Know, 5 Should-Know)  
-**Combined M4 coverage after tranche:** 22/22 indicators (15 Must-Know, 7 Should-Know)
+**This tranche:** 18 indicators (12 Must-Know, 6 Should-Know)  
+**Combined M4 coverage after tranche:** 22/22 indicators (14 Must-Know, 8 Should-Know)
 
 ## Lesson 5 — Explain cell membrane structure and transport
 
@@ -158,7 +158,7 @@
 ## Lesson 15 — Explain synthetic plant growth regulators
 
 **Objective:** `M4-S1_2-11`  
-**Official indicator:** ว 1.2 ม.4/11 | **Priority:** Must-Know  
+**Official indicator:** ว 1.2 ม.4/11 | **Priority:** Should-Know  
 **Learning outcome:** Research synthetic substances modelled on plant hormones and give examples of how they are used to control plant growth or improve agricultural production.  
 **Starter:** Show examples of fruit ripening, rooting or weed control and ask which growth response is being managed.
 
