@@ -3,7 +3,7 @@
 **Curriculum:** Thai Basic Education Core Curriculum B.E. 2551 (2008), revised 2017  
 **Official source:** OBEC / IPST, *Indicators and Core Learning Content: Must-Know and Should-Know* (2021)  
 **Source PDF:** https://www.academic.obec.go.th/images/official/1622514876_d_1.pdf  
-**Status:** M4 is complete (22/22 grade-specific core indicators) and verified in both curricula. M5 and M6 remain in source transcription and implementation; 80 upper-secondary core indicators remain.
+**Status:** M4 is complete (22/22 grade-specific core indicators) and verified in both curricula. M5 W2.1 has 22 source-listed indicators implemented; M5's remaining standards and M6 still require transcription. 58 of the 102 upper-secondary core indicators remain.
 
 ## Correct interpretation of the 102 indicators
 
@@ -62,3 +62,10 @@ Remaining upper-secondary core indicators: 98 of 102. Do not extrapolate M4 word
 The second tranche adds all 18 remaining M4 indicators in standards W1.2 and W1.3. M4 now has 22/22 unique indicators: 15 Must-Know and 7 Should-Know. Each new objective is aligned only to M4 in both curriculum catalogues (36 new alignments). The companion pack adds 18 lesson starters and 54 answer-keyed formative questions. Source priority flags were transcribed from OBEC 2021 pp. 143–148.
 
 Migration: 20261121042000_seed_science_m4_cell_biology_genetics_core_indicators_5_22.sql. Teacher pack: M4-science-cell-biology-genetics-evolution-teacher-starter-pack.md.
+
+
+## Implemented tranche 3 — M5 W2.1 matter and chemical change
+
+The source-listed M5 W2.1 indicators are implemented: M5/1–10 and M5/14–25 (22 indicators). The source table does not list M5/11–13; these codes were deliberately not inferred or seeded. The priority split is 17 Must-Know and 5 Should-Know. Each indicator is aligned only to M5 in both curricula (44 alignments total). The teacher pack contains 22 lesson starters and 66 answer-keyed formative questions.
+
+Migration: 20261121052000_seed_science_m5_w2_1_chemistry_core_indicators.sql. Teacher pack: M5-science-matter-chemistry-teacher-starter-pack.md.
