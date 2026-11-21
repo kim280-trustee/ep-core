@@ -142,3 +142,8 @@ Migration: `20261121114500_correct_science_m4_w1_2_indicator_11_priority.sql`.
 ## Consolidated M4–M6 teacher import
 
 The six grade/strand teacher starter packs are now combined in `SCIENCE-M4-M6-COMPLETE-IMPORT.md`. The consolidated file contains 102 sequential lesson headings, 102 unique objective codes, 306 answer-keyed formative questions and grade-coded M4/M5/M6 mappings. It passed the source-level compatibility check against the repository teacher-pack parser rules.
+
+
+## Final closure — 21 November 2026
+
+The extraction and implementation sequence above is complete; its numbered steps are historical work instructions, not remaining tasks. Live Supabase confirms 102/102 grade-specific upper-secondary core indicators: M4 28, M5 49 and M6 25, aligned only to their source grades in both `TH-BASIC-CORE-2008-2017` and `TH-SCI-M1-M6`. Priority totals are 85 Must-Know and 17 stored Should-Know plus the dual Should-Know label for M6/4, matching the official 85/18 summary. The final read-only Science verification returns PASS for all M4–M6 grade rows. The 300 specialist Biology/Chemistry/Physics/Earth-Space outcomes remain separate.
