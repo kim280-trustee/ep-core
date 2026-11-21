@@ -4,11 +4,11 @@ import { ArrowLeft, FileUp, Upload } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningTeacherService } from "@/features/learning-teacher/services/learning-teacher.service";
-import { learningAssessmentService } from "@/features/learning-assessment/services/learning-assessment.service";
 import {
   learningContentService,
   learningPackImportService,
   parseTeacherPackMarkdown,
+  extractTeacherPackGradeCodes,
   type LearningPackImportLesson,
   type ParsedTeacherPackLesson,
 } from "@/features/learning-content";
@@ -17,6 +17,7 @@ type ResolvedLesson = LearningPackImportLesson & {
   sourceNumber: number;
   sourceTitle: string;
   objectiveName: string;
+  contentImportCode: string;
 };
 
 const CHUNK_SIZE = 40;
@@ -98,102 +99,111 @@ export default function TeacherContentImportPage() {
     const seenCodes = new Set<string>();
 
     for (const lesson of parsedLessons) {
-      let targetGradeLevelId = activeGradeLevelId;
-      const gradeCode = lesson.objectiveCode?.match(/^(M[1-6])[-_]/i)?.[1]?.toUpperCase();
-      if (gradeCode) {
-        const grade = gradeLevels.data?.find((item) => item.code.toUpperCase() === gradeCode);
-        if (grade) targetGradeLevelId = grade.id;
-      }
-
-      const alignedToGrade = (objectiveId: string, gradeId: string) =>
-        objectiveAlignments.some((alignment) =>
-          alignment.objectiveId === objectiveId &&
-          alignment.curriculumId === activeCurriculumId &&
-          alignment.gradeLevelId === gradeId
-        );
-
-      let objective: (typeof objectives)[number] | undefined;
-      if (lesson.objectiveCode) {
-        const codeMatches = objectives.filter((item) => item.code.toUpperCase() === lesson.objectiveCode);
-        if (codeMatches.length > 1) {
-          errors.push(`Section ${lesson.number} “${lesson.title}”: objective code ${lesson.objectiveCode} is not unique in this subject. The importer will not guess.`);
-          continue;
+      const resolvedGradeCodes = extractTeacherPackGradeCodes(lesson.objectiveCode);
+      const targetGradeCodes: Array<string | null> = resolvedGradeCodes.length ? resolvedGradeCodes : [null];
+      const isSharedM46Outcome = targetGradeCodes.length > 1;
+      for (const targetGradeCode of targetGradeCodes) {
+        let targetGradeLevelId = activeGradeLevelId;
+        if (targetGradeCode) {
+          const grade = gradeLevels.data?.find((item) => item.code.toUpperCase() === targetGradeCode);
+          if (!grade) {
+            errors.push(`Section ${lesson.number} “${lesson.title}”: grade ${targetGradeCode} is not available in the selected curriculum. Choose a curriculum containing this grade; the importer will not fall back to another grade.`);
+            continue;
+          }
+          targetGradeLevelId = grade.id;
         }
-        objective = codeMatches[0];
-      }
 
-      if (!objective && lesson.objectiveText) {
-        const normalizedText = normalizeText(lesson.objectiveText);
-        const exactTextMatches = objectives.filter((item) =>
-          normalizeText(item.name) === normalizedText ||
-          normalizeText(item.description ?? "") === normalizedText
-        );
-        if (exactTextMatches.length === 1) {
-          objective = exactTextMatches[0];
-        } else if (!exactTextMatches.length) {
-          const alignedCandidates = objectives.filter((item) => alignedToGrade(item.id, targetGradeLevelId));
-          const scored = alignedCandidates
-            .map((item) => ({
-              item,
-              score: textSimilarity(lesson.objectiveText!, item.description || item.name),
-            }))
-            .sort((left, right) => right.score - left.score);
-          const best = scored[0];
-          const runnerUp = scored[1];
-          if (best && best.score >= 0.72 && (!runnerUp || best.score - runnerUp.score >= 0.08)) {
-            objective = best.item;
+        const alignedToGrade = (objectiveId: string, gradeId: string) =>
+          objectiveAlignments.some((alignment) =>
+            alignment.objectiveId === objectiveId &&
+            alignment.curriculumId === activeCurriculumId &&
+            alignment.gradeLevelId === gradeId
+          );
+
+        let objective: (typeof objectives)[number] | undefined;
+        if (lesson.objectiveCode) {
+          const codeMatches = objectives.filter((item) => item.code.toUpperCase() === lesson.objectiveCode);
+          if (codeMatches.length > 1) {
+            errors.push(`Section ${lesson.number} “${lesson.title}”: objective code ${lesson.objectiveCode} is not unique in this subject. The importer will not guess.`);
+            continue;
+          }
+          objective = codeMatches[0];
+        }
+
+        if (!objective && lesson.objectiveText) {
+          const normalizedText = normalizeText(lesson.objectiveText);
+          const exactTextMatches = objectives.filter((item) =>
+            normalizeText(item.name) === normalizedText ||
+            normalizeText(item.description ?? "") === normalizedText
+          );
+          if (exactTextMatches.length === 1) {
+            objective = exactTextMatches[0];
+          } else if (!exactTextMatches.length) {
+            const alignedCandidates = objectives.filter((item) => alignedToGrade(item.id, targetGradeLevelId));
+            const scored = alignedCandidates
+              .map((item) => ({
+                item,
+                score: textSimilarity(lesson.objectiveText!, item.description || item.name),
+              }))
+              .sort((left, right) => right.score - left.score);
+            const best = scored[0];
+            const runnerUp = scored[1];
+            if (best && best.score >= 0.72 && (!runnerUp || best.score - runnerUp.score >= 0.08)) {
+              objective = best.item;
+            }
           }
         }
-      }
 
-      if (!objective && lesson.objectiveCode) {
-        errors.push(`Section ${lesson.number} “${lesson.title}”: objective code ${lesson.objectiveCode} was not found in the selected subject. The importer will not guess a replacement.`);
-        continue;
-      }
-
-      if (!objective) {
-        const candidates = objectives.filter((item) =>
-          item.sequenceNo === lesson.outcomeNumber &&
-          alignedToGrade(item.id, targetGradeLevelId)
-        );
-        if (candidates.length === 1) objective = candidates[0];
-        else {
-          errors.push(`Section ${lesson.number} “${lesson.title}”: ${candidates.length ? "the outcome number matches more than one objective" : "no objective matches the selected subject, grade and curriculum"}.`);
+        if (!objective && lesson.objectiveCode) {
+          errors.push(`Section ${lesson.number} “${lesson.title}”: objective code ${lesson.objectiveCode} was not found in the selected subject. The importer will not guess a replacement.`);
           continue;
         }
-      }
 
-      if (!alignedToGrade(objective.id, targetGradeLevelId)) {
-        errors.push(`Section ${lesson.number} “${lesson.title}”: objective ${objective.code} is not aligned to grade ${gradeLevels.data?.find((item) => item.id === targetGradeLevelId)?.code ?? "selected grade"} in this curriculum.`);
-        continue;
-      }
+        if (!objective) {
+          const candidates = objectives.filter((item) =>
+            item.sequenceNo === lesson.outcomeNumber &&
+            alignedToGrade(item.id, targetGradeLevelId)
+          );
+          if (candidates.length === 1) objective = candidates[0];
+          else {
+            errors.push(`Section ${lesson.number} “${lesson.title}”: ${candidates.length ? "the outcome number matches more than one objective" : "no objective matches the selected subject, grade and curriculum"}.`);
+            continue;
+          }
+        }
 
-      const contentCode = makeImportCode(`EP-${objective.code}-LESSON`);
-      if (seenCodes.has(contentCode)) {
-        errors.push(`Objective ${objective.code} appears more than once in this pack.`);
-        continue;
-      }
-      seenCodes.add(contentCode);
+        if (!alignedToGrade(objective.id, targetGradeLevelId)) {
+          errors.push(`Section ${lesson.number} “${lesson.title}”: objective ${objective.code} is not aligned to grade ${gradeLevels.data?.find((item) => item.id === targetGradeLevelId)?.code ?? "selected grade"} in this curriculum.`);
+          continue;
+        }
 
-      rows.push({
-        sourceNumber: lesson.number,
-        sourceTitle: lesson.title,
-        objectiveId: objective.id,
-        objectiveCode: objective.code,
-        objectiveName: objective.name,
-        gradeLevelId: targetGradeLevelId,
-        title: lesson.title,
-        learningOutcome: lesson.learningOutcome,
-        activity: lesson.activity,
-        teacherGuidance: lesson.packGuidance,
-        questions: lesson.questions.map((question) => ({
-          code: makeImportCode(`EP-${objective!.code}-${questionsOnly ? "DL-" : ""}Q${String(question.number).padStart(2, "0")}`),
-          prompt: question.prompt,
-          expectedAnswer: question.expectedAnswer,
-        })),
-      });
+        const gradeScopedSuffix = isSharedM46Outcome ? `-${targetGradeCode}` : "";
+        const contentImportCode = makeImportCode(`EP-${objective.code}${gradeScopedSuffix}-LESSON`);
+        if (seenCodes.has(contentImportCode)) {
+          errors.push(`Objective ${objective.code} appears more than once for grade ${targetGradeCode ?? "selected"} in this pack.`);
+          continue;
+        }
+        seenCodes.add(contentImportCode);
+
+        rows.push({
+          sourceNumber: lesson.number,
+          sourceTitle: lesson.title,
+          objectiveId: objective.id,
+          objectiveCode: objective.code,
+          objectiveName: objective.name,
+          gradeLevelId: targetGradeLevelId,
+          contentImportCode,
+          title: lesson.title,
+          learningOutcome: lesson.learningOutcome,
+          activity: lesson.activity,
+          teacherGuidance: lesson.packGuidance,
+          questions: lesson.questions.map((question) => ({
+            code: makeImportCode(`EP-${objective!.code}${gradeScopedSuffix}-${questionsOnly ? "DL-" : ""}Q${String(question.number).padStart(2, "0")}`),
+            prompt: question.prompt,
+            expectedAnswer: question.expectedAnswer,
+          })),
+        });
+      }
     }
-
     return { rows, errors };
   }, [parsedLessons, catalogue.data, alignments.data, activeCurriculumId, activeGradeLevelId, gradeLevels.data, questionsOnly]);
 
@@ -205,6 +215,10 @@ export default function TeacherContentImportPage() {
     setMessage("");
     setImportProgress({ lessons: 0, questions: 0 });
     if (!file) return;
+    if (file.size > 5_000_000) {
+      setFileError("Choose a Markdown teacher pack no larger than 5 MB (5,000,000 bytes).");
+      return;
+    }
     if (!file.name.toLowerCase().endsWith(".md")) {
       setFileError("Choose a Markdown (.md) teacher pack.");
       return;
@@ -232,24 +246,25 @@ export default function TeacherContentImportPage() {
     let importedQuestions = 0;
 
     try {
-      const [existingContent, existingQuestions] = await Promise.all([
-        questionsOnly ? Promise.resolve([]) : learningContentService.listContent(organizationId),
-        learningAssessmentService.listQuestions(organizationId),
-      ]);
-      const contentCodes = new Set(existingContent.map((item) => makeImportCode(item.code)));
-      const questionCodes = new Set(existingQuestions.map((item) => makeImportCode(item.code)));
-      const duplicateContent = questionsOnly ? undefined : resolved.rows.find((item) => contentCodes.has(makeImportCode(`EP-${item.objectiveCode}-LESSON`)));
-      const duplicateQuestion = resolved.rows.flatMap((item) => item.questions).find((item) => questionCodes.has(makeImportCode(item.code)));
-      if (duplicateContent || duplicateQuestion) {
-        throw new Error(`Import stopped because a code already exists in this organization: ${duplicateContent ? makeImportCode(`EP-${duplicateContent.objectiveCode}-LESSON`) : duplicateQuestion?.code}. Existing records are not overwritten.`);
-      }
+      const requestedContentCodes = questionsOnly ? [] : resolved.rows.map((lesson) =>
+        lesson.contentImportCode,
+      );
+      const requestedQuestionCodes = resolved.rows.flatMap((lesson) =>
+        lesson.questions.map((question) => makeImportCode(question.code)),
+      );
+      const existing = await learningPackImportService.findExistingImportCodes({
+        organizationId,
+        contentCodes: requestedContentCodes,
+        questionCodes: requestedQuestionCodes,
+      });
 
       if (questionsOnly) {
         const questions = resolved.rows.flatMap((lesson) => lesson.questions.map((question) => ({
           ...question,
           objectiveId: lesson.objectiveId,
           gradeLevelId: lesson.gradeLevelId,
-        })));
+        }))).filter((question) => !existing.questionCodes.has(makeImportCode(question.code)));
+        const skippedQuestions = requestedQuestionCodes.length - questions.length;
         for (let offset = 0; offset < questions.length; offset += CHUNK_SIZE) {
           const result = await learningPackImportService.importQuestionsOnly({
             organizationId,
@@ -261,10 +276,26 @@ export default function TeacherContentImportPage() {
           importedQuestions += result.questions;
           setImportProgress({ lessons: 0, questions: importedQuestions });
         }
-        setMessage(`Imported ${importedQuestions} assessment question drafts. All remain unpublished for teacher review.`);
+        setMessage(`Imported ${importedQuestions} new assessment question drafts; skipped ${skippedQuestions} existing question codes. All new items remain unpublished for teacher review.`);
       } else {
-        for (let offset = 0; offset < resolved.rows.length; offset += CHUNK_SIZE) {
-          const chunk = resolved.rows.slice(offset, offset + CHUNK_SIZE);
+        const newLessons: ResolvedLesson[] = [];
+        let skippedLessons = 0;
+        for (const lesson of resolved.rows) {
+          const contentExists = existing.contentCodes.has(lesson.contentImportCode);
+          const existingQuestionCount = lesson.questions.filter((question) =>
+            existing.questionCodes.has(makeImportCode(question.code))
+          ).length;
+          if (contentExists && existingQuestionCount === lesson.questions.length) {
+            skippedLessons += 1;
+            continue;
+          }
+          if (contentExists || existingQuestionCount > 0) {
+            throw new Error(`The saved records for ${lesson.objectiveCode} are incomplete (lesson record: ${contentExists ? "yes" : "no"}; existing questions: ${existingQuestionCount}/3). No records were overwritten. Inspect this objective's drafts before retrying.`);
+          }
+          newLessons.push(lesson);
+        }
+        for (let offset = 0; offset < newLessons.length; offset += CHUNK_SIZE) {
+          const chunk = newLessons.slice(offset, offset + CHUNK_SIZE);
           const result = await learningPackImportService.importChunk({
             organizationId,
             createdBy: user.id,
@@ -276,7 +307,7 @@ export default function TeacherContentImportPage() {
           importedQuestions += result.questions;
           setImportProgress({ lessons: importedLessons, questions: importedQuestions });
         }
-        setMessage(`Imported ${importedLessons} lesson drafts and ${importedQuestions} question drafts. All items remain unpublished for teacher review.`);
+        setMessage(`Imported ${importedLessons} new lesson drafts and ${importedQuestions} new question drafts; safely skipped ${skippedLessons} complete lessons from an earlier run. All new items remain unpublished for teacher review.`);
       }
       await queryClient.invalidateQueries({ queryKey: ["learning", "teacher-content-library", organizationId] });
       await queryClient.invalidateQueries({ queryKey: ["learning", "question-bank"] });
@@ -293,17 +324,21 @@ export default function TeacherContentImportPage() {
 
   if (!user) return <Panel>Sign in with an authorized teacher account to import curriculum materials.</Panel>;
   if (classes.isPending || curricula.isPending) return <div className="h-64 animate-pulse rounded-2xl bg-slate-200" />;
-  if (classes.isError || !classes.data?.length || curricula.isError) {
+  if (classes.isError || !classes.data?.length || curricula.isError || subjects.isError) {
     return <Panel>Teacher organization or curriculum access could not be loaded. No content has been imported.</Panel>;
   }
 
   const ready = Boolean(
     fileName &&
-    resolved.rows.length === parsedLessons.length &&
+    resolved.rows.length === parsedLessons.reduce((count, lesson) => count + Math.max(1, extractTeacherPackGradeCodes(lesson.objectiveCode).length), 0) &&
     parsedLessons.length > 0 &&
     resolved.errors.length === 0 &&
+    !subjects.isPending &&
+    !gradeLevels.isPending &&
     !catalogue.isPending &&
     !alignments.isPending &&
+    !subjects.isError &&
+    !gradeLevels.isError &&
     !catalogue.isError &&
     !alignments.isError
   );
@@ -363,7 +398,7 @@ export default function TeacherContentImportPage() {
         <label className="mt-4 flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-slate-300 px-5 py-8 text-center hover:bg-slate-50">
           <Upload size={24} className="text-slate-500" />
           <span className="mt-2 text-sm font-semibold text-slate-800">Choose one .md teacher pack</span>
-          <span className="mt-1 text-xs text-slate-500">Maximum file size: 5 MB</span>
+          <span className="mt-1 text-xs text-slate-500">Maximum file size: 5 MB (5,000,000 bytes)</span>
           <input type="file" accept=".md,text/markdown,text/plain" onChange={handleFileChange} className="sr-only" />
         </label>
         {fileName && <p className="mt-3 text-sm text-slate-700">Selected: <strong>{fileName}</strong></p>}
@@ -376,10 +411,10 @@ export default function TeacherContentImportPage() {
           <div className="mt-3 flex flex-wrap gap-4 text-sm text-slate-600">
             <span>{parsedLessons.length} lessons detected</span>
             <span>{parsedLessons.length * 3} questions detected</span>
-            <span>{resolved.rows.length} objectives matched</span>
+            <span>{resolved.rows.length} grade-specific outcomes matched</span>
           </div>
-          {catalogue.isPending || alignments.isPending ? <p className="mt-4 text-sm text-slate-500">Checking active curriculum alignments…</p> : null}
-          {(catalogue.isError || alignments.isError) && <p className="mt-4 text-sm text-red-700">Academic catalogue could not be loaded. No import is allowed.</p>}
+          {gradeLevels.isPending || catalogue.isPending || alignments.isPending ? <p className="mt-4 text-sm text-slate-500">Checking active curriculum grades and objective alignments…</p> : null}
+          {(gradeLevels.isError || catalogue.isError || alignments.isError) && <p className="mt-4 text-sm text-red-700">Academic catalogue could not be loaded. No import is allowed.</p>}
           {resolved.errors.length > 0 && (
             <div className="mt-4 rounded-xl border border-red-200 bg-red-50 p-4">
               <p className="text-sm font-semibold text-red-800">Resolve these mapping issues before importing:</p>
@@ -390,7 +425,7 @@ export default function TeacherContentImportPage() {
           )}
           <div className="mt-4 max-h-80 space-y-2 overflow-y-auto">
             {resolved.rows.map((lesson) => (
-              <div key={lesson.objectiveCode} className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-slate-200 px-3 py-2 text-sm">
+              <div key={lesson.contentImportCode} className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-slate-200 px-3 py-2 text-sm">
                 <span className="font-medium text-slate-800">{lesson.sourceNumber}. {lesson.sourceTitle}</span>
                 <div className="text-right">
                   <p className="text-xs font-medium text-slate-600">{lesson.objectiveCode} · {gradeLevels.data?.find((item) => item.id === lesson.gradeLevelId)?.code}</p>

@@ -1,3 +1,21 @@
+export function extractTeacherPackGradeCode(objectiveCode: string | null | undefined): string | null {
+  if (!objectiveCode) return null;
+  if (/(?:^|[-_])M(?:46|4-6)(?:[-_])/i.test(objectiveCode)) return null;
+
+  const directGrade = objectiveCode.match(/^([PM][1-6])[-_]/i)?.[1];
+  if (directGrade) return directGrade.toUpperCase();
+
+  // Subject-specific codes (for example SO2.1-P4-03, HPE-M1-01 and ARTS-P6-02)
+  // place the grade after a hyphen. Shared M46 codes are handled separately below.
+  return objectiveCode.match(/(?:^|[-_])([PM][1-6])(?:[-_])/i)?.[1]?.toUpperCase() ?? null;
+}
+
+export function extractTeacherPackGradeCodes(objectiveCode: string | null | undefined): string[] {
+  if (objectiveCode?.match(/(?:^|[-_])M(?:46|4-6)(?:[-_])/i)) return ["M4", "M5", "M6"];
+  const gradeCode = extractTeacherPackGradeCode(objectiveCode);
+  return gradeCode ? [gradeCode] : [];
+}
+
 export type ParsedTeacherPackQuestion = {
   number: number;
   prompt: string;
@@ -20,7 +38,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
   if (!markdown.trim()) throw new Error("The selected Markdown file is empty.");
   if (markdown.length > 5_000_000) throw new Error("Teacher packs must be smaller than 5 MB.");
 
-  const headingPattern = /^#{2,3}\s+(?:(?:(?:Physical|Earth) Science\s+)?(?:Lesson|Outcome)\s+(\d+)\s+[—–-]\s+(.+)|Group\s+\d+\s+[—–-]\s+Outcome\s+(\d+)\s*[:—–-]\s*(.+)|(\d+)\.\s+(.+)|(?:Lesson|Outcome)\s+[—–-]\s+(.+))$/gm;
+  const headingPattern = /^#{2,3}\s+(?:(?:(?:Physical|Earth) Science\s+)?(?:Lesson|Outcome)\s+(\d+)\s*[:—–-]\s*(.+)|Group\s+\d+\s+[—–-]\s+Outcome\s+(\d+)\s*[:—–-]\s*(.+)|(\d+)\.\s+(.+)|(?:Lesson|Outcome)\s+[—–-]\s+(.+))$/gm;
   const headings = [...markdown.matchAll(headingPattern)];
   const guidanceHeadings = [...markdown.matchAll(/^##\s+(?!(?:(?:Physical|Earth) Science\s+)?(?:Lesson|Outcome)\s+\d|Group\s+\d+\s+[—–-]\s+Outcome\s+\d)([^#\n]*(?:safety|assessment|safeguarding|teacher guidance|teacher notes|teaching notes)[^#\n]*)\s*$/gim)];
   const packGuidance = guidanceHeadings.map((match) => {
@@ -40,25 +58,35 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
     const section = markdown.slice(start, end);
     const number = Number(heading[1] ?? heading[3] ?? heading[5] ?? index + 1);
     const title = (heading[2] ?? heading[4] ?? heading[6] ?? heading[7] ?? `Lesson ${number}`).trim();
-    const objectiveLine = section.match(/^\*\*(?:Objective|Learning objective):\*\*\s*(.+)$/mi)?.[1]?.trim() ?? "";
-    const codeMatch = objectiveLine.match(/[\x60]([A-Z0-9][A-Z0-9_-]{2,})[\x60]/i)
+    const objectiveLine = section.match(/^\*\*(?:Objective(?: code)?|Learning objective|Indicator(?: code)?):\*\*\s*(.+)$/mi)?.[1]?.trim() ?? "";
+    const headingObjective = title.match(/^([A-Z][A-Z0-9._-]{3,})\s*[—–-]\s*(.+)$/i);
+    const codeMatch = objectiveLine.match(/[\x60]([A-Z0-9][A-Z0-9._-]{2,})[\x60]/i)
+      ?? objectiveLine.match(/^([A-Z][A-Z0-9._-]{3,})\s*(?:[—–:-]|$)/i)
       ?? objectiveLine.match(/\b(M[1-6][A-Z0-9_-]+)\b/i);
-    const objectiveCode = codeMatch?.[1]?.toUpperCase() ?? null;
-    const objectiveText = objectiveLine
-      .replace(codeMatch?.[0] ?? "", "")
+    const objectiveCode = (codeMatch?.[1] ?? headingObjective?.[1] ?? null)?.toUpperCase() ?? null;
+    const objectiveText = (objectiveLine
+      ? objectiveLine.replace(codeMatch?.[0] ?? "", "")
+      : headingObjective?.[2] ?? "")
       .replace(/[\x60]/g, "")
       .replace(/^[\s—–:-]+/, "")
       .replace(/\s+/g, " ")
       .trim();
 
+    const displayTitle = headingObjective || /^SO[1-5]\.\d-(?:P[1-6]|M[1-6]|M46)-\d+$/i.test(title)
+      ? objectiveText || title
+      : title;
     const learningOutcome = section.match(/^\*\*Learning outcomes?:\*\*\s*(.+)$/mi)?.[1]?.trim()
       ?? section.match(/^\*\*Outcome:\*\*\s*(.+)$/mi)?.[1]?.trim()
-      ?? (objectiveText || title);
+      ?? (objectiveText || displayTitle);
 
     const keyRelationships = section.match(/^\*\*Key relationships\*\*\s*([\s\S]*?)(?=^\*\*|^#{1,3}\s|(?![\s\S]))/mi)?.[1]?.trim();
     const activityParts = [
       section.match(/^\*\*Practical activity:\*\*\s*(.+)$/mi)?.[1]?.trim(),
+      section.match(/^\*\*(?:กิจกรรมการเรียนรู้|กิจกรรมฝึกปฏิบัติ):\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Teaching activity:\*\*\s*(.+)$/mi)?.[1]?.trim(),
+      section.match(/^\*\*Teaching sequence:\*\*\s*(.+)$/mi)?.[1]?.trim(),
+      section.match(/^\*\*Practical task:\*\*\s*(.+)$/mi)?.[1]?.trim(),
+      section.match(/^\*\*กิจกรรมการเรียนรู้:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Starter(?:\s*\/\s*learning task)?:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Lesson starter(?:\s*\(\d+\s*minutes?\))?:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Teach(?: and practi[cs]e)?:\*\*\s*(.+)$/mi)?.[1]?.trim(),
@@ -69,7 +97,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
     ].filter((value): value is string => Boolean(value));
     const activity = activityParts.join("\n\n") || learningOutcome;
 
-    const practicePattern = /^\*\*(?:Independent practice|Questions|Practice(?: questions)?|Answer-keyed questions)\*\*\s*$/mi;
+    const practicePattern = /^\*\*(?:Independent practice|Questions|Practice(?: questions)?|Answer-keyed questions|แบบฝึกปฏิบัติ|ภารกิจฝึกปฏิบัติ)\*\*\s*$/mi;
     const practiceMatch = section.match(practicePattern);
     const firstQuestion = section.search(/^\s*1\.\s+/m);
     const practice = practiceMatch
@@ -82,11 +110,11 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
     for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
       const questionLine = lines[lineIndex].match(/^\s*(\d+)\.\s+(.+?)\s*$/);
       if (!questionLine) continue;
-      const inlineAnswer = questionLine[2].match(/\s+\*\*Answer:\*\*\s*(.+)$/i);
+      const inlineAnswer = questionLine[2].match(/\s+\*\*(?:Answer|Expected answer|Expected evidence|Expected answer\/evidence|แนวคำตอบ(?:\/หลักฐานที่คาดหวัง)?|คำตอบ):\*\*\s*(.+)$/i);
       const prompt = (inlineAnswer ? questionLine[2].slice(0, inlineAnswer.index) : questionLine[2]).trim();
       let expectedAnswer = inlineAnswer?.[1]?.trim() ?? "";
       if (!expectedAnswer) {
-        const nextLine = lines[lineIndex + 1]?.match(/^\s*\*\*Answer:\*\*\s*(.+)$/i);
+        const nextLine = lines[lineIndex + 1]?.match(/^\s*\*\*(?:Answer|Expected answer|Expected evidence|Expected answer\/evidence|แนวคำตอบ(?:\/หลักฐานที่คาดหวัง)?|คำตอบ):\*\*\s*(.+)$/i);
         if (nextLine) {
           expectedAnswer = nextLine[1].trim();
           lineIndex += 1;
@@ -95,15 +123,15 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
       if (prompt && expectedAnswer) questions.push({ number: Number(questionLine[1]), prompt, expectedAnswer });
     }
 
-    if (!objectiveCode && !objectiveText) throw new Error(\`Lesson \${number} is missing its objective line.\`);
-    if (!activity) throw new Error(\`Lesson \${number} is missing teaching notes or a learning focus.\`);
+    if (!objectiveCode && !objectiveText) throw new Error(`Lesson ${number} is missing its objective line.`);
+    if (!activity) throw new Error(`Lesson ${number} is missing teaching notes or a learning focus.`);
     if (questions.length !== 3) {
-      throw new Error(\`Lesson \${number} has \${questions.length} answer-keyed questions; exactly 3 are required.\`);
+      throw new Error(`Lesson ${number} has ${questions.length} answer-keyed questions; exactly 3 are required.`);
     }
 
     return {
       number,
-      title,
+      title: displayTitle,
       objectiveCode,
       objectiveText: objectiveCode ? null : objectiveText,
       outcomeNumber: number,

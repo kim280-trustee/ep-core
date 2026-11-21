@@ -170,6 +170,7 @@ export default function LearningContentRuntimePage() {
         try {
           const saved = JSON.parse(responseQuery.data.responseText) as { code?: unknown; output?: unknown };
           if (typeof saved.code === "string") savedCode = saved.code;
+          // eslint-disable-next-line react-hooks/set-state-in-effect -- Restore the saved code-run result when the async student response loads.
           if (typeof saved.output === "string") setCodeRunOutput(saved.output);
         } catch {
           // Older free-text responses are not treated as executable code.
@@ -231,7 +232,7 @@ export default function LearningContentRuntimePage() {
       }
       const uploadedPaths: string[] = [];
       try {
-        let attachments = [...projectAttachments];
+        const attachments = [...projectAttachments];
         if (isProjectActivity && projectFiles.length) {
           if (attachments.length + projectFiles.length > 3) throw new Error("A project can include up to 3 files.");
           for (const file of projectFiles) {

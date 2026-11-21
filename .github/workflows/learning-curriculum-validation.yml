@@ -1,0 +1,80 @@
+name: Learning curriculum validation
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - "**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: learning-curriculum-validation-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate curriculum packs, build and lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Validate all national curriculum teacher packs
+        run: npm run validate:national-curriculum-packs
+
+      - name: Validate Thai Language and Career packs through importer parser
+        run: npm run validate:thai-career-packs
+
+      - name: Validate Thai B.E. 2568 competency pack
+        run: npm run validate:thai-2025-packs
+
+      - name: Validate consolidated Science teacher packs
+        run: npm run validate:science-packs
+
+      - name: Validate Biology, Chemistry, Physics and Earth/Space specialist packs
+        run: npm run validate:science-specialist-packs
+
+      - name: Validate Mathematics teacher packs through importer parser
+        run: npm run validate:maths-packs
+
+      - name: Validate primary Mathematics P1-P6 teacher packs
+        run: npm run validate:maths-primary-packs
+
+      - name: Validate Cambridge Click Start Computer Studies pack
+        run: npm run validate:computer-studies-packs
+
+      - name: Validate Social Studies teacher packs through importer parser
+        run: npm run validate:social-studies-packs
+
+      - name: Validate Health and PE teacher packs through importer parser
+        run: npm run validate:health-pe-packs
+
+      - name: Validate Arts teacher packs through importer parser
+        run: npm run validate:arts-packs
+
+      - name: Validate Foreign Languages teacher packs through importer parser
+        run: npm run validate:foreign-languages-packs
+
+      - name: Validate Thai Language teacher packs through importer parser
+        run: npm run validate:thai-language-packs
+
+      - name: Build production application
+        run: npm run build
+
+      - name: Run ESLint
+        run: npm run lint

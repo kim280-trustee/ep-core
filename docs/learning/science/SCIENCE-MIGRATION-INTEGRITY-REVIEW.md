@@ -1,18 +1,22 @@
 # E&P Learning — Science Migration Integrity Review
 
-**Branch:** `paul/learning-academic-integrity-audit`  
-**Scope:** 45 Science curriculum migrations, one corrective M2/M3 integrity migration, and the existing academic/content/assessment schema  
+**Branch:** `paul/thai-national-curriculum-foundation`  
+**Scope:** 45 original Science curriculum migrations, one corrective M2/M3 integrity migration, one additive M3 greenhouse-effect migration, four OBEC priority-classification migrations, one national-core alignment/priority reconciliation migration, primary W4.2 indicator migrations, and lower-secondary completion/correction migrations  
 **Review type:** Static source review plus runtime migration verification against the existing Supabase project.
 
 ## Result
 
-The Science academic-catalogue migrations create or upsert global academic records only. They do not create school, class, student, assignment, authored lesson-content or question-bank records. Runtime verification confirmed all 15 expected subject/grade objective counts.
+The academic-catalogue migrations create or upsert global curriculum records only; they do not create school, class, student, assignment or learner-progress records. The original M1–M3 Science records and 300 M4–M6 specialist outcomes are present. Primary W4.2 adds 28 indicators (P1–P6). The lower-secondary completion adds 24 M1/M2 indicators (nine M1 technology, six M2 matter, nine M2 technology) and six M3 ecosystem indicators. These are aligned into both the canonical Science and draft national master curricula.
 
-Runtime migration execution is complete. The application build, lint and end-to-end teacher/student tests remain pending before release.
+**The full national Science and Technology curriculum is not complete.** OBEC's 2021 table reports 415 core indicators across P1–M6. Primary P1–P6 and lower-secondary M1–M3 indicator totals now reconcile (139 primary and 174 lower-secondary). The 102 upper-secondary core indicators remain outstanding as grade-specific M4/M5/M6 rows; they must not be copied to all three grades. Ten M3 priority labels remain intentionally unclassified pending source reconciliation. The 300 Biology/Chemistry/Physics/Earth-Space outcomes are additional specialist content and do not replace the 102 grade-specific M4/M5/M6 core indicators. See `SCIENCE-CORE-CURRICULUM-GAP-AUDIT.md`.
+
+M3 now has 59 aligned indicators after adding the six official W1.1 ecosystem indicators. Nine existing W3.2 rows and W1.1 ม.3/6 remain unclassified for priority purposes; the W3.2 source mapping and page-127 final-row priority need visual source review. Do not infer missing classifications.
+
+Runtime migration execution for the existing batches is complete. Application build, lint, importer smoke tests and app-wide end-to-end testing remain deferred until all curriculum rollouts are complete.
 
 ## Migration order
 
-The 45 curriculum files are timestamped in dependency order. The final corrective migration, `20261117130000_learning_science_m2_m3_skill_topic_integrity.sql`, runs after them and removes out-of-strand M2/M3 duplicate topics, objectives and alignments. The original M2/M3 topic migrations have also been corrected in source so fresh resets seed each topic only under its intended skill.
+The 45 curriculum files are timestamped in dependency order. The final corrective migration, `20261117130000_learning_science_m2_m3_skill_topic_integrity.sql`, runs after them and removes out-of-strand M2/M3 duplicate topics, objectives and alignments. The additive M3 greenhouse-effect migration adds two legacy M3 Earth-system records that now require official-standard reconciliation. Four later priority migrations update classification metadata. A reconciliation migration mirrors the existing lower-secondary SCI records into the national-core curriculum. The latest primary W4.2 migration adds 28 official computational-science indicators to P1–P6; it does not close the remaining primary or upper-secondary core gaps. The original M2/M3 topic migrations have also been corrected in source so fresh resets seed each topic only under its intended skill.
 
 The 45 curriculum files are ordered as follows:
 
@@ -40,16 +44,16 @@ The M4 geology migration is last in the current batch and assigns outcomes 1–1
 
 ## Curriculum coverage register
 
-| Track | Objectives | Grade allocation |
+| Track | Current objectives | Grade allocation / status |
 |---|---:|---|
-| M1–M3 core Science | 142 | M1 43; M2 48; M3 51 |
+| SCI core and W4.2 | 202 | P1–P6: 28 W4.2 + 139 primary indicators; M1 52; M2 63; M3 59 (10 M3 priority labels unresolved) |
 | Biology | 108 | M4 32; M5 39; M6 37 |
 | Chemistry | 81 | M4 28; M5 38; M6 15 |
 | Physics | 67 | M4 17; M5 26; M6 24 |
 | Earth, Astronomy and Space | 44 | M4 12; M5 13; M6 19 |
-| **Total** | **442** | **All allocations audited** |
+| **Current total** | **472** | **Partial national-core coverage; 300 specialist outcomes remain separate** |
 
-The teacher-pack corpus contains 442 lesson starters and 1,326 answer-keyed practice questions. These are source materials in Markdown, not database rows.
+Existing Science packs contain 444 lesson starters and 1,332 answer-keyed practice questions. Primary packs add 139 lesson starters and 417 tasks; lower-secondary completion adds 30 lesson starters and 90 answer-keyed formative questions. These remain Markdown source materials, not database content rows. These are Markdown source materials, not database rows.
 
 ## Content and assessment insertion boundary
 
@@ -65,11 +69,11 @@ Therefore:
 
 - [x] 45 timestamped curriculum migrations staged.
 - [x] Official grade allocations audited for all five Science tracks.
-- [x] Companion teacher packs prepared: 442 starters and 1,326 answer-keyed questions.
+- [x] Companion teacher packs prepared: 444 starters and 1,332 answer-keyed questions.
 - [x] Consolidate and parser-validate 13 subject/grade import files; retain grade-specific selection for code-less upper-secondary outcomes.
 - [x] Readiness and subject audit documents corrected to distinguish database objectives from Markdown teaching resources.
 - [x] Add read-only staging verification SQL: `docs/learning/science/SCIENCE-STAGING-VERIFICATION.sql`.
-- [x] Apply all 45 Science migrations and the corrective M2/M3 strand-integrity migration to the existing Supabase project; verify all 15 subject/grade counts.
+- [x] Apply all 45 Science migrations, the corrective M2/M3 strand-integrity migration and the additive M3 greenhouse-effect migration; verify all 15 subject/grade counts.\n- [x] Mirror all 174 M1–M3 SCI objective alignments into the national-core curriculum; verify 52/63/59 indicators in both curricula.\n- [x] Complete M1 priority classification (35 Must-Know / 17 Should-Know) and M2 priority classification (48 / 15).\n- [x] Add six M3 W1.1 ecosystem indicators and verify the M3 total reaches 59.\n- [ ] Reconcile 10 M3 priority labels (nine legacy W3.2 rows plus W1.1 ม.3/6) against a visually checked official source before assigning labels.
 - [ ] Pull the branch locally and run lint/build once.
 - [ ] Resolve any runtime migration or build findings.
 - [x] Implement the authorized teacher-content importer, teacher-only guidance separation, and trusted short-answer manual-review workflow. The importer has not yet been run; actual draft import remains an explicit teacher action.
@@ -77,4 +81,4 @@ Therefore:
 
 ## Safety status
 
-The Science catalogue is applied and verified in the existing Supabase project. No pilot school, class, student, assignment or learner records were created or changed.
+The Science catalogue is applied and verified in the existing Supabase project. All 174 M1–M3 core indicators are aligned in both curriculum catalogues. M1 and M2 priority totals match OBEC. M3 has 10 priority labels intentionally held for source reconciliation. The 102 upper-secondary core indicators are an aggregate across grade-specific M4/M5/M6 source tables and remain to be transcribed; they must not be duplicated across grades. No pilot school, class, student, assignment or learner records were created or changed.

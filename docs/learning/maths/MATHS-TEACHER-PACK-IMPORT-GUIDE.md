@@ -2,12 +2,14 @@
 
 ## Academic scope
 
+**Coverage limitation:** this existing guide and its three import packs cover M1–M6 only. They do not represent complete Thai Mathematics coverage because the national primary P1–P6 indicators have not yet been added. Do not import the current secondary packs as a substitute for primary content. See [`PRIMARY-MATH-CURRICULUM-GAP-AUDIT.md`](PRIMARY-MATH-CURRICULUM-GAP-AUDIT.md).
+
 - **Curriculum:** `TH-MATH-M1-M6`
 - **Subject:** `MATH` — Mathematics
 - **Coverage:** 41 Thai core-curriculum indicators across M1–M6
 - **Teacher resources:** 41 lesson starters and 123 original answer-keyed practice questions
 
-The Mathematics catalogue is already applied to the existing Supabase project. All 41 objectives are aligned to the correct grade.
+The Mathematics catalogue is already applied to the existing Supabase project. All 41 objectives are aligned to the correct grade in the Maths-specific catalogue and in the national-core curriculum. OBEC classifies all M1–M6 Mathematics indicators as `must_know`; both catalogues carry that verified classification.
 
 ## Import files
 
@@ -44,7 +46,7 @@ The selected class is used only to establish the teacher's organization access. 
 ## Current status
 
 - Mathematics curriculum and grade catalogue: applied.
-- Knowledge graph: applied and verified (M1=9, M2=12, M3=12, M4=3, M5=4, M6=1; 41 total).
+- Knowledge graph: applied and verified (M1=9, M2=12, M3=12, M4=3, M5=4, M6=1; 41 total).\n- OBEC priority classification: 41/41 must-know indicators; 82/82 curriculum alignment rows classified across the two catalogues.
 - Teacher packs: prepared and parser-validated (41 lessons, 123 questions, 41 unique objective codes).
 - Objective-code verification against the live Mathematics catalogue: all 41 codes found.
 - Import into the school's organization: not yet run; it requires an authorized teacher session.

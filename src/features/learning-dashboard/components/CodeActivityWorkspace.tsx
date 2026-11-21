@@ -62,10 +62,14 @@ export default function CodeActivityWorkspace({
   const frameRef = useRef<HTMLIFrameElement>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [ready, setReady] = useState(false);
-  const [output, setOutput] = useState("");
+  const [output, setOutput] = useState(initialOutput);
+  const [previousInitialOutput, setPreviousInitialOutput] = useState(initialOutput);
   const [runState, setRunState] = useState<"idle" | "running" | "success" | "error" | "timeout">("idle");
 
-  useEffect(() => { setOutput(initialOutput); }, [initialOutput]);
+  if (initialOutput !== previousInitialOutput) {
+    setPreviousInitialOutput(initialOutput);
+    setOutput(initialOutput);
+  }
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {

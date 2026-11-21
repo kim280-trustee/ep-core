@@ -7,7 +7,20 @@
     "dev": "vite",
     "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "validate:science-packs": "node scripts/validate-science-teacher-packs.mjs",
+    "validate:national-curriculum-packs": "node scripts/validate-national-curriculum-packs.mjs",
+    "validate:thai-2025-packs": "node scripts/validate-thai-2025-competency-pack.mjs",
+    "validate:social-studies-packs": "node scripts/validate-social-studies-teacher-packs.mjs",
+    "validate:health-pe-packs": "node scripts/validate-health-pe-teacher-packs.mjs",
+    "validate:arts-packs": "node scripts/validate-arts-teacher-packs.mjs",
+    "validate:foreign-languages-packs": "node scripts/validate-foreign-languages-packs.mjs",
+    "validate:maths-packs": "node scripts/validate-maths-teacher-packs.mjs",
+    "validate:thai-career-packs": "node scripts/validate-thai-language-career-packs.mjs",
+    "validate:thai-language-packs": "node scripts/validate-thai-language-teacher-packs.mjs",
+    "validate:computer-studies-packs": "node scripts/validate-computer-studies-teacher-pack.mjs",
+    "validate:science-specialist-packs": "node scripts/validate-science-specialist-packs.mjs",
+    "validate:maths-primary-packs": "node scripts/validate-primary-maths-teacher-packs.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",

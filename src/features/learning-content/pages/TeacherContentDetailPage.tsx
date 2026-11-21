@@ -158,6 +158,7 @@ export default function TeacherContentDetailPage() {
 
   useEffect(() => {
     if (!latestStructuredActivity) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Hydrate the editable teacher form when the async content version changes.
     setStarterCodeDraft(typeof latestStructuredActivity.starterCode === "string" ? latestStructuredActivity.starterCode : "");
     setProjectRequirementsDraft(typeof latestStructuredActivity.requirements === "string" ? latestStructuredActivity.requirements : "");
   }, [latestStructuredActivity]);

@@ -284,6 +284,7 @@ export default function TeacherAssessmentBuilderPage() {
           <div className="border-t border-slate-200 pt-4">
             <h3 className="font-semibold text-slate-900">{t("assessmentBuilder.continueDraft")}</h3>
             {assessmentsQuery.isError ? <p className="mt-2 text-sm text-red-700">{t("assessmentBuilder.loadError")}</p> : (
+              <>
               <div className="mt-3 space-y-2">
                 {draftAssessments.map((assessment) => (
                   <div key={assessment.id} className={`flex items-center justify-between gap-3 rounded-xl border p-3 ${assessment.id === activeAssessmentId ? "border-indigo-300 bg-indigo-50" : "border-slate-200"}`}>
@@ -309,6 +310,7 @@ export default function TeacherAssessmentBuilderPage() {
                   </div>
                 </div>
               )}
+              </>
             )}
           </div>
         </section>

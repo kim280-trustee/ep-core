@@ -10,6 +10,7 @@ export type LearningPackImportQuestion = {
 export type LearningPackImportLesson = {
   objectiveId: string;
   objectiveCode: string;
+  contentImportCode?: string;
   gradeLevelId: string;
   title: string;
   learningOutcome: string;
@@ -43,6 +44,28 @@ export type LearningPackQuestionOnlyChunk = {
 };
 
 export const learningPackImportRepository = {
+  async findExistingImportCodes(input: {
+    organizationId: string;
+    contentCodes: string[];
+    questionCodes: string[];
+  }) {
+    const [contentResult, questionResult] = await Promise.all([
+      input.contentCodes.length
+        ? supabase.from("learning_content_items").select("code")
+            .eq("organization_id", input.organizationId).in("code", input.contentCodes)
+        : Promise.resolve({ data: [], error: null }),
+      input.questionCodes.length
+        ? supabase.from("learning_questions").select("code")
+            .eq("organization_id", input.organizationId).in("code", input.questionCodes)
+        : Promise.resolve({ data: [], error: null }),
+    ]);
+    if (contentResult.error) throw contentResult.error;
+    if (questionResult.error) throw questionResult.error;
+    return {
+      contentCodes: new Set((contentResult.data ?? []).map((item) => makeImportCode(item.code))),
+      questionCodes: new Set((questionResult.data ?? []).map((item) => makeImportCode(item.code))),
+    };
+  },
   async importQuestionsOnly(input: LearningPackQuestionOnlyChunk) {
     if (!input.organizationId || !input.createdBy || !input.curriculumId || !input.subjectId || !input.questions.length) {
       throw new Error("A teacher, organization, curriculum, subject and at least one question are required.");
@@ -122,7 +145,7 @@ export const learningPackImportRepository = {
         const { error: cleanupError } = await supabase.from("learning_questions").delete().in("id", createdQuestionIds);
         if (cleanupError) {
           const original = error instanceof Error ? error.message : "Unknown database error.";
-          throw new Error(`${original} Cleanup also failed: ${cleanupError.message}. Check the draft question bank before retrying.`);
+          throw new Error(`${original} Cleanup also failed: ${cleanupError.message}. Check the draft question bank before retrying.`, { cause: error });
         }
       }
       throw error;
@@ -140,7 +163,7 @@ export const learningPackImportRepository = {
     )) {
       throw new Error("Every imported lesson needs an exact academic objective, grade, teaching content and three answer-keyed questions.");
     }
-    const contentCodes = input.lessons.map((lesson) => makeImportCode(`EP-${lesson.objectiveCode}-LESSON`));
+    const contentCodes = input.lessons.map((lesson) => makeImportCode(lesson.contentImportCode ?? `EP-${lesson.objectiveCode}-LESSON`));
     const questionCodes = input.lessons.flatMap((lesson) => lesson.questions.map((question) => question.code));
     if (new Set(contentCodes).size !== contentCodes.length || new Set(questionCodes).size !== questionCodes.length) {
       throw new Error("The import chunk contains duplicate content or question codes.");
@@ -153,7 +176,7 @@ export const learningPackImportRepository = {
       const contentRows: Database["public"]["Tables"]["learning_content_items"]["Insert"][] =
         input.lessons.map((lesson) => ({
           organization_id: input.organizationId,
-          code: makeImportCode(`EP-${lesson.objectiveCode}-LESSON`),
+          code: makeImportCode(lesson.contentImportCode ?? `EP-${lesson.objectiveCode}-LESSON`),
           title: lesson.title,
           content_type: "lesson",
           language_code: "en",
@@ -174,7 +197,7 @@ export const learningPackImportRepository = {
 
       const contentVersionRows: Database["public"]["Tables"]["learning_content_versions"]["Insert"][] =
         input.lessons.map((lesson) => ({
-          content_item_id: contentByCode.get(makeImportCode(`EP-${lesson.objectiveCode}-LESSON`))!,
+          content_item_id: contentByCode.get(makeImportCode(lesson.contentImportCode ?? `EP-${lesson.objectiveCode}-LESSON`))!,
           version_no: 1,
           body: {
             sections: [
@@ -199,7 +222,7 @@ export const learningPackImportRepository = {
 
       const contentObjectiveRows: Database["public"]["Tables"]["learning_content_objectives"]["Insert"][] =
         input.lessons.map((lesson) => ({
-          content_item_id: contentByCode.get(makeImportCode(`EP-${lesson.objectiveCode}-LESSON`))!,
+          content_item_id: contentByCode.get(makeImportCode(lesson.contentImportCode ?? `EP-${lesson.objectiveCode}-LESSON`))!,
           objective_id: lesson.objectiveId,
           sequence_no: 1,
         }));
@@ -294,7 +317,7 @@ export const learningPackImportRepository = {
       }
       if (cleanupErrors.length) {
         const original = error instanceof Error ? error.message : "Unknown database error.";
-        throw new Error(`${original} Cleanup also reported: ${cleanupErrors.join("; ")}. Check the draft libraries before retrying.`);
+        throw new Error(`${original} Cleanup also reported: ${cleanupErrors.join("; ")}. Check the draft libraries before retrying.`, { cause: error });
       }
       throw error;
     }
