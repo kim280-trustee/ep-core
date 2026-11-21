@@ -100,3 +100,10 @@ The questions are original E&P teaching resources, not official OBEC examination
 - No crosswalk to the 2008/2017 subject indicators has been asserted. Any future crosswalk must be reviewed as a separate mapping exercise; competency outcomes are not assumed to be one-to-one equivalents of old indicators.
 - No school, class, student, assignment, publication or learner-progress records were created or changed.
 - Automated parser validation, authenticated teacher preview, controlled draft import, student assessment and teacher-review tests remain part of the single consolidated application-testing phase after all curriculum source work is complete.
+
+
+## Final automated verification — 21 November 2026
+
+Live Supabase read-only verification passed: 9 skills including the cross-cutting values skill, 25 knowledge topics, 24 annual outcome objectives and 24 required grade alignments, with exactly eight outcomes each in P1, P2 and P3. The curriculum remains draft and has no Must-Know / Should-Know labels.
+
+GitHub Actions run 95 passed the actual TypeScript teacher-pack parser against this pack: 24 lessons, eight outcomes per grade, 24 unique E&P internal codes and 72 answer-keyed formative questions. The same run passed all 39 packs across the eight 2008/2017 learning areas, the consolidated Science parser, production build and ESLint. Authenticated teacher import and student/teacher end-to-end testing remain deferred to the single consolidated test phase.
