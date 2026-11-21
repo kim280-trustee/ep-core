@@ -397,3 +397,8 @@ Migration: `20261121122000_correct_primary_science_p2_p3_must_know_priorities.sq
 - **Upper secondary M4–M6:** 102 unique objective codes matched exactly against the catalogue in `SCIENCE-M4-M6-COMPLETE-IMPORT.md`; 306 answer-keyed questions.
 - **Combined official core:** 415/415 unique objective codes, 1,245 formative tasks, zero missing codes, zero extra codes and zero duplicate pack codes.
 - Nine legacy M3 W3.2 outcomes remain in `M3-W3.2-LEGACY-SUPPLEMENTARY-PACK.md` (9 lessons / 27 questions), outside the official core import.
+
+
+## Teacher-pack parser compatibility check — 21 November 2026
+
+The repository parser at `src/features/learning-content/utils/teacher-pack-parser.ts` was inspected and its heading, objective-code and three-answer extraction rules were applied as a source-level smoke check to both consolidated core imports. `SCIENCE-M1-M3-COMPLETE-IMPORT.md` now has 174 numbered lesson headings, 174 unique M1–M3 objective codes and 522 answer-keyed questions. Its 24 M1/M2 W4.1/W4.2 lessons were normalized from code-led headings so the importer no longer groups them into one oversized lesson. `SCIENCE-M4-M6-COMPLETE-IMPORT.md` has 102 numbered headings, 102 unique grade-coded objective codes and 306 answer-keyed questions. Both packs pass the parser-rule smoke check with zero parsing failures, duplicate objective codes or duplicate lesson numbers. The actual authenticated teacher import UI has not yet been exercised; all records remain unimported drafts.
