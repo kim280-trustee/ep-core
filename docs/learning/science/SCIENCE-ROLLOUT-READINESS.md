@@ -2,7 +2,7 @@
 
 **Branch:** `paul/thai-national-curriculum-foundation`  
 **Scope:** Full Thai national Science and Technology learning area (P1–M6), plus separately catalogued M4–M6 specialist outcomes  
-**Status:** **All 415 official P1–M6 Science and Technology core indicators are staged in the national master curriculum; the secondary canonical catalogue contains all 276 M1–M6 indicators.** Primary coverage is 139/139. Lower-secondary coverage is 174/174 (M1 52, M2 63, M3 59) in both catalogues. M1/M2 priority totals match OBEC. M3 has 59 required official indicators with 41 Must-Know and 18 Should-Know; nine legacy W3.2 outcomes are retained as non-required supplementary records. M4 is complete at 28/28, M5 at 49/49 and M6 at 25/25 upper-secondary core indicators. All 102 are mapped to their actual grade in both curricula. One upper-secondary aggregate priority discrepancy remains (detailed rows 86/17 including the dual label; official summary 85/18). Priority-summary reconciliation remains open: the detailed rows currently total 86 Must-Know and 17 Should-Know including one dual classification, while the official summary reports 85 and 18. These are grade-specific records in the OBEC source, not one shared set to be aligned to all three grades. The 300 Biology, Chemistry, Physics and Earth/Space specialist outcomes are additional curriculum content and do not replace the M4–M6 core set.
+**Status:** **All 415 official P1–M6 Science and Technology core indicators are staged in the national master curriculum; the secondary canonical catalogue contains all 276 M1–M6 indicators.** Primary coverage is 139/139. Lower-secondary coverage is 174/174 (M1 52, M2 63, M3 59) in both catalogues. M1/M2 priority totals match OBEC. M3 has 59 required official indicators with 41 Must-Know and 18 Should-Know; nine legacy W3.2 outcomes are retained as non-required supplementary records. M4 is complete at 28/28, M5 at 49/49 and M6 at 25/25 upper-secondary core indicators. All 102 are mapped to their actual grade in both curricula. Upper-secondary priority totals now match the official OBEC summary: 85 Must-Know and 18 Should-Know classifications, including the dual-classified M6/4 indicator. The correction was M4 ว 1.2 ม.4/11, which the official page 146 classifies as Should-Know. These are grade-specific records in the OBEC source, not one shared set to be aligned to all three grades. The 300 Biology, Chemistry, Physics and Earth/Space specialist outcomes are additional curriculum content and do not replace the M4–M6 core set.
 
 The existing 13 Science import files contain 444 lesson starters and 1,332 answer-keyed practice questions. The primary packs add 139 lesson starters and 417 formative tasks. The lower-secondary completion packs add 30 lesson starters and 90 formative tasks (24 M1/M2 indicators and six M3 ecosystem indicators). The W4.2 seed was reapplied so corrected priority labels are present in live staging. These resources remain Markdown source material until an authorized teacher imports them through `/teacher/content/import`. No school, class or student records have been created.
 
@@ -44,11 +44,11 @@ Primary priority-count checks from the OBEC 2021 summary: P4 has 16 Must-Know an
 - **M1:** complete — 52/52 official indicators in both curricula; priority totals 35 Must-Know / 17 Should-Know; zero unclassified.
 - **M2:** complete — 63/63 official indicators in both curricula; priority totals 48 Must-Know / 15 Should-Know; zero unclassified.
 - **M3:** 59/59 indicators aligned in both curricula, including six newly seeded ว 1.1 ecosystem indicators. Priority reconciliation remains open for nine legacy W3.2 rows and the source-ambiguous ว 1.1 ม.3/6 row (10 unclassified total).
-- **M4–M6 core Science and Technology:** All 102 indicators are staged once each to their actual grade (M4 28, M5 49, M6 25) in both curricula. Grade mapping and coverage pass; one Must-Know/Should-Know aggregate discrepancy remains open for source reconciliation.
+- **M4–M6 core Science and Technology:** All 102 indicators are staged once each to their actual grade (M4 28, M5 49, M6 25) in both curricula. Grade mapping and coverage pass; priority totals now match the official 85 Must-Know / 18 Should-Know summary, including the dual M6/4 label.
 - **M4–M6 specialist outcomes:** Biology 108, Chemistry 81, Physics 67 and Earth/Space 44 are already catalogued separately (300 total).
 The `TECH` skill is part of the `SCI` subject. The 28 new P1–P6 W4.2 objectives are national Science and Technology indicators and must not be merged with the separate Click Start international Computer Studies course.
 
-Upper-secondary source transcription and grade allocation are complete; the remaining priority-summary reconciliation is tracked in M4-M6-SCIENCE-CORE-SOURCE-AUDIT.md.
+Upper-secondary source transcription and grade allocation are complete; priority reconciliation is complete; M4 ว 1.2 ม.4/11 was corrected to Should-Know using official page 146.
 
 ## Consolidated integrity review
 
@@ -324,7 +324,7 @@ Earth/Space totals: **44 objectives, 44 lesson starters and 132 answer-keyed que
 | Upper-secondary Physics | 67 | 67 | 201 | Complete |
 | Upper-secondary Earth, Astronomy and Space | 44 | 44 | 132 | Complete |
 
-These totals are separate tracks; the M1–M3 core Science indicators are not merged with M4–M6 additional specialist outcomes. Live Supabase now contains 139 primary and 174 lower-secondary core indicators in both curriculum catalogues. M1 and M2 priority labels reconcile exactly to OBEC. M3 ว 1.1 ม.3/6 is now confirmed Should-Know and classified in both curricula; nine legacy W3.2 records remain unclassified pending a verified source-to-indicator crosswalk. The 102 upper-secondary indicators are grade-specifically aligned; the one-row priority-summary reconciliation remains open. Consolidated local lint/build and final app testing remain pending and are intentionally deferred until all curriculum rollouts are complete.
+These totals are separate tracks; the M1–M3 core Science indicators are not merged with M4–M6 additional specialist outcomes. Live Supabase now contains 139 primary and 174 lower-secondary core indicators in both curriculum catalogues. M1 and M2 priority labels reconcile exactly to OBEC. M3 ว 1.1 ม.3/6 is now confirmed Should-Know and classified in both curricula; nine legacy W3.2 records remain unclassified pending a verified source-to-indicator crosswalk. The 102 upper-secondary indicators are grade-specifically aligned; priority totals reconcile to 85 Must-Know / 18 Should-Know including the dual M6/4 label. Consolidated local lint/build and final app testing remain pending and are intentionally deferred until all curriculum rollouts are complete.
 
 ## Upper-secondary core Science — first implemented tranche
 
@@ -352,7 +352,7 @@ M5 standards W2.1, W2.2 and W2.3 are now represented in both curricula: 25 + 10 
 
 ## M6 core Science — 25/25 indicators staged
 
-M6 standards W3.1 (10), W3.2 (14) and W4.2 (1) are staged and aligned only to M6 in both curricula. The teacher pack contains 25 lesson starters and 75 answer-keyed formative questions. The full M4–M6 core indicator set is now 102/102: M4 28, M5 49, M6 25. Both curriculum catalogues have the same 102 grade-specific alignments, with no duplicate alignment rows or unclassified priority labels. One aggregate priority discrepancy remains: detailed classifications yield 86 Must-Know and 17 Should-Know including the dual-classified M6/4, whereas the official summary reports 85 and 18. Do not mark priority reconciliation closed until that one-row difference is resolved.
+M6 standards W3.1 (10), W3.2 (14) and W4.2 (1) are staged and aligned only to M6 in both curricula. The teacher pack contains 25 lesson starters and 75 answer-keyed formative questions. The full M4–M6 core indicator set is now 102/102: M4 28, M5 49, M6 25. Both curriculum catalogues have the same 102 grade-specific alignments, with no duplicate alignment rows or unclassified priority labels. Priority reconciliation is complete: M4 ว 1.2 ม.4/11 is Should-Know according to OBEC 2021 page 146. The upper-secondary catalogue now records 85 Must-Know and 17 Should-Know rows plus the dual Should-Know label for M6/4, matching the official 85/18 summary.
 
 
 ## M3 ecosystem priority correction — 21 November 2026
@@ -374,3 +374,10 @@ Migration: `20261121110000_seed_science_m3_official_technology_indicators_and_ar
 The 42 official primary Should-Know indicators had been incorrectly stored with `required=false`. Since Should-Know is a priority label and does not remove an official indicator from the curriculum, all 42 have now been corrected to `required=true` in both catalogues. Final read-only verification returns 415 required official indicators in `TH-BASIC-CORE-2008-2017` and 276 in `TH-SCI-M1-M6`, with zero duplicate alignments and zero unclassified required indicators.
 
 Migration: `20261121113000_correct_primary_science_should_know_required_flag.sql`.
+
+
+## Upper-secondary priority reconciliation completed — 21 November 2026
+
+Official OBEC 2021 printed page 146 confirms ว 1.2 ม.4/11 as Should-Know. Its classification has been corrected in both curricula and in the M4 teacher pack. The grade-level tally now reads M4 19/9, M5 42/7 and M6 24/1, with M6/4 dual-classified. Aggregate: 85 Must-Know / 18 Should-Know classifications across 102 unique indicators.
+
+Migration: `20261121114500_correct_science_m4_w1_2_indicator_11_priority.sql`.
