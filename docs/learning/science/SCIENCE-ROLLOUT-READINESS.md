@@ -330,7 +330,7 @@ These totals are separate tracks; the M1–M3 core Science indicators are not me
 
 M4 Science standard ว 1.1 indicators 1–4 are implemented in live staging. Four grade-specific objectives are aligned once each to M4 in both the canonical Science curriculum and the draft national master curriculum (eight alignments total). Priority labels reconcile to two Must-Know and two Should-Know. The companion teacher pack contains four lesson starters and 12 answer-keyed questions.
 
-Migration: 20261121034100_seed_science_m4_ecology_core_indicators_1_4.sql. Verification: see the upper-secondary M4 ecology section at the end of SCIENCE-STAGING-VERIFICATION.sql. Remaining: 98 of 102 upper-secondary indicators; no M5/M6 indicators have been inferred or cross-mapped.
+Historical checkpoint after the first M4 ecology tranche: at that stage, 4 indicators were implemented and 98 of 102 remained. The subsequent M4, M5 and M6 batches completed grade-specific coverage at 102/102; the remaining acceptance item is the one-row aggregate priority reconciliation documented in M4-M6-SCIENCE-CORE-SOURCE-AUDIT.md.
 
 
 ## M4 core Science completion — 22/22 indicators
