@@ -18,17 +18,20 @@ const packs = [
   {
     path: "docs/learning/science/SCIENCE-M1-M3-COMPLETE-IMPORT.md",
     expectedLessons: 174,
+    expectedQuestions: 522,
     expectedGrades: { M1: 52, M2: 63, M3: 59 },
   },
   {
     path: "docs/learning/science/SCIENCE-M4-M6-COMPLETE-IMPORT.md",
     expectedLessons: 102,
+    expectedQuestions: 306,
     expectedGrades: { M4: 28, M5: 49, M6: 25 },
   },
 ];
 
 let totalLessons = 0;
 let totalQuestions = 0;
+const allObjectiveCodes = new Set();
 const failures = [];
 
 for (const pack of packs) {
@@ -87,7 +90,7 @@ for (const pack of packs) {
     }
   }
 
-  for (const [grade, expectedCount] of Object.entries(pack.expectedGrades)) {
+  if (questionCount !== pack.expectedQuestions) {\n    failures.push(`${pack.path}: expected ${pack.expectedQuestions} questions, parsed ${questionCount}`);\n  }\n\n  for (const [grade, expectedCount] of Object.entries(pack.expectedGrades)) {
     if (grades[grade] !== expectedCount) {
       failures.push(`${pack.path}: expected ${expectedCount} ${grade} lessons, parsed ${grades[grade] ?? 0}`);
     }
