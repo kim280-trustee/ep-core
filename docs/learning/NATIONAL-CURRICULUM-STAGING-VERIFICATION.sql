@@ -131,10 +131,12 @@ select c.code curriculum,c.status,
        count(distinct sk.id)::integer skills_including_cross_cutting_values,
        count(distinct t.id)::integer knowledge_topics,
        count(distinct o.id)::integer annual_outcomes,
-       count(distinct a.id)::integer grade_alignments,
+       count(distinct a.id) filter(where a.required)::integer required_grade_alignments,
+       count(distinct a.id) filter(where not a.required)::integer non_required_grade_alignments,
        count(distinct a.id) filter(where a.indicator_classification is not null or a.pathway_classification is not null)::integer incorrectly_classified,
        case when count(distinct sk.id)=9 and count(distinct t.id)=25
-              and count(distinct o.id)=24 and count(distinct a.id)=24
+              and count(distinct o.id)=24 and count(distinct a.id) filter(where a.required)=24
+              and count(distinct a.id) filter(where not a.required)=0
               and count(distinct a.id) filter(where a.indicator_classification is not null or a.pathway_classification is not null)=0
             then 'PASS' else 'CHECK' end result
 from public.learning_curricula c
@@ -148,8 +150,9 @@ where c.code='TH-PRIMARY-2025-P1-P3'
 group by c.code,c.status;
 
 -- Each grade in the 2025 competency framework must have exactly eight outcomes.
-select g.code grade_code,count(a.id)::integer annual_outcomes,
-       case when count(a.id)=8 then 'PASS' else 'CHECK' end result
+select g.code grade_code,count(a.id) filter(where a.required)::integer required_annual_outcomes,
+       count(a.id) filter(where not a.required)::integer non_required_alignments,
+       case when count(a.id) filter(where a.required)=8 and count(a.id) filter(where not a.required)=0 then 'PASS' else 'CHECK' end result
 from public.learning_curricula c
 join public.learning_grade_levels g on g.curriculum_id=c.id
 left join public.learning_objective_alignments a on a.curriculum_id=c.id and a.grade_level_id=g.id
