@@ -92,7 +92,7 @@ The all-eight-area source-pack validator, Thai B.E. 2568 competency-pack validat
 - Thai Studies remains outside this rollout and is not represented as complete.
 - Cambridge Click Start Computer Studies remains a separate international course; it is not a substitute for national Science and Technology indicators.
 - The 300 specialist upper-secondary Science outcomes remain separate from the 415 core Science indicators.
-- Social Studies now has 418 lessons and 1,254 indicator-linked formative tasks with answer/evidence guidance. The remaining Social Studies importer item is expansion of the 61 shared M4–M6 outcomes across their three grade alignments using grade-scoped record codes.
+- Social Studies now has 418 lessons and 1,254 indicator-linked formative tasks with answer/evidence guidance. The importer expands its 61 shared M4–M6 outcomes into 183 grade-specific draft lessons and 549 grade-scoped questions using collision-safe codes.
 - Teacher packs remain Markdown source. No pack has been imported into a school organization or published as part of this batch.
 - No school, class, student, assignment, publication or learner-progress records were created or changed by the curriculum work.
 - Do not begin repeated subject-by-subject UI tests. Finish curriculum source and pack work first, then perform one consolidated authenticated teacher import, student assessment, teacher review, gradebook and progress-reporting test.
