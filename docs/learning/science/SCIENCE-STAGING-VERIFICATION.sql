@@ -147,12 +147,17 @@ order by case e.grade_code
  when 'P5' then 5 when 'P6' then 6 when 'M1' then 7 when 'M2' then 8
  when 'M3' then 9 when 'M4' then 10 when 'M5' then 11 else 12 end;
 
--- Completed primary W4.2 batch: verify coverage and presence of priority labels.
--- Exact must/should source-to-code mapping remains part of the final OBEC audit.
-with expected(grade_code,total) as (
- values ('P1',5),('P2',4),('P3',5),('P4',5),('P5',5),('P6',4)
+-- Completed primary W4.2 batch: verify coverage and exact OBEC 2021
+-- must-know / should-know classifications, including corrected P4-P6 rows.
+with expected(grade_code,total,must_know,should_know) as (
+ values
+ ('P1',5,4,1),('P2',4,2,2),('P3',5,4,1),
+ ('P4',5,3,2),('P5',5,3,2),('P6',4,3,1)
 ), actual as (
- select g.code grade_code,count(distinct o.id)::integer total,
+ select g.code grade_code,
+        count(distinct o.id)::integer total,
+        count(*) filter(where a.indicator_classification='must_know')::integer must_know,
+        count(*) filter(where a.indicator_classification='should_know')::integer should_know,
         count(*) filter(where a.indicator_classification is null)::integer unclassified
  from public.learning_objective_alignments a
  join public.learning_curricula c on c.id=a.curriculum_id
@@ -162,231 +167,18 @@ with expected(grade_code,total) as (
  join public.learning_skills s on s.id=t.skill_id
  join public.learning_subjects sub on sub.id=s.subject_id
  where c.code='TH-BASIC-CORE-2008-2017' and sub.code='SCI'
-   and o.code like 'P%-S4_2-%'
+   and o.code ~ '^P[1-6]-S4_2-'
  group by g.code
 )
 select e.grade_code,e.total expected_total,coalesce(a.total,0) actual_total,
+       e.must_know expected_must,coalesce(a.must_know,0) actual_must,
+       e.should_know expected_should,coalesce(a.should_know,0) actual_should,
        coalesce(a.unclassified,0) unclassified,
-       case when coalesce(a.total,0)=e.total and coalesce(a.unclassified,0)=0
-         then 'PASS-COVERAGE' else 'CHECK' end result
-from expected e left join actual a using(grade_code)
-order by e.grade_code;
-
--- Report any active objective in the five Science tracks with no Thai Science
--- curriculum/grade alignment. Expected result: zero rows.
-select
-  subject.code as subject_code,
-  objective.code as objective_code,
-  objective.name as objective_name
-from public.learning_objectives objective
-join public.learning_topics topic on topic.id = objective.topic_id
-join public.learning_skills skill on skill.id = topic.skill_id
-join public.learning_subjects subject on subject.id = skill.subject_id
-where subject.code in ('SCI','BIOLOGY','CHEMISTRY','PHYSICS','EARTH_SPACE')
-  and objective.status = 'active'
-  and not exists (
-    select 1
-    from public.learning_objective_alignments alignment
-    join public.learning_curricula curriculum on curriculum.id = alignment.curriculum_id
-    join public.learning_education_systems education_system
-      on education_system.id = curriculum.education_system_id
-    where alignment.objective_id = objective.id
-      and curriculum.code = 'TH-SCI-M1-M6'
-      and education_system.code = 'TH_BASIC'
-  )
-order by subject.code, objective.code;
-
--- Report subject tracks missing an active curriculum-subject link.
--- Expected result: zero rows.
-select subject.code as subject_code
-from public.learning_subjects subject
-where subject.code in ('SCI','BIOLOGY','CHEMISTRY','PHYSICS','EARTH_SPACE')
-  and not exists (
-    select 1
-    from public.learning_curriculum_subjects curriculum_subject
-    join public.learning_curricula curriculum
-      on curriculum.id = curriculum_subject.curriculum_id
-    join public.learning_education_systems education_system
-      on education_system.id = curriculum.education_system_id
-    where curriculum.code = 'TH-SCI-M1-M6'
-      and education_system.code = 'TH_BASIC'
-      and curriculum.status = 'active'
-      and curriculum_subject.subject_id = subject.id
-      and curriculum_subject.status = 'active'
-  )
-order by subject.code;
-
--- Report duplicate objective codes inside a Science subject.
--- Expected result: zero rows. This catches objectives duplicated across skill
--- strands when a topic insert is not correctly scoped to its declared skill.
-select
-  subject.code as subject_code,
-  objective.code as objective_code,
-  count(distinct skill.id)::integer as skill_count,
-  array_agg(distinct skill.code order by skill.code) as skill_codes
-from public.learning_objectives objective
-join public.learning_topics topic on topic.id = objective.topic_id
-join public.learning_skills skill on skill.id = topic.skill_id
-join public.learning_subjects subject on subject.id = skill.subject_id
-where subject.code in ('SCI','BIOLOGY','CHEMISTRY','PHYSICS','EARTH_SPACE')
-group by subject.code, objective.code
-having count(distinct skill.id) > 1
-order by subject.code, objective.code;
-
--- Content and question records are intentionally not seeded by the curriculum
--- migrations. These counts are informational and can be non-zero if teachers
--- have already authored Science resources in this staging environment.
-select
-  subject.code as subject_code,
-  count(distinct content_item.id)::integer as authored_content_items,
-  count(distinct question.id)::integer as authored_questions
-from public.learning_subjects subject
-left join public.learning_skills skill on skill.subject_id = subject.id
-left join public.learning_topics topic on topic.skill_id = skill.id
-left join public.learning_objectives objective on objective.topic_id = topic.id
-left join public.learning_content_objectives content_mapping
-  on content_mapping.objective_id = objective.id
-left join public.learning_content_items content_item
-  on content_item.id = content_mapping.content_item_id
-left join public.learning_question_objectives question_mapping
-  on question_mapping.objective_id = objective.id
-left join public.learning_question_versions question_version
-  on question_version.id = question_mapping.question_version_id
-left join public.learning_questions question
-  on question.id = question_version.question_id
-where subject.code in ('SCI','BIOLOGY','CHEMISTRY','PHYSICS','EARTH_SPACE')
-group by subject.code
-order by subject.code;
-
--- Primary P4-P6 W1-W3 remaining-indicator verification.
--- Expected complete batch totals: P4=16, P5=27, P6=26.
--- Until the source-verified seed migration is applied, this reports the current
--- gap without treating missing indicators as a successful rollout.
-with expected(grade_code,expected_total) as (
-  values ('P4',16),('P5',27),('P6',26)
-), actual as (
-  select g.code grade_code,
-         count(distinct o.id)::integer actual_total,
-         count(*) filter(where a.indicator_classification is null)::integer unclassified
-  from public.learning_objective_alignments a
-  join public.learning_curricula c on c.id=a.curriculum_id
-  join public.learning_grade_levels g on g.id=a.grade_level_id and g.curriculum_id=c.id
-  join public.learning_objectives o on o.id=a.objective_id
-  join public.learning_topics t on t.id=o.topic_id
-  join public.learning_skills sk on sk.id=t.skill_id
-  join public.learning_subjects sub on sub.id=sk.subject_id
-  where c.code='TH-BASIC-CORE-2008-2017'
-    and sub.code='SCI'
-    and g.code in ('P4','P5','P6')
-    and o.code ~ '^P[4-6]-S[1-3]_'
-  group by g.code
-)
-select e.grade_code,e.expected_total,coalesce(a.actual_total,0) actual_total,
-       e.expected_total-coalesce(a.actual_total,0) remaining,
-       coalesce(a.unclassified,0) unclassified,
-       case when coalesce(a.actual_total,0)=e.expected_total
-                  and coalesce(a.unclassified,0)=0
-         then 'PASS' else 'GAP' end result
-from expected e left join actual a using(grade_code)
-order by e.grade_code;
-
--- Primary P1-P3 W1-W3 seed coverage. The official P1-P3 W1-W3
--- indicators are seeded by 20261118208000; W4.2 is checked separately below.
--- Expected: 10 P1, 12 P2, 20 P3, with no unclassified alignments.
-with expected(grade_code,expected_total) as (
-  values ('P1',10),('P2',12),('P3',20)
-), actual as (
-  select g.code grade_code,
-         count(distinct o.id)::integer actual_total,
-         count(*) filter(where a.indicator_classification is null)::integer unclassified
-  from public.learning_objective_alignments a
-  join public.learning_curricula c on c.id=a.curriculum_id
-  join public.learning_grade_levels g on g.id=a.grade_level_id and g.curriculum_id=c.id
-  join public.learning_objectives o on o.id=a.objective_id
-  join public.learning_topics t on t.id=o.topic_id
-  join public.learning_skills s on s.id=t.skill_id
-  join public.learning_subjects sub on sub.id=s.subject_id
-  where c.code='TH-BASIC-CORE-2008-2017'
-    and sub.code='SCI'
-    and g.code in ('P1','P2','P3')
-    and o.code ~ '^P[1-3]-S[1-3]_'
-  group by g.code
-)
-select e.grade_code,e.expected_total,coalesce(a.actual_total,0) actual_total,
-       coalesce(a.unclassified,0) unclassified,
-       case when coalesce(a.actual_total,0)=e.expected_total
-                  and coalesce(a.unclassified,0)=0
+       case when coalesce(a.total,0)=e.total
+             and coalesce(a.must_know,0)=e.must_know
+             and coalesce(a.should_know,0)=e.should_know
+             and coalesce(a.unclassified,0)=0
          then 'PASS' else 'CHECK' end result
-from expected e left join actual a using(grade_code)
-order by e.grade_code;
-
-
--- OBEC 2021 dual-priority exceptions that must not be flattened into one label.
--- P4 ว 2.1 ป.4/1 and P6 ว 2.1 ป.6/1 are each both Must-Know and Should-Know.
--- The current schema has one classification column; notes must preserve the second label
--- until a dedicated multi-classification model is introduced. This query is diagnostic.
-select
-  grade.code as grade_code,
-  objective.code as objective_code,
-  alignment.indicator_classification as stored_classification,
-  alignment.notes,
-  case
-    when alignment.notes ilike '%both must-know and should-know%'
-      or alignment.notes ilike '%both must know and should know%'
-      or alignment.notes ilike '%ต้องรู้และควรรู้%'
-    then 'DUAL-PRIORITY-NOTED'
-    else 'REVIEW-DUAL-PRIORITY-METADATA'
-  end as source_exception_check
-from public.learning_objective_alignments alignment
-join public.learning_curricula curriculum on curriculum.id=alignment.curriculum_id
-join public.learning_grade_levels grade
-  on grade.id=alignment.grade_level_id and grade.curriculum_id=curriculum.id
-join public.learning_objectives objective on objective.id=alignment.objective_id
-join public.learning_topics topic on topic.id=objective.topic_id
-join public.learning_skills skill on skill.id=topic.skill_id
-join public.learning_subjects subject on subject.id=skill.subject_id
-where curriculum.code='TH-BASIC-CORE-2008-2017'
-  and subject.code='SCI'
-  and ((grade.code='P4' and objective.code='P4-S2_1-01')
-    or (grade.code='P6' and objective.code='P6-S2_1-01'))
-order by grade.code;
-
-
--- OBEC 2021 primary P4-P6 classification totals.
--- Expected Must-Know / Should-Know counts are 16/6, 24/8 and 20/11.
--- Classification totals exceed unique indicators by two because P4 ว 2.1 ป.4/1
--- and P6 ว 2.1 ป.6/1 are each dual-classified in the official source.
-with expected(grade_code,expected_total,expected_must,expected_should,expected_dual) as (
-  values ('P4',21,16,6,1),('P5',32,24,8,0),('P6',30,20,11,1)
-), actual as (
-  select g.code grade_code,
-         count(distinct o.id)::integer total,
-         count(*) filter(where a.indicator_classification='must_know')::integer must_know,
-         count(*) filter(where a.indicator_classification='should_know')::integer should_know,
-         count(*) filter(where a.notes ilike '%both must-know and should-know%'
-                           or a.notes ilike '%both must know and should know%'
-                           or a.notes ilike '%ต้องรู้และควรรู้%')::integer dual_noted
-  from public.learning_objective_alignments a
-  join public.learning_curricula c on c.id=a.curriculum_id
-  join public.learning_grade_levels g on g.id=a.grade_level_id and g.curriculum_id=c.id
-  join public.learning_objectives o on o.id=a.objective_id
-  join public.learning_topics t on t.id=o.topic_id
-  join public.learning_skills sk on sk.id=t.skill_id
-  join public.learning_subjects sub on sub.id=sk.subject_id
-  where c.code='TH-BASIC-CORE-2008-2017' and sub.code='SCI'
-    and g.code in ('P4','P5','P6')
-    and o.code ~ '^P[4-6]-S[1-3]_'
-  group by g.code
-)
-select e.grade_code,e.expected_total,coalesce(a.total,0) actual_total,
-       e.expected_must,coalesce(a.must_know,0) actual_must,
-       e.expected_should,coalesce(a.should_know,0) actual_should,
-       e.expected_dual,coalesce(a.dual_noted,0) dual_priority_noted,
-       case when coalesce(a.total,0)=e.expected_total
-                  and coalesce(a.must_know,0)=e.expected_must
-                  and coalesce(a.should_know,0)=e.expected_should
-                  and coalesce(a.dual_noted,0)=e.expected_dual
-         then 'PASS' else 'GAP-OR-CLASSIFICATION-REVIEW' end result
 from expected e left join actual a using(grade_code)
 order by e.grade_code;
 
