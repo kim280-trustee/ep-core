@@ -56,7 +56,7 @@ Every lesson includes:
 - Official Thai indicator code and original Thai wording.
 - OBEC 2021 must-know / should-know classification.
 - An age-appropriate English teaching activity.
-- Three formative assessment tasks with expected-answer guidance.
+- Three indicator-specific formative tasks with expected-answer guidance.
 
 ## Verification results
 
@@ -68,7 +68,9 @@ Every lesson includes:
 - [x] All 235 stored official indicator codes match the standard/grade/indicator sequence.
 - [x] All 21 M4–M6 shared objectives are aligned to M4, M5 and M6.
 - [x] Eight official standards are populated; the non-standard empty topic was removed.
-- [x] Four teacher packs cover all 193 unique indicators and provide 579 formative assessment tasks.
+- [x] Four teacher packs cover all 193 unique indicators and provide 579 indicator-specific formative assessment tasks with answer/evidence guidance.
+- [x] Every task quotes the exact official Thai indicator and matches its official language skill/culture standard and grade band.
+- [x] The importer expands the 21 shared M4–M6 indicators into 63 grade-specific draft lessons and 189 grade-scoped question codes.
 - [x] No duplicate objective-to-skill assignments.
 - [x] No Foreign Languages lesson drafts or question-bank drafts imported.
 
@@ -81,3 +83,14 @@ No school, class, student, assignment or learner records were created or changed
 ## Source
 
 OBEC 2021 priority-classification document, Foreign Languages section (printed pages 333–371). The grade tables and final total reconcile to 193 indicators, 160 must-know and 33 should-know.
+
+
+## Indicator-specific assessment authoring — 21 November 2026
+
+All 193 lessons now contain 579 indicator-specific tasks: listening/reading comprehension, interpersonal communication, presentation, culture and social conventions, language comparison, cross-curricular language use, real-life communication, and research/international communication. Each task includes the exact official Thai indicator and answer/evidence guidance. Task complexity is differentiated across early primary, upper primary, lower secondary and shared upper secondary.
+
+The answer guidance accepts natural equivalent language and assesses meaning, relevance, accuracy and communication for the target audience rather than one memorised sentence. Cultural examples are treated respectfully; research tasks require approved sources and source acknowledgement.
+
+The importer recognises the `FL-Pn`, `FL-Mn` and shared `FL-M46` code formats. Each of the 21 shared M4–M6 outcomes expands into three grade-specific content drafts and grade-scoped question codes.
+
+GitHub Actions run 220 passed all national pack checks, Thai B.E. 2568, Science, Social Studies, Health & PE, Arts and Foreign Languages importer-parser validation, production build and ESLint.
