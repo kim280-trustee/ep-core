@@ -5,19 +5,19 @@
 **Official source PDF:** https://www.academic.obec.go.th/images/official/1622514876_d_1.pdf  
 **Status:** Open — do not mark Science complete
 
-**Repository/live distinction (verified 21 November 2026):** The branch contains a pending P1–P3 W1–W3 seed migration (42 indicators), but the connected live Supabase catalogue currently shows only the 28 P1–P6 W4.2 rows (P1 5, P2 4, P3 5, P4 5, P5 5, P6 4). Thus the branch-level target after its pending migration is P1–P3 complete, while the live database remains short by those 42 rows. P4–P6 W1–W3 (69), M1–M3 W4 (27) and shared M4–M6 core (102) remain additional branch-level gaps. The live migration ledger must be rechecked after deployment; file presence is not deployment evidence.
+**Repository/live distinction (verified 21 November 2026):** Live Supabase now contains all 139 primary P1–P6 indicators. P1–P3 W1–W3, P4–P6 W1–W3 and W4.2 seeds are applied, with corrective migrations fixing topic/objective CTE ordering. All six primary grade totals pass. Remaining scope is lower-secondary M1–M3 completion and code-level reconciliation, plus the 102 shared M4–M6 core indicators.
 
 
 ## Official grade totals
 
 | Grade | Official indicators | Current catalogue state |
 |---|---:|---|
-| P1 | 15 | 10 W1–W3 + 5 W4.2 seeded; complete |
-| P2 | 16 | 12 W1–W3 + 4 W4.2 seeded; complete |
-| P3 | 25 | 20 W1–W3 + 5 W4.2 seeded; complete |
-| P4 | 21 | 5 W4.2 seeded; 16 W1–W3 indicators remain |
-| P5 | 32 | 5 W4.2 seeded; 27 W1–W3 indicators remain |
-| P6 | 30 | 4 W4.2 seeded; 26 W1–W3 indicators remain |
+| P1 | 15 | 10 W1–W3 + 5 W4.2; complete in live staging |
+| P2 | 16 | 12 W1–W3 + 4 W4.2; complete in live staging |
+| P3 | 25 | 20 W1–W3 + 5 W4.2; complete in live staging |
+| P4 | 21 | 16 W1–W3 + 5 W4.2; complete in live staging |
+| P5 | 32 | 27 W1–W3 + 5 W4.2; complete in live staging |
+| P6 | 30 | 26 W1–W3 + 4 W4.2; complete in live staging |
 | M1 | 52 | 43 existing W1–W3; 9 W4.1/W4.2 missing |
 | M2 | 63 | 48 existing W1–W3; 6 W2.1 plus 9 W4.1/W4.2 missing |
 | M3 | 59 | 53 existing records; code-level reconciliation required before accepting the count |
@@ -43,12 +43,7 @@ The teacher pack `SCIENCE-TECHNOLOGY-W4.2-P1-P6-TEACHER-STARTER-PACK.md` contain
 
 ## Primary W1–W3 seed reconciliation
 
-The existing migration `20261118208000_seed_science_technology_primary_p1_p3_indicators.sql` already seeds the official P1–P3 W1–W3 set: 10 P1, 12 P2 and 20 P3 indicators (42 total). A companion teacher pack, `P1-P3-science-w1-w3-teacher-starter-pack.md`, now provides 42 lesson starters and 126 formative tasks for these indicators. Together with the 28 primary W4.2 indicators, P1–P3 now reconcile to their full official grade totals (15, 16 and 25). This corrects the previous gap estimate, which counted these 42 records as missing.
-
-The remaining primary W1–W3 work is P4–P6 only: 16 P4, 27 P5 and 26 P6 indicators (69 total). Their Thai source wording and must/should classifications must be transcribed from the OBEC 2021 table before migration authoring; do not synthesize or infer official indicator text.
-
-
-
+The P1–P3 W1–W3 migration contributes 42 indicators (10, 12 and 20); the P4–P6 W1–W3 migration contributes 69 (16, 27 and 26). Both batches are now applied in live staging. The original P1–P3 and P4–P6 migrations had a PostgreSQL data-modifying-CTE ordering defect: objective upserts read the base topic table instead of consuming the topic CTE's RETURNING rows. Corrective migrations `20261118214000_fix_science_primary_p1_p3_objective_alignment.sql` and `20261118213000_fix_science_primary_p4_p6_objective_alignment.sql` now explicitly sequence the writes. Reconciliation confirms 111 W1–W3 indicators and 28 W4.2 indicators, for 139 unique primary indicators total. The teacher packs provide 111 W1–W3 lesson starters and 333 formative tasks, plus 28 W4.2 lesson starters and 84 formative tasks.
 ### Primary priority totals and dual-classification exceptions
 
 The OBEC 2021 summary table reports the following classification totals for the remaining primary grades:
@@ -63,13 +58,11 @@ Must-Know and Should-Know counts are not mutually exclusive. P4 and P6 each have
 
 ## Remaining national-core implementation
 
-1. **Primary W1–W3:** Seed and align the remaining 69 P4–P6 indicators. P1–P3 are already complete.
-2. **M1 W4:** Add five ว 4.1 and four ว 4.2 indicators.
-3. **M2 W1–W4:** Add six missing ว 2.1 indicators and nine ว 4.1/ว 4.2 indicators.
-4. **M3 correction:** Official standard coverage includes six ว 1.1 indicators, eight ว 1.3 indicators, three ว 2.2 indicators, and no M3 ว 3.2 indicator set. The current M3 catalogue has 11 ว 1.3-coded records and nine ว 3.2-coded records. Reconcile those records against the official indicator text; preserve useful non-core content as enrichment rather than counting it as an official indicator.
-5. **M3 W4:** Add five ว 4.1 and four ว 4.2 indicators.
-6. **M4–M6 core:** Add the 102 shared Science and Technology indicators. Do not substitute the 300 specialist Biology/Chemistry/Physics/Earth-Space outcomes for this core set.
-
+1. **Primary P1–P6:** complete in live staging (139/139); teacher packs reconcile to 139 lesson starters and 417 formative tasks.
+2. **M1:** 43 of 52 official indicators aligned; nine technology indicators remain to be transcribed and seeded from the official source.
+3. **M2:** 48 of 63 official indicators aligned; 15 indicators remain, including six W2.1 and nine W4.1/W4.2 indicators.
+4. **M3:** 53 current records against 59 official indicators, but code-level mismatch must be resolved before seeding. Nine existing W3.2 records are not part of the official M3 2021 indicator list and remain unclassified; preserve useful content as enrichment rather than counting it as official curriculum coverage.
+5. **M4–M6 core:** add the 102 shared Science and Technology indicators. Do not substitute the 300 specialist Biology/Chemistry/Physics/Earth-Space outcomes for this core set.
 ## Existing specialist outcomes — separate from the core set
 
 | Specialist subject | M4–M6 outcomes |
@@ -84,7 +77,7 @@ These 300 outcomes are additional upper-secondary specialist content. They remai
 
 ## Acceptance criteria before Science can close
 
-- [ ] P4–P6 W1–W3 indicators seeded, aligned and classified (69 remaining; P1–P3 complete).
+- [x] P1–P6 W1–W3 indicators seeded, aligned and classified (111 total).
 - [x] P1–P6 W4.2 indicators seeded, aligned and classified (28).
 - [ ] M1–M3 W1–W4 indicator codes reconciled exactly to OBEC.
 - [ ] M4–M6 102 shared core indicators seeded and aligned to all three grades.
@@ -103,4 +96,4 @@ Primary source for the remaining primary indicators is the OBEC/Institute for th
 
 The source gives the national unique total as 415, with 308 Must-Know and 113 Should-Know classifications; the difference is explained by dual-classified indicators. These are classification counts, not mutually exclusive objective counts.
 
-No P4–P6 W1–W3 seed should be committed until all 69 Thai indicator statements and their priority flags have been transcribed from these grade sections and reviewed against the official codes. Source pages are not interchangeable with the 2017 curriculum PDF.
+The P4–P6 W1–W3 seed has now been transcribed from these grade sections and applied. The live catalogue passes all six primary grade totals; the read-only SQL verification remains the acceptance check for future changes.
