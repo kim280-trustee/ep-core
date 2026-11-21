@@ -102,7 +102,11 @@ export default function TeacherContentImportPage() {
       const gradeCode = lesson.objectiveCode?.match(/^(M[1-6])[-_]/i)?.[1]?.toUpperCase();
       if (gradeCode) {
         const grade = gradeLevels.data?.find((item) => item.code.toUpperCase() === gradeCode);
-        if (grade) targetGradeLevelId = grade.id;
+        if (!grade) {
+          errors.push(`Section ${lesson.number} “${lesson.title}”: grade ${gradeCode} is not available in the selected curriculum. Choose a curriculum containing this grade; the importer will not fall back to another grade.`);
+          continue;
+        }
+        targetGradeLevelId = grade.id;
       }
 
       const alignedToGrade = (objectiveId: string, gradeId: string) =>
@@ -302,8 +306,10 @@ export default function TeacherContentImportPage() {
     resolved.rows.length === parsedLessons.length &&
     parsedLessons.length > 0 &&
     resolved.errors.length === 0 &&
+    !gradeLevels.isPending &&
     !catalogue.isPending &&
     !alignments.isPending &&
+    !gradeLevels.isError &&
     !catalogue.isError &&
     !alignments.isError
   );
@@ -378,8 +384,8 @@ export default function TeacherContentImportPage() {
             <span>{parsedLessons.length * 3} questions detected</span>
             <span>{resolved.rows.length} objectives matched</span>
           </div>
-          {catalogue.isPending || alignments.isPending ? <p className="mt-4 text-sm text-slate-500">Checking active curriculum alignments…</p> : null}
-          {(catalogue.isError || alignments.isError) && <p className="mt-4 text-sm text-red-700">Academic catalogue could not be loaded. No import is allowed.</p>}
+          {gradeLevels.isPending || catalogue.isPending || alignments.isPending ? <p className="mt-4 text-sm text-slate-500">Checking active curriculum grades and objective alignments…</p> : null}
+          {(gradeLevels.isError || catalogue.isError || alignments.isError) && <p className="mt-4 text-sm text-red-700">Academic catalogue could not be loaded. No import is allowed.</p>}
           {resolved.errors.length > 0 && (
             <div className="mt-4 rounded-xl border border-red-200 bg-red-50 p-4">
               <p className="text-sm font-semibold text-red-800">Resolve these mapping issues before importing:</p>
