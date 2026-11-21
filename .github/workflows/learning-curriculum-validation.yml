@@ -52,6 +52,9 @@ jobs:
       - name: Validate Mathematics teacher packs through importer parser
         run: npm run validate:maths-packs
 
+      - name: Validate primary Mathematics P1-P6 teacher packs
+        run: npm run validate:maths-primary-packs
+
       - name: Validate Cambridge Click Start Computer Studies pack
         run: npm run validate:computer-studies-packs
 
