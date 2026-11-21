@@ -69,7 +69,7 @@ for (const pack of packs) {
         failures.push(`${pack.path}: objective code ${lesson.objectiveCode} has no recognized M1–M6 grade prefix`);
       } else {
         grades[grade] = (grades[grade] ?? 0) + 1;
-        const headingGrade = lesson.title.match(/^\\[(M[1-6])\\]/)?.[1];
+        const headingGrade = lesson.title.match(/^\[(M[1-6])\]/)?.[1];
         if (headingGrade !== grade) {
           failures.push(`${pack.path}: lesson ${lesson.number} heading grade ${headingGrade ?? "missing"} does not match objective grade ${grade}`);
         }
