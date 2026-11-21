@@ -1,5 +1,6 @@
 export function extractTeacherPackGradeCode(objectiveCode: string | null | undefined): string | null {
   if (!objectiveCode) return null;
+  if (/(?:^|[-_])M(?:46|4-6)(?:[-_])/i.test(objectiveCode)) return null;
 
   const directGrade = objectiveCode.match(/^([PM][1-6])[-_]/i)?.[1];
   if (directGrade) return directGrade.toUpperCase();
@@ -10,7 +11,7 @@ export function extractTeacherPackGradeCode(objectiveCode: string | null | undef
 }
 
 export function extractTeacherPackGradeCodes(objectiveCode: string | null | undefined): string[] {
-  if (objectiveCode?.match(/(?:^|[-_])M46(?:[-_])/i)) return ["M4", "M5", "M6"];
+  if (objectiveCode?.match(/(?:^|[-_])M(?:46|4-6)(?:[-_])/i)) return ["M4", "M5", "M6"];
   const gradeCode = extractTeacherPackGradeCode(objectiveCode);
   return gradeCode ? [gradeCode] : [];
 }
@@ -78,6 +79,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
     const keyRelationships = section.match(/^\*\*Key relationships\*\*\s*([\s\S]*?)(?=^\*\*|^#{1,3}\s|(?![\s\S]))/mi)?.[1]?.trim();
     const activityParts = [
       section.match(/^\*\*Practical activity:\*\*\s*(.+)$/mi)?.[1]?.trim(),
+      section.match(/^\*\*(?:กิจกรรมการเรียนรู้|กิจกรรมฝึกปฏิบัติ):\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Teaching activity:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Starter(?:\s*\/\s*learning task)?:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Lesson starter(?:\s*\(\d+\s*minutes?\))?:\*\*\s*(.+)$/mi)?.[1]?.trim(),
@@ -89,7 +91,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
     ].filter((value): value is string => Boolean(value));
     const activity = activityParts.join("\n\n") || learningOutcome;
 
-    const practicePattern = /^\*\*(?:Independent practice|Questions|Practice(?: questions)?|Answer-keyed questions)\*\*\s*$/mi;
+    const practicePattern = /^\*\*(?:Independent practice|Questions|Practice(?: questions)?|Answer-keyed questions|แบบฝึกปฏิบัติ|ภารกิจฝึกปฏิบัติ)\*\*\s*$/mi;
     const practiceMatch = section.match(practicePattern);
     const firstQuestion = section.search(/^\s*1\.\s+/m);
     const practice = practiceMatch
@@ -102,11 +104,11 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
     for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
       const questionLine = lines[lineIndex].match(/^\s*(\d+)\.\s+(.+?)\s*$/);
       if (!questionLine) continue;
-      const inlineAnswer = questionLine[2].match(/\s+\*\*Answer:\*\*\s*(.+)$/i);
+      const inlineAnswer = questionLine[2].match(/\s+\*\*(?:Answer|Expected answer|Expected evidence|Expected answer\/evidence|แนวคำตอบ(?:\/หลักฐานที่คาดหวัง)?|คำตอบ):\*\*\s*(.+)$/i);
       const prompt = (inlineAnswer ? questionLine[2].slice(0, inlineAnswer.index) : questionLine[2]).trim();
       let expectedAnswer = inlineAnswer?.[1]?.trim() ?? "";
       if (!expectedAnswer) {
-        const nextLine = lines[lineIndex + 1]?.match(/^\s*\*\*Answer:\*\*\s*(.+)$/i);
+        const nextLine = lines[lineIndex + 1]?.match(/^\s*\*\*(?:Answer|Expected answer|Expected evidence|Expected answer\/evidence|แนวคำตอบ(?:\/หลักฐานที่คาดหวัง)?|คำตอบ):\*\*\s*(.+)$/i);
         if (nextLine) {
           expectedAnswer = nextLine[1].trim();
           lineIndex += 1;
