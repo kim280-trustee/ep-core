@@ -92,6 +92,8 @@ GitHub Actions run 258 passed all curriculum source validators, all eight learni
 
 ## 5. Scope boundaries and release plan
 
+The single consolidated authenticated import and application test is specified in `CURRICULUM-CONSOLIDATED-IMPORT-TEST-PLAN.md`. It reconciles the 2,056 unique source indicators with 2,450 grade-specific draft lessons and 7,350 question drafts after shared M4–M6 expansion, while keeping the 2025 framework, specialist Science and Cambridge Computer Studies separate.
+
 - The 2008/2017 eight learning areas and the 2025 competency-based P1–P3 framework remain separate curriculum versions.
 - Thai Studies remains outside this rollout and is not represented as complete.
 - Cambridge Click Start Computer Studies remains a separate international course; it is not a substitute for national Science and Technology indicators.
