@@ -37,6 +37,9 @@ jobs:
       - name: Validate all national curriculum teacher packs
         run: npm run validate:national-curriculum-packs
 
+      - name: Validate Thai Language and Career packs through importer parser
+        run: npm run validate:thai-career-packs
+
       - name: Validate Thai B.E. 2568 competency pack
         run: npm run validate:thai-2025-packs
 
