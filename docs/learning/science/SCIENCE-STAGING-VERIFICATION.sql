@@ -595,3 +595,49 @@ from public.learning_curricula c
 left join actual a on a.curriculum=c.code
 where c.code in ('TH-SCI-M1-M6','TH-BASIC-CORE-2008-2017')
 group by c.code order by c.code;
+
+
+-- Primary P1-P6 required-core gate: Should-Know is a priority label,
+-- not an optional curriculum alignment. All 139 official indicators
+-- must be required in both catalogues.
+select c.code curriculum,
+ count(distinct o.id) required_indicators,
+ count(*)-count(distinct o.id) duplicate_rows,
+ count(*) filter(where a.indicator_classification is null) unclassified_required,
+ count(*) filter(where a.indicator_classification='must_know') must_know,
+ count(*) filter(where a.indicator_classification='should_know') should_know,
+ case when count(distinct o.id)=139
+   and count(*)=139
+   and count(*) filter(where a.indicator_classification is null)=0
+ then 'PASS' else 'CHECK' end result
+from public.learning_objective_alignments a
+join public.learning_objectives o on o.id=a.objective_id
+join public.learning_grade_levels g on g.id=a.grade_level_id
+join public.learning_curricula c on c.id=a.curriculum_id
+join public.learning_topics t on t.id=o.topic_id
+join public.learning_skills sk on sk.id=t.skill_id
+join public.learning_subjects sub on sub.id=sk.subject_id
+where sub.code='SCI' and g.code in ('P1','P2','P3','P4','P5','P6')
+  and c.code in ('TH-SCI-M1-M6','TH-BASIC-CORE-2008-2017')
+  and a.required=true
+group by c.code order by c.code;
+
+-- Full national master / canonical secondary gate.
+select c.code curriculum,count(distinct o.id) required_indicators,
+ count(*)-count(distinct o.id) duplicate_rows,
+ count(*) filter(where a.indicator_classification is null) unclassified_required,
+ case when count(distinct o.id)=case when c.code='TH-BASIC-CORE-2008-2017' then 415 else 276 end
+  and count(*)=count(distinct o.id)
+  and count(*) filter(where a.indicator_classification is null)=0
+ then 'PASS' else 'CHECK' end result
+from public.learning_objective_alignments a
+join public.learning_objectives o on o.id=a.objective_id
+join public.learning_grade_levels g on g.id=a.grade_level_id
+join public.learning_curricula c on c.id=a.curriculum_id
+join public.learning_topics t on t.id=o.topic_id
+join public.learning_skills sk on sk.id=t.skill_id
+join public.learning_subjects sub on sub.id=sk.subject_id
+where sub.code='SCI' and a.required=true
+  and g.code in ('P1','P2','P3','P4','P5','P6','M1','M2','M3','M4','M5','M6')
+  and c.code in ('TH-SCI-M1-M6','TH-BASIC-CORE-2008-2017')
+group by c.code order by c.code;
