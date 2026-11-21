@@ -27,7 +27,7 @@ The full importer-parser validation, production build and ESLint passed in GitHu
 
 **Branch:** `paul/thai-national-curriculum-foundation`  
 **Scope:** Thai Mathematics P1–M6 core-curriculum knowledge graph and teacher authoring readiness  
-**Status:** All prerequisite, academic-integrity, secondary Mathematics and primary Mathematics catalogue migrations are applied to the existing Supabase project. All 157 national-master objective-to-grade alignments are verified; the 116 primary and 41 secondary objectives are also aligned in their separate Maths-specific catalogues. All 82 alignment rows are classified `must_know` per OBEC. No Maths pilot class or student records have been created.
+**Status:** All prerequisite, academic-integrity, secondary Mathematics and primary Mathematics catalogue migrations are applied to the existing Supabase project. All 157 national-master objective-to-grade alignments are verified; the 116 primary and 41 secondary objectives are also aligned in their separate Maths-specific catalogues. The 116 primary rows retain 82 `must_know` and 34 `should_know` classifications; the 41 secondary rows are all `must_know`. The separate Maths catalogues duplicate these same objectives by design. No Maths pilot class or student records have been created.
 
 ## Curriculum coverage delivered
 
@@ -71,15 +71,15 @@ Read-only inspection of the connected `ep-core` database found the current Engli
 
 The committed read-only preflight script was executed against the live project. All nine integrity checks returned **PASS with zero issues**, covering term dates, gradebook term/class year alignment, class-subject/class alignment, student membership references, and content-objective subject/alignment integrity. The academic-management RLS policies are already permission-scoped in the live database.
 
-The live Maths catalogue is verified: one active `MATH` subject, one active `TH-MATH-M1-M6` curriculum, six grade levels and 41 aligned objectives (M1=9, M2=12, M3=12, M4=3, M5=4, M6=1). The same 41 objectives are also aligned to `TH-BASIC-CORE-2008-2017`, for 82 alignment rows across both catalogues. OBEC's 2021 summary classifies all secondary Mathematics indicators as must-know (M1=9/9, M2=12/12, M3=12/12, M4–M6=8/8); both catalogues now reflect that classification with zero unclassified rows.
+The live Mathematics catalogues are verified: the national master contains 157 required objectives and 157 grade alignments (116 primary, 41 secondary). `TH-MATH-P1-P6` contains the same 116 primary objectives and alignments; `TH-MATH-M1-M6` contains the same 41 secondary objectives and alignments. The primary priority split is 82 Must-Know / 34 Should-Know; all 41 secondary indicators are Must-Know. Both separate Maths-specific catalogues match the national master without adding unique indicators. All 157 national-master alignments have zero unclassified rows.
 
 The preflight itself was read-only. The subsequent migrations added academic catalogue, integrity and multi-curriculum support; they did not create or modify school academic years, terms, classes, memberships, authored content, assessments or student records.
 
 ## Teacher pack import readiness
 
-The three existing teacher packs have been checked against the importer parser: 41 lessons, 123 answer-keyed questions, 41 unique objective codes and no lesson-format errors. All 41 objective codes were found in the live Mathematics catalogue. Import instructions are in `MATHS-TEACHER-PACK-IMPORT-GUIDE.md`; the packs remain source material until an authorized teacher imports them into the target organization as unpublished drafts.
+All five Mathematics teacher packs have been checked against the importer parser: 157 lessons, 471 answer-keyed questions, 157 unique objective codes and no lesson-format errors. All 157 objective codes were found in the live Mathematics catalogues. Import instructions are in `MATHS-TEACHER-PACK-IMPORT-GUIDE.md`; the packs remain source material until an authorized teacher imports them into the target organization as unpublished drafts.
 
-Read-only database verification is in `supabase/verification/learning-academic-maths-verification.sql`. The live database currently reports 41 active objectives, 41 aligned objectives, zero duplicate codes and zero unaligned objectives.
+Read-only database verification is in `supabase/verification/learning-academic-maths-verification.sql`. The live national master reports 157 required Mathematics objectives and 157 aligned grade rows; the separate primary and secondary Maths catalogues report 116 and 41 respectively. Duplicate official codes and unaligned required objectives: zero.
 
 ## Teacher workflow compatibility
 
