@@ -339,7 +339,7 @@
 
 ## Additional source-recovered indicators — M5/11–13
 
-### Lesson 23 — Explain boiling points of covalent substances
+## Lesson 23 — Explain boiling points of covalent substances
 
 **Objective:** `M5-S2_1-11`  
 **Official indicator:** ว 2.1 ม.5/11 | **Priority:** Must-Know  
@@ -353,7 +353,7 @@
 3. Which bond types within a molecule can enable hydrogen bonding between molecules?
    **Answer:** N–H, O–H or F–H bonds.
 
-### Lesson 24 — Write formulae for ions and ionic compounds
+## Lesson 24 — Write formulae for ions and ionic compounds
 
 **Objective:** `M5-S2_1-12`  
 **Official indicator:** ว 2.1 ม.5/12 | **Priority:** Must-Know  
@@ -367,7 +367,7 @@
 3. What is the formula of magnesium oxide?
    **Answer:** MgO.
 
-### Lesson 25 — Classify dissociation and electrolyte solutions
+## Lesson 25 — Classify dissociation and electrolyte solutions
 
 **Objective:** `M5-S2_1-13`  
 **Official indicator:** ว 2.1 ม.5/13 | **Priority:** Must-Know  
