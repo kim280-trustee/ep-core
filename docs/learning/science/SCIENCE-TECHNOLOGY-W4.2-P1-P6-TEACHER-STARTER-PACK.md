@@ -163,7 +163,7 @@ This is the Thai national curriculum W4.2 pack. It is separate from the Click St
 
 - **Grade:** P2
 - **Official indicator:** Create, categorize, search, store and retrieve information
-- **OBEC 2021 priority:** Should-know
+- **OBEC 2021 priority:** Must-know
 - **Learning focus:** Create, categorize, search, store and retrieve information
 
 **Suggested learning activity:** Use a short, familiar problem from classroom life. Have learners model the steps, test a solution, observe the result and explain what they changed. Select the device, software or unplugged material to match the indicator and the learners' age.
