@@ -70,7 +70,7 @@ for (const pack of packs) {
     const resources = sourceSection.match(/\*\*Resources:\*\*\s*(.+)$/m)?.[1] ?? "";
     const expectedResource = {
       SO1: "short age-appropriate account", SO2: "school/community case card", SO3: "decision card",
-      SO4: "historical source extract", SO5: "labelled map or atlas extract",
+      SO4: "primary/secondary source extract", SO5: "labelled map or atlas extract",
     }[standard];
     if (!expectedResource || !resources.toLowerCase().includes(expectedResource.toLowerCase())) {
       failures.push(heading[2] + ": resources do not match the Social Studies strand");
