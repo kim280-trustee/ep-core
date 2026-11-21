@@ -18,8 +18,8 @@ actual as (
          count(distinct o.id) filter(where a.required)::integer unique_objectives,
          count(distinct a.id) filter(where a.required)::integer grade_alignments,
          count(distinct a.id) filter(where a.required and a.indicator_classification is null and a.pathway_classification is null)::integer unclassified_alignments,
-         count(distinct a.id) filter(where a.required and sub.code='SOCIAL-STUDIES' and a.pathway_classification='between_learning')::integer between_learning,
-         count(distinct a.id) filter(where a.required and sub.code='SOCIAL-STUDIES' and a.pathway_classification='terminal')::integer terminal
+         count(distinct o.id) filter(where a.required and sub.code='SOCIAL-STUDIES' and a.pathway_classification='between_learning')::integer between_learning,
+         count(distinct o.id) filter(where a.required and sub.code='SOCIAL-STUDIES' and a.pathway_classification='terminal')::integer terminal
   from public.learning_subjects sub
   join public.learning_skills sk on sk.subject_id=sub.id
   join public.learning_topics t on t.skill_id=sk.id
