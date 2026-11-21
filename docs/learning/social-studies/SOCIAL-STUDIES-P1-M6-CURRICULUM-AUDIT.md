@@ -72,6 +72,8 @@ The original 2021 must_know / should_know classifications remain in the separate
 
 ## Teacher starter packs added
 
+Teacher planning reference: `SOCIAL-STUDIES-TEACHER-IMPLEMENTATION-GUIDE.md` covers a practical lesson structure, strand-specific teaching and evidence, grade-band differentiation, formative assessment rubric, feedback, source quality and classroom safety.
+
 Eight teacher starter packs were added, covering all 418 unique indicators:
 
 | Pack | Lessons |
