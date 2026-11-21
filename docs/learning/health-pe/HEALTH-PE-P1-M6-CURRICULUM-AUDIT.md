@@ -41,7 +41,7 @@ Every lesson records:
 - The official Thai indicator code and original Thai wording.
 - The OBEC 2021 must-know / should-know classification.
 - A practical teaching activity.
-- Three formative assessment prompts with expected-answer or observable-evidence guidance.
+- Three indicator-specific formative tasks with expected-answer or observable-evidence guidance.
 
 The M4–M6 official indicator codes use the shared `ม.4-6/n` grade notation. Indicator suffixes are sequenced within each official standard.
 
@@ -52,7 +52,9 @@ The M4–M6 official indicator codes use the shared `ม.4-6/n` grade notation. 
 - [x] All 279 alignments have an OBEC priority classification.
 - [x] Priority totals reconcile: 139 must-know and 140 should-know alignment rows.
 - [x] M4–M6 shared indicators are aligned to all three grades.
-- [x] Four teacher packs cover all 221 unique indicators and provide 663 formative assessment prompts.
+- [x] Four teacher packs cover all 221 unique indicators and provide 663 indicator-specific formative tasks with answer/evidence guidance.
+- [x] Every task explicitly quotes the official Thai indicator and addresses the relevant HPE strand and grade band.
+- [x] The importer expands all 29 shared M4–M6 indicators to three grade-specific draft lessons and grade-scoped question codes.
 - [x] No duplicate objective-to-skill assignments were found.
 - [x] No HPE lesson-content drafts or question-bank drafts have been imported.
 
@@ -65,3 +67,14 @@ No pilot school, class, student, assignment or learner records were created or c
 ## Source
 
 OBEC 2021 priority-classification document, Health and Physical Education section, summary and grade tables (printed pages 263–286). The grade totals and must-know / should-know counts match the live curriculum alignments.
+
+
+## Indicator-specific assessment authoring — 21 November 2026
+
+All 221 lesson entries now include a practical activity, expected evidence, teacher check and three answer-keyed independent-practice tasks (663 total). Each prompt quotes the exact official Thai indicator. Task design is strand-specific across body systems/development, relationships and boundaries, movement/sport, health promotion/prevention, and safety/life skills. Task complexity is differentiated across early primary, upper primary, lower secondary and shared upper secondary.
+
+Answer guidance is formative criteria, not a single rigid response for practical or open-ended tasks. Health and safety safeguards remain explicit: fictional scenarios for sensitive topics, no required personal disclosures, safe alternatives for learner ability/facilities, and trained supervision/mannequins for first aid or CPR.
+
+The importer now recognises HPE grade codes and expands the 29 `HPE-M46` shared indicators into 87 grade-specific lesson drafts and 261 grade-scoped questions. Grade-scoped codes prevent duplicate collisions while preserving the one shared official objective aligned to M4, M5 and M6.
+
+GitHub Actions run 176 passed all curriculum validators, including the actual TypeScript importer-parser check for 221 unique HPE indicators and 663 answer-keyed tasks, the production build and ESLint.
