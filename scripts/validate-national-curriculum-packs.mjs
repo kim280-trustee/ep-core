@@ -127,7 +127,6 @@ for (const pack of packs) {
 
   areaTotals.set(pack.area, (areaTotals.get(pack.area) ?? 0) + seenCodes.size);
   totalLessons += seenCodes.size;
-  process.stdout.write("Checked " + pack.path + ": " + headings.length + " lessons, " + seenCodes.size + " unique objective codes.\n");
 }
 
 for (const [area, expected] of Object.entries(expectedAreaTotals)) {
