@@ -43,7 +43,7 @@ The teacher pack `SCIENCE-TECHNOLOGY-W4.2-P1-P6-TEACHER-STARTER-PACK.md` contain
 
 ## Primary W1–W3 seed reconciliation
 
-The existing migration `20261118208000_seed_science_technology_primary_p1_p3_indicators.sql` already seeds the official P1–P3 W1–W3 set: 10 P1, 12 P2 and 20 P3 indicators (42 total). Together with the 28 primary W4.2 indicators, P1–P3 now reconcile to their full official grade totals (15, 16 and 25). This corrects the previous gap estimate, which counted these 42 records as missing.
+The existing migration `20261118208000_seed_science_technology_primary_p1_p3_indicators.sql` already seeds the official P1–P3 W1–W3 set: 10 P1, 12 P2 and 20 P3 indicators (42 total). A companion teacher pack, `P1-P3-science-w1-w3-teacher-starter-pack.md`, now provides 42 lesson starters and 126 formative tasks for these indicators. Together with the 28 primary W4.2 indicators, P1–P3 now reconcile to their full official grade totals (15, 16 and 25). This corrects the previous gap estimate, which counted these 42 records as missing.
 
 The remaining primary W1–W3 work is P4–P6 only: 16 P4, 27 P5 and 26 P6 indicators (69 total). Their Thai source wording and must/should classifications must be transcribed from the OBEC 2021 table before migration authoring; do not synthesize or infer official indicator text.
 
