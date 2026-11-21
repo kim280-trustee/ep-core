@@ -82,3 +82,10 @@ The Question Bank now lets an authorized teacher select a curriculum, grade and 
 The importer uses the authenticated Supabase client and existing row-level security policies. It does not use a service-role key, invent a system teacher, bypass RLS, publish records, create school/class/student rows, or modify live pilot data automatically.
 
 The importer is implemented in the repository. The 14 consolidated Science import files contain 546 lessons and 1,638 answer-keyed questions; none of these pack records have been imported. The national official core catalogue contains 415 unique indicators, with 270 additional specialist upper-secondary lesson outcomes in the prepared packs. Curriculum priorities and grade alignments have been reconciled against the live catalogue. The current branch CI run passed parser validation, production build and ESLint; no curriculum-pack records were created by CI. An authorized teacher must still perform the authenticated preview and controlled draft-save workflow in the target organization. End-to-end student/teacher checks remain pending.
+
+
+## Social Studies shared-grade outcomes
+
+Social Studies teacher packs use objective codes such as `SO2.1-P4-03`. The parser preserves the dotted standard code and maps the embedded grade to the exact grade-level alignment. The upper-secondary pack uses 61 shared `M46` outcomes; each aligns to M4, M5 and M6. The importer expands each shared outcome into three grade-specific draft lessons and uses grade-scoped content/question codes to avoid duplicate-code collisions. The official Thai indicator wording supplies the imported lesson title. No record is published automatically.
+
+Run `npm run validate:social-studies-packs` to verify all 418 Social Studies indicators and 1,254 answer-keyed formative tasks through the actual TypeScript importer parser.
