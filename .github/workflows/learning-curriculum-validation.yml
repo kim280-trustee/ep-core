@@ -46,6 +46,9 @@ jobs:
       - name: Validate consolidated Science teacher packs
         run: npm run validate:science-packs
 
+      - name: Validate Biology, Chemistry, Physics and Earth/Space specialist packs
+        run: npm run validate:science-specialist-packs
+
       - name: Validate Mathematics teacher packs through importer parser
         run: npm run validate:maths-packs
 
