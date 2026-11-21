@@ -185,9 +185,8 @@ order by e.grade_code;
 -- Primary W1-W3 indicator coverage. The expected counts are the official
 -- OBEC 2021 totals excluding the separately seeded W4.2 indicators:
 -- P1 10, P2 12, P3 20, P4 16, P5 27, P6 26 (111 total).
--- This query deliberately reports CHECK until the P4-P6 source-verified
--- indicators are seeded. It also catches a branch migration that has not
--- yet been deployed to the connected staging database.
+-- All six grade totals should now PASS. This catches regressions and confirms
+-- the corrective migrations have been applied to the connected staging database.
 with expected(grade_code,expected_w1_w3) as (
   values ('P1',10),('P2',12),('P3',20),('P4',16),('P5',27),('P6',26)
 ), actual as (
@@ -209,5 +208,44 @@ select e.grade_code,e.expected_w1_w3,coalesce(a.actual_w1_w3,0) actual_w1_w3,
        e.expected_w1_w3-coalesce(a.actual_w1_w3,0) remaining,
        case when coalesce(a.actual_w1_w3,0)=e.expected_w1_w3
          then 'PASS' else 'GAP' end result
+from expected e left join actual a using(grade_code)
+order by e.grade_code;
+
+-- Primary Science priority integrity: verify 139 indicators, no unclassified
+-- rows, and preserve the five source-documented dual-classification exceptions.
+-- P4/P5/P6 Must-Know and Should-Know totals include the dual indicator in both
+-- categories; the alignment table stores the second category in notes.
+with expected(grade_code,total,dual_count,expected_must,expected_should_including_dual) as (
+ values
+ ('P1',15,1,null,null),('P2',16,1,null,null),('P3',25,1,null,null),
+ ('P4',21,1,16,6),('P5',32,0,24,8),('P6',30,1,20,11)
+), actual as (
+ select g.code grade_code,
+        count(distinct o.id)::integer total,
+        count(distinct o.id) filter(where a.indicator_classification='must_know')::integer must_know,
+        count(distinct o.id) filter(where a.indicator_classification='should_know')::integer should_know,
+        count(distinct o.id) filter(where a.notes ilike '%dual%')::integer dual_count,
+        count(distinct o.id) filter(where a.indicator_classification is null)::integer unclassified
+ from public.learning_objective_alignments a
+ join public.learning_curricula c on c.id=a.curriculum_id
+ join public.learning_grade_levels g on g.id=a.grade_level_id and g.curriculum_id=c.id
+ join public.learning_objectives o on o.id=a.objective_id
+ join public.learning_topics t on t.id=o.topic_id
+ join public.learning_skills sk on sk.id=t.skill_id
+ join public.learning_subjects sub on sub.id=sk.subject_id
+ where c.code='TH-BASIC-CORE-2008-2017' and sub.code='SCI'
+   and g.code in ('P1','P2','P3','P4','P5','P6')
+ group by g.code
+)
+select e.grade_code,e.total expected_total,coalesce(a.total,0) actual_total,
+       e.dual_count expected_dual,coalesce(a.dual_count,0) actual_dual,
+       coalesce(a.must_know,0) actual_must,coalesce(a.should_know,0) stored_should,
+       coalesce(a.should_know,0)+coalesce(a.dual_count,0) should_including_dual,
+       coalesce(a.unclassified,0) unclassified,
+       case when coalesce(a.total,0)=e.total and coalesce(a.dual_count,0)=e.dual_count
+              and coalesce(a.unclassified,0)=0
+              and (e.expected_must is null or coalesce(a.must_know,0)=e.expected_must)
+              and (e.expected_should_including_dual is null or coalesce(a.should_know,0)+coalesce(a.dual_count,0)=e.expected_should_including_dual)
+         then 'PASS' else 'CHECK' end result
 from expected e left join actual a using(grade_code)
 order by e.grade_code;
