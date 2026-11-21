@@ -4,13 +4,13 @@ export function extractTeacherPackGradeCode(objectiveCode: string | null | undef
   const directGrade = objectiveCode.match(/^([PM][1-6])[-_]/i)?.[1];
   if (directGrade) return directGrade.toUpperCase();
 
-  // Social Studies codes place the grade after the standard (for example SO2.1-P4-03).
-  // M46 is intentionally not collapsed to one grade: those outcomes align to M4, M5 and M6.
-  return objectiveCode.match(/^SO[1-5]\.\d-([PM][1-6])-\d+$/i)?.[1]?.toUpperCase() ?? null;
+  // Subject-specific codes (for example SO2.1-P4-03, HPE-M1-01 and ARTS-P6-02)
+  // place the grade after a hyphen. Shared M46 codes are handled separately below.
+  return objectiveCode.match(/(?:^|[-_])([PM][1-6])(?:[-_])/i)?.[1]?.toUpperCase() ?? null;
 }
 
 export function extractTeacherPackGradeCodes(objectiveCode: string | null | undefined): string[] {
-  if (objectiveCode?.match(/^SO[1-5]\.\d-M46-\d+$/i)) return ["M4", "M5", "M6"];
+  if (objectiveCode?.match(/(?:^|[-_])M46(?:[-_])/i)) return ["M4", "M5", "M6"];
   const gradeCode = extractTeacherPackGradeCode(objectiveCode);
   return gradeCode ? [gradeCode] : [];
 }
