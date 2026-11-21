@@ -59,12 +59,20 @@ for (const pack of packs) {
         failures.push(`${pack.path}: duplicate objective code ${lesson.objectiveCode}`);
       }
       codes.add(lesson.objectiveCode);
+      if (allObjectiveCodes.has(lesson.objectiveCode)) {
+        failures.push(`${pack.path}: objective code ${lesson.objectiveCode} is duplicated across consolidated packs`);
+      }
+      allObjectiveCodes.add(lesson.objectiveCode);
 
       const grade = lesson.objectiveCode.match(/^(M[1-6])[-_]/)?.[1];
       if (!grade) {
         failures.push(`${pack.path}: objective code ${lesson.objectiveCode} has no recognized M1–M6 grade prefix`);
       } else {
         grades[grade] = (grades[grade] ?? 0) + 1;
+        const headingGrade = lesson.title.match(/^\\[(M[1-6])\\]/)?.[1];
+        if (headingGrade !== grade) {
+          failures.push(`${pack.path}: lesson ${lesson.number} heading grade ${headingGrade ?? "missing"} does not match objective grade ${grade}`);
+        }
       }
     }
 
@@ -90,7 +98,11 @@ for (const pack of packs) {
     }
   }
 
-  if (questionCount !== pack.expectedQuestions) {\n    failures.push(`${pack.path}: expected ${pack.expectedQuestions} questions, parsed ${questionCount}`);\n  }\n\n  for (const [grade, expectedCount] of Object.entries(pack.expectedGrades)) {
+  if (questionCount !== pack.expectedQuestions) {
+    failures.push(`${pack.path}: expected ${pack.expectedQuestions} questions, parsed ${questionCount}`);
+  }
+
+  for (const [grade, expectedCount] of Object.entries(pack.expectedGrades)) {
     if (grades[grade] !== expectedCount) {
       failures.push(`${pack.path}: expected ${expectedCount} ${grade} lessons, parsed ${grades[grade] ?? 0}`);
     }
