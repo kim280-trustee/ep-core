@@ -1,0 +1,2066 @@
+# E&P Learning — Primary Mathematics P4–P6 Teacher Starter Pack
+
+**Curriculum:** Thai Basic Education Core Curriculum B.E. 2551 (2008), Mathematics indicators revised B.E. 2560 (2017)  
+**Priority reference:** OBEC Must-Know / Should-Know detailed tables (2021), cross-walked to 2017 indicator codes  
+**Subject:** Mathematics  
+**Language:** English-first teaching notes; teachers may localise explanations into Thai.  
+**Status:** Teacher authoring resource. Draft lessons and answer-keyed formative tasks; not imported or published.
+
+## Grade coverage
+
+- **P4 (Prathom 4):** 22 official indicators
+- **P5 (Prathom 5):** 19 official indicators
+- **P6 (Prathom 6):** 21 official indicators
+
+## Academic alignment
+
+| Objective code | Official Thai indicator | Priority | Learning objective |
+|---|---|---|---|
+| `P4-K1_1-01` | ค 1.1 ป.4/1 | Must-Know | Read and write whole numbers greater than 100,000 |
+| `P4-K1_1-02` | ค 1.1 ป.4/2 | Must-Know | Compare and order large whole numbers |
+| `P4-K1_1-03` | ค 1.1 ป.4/3 | Must-Know | Represent fractions and mixed numbers |
+| `P4-K1_1-04` | ค 1.1 ป.4/4 | Must-Know | Compare and order fractions and mixed numbers |
+| `P4-K1_1-05` | ค 1.1 ป.4/5 | Must-Know | Read and write decimals to three decimal places |
+| `P4-K1_1-06` | ค 1.1 ป.4/6 | Must-Know | Compare and order decimals |
+| `P4-K1_1-07` | ค 1.1 ป.4/7 | Should-Know | Estimate results of the four basic operations |
+| `P4-K1_1-08` | ค 1.1 ป.4/8 | Should-Know | Find unknown values in addition and subtraction equations |
+| `P4-K1_1-09` | ค 1.1 ป.4/9 | Should-Know | Find unknown values in multiplication and division equations |
+| `P4-K1_1-10` | ค 1.1 ป.4/10 | Must-Know | Evaluate mixed-operation expressions |
+| `P4-K1_1-11` | ค 1.1 ป.4/11 | Should-Know | Solve two-step whole-number word problems |
+| `P4-K1_1-12` | ค 1.1 ป.4/12 | Should-Know | Create and solve two-step word problems |
+| `P4-K1_1-13` | ค 1.1 ป.4/13 | Must-Know | Add and subtract fractions and mixed numbers |
+| `P4-K1_1-14` | ค 1.1 ป.4/14 | Must-Know | Solve word problems involving fractions and mixed numbers |
+| `P4-K1_1-15` | ค 1.1 ป.4/15 | Must-Know | Add and subtract decimals |
+| `P4-K1_1-16` | ค 1.1 ป.4/16 | Must-Know | Solve word problems involving decimal operations |
+| `P4-K2_1-01` | ค 2.1 ป.4/1 | Must-Know | Solve problems involving time and duration |
+| `P4-K2_1-02` | ค 2.1 ป.4/2 | Should-Know | Measure and construct angles using a protractor |
+| `P4-K2_1-03` | ค 2.1 ป.4/3 | Must-Know | Find perimeter and area of rectangles |
+| `P4-K2_2-01` | ค 2.2 ป.4/1 | Must-Know | Classify angles by their measures |
+| `P4-K2_2-02` | ค 2.2 ป.4/2 | Should-Know | Construct rectangles from given side lengths |
+| `P4-K3_1-01` | ค 3.1 ป.4/1 | Must-Know | Read and interpret bar charts and two-way tables |
+| `P5-K1_1-01` | ค 1.1 ป.5/1 | Must-Know | Convert between common fractions and decimals |
+| `P5-K1_1-02` | ค 1.1 ป.5/2 | Must-Know | Use proportions to solve problems |
+| `P5-K1_1-03` | ค 1.1 ป.5/3 | Must-Know | Add and subtract fractions and mixed numbers |
+| `P5-K1_1-04` | ค 1.1 ป.5/4 | Must-Know | Multiply and divide fractions |
+| `P5-K1_1-05` | ค 1.1 ป.5/5 | Should-Know | Solve two-step fraction word problems |
+| `P5-K1_1-06` | ค 1.1 ป.5/6 | Must-Know | Multiply decimals |
+| `P5-K1_1-07` | ค 1.1 ป.5/7 | Must-Know | Divide decimals |
+| `P5-K1_1-08` | ค 1.1 ป.5/8 | Should-Know | Solve two-step decimal word problems |
+| `P5-K1_1-09` | ค 1.1 ป.5/9 | Must-Know | Solve percentage word problems |
+| `P5-K2_1-01` | ค 2.1 ป.5/1 | Should-Know | Convert length measurements between metric units |
+| `P5-K2_1-02` | ค 2.1 ป.5/2 | Should-Know | Convert weight measurements between metric units |
+| `P5-K2_1-03` | ค 2.1 ป.5/3 | Must-Know | Find volume of rectangular prisms and solve capacity problems |
+| `P5-K2_1-04` | ค 2.1 ป.5/4 | Must-Know | Find perimeter and area of parallelograms and rhombi |
+| `P5-K2_2-01` | ค 2.2 ป.5/1 | Should-Know | Construct parallel lines |
+| `P5-K2_2-02` | ค 2.2 ป.5/2 | Must-Know | Classify quadrilaterals by their properties |
+| `P5-K2_2-03` | ค 2.2 ป.5/3 | Should-Know | Construct quadrilaterals from given measurements |
+| `P5-K2_2-04` | ค 2.2 ป.5/4 | Should-Know | Identify prisms and describe their properties |
+| `P5-K3_1-01` | ค 3.1 ป.5/1 | Must-Know | Read and interpret line graphs |
+| `P5-K3_1-02` | ค 3.1 ป.5/2 | Should-Know | Create and interpret bar graphs |
+| `P6-K1_1-01` | ค 1.1 ป.6/1 | Must-Know | Compare and order fractions and mixed numbers |
+| `P6-K1_1-02` | ค 1.1 ป.6/2 | Must-Know | Represent comparisons of two quantities using ratios |
+| `P6-K1_1-03` | ค 1.1 ป.6/3 | Must-Know | Find equivalent ratios |
+| `P6-K1_1-04` | ค 1.1 ป.6/4 | Must-Know | Find the greatest common divisor of whole numbers |
+| `P6-K1_1-05` | ค 1.1 ป.6/5 | Must-Know | Find the least common multiple of whole numbers |
+| `P6-K1_1-06` | ค 1.1 ป.6/6 | Should-Know | Solve problems using greatest common divisors and least common multiples |
+| `P6-K1_1-07` | ค 1.1 ป.6/7 | Should-Know | Evaluate mixed operations with fractions and mixed numbers |
+| `P6-K1_1-08` | ค 1.1 ป.6/8 | Should-Know | Solve multi-step fraction and mixed-number word problems |
+| `P6-K1_1-09` | ค 1.1 ป.6/9 | Must-Know | Divide decimals to three decimal places |
+| `P6-K1_1-10` | ค 1.1 ป.6/10 | Should-Know | Solve multi-step decimal word problems |
+| `P6-K1_1-11` | ค 1.1 ป.6/11 | Must-Know | Solve ratio and scale problems |
+| `P6-K1_1-12` | ค 1.1 ป.6/12 | Must-Know | Solve percentage word problems in real-life contexts |
+| `P6-K1_2-01` | ค 1.2 ป.6/1 | Must-Know | Extend and solve problems involving number patterns |
+| `P6-K2_1-01` | ค 2.1 ป.6/1 | Must-Know | Solve volume problems involving composite rectangular prisms |
+| `P6-K2_1-02` | ค 2.1 ป.6/2 | Must-Know | Find perimeter and area of polygons |
+| `P6-K2_1-03` | ค 2.1 ป.6/3 | Must-Know | Solve problems involving circumference and area of circles |
+| `P6-K2_2-01` | ค 2.2 ป.6/1 | Must-Know | Classify triangles using their properties |
+| `P6-K2_2-02` | ค 2.2 ป.6/2 | Should-Know | Construct triangles from given side lengths and angles |
+| `P6-K2_2-03` | ค 2.2 ป.6/3 | Must-Know | Identify and describe three-dimensional solids |
+| `P6-K2_2-04` | ค 2.2 ป.6/4 | Should-Know | Match nets to three-dimensional solids |
+| `P6-K3_1-01` | ค 3.1 ป.6/1 | Must-Know | Read and interpret pie charts to solve problems |
+
+> Code note: Indicator suffixes follow the 2017 revised standards. Known transcription errors in the 2021 priority PDF are corrected in the source crosswalk; the Must-Know / Should-Know label remains attached to the corresponding content row.
+
+---
+
+## Lesson 1 — Read and write whole numbers greater than 100,000
+
+**Objective:** `P4-K1_1-01` — Read and write whole numbers greater than 100,000  
+**Official indicator:** ค 1.1 ป.4/1  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use base-ten blocks, place-value charts and number cards. Model each number in more than one form, then ask learners to explain how the place values determine its size.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Write 242,000 in expanded form.
+   **Answer:** The expanded form is 2,000,000 + 400,000 + 20,000.
+2. What is the value of the digit in the tens place in 242,000?
+   **Answer:** The tens digit is 0; its value is 0.
+3. A class collects 242,000 bottle caps. Show the number using place-value groups.
+   **Answer:** Use the place-value groups shown by the expanded form: 2,000,000 + 400,000 + 20,000.
+
+---
+
+## Lesson 2 — Compare and order large whole numbers
+
+**Objective:** `P4-K1_1-02` — Compare and order large whole numbers  
+**Official indicator:** ค 1.1 ป.4/2  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use number cards and a place-value chart. Learners compare the highest place first, record the correct symbol and justify the comparison.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Compare 254,000 and 254,125 using <, > or =.
+   **Answer:**  254,000 < 254,125.
+2. Which is greater: 254,125 or 254,050?
+   **Answer:**  254,125 is greater.
+3. Two teams score 254,000 and 254,125 points. Which team has the higher score?
+   **Answer:** The team with 254,125 points has the higher score.
+
+---
+
+## Lesson 3 — Represent fractions and mixed numbers
+
+**Objective:** `P4-K1_1-03` — Represent fractions and mixed numbers  
+**Official indicator:** ค 1.1 ป.4/3  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use fraction strips, paper folding and area models. Learners name equal parts, represent the fraction and explain the whole being considered.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. A shape is divided into 4 equal parts and 3 parts are shaded. What fraction is shaded?
+   **Answer:** 3/4.
+2. Are 1/2 and 2/4 equivalent fractions? Explain briefly.
+   **Answer:** Yes. Both represent one half; 1/2 = 2/4.
+3. A pizza is cut into 4 equal slices. A learner eats 3 slices. What fraction is eaten?
+   **Answer:** 3/4.
+
+---
+
+## Lesson 4 — Compare and order fractions and mixed numbers
+
+**Objective:** `P4-K1_1-04` — Compare and order fractions and mixed numbers  
+**Official indicator:** ค 1.1 ป.4/4  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use fraction strips, paper folding and area models. Learners name equal parts, represent the fraction and explain the whole being considered.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. A shape is divided into 4 equal parts and 3 parts are shaded. What fraction is shaded?
+   **Answer:** 3/4.
+2. Are 1/2 and 2/4 equivalent fractions? Explain briefly.
+   **Answer:** Yes. Both represent one half; 1/2 = 2/4.
+3. A pizza is cut into 4 equal slices. A learner eats 3 slices. What fraction is eaten?
+   **Answer:** 3/4.
+
+---
+
+## Lesson 5 — Read and write decimals to three decimal places
+
+**Objective:** `P4-K1_1-05` — Read and write decimals to three decimal places  
+**Official indicator:** ค 1.1 ป.4/5  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use place-value grids and money or measurement examples. Align decimal places, calculate carefully and estimate to check the result.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Calculate 2.35 + 1.40.
+   **Answer:** 3.75.
+2. Which is greater: 3.05 or 3.5?
+   **Answer:** 3.5 is greater because 3.50 > 3.05.
+3. A notebook costs 12.50 baht and a pen costs 8.75 baht. What is the total?
+   **Answer:** 21.25 baht.
+
+---
+
+## Lesson 6 — Compare and order decimals
+
+**Objective:** `P4-K1_1-06` — Compare and order decimals  
+**Official indicator:** ค 1.1 ป.4/6  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use place-value grids and money or measurement examples. Align decimal places, calculate carefully and estimate to check the result.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Calculate 2.35 + 1.40.
+   **Answer:** 3.75.
+2. Which is greater: 3.05 or 3.5?
+   **Answer:** 3.5 is greater because 3.50 > 3.05.
+3. A notebook costs 12.50 baht and a pen costs 8.75 baht. What is the total?
+   **Answer:** 21.25 baht.
+
+---
+
+## Lesson 7 — Estimate results of the four basic operations
+
+**Objective:** `P4-K1_1-07` — Estimate results of the four basic operations  
+**Official indicator:** ค 1.1 ป.4/7  
+**Priority:** Should-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use coloured counters, recipe cards or scale drawings. Represent the relationship in order, make equivalent ratios and explain what each term counts.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. There are 2 red counters and 3 blue counters. Write the ratio of red to blue.
+   **Answer:** 2:3.
+2. Write a ratio equivalent to 2:3 with the first term equal to 8.
+   **Answer:** 8:12.
+3. A drink uses 2 cups of syrup for every 3 cups of water. How much water is needed for 4 cups of syrup?
+   **Answer:** 6 cups of water.
+
+---
+
+## Lesson 8 — Find unknown values in addition and subtraction equations
+
+**Objective:** `P4-K1_1-08` — Find unknown values in addition and subtraction equations  
+**Official indicator:** ค 1.1 ป.4/8  
+**Priority:** Should-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use balance models and missing-number cards. Learners represent the unknown with a box, write an equation and check the solution by substitution.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Find the missing number: 32 + □ = 70.
+   **Answer:** The missing number is 38.
+2. Find the missing number: □ − 18 = 32.
+   **Answer:** The missing number is 50.
+3. A box had 58 counters. Some were removed and 32 remain. How many were removed?
+   **Answer:**  26 counters were removed.
+
+---
+
+## Lesson 9 — Find unknown values in multiplication and division equations
+
+**Objective:** `P4-K1_1-09` — Find unknown values in multiplication and division equations  
+**Official indicator:** ค 1.1 ป.4/9  
+**Priority:** Should-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Share counters into equal groups. Connect the sharing model to division, multiplication facts and checking the quotient.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Calculate 40 ÷ 8.
+   **Answer:**  5.
+2. A division gives 6. If the divisor is 7, what is the dividend?
+   **Answer:**  42.
+3. Share 48 cards equally among 8 learners. How many cards does each learner receive?
+   **Answer:** 6 cards each.
+
+---
+
+## Lesson 10 — Evaluate mixed-operation expressions
+
+**Objective:** `P4-K1_1-10` — Evaluate mixed-operation expressions  
+**Official indicator:** ค 1.1 ป.4/10  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use coloured counters, recipe cards or scale drawings. Represent the relationship in order, make equivalent ratios and explain what each term counts.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. There are 2 red counters and 3 blue counters. Write the ratio of red to blue.
+   **Answer:** 2:3.
+2. Write a ratio equivalent to 2:3 with the first term equal to 8.
+   **Answer:** 8:12.
+3. A drink uses 2 cups of syrup for every 3 cups of water. How much water is needed for 4 cups of syrup?
+   **Answer:** 6 cups of water.
+
+---
+
+## Lesson 11 — Solve two-step whole-number word problems
+
+**Objective:** `P4-K1_1-11` — Solve two-step whole-number word problems  
+**Official indicator:** ค 1.1 ป.4/11  
+**Priority:** Should-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Present a familiar classroom or community problem. Learners identify the known information, choose an operation, write an equation and check whether the answer is reasonable.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. A library has 92 storybooks and receives 23 more. How many storybooks are there now?
+   **Answer:**  104 storybooks.
+2. There are 111 pencils. Students use 26 pencils. How many remain?
+   **Answer:**  85 pencils remain.
+3. Write an equation for a situation where 36 items are joined by 18 more items, then solve it.
+   **Answer:** (36) + (18) = 54.
+
+---
+
+## Lesson 12 — Create and solve two-step word problems
+
+**Objective:** `P4-K1_1-12` — Create and solve two-step word problems  
+**Official indicator:** ค 1.1 ป.4/12  
+**Priority:** Should-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Present a familiar classroom or community problem. Learners identify the known information, choose an operation, write an equation and check whether the answer is reasonable.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. A library has 94 storybooks and receives 24 more. How many storybooks are there now?
+   **Answer:**  106 storybooks.
+2. There are 112 pencils. Students use 27 pencils. How many remain?
+   **Answer:**  85 pencils remain.
+3. Write an equation for a situation where 37 items are joined by 18 more items, then solve it.
+   **Answer:** (37) + (18) = 55.
+
+---
+
+## Lesson 13 — Add and subtract fractions and mixed numbers
+
+**Objective:** `P4-K1_1-13` — Add and subtract fractions and mixed numbers  
+**Official indicator:** ค 1.1 ป.4/13  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use fraction strips, paper folding and area models. Learners name equal parts, represent the fraction and explain the whole being considered.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. A shape is divided into 4 equal parts and 3 parts are shaded. What fraction is shaded?
+   **Answer:** 3/4.
+2. Are 1/2 and 2/4 equivalent fractions? Explain briefly.
+   **Answer:** Yes. Both represent one half; 1/2 = 2/4.
+3. A pizza is cut into 4 equal slices. A learner eats 3 slices. What fraction is eaten?
+   **Answer:** 3/4.
+
+---
+
+## Lesson 14 — Solve word problems involving fractions and mixed numbers
+
+**Objective:** `P4-K1_1-14` — Solve word problems involving fractions and mixed numbers  
+**Official indicator:** ค 1.1 ป.4/14  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use fraction strips, paper folding and area models. Learners name equal parts, represent the fraction and explain the whole being considered.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. A shape is divided into 4 equal parts and 3 parts are shaded. What fraction is shaded?
+   **Answer:** 3/4.
+2. Are 1/2 and 2/4 equivalent fractions? Explain briefly.
+   **Answer:** Yes. Both represent one half; 1/2 = 2/4.
+3. A pizza is cut into 4 equal slices. A learner eats 3 slices. What fraction is eaten?
+   **Answer:** 3/4.
+
+---
+
+## Lesson 15 — Add and subtract decimals
+
+**Objective:** `P4-K1_1-15` — Add and subtract decimals  
+**Official indicator:** ค 1.1 ป.4/15  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use place-value grids and money or measurement examples. Align decimal places, calculate carefully and estimate to check the result.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Calculate 2.35 + 1.40.
+   **Answer:** 3.75.
+2. Which is greater: 3.05 or 3.5?
+   **Answer:** 3.5 is greater because 3.50 > 3.05.
+3. A notebook costs 12.50 baht and a pen costs 8.75 baht. What is the total?
+   **Answer:** 21.25 baht.
+
+---
+
+## Lesson 16 — Solve word problems involving decimal operations
+
+**Objective:** `P4-K1_1-16` — Solve word problems involving decimal operations  
+**Official indicator:** ค 1.1 ป.4/16  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use coloured counters, recipe cards or scale drawings. Represent the relationship in order, make equivalent ratios and explain what each term counts.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. There are 2 red counters and 3 blue counters. Write the ratio of red to blue.
+   **Answer:** 2:3.
+2. Write a ratio equivalent to 2:3 with the first term equal to 8.
+   **Answer:** 8:12.
+3. A drink uses 2 cups of syrup for every 3 cups of water. How much water is needed for 4 cups of syrup?
+   **Answer:** 6 cups of water.
+
+---
+
+## Lesson 17 — Solve problems involving time and duration
+
+**Objective:** `P4-K2_1-01` — Solve problems involving time and duration  
+**Official indicator:** ค 2.1 ป.4/1  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use clock faces, calendars and simple schedules. Read start and finish times, calculate elapsed time and explain the time relationship.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. A lesson starts at 8:35 and lasts 45 minutes. What time does it finish?
+   **Answer:** 9:20.
+2. How many minutes are there from 9:40 to 10:15?
+   **Answer:** 35 minutes.
+3. A bus leaves at 13:25 and arrives at 14:10. How long is the journey?
+   **Answer:** 45 minutes.
+
+---
+
+## Lesson 18 — Measure and construct angles using a protractor
+
+**Objective:** `P4-K2_1-02` — Measure and construct angles using a protractor  
+**Official indicator:** ค 2.1 ป.4/2  
+**Priority:** Should-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use angle cards and a protractor. Identify the vertex and arms, classify the angle, measure it and construct a requested angle.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Classify angles of 45°, 90° and 120°.
+   **Answer:** 45° is acute, 90° is right, and 120° is obtuse.
+2. What tool is used to measure an angle accurately?
+   **Answer:** A protractor.
+3. Draw or describe an angle measuring 60°.
+   **Answer:** An acute angle measuring 60°; the two rays meet at one vertex.
+
+---
+
+## Lesson 19 — Find perimeter and area of rectangles
+
+**Objective:** `P4-K2_1-03` — Find perimeter and area of rectangles  
+**Official indicator:** ค 2.1 ป.4/3  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use angle cards and a protractor. Identify the vertex and arms, classify the angle, measure it and construct a requested angle.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Classify angles of 45°, 90° and 120°.
+   **Answer:** 45° is acute, 90° is right, and 120° is obtuse.
+2. What tool is used to measure an angle accurately?
+   **Answer:** A protractor.
+3. Draw or describe an angle measuring 60°.
+   **Answer:** An acute angle measuring 60°; the two rays meet at one vertex.
+
+---
+
+## Lesson 20 — Classify angles by their measures
+
+**Objective:** `P4-K2_2-01` — Classify angles by their measures  
+**Official indicator:** ค 2.2 ป.4/1  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use angle cards and a protractor. Identify the vertex and arms, classify the angle, measure it and construct a requested angle.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Classify angles of 45°, 90° and 120°.
+   **Answer:** 45° is acute, 90° is right, and 120° is obtuse.
+2. What tool is used to measure an angle accurately?
+   **Answer:** A protractor.
+3. Draw or describe an angle measuring 60°.
+   **Answer:** An acute angle measuring 60°; the two rays meet at one vertex.
+
+---
+
+## Lesson 21 — Construct rectangles from given side lengths
+
+**Objective:** `P4-K2_2-02` — Construct rectangles from given side lengths  
+**Official indicator:** ค 2.2 ป.4/2  
+**Priority:** Should-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use angle cards and a protractor. Identify the vertex and arms, classify the angle, measure it and construct a requested angle.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Classify angles of 45°, 90° and 120°.
+   **Answer:** 45° is acute, 90° is right, and 120° is obtuse.
+2. What tool is used to measure an angle accurately?
+   **Answer:** A protractor.
+3. Draw or describe an angle measuring 60°.
+   **Answer:** An acute angle measuring 60°; the two rays meet at one vertex.
+
+---
+
+## Lesson 22 — Read and interpret bar charts and two-way tables
+
+**Objective:** `P4-K3_1-01` — Read and interpret bar charts and two-way tables  
+**Official indicator:** ค 3.1 ป.4/1  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use a small class survey and a prepared table or graph. Read values, compare categories, explain conclusions and create a correctly labelled representation.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. A pictograph or table shows Monday = 4, Tuesday = 6 and Wednesday = 3. Which day has the greatest value?
+   **Answer:** Tuesday, with 6.
+2. Using the same data, how many more were recorded on Tuesday than Wednesday?
+   **Answer:** 3 more.
+3. What is the total for the three days, and what should a suitable graph include?
+   **Answer:** 13 in total. A suitable graph needs a clear title, labelled categories, a scale/key and correctly plotted values.
+
+---
+
+## Lesson 23 — Convert between common fractions and decimals
+
+**Objective:** `P5-K1_1-01` — Convert between common fractions and decimals  
+**Official indicator:** ค 1.1 ป.5/1  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use place-value grids and money or measurement examples. Align decimal places, calculate carefully and estimate to check the result.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Calculate 2.35 + 1.40.
+   **Answer:** 3.75.
+2. Which is greater: 3.05 or 3.5?
+   **Answer:** 3.5 is greater because 3.50 > 3.05.
+3. A notebook costs 12.50 baht and a pen costs 8.75 baht. What is the total?
+   **Answer:** 21.25 baht.
+
+---
+
+## Lesson 24 — Use proportions to solve problems
+
+**Objective:** `P5-K1_1-02` — Use proportions to solve problems  
+**Official indicator:** ค 1.1 ป.5/2  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use coloured counters, recipe cards or scale drawings. Represent the relationship in order, make equivalent ratios and explain what each term counts.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. There are 2 red counters and 3 blue counters. Write the ratio of red to blue.
+   **Answer:** 2:3.
+2. Write a ratio equivalent to 2:3 with the first term equal to 8.
+   **Answer:** 8:12.
+3. A drink uses 2 cups of syrup for every 3 cups of water. How much water is needed for 4 cups of syrup?
+   **Answer:** 6 cups of water.
+
+---
+
+## Lesson 25 — Add and subtract fractions and mixed numbers
+
+**Objective:** `P5-K1_1-03` — Add and subtract fractions and mixed numbers  
+**Official indicator:** ค 1.1 ป.5/3  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use fraction strips, paper folding and area models. Learners name equal parts, represent the fraction and explain the whole being considered.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. A shape is divided into 4 equal parts and 3 parts are shaded. What fraction is shaded?
+   **Answer:** 3/4.
+2. Are 1/2 and 2/4 equivalent fractions? Explain briefly.
+   **Answer:** Yes. Both represent one half; 1/2 = 2/4.
+3. A pizza is cut into 4 equal slices. A learner eats 3 slices. What fraction is eaten?
+   **Answer:** 3/4.
+
+---
+
+## Lesson 26 — Multiply and divide fractions
+
+**Objective:** `P5-K1_1-04` — Multiply and divide fractions  
+**Official indicator:** ค 1.1 ป.5/4  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use fraction strips, paper folding and area models. Learners name equal parts, represent the fraction and explain the whole being considered.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. A shape is divided into 4 equal parts and 3 parts are shaded. What fraction is shaded?
+   **Answer:** 3/4.
+2. Are 1/2 and 2/4 equivalent fractions? Explain briefly.
+   **Answer:** Yes. Both represent one half; 1/2 = 2/4.
+3. A pizza is cut into 4 equal slices. A learner eats 3 slices. What fraction is eaten?
+   **Answer:** 3/4.
+
+---
+
+## Lesson 27 — Solve two-step fraction word problems
+
+**Objective:** `P5-K1_1-05` — Solve two-step fraction word problems  
+**Official indicator:** ค 1.1 ป.5/5  
+**Priority:** Should-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use fraction strips, paper folding and area models. Learners name equal parts, represent the fraction and explain the whole being considered.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. A shape is divided into 4 equal parts and 3 parts are shaded. What fraction is shaded?
+   **Answer:** 3/4.
+2. Are 1/2 and 2/4 equivalent fractions? Explain briefly.
+   **Answer:** Yes. Both represent one half; 1/2 = 2/4.
+3. A pizza is cut into 4 equal slices. A learner eats 3 slices. What fraction is eaten?
+   **Answer:** 3/4.
+
+---
+
+## Lesson 28 — Multiply decimals
+
+**Objective:** `P5-K1_1-06` — Multiply decimals  
+**Official indicator:** ค 1.1 ป.5/6  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use place-value grids and money or measurement examples. Align decimal places, calculate carefully and estimate to check the result.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Calculate 2.35 + 1.40.
+   **Answer:** 3.75.
+2. Which is greater: 3.05 or 3.5?
+   **Answer:** 3.5 is greater because 3.50 > 3.05.
+3. A notebook costs 12.50 baht and a pen costs 8.75 baht. What is the total?
+   **Answer:** 21.25 baht.
+
+---
+
+## Lesson 29 — Divide decimals
+
+**Objective:** `P5-K1_1-07` — Divide decimals  
+**Official indicator:** ค 1.1 ป.5/7  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use place-value grids and money or measurement examples. Align decimal places, calculate carefully and estimate to check the result.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Calculate 2.35 + 1.40.
+   **Answer:** 3.75.
+2. Which is greater: 3.05 or 3.5?
+   **Answer:** 3.5 is greater because 3.50 > 3.05.
+3. A notebook costs 12.50 baht and a pen costs 8.75 baht. What is the total?
+   **Answer:** 21.25 baht.
+
+---
+
+## Lesson 30 — Solve two-step decimal word problems
+
+**Objective:** `P5-K1_1-08` — Solve two-step decimal word problems  
+**Official indicator:** ค 1.1 ป.5/8  
+**Priority:** Should-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use place-value grids and money or measurement examples. Align decimal places, calculate carefully and estimate to check the result.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Calculate 2.35 + 1.40.
+   **Answer:** 3.75.
+2. Which is greater: 3.05 or 3.5?
+   **Answer:** 3.5 is greater because 3.50 > 3.05.
+3. A notebook costs 12.50 baht and a pen costs 8.75 baht. What is the total?
+   **Answer:** 21.25 baht.
+
+---
+
+## Lesson 31 — Solve percentage word problems
+
+**Objective:** `P5-K1_1-09` — Solve percentage word problems  
+**Official indicator:** ค 1.1 ป.5/9  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use 100-square grids and familiar prices. Connect a percentage to parts per hundred and explain the calculation in context.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Find 25% of 80.
+   **Answer:** 20.
+2. Find 10% of 250.
+   **Answer:** 25.
+3. A bag costs 500 baht and has a 20% discount. How much is the discount and sale price?
+   **Answer:** The discount is 100 baht; the sale price is 400 baht.
+
+---
+
+## Lesson 32 — Convert length measurements between metric units
+
+**Objective:** `P5-K2_1-01` — Convert length measurements between metric units  
+**Official indicator:** ค 2.1 ป.5/1  
+**Priority:** Should-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use rulers, metre sticks and real classroom objects. Choose suitable units, measure, convert and compare lengths.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Convert 1 metre 25 centimetres into centimetres.
+   **Answer:** 125 centimetres.
+2. Which is longer: 2 metres 10 centimetres or 195 centimetres?
+   **Answer:** 2 m 10 cm = 210 cm, so it is longer.
+3. A ribbon is 2 m 30 cm long. Another is 1 m 40 cm long. What is their combined length?
+   **Answer:** 3 m 70 cm.
+
+---
+
+## Lesson 33 — Convert weight measurements between metric units
+
+**Objective:** `P5-K2_1-02` — Convert weight measurements between metric units  
+**Official indicator:** ค 2.1 ป.5/2  
+**Priority:** Should-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use balance scales and labelled masses. Estimate first, measure with suitable units and compare or combine measurements.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Convert 2 kilograms 300 grams into grams.
+   **Answer:** 2,300 grams.
+2. Which is heavier: 1 kg 750 g or 1.8 kg?
+   **Answer:** 1.8 kg is 1,800 g, so 1.8 kg is heavier.
+3. A bag weighs 3 kg and another weighs 750 g. What is their combined weight?
+   **Answer:** 3 kg 750 g.
+
+---
+
+## Lesson 34 — Find volume of rectangular prisms and solve capacity problems
+
+**Objective:** `P5-K2_1-03` — Find volume of rectangular prisms and solve capacity problems  
+**Official indicator:** ค 2.1 ป.5/3  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use solid models and real packages. Count faces, edges and vertices, compare properties and match solids to real objects.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. How many faces, edges and vertices does a cube have?
+   **Answer:** 6 faces, 12 edges and 8 vertices.
+2. Name a solid with two circular flat faces and one curved surface.
+   **Answer:** A cylinder.
+3. Which solid is suitable for a ball, and which for a drinks can?
+   **Answer:** A sphere for a ball; a cylinder for a drinks can.
+
+---
+
+## Lesson 35 — Find perimeter and area of parallelograms and rhombi
+
+**Objective:** `P5-K2_1-04` — Find perimeter and area of parallelograms and rhombi  
+**Official indicator:** ค 2.1 ป.5/4  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use grid paper and shape cut-outs. Identify base and height or length and width, calculate area or perimeter, and label square units correctly.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Find the area of a rectangle that is 8 cm long and 5 cm wide.
+   **Answer:** 40 cm².
+2. A parallelogram has a base of 8 cm and a perpendicular height of 4 cm. Find its area.
+   **Answer:** 32 cm².
+3. A rectangle is 8 cm by 5 cm. Find its perimeter.
+   **Answer:** 26 cm.
+
+---
+
+## Lesson 36 — Construct parallel lines
+
+**Objective:** `P5-K2_2-01` — Construct parallel lines  
+**Official indicator:** ค 2.2 ป.5/1  
+**Priority:** Should-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use base-ten blocks, place-value charts and number cards. Model each number in more than one form, then ask learners to explain how the place values determine its size.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Write 2,410,000 in expanded form.
+   **Answer:** The expanded form is 200,000,000 + 4,000,000 + 100,000.
+2. What is the value of the digit in the tens place in 2,410,000?
+   **Answer:** The tens digit is 0; its value is 0.
+3. A class collects 2,410,000 bottle caps. Show the number using place-value groups.
+   **Answer:** Use the place-value groups shown by the expanded form: 200,000,000 + 4,000,000 + 100,000.
+
+---
+
+## Lesson 37 — Classify quadrilaterals by their properties
+
+**Objective:** `P5-K2_2-02` — Classify quadrilaterals by their properties  
+**Official indicator:** ค 2.2 ป.5/2  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use base-ten blocks, place-value charts and number cards. Model each number in more than one form, then ask learners to explain how the place values determine its size.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Write 2,520,000 in expanded form.
+   **Answer:** The expanded form is 200,000,000 + 5,000,000 + 200,000.
+2. What is the value of the digit in the tens place in 2,520,000?
+   **Answer:** The tens digit is 0; its value is 0.
+3. A class collects 2,520,000 bottle caps. Show the number using place-value groups.
+   **Answer:** Use the place-value groups shown by the expanded form: 200,000,000 + 5,000,000 + 200,000.
+
+---
+
+## Lesson 38 — Construct quadrilaterals from given measurements
+
+**Objective:** `P5-K2_2-03` — Construct quadrilaterals from given measurements  
+**Official indicator:** ค 2.2 ป.5/3  
+**Priority:** Should-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use base-ten blocks, place-value charts and number cards. Model each number in more than one form, then ask learners to explain how the place values determine its size.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Write 2,630,000 in expanded form.
+   **Answer:** The expanded form is 200,000,000 + 6,000,000 + 300,000.
+2. What is the value of the digit in the tens place in 2,630,000?
+   **Answer:** The tens digit is 0; its value is 0.
+3. A class collects 2,630,000 bottle caps. Show the number using place-value groups.
+   **Answer:** Use the place-value groups shown by the expanded form: 200,000,000 + 6,000,000 + 300,000.
+
+---
+
+## Lesson 39 — Identify prisms and describe their properties
+
+**Objective:** `P5-K2_2-04` — Identify prisms and describe their properties  
+**Official indicator:** ค 2.2 ป.5/4  
+**Priority:** Should-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use solid models and real packages. Count faces, edges and vertices, compare properties and match solids to real objects.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. How many faces, edges and vertices does a cube have?
+   **Answer:** 6 faces, 12 edges and 8 vertices.
+2. Name a solid with two circular flat faces and one curved surface.
+   **Answer:** A cylinder.
+3. Which solid is suitable for a ball, and which for a drinks can?
+   **Answer:** A sphere for a ball; a cylinder for a drinks can.
+
+---
+
+## Lesson 40 — Read and interpret line graphs
+
+**Objective:** `P5-K3_1-01` — Read and interpret line graphs  
+**Official indicator:** ค 3.1 ป.5/1  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use a small class survey and a prepared table or graph. Read values, compare categories, explain conclusions and create a correctly labelled representation.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. A pictograph or table shows Monday = 4, Tuesday = 6 and Wednesday = 3. Which day has the greatest value?
+   **Answer:** Tuesday, with 6.
+2. Using the same data, how many more were recorded on Tuesday than Wednesday?
+   **Answer:** 3 more.
+3. What is the total for the three days, and what should a suitable graph include?
+   **Answer:** 13 in total. A suitable graph needs a clear title, labelled categories, a scale/key and correctly plotted values.
+
+---
+
+## Lesson 41 — Create and interpret bar graphs
+
+**Objective:** `P5-K3_1-02` — Create and interpret bar graphs  
+**Official indicator:** ค 3.1 ป.5/2  
+**Priority:** Should-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use a small class survey and a prepared table or graph. Read values, compare categories, explain conclusions and create a correctly labelled representation.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. A pictograph or table shows Monday = 4, Tuesday = 6 and Wednesday = 3. Which day has the greatest value?
+   **Answer:** Tuesday, with 6.
+2. Using the same data, how many more were recorded on Tuesday than Wednesday?
+   **Answer:** 3 more.
+3. What is the total for the three days, and what should a suitable graph include?
+   **Answer:** 13 in total. A suitable graph needs a clear title, labelled categories, a scale/key and correctly plotted values.
+
+---
+
+## Lesson 42 — Compare and order fractions and mixed numbers
+
+**Objective:** `P6-K1_1-01` — Compare and order fractions and mixed numbers  
+**Official indicator:** ค 1.1 ป.6/1  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use fraction strips, paper folding and area models. Learners name equal parts, represent the fraction and explain the whole being considered.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. A shape is divided into 4 equal parts and 3 parts are shaded. What fraction is shaded?
+   **Answer:** 3/4.
+2. Are 1/2 and 2/4 equivalent fractions? Explain briefly.
+   **Answer:** Yes. Both represent one half; 1/2 = 2/4.
+3. A pizza is cut into 4 equal slices. A learner eats 3 slices. What fraction is eaten?
+   **Answer:** 3/4.
+
+---
+
+## Lesson 43 — Represent comparisons of two quantities using ratios
+
+**Objective:** `P6-K1_1-02` — Represent comparisons of two quantities using ratios  
+**Official indicator:** ค 1.1 ป.6/2  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use coloured counters, recipe cards or scale drawings. Represent the relationship in order, make equivalent ratios and explain what each term counts.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. There are 2 red counters and 3 blue counters. Write the ratio of red to blue.
+   **Answer:** 2:3.
+2. Write a ratio equivalent to 2:3 with the first term equal to 8.
+   **Answer:** 8:12.
+3. A drink uses 2 cups of syrup for every 3 cups of water. How much water is needed for 4 cups of syrup?
+   **Answer:** 6 cups of water.
+
+---
+
+## Lesson 44 — Find equivalent ratios
+
+**Objective:** `P6-K1_1-03` — Find equivalent ratios  
+**Official indicator:** ค 1.1 ป.6/3  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use coloured counters, recipe cards or scale drawings. Represent the relationship in order, make equivalent ratios and explain what each term counts.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. There are 2 red counters and 3 blue counters. Write the ratio of red to blue.
+   **Answer:** 2:3.
+2. Write a ratio equivalent to 2:3 with the first term equal to 8.
+   **Answer:** 8:12.
+3. A drink uses 2 cups of syrup for every 3 cups of water. How much water is needed for 4 cups of syrup?
+   **Answer:** 6 cups of water.
+
+---
+
+## Lesson 45 — Find the greatest common divisor of whole numbers
+
+**Objective:** `P6-K1_1-04` — Find the greatest common divisor of whole numbers  
+**Official indicator:** ค 1.1 ป.6/4  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** List factors and use factor pairs. Compare the factors of the given numbers, identify the greatest common factor and connect it to equal grouping.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Find the greatest common divisor of 18 and 24.
+   **Answer:** 6.
+2. List the common factors of 18 and 24.
+   **Answer:** 1, 2, 3 and 6.
+3. Arrange 18 red and 24 blue counters into the greatest possible number of identical groups without leftovers. How many groups can be made?
+   **Answer:** 6 groups.
+
+---
+
+## Lesson 46 — Find the least common multiple of whole numbers
+
+**Objective:** `P6-K1_1-05` — Find the least common multiple of whole numbers  
+**Official indicator:** ค 1.1 ป.6/5  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Build multiples lists or number-line jumps. Identify the first common multiple and connect it to repeated events.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Find the least common multiple of 6 and 8.
+   **Answer:** 24.
+2. Write the first three positive multiples of 6 and of 8.
+   **Answer:** Multiples of 6: 6, 12, 18. Multiples of 8: 8, 16, 24.
+3. One bell rings every 6 minutes and another every 8 minutes. If they ring together now, after how many minutes will they ring together again?
+   **Answer:** After 24 minutes.
+
+---
+
+## Lesson 47 — Solve problems using greatest common divisors and least common multiples
+
+**Objective:** `P6-K1_1-06` — Solve problems using greatest common divisors and least common multiples  
+**Official indicator:** ค 1.1 ป.6/6  
+**Priority:** Should-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** List factors and use factor pairs. Compare the factors of the given numbers, identify the greatest common factor and connect it to equal grouping.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Find the greatest common divisor of 18 and 24.
+   **Answer:** 6.
+2. List the common factors of 18 and 24.
+   **Answer:** 1, 2, 3 and 6.
+3. Arrange 18 red and 24 blue counters into the greatest possible number of identical groups without leftovers. How many groups can be made?
+   **Answer:** 6 groups.
+
+---
+
+## Lesson 48 — Evaluate mixed operations with fractions and mixed numbers
+
+**Objective:** `P6-K1_1-07` — Evaluate mixed operations with fractions and mixed numbers  
+**Official indicator:** ค 1.1 ป.6/7  
+**Priority:** Should-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use coloured counters, recipe cards or scale drawings. Represent the relationship in order, make equivalent ratios and explain what each term counts.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. There are 2 red counters and 3 blue counters. Write the ratio of red to blue.
+   **Answer:** 2:3.
+2. Write a ratio equivalent to 2:3 with the first term equal to 8.
+   **Answer:** 8:12.
+3. A drink uses 2 cups of syrup for every 3 cups of water. How much water is needed for 4 cups of syrup?
+   **Answer:** 6 cups of water.
+
+---
+
+## Lesson 49 — Solve multi-step fraction and mixed-number word problems
+
+**Objective:** `P6-K1_1-08` — Solve multi-step fraction and mixed-number word problems  
+**Official indicator:** ค 1.1 ป.6/8  
+**Priority:** Should-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use fraction strips, paper folding and area models. Learners name equal parts, represent the fraction and explain the whole being considered.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. A shape is divided into 4 equal parts and 3 parts are shaded. What fraction is shaded?
+   **Answer:** 3/4.
+2. Are 1/2 and 2/4 equivalent fractions? Explain briefly.
+   **Answer:** Yes. Both represent one half; 1/2 = 2/4.
+3. A pizza is cut into 4 equal slices. A learner eats 3 slices. What fraction is eaten?
+   **Answer:** 3/4.
+
+---
+
+## Lesson 50 — Divide decimals to three decimal places
+
+**Objective:** `P6-K1_1-09` — Divide decimals to three decimal places  
+**Official indicator:** ค 1.1 ป.6/9  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use place-value grids and money or measurement examples. Align decimal places, calculate carefully and estimate to check the result.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Calculate 2.35 + 1.40.
+   **Answer:** 3.75.
+2. Which is greater: 3.05 or 3.5?
+   **Answer:** 3.5 is greater because 3.50 > 3.05.
+3. A notebook costs 12.50 baht and a pen costs 8.75 baht. What is the total?
+   **Answer:** 21.25 baht.
+
+---
+
+## Lesson 51 — Solve multi-step decimal word problems
+
+**Objective:** `P6-K1_1-10` — Solve multi-step decimal word problems  
+**Official indicator:** ค 1.1 ป.6/10  
+**Priority:** Should-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use place-value grids and money or measurement examples. Align decimal places, calculate carefully and estimate to check the result.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Calculate 2.35 + 1.40.
+   **Answer:** 3.75.
+2. Which is greater: 3.05 or 3.5?
+   **Answer:** 3.5 is greater because 3.50 > 3.05.
+3. A notebook costs 12.50 baht and a pen costs 8.75 baht. What is the total?
+   **Answer:** 21.25 baht.
+
+---
+
+## Lesson 52 — Solve ratio and scale problems
+
+**Objective:** `P6-K1_1-11` — Solve ratio and scale problems  
+**Official indicator:** ค 1.1 ป.6/11  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use coloured counters, recipe cards or scale drawings. Represent the relationship in order, make equivalent ratios and explain what each term counts.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. There are 2 red counters and 3 blue counters. Write the ratio of red to blue.
+   **Answer:** 2:3.
+2. Write a ratio equivalent to 2:3 with the first term equal to 8.
+   **Answer:** 8:12.
+3. A drink uses 2 cups of syrup for every 3 cups of water. How much water is needed for 4 cups of syrup?
+   **Answer:** 6 cups of water.
+
+---
+
+## Lesson 53 — Solve percentage word problems in real-life contexts
+
+**Objective:** `P6-K1_1-12` — Solve percentage word problems in real-life contexts  
+**Official indicator:** ค 1.1 ป.6/12  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use 100-square grids and familiar prices. Connect a percentage to parts per hundred and explain the calculation in context.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Find 25% of 80.
+   **Answer:** 20.
+2. Find 10% of 250.
+   **Answer:** 25.
+3. A bag costs 500 baht and has a 20% discount. How much is the discount and sale price?
+   **Answer:** The discount is 100 baht; the sale price is 400 baht.
+
+---
+
+## Lesson 54 — Extend and solve problems involving number patterns
+
+**Objective:** `P6-K1_2-01` — Extend and solve problems involving number patterns  
+**Official indicator:** ค 1.2 ป.6/1  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use number cards and shape sequences. Identify what changes, state the rule and use it to predict or find a missing term.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Complete the pattern: 4, 8, 12, 16, __.
+   **Answer:** 20.
+2. Describe the rule in the pattern 4, 8, 12, 16, 20.
+   **Answer:** Add 4 each time.
+3. Find the missing number: 5, 10, __, 20, 25.
+   **Answer:** 15.
+
+---
+
+## Lesson 55 — Solve volume problems involving composite rectangular prisms
+
+**Objective:** `P6-K2_1-01` — Solve volume problems involving composite rectangular prisms  
+**Official indicator:** ค 2.1 ป.6/1  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use solid models and real packages. Count faces, edges and vertices, compare properties and match solids to real objects.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. How many faces, edges and vertices does a cube have?
+   **Answer:** 6 faces, 12 edges and 8 vertices.
+2. Name a solid with two circular flat faces and one curved surface.
+   **Answer:** A cylinder.
+3. Which solid is suitable for a ball, and which for a drinks can?
+   **Answer:** A sphere for a ball; a cylinder for a drinks can.
+
+---
+
+## Lesson 56 — Find perimeter and area of polygons
+
+**Objective:** `P6-K2_1-02` — Find perimeter and area of polygons  
+**Official indicator:** ค 2.1 ป.6/2  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use grid paper and shape cut-outs. Identify base and height or length and width, calculate area or perimeter, and label square units correctly.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Find the area of a rectangle that is 8 cm long and 5 cm wide.
+   **Answer:** 40 cm².
+2. A parallelogram has a base of 8 cm and a perpendicular height of 4 cm. Find its area.
+   **Answer:** 32 cm².
+3. A rectangle is 8 cm by 5 cm. Find its perimeter.
+   **Answer:** 26 cm.
+
+---
+
+## Lesson 57 — Solve problems involving circumference and area of circles
+
+**Objective:** `P6-K2_1-03` — Solve problems involving circumference and area of circles  
+**Official indicator:** ค 2.1 ป.6/3  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use grid paper and shape cut-outs. Identify base and height or length and width, calculate area or perimeter, and label square units correctly.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. Find the area of a rectangle that is 8 cm long and 5 cm wide.
+   **Answer:** 40 cm².
+2. A parallelogram has a base of 8 cm and a perpendicular height of 4 cm. Find its area.
+   **Answer:** 32 cm².
+3. A rectangle is 8 cm by 5 cm. Find its perimeter.
+   **Answer:** 26 cm.
+
+---
+
+## Lesson 58 — Classify triangles using their properties
+
+**Objective:** `P6-K2_2-01` — Classify triangles using their properties  
+**Official indicator:** ค 2.2 ป.6/1  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use rulers, protractors and triangle cut-outs. Compare side and angle properties, classify triangles and construct one from given measurements.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. A triangle has side lengths 5 cm, 5 cm and 8 cm. Classify it by its sides.
+   **Answer:** Isosceles triangle.
+2. What is the sum of the interior angles of a triangle?
+   **Answer:** 180°.
+3. Describe one accurate method for constructing a triangle when its side lengths are given.
+   **Answer:** Use a ruler and compass to mark the base and draw arcs from both endpoints using the other side lengths; join the intersection to the endpoints.
+
+---
+
+## Lesson 59 — Construct triangles from given side lengths and angles
+
+**Objective:** `P6-K2_2-02` — Construct triangles from given side lengths and angles  
+**Official indicator:** ค 2.2 ป.6/2  
+**Priority:** Should-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use rulers, protractors and triangle cut-outs. Compare side and angle properties, classify triangles and construct one from given measurements.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. A triangle has side lengths 5 cm, 5 cm and 8 cm. Classify it by its sides.
+   **Answer:** Isosceles triangle.
+2. What is the sum of the interior angles of a triangle?
+   **Answer:** 180°.
+3. Describe one accurate method for constructing a triangle when its side lengths are given.
+   **Answer:** Use a ruler and compass to mark the base and draw arcs from both endpoints using the other side lengths; join the intersection to the endpoints.
+
+---
+
+## Lesson 60 — Identify and describe three-dimensional solids
+
+**Objective:** `P6-K2_2-03` — Identify and describe three-dimensional solids  
+**Official indicator:** ค 2.2 ป.6/3  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use solid models and real packages. Count faces, edges and vertices, compare properties and match solids to real objects.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. How many faces, edges and vertices does a cube have?
+   **Answer:** 6 faces, 12 edges and 8 vertices.
+2. Name a solid with two circular flat faces and one curved surface.
+   **Answer:** A cylinder.
+3. Which solid is suitable for a ball, and which for a drinks can?
+   **Answer:** A sphere for a ball; a cylinder for a drinks can.
+
+---
+
+## Lesson 61 — Match nets to three-dimensional solids
+
+**Objective:** `P6-K2_2-04` — Match nets to three-dimensional solids  
+**Official indicator:** ค 2.2 ป.6/4  
+**Priority:** Should-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use solid models and real packages. Count faces, edges and vertices, compare properties and match solids to real objects.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. How many faces, edges and vertices does a cube have?
+   **Answer:** 6 faces, 12 edges and 8 vertices.
+2. Name a solid with two circular flat faces and one curved surface.
+   **Answer:** A cylinder.
+3. Which solid is suitable for a ball, and which for a drinks can?
+   **Answer:** A sphere for a ball; a cylinder for a drinks can.
+
+---
+
+## Lesson 62 — Read and interpret pie charts to solve problems
+
+**Objective:** `P6-K3_1-01` — Read and interpret pie charts to solve problems  
+**Official indicator:** ค 3.1 ป.6/1  
+**Priority:** Must-Know  
+**Suggested duration:** 1 lesson of 50 minutes
+
+### Learning outcomes
+Students can:
+- Demonstrate the skill described by the objective.
+- Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
+- Apply the skill to a grade-appropriate problem and check the result.
+
+**Teaching sequence:** Use a small class survey and a prepared table or graph. Read values, compare categories, explain conclusions and create a correctly labelled representation.
+
+1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
+2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
+3. **Teach (15 min):** Model the mathematical language, representation and worked example.
+4. **Guided practice (10 min):** Solve one example together and discuss common errors.
+5. **Independent practice (5 min):** Learners complete a short task without step-by-step prompts.
+6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
+
+### Practice questions
+1. A pictograph or table shows Monday = 4, Tuesday = 6 and Wednesday = 3. Which day has the greatest value?
+   **Answer:** Tuesday, with 6.
+2. Using the same data, how many more were recorded on Tuesday than Wednesday?
+   **Answer:** 3 more.
+3. What is the total for the three days, and what should a suitable graph include?
+   **Answer:** 13 in total. A suitable graph needs a clear title, labelled categories, a scale/key and correctly plotted values.
