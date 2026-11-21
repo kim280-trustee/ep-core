@@ -10,8 +10,17 @@ const compiled = ts.transpileModule(parserSource, {
     target: ts.ScriptTarget.ES2022,
     module: ts.ModuleKind.ESNext,
   },
-}).outputText;
-const parserUrl = `data:text/javascript;base64,${Buffer.from(compiled).toString("base64")}`;
+  reportDiagnostics: true,
+});
+const parserDiagnostics = compiled.diagnostics ?? [];
+if (parserDiagnostics.length) {
+  for (const diagnostic of parserDiagnostics) {
+    process.stderr.write(`Parser TypeScript error: ${ts.flattenDiagnosticMessageText(diagnostic.messageText, "\\n")}\\n`);
+  }
+  process.exit(1);
+}
+const parserJavaScript = compiled.outputText;
+const parserUrl = `data:text/javascript;base64,${Buffer.from(parserJavaScript).toString("base64")}`;
 const { parseTeacherPackMarkdown } = await import(parserUrl);
 
 const packs = [
