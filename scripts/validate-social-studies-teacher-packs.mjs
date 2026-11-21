@@ -61,6 +61,13 @@ for (const pack of packs) {
     const sourceSection = markdown.slice(sectionStart, sectionEnd);
     const indicator = sourceSection.match(/^\s*-\s+\*\*Official indicator:\*\*\s*(.+)$/m)?.[1]?.trim();
     if (indicator) indicatorByCode.set(heading[2], indicator);
+    const teachingSteps = [...sourceSection.matchAll(/^\d+\.\s+.+$/gm)];
+    if (teachingSteps.length < 4) failures.push(heading[2] + ": expected at least four explicit teaching-sequence steps");
+    if (!sourceSection.includes("**Resources:**")) failures.push(heading[2] + ": strand-specific lesson resources are missing");
+    if (!sourceSection.includes("**Differentiation:**")) failures.push(heading[2] + ": grade-band differentiation guidance is missing");
+    if (!indicator || !sourceSection.includes("**Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: " + indicator)) {
+      failures.push(heading[2] + ": learning intention is not tied to the exact official indicator");
+    }
   }
   const counts = {};
   if (lessons.length !== pack.count) failures.push(pack.path + ": expected " + pack.count + " lessons, parsed " + lessons.length);
@@ -78,6 +85,8 @@ for (const pack of packs) {
     if (grade === "M46" && (extractTeacherPackGradeCode(code) !== null || JSON.stringify(extractTeacherPackGradeCodes(code)) !== JSON.stringify(["M4", "M5", "M6"]))) failures.push(code + ": shared M4–M6 code must expand to all three grades without collapsing");
     if (grade && grade !== "M46" && extractTeacherPackGradeCode(code) !== grade) failures.push(code + ": grade extractor did not resolve " + grade);
     if (lesson.questions.length !== 3) failures.push(code + ": expected three answer-keyed tasks, parsed " + lesson.questions.length);
+    const questionNumbers = lesson.questions.map((question) => question.number).sort((a, b) => a - b);
+    if (JSON.stringify(questionNumbers) !== JSON.stringify([1, 2, 3])) failures.push(code + ": expected exactly question numbers 1, 2 and 3");
     for (const question of lesson.questions) {
       questionTotal += 1;
       if (!question.prompt.trim() || !question.expectedAnswer.trim()) failures.push(code + ": empty question or answer guidance");
