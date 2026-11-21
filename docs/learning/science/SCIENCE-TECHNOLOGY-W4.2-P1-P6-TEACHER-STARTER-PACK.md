@@ -343,7 +343,7 @@ This is the Thai national curriculum W4.2 pack. It is separate from the Click St
 
 - **Grade:** P4
 - **Official indicator:** Search online and evaluate the reliability of information
-- **OBEC 2021 priority:** Must-know
+- **OBEC 2021 priority:** Should-know
 - **Learning focus:** Search online and evaluate the reliability of information
 
 **Suggested learning activity:** Use a short, familiar problem from classroom life. Have learners model the steps, test a solution, observe the result and explain what they changed. Select the device, software or unplugged material to match the indicator and the learners' age.
@@ -463,7 +463,7 @@ This is the Thai national curriculum W4.2 pack. It is separate from the Click St
 
 - **Grade:** P5
 - **Official indicator:** Collect, evaluate and present information to solve daily problems
-- **OBEC 2021 priority:** Should-know
+- **OBEC 2021 priority:** Must-know
 - **Learning focus:** Collect, evaluate and present information to solve daily problems
 
 **Suggested learning activity:** Use a short, familiar problem from classroom life. Have learners model the steps, test a solution, observe the result and explain what they changed. Select the device, software or unplugged material to match the indicator and the learners' age.
@@ -543,7 +543,7 @@ This is the Thai national curriculum W4.2 pack. It is separate from the Click St
 
 - **Grade:** P6
 - **Official indicator:** Search for information efficiently on the internet
-- **OBEC 2021 priority:** Should-know
+- **OBEC 2021 priority:** Must-know
 - **Learning focus:** Search for information efficiently on the internet
 
 **Suggested learning activity:** Use a short, familiar problem from classroom life. Have learners model the steps, test a solution, observe the result and explain what they changed. Select the device, software or unplugged material to match the indicator and the learners' age.
