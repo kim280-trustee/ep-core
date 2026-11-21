@@ -5,6 +5,7 @@ const root = process.cwd();
 const patterns = {
   thai: /\bTH[1-5]\.\d-(?:P[1-6]|M[1-6]|M4-6)-\d{2}\b/g,
   maths: /\bM[1-6]-K[1-3]_[1-3]-\d{2}\b/g,
+  mathsPrimary: /\bP[1-6]-K[1-3]_[1-3]-\d{2}\b/g,
   science: /\b(?:P[1-6]|M[1-6])-S[1-4]_[1-4]-\d{2}\b/g,
   social: /\bSO[1-5]\.\d-(?:P[1-6]|M[1-6]|M46)-\d{2}\b/g,
   health: /\bHPE-(?:P[1-6]|M[1-6]|M46)-\d{2}\b/g,
@@ -22,6 +23,8 @@ const packs = [
   { area: "Mathematics", path: "docs/learning/maths/M1-mathematics-teacher-starter-pack.md", expected: 9, pattern: patterns.maths },
   { area: "Mathematics", path: "docs/learning/maths/M2-M3-mathematics-teacher-starter-pack.md", expected: 24, pattern: patterns.maths },
   { area: "Mathematics", path: "docs/learning/maths/M4-M6-mathematics-teacher-starter-pack.md", expected: 8, pattern: patterns.maths },
+  { area: "Mathematics", path: "docs/learning/maths/PRIMARY-MATHEMATICS-P1-P3-TEACHER-STARTER-PACK.md", expected: 54, pattern: patterns.mathsPrimary },
+  { area: "Mathematics", path: "docs/learning/maths/PRIMARY-MATHEMATICS-P4-P6-TEACHER-STARTER-PACK.md", expected: 62, pattern: patterns.mathsPrimary },
 
   { area: "Science and Technology", path: "docs/learning/science/P1-P3-science-w1-w3-teacher-starter-pack.md", expected: 42, pattern: patterns.science },
   { area: "Science and Technology", path: "docs/learning/science/P4-P6-science-w1-w3-teacher-starter-pack.md", expected: 69, pattern: patterns.science },
@@ -64,7 +67,7 @@ const packs = [
 
 const expectedAreaTotals = {
   "Thai Language": 319,
-  "Mathematics": 41,
+  "Mathematics": 157,
   "Science and Technology": 415,
   "Social Studies": 418,
   "Health and Physical Education": 221,
