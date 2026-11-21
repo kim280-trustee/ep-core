@@ -4,7 +4,6 @@ import { ArrowLeft, FileUp, Upload } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/core/auth";
 import { learningTeacherService } from "@/features/learning-teacher/services/learning-teacher.service";
-import { learningAssessmentService } from "@/features/learning-assessment/services/learning-assessment.service";
 import {
   learningContentService,
   learningPackImportService,
