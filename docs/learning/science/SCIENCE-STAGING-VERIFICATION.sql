@@ -715,14 +715,35 @@ select a.curriculum,a.grade,e.total expected_total,a.total actual_total,
 from actual a join expected e on e.grade=a.grade
 order by a.curriculum,a.grade;
 
--- National summary gate: 308 Must-Know and 113 Should-Know labels,
--- counting six dual-classified indicators in both categories.
+-- National summary gate: the national master is 415 / 308 / 113;
+-- the canonical secondary catalogue is 276 / 209 / 68.
 select c.code curriculum,
+ count(*) filter(where a.required) required_indicators,
+ count(distinct o.id) filter(where a.required) unique_indicators,
+ count(*)-count(distinct o.id) filter(where a.required) duplicate_rows,
  count(*) filter(where a.required and a.indicator_classification='must_know') must_know,
  count(*) filter(where a.required and a.indicator_classification='should_know') stored_should_know,
  count(*) filter(where a.required and a.notes ilike '%dual-classified%') dual_labels,
  count(*) filter(where a.required and a.indicator_classification='should_know')
-   + count(*) filter(where a.required and a.notes ilike '%dual-classified%') should_know_including_duals
+   + count(*) filter(where a.required and a.notes ilike '%dual-classified%') should_know_including_duals,
+ count(*) filter(where a.required and a.indicator_classification is null) unclassified,
+ case when c.code='TH-BASIC-CORE-2008-2017'
+    and count(*) filter(where a.required)=415
+    and count(distinct o.id) filter(where a.required)=415
+    and count(*) filter(where a.required and a.indicator_classification='must_know')=308
+    and count(*) filter(where a.required and a.indicator_classification='should_know')=107
+    and count(*) filter(where a.required and a.notes ilike '%dual-classified%')=6
+    and count(*) filter(where a.required and a.indicator_classification is null)=0
+  then 'PASS'
+  when c.code='TH-SCI-M1-M6'
+    and count(*) filter(where a.required)=276
+    and count(distinct o.id) filter(where a.required)=276
+    and count(*) filter(where a.required and a.indicator_classification='must_know')=209
+    and count(*) filter(where a.required and a.indicator_classification='should_know')=67
+    and count(*) filter(where a.required and a.notes ilike '%dual-classified%')=1
+    and count(*) filter(where a.required and a.indicator_classification is null)=0
+  then 'PASS'
+  else 'CHECK' end result
 from public.learning_objective_alignments a
 join public.learning_objectives o on o.id=a.objective_id
 join public.learning_grade_levels g on g.id=a.grade_level_id
