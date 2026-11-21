@@ -8,7 +8,6 @@ import {
   learningContentService,
   learningPackImportService,
   parseTeacherPackMarkdown,
-  extractTeacherPackGradeCode,
   extractTeacherPackGradeCodes,
   type LearningPackImportLesson,
   type ParsedTeacherPackLesson,
