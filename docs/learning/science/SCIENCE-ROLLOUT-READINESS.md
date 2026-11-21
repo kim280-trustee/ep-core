@@ -357,7 +357,7 @@ M6 standards W3.1 (10), W3.2 (14) and W4.2 (1) are staged and aligned only to M6
 
 ## M3 ecosystem priority correction — 21 November 2026
 
-Official OBEC 2021 Science and Technology source page 127 confirms ว 1.1 ม.3/6 as Should-Know. Both catalogue alignments have been corrected and verified. Nine legacy W3.2 rows remain unclassified until their mapping to the official M3 indicator list is established; they are not to be assigned priority labels just to force aggregate totals.
+Official OBEC 2021 Science and Technology source page 127 confirms ว 1.1 ม.3/6 as Should-Know. Both catalogue alignments have been corrected and verified. Nine legacy W3.2 outcomes are preserved as non-required supplementary records and excluded from the official core count. The nine official M3 W4.1/W4.2 technology indicators are now aligned and classified.
 
 Migration: `20261121103000_classify_science_m3_ecosystem_indicator_6.sql`.
 
