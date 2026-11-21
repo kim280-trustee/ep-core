@@ -10,7 +10,7 @@ export function extractTeacherPackGradeCode(objectiveCode: string | null | undef
 }
 
 export function extractTeacherPackGradeCodes(objectiveCode: string | null | undefined): string[] {
-  if (objectiveCode?.match(/^SO[1-5]\\.\\d-M46-\\d+$/i)) return ["M4", "M5", "M6"];
+  if (objectiveCode?.match(/^SO[1-5]\.\d-M46-\d+$/i)) return ["M4", "M5", "M6"];
   const gradeCode = extractTeacherPackGradeCode(objectiveCode);
   return gradeCode ? [gradeCode] : [];
 }
