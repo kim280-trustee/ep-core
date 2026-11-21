@@ -57,7 +57,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
     const section = markdown.slice(start, end);
     const number = Number(heading[1] ?? heading[3] ?? heading[5] ?? index + 1);
     const title = (heading[2] ?? heading[4] ?? heading[6] ?? heading[7] ?? `Lesson ${number}`).trim();
-    const objectiveLine = section.match(/^\*\*(?:Objective|Learning objective):\*\*\s*(.+)$/mi)?.[1]?.trim() ?? "";
+    const objectiveLine = section.match(/^\*\*(?:Objective(?: code)?|Learning objective):\*\*\s*(.+)$/mi)?.[1]?.trim() ?? "";
     const codeMatch = objectiveLine.match(/[\x60]([A-Z0-9][A-Z0-9._-]{2,})[\x60]/i)
       ?? objectiveLine.match(/\b(M[1-6][A-Z0-9_-]+)\b/i);
     const objectiveCode = codeMatch?.[1]?.toUpperCase() ?? null;
