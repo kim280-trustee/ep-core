@@ -137,3 +137,8 @@ Migration: `20261121110000_seed_science_m3_official_technology_indicators_and_ar
 The remaining one-row difference was traced to ว 1.2 ม.4/11. The database and M4 teacher pack had labelled it Must-Know, but the official OBEC 2021 table on printed page 146 places it in the Should-Know column. Both catalogue alignments have been corrected. Verified grade totals are M4 19 Must-Know / 9 Should-Know, M5 42 / 7, and M6 24 / 1 plus the dual M6/4 Should-Know label. Aggregate totals are 85 Must-Know and 18 Should-Know classifications, with 102 unique indicators.
 
 Migration: `20261121114500_correct_science_m4_w1_2_indicator_11_priority.sql`.
+
+
+## Consolidated M4–M6 teacher import
+
+The six grade/strand teacher starter packs are now combined in `SCIENCE-M4-M6-COMPLETE-IMPORT.md`. The consolidated file contains 102 sequential lesson headings, 102 unique objective codes, 306 answer-keyed formative questions and grade-coded M4/M5/M6 mappings. It passed the source-level compatibility check against the repository teacher-pack parser rules.
