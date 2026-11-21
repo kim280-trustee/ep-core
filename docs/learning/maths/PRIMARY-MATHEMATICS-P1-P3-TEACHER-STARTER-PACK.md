@@ -84,7 +84,7 @@
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate represent numbers and quantities up to 100.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -116,7 +116,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate compare numbers up to 100.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -148,7 +148,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate order numbers up to 100.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -180,7 +180,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate find unknown values in addition and subtraction sentences.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -212,7 +212,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve addition and subtraction word problems up to 100.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -227,7 +227,7 @@ Students can:
 
 ### Practice questions
 1. A library has 50 storybooks and receives 17 more. How many storybooks are there now?
-   **Answer:**  62 storybooks.
+   **Answer:** 67 storybooks.
 2. There are 75 pencils. Students use 20 pencils. How many remain?
    **Answer:**  55 pencils remain.
 3. Write an equation for a situation where 30 items are joined by 15 more items, then solve it.
@@ -244,7 +244,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate complete growing, decreasing and repeating patterns.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -276,7 +276,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate measure and compare length in centimetres and metres.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -308,7 +308,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate measure and compare weight in kilograms and 100-gram units.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -340,11 +340,11 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate classify familiar two-dimensional shapes and three-dimensional solids.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use solid models and real packages. Count faces, edges and vertices, compare properties and match solids to real objects.
+**Teaching sequence:** Use shape cards, pattern blocks and classroom objects. Learners sort two-dimensional shapes from three-dimensional solids, describe sides and vertices, and explain the features used for classification.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -354,13 +354,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. How many faces, edges and vertices does a cube have?
-   **Answer:** 6 faces, 12 edges and 8 vertices.
-2. Name a solid with two circular flat faces and one curved surface.
-   **Answer:** A cylinder.
-3. Which solid is suitable for a ball, and which for a drinks can?
-   **Answer:** A sphere for a ball; a cylinder for a drinks can.
-
+1. Which two are two-dimensional shapes: circle, cube, cylinder or triangle?
+   **Answer:** Circle and triangle.
+2. How many sides and vertices does a triangle have?
+   **Answer:** A triangle has 3 sides and 3 vertices.
+3. Classify a ball, a drinks can and a triangular sign.
+   **Answer:** Ball: sphere (3D); drinks can: cylinder (3D); triangular sign: triangle (2D).
 ---
 
 ## Lesson 10 — Read picture graphs with one picture representing one unit
@@ -372,7 +371,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate read picture graphs with one picture representing one unit.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -404,7 +403,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate read, write and represent numbers up to 1,000.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -436,7 +435,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate compare numbers up to 1,000.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -468,7 +467,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate order numbers up to 1,000.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -500,7 +499,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate find unknown values in addition and subtraction sentences.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -532,7 +531,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate find unknown factors in multiplication sentences.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -564,7 +563,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate find unknown values in division sentences.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -596,7 +595,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate evaluate mixed-operation expressions with whole numbers.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -628,7 +627,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve two-step whole-number word problems.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -643,7 +642,7 @@ Students can:
 
 ### Practice questions
 1. A library has 66 storybooks and receives 20 more. How many storybooks are there now?
-   **Answer:**  78 storybooks.
+   **Answer:** 86 storybooks.
 2. There are 88 pencils. Students use 23 pencils. How many remain?
    **Answer:**  65 pencils remain.
 3. Write an equation for a situation where 33 items are joined by 16 more items, then solve it.
@@ -660,7 +659,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve problems involving clock time, duration and calendars.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -692,7 +691,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate measure and compare length in metres and centimetres.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -724,7 +723,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve addition and subtraction problems involving length.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -756,7 +755,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate measure and compare weight in kilograms and grams.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -788,7 +787,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve addition and subtraction problems involving weight.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -820,7 +819,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate measure and compare capacity in litres.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -852,11 +851,11 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate classify polygons and circles by their properties.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use base-ten blocks, place-value charts and number cards. Model each number in more than one form, then ask learners to explain how the place values determine its size.
+**Teaching sequence:** Use polygon cards and circle models. Learners count straight sides and vertices, distinguish curved boundaries from polygon sides, and sort shapes using their properties.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -866,13 +865,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. Write 261 in expanded form.
-   **Answer:** The expanded form is 200 + 60 + 1.
-2. What is the value of the digit in the tens place in 261?
-   **Answer:** The tens digit is 6; its value is 60.
-3. A class collects 261 bottle caps. Show the number using place-value groups.
-   **Answer:** Use the place-value groups shown by the expanded form: 200 + 60 + 1.
-
+1. A shape has five straight sides. What is it called?
+   **Answer:** A pentagon.
+2. Is a circle a polygon? Give one reason.
+   **Answer:** No. A polygon is closed and made from straight line segments; a circle has a curved boundary.
+3. Sort a triangle, rectangle, circle and pentagon by number of straight sides.
+   **Answer:** Triangle: 3; rectangle: 4; pentagon: 5; circle: 0 straight sides.
 ---
 
 ## Lesson 26 — Read picture graphs using symbols that represent multiple units
@@ -884,7 +882,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate read picture graphs using symbols that represent multiple units.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -916,7 +914,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate read, write and represent numbers up to 100,000.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -948,7 +946,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate compare and order whole numbers.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -980,7 +978,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate represent fractions as equal parts of a whole.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1012,7 +1010,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate compare simple fractions.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1044,7 +1042,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate find unknown values in addition and subtraction sentences.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1076,7 +1074,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate find unknown factors in multiplication sentences.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1108,7 +1106,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate find unknown values in division sentences.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1140,7 +1138,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate evaluate mixed-operation whole-number expressions.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1172,7 +1170,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve two-step whole-number word problems.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1187,7 +1185,7 @@ Students can:
 
 ### Practice questions
 1. A library has 78 storybooks and receives 21 more. How many storybooks are there now?
-   **Answer:**  90 storybooks.
+   **Answer:** 99 storybooks.
 2. There are 99 pencils. Students use 24 pencils. How many remain?
    **Answer:**  75 pencils remain.
 3. Write an equation for a situation where 34 items are joined by 17 more items, then solve it.
@@ -1204,7 +1202,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate add and subtract fractions with related denominators.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1236,7 +1234,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve word problems involving addition and subtraction of fractions.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1268,7 +1266,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate identify and extend number patterns.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1300,7 +1298,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve money problems using baht and satang.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1332,7 +1330,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve problems involving time and duration.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1364,7 +1362,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate measure length in centimetres and metres.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1396,7 +1394,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate estimate length using suitable units.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1428,7 +1426,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate compare lengths using common units.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1460,7 +1458,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve addition and subtraction problems involving length.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1492,7 +1490,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate measure weight using kilograms and grams.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1524,7 +1522,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate estimate weight using suitable units.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1556,7 +1554,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate compare weights using common units.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1588,7 +1586,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve addition and subtraction problems involving weight.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1620,7 +1618,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate measure volume and capacity in litres and millilitres.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1652,7 +1650,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate estimate volume and capacity.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1684,7 +1682,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate solve problems involving volume and capacity.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1716,7 +1714,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate identify lines of symmetry in two-dimensional shapes.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1748,7 +1746,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate read pictographs to answer questions.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
@@ -1780,7 +1778,7 @@ Students can:
 
 ### Learning outcomes
 Students can:
-- Demonstrate the skill described by the objective.
+- Demonstrate create and interpret one-way tables.
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
