@@ -46,11 +46,19 @@ let questionTotal = 0;
 for (const pack of packs) {
   const markdown = await readFile(resolve(root, pack.path), "utf8");
   const lessons = parseTeacherPackMarkdown(markdown);
+  const indicatorByCode = new Map();
+  const sourceSections = [...markdown.matchAll(/^### \d+\. (SO[1-5]\.\d-(?:P[1-6]|M[1-6]|M46)-\d+)\s*\n([\s\S]*?)(?=^### \d+\.|\s*$)/gm)];
+  for (const section of sourceSections) {
+    const indicator = section[2].match(/^\s*-\s+\*\*Official indicator:\*\*\s*(.+)$/m)?.[1]?.trim();
+    if (indicator) indicatorByCode.set(section[1], indicator);
+  }
   const counts = {};
   if (lessons.length !== pack.count) failures.push(pack.path + ": expected " + pack.count + " lessons, parsed " + lessons.length);
   for (const lesson of lessons) {
     const code = lesson.objectiveCode;
     if (!code?.startsWith("SO")) failures.push(pack.path + ": lesson " + lesson.number + " has no Social Studies objective code");
+    const officialIndicator = code ? indicatorByCode.get(code) : null;
+    if (!officialIndicator) failures.push((code ?? pack.path + " lesson " + lesson.number) + ": official Thai indicator source text is missing");
     if (code && codes.has(code)) failures.push("Duplicate Social Studies objective code: " + code);
     if (code) codes.add(code);
     const grade = code?.match(/-(P[1-6]|M[1-6]|M46)-/)?.[1];
@@ -62,7 +70,7 @@ for (const pack of packs) {
     for (const question of lesson.questions) {
       questionTotal += 1;
       if (!question.prompt.trim() || !question.expectedAnswer.trim()) failures.push(code + ": empty question or answer guidance");
-      if (!lesson.objectiveText || !question.prompt.includes(lesson.objectiveText)) failures.push(code + ": task " + question.number + " is not explicitly tied to its official Thai indicator");
+      if (!officialIndicator || !question.prompt.includes(officialIndicator)) failures.push(code + ": task " + question.number + " is not explicitly tied to its official Thai indicator");
     }
   }
   for (const [grade, expected] of Object.entries(pack.grades)) {
