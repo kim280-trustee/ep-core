@@ -47,19 +47,19 @@ with seed(grade_code,seq,code,name,official_indicator,classification) as (
 
  ('P4',1,'P4-S4_2-01','Use logical reasoning to solve and explain simple problems','ใช้เหตุผลเชิงตรรกะในการแก้ปัญหา การอธิบายการทำงาน การคาดการณ์ผลลัพธ์จากปัญหาอย่างง่าย','must_know'),
  ('P4',2,'P4-S4_2-02','Design, write and debug a simple program','ออกแบบและเขียนโปรแกรมอย่างง่าย โดยใช้ซอฟต์แวร์หรือสื่อ และตรวจหาข้อผิดพลาดและแก้ไข','must_know'),
- ('P4',3,'P4-S4_2-03','Search online and evaluate the reliability of information','ใช้อินเทอร์เน็ตค้นหาข้อมูล และประเมินความน่าเชื่อถือของข้อมูล','must_know'),
+ ('P4',3,'P4-S4_2-03','Search online and evaluate the reliability of information','ใช้อินเทอร์เน็ตค้นหาข้อมูล และประเมินความน่าเชื่อถือของข้อมูล','should_know'),
  ('P4',4,'P4-S4_2-04','Collect, evaluate and present information to solve daily problems','รวบรวม ประเมิน นำเสนอข้อมูลและสารสนเทศ โดยใช้ซอฟต์แวร์ที่หลากหลาย เพื่อแก้ปัญหาในชีวิตประจำวัน','must_know'),
  ('P4',5,'P4-S4_2-05','Use information technology safely and respect others’ rights','ใช้เทคโนโลยีสารสนเทศอย่างปลอดภัย เข้าใจสิทธิและหน้าที่ของตน เคารพในสิทธิของผู้อื่น แจ้งผู้เกี่ยวข้องเมื่อพบข้อมูลหรือบุคคลที่ไม่เหมาะสม','should_know'),
 
  ('P5',1,'P5-S4_2-01','Use logical reasoning to solve and predict simple outcomes','ใช้เหตุผลเชิงตรรกะในการแก้ปัญหา การอธิบายการทำงาน การคาดการณ์ผลลัพธ์จากปัญหาอย่างง่าย','must_know'),
  ('P5',2,'P5-S4_2-02','Design and debug a program using simple logical reasoning','ออกแบบและเขียนโปรแกรมที่มีการใช้เหตุผลเชิงตรรกะอย่างง่าย ตรวจหาข้อผิดพลาดและแก้ไข','must_know'),
  ('P5',3,'P5-S4_2-03','Search, communicate and collaborate online; evaluate information','ใช้อินเทอร์เน็ตค้นหาข้อมูล ติดต่อสื่อสารและทำงานร่วมกัน ประเมินความน่าเชื่อถือของข้อมูล','should_know'),
- ('P5',4,'P5-S4_2-04','Collect, evaluate and present information to solve daily problems','รวบรวม ประเมิน นำเสนอข้อมูลและสารสนเทศตามวัตถุประสงค์ โดยใช้ซอฟต์แวร์หรือบริการบนอินเทอร์เน็ตที่หลากหลาย เพื่อแก้ปัญหาในชีวิตประจำวัน','should_know'),
+ ('P5',4,'P5-S4_2-04','Collect, evaluate and present information to solve daily problems','รวบรวม ประเมิน นำเสนอข้อมูลและสารสนเทศตามวัตถุประสงค์ โดยใช้ซอฟต์แวร์หรือบริการบนอินเทอร์เน็ตที่หลากหลาย เพื่อแก้ปัญหาในชีวิตประจำวัน','must_know'),
  ('P5',5,'P5-S4_2-05','Use information technology safely, with good manners and respect for rights','ใช้เทคโนโลยีสารสนเทศอย่างปลอดภัย มีมารยาท เข้าใจสิทธิและหน้าที่ของตน เคารพในสิทธิของผู้อื่น แจ้งผู้เกี่ยวข้องเมื่อพบข้อมูลหรือบุคคลที่ไม่เหมาะสม','should_know'),
 
  ('P6',1,'P6-S4_2-01','Use logical reasoning to explain and design daily solutions','ใช้เหตุผลเชิงตรรกะในการอธิบายและออกแบบวิธีการแก้ปัญหาที่พบในชีวิตประจำวัน','must_know'),
  ('P6',2,'P6-S4_2-02','Design, write and debug a program for daily problems','ออกแบบและเขียนโปรแกรมอย่างง่าย เพื่อใช้แก้ปัญหาในชีวิตประจำวัน ตรวจหาข้อผิดพลาดของโปรแกรมและแก้ไข','must_know'),
- ('P6',3,'P6-S4_2-03','Search for information efficiently on the internet','ใช้อินเทอร์เน็ตในการค้นหาข้อมูลอย่างมีประสิทธิภาพ','should_know'),
+ ('P6',3,'P6-S4_2-03','Search for information efficiently on the internet','ใช้อินเทอร์เน็ตในการค้นหาข้อมูลอย่างมีประสิทธิภาพ','must_know'),
  ('P6',4,'P6-S4_2-04','Collaborate safely using information technology and respect rights','ใช้เทคโนโลยีสารสนเทศทำงานร่วมกันอย่างปลอดภัย เข้าใจสิทธิและหน้าที่ของตน เคารพในสิทธิของผู้อื่น แจ้งผู้เกี่ยวข้องเมื่อพบข้อมูลหรือบุคคลที่ไม่เหมาะสม','should_know')
 ),
 objective_rows as (
