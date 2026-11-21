@@ -678,3 +678,59 @@ select curriculum,
  then 'PASS' else 'CHECK' end result
 from upper_secondary
 group by curriculum order by curriculum;
+
+
+-- Primary priority reconciliation gate.
+-- Each grade's dual-classified indicator is stored once as Must-Know;
+-- the additional Should-Know label is retained in notes.
+with expected(grade,total,must_know,stored_should_know,dual_count) as (
+ values ('P1',15,9,6,1),('P2',16,11,5,1),('P3',25,19,6,1),
+        ('P4',21,16,5,1),('P5',32,24,8,0),('P6',30,20,10,1)
+), actual as (
+ select c.code curriculum,g.code grade,count(*) total,
+  count(*) filter(where a.indicator_classification='must_know') must_know,
+  count(*) filter(where a.indicator_classification='should_know') stored_should_know,
+  count(*) filter(where a.notes ilike '%dual-classified%') dual_count,
+  count(*) filter(where a.indicator_classification is null) unclassified
+ from public.learning_objective_alignments a
+ join public.learning_objectives o on o.id=a.objective_id
+ join public.learning_grade_levels g on g.id=a.grade_level_id
+ join public.learning_curricula c on c.id=a.curriculum_id
+ join public.learning_topics t on t.id=o.topic_id
+ join public.learning_skills sk on sk.id=t.skill_id
+ join public.learning_subjects sub on sub.id=sk.subject_id
+ where sub.code='SCI' and a.required=true
+   and g.code in ('P1','P2','P3','P4','P5','P6')
+   and c.code in ('TH-SCI-M1-M6','TH-BASIC-CORE-2008-2017')
+ group by c.code,g.code
+)
+select a.curriculum,a.grade,e.total expected_total,a.total actual_total,
+ e.must_know expected_must,a.must_know actual_must,
+ e.stored_should_know expected_should,a.stored_should_know actual_should,
+ e.dual_count expected_dual,a.dual_count actual_dual,a.unclassified,
+ case when a.total=e.total and a.must_know=e.must_know
+   and a.stored_should_know=e.stored_should_know
+   and a.dual_count=e.dual_count and a.unclassified=0
+ then 'PASS' else 'CHECK' end result
+from actual a join expected e on e.grade=a.grade
+order by a.curriculum,a.grade;
+
+-- National summary gate: 308 Must-Know and 113 Should-Know labels,
+-- counting six dual-classified indicators in both categories.
+select c.code curriculum,
+ count(*) filter(where a.required and a.indicator_classification='must_know') must_know,
+ count(*) filter(where a.required and a.indicator_classification='should_know') stored_should_know,
+ count(*) filter(where a.required and a.notes ilike '%dual-classified%') dual_labels,
+ count(*) filter(where a.required and a.indicator_classification='should_know')
+   + count(*) filter(where a.required and a.notes ilike '%dual-classified%') should_know_including_duals
+from public.learning_objective_alignments a
+join public.learning_objectives o on o.id=a.objective_id
+join public.learning_grade_levels g on g.id=a.grade_level_id
+join public.learning_curricula c on c.id=a.curriculum_id
+join public.learning_topics t on t.id=o.topic_id
+join public.learning_skills sk on sk.id=t.skill_id
+join public.learning_subjects sub on sub.id=sk.subject_id
+where sub.code='SCI' and a.required=true
+ and g.code in ('P1','P2','P3','P4','P5','P6','M1','M2','M3','M4','M5','M6')
+ and c.code in ('TH-SCI-M1-M6','TH-BASIC-CORE-2008-2017')
+group by c.code order by c.code;
