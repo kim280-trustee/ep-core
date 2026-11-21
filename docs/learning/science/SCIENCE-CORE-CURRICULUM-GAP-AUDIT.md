@@ -5,7 +5,7 @@
 **Official source PDF:** https://www.academic.obec.go.th/images/official/1622514876_d_1.pdf  
 **Status:** Open — do not mark Science complete
 
-**Repository/live distinction (verified 21 November 2026):** Live Supabase contains all 139 primary P1–P6 indicators and all 174 lower-secondary M1–M3 indicators in both the canonical Science curriculum and the draft national master curriculum. M1 and M2 priority totals match OBEC exactly. M3 has 59 required official indicators in both catalogues with 41 Must-Know and 18 Should-Know labels. Nine legacy W3.2 outcomes are retained as non-required supplementary records and are excluded from the national-core count. The 102 grade-specific M4–M6 core indicators are now staged and aligned in both curricula (M4 28, M5 49, M6 25). One aggregate priority-summary discrepancy remains open; separate M4–M6 specialist subject outcomes are tracked outside this core indicator total.
+**Repository/live distinction (verified 21 November 2026):** Live Supabase contains all 415 required official P1–M6 Science and Technology core indicators in the draft national master curriculum and all 276 required M1–M6 indicators in the canonical secondary Science curriculum. The 139 primary indicators and 174 lower-secondary indicators are present in both catalogues. M1 and M2 priority totals match OBEC exactly. M3 has 59 required official indicators in both catalogues with 41 Must-Know and 18 Should-Know labels. Nine legacy W3.2 outcomes are retained as non-required supplementary records and are excluded from the national-core count. The 102 grade-specific M4–M6 core indicators are now staged and aligned in both curricula (M4 28, M5 49, M6 25). One aggregate priority-summary discrepancy remains open; separate M4–M6 specialist subject outcomes are tracked outside this core indicator total.
 
 
 ## Official grade totals
@@ -97,3 +97,9 @@ The P4–P6 W1–W3 seed has now been transcribed from these grade sections and 
 The official M3 source table (page 127, rows 51–59) includes five W4.1 indicators and four W4.2 indicators. All nine have now been seeded and aligned in both curricula. The nine former M3 W3.2 alignments are retained as non-required supplementary outcomes pending a separate crosswalk; no legacy content was deleted. M3 now has 59 required official indicators, 41 Must-Know and 18 Should-Know, with zero unclassified or duplicate core alignments.
 
 The consolidated M1–M3 teacher import remains 174 lessons and 522 answer-keyed questions: nine official technology lessons replace the nine legacy W3.2 lessons in the core import. Legacy W3.2 teaching material is preserved separately.
+
+## Primary Should-Know required-flag correction
+
+The 42 official P1–P6 Should-Know alignments were previously marked `required=false`. They are official curriculum indicators and are now correctly marked required. A full cross-catalogue verification returns 415 required indicators in `TH-BASIC-CORE-2008-2017` and 276 in `TH-SCI-M1-M6`, with no duplicate rows or unclassified required indicators.
+
+Migration: `20261121113000_correct_primary_science_should_know_required_flag.sql`.
