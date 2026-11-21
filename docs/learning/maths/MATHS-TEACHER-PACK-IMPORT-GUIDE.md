@@ -2,6 +2,8 @@
 
 ## Academic scope
 
+**Coverage limitation:** this existing guide and its three import packs cover M1–M6 only. They do not represent complete Thai Mathematics coverage because the national primary P1–P6 indicators have not yet been added. Do not import the current secondary packs as a substitute for primary content. See [`PRIMARY-MATH-CURRICULUM-GAP-AUDIT.md`](PRIMARY-MATH-CURRICULUM-GAP-AUDIT.md).
+
 - **Curriculum:** `TH-MATH-M1-M6`
 - **Subject:** `MATH` — Mathematics
 - **Coverage:** 41 Thai core-curriculum indicators across M1–M6
