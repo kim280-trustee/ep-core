@@ -1,5 +1,16 @@
 # E&P Learning — Mathematics Rollout Readiness
 
+## Current coverage warning — 21 November 2026
+
+The existing Mathematics implementation is complete only for M1–M6: 41 objectives, 41 grade alignments in the national master and 41 in `TH-MATH-M1-M6`. A read-only audit confirmed zero P1–P6 Mathematics objectives or alignments in the national master. The separate M1–M6 catalogue remains correctly secondary-only.
+
+OBEC's official 2021 summary lists 116 primary Mathematics indicators: P1 10, P2 16, P3 28, P4 22, P5 19 and P6 21. Its summary priority totals are 82 Must-Know and 34 Should-Know. The P6 detailed table appears to total 14/7 while the summary says 15/6. This one-indicator source discrepancy is unresolved; do not seed primary priorities until reconciled.
+
+See [`PRIMARY-MATH-CURRICULUM-GAP-AUDIT.md`](PRIMARY-MATH-CURRICULUM-GAP-AUDIT.md) and run [`PRIMARY-MATH-GAP-VERIFICATION.sql`](PRIMARY-MATH-GAP-VERIFICATION.sql) to reproduce the live gap. The query currently passes all 18 expected grade/catalogue rows (zero primary, 41 secondary).
+
+**Next implementation gate:** reconcile the official P6 Must/Should classification, then add the 116 primary objectives to the national master and a new `TH-MATH-P1-P6` catalogue, with 348 original answer-keyed formative tasks. Keep the existing `TH-MATH-M1-M6` catalogue unchanged.
+
+
 **Branch:** `paul/thai-national-curriculum-foundation`  
 **Scope:** Thai Mathematics M1–M6 core-curriculum knowledge graph and teacher authoring readiness  
 **Status:** All 11 prerequisite, academic-integrity and Mathematics catalogue migrations are applied to the existing Supabase project. All 41 objective-to-grade alignments are verified in both the national-core and Maths-specific curriculum catalogues. All 82 alignment rows are classified `must_know` per OBEC. No Maths pilot class or student records have been created.
