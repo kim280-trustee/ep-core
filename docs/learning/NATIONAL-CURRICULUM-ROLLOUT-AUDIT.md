@@ -78,13 +78,17 @@ Audit and pack: `thai-primary-2025/THAI-PRIMARY-2025-CURRICULUM-AUDIT.md` and `t
 
 The eight 2008/2017 learning areas have 39 teacher-pack files covering 1,940 unique official objective codes. The cross-curriculum validator checks expected pack counts, grade-section or indicator-list coverage, one unique objective code per lesson where the pack is lesson-structured, and cross-pack duplicates.
 
-- `npm run validate:national-curriculum-packs` — all eight learning areas.
-- `npm run validate:science-packs` — executes the actual TypeScript importer parser against the 276 consolidated secondary Science lessons and 828 answer-keyed questions.
-- `npm run validate:social-studies-packs` — executes the actual TypeScript importer parser against all 418 Social Studies indicators and 1,254 answer-keyed tasks, checking every task includes its exact official Thai indicator.
-- `npm run validate:thai-2025-packs` — validates the 24 annual outcomes, P1/P2/P3 grade mapping and 72 answer-keyed questions in the separate B.E. 2568 pack.
+- `npm run validate:national-curriculum-packs` — all 39 source packs across the eight learning areas, 1,940 unique official objective codes.
+- `npm run validate:thai-career-packs` — actual TypeScript importer-parser checks for Thai Language (319 lessons / 957 tasks) and Career (54 / 162), including shared-grade expansion.
+- `npm run validate:thai-language-packs` — dedicated Thai Language validation of all 319 objective codes, exact official Thai indicator wording in every task and all 957 answer-keyed tasks.
+- `npm run validate:maths-packs` — actual parser validation of 41 M1–M6 Mathematics lessons and 123 answer-keyed questions.
+- `npm run validate:science-packs` — actual parser validation of 276 consolidated secondary Science lessons and 828 answer-keyed questions; the national validator also covers all 415 core Science objectives.
+- `npm run validate:social-studies-packs` — actual parser validation of 418 indicators and 1,254 tasks, checking each task includes its exact official Thai indicator and shared M4–M6 grade expansion.
+- `npm run validate:health-pe-packs`, `npm run validate:arts-packs` and `npm run validate:foreign-languages-packs` — actual parser checks of 221/663, 279/837 and 193/579 respectively, including shared upper-secondary grade expansion.
+- `npm run validate:thai-2025-packs` — validates 24 annual outcomes, P1/P2/P3 grade mapping and 72 answer-keyed questions in the separate B.E. 2568 pack.
 - CI also runs the production build and ESLint.
 
-GitHub Actions run 238 passed all eight learning-area pack validation, Thai B.E. 2568 competency-pack validation, Science, Social Studies, Health & PE, Arts, Foreign Languages and Thai Language importer-parser validation, the Mathematics and Career pack checks, production build and ESLint. The Social Studies check parsed all 418 unique indicators and 1,254 answer-keyed tasks through the actual TypeScript importer parser. The importer now expands the 61 shared M4–M6 outcomes into 183 grade-specific rows with unique content/question codes. Do not treat source-pack validation as an authenticated application import test.
+GitHub Actions run 258 passed all curriculum source validators, all eight learning-area importer-parser checks, the separate B.E. 2568 pack validation, production build and ESLint. This includes Thai Language's 36 shared M4–M6 indicators resolving to all three upper-secondary grades, and Career's 11 shared M4–M6 indicators resolving to all three grades. The Social Studies check validates all 418 unique indicators and 1,254 indicator-linked answer-keyed tasks. Do not treat source-pack validation as an authenticated application import test.
 
 ## 5. Scope boundaries and release plan
 
