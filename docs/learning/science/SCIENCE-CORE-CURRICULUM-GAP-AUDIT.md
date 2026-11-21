@@ -5,7 +5,7 @@
 **Official source PDF:** https://www.academic.obec.go.th/images/official/1622514876_d_1.pdf  
 **Status:** Open — do not mark Science complete
 
-**Repository/live distinction (verified 21 November 2026):** Live Supabase contains all 415 required official P1–M6 Science and Technology core indicators in the draft national master curriculum and all 276 required M1–M6 indicators in the canonical secondary Science curriculum. The 139 primary indicators and 174 lower-secondary indicators are present in both catalogues. M1 and M2 priority totals match OBEC exactly. M3 has 59 required official indicators in both catalogues with 41 Must-Know and 18 Should-Know labels. Nine legacy W3.2 outcomes are retained as non-required supplementary records and are excluded from the national-core count. The 102 grade-specific M4–M6 core indicators are now staged and aligned in both curricula (M4 28, M5 49, M6 25). One aggregate priority-summary discrepancy remains open; separate M4–M6 specialist subject outcomes are tracked outside this core indicator total.
+**Repository/live distinction (verified 21 November 2026):** Live Supabase contains all 415 required official P1–M6 Science and Technology core indicators in the draft national master curriculum and all 276 required M1–M6 indicators in the canonical secondary Science curriculum. The 139 primary indicators and 174 lower-secondary indicators are present in both catalogues. M1 and M2 priority totals match OBEC exactly. M3 has 59 required official indicators in both catalogues with 41 Must-Know and 18 Should-Know labels. Nine legacy W3.2 outcomes are retained as non-required supplementary records and are excluded from the national-core count. The 102 grade-specific M4–M6 core indicators are now staged and aligned in both curricula (M4 28, M5 49, M6 25). Upper-secondary priority totals now match the official 85 Must-Know / 18 Should-Know summary, including the dual-classified M6/4 indicator; separate M4–M6 specialist subject outcomes are tracked outside this core indicator total.
 
 
 ## Official grade totals
@@ -62,7 +62,7 @@ Must-Know and Should-Know counts are not mutually exclusive. P4 and P6 each have
 2. **M1:** 52/52 official indicators complete, including nine W4.1/W4.2 indicators; priorities 35 Must-Know / 17 Should-Know.
 3. **M2:** 63/63 official indicators complete, including six W2.1 and nine W4.1/W4.2 indicators; priorities 48 Must-Know / 15 Should-Know.
 4. **M3:** 59/59 official indicators complete, including five W4.1 and four W4.2 indicators; priorities 41 Must-Know / 18 Should-Know. Nine legacy W3.2 outcomes remain preserved as non-required supplementary records.
-5. **M4–M6 core:** 102/102 grade-specific indicators staged in both catalogues (M4 28, M5 49, M6 25). The row-level priority tally (86 Must-Know / 17 Should-Know including the dual classification) differs from the official summary (85 / 18); keep this source-summary discrepancy open.
+5. **M4–M6 core:** 102/102 grade-specific indicators staged in both catalogues (M4 28, M5 49, M6 25). Upper-secondary priorities reconcile to 85 Must-Know and 18 Should-Know classifications, including the dual M6/4 label. M4 ว 1.2 ม.4/11 was corrected to Should-Know from official page 146.
 
 ## Lower-secondary completion batch — M1–M3
 
@@ -120,3 +120,10 @@ The consolidated M1–M3 teacher import remains 174 lessons and 522 answer-keyed
 The 42 official P1–P6 Should-Know alignments were previously marked `required=false`. They are official curriculum indicators and are now correctly marked required. A full cross-catalogue verification returns 415 required indicators in `TH-BASIC-CORE-2008-2017` and 276 in `TH-SCI-M1-M6`, with no duplicate rows or unclassified required indicators.
 
 Migration: `20261121113000_correct_primary_science_should_know_required_flag.sql`.
+
+
+## Upper-secondary priority correction
+
+OBEC 2021 printed page 146 classifies ว 1.2 ม.4/11 as Should-Know. Both catalogue rows and the M4 teacher starter pack were corrected. The resulting M4–M6 totals are 85 Must-Know and 18 Should-Know classifications (including dual M6/4), with 102 unique indicators.
+
+Migration: `20261121114500_correct_science_m4_w1_2_indicator_11_priority.sql`.
