@@ -1012,7 +1012,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use fraction strips, paper folding and area models. Learners name equal parts, represent the fraction and explain the whole being considered.
+**Teaching sequence:** Use fraction strips and number lines to compare fractions. Learners make equivalent fractions with a common denominator and justify the comparison.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -1022,13 +1022,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. A shape is divided into 4 equal parts and 3 parts are shaded. What fraction is shaded?
-   **Answer:** 3/4.
-2. Are 1/2 and 2/4 equivalent fractions? Explain briefly.
-   **Answer:** Yes. Both represent one half; 1/2 = 2/4.
-3. A pizza is cut into 4 equal slices. A learner eats 3 slices. What fraction is eaten?
-   **Answer:** 3/4.
-
+1. Which is greater: 1/2 or 1/4?
+   **Answer:** 1/2 is greater because one half is two fourths.
+2. Compare 2/3 and 3/4 using a common denominator.
+   **Answer:** 2/3 = 8/12 and 3/4 = 9/12, so 3/4 is greater.
+3. Place 1/4, 1/2 and 3/4 in order from smallest to largest.
+   **Answer:** 1/4, 1/2, 3/4.
 ---
 
 ## Lesson 31 — Find unknown values in addition and subtraction sentences
@@ -1204,7 +1203,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use fraction strips, paper folding and area models. Learners name equal parts, represent the fraction and explain the whole being considered.
+**Teaching sequence:** Use fraction strips with related denominators. Model how to combine or remove equal-sized parts and simplify the result when possible.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -1214,13 +1213,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. A shape is divided into 4 equal parts and 3 parts are shaded. What fraction is shaded?
+1. Calculate 1/4 + 2/4.
    **Answer:** 3/4.
-2. Are 1/2 and 2/4 equivalent fractions? Explain briefly.
-   **Answer:** Yes. Both represent one half; 1/2 = 2/4.
-3. A pizza is cut into 4 equal slices. A learner eats 3 slices. What fraction is eaten?
-   **Answer:** 3/4.
-
+2. Calculate 5/6 − 1/3.
+   **Answer:** 5/6 − 2/6 = 3/6 = 1/2.
+3. A ribbon is 3/4 metre long. A learner uses 1/4 metre. How much remains?
+   **Answer:** 3/4 − 1/4 = 2/4 = 1/2 metre.
 ---
 
 ## Lesson 37 — Solve word problems involving addition and subtraction of fractions
@@ -1236,7 +1234,7 @@ Students can:
 - Explain the mathematical idea or strategy using suitable vocabulary, diagrams or symbols.
 - Apply the skill to a grade-appropriate problem and check the result.
 
-**Teaching sequence:** Use fraction strips, paper folding and area models. Learners name equal parts, represent the fraction and explain the whole being considered.
+**Teaching sequence:** Use a short sharing or measuring story. Learners identify the fractional quantities, draw a model, choose addition or subtraction and label the answer.
 
 1. **Warm-up (5 min):** Activate prior knowledge with a short oral question or visual example.
 2. **Explore (10 min):** Learners use the concrete materials or model to investigate the target skill.
@@ -1246,13 +1244,12 @@ Students can:
 6. **Exit ticket (5 min):** Ask learners to explain one decision or check one answer.
 
 ### Practice questions
-1. A shape is divided into 4 equal parts and 3 parts are shaded. What fraction is shaded?
-   **Answer:** 3/4.
-2. Are 1/2 and 2/4 equivalent fractions? Explain briefly.
-   **Answer:** Yes. Both represent one half; 1/2 = 2/4.
-3. A pizza is cut into 4 equal slices. A learner eats 3 slices. What fraction is eaten?
-   **Answer:** 3/4.
-
+1. A jug is 3/4 full. Another 1/4 of the jug is poured in. How full is it now?
+   **Answer:** 3/4 + 1/4 = 4/4 = 1 whole jug.
+2. A cake has 7/8 remaining. The family eats 3/8. What fraction remains?
+   **Answer:** 7/8 − 3/8 = 4/8 = 1/2.
+3. Explain how a fraction strip can help solve 5/6 − 2/6.
+   **Answer:** The strip shows six equal parts; remove two of the five shaded sixths and four sixths remain.
 ---
 
 ## Lesson 38 — Identify and extend number patterns
