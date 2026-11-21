@@ -3,9 +3,9 @@
 **Curriculum:** `TH-SCI-M1-M6` and `TH-BASIC-CORE-2008-2017`  
 **Subject:** `SCI` — Science  
 **Scope:** M1, M2 and M3 core Science content currently staged in the three source packs.  
-**Contents:** 174 lesson starters and 522 original answer-keyed practice questions, including 24 new M1–M2 lessons and six new M3 ecosystem lessons added in the lower-secondary completion batch.
+**Contents:** 174 official-core lesson starters and 522 original answer-keyed practice questions across M1–M3. The nine M3 W4.1/W4.2 technology lessons replace nine legacy W3.2 lessons in this national-core import; the legacy material is preserved separately as supplementary content.
 
-This combined file is rebuilt directly from all three grade/strand source packs to avoid omissions during consolidation. It preserves each lesson's objective code, official Thai indicator, activity and answer-keyed questions. The national Science and Technology rollout is still open; this file does not yet include the missing W4.1/W4.2 secondary indicators or the final M3 code reconciliation. See `SCIENCE-CORE-CURRICULUM-GAP-AUDIT.md`.
+This combined file is rebuilt directly from all three grade/strand source packs to avoid omissions during consolidation. It preserves each lesson's objective code, official Thai indicator, activity and answer-keyed questions. The official M3 W4.1/W4.2 indicators are now included with exact objective codes and source-checked priority labels. Nine legacy W3.2 items are excluded from this core import and preserved in `M3-W3.2-LEGACY-SUPPLEMENTARY-PACK.md` pending separate crosswalk validation. See `SCIENCE-CORE-CURRICULUM-GAP-AUDIT.md`.
 
 # SOURCE PACK 1: M1-science-teacher-starter-pack.md
 
@@ -2125,161 +2125,6 @@ Each lesson maps to one official indicator and includes three practice questions
    **Answer:** To expand scientific knowledge and investigate planetary environments.
 
 
-## Lesson 26 — Explain the rock cycle
-
-**Objective:** `M3-S3_2-01`  
-**Official indicator:** ว 3.2 ม.3/1  
-**Learning outcome:** Compare igneous, sedimentary and metamorphic rocks.
-
-**Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
-
-**Independent practice**
-1. How does igneous rock form?  
-   **Answer:** Cooling and solidification of magma or lava.
-2. How does sedimentary rock form?  
-   **Answer:** Compaction and cementation of sediments or precipitation.
-3. What can transform rock into metamorphic rock?  
-   **Answer:** Heat, pressure and chemically active fluids.
-
-
-## Lesson 27 — Evaluate uses of rocks and minerals
-
-**Objective:** `M3-S3_2-02`  
-**Official indicator:** ว 3.2 ม.3/2  
-**Learning outcome:** Connect rock and mineral properties with daily uses.
-
-**Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
-
-**Independent practice**
-1. Name one use of limestone.  
-   **Answer:** Cement or building materials.
-2. Why are mineral properties important in choosing a use?  
-   **Answer:** Hardness, chemical properties and other characteristics affect suitability.
-3. Give one example of a mineral-based product.  
-   **Answer:** Toothpaste, cosmetics or electronic components.
-
-
-## Lesson 28 — Model fossil formation and interpret evidence
-
-**Objective:** `M3-S3_2-03`  
-**Official indicator:** ว 3.2 ม.3/3  
-**Learning outcome:** Explain fossil formation and infer past environments.
-
-**Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
-
-**Independent practice**
-1. How can a fossil form?  
-   **Answer:** Burial and preservation of remains or traces in sediment that later becomes rock.
-2. What can a fossil tell us about the past?  
-   **Answer:** Evidence about organisms and ancient environments.
-3. Would a marine fossil inland prove the area was always dry?  
-   **Answer:** No; it may have been underwater in the past.
-
-
-## Lesson 29 — Compare local winds and monsoons
-
-**Objective:** `M3-S3_2-04`  
-**Official indicator:** ว 3.2 ม.3/4  
-**Learning outcome:** Compare land/sea breezes and regional monsoon winds.
-
-**Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
-
-**Independent practice**
-1. When does a sea breeze usually blow?  
-   **Answer:** During the day, from sea toward land.
-2. When does a land breeze usually blow?  
-   **Answer:** At night, from land toward sea.
-3. What drives monsoon circulation?  
-   **Answer:** Seasonal differences in heating and large-scale pressure patterns.
-
-
-## Lesson 30 — Explain Thailand's seasons
-
-**Objective:** `M3-S3_2-05`  
-**Official indicator:** ว 3.2 ม.3/5  
-**Learning outcome:** Relate Thai seasons to monsoons and solar heating.
-
-**Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
-
-**Independent practice**
-1. Which monsoon is associated with much of Thailand's rainy season?  
-   **Answer:** The southwest monsoon.
-2. Which monsoon contributes to the cool season in much of Thailand?  
-   **Answer:** The northeast monsoon.
-3. Why is Thailand's hot season hot?  
-   **Answer:** Strong solar heating during the seasonal transition.
-
-
-## Lesson 31 — Analyse natural hazards
-
-**Objective:** `M3-S3_2-06`  
-**Official indicator:** ว 3.2 ม.3/6  
-**Learning outcome:** Describe impacts of floods, coastal erosion, landslides, earthquakes and tsunamis.
-
-**Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
-
-**Independent practice**
-1. Name one cause of flooding.  
-   **Answer:** Heavy rainfall, river overflow or poor drainage.
-2. What can trigger a landslide?  
-   **Answer:** Slope instability, often worsened by intense rainfall.
-3. What causes a tsunami?  
-   **Answer:** Sudden displacement of seawater, commonly from an undersea earthquake.
-
-
-## Lesson 32 — Prepare for natural hazards
-
-**Objective:** `M3-S3_2-07`  
-**Official indicator:** ว 3.2 ม.3/7  
-**Learning outcome:** Recommend monitoring, preparedness and safe local actions.
-
-**Teaching activity:** Use diagrams, models, supplied datasets and safe teacher-supervised demonstrations. Ask learners to show working, explain evidence and connect concepts to local examples.
-
-**Independent practice**
-1. Where should people get hazard warnings?  
-   **Answer:** Official emergency and meteorological authorities.
-2. What should a family prepare before a flood?  
-   **Answer:** An emergency plan, essential supplies and safe evacuation arrangements.
-3. What should learners do during an official evacuation order?  
-   **Answer:** Follow instructions promptly and move to the designated safe area.
-
-
-## Lesson 33 — Model the greenhouse effect and its impacts
-
-**Objective:** `M3-S3_2-08`  
-**Official indicator:** ว 3.2 ม.3/8  
-**Learning outcome:** Create a model that explains the greenhouse effect and describe its effects on living organisms.
-
-**Teaching activity:** Compare two identical transparent containers under the same safe light source, one covered and one open, using thermometers and teacher supervision. Record temperature changes, discuss the limits of the model, and connect the evidence to greenhouse gases absorbing and re-emitting outgoing infrared radiation.
-
-**Independent practice**
-1. What do greenhouse gases do in Earth's atmosphere?  
-   **Answer:** They absorb and re-emit some outgoing infrared radiation, warming the lower atmosphere and surface.
-2. Name two greenhouse gases.  
-   **Answer:** Carbon dioxide and methane.
-3. Give one possible effect of an enhanced greenhouse effect on living organisms.  
-   **Answer:** Heat stress, changing habitats or ranges, disrupted growing seasons, or reduced water availability.
-
-
-## Lesson 34 — Propose actions to reduce greenhouse gas emissions
-
-**Objective:** `M3-S3_2-09`  
-**Official indicator:** ว 3.2 ม.3/9  
-**Learning outcome:** Explain impacts of the greenhouse effect and propose practical actions that reduce activities producing greenhouse gases.
-
-**Teaching activity:** Use a simple school energy and transport audit. Identify activities that produce greenhouse gases, compare practical reduction options, and select actions that can be measured over time.
-
-**Independent practice**
-1. Give two human activities that increase greenhouse gas emissions.  
-   **Answer:** Burning fossil fuels for electricity or transport, and deforestation.
-2. Suggest one action a school can take to reduce emissions.  
-   **Answer:** Reduce unnecessary electricity use, improve energy efficiency, encourage lower-emission travel, or reduce waste.
-3. Why should a climate action plan use evidence and measurable targets?  
-   **Answer:** To check whether the action is effective and improve it using results.
-
-
-
-
 # ADDITIONAL SOURCE PACK: M1-M2-missing-indicators-teacher-starter-pack.md
 
 # M1–M2 Science and Technology — Missing Official Indicator Teacher Pack
@@ -2672,7 +2517,7 @@ Each lesson maps to one official indicator and includes three practice questions
 
 **Objective:** `M3-S1_1-06`  
 **Official indicator:** ว 1.1 ม.3/6  
-**Priority:** Unclassified pending visual confirmation of the original table's final priority cell  
+**Priority:** Should-Know  
 **Activity:** Review a local environmental case and propose practical actions that protect organisms and ecosystem balance.
 
 **Formative questions**
@@ -2685,3 +2530,167 @@ Each lesson maps to one official indicator and includes three practice questions
 - Use local examples and prepared diagrams; do not disturb wildlife or damage habitats during surveys.
 - Do not collect or handle unknown pollutants. Use hypothetical datasets for toxin-accumulation activities.
 - The priority for ว 1.1 ม.3/6 is marked for source recheck because the parsed OBEC table's final row has an ambiguous priority column. Do not publish that label as final until visually checked against page 127.
+
+
+# SOURCE PACK 4: M3-science-technology-teacher-starter-pack.md
+
+**Curriculum:** Thai Basic Education Core Curriculum B.E. 2551 (2008), revised B.E. 2560 (2017)  
+**Source:** OBEC / IPST, *Indicators and Core Learning Content: Must-Know and Should-Know* (2021), M3 page 127, rows 51–59  
+**Subject:** SCI — Science and Technology  
+**Grade:** M3  
+**Coverage:** Five official indicators in ว 4.1 and four in ว 4.2. Each lesson includes one classroom activity and three answer-keyed formative questions.
+
+Use accessible school and community examples. For practical design tasks, use teacher-approved materials and tools. Do not connect student projects to mains electricity. Respect privacy, intellectual property and school digital-safety rules.
+
+## Lesson 1 — Analyse technology change and its links to other subjects
+
+**Objective:** `M3-S4_1-01`  
+**Official indicator:** ว 4.1 ม.3/1  
+**Priority classification (OBEC 2021):** Must-Know  
+**Learning outcome:** Explain why technology changes and how science and mathematics support technology.
+
+**Teaching activity:** Compare an older and a newer version of a familiar technology, such as a fan, water filter or mobile phone. Students identify the need, scientific ideas and mathematical information behind the improvement.
+
+**Independent practice**
+1. Give one reason why technology changes.  
+   **Answer:** New needs, problems or advances in science and other fields.
+2. How can science help improve a water filter?  
+   **Answer:** It explains how materials and filtering processes remove unwanted particles.
+3. Give one way mathematics is used in technology.  
+   **Answer:** Measuring, calculating cost, comparing performance or analysing data.
+
+## Lesson 2 — Identify a community problem or need
+
+**Objective:** `M3-S4_1-02`  
+**Official indicator:** ว 4.1 ม.3/2  
+**Priority classification (OBEC 2021):** Must-Know  
+**Learning outcome:** Define a local problem and collect information before proposing a solution.
+
+**Teaching activity:** In groups, choose a safe, familiar school problem such as wasted water, poor classroom ventilation or lost learning materials. Write a clear problem statement and list evidence needed. Discuss why copied images and information must be credited.
+
+**Independent practice**
+1. What is a problem statement?  
+   **Answer:** A clear description of the need or problem to be solved.
+2. Why should a group collect information before designing a solution?  
+   **Answer:** To understand the real cause and avoid choosing an unsuitable solution.
+3. Why must students credit information or images created by others?  
+   **Answer:** To respect intellectual-property rights and avoid plagiarism.
+
+## Lesson 3 — Design and plan a step-by-step solution
+
+**Objective:** `M3-S4_1-03`  
+**Official indicator:** ว 4.1 ม.3/3  
+**Priority classification (OBEC 2021):** Must-Know  
+**Learning outcome:** Compare possible solutions, choose one that fits available resources and plan the work.
+
+**Teaching activity:** Ask groups to design a simple classroom solution, such as a labelled recycling station or a low-cost book organiser. Compare two designs against cost, time, materials and usefulness. Draw the selected design and write a short sequence of steps.
+
+**Independent practice**
+1. Name two resources to consider before choosing a design.  
+   **Answer:** Time, budget, materials, tools or available information.
+2. Why should a design be drawn before building?  
+   **Answer:** It helps communicate the idea and find problems early.
+3. What should a work plan include?  
+   **Answer:** The steps, resources and time needed for each step.
+
+## Lesson 4 — Test, evaluate and improve a solution
+
+**Objective:** `M3-S4_1-04`  
+**Official indicator:** ว 4.1 ม.3/4  
+**Priority classification (OBEC 2021):** Must-Know  
+**Learning outcome:** Use test results to identify a weakness and improve a design.
+
+**Teaching activity:** Give students a paper bridge or paper tower challenge using a fixed amount of paper. Groups test their design with safe classroom weights, record results, identify one weakness and make one improvement.
+
+**Independent practice**
+1. Why do we test a design?  
+   **Answer:** To check whether it works as intended.
+2. What is a defect?  
+   **Answer:** A weakness or problem that prevents a design from meeting its goal.
+3. Why should a team record test results?  
+   **Answer:** To compare performance and choose improvements using evidence.
+
+## Lesson 5 — Use materials, mechanisms and tools safely
+
+**Objective:** `M3-S4_1-05`  
+**Official indicator:** ว 4.1 ม.3/5  
+**Priority classification (OBEC 2021):** Should-Know  
+**Learning outcome:** Choose suitable materials and tools and explain safe use.
+
+**Teaching activity:** Present a simple design brief for a small desk organiser. Students compare cardboard, plastic and wood samples by strength, weight and ease of shaping. They identify the correct tool for each task and write one safety rule.
+
+**Independent practice**
+1. Why should material properties be checked before building?  
+   **Answer:** To choose a material that is suitable, strong enough and safe for the job.
+2. Name one mechanism used in everyday objects.  
+   **Answer:** A lever, pulley, gear or wheel-and-axle.
+3. Give one rule for using a hand tool safely.  
+   **Answer:** Use the correct tool, follow the teacher's instructions and keep hands clear of sharp edges.
+
+## Lesson 6 — Develop an interdisciplinary application
+
+**Objective:** `M3-S4_2-01`  
+**Official indicator:** ว 4.2 ม.3/1  
+**Priority classification (OBEC 2021):** Must-Know  
+**Learning outcome:** Plan an application that combines computing with another school subject.
+
+**Teaching activity:** Students sketch an application idea that connects computing with another subject, such as a science plant-growth log, a mathematics quiz or a language vocabulary trainer. They identify the user, input, process and output before writing a simple project plan.
+
+**Independent practice**
+1. What is an application?  
+   **Answer:** A computer program designed to help users do a task.
+2. Give one example of an application linked to science.  
+   **Answer:** A plant-growth tracker or a weather-data display.
+3. Why should an application have a clear user and purpose?  
+   **Answer:** So its features solve a real need.
+
+## Lesson 7 — Collect, process and present data
+
+**Objective:** `M3-S4_2-02`  
+**Official indicator:** ว 4.2 ม.3/2  
+**Priority classification (OBEC 2021):** Must-Know  
+**Learning outcome:** Turn collected data into useful information and present it clearly.
+
+**Teaching activity:** Use a class survey with non-sensitive questions, such as preferred reading times. Students enter sample results in a spreadsheet, check for errors, calculate totals and create a simple chart with a suitable title.
+
+**Independent practice**
+1. What is data processing?  
+   **Answer:** Organising or calculating data so it becomes useful information.
+2. Why should data be checked before making a chart?  
+   **Answer:** To find mistakes and make sure the results are reliable.
+3. Which chart could compare the number of students choosing different activities?  
+   **Answer:** A bar chart.
+
+## Lesson 8 — Evaluate information and media reliability
+
+**Objective:** `M3-S4_2-03`  
+**Official indicator:** ว 4.2 ม.3/3  
+**Priority classification (OBEC 2021):** Should-Know  
+**Learning outcome:** Check information using evidence and explain how misinformation can cause harm.
+
+**Teaching activity:** Provide two short, teacher-prepared posts about a science topic. Students identify the author, date, evidence and original source, then compare the claims with a trusted reference. Discuss why a false post should not be shared.
+
+**Independent practice**
+1. Name one way to check whether online information is reliable.  
+   **Answer:** Compare it with trusted sources and check the original evidence.
+2. What is misinformation?  
+   **Answer:** False or inaccurate information that is shared as if it were true.
+3. Give one possible harm caused by sharing false information.  
+   **Answer:** It can mislead people, create fear or lead to unsafe decisions.
+
+## Lesson 9 — Use information technology safely and responsibly
+
+**Objective:** `M3-S4_2-04`  
+**Official indicator:** ว 4.2 ม.3/4  
+**Priority classification (OBEC 2021):** Should-Know  
+**Learning outcome:** Protect personal information, follow digital laws and respect copyright.
+
+**Teaching activity:** Use short classroom scenarios about passwords, sharing photographs, downloading software and using images in presentations. Students decide which actions are safe, responsible and lawful, then explain their choices.
+
+**Independent practice**
+1. Why should a password be kept private?  
+   **Answer:** To prevent unauthorised access to an account.
+2. What should a student do before using an online image in a project?  
+   **Answer:** Check its licence or permission and give the required credit.
+3. What should you do if an online message asks for your password?  
+   **Answer:** Do not share it; report the message to a trusted adult or teacher.
