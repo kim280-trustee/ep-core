@@ -2,7 +2,7 @@
 
 **Source:** OBEC / IPST, *Indicators and Core Learning Content: Must-Know and Should-Know* (2021), pp. 149–151  
 **Grade:** M5 only  
-**Complete W2.1 set:** 25 indicators (20 Must-Know, 5 Should-Know)  
+**Complete W2.1 set:** 25 indicators (19 Must-Know, 6 Should-Know)  
 **Source note:** M5/11–13 were recovered from the official OBEC 2021 PDF page 151 after the initial text extraction skipped that portion of the page.
 
 ## Lesson 1 — Classify elements and compounds from chemical formulae
@@ -143,7 +143,7 @@
 ## Lesson 10 — Identify hydrogen bonding from structural formulae
 
 **Objective:** `M5-S2_1-10`  
-**Official indicator:** ว 2.1 ม.5/10 | **Priority:** Must-Know  
+**Official indicator:** ว 2.1 ม.5/10 | **Priority:** Should-Know  
 **Learning outcome:** Identify molecules that can form hydrogen bonds by examining structural formulae and the presence of suitable hydrogen–nitrogen, hydrogen–oxygen or hydrogen–fluorine bonds.  
 **Starter:** Show several familiar chemical formulae. Students classify each as an element or compound and explain the evidence.
 
