@@ -15,7 +15,7 @@ const compiled = ts.transpileModule(parserSource, {
 const parserDiagnostics = compiled.diagnostics ?? [];
 if (parserDiagnostics.length) {
   for (const diagnostic of parserDiagnostics) {
-    process.stderr.write(`Parser TypeScript error: ${ts.flattenDiagnosticMessageText(diagnostic.messageText, "\\n")}\\n`);
+    process.stderr.write(`Parser TypeScript error: ${ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n")}\n`);
   }
   process.exit(1);
 }
