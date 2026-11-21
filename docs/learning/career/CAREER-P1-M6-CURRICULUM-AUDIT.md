@@ -42,3 +42,8 @@ Each pack uses the official Career outcome as its learning objective and provide
 - The curriculum seed does not create school, class, student, assignment or progress records.
 - No Career pack has been imported or published by this audit.
 - Authenticated teacher preview/import, student access, assessment submission and teacher review are part of the single consolidated application-testing phase.
+
+
+## Importer parser verification — 21 November 2026
+
+The actual TypeScript teacher-pack parser now reads all three Career packs: 54 unique objectives and 162 answer-keyed formative questions. Grade-specific codes resolve to their exact grade; the 11 shared `M46` outcomes expand to M4, M5 and M6. GitHub Actions run 258 passed the combined Thai Language/Career parser validation, all other curriculum validators, production build and ESLint. No authenticated import or publication was performed.
