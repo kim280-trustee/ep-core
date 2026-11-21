@@ -67,6 +67,7 @@ for (const pack of packs) {
   for (const lesson of lessons) {
     const code = lesson.objectiveCode;
     if (!code?.startsWith("SO")) failures.push(pack.path + ": lesson " + lesson.number + " has no Social Studies objective code");
+    if (code && lesson.title === code) failures.push(code + ": imported lesson title must use the official indicator wording, not only its code");
     const officialIndicator = code ? indicatorByCode.get(code) : null;
     if (!officialIndicator) failures.push((code ?? pack.path + " lesson " + lesson.number) + ": official Thai indicator source text is missing");
     if (code && codes.has(code)) failures.push("Duplicate Social Studies objective code: " + code);
