@@ -2,11 +2,9 @@
 
 **Status: complete. Official P1–P6 source and priorities reconciled; 116 objectives and 348 teacher tasks seeded/authored and verified.**
 
-## Verified database state — 21 November 2026
+## Historical gap identified before the primary Mathematics seed — 21 November 2026
 
-The live national-master catalogue `TH-BASIC-CORE-2008-2017` currently contains 41 Mathematics objectives, all aligned to M1–M6. The separate `TH-MATH-M1-M6` catalogue contains the same 41 secondary objectives. There are zero Mathematics objectives or required Mathematics alignments for P1–P6 in the national master. The primary grade levels themselves already exist in the national master for other learning areas.
-
-This means the current 41-objective Maths catalogue is a secondary-only catalogue, not complete P1–M6 Mathematics coverage.
+At the time this gap was first identified, the national-master catalogue contained only 41 secondary Mathematics objectives and had no P1–P6 Mathematics objectives. This was the pre-migration baseline, not the final database state. The primary Mathematics seed described below has since closed this gap.
 
 ## Official OBEC primary Mathematics summary
 
@@ -71,3 +69,8 @@ The final primary totals reconcile exactly: 116 indicators, 82 Must-Know and 34 
 ## Verification artifact
 
 Run `PRIMARY-MATH-STAGING-VERIFICATION.sql` to verify the completed state. It is read-only and confirms 116 primary objectives and 116 required alignments in both the national master and `TH-MATH-P1-P6`, correct 82/34 priorities, zero unclassified or duplicate official codes, and the corrected P3 money indicator code. The national staging verification passes with 2,056 required indicators and 2,450 alignments.
+
+
+## Final live catalogue state — 21 November 2026
+
+The primary Mathematics gap is closed. The national master now contains 157 required Mathematics objectives and 157 grade alignments: 116 primary (P1–P6) and 41 secondary (M1–M6). The separate catalogue views contain the same 116 primary objectives in TH-MATH-P1-P6 and the same 41 secondary objectives in TH-MATH-M1-M6. The primary priority split is 82 Must-Know and 34 Should-Know; all 41 secondary indicators are Must-Know. The full eight-area national master now verifies at 2,056 unique required indicators and 2,450 required grade alignments.
