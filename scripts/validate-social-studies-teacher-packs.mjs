@@ -16,7 +16,7 @@ if (compiled.diagnostics?.length) {
   process.exit(1);
 }
 const parserUrl = "data:text/javascript;base64," + Buffer.from(compiled.outputText).toString("base64");
-const { parseTeacherPackMarkdown, extractTeacherPackGradeCode } = await import(parserUrl);
+const { parseTeacherPackMarkdown, extractTeacherPackGradeCode, extractTeacherPackGradeCodes } = await import(parserUrl);
 
 const gradeCases = [
   ["SO1.1-P1-01", "P1"], ["SO2.2-P6-09", "P6"],
@@ -26,6 +26,12 @@ const gradeCases = [
 for (const [code, expected] of gradeCases) {
   const actual = extractTeacherPackGradeCode(code);
   if (actual !== expected) throw new Error("Grade extraction mismatch for " + code + ": expected " + expected + ", received " + actual);
+}
+if (JSON.stringify(extractTeacherPackGradeCodes("SO1.1-M46-01")) !== JSON.stringify(["M4", "M5", "M6"])) {
+  throw new Error("Shared M4–M6 outcomes must expand to M4, M5 and M6.");
+}
+if (JSON.stringify(extractTeacherPackGradeCodes("SO2.1-P4-03")) !== JSON.stringify(["P4"])) {
+  throw new Error("Grade-specific Social Studies outcomes must retain their exact grade.");
 }
 
 const packs = [
@@ -68,7 +74,7 @@ for (const pack of packs) {
     const grade = code?.match(/-(P[1-6]|M[1-6]|M46)-/)?.[1];
     if (!grade) failures.push(pack.path + ": lesson " + lesson.number + " has no grade scope in its code");
     else counts[grade] = (counts[grade] ?? 0) + 1;
-    if (grade === "M46" && extractTeacherPackGradeCode(code) !== null) failures.push(code + ": shared M4–M6 code must not be collapsed to one grade");
+    if (grade === "M46" && (extractTeacherPackGradeCode(code) !== null || JSON.stringify(extractTeacherPackGradeCodes(code)) !== JSON.stringify(["M4", "M5", "M6"]))) failures.push(code + ": shared M4–M6 code must expand to all three grades without collapsing");
     if (grade && grade !== "M46" && extractTeacherPackGradeCode(code) !== grade) failures.push(code + ": grade extractor did not resolve " + grade);
     if (lesson.questions.length !== 3) failures.push(code + ": expected three answer-keyed tasks, parsed " + lesson.questions.length);
     for (const question of lesson.questions) {
