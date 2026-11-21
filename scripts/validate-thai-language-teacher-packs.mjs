@@ -36,7 +36,7 @@ let lessonTotal = 0;
 let questionTotal = 0;
 for (const pack of packs) {
   const markdown = await readFile(resolve(root, pack.path), "utf8");
-  const headings = [...markdown.matchAll(/^### (\d+)\. (TH[1-5]\.\d-(?:P[1-6]|M[1-6]|M4-6)-\d+)(?:\s+—\s+(.+))?\s*$/gm)];
+  const headings = [...markdown.matchAll(/^### (\d+)\. (TH[1-5]\.\d-(?:P[1-6]|M4-6|M[1-6])-\d+)(?:\s+—\s+(.+))?\s*$/gm)];
   const indicators = new Map();
   for (let index = 0; index < headings.length; index += 1) {
     const heading = headings[index];
@@ -44,7 +44,7 @@ for (const pack of packs) {
     const end = headings[index + 1]?.index ?? markdown.length;
     const section = markdown.slice(start, end);
     const objectiveLine = section.match(/^\*\*Objective:\*\*\s+(.+)$/m)?.[1] ?? "";
-    const code = objectiveLine.match(/TH[1-5]\.\d-(?:P[1-6]|M[1-6]|M4-6)-\d+/)?.[0];
+    const code = objectiveLine.match(/TH[1-5]\.\d-(?:P[1-6]|M4-6|M[1-6])-\d+/)?.[0];
     const indicator = code
       ? objectiveLine.replace(code, "").replace(/[`]/g, "").replace(/^[\s—–:-]+/, "").trim() || heading[3]?.trim() || ""
       : "";
