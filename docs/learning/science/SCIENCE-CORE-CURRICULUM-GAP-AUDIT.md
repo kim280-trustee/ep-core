@@ -61,7 +61,7 @@ Must-Know and Should-Know counts are not mutually exclusive. P4 and P6 each have
 1. **Primary P1–P6:** complete in live staging (139/139); teacher packs reconcile to 139 lesson starters and 417 formative tasks.
 2. **M1:** 43 of 52 official indicators aligned; nine technology indicators remain to be transcribed and seeded from the official source.
 3. **M2:** 48 of 63 official indicators aligned; 15 indicators remain, including six W2.1 and nine W4.1/W4.2 indicators.
-4. **M3:** 53 current records against 59 official indicators, but code-level mismatch must be resolved before seeding. Nine existing W3.2 records are not part of the official M3 2021 indicator list and remain unclassified; preserve useful content as enrichment rather than counting it as official curriculum coverage.
+4. **M3:** 53 current records against 59 official indicators, but code-level mismatch must be resolved before seeding. Nine existing W3.2 records remain unclassified pending exact mapping to the official M3 indicator codes; preserve useful content, but do not count it as verified official coverage until that mapping is complete.
 5. **M4–M6 core:** add the 102 shared Science and Technology indicators. Do not substitute the 300 specialist Biology/Chemistry/Physics/Earth-Space outcomes for this core set.
 ## Existing specialist outcomes — separate from the core set
 
