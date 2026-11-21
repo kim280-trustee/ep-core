@@ -9,6 +9,12 @@ export function extractTeacherPackGradeCode(objectiveCode: string | null | undef
   return objectiveCode.match(/^SO[1-5]\.\d-([PM][1-6])-\d+$/i)?.[1]?.toUpperCase() ?? null;
 }
 
+export function extractTeacherPackGradeCodes(objectiveCode: string | null | undefined): string[] {
+  if (objectiveCode?.match(/^SO[1-5]\\.\\d-M46-\\d+$/i)) return ["M4", "M5", "M6"];
+  const gradeCode = extractTeacherPackGradeCode(objectiveCode);
+  return gradeCode ? [gradeCode] : [];
+}
+
 export type ParsedTeacherPackQuestion = {
   number: number;
   prompt: string;
