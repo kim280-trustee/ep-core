@@ -45,4 +45,4 @@ Do not silently force the detailed rows to match the summary, and do not seed an
 
 ## Verification artifact
 
-Run `PRIMARY-MATH-GAP-VERIFICATION.sql` to reproduce the current coverage gap. It is read-only and confirms the 41 existing M1–M6 Mathematics objectives and zero P1–P6 Mathematics alignments. No live curriculum records were changed during this audit.
+Run `PRIMARY-MATH-GAP-VERIFICATION.sql` to reproduce the current coverage gap. It is read-only and confirms the 41 existing M1–M6 Mathematics objectives and zero P1–P6 Mathematics alignments. All 18 grade/catalogue checks passed against live Supabase. No live curriculum records were changed during this audit.
