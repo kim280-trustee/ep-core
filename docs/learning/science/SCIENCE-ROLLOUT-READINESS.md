@@ -1,5 +1,17 @@
 # E&P Learning — Science Rollout Readiness
 
+## Current verified status — 21 November 2026
+
+This section supersedes older historical rollout notes lower in this file. Live Supabase now contains all 415 required official P1–M6 Science and Technology core indicators in the national master and all 276 required M1–M6 core indicators in the canonical secondary catalogue. The 102 M4–M6 core indicators are grade-specific (M4 28, M5 49, M6 25). Primary, lower-secondary and upper-secondary priority totals reconcile against OBEC, including the six dual-classified exceptions. Nine legacy M3 W3.2 records remain non-required supplementary outcomes.
+
+The four specialist tracks are separately staged: Biology 108, Chemistry 81, Physics 67 and Earth/Space 44 outcomes (300 total). The 14 consolidated Science import files contain 546 lessons and 1,638 answer-keyed questions, including the separate specialist packs. The 415 official core objective codes match the core teacher packs exactly.
+
+The current repository has automated checks for all eight national learning-area pack sets and the two consolidated Science imports. GitHub Actions run 47 passed all-eight-pack validation, Science parser validation, production build and ESLint. The final Science read-only SQL verification also passed all grade/priority checks, specialist totals and duplicate checks.
+
+**Still intentionally deferred:** authenticated teacher preview/import, draft-save verification, student assessment, teacher review, gradebook and progress-reporting tests. These will be performed once after all curriculum source work is complete. No Science pack records have been imported or published; no school, class, student or progress data has been changed.
+
+
+
 **Branch:** `paul/thai-national-curriculum-foundation`  
 **Scope:** Full Thai national Science and Technology learning area (P1–M6), plus separately catalogued M4–M6 specialist outcomes  
 **Status:** **All 415 official P1–M6 Science and Technology core indicators are staged in the national master curriculum; the secondary canonical catalogue contains all 276 M1–M6 indicators.** Primary coverage is 139/139. Lower-secondary coverage is 174/174 (M1 52, M2 63, M3 59) in both catalogues. Primary P1–P6 priority totals match OBEC (99 Must-Know / 45 Should-Know classifications, including five dual-classified indicators). M3 has 59 required official indicators with 41 Must-Know and 18 Should-Know; nine legacy W3.2 outcomes are retained as non-required supplementary records. M4 is complete at 28/28, M5 at 49/49 and M6 at 25/25 upper-secondary core indicators. All 102 are mapped to their actual grade in both curricula. Upper-secondary priority totals now match the official OBEC summary: 85 Must-Know and 18 Should-Know classifications, including the dual-classified M6/4 indicator. The correction was M4 ว 1.2 ม.4/11, which the official page 146 classifies as Should-Know. These are grade-specific records in the OBEC source, not one shared set to be aligned to all three grades. The 300 Biology, Chemistry, Physics and Earth/Space specialist outcomes are additional curriculum content and do not replace the M4–M6 core set.
