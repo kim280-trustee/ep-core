@@ -56,9 +56,11 @@ export const learningPackImportRepository = {
     const lookupBatchSize = 100;
     const existingContentCodes = new Set<string>();
     const existingQuestionCodes = new Set<string>();
+    const contentCodes = [...new Set(input.contentCodes.map(makeImportCode).filter(Boolean))];
+    const questionCodes = [...new Set(input.questionCodes.map(makeImportCode).filter(Boolean))];
 
-    for (let offset = 0; offset < input.contentCodes.length; offset += lookupBatchSize) {
-      const batch = input.contentCodes.slice(offset, offset + lookupBatchSize);
+    for (let offset = 0; offset < contentCodes.length; offset += lookupBatchSize) {
+      const batch = contentCodes.slice(offset, offset + lookupBatchSize);
       const { data, error } = await supabase
         .from("learning_content_items")
         .select("code")
@@ -68,8 +70,8 @@ export const learningPackImportRepository = {
       for (const item of data ?? []) existingContentCodes.add(makeImportCode(item.code));
     }
 
-    for (let offset = 0; offset < input.questionCodes.length; offset += lookupBatchSize) {
-      const batch = input.questionCodes.slice(offset, offset + lookupBatchSize);
+    for (let offset = 0; offset < questionCodes.length; offset += lookupBatchSize) {
+      const batch = questionCodes.slice(offset, offset + lookupBatchSize);
       const { data, error } = await supabase
         .from("learning_questions")
         .select("code")
@@ -89,13 +91,14 @@ export const learningPackImportRepository = {
       throw new Error("A teacher, organization, curriculum, subject and at least one question are required.");
     }
     if (input.questions.some((question) =>
-      !question.code.trim() || !question.prompt.trim() || !question.expectedAnswer.trim() ||
+      !question.code.trim() || !makeImportCode(question.code) ||
+      !question.prompt.trim() || !question.expectedAnswer.trim() ||
       !question.objectiveId || !question.gradeLevelId
     )) {
-      throw new Error("Every question needs a code, prompt, answer key and exact aligned objective.");
+      throw new Error("Every question needs a valid code, prompt, answer key and exact aligned objective.");
     }
     const codes = input.questions.map((question) => makeImportCode(question.code));
-    if (new Set(codes).size !== codes.length) throw new Error("The question-only pack contains duplicate question codes.");
+    if (new Set(codes).size !== codes.length) throw new Error("The question-only pack contains duplicate normalized question codes.");
 
     const createdQuestionIds: string[] = [];
     try {
@@ -113,7 +116,7 @@ export const learningPackImportRepository = {
         .select("id,code");
       if (questionError) throw questionError;
       createdQuestionIds.push(...(questions ?? []).map((question) => question.id));
-      const questionByCode = new Map((questions ?? []).map((question) => [question.code, question.id]));
+      const questionByCode = new Map((questions ?? []).map((question) => [makeImportCode(question.code), question.id]));
       if (questionByCode.size !== input.questions.length) throw new Error("The question insert did not return every created question.");
 
       const versionRows: Database["public"]["Tables"]["learning_question_versions"]["Insert"][] =
@@ -171,14 +174,19 @@ export const learningPackImportRepository = {
     if (input.lessons.some((lesson) =>
       !lesson.objectiveId || !lesson.objectiveCode || !lesson.gradeLevelId ||
       !lesson.title.trim() || !lesson.learningOutcome.trim() || !lesson.activity.trim() ||
-      lesson.questions.length !== 3
+      lesson.questions.length !== 3 ||
+      lesson.questions.some((question) =>
+        !question.code.trim() || !makeImportCode(question.code) ||
+        !question.prompt.trim() || !question.expectedAnswer.trim()
+      )
     )) {
-      throw new Error("Every imported lesson needs an exact academic objective, grade, teaching content and three answer-keyed questions.");
+      throw new Error("Every imported lesson needs an exact academic objective, grade, teaching content and three complete answer-keyed questions.");
     }
     const contentCodes = input.lessons.map((lesson) => makeImportCode(lesson.contentImportCode ?? `EP-${lesson.objectiveCode}-LESSON`));
-    const questionCodes = input.lessons.flatMap((lesson) => lesson.questions.map((question) => question.code));
-    if (new Set(contentCodes).size !== contentCodes.length || new Set(questionCodes).size !== questionCodes.length) {
-      throw new Error("The import chunk contains duplicate content or question codes.");
+    const questionCodes = input.lessons.flatMap((lesson) => lesson.questions.map((question) => makeImportCode(question.code)));
+    if (contentCodes.some((code) => !code) || new Set(contentCodes).size !== contentCodes.length ||
+      new Set(questionCodes).size !== questionCodes.length) {
+      throw new Error("The import chunk contains an empty or duplicate normalized content/question code.");
     }
 
     const createdContentIds: string[] = [];
@@ -246,6 +254,7 @@ export const learningPackImportRepository = {
       const questionInputs = input.lessons.flatMap((lesson) =>
         lesson.questions.map((question) => ({
           ...question,
+          code: makeImportCode(question.code),
           objectiveId: lesson.objectiveId,
           curriculumGradeLevelId: lesson.gradeLevelId,
         })),
