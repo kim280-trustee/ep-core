@@ -7,6 +7,29 @@ const source = await readFile(repositoryPath, "utf8");
 const pagePath = resolve(process.cwd(), "src/features/learning-content/pages/TeacherContentImportPage.tsx");
 const pageSource = await readFile(pagePath, "utf8");
 
+const contentSchemaPath = resolve(process.cwd(), "supabase/migrations/20260918230000_learning_content_foundation.sql");
+const questionSchemaPath = resolve(process.cwd(), "supabase/migrations/20260919000000_learning_assessment_engine.sql");
+const evaluationKeySecurityPath = resolve(process.cwd(), "supabase/migrations/20261116012908_learning_security_definer_remediation.sql");
+const [contentSchema, questionSchema, evaluationKeySecurity] = await Promise.all([
+  readFile(contentSchemaPath, "utf8"),
+  readFile(questionSchemaPath, "utf8"),
+  readFile(evaluationKeySecurityPath, "utf8"),
+]);
+
+// Parent-row rollback depends on these explicit FK cascades.
+assert.match(contentSchema, /content_item_id uuid not null references public\.learning_content_items\(id\) on delete cascade/i,
+  "Lesson deletion must cascade to content versions and objective mappings.");
+assert.match(questionSchema, /question_id uuid not null references public\.learning_questions\(id\) on delete cascade/i,
+  "Question deletion must cascade to question versions.");
+assert.match(questionSchema, /question_version_id uuid primary key references public\.learning_question_versions\(id\) on delete cascade/i,
+  "Question-version deletion must cascade to protected evaluation keys.");
+assert.match(questionSchema, /question_version_id uuid not null references public\.learning_question_versions\(id\) on delete cascade/i,
+  "Question-version deletion must cascade to objective mappings.");
+assert.match(evaluationKeySecurity, /public\.learning_can_manage_academic_records\(v_organization_id\)[\s\S]*?cm\.membership_type = 'teacher'[\s\S]*?cm\.status = 'active'[\s\S]*?u\.auth_user_id = v_auth_user_id/i,
+  "Protected evaluation-key writes must require active teacher membership or academic-record management permission.");
+assert.match(evaluationKeySecurity, /for update of qv/i,
+  "Protected evaluation-key writes must lock the question version while checking publication state.");
+
 function methodBody(methodName, nextMethodName) {
   const start = source.indexOf("  async " + methodName + "(");
   assert.notEqual(start, -1, "Repository method " + methodName + " must exist.");
@@ -52,6 +75,11 @@ assert.match(lessonChunk, /\.delete\(\)[\s\S]*?\.select\("id"\)[\s\S]*?deletedQu
   "Lesson rollback must confirm every created question was actually deleted.");
 assert.match(lessonChunk, /\.delete\(\)[\s\S]*?\.select\("id"\)[\s\S]*?deletedContent\?\.length[\s\S]*?createdContentIds\.length/,
   "Lesson rollback must confirm every created content row was actually deleted.");
+const questionDeleteIndex = lessonChunk.indexOf('.from("learning_questions")');
+const contentDeleteIndex = lessonChunk.indexOf('.from("learning_content_items")', questionDeleteIndex + 1);
+assert.ok(questionDeleteIndex >= 0 && contentDeleteIndex > questionDeleteIndex,
+  "Lesson rollback must delete question parents before lesson parents, preserving the FK cascade cleanup order.");
+
 assert.match(source, /Cleanup also failed|Cleanup also reported/,
   "Cleanup failures must be surfaced with actionable recovery guidance.");
 
@@ -69,4 +97,4 @@ assert.match(pageSource, /failedChunk \? `Nothing was saved from this run\./, "A
 assert.match(pageSource, /catch \(error\) \{[\s\S]*?await invalidateImportQueries\(\);[\s\S]*?Partial import:/, "Failed imports must refresh teacher content and question-bank caches after any earlier chunks have committed.");
 assert.match(pageSource, /await Promise\.allSettled\(\[/, "Cache refresh failures must not mask the original import result.");
 
-process.stdout.write("PASS: importer integration contract — preflight-before-write, bounded lookups, cleanup tracking and protected answer-key RPC.\n");
+process.stdout.write("PASS: importer contract — preflight, bounded lookups, verified rollback, FK cascades and protected-key authorization.\n");
