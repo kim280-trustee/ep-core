@@ -136,16 +136,10 @@ export const learningPackImportRepository = {
       const versionByQuestionId = new Map((versions ?? []).map((version) => [version.question_id, version.id]));
       if (versionByQuestionId.size !== input.questions.length) throw new Error("The question-version insert did not return every created version.");
 
-      const evaluationRows: Database["public"]["Tables"]["learning_question_evaluation_keys"]["Insert"][] =
-        input.questions.map((question) => ({
-          question_version_id: versionByQuestionId.get(questionByCode.get(makeImportCode(question.code))!)!,
-          evaluation_key: { expected_answer: question.expectedAnswer } as unknown as Json,
-          scoring_rules: { method: "manual_review" } as unknown as Json,
-        }));
-      const { error: evaluationError } = await supabase
-        .from("learning_question_evaluation_keys")
-        .insert(evaluationRows);
-      if (evaluationError) throw evaluationError;
+      await saveEvaluationKeys(input.questions.map((question) => ({
+        questionVersionId: versionByQuestionId.get(questionByCode.get(makeImportCode(question.code))!)!,
+        expectedAnswer: question.expectedAnswer,
+      })));
 
       const objectiveRows: Database["public"]["Tables"]["learning_question_objectives"]["Insert"][] =
         input.questions.map((question) => ({
@@ -297,16 +291,10 @@ export const learningPackImportRepository = {
         throw new Error("The question-version insert did not return every created version.");
       }
 
-      const evaluationKeyRows: Database["public"]["Tables"]["learning_question_evaluation_keys"]["Insert"][] =
-        questionInputs.map((question) => ({
-          question_version_id: versionByQuestionId.get(questionByCode.get(question.code)!)!,
-          evaluation_key: { expected_answer: question.expectedAnswer } as unknown as Json,
-          scoring_rules: { method: "manual_review" } as unknown as Json,
-        }));
-      const { error: evaluationKeyError } = await supabase
-        .from("learning_question_evaluation_keys")
-        .insert(evaluationKeyRows);
-      if (evaluationKeyError) throw evaluationKeyError;
+      await saveEvaluationKeys(questionInputs.map((question) => ({
+        questionVersionId: versionByQuestionId.get(questionByCode.get(question.code)!)!,
+        expectedAnswer: question.expectedAnswer,
+      })));
 
       const questionObjectiveRows: Database["public"]["Tables"]["learning_question_objectives"]["Insert"][] =
         questionInputs.map((question) => ({
@@ -344,4 +332,27 @@ export const learningPackImportRepository = {
 
 function makeImportCode(value: string) {
   return value.toUpperCase().replace(/[^A-Z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+
+async function saveEvaluationKeys(
+  entries: Array<{ questionVersionId: string; expectedAnswer: string }>,
+) {
+  // Evaluation keys intentionally have no authenticated table INSERT policy.
+  // Use the trusted SECURITY DEFINER RPC, which verifies the active teacher
+  // membership/academic permission and refuses writes to published versions.
+  // allSettled ensures every in-flight key write finishes before the caller
+  // begins its chunk cleanup after a failure.
+  const results = await Promise.allSettled(entries.map((entry) =>
+    supabase.rpc("save_learning_question_evaluation_key", {
+      p_question_version_id: entry.questionVersionId,
+      p_evaluation_key: { expected_answer: entry.expectedAnswer } as unknown as Json,
+      p_scoring_rules: { method: "manual_review" } as unknown as Json,
+    }),
+  ));
+  const failed = results.find((result) =>
+    result.status === "rejected" || (result.status === "fulfilled" && result.value.error),
+  );
+  if (failed?.status === "rejected") throw failed.reason;
+  if (failed?.status === "fulfilled" && failed.value.error) throw failed.value.error;
 }
