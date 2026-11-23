@@ -4,6 +4,8 @@ import { resolve } from "node:path";
 
 const repositoryPath = resolve(process.cwd(), "src/features/learning-content/repositories/learning-pack-import.repository.ts");
 const source = await readFile(repositoryPath, "utf8");
+const pagePath = resolve(process.cwd(), "src/features/learning-content/pages/TeacherContentImportPage.tsx");
+const pageSource = await readFile(pagePath, "utf8");
 
 function methodBody(methodName, nextMethodName) {
   const start = source.indexOf("  async " + methodName + "(");
