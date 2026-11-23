@@ -30,7 +30,7 @@ assert.match(migration, /question_version_count|version_count/,
   "The RPC must verify question versions.");
 assert.match(migration, /learning_question_evaluation_keys/,
   "The RPC must verify protected evaluation-key presence and content internally.");
-assert.match(migration, /learning_objective_alignments[\\s\\S]*learning_curriculum_subjects/,
+assert.match(migration, /learning_objective_alignments[\s\S]*learning_curriculum_subjects/,
   "The RPC must validate exact active objective-to-curriculum/grade/subject alignment.");
 assert.match(migration, /learning_question_objectives/,
   "The RPC must verify objective mappings.");
