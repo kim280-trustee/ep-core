@@ -43,4 +43,4 @@ assert.throws(
   /exactly three answer-keyed questions numbered 1, 2 and 3 in order/,
 );
 
-process.stdout.write("PASS: teacher-pack parser accepts ordered questions 1–3 and rejects missing, repeated, reordered or shifted numbering.\\n");
+process.stdout.write("PASS: teacher-pack parser accepts ordered questions 1–3 and rejects missing, repeated, reordered or shifted numbering.\n");
