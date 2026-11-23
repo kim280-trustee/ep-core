@@ -437,3 +437,31 @@ The latest draft PR workflow passed this Science parser-validation step. Live da
 The teacher import page now has an explicit content-language selector and stores the selected language on both lesson and question records. Use `TH-BASIC-CORE-2008-2017` with language `th` for primary packs; use `TH-SCI-M1-M6` with language `en` for the secondary core and specialist packs. The language selection records metadata only; it does not translate content.
 
 **Still pending:** authenticated teacher preview and draft-save imports, followed by teacher/student end-to-end acceptance. No Science lesson or question drafts have been created in Supabase.
+
+
+## Authenticated Science import execution tracker — 23 November 2026
+
+All 17 source packs are prepared and parser-validated. Live Supabase currently reports **0 Science lesson drafts and 0 Science question drafts**. Import each file under an authorized teacher account, verify the preview counts and save as unpublished drafts. Do not publish during the import pass.
+
+| # | Import pack | Curriculum | Subject | Language | Lessons | Questions/tasks | Status |
+|---:|---|---|---|---|---:|---:|---|
+| 1 | `P1-P3-science-w1-w3-teacher-starter-pack.md` | TH-BASIC-CORE-2008-2017 | SCI | th | 42 | 126 | Pending |
+| 2 | `P4-P6-science-w1-w3-teacher-starter-pack.md` | TH-BASIC-CORE-2008-2017 | SCI | th | 69 | 207 | Pending |
+| 3 | `SCIENCE-TECHNOLOGY-W4.2-P1-P6-TEACHER-STARTER-PACK.md` | TH-BASIC-CORE-2008-2017 | SCI | th | 28 | 84 | Pending |
+| 4 | `SCIENCE-M1-M3-COMPLETE-IMPORT.md` | TH-SCI-M1-M6 | SCI | en | 174 | 522 | Pending |
+| 5 | `SCIENCE-M4-M6-COMPLETE-IMPORT.md` | TH-SCI-M1-M6 | SCI | en | 102 | 306 | Pending |
+| 6 | `BIOLOGY-M4-IMPORT.md` | TH-SCI-M1-M6 | BIOLOGY | en | 32 | 96 | Pending |
+| 7 | `BIOLOGY-M5-IMPORT.md` | TH-SCI-M1-M6 | BIOLOGY | en | 39 | 117 | Pending |
+| 8 | `BIOLOGY-M6-IMPORT.md` | TH-SCI-M1-M6 | BIOLOGY | en | 37 | 111 | Pending |
+| 9 | `CHEMISTRY-M4-IMPORT.md` | TH-SCI-M1-M6 | CHEMISTRY | en | 28 | 84 | Pending |
+| 10 | `CHEMISTRY-M5-IMPORT.md` | TH-SCI-M1-M6 | CHEMISTRY | en | 38 | 114 | Pending |
+| 11 | `CHEMISTRY-M6-IMPORT.md` | TH-SCI-M1-M6 | CHEMISTRY | en | 15 | 45 | Pending |
+| 12 | `PHYSICS-M4-IMPORT.md` | TH-SCI-M1-M6 | PHYSICS | en | 17 | 51 | Pending |
+| 13 | `PHYSICS-M5-IMPORT.md` | TH-SCI-M1-M6 | PHYSICS | en | 26 | 78 | Pending |
+| 14 | `PHYSICS-M6-IMPORT.md` | TH-SCI-M1-M6 | PHYSICS | en | 24 | 72 | Pending |
+| 15 | `EARTH-SPACE-M4-IMPORT.md` | TH-SCI-M1-M6 | EARTH_SPACE | en | 12 | 36 | Pending |
+| 16 | `EARTH-SPACE-M5-IMPORT.md` | TH-SCI-M1-M6 | EARTH_SPACE | en | 13 | 39 | Pending |
+| 17 | `EARTH-SPACE-M6-IMPORT.md` | TH-SCI-M1-M6 | EARTH_SPACE | en | 19 | 57 | Pending |
+| | **Total** | | | | **715** | **2,145** | **Pending** |
+
+After all 17 imports, verify 715 lesson drafts, 2,145 question drafts, 715 objective links, protected answer-key rows, correct `language_code` values and zero duplicate import codes. Then complete teacher review and student/teacher acceptance testing before any publication.
