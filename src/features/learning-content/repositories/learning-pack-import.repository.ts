@@ -100,6 +100,21 @@ export const learningPackImportRepository = {
     const codes = input.questions.map((question) => makeImportCode(question.code));
     if (new Set(codes).size !== codes.length) throw new Error("The question-only pack contains duplicate normalized question codes.");
 
+    // Fail before writing anything when a previous attempt already created
+    // one or more codes for this organization. The database uniqueness
+    // constraint remains the final guard against concurrent imports.
+    const existingCodes = await learningPackImportRepository.findExistingImportCodes({
+      organizationId: input.organizationId,
+      contentCodes: [],
+      questionCodes: codes,
+    });
+    const existingQuestionCodes = codes.filter((code) => existingCodes.questionCodes.has(code));
+    if (existingQuestionCodes.length) {
+      throw new Error(
+        `The organization already contains ${existingQuestionCodes.length} question code(s): ${existingQuestionCodes.slice(0, 5).join(", ")}. Resolve the existing drafts or use new import codes before retrying.`,
+      );
+    }
+
     const createdQuestionIds: string[] = [];
     try {
       const questionRows: Database["public"]["Tables"]["learning_questions"]["Insert"][] =
@@ -187,6 +202,29 @@ export const learningPackImportRepository = {
     if (contentCodes.some((code) => !code) || new Set(contentCodes).size !== contentCodes.length ||
       new Set(questionCodes).size !== questionCodes.length) {
       throw new Error("The import chunk contains an empty or duplicate normalized content/question code.");
+    }
+
+    // Detect codes left behind by earlier imports before creating any rows.
+    // The unique database constraints still protect against concurrent runs.
+    const existingCodes = await learningPackImportRepository.findExistingImportCodes({
+      organizationId: input.organizationId,
+      contentCodes,
+      questionCodes,
+    });
+    const existingContentCodes = contentCodes.filter((code) => existingCodes.contentCodes.has(code));
+    const existingQuestionCodes = questionCodes.filter((code) => existingCodes.questionCodes.has(code));
+    if (existingContentCodes.length || existingQuestionCodes.length) {
+      const details = [
+        existingContentCodes.length
+          ? `${existingContentCodes.length} lesson code(s): ${existingContentCodes.slice(0, 3).join(", ")}`
+          : "",
+        existingQuestionCodes.length
+          ? `${existingQuestionCodes.length} question code(s): ${existingQuestionCodes.slice(0, 3).join(", ")}`
+          : "",
+      ].filter(Boolean).join("; ");
+      throw new Error(
+        `This organization already contains imported content codes (${details}). Resolve the existing drafts or use new import codes before retrying.`,
+      );
     }
 
     const createdContentIds: string[] = [];
