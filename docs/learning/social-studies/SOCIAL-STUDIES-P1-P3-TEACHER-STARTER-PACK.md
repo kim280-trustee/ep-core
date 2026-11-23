@@ -584,12 +584,12 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — local-history evidence set:** Prepare a real calendar used by the school/community and a second teacher-verified calendar example if comparison is needed. Clearly label day, month and year; do not mix calendar systems without naming them.
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “บอกวัน เดือน ปี และการนับช่วงเวลาตามปฏิทินที่ใช้ในชีวิตประจำวัน”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “บอกวัน เดือน ปี และการนับช่วงเวลาตามปฏิทินที่ใช้ในชีวิตประจำวัน”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “บอกวัน เดือน ปี และการนับช่วงเวลาตามปฏิทินที่ใช้ในชีวิตประจำวัน”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** Read the displayed date and state its day, month and year. This assesses: “บอกวัน เดือน ปี และการนับช่วงเวลาตามปฏิทินที่ใช้ในชีวิตประจำวัน”. **Answer:** Reads all date parts correctly from the supplied calendar.
+2. **Explain / compare:** Find a second date on the same calendar and explain whether it is earlier or later. **Answer:** Correctly compares dates using the same named calendar system.
+3. **Apply / demonstrate:** Use the calendar to identify the date of a named classroom event and explain how you found it. **Answer:** Gives the correct date and describes a valid way of locating it.
 ### 18. SO4.1-P1-02
 
 - **Standard:** SO4.1
@@ -618,12 +618,12 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — local-history evidence set:** Use a learner-safe set of dated daily routine cards (wake up, travel, lesson, meal, return home) with times or sequence clues.
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “เรียงลำดับเหตุการณ์ในชีวิตประจำวัน ตามวันเวลาที่เกิดขึ้น”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “เรียงลำดับเหตุการณ์ในชีวิตประจำวัน ตามวันเวลาที่เกิดขึ้น”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “เรียงลำดับเหตุการณ์ในชีวิตประจำวัน ตามวันเวลาที่เกิดขึ้น”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** Name the event that happens first and the event that happens last in the supplied routine. This assesses: “เรียงลำดับเหตุการณ์ในชีวิตประจำวัน ตามวันเวลาที่เกิดขึ้น”. **Answer:** Correct first and last events.
+2. **Explain / compare:** Arrange four routine cards in the order supported by their times or clues. **Answer:** Four events are in supported chronological order.
+3. **Apply / demonstrate:** Describe one daily event and identify what happens immediately before and after it. **Answer:** Identifies valid preceding and following events from the routine.
 ### 19. SO4.1-P1-03
 
 - **Standard:** SO4.1
@@ -652,12 +652,12 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — local-history evidence set:** Use a voluntary, permission-cleared family timeline or fictional family case. Let learners omit private details; label which information came from an interview and which from a document.
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “บอกประวัติความเป็นมาของตนเองและครอบครัวโดยสอบถามผู้เกี่ยวข้อง”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “บอกประวัติความเป็นมาของตนเองและครอบครัวโดยสอบถามผู้เกี่ยวข้อง”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “บอกประวัติความเป็นมาของตนเองและครอบครัวโดยสอบถามผู้เกี่ยวข้อง”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** Identify one fact about the person/family from the supplied interview or document. This assesses: “บอกประวัติความเป็นมาของตนเองและครอบครัวโดยสอบถามผู้เกี่ยวข้อง”. **Answer:** Fact matches the source.
+2. **Explain / compare:** Explain who supplied the information and how the source supports the family account. **Answer:** Names the source correctly and distinguishes interview from document.
+3. **Apply / demonstrate:** Create a short family timeline using two or three approved details and label the source of each. **Answer:** Chronology and source labels are correct; fictional or anonymised cases are acceptable.
 ### 20. SO4.2-P1-01
 
 - **Standard:** SO4.2
@@ -686,12 +686,12 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — local-history evidence set:** Use dated photographs or object cards showing one aspect of a child's life in two generations (for example transport, household tools or communication). Identify who supplied each item.
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “บอกความเปลี่ยนแปลงของสภาพแวดล้อม สิ่งของเครื่องใช้ หรือการดำเนินชีวิตของตนเองกับสมัยของพ่อแม่ ปู่ย่า ตายาย”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “บอกความเปลี่ยนแปลงของสภาพแวดล้อม สิ่งของเครื่องใช้ หรือการดำเนินชีวิตของตนเองกับสมัยของพ่อแม่ ปู่ย่า ตายาย”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “บอกความเปลี่ยนแปลงของสภาพแวดล้อม สิ่งของเครื่องใช้ หรือการดำเนินชีวิตของตนเองกับสมัยของพ่อแม่ ปู่ย่า ตายาย”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** Identify one object or way of life in each time period. This assesses: “บอกความเปลี่ยนแปลงของสภาพแวดล้อม สิ่งของเครื่องใช้ หรือการดำเนินชีวิตของตนเองกับสมัยของพ่อแม่ ปู่ย่า ตายาย”. **Answer:** Identifies items and periods accurately.
+2. **Explain / compare:** Compare the two examples and state one change supported by the pictures or captions. **Answer:** Names a visible, supported difference.
+3. **Apply / demonstrate:** Explain how the change affects one everyday activity, using evidence from the set. **Answer:** Explains a plausible effect tied to the evidence; avoid treating one family as representative of all families.
 ### 21. SO4.2-P1-02
 
 - **Standard:** SO4.2
@@ -720,12 +720,12 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — local-history evidence set:** Use a verified, age-appropriate account of a past event that directly affected the learner or a fictional child/community; include dates or source attribution.
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “บอกเหตุการณ์ที่เกิดขึ้นในอดีตที่มีผลกระทบต่อตนเองในปัจจุบัน”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “บอกเหตุการณ์ที่เกิดขึ้นในอดีตที่มีผลกระทบต่อตนเองในปัจจุบัน”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “บอกเหตุการณ์ที่เกิดขึ้นในอดีตที่มีผลกระทบต่อตนเองในปัจจุบัน”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** Identify the past event and one detail that shows when or where it happened. This assesses: “บอกเหตุการณ์ที่เกิดขึ้นในอดีตที่มีผลกระทบต่อตนเองในปัจจุบัน”. **Answer:** Event and detail match the source.
+2. **Explain / compare:** Explain one effect the event had on the person/community in the source. **Answer:** Effect is stated in the account and linked to the event.
+3. **Apply / demonstrate:** Separate one fact from one present-day opinion about the event and explain the difference. **Answer:** Fact is source-verifiable; opinion is clearly marked as interpretation.
 ### 22. SO4.3-P1-01
 
 - **Standard:** SO4.3
@@ -754,12 +754,12 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — local-history evidence set:** Use official, current images/text for the national symbols specified in the adopted curriculum and a teacher-verified explanation of their meaning and correct respectful conduct.
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “อธิบายความหมายและความสำคัญของสัญลักษณ์สำคัญของชาติไทยและปฏิบัติได้ถูกต้อง”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “อธิบายความหมายและความสำคัญของสัญลักษณ์สำคัญของชาติไทยและปฏิบัติได้ถูกต้อง”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “อธิบายความหมายและความสำคัญของสัญลักษณ์สำคัญของชาติไทยและปฏิบัติได้ถูกต้อง”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** Name the national symbol shown and identify one feature accurately. This assesses: “อธิบายความหมายและความสำคัญของสัญลักษณ์สำคัญของชาติไทยและปฏิบัติได้ถูกต้อง”. **Answer:** Correct symbol and feature.
+2. **Explain / compare:** Explain its meaning or importance using the approved information card. **Answer:** Meaning follows the approved source.
+3. **Apply / demonstrate:** Choose the correct respectful action for a classroom scenario involving the symbol and justify it using the guidance. **Answer:** Action matches current official guidance; do not add unsupported rules.
 ### 23. SO4.3-P1-02
 
 - **Standard:** SO4.3
@@ -788,12 +788,12 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — local-history evidence set:** Use a verified map/photo and official or locally authoritative description of a cultural site in the learner's community; distinguish confirmed facts from local stories.
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “บอกสถานที่สำคัญซึ่งเป็นแหล่งวัฒนธรรมในชุมชน”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “บอกสถานที่สำคัญซึ่งเป็นแหล่งวัฒนธรรมในชุมชน”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “บอกสถานที่สำคัญซึ่งเป็นแหล่งวัฒนธรรมในชุมชน”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** Name the cultural place and identify where it is located on the map. This assesses: “บอกสถานที่สำคัญซึ่งเป็นแหล่งวัฒนธรรมในชุมชน”. **Answer:** Correct name and location.
+2. **Explain / compare:** Use the source to explain one reason the place is important to the community. **Answer:** Importance is supported by the description/source.
+3. **Apply / demonstrate:** Suggest one respectful way to care for or learn about the place and identify the source that supports its importance. **Answer:** Action is safe, respectful and appropriate to the site's rules.
 ### 24. SO4.3-P1-03
 
 - **Standard:** SO4.3
@@ -822,12 +822,12 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — local-history evidence set:** Use a set of learner-selected or teacher-verified local objects, places, practices or community achievements. Require evidence and avoid assuming every learner feels the same attachment.
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “ระบุสิ่งที่ตนรักและภาคภูมิใจในท้องถิ่น”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “ระบุสิ่งที่ตนรักและภาคภูมิใจในท้องถิ่น”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “ระบุสิ่งที่ตนรักและภาคภูมิใจในท้องถิ่น”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** Identify one local feature or achievement in the evidence set. This assesses: “ระบุสิ่งที่ตนรักและภาคภูมิใจในท้องถิ่น”. **Answer:** Correctly identifies the selected local feature.
+2. **Explain / compare:** Explain why a person or group may value it, using one source detail. **Answer:** Gives a reason grounded in source or community testimony.
+3. **Apply / demonstrate:** Prepare a short evidence-based caption explaining what is worth learning about or preserving locally. **Answer:** Caption is accurate and respectful; learners may choose different examples.
 ### 25. SO5.1-P1-01
 
 - **Standard:** SO5.1
@@ -1808,12 +1808,12 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — local-history evidence set:** Use a three-part event strip with clearly labelled past, present and future events and time expressions.
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “ใช้คำระบุเวลาที่แสดงเหตุการณ์ในอดีต ปัจจุบัน และอนาคต”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “ใช้คำระบุเวลาที่แสดงเหตุการณ์ในอดีต ปัจจุบัน และอนาคต”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “ใช้คำระบุเวลาที่แสดงเหตุการณ์ในอดีต ปัจจุบัน และอนาคต”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** Sort the supplied event statements into past, present and future. This assesses: “ใช้คำระบุเวลาที่แสดงเหตุการณ์ในอดีต ปัจจุบัน และอนาคต”. **Answer:** All statements are sorted correctly.
+2. **Explain / compare:** Underline the time word that helped identify each event. **Answer:** Identifies the relevant time expressions.
+3. **Apply / demonstrate:** Write one new sentence for each time category using an accurate time expression. **Answer:** Sentences use past, present and future references consistently.
 ### 54. SO4.1-P2-02
 
 - **Standard:** SO4.1
@@ -1842,12 +1842,12 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — local-history evidence set:** Use a permission-cleared or fictional family sequence with dated photographs, records or interview notes; each item must have an explicit source label.
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “ลำดับเหตุการณ์ที่เกิดขึ้นในครอบครัว หรือในชีวิตของตนเองโดยใช้หลักฐานที่เกี่ยวข้อง”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “ลำดับเหตุการณ์ที่เกิดขึ้นในครอบครัว หรือในชีวิตของตนเองโดยใช้หลักฐานที่เกี่ยวข้อง”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “ลำดับเหตุการณ์ที่เกิดขึ้นในครอบครัว หรือในชีวิตของตนเองโดยใช้หลักฐานที่เกี่ยวข้อง”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** Identify two events and the evidence that records each one. This assesses: “ลำดับเหตุการณ์ที่เกิดขึ้นในครอบครัว หรือในชีวิตของตนเองโดยใช้หลักฐานที่เกี่ยวข้อง”. **Answer:** Events and source references match the records.
+2. **Explain / compare:** Arrange the events in chronological order and explain which date or source clue supports the order. **Answer:** Correct order with an explicit evidence clue.
+3. **Apply / demonstrate:** Create a three-event timeline and label the evidence source beside every event. **Answer:** Timeline is chronological and every entry has a source label; fictional cases are acceptable.
 ### 55. SO4.2-P2-01
 
 - **Standard:** SO4.2
@@ -1876,12 +1876,12 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — local-history evidence set:** Use dated photographs, interview extracts or local records about one community practice or daily-life feature in the past and present. Identify source and date.
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “สืบค้นถึงการเปลี่ยนแปลงในวิถีชีวิตประจำวันของคนในชุมชนของตนจากอดีตถึงปัจจุบัน”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “สืบค้นถึงการเปลี่ยนแปลงในวิถีชีวิตประจำวันของคนในชุมชนของตนจากอดีตถึงปัจจุบัน”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “สืบค้นถึงการเปลี่ยนแปลงในวิถีชีวิตประจำวันของคนในชุมชนของตนจากอดีตถึงปัจจุบัน”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** Identify one feature of community life in the older source and one in the current source. This assesses: “สืบค้นถึงการเปลี่ยนแปลงในวิถีชีวิตประจำวันของคนในชุมชนของตนจากอดีตถึงปัจจุบัน”. **Answer:** Correctly identifies both time periods and features.
+2. **Explain / compare:** Explain one change and one continuity using evidence from both sources. **Answer:** One accurate change and one continuity supported by the sources.
+3. **Apply / demonstrate:** Describe how one change has affected daily life in the community, citing the sources. **Answer:** Effect is plausible and evidence-based; avoid unsupported generalisations.
 ### 56. SO4.2-P2-02
 
 - **Standard:** SO4.2
@@ -1910,12 +1910,12 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — local-history evidence set:** Use two dated, verified sources showing a change in a community practice or living condition, plus a short account from a person affected.
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “อธิบายผลกระทบของการเปลี่ยนแปลงที่มีต่อวิถีชีวิตของคนในชุมชน”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “อธิบายผลกระทบของการเปลี่ยนแปลงที่มีต่อวิถีชีวิตของคนในชุมชน”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “อธิบายผลกระทบของการเปลี่ยนแปลงที่มีต่อวิถีชีวิตของคนในชุมชน”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** Identify the change shown in the two sources. This assesses: “อธิบายผลกระทบของการเปลี่ยนแปลงที่มีต่อวิถีชีวิตของคนในชุมชน”. **Answer:** Identifies the change accurately.
+2. **Explain / compare:** Explain one positive or negative effect on a named group/person in the account. **Answer:** Effect matches the testimony or record and names who was affected.
+3. **Apply / demonstrate:** Compare the effect on two groups or activities, using evidence and noting any limitation in the sources. **Answer:** Comparison is supported and does not claim more than the sources show.
 ### 57. SO4.3-P2-01
 
 - **Standard:** SO4.3
@@ -1944,12 +1944,12 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — local-history evidence set:** Use a verified profile of a person who contributed to the local area or country, with a reliable record of the contribution and source attribution.
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “ระบุบุคคลที่ทำประโยชน์ต่อท้องถิ่นหรือประเทศชาติ”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “ระบุบุคคลที่ทำประโยชน์ต่อท้องถิ่นหรือประเทศชาติ”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “ระบุบุคคลที่ทำประโยชน์ต่อท้องถิ่นหรือประเทศชาติ”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** Name the person and identify the contribution recorded in the profile. This assesses: “ระบุบุคคลที่ทำประโยชน์ต่อท้องถิ่นหรือประเทศชาติ”. **Answer:** Correct person and documented contribution.
+2. **Explain / compare:** Explain who benefited and how, using evidence from the source. **Answer:** Beneficiary and effect are supported by the profile.
+3. **Apply / demonstrate:** Write a short profile caption that distinguishes the documented contribution from personal opinion. **Answer:** Caption is accurate and separates fact from opinion.
 ### 58. SO4.3-P2-02
 
 - **Standard:** SO4.3
@@ -1978,12 +1978,12 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — local-history evidence set:** Use verified examples of a Thai cultural practice, tradition or local wisdom, including who practises it, where it occurs and why community members value it.
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “ยกตัวอย่างวัฒนธรรม ประเพณีและภูมิปัญญาไทยที่ภาคภูมิใจและควรอนุรักษ์ไว้”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “ยกตัวอย่างวัฒนธรรม ประเพณีและภูมิปัญญาไทยที่ภาคภูมิใจและควรอนุรักษ์ไว้”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “ยกตัวอย่างวัฒนธรรม ประเพณีและภูมิปัญญาไทยที่ภาคภูมิใจและควรอนุรักษ์ไว้”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** Name one cultural practice or local-wisdom example in the source and identify where it is practised. This assesses: “ยกตัวอย่างวัฒนธรรม ประเพณีและภูมิปัญญาไทยที่ภาคภูมิใจและควรอนุรักษ์ไว้”. **Answer:** Correct example and context.
+2. **Explain / compare:** Explain why the source says it is valued or worth preserving. **Answer:** Reason is supported by the source or attributed community voice.
+3. **Apply / demonstrate:** Suggest one respectful way young people could help sustain or document it, with a reason. **Answer:** Practical, respectful proposal that does not treat culture as unchanging or uniform.
 ### 59. SO5.1-P2-01
 
 - **Standard:** SO5.1
@@ -3032,12 +3032,12 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — local-history evidence set:** Use a clearly labelled calendar conversion/reference table for the specific calendar eras included in the adopted curriculum; show the year values and conversion rule verified by the teacher.
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “เทียบศักราชที่สำคัญตามปฏิทินที่ใช้ในชีวิตประจำวัน”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “เทียบศักราชที่สำคัญตามปฏิทินที่ใช้ในชีวิตประจำวัน”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “เทียบศักราชที่สำคัญตามปฏิทินที่ใช้ในชีวิตประจำวัน”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** Identify the era and year shown for each supplied date. This assesses: “เทียบศักราชที่สำคัญตามปฏิทินที่ใช้ในชีวิตประจำวัน”. **Answer:** Correct era and year identification.
+2. **Explain / compare:** Convert the supplied year using the verified reference table and show the operation. **Answer:** Conversion follows the supplied verified rule; no mental shortcut unsupported by the table.
+3. **Apply / demonstrate:** Explain why the calendar system must be named when comparing year numbers. **Answer:** Explains that different eras can assign different year numbers to the same date.
 ### 90. SO4.1-P3-02
 
 - **Standard:** SO4.1
@@ -3066,12 +3066,12 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — local-history evidence set:** Use a teacher-verified set of dated school/community records (photographs, school documents, local archive or attributed oral histories). Do not invent dates or events.
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “แสดงลำดับเหตุการณ์สำคัญของโรงเรียนและชุมชน โดยระบุหลักฐานและแหล่งข้อมูลที่เกี่ยวข้อง”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “แสดงลำดับเหตุการณ์สำคัญของโรงเรียนและชุมชน โดยระบุหลักฐานและแหล่งข้อมูลที่เกี่ยวข้อง”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “แสดงลำดับเหตุการณ์สำคัญของโรงเรียนและชุมชน โดยระบุหลักฐานและแหล่งข้อมูลที่เกี่ยวข้อง”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** Identify one event and name the record that documents it. This assesses: “แสดงลำดับเหตุการณ์สำคัญของโรงเรียนและชุมชน โดยระบุหลักฐานและแหล่งข้อมูลที่เกี่ยวข้อง”. **Answer:** Event and source are correctly matched.
+2. **Explain / compare:** Place three events in chronological order and cite the date/source for each. **Answer:** Order follows verified dates or explicit source chronology.
+3. **Apply / demonstrate:** Create a short school/community timeline with source labels and explain one change visible across the timeline. **Answer:** Timeline is source-labelled and the stated change is supported by the records.
 ### 91. SO4.2-P3-01
 
 - **Standard:** SO4.2
@@ -3100,12 +3100,12 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — local-history evidence set:** Use a map and two or more verified local sources (oral history, archive, land/water/transport map) describing factors in settlement and community development.
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “ระบุปัจจัยที่มีอิทธิพลต่อการตั้งถิ่นฐานและพัฒนาการของชุมชน”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “ระบุปัจจัยที่มีอิทธิพลต่อการตั้งถิ่นฐานและพัฒนาการของชุมชน”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “ระบุปัจจัยที่มีอิทธิพลต่อการตั้งถิ่นฐานและพัฒนาการของชุมชน”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** Identify two factors shown in the sources that influenced where people settled. This assesses: “ระบุปัจจัยที่มีอิทธิพลต่อการตั้งถิ่นฐานและพัฒนาการของชุมชน”. **Answer:** Factors are actually present in the sources.
+2. **Explain / compare:** Explain how one factor supported settlement or community development, citing the map/source. **Answer:** Explains a plausible relationship supported by evidence.
+3. **Apply / demonstrate:** Compare two factors and explain how each shaped a different part of community development. **Answer:** Comparison distinguishes the factors and is source-based; no invented local history.
 ### 92. SO4.2-P3-02
 
 - **Standard:** SO4.2
@@ -3134,12 +3134,12 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — local-history evidence set:** Use attributed examples of community customs, traditions or cultural practices from reliable local sources; identify who described them and avoid presenting one group as the whole community.
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “สรุปลักษณะที่สำคัญของขนบธรรมเนียมประเพณีและวัฒนธรรมของชุมชน”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “สรุปลักษณะที่สำคัญของขนบธรรมเนียมประเพณีและวัฒนธรรมของชุมชน”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “สรุปลักษณะที่สำคัญของขนบธรรมเนียมประเพณีและวัฒนธรรมของชุมชน”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** Identify two customs or cultural practices described in the source. This assesses: “สรุปลักษณะที่สำคัญของขนบธรรมเนียมประเพณีและวัฒนธรรมของชุมชน”. **Answer:** Two examples are correctly identified.
+2. **Explain / compare:** Summarise one important feature of each and identify who provided the information. **Answer:** Features and attribution match the sources.
+3. **Apply / demonstrate:** Prepare a short community-culture summary that includes the source and acknowledges variation within the community. **Answer:** Summary is accurate and recognises diversity and change.
 ### 93. SO4.2-P3-03
 
 - **Standard:** SO4.2
@@ -3168,12 +3168,12 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — local-history evidence set:** Use two comparable, source-labelled profiles of the learner's community and another community, describing the same cultural dimension (for example food, celebration, craft or greeting).
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “เปรียบเทียบความเหมือนและความต่างทางวัฒนธรรมของชุมชนตนเองกับชุมชนอื่น ๆ”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “เปรียบเทียบความเหมือนและความต่างทางวัฒนธรรมของชุมชนตนเองกับชุมชนอื่น ๆ”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “เปรียบเทียบความเหมือนและความต่างทางวัฒนธรรมของชุมชนตนเองกับชุมชนอื่น ๆ”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** Identify one cultural feature from each community profile. This assesses: “เปรียบเทียบความเหมือนและความต่างทางวัฒนธรรมของชุมชนตนเองกับชุมชนอื่น ๆ”. **Answer:** Features match the profiles.
+2. **Explain / compare:** Compare one similarity and one difference using evidence from both sources. **Answer:** Similarity and difference are supported by both sources.
+3. **Apply / demonstrate:** Explain why the comparison should not be used to stereotype every member of either community. **Answer:** Explains internal diversity and avoids generalising from a single example.
 ### 94. SO4.3-P3-01
 
 - **Standard:** SO4.3
@@ -3202,12 +3202,12 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — local-history evidence set:** Use an authoritative, age-appropriate historical source identifying the Thai monarch associated with founding the kingdom specified by the curriculum, plus verified dates/events and a source note.
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “ระบุพระนามและพระราชกรณียกิจโดยสังเขปของพระมหากษัตริย์ไทยที่เป็นผู้สถาปนาอาณาจักรไทย”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “ระบุพระนามและพระราชกรณียกิจโดยสังเขปของพระมหากษัตริย์ไทยที่เป็นผู้สถาปนาอาณาจักรไทย”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “ระบุพระนามและพระราชกรณียกิจโดยสังเขปของพระมหากษัตริย์ไทยที่เป็นผู้สถาปนาอาณาจักรไทย”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** Identify the monarch's name and the kingdom named in the source. This assesses: “ระบุพระนามและพระราชกรณียกิจโดยสังเขปของพระมหากษัตริย์ไทยที่เป็นผู้สถาปนาอาณาจักรไทย”. **Answer:** Name and kingdom match the adopted curriculum/source.
+2. **Explain / compare:** Select one documented founding action or contribution and explain its significance using the source. **Answer:** Contribution is documented and accurately described.
+3. **Apply / demonstrate:** Create a short source-labelled account with the monarch, kingdom and two verified facts; distinguish source fact from legend where relevant. **Answer:** Includes two verified facts and source attribution; no invented dates or unsupported claims.
 ### 95. SO4.3-P3-02
 
 - **Standard:** SO4.3
@@ -3236,12 +3236,12 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — local-history evidence set:** Use current, official, age-appropriate biographical and public-duty sources for the monarch in the current reign; check publication date and distinguish official record from commentary.
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “อธิบายพระราชประวัติและพระราชกรณียกิจของพระมหากษัตริย์ในรัชกาลปัจจุบัน โดยสังเขป”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “อธิบายพระราชประวัติและพระราชกรณียกิจของพระมหากษัตริย์ในรัชกาลปัจจุบัน โดยสังเขป”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “อธิบายพระราชประวัติและพระราชกรณียกิจของพระมหากษัตริย์ในรัชกาลปัจจุบัน โดยสังเขป”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** Identify two biographical facts explicitly stated in the official source. This assesses: “อธิบายพระราชประวัติและพระราชกรณียกิจของพระมหากษัตริย์ในรัชกาลปัจจุบัน โดยสังเขป”. **Answer:** Facts match the current official source.
+2. **Explain / compare:** Name one public duty or activity documented in the source. **Answer:** Public duty/activity is accurately described.
+3. **Apply / demonstrate:** Write a brief, respectful summary using only verified facts and include the source/date. **Answer:** Summary is factual, current, source-attributed and does not add unsupported evaluation.
 ### 96. SO4.3-P3-03
 
 - **Standard:** SO4.3
@@ -3270,12 +3270,12 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — local-history evidence set:** Use a verified historical account of a Thai ancestor/hero credited with helping protect the country, with source attribution and context; distinguish documented events from legend.
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “เล่าวีรกรรมของบรรพบุรุษไทยที่มีส่วนปกป้องประเทศชาติ”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “เล่าวีรกรรมของบรรพบุรุษไทยที่มีส่วนปกป้องประเทศชาติ”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “เล่าวีรกรรมของบรรพบุรุษไทยที่มีส่วนปกป้องประเทศชาติ”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** Name the person and identify the event described in the source. This assesses: “เล่าวีรกรรมของบรรพบุรุษไทยที่มีส่วนปกป้องประเทศชาติ”. **Answer:** Person and event match the source.
+2. **Explain / compare:** Retell two actions attributed to the person in the correct sequence. **Answer:** Actions and sequence are supported by the account.
+3. **Apply / demonstrate:** Explain why the account is remembered and identify one source limitation or detail that needs corroboration. **Answer:** Explanation is evidence-based and recognises source limitations; do not invent details.
 ### 97. SO5.1-P3-01
 
 - **Standard:** SO5.1
