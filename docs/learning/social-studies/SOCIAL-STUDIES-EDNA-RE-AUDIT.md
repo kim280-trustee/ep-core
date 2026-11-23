@@ -66,28 +66,18 @@ The unique-indicator pathway totals reconcile to **278 between-learning and 140 
 
 The database stores this classification in `learning_objective_alignments.pathway_classification`, separately from the 2021 priority classification.
 
-## 3. Outstanding 2021 Must-Know / Should-Know classification
+## 3. 2021 Must-Know / Should-Know classification — historical metadata scope
 
 The official OBEC 2021 summary reports 418 Social Studies indicators: **194 Must-Know and 224 Should-Know**. Its grade rows include M3 (28 Must-Know / 22 Should-Know) and M4–M6 (31 Must-Know / 30 Should-Know).
 
-The live database currently contains these priority classifications for P1–M2 only:
+The live catalogue currently retains the 2021 priority labels for P1–M2 (135 Must-Know / 172 Should-Know). M3–M6 use the separate OBEC between-learning / terminal pathway classification, which is complete for all 540 grade alignments. The earlier subject audit explicitly treated the 2021 priority labels as retained metadata for P1–M2 and did not persist them for M3–M6.
 
-| Scope | Must-Know | Should-Know | Priority classification missing |
-|---|---:|---:|---:|
-| P1–M2 (307 unique indicators) | 135 | 172 | 0 |
-| M3 (50 unique indicators) | 0 | 0 | 50 |
-| M4–M6 shared set (61 unique indicators) | 0 | 0 | 61 |
-| **Unique-indicator total** | **135** | **172** | **111** |
+This is a **classification-scope decision**, not a missing between-learning / terminal classification:
+- Current pathway classification: complete, 540/540 grade alignments.
+- Current retained 2021 priority metadata: complete for P1–M2.
+- The 2021 source also provides historical priority totals for M3 and M4–M6. If the product requires those historical labels for all grades, 111 additional unique indicator labels (50 M3 + 61 shared M4–M6) would need to be transcribed and the 61 shared values aligned across three grades (233 grade rows).
 
-Because M4–M6's 61 shared indicators each have three grade alignments, the database has **233 alignment rows** without a 2021 priority label (50 M3 + 183 M4–M6 alignment rows).
-
-Expected missing classification totals from the OBEC summary:
-- M3: 28 Must-Know and 22 Should-Know.
-- M4–M6 shared set: 31 Must-Know and 30 Should-Know.
-- Outstanding unique indicators: 59 Must-Know and 52 Should-Know.
-- After reconciliation, expected overall totals: 194 Must-Know and 224 Should-Know.
-
-**Do not infer these labels from the between-learning / terminal pathway.** They are separate OBEC classification systems and must be transcribed from the 2021 source indicator tables. The existing P1–M2 priority labels must remain unchanged. The M4–M6 priority value must be consistently aligned across all three grade rows for each shared objective, while preserving one unique objective record.
+**Do not infer Must-Know / Should-Know from the between-learning / terminal pathway.** Keep the two systems separate. No database priority-label changes are authorized by this audit; first confirm that the historical 2021 priority metadata is intended to be stored for M3–M6 as well as P1–M2.
 
 ## 4. Teacher-resource inventory
 
