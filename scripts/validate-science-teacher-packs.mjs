@@ -101,7 +101,7 @@ for (const pack of packs) {
 
       const grade = extractTeacherPackGradeCode(lesson.objectiveCode);
       if (!grade) {
-        failures.push(`${pack.path}: objective code ${lesson.objectiveCode} has no recognized M1–M6 grade prefix`);
+        failures.push(`${pack.path}: objective code ${lesson.objectiveCode} has no recognized P1–M6 grade prefix`);
       } else {
         grades[grade] = (grades[grade] ?? 0) + 1;
         const headingGrade = lesson.title.match(/^\[([PM][1-6])\]/)?.[1];
