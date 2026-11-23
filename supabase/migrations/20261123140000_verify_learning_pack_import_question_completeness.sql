@@ -5,6 +5,7 @@ begin;
 
 create or replace function public.verify_learning_pack_import_questions(
   p_organization_id uuid,
+  p_class_group_id uuid,
   p_expected_questions jsonb
 )
 returns table (
@@ -28,8 +29,37 @@ begin
   end if;
 
   if p_organization_id is null
+    or p_class_group_id is null
     or not public.is_organization_member(p_organization_id) then
     raise exception 'You are not authorized to inspect imported questions for this organization';
+  end if;
+
+  if not exists (
+    select 1
+    from public.learning_class_groups class_group
+    where class_group.id = p_class_group_id
+      and class_group.organization_id = p_organization_id
+      and class_group.status = 'active'
+  ) then
+    raise exception 'The selected class is not active in this organization';
+  end if;
+
+  if not (
+    (
+      public.learning_can_manage_academic_records(p_organization_id)
+      and public.is_organization_member(p_organization_id)
+    )
+    or exists (
+      select 1
+      from public.learning_class_memberships membership
+      where membership.organization_id = p_organization_id
+        and membership.class_group_id = p_class_group_id
+        and membership.user_id = public.learning_current_user_id()
+        and membership.membership_type = 'teacher'
+        and membership.status = 'active'
+    )
+  ) then
+    raise exception 'Only an authorized class teacher or academic manager can verify imported question drafts';
   end if;
 
   if p_expected_questions is null or jsonb_typeof(p_expected_questions) <> 'array' then
@@ -223,7 +253,7 @@ begin
 end;
 $function$;
 
-revoke all on function public.verify_learning_pack_import_questions(uuid, jsonb) from public, anon;
+revoke all on function public.verify_learning_pack_import_questions(uuid, uuid, jsonb) from public, anon;
 grant execute on function public.verify_learning_pack_import_questions(uuid, jsonb) to authenticated;
 
 commit;
