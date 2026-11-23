@@ -31,6 +31,8 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
+      - name: Social Studies teacher-pack importer and validator
+        run: node scripts/validate-social-studies-teacher-packs.mjs
       - name: Dependency security audit
         run: npm audit
       - name: TypeScript and production build
