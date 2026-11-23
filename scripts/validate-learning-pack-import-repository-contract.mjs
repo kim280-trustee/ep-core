@@ -17,8 +17,9 @@ const [contentSchema, questionSchema, evaluationKeySecurity] = await Promise.all
 ]);
 
 // Parent-row rollback depends on these explicit FK cascades.
-assert.match(contentSchema, /content_item_id uuid not null references public\.learning_content_items\(id\) on delete cascade/i,
-  "Lesson deletion must cascade to content versions and objective mappings.");
+const lessonCascadeCount = [...contentSchema.matchAll(/content_item_id uuid not null references public\.learning_content_items\(id\) on delete cascade/gi)].length;
+assert.ok(lessonCascadeCount >= 2,
+  "Lesson deletion must cascade to both content versions and objective mappings.");
 assert.match(questionSchema, /question_id uuid not null references public\.learning_questions\(id\) on delete cascade/i,
   "Question deletion must cascade to question versions.");
 assert.match(questionSchema, /question_version_id uuid primary key references public\.learning_question_versions\(id\) on delete cascade/i,
