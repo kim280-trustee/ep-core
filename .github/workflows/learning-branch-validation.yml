@@ -35,7 +35,7 @@ jobs:
         run: node scripts/validate-social-studies-teacher-packs.mjs
       - name: Dependency security audit
         run: npm audit
-      - name: TypeScript and production build
-        run: npm run build
       - name: Repository-wide lint
         run: npm run lint
+      - name: TypeScript and production build
+        run: npm run build
