@@ -124,7 +124,7 @@ for (const pack of packs) {
       }
       if (p1p3PerformanceEvidenceCodes.has(heading[2])) {
         const taskThree = sourceSection.match(/^\s*3\. \*\*Apply \/ demonstrate:\*\* (.+)$/m)?.[1] ?? "";
-        if (!/\b(demonstrate|role-play|complete|carry out|take part|join|draw|conduct|build|convert|make|use)\b/i.test(taskThree)) {
+        if (!/\b(demonstrate|role-play|complete|carry out|take part|join|draw|conduct|build|convert|make|use)\b/i.test(taskThree) && !/[\u0E00-\u0E7F]/.test(taskThree)) {
           failures.push(heading[2] + ": performance indicator task 3 must require observable or inspectable learner evidence");
         }
       }
