@@ -60,5 +60,7 @@ assert.match(pageSource, /failedChunk = \{ kind: "question", number: chunkNumber
 assert.match(pageSource, /failedChunk = \{ kind: "lesson", number: chunkNumber, total: totalChunks \}/, "Lesson imports must capture the failed chunk before awaiting its write.");
 assert.match(pageSource, /formatImportChunkFailure\(/, "The UI must report the exact failed chunk and recovery boundary.");
 assert.match(pageSource, /failedChunk \? `Nothing was saved from this run\./, "A first-chunk failure must be distinguished from a partial import.");
+assert.match(pageSource, /catch \(error\) \{[\s\S]*?await invalidateImportQueries\(\);[\s\S]*?Partial import:/, "Failed imports must refresh teacher content and question-bank caches after any earlier chunks have committed.");
+assert.match(pageSource, /await Promise\.allSettled\(\[/, "Cache refresh failures must not mask the original import result.");
 
 process.stdout.write("PASS: importer integration contract — preflight-before-write, bounded lookups, cleanup tracking and protected answer-key RPC.\n");
