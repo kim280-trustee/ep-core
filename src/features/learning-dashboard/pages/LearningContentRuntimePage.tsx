@@ -7,55 +7,8 @@ import { supabase } from "@/core/infrastructure/supabase/client";
 import { learningAssignmentsService } from "@/features/learning-assignments";
 import { learningActivityService } from "@/features/learning-activity";
 import { learningContentService } from "@/features/learning-content";
+import { getStudentVisibleContentSections } from "@/features/learning-content/utils/student-content-sections";
 import CodeActivityWorkspace from "../components/CodeActivityWorkspace";
-
-function textSections(body: Record<string, unknown>) {
-  const raw = body.sections;
-  if (!Array.isArray(raw)) return [];
-  return raw.flatMap((section) => {
-    if (!section || typeof section !== "object") return [];
-    const record = section as Record<string, unknown>;
-    // Teacher-only pack guidance must never be included in student lesson content.
-    const title = typeof record.title === "string" ? record.title.toLowerCase() : "";
-    if (
-      record.type === "teacher_only" ||
-      record.audience === "teacher" ||
-      /safety and teaching guidance|teacher guidance|teacher notes|teaching notes/.test(title)
-    ) return [];
-    const sectionType = typeof record.type === "string" ? record.type : "text";
-    const bodyText = typeof record.body === "string" ? record.body.trim() : "";
-    if (sectionType === "code_activity") {
-      return [{
-        type: sectionType,
-        title: typeof record.title === "string" ? record.title : "Coding activity",
-        body: bodyText,
-        instructions: typeof record.instructions === "string" ? record.instructions : "",
-        starterCode: typeof record.starterCode === "string" ? record.starterCode : "",
-        requirements: "",
-      }];
-    }
-    if (sectionType === "project_activity") {
-      return [{
-        type: sectionType,
-        title: typeof record.title === "string" ? record.title : "Practical project",
-        body: bodyText,
-        instructions: typeof record.instructions === "string" ? record.instructions : bodyText,
-        starterCode: "",
-        requirements: typeof record.requirements === "string" ? record.requirements : "",
-      }];
-    }
-    if (!bodyText) return [];
-    return [{
-      type: sectionType,
-      title: typeof record.title === "string" ? record.title : null,
-      body: bodyText,
-      instructions: "",
-      starterCode: "",
-      requirements: "",
-    }];
-  });
-}
-
 
 const ALLOWED_PROJECT_FILE_TYPES = new Set([
   "application/pdf", "image/png", "image/jpeg", "image/webp", "text/plain", "application/zip",
@@ -149,7 +102,7 @@ export default function LearningContentRuntimePage() {
         item,
         content: currentContent,
         version: publishedVersion,
-        sections: textSections(publishedVersion.body),
+        sections: getStudentVisibleContentSections(publishedVersion.body),
       };
     },
     enabled: Boolean(id && content && user?.id),
