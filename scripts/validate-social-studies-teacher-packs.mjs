@@ -89,7 +89,7 @@ for (const pack of packs) {
       if (expectedStimulus && !sourceSection.includes(expectedStimulus)) {
         failures.push(heading[2] + ": P1–P3 assessment stimulus does not match strand " + standard);
       }
-      const taskLabels = [...sourceSection.matchAll(/^\\s*[123]\\. \\*\\*(Recall \\/ evidence|Explain \\/ compare|Apply \\/ demonstrate):\\*\\*/gm)].map((match) => match[1]);
+      const taskLabels = [...sourceSection.matchAll(/^\s*[123]\. \*\*(Recall \/ evidence|Explain \/ compare|Apply \/ demonstrate):\*\*/gm)].map((match) => match[1]);
       if (JSON.stringify(taskLabels) !== JSON.stringify(["Recall / evidence", "Explain / compare", "Apply / demonstrate"])) {
         failures.push(heading[2] + ": P1–P3 tasks must use the ordered evidence, explanation and application progression");
       }
