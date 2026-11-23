@@ -77,7 +77,7 @@ All imported content and questions remain **drafts**. The importer does not subm
 - Objective codes must resolve uniquely inside the selected subject.
 - The objective must have an active alignment to the selected curriculum and grade.
 - Code-less outcomes use exact text matching, conservative text similarity, or a unique grade-scoped outcome number. Ambiguous mappings stop the import; the importer does not silently choose one.
-- Every lesson must contain exactly three questions with answer keys.
+- Every lesson must contain exactly three answer-keyed questions numbered 1, 2 and 3 in that order; missing, repeated, shifted or reordered question numbers block parsing before any import can begin.
 - Content and question codes are normalized to the existing uppercase, hyphen-separated content code convention.
 - Existing codes are never overwritten. Preflight checks only the exact content/question codes in the selected organization, rather than loading the entire organization library.
 - Lesson-pack retries are resumable: a lesson is skipped only when its lesson code and all three expected question codes already exist. Remaining untouched lessons are imported in chunks of up to 40 lessons (up to 120 questions).
