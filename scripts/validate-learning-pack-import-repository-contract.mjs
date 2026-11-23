@@ -58,6 +58,26 @@ assert.match(lessonChunk, /findExistingImportCodeConflicts\(/,
   "Lesson imports must block normalized existing-code collisions.");
 assert.match(source, /const lookupBatchSize = 100/,
   "Existing-code lookups must remain bounded to batches of 100.");
+assert.match(source, /const MAX_IMPORT_CHUNK_ITEMS = 40/,
+  "Both import paths must enforce the same bounded 40-item chunk ceiling.");
+assert.match(questionOnly, /input\.questions\.length > MAX_IMPORT_CHUNK_ITEMS/,
+  "Question-only imports must reject oversized chunks before any database lookup or write.");
+assert.match(lessonChunk, /input\.lessons\.length > MAX_IMPORT_CHUNK_ITEMS/,
+  "Lesson imports must reject oversized chunks before any database lookup or write.");
+assert.match(source, /function assertExactUniqueValues/,
+  "Import writes must share an exact-set acknowledgement verifier.");
+assert.match(questionOnly, /assertExactUniqueValues\(\[\.\.\.questionByCode\.keys\(\)\], codes, "question parents"\)/,
+  "Question-only imports must verify exact returned question codes.");
+assert.match(lessonChunk, /assertExactUniqueValues\(\[\.\.\.contentByCode\.keys\(\)\], contentCodes, "lesson parents"\)/,
+  "Lesson imports must verify exact returned lesson codes.");
+assert.match(source, /insert\(contentVersionRows\)[\s\S]*?select\("id,content_item_id"\)[\s\S]*?insertedContentVersions/,
+  "Lesson version writes must return and verify persisted parent coverage.");
+assert.match(source, /insert\(contentObjectiveRows\)[\s\S]*?select\("content_item_id,objective_id"\)[\s\S]*?insertedContentObjectives/,
+  "Lesson objective links must return and verify persisted coverage.");
+assert.match(source, /insert\(objectiveRows\)[\s\S]*?select\("question_version_id,objective_id"\)[\s\S]*?insertedQuestionObjectives/,
+  "Question-only objective links must return and verify persisted coverage.");
+assert.match(source, /insert\(questionObjectiveRows\)[\s\S]*?select\("question_version_id,objective_id"\)[\s\S]*?insertedLessonQuestionObjectives/,
+  "Lesson-pack question objective links must return and verify persisted coverage.");
 const questionVerification = methodBody("verifyExistingQuestionImports", "findIncompleteExistingContentCodes");
 assert.match(questionVerification, /new Set\(expectedCodes\)\.size !== expectedCodes\.length/,
   "Question integrity verification must reject duplicate normalized input codes.");
