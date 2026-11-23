@@ -205,7 +205,7 @@ export const learningPackImportRepository = {
             sections: [
               { type: "text", title: "Learning outcome", body: lesson.learningOutcome },
               { type: "text", title: "Teaching activity", body: lesson.activity },
-              ...(lesson.teacherGuidance ? [{ type: "teacher_only", audience: "teacher", title: "Safety and teaching guidance", body: lesson.teacherGuidance }] : []),
+              ...(lesson.teacherGuidance ? [{ type: "teacher_only", audience: "teacher", title: "Teacher-only guidance and marking notes", body: lesson.teacherGuidance }] : []),
               {
                 type: "text",
                 title: "Practice questions",
