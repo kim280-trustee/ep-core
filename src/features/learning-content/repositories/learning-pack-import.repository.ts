@@ -91,6 +91,143 @@ export const learningPackImportRepository = {
       questionCodes: existingQuestionCodes,
     };
   },
+  async verifyExistingQuestionImports(input: {
+    organizationId: string;
+    curriculumId: string;
+    subjectId: string;
+    languageCode: "en" | "th";
+    questions: Array<LearningPackQuestionOnlyInput>;
+  }) {
+    const batchSize = 100;
+    const integrity = new Map<string, { questionExists: boolean; isComplete: boolean; issue: string | null }>();
+    for (let offset = 0; offset < input.questions.length; offset += batchSize) {
+      const batch = input.questions.slice(offset, offset + batchSize);
+      const expectedQuestions = batch.map((question) => ({
+        code: normalizeLearningImportCode(question.code),
+        prompt: question.prompt,
+        expected_answer: question.expectedAnswer,
+        objective_id: question.objectiveId,
+        curriculum_id: input.curriculumId,
+        grade_level_id: question.gradeLevelId,
+        subject_id: input.subjectId,
+        language_code: input.languageCode,
+      }));
+      const { data, error } = await supabase.rpc("verify_learning_pack_import_questions", {
+        p_organization_id: input.organizationId,
+        p_expected_questions: expectedQuestions as unknown as Json,
+      });
+      if (error) throw error;
+      if ((data ?? []).length !== batch.length) {
+        throw new Error("The database did not return a completeness result for every expected question. No retry decisions were made.");
+      }
+      for (const row of data ?? []) {
+        integrity.set(normalizeLearningImportCode(row.question_code), {
+          questionExists: row.question_exists,
+          isComplete: row.is_complete,
+          issue: row.issue,
+        });
+      }
+    }
+    return integrity;
+  },
+
+  async findIncompleteExistingContentCodes(input: {
+    organizationId: string;
+    languageCode: "en" | "th";
+    lessons: Array<LearningPackImportLesson & { contentImportCode: string }>;
+  }) {
+    const batchSize = 100;
+    const incompleteCodes = new Set<string>();
+    for (let offset = 0; offset < input.lessons.length; offset += batchSize) {
+      const batch = input.lessons.slice(offset, offset + batchSize);
+      const codes = batch.map((lesson) => normalizeLearningImportCode(lesson.contentImportCode));
+      const { data: items, error: itemError } = await supabase
+        .from("learning_content_items")
+        .select("id,code,title,content_type,language_code,status,metadata")
+        .eq("organization_id", input.organizationId)
+        .in("code", codes);
+      if (itemError) throw itemError;
+
+      const itemByCode = new Map((items ?? []).map((item) => [normalizeLearningImportCode(item.code), item]));
+      const itemIds = (items ?? []).map((item) => item.id);
+      const [versionsResult, objectivesResult] = itemIds.length
+        ? await Promise.all([
+          supabase.from("learning_content_versions")
+            .select("content_item_id,version_no,status,body")
+            .in("content_item_id", itemIds),
+          supabase.from("learning_content_objectives")
+            .select("content_item_id,objective_id")
+            .in("content_item_id", itemIds),
+        ])
+        : [{ data: [], error: null }, { data: [], error: null }];
+      if (versionsResult.error) throw versionsResult.error;
+      if (objectivesResult.error) throw objectivesResult.error;
+
+      const versionsByItem = new Map<string, typeof versionsResult.data>();
+      for (const version of versionsResult.data ?? []) {
+        const rows = versionsByItem.get(version.content_item_id) ?? [];
+        rows.push(version);
+        versionsByItem.set(version.content_item_id, rows);
+      }
+      const objectivesByItem = new Map<string, typeof objectivesResult.data>();
+      for (const objective of objectivesResult.data ?? []) {
+        const rows = objectivesByItem.get(objective.content_item_id) ?? [];
+        rows.push(objective);
+        objectivesByItem.set(objective.content_item_id, rows);
+      }
+
+      for (const lesson of batch) {
+        const code = normalizeLearningImportCode(lesson.contentImportCode);
+        const item = itemByCode.get(code);
+        if (!item) {
+          incompleteCodes.add(code);
+          continue;
+        }
+        const metadata = item.metadata && typeof item.metadata === "object" && !Array.isArray(item.metadata)
+          ? item.metadata as Record<string, unknown>
+          : {};
+        const versions = versionsByItem.get(item.id) ?? [];
+        const objectives = objectivesByItem.get(item.id) ?? [];
+        const version = versions.length === 1 ? versions[0] : undefined;
+        const body = version?.body && typeof version.body === "object" && !Array.isArray(version.body)
+          ? version.body as Record<string, unknown>
+          : {};
+        const source = body.source && typeof body.source === "object" && !Array.isArray(body.source)
+          ? body.source as Record<string, unknown>
+          : {};
+        const sections = Array.isArray(body.sections)
+          ? body.sections.filter((section): section is Record<string, unknown> =>
+            Boolean(section) && typeof section === "object" && !Array.isArray(section))
+          : [];
+        const hasSection = (title: string, expectedBody: string) =>
+          sections.some((section) => section.title === title && section.body === expectedBody);
+        const expectedPractice = lesson.questions.map((question, index) => String(index + 1) + ". " + question.prompt).join("\n");
+        const guidanceMatches = !lesson.teacherGuidance || hasSection(
+          "Teacher-only guidance and marking notes",
+          lesson.teacherGuidance,
+        );
+        const complete =
+          item.title === lesson.title &&
+          item.content_type === "lesson" &&
+          item.language_code === input.languageCode &&
+          item.status === "draft" &&
+          metadata.source === "teacher_pack_import" &&
+          metadata.objective_code === lesson.objectiveCode &&
+          version?.version_no === 1 &&
+          version.status === "draft" &&
+          source.objective_code === lesson.objectiveCode &&
+          hasSection("Learning outcome", lesson.learningOutcome) &&
+          hasSection("Teaching activity", lesson.activity) &&
+          hasSection("Practice questions", expectedPractice) &&
+          guidanceMatches &&
+          objectives.length === 1 &&
+          objectives[0].objective_id === lesson.objectiveId;
+        if (!complete) incompleteCodes.add(code);
+      }
+    }
+    return incompleteCodes;
+  },
+
   async importQuestionsOnly(input: LearningPackQuestionOnlyChunk) {
     if (!input.languageCode || !input.organizationId || !input.createdBy || !input.curriculumId || !input.subjectId || !input.questions.length) {
       throw new Error("A teacher, organization, curriculum, subject and at least one question are required.");
