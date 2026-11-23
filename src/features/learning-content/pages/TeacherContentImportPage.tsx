@@ -234,6 +234,17 @@ export default function TeacherContentImportPage() {
     }
   }
 
+  async function invalidateImportQueries() {
+    // A partial import can persist earlier chunks before a later chunk fails.
+    // Refresh all affected views on both success and failure without allowing
+    // a cache-refresh error to hide the original import result.
+    await Promise.allSettled([
+      queryClient.invalidateQueries({ queryKey: ["learning", "teacher-content-library", organizationId] }),
+      queryClient.invalidateQueries({ queryKey: ["learning", "question-bank"] }),
+      queryClient.invalidateQueries({ queryKey: ["learning", "authoring", "questions"] }),
+    ]);
+  }
+
   async function importPack() {
     if (!user?.id || !organizationId || !activeCurriculumId || !activeSubjectId) {
       setMessage("Sign in and select an organization, curriculum and subject before importing.");
@@ -315,10 +326,11 @@ export default function TeacherContentImportPage() {
         }
         setMessage(`Imported ${importedLessons} new lesson drafts and ${importedQuestions} new question drafts; safely skipped ${skippedLessons} complete lessons from an earlier run. All new items remain unpublished for teacher review.`);
       }
-      await queryClient.invalidateQueries({ queryKey: ["learning", "teacher-content-library", organizationId] });
-      await queryClient.invalidateQueries({ queryKey: ["learning", "question-bank"] });
-      await queryClient.invalidateQueries({ queryKey: ["learning", "authoring", "questions"] });
+      await invalidateImportQueries();
     } catch (error) {
+      // Earlier chunks may already be committed; refresh affected lists even
+      // when a later chunk fails or cleanup reports an error.
+      await invalidateImportQueries();
       const reason = failedChunk
         ? formatImportChunkFailure({ kind: failedChunk.kind, chunkNumber: failedChunk.number, totalChunks: failedChunk.total, error })
         : error instanceof Error ? error.message : "Unknown import error.";
