@@ -61,8 +61,8 @@ export const learningPackImportRepository = {
     const lookupBatchSize = 100;
     const existingContentCodes = new Set<string>();
     const existingQuestionCodes = new Set<string>();
-    const contentCodes = [...new Set(input.contentCodes.map(makeImportCode).filter(Boolean))];
-    const questionCodes = [...new Set(input.questionCodes.map(makeImportCode).filter(Boolean))];
+    const contentCodes: string[] = [...new Set(input.contentCodes.map(normalizeLearningImportCode).filter((code) => code.length > 0))];
+    const questionCodes: string[] = [...new Set(input.questionCodes.map(normalizeLearningImportCode).filter((code) => code.length > 0))];
 
     for (let offset = 0; offset < contentCodes.length; offset += lookupBatchSize) {
       const batch = contentCodes.slice(offset, offset + lookupBatchSize);
