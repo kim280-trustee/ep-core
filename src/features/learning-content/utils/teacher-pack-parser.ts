@@ -130,6 +130,9 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
       throw new Error(`Lesson ${number} has ${questions.length} answer-keyed questions; exactly 3 are required.`);
     }
 
+    const markingGuide = section.match(/^\*\*Marking guide(?:\s*\([^)]*\))?:\*\*\s*(.+)$/mi)?.[1]?.trim();
+    const lessonGuidance = [packGuidance, markingGuide ? `Marking guide: ${markingGuide}` : ""].filter(Boolean).join("\n\n");
+
     return {
       number,
       title: displayTitle,
@@ -138,7 +141,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
       outcomeNumber: number,
       learningOutcome,
       activity,
-      packGuidance,
+      packGuidance: lessonGuidance,
       questions,
     };
   });
