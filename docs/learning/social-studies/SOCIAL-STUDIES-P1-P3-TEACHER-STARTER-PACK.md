@@ -44,8 +44,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the founder and the first life event named in the source. This assesses: “บอกพุทธประวัติ หรือประวัติของศาสดาที่ตนนับถือโดยสังเขป”. **Answer:** Correct founder and source detail.
-2. **Explain / compare:** Put two events from the source in chronological order and cite the detail that establishes their order. **Answer:** Events are in the source's chronological order, with a supporting clue.
-3. **Apply / demonstrate:** Summarise the required life stages in a short oral or written account using only sourced details. **Answer:** Concise, accurate summary covering the indicator's required span; no invented dates or events.
+2. **Explain / compare:** Put two events from the source in chronological order and cite the detail that establishes their order. This task assesses: “บอกพุทธประวัติ หรือประวัติของศาสดาที่ตนนับถือโดยสังเขป”. **Answer:** Events are in the source's chronological order, with a supporting clue.
+3. **Apply / demonstrate:** Summarise the required life stages in a short oral or written account using only sourced details. This task assesses: “บอกพุทธประวัติ หรือประวัติของศาสดาที่ตนนับถือโดยสังเขป”. **Answer:** Concise, accurate summary covering the indicator's required span; no invented dates or events.
 ### 2. SO1.1-P1-02
 
 - **Standard:** SO1.1
@@ -78,8 +78,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the person and identify one action stated in the source. This assesses: “ชื่นชมและบอกแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดก/เรื่องเล่า และศาสนิกชนตัวอย่างตามที่กำหนด”. **Answer:** Correct person and source action.
-2. **Explain / compare:** Explain the lesson shown by that action and point to the source detail. **Answer:** Lesson is a reasonable interpretation supported by the action.
-3. **Apply / demonstrate:** Apply the lesson to a new school or community case; recommend an action and explain why it fits. **Answer:** Feasible action explicitly linked to the lesson; accept equivalent examples.
+2. **Explain / compare:** Explain the lesson shown by that action and point to the source detail. This task assesses: “ชื่นชมและบอกแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดก/เรื่องเล่า และศาสนิกชนตัวอย่างตามที่กำหนด”. **Answer:** Lesson is a reasonable interpretation supported by the action.
+3. **Apply / demonstrate:** Apply the lesson to a new school or community case; recommend an action and explain why it fits. This task assesses: “ชื่นชมและบอกแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดก/เรื่องเล่า และศาสนิกชนตัวอย่างตามที่กำหนด”. **Answer:** Feasible action explicitly linked to the lesson; accept equivalent examples.
 ### 3. SO1.1-P1-03
 
 - **Standard:** SO1.1
@@ -112,8 +112,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Match each term or example to its approved meaning on the card. This assesses: “บอกความหมาย ความสำคัญ และเคารพพระรัตนตรัย ปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนาหรือหลักธรรมของศาสนาที่ตนนับถือ ตามที่กำหนด”. **Answer:** Matches the verified card exactly.
-2. **Explain / compare:** Explain the meaning or importance of one selected Jewel or principle using the approved definition. **Answer:** Explanation is consistent with the approved definition.
-3. **Apply / demonstrate:** Resolve a short ethical dilemma using one principle from the card and justify the action. **Answer:** Feasible action and explicit principle-based reason; never assess personal faith or worship.
+2. **Explain / compare:** Explain the meaning or importance of one selected Jewel or principle using the approved definition. This task assesses: “บอกความหมาย ความสำคัญ และเคารพพระรัตนตรัย ปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนาหรือหลักธรรมของศาสนาที่ตนนับถือ ตามที่กำหนด”. **Answer:** Explanation is consistent with the approved definition.
+3. **Apply / demonstrate:** Resolve a short ethical dilemma using one principle from the card and justify the action. This task assesses: “บอกความหมาย ความสำคัญ และเคารพพระรัตนตรัย ปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนาหรือหลักธรรมของศาสนาที่ตนนับถือ ตามที่กำหนด”. **Answer:** Feasible action and explicit principle-based reason; never assess personal faith or worship.
 ### 4. SO1.1-P1-04
 
 - **Standard:** SO1.1
@@ -146,8 +146,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the practice and sequence its main steps from the source. This assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตา มีสติที่เป็นพื้นฐานของสมาธิในพระพุทธศาสนาหรือการพัฒนาจิต ตามแนวทางของศาสนาที่ตนนับถือ ตามที่กำหนด”. **Answer:** Practice and steps match the source.
-2. **Explain / compare:** Explain how one step supports the purpose stated in the source. **Answer:** Purpose is accurate and source-grounded.
-3. **Apply / demonstrate:** Describe or design a brief attention/reflection routine and one observable sign that it supports focus. **Answer:** Safe, voluntary routine with observable evidence; do not grade prayer, belief or spiritual attainment.
+2. **Explain / compare:** Explain how one step supports the purpose stated in the source. This task assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตา มีสติที่เป็นพื้นฐานของสมาธิในพระพุทธศาสนาหรือการพัฒนาจิต ตามแนวทางของศาสนาที่ตนนับถือ ตามที่กำหนด”. **Answer:** Purpose is accurate and source-grounded.
+3. **Apply / demonstrate:** Describe or design a brief attention/reflection routine and one observable sign that it supports focus. This task assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตา มีสติที่เป็นพื้นฐานของสมาธิในพระพุทธศาสนาหรือการพัฒนาจิต ตามแนวทางของศาสนาที่ตนนับถือ ตามที่กำหนด”. **Answer:** Safe, voluntary routine with observable evidence; do not grade prayer, belief or spiritual attainment.
 ### 5. SO1.2-P1-01
 
 - **Standard:** SO1.2
@@ -180,8 +180,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the place and one service task shown in the plan. This assesses: “บำเพ็ญประโยชน์ต่อวัด หรือศาสนสถานของศาสนาที่ตนนับถือ”. **Answer:** Correct place and task.
-2. **Explain / compare:** Explain how the task helps care for the place or people who use it. **Answer:** Practical benefit supported by the plan.
-3. **Apply / demonstrate:** Select a safe task suitable for a child and state one permission, safety or respect rule. **Answer:** Safe supervised action and relevant rule; provide an equivalent community-care alternative where participation is inappropriate.
+2. **Explain / compare:** Explain how the task helps care for the place or people who use it. This task assesses: “บำเพ็ญประโยชน์ต่อวัด หรือศาสนสถานของศาสนาที่ตนนับถือ”. **Answer:** Practical benefit supported by the plan.
+3. **Apply / demonstrate:** Select a safe task suitable for a child and state one permission, safety or respect rule. This task assesses: “บำเพ็ญประโยชน์ต่อวัด หรือศาสนสถานของศาสนาที่ตนนับถือ”. **Answer:** Safe supervised action and relevant rule; provide an equivalent community-care alternative where participation is inappropriate.
 ### 6. SO1.2-P1-02
 
 - **Standard:** SO1.2
@@ -214,8 +214,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the community and formal step described in the fictional case. This assesses: “แสดงตนเป็นพุทธมามกะ หรือแสดงตนเป็นศาสนิกชนของศาสนาที่ตนนับถือ”. **Answer:** Correctly identifies only what the case states.
-2. **Explain / compare:** Explain what the step means within the tradition described by the source. **Answer:** Explanation matches the verified source.
-3. **Apply / demonstrate:** Explain why affiliation must be voluntary and how classmates should respect a person's choice. **Answer:** States choice must be voluntary and free from pressure or discrimination; no learner disclosure or ceremony required.
+2. **Explain / compare:** Explain what the step means within the tradition described by the source. This task assesses: “แสดงตนเป็นพุทธมามกะ หรือแสดงตนเป็นศาสนิกชนของศาสนาที่ตนนับถือ”. **Answer:** Explanation matches the verified source.
+3. **Apply / demonstrate:** Explain why affiliation must be voluntary and how classmates should respect a person's choice. This task assesses: “แสดงตนเป็นพุทธมามกะ หรือแสดงตนเป็นศาสนิกชนของศาสนาที่ตนนับถือ”. **Answer:** States choice must be voluntary and free from pressure or discrimination; no learner disclosure or ceremony required.
 ### 7. SO1.2-P1-03
 
 - **Standard:** SO1.2
@@ -248,8 +248,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the event and identify or sequence its key actions from the card. This assesses: “ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนา ตามที่กำหนดได้ถูกต้อง”. **Answer:** Event and actions are accurately identified.
-2. **Explain / compare:** Explain the purpose of one action using the source note. **Answer:** Purpose matches the verified source.
-3. **Apply / demonstrate:** Prepare a short guide for a respectful observer with three context-specific rules and reasons. **Answer:** Rules are appropriate to this event; observing is acceptable instead of worship participation.
+2. **Explain / compare:** Explain the purpose of one action using the source note. This task assesses: “ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนา ตามที่กำหนดได้ถูกต้อง”. **Answer:** Purpose matches the verified source.
+3. **Apply / demonstrate:** Prepare a short guide for a respectful observer with three context-specific rules and reasons. This task assesses: “ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนา ตามที่กำหนดได้ถูกต้อง”. **Answer:** Rules are appropriate to this event; observing is acceptable instead of worship participation.
 ### 8. SO2.1-P1-01
 
 - **Standard:** SO2.1
@@ -588,8 +588,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Read the displayed date and state its day, month and year. This assesses: “บอกวัน เดือน ปี และการนับช่วงเวลาตามปฏิทินที่ใช้ในชีวิตประจำวัน”. **Answer:** Reads all date parts correctly from the supplied calendar.
-2. **Explain / compare:** Find a second date on the same calendar and explain whether it is earlier or later. **Answer:** Correctly compares dates using the same named calendar system.
-3. **Apply / demonstrate:** Use the calendar to identify the date of a named classroom event and explain how you found it. **Answer:** Gives the correct date and describes a valid way of locating it.
+2. **Explain / compare:** Find a second date on the same calendar and explain whether it is earlier or later. This task assesses: “บอกวัน เดือน ปี และการนับช่วงเวลาตามปฏิทินที่ใช้ในชีวิตประจำวัน”. **Answer:** Correctly compares dates using the same named calendar system.
+3. **Apply / demonstrate:** Use the calendar to identify the date of a named classroom event and explain how you found it. This task assesses: “บอกวัน เดือน ปี และการนับช่วงเวลาตามปฏิทินที่ใช้ในชีวิตประจำวัน”. **Answer:** Gives the correct date and describes a valid way of locating it.
 ### 18. SO4.1-P1-02
 
 - **Standard:** SO4.1
@@ -622,8 +622,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the event that happens first and the event that happens last in the supplied routine. This assesses: “เรียงลำดับเหตุการณ์ในชีวิตประจำวัน ตามวันเวลาที่เกิดขึ้น”. **Answer:** Correct first and last events.
-2. **Explain / compare:** Arrange four routine cards in the order supported by their times or clues. **Answer:** Four events are in supported chronological order.
-3. **Apply / demonstrate:** Describe one daily event and identify what happens immediately before and after it. **Answer:** Identifies valid preceding and following events from the routine.
+2. **Explain / compare:** Arrange four routine cards in the order supported by their times or clues. This task assesses: “เรียงลำดับเหตุการณ์ในชีวิตประจำวัน ตามวันเวลาที่เกิดขึ้น”. **Answer:** Four events are in supported chronological order.
+3. **Apply / demonstrate:** Describe one daily event and identify what happens immediately before and after it. This task assesses: “เรียงลำดับเหตุการณ์ในชีวิตประจำวัน ตามวันเวลาที่เกิดขึ้น”. **Answer:** Identifies valid preceding and following events from the routine.
 ### 19. SO4.1-P1-03
 
 - **Standard:** SO4.1
@@ -656,8 +656,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify one fact about the person/family from the supplied interview or document. This assesses: “บอกประวัติความเป็นมาของตนเองและครอบครัวโดยสอบถามผู้เกี่ยวข้อง”. **Answer:** Fact matches the source.
-2. **Explain / compare:** Explain who supplied the information and how the source supports the family account. **Answer:** Names the source correctly and distinguishes interview from document.
-3. **Apply / demonstrate:** Create a short family timeline using two or three approved details and label the source of each. **Answer:** Chronology and source labels are correct; fictional or anonymised cases are acceptable.
+2. **Explain / compare:** Explain who supplied the information and how the source supports the family account. This task assesses: “บอกประวัติความเป็นมาของตนเองและครอบครัวโดยสอบถามผู้เกี่ยวข้อง”. **Answer:** Names the source correctly and distinguishes interview from document.
+3. **Apply / demonstrate:** Create a short family timeline using two or three approved details and label the source of each. This task assesses: “บอกประวัติความเป็นมาของตนเองและครอบครัวโดยสอบถามผู้เกี่ยวข้อง”. **Answer:** Chronology and source labels are correct; fictional or anonymised cases are acceptable.
 ### 20. SO4.2-P1-01
 
 - **Standard:** SO4.2
@@ -690,8 +690,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify one object or way of life in each time period. This assesses: “บอกความเปลี่ยนแปลงของสภาพแวดล้อม สิ่งของเครื่องใช้ หรือการดำเนินชีวิตของตนเองกับสมัยของพ่อแม่ ปู่ย่า ตายาย”. **Answer:** Identifies items and periods accurately.
-2. **Explain / compare:** Compare the two examples and state one change supported by the pictures or captions. **Answer:** Names a visible, supported difference.
-3. **Apply / demonstrate:** Explain how the change affects one everyday activity, using evidence from the set. **Answer:** Explains a plausible effect tied to the evidence; avoid treating one family as representative of all families.
+2. **Explain / compare:** Compare the two examples and state one change supported by the pictures or captions. This task assesses: “บอกความเปลี่ยนแปลงของสภาพแวดล้อม สิ่งของเครื่องใช้ หรือการดำเนินชีวิตของตนเองกับสมัยของพ่อแม่ ปู่ย่า ตายาย”. **Answer:** Names a visible, supported difference.
+3. **Apply / demonstrate:** Explain how the change affects one everyday activity, using evidence from the set. This task assesses: “บอกความเปลี่ยนแปลงของสภาพแวดล้อม สิ่งของเครื่องใช้ หรือการดำเนินชีวิตของตนเองกับสมัยของพ่อแม่ ปู่ย่า ตายาย”. **Answer:** Explains a plausible effect tied to the evidence; avoid treating one family as representative of all families.
 ### 21. SO4.2-P1-02
 
 - **Standard:** SO4.2
@@ -724,8 +724,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the past event and one detail that shows when or where it happened. This assesses: “บอกเหตุการณ์ที่เกิดขึ้นในอดีตที่มีผลกระทบต่อตนเองในปัจจุบัน”. **Answer:** Event and detail match the source.
-2. **Explain / compare:** Explain one effect the event had on the person/community in the source. **Answer:** Effect is stated in the account and linked to the event.
-3. **Apply / demonstrate:** Separate one fact from one present-day opinion about the event and explain the difference. **Answer:** Fact is source-verifiable; opinion is clearly marked as interpretation.
+2. **Explain / compare:** Explain one effect the event had on the person/community in the source. This task assesses: “บอกเหตุการณ์ที่เกิดขึ้นในอดีตที่มีผลกระทบต่อตนเองในปัจจุบัน”. **Answer:** Effect is stated in the account and linked to the event.
+3. **Apply / demonstrate:** Separate one fact from one present-day opinion about the event and explain the difference. This task assesses: “บอกเหตุการณ์ที่เกิดขึ้นในอดีตที่มีผลกระทบต่อตนเองในปัจจุบัน”. **Answer:** Fact is source-verifiable; opinion is clearly marked as interpretation.
 ### 22. SO4.3-P1-01
 
 - **Standard:** SO4.3
@@ -758,8 +758,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the national symbol shown and identify one feature accurately. This assesses: “อธิบายความหมายและความสำคัญของสัญลักษณ์สำคัญของชาติไทยและปฏิบัติได้ถูกต้อง”. **Answer:** Correct symbol and feature.
-2. **Explain / compare:** Explain its meaning or importance using the approved information card. **Answer:** Meaning follows the approved source.
-3. **Apply / demonstrate:** Choose the correct respectful action for a classroom scenario involving the symbol and justify it using the guidance. **Answer:** Action matches current official guidance; do not add unsupported rules.
+2. **Explain / compare:** Explain its meaning or importance using the approved information card. This task assesses: “อธิบายความหมายและความสำคัญของสัญลักษณ์สำคัญของชาติไทยและปฏิบัติได้ถูกต้อง”. **Answer:** Meaning follows the approved source.
+3. **Apply / demonstrate:** Choose the correct respectful action for a classroom scenario involving the symbol and justify it using the guidance. This task assesses: “อธิบายความหมายและความสำคัญของสัญลักษณ์สำคัญของชาติไทยและปฏิบัติได้ถูกต้อง”. **Answer:** Action matches current official guidance; do not add unsupported rules.
 ### 23. SO4.3-P1-02
 
 - **Standard:** SO4.3
@@ -792,8 +792,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the cultural place and identify where it is located on the map. This assesses: “บอกสถานที่สำคัญซึ่งเป็นแหล่งวัฒนธรรมในชุมชน”. **Answer:** Correct name and location.
-2. **Explain / compare:** Use the source to explain one reason the place is important to the community. **Answer:** Importance is supported by the description/source.
-3. **Apply / demonstrate:** Suggest one respectful way to care for or learn about the place and identify the source that supports its importance. **Answer:** Action is safe, respectful and appropriate to the site's rules.
+2. **Explain / compare:** Use the source to explain one reason the place is important to the community. This task assesses: “บอกสถานที่สำคัญซึ่งเป็นแหล่งวัฒนธรรมในชุมชน”. **Answer:** Importance is supported by the description/source.
+3. **Apply / demonstrate:** Suggest one respectful way to care for or learn about the place and identify the source that supports its importance. This task assesses: “บอกสถานที่สำคัญซึ่งเป็นแหล่งวัฒนธรรมในชุมชน”. **Answer:** Action is safe, respectful and appropriate to the site's rules.
 ### 24. SO4.3-P1-03
 
 - **Standard:** SO4.3
@@ -826,8 +826,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify one local feature or achievement in the evidence set. This assesses: “ระบุสิ่งที่ตนรักและภาคภูมิใจในท้องถิ่น”. **Answer:** Correctly identifies the selected local feature.
-2. **Explain / compare:** Explain why a person or group may value it, using one source detail. **Answer:** Gives a reason grounded in source or community testimony.
-3. **Apply / demonstrate:** Prepare a short evidence-based caption explaining what is worth learning about or preserving locally. **Answer:** Caption is accurate and respectful; learners may choose different examples.
+2. **Explain / compare:** Explain why a person or group may value it, using one source detail. This task assesses: “ระบุสิ่งที่ตนรักและภาคภูมิใจในท้องถิ่น”. **Answer:** Gives a reason grounded in source or community testimony.
+3. **Apply / demonstrate:** Prepare a short evidence-based caption explaining what is worth learning about or preserving locally. This task assesses: “ระบุสิ่งที่ตนรักและภาคภูมิใจในท้องถิ่น”. **Answer:** Caption is accurate and respectful; learners may choose different examples.
 ### 25. SO5.1-P1-01
 
 - **Standard:** SO5.1
@@ -1098,8 +1098,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the religion/tradition and one role described in the source. This assesses: “บอกความสำคัญของพระพุทธศาสนา หรือศาสนาที่ตนนับถือ”. **Answer:** Correct tradition and role.
-2. **Explain / compare:** Explain one contribution to an individual or community using a source detail. **Answer:** Supported contribution such as ethical guidance, community support, ceremony or cultural continuity.
-3. **Apply / demonstrate:** Compare two supplied examples with one evidence-based similarity or difference. **Answer:** Accurate comparison without ranking or judging religions.
+2. **Explain / compare:** Explain one contribution to an individual or community using a source detail. This task assesses: “บอกความสำคัญของพระพุทธศาสนา หรือศาสนาที่ตนนับถือ”. **Answer:** Supported contribution such as ethical guidance, community support, ceremony or cultural continuity.
+3. **Apply / demonstrate:** Compare two supplied examples with one evidence-based similarity or difference. This task assesses: “บอกความสำคัญของพระพุทธศาสนา หรือศาสนาที่ตนนับถือ”. **Answer:** Accurate comparison without ranking or judging religions.
 ### 33. SO1.1-P2-02
 
 - **Standard:** SO1.1
@@ -1132,8 +1132,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the two endpoint events required by the indicator. This assesses: “สรุปพุทธประวัติ ตั้งแต่ประสูติ จนถึงการออกผนวช หรือประวัติศาสดาที่ตนนับถือตามที่กำหนด”. **Answer:** Correct endpoint events.
-2. **Explain / compare:** Explain one turning point between them using the biography's source note. **Answer:** Explanation matches the supplied biography; no invented motives or dates.
-3. **Apply / demonstrate:** Reconstruct a four-event timeline covering the required span and cite one source detail per event. **Answer:** Chronological, complete and source-supported timeline.
+2. **Explain / compare:** Explain one turning point between them using the biography's source note. This task assesses: “สรุปพุทธประวัติ ตั้งแต่ประสูติ จนถึงการออกผนวช หรือประวัติศาสดาที่ตนนับถือตามที่กำหนด”. **Answer:** Explanation matches the supplied biography; no invented motives or dates.
+3. **Apply / demonstrate:** Reconstruct a four-event timeline covering the required span and cite one source detail per event. This task assesses: “สรุปพุทธประวัติ ตั้งแต่ประสูติ จนถึงการออกผนวช หรือประวัติศาสดาที่ตนนับถือตามที่กำหนด”. **Answer:** Chronological, complete and source-supported timeline.
 ### 34. SO1.1-P2-03
 
 - **Standard:** SO1.1
@@ -1166,8 +1166,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the person and identify one action stated in the source. This assesses: “ชื่นชมและบอกแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดก เรื่องเล่า และศาสนิกชนตัวอย่างตามที่กำหนด”. **Answer:** Correct person and source action.
-2. **Explain / compare:** Explain the lesson shown by that action and point to the source detail. **Answer:** Lesson is a reasonable interpretation supported by the action.
-3. **Apply / demonstrate:** Apply the lesson to a new school or community case; recommend an action and explain why it fits. **Answer:** Feasible action explicitly linked to the lesson; accept equivalent examples.
+2. **Explain / compare:** Explain the lesson shown by that action and point to the source detail. This task assesses: “ชื่นชมและบอกแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดก เรื่องเล่า และศาสนิกชนตัวอย่างตามที่กำหนด”. **Answer:** Lesson is a reasonable interpretation supported by the action.
+3. **Apply / demonstrate:** Apply the lesson to a new school or community case; recommend an action and explain why it fits. This task assesses: “ชื่นชมและบอกแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดก เรื่องเล่า และศาสนิกชนตัวอย่างตามที่กำหนด”. **Answer:** Feasible action explicitly linked to the lesson; accept equivalent examples.
 ### 35. SO1.1-P2-04
 
 - **Standard:** SO1.1
@@ -1200,8 +1200,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Match each term or example to its approved meaning on the card. This assesses: “บอกความหมาย ความสำคัญ และเคารพพระรัตนตรัย ปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนา หรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Matches the verified card exactly.
-2. **Explain / compare:** Explain the meaning or importance of one selected Jewel or principle using the approved definition. **Answer:** Explanation is consistent with the approved definition.
-3. **Apply / demonstrate:** Resolve a short ethical dilemma using one principle from the card and justify the action. **Answer:** Feasible action and explicit principle-based reason; never assess personal faith or worship.
+2. **Explain / compare:** Explain the meaning or importance of one selected Jewel or principle using the approved definition. This task assesses: “บอกความหมาย ความสำคัญ และเคารพพระรัตนตรัย ปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนา หรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Explanation is consistent with the approved definition.
+3. **Apply / demonstrate:** Resolve a short ethical dilemma using one principle from the card and justify the action. This task assesses: “บอกความหมาย ความสำคัญ และเคารพพระรัตนตรัย ปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนา หรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Feasible action and explicit principle-based reason; never assess personal faith or worship.
 ### 36. SO1.1-P2-05
 
 - **Standard:** SO1.1
@@ -1234,8 +1234,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify one good action from each of the three settings. This assesses: “ชื่นชมการทำความดีของตนเอง บุคคลในครอบครัวและในโรงเรียนตามหลักศาสนา”. **Answer:** Accurate actions from all three settings; personal disclosure not required.
-2. **Explain / compare:** Choose one example and explain which taught principle it demonstrates. **Answer:** Principle is taught in the lesson and linked to the action.
-3. **Apply / demonstrate:** Plan one realistic good action at home or school and explain how it reflects that principle. **Answer:** Specific, safe, feasible plan with a clear link.
+2. **Explain / compare:** Choose one example and explain which taught principle it demonstrates. This task assesses: “ชื่นชมการทำความดีของตนเอง บุคคลในครอบครัวและในโรงเรียนตามหลักศาสนา”. **Answer:** Principle is taught in the lesson and linked to the action.
+3. **Apply / demonstrate:** Plan one realistic good action at home or school and explain how it reflects that principle. This task assesses: “ชื่นชมการทำความดีของตนเอง บุคคลในครอบครัวและในโรงเรียนตามหลักศาสนา”. **Answer:** Specific, safe, feasible plan with a clear link.
 ### 37. SO1.1-P2-06
 
 - **Standard:** SO1.1
@@ -1268,8 +1268,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the practice and sequence its main steps from the source. This assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตา มีสติที่เป็นพื้นฐานของสมาธิ ในพระพุทธศาสนาหรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Practice and steps match the source.
-2. **Explain / compare:** Explain how one step supports the purpose stated in the source. **Answer:** Purpose is accurate and source-grounded.
-3. **Apply / demonstrate:** Describe or design a brief attention/reflection routine and one observable sign that it supports focus. **Answer:** Safe, voluntary routine with observable evidence; do not grade prayer, belief or spiritual attainment.
+2. **Explain / compare:** Explain how one step supports the purpose stated in the source. This task assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตา มีสติที่เป็นพื้นฐานของสมาธิ ในพระพุทธศาสนาหรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Purpose is accurate and source-grounded.
+3. **Apply / demonstrate:** Describe or design a brief attention/reflection routine and one observable sign that it supports focus. This task assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตา มีสติที่เป็นพื้นฐานของสมาธิ ในพระพุทธศาสนาหรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Safe, voluntary routine with observable evidence; do not grade prayer, belief or spiritual attainment.
 ### 38. SO1.1-P2-07
 
 - **Standard:** SO1.1
@@ -1302,8 +1302,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Match each named religion to the figure (where applicable) and scripture shown in the source. This assesses: “บอกชื่อศาสนา ศาสดา และความสำคัญของคัมภีร์ของศาสนาที่ตนนับถือ และศาสนาอื่น ๆ”. **Answer:** Matches only verified names and texts; do not assume all traditions frame founders identically.
-2. **Explain / compare:** Explain the importance or role of one selected scripture using its source note. **Answer:** Role is supported by source, such as guidance or preservation of teachings.
-3. **Apply / demonstrate:** Compare the role of scriptures in two traditions with one accurate similarity or difference. **Answer:** Accurate, respectful comparison without ranking traditions.
+2. **Explain / compare:** Explain the importance or role of one selected scripture using its source note. This task assesses: “บอกชื่อศาสนา ศาสดา และความสำคัญของคัมภีร์ของศาสนาที่ตนนับถือ และศาสนาอื่น ๆ”. **Answer:** Role is supported by source, such as guidance or preservation of teachings.
+3. **Apply / demonstrate:** Compare the role of scriptures in two traditions with one accurate similarity or difference. This task assesses: “บอกชื่อศาสนา ศาสดา และความสำคัญของคัมภีร์ของศาสนาที่ตนนับถือ และศาสนาอื่น ๆ”. **Answer:** Accurate, respectful comparison without ranking traditions.
 ### 39. SO1.2-P2-01
 
 - **Standard:** SO1.2
@@ -1336,8 +1336,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the person, place or object in each case and select the respectful action. This assesses: “ปฏิบัติตนอย่างเหมาะสมต่อสาวกของศาสนาที่ตนนับถือ ตามที่กำหนดได้ถูกต้อง”. **Answer:** Correct identification and action.
-2. **Explain / compare:** Explain why one action is appropriate, citing the case instruction. **Answer:** Reason is grounded in the source/context.
-3. **Apply / demonstrate:** Create a visitor checklist with three practical rules for the represented site or interaction. **Answer:** Three practical, context-specific rules; avoid assuming all traditions share identical practices.
+2. **Explain / compare:** Explain why one action is appropriate, citing the case instruction. This task assesses: “ปฏิบัติตนอย่างเหมาะสมต่อสาวกของศาสนาที่ตนนับถือ ตามที่กำหนดได้ถูกต้อง”. **Answer:** Reason is grounded in the source/context.
+3. **Apply / demonstrate:** Create a visitor checklist with three practical rules for the represented site or interaction. This task assesses: “ปฏิบัติตนอย่างเหมาะสมต่อสาวกของศาสนาที่ตนนับถือ ตามที่กำหนดได้ถูกต้อง”. **Answer:** Three practical, context-specific rules; avoid assuming all traditions share identical practices.
 ### 40. SO1.2-P2-02
 
 - **Standard:** SO1.2
@@ -1370,8 +1370,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the event and identify or sequence its key actions from the card. This assesses: “ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนา ตามที่กำหนดได้ถูกต้อง”. **Answer:** Event and actions are accurately identified.
-2. **Explain / compare:** Explain the purpose of one action using the source note. **Answer:** Purpose matches the verified source.
-3. **Apply / demonstrate:** Prepare a short guide for a respectful observer with three context-specific rules and reasons. **Answer:** Rules are appropriate to this event; observing is acceptable instead of worship participation.
+2. **Explain / compare:** Explain the purpose of one action using the source note. This task assesses: “ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนา ตามที่กำหนดได้ถูกต้อง”. **Answer:** Purpose matches the verified source.
+3. **Apply / demonstrate:** Prepare a short guide for a respectful observer with three context-specific rules and reasons. This task assesses: “ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนา ตามที่กำหนดได้ถูกต้อง”. **Answer:** Rules are appropriate to this event; observing is acceptable instead of worship participation.
 ### 41. SO2.1-P2-01
 
 - **Standard:** SO2.1
@@ -1812,8 +1812,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Sort the supplied event statements into past, present and future. This assesses: “ใช้คำระบุเวลาที่แสดงเหตุการณ์ในอดีต ปัจจุบัน และอนาคต”. **Answer:** All statements are sorted correctly.
-2. **Explain / compare:** Underline the time word that helped identify each event. **Answer:** Identifies the relevant time expressions.
-3. **Apply / demonstrate:** Write one new sentence for each time category using an accurate time expression. **Answer:** Sentences use past, present and future references consistently.
+2. **Explain / compare:** Underline the time word that helped identify each event. This task assesses: “ใช้คำระบุเวลาที่แสดงเหตุการณ์ในอดีต ปัจจุบัน และอนาคต”. **Answer:** Identifies the relevant time expressions.
+3. **Apply / demonstrate:** Write one new sentence for each time category using an accurate time expression. This task assesses: “ใช้คำระบุเวลาที่แสดงเหตุการณ์ในอดีต ปัจจุบัน และอนาคต”. **Answer:** Sentences use past, present and future references consistently.
 ### 54. SO4.1-P2-02
 
 - **Standard:** SO4.1
@@ -1846,8 +1846,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify two events and the evidence that records each one. This assesses: “ลำดับเหตุการณ์ที่เกิดขึ้นในครอบครัว หรือในชีวิตของตนเองโดยใช้หลักฐานที่เกี่ยวข้อง”. **Answer:** Events and source references match the records.
-2. **Explain / compare:** Arrange the events in chronological order and explain which date or source clue supports the order. **Answer:** Correct order with an explicit evidence clue.
-3. **Apply / demonstrate:** Create a three-event timeline and label the evidence source beside every event. **Answer:** Timeline is chronological and every entry has a source label; fictional cases are acceptable.
+2. **Explain / compare:** Arrange the events in chronological order and explain which date or source clue supports the order. This task assesses: “ลำดับเหตุการณ์ที่เกิดขึ้นในครอบครัว หรือในชีวิตของตนเองโดยใช้หลักฐานที่เกี่ยวข้อง”. **Answer:** Correct order with an explicit evidence clue.
+3. **Apply / demonstrate:** Create a three-event timeline and label the evidence source beside every event. This task assesses: “ลำดับเหตุการณ์ที่เกิดขึ้นในครอบครัว หรือในชีวิตของตนเองโดยใช้หลักฐานที่เกี่ยวข้อง”. **Answer:** Timeline is chronological and every entry has a source label; fictional cases are acceptable.
 ### 55. SO4.2-P2-01
 
 - **Standard:** SO4.2
@@ -1880,8 +1880,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify one feature of community life in the older source and one in the current source. This assesses: “สืบค้นถึงการเปลี่ยนแปลงในวิถีชีวิตประจำวันของคนในชุมชนของตนจากอดีตถึงปัจจุบัน”. **Answer:** Correctly identifies both time periods and features.
-2. **Explain / compare:** Explain one change and one continuity using evidence from both sources. **Answer:** One accurate change and one continuity supported by the sources.
-3. **Apply / demonstrate:** Describe how one change has affected daily life in the community, citing the sources. **Answer:** Effect is plausible and evidence-based; avoid unsupported generalisations.
+2. **Explain / compare:** Explain one change and one continuity using evidence from both sources. This task assesses: “สืบค้นถึงการเปลี่ยนแปลงในวิถีชีวิตประจำวันของคนในชุมชนของตนจากอดีตถึงปัจจุบัน”. **Answer:** One accurate change and one continuity supported by the sources.
+3. **Apply / demonstrate:** Describe how one change has affected daily life in the community, citing the sources. This task assesses: “สืบค้นถึงการเปลี่ยนแปลงในวิถีชีวิตประจำวันของคนในชุมชนของตนจากอดีตถึงปัจจุบัน”. **Answer:** Effect is plausible and evidence-based; avoid unsupported generalisations.
 ### 56. SO4.2-P2-02
 
 - **Standard:** SO4.2
@@ -1914,8 +1914,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the change shown in the two sources. This assesses: “อธิบายผลกระทบของการเปลี่ยนแปลงที่มีต่อวิถีชีวิตของคนในชุมชน”. **Answer:** Identifies the change accurately.
-2. **Explain / compare:** Explain one positive or negative effect on a named group/person in the account. **Answer:** Effect matches the testimony or record and names who was affected.
-3. **Apply / demonstrate:** Compare the effect on two groups or activities, using evidence and noting any limitation in the sources. **Answer:** Comparison is supported and does not claim more than the sources show.
+2. **Explain / compare:** Explain one positive or negative effect on a named group/person in the account. This task assesses: “อธิบายผลกระทบของการเปลี่ยนแปลงที่มีต่อวิถีชีวิตของคนในชุมชน”. **Answer:** Effect matches the testimony or record and names who was affected.
+3. **Apply / demonstrate:** Compare the effect on two groups or activities, using evidence and noting any limitation in the sources. This task assesses: “อธิบายผลกระทบของการเปลี่ยนแปลงที่มีต่อวิถีชีวิตของคนในชุมชน”. **Answer:** Comparison is supported and does not claim more than the sources show.
 ### 57. SO4.3-P2-01
 
 - **Standard:** SO4.3
@@ -1948,8 +1948,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the person and identify the contribution recorded in the profile. This assesses: “ระบุบุคคลที่ทำประโยชน์ต่อท้องถิ่นหรือประเทศชาติ”. **Answer:** Correct person and documented contribution.
-2. **Explain / compare:** Explain who benefited and how, using evidence from the source. **Answer:** Beneficiary and effect are supported by the profile.
-3. **Apply / demonstrate:** Write a short profile caption that distinguishes the documented contribution from personal opinion. **Answer:** Caption is accurate and separates fact from opinion.
+2. **Explain / compare:** Explain who benefited and how, using evidence from the source. This task assesses: “ระบุบุคคลที่ทำประโยชน์ต่อท้องถิ่นหรือประเทศชาติ”. **Answer:** Beneficiary and effect are supported by the profile.
+3. **Apply / demonstrate:** Write a short profile caption that distinguishes the documented contribution from personal opinion. This task assesses: “ระบุบุคคลที่ทำประโยชน์ต่อท้องถิ่นหรือประเทศชาติ”. **Answer:** Caption is accurate and separates fact from opinion.
 ### 58. SO4.3-P2-02
 
 - **Standard:** SO4.3
@@ -1982,8 +1982,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name one cultural practice or local-wisdom example in the source and identify where it is practised. This assesses: “ยกตัวอย่างวัฒนธรรม ประเพณีและภูมิปัญญาไทยที่ภาคภูมิใจและควรอนุรักษ์ไว้”. **Answer:** Correct example and context.
-2. **Explain / compare:** Explain why the source says it is valued or worth preserving. **Answer:** Reason is supported by the source or attributed community voice.
-3. **Apply / demonstrate:** Suggest one respectful way young people could help sustain or document it, with a reason. **Answer:** Practical, respectful proposal that does not treat culture as unchanging or uniform.
+2. **Explain / compare:** Explain why the source says it is valued or worth preserving. This task assesses: “ยกตัวอย่างวัฒนธรรม ประเพณีและภูมิปัญญาไทยที่ภาคภูมิใจและควรอนุรักษ์ไว้”. **Answer:** Reason is supported by the source or attributed community voice.
+3. **Apply / demonstrate:** Suggest one respectful way young people could help sustain or document it, with a reason. This task assesses: “ยกตัวอย่างวัฒนธรรม ประเพณีและภูมิปัญญาไทยที่ภาคภูมิใจและควรอนุรักษ์ไว้”. **Answer:** Practical, respectful proposal that does not treat culture as unchanging or uniform.
 ### 59. SO5.1-P2-01
 
 - **Standard:** SO5.1
@@ -2254,8 +2254,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the cultural feature in each example and the tradition linked to it in the source. This assesses: “อธิบายความสำคัญของพระพุทธศาสนา หรือศาสนาที่ตนนับถือ ในฐานะที่เป็นรากฐานสำคัญของวัฒนธรรมไทย”. **Answer:** Correct feature and tradition.
-2. **Explain / compare:** Explain one specific influence using evidence from the source. **Answer:** Specific, evidence-based influence; avoid generalising about all Thai people.
-3. **Apply / demonstrate:** Compare the examples and explain one similarity or difference in how the tradition is reflected in Thai culture. **Answer:** Accurate comparison that allows regional variation.
+2. **Explain / compare:** Explain one specific influence using evidence from the source. This task assesses: “อธิบายความสำคัญของพระพุทธศาสนา หรือศาสนาที่ตนนับถือ ในฐานะที่เป็นรากฐานสำคัญของวัฒนธรรมไทย”. **Answer:** Specific, evidence-based influence; avoid generalising about all Thai people.
+3. **Apply / demonstrate:** Compare the examples and explain one similarity or difference in how the tradition is reflected in Thai culture. This task assesses: “อธิบายความสำคัญของพระพุทธศาสนา หรือศาสนาที่ตนนับถือ ในฐานะที่เป็นรากฐานสำคัญของวัฒนธรรมไทย”. **Answer:** Accurate comparison that allows regional variation.
 ### 67. SO1.1-P3-02
 
 - **Standard:** SO1.1
@@ -2288,8 +2288,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the two endpoint events required by the indicator. This assesses: “สรุปพุทธประวัติตั้งแต่การบำเพ็ญเพียร จนถึงปรินิพพาน หรือประวัติของศาสดาที่ตนนับถือ ตามที่กำหนด”. **Answer:** Correct endpoint events.
-2. **Explain / compare:** Explain one turning point between them using the biography's source note. **Answer:** Explanation matches the supplied biography; no invented motives or dates.
-3. **Apply / demonstrate:** Reconstruct a four-event timeline covering the required span and cite one source detail per event. **Answer:** Chronological, complete and source-supported timeline.
+2. **Explain / compare:** Explain one turning point between them using the biography's source note. This task assesses: “สรุปพุทธประวัติตั้งแต่การบำเพ็ญเพียร จนถึงปรินิพพาน หรือประวัติของศาสดาที่ตนนับถือ ตามที่กำหนด”. **Answer:** Explanation matches the supplied biography; no invented motives or dates.
+3. **Apply / demonstrate:** Reconstruct a four-event timeline covering the required span and cite one source detail per event. This task assesses: “สรุปพุทธประวัติตั้งแต่การบำเพ็ญเพียร จนถึงปรินิพพาน หรือประวัติของศาสดาที่ตนนับถือ ตามที่กำหนด”. **Answer:** Chronological, complete and source-supported timeline.
 ### 68. SO1.1-P3-03
 
 - **Standard:** SO1.1
@@ -2322,8 +2322,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the person and identify one action stated in the source. This assesses: “ชื่นชมและบอกแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดก เรื่องเล่า และศาสนิกชนตัวอย่าง ตามที่กำหนด”. **Answer:** Correct person and source action.
-2. **Explain / compare:** Explain the lesson shown by that action and point to the source detail. **Answer:** Lesson is a reasonable interpretation supported by the action.
-3. **Apply / demonstrate:** Apply the lesson to a new school or community case; recommend an action and explain why it fits. **Answer:** Feasible action explicitly linked to the lesson; accept equivalent examples.
+2. **Explain / compare:** Explain the lesson shown by that action and point to the source detail. This task assesses: “ชื่นชมและบอกแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดก เรื่องเล่า และศาสนิกชนตัวอย่าง ตามที่กำหนด”. **Answer:** Lesson is a reasonable interpretation supported by the action.
+3. **Apply / demonstrate:** Apply the lesson to a new school or community case; recommend an action and explain why it fits. This task assesses: “ชื่นชมและบอกแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดก เรื่องเล่า และศาสนิกชนตัวอย่าง ตามที่กำหนด”. **Answer:** Feasible action explicitly linked to the lesson; accept equivalent examples.
 ### 69. SO1.1-P3-04
 
 - **Standard:** SO1.1
@@ -2356,8 +2356,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the scripture and identify one part or content type described in the source. This assesses: “บอกความหมาย ความสำคัญของพระไตรปิฎก หรือคัมภีร์ของศาสนาที่ตนนับถือ”. **Answer:** Correct text and content category.
-2. **Explain / compare:** Explain why the scripture is important to adherents using one source detail. **Answer:** Role supported by the selected tradition's source.
-3. **Apply / demonstrate:** Write two accurate sentences for a school-display label explaining the scripture's role and naming the source. **Answer:** Two accurate sentences with source credit; no unsupported claims about all adherents.
+2. **Explain / compare:** Explain why the scripture is important to adherents using one source detail. This task assesses: “บอกความหมาย ความสำคัญของพระไตรปิฎก หรือคัมภีร์ของศาสนาที่ตนนับถือ”. **Answer:** Role supported by the selected tradition's source.
+3. **Apply / demonstrate:** Write two accurate sentences for a school-display label explaining the scripture's role and naming the source. This task assesses: “บอกความหมาย ความสำคัญของพระไตรปิฎก หรือคัมภีร์ของศาสนาที่ตนนับถือ”. **Answer:** Two accurate sentences with source credit; no unsupported claims about all adherents.
 ### 70. SO1.1-P3-05
 
 - **Standard:** SO1.1
@@ -2390,8 +2390,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Match each term or example to its approved meaning on the card. This assesses: “แสดงความเคารพพระรัตนตรัยและปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนาหรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Matches the verified card exactly.
-2. **Explain / compare:** Explain the meaning or importance of one selected Jewel or principle using the approved definition. **Answer:** Explanation is consistent with the approved definition.
-3. **Apply / demonstrate:** Resolve a short ethical dilemma using one principle from the card and justify the action. **Answer:** Feasible action and explicit principle-based reason; never assess personal faith or worship.
+2. **Explain / compare:** Explain the meaning or importance of one selected Jewel or principle using the approved definition. This task assesses: “แสดงความเคารพพระรัตนตรัยและปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนาหรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Explanation is consistent with the approved definition.
+3. **Apply / demonstrate:** Resolve a short ethical dilemma using one principle from the card and justify the action. This task assesses: “แสดงความเคารพพระรัตนตรัยและปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนาหรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Feasible action and explicit principle-based reason; never assess personal faith or worship.
 ### 71. SO1.1-P3-06
 
 - **Standard:** SO1.1
@@ -2424,8 +2424,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the practice and sequence its main steps from the source. This assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตามีสติที่เป็นพื้นฐานของสมาธิ ในพระพุทธศาสนา หรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Practice and steps match the source.
-2. **Explain / compare:** Explain how one step supports the purpose stated in the source. **Answer:** Purpose is accurate and source-grounded.
-3. **Apply / demonstrate:** Describe or design a brief attention/reflection routine and one observable sign that it supports focus. **Answer:** Safe, voluntary routine with observable evidence; do not grade prayer, belief or spiritual attainment.
+2. **Explain / compare:** Explain how one step supports the purpose stated in the source. This task assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตามีสติที่เป็นพื้นฐานของสมาธิ ในพระพุทธศาสนา หรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Purpose is accurate and source-grounded.
+3. **Apply / demonstrate:** Describe or design a brief attention/reflection routine and one observable sign that it supports focus. This task assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตามีสติที่เป็นพื้นฐานของสมาธิ ในพระพุทธศาสนา หรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Safe, voluntary routine with observable evidence; do not grade prayer, belief or spiritual attainment.
 ### 72. SO1.1-P3-07
 
 - **Standard:** SO1.1
@@ -2458,8 +2458,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Match each photograph to its correct name and category: object, place or person. This assesses: “บอกชื่อ ความสำคัญและปฏิบัติตนได้อย่างเหมาะสมต่อศาสนวัตถุ ศาสนสถาน และศาสนบุคคลของศาสนาอื่น ๆ”. **Answer:** Correct names and categories.
-2. **Explain / compare:** Explain the role or importance of one example using the information card. **Answer:** Role matches the source.
-3. **Apply / demonstrate:** Prepare two site-specific visitor rules for a place represented in the set and explain why local guidance matters. **Answer:** Respectful, site-specific rules; do not treat all religions as identical.
+2. **Explain / compare:** Explain the role or importance of one example using the information card. This task assesses: “บอกชื่อ ความสำคัญและปฏิบัติตนได้อย่างเหมาะสมต่อศาสนวัตถุ ศาสนสถาน และศาสนบุคคลของศาสนาอื่น ๆ”. **Answer:** Role matches the source.
+3. **Apply / demonstrate:** Prepare two site-specific visitor rules for a place represented in the set and explain why local guidance matters. This task assesses: “บอกชื่อ ความสำคัญและปฏิบัติตนได้อย่างเหมาะสมต่อศาสนวัตถุ ศาสนสถาน และศาสนบุคคลของศาสนาอื่น ๆ”. **Answer:** Respectful, site-specific rules; do not treat all religions as identical.
 ### 73. SO1.2-P3-01
 
 - **Standard:** SO1.2
@@ -2492,8 +2492,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the person, place or object in each case and select the respectful action. This assesses: “ปฏิบัติตนอย่างเหมาะสมต่อสาวก ศาสนสถาน ศาสนวัตถุของศาสนาที่ตนนับถือได้ถูกต้อง”. **Answer:** Correct identification and action.
-2. **Explain / compare:** Explain why one action is appropriate, citing the case instruction. **Answer:** Reason is grounded in the source/context.
-3. **Apply / demonstrate:** Create a visitor checklist with three practical rules for the represented site or interaction. **Answer:** Three practical, context-specific rules; avoid assuming all traditions share identical practices.
+2. **Explain / compare:** Explain why one action is appropriate, citing the case instruction. This task assesses: “ปฏิบัติตนอย่างเหมาะสมต่อสาวก ศาสนสถาน ศาสนวัตถุของศาสนาที่ตนนับถือได้ถูกต้อง”. **Answer:** Reason is grounded in the source/context.
+3. **Apply / demonstrate:** Create a visitor checklist with three practical rules for the represented site or interaction. This task assesses: “ปฏิบัติตนอย่างเหมาะสมต่อสาวก ศาสนสถาน ศาสนวัตถุของศาสนาที่ตนนับถือได้ถูกต้อง”. **Answer:** Three practical, context-specific rules; avoid assuming all traditions share identical practices.
 ### 74. SO1.2-P3-02
 
 - **Standard:** SO1.2
@@ -2526,8 +2526,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the event and identify or sequence its key actions from the card. This assesses: “เห็นคุณค่าและปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนาตามที่กำหนดได้ถูกต้อง”. **Answer:** Event and actions are accurately identified.
-2. **Explain / compare:** Explain the purpose of one action using the source note. **Answer:** Purpose matches the verified source.
-3. **Apply / demonstrate:** Prepare a short guide for a respectful observer with three context-specific rules and reasons. **Answer:** Rules are appropriate to this event; observing is acceptable instead of worship participation.
+2. **Explain / compare:** Explain the purpose of one action using the source note. This task assesses: “เห็นคุณค่าและปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนาตามที่กำหนดได้ถูกต้อง”. **Answer:** Purpose matches the verified source.
+3. **Apply / demonstrate:** Prepare a short guide for a respectful observer with three context-specific rules and reasons. This task assesses: “เห็นคุณค่าและปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนาตามที่กำหนดได้ถูกต้อง”. **Answer:** Rules are appropriate to this event; observing is acceptable instead of worship participation.
 ### 75. SO1.2-P3-03
 
 - **Standard:** SO1.2
@@ -2560,8 +2560,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the community and formal step described in the fictional case. This assesses: “แสดงตนเป็นพุทธมามกะหรือแสดงตนเป็นศาสนิกชนของศาสนาที่ตนนับถือ”. **Answer:** Correctly identifies only what the case states.
-2. **Explain / compare:** Explain what the step means within the tradition described by the source. **Answer:** Explanation matches the verified source.
-3. **Apply / demonstrate:** Explain why affiliation must be voluntary and how classmates should respect a person's choice. **Answer:** States choice must be voluntary and free from pressure or discrimination; no learner disclosure or ceremony required.
+2. **Explain / compare:** Explain what the step means within the tradition described by the source. This task assesses: “แสดงตนเป็นพุทธมามกะหรือแสดงตนเป็นศาสนิกชนของศาสนาที่ตนนับถือ”. **Answer:** Explanation matches the verified source.
+3. **Apply / demonstrate:** Explain why affiliation must be voluntary and how classmates should respect a person's choice. This task assesses: “แสดงตนเป็นพุทธมามกะหรือแสดงตนเป็นศาสนิกชนของศาสนาที่ตนนับถือ”. **Answer:** States choice must be voluntary and free from pressure or discrimination; no learner disclosure or ceremony required.
 ### 76. SO2.1-P3-01
 
 - **Standard:** SO2.1
@@ -3036,8 +3036,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the era and year shown for each supplied date. This assesses: “เทียบศักราชที่สำคัญตามปฏิทินที่ใช้ในชีวิตประจำวัน”. **Answer:** Correct era and year identification.
-2. **Explain / compare:** Convert the supplied year using the verified reference table and show the operation. **Answer:** Conversion follows the supplied verified rule; no mental shortcut unsupported by the table.
-3. **Apply / demonstrate:** Explain why the calendar system must be named when comparing year numbers. **Answer:** Explains that different eras can assign different year numbers to the same date.
+2. **Explain / compare:** Convert the supplied year using the verified reference table and show the operation. This task assesses: “เทียบศักราชที่สำคัญตามปฏิทินที่ใช้ในชีวิตประจำวัน”. **Answer:** Conversion follows the supplied verified rule; no mental shortcut unsupported by the table.
+3. **Apply / demonstrate:** Explain why the calendar system must be named when comparing year numbers. This task assesses: “เทียบศักราชที่สำคัญตามปฏิทินที่ใช้ในชีวิตประจำวัน”. **Answer:** Explains that different eras can assign different year numbers to the same date.
 ### 90. SO4.1-P3-02
 
 - **Standard:** SO4.1
@@ -3070,8 +3070,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify one event and name the record that documents it. This assesses: “แสดงลำดับเหตุการณ์สำคัญของโรงเรียนและชุมชน โดยระบุหลักฐานและแหล่งข้อมูลที่เกี่ยวข้อง”. **Answer:** Event and source are correctly matched.
-2. **Explain / compare:** Place three events in chronological order and cite the date/source for each. **Answer:** Order follows verified dates or explicit source chronology.
-3. **Apply / demonstrate:** Create a short school/community timeline with source labels and explain one change visible across the timeline. **Answer:** Timeline is source-labelled and the stated change is supported by the records.
+2. **Explain / compare:** Place three events in chronological order and cite the date/source for each. This task assesses: “แสดงลำดับเหตุการณ์สำคัญของโรงเรียนและชุมชน โดยระบุหลักฐานและแหล่งข้อมูลที่เกี่ยวข้อง”. **Answer:** Order follows verified dates or explicit source chronology.
+3. **Apply / demonstrate:** Create a short school/community timeline with source labels and explain one change visible across the timeline. This task assesses: “แสดงลำดับเหตุการณ์สำคัญของโรงเรียนและชุมชน โดยระบุหลักฐานและแหล่งข้อมูลที่เกี่ยวข้อง”. **Answer:** Timeline is source-labelled and the stated change is supported by the records.
 ### 91. SO4.2-P3-01
 
 - **Standard:** SO4.2
@@ -3104,8 +3104,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify two factors shown in the sources that influenced where people settled. This assesses: “ระบุปัจจัยที่มีอิทธิพลต่อการตั้งถิ่นฐานและพัฒนาการของชุมชน”. **Answer:** Factors are actually present in the sources.
-2. **Explain / compare:** Explain how one factor supported settlement or community development, citing the map/source. **Answer:** Explains a plausible relationship supported by evidence.
-3. **Apply / demonstrate:** Compare two factors and explain how each shaped a different part of community development. **Answer:** Comparison distinguishes the factors and is source-based; no invented local history.
+2. **Explain / compare:** Explain how one factor supported settlement or community development, citing the map/source. This task assesses: “ระบุปัจจัยที่มีอิทธิพลต่อการตั้งถิ่นฐานและพัฒนาการของชุมชน”. **Answer:** Explains a plausible relationship supported by evidence.
+3. **Apply / demonstrate:** Compare two factors and explain how each shaped a different part of community development. This task assesses: “ระบุปัจจัยที่มีอิทธิพลต่อการตั้งถิ่นฐานและพัฒนาการของชุมชน”. **Answer:** Comparison distinguishes the factors and is source-based; no invented local history.
 ### 92. SO4.2-P3-02
 
 - **Standard:** SO4.2
@@ -3138,8 +3138,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify two customs or cultural practices described in the source. This assesses: “สรุปลักษณะที่สำคัญของขนบธรรมเนียมประเพณีและวัฒนธรรมของชุมชน”. **Answer:** Two examples are correctly identified.
-2. **Explain / compare:** Summarise one important feature of each and identify who provided the information. **Answer:** Features and attribution match the sources.
-3. **Apply / demonstrate:** Prepare a short community-culture summary that includes the source and acknowledges variation within the community. **Answer:** Summary is accurate and recognises diversity and change.
+2. **Explain / compare:** Summarise one important feature of each and identify who provided the information. This task assesses: “สรุปลักษณะที่สำคัญของขนบธรรมเนียมประเพณีและวัฒนธรรมของชุมชน”. **Answer:** Features and attribution match the sources.
+3. **Apply / demonstrate:** Prepare a short community-culture summary that includes the source and acknowledges variation within the community. This task assesses: “สรุปลักษณะที่สำคัญของขนบธรรมเนียมประเพณีและวัฒนธรรมของชุมชน”. **Answer:** Summary is accurate and recognises diversity and change.
 ### 93. SO4.2-P3-03
 
 - **Standard:** SO4.2
@@ -3172,8 +3172,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify one cultural feature from each community profile. This assesses: “เปรียบเทียบความเหมือนและความต่างทางวัฒนธรรมของชุมชนตนเองกับชุมชนอื่น ๆ”. **Answer:** Features match the profiles.
-2. **Explain / compare:** Compare one similarity and one difference using evidence from both sources. **Answer:** Similarity and difference are supported by both sources.
-3. **Apply / demonstrate:** Explain why the comparison should not be used to stereotype every member of either community. **Answer:** Explains internal diversity and avoids generalising from a single example.
+2. **Explain / compare:** Compare one similarity and one difference using evidence from both sources. This task assesses: “เปรียบเทียบความเหมือนและความต่างทางวัฒนธรรมของชุมชนตนเองกับชุมชนอื่น ๆ”. **Answer:** Similarity and difference are supported by both sources.
+3. **Apply / demonstrate:** Explain why the comparison should not be used to stereotype every member of either community. This task assesses: “เปรียบเทียบความเหมือนและความต่างทางวัฒนธรรมของชุมชนตนเองกับชุมชนอื่น ๆ”. **Answer:** Explains internal diversity and avoids generalising from a single example.
 ### 94. SO4.3-P3-01
 
 - **Standard:** SO4.3
@@ -3206,8 +3206,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the monarch's name and the kingdom named in the source. This assesses: “ระบุพระนามและพระราชกรณียกิจโดยสังเขปของพระมหากษัตริย์ไทยที่เป็นผู้สถาปนาอาณาจักรไทย”. **Answer:** Name and kingdom match the adopted curriculum/source.
-2. **Explain / compare:** Select one documented founding action or contribution and explain its significance using the source. **Answer:** Contribution is documented and accurately described.
-3. **Apply / demonstrate:** Create a short source-labelled account with the monarch, kingdom and two verified facts; distinguish source fact from legend where relevant. **Answer:** Includes two verified facts and source attribution; no invented dates or unsupported claims.
+2. **Explain / compare:** Select one documented founding action or contribution and explain its significance using the source. This task assesses: “ระบุพระนามและพระราชกรณียกิจโดยสังเขปของพระมหากษัตริย์ไทยที่เป็นผู้สถาปนาอาณาจักรไทย”. **Answer:** Contribution is documented and accurately described.
+3. **Apply / demonstrate:** Create a short source-labelled account with the monarch, kingdom and two verified facts; distinguish source fact from legend where relevant. This task assesses: “ระบุพระนามและพระราชกรณียกิจโดยสังเขปของพระมหากษัตริย์ไทยที่เป็นผู้สถาปนาอาณาจักรไทย”. **Answer:** Includes two verified facts and source attribution; no invented dates or unsupported claims.
 ### 95. SO4.3-P3-02
 
 - **Standard:** SO4.3
@@ -3240,8 +3240,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify two biographical facts explicitly stated in the official source. This assesses: “อธิบายพระราชประวัติและพระราชกรณียกิจของพระมหากษัตริย์ในรัชกาลปัจจุบัน โดยสังเขป”. **Answer:** Facts match the current official source.
-2. **Explain / compare:** Name one public duty or activity documented in the source. **Answer:** Public duty/activity is accurately described.
-3. **Apply / demonstrate:** Write a brief, respectful summary using only verified facts and include the source/date. **Answer:** Summary is factual, current, source-attributed and does not add unsupported evaluation.
+2. **Explain / compare:** Name one public duty or activity documented in the source. This task assesses: “อธิบายพระราชประวัติและพระราชกรณียกิจของพระมหากษัตริย์ในรัชกาลปัจจุบัน โดยสังเขป”. **Answer:** Public duty/activity is accurately described.
+3. **Apply / demonstrate:** Write a brief, respectful summary using only verified facts and include the source/date. This task assesses: “อธิบายพระราชประวัติและพระราชกรณียกิจของพระมหากษัตริย์ในรัชกาลปัจจุบัน โดยสังเขป”. **Answer:** Summary is factual, current, source-attributed and does not add unsupported evaluation.
 ### 96. SO4.3-P3-03
 
 - **Standard:** SO4.3
@@ -3274,8 +3274,8 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the person and identify the event described in the source. This assesses: “เล่าวีรกรรมของบรรพบุรุษไทยที่มีส่วนปกป้องประเทศชาติ”. **Answer:** Person and event match the source.
-2. **Explain / compare:** Retell two actions attributed to the person in the correct sequence. **Answer:** Actions and sequence are supported by the account.
-3. **Apply / demonstrate:** Explain why the account is remembered and identify one source limitation or detail that needs corroboration. **Answer:** Explanation is evidence-based and recognises source limitations; do not invent details.
+2. **Explain / compare:** Retell two actions attributed to the person in the correct sequence. This task assesses: “เล่าวีรกรรมของบรรพบุรุษไทยที่มีส่วนปกป้องประเทศชาติ”. **Answer:** Actions and sequence are supported by the account.
+3. **Apply / demonstrate:** Explain why the account is remembered and identify one source limitation or detail that needs corroboration. This task assesses: “เล่าวีรกรรมของบรรพบุรุษไทยที่มีส่วนปกป้องประเทศชาติ”. **Answer:** Explanation is evidence-based and recognises source limitations; do not invent details.
 ### 97. SO5.1-P3-01
 
 - **Standard:** SO5.1
