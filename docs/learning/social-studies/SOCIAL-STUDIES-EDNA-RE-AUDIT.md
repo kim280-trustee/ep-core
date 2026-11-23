@@ -41,7 +41,7 @@ Integrity results:
 - Zero duplicate objective-code rows.
 - 540 grade-level alignment rows.
 - Zero duplicate objective/curriculum/grade alignment groups.
-- All 12 grade levels are represented.
+- All 12 grade levels are represented.\n- All 540 grade alignments are marked required; zero non-required alignment rows remain.
 
 ## 2. OBEC between-learning / terminal classification
 
@@ -64,7 +64,7 @@ The live catalogue has pathway classification on all 540 grade-level alignments.
 
 The unique-indicator pathway totals reconcile to **278 between-learning and 140 terminal** (418 total). Because M4–M6 share the same 61 objectives, the grade-alignment row totals are 362 between-learning and 178 terminal across 540 alignments.
 
-The database stores this classification in `learning_objective_alignments.pathway_classification`, separately from the 2021 priority classification.
+The database stores this classification in `learning_objective_alignments.pathway_classification`, separately from the 2021 priority classification. A direct alignment-level count confirms 362 between-learning, 178 terminal, zero missing pathway labels, and 540/540 required alignments.
 
 ## 3. 2021 Must-Know / Should-Know classification — historical metadata scope
 
