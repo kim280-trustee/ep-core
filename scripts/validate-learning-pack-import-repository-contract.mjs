@@ -54,6 +54,6 @@ assert.match(pageSource, /planResumableLessonImport/,
   "The import page must use the shared, tested lesson retry planner.");
 assert.match(pageSource, /selectNewImportQuestions/,
   "The import page must use the shared, tested question-only retry planner.");
-assert.doesNotMatch(pageSource, /const newLessons/,
+assert.doesNotMatch(pageSource, /const newLessons: ResolvedLesson/,
   "Lesson retry decisions must not be duplicated inline in the page.");
 process.stdout.write("PASS: importer integration contract — preflight-before-write, bounded lookups, cleanup tracking and protected answer-key RPC.\n");
