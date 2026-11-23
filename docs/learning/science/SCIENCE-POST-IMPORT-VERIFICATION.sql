@@ -16,7 +16,7 @@ with pack_items as (
     and sub.code in ('SCI','BIOLOGY','CHEMISTRY','PHYSICS','EARTH_SPACE')
 ),
 pack_objectives as (
-  select distinct co.objective_id
+  select distinct i.organization_id,co.objective_id
   from pack_items i
   join public.learning_content_objectives co on co.content_item_id=i.id
 ),
@@ -26,7 +26,9 @@ pack_questions as (
   from public.learning_questions q
   join public.learning_question_versions qv on qv.question_id=q.id
   join public.learning_question_objectives qo on qo.question_version_id=qv.id
-  join pack_objectives po on po.objective_id=qo.objective_id
+  join pack_objectives po
+    on po.objective_id=qo.objective_id
+   and po.organization_id=q.organization_id
   join public.learning_objectives o on o.id=qo.objective_id
   where left(q.code,length('EP-' || o.code))='EP-' || o.code
     and right(q.code,3) similar to 'Q[0-9][0-9]'
@@ -116,7 +118,8 @@ pack_questions as (
   join public.learning_question_objectives qo on qo.question_version_id=qv.id
   join public.learning_objectives o on o.id=qo.objective_id
   join public.learning_content_objectives co on co.objective_id=o.id
-  join public.learning_content_items i on i.id=co.content_item_id
+  join public.learning_content_items i
+    on i.id=co.content_item_id and i.organization_id=q.organization_id
   join public.learning_topics t on t.id=o.topic_id
   join public.learning_skills sk on sk.id=t.skill_id
   join public.learning_subjects sub on sub.id=sk.subject_id
