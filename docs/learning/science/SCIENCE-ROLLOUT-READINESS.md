@@ -6,7 +6,7 @@ This section supersedes older historical rollout notes lower in this file. Live 
 
 The four specialist tracks are separately staged: Biology 108, Chemistry 81, Physics 67 and Earth/Space 44 outcomes (300 total). The 14 secondary core/specialist import files contain 576 lessons and 1,728 answer-keyed questions (276 secondary core lessons plus 300 specialist lessons). Separate primary P1–P6 packs contain 139 lessons and 417 formative tasks. Across the full P1–M6 scope, the 415 official core indicators have 415 lesson starters and 1,245 formative tasks; the 300 additional specialist outcomes add 300 lessons and 900 questions. Total prepared content is 715 lessons and 2,145 questions. The 415 official core objective codes match the core teacher packs exactly.
 
-The current repository has automated checks for all eight national learning-area pack sets and the consolidated Science imports. On the current baseline commit, two completed GitHub Actions runs passed curriculum-pack validation, production build and ESLint; a newer run was still in progress during this audit. The live Science read-only SQL checks independently confirm all grade totals, required-priority classifications, specialist totals and zero duplicate objective/grade alignments. Latest workflow: https://github.com/kim280-trustee/ep-core/actions/runs/45100298434
+The current repository has automated checks for all eight national learning-area pack sets and the consolidated Science imports. Draft PR #174's latest workflow passed the national curriculum pack validation, all five core Science packs (415 lessons / 1,245 formative tasks), the 300 specialist Science packs, and the preceding Thai, Maths and Computer Studies pack checks. It then failed at the Social Studies teacher-pack parser step, so later subject checks, production build and ESLint were skipped. That failure is in Edna's Social Studies scope, not the Science parser or packs. Two earlier full baseline runs passed production build and ESLint; the current branch still needs build/lint confirmation. Live Science SQL checks independently confirm all grade totals, required-priority classifications, specialist totals and zero duplicate objective/grade alignments. Latest workflow: https://github.com/kim280-trustee/ep-core/actions/runs/45101378002
 
 **Still intentionally deferred:** authenticated teacher preview/import, draft-save verification, student assessment, teacher review, gradebook and progress-reporting tests. These will be performed once after all curriculum source work is complete. No Science pack records have been imported or published; no school, class, student or progress data has been changed.
 
@@ -69,7 +69,7 @@ The existing migration history, importer implementation and specialist-subject c
 
 **Teacher-pack import preflight — 21 November 2026:** The repository parser rules were exercised against the two consolidated core packs: M1–M3 produced 174 lessons / 522 answer-keyed questions; M4–M6 produced 102 lessons / 306 answer-keyed questions. Both had zero parser failures and zero duplicate objective codes. A read-only live Supabase reconciliation then checked all 276 M1–M6 pack objective codes against both `TH-SCI-M1-M6` and `TH-BASIC-CORE-2008-2017`: 276 unique objective matches and 276 exact grade alignments per curriculum, with zero missing, ambiguous or wrong-grade mappings. This is source/parser and database preflight validation, not an authenticated browser import. The importer now explicitly blocks grade-coded lessons when the selected curriculum does not contain that grade, and its import-ready state waits for grade-level data to finish loading.
 
-**Still open:** An authenticated teacher must exercise the actual `/teacher/content/import` preview and draft-save flow for the core and specialist packs in the browser. Do not publish the imported drafts. Local `npm.cmd run build` and `npm.cmd run lint` have not been run in this Windows checkout; CI has passed on two completed runs, with a newer run in progress at this audit. App-wide end-to-end testing also remains open.
+**Still open:** An authenticated teacher must exercise the actual `/teacher/content/import` preview and draft-save flow for all primary, secondary-core and specialist packs in the browser. Do not publish the imported drafts. The latest workflow stopped before build/lint because the Social Studies pack validation failed; current-branch build/lint confirmation remains open. Local `npm.cmd run build` and `npm.cmd run lint` have not been run in this Windows checkout. App-wide end-to-end testing also remains open.
 
 ## Content and authoring boundary
 
@@ -417,3 +417,23 @@ Migration: `20261121122000_correct_primary_science_p2_p3_must_know_priorities.sq
 ## Teacher-pack parser compatibility check — 21 November 2026
 
 The repository parser at `src/features/learning-content/utils/teacher-pack-parser.ts` was inspected and its heading, objective-code and three-answer extraction rules were applied as a source-level smoke check to both consolidated core imports. `SCIENCE-M1-M3-COMPLETE-IMPORT.md` now has 174 numbered lesson headings, 174 unique M1–M3 objective codes and 522 answer-keyed questions. Its 24 M1/M2 W4.1/W4.2 lessons were normalized from code-led headings so the importer no longer groups them into one oversized lesson. `SCIENCE-M4-M6-COMPLETE-IMPORT.md` has 102 numbered headings, 102 unique grade-coded objective codes and 306 answer-keyed questions. Both packs pass the parser-rule smoke check with zero parsing failures, duplicate objective codes or duplicate lesson numbers. The actual authenticated teacher import UI has not yet been exercised; all records remain unimported drafts. A repeatable validator has now been added as `npm.cmd run validate:science-packs`. It transpiles and invokes the actual TypeScript parser and checks expected grade distributions, unique objective codes, lesson counts, sequential question numbers and three non-empty answer keys per lesson. The command has been added but not executed in the local project checkout during this batch. The importer also rejects a Markdown upload above 5,000,000 bytes and blocks grade-coded lessons when their grade is absent from the selected curriculum.
+
+
+## Primary teacher-pack parser and language support — 23 November 2026
+
+The primary Science packs were previously present as source material but were not covered by the authenticated-import parser validation. Their Markdown uses numbered headings such as `Lesson 1.`, bullet-prefixed official-indicator and suggested-activity fields, and a `Formative assessment` section. The W4.2 pack uses numbered third-level headings and expected-evidence answer keys. The actual teacher-pack parser has been extended to recognise these formats.
+
+The repeatable `npm.cmd run validate:science-packs` check now includes all five core Science packs:
+
+| Primary pack | Lessons | Formative tasks |
+|---|---:|---:|
+| P1–P3 W1–W3 | 42 | 126 |
+| P4–P6 W1–W3 | 69 | 207 |
+| P1–P6 W4.2 | 28 | 84 |
+| **Primary total** | **139** | **417** |
+
+The latest draft PR workflow passed this Science parser-validation step. Live database code comparison also confirms 139/139 primary pack objective codes match the national master curriculum and 276/276 secondary core codes match the canonical Science curriculum. The two catalogues have zero duplicate objective-grade alignments and zero required core objectives without priority classifications.
+
+The teacher import page now has an explicit content-language selector and stores the selected language on both lesson and question records. Use `TH-BASIC-CORE-2008-2017` with language `th` for primary packs; use `TH-SCI-M1-M6` with language `en` for the secondary core and specialist packs. The language selection records metadata only; it does not translate content.
+
+**Still pending:** authenticated teacher preview and draft-save imports, followed by teacher/student end-to-end acceptance. No Science lesson or question drafts have been created in Supabase.
