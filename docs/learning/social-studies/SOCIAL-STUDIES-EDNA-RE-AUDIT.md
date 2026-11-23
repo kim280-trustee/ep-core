@@ -158,6 +158,26 @@ For prayer, meditation and ritual indicators, the revised tasks permit source-ba
 
 **Current P1–P3 status:** task authoring and performance-evidence correction are in progress. Do not mark P1–P3 academically signed off until the source cards are populated and independently checked, all 312 tasks are reviewed for accuracy/age fit/marking clarity, and the actual importer and validator pass.
 
+## 4C. P1–P3 religion task-specificity correction — 23 November 2026
+
+A targeted review of the actual P1–P3 pack found that the earlier 26 SO1 lessons still contained a broad shared source-card and task-1/task-2 frame, despite the prior audit note describing them as indicator-specific. That earlier description overstated the state of the committed pack. This batch corrects the mismatch.
+
+All **26 SO1 lessons** now have an indicator-matched source requirement and revised recall/evidence and explain/compare tasks with corresponding expected answers. Examples include:
+- founder biographies and chronological life events;
+- named Jataka, disciple or exemplar stories with action/consequence evidence;
+- the Three Jewels/Ovada 3 or a verified equivalent teaching;
+- sourced steps and purposes for attention/loving-kindness practices, with voluntary alternatives;
+- permission-based service plans for religious places;
+- fictional, privacy-protecting cases for religious affiliation;
+- verified ceremony/observance sequences and inclusive visitor behaviour;
+- comparative religion source charts, scripture roles and documented cultural influence.
+
+The revised answer guides require evidence from the named source and reject unsupported details. Sensitive tasks explicitly assess source understanding and respectful conduct, never a learner's personal faith, identity, worship, affiliation or private disclosure. Non-Buddhist alternatives are permitted only where supported by a verified source for the tradition being taught.
+
+**Structural verification on the updated branch:** 26 SO1 lessons inspected; 26 revised stimulus blocks; zero remaining instances of the former generic SO1 stimulus wording; 26 recall tasks and 26 explanation tasks retained; 78 parser-compatible answer labels across the three tasks per lesson. The exact Thai indicator remains included in each task. This is a content-structure check, not a source fact-check or classroom trial.
+
+**Remaining limitation:** teachers must still supply and verify the actual biography, scripture, doctrine, ceremony, local service or comparative-religion source cards. An independent Social Studies/religion reviewer must check factual accuracy, age appropriateness, local school policy and inclusion before classroom use. The TypeScript importer and full validator have not yet been executed in a repository runtime.
+
 ## 5. Live content-import status
 
 Read-only joins from Social Studies objectives to the application content/question tables returned:
