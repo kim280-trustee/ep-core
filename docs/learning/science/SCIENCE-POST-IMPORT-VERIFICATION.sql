@@ -95,7 +95,7 @@ where i.metadata->>'source'='teacher_pack_import'
     from jsonb_array_elements(
       case when jsonb_typeof(v.body->'sections')='array'
            then v.body->'sections' else '[]'::jsonb end
-    ) section
+    ) as sections(section)
     where section->>'type'='teacher_only'
       and section->>'audience'='teacher'
   );
