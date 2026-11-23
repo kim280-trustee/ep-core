@@ -38,7 +38,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
   if (!markdown.trim()) throw new Error("The selected Markdown file is empty.");
   if (markdown.length > 5_000_000) throw new Error("Teacher packs must be smaller than 5 MB.");
 
-  const headingPattern = /^#{2,3}\s+(?:(?:(?:Physical|Earth) Science\s+)?(?:Lesson|Outcome)\s+(\d+)\s*[:—–-]\s*(.+)|Group\s+\d+\s+[—–-]\s+Outcome\s+(\d+)\s*[:—–-]\s*(.+)|(\d+)\.\s+(.+)|(?:Lesson|Outcome)\s+[—–-]\s+(.+))$/gm;
+  const headingPattern = /^#{2,3}\s+(?:(?:(?:Physical|Earth) Science\s+)?(?:Lesson|Outcome)\s+(\d+)\s*[.:—–-]\s*(.+)|Group\s+\d+\s+[—–-]\s+Outcome\s+(\d+)\s*[:—–-]\s*(.+)|(\d+)\.\s+(.+)|(?:Lesson|Outcome)\s+[—–-]\s+(.+))$/gm;
   const headings = [...markdown.matchAll(headingPattern)];
   const guidanceHeadings = [...markdown.matchAll(/^##\s+(?!(?:(?:Physical|Earth) Science\s+)?(?:Lesson|Outcome)\s+\d|Group\s+\d+\s+[—–-]\s+Outcome\s+\d)([^#\n]*(?:safety|assessment|safeguarding|teacher guidance|teacher notes|teaching notes)[^#\n]*)\s*$/gim)];
   const packGuidance = guidanceHeadings.map((match) => {
@@ -58,7 +58,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
     const section = markdown.slice(start, end);
     const number = Number(heading[1] ?? heading[3] ?? heading[5] ?? index + 1);
     const title = (heading[2] ?? heading[4] ?? heading[6] ?? heading[7] ?? `Lesson ${number}`).trim();
-    const objectiveLine = section.match(/^\*\*(?:Objective(?: code)?|Learning objective|Indicator(?: code)?):\*\*\s*(.+)$/mi)?.[1]?.trim() ?? "";
+    const objectiveLine = section.match(/^[ \t]*(?:[-*][ \t]*)?\*\*(?:Objective(?: code)?|Learning objective|Official indicator|Indicator(?: code)?):\*\*\s*(.+)$/mi)?.[1]?.trim() ?? "";
     const headingObjective = title.match(/^([A-Z][A-Z0-9._-]{3,})\s*[—–-]\s*(.+)$/i);
     const codeMatch = objectiveLine.match(/[\x60]([A-Z0-9][A-Z0-9._-]{2,})[\x60]/i)
       ?? objectiveLine.match(/^([A-Z][A-Z0-9._-]{3,})\s*(?:[—–:-]|$)/i)
@@ -81,6 +81,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
 
     const keyRelationships = section.match(/^\*\*Key relationships\*\*\s*([\s\S]*?)(?=^\*\*|^#{1,3}\s|(?![\s\S]))/mi)?.[1]?.trim();
     const activityParts = [
+      section.match(/^[ \t]*(?:[-*][ \t]*)?\*\*Suggested (?:learning )?activity:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Practical activity:\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*(?:กิจกรรมการเรียนรู้|กิจกรรมฝึกปฏิบัติ):\*\*\s*(.+)$/mi)?.[1]?.trim(),
       section.match(/^\*\*Teaching activity:\*\*\s*(.+)$/mi)?.[1]?.trim(),
@@ -97,7 +98,7 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
     ].filter((value): value is string => Boolean(value));
     const activity = activityParts.join("\n\n") || learningOutcome;
 
-    const practicePattern = /^\*\*(?:Independent practice|Questions|Practice(?: questions)?|Answer-keyed questions|แบบฝึกปฏิบัติ|ภารกิจฝึกปฏิบัติ)\*\*\s*$/mi;
+    const practicePattern = /^\*\*(?:Independent practice|Questions|Practice(?: questions)?|Answer-keyed questions|Formative assessment|Formative tasks|แบบฝึกปฏิบัติ|ภารกิจฝึกปฏิบัติ)\*\*\s*$/mi;
     const practiceMatch = section.match(practicePattern);
     const firstQuestion = section.search(/^\s*1\.\s+/m);
     const practice = practiceMatch
