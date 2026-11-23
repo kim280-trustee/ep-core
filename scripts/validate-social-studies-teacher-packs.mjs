@@ -99,6 +99,17 @@ for (const pack of packs) {
       if (expectedStimulus && !sourceSection.includes(expectedStimulus)) {
         failures.push(heading[2] + ": P1–P3 assessment stimulus does not match strand " + standard);
       }
+      if (standard === "SO1") {
+        if (sourceSection.includes("Before the lesson, prepare a three-sentence card from the curriculum-approved account")) {
+          failures.push(heading[2] + ": SO1 stimulus is still the generic shared template; author it for the exact indicator");
+        }
+        if (/Name the person, event, teaching, practice, place or text that directly matches this indicator/.test(sourceSection)) {
+          failures.push(heading[2] + ": SO1 recall task still uses the generic multi-purpose prompt");
+        }
+        if (/what the identified teaching, event, practice or text means or why it is important/.test(sourceSection)) {
+          failures.push(heading[2] + ": SO1 explanation task still uses the generic multi-purpose prompt");
+        }
+      }
       const taskLabels = [...sourceSection.matchAll(/^\s*[123]\. \*\*(Recall \/ evidence|Explain \/ compare|Apply \/ demonstrate):\*\*/gm)].map((match) => match[1]);
       if (JSON.stringify(taskLabels) !== JSON.stringify(["Recall / evidence", "Explain / compare", "Apply / demonstrate"])) {
         failures.push(heading[2] + ": P1–P3 tasks must use the ordered evidence, explanation and application progression");
