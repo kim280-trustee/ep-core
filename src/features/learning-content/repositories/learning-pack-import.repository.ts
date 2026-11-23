@@ -93,6 +93,7 @@ export const learningPackImportRepository = {
   },
   async verifyExistingQuestionImports(input: {
     organizationId: string;
+    classGroupId: string;
     curriculumId: string;
     subjectId: string;
     languageCode: "en" | "th";
@@ -114,6 +115,7 @@ export const learningPackImportRepository = {
       }));
       const { data, error } = await supabase.rpc("verify_learning_pack_import_questions", {
         p_organization_id: input.organizationId,
+        p_class_group_id: input.classGroupId,
         p_expected_questions: expectedQuestions as unknown as Json,
       });
       if (error) throw error;
