@@ -178,6 +178,16 @@ The revised answer guides require evidence from the named source and reject unsu
 
 **Remaining limitation:** teachers must still supply and verify the actual biography, scripture, doctrine, ceremony, local service or comparative-religion source cards. An independent Social Studies/religion reviewer must check factual accuracy, age appropriateness, local school policy and inclusion before classroom use. The TypeScript importer and full validator have not yet been executed in a repository runtime.
 
+## 4D. P1–P3 SO2–SO5 assessment rewrite — 23 November 2026
+
+Reworked the remaining **78 P1–P3 lessons** across civics (SO2), economics (SO3), history/culture (SO4) and geography/environment (SO5). The former prompts repeatedly reused broad cross-indicator questions. They have been replaced with topic-specific stimulus cards and task/answer structures, including democratic decision scenarios, rights cases, cultural evidence, household budgets, production inputs, exchange and trade, calendar/timeline evidence, family/community history, verified heritage/national-history sources, map-reading, weather records, natural resources, pollution causes, settlement patterns and environmental action.
+
+Each lesson now has three ordered tasks (recall/evidence, explain/compare, apply/demonstrate), three parser-compatible `**Answer:**` guides, and an explicit link from each task to that lesson's exact official Thai indicator. The task progression and stimuli are differentiated for P1, P2 and P3 response expectations. The P1–P3 validator now checks the exact indicator link count and rejects the former generic SO2/SO3/SO5 prompt frames.
+
+**Structural verification on the updated branch:** 78 lessons; 234 tasks; 234 answer labels; all 78 lessons contain three task-to-indicator links matching their official Thai indicator. The full P1–P3 pack remains 104 lessons, 312 tasks and 312 answer labels. This check was performed on fetched source text only; it is not execution of the TypeScript importer or the validator.
+
+**Academic-review limitation:** these are subject-specific authoring frameworks with illustrative scenario data. They still require a qualified Social Studies reviewer to verify factual/source accuracy (especially national history, local heritage and civic/legal concepts), confirm every task measures the full scope of its official indicator, check age appropriateness and confirm teacher resources are available. The TypeScript importer and full validator have not yet been executed in a repository runtime.
+
 ## 5. Live content-import status
 
 Read-only joins from Social Studies objectives to the application content/question tables returned:
