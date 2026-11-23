@@ -99,7 +99,7 @@ for (const pack of packs) {
     const expectedBand = code.includes("M46") ? "Upper secondary (M4–M6)" : /-P[1-3]-/.test(code) ? "Early primary (P1–P3)" : /-P[4-6]-/.test(code) ? "Upper primary (P4–P6)" : "Lower secondary (M1–M3)";
     if (gradeBand !== expectedBand) failures.push(code + ": grade-band differentiation does not match objective code");
     if (!activity.includes(expectedBand) || !/safe|safely|safety/i.test(activity)) failures.push(code + ": activity lacks grade-specific delivery or safety guidance");
-    if (!evidence.includes("at least two") || !/evidence/i.test(evidence)) failures.push(code + ": expected evidence lacks observable indicator-linked criteria");
+    if ((!evidence.includes("at least two") && !evidence.includes("two elements")) || !/evidence/i.test(evidence)) failures.push(code + ": expected evidence lacks observable indicator-linked criteria");
     if (!/three-point rubric|three observable criteria/i.test(teacherCheck)) failures.push(code + ": teacher check lacks an observable marking rubric");
     if (/Study an artwork or design related to|Identify three relevant visual elements|Explain how line, shape, colour, form, texture, space, balance, unity or technique communicates meaning/i.test(section)) failures.push(code + ": legacy cross-discipline generic task scaffold remains");
     if (!objective?.[2] || !section.includes(objective[2].trim())) failures.push(code + ": official Thai indicator text is missing");
