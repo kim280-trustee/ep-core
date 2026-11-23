@@ -279,6 +279,7 @@ export default function TeacherContentImportPage() {
       })));
       const questionIntegrity = await learningPackImportService.verifyExistingQuestionImports({
         organizationId,
+        classGroupId: selectedClassGroupId,
         curriculumId: activeCurriculumId,
         subjectId: activeSubjectId,
         languageCode,
