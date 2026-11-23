@@ -272,13 +272,39 @@ export default function TeacherContentImportPage() {
         questionCodes: requestedQuestionCodes,
       });
 
+      const questionCandidates = resolved.rows.flatMap((lesson) => lesson.questions.map((question) => ({
+        ...question,
+        objectiveId: lesson.objectiveId,
+        gradeLevelId: lesson.gradeLevelId,
+      })));
+      const questionIntegrity = await learningPackImportService.verifyExistingQuestionImports({
+        organizationId,
+        curriculumId: activeCurriculumId,
+        subjectId: activeSubjectId,
+        languageCode,
+        questions: questionCandidates,
+      });
+      const incompleteExistingQuestions = questionCandidates.filter((question) => {
+        const code = makeImportCode(question.code);
+        if (!existing.questionCodes.has(code)) return false;
+        const integrity = questionIntegrity.get(code);
+        return !integrity?.questionExists || !integrity.isComplete;
+      });
+      if (incompleteExistingQuestions.length) {
+        const details = incompleteExistingQuestions.slice(0, 4).map((question) => {
+          const integrity = questionIntegrity.get(makeImportCode(question.code));
+          return `${makeImportCode(question.code)} (${integrity?.issue ?? "verification_missing"})`;
+        }).join(", ");
+        throw new Error(`Existing question drafts are incomplete or do not match this pack: ${details}. No existing records were skipped or overwritten. Inspect the affected drafts before retrying.`);
+      }
+      const completeQuestionCodes = new Set(
+        [...questionIntegrity.entries()]
+          .filter(([, integrity]) => integrity.questionExists && integrity.isComplete)
+          .map(([code]) => code),
+      );
+
       if (questionsOnly) {
-        const questionCandidates = resolved.rows.flatMap((lesson) => lesson.questions.map((question) => ({
-          ...question,
-          objectiveId: lesson.objectiveId,
-          gradeLevelId: lesson.gradeLevelId,
-        })));
-        const questionPlan = selectNewImportQuestions(questionCandidates, existing.questionCodes);
+        const questionPlan = selectNewImportQuestions(questionCandidates, completeQuestionCodes);
         const questions = questionPlan.questionsToImport;
         const skippedQuestions = questionPlan.skippedQuestions;
         const totalChunks = Math.ceil(questions.length / CHUNK_SIZE);
@@ -299,10 +325,21 @@ export default function TeacherContentImportPage() {
         }
         setMessage(`Imported ${importedQuestions} new assessment question drafts; skipped ${skippedQuestions} existing question codes. All new items remain unpublished for teacher review.`);
       } else {
+        const existingLessons = resolved.rows.filter((lesson) =>
+          existing.contentCodes.has(makeImportCode(lesson.contentImportCode)),
+        );
+        const incompleteContentCodes = await learningPackImportService.findIncompleteExistingContentCodes({
+          organizationId,
+          languageCode,
+          lessons: existingLessons,
+        });
+        if (incompleteContentCodes.size) {
+          throw new Error(`Existing lesson drafts are incomplete or do not match this pack: ${[...incompleteContentCodes].slice(0, 4).join(", ")}. No existing records were skipped or overwritten. Inspect the affected drafts before retrying.`);
+        }
         const lessonPlan = planResumableLessonImport(
           resolved.rows,
           existing.contentCodes,
-          existing.questionCodes,
+          completeQuestionCodes,
         );
         const newLessons = lessonPlan.lessonsToImport;
         const skippedLessons = lessonPlan.skippedLessons;
