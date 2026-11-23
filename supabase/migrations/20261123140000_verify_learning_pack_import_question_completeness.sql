@@ -70,6 +70,13 @@ begin
     raise exception 'Expected questions must be supplied as a JSON array';
   end if;
 
+  -- Bound payload size before expanding JSON or inspecting protected records.
+  v_expected_count := jsonb_array_length(p_expected_questions);
+  if v_expected_count < 1 or v_expected_count > 100 then
+    raise exception 'Verify between 1 and 100 expected questions per request';
+  end if;
+
+
   -- Bound the payload before expanding JSON into rows or touching protected keys.
   -- A class teacher may verify only question drafts they created. Academic
   -- managers retain organization-wide recovery access. Without this check,
@@ -84,11 +91,6 @@ begin
     where question.created_by is distinct from v_auth_user_id
   ) then
     raise exception 'Teachers can verify only question drafts they created; ask an academic manager to inspect another teacher''s import';
-  end if;
-
-  v_expected_count := jsonb_array_length(p_expected_questions);
-  if v_expected_count < 1 or v_expected_count > 100 then
-    raise exception 'Verify between 1 and 100 expected questions per request';
   end if;
 
   select count(distinct upper(trim(item.code)))
