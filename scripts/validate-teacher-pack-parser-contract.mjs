@@ -14,7 +14,7 @@ const moduleUrl = "data:text/javascript;base64," + Buffer.from(compiled.outputTe
 const { parseTeacherPackMarkdown } = await import(moduleUrl);
 
 function packWithQuestionNumbers(numbers) {
-  const questions = numbers.map((number) => `${number}. Question ${number}? **Answer:** Expected answer ${number}.`).join("\\n");
+  const questions = numbers.map((number) => `${number}. Question ${number}? **Answer:** Expected answer ${number}.`).join("\n");
   return `## Lesson 1. Sample lesson
 
 **Objective code:** \`SCI-M1-01\`
