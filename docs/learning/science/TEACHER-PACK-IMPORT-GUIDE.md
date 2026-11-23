@@ -11,7 +11,7 @@ Open **Teacher Content Library → Import teacher pack**, or use the route `/tea
 - Sign in with a real, active teacher account.
 - Select an assigned teacher class to identify the organization where the drafts will be created.
 - Select the Thai Science curriculum, the pack's subject and its fallback grade.
-- Upload one consolidated Markdown (`.md`) pack at a time. The complete Science corpus is provided as 14 subject/grade import files across five subject tracks so each import uses the correct subject and grade scope.
+- Upload one consolidated Markdown (`.md`) pack at a time. The secondary core and specialist import set is provided as 14 subject/grade files across five tracks. Primary P1–P6 Science packs are maintained separately. Each import uses the correct subject and grade scope.
 - Check every objective code and grade shown in the preview. Code-less official outcomes are matched against the selected subject/grade catalogue; ambiguous matches block the import.
 
 The selected class is used only to establish the teacher's organization access. It does not change that class, add a subject to it, or assign content to its students.
@@ -36,7 +36,7 @@ Import these 14 files using curriculum `TH-SCI-M1-M6`. The M1–M3 and M4–M6 c
 | `EARTH-SPACE-M4-IMPORT.md` | `EARTH_SPACE` — Earth, Astronomy and Space Science | M4 | 12 | 36 |
 | `EARTH-SPACE-M5-IMPORT.md` | `EARTH_SPACE` — Earth, Astronomy and Space Science | M5 | 13 | 39 |
 | `EARTH-SPACE-M6-IMPORT.md` | `EARTH_SPACE` — Earth, Astronomy and Space Science | M6 | 19 | 57 |
-| **Total** | **5 subject tracks** | **M1–M6** | **546** | **1,638** |
+| **Total** | **5 subject tracks** | **M1–M6** | **576** | **1,728** |
 
 Import one file at a time and select the exact subject and grade shown in the table. The mixed-grade M4–M6 core Science file is intentional: every objective code carries its source grade. Do not combine the grade-specific specialist import files; their grade selector is part of code-less outcome resolution. All imported records remain unpublished drafts.
 
@@ -81,7 +81,7 @@ The Question Bank now lets an authorized teacher select a curriculum, grade and 
 
 The importer uses the authenticated Supabase client and existing row-level security policies. It does not use a service-role key, invent a system teacher, bypass RLS, publish records, create school/class/student rows, or modify live pilot data automatically.
 
-The importer is implemented in the repository. The 14 consolidated Science import files contain 546 lessons and 1,638 answer-keyed questions; none of these pack records have been imported. The national official core catalogue contains 415 unique indicators, with 270 additional specialist upper-secondary lesson outcomes in the prepared packs. Curriculum priorities and grade alignments have been reconciled against the live catalogue. The current branch CI run passed parser validation, production build and ESLint; no curriculum-pack records were created by CI. An authorized teacher must still perform the authenticated preview and controlled draft-save workflow in the target organization. End-to-end student/teacher checks remain pending.
+The importer is implemented in the repository. The 14 consolidated secondary Science import files contain 576 lessons and 1,728 answer-keyed questions; none have been imported. Separate primary P1–P6 packs contain 139 lessons and 417 formative tasks. Across the full P1–M6 core set, 415 lessons and 1,245 formative tasks are prepared; the 300 specialist upper-secondary outcomes add 300 lessons and 900 questions. Total prepared material is 715 lessons and 2,145 questions. Live Supabase currently has zero imported Science lessons and zero Science questions. Curriculum priorities and grade alignments have been reconciled against the live catalogue. Two completed GitHub Actions runs passed parser validation, production build and ESLint; a newer run was in progress at this audit. No curriculum-pack records were created by CI. An authorized teacher must still perform the authenticated preview and controlled draft-save workflow in the target organization. End-to-end student/teacher checks remain pending.
 
 
 ## Social Studies shared-grade outcomes
