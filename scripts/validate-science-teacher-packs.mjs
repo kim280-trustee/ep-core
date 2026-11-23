@@ -37,12 +37,14 @@ const packs = [
     expectedLessons: 42,
     expectedQuestions: 126,
     expectedGrades: { P1: 10, P2: 12, P3: 20 },
+    expectedMarkingGuide: true,
   },
   {
     path: "docs/learning/science/P4-P6-science-w1-w3-teacher-starter-pack.md",
     expectedLessons: 69,
     expectedQuestions: 207,
     expectedGrades: { P4: 16, P5: 27, P6: 26 },
+    expectedMarkingGuide: true,
   },
   {
     path: "docs/learning/science/SCIENCE-TECHNOLOGY-W4.2-P1-P6-TEACHER-STARTER-PACK.md",
@@ -109,6 +111,10 @@ for (const pack of packs) {
           failures.push(`${pack.path}: lesson ${lesson.number} heading grade ${headingGrade ?? "missing"} does not match objective grade ${grade}`);
         }
       }
+    }
+
+    if (pack.expectedMarkingGuide && !lesson.packGuidance.includes("Marking guide:")) {
+      failures.push(`${pack.path}: lesson ${lesson.number} is missing its teacher-only marking guide`);
     }
 
     if (lesson.questions.length !== 3) {
