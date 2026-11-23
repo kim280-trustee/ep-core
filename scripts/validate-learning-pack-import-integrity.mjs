@@ -16,7 +16,12 @@ assert.match(migration, /auth\.uid\(\)/,
   "The verification RPC must require an authenticated user.");
 assert.match(migration, /p_class_group_id uuid[\s\S]*public\.is_organization_member\(p_organization_id\)/,
   "The verification RPC must be scoped to the selected organization and class.");
-assert.match(migration, /question\.created_by <> v_auth_user_id[\s\S]*academic manager/i,
+assert.ok(
+  migration.indexOf("v_expected_count := jsonb_array_length(p_expected_questions)") <
+    migration.indexOf("if not v_is_academic_manager"),
+  "The RPC must enforce its 100-question payload bound before expanding ownership checks.",
+);
+assert.match(migration, /question\.created_by is distinct from v_auth_user_id[\s\S]*academic manager/i,
   "Class teachers must not use the protected-key verifier to inspect another teacher's imported answers.");
 assert.match(migration, /membership\.membership_type = 'teacher'[\s\S]*membership\.status = 'active'/,
   "The verification RPC must require an active teacher in the selected class or an academic manager.");
