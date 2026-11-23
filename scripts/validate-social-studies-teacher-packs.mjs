@@ -75,6 +75,25 @@ for (const pack of packs) {
     if (!expectedResource || !resources.toLowerCase().includes(expectedResource.toLowerCase())) {
       failures.push(heading[2] + ": resources do not match the Social Studies strand");
     }
+    if (pack.path.endsWith("SOCIAL-STUDIES-P1-P3-TEACHER-STARTER-PACK.md")) {
+      if (!sourceSection.includes("**Assessment stimulus")) {
+        failures.push(heading[2] + ": P1–P3 lesson is missing its assessment stimulus card");
+      }
+      const expectedStimulus = {
+        SO1: "verified tradition/source card",
+        SO2: "school/community case card",
+        SO3: "Assessment stimulus",
+        SO4: "local-history evidence set",
+        SO5: "school/community geography field card",
+      }[standard];
+      if (expectedStimulus && !sourceSection.includes(expectedStimulus)) {
+        failures.push(heading[2] + ": P1–P3 assessment stimulus does not match strand " + standard);
+      }
+      const taskLabels = [...sourceSection.matchAll(/^\\s*[123]\\. \\*\\*(Recall \\/ evidence|Explain \\/ compare|Apply \\/ demonstrate):\\*\\*/gm)].map((match) => match[1]);
+      if (JSON.stringify(taskLabels) !== JSON.stringify(["Recall / evidence", "Explain / compare", "Apply / demonstrate"])) {
+        failures.push(heading[2] + ": P1–P3 tasks must use the ordered evidence, explanation and application progression");
+      }
+    }
     const gradeCode = heading[2].match(/-(P[1-6]|M[1-6]|M46)-/)?.[1];
     const expectedBand = gradeCode === "M46" || /^M[4-6]$/.test(gradeCode ?? "") ? "upper secondary"
       : /^M[1-3]$/.test(gradeCode ?? "") ? "lower secondary"
