@@ -89,15 +89,23 @@ for (const pack of packs) {
       if (!sourceSection.includes("**Assessment stimulus")) {
         failures.push(heading[2] + ": P1–P3 lesson is missing its assessment stimulus card");
       }
-      const expectedStimulus = {
-        SO1: "verified tradition/source card",
-        SO2: "school/community case card",
-        SO3: "Assessment stimulus",
-        SO4: "local-history evidence set",
-        SO5: "school/community geography field card",
-      }[standard];
-      if (expectedStimulus && !sourceSection.includes(expectedStimulus)) {
-        failures.push(heading[2] + ": P1–P3 assessment stimulus does not match strand " + standard);
+      if (standard === "SO1" && !sourceSection.includes("verified tradition/source card")) {
+        failures.push(heading[2] + ": SO1 assessment stimulus does not match its religion source requirement");
+      }
+      if (standard !== "SO1") {
+        if (!/\*\*Assessment stimulus — [^:]+:\*/.test(sourceSection)) {
+          failures.push(heading[2] + ": SO2–SO5 assessment stimulus must name its specific topic");
+        }
+        const indicatorTaskLinks = [...sourceSection.matchAll(/This assesses: “([^”]+)”/g)].map((match) => match[1]);
+        const official = sourceSection.match(/^- \*\*Official indicator:\*\* (.*)$/m)?.[1] ?? "";
+        if (indicatorTaskLinks.length !== 3 || indicatorTaskLinks.some((text) => text !== official)) {
+          failures.push(heading[2] + ": each SO2–SO5 task must explicitly link to the exact official indicator");
+        }
+        if (/Read the case card\. Identify the person, group, right, duty, rule, custom or decision-making step/.test(sourceSection)
+          || /Use the numbers and details in the stimulus\. Identify the good, service, resource, need, want, income, expense or saving/.test(sourceSection)
+          || /Use the field card, sketch or observation record\. Identify the location, direction, physical feature, weather condition, resource or environmental change/.test(sourceSection)) {
+          failures.push(heading[2] + ": generic cross-indicator task frame remains in SO2–SO5");
+        }
       }
       if (standard === "SO1") {
         if (sourceSection.includes("Before the lesson, prepare a three-sentence card from the curriculum-approved account")) {
