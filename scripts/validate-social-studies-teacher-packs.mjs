@@ -108,6 +108,9 @@ for (const pack of packs) {
         }
       }
       if (standard === "SO1") {
+        if (/Case: A class is preparing a display about the source card/.test(sourceSection)) {
+          failures.push(heading[2] + ": SO1 apply task still uses the generic shared classroom-display template");
+        }
         if (sourceSection.includes("Before the lesson, prepare a three-sentence card from the curriculum-approved account")) {
           failures.push(heading[2] + ": SO1 stimulus is still the generic shared template; author it for the exact indicator");
         }
