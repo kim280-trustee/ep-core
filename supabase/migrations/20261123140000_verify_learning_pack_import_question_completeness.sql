@@ -118,7 +118,32 @@ begin
       and details.key_count = 1
       and details.key_match_count = 1
       and mappings.mapping_count = 1
-      and mappings.expected_mapping_count = 1,
+      and mappings.expected_mapping_count = 1
+      and exists (
+        select 1
+        from public.learning_objectives objective
+        join public.learning_topics topic on topic.id = objective.topic_id
+        join public.learning_skills skill on skill.id = topic.skill_id
+        join public.learning_objective_alignments alignment on alignment.objective_id = objective.id
+        join public.learning_curricula curriculum on curriculum.id = alignment.curriculum_id
+        join public.learning_grade_levels grade
+          on grade.id = alignment.grade_level_id and grade.curriculum_id = alignment.curriculum_id
+        join public.learning_subjects subject on subject.id = skill.subject_id
+        join public.learning_curriculum_subjects curriculum_subject
+          on curriculum_subject.curriculum_id = curriculum.id
+         and curriculum_subject.subject_id = subject.id
+        where objective.id = e.objective_id
+          and objective.status = 'active'
+          and topic.status = 'active'
+          and skill.status = 'active'
+          and skill.subject_id = e.subject_id
+          and alignment.curriculum_id = e.curriculum_id
+          and alignment.grade_level_id = e.grade_level_id
+          and curriculum.status = 'active'
+          and grade.status = 'active'
+          and subject.status = 'active'
+          and curriculum_subject.status = 'active'
+      ),
       false
     ),
     case
@@ -131,6 +156,31 @@ begin
       when details.prompt_match_count <> 1 then 'question_prompt_mismatch'
       when details.key_count <> 1 or details.key_match_count <> 1 then 'protected_answer_key_incomplete'
       when mappings.mapping_count <> 1 or mappings.expected_mapping_count <> 1 then 'objective_mapping_incomplete'
+      when not exists (
+        select 1
+        from public.learning_objectives objective
+        join public.learning_topics topic on topic.id = objective.topic_id
+        join public.learning_skills skill on skill.id = topic.skill_id
+        join public.learning_objective_alignments alignment on alignment.objective_id = objective.id
+        join public.learning_curricula curriculum on curriculum.id = alignment.curriculum_id
+        join public.learning_grade_levels grade
+          on grade.id = alignment.grade_level_id and grade.curriculum_id = alignment.curriculum_id
+        join public.learning_subjects subject on subject.id = skill.subject_id
+        join public.learning_curriculum_subjects curriculum_subject
+          on curriculum_subject.curriculum_id = curriculum.id
+         and curriculum_subject.subject_id = subject.id
+        where objective.id = e.objective_id
+          and objective.status = 'active'
+          and topic.status = 'active'
+          and skill.status = 'active'
+          and skill.subject_id = e.subject_id
+          and alignment.curriculum_id = e.curriculum_id
+          and alignment.grade_level_id = e.grade_level_id
+          and curriculum.status = 'active'
+          and grade.status = 'active'
+          and subject.status = 'active'
+          and curriculum_subject.status = 'active'
+      ) then 'objective_academic_alignment_mismatch'
       else null
     end
   from expected e
