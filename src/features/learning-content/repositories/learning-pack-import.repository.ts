@@ -20,6 +20,7 @@ export type LearningPackImportLesson = {
 };
 
 export type LearningPackImportChunk = {
+  languageCode: "en" | "th";
   organizationId: string;
   createdBy: string;
   curriculumId: string;
@@ -36,6 +37,7 @@ export type LearningPackQuestionOnlyInput = {
 };
 
 export type LearningPackQuestionOnlyChunk = {
+  languageCode: "en" | "th";
   organizationId: string;
   createdBy: string;
   curriculumId: string;
@@ -67,7 +69,7 @@ export const learningPackImportRepository = {
     };
   },
   async importQuestionsOnly(input: LearningPackQuestionOnlyChunk) {
-    if (!input.organizationId || !input.createdBy || !input.curriculumId || !input.subjectId || !input.questions.length) {
+    if (!input.languageCode || !input.organizationId || !input.createdBy || !input.curriculumId || !input.subjectId || !input.questions.length) {
       throw new Error("A teacher, organization, curriculum, subject and at least one question are required.");
     }
     if (input.questions.some((question) =>
@@ -86,7 +88,7 @@ export const learningPackImportRepository = {
           organization_id: input.organizationId,
           code: makeImportCode(question.code),
           question_type: "short_answer",
-          language_code: "en",
+          language_code: input.languageCode,
           created_by: input.createdBy,
         }));
       const { data: questions, error: questionError } = await supabase
@@ -153,7 +155,7 @@ export const learningPackImportRepository = {
   },
 
   async importChunk(input: LearningPackImportChunk) {
-    if (!input.organizationId || !input.createdBy || !input.curriculumId || !input.subjectId || !input.lessons.length) {
+    if (!input.languageCode || !input.organizationId || !input.createdBy || !input.curriculumId || !input.subjectId || !input.lessons.length) {
       throw new Error("A teacher, organization, curriculum, subject and at least one lesson are required.");
     }
     if (input.lessons.some((lesson) =>
@@ -179,7 +181,7 @@ export const learningPackImportRepository = {
           code: makeImportCode(lesson.contentImportCode ?? `EP-${lesson.objectiveCode}-LESSON`),
           title: lesson.title,
           content_type: "lesson",
-          language_code: "en",
+          language_code: input.languageCode,
           created_by: input.createdBy,
           metadata: { source: "teacher_pack_import", objective_code: lesson.objectiveCode },
         }));
@@ -243,7 +245,7 @@ export const learningPackImportRepository = {
           organization_id: input.organizationId,
           code: question.code,
           question_type: "short_answer",
-          language_code: "en",
+          language_code: input.languageCode,
           created_by: input.createdBy,
         }));
       const { data: questions, error: questionError } = await supabase
