@@ -104,8 +104,8 @@ for (const pack of packs) {
         failures.push(heading[2] + ": P1–P3 tasks must use the ordered evidence, explanation and application progression");
       }
       if (p1p3PerformanceEvidenceCodes.has(heading[2])) {
-        const taskThree = sourceSection.match(/^\\s*3\\. \\*\\*Apply \\/ demonstrate:\\*\\* (.+)$/m)?.[1] ?? "";
-        if (!/\\b(demonstrate|role-play|complete|carry out|take part|join|draw|conduct|build|convert|make|use)\\b/i.test(taskThree)) {
+        const taskThree = sourceSection.match(/^\s*3\. \*\*Apply \/ demonstrate:\*\* (.+)$/m)?.[1] ?? "";
+        if (!/\b(demonstrate|role-play|complete|carry out|take part|join|draw|conduct|build|convert|make|use)\b/i.test(taskThree)) {
           failures.push(heading[2] + ": performance indicator task 3 must require observable or inspectable learner evidence");
         }
       }
