@@ -29,6 +29,7 @@ export default function TeacherContentImportPage() {
   const [curriculumId, setCurriculumId] = useState("");
   const [gradeLevelId, setGradeLevelId] = useState("");
   const [subjectId, setSubjectId] = useState("");
+  const [languageCode, setLanguageCode] = useState<"en" | "th">("en");
   const [parsedLessons, setParsedLessons] = useState<ParsedTeacherPackLesson[]>([]);
   const [questionsOnly, setQuestionsOnly] = useState(false);
   const [fileName, setFileName] = useState("");
@@ -271,6 +272,7 @@ export default function TeacherContentImportPage() {
             createdBy: user.id,
             curriculumId: activeCurriculumId,
             subjectId: activeSubjectId,
+            languageCode,
             questions: questions.slice(offset, offset + CHUNK_SIZE),
           });
           importedQuestions += result.questions;
@@ -301,6 +303,7 @@ export default function TeacherContentImportPage() {
             createdBy: user.id,
             curriculumId: activeCurriculumId,
             subjectId: activeSubjectId,
+            languageCode,
             lessons: chunk,
           });
           importedLessons += result.lessons;
@@ -382,6 +385,12 @@ export default function TeacherContentImportPage() {
           <Field label="Subject">
             <select value={activeSubjectId} onChange={(event) => setSubjectId(event.target.value)} className="input w-full">
               {(subjects.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
+            </select>
+          </Field>
+          <Field label="Content language">
+            <select value={languageCode} onChange={(event) => setLanguageCode(event.target.value as "en" | "th")} className="input w-full">
+              <option value="en">English (en)</option>
+              <option value="th">Thai (th)</option>
             </select>
           </Field>
         </div>
