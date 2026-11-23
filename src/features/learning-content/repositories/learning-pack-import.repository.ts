@@ -50,6 +50,17 @@ export type LearningPackQuestionOnlyChunk = {
   questions: LearningPackQuestionOnlyInput[];
 };
 
+const MAX_IMPORT_CHUNK_ITEMS = 40;
+
+function assertExactUniqueValues(actualValues: string[], expectedValues: string[], description: string) {
+  const actual = new Set(actualValues);
+  const expected = new Set(expectedValues);
+  if (actualValues.length !== expectedValues.length || actual.size !== actualValues.length ||
+      actual.size !== expected.size || [...expected].some((value) => !actual.has(value))) {
+    throw new Error(`The database did not confirm the exact set of created ${description}. No success was reported.`);
+  }
+}
+
 export const learningPackImportRepository = {
   async findExistingImportCodes(input: {
     organizationId: string;
@@ -251,8 +262,8 @@ export const learningPackImportRepository = {
   },
 
   async importQuestionsOnly(input: LearningPackQuestionOnlyChunk) {
-    if (!input.languageCode || !input.organizationId || !input.createdBy || !input.curriculumId || !input.subjectId || !input.questions.length) {
-      throw new Error("A teacher, organization, curriculum, subject and at least one question are required.");
+    if (!input.languageCode || !input.organizationId || !input.createdBy || !input.curriculumId || !input.subjectId || !input.questions.length || input.questions.length > MAX_IMPORT_CHUNK_ITEMS) {
+      throw new Error("A teacher, organization, curriculum, subject and between 1 and 40 questions per import chunk are required.");
     }
     if (input.questions.some((question) =>
       !question.code.trim() || !normalizeLearningImportCode(question.code) ||
@@ -298,7 +309,7 @@ export const learningPackImportRepository = {
       if (questionError) throw questionError;
       createdQuestionIds.push(...(questions ?? []).map((question) => question.id));
       const questionByCode = new Map((questions ?? []).map((question) => [normalizeLearningImportCode(question.code), question.id]));
-      if (questionByCode.size !== input.questions.length) throw new Error("The question insert did not return every created question.");
+      assertExactUniqueValues([...questionByCode.keys()], codes, "question parents");
 
       const versionRows: Database["public"]["Tables"]["learning_question_versions"]["Insert"][] =
         input.questions.map((question) => ({
@@ -318,7 +329,7 @@ export const learningPackImportRepository = {
         .select("id,question_id");
       if (versionError) throw versionError;
       const versionByQuestionId = new Map((versions ?? []).map((version) => [version.question_id, version.id]));
-      if (versionByQuestionId.size !== input.questions.length) throw new Error("The question-version insert did not return every created version.");
+      assertExactUniqueValues([...versionByQuestionId.keys()], [...questionByCode.values()], "question versions");
 
       await saveEvaluationKeys(input.questions.map((question) => ({
         questionVersionId: versionByQuestionId.get(questionByCode.get(normalizeLearningImportCode(question.code))!)!,
@@ -333,8 +344,14 @@ export const learningPackImportRepository = {
         }));
       const { error: objectiveError } = await supabase
         .from("learning_question_objectives")
-        .insert(objectiveRows);
+        .insert(objectiveRows)
+        .select("question_version_id,objective_id");
       if (objectiveError) throw objectiveError;
+      assertExactUniqueValues(
+        (objectiveRows ?? []).map((row) => `${row.question_version_id}:${row.objective_id}`),
+        input.questions.map((question) => `${versionByQuestionId.get(questionByCode.get(normalizeLearningImportCode(question.code))!)!}:${question.objectiveId}`),
+        "question objective links",
+      );
       return { questions: questions?.length ?? 0 };
     } catch (error) {
       if (createdQuestionIds.length) {
@@ -354,8 +371,8 @@ export const learningPackImportRepository = {
   },
 
   async importChunk(input: LearningPackImportChunk) {
-    if (!input.languageCode || !input.organizationId || !input.createdBy || !input.curriculumId || !input.subjectId || !input.lessons.length) {
-      throw new Error("A teacher, organization, curriculum, subject and at least one lesson are required.");
+    if (!input.languageCode || !input.organizationId || !input.createdBy || !input.curriculumId || !input.subjectId || !input.lessons.length || input.lessons.length > MAX_IMPORT_CHUNK_ITEMS) {
+      throw new Error("A teacher, organization, curriculum, subject and between 1 and 40 lessons per import chunk are required.");
     }
     if (input.lessons.some((lesson) =>
       !lesson.objectiveId || !lesson.objectiveCode || !lesson.gradeLevelId ||
@@ -413,9 +430,7 @@ export const learningPackImportRepository = {
       if (contentError) throw contentError;
       const contentByCode = new Map((contentItems ?? []).map((item) => [item.code, item.id]));
       createdContentIds.push(...(contentItems ?? []).map((item) => item.id));
-      if (contentByCode.size !== input.lessons.length) {
-        throw new Error("The content insert did not return every created lesson.");
-      }
+      assertExactUniqueValues([...contentByCode.keys()], contentCodes, "lesson parents");
 
       const contentVersionRows: Database["public"]["Tables"]["learning_content_versions"]["Insert"][] =
         input.lessons.map((lesson) => ({
@@ -439,8 +454,14 @@ export const learningPackImportRepository = {
         }));
       const { error: contentVersionError } = await supabase
         .from("learning_content_versions")
-        .insert(contentVersionRows);
+        .insert(contentVersionRows)
+        .select("id,content_item_id");
       if (contentVersionError) throw contentVersionError;
+      assertExactUniqueValues(
+        (contentVersionRows ?? []).map((row) => row.content_item_id),
+        [...contentByCode.values()],
+        "lesson versions",
+      );
 
       const contentObjectiveRows: Database["public"]["Tables"]["learning_content_objectives"]["Insert"][] =
         input.lessons.map((lesson) => ({
@@ -450,8 +471,14 @@ export const learningPackImportRepository = {
         }));
       const { error: contentObjectiveError } = await supabase
         .from("learning_content_objectives")
-        .insert(contentObjectiveRows);
+        .insert(contentObjectiveRows)
+        .select("content_item_id,objective_id");
       if (contentObjectiveError) throw contentObjectiveError;
+      assertExactUniqueValues(
+        (contentObjectiveRows ?? []).map((row) => `${row.content_item_id}:${row.objective_id}`),
+        input.lessons.map((lesson) => `${contentByCode.get(normalizeLearningImportCode(lesson.contentImportCode ?? `EP-${lesson.objectiveCode}-LESSON`))!}:${lesson.objectiveId}`),
+        "lesson objective links",
+      );
 
       const questionInputs = input.lessons.flatMap((lesson) =>
         lesson.questions.map((question) => ({
@@ -476,9 +503,7 @@ export const learningPackImportRepository = {
       if (questionError) throw questionError;
       const questionByCode = new Map((questions ?? []).map((question) => [question.code, question.id]));
       createdQuestionIds.push(...(questions ?? []).map((question) => question.id));
-      if (questionByCode.size !== questionInputs.length) {
-        throw new Error("The question insert did not return every created question.");
-      }
+      assertExactUniqueValues([...questionByCode.keys()], questionInputs.map((question) => question.code), "question parents");
 
       const questionVersionRows: Database["public"]["Tables"]["learning_question_versions"]["Insert"][] =
         questionInputs.map((question) => ({
@@ -498,9 +523,7 @@ export const learningPackImportRepository = {
         .select("id,question_id");
       if (questionVersionError) throw questionVersionError;
       const versionByQuestionId = new Map((versions ?? []).map((version) => [version.question_id, version.id]));
-      if (versionByQuestionId.size !== questionInputs.length) {
-        throw new Error("The question-version insert did not return every created version.");
-      }
+      assertExactUniqueValues([...versionByQuestionId.keys()], [...questionByCode.values()], "question versions");
 
       await saveEvaluationKeys(questionInputs.map((question) => ({
         questionVersionId: versionByQuestionId.get(questionByCode.get(question.code)!)!,
@@ -515,8 +538,14 @@ export const learningPackImportRepository = {
         }));
       const { error: questionObjectiveError } = await supabase
         .from("learning_question_objectives")
-        .insert(questionObjectiveRows);
+        .insert(questionObjectiveRows)
+        .select("question_version_id,objective_id");
       if (questionObjectiveError) throw questionObjectiveError;
+      assertExactUniqueValues(
+        (questionObjectiveRows ?? []).map((row) => `${row.question_version_id}:${row.objective_id}`),
+        questionInputs.map((question) => `${versionByQuestionId.get(questionByCode.get(question.code)!)!}:${question.objectiveId}`),
+        "question objective links",
+      );
 
       return {
         lessons: contentItems?.length ?? 0,
