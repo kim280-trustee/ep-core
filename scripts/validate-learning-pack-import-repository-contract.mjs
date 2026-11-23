@@ -6,12 +6,12 @@ const repositoryPath = resolve(process.cwd(), "src/features/learning-content/rep
 const source = await readFile(repositoryPath, "utf8");
 
 function methodBody(methodName, nextMethodName) {
-  const start = source.indexOf(\`  async \${methodName}(\`);
-  assert.notEqual(start, -1, \`Repository method \${methodName} must exist.\`);
+  const start = source.indexOf("  async " + methodName + "(");
+  assert.notEqual(start, -1, "Repository method " + methodName + " must exist.");
   const end = nextMethodName
-    ? source.indexOf(\`  async \${nextMethodName}(\`, start + 1)
+    ? source.indexOf("  async " + nextMethodName + "(", start + 1)
     : source.indexOf("\n};", start);
-  assert.notEqual(end, -1, \`Repository method boundary after \${methodName} must exist.\`);
+  assert.notEqual(end, -1, "Repository method boundary after " + methodName + " must exist.");
   return source.slice(start, end);
 }
 
