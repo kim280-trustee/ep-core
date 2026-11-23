@@ -322,10 +322,15 @@ export const learningPackImportRepository = {
       return { questions: questions?.length ?? 0 };
     } catch (error) {
       if (createdQuestionIds.length) {
-        const { error: cleanupError } = await supabase.from("learning_questions").delete().in("id", createdQuestionIds);
-        if (cleanupError) {
+        const { data: deletedQuestions, error: cleanupError } = await supabase
+          .from("learning_questions")
+          .delete()
+          .in("id", createdQuestionIds)
+          .select("id");
+        if (cleanupError || (deletedQuestions?.length ?? 0) !== createdQuestionIds.length) {
+          const cleanupMessage = cleanupError?.message ?? `Deleted ${deletedQuestions?.length ?? 0} of ${createdQuestionIds.length} created questions.`;
           const original = error instanceof Error ? error.message : "Unknown database error.";
-          throw new Error(`${original} Cleanup also failed: ${cleanupError.message}. Check the draft question bank before retrying.`, { cause: error });
+          throw new Error(`${original} Cleanup could not confirm full removal: ${cleanupMessage}. Check the draft question bank before retrying.`, { cause: error });
         }
       }
       throw error;
@@ -504,12 +509,26 @@ export const learningPackImportRepository = {
     } catch (error) {
       const cleanupErrors: string[] = [];
       if (createdQuestionIds.length) {
-        const { error: cleanupQuestionError } = await supabase.from("learning_questions").delete().in("id", createdQuestionIds);
+        const { data: deletedQuestions, error: cleanupQuestionError } = await supabase
+          .from("learning_questions")
+          .delete()
+          .in("id", createdQuestionIds)
+          .select("id");
         if (cleanupQuestionError) cleanupErrors.push(cleanupQuestionError.message);
+        else if ((deletedQuestions?.length ?? 0) !== createdQuestionIds.length) {
+          cleanupErrors.push(`Deleted ${deletedQuestions?.length ?? 0} of ${createdQuestionIds.length} created questions.`);
+        }
       }
       if (createdContentIds.length) {
-        const { error: cleanupContentError } = await supabase.from("learning_content_items").delete().in("id", createdContentIds);
+        const { data: deletedContent, error: cleanupContentError } = await supabase
+          .from("learning_content_items")
+          .delete()
+          .in("id", createdContentIds)
+          .select("id");
         if (cleanupContentError) cleanupErrors.push(cleanupContentError.message);
+        else if ((deletedContent?.length ?? 0) !== createdContentIds.length) {
+          cleanupErrors.push(`Deleted ${deletedContent?.length ?? 0} of ${createdContentIds.length} created lessons.`);
+        }
       }
       if (cleanupErrors.length) {
         const original = error instanceof Error ? error.message : "Unknown database error.";
