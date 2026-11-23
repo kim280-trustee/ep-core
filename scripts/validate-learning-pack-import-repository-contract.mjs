@@ -46,6 +46,12 @@ assert.match(source, /Promise\.allSettled\(batch\.map/,
   "Protected answer-key writes must settle all in-flight RPC calls before cleanup.");
 assert.match(source, /save_learning_question_evaluation_key/,
   "Protected answer keys must use the authorized RPC rather than direct table inserts.");
+assert.match(questionOnly, /\.delete\(\)[\s\S]*?\.select\("id"\)[\s\S]*?deletedQuestions\?\.length[\s\S]*?createdQuestionIds\.length/,
+  "Question-only rollback must confirm every created question was actually deleted.");
+assert.match(lessonChunk, /\.delete\(\)[\s\S]*?\.select\("id"\)[\s\S]*?deletedQuestions\?\.length[\s\S]*?createdQuestionIds\.length/,
+  "Lesson rollback must confirm every created question was actually deleted.");
+assert.match(lessonChunk, /\.delete\(\)[\s\S]*?\.select\("id"\)[\s\S]*?deletedContent\?\.length[\s\S]*?createdContentIds\.length/,
+  "Lesson rollback must confirm every created content row was actually deleted.");
 assert.match(source, /Cleanup also failed|Cleanup also reported/,
   "Cleanup failures must be surfaced with actionable recovery guidance.");
 
