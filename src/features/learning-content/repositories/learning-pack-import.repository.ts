@@ -101,8 +101,13 @@ export const learningPackImportRepository = {
   }) {
     const batchSize = 100;
     const integrity = new Map<string, { questionExists: boolean; isComplete: boolean; issue: string | null }>();
+    const expectedCodes = input.questions.map((question) => normalizeLearningImportCode(question.code));
+    if (expectedCodes.some((code) => !code) || new Set(expectedCodes).size !== expectedCodes.length) {
+      throw new Error("Question completeness verification requires non-empty, unique normalized question codes. No retry decisions were made.");
+    }
     for (let offset = 0; offset < input.questions.length; offset += batchSize) {
       const batch = input.questions.slice(offset, offset + batchSize);
+      const batchCodes = new Set(batch.map((question) => normalizeLearningImportCode(question.code)));
       const expectedQuestions = batch.map((question) => ({
         code: normalizeLearningImportCode(question.code),
         prompt: question.prompt,
@@ -122,12 +127,23 @@ export const learningPackImportRepository = {
       if ((data ?? []).length !== batch.length) {
         throw new Error("The database did not return a completeness result for every expected question. No retry decisions were made.");
       }
+      const receivedCodes = new Set<string>();
       for (const row of data ?? []) {
-        integrity.set(normalizeLearningImportCode(row.question_code), {
+        const code = normalizeLearningImportCode(row.question_code);
+        if (!code || !batchCodes.has(code) || receivedCodes.has(code) ||
+          typeof row.question_exists !== "boolean" || typeof row.is_complete !== "boolean" ||
+          (row.issue !== null && typeof row.issue !== "string")) {
+          throw new Error("The database returned an unexpected, duplicate or malformed question completeness result. No retry decisions were made.");
+        }
+        receivedCodes.add(code);
+        integrity.set(code, {
           questionExists: row.question_exists,
           isComplete: row.is_complete,
           issue: row.issue,
         });
+      }
+      if (receivedCodes.size !== batch.length) {
+        throw new Error("The database completeness response did not match the expected question codes. No retry decisions were made.");
       }
     }
     return integrity;
