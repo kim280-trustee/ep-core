@@ -55,6 +55,10 @@ jobs:
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:science-specialist-packs
 
+      - name: Validate complete 17-pack Science rollout totals
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:science-rollout-packs
+
       - name: Validate Mathematics teacher packs through importer parser
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:maths-packs
