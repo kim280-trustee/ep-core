@@ -6,12 +6,12 @@ const repositoryPath = resolve(process.cwd(), "src/features/learning-content/rep
 const source = await readFile(repositoryPath, "utf8");
 
 function methodBody(methodName, nextMethodName) {
-  const start = source.indexOf(`  async ${methodName}(`);
-  assert.notEqual(start, -1, `Repository method ${methodName} must exist.`);
+  const start = source.indexOf(\`  async \${methodName}(\`);
+  assert.notEqual(start, -1, \`Repository method \${methodName} must exist.\`);
   const end = nextMethodName
-    ? source.indexOf(`  async ${nextMethodName}(`, start + 1)
+    ? source.indexOf(\`  async \${nextMethodName}(\`, start + 1)
     : source.indexOf("\n};", start);
-  assert.notEqual(end, -1, `Repository method boundary after ${methodName} must exist.`);
+  assert.notEqual(end, -1, \`Repository method boundary after \${methodName} must exist.\`);
   return source.slice(start, end);
 }
 
@@ -47,4 +47,4 @@ assert.match(source, /save_learning_question_evaluation_key/,
 assert.match(source, /Cleanup also failed|Cleanup also reported/,
   "Cleanup failures must be surfaced with actionable recovery guidance.");
 
-process.stdout.write("PASS: importer integration contract — preflight-before-write, bounded lookups, cleanup tracking and protected answer-key RPC.\\n");
+process.stdout.write("PASS: importer integration contract — preflight-before-write, bounded lookups, cleanup tracking and protected answer-key RPC.\n");
