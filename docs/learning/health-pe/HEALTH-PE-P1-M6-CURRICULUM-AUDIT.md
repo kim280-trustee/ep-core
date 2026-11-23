@@ -52,7 +52,7 @@ The M4–M6 official indicator codes use the shared `ม.4-6/n` grade notation. 
 - [x] All 279 alignments have an OBEC priority classification.
 - [x] Priority totals reconcile: 139 must-know and 140 should-know alignment rows.
 - [x] M4–M6 shared indicators are aligned to all three grades.
-- [x] Four teacher packs cover all 221 unique indicators and provide 663 indicator-specific formative tasks with answer/evidence guidance.
+- [x] Four teacher packs cover all 221 unique indicators and provide 663 indicator-linked formative tasks with answer/evidence guidance.
 - [x] Every task explicitly quotes the official Thai indicator and addresses the relevant HPE strand and grade band.
 - [x] The importer expands all 29 shared M4–M6 indicators to three grade-specific draft lessons and grade-scoped question codes.
 - [x] No duplicate objective-to-skill assignments were found.
@@ -78,3 +78,12 @@ Answer guidance is formative criteria, not a single rigid response for practical
 The importer now recognises HPE grade codes and expands the 29 `HPE-M46` shared indicators into 87 grade-specific lesson drafts and 261 grade-scoped questions. Grade-scoped codes prevent duplicate collisions while preserving the one shared official objective aligned to M4, M5 and M6.
 
 GitHub Actions run 176 passed all curriculum validators, including the actual TypeScript importer-parser check for 221 unique HPE indicators and 663 answer-keyed tasks, the production build and ESLint.
+
+
+## Assessment-content specificity audit — 23 November 2026
+
+A deeper review found that the 663 tasks are indicator-linked but are not 663 independently authored, objective-specific assessment items. After removing the quoted Thai indicator and objective code, the four packs contain 15 normalized task templates (three task formats across five HPE standards). This provides a consistent scaffold, but some expected-answer guidance remains too broad to assess individual outcomes reliably.
+
+The starter packs therefore pass structural/parser validation, but assessment-content quality is not yet accepted as fully complete. The remaining authoring work is to replace broad scaffold prompts and answer guidance with objective-specific evidence, practical performance criteria and safe scenarios, then add regression checks for meaningful task specificity. The 23 November wording correction fixed identified grammar defects and the HPE validator now guards against their recurrence.
+
+No content has been imported or published. The isolated staging environment and authorised staging teacher account remain prerequisites for import acceptance.
