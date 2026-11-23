@@ -37,3 +37,67 @@ export function formatExistingImportCodeConflict(conflicts: ExistingImportCodeCo
   ].filter(Boolean).join("; ");
   return `This organization already contains imported content codes (${details}). Resolve the existing drafts or use new import codes before retrying.`;
 }
+
+export type ResumableImportLesson = {
+  contentImportCode: string;
+  objectiveCode: string;
+  questions: Array<{ code: string }>;
+};
+
+export type LearningPackImportPlan<T> = {
+  lessonsToImport: T[];
+  skippedLessons: number;
+};
+
+/**
+ * Plan a safe lesson-pack retry from one organization-scoped preflight snapshot.
+ * A lesson is skipped only when its parent and every expected question exist.
+ * Any partial group is a hard stop; the importer never guesses how to repair it.
+ */
+export function planResumableLessonImport<T extends ResumableImportLesson>(
+  lessons: T[],
+  existingContentCodes: ReadonlySet<string>,
+  existingQuestionCodes: ReadonlySet<string>,
+): LearningPackImportPlan<T> {
+  const contentCodes = new Set([...existingContentCodes].map(normalizeLearningImportCode));
+  const questionCodes = new Set([...existingQuestionCodes].map(normalizeLearningImportCode));
+  const lessonsToImport: T[] = [];
+  let skippedLessons = 0;
+
+  for (const lesson of lessons) {
+    const contentExists = contentCodes.has(normalizeLearningImportCode(lesson.contentImportCode));
+    const existingQuestionCount = lesson.questions.filter((question) =>
+      questionCodes.has(normalizeLearningImportCode(question.code)),
+    ).length;
+
+    if (contentExists && existingQuestionCount === lesson.questions.length) {
+      skippedLessons += 1;
+      continue;
+    }
+
+    if (contentExists || existingQuestionCount > 0) {
+      throw new Error(
+        `The saved records for ${lesson.objectiveCode} are incomplete (lesson record: ${contentExists ? "yes" : "no"}; existing questions: ${existingQuestionCount}/${lesson.questions.length}). No records were overwritten. Inspect this objective's drafts before retrying.`,
+      );
+    }
+
+    lessonsToImport.push(lesson);
+  }
+
+  return { lessonsToImport, skippedLessons };
+}
+
+/** Return only question codes absent from the same organization-scoped snapshot. */
+export function selectNewImportQuestions<T extends { code: string }>(
+  questions: T[],
+  existingQuestionCodes: ReadonlySet<string>,
+): { questionsToImport: T[]; skippedQuestions: number } {
+  const existing = new Set([...existingQuestionCodes].map(normalizeLearningImportCode));
+  const questionsToImport = questions.filter((question) =>
+    !existing.has(normalizeLearningImportCode(question.code)),
+  );
+  return {
+    questionsToImport,
+    skippedQuestions: questions.length - questionsToImport.length,
+  };
+}
