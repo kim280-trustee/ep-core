@@ -141,7 +141,7 @@ A second review focused on indicators whose official Thai wording requires learn
 - a completed income/expense ledger using supplied fictional transactions where privacy is preferred;
 - a safe model demonstration of the Earth–Sun–Moon relationship.
 
-The corresponding answer guides now identify observable performance, source alignment, safety boundaries and acceptable alternatives. The prompts continue to quote the exact official Thai indicator and retain the parser's required `**Answer:**` label. The edit changed task 3 for 32 indicators; it did not claim that every task in all 104 lessons is now independently source-populated or classroom-tested.
+The corresponding answer guides now identify observable performance, source alignment, safety boundaries and acceptable alternatives. The prompts continue to quote the exact official Thai indicator and retain the parser's required `**Answer:**` label. The edit changed task 3 for 32 indicators; it did not claim that every task in all 104 lessons is now independently source-populated or classroom-tested. A post-edit fetch/static-structure check confirmed 104 lesson headings, 312 task entries, 312 answer labels, 104 stimulus cards, 104 exact-indicator learning intentions and the required three-task order in all 104 lessons. All 32 performance-evidence codes are present in the pack and their task-three prompts meet the validator's observable/inspectable-action keyword check. This is a source-text check only; the actual validator and importer remain unexecuted.
 
 ### Sensitive religious indicators and assessment limits
 
