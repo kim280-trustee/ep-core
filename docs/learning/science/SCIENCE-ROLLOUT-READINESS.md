@@ -471,3 +471,11 @@ After all 17 imports, verify 715 lesson drafts, 2,145 question drafts, 715 objec
 The read-only post-import SQL was tightened after reviewing the teacher importer’s actual question-code generation. Question counts now match the imported lesson objective codes and the generated question suffix, rather than counting every question attached to a Science objective. It also checks that every objective/grade pair has exactly three imported questions, verifies uniqueness within each organization, and reports the expected Thai/English draft totals separately.
 
 The updated SQL was executed against live Supabase. All statements ran successfully. Current results remain 0/715 lesson drafts and 0/2,145 question drafts, as expected before the authorized teacher import. Duplicate-code and integrity-error counts are zero; no records were changed. The expected-total checks correctly remain CHECK until import.
+
+## Protected answer-key write-path correction — 23 November 2026
+
+A live RLS audit found that `learning_question_evaluation_keys` intentionally has no authenticated INSERT policy. The teacher-pack repository was incorrectly attempting a direct browser-client table insert, which would cause each import chunk to fail when saving protected answer keys.
+
+The importer now calls the existing `save_learning_question_evaluation_key` SECURITY DEFINER RPC for each key. The live database confirms the RPC is SECURITY DEFINER and executable by `authenticated`; its current implementation requires an active teacher membership or academic-record management permission and rejects published question versions. The evaluation-key table remains protected by its restrictive row-level policies. Key writes in each chunk use `Promise.allSettled`, so all in-flight RPC calls finish before failed-chunk cleanup begins.
+
+This correction changes the import client path only; no RLS policies or answer-key permissions were weakened. Database inspection also confirms the evaluation-key foreign key cascades when the owning question version is deleted, preserving the existing failed-chunk cleanup strategy. A real authenticated import is still required to verify the end-to-end user session and permissions.
