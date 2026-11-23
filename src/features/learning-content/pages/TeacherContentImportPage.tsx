@@ -1,5 +1,5 @@
 import { useMemo, useState, type ChangeEvent, type ReactNode } from "react";
-import { planResumableLessonImport, selectNewImportQuestions } from "@/features/learning-content/utils/learning-pack-import-validation";
+import { formatImportChunkFailure, planResumableLessonImport, selectNewImportQuestions } from "@/features/learning-content/utils/learning-pack-import-validation";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, FileUp, Upload } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -246,6 +246,7 @@ export default function TeacherContentImportPage() {
     setImportProgress({ lessons: 0, questions: 0 });
     let importedLessons = 0;
     let importedQuestions = 0;
+    let failedChunk: { kind: "lesson" | "question"; number: number; total: number } | null = null;
 
     try {
       const requestedContentCodes = questionsOnly ? [] : resolved.rows.map((lesson) =>
@@ -269,7 +270,10 @@ export default function TeacherContentImportPage() {
         const questionPlan = selectNewImportQuestions(questionCandidates, existing.questionCodes);
         const questions = questionPlan.questionsToImport;
         const skippedQuestions = questionPlan.skippedQuestions;
+        const totalChunks = Math.ceil(questions.length / CHUNK_SIZE);
         for (let offset = 0; offset < questions.length; offset += CHUNK_SIZE) {
+          const chunkNumber = Math.floor(offset / CHUNK_SIZE) + 1;
+          failedChunk = { kind: "question", number: chunkNumber, total: totalChunks };
           const result = await learningPackImportService.importQuestionsOnly({
             organizationId,
             createdBy: user.id,
@@ -279,6 +283,7 @@ export default function TeacherContentImportPage() {
             questions: questions.slice(offset, offset + CHUNK_SIZE),
           });
           importedQuestions += result.questions;
+          failedChunk = null;
           setImportProgress({ lessons: 0, questions: importedQuestions });
         }
         setMessage(`Imported ${importedQuestions} new assessment question drafts; skipped ${skippedQuestions} existing question codes. All new items remain unpublished for teacher review.`);
@@ -290,7 +295,10 @@ export default function TeacherContentImportPage() {
         );
         const newLessons = lessonPlan.lessonsToImport;
         const skippedLessons = lessonPlan.skippedLessons;
+        const totalChunks = Math.ceil(newLessons.length / CHUNK_SIZE);
         for (let offset = 0; offset < newLessons.length; offset += CHUNK_SIZE) {
+          const chunkNumber = Math.floor(offset / CHUNK_SIZE) + 1;
+          failedChunk = { kind: "lesson", number: chunkNumber, total: totalChunks };
           const chunk = newLessons.slice(offset, offset + CHUNK_SIZE);
           const result = await learningPackImportService.importChunk({
             organizationId,
@@ -302,6 +310,7 @@ export default function TeacherContentImportPage() {
           });
           importedLessons += result.lessons;
           importedQuestions += result.questions;
+          failedChunk = null;
           setImportProgress({ lessons: importedLessons, questions: importedQuestions });
         }
         setMessage(`Imported ${importedLessons} new lesson drafts and ${importedQuestions} new question drafts; safely skipped ${skippedLessons} complete lessons from an earlier run. All new items remain unpublished for teacher review.`);
@@ -310,10 +319,12 @@ export default function TeacherContentImportPage() {
       await queryClient.invalidateQueries({ queryKey: ["learning", "question-bank"] });
       await queryClient.invalidateQueries({ queryKey: ["learning", "authoring", "questions"] });
     } catch (error) {
-      const reason = error instanceof Error ? error.message : "Unknown import error.";
+      const reason = failedChunk
+        ? formatImportChunkFailure({ kind: failedChunk.kind, chunkNumber: failedChunk.number, totalChunks: failedChunk.total, error })
+        : error instanceof Error ? error.message : "Unknown import error.";
       setMessage(importedLessons || importedQuestions
-        ? `Partial import: ${importedLessons} lesson drafts and ${importedQuestions} question drafts were saved in completed chunks. The next chunk stopped: ${reason}`
-        : `Nothing was imported: ${reason}`);
+        ? `Partial import: ${importedLessons} lesson drafts and ${importedQuestions} question drafts were saved in completed chunks. ${reason}`
+        : failedChunk ? `Nothing was saved from this run. ${reason}` : `Nothing was imported: ${reason}`);
     } finally {
       setImporting(false);
     }
