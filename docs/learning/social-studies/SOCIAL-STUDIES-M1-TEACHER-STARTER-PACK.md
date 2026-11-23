@@ -4,7 +4,7 @@
 **Coverage:** 45 official indicator lessons
 **Source alignment:** Each lesson retains the indicator code, learning standard and original Thai indicator wording from the curriculum database.
 
-> Classification labels are shown as currently stored. Items marked “Classification audit pending” are not presented as verified; the subject audit is reconciling these against OBEC's between-learning / terminal indicator framework.
+> **Classification note:** All objectives in this pack have an OBEC between-learning / terminal pathway classification. Where a 2021 Must-Know / Should-Know priority label is present, it is shown separately; the two classification systems are not interchangeable.
 
 ## Teaching guidance
 
