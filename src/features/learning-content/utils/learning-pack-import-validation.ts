@@ -101,3 +101,12 @@ export function selectNewImportQuestions<T extends { code: string }>(
     skippedQuestions: questions.length - questionsToImport.length,
   };
 }
+
+
+export type ImportChunkKind = "lesson" | "question";
+
+export function formatImportChunkFailure(input: { kind: ImportChunkKind; chunkNumber: number; totalChunks: number; error: unknown }): string {
+  const detail = input.error instanceof Error ? input.error.message : "Unknown import error.";
+  const label = input.kind === "lesson" ? "Lesson" : "Question";
+  return `${label} chunk ${input.chunkNumber} of ${input.totalChunks} failed: ${detail} Earlier completed chunks are retained. The failed chunk attempts its own cleanup; inspect the draft library before retrying if the error reports a cleanup failure.`;
+}
