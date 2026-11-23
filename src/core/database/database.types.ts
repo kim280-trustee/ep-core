@@ -5668,7 +5668,7 @@ export type Database = {
         Returns: string
       }
       verify_learning_pack_import_questions: {
-        Args: { p_expected_questions: Json; p_organization_id: string }
+        Args: { p_class_group_id: string; p_expected_questions: Json; p_organization_id: string }
         Returns: {
           is_complete: boolean
           issue: string | null
