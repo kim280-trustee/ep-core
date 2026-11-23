@@ -3,7 +3,7 @@
 **Curriculum:** `TH-BASIC-CORE-2008-2017` — Thai Basic Education Core Curriculum B.E. 2551 (2008), revised 2017  
 **Subject:** `HEALTH-PE` — Health and Physical Education  
 **Priority source:** OBEC, *Indicators and Core Learning Content: Must-Know and Should-Know*, 2021  
-**Status:** Complete — all grade-level alignments and OBEC priority classifications verified
+**Status:** Curriculum mapping verified; 221 lesson packs authored; staging import and teacher acceptance pending
 
 ## Database coverage
 
@@ -80,14 +80,20 @@ The importer now recognises HPE grade codes and expands the 29 `HPE-M46` shared 
 GitHub Actions run 176 passed all curriculum validators, including the actual TypeScript importer-parser check for 221 unique HPE indicators and 663 answer-keyed tasks, the production build and ESLint.
 
 
-## Assessment-content specificity audit — 23 November 2026
+## Objective-specific assessment authoring — 23 November 2026
 
-A deeper review found that the 663 tasks are indicator-linked but are not 663 independently authored, objective-specific assessment items. After removing the quoted Thai indicator and objective code, the four packs contain 15 normalized task templates (three task formats across five HPE standards). This provides a consistent scaffold, but some expected-answer guidance remains too broad to assess individual outcomes reliably.
+The four packs have now been revised across all 221 indicators (663 tasks). The repeated generic prompts were replaced with a three-part assessment sequence tied to each exact official Thai indicator and its HPE topic:
+1. **Knowledge and understanding:** requires two distinct objective-relevant facts, decisions or steps.
+2. **Application:** uses a fictional age-appropriate case and requires a sequenced decision with a reason.
+3. **Demonstration/evidence:** requires an observable product or performance, a success criterion and an explanation linking evidence to the indicator.
 
-The starter packs therefore pass structural/parser validation, but assessment-content quality is not yet accepted as fully complete. The remaining authoring work is to replace broad scaffold prompts and answer guidance with objective-specific evidence, practical performance criteria and safe scenarios, then add regression checks for meaningful task specificity. The 23 November wording correction fixed identified grammar defects and the HPE validator now guards against their recurrence.
+For each indicator, the teaching activity, practical activity, expected evidence and teacher check now identify the relevant HPE topic and grade band. Expected answers specify what acceptable evidence must demonstrate rather than merely referring to a generic concept. Shared task structure remains intentional so teachers can apply consistent formative assessment; the objective, topic, case context and evidence criteria vary with the official indicator.
 
-No content has been imported or published. The isolated staging environment and authorised staging teacher account remain prerequisites for import acceptance.
+Safeguarding remains explicit: sensitive relationship and health topics use fictional scenarios without personal disclosures; physical activities require safe adaptation; first aid and CPR require trained supervision and appropriate mannequins. These are formative drafts and still require teacher review against local facilities, approved health guidance and learner needs.
 
+The validator now checks the real TypeScript importer parser plus the three task types, answer guidance, required lesson-level teaching/evidence/marking fields, exact Thai indicator linkage and removal of the old generic task scaffold.
+
+**Acceptance status:** authoring and automated structural/content-contract checks are in progress through CI. Staging import and teacher acceptance remain blocked until an isolated staging environment and authorised staging teacher session are explicitly available. No content has been imported or published.
 
 ## Live database re-verification — 23 November 2026
 
