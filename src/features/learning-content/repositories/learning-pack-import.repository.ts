@@ -51,21 +51,37 @@ export const learningPackImportRepository = {
     contentCodes: string[];
     questionCodes: string[];
   }) {
-    const [contentResult, questionResult] = await Promise.all([
-      input.contentCodes.length
-        ? supabase.from("learning_content_items").select("code")
-            .eq("organization_id", input.organizationId).in("code", input.contentCodes)
-        : Promise.resolve({ data: [], error: null }),
-      input.questionCodes.length
-        ? supabase.from("learning_questions").select("code")
-            .eq("organization_id", input.organizationId).in("code", input.questionCodes)
-        : Promise.resolve({ data: [], error: null }),
-    ]);
-    if (contentResult.error) throw contentResult.error;
-    if (questionResult.error) throw questionResult.error;
+    // Keep PostgREST URL/query payloads bounded for large packs (the complete
+    // Science rollout contains 715 lesson codes and 2,145 question codes).
+    const lookupBatchSize = 100;
+    const existingContentCodes = new Set<string>();
+    const existingQuestionCodes = new Set<string>();
+
+    for (let offset = 0; offset < input.contentCodes.length; offset += lookupBatchSize) {
+      const batch = input.contentCodes.slice(offset, offset + lookupBatchSize);
+      const { data, error } = await supabase
+        .from("learning_content_items")
+        .select("code")
+        .eq("organization_id", input.organizationId)
+        .in("code", batch);
+      if (error) throw error;
+      for (const item of data ?? []) existingContentCodes.add(makeImportCode(item.code));
+    }
+
+    for (let offset = 0; offset < input.questionCodes.length; offset += lookupBatchSize) {
+      const batch = input.questionCodes.slice(offset, offset + lookupBatchSize);
+      const { data, error } = await supabase
+        .from("learning_questions")
+        .select("code")
+        .eq("organization_id", input.organizationId)
+        .in("code", batch);
+      if (error) throw error;
+      for (const item of data ?? []) existingQuestionCodes.add(makeImportCode(item.code));
+    }
+
     return {
-      contentCodes: new Set((contentResult.data ?? []).map((item) => makeImportCode(item.code))),
-      questionCodes: new Set((questionResult.data ?? []).map((item) => makeImportCode(item.code))),
+      contentCodes: existingContentCodes,
+      questionCodes: existingQuestionCodes,
     };
   },
   async importQuestionsOnly(input: LearningPackQuestionOnlyChunk) {
