@@ -150,27 +150,31 @@ export const learningPackImportRepository = {
 
       const itemByCode = new Map((items ?? []).map((item) => [normalizeLearningImportCode(item.code), item]));
       const itemIds = (items ?? []).map((item) => item.id);
-      const [versionsResult, objectivesResult] = itemIds.length
-        ? await Promise.all([
+      let versionRows: Array<{ content_item_id: string; version_no: number; status: string; body: Json }> = [];
+      let objectiveRows: Array<{ content_item_id: string; objective_id: string }> = [];
+      if (itemIds.length) {
+        const [versionsResult, objectivesResult] = await Promise.all([
           supabase.from("learning_content_versions")
             .select("content_item_id,version_no,status,body")
             .in("content_item_id", itemIds),
           supabase.from("learning_content_objectives")
             .select("content_item_id,objective_id")
             .in("content_item_id", itemIds),
-        ])
-        : [{ data: [], error: null }, { data: [], error: null }];
-      if (versionsResult.error) throw versionsResult.error;
-      if (objectivesResult.error) throw objectivesResult.error;
+        ]);
+        if (versionsResult.error) throw versionsResult.error;
+        if (objectivesResult.error) throw objectivesResult.error;
+        versionRows = versionsResult.data ?? [];
+        objectiveRows = objectivesResult.data ?? [];
+      }
 
-      const versionsByItem = new Map<string, typeof versionsResult.data>();
-      for (const version of versionsResult.data ?? []) {
+      const versionsByItem = new Map<string, Array<{ content_item_id: string; version_no: number; status: string; body: Json }>>();
+      for (const version of versionRows) {
         const rows = versionsByItem.get(version.content_item_id) ?? [];
         rows.push(version);
         versionsByItem.set(version.content_item_id, rows);
       }
-      const objectivesByItem = new Map<string, typeof objectivesResult.data>();
-      for (const objective of objectivesResult.data ?? []) {
+      const objectivesByItem = new Map<string, Array<{ content_item_id: string; objective_id: string }>>();
+      for (const objective of objectiveRows) {
         const rows = objectivesByItem.get(objective.content_item_id) ?? [];
         rows.push(objective);
         objectivesByItem.set(objective.content_item_id, rows);
