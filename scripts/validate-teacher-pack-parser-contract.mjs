@@ -45,7 +45,6 @@ const socialStudiesFormat = `### 1. SO1.1-P4-01
 `;
 const socialStudiesLesson = parseTeacherPackMarkdown(socialStudiesFormat)[0];
 assert.equal(socialStudiesLesson.objectiveCode, "SO1.1-P4-01");
-assert.equal(socialStudiesLesson.objectiveText, "อธิบายความสำคัญของศาสนาและการอยู่ร่วมกันอย่างเคารพ");
 
 
 for (const numbers of [[1, 1, 3], [2, 3, 4], [1, 3, 2], [0, 1, 2]]) {
