@@ -55,6 +55,10 @@ jobs:
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:learning-pack-import-preflight
 
+      - name: Validate teacher-pack parser question contract
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:teacher-pack-parser-contract
+
       - name: Validate consolidated Science teacher packs
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:science-packs
