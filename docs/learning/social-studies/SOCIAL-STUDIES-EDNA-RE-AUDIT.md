@@ -124,7 +124,7 @@ The P1–P3 pack has been revised across all **104 lesson sections and 312 answe
 
 Each of the 104 lessons now has three tasks (recall/evidence, explain/compare, apply/demonstrate) and a corresponding answer/marking guide. All 312 tasks retain the exact Thai official indicator text in the prompt and use the importer-compatible `**Answer:**` structure.
 
-**Verification performed:** fetched the updated branch file after commit; confirmed 104 P1–P3 indicator headings, 312 task entries and 312 answer-key labels. This is a structural count, not a successful run of the repository's TypeScript importer or the full subject validator. GitHub Actions was not triggered from this connector session.
+**Verification performed:** fetched the updated branch file after commit; confirmed 104 P1–P3 indicator headings, 104 stimulus cards, 312 task entries, 312 answer-key labels and all three ordered task labels in every lesson. The subject validator was extended to check the P1–P3 stimulus-card strand and task progression. The validator and TypeScript importer have **not** been executed in a repository runtime, and GitHub Actions was not triggered from this connector session.
 
 **Academic review status:** the P1–P3 task structures are substantially more operational, but they are not yet signed off as fully classroom-ready. SO1 and SO4 require the teacher to complete the specified verified source cards with the actual tradition/local-history material for the lesson. All 104 tasks still need a subject-matter pass to confirm that the selected case/source and expected evidence match each individual indicator—not merely its strand. This is explicitly retained as open work; no automatic-marking claim is made.
 
