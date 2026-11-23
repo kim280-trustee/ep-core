@@ -22,7 +22,8 @@
     "validate:science-specialist-packs": "node scripts/validate-science-specialist-packs.mjs",
     "validate:maths-primary-packs": "node scripts/validate-primary-maths-teacher-packs.mjs",
     "validate:science-rollout-packs": "node scripts/validate-science-rollout-packs.mjs",
-    "validate:student-content-visibility": "node scripts/validate-student-content-visibility.mjs"
+    "validate:student-content-visibility": "node scripts/validate-student-content-visibility.mjs",
+    "validate:learning-pack-import-preflight": "node scripts/validate-learning-pack-import-preflight.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
