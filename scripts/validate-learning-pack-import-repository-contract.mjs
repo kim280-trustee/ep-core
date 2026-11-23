@@ -58,6 +58,16 @@ assert.match(lessonChunk, /findExistingImportCodeConflicts\(/,
   "Lesson imports must block normalized existing-code collisions.");
 assert.match(source, /const lookupBatchSize = 100/,
   "Existing-code lookups must remain bounded to batches of 100.");
+const questionVerification = methodBody("verifyExistingQuestionImports", "findIncompleteExistingContentCodes");
+assert.match(questionVerification, /new Set\(expectedCodes\)\.size !== expectedCodes\.length/,
+  "Question integrity verification must reject duplicate normalized input codes.");
+assert.match(questionVerification, /!batchCodes\.has\(code\) \|\| receivedCodes\.has\(code\)/,
+  "Question integrity verification must reject unexpected and duplicate response codes.");
+assert.match(questionVerification, /typeof row\.question_exists !== "boolean" \|\| typeof row\.is_complete !== "boolean"/,
+  "Question integrity verification must reject malformed boolean response fields.");
+assert.match(questionVerification, /receivedCodes\.size !== batch\.length/,
+  "Question integrity verification must confirm exact response-code coverage before making retry decisions.");
+
 assert.match(source, /\.slice\(offset, offset \+ lookupBatchSize\)/,
   "Existing-code lookup loops must slice each bounded batch.");
 assert.match(questionOnly, /createdQuestionIds\.push\(/,
