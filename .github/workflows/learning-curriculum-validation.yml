@@ -51,6 +51,10 @@ jobs:
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:student-content-visibility
 
+      - name: Validate learning-pack import duplicate preflight
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:learning-pack-import-preflight
+
       - name: Validate consolidated Science teacher packs
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:science-packs
