@@ -74,7 +74,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A short, named Jataka/story or approved biography of a disciple/religious exemplar, with one action, its consequence and the source title.
+**Assessment stimulus — verified tradition/source card: A short, named Jataka/story or approved biography of a disciple/religious exemplar, with one action, its consequence and the source title.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the character/exemplar and identify the action shown in the source. This assesses: “ชื่นชมและบอกแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดก/เรื่องเล่า และศาสนิกชนตัวอย่างตามที่กำหนด”. **Answer:** The response identifies the named character and a specific action stated or pictured in the source.
@@ -108,7 +108,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A teacher-verified card naming the Three Jewels and the three Ovada 3 principles (not doing evil, doing good, purifying the mind), or the corresponding approved teaching in the learner's chosen tradition. State the source and explain unfamiliar terms simply.
+**Assessment stimulus — verified tradition/source card: A teacher-verified card naming the Three Jewels and the three Ovada 3 principles (not doing evil, doing good, purifying the mind), or the corresponding approved teaching in the learner's chosen tradition. State the source and explain unfamiliar terms simply.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the Three Jewels or the selected tradition's corresponding key teaching, then identify one of the three principles shown on the card. This assesses: “บอกความหมาย ความสำคัญ และเคารพพระรัตนตรัย ปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนาหรือหลักธรรมของศาสนาที่ตนนับถือ ตามที่กำหนด”. **Answer:** The learner accurately names the item and matches one principle to the card; accept the approved equivalent for a non-Buddhist tradition.
@@ -142,7 +142,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A source card with the exact steps of one age-appropriate prayer, loving-kindness reflection or attention practice taught in the selected tradition, plus its stated purpose. Participation must be voluntary.
+**Assessment stimulus — verified tradition/source card: A source card with the exact steps of one age-appropriate prayer, loving-kindness reflection or attention practice taught in the selected tradition, plus its stated purpose. Participation must be voluntary.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Point to or name the practice on the card and put its taught steps in the correct order. This assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตา มีสติที่เป็นพื้นฐานของสมาธิในพระพุทธศาสนาหรือการพัฒนาจิต ตามแนวทางของศาสนาที่ตนนับถือ ตามที่กำหนด”. **Answer:** The named practice and sequence match the verified source; learners may sequence picture cards or explain orally.
@@ -176,7 +176,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A teacher-approved service plan for a named temple or other relevant place of worship, listing one permitted child-safe task, the supervising adult and one boundary/restricted area.
+**Assessment stimulus — verified tradition/source card: A teacher-approved service plan for a named temple or other relevant place of worship, listing one permitted child-safe task, the supervising adult and one boundary/restricted area.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the place and the approved service task from the plan. This assesses: “บำเพ็ญประโยชน์ต่อวัด หรือศาสนสถานของศาสนาที่ตนนับถือ”. **Answer:** The answer names the correct place/task and identifies the supervising adult or permission requirement.
@@ -210,7 +210,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A fictional classroom case showing a child who voluntarily chooses how to describe their religious community, alongside a child who prefers privacy. The card states that no learner must disclose, adopt or publicly affirm a religion.
+**Assessment stimulus — verified tradition/source card: A fictional classroom case showing a child who voluntarily chooses how to describe their religious community, alongside a child who prefers privacy. The card states that no learner must disclose, adopt or publicly affirm a religion.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** In the fictional case, identify which child has chosen to share information and which has chosen privacy. This assesses: “แสดงตนเป็นพุทธมามกะ หรือแสดงตนเป็นศาสนิกชนของศาสนาที่ตนนับถือ”. **Answer:** The response accurately describes the fictional choices; do not ask learners to state their own religion.
@@ -244,7 +244,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A teacher-verified sequence card for one age-appropriate religious ceremony or observance, with the event name, ordered steps, meaning and date/context from an approved source.
+**Assessment stimulus — verified tradition/source card: A teacher-verified sequence card for one age-appropriate religious ceremony or observance, with the event name, ordered steps, meaning and date/context from an approved source.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the observance and place its key steps in the order shown. This assesses: “ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนา ตามที่กำหนดได้ถูกต้อง”. **Answer:** The name and sequence match the selected verified source; accept picture sequencing.
@@ -1094,7 +1094,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — Two short, verified source cards showing a religious tradition's contribution to a cultural practice, community service or ethical teaching, with source/context labels. Include only claims supported by the sources.
+**Assessment stimulus — verified tradition/source card: Two short, verified source cards showing a religious tradition's contribution to a cultural practice, community service or ethical teaching, with source/context labels. Include only claims supported by the sources.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the religion/tradition and one contribution explicitly described in the source cards. This assesses: “บอกความสำคัญของพระพุทธศาสนา หรือศาสนาที่ตนนับถือ”. **Answer:** The response names the tradition and accurately identifies one sourced contribution.
@@ -1162,7 +1162,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A named Jataka, disciple biography or approved religious-exemplar story card, with a specific decision, action, consequence and source reference.
+**Assessment stimulus — verified tradition/source card: A named Jataka, disciple biography or approved religious-exemplar story card, with a specific decision, action, consequence and source reference.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the exemplar and the decision/action described in the story. This assesses: “ชื่นชมและบอกแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดก เรื่องเล่า และศาสนิกชนตัวอย่างตามที่กำหนด”. **Answer:** The answer names the correct person/character and cites the actual decision/action.
@@ -1230,7 +1230,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A two-column evidence log with one specific good action by a fictional learner/family member/school worker and the observable effect on another person; include the relevant religious principle from a verified source.
+**Assessment stimulus — verified tradition/source card: A two-column evidence log with one specific good action by a fictional learner/family member/school worker and the observable effect on another person; include the relevant religious principle from a verified source.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify one good action in the evidence log and the person who performed it. This assesses: “ชื่นชมการทำความดีของตนเอง บุคคลในครอบครัวและในโรงเรียนตามหลักศาสนา”. **Answer:** The answer names an action and actor exactly as recorded.
@@ -1298,7 +1298,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A comparison chart of at least two religions, with each tradition's name, founder/central figure where applicable, and one named scripture/canonical text plus its role, verified against reliable sources.
+**Assessment stimulus — verified tradition/source card: A comparison chart of at least two religions, with each tradition's name, founder/central figure where applicable, and one named scripture/canonical text plus its role, verified against reliable sources.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Use the chart to name the traditions and match each one to its founder/central figure and text. This assesses: “บอกชื่อศาสนา ศาสดา และความสำคัญของคัมภีร์ของศาสนาที่ตนนับถือ และศาสนาอื่น ๆ”. **Answer:** All matches must agree with the chart and verified sources; acknowledge traditions where founder terminology is not applicable.
@@ -1332,7 +1332,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A role-play card showing a respectful interaction with a religious teacher/monastic or other recognised religious adherent, with source/school guidance on appropriate greeting, listening and boundaries.
+**Assessment stimulus — verified tradition/source card: A role-play card showing a respectful interaction with a religious teacher/monastic or other recognised religious adherent, with source/school guidance on appropriate greeting, listening and boundaries.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify two appropriate behaviours shown in the role-play card. This assesses: “ปฏิบัติตนอย่างเหมาะสมต่อสาวกของศาสนาที่ตนนับถือ ตามที่กำหนดได้ถูกต้อง”. **Answer:** The answer names two behaviours that match the card and local school guidance.
@@ -2250,7 +2250,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A source set with one documented Thai cultural practice, a description of the relevant religious idea/tradition and a reliable source/date. Avoid claiming a single religion explains all Thai culture.
+**Assessment stimulus — verified tradition/source card: A source set with one documented Thai cultural practice, a description of the relevant religious idea/tradition and a reliable source/date. Avoid claiming a single religion explains all Thai culture.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the cultural practice and the religious tradition or teaching that the source explicitly connects to it. This assesses: “อธิบายความสำคัญของพระพุทธศาสนา หรือศาสนาที่ตนนับถือ ในฐานะที่เป็นรากฐานสำคัญของวัฒนธรรมไทย”. **Answer:** Both the practice and connection must be stated in the source; accept a qualified answer that notes multiple influences.
@@ -2318,7 +2318,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A named Jataka, disciple biography or approved exemplar account with a documented choice, challenge, action and consequence; include source title and distinguish story from historical biography.
+**Assessment stimulus — verified tradition/source card: A named Jataka, disciple biography or approved exemplar account with a documented choice, challenge, action and consequence; include source title and distinguish story from historical biography.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the exemplar and describe the documented choice or action. This assesses: “ชื่นชมและบอกแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดก เรื่องเล่า และศาสนิกชนตัวอย่าง ตามที่กำหนด”. **Answer:** The response accurately identifies the character/person and action from the selected source.
@@ -2352,7 +2352,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A teacher-verified extract/overview of the Tripitaka or the selected religion's scripture, naming its sections or organisation and explaining its role. Cite the exact edition/source used.
+**Assessment stimulus — verified tradition/source card: A teacher-verified extract/overview of the Tripitaka or the selected religion's scripture, naming its sections or organisation and explaining its role. Cite the exact edition/source used.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the scripture and identify the section or organisational feature shown in the source. This assesses: “บอกความหมาย ความสำคัญของพระไตรปิฎก หรือคัมภีร์ของศาสนาที่ตนนับถือ”. **Answer:** The name and structural detail match the selected verified source; do not mix descriptions from different traditions.
@@ -2420,7 +2420,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A source card describing a specific attention, loving-kindness or mental-development practice in the selected tradition, with steps, purpose and an optional non-participatory observation route.
+**Assessment stimulus — verified tradition/source card: A source card describing a specific attention, loving-kindness or mental-development practice in the selected tradition, with steps, purpose and an optional non-participatory observation route.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the practice, its steps and the purpose stated in the source. This assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตามีสติที่เป็นพื้นฐานของสมาธิ ในพระพุทธศาสนา หรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** All details match the verified source; accept a labelled diagram or oral explanation.
@@ -2454,7 +2454,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A comparative field/reference sheet with one named religious object, place and recognised religious person from another tradition, each with a verified image/description, function and respectful visitor guidance.
+**Assessment stimulus — verified tradition/source card: A comparative field/reference sheet with one named religious object, place and recognised religious person from another tradition, each with a verified image/description, function and respectful visitor guidance.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify each object/place/person and match it to its stated function or role. This assesses: “บอกชื่อ ความสำคัญและปฏิบัติตนได้อย่างเหมาะสมต่อศาสนวัตถุ ศาสนสถาน และศาสนบุคคลของศาสนาอื่น ๆ”. **Answer:** Each match agrees with the source sheet; accept that roles and terms differ across traditions.
@@ -2556,7 +2556,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A fictional case showing two people making different voluntary choices about religious affiliation or privacy. Include a note that classroom assessment checks understanding of choice and respect, not a learner's own declaration.
+**Assessment stimulus — verified tradition/source card: A fictional case showing two people making different voluntary choices about religious affiliation or privacy. Include a note that classroom assessment checks understanding of choice and respect, not a learner's own declaration.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** In the fictional case, describe each person's choice and identify whether either person is required to disclose or adopt a religion. This assesses: “แสดงตนเป็นพุทธมามกะหรือแสดงตนเป็นศาสนิกชนของศาสนาที่ตนนับถือ”. **Answer:** The response recognises voluntary choice and privacy; no personal declaration is requested or graded.
