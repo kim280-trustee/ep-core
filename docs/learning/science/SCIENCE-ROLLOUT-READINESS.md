@@ -443,7 +443,7 @@ The teacher import page now has an explicit content-language selector and stores
 
 ## Authenticated Science import execution tracker — 23 November 2026
 
-All 17 source packs are prepared and parser-validated. Live Supabase currently reports **0 Science lesson drafts and 0 Science question drafts**. Import each file under an authorized teacher account, verify the preview counts and save as unpublished drafts. Do not publish during the import pass.
+All 17 source packs are prepared and parser-validated. The authenticated import and acceptance pass MUST use a dedicated staging organization and isolated test class. Do not import into the live Khamkhen Kheo Chanupathum pilot or use real learner records as test fixtures. No approved staging organization, staging teacher account or isolated test class has been identified yet, so imports remain blocked pending that environment. Once staging access is provisioned, import each file under an authorized staging teacher account, verify preview counts and save as unpublished drafts. Do not publish during the import pass. The last recorded live-database verification found 0 Science lesson drafts and 0 Science question drafts; re-run the read-only verification before and after staging import.
 
 | # | Import pack | Curriculum | Subject | Language | Lessons | Questions/tasks | Status |
 |---:|---|---|---|---|---:|---:|---|
