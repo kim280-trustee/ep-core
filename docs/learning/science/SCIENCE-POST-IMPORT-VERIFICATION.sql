@@ -74,6 +74,10 @@ metrics as (
   union all select 'questions_wrong_objective_link_count',count(*) filter(where objective_link_count<>1),0 from question_integrity
   union all select 'lessons_wrong_version_count',count(*) filter(where version_count<>1),0 from lesson_integrity
   union all select 'lessons_wrong_objective_link_count',count(*) filter(where objective_link_count<>1),0 from lesson_integrity
+  union all select 'duplicate_lesson_codes',count(*)::bigint,0
+    from (select code from pack_items group by code having count(*)>1) duplicates
+  union all select 'duplicate_question_codes',count(*)::bigint,0
+    from (select code from pack_questions group by code having count(*)>1) duplicates
   union all select 'published_lesson_versions',count(*) filter(where published_at is not null),0 from content_versions
   union all select 'published_question_versions',count(*) filter(where published_at is not null),0 from question_versions
 )
@@ -143,3 +147,53 @@ where i.metadata->>'source'='teacher_pack_import'
     where section->>'type'='teacher_only'
       and section->>'audience'='teacher'
   );
+
+
+-- Expected language and draft-state totals. Primary packs are Thai; all
+-- secondary core and specialist packs are English. Both record types stay draft.
+with expected(record_type,language_code,status,expected_count) as (
+  values
+    ('lesson','th','draft',139::bigint),
+    ('lesson','en','draft',576::bigint),
+    ('question','th','draft',417::bigint),
+    ('question','en','draft',1728::bigint)
+),
+actual as (
+  select 'lesson'::text record_type,i.language_code,i.status,count(*)::bigint actual_count
+  from public.learning_content_items i
+  where i.content_type='lesson'
+    and i.metadata->>'source'='teacher_pack_import'
+    and exists (
+      select 1
+      from public.learning_content_objectives co
+      join public.learning_objectives o on o.id=co.objective_id
+      join public.learning_topics t on t.id=o.topic_id
+      join public.learning_skills sk on sk.id=t.skill_id
+      join public.learning_subjects sub on sub.id=sk.subject_id
+      where co.content_item_id=i.id
+        and sub.code in ('SCI','BIOLOGY','CHEMISTRY','PHYSICS','EARTH_SPACE')
+    )
+  group by i.language_code,i.status
+  union all
+  select 'question',q.language_code,q.status,count(*)::bigint
+  from public.learning_questions q
+  where q.code like 'EP-%'
+    and exists (
+      select 1
+      from public.learning_question_versions qv
+      join public.learning_question_objectives qo on qo.question_version_id=qv.id
+      join public.learning_objectives o on o.id=qo.objective_id
+      join public.learning_topics t on t.id=o.topic_id
+      join public.learning_skills sk on sk.id=t.skill_id
+      join public.learning_subjects sub on sub.id=sk.subject_id
+      where qv.question_id=q.id
+        and sub.code in ('SCI','BIOLOGY','CHEMISTRY','PHYSICS','EARTH_SPACE')
+    )
+  group by q.language_code,q.status
+)
+select e.record_type,e.language_code,e.status,e.expected_count,
+       coalesce(a.actual_count,0) actual_count,
+       case when coalesce(a.actual_count,0)=e.expected_count then 'PASS' else 'CHECK' end result
+from expected e
+left join actual a using(record_type,language_code,status)
+order by e.record_type,e.language_code;
