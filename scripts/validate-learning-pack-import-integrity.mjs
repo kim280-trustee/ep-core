@@ -16,6 +16,8 @@ assert.match(migration, /auth\.uid\(\)/,
   "The verification RPC must require an authenticated user.");
 assert.match(migration, /p_class_group_id uuid[\s\S]*public\.is_organization_member\(p_organization_id\)/,
   "The verification RPC must be scoped to the selected organization and class.");
+assert.match(migration, /question\.created_by <> v_auth_user_id[\s\S]*academic manager/i,
+  "Class teachers must not use the protected-key verifier to inspect another teacher's imported answers.");
 assert.match(migration, /membership\.membership_type = 'teacher'[\s\S]*membership\.status = 'active'/,
   "The verification RPC must require an active teacher in the selected class or an academic manager.");
 assert.match(migration, /public\.learning_can_manage_academic_records\(p_organization_id\)/,
