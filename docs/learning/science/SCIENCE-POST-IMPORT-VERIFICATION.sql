@@ -1,26 +1,43 @@
 -- E&P Learning — read-only Science teacher-pack post-import verification
--- Run after an authorized teacher imports the Science packs as drafts.
+-- Run immediately after an authorized teacher imports the 17 Science packs as drafts,
+-- before any teacher edits create additional content/question versions.
 -- Read-only: this script does not insert, update, publish or delete records.
--- Scope is restricted to lesson items tagged source=teacher_pack_import.
+-- Scope is restricted to imported lesson records linked to Science or its four
+-- upper-secondary specialist tracks; unrelated teacher-pack imports are excluded.
 
 with pack_items as (
-  select i.id, i.organization_id, i.code, i.language_code, i.status
+  select distinct i.id, i.organization_id, i.code, i.language_code, i.status
   from public.learning_content_items i
-  where i.content_type='lesson' and i.metadata->>'source'='teacher_pack_import'
+  join public.learning_content_objectives co on co.content_item_id=i.id
+  join public.learning_objectives o on o.id=co.objective_id
+  join public.learning_topics t on t.id=o.topic_id
+  join public.learning_skills sk on sk.id=t.skill_id
+  join public.learning_subjects sub on sub.id=sk.subject_id
+  where i.content_type='lesson'
+    and i.metadata->>'source'='teacher_pack_import'
+    and sub.code in ('SCI','BIOLOGY','CHEMISTRY','PHYSICS','EARTH_SPACE')
 ),
 pack_questions as (
-  select q.id, q.organization_id, q.code, q.language_code, q.status
+  select distinct q.id, q.organization_id, q.code, q.language_code, q.status
   from public.learning_questions q
+  join public.learning_question_versions qv on qv.question_id=q.id
+  join public.learning_question_objectives qo on qo.question_version_id=qv.id
+  join public.learning_objectives o on o.id=qo.objective_id
+  join public.learning_topics t on t.id=o.topic_id
+  join public.learning_skills sk on sk.id=t.skill_id
+  join public.learning_subjects sub on sub.id=sk.subject_id
   where q.code like 'EP-%'
-    and exists (select 1 from pack_items i where i.organization_id=q.organization_id)
+    and sub.code in ('SCI','BIOLOGY','CHEMISTRY','PHYSICS','EARTH_SPACE')
 ),
 content_versions as (
   select v.id, v.content_item_id, v.status, v.published_at, v.body
-  from public.learning_content_versions v join pack_items i on i.id=v.content_item_id
+  from public.learning_content_versions v
+  join pack_items i on i.id=v.content_item_id
 ),
 question_versions as (
   select v.id, v.question_id, v.published_at
-  from public.learning_question_versions v join pack_questions q on q.id=v.question_id
+  from public.learning_question_versions v
+  join pack_questions q on q.id=v.question_id
 ),
 question_integrity as (
   select q.id,
@@ -65,24 +82,41 @@ select metric, actual, expected,
 from metrics
 order by metric;
 
--- Expected final totals: 715 lesson items, versions and objective links;
--- 2,145 question items, versions, protected answer keys and objective links.
+-- Expected final totals: 715 lesson items, initial versions and objective links;
+-- 2,145 question items, initial versions, protected answer keys and objective links.
 -- Every integrity-error and published-version metric must be zero.
 -- Also inspect language/status distributions separately:
-select 'lesson' record_type, language_code, status, count(*) record_count
-from public.learning_content_items
-where content_type='lesson' and metadata->>'source'='teacher_pack_import'
-group by language_code,status
+select 'lesson' record_type, i.language_code, i.status, count(*) record_count
+from public.learning_content_items i
+where i.content_type='lesson'
+  and i.metadata->>'source'='teacher_pack_import'
+  and exists (
+    select 1
+    from public.learning_content_objectives co
+    join public.learning_objectives o on o.id=co.objective_id
+    join public.learning_topics t on t.id=o.topic_id
+    join public.learning_skills sk on sk.id=t.skill_id
+    join public.learning_subjects sub on sub.id=sk.subject_id
+    where co.content_item_id=i.id
+      and sub.code in ('SCI','BIOLOGY','CHEMISTRY','PHYSICS','EARTH_SPACE')
+  )
+group by i.language_code,i.status
 union all
 select 'question', q.language_code, q.status, count(*)
 from public.learning_questions q
 where q.code like 'EP-%'
   and exists (
-    select 1 from public.learning_content_items i
-    where i.organization_id=q.organization_id
-      and i.metadata->>'source'='teacher_pack_import'
+    select 1
+    from public.learning_question_versions qv
+    join public.learning_question_objectives qo on qo.question_version_id=qv.id
+    join public.learning_objectives o on o.id=qo.objective_id
+    join public.learning_topics t on t.id=o.topic_id
+    join public.learning_skills sk on sk.id=t.skill_id
+    join public.learning_subjects sub on sub.id=sk.subject_id
+    where qv.question_id=q.id
+      and sub.code in ('SCI','BIOLOGY','CHEMISTRY','PHYSICS','EARTH_SPACE')
   )
-group by q.language_code,status
+group by q.language_code,q.status
 order by record_type,language_code,status;
 
 -- Teacher-only guidance preservation check:
@@ -90,6 +124,16 @@ select count(*) as lessons_with_teacher_only_guidance
 from public.learning_content_versions v
 join public.learning_content_items i on i.id=v.content_item_id
 where i.metadata->>'source'='teacher_pack_import'
+  and exists (
+    select 1
+    from public.learning_content_objectives co
+    join public.learning_objectives o on o.id=co.objective_id
+    join public.learning_topics t on t.id=o.topic_id
+    join public.learning_skills sk on sk.id=t.skill_id
+    join public.learning_subjects sub on sub.id=sk.subject_id
+    where co.content_item_id=i.id
+      and sub.code in ('SCI','BIOLOGY','CHEMISTRY','PHYSICS','EARTH_SPACE')
+  )
   and exists (
     select 1
     from jsonb_array_elements(
