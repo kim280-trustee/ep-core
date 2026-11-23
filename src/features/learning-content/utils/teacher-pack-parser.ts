@@ -126,8 +126,9 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
 
     if (!objectiveCode && !objectiveText) throw new Error(`Lesson ${number} is missing its objective line.`);
     if (!activity) throw new Error(`Lesson ${number} is missing teaching notes or a learning focus.`);
-    if (questions.length !== 3) {
-      throw new Error(`Lesson ${number} has ${questions.length} answer-keyed questions; exactly 3 are required.`);
+    const questionNumbers = questions.map((question) => question.number);
+    if (questionNumbers.length !== 3 || questionNumbers.some((questionNumber, index) => questionNumber !== index + 1)) {
+      throw new Error(`Lesson ${number} must contain exactly three answer-keyed questions numbered 1, 2 and 3 in order; found ${questionNumbers.join(", ") || "none"}.`);
     }
 
     const markingGuide = section.match(/^\*\*Marking guide(?:\s*\([^)]*\))?:\*\*\s*(.+)$/mi)?.[1]?.trim();
