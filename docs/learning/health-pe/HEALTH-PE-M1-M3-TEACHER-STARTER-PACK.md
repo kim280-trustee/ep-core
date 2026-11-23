@@ -28,9 +28,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M1-01` — อธิบายความสำคัญของระบบประสาทและระบบต่อมไร้ท่อที่มีผลต่อสุขภาพ การเจริญเติบโต และพัฒนาการของวัยรุ่น
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on nervous and endocrine systems. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on nervous and endocrine systems. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on nervous and endocrine systems. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on nervous and endocrine systems. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายความสำคัญของระบบประสาทและระบบต่อมไร้ท่อที่มีผลต่อสุขภาพ การเจริญเติบโต และพัฒนาการของวัยรุ่น”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for nervous and endocrine systems at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -49,9 +49,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M1-02` — อธิบายวิธีดูแลรักษาระบบประสาทและระบบต่อมไร้ท่อให้ทำงานตามปกติ
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on nervous and endocrine systems. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on nervous and endocrine systems. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on nervous and endocrine systems. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on nervous and endocrine systems. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายวิธีดูแลรักษาระบบประสาทและระบบต่อมไร้ท่อให้ทำงานตามปกติ”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for nervous and endocrine systems at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -70,9 +70,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M1-03` — วิเคราะห์ภาวะการเจริญเติบโตทางร่างกายของตนเองกับเกณฑ์มาตรฐาน
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on body growth and development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on body growth and development. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on body growth and development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on body growth and development. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์ภาวะการเจริญเติบโตทางร่างกายของตนเองกับเกณฑ์มาตรฐาน”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for body growth and development at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -91,9 +91,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M1-04` — แสวงหาแนวทางในการพัฒนาตนเองให้เจริญเติบโตสมวัย
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on body growth and development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on body growth and development. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on body growth and development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on body growth and development. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “แสวงหาแนวทางในการพัฒนาตนเองให้เจริญเติบโตสมวัย”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for body growth and development at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -112,9 +112,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M1-05` — อธิบายวิธีการปรับตัวต่อการเปลี่ยนแปลงทางร่างกาย จิตใจ อารมณ์ และพัฒนาการทางเพศอย่างเหมาะสม
 
-**Teaching activity:** Use a fictional, age-appropriate case about gender, respect and personal identity. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At lower-secondary level, use a fictional, age-appropriate case about gender, respect and personal identity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about gender, respect and personal identity. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a fictional, age-appropriate case about gender, respect and personal identity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายวิธีการปรับตัวต่อการเปลี่ยนแปลงทางร่างกาย จิตใจ อารมณ์ และพัฒนาการทางเพศอย่างเหมาะสม”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for gender, respect and personal identity at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -133,9 +133,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M1-06` — แสดงทักษะการปฏิเสธเพื่อป้องกันตนเองจากการถูกล่วงละเมิดทางเพศ
 
-**Teaching activity:** Use a fictional, age-appropriate case about gender, respect and personal identity. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At lower-secondary level, use a fictional, age-appropriate case about gender, respect and personal identity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about gender, respect and personal identity. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a fictional, age-appropriate case about gender, respect and personal identity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “แสดงทักษะการปฏิเสธเพื่อป้องกันตนเองจากการถูกล่วงละเมิดทางเพศ”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for gender, respect and personal identity at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -154,9 +154,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M1-07` — เพิ่มพูนความสามารถของตนตามหลักการเคลื่อนไหวที่ใช้ทักษะกลไกและทักษะพื้นฐานที่นำไปสู่การพัฒนาทักษะการเล่นกีฬา
 
-**Teaching activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for movement control and coordination. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for movement control and coordination. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “เพิ่มพูนความสามารถของตนตามหลักการเคลื่อนไหวที่ใช้ทักษะกลไกและทักษะพื้นฐานที่นำไปสู่การพัฒนาทักษะการเล่นกีฬา”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for movement control and coordination at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -175,9 +175,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M1-08` — เล่นกีฬาไทยและกีฬาสากลประเภทบุคคลและทีมโดยใช้ทักษะพื้นฐานตามชนิดกีฬา อย่างละ ๑ ชนิด
 
-**Teaching activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “เล่นกีฬาไทยและกีฬาสากลประเภทบุคคลและทีมโดยใช้ทักษะพื้นฐานตามชนิดกีฬา อย่างละ ๑ ชนิด”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for sport skills, tactics and team play at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -196,9 +196,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M1-09` — ร่วมกิจกรรมนันทนาการอย่างน้อย ๑ กิจกรรม และนำหลักความรู้ที่ได้ไปเชื่อมโยงสัมพันธ์กับวิชาอื่น
 
-**Teaching activity:** Set up a progressive, inclusive skill station for movement, physical activity and sport. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for movement, physical activity and sport. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for movement, physical activity and sport. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for movement, physical activity and sport. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ร่วมกิจกรรมนันทนาการอย่างน้อย ๑ กิจกรรม และนำหลักความรู้ที่ได้ไปเชื่อมโยงสัมพันธ์กับวิชาอื่น”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for movement, physical activity and sport at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -217,9 +217,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M1-10` — อธิบายความสำคัญของการออกกำลังกายและเล่นกีฬา จนเป็นวิถีชีวิตที่มีสุขภาพดี
 
-**Teaching activity:** Set up a progressive, inclusive skill station for exercise routines and physical activity. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for exercise routines and physical activity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for exercise routines and physical activity. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for exercise routines and physical activity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายความสำคัญของการออกกำลังกายและเล่นกีฬา จนเป็นวิถีชีวิตที่มีสุขภาพดี”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for exercise routines and physical activity at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -238,9 +238,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M1-11` — ออกกำลังกายและเลือกเข้าร่วมเล่นกีฬาตามความถนัด ความสนใจ อย่างเต็มความสามารถ พร้อมทั้งมีการประเมินการเล่นของตนและผู้อื่น
 
-**Teaching activity:** Set up a progressive, inclusive skill station for exercise routines and physical activity. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for exercise routines and physical activity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for exercise routines and physical activity. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for exercise routines and physical activity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ออกกำลังกายและเลือกเข้าร่วมเล่นกีฬาตามความถนัด ความสนใจ อย่างเต็มความสามารถ พร้อมทั้งมีการประเมินการเล่นของตนและผู้อื่น”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for exercise routines and physical activity at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -259,9 +259,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M1-12` — ปฏิบัติตามกฎ กติกา และข้อตกลง ตามชนิดกีฬาที่เลือกเล่น
 
-**Teaching activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ปฏิบัติตามกฎ กติกา และข้อตกลง ตามชนิดกีฬาที่เลือกเล่น”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for sport skills, tactics and team play at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -280,9 +280,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M1-13` — วางแผนการรุกและการป้องกันในการเล่นกีฬาที่เลือกและนำไปใช้ในการเล่นอย่างเป็นระบบ
 
-**Teaching activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วางแผนการรุกและการป้องกันในการเล่นกีฬาที่เลือกและนำไปใช้ในการเล่นอย่างเป็นระบบ”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for sport skills, tactics and team play at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -301,9 +301,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M1-14` — ร่วมมือในการเล่นกีฬาและการทำงานเป็นทีมอย่างสนุกสนาน
 
-**Teaching activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ร่วมมือในการเล่นกีฬาและการทำงานเป็นทีมอย่างสนุกสนาน”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for sport skills, tactics and team play at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -322,9 +322,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M1-15` — วิเคราะห์ เปรียบเทียบ และยอมรับความแตกต่างระหว่างวิธีการเล่นกีฬาของตนเองกับผู้อื่น
 
-**Teaching activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์ เปรียบเทียบ และยอมรับความแตกต่างระหว่างวิธีการเล่นกีฬาของตนเองกับผู้อื่น”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for sport skills, tactics and team play at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -343,9 +343,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M1-16` — เลือกกินอาหารที่เหมาะสมกับวัย
 
-**Teaching activity:** Provide a realistic label, information card or community-health data set about food groups and balanced nutrition. Learners inspect evidence, compare options and justify a practical, age-appropriate health decision.
+**Teaching activity:** At lower-secondary level, provide a label, information card or community-health data set about food groups and balanced nutrition. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners distinguish evidence from claims and justify a practical, age-appropriate decision.
 
-**Practical activity:** Provide a realistic label, information card or community-health data set about food groups and balanced nutrition. Learners inspect evidence, compare options and justify a practical, age-appropriate health decision. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, provide a label, information card or community-health data set about food groups and balanced nutrition. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners distinguish evidence from claims and justify a practical, age-appropriate decision. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “เลือกกินอาหารที่เหมาะสมกับวัย”. Accept evidence showing accurate interpretation of the supplied evidence, a balanced and safe choice, and a reason linked to health needs rather than advertising claims. The learner must explain why the evidence is correct for food groups and balanced nutrition at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -364,9 +364,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M1-17` — วิเคราะห์ปัญหาที่เกิดจากภาวะโภชนาการที่มีผลกระทบต่อสุขภาพ
 
-**Teaching activity:** Provide a realistic label, information card or community-health data set about nutrition and energy needs. Learners inspect evidence, compare options and justify a practical, age-appropriate health decision.
+**Teaching activity:** At lower-secondary level, provide a label, information card or community-health data set about nutrition and energy needs. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners distinguish evidence from claims and justify a practical, age-appropriate decision.
 
-**Practical activity:** Provide a realistic label, information card or community-health data set about nutrition and energy needs. Learners inspect evidence, compare options and justify a practical, age-appropriate health decision. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, provide a label, information card or community-health data set about nutrition and energy needs. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners distinguish evidence from claims and justify a practical, age-appropriate decision. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์ปัญหาที่เกิดจากภาวะโภชนาการที่มีผลกระทบต่อสุขภาพ”. Accept evidence showing accurate interpretation of the supplied evidence, a balanced and safe choice, and a reason linked to health needs rather than advertising claims. The learner must explain why the evidence is correct for nutrition and energy needs at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -385,9 +385,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M1-18` — ควบคุมน้ำหนักของตนเองให้อยู่ในเกณฑ์มาตรฐาน
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on growth standards and healthy development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on growth standards and healthy development. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on growth standards and healthy development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on growth standards and healthy development. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ควบคุมน้ำหนักของตนเองให้อยู่ในเกณฑ์มาตรฐาน”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for growth standards and healthy development at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -406,9 +406,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M1-19` — สร้างเสริมและปรับปรุงสมรรถภาพทางกายตามผลการทดสอบ
 
-**Teaching activity:** Set up a progressive, inclusive skill station for physical fitness and fitness testing. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for physical fitness and fitness testing. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for physical fitness and fitness testing. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for physical fitness and fitness testing. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “สร้างเสริมและปรับปรุงสมรรถภาพทางกายตามผลการทดสอบ”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for physical fitness and fitness testing at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -427,9 +427,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M1-20` — แสดงวิธีปฐมพยาบาลและเคลื่อนย้ายผู้ป่วยอย่างปลอดภัย
 
-**Teaching activity:** Use a teacher-led safety station about first aid and emergency response. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At lower-secondary level, run a teacher-led safety station about first aid and emergency response. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about first aid and emergency response. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, run a teacher-led safety station about first aid and emergency response. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “แสดงวิธีปฐมพยาบาลและเคลื่อนย้ายผู้ป่วยอย่างปลอดภัย”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for first aid and emergency response at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -448,9 +448,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M1-21` — อธิบายลักษณะอาการของผู้ติดสารเสพติดและการป้องกันการติดสารเสพติด
 
-**Teaching activity:** Use a teacher-led safety station about substance-use prevention and recovery support. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At lower-secondary level, run a teacher-led safety station about substance-use prevention and recovery support. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about substance-use prevention and recovery support. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, run a teacher-led safety station about substance-use prevention and recovery support. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายลักษณะอาการของผู้ติดสารเสพติดและการป้องกันการติดสารเสพติด”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for substance-use prevention and recovery support at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -469,9 +469,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M1-22` — อธิบายความสัมพันธ์ของการใช้สารเสพติดกับการเกิดโรคและอุบัติเหตุ
 
-**Teaching activity:** Use a teacher-led safety station about illness, infection and disease prevention. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At lower-secondary level, run a teacher-led safety station about illness, infection and disease prevention. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about illness, infection and disease prevention. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, run a teacher-led safety station about illness, infection and disease prevention. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายความสัมพันธ์ของการใช้สารเสพติดกับการเกิดโรคและอุบัติเหตุ”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for illness, infection and disease prevention at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -490,9 +490,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M1-23` — แสดงวิธีการชักชวนผู้อื่นให้ลด ละ เลิกสารเสพติด โดยใช้ทักษะต่าง ๆ
 
-**Teaching activity:** Use a teacher-led safety station about substance-use prevention and recovery support. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At lower-secondary level, run a teacher-led safety station about substance-use prevention and recovery support. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about substance-use prevention and recovery support. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, run a teacher-led safety station about substance-use prevention and recovery support. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “แสดงวิธีการชักชวนผู้อื่นให้ลด ละ เลิกสารเสพติด โดยใช้ทักษะต่าง ๆ”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for substance-use prevention and recovery support at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -511,9 +511,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-01` — อธิบายการเปลี่ยนแปลงด้านร่างกาย จิตใจ อารมณ์ สังคม และสติปัญญาในวัยรุ่น
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on emotions, stress and mental well-being. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on emotions, stress and mental well-being. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on emotions, stress and mental well-being. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on emotions, stress and mental well-being. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายการเปลี่ยนแปลงด้านร่างกาย จิตใจ อารมณ์ สังคม และสติปัญญาในวัยรุ่น”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for emotions, stress and mental well-being at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -532,9 +532,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-02` — ระบุปัจจัยที่มีผลกระทบต่อการเจริญเติบโตและพัฒนาการด้านร่างกาย จิตใจ อารมณ์ สังคม และสติปัญญาในวัยรุ่น
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on body growth and development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on body growth and development. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on body growth and development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on body growth and development. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ระบุปัจจัยที่มีผลกระทบต่อการเจริญเติบโตและพัฒนาการด้านร่างกาย จิตใจ อารมณ์ สังคม และสติปัญญาในวัยรุ่น”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for body growth and development at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -553,9 +553,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-03` — วิเคราะห์ปัจจัยที่มีอิทธิพลต่อเจตคติในเรื่องเพศ
 
-**Teaching activity:** Use a fictional, age-appropriate case about gender, respect and personal identity. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At lower-secondary level, use a fictional, age-appropriate case about gender, respect and personal identity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about gender, respect and personal identity. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a fictional, age-appropriate case about gender, respect and personal identity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์ปัจจัยที่มีอิทธิพลต่อเจตคติในเรื่องเพศ”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for gender, respect and personal identity at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -574,9 +574,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-04` — วิเคราะห์ปัญหาและผลกระทบที่เกิดจากการมีเพศสัมพันธ์ในวัยเรียน
 
-**Teaching activity:** Use a fictional, age-appropriate case about gender, respect and personal identity. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At lower-secondary level, use a fictional, age-appropriate case about gender, respect and personal identity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about gender, respect and personal identity. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a fictional, age-appropriate case about gender, respect and personal identity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์ปัญหาและผลกระทบที่เกิดจากการมีเพศสัมพันธ์ในวัยเรียน”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for gender, respect and personal identity at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -595,9 +595,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-05` — อธิบายวิธีป้องกันตนเองและหลีกเลี่ยงจากโรคติดต่อทางเพศสัมพันธ์ เอดส์ และการตั้งครรภ์โดยไม่พึงประสงค์
 
-**Teaching activity:** Use a fictional, age-appropriate case about gender, respect and personal identity. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At lower-secondary level, use a fictional, age-appropriate case about gender, respect and personal identity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about gender, respect and personal identity. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a fictional, age-appropriate case about gender, respect and personal identity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายวิธีป้องกันตนเองและหลีกเลี่ยงจากโรคติดต่อทางเพศสัมพันธ์ เอดส์ และการตั้งครรภ์โดยไม่พึงประสงค์”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for gender, respect and personal identity at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -616,9 +616,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-06` — อธิบายความสำคัญของความเสมอภาคทางเพศและวางตัวได้อย่างเหมาะสม
 
-**Teaching activity:** Use a fictional, age-appropriate case about gender, respect and personal identity. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At lower-secondary level, use a fictional, age-appropriate case about gender, respect and personal identity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about gender, respect and personal identity. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a fictional, age-appropriate case about gender, respect and personal identity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายความสำคัญของความเสมอภาคทางเพศและวางตัวได้อย่างเหมาะสม”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for gender, respect and personal identity at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -637,9 +637,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-07` — นำผลการปฏิบัติตนเกี่ยวกับทักษะกลไกและทักษะการเคลื่อนไหวในการเล่นกีฬาจากแหล่งข้อมูลที่หลากหลายมาสรุปเป็นวิธีที่เหมาะสมในบริบทของตนเอง
 
-**Teaching activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for movement control and coordination. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for movement control and coordination. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “นำผลการปฏิบัติตนเกี่ยวกับทักษะกลไกและทักษะการเคลื่อนไหวในการเล่นกีฬาจากแหล่งข้อมูลที่หลากหลายมาสรุปเป็นวิธีที่เหมาะสมในบริบทของตนเอง”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for movement control and coordination at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -658,9 +658,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-08` — เล่นกีฬาไทยและกีฬาสากล ทั้งประเภทบุคคลและทีมอย่างละ ๑ ชนิด
 
-**Teaching activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “เล่นกีฬาไทยและกีฬาสากล ทั้งประเภทบุคคลและทีมอย่างละ ๑ ชนิด”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for sport skills, tactics and team play at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -679,9 +679,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-09` — เปรียบเทียบประสิทธิภาพของรูปแบบการเคลื่อนไหวที่ส่งผลต่อการเล่นกีฬาและกิจกรรมในชีวิตประจำวัน
 
-**Teaching activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for movement control and coordination. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for movement control and coordination. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “เปรียบเทียบประสิทธิภาพของรูปแบบการเคลื่อนไหวที่ส่งผลต่อการเล่นกีฬาและกิจกรรมในชีวิตประจำวัน”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for movement control and coordination at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -700,9 +700,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-10` — ร่วมกิจกรรมนันทนาการ อย่างน้อย ๑ กิจกรรม และนำความรู้และหลักการที่ได้ไปปรับใช้ในชีวิตประจำวันอย่างเป็นระบบ
 
-**Teaching activity:** Set up a progressive, inclusive skill station for movement, physical activity and sport. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for movement, physical activity and sport. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for movement, physical activity and sport. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for movement, physical activity and sport. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ร่วมกิจกรรมนันทนาการ อย่างน้อย ๑ กิจกรรม และนำความรู้และหลักการที่ได้ไปปรับใช้ในชีวิตประจำวันอย่างเป็นระบบ”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for movement, physical activity and sport at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -721,9 +721,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-11` — อธิบายสาเหตุการเปลี่ยนแปลงทางกาย จิตใจ อารมณ์ สังคม และสติปัญญา ที่เกิดจากการออกกำลังกายและเล่นกีฬาเป็นประจำจนเป็นวิถีชีวิต
 
-**Teaching activity:** Set up a progressive, inclusive skill station for exercise routines and physical activity. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for exercise routines and physical activity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for exercise routines and physical activity. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for exercise routines and physical activity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายสาเหตุการเปลี่ยนแปลงทางกาย จิตใจ อารมณ์ สังคม และสติปัญญา ที่เกิดจากการออกกำลังกายและเล่นกีฬาเป็นประจำจนเป็นวิถีชีวิต”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for exercise routines and physical activity at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -742,9 +742,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-12` — เลือกเข้าร่วมกิจกรรมการออกกำลังกาย เล่นกีฬาตามความถนัดและความสนใจ พร้อมทั้งวิเคราะห์ความแตกต่างระหว่างบุคคลเพื่อเป็นแนวทางในการพัฒนาตนเอง
 
-**Teaching activity:** Set up a progressive, inclusive skill station for exercise routines and physical activity. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for exercise routines and physical activity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for exercise routines and physical activity. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for exercise routines and physical activity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “เลือกเข้าร่วมกิจกรรมการออกกำลังกาย เล่นกีฬาตามความถนัดและความสนใจ พร้อมทั้งวิเคราะห์ความแตกต่างระหว่างบุคคลเพื่อเป็นแนวทางในการพัฒนาตนเอง”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for exercise routines and physical activity at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -763,9 +763,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-13` — มีวินัย ปฏิบัติตามกฎ กติกา และข้อตกลงในการเล่นกีฬาที่เลือก
 
-**Teaching activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “มีวินัย ปฏิบัติตามกฎ กติกา และข้อตกลงในการเล่นกีฬาที่เลือก”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for sport skills, tactics and team play at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -784,9 +784,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-14` — วางแผนการรุกและการป้องกันในการเล่นกีฬาที่เลือกและนำไปใช้ในการเล่นอย่างเหมาะสมกับทีม
 
-**Teaching activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วางแผนการรุกและการป้องกันในการเล่นกีฬาที่เลือกและนำไปใช้ในการเล่นอย่างเหมาะสมกับทีม”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for sport skills, tactics and team play at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -805,9 +805,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-15` — นำผลการปฏิบัติในการเล่นกีฬามาสรุปเป็นวิธีที่เหมาะสมกับตนเองด้วยความมุ่งมั่น
 
-**Teaching activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “นำผลการปฏิบัติในการเล่นกีฬามาสรุปเป็นวิธีที่เหมาะสมกับตนเองด้วยความมุ่งมั่น”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for sport skills, tactics and team play at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -826,9 +826,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-16` — เลือกใช้บริการทางสุขภาพอย่างมีเหตุผล
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on personal hygiene. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on personal hygiene. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “เลือกใช้บริการทางสุขภาพอย่างมีเหตุผล”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for personal hygiene at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -847,9 +847,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-17` — วิเคราะห์ผลของการใช้เทคโนโลยีที่มีต่อสุขภาพ
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on personal hygiene. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on personal hygiene. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์ผลของการใช้เทคโนโลยีที่มีต่อสุขภาพ”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for personal hygiene at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -868,9 +868,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-18` — วิเคราะห์ความเจริญก้าวหน้าทางการแพทย์ที่มีผลต่อสุขภาพ
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on personal hygiene. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on personal hygiene. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์ความเจริญก้าวหน้าทางการแพทย์ที่มีผลต่อสุขภาพ”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for personal hygiene at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -889,9 +889,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-19` — วิเคราะห์ความสัมพันธ์ของภาวะสมดุลระหว่างสุขภาพกายและสุขภาพจิต
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on personal hygiene. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on personal hygiene. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์ความสัมพันธ์ของภาวะสมดุลระหว่างสุขภาพกายและสุขภาพจิต”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for personal hygiene at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -910,9 +910,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-20` — อธิบายลักษณะอาการเบื้องต้นของผู้มีปัญหาสุขภาพจิต
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on personal hygiene. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on personal hygiene. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายลักษณะอาการเบื้องต้นของผู้มีปัญหาสุขภาพจิต”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for personal hygiene at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -931,9 +931,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-21` — เสนอแนะวิธีปฏิบัติตนเพื่อจัดการกับอารมณ์และความเครียด
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on emotions, stress and mental well-being. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on emotions, stress and mental well-being. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on emotions, stress and mental well-being. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on emotions, stress and mental well-being. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “เสนอแนะวิธีปฏิบัติตนเพื่อจัดการกับอารมณ์และความเครียด”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for emotions, stress and mental well-being at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -952,9 +952,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-22` — พัฒนาสมรรถภาพทางกายตนเองให้เป็นไปตามเกณฑ์ที่กำหนด
 
-**Teaching activity:** Set up a progressive, inclusive skill station for physical fitness and fitness testing. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for physical fitness and fitness testing. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for physical fitness and fitness testing. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for physical fitness and fitness testing. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “พัฒนาสมรรถภาพทางกายตนเองให้เป็นไปตามเกณฑ์ที่กำหนด”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for physical fitness and fitness testing at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -973,9 +973,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-23` — ระบุวิธีการ ปัจจัย และแหล่งที่ช่วยเหลือฟื้นฟูผู้ติดสารเสพติด
 
-**Teaching activity:** Use a teacher-led safety station about substance-use prevention and recovery support. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At lower-secondary level, run a teacher-led safety station about substance-use prevention and recovery support. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about substance-use prevention and recovery support. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, run a teacher-led safety station about substance-use prevention and recovery support. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ระบุวิธีการ ปัจจัย และแหล่งที่ช่วยเหลือฟื้นฟูผู้ติดสารเสพติด”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for substance-use prevention and recovery support at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -994,9 +994,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-24` — อธิบายวิธีการหลีกเลี่ยงพฤติกรรมเสี่ยงและสถานการณ์เสี่ยง
 
-**Teaching activity:** Use a teacher-led safety station about risk assessment and decision-making. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At lower-secondary level, run a teacher-led safety station about risk assessment and decision-making. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about risk assessment and decision-making. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, run a teacher-led safety station about risk assessment and decision-making. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายวิธีการหลีกเลี่ยงพฤติกรรมเสี่ยงและสถานการณ์เสี่ยง”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for risk assessment and decision-making at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1015,9 +1015,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M2-25` — ใช้ทักษะชีวิตในการป้องกันตนเองและหลีกเลี่ยงสถานการณ์คับขันที่อาจนำไปสู่อันตราย
 
-**Teaching activity:** Use a teacher-led safety station about safety, risk reduction and life skills. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At lower-secondary level, run a teacher-led safety station about safety, risk reduction and life skills. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about safety, risk reduction and life skills. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, run a teacher-led safety station about safety, risk reduction and life skills. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ใช้ทักษะชีวิตในการป้องกันตนเองและหลีกเลี่ยงสถานการณ์คับขันที่อาจนำไปสู่อันตราย”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for safety, risk reduction and life skills at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1036,9 +1036,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-01` — เปรียบเทียบการเปลี่ยนแปลงทางด้านร่างกาย จิตใจ อารมณ์ สังคมและสติปัญญาแต่ละช่วงของชีวิต
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on emotions, stress and mental well-being. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on emotions, stress and mental well-being. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on emotions, stress and mental well-being. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on emotions, stress and mental well-being. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “เปรียบเทียบการเปลี่ยนแปลงทางด้านร่างกาย จิตใจ อารมณ์ สังคมและสติปัญญาแต่ละช่วงของชีวิต”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for emotions, stress and mental well-being at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1057,9 +1057,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-02` — วิเคราะห์อิทธิพลและความคาดหวังของสังคมต่อการเปลี่ยนแปลงของวัยรุ่น
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on body systems, growth and development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on body systems, growth and development. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on body systems, growth and development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on body systems, growth and development. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์อิทธิพลและความคาดหวังของสังคมต่อการเปลี่ยนแปลงของวัยรุ่น”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for body systems, growth and development at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1078,9 +1078,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-03` — วิเคราะห์สื่อโฆษณาที่มีอิทธิพลต่อการเจริญเติบโตและพัฒนาการของวัยรุ่น
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on body growth and development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on body growth and development. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on body growth and development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a visual model, structured discussion and guided practice focused on body growth and development. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์สื่อโฆษณาที่มีอิทธิพลต่อการเจริญเติบโตและพัฒนาการของวัยรุ่น”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for body growth and development at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1099,9 +1099,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-04` — อธิบายอนามัยแม่และเด็ก การวางแผนครอบครัวและวิธีการปฏิบัติตนที่เหมาะสม
 
-**Teaching activity:** Use a fictional, age-appropriate case about family roles and supportive relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At lower-secondary level, use a fictional, age-appropriate case about family roles and supportive relationships. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about family roles and supportive relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a fictional, age-appropriate case about family roles and supportive relationships. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายอนามัยแม่และเด็ก การวางแผนครอบครัวและวิธีการปฏิบัติตนที่เหมาะสม”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for family roles and supportive relationships at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1120,9 +1120,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-05` — วิเคราะห์ปัจจัยที่มีผลกระทบต่อการตั้งครรภ์
 
-**Teaching activity:** Use a fictional, age-appropriate case about pregnancy, family planning and maternal-child health. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At lower-secondary level, use a fictional, age-appropriate case about pregnancy, family planning and maternal-child health. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about pregnancy, family planning and maternal-child health. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a fictional, age-appropriate case about pregnancy, family planning and maternal-child health. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์ปัจจัยที่มีผลกระทบต่อการตั้งครรภ์”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for pregnancy, family planning and maternal-child health at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1141,9 +1141,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-06` — วิเคราะห์สาเหตุ และเสนอแนวทางป้องกัน แก้ไขความขัดแย้งในครอบครัว
 
-**Teaching activity:** Use a fictional, age-appropriate case about family roles and supportive relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At lower-secondary level, use a fictional, age-appropriate case about family roles and supportive relationships. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about family roles and supportive relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a fictional, age-appropriate case about family roles and supportive relationships. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์สาเหตุ และเสนอแนวทางป้องกัน แก้ไขความขัดแย้งในครอบครัว”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for family roles and supportive relationships at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1162,9 +1162,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-07` — เล่นกีฬาไทยและกีฬาสากลอย่างละ ๑ ชนิด โดยใช้เทคนิคที่เหมาะสมกับตนเองและทีม
 
-**Teaching activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “เล่นกีฬาไทยและกีฬาสากลอย่างละ ๑ ชนิด โดยใช้เทคนิคที่เหมาะสมกับตนเองและทีม”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for sport skills, tactics and team play at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1183,9 +1183,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-08` — นำหลักการ ความรู้ และทักษะในการเคลื่อนไหว กิจกรรมทางกาย การเล่นเกม และการเล่นกีฬาไปใช้สร้างเสริมสุขภาพอย่างต่อเนื่องเป็นระบบ
 
-**Teaching activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for movement control and coordination. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for movement control and coordination. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “นำหลักการ ความรู้ และทักษะในการเคลื่อนไหว กิจกรรมทางกาย การเล่นเกม และการเล่นกีฬาไปใช้สร้างเสริมสุขภาพอย่างต่อเนื่องเป็นระบบ”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for movement control and coordination at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1204,9 +1204,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-09` — ร่วมกิจกรรมนันทนาการ อย่างน้อย ๑ กิจกรรมและนำหลักความรู้วิธีการไปขยายผลการเรียนรู้ให้กับผู้อื่น
 
-**Teaching activity:** Use a teacher-led safety station about medicines and safe medicine use. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At lower-secondary level, run a teacher-led safety station about medicines and safe medicine use. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about medicines and safe medicine use. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, run a teacher-led safety station about medicines and safe medicine use. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ร่วมกิจกรรมนันทนาการ อย่างน้อย ๑ กิจกรรมและนำหลักความรู้วิธีการไปขยายผลการเรียนรู้ให้กับผู้อื่น”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for medicines and safe medicine use at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1225,9 +1225,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-10` — มีมารยาทในการเล่นและดูกีฬาด้วยความมีน้ำใจนักกีฬา
 
-**Teaching activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “มีมารยาทในการเล่นและดูกีฬาด้วยความมีน้ำใจนักกีฬา”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for sport skills, tactics and team play at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1246,9 +1246,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-11` — ออกกำลังกายและเล่นกีฬาอย่างสม่ำเสมอและนำแนวคิดหลักการจากการเล่นไปพัฒนาคุณภาพชีวิตของตนด้วยความภาคภูมิใจ
 
-**Teaching activity:** Set up a progressive, inclusive skill station for exercise routines and physical activity. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for exercise routines and physical activity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for exercise routines and physical activity. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for exercise routines and physical activity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ออกกำลังกายและเล่นกีฬาอย่างสม่ำเสมอและนำแนวคิดหลักการจากการเล่นไปพัฒนาคุณภาพชีวิตของตนด้วยความภาคภูมิใจ”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for exercise routines and physical activity at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1267,9 +1267,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-12` — ปฏิบัติตนตามกฎ กติกา และข้อตกลงในการเล่นตามชนิดกีฬาที่เลือกและนำแนวคิดที่ได้ไปพัฒนาคุณภาพชีวิตของตนในสังคม
 
-**Teaching activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ปฏิบัติตนตามกฎ กติกา และข้อตกลงในการเล่นตามชนิดกีฬาที่เลือกและนำแนวคิดที่ได้ไปพัฒนาคุณภาพชีวิตของตนในสังคม”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for sport skills, tactics and team play at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1288,9 +1288,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-13` — จำแนกกลวิธีการรุก การป้องกันและใช้ในการเล่นกีฬาที่เลือกและตัดสินใจเลือกวิธีที่เหมาะสมกับทีมไปใช้ได้ตามสถานการณ์ของการเล่น
 
-**Teaching activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “จำแนกกลวิธีการรุก การป้องกันและใช้ในการเล่นกีฬาที่เลือกและตัดสินใจเลือกวิธีที่เหมาะสมกับทีมไปใช้ได้ตามสถานการณ์ของการเล่น”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for sport skills, tactics and team play at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1309,9 +1309,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-14` — เสนอผลการพัฒนาสุขภาพของตนเองที่เกิดจากการออกกำลังกายและการเล่นกีฬาเป็นประจำ
 
-**Teaching activity:** Set up a progressive, inclusive skill station for exercise routines and physical activity. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for exercise routines and physical activity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for exercise routines and physical activity. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for exercise routines and physical activity. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “เสนอผลการพัฒนาสุขภาพของตนเองที่เกิดจากการออกกำลังกายและการเล่นกีฬาเป็นประจำ”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for exercise routines and physical activity at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1330,9 +1330,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-15` — กำหนดรายการอาหารที่เหมาะสมกับวัยต่าง ๆ โดยคำนึงถึงความประหยัดและคุณค่าทางโภชนาการ
 
-**Teaching activity:** Provide a realistic label, information card or community-health data set about food groups and balanced nutrition. Learners inspect evidence, compare options and justify a practical, age-appropriate health decision.
+**Teaching activity:** At lower-secondary level, provide a label, information card or community-health data set about food groups and balanced nutrition. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners distinguish evidence from claims and justify a practical, age-appropriate decision.
 
-**Practical activity:** Provide a realistic label, information card or community-health data set about food groups and balanced nutrition. Learners inspect evidence, compare options and justify a practical, age-appropriate health decision. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, provide a label, information card or community-health data set about food groups and balanced nutrition. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners distinguish evidence from claims and justify a practical, age-appropriate decision. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “กำหนดรายการอาหารที่เหมาะสมกับวัยต่าง ๆ โดยคำนึงถึงความประหยัดและคุณค่าทางโภชนาการ”. Accept evidence showing accurate interpretation of the supplied evidence, a balanced and safe choice, and a reason linked to health needs rather than advertising claims. The learner must explain why the evidence is correct for food groups and balanced nutrition at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1351,9 +1351,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-16` — เสนอแนวทางป้องกันโรคที่เป็นสาเหตุสำคัญของการเจ็บป่วยและการตายของคนไทย
 
-**Teaching activity:** Use a teacher-led safety station about illness, infection and disease prevention. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At lower-secondary level, run a teacher-led safety station about illness, infection and disease prevention. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about illness, infection and disease prevention. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, run a teacher-led safety station about illness, infection and disease prevention. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “เสนอแนวทางป้องกันโรคที่เป็นสาเหตุสำคัญของการเจ็บป่วยและการตายของคนไทย”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for illness, infection and disease prevention at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1372,9 +1372,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-17` — รวบรวมข้อมูลและเสนอแนวทางแก้ไขปัญหาสุขภาพในชุมชน
 
-**Teaching activity:** Provide a realistic label, information card or community-health data set about community health promotion. Learners inspect evidence, compare options and justify a practical, age-appropriate health decision.
+**Teaching activity:** At lower-secondary level, provide a label, information card or community-health data set about community health promotion. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners distinguish evidence from claims and justify a practical, age-appropriate decision.
 
-**Practical activity:** Provide a realistic label, information card or community-health data set about community health promotion. Learners inspect evidence, compare options and justify a practical, age-appropriate health decision. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, provide a label, information card or community-health data set about community health promotion. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Learners distinguish evidence from claims and justify a practical, age-appropriate decision. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “รวบรวมข้อมูลและเสนอแนวทางแก้ไขปัญหาสุขภาพในชุมชน”. Accept evidence showing use of relevant evidence, a feasible prevention or improvement action, and clear roles for individuals or community partners. The learner must explain why the evidence is correct for community health promotion at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1393,9 +1393,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-18` — วางแผนและจัดเวลาในการออกกำลังกาย การพักผ่อนและการสร้างเสริมสมรรถภาพทางกาย
 
-**Teaching activity:** Set up a progressive, inclusive skill station for physical fitness and fitness testing. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for physical fitness and fitness testing. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for physical fitness and fitness testing. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for physical fitness and fitness testing. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วางแผนและจัดเวลาในการออกกำลังกาย การพักผ่อนและการสร้างเสริมสมรรถภาพทางกาย”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for physical fitness and fitness testing at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1414,9 +1414,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-19` — ทดสอบสมรรถภาพทางกายและพัฒนาได้ตามความแตกต่างระหว่างบุคคล
 
-**Teaching activity:** Set up a progressive, inclusive skill station for physical fitness and fitness testing. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At lower-secondary level, set up an inclusive skill station for physical fitness and fitness testing. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for physical fitness and fitness testing. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, set up an inclusive skill station for physical fitness and fitness testing. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ทดสอบสมรรถภาพทางกายและพัฒนาได้ตามความแตกต่างระหว่างบุคคล”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for physical fitness and fitness testing at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1435,9 +1435,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-20` — วิเคราะห์ปัจจัยเสี่ยงและพฤติกรรมเสี่ยงที่มีผลต่อสุขภาพและแนวทางป้องกัน
 
-**Teaching activity:** Use a teacher-led safety station about risk assessment and decision-making. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At lower-secondary level, run a teacher-led safety station about risk assessment and decision-making. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about risk assessment and decision-making. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, run a teacher-led safety station about risk assessment and decision-making. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์ปัจจัยเสี่ยงและพฤติกรรมเสี่ยงที่มีผลต่อสุขภาพและแนวทางป้องกัน”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for risk assessment and decision-making at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1456,9 +1456,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-21` — หลีกเลี่ยงการใช้ความรุนแรงและชักชวนเพื่อนให้หลีกเลี่ยงการใช้ความรุนแรงในการแก้ปัญหา
 
-**Teaching activity:** Use a fictional, age-appropriate case about friendship and peer relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At lower-secondary level, use a fictional, age-appropriate case about friendship and peer relationships. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about friendship and peer relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a fictional, age-appropriate case about friendship and peer relationships. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “หลีกเลี่ยงการใช้ความรุนแรงและชักชวนเพื่อนให้หลีกเลี่ยงการใช้ความรุนแรงในการแก้ปัญหา”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for friendship and peer relationships at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1477,9 +1477,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-22` — วิเคราะห์อิทธิพลของสื่อต่อพฤติกรรมสุขภาพและความรุนแรง
 
-**Teaching activity:** Use a fictional, age-appropriate case about violence prevention and conflict resolution. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At lower-secondary level, use a fictional, age-appropriate case about violence prevention and conflict resolution. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about violence prevention and conflict resolution. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, use a fictional, age-appropriate case about violence prevention and conflict resolution. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์อิทธิพลของสื่อต่อพฤติกรรมสุขภาพและความรุนแรง”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for violence prevention and conflict resolution at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1498,9 +1498,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-23` — วิเคราะห์ความสัมพันธ์ของการดื่มเครื่องดื่มที่มีแอลกอฮอล์ต่อสุขภาพและการเกิดอุบัติเหตุ
 
-**Teaching activity:** Use a teacher-led safety station about accident prevention and community safety. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At lower-secondary level, run a teacher-led safety station about accident prevention and community safety. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about accident prevention and community safety. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, run a teacher-led safety station about accident prevention and community safety. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์ความสัมพันธ์ของการดื่มเครื่องดื่มที่มีแอลกอฮอล์ต่อสุขภาพและการเกิดอุบัติเหตุ”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for accident prevention and community safety at lower-secondary level; do not award full credit for unrelated general advice.
 
@@ -1519,9 +1519,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M3-24` — แสดงวิธีการช่วยฟื้นคืนชีพอย่างถูกวิธี
 
-**Teaching activity:** Use a teacher-led safety station about cardiopulmonary resuscitation and emergency response. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At lower-secondary level, run a teacher-led safety station about cardiopulmonary resuscitation and emergency response. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about cardiopulmonary resuscitation and emergency response. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At lower-secondary level, run a teacher-led safety station about cardiopulmonary resuscitation and emergency response. Use guided inquiry and a realistic fictional case. Learners explain the relevant process or decision, practise the skill, analyse feedback and self-assess against two stated criteria. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “แสดงวิธีการช่วยฟื้นคืนชีพอย่างถูกวิธี”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for cardiopulmonary resuscitation and emergency response at lower-secondary level; do not award full credit for unrelated general advice.
 
