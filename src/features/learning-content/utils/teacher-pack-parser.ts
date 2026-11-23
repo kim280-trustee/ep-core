@@ -58,7 +58,12 @@ export function parseTeacherPackMarkdown(markdown: string): ParsedTeacherPackLes
     const section = markdown.slice(start, end);
     const number = Number(heading[1] ?? heading[3] ?? heading[5] ?? index + 1);
     const title = (heading[2] ?? heading[4] ?? heading[6] ?? heading[7] ?? `Lesson ${number}`).trim();
-    const objectiveLine = section.match(/^[ \t]*(?:[-*][ \t]*)?\*\*(?:Objective(?: code)?|Learning objective|Official indicator|Indicator(?: code)?):\*\*\s*(.+)$/mi)?.[1]?.trim() ?? "";
+    // Prefer an explicit objective/code line. Some subject packs place a Thai-only
+    // "Official indicator" line before the objective; treating that first line as
+    // the objective hides the actual code and breaks grade/objective resolution.
+    const objectiveLine = section.match(/^[ \t]*(?:[-*][ \t]*)?\*\*(?:Objective(?: code)?|Learning objective):\*\*\s*(.+)$/mi)?.[1]?.trim()
+      ?? section.match(/^[ \t]*(?:[-*][ \t]*)?\*\*(?:Official indicator|Indicator(?: code)?):\*\*\s*(.+)$/mi)?.[1]?.trim()
+      ?? "";
     const headingObjective = title.match(/^([A-Z][A-Z0-9._-]{3,})\s*[—–-]\s*(.+)$/i);
     const codeMatch = objectiveLine.match(/[\x60]([A-Z0-9][A-Z0-9._-]{2,})[\x60]/i)
       ?? objectiveLine.match(/^([A-Z][A-Z0-9._-]{3,})\s*(?:[—–:-]|$)/i)

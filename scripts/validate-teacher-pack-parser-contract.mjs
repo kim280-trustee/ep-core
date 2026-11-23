@@ -30,6 +30,24 @@ const valid = parseTeacherPackMarkdown(packWithQuestionNumbers([1, 2, 3]));
 assert.equal(valid.length, 1);
 assert.deepEqual(valid[0].questions.map((question) => question.number), [1, 2, 3]);
 
+// Social Studies packs place the Thai-only official-indicator text before the
+// explicit objective-code line. The parser must prefer the latter.
+const socialStudiesFormat = `### 1. SO1.1-P4-01
+
+- **Official indicator:** อธิบายความสำคัญของศาสนาและการอยู่ร่วมกันอย่างเคารพ
+**Objective:** \`SO1.1-P4-01\` — อธิบายความสำคัญของศาสนาและการอยู่ร่วมกันอย่างเคารพ
+**Practical activity:** Compare two respectful community choices and explain the evidence.
+
+**Independent practice**
+1. Identify the indicator idea: อธิบายความสำคัญของศาสนาและการอยู่ร่วมกันอย่างเคารพ. **Answer:** Identify the relevant idea.
+2. Explain the indicator idea: อธิบายความสำคัญของศาสนาและการอยู่ร่วมกันอย่างเคารพ. **Answer:** Give an accurate explanation.
+3. Apply the indicator idea: อธิบายความสำคัญของศาสนาและการอยู่ร่วมกันอย่างเคารพ. **Answer:** Apply it to the scenario.
+`;
+const socialStudiesLesson = parseTeacherPackMarkdown(socialStudiesFormat)[0];
+assert.equal(socialStudiesLesson.objectiveCode, "SO1.1-P4-01");
+assert.equal(socialStudiesLesson.objectiveText, "— อธิบายความสำคัญของศาสนาและการอยู่ร่วมกันอย่างเคารพ");
+
+
 for (const numbers of [[1, 1, 3], [2, 3, 4], [1, 3, 2], [0, 1, 2]]) {
   assert.throws(
     () => parseTeacherPackMarkdown(packWithQuestionNumbers(numbers)),
