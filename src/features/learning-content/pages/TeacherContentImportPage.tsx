@@ -1,4 +1,5 @@
 import { useMemo, useState, type ChangeEvent, type ReactNode } from "react";
+import { planResumableLessonImport, selectNewImportQuestions } from "@/features/learning-content/utils/learning-pack-import-validation";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, FileUp, Upload } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -260,12 +261,14 @@ export default function TeacherContentImportPage() {
       });
 
       if (questionsOnly) {
-        const questions = resolved.rows.flatMap((lesson) => lesson.questions.map((question) => ({
+        const questionCandidates = resolved.rows.flatMap((lesson) => lesson.questions.map((question) => ({
           ...question,
           objectiveId: lesson.objectiveId,
           gradeLevelId: lesson.gradeLevelId,
-        }))).filter((question) => !existing.questionCodes.has(makeImportCode(question.code)));
-        const skippedQuestions = requestedQuestionCodes.length - questions.length;
+        })));
+        const questionPlan = selectNewImportQuestions(questionCandidates, existing.questionCodes);
+        const questions = questionPlan.questionsToImport;
+        const skippedQuestions = questionPlan.skippedQuestions;
         for (let offset = 0; offset < questions.length; offset += CHUNK_SIZE) {
           const result = await learningPackImportService.importQuestionsOnly({
             organizationId,
@@ -280,22 +283,13 @@ export default function TeacherContentImportPage() {
         }
         setMessage(`Imported ${importedQuestions} new assessment question drafts; skipped ${skippedQuestions} existing question codes. All new items remain unpublished for teacher review.`);
       } else {
-        const newLessons: ResolvedLesson[] = [];
-        let skippedLessons = 0;
-        for (const lesson of resolved.rows) {
-          const contentExists = existing.contentCodes.has(lesson.contentImportCode);
-          const existingQuestionCount = lesson.questions.filter((question) =>
-            existing.questionCodes.has(makeImportCode(question.code))
-          ).length;
-          if (contentExists && existingQuestionCount === lesson.questions.length) {
-            skippedLessons += 1;
-            continue;
-          }
-          if (contentExists || existingQuestionCount > 0) {
-            throw new Error(`The saved records for ${lesson.objectiveCode} are incomplete (lesson record: ${contentExists ? "yes" : "no"}; existing questions: ${existingQuestionCount}/3). No records were overwritten. Inspect this objective's drafts before retrying.`);
-          }
-          newLessons.push(lesson);
-        }
+        const lessonPlan = planResumableLessonImport(
+          resolved.rows,
+          existing.contentCodes,
+          existing.questionCodes,
+        );
+        const newLessons = lessonPlan.lessonsToImport;
+        const skippedLessons = lessonPlan.skippedLessons;
         for (let offset = 0; offset < newLessons.length; offset += CHUNK_SIZE) {
           const chunk = newLessons.slice(offset, offset + CHUNK_SIZE);
           const result = await learningPackImportService.importChunk({
