@@ -56,4 +56,9 @@ assert.match(pageSource, /selectNewImportQuestions/,
   "The import page must use the shared, tested question-only retry planner.");
 assert.doesNotMatch(pageSource, /const newLessons: ResolvedLesson/,
   "Lesson retry decisions must not be duplicated inline in the page.");
+assert.match(pageSource, /failedChunk = \{ kind: "question", number: chunkNumber, total: totalChunks \}/, "Question-only imports must capture the failed chunk before awaiting its write.");
+assert.match(pageSource, /failedChunk = \{ kind: "lesson", number: chunkNumber, total: totalChunks \}/, "Lesson imports must capture the failed chunk before awaiting its write.");
+assert.match(pageSource, /formatImportChunkFailure\(/, "The UI must report the exact failed chunk and recovery boundary.");
+assert.match(pageSource, /failedChunk \? `Nothing was saved from this run\./, "A first-chunk failure must be distinguished from a partial import.");
+
 process.stdout.write("PASS: importer integration contract — preflight-before-write, bounded lookups, cleanup tracking and protected answer-key RPC.\n");
