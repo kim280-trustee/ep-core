@@ -34,6 +34,16 @@ if (JSON.stringify(extractTeacherPackGradeCodes("SO2.1-P4-03")) !== JSON.stringi
   throw new Error("Grade-specific Social Studies outcomes must retain their exact grade.");
 }
 
+const p1p3PerformanceEvidenceCodes = new Set([
+  "SO1.1-P1-03", "SO1.1-P1-04", "SO1.2-P1-01", "SO1.2-P1-03", "SO2.1-P1-01",
+  "SO2.2-P1-03", "SO4.3-P1-01", "SO5.1-P1-03", "SO5.1-P1-04", "SO5.2-P1-02",
+  "SO5.2-P1-03", "SO1.1-P2-04", "SO1.1-P2-06", "SO1.2-P2-01", "SO1.2-P2-02",
+  "SO2.1-P2-01", "SO2.1-P2-02", "SO2.1-P2-03", "SO3.1-P2-03", "SO5.1-P2-03",
+  "SO5.2-P2-04", "SO1.1-P3-05", "SO1.1-P3-06", "SO1.2-P3-01", "SO1.2-P3-02",
+  "SO2.1-P3-01", "SO2.2-P3-01", "SO4.1-P3-01", "SO4.1-P3-02", "SO5.1-P3-01",
+  "SO5.1-P3-02", "SO5.2-P3-06",
+]);
+
 const packs = [
   { path: "docs/learning/social-studies/SOCIAL-STUDIES-M1-TEACHER-STARTER-PACK.md", count: 45, grades: { M1: 45 } },
   { path: "docs/learning/social-studies/SOCIAL-STUDIES-M2-TEACHER-STARTER-PACK.md", count: 45, grades: { M2: 45 } },
@@ -92,6 +102,12 @@ for (const pack of packs) {
       const taskLabels = [...sourceSection.matchAll(/^\s*[123]\. \*\*(Recall \/ evidence|Explain \/ compare|Apply \/ demonstrate):\*\*/gm)].map((match) => match[1]);
       if (JSON.stringify(taskLabels) !== JSON.stringify(["Recall / evidence", "Explain / compare", "Apply / demonstrate"])) {
         failures.push(heading[2] + ": P1–P3 tasks must use the ordered evidence, explanation and application progression");
+      }
+      if (p1p3PerformanceEvidenceCodes.has(heading[2])) {
+        const taskThree = sourceSection.match(/^\\s*3\\. \\*\\*Apply \\/ demonstrate:\\*\\* (.+)$/m)?.[1] ?? "";
+        if (!/\\b(demonstrate|role-play|complete|carry out|take part|join|draw|conduct|build|convert|make|use)\\b/i.test(taskThree)) {
+          failures.push(heading[2] + ": performance indicator task 3 must require observable or inspectable learner evidence");
+        }
       }
     }
     const gradeCode = heading[2].match(/-(P[1-6]|M[1-6]|M46)-/)?.[1];
