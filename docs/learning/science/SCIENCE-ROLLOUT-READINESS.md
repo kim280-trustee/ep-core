@@ -465,3 +465,9 @@ All 17 source packs are prepared and parser-validated. Live Supabase currently r
 | | **Total** | | | | **715** | **2,145** | **Pending** |
 
 After all 17 imports, verify 715 lesson drafts, 2,145 question drafts, 715 objective links, protected answer-key rows, correct `language_code` values and zero duplicate import codes. Then complete teacher review and student/teacher acceptance testing before any publication.
+
+## Post-import verification hardening — 23 November 2026
+
+The read-only post-import SQL was tightened after reviewing the teacher importer’s actual question-code generation. Question counts now match the imported lesson objective codes and the generated question suffix, rather than counting every question attached to a Science objective. It also checks that every objective/grade pair has exactly three imported questions, verifies uniqueness within each organization, and reports the expected Thai/English draft totals separately.
+
+The updated SQL was executed against live Supabase. All statements ran successfully. Current results remain 0/715 lesson drafts and 0/2,145 question drafts, as expected before the authorized teacher import. Duplicate-code and integrity-error counts are zero; no records were changed. The expected-total checks correctly remain CHECK until import.
