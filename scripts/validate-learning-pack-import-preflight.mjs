@@ -10,7 +10,7 @@ const compiled = ts.transpileModule(source, {
 });
 assert.equal(compiled.diagnostics?.length ?? 0, 0, "Import validation helper must transpile cleanly.");
 const moduleUrl = "data:text/javascript;base64," + Buffer.from(compiled.outputText).toString("base64");
-const { normalizeLearningImportCode, findExistingImportCodeConflicts, formatExistingImportCodeConflict, planResumableLessonImport, selectNewImportQuestions } = await import(moduleUrl);
+const { normalizeLearningImportCode, findExistingImportCodeConflicts, formatExistingImportCodeConflict, planResumableLessonImport, selectNewImportQuestions, formatImportChunkFailure } = await import(moduleUrl);
 
 assert.equal(normalizeLearningImportCode(" ep sci/p1 001 "), "EP-SCI-P1-001");
 assert.equal(normalizeLearningImportCode("..."), "");
@@ -79,4 +79,4 @@ const chunkFailure = formatImportChunkFailure({ kind: "lesson", chunkNumber: 3, 
 assert.match(chunkFailure, /Lesson chunk 3 of 6 failed/);
 assert.match(chunkFailure, /Earlier completed chunks are retained/);
 assert.match(chunkFailure, /failed chunk attempts its own cleanup/);
-process.stdout.write("PASS: import preflight, collision detection, resumable lesson retries and question-only retry selection.\n");
+process.stdout.write("PASS: import preflight, resumable retries and chunk-failure recovery reporting.\n");
