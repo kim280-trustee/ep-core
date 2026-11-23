@@ -75,4 +75,8 @@ assert.deepEqual(
   "Question-only retry must skip existing normalized codes and preserve untouched questions.",
 );
 
+const chunkFailure = formatImportChunkFailure({ kind: "lesson", chunkNumber: 3, totalChunks: 6, error: new Error("protected answer-key write failed") });
+assert.match(chunkFailure, /Lesson chunk 3 of 6 failed/);
+assert.match(chunkFailure, /Earlier completed chunks are retained/);
+assert.match(chunkFailure, /failed chunk attempts its own cleanup/);
 process.stdout.write("PASS: import preflight, collision detection, resumable lesson retries and question-only retry selection.\n");
