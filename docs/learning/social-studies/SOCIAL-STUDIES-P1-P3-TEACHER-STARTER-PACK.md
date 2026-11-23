@@ -278,12 +278,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community case card:** A class has 4 shared storybooks, 6 learners who want to read, and one classroom rule: return a book before another learner borrows it. The teacher adds one short case detail matched to the indicator (family role, classroom duty, community decision, cultural practice, rights or public holiday).
+**Assessment stimulus — สมาชิกและบทบาทในสังคม:** บัตรสถานการณ์: นักเรียน 6 คนใช้หนังสือร่วมกัน มีตารางยืมคืนและหน้าที่ดูแลชั้นเรียน ระบุผู้เกี่ยวข้องและกติกาที่ใช้ในบทเรียนนี้ ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Read the case card. Identify the person, group, right, duty, rule, custom or decision-making step that is directly relevant to “บอกประโยชน์และปฏิบัติตนเป็นสมาชิกที่ดีของครอบครัวและโรงเรียน”. Give one detail from the case as evidence. **Answer:** Identify the relevant person/group/concept or step and cite the matching detail in the case. The response must fit the exact indicator, not merely repeat a general classroom rule.
-2. **Explain / compare:** Explain what would happen in this case if the relevant role, right, duty, custom or decision process in “บอกประโยชน์และปฏิบัติตนเป็นสมาชิกที่ดีของครอบครัวและโรงเรียน” were followed. Include one effect on another person or the community. **Answer:** State a plausible effect that follows from the case and correctly explains the indicator concept. Credit a clear cause-and-effect link and a relevant effect on others.
-3. **Apply / demonstrate:** Role-play one helpful action in the family or school case, then identify the responsibility it fulfils. This task assesses: “บอกประโยชน์และปฏิบัติตนเป็นสมาชิกที่ดีของครอบครัวและโรงเรียน”. **Answer:** The learner demonstrates a feasible, respectful action and correctly links it to a group responsibility.
+1. **Recall / evidence:** ชี้ข้อมูล/บุคคล/กติกาที่ตอบตัวชี้วัดโดยตรง This assesses: “บอกประโยชน์และปฏิบัติตนเป็นสมาชิกที่ดีของครอบครัวและโรงเรียน”. **Answer:** คำตอบต้องอ้างรายละเอียดเฉพาะจากบัตร ไม่ใช่ตอบเป็นคำกว้าง ๆ
+2. **Explain / compare:** อธิบายผลของการปฏิบัติหรือไม่ปฏิบัติตามกติกาต่อคนอย่างน้อย 2 ฝ่าย This assesses: “บอกประโยชน์และปฏิบัติตนเป็นสมาชิกที่ดีของครอบครัวและโรงเรียน”. **Answer:** เชื่อมโยงเหตุและผลกับสิทธิ หน้าที่ หรือประโยชน์ส่วนรวมตามตัวชี้วัด
+3. **Apply / demonstrate:** จำลองหรือออกแบบการกระทำที่แสดงบทบาทพลเมือง/สมาชิกที่ดีในกรณีนี้ This assesses: “บอกประโยชน์และปฏิบัติตนเป็นสมาชิกที่ดีของครอบครัวและโรงเรียน”. **Answer:** การกระทำเป็นรูปธรรม เหมาะกับวัย เคารพผู้อื่น และตรงกับตัวชี้วัด
+
 ### 9. SO2.1-P1-02
 
 - **Standard:** SO2.1
@@ -312,12 +313,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community case card:** A class has 4 shared storybooks, 6 learners who want to read, and one classroom rule: return a book before another learner borrows it. The teacher adds one short case detail matched to the indicator (family role, classroom duty, community decision, cultural practice, rights or public holiday).
+**Assessment stimulus — ความดีและผลงาน:** บัตรหลักฐาน: บุคคลช่วยเพื่อนอ่านหนังสือ/จัดอุปกรณ์/ดูแลผู้สูงอายุ พร้อมผลที่เกิดขึ้นจริง ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Read the case card. Identify the person, group, right, duty, rule, custom or decision-making step that is directly relevant to “ยกตัวอย่างความสามารถ และความดีของตนเอง ผู้อื่น และบอกผลจากการกระทำนั้น”. Give one detail from the case as evidence. **Answer:** Identify the relevant person/group/concept or step and cite the matching detail in the case. The response must fit the exact indicator, not merely repeat a general classroom rule.
-2. **Explain / compare:** Explain what would happen in this case if the relevant role, right, duty, custom or decision process in “ยกตัวอย่างความสามารถ และความดีของตนเอง ผู้อื่น และบอกผลจากการกระทำนั้น” were followed. Include one effect on another person or the community. **Answer:** State a plausible effect that follows from the case and correctly explains the indicator concept. Credit a clear cause-and-effect link and a relevant effect on others.
-3. **Apply / demonstrate:** The class must choose a fair action for the case. Propose one action, name who should take part or be responsible, and justify it using “ยกตัวอย่างความสามารถ และความดีของตนเอง ผู้อื่น และบอกผลจากการกระทำนั้น”. **Answer:** The proposal is practical, respects the relevant rights/duties/customs or decision process, identifies the responsible participant(s), and gives a reason connected to the indicator. Accept alternative fair solutions with sound justification.
+1. **Recall / evidence:** ระบุความสามารถหรือความดีและการกระทำเฉพาะจากบัตร This assesses: “ยกตัวอย่างความสามารถ และความดีของตนเอง ผู้อื่น และบอกผลจากการกระทำนั้น”. **Answer:** ระบุคนและการกระทำที่มีหลักฐาน ไม่ใช้คำชมลอย ๆ
+2. **Explain / compare:** อธิบายผลจากการกระทำนั้นต่อผู้รับประโยชน์หรือส่วนรวม This assesses: “ยกตัวอย่างความสามารถ และความดีของตนเอง ผู้อื่น และบอกผลจากการกระทำนั้น”. **Answer:** ผลต้องสอดคล้องกับเหตุการณ์ในบัตร
+3. **Apply / demonstrate:** ยกตัวอย่างการใช้ความสามารถช่วยงานบ้าน/โรงเรียนและบอกผลที่คาด This assesses: “ยกตัวอย่างความสามารถ และความดีของตนเอง ผู้อื่น และบอกผลจากการกระทำนั้น”. **Answer:** การกระทำทำได้จริง ระบุผู้ได้ประโยชน์และผลที่สมเหตุสมผล
+
 ### 10. SO2.2-P1-01
 
 - **Standard:** SO2.2
@@ -346,12 +348,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community case card:** A class has 4 shared storybooks, 6 learners who want to read, and one classroom rule: return a book before another learner borrows it. The teacher adds one short case detail matched to the indicator (family role, classroom duty, community decision, cultural practice, rights or public holiday).
+**Assessment stimulus — สมาชิกและบทบาทในสังคม:** บัตรสถานการณ์: นักเรียน 6 คนใช้หนังสือร่วมกัน มีตารางยืมคืนและหน้าที่ดูแลชั้นเรียน ระบุผู้เกี่ยวข้องและกติกาที่ใช้ในบทเรียนนี้ ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Read the case card. Identify the person, group, right, duty, rule, custom or decision-making step that is directly relevant to “บอกโครงสร้าง บทบาทและหน้าที่ของสมาชิกในครอบครัวและโรงเรียน”. Give one detail from the case as evidence. **Answer:** Identify the relevant person/group/concept or step and cite the matching detail in the case. The response must fit the exact indicator, not merely repeat a general classroom rule.
-2. **Explain / compare:** Explain what would happen in this case if the relevant role, right, duty, custom or decision process in “บอกโครงสร้าง บทบาทและหน้าที่ของสมาชิกในครอบครัวและโรงเรียน” were followed. Include one effect on another person or the community. **Answer:** State a plausible effect that follows from the case and correctly explains the indicator concept. Credit a clear cause-and-effect link and a relevant effect on others.
-3. **Apply / demonstrate:** The class must choose a fair action for the case. Propose one action, name who should take part or be responsible, and justify it using “บอกโครงสร้าง บทบาทและหน้าที่ของสมาชิกในครอบครัวและโรงเรียน”. **Answer:** The proposal is practical, respects the relevant rights/duties/customs or decision process, identifies the responsible participant(s), and gives a reason connected to the indicator. Accept alternative fair solutions with sound justification.
+1. **Recall / evidence:** ชี้ข้อมูล/บุคคล/กติกาที่ตอบตัวชี้วัดโดยตรง This assesses: “บอกโครงสร้าง บทบาทและหน้าที่ของสมาชิกในครอบครัวและโรงเรียน”. **Answer:** คำตอบต้องอ้างรายละเอียดเฉพาะจากบัตร ไม่ใช่ตอบเป็นคำกว้าง ๆ
+2. **Explain / compare:** อธิบายผลของการปฏิบัติหรือไม่ปฏิบัติตามกติกาต่อคนอย่างน้อย 2 ฝ่าย This assesses: “บอกโครงสร้าง บทบาทและหน้าที่ของสมาชิกในครอบครัวและโรงเรียน”. **Answer:** เชื่อมโยงเหตุและผลกับสิทธิ หน้าที่ หรือประโยชน์ส่วนรวมตามตัวชี้วัด
+3. **Apply / demonstrate:** จำลองหรือออกแบบการกระทำที่แสดงบทบาทพลเมือง/สมาชิกที่ดีในกรณีนี้ This assesses: “บอกโครงสร้าง บทบาทและหน้าที่ของสมาชิกในครอบครัวและโรงเรียน”. **Answer:** การกระทำเป็นรูปธรรม เหมาะกับวัย เคารพผู้อื่น และตรงกับตัวชี้วัด
+
 ### 11. SO2.2-P1-02
 
 - **Standard:** SO2.2
@@ -380,12 +383,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community case card:** A class has 4 shared storybooks, 6 learners who want to read, and one classroom rule: return a book before another learner borrows it. The teacher adds one short case detail matched to the indicator (family role, classroom duty, community decision, cultural practice, rights or public holiday).
+**Assessment stimulus — สิทธิและเสรีภาพ:** บัตรกรณี: นักเรียนหนึ่งคนกำลังพูด อีกคนต้องการใช้ของส่วนรวม และมีกติกาคุ้มครองสิทธิของทุกคน ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Read the case card. Identify the person, group, right, duty, rule, custom or decision-making step that is directly relevant to “ระบุบทบาท สิทธิ หน้าที่ของตนเองในครอบครัวและโรงเรียน”. Give one detail from the case as evidence. **Answer:** Identify the relevant person/group/concept or step and cite the matching detail in the case. The response must fit the exact indicator, not merely repeat a general classroom rule.
-2. **Explain / compare:** Explain what would happen in this case if the relevant role, right, duty, custom or decision process in “ระบุบทบาท สิทธิ หน้าที่ของตนเองในครอบครัวและโรงเรียน” were followed. Include one effect on another person or the community. **Answer:** State a plausible effect that follows from the case and correctly explains the indicator concept. Credit a clear cause-and-effect link and a relevant effect on others.
-3. **Apply / demonstrate:** The class must choose a fair action for the case. Propose one action, name who should take part or be responsible, and justify it using “ระบุบทบาท สิทธิ หน้าที่ของตนเองในครอบครัวและโรงเรียน”. **Answer:** The proposal is practical, respects the relevant rights/duties/customs or decision process, identifies the responsible participant(s), and gives a reason connected to the indicator. Accept alternative fair solutions with sound justification.
+1. **Recall / evidence:** ระบุสิทธิหรือเสรีภาพของคนสองฝ่ายจากกรณี This assesses: “ระบุบทบาท สิทธิ หน้าที่ของตนเองในครอบครัวและโรงเรียน”. **Answer:** ระบุสิทธิในการแสดงความคิดเห็น/ใช้ของตามกติกาโดยไม่ละเมิดผู้อื่น
+2. **Explain / compare:** อธิบายว่าการขัดจังหวะหรือแย่งของกระทบสิทธิของอีกฝ่ายอย่างไร This assesses: “ระบุบทบาท สิทธิ หน้าที่ของตนเองในครอบครัวและโรงเรียน”. **Answer:** เชื่อมโยงพฤติกรรมกับผลต่อสิทธิที่ระบุในบัตร
+3. **Apply / demonstrate:** แสดงบทบาทสมมติแก้ปัญหาโดยใช้ถ้อยคำสุภาพและเคารพสิทธิ This assesses: “ระบุบทบาท สิทธิ หน้าที่ของตนเองในครอบครัวและโรงเรียน”. **Answer:** ให้โอกาสทั้งสองฝ่าย ไม่บังคับ ไม่ใช้ความรุนแรง และทำตามกติกาที่เป็นธรรม
+
 ### 12. SO2.2-P1-03
 
 - **Standard:** SO2.2
@@ -414,12 +418,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community case card:** A class has 4 shared storybooks, 6 learners who want to read, and one classroom rule: return a book before another learner borrows it. The teacher adds one short case detail matched to the indicator (family role, classroom duty, community decision, cultural practice, rights or public holiday).
+**Assessment stimulus — ประชาธิปไตยและการตัดสินใจ:** บัตรกรณี: ห้องเรียนต้องเลือกวิธีแบ่งเวลาสนามกีฬา มีข้อเสนอ 2 แบบและขั้นตอนรับฟังความเห็น/ลงคะแนน/เลือกตัวแทนตามที่ระบุ ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Read the case card. Identify the person, group, right, duty, rule, custom or decision-making step that is directly relevant to “มีส่วนร่วมในการตัดสินใจและทำกิจกรรมในครอบครัวและโรงเรียนตามกระบวนการประชาธิปไตย”. Give one detail from the case as evidence. **Answer:** Identify the relevant person/group/concept or step and cite the matching detail in the case. The response must fit the exact indicator, not merely repeat a general classroom rule.
-2. **Explain / compare:** Explain what would happen in this case if the relevant role, right, duty, custom or decision process in “มีส่วนร่วมในการตัดสินใจและทำกิจกรรมในครอบครัวและโรงเรียนตามกระบวนการประชาธิปไตย” were followed. Include one effect on another person or the community. **Answer:** State a plausible effect that follows from the case and correctly explains the indicator concept. Credit a clear cause-and-effect link and a relevant effect on others.
-3. **Apply / demonstrate:** Take part in a real, low-stakes class decision: state a view, listen to another view, follow the agreed voting/consensus procedure and report how the decision was reached. This task assesses: “มีส่วนร่วมในการตัดสินใจและทำกิจกรรมในครอบครัวและโรงเรียนตามกระบวนการประชาธิปไตย”. **Answer:** Teacher observes participation, listening and adherence to the agreed fair process; the learner need not agree with the final result.
+1. **Recall / evidence:** ระบุผู้มีส่วนร่วมและขั้นตอนตัดสินใจที่ปรากฏในบัตร This assesses: “มีส่วนร่วมในการตัดสินใจและทำกิจกรรมในครอบครัวและโรงเรียนตามกระบวนการประชาธิปไตย”. **Answer:** ตอบตามขั้นตอนจริงในบัตร เช่น รับฟัง เสนอ ลงคะแนน นับคะแนน หรือมอบหมายตัวแทน
+2. **Explain / compare:** เปรียบเทียบการออกเสียงโดยตรงกับการเลือกตัวแทนโดยใช้กรณีนี้ This assesses: “มีส่วนร่วมในการตัดสินใจและทำกิจกรรมในครอบครัวและโรงเรียนตามกระบวนการประชาธิปไตย”. **Answer:** แบบตรงทุกคนออกเสียงเอง ส่วนแบบตัวแทนผู้ได้รับเลือกตัดสินใจ/ออกเสียงแทนกลุ่ม
+3. **Apply / demonstrate:** เสนอขั้นตอนตัดสินใจสำหรับกรณีใหม่โดยให้เหตุผลเรื่องความเป็นธรรม This assesses: “มีส่วนร่วมในการตัดสินใจและทำกิจกรรมในครอบครัวและโรงเรียนตามกระบวนการประชาธิปไตย”. **Answer:** มีการรับฟัง มีส่วนร่วม วิธีตัดสินใจโปร่งใส และเคารพผลที่ได้
+
 ### 13. SO3.1-P1-01
 
 - **Standard:** SO3.1
@@ -448,12 +453,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — simple spending card:** A learner has 20 baht. A pencil costs 5 baht, a banana costs 7 baht and a small notebook costs 8 baht. The learner wants all three items but has only 20 baht.
+**Assessment stimulus — สินค้าและบริการ:** บัตรชีวิตประจำวัน: มีสมุดเป็นสินค้า และบริการถ่ายเอกสาร/ตัดผม/ขนส่งเป็นบริการ ระบุผู้ใช้และประโยชน์ ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the numbers and details in the stimulus. Identify the good, service, resource, need, want, income, expense or saving that best demonstrates “ระบุสินค้า และบริการที่ใช้ประโยชน์ในชีวิตประจำวัน”. Show the relevant number or detail. **Answer:** The response correctly identifies the economic concept requested by the indicator and uses the exact supporting number/detail from the stimulus. For calculations, accept only mathematically correct totals and balances.
-2. **Explain / compare:** Use the stimulus to explain one choice a learner or family can make that demonstrates “ระบุสินค้า และบริการที่ใช้ประโยชน์ในชีวิตประจำวัน”. Include the trade-off or result of that choice. **Answer:** The explanation names a realistic choice, uses the stimulus evidence and accurately describes its result (such as remaining money, a forgone purchase, a saved resource or a benefit to buyer/seller).
-3. **Apply / demonstrate:** Change one detail in the stimulus (for example, the amount of money or the available resource). Explain how the decision should change to continue meeting “ระบุสินค้า และบริการที่ใช้ประโยชน์ในชีวิตประจำวัน”, and give a reason. **Answer:** The revised decision follows logically from the changed constraint and is justified using the indicator concept. Accept more than one valid solution; check arithmetic and whether the response respects limited resources.
+1. **Recall / evidence:** จำแนกตัวอย่างสินค้าและบริการจากบัตร This assesses: “ระบุสินค้า และบริการที่ใช้ประโยชน์ในชีวิตประจำวัน”. **Answer:** สินค้าเป็นสิ่งของ ส่วนบริการเป็นงาน/กิจกรรมที่ผู้ให้บริการทำให้
+2. **Explain / compare:** อธิบายความแตกต่างพร้อมยกตัวอย่างจากบัตร This assesses: “ระบุสินค้า และบริการที่ใช้ประโยชน์ในชีวิตประจำวัน”. **Answer:** คำอธิบายแยกสิ่งของกับกิจกรรมบริการได้ถูกต้อง
+3. **Apply / demonstrate:** จัดกลุ่มรายการใหม่ 4 รายการและอธิบายประโยชน์ของแต่ละรายการ This assesses: “ระบุสินค้า และบริการที่ใช้ประโยชน์ในชีวิตประจำวัน”. **Answer:** จำแนกตรงตามลักษณะและประโยชน์สัมพันธ์กับผู้ใช้
+
 ### 14. SO3.1-P1-02
 
 - **Standard:** SO3.1
@@ -482,12 +488,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — simple spending card:** A learner has 20 baht. A pencil costs 5 baht, a banana costs 7 baht and a small notebook costs 8 baht. The learner wants all three items but has only 20 baht.
+**Assessment stimulus — รายรับ รายจ่ายและการออม:** บัตรบัญชี: รายรับ 120 บาท ซื้ออาหาร 35 บาท อุปกรณ์เรียน 25 บาท ค่าเดินทาง 20 บาท และออม 10 บาท ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the numbers and details in the stimulus. Identify the good, service, resource, need, want, income, expense or saving that best demonstrates “ยกตัวอย่างการใช้จ่ายเงินในชีวิตประจำวันที่ไม่เกินตัวและเห็นประโยชน์ของการออม”. Show the relevant number or detail. **Answer:** The response correctly identifies the economic concept requested by the indicator and uses the exact supporting number/detail from the stimulus. For calculations, accept only mathematically correct totals and balances.
-2. **Explain / compare:** Use the stimulus to explain one choice a learner or family can make that demonstrates “ยกตัวอย่างการใช้จ่ายเงินในชีวิตประจำวันที่ไม่เกินตัวและเห็นประโยชน์ของการออม”. Include the trade-off or result of that choice. **Answer:** The explanation names a realistic choice, uses the stimulus evidence and accurately describes its result (such as remaining money, a forgone purchase, a saved resource or a benefit to buyer/seller).
-3. **Apply / demonstrate:** Change one detail in the stimulus (for example, the amount of money or the available resource). Explain how the decision should change to continue meeting “ยกตัวอย่างการใช้จ่ายเงินในชีวิตประจำวันที่ไม่เกินตัวและเห็นประโยชน์ของการออม”, and give a reason. **Answer:** The revised decision follows logically from the changed constraint and is justified using the indicator concept. Accept more than one valid solution; check arithmetic and whether the response respects limited resources.
+1. **Recall / evidence:** คำนวณรายจ่ายรวมและเงินคงเหลือหลังหักรายจ่ายกับเงินออม This assesses: “ยกตัวอย่างการใช้จ่ายเงินในชีวิตประจำวันที่ไม่เกินตัวและเห็นประโยชน์ของการออม”. **Answer:** รายจ่าย 80 บาท เงินคงเหลือ 30 บาท (120−35−25−20−10)
+2. **Explain / compare:** อธิบายว่ารายการใดจำเป็น/ปรับลดได้และเพราะเหตุใด This assesses: “ยกตัวอย่างการใช้จ่ายเงินในชีวิตประจำวันที่ไม่เกินตัวและเห็นประโยชน์ของการออม”. **Answer:** ให้เหตุผลจากวัตถุประสงค์และสถานการณ์ ไม่จัดประเภทโดยไม่มีเหตุผล
+3. **Apply / demonstrate:** จัดงบประมาณจากรายรับ 120 บาท โดยมีรายจ่ายและเงินออมที่รวมกันไม่เกินรายรับ This assesses: “ยกตัวอย่างการใช้จ่ายเงินในชีวิตประจำวันที่ไม่เกินตัวและเห็นประโยชน์ของการออม”. **Answer:** ยอดรวมถูกต้อง ไม่ใช้จ่ายเกินรายรับและมีเงินออมตามเป้าหมาย
+
 ### 15. SO3.1-P1-03
 
 - **Standard:** SO3.1
@@ -516,12 +523,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — simple spending card:** A learner has 20 baht. A pencil costs 5 baht, a banana costs 7 baht and a small notebook costs 8 baht. The learner wants all three items but has only 20 baht.
+**Assessment stimulus — การซื้อขาย:** บัตรตลาด: ผู้ซื้อเลือกสมุดราคา 15 บาท จ่าย 20 บาท ผู้ขายแจ้งราคา ส่งสินค้าและทอนเงิน 5 บาท ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the numbers and details in the stimulus. Identify the good, service, resource, need, want, income, expense or saving that best demonstrates “ยกตัวอย่างการใช้ทรัพยากรในชีวิตประจำวันอย่างประหยัด”. Show the relevant number or detail. **Answer:** The response correctly identifies the economic concept requested by the indicator and uses the exact supporting number/detail from the stimulus. For calculations, accept only mathematically correct totals and balances.
-2. **Explain / compare:** Use the stimulus to explain one choice a learner or family can make that demonstrates “ยกตัวอย่างการใช้ทรัพยากรในชีวิตประจำวันอย่างประหยัด”. Include the trade-off or result of that choice. **Answer:** The explanation names a realistic choice, uses the stimulus evidence and accurately describes its result (such as remaining money, a forgone purchase, a saved resource or a benefit to buyer/seller).
-3. **Apply / demonstrate:** Change one detail in the stimulus (for example, the amount of money or the available resource). Explain how the decision should change to continue meeting “ยกตัวอย่างการใช้ทรัพยากรในชีวิตประจำวันอย่างประหยัด”, and give a reason. **Answer:** The revised decision follows logically from the changed constraint and is justified using the indicator concept. Accept more than one valid solution; check arithmetic and whether the response respects limited resources.
+1. **Recall / evidence:** ระบุหน้าที่ของผู้ซื้อและผู้ขายจากเหตุการณ์ This assesses: “ยกตัวอย่างการใช้ทรัพยากรในชีวิตประจำวันอย่างประหยัด”. **Answer:** ผู้ซื้อจ่ายเงิน/ตรวจสินค้า ผู้ขายแจ้งราคาถูกต้องและส่งมอบสินค้า/เงินทอน
+2. **Explain / compare:** อธิบายว่าความซื่อสัตย์ทำให้การซื้อขายเป็นธรรมอย่างไร This assesses: “ยกตัวอย่างการใช้ทรัพยากรในชีวิตประจำวันอย่างประหยัด”. **Answer:** กล่าวถึงราคา สินค้า เงินทอนและความไว้วางใจตรงตามกรณี
+3. **Apply / demonstrate:** จำลองซื้อขายโดยใช้ราคาที่ระบุและคำนวณเงินทอน This assesses: “ยกตัวอย่างการใช้ทรัพยากรในชีวิตประจำวันอย่างประหยัด”. **Answer:** ขั้นตอนครบ เงินทอนถูกต้องและทั้งสองฝ่ายยินยอม
+
 ### 16. SO3.2-P1-01
 
 - **Standard:** SO3.2
@@ -550,12 +558,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — simple spending card:** A learner has 20 baht. A pencil costs 5 baht, a banana costs 7 baht and a small notebook costs 8 baht. The learner wants all three items but has only 20 baht.
+**Assessment stimulus — การทำงานสุจริต:** บัตรอาชีพ: ผู้ประกอบอาชีพสองคนให้บริการ/ผลิตสินค้าโดยแจ้งราคาและทำงานตามข้อตกลง ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the numbers and details in the stimulus. Identify the good, service, resource, need, want, income, expense or saving that best demonstrates “อธิบายเหตุผลความจำเป็นที่คนต้องทำงานอย่างสุจริต”. Show the relevant number or detail. **Answer:** The response correctly identifies the economic concept requested by the indicator and uses the exact supporting number/detail from the stimulus. For calculations, accept only mathematically correct totals and balances.
-2. **Explain / compare:** Use the stimulus to explain one choice a learner or family can make that demonstrates “อธิบายเหตุผลความจำเป็นที่คนต้องทำงานอย่างสุจริต”. Include the trade-off or result of that choice. **Answer:** The explanation names a realistic choice, uses the stimulus evidence and accurately describes its result (such as remaining money, a forgone purchase, a saved resource or a benefit to buyer/seller).
-3. **Apply / demonstrate:** Change one detail in the stimulus (for example, the amount of money or the available resource). Explain how the decision should change to continue meeting “อธิบายเหตุผลความจำเป็นที่คนต้องทำงานอย่างสุจริต”, and give a reason. **Answer:** The revised decision follows logically from the changed constraint and is justified using the indicator concept. Accept more than one valid solution; check arithmetic and whether the response respects limited resources.
+1. **Recall / evidence:** ระบุอาชีพและพฤติกรรมที่แสดงความสุจริตจากบัตร This assesses: “อธิบายเหตุผลความจำเป็นที่คนต้องทำงานอย่างสุจริต”. **Answer:** คำตอบระบุการกระทำจริง เช่น แจ้งราคาตรง ทำงานตามตกลง หรือส่งมอบของครบ
+2. **Explain / compare:** อธิบายประโยชน์ของความสุจริตต่อผู้ทำงานและผู้รับบริการ This assesses: “อธิบายเหตุผลความจำเป็นที่คนต้องทำงานอย่างสุจริต”. **Answer:** เชื่อมโยงความไว้วางใจ คุณภาพงานและรายได้ที่ได้มาอย่างถูกต้อง
+3. **Apply / demonstrate:** จำลองสถานการณ์เมื่อลูกค้าพบข้อผิดพลาดและเสนอวิธีแก้อย่างสุจริต This assesses: “อธิบายเหตุผลความจำเป็นที่คนต้องทำงานอย่างสุจริต”. **Answer:** ยอมรับข้อเท็จจริง แจ้งข้อมูลตรงและแก้ไขอย่างเป็นธรรม
+
 ### 17. SO4.1-P1-01
 
 - **Standard:** SO4.1
@@ -584,12 +593,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — เวลาและลำดับเหตุการณ์:** บัตรปฏิทิน/เส้นเวลา: มีวัน เดือน ปีและเหตุการณ์ 4 รายการพร้อมเวลาหรือแหล่งที่มา ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “บอกวัน เดือน ปี และการนับช่วงเวลาตามปฏิทินที่ใช้ในชีวิตประจำวัน”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “บอกวัน เดือน ปี และการนับช่วงเวลาตามปฏิทินที่ใช้ในชีวิตประจำวัน”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “บอกวัน เดือน ปี และการนับช่วงเวลาตามปฏิทินที่ใช้ในชีวิตประจำวัน”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** อ่านหรือเรียงข้อมูลเวลา/เหตุการณ์ตามที่ตัวชี้วัดระบุ This assesses: “บอกวัน เดือน ปี และการนับช่วงเวลาตามปฏิทินที่ใช้ในชีวิตประจำวัน”. **Answer:** คำตอบตรงกับวันที่/เวลาหรือลำดับในบัตร
+2. **Explain / compare:** อธิบายวิธีนับช่วงเวลา/เรียงเหตุการณ์โดยอ้างข้อมูล This assesses: “บอกวัน เดือน ปี และการนับช่วงเวลาตามปฏิทินที่ใช้ในชีวิตประจำวัน”. **Answer:** คำนวณหรือลำดับถูกต้องและแสดงวิธีคิด ไม่สับสนการนับรวมวันต้นปลาย
+3. **Apply / demonstrate:** สร้างปฏิทิน/เส้นเวลาเหตุการณ์สมมติ 4 รายการและระบุแหล่งข้อมูล This assesses: “บอกวัน เดือน ปี และการนับช่วงเวลาตามปฏิทินที่ใช้ในชีวิตประจำวัน”. **Answer:** มีวันเวลา/ลำดับครบ ถูกต้องและตรวจสอบได้
+
 ### 18. SO4.1-P1-02
 
 - **Standard:** SO4.1
@@ -618,12 +628,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — เวลาและลำดับเหตุการณ์:** บัตรปฏิทิน/เส้นเวลา: มีวัน เดือน ปีและเหตุการณ์ 4 รายการพร้อมเวลาหรือแหล่งที่มา ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “เรียงลำดับเหตุการณ์ในชีวิตประจำวัน ตามวันเวลาที่เกิดขึ้น”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “เรียงลำดับเหตุการณ์ในชีวิตประจำวัน ตามวันเวลาที่เกิดขึ้น”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “เรียงลำดับเหตุการณ์ในชีวิตประจำวัน ตามวันเวลาที่เกิดขึ้น”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** อ่านหรือเรียงข้อมูลเวลา/เหตุการณ์ตามที่ตัวชี้วัดระบุ This assesses: “เรียงลำดับเหตุการณ์ในชีวิตประจำวัน ตามวันเวลาที่เกิดขึ้น”. **Answer:** คำตอบตรงกับวันที่/เวลาหรือลำดับในบัตร
+2. **Explain / compare:** อธิบายวิธีนับช่วงเวลา/เรียงเหตุการณ์โดยอ้างข้อมูล This assesses: “เรียงลำดับเหตุการณ์ในชีวิตประจำวัน ตามวันเวลาที่เกิดขึ้น”. **Answer:** คำนวณหรือลำดับถูกต้องและแสดงวิธีคิด ไม่สับสนการนับรวมวันต้นปลาย
+3. **Apply / demonstrate:** สร้างปฏิทิน/เส้นเวลาเหตุการณ์สมมติ 4 รายการและระบุแหล่งข้อมูล This assesses: “เรียงลำดับเหตุการณ์ในชีวิตประจำวัน ตามวันเวลาที่เกิดขึ้น”. **Answer:** มีวันเวลา/ลำดับครบ ถูกต้องและตรวจสอบได้
+
 ### 19. SO4.1-P1-03
 
 - **Standard:** SO4.1
@@ -652,12 +663,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — ประวัติครอบครัว:** บัตรสัมภาษณ์ตัวอย่าง: ผู้ให้ข้อมูลบอกความสัมพันธ์ในครอบครัวและเหตุการณ์หนึ่ง พร้อมระบุว่าเป็นคำบอกเล่าหรือเอกสาร ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “บอกประวัติความเป็นมาของตนเองและครอบครัวโดยสอบถามผู้เกี่ยวข้อง”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “บอกประวัติความเป็นมาของตนเองและครอบครัวโดยสอบถามผู้เกี่ยวข้อง”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “บอกประวัติความเป็นมาของตนเองและครอบครัวโดยสอบถามผู้เกี่ยวข้อง”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** ระบุผู้ให้ข้อมูลและข้อเท็จจริงหนึ่งข้อจากบัตร This assesses: “บอกประวัติความเป็นมาของตนเองและครอบครัวโดยสอบถามผู้เกี่ยวข้อง”. **Answer:** คำตอบตรงกับบัตรและระบุแหล่งที่มา
+2. **Explain / compare:** อธิบายเหตุใดการสอบถามผู้เกี่ยวข้อง/ใช้หลักฐานจึงช่วยเรียนรู้ประวัติครอบครัว This assesses: “บอกประวัติความเป็นมาของตนเองและครอบครัวโดยสอบถามผู้เกี่ยวข้อง”. **Answer:** แยกคำบอกเล่าออกจากเอกสารและไม่อ้างว่าเป็นข้อเท็จจริงยืนยันแล้วโดยไม่มีหลักฐาน
+3. **Apply / demonstrate:** สร้างแผนผังครอบครัวแบบสมัครใจหรือใช้ครอบครัวสมมติ พร้อมแหล่งข้อมูล This assesses: “บอกประวัติความเป็นมาของตนเองและครอบครัวโดยสอบถามผู้เกี่ยวข้อง”. **Answer:** แสดงความสัมพันธ์ตรงตามข้อมูลและไม่เปิดเผยข้อมูลส่วนตัวโดยไม่ได้รับอนุญาต
+
 ### 20. SO4.2-P1-01
 
 - **Standard:** SO4.2
@@ -686,12 +698,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — หลักฐานอดีตและปัจจุบัน:** ชุดหลักฐานอดีต-ปัจจุบัน: ภาพ/คำบอกเล่าที่ระบุแหล่งและช่วงเวลาเกี่ยวกับการเดินทาง การสื่อสาร สิ่งของหรือชุมชน ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “บอกความเปลี่ยนแปลงของสภาพแวดล้อม สิ่งของเครื่องใช้ หรือการดำเนินชีวิตของตนเองกับสมัยของพ่อแม่ ปู่ย่า ตายาย”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “บอกความเปลี่ยนแปลงของสภาพแวดล้อม สิ่งของเครื่องใช้ หรือการดำเนินชีวิตของตนเองกับสมัยของพ่อแม่ ปู่ย่า ตายาย”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “บอกความเปลี่ยนแปลงของสภาพแวดล้อม สิ่งของเครื่องใช้ หรือการดำเนินชีวิตของตนเองกับสมัยของพ่อแม่ ปู่ย่า ตายาย”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** ระบุการเปลี่ยนแปลง/เหตุการณ์และหลักฐานจากชุดข้อมูล This assesses: “บอกความเปลี่ยนแปลงของสภาพแวดล้อม สิ่งของเครื่องใช้ หรือการดำเนินชีวิตของตนเองกับสมัยของพ่อแม่ ปู่ย่า ตายาย”. **Answer:** ชี้รายละเอียดที่เห็นหรืออ่านได้จริง พร้อมระบุแหล่งและช่วงเวลา
+2. **Explain / compare:** อธิบายผลของการเปลี่ยนแปลง/เหตุการณ์ต่อชีวิตปัจจุบันโดยอ้างหลักฐาน This assesses: “บอกความเปลี่ยนแปลงของสภาพแวดล้อม สิ่งของเครื่องใช้ หรือการดำเนินชีวิตของตนเองกับสมัยของพ่อแม่ ปู่ย่า ตายาย”. **Answer:** เชื่อมโยงเหตุและผลตามข้อมูล ไม่แต่งวันที่หรือสาเหตุ
+3. **Apply / demonstrate:** ทำตารางอดีต/ปัจจุบันหรือแผนภาพเหตุการณ์→ผล พร้อมแหล่งข้อมูล This assesses: “บอกความเปลี่ยนแปลงของสภาพแวดล้อม สิ่งของเครื่องใช้ หรือการดำเนินชีวิตของตนเองกับสมัยของพ่อแม่ ปู่ย่า ตายาย”. **Answer:** ข้อมูลสองช่วงเวลาเปรียบเทียบได้และมีหลักฐานรองรับ
+
 ### 21. SO4.2-P1-02
 
 - **Standard:** SO4.2
@@ -720,12 +733,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — หลักฐานอดีตและปัจจุบัน:** ชุดหลักฐานอดีต-ปัจจุบัน: ภาพ/คำบอกเล่าที่ระบุแหล่งและช่วงเวลาเกี่ยวกับการเดินทาง การสื่อสาร สิ่งของหรือชุมชน ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “บอกเหตุการณ์ที่เกิดขึ้นในอดีตที่มีผลกระทบต่อตนเองในปัจจุบัน”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “บอกเหตุการณ์ที่เกิดขึ้นในอดีตที่มีผลกระทบต่อตนเองในปัจจุบัน”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “บอกเหตุการณ์ที่เกิดขึ้นในอดีตที่มีผลกระทบต่อตนเองในปัจจุบัน”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** ระบุการเปลี่ยนแปลง/เหตุการณ์และหลักฐานจากชุดข้อมูล This assesses: “บอกเหตุการณ์ที่เกิดขึ้นในอดีตที่มีผลกระทบต่อตนเองในปัจจุบัน”. **Answer:** ชี้รายละเอียดที่เห็นหรืออ่านได้จริง พร้อมระบุแหล่งและช่วงเวลา
+2. **Explain / compare:** อธิบายผลของการเปลี่ยนแปลง/เหตุการณ์ต่อชีวิตปัจจุบันโดยอ้างหลักฐาน This assesses: “บอกเหตุการณ์ที่เกิดขึ้นในอดีตที่มีผลกระทบต่อตนเองในปัจจุบัน”. **Answer:** เชื่อมโยงเหตุและผลตามข้อมูล ไม่แต่งวันที่หรือสาเหตุ
+3. **Apply / demonstrate:** ทำตารางอดีต/ปัจจุบันหรือแผนภาพเหตุการณ์→ผล พร้อมแหล่งข้อมูล This assesses: “บอกเหตุการณ์ที่เกิดขึ้นในอดีตที่มีผลกระทบต่อตนเองในปัจจุบัน”. **Answer:** ข้อมูลสองช่วงเวลาเปรียบเทียบได้และมีหลักฐานรองรับ
+
 ### 22. SO4.3-P1-01
 
 - **Standard:** SO4.3
@@ -754,12 +768,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — ข้อมูลประวัติศาสตร์ชาติ:** บัตรแหล่งข้อมูลชาติ/ประวัติศาสตร์: ข้อความและภาพจากแหล่งทางการ ระบุชื่อ บุคคล สัญลักษณ์หรือผลงานพร้อมบริบท ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “อธิบายความหมายและความสำคัญของสัญลักษณ์สำคัญของชาติไทยและปฏิบัติได้ถูกต้อง”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “อธิบายความหมายและความสำคัญของสัญลักษณ์สำคัญของชาติไทยและปฏิบัติได้ถูกต้อง”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Demonstrate the appropriate response in a teacher-provided scenario involving one national symbol, using the current verified official guidance card; explain the meaning behind the response. This task assesses: “อธิบายความหมายและความสำคัญของสัญลักษณ์สำคัญของชาติไทยและปฏิบัติได้ถูกต้อง”. **Answer:** The response follows the specific verified guidance for the symbol and context; do not add unsupported etiquette rules.
+1. **Recall / evidence:** ระบุชื่อ/ความหมาย/ผลงานที่ตัวชี้วัดถามจากบัตร This assesses: “อธิบายความหมายและความสำคัญของสัญลักษณ์สำคัญของชาติไทยและปฏิบัติได้ถูกต้อง”. **Answer:** ตอบตรงกับแหล่งข้อมูลที่แนบ ไม่แต่งรายละเอียด
+2. **Explain / compare:** อธิบายความสำคัญโดยอ้างข้อเท็จจริงในบัตร This assesses: “อธิบายความหมายและความสำคัญของสัญลักษณ์สำคัญของชาติไทยและปฏิบัติได้ถูกต้อง”. **Answer:** ความสำคัญเชื่อมโยงกับข้อมูลที่ยืนยันได้และไม่กล่าวเกินหลักฐาน
+3. **Apply / demonstrate:** จัดทำบันทึกสรุปข้อมูล 3 ประเด็น พร้อมระบุแหล่งข้อมูล This assesses: “อธิบายความหมายและความสำคัญของสัญลักษณ์สำคัญของชาติไทยและปฏิบัติได้ถูกต้อง”. **Answer:** ครบประเด็น ถูกต้อง และแยกข้อเท็จจริงจากความคิดเห็น
+
 ### 23. SO4.3-P1-02
 
 - **Standard:** SO4.3
@@ -788,12 +803,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — มรดกและวัฒนธรรมชุมชน:** บัตรแหล่งวัฒนธรรมชุมชน: สถานที่/ประเพณี/ภูมิปัญญาหนึ่งอย่าง ระบุชื่อ ผู้เกี่ยวข้อง จุดประสงค์และแหล่งข้อมูล ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “บอกสถานที่สำคัญซึ่งเป็นแหล่งวัฒนธรรมในชุมชน”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “บอกสถานที่สำคัญซึ่งเป็นแหล่งวัฒนธรรมในชุมชน”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “บอกสถานที่สำคัญซึ่งเป็นแหล่งวัฒนธรรมในชุมชน”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** ระบุองค์ประกอบหรือสถานที่และประเภทตามบัตร This assesses: “บอกสถานที่สำคัญซึ่งเป็นแหล่งวัฒนธรรมในชุมชน”. **Answer:** ตอบตรงกับข้อมูลที่ให้
+2. **Explain / compare:** อธิบายคุณค่าหรือความสำคัญต่อชุมชนโดยอ้างหลักฐาน This assesses: “บอกสถานที่สำคัญซึ่งเป็นแหล่งวัฒนธรรมในชุมชน”. **Answer:** เชื่อมโยงกับประวัติ ความทรงจำ การใช้ประโยชน์หรืออัตลักษณ์ตามข้อมูล
+3. **Apply / demonstrate:** เสนอวิธีอนุรักษ์หรือเรียนรู้อย่างเคารพผู้ถือปฏิบัติ This assesses: “บอกสถานที่สำคัญซึ่งเป็นแหล่งวัฒนธรรมในชุมชน”. **Answer:** ข้อเสนอทำได้จริง ไม่บิดเบือนความหมายและไม่เหมารวม
+
 ### 24. SO4.3-P1-03
 
 - **Standard:** SO4.3
@@ -822,12 +838,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — มรดกและวัฒนธรรมชุมชน:** บัตรแหล่งวัฒนธรรมชุมชน: สถานที่/ประเพณี/ภูมิปัญญาหนึ่งอย่าง ระบุชื่อ ผู้เกี่ยวข้อง จุดประสงค์และแหล่งข้อมูล ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “ระบุสิ่งที่ตนรักและภาคภูมิใจในท้องถิ่น”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “ระบุสิ่งที่ตนรักและภาคภูมิใจในท้องถิ่น”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “ระบุสิ่งที่ตนรักและภาคภูมิใจในท้องถิ่น”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** ระบุองค์ประกอบหรือสถานที่และประเภทตามบัตร This assesses: “ระบุสิ่งที่ตนรักและภาคภูมิใจในท้องถิ่น”. **Answer:** ตอบตรงกับข้อมูลที่ให้
+2. **Explain / compare:** อธิบายคุณค่าหรือความสำคัญต่อชุมชนโดยอ้างหลักฐาน This assesses: “ระบุสิ่งที่ตนรักและภาคภูมิใจในท้องถิ่น”. **Answer:** เชื่อมโยงกับประวัติ ความทรงจำ การใช้ประโยชน์หรืออัตลักษณ์ตามข้อมูล
+3. **Apply / demonstrate:** เสนอวิธีอนุรักษ์หรือเรียนรู้อย่างเคารพผู้ถือปฏิบัติ This assesses: “ระบุสิ่งที่ตนรักและภาคภูมิใจในท้องถิ่น”. **Answer:** ข้อเสนอทำได้จริง ไม่บิดเบือนความหมายและไม่เหมารวม
+
 ### 25. SO5.1-P1-01
 
 - **Standard:** SO5.1
@@ -856,12 +873,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community geography field card:** Use a simple north-arrow sketch of the school area. Mark the classroom, gate, playground and one nearby natural feature. Add a short observation record (time, weather or visible environmental condition) relevant to this indicator. If the lesson concerns change or pollution, add a dated before/now photograph pair or a teacher-verified local example.
+**Assessment stimulus — สิ่งแวดล้อมธรรมชาติ:** บัตรสิ่งแวดล้อมธรรมชาติ: แม่น้ำ ภูเขา ฝน แสงแดดและพื้นที่ราบ พร้อมข้อมูลผลต่อการดำรงชีวิต ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the field card, sketch or observation record. Identify the location, direction, physical feature, weather condition, resource or environmental change that directly answers “จำแนกสิ่งแวดล้อมรอบตัวที่เกิดขึ้นเองตามธรรมชาติและที่มนุษย์สร้างขึ้น”. Point to the map/photo/data as evidence. **Answer:** The answer identifies the correct feature or condition and refers to the correct map position, direction, photograph or observation. Direction must agree with the north arrow; claims about change must match the dated evidence.
-2. **Explain / compare:** Compare two marked places, observations or time points in the field card. Explain one spatial relationship, difference or effect relevant to “จำแนกสิ่งแวดล้อมรอบตัวที่เกิดขึ้นเองตามธรรมชาติและที่มนุษย์สร้างขึ้น”. **Answer:** The comparison names both items and gives one accurate relationship/difference/effect supported by the field card. Accept different examples if map direction and evidence are correct.
-3. **Apply / demonstrate:** Propose and sketch or describe one safe action at the marked school/community location that demonstrates “จำแนกสิ่งแวดล้อมรอบตัวที่เกิดขึ้นเองตามธรรมชาติและที่มนุษย์สร้างขึ้น”. Explain what evidence would show that the action helped. **Answer:** The action is practical for the named location, addresses the indicator, is safe for children and includes an observable success measure (for example, cleaner area, correct route/map, recorded observation or reduced waste).
+1. **Recall / evidence:** ระบุสิ่งแวดล้อมธรรมชาติและผลต่อมนุษย์ตามบัตร This assesses: “จำแนกสิ่งแวดล้อมรอบตัวที่เกิดขึ้นเองตามธรรมชาติและที่มนุษย์สร้างขึ้น”. **Answer:** คำตอบยกตัวอย่างจากบัตรและระบุผลที่สัมพันธ์กัน
+2. **Explain / compare:** อธิบายความสัมพันธ์กับความต้องการพื้นฐาน/กิจกรรม/อาชีพ This assesses: “จำแนกสิ่งแวดล้อมรอบตัวที่เกิดขึ้นเองตามธรรมชาติและที่มนุษย์สร้างขึ้น”. **Answer:** เชื่อมโยงน้ำ อาหาร ที่อยู่อาศัย การเดินทางหรือความปลอดภัยตามหลักฐาน
+3. **Apply / demonstrate:** เสนอวิธีปรับตัวหรือใช้ประโยชน์อย่างรับผิดชอบ This assesses: “จำแนกสิ่งแวดล้อมรอบตัวที่เกิดขึ้นเองตามธรรมชาติและที่มนุษย์สร้างขึ้น”. **Answer:** ข้อเสนอเหมาะกับสภาพแวดล้อมและคำนึงถึงความปลอดภัย
+
 ### 26. SO5.1-P1-02
 
 - **Standard:** SO5.1
@@ -890,12 +908,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community geography field card:** Use a simple north-arrow sketch of the school area. Mark the classroom, gate, playground and one nearby natural feature. Add a short observation record (time, weather or visible environmental condition) relevant to this indicator. If the lesson concerns change or pollution, add a dated before/now photograph pair or a teacher-verified local example.
+**Assessment stimulus — แผนที่และตำแหน่ง:** แผนที่/แผนผังเฉพาะโจทย์: จุด A ห้องเรียน จุด B ประตู จุด C สนาม พร้อมลูกศรทิศเหนือ สัญลักษณ์และมาตราส่วนเมื่อมี ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the field card, sketch or observation record. Identify the location, direction, physical feature, weather condition, resource or environmental change that directly answers “ระบุความสัมพันธ์ของตำแหน่ง ระยะ และทิศของสิ่งต่าง ๆ”. Point to the map/photo/data as evidence. **Answer:** The answer identifies the correct feature or condition and refers to the correct map position, direction, photograph or observation. Direction must agree with the north arrow; claims about change must match the dated evidence.
-2. **Explain / compare:** Compare two marked places, observations or time points in the field card. Explain one spatial relationship, difference or effect relevant to “ระบุความสัมพันธ์ของตำแหน่ง ระยะ และทิศของสิ่งต่าง ๆ”. **Answer:** The comparison names both items and gives one accurate relationship/difference/effect supported by the field card. Accept different examples if map direction and evidence are correct.
-3. **Apply / demonstrate:** Propose and sketch or describe one safe action at the marked school/community location that demonstrates “ระบุความสัมพันธ์ของตำแหน่ง ระยะ และทิศของสิ่งต่าง ๆ”. Explain what evidence would show that the action helped. **Answer:** The action is practical for the named location, addresses the indicator, is safe for children and includes an observable success measure (for example, cleaner area, correct route/map, recorded observation or reduced waste).
+1. **Recall / evidence:** อ่านตำแหน่ง ทิศ ระยะหรือสัญลักษณ์ที่โจทย์ถาม This assesses: “ระบุความสัมพันธ์ของตำแหน่ง ระยะ และทิศของสิ่งต่าง ๆ”. **Answer:** คำตอบตรงกับลูกศร/มาตราส่วน/คำอธิบาย; ห้ามเดาระยะเมื่อไม่มีมาตราส่วน
+2. **Explain / compare:** อธิบายความสัมพันธ์ของจุดสองจุดโดยใช้ทิศ/ระยะ/สัญลักษณ์ This assesses: “ระบุความสัมพันธ์ของตำแหน่ง ระยะ และทิศของสิ่งต่าง ๆ”. **Answer:** ระบุจุดทั้งสองและอ้างข้อมูลบนแผนที่ถูกต้อง
+3. **Apply / demonstrate:** วาดแผนผังพื้นที่ตามข้อมูลสำรวจ ใส่ชื่อ สัญลักษณ์และทิศเหนือ This assesses: “ระบุความสัมพันธ์ของตำแหน่ง ระยะ และทิศของสิ่งต่าง ๆ”. **Answer:** ตำแหน่งสอดคล้องข้อมูลสำรวจ มีคำอธิบายทิศและไม่สร้างสถานที่ที่ไม่มีจริง
+
 ### 27. SO5.1-P1-03
 
 - **Standard:** SO5.1
@@ -924,12 +943,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community geography field card:** Use a simple north-arrow sketch of the school area. Mark the classroom, gate, playground and one nearby natural feature. Add a short observation record (time, weather or visible environmental condition) relevant to this indicator. If the lesson concerns change or pollution, add a dated before/now photograph pair or a teacher-verified local example.
+**Assessment stimulus — แผนที่และตำแหน่ง:** แผนที่/แผนผังเฉพาะโจทย์: จุด A ห้องเรียน จุด B ประตู จุด C สนาม พร้อมลูกศรทิศเหนือ สัญลักษณ์และมาตราส่วนเมื่อมี ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the field card, sketch or observation record. Identify the location, direction, physical feature, weather condition, resource or environmental change that directly answers “ใช้แผนผังแสดงตำแหน่งของสิ่งต่าง ๆ ในห้องเรียน”. Point to the map/photo/data as evidence. **Answer:** The answer identifies the correct feature or condition and refers to the correct map position, direction, photograph or observation. Direction must agree with the north arrow; claims about change must match the dated evidence.
-2. **Explain / compare:** Compare two marked places, observations or time points in the field card. Explain one spatial relationship, difference or effect relevant to “ใช้แผนผังแสดงตำแหน่งของสิ่งต่าง ๆ ในห้องเรียน”. **Answer:** The comparison names both items and gives one accurate relationship/difference/effect supported by the field card. Accept different examples if map direction and evidence are correct.
-3. **Apply / demonstrate:** Use the learner's own classroom plan to guide a partner to a named object; the partner checks whether the directions lead to the correct location. This task assesses: “ใช้แผนผังแสดงตำแหน่งของสิ่งต่าง ๆ ในห้องเรียน”. **Answer:** The plan and spoken directions identify the correct object and use position/direction consistently.
+1. **Recall / evidence:** อ่านตำแหน่ง ทิศ ระยะหรือสัญลักษณ์ที่โจทย์ถาม This assesses: “ใช้แผนผังแสดงตำแหน่งของสิ่งต่าง ๆ ในห้องเรียน”. **Answer:** คำตอบตรงกับลูกศร/มาตราส่วน/คำอธิบาย; ห้ามเดาระยะเมื่อไม่มีมาตราส่วน
+2. **Explain / compare:** อธิบายความสัมพันธ์ของจุดสองจุดโดยใช้ทิศ/ระยะ/สัญลักษณ์ This assesses: “ใช้แผนผังแสดงตำแหน่งของสิ่งต่าง ๆ ในห้องเรียน”. **Answer:** ระบุจุดทั้งสองและอ้างข้อมูลบนแผนที่ถูกต้อง
+3. **Apply / demonstrate:** วาดแผนผังพื้นที่ตามข้อมูลสำรวจ ใส่ชื่อ สัญลักษณ์และทิศเหนือ This assesses: “ใช้แผนผังแสดงตำแหน่งของสิ่งต่าง ๆ ในห้องเรียน”. **Answer:** ตำแหน่งสอดคล้องข้อมูลสำรวจ มีคำอธิบายทิศและไม่สร้างสถานที่ที่ไม่มีจริง
+
 ### 28. SO5.1-P1-04
 
 - **Standard:** SO5.1
@@ -958,12 +978,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community geography field card:** Use a simple north-arrow sketch of the school area. Mark the classroom, gate, playground and one nearby natural feature. Add a short observation record (time, weather or visible environmental condition) relevant to this indicator. If the lesson concerns change or pollution, add a dated before/now photograph pair or a teacher-verified local example.
+**Assessment stimulus — อากาศและฤดูกาล:** บัตรข้อมูลอากาศ: ตารางเช้า-กลางวัน-เย็นหรือข้อมูลฤดูกาล ระบุเมฆ ฝน ลม อุณหภูมิและวันที่สังเกต ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the field card, sketch or observation record. Identify the location, direction, physical feature, weather condition, resource or environmental change that directly answers “สังเกตและบอกการเปลี่ยนแปลงของสภาพอากาศในรอบวัน”. Point to the map/photo/data as evidence. **Answer:** The answer identifies the correct feature or condition and refers to the correct map position, direction, photograph or observation. Direction must agree with the north arrow; claims about change must match the dated evidence.
-2. **Explain / compare:** Compare two marked places, observations or time points in the field card. Explain one spatial relationship, difference or effect relevant to “สังเกตและบอกการเปลี่ยนแปลงของสภาพอากาศในรอบวัน”. **Answer:** The comparison names both items and gives one accurate relationship/difference/effect supported by the field card. Accept different examples if map direction and evidence are correct.
-3. **Apply / demonstrate:** Make two brief weather observations at different times on the same day, record what is seen (such as cloud cover, rain or wind using safe observation), and report one change. This task assesses: “สังเกตและบอกการเปลี่ยนแปลงของสภาพอากาศในรอบวัน”. **Answer:** Two time-labelled observations are recorded accurately and the stated change is visible in the records; do not infer temperature or wind speed without measuring.
+1. **Recall / evidence:** อ่านและระบุสภาพอากาศ/ฤดูกาลจากข้อมูล This assesses: “สังเกตและบอกการเปลี่ยนแปลงของสภาพอากาศในรอบวัน”. **Answer:** ตอบตรงกับบันทึก ไม่อนุมานเกินข้อมูล
+2. **Explain / compare:** เปรียบเทียบสองเวลา/ฤดูกาลและอธิบายผลต่อกิจกรรมหรือการดำเนินชีวิต This assesses: “สังเกตและบอกการเปลี่ยนแปลงของสภาพอากาศในรอบวัน”. **Answer:** ยกผลที่สมเหตุสมผลและเชื่อมกับข้อมูลอากาศ
+3. **Apply / demonstrate:** เลือกการเตรียมตัว/กิจกรรมให้เหมาะกับสภาพอากาศและอธิบายเหตุผล This assesses: “สังเกตและบอกการเปลี่ยนแปลงของสภาพอากาศในรอบวัน”. **Answer:** ข้อเสนอปลอดภัยและสัมพันธ์กับข้อมูล
+
 ### 29. SO5.2-P1-01
 
 - **Standard:** SO5.2
@@ -992,12 +1013,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community geography field card:** Use a simple north-arrow sketch of the school area. Mark the classroom, gate, playground and one nearby natural feature. Add a short observation record (time, weather or visible environmental condition) relevant to this indicator. If the lesson concerns change or pollution, add a dated before/now photograph pair or a teacher-verified local example.
+**Assessment stimulus — สิ่งแวดล้อมธรรมชาติ:** บัตรสิ่งแวดล้อมธรรมชาติ: แม่น้ำ ภูเขา ฝน แสงแดดและพื้นที่ราบ พร้อมข้อมูลผลต่อการดำรงชีวิต ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the field card, sketch or observation record. Identify the location, direction, physical feature, weather condition, resource or environmental change that directly answers “บอกสิ่งแวดล้อมที่เกิดตามธรรมชาติที่ส่งผลต่อความเป็นอยู่ของมนุษย์”. Point to the map/photo/data as evidence. **Answer:** The answer identifies the correct feature or condition and refers to the correct map position, direction, photograph or observation. Direction must agree with the north arrow; claims about change must match the dated evidence.
-2. **Explain / compare:** Compare two marked places, observations or time points in the field card. Explain one spatial relationship, difference or effect relevant to “บอกสิ่งแวดล้อมที่เกิดตามธรรมชาติที่ส่งผลต่อความเป็นอยู่ของมนุษย์”. **Answer:** The comparison names both items and gives one accurate relationship/difference/effect supported by the field card. Accept different examples if map direction and evidence are correct.
-3. **Apply / demonstrate:** Propose and sketch or describe one safe action at the marked school/community location that demonstrates “บอกสิ่งแวดล้อมที่เกิดตามธรรมชาติที่ส่งผลต่อความเป็นอยู่ของมนุษย์”. Explain what evidence would show that the action helped. **Answer:** The action is practical for the named location, addresses the indicator, is safe for children and includes an observable success measure (for example, cleaner area, correct route/map, recorded observation or reduced waste).
+1. **Recall / evidence:** ระบุสิ่งแวดล้อมธรรมชาติและผลต่อมนุษย์ตามบัตร This assesses: “บอกสิ่งแวดล้อมที่เกิดตามธรรมชาติที่ส่งผลต่อความเป็นอยู่ของมนุษย์”. **Answer:** คำตอบยกตัวอย่างจากบัตรและระบุผลที่สัมพันธ์กัน
+2. **Explain / compare:** อธิบายความสัมพันธ์กับความต้องการพื้นฐาน/กิจกรรม/อาชีพ This assesses: “บอกสิ่งแวดล้อมที่เกิดตามธรรมชาติที่ส่งผลต่อความเป็นอยู่ของมนุษย์”. **Answer:** เชื่อมโยงน้ำ อาหาร ที่อยู่อาศัย การเดินทางหรือความปลอดภัยตามหลักฐาน
+3. **Apply / demonstrate:** เสนอวิธีปรับตัวหรือใช้ประโยชน์อย่างรับผิดชอบ This assesses: “บอกสิ่งแวดล้อมที่เกิดตามธรรมชาติที่ส่งผลต่อความเป็นอยู่ของมนุษย์”. **Answer:** ข้อเสนอเหมาะกับสภาพแวดล้อมและคำนึงถึงความปลอดภัย
+
 ### 30. SO5.2-P1-02
 
 - **Standard:** SO5.2
@@ -1026,12 +1048,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community geography field card:** Use a simple north-arrow sketch of the school area. Mark the classroom, gate, playground and one nearby natural feature. Add a short observation record (time, weather or visible environmental condition) relevant to this indicator. If the lesson concerns change or pollution, add a dated before/now photograph pair or a teacher-verified local example.
+**Assessment stimulus — สิ่งแวดล้อมธรรมชาติ:** บัตรสิ่งแวดล้อมธรรมชาติ: แม่น้ำ ภูเขา ฝน แสงแดดและพื้นที่ราบ พร้อมข้อมูลผลต่อการดำรงชีวิต ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the field card, sketch or observation record. Identify the location, direction, physical feature, weather condition, resource or environmental change that directly answers “สังเกตและเปรียบเทียบการเปลี่ยนแปลงของสิ่งแวดล้อมเพื่อการปฏิบัติตนอย่างเหมาะสม”. Point to the map/photo/data as evidence. **Answer:** The answer identifies the correct feature or condition and refers to the correct map position, direction, photograph or observation. Direction must agree with the north arrow; claims about change must match the dated evidence.
-2. **Explain / compare:** Compare two marked places, observations or time points in the field card. Explain one spatial relationship, difference or effect relevant to “สังเกตและเปรียบเทียบการเปลี่ยนแปลงของสิ่งแวดล้อมเพื่อการปฏิบัติตนอย่างเหมาะสม”. **Answer:** The comparison names both items and gives one accurate relationship/difference/effect supported by the field card. Accept different examples if map direction and evidence are correct.
-3. **Apply / demonstrate:** Compare two teacher-provided or directly observed environmental conditions and demonstrate one suitable response to the current condition; explain the observation that informed it. This task assesses: “สังเกตและเปรียบเทียบการเปลี่ยนแปลงของสิ่งแวดล้อมเพื่อการปฏิบัติตนอย่างเหมาะสม”. **Answer:** The comparison identifies a real change and the demonstrated response is safe and justified by the evidence.
+1. **Recall / evidence:** ระบุสิ่งแวดล้อมธรรมชาติและผลต่อมนุษย์ตามบัตร This assesses: “สังเกตและเปรียบเทียบการเปลี่ยนแปลงของสิ่งแวดล้อมเพื่อการปฏิบัติตนอย่างเหมาะสม”. **Answer:** คำตอบยกตัวอย่างจากบัตรและระบุผลที่สัมพันธ์กัน
+2. **Explain / compare:** อธิบายความสัมพันธ์กับความต้องการพื้นฐาน/กิจกรรม/อาชีพ This assesses: “สังเกตและเปรียบเทียบการเปลี่ยนแปลงของสิ่งแวดล้อมเพื่อการปฏิบัติตนอย่างเหมาะสม”. **Answer:** เชื่อมโยงน้ำ อาหาร ที่อยู่อาศัย การเดินทางหรือความปลอดภัยตามหลักฐาน
+3. **Apply / demonstrate:** เสนอวิธีปรับตัวหรือใช้ประโยชน์อย่างรับผิดชอบ This assesses: “สังเกตและเปรียบเทียบการเปลี่ยนแปลงของสิ่งแวดล้อมเพื่อการปฏิบัติตนอย่างเหมาะสม”. **Answer:** ข้อเสนอเหมาะกับสภาพแวดล้อมและคำนึงถึงความปลอดภัย
+
 ### 31. SO5.2-P1-03
 
 - **Standard:** SO5.2
@@ -1060,12 +1083,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community geography field card:** Use a simple north-arrow sketch of the school area. Mark the classroom, gate, playground and one nearby natural feature. Add a short observation record (time, weather or visible environmental condition) relevant to this indicator. If the lesson concerns change or pollution, add a dated before/now photograph pair or a teacher-verified local example.
+**Assessment stimulus — การจัดการสิ่งแวดล้อม:** บัตรแผนดูแลสิ่งแวดล้อม: จุดปัญหา บทบาทผู้ร่วมกิจกรรม อุปกรณ์ปลอดภัยและวิธีบันทึกผลก่อน/หลัง ใช้ภาพและคำถามสั้น ให้ตอบปากเปล่าได้
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the field card, sketch or observation record. Identify the location, direction, physical feature, weather condition, resource or environmental change that directly answers “มีส่วนร่วมในการดูแลสิ่งแวดล้อมที่บ้านและห้องเรียน”. Point to the map/photo/data as evidence. **Answer:** The answer identifies the correct feature or condition and refers to the correct map position, direction, photograph or observation. Direction must agree with the north arrow; claims about change must match the dated evidence.
-2. **Explain / compare:** Compare two marked places, observations or time points in the field card. Explain one spatial relationship, difference or effect relevant to “มีส่วนร่วมในการดูแลสิ่งแวดล้อมที่บ้านและห้องเรียน”. **Answer:** The comparison names both items and gives one accurate relationship/difference/effect supported by the field card. Accept different examples if map direction and evidence are correct.
-3. **Apply / demonstrate:** Carry out one agreed, safe home/classroom care action, then record the before-and-after observation or completed checklist with adult support where needed. This task assesses: “มีส่วนร่วมในการดูแลสิ่งแวดล้อมที่บ้านและห้องเรียน”. **Answer:** The learner participates in the agreed action and records an observable result; no hazardous cleaning or unsupervised work.
+1. **Recall / evidence:** ระบุปัญหา จุดดำเนินงานและบทบาทของตนจากแผน This assesses: “มีส่วนร่วมในการดูแลสิ่งแวดล้อมที่บ้านและห้องเรียน”. **Answer:** ตอบตรงกับแผนและขอบเขตหน้าที่
+2. **Explain / compare:** อธิบายว่าการร่วมมือและการวัดผลช่วยแก้ปัญหาอย่างไร This assesses: “มีส่วนร่วมในการดูแลสิ่งแวดล้อมที่บ้านและห้องเรียน”. **Answer:** เชื่อมโยงบทบาทกับผลที่ตรวจสอบได้
+3. **Apply / demonstrate:** ร่วมกิจกรรมที่ได้รับอนุญาตหรือจำลองบทบาท พร้อมบันทึกผลก่อน/หลัง This assesses: “มีส่วนร่วมในการดูแลสิ่งแวดล้อมที่บ้านและห้องเรียน”. **Answer:** มีหลักฐานการมีส่วนร่วมและผลที่สังเกตได้ ห้ามจัดการขยะอันตรายหรืองานนอกการดูแล
+
 ### 32. SO1.1-P2-01
 
 - **Standard:** SO1.1
@@ -1400,12 +1424,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community case card:** A class has 4 shared storybooks, 6 learners who want to read, and one classroom rule: return a book before another learner borrows it. The teacher adds one short case detail matched to the indicator (family role, classroom duty, community decision, cultural practice, rights or public holiday).
+**Assessment stimulus — สมาชิกและบทบาทในสังคม:** บัตรสถานการณ์: นักเรียน 6 คนใช้หนังสือร่วมกัน มีตารางยืมคืนและหน้าที่ดูแลชั้นเรียน ระบุผู้เกี่ยวข้องและกติกาที่ใช้ในบทเรียนนี้ อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Read the case card. Identify the person, group, right, duty, rule, custom or decision-making step that is directly relevant to “ปฏิบัติตนตามข้อตกลง กติกา กฎ ระเบียบและหน้าที่ ที่ต้องปฏิบัติในชีวิตประจำวัน”. Give one detail from the case as evidence. **Answer:** Identify the relevant person/group/concept or step and cite the matching detail in the case. The response must fit the exact indicator, not merely repeat a general classroom rule.
-2. **Explain / compare:** Explain what would happen in this case if the relevant role, right, duty, custom or decision process in “ปฏิบัติตนตามข้อตกลง กติกา กฎ ระเบียบและหน้าที่ ที่ต้องปฏิบัติในชีวิตประจำวัน” were followed. Include one effect on another person or the community. **Answer:** State a plausible effect that follows from the case and correctly explains the indicator concept. Credit a clear cause-and-effect link and a relevant effect on others.
-3. **Apply / demonstrate:** Complete a short classroom routine simulation by following the relevant agreement/rule, then point to the rule that guided the action. This task assesses: “ปฏิบัติตนตามข้อตกลง กติกา กฎ ระเบียบและหน้าที่ ที่ต้องปฏิบัติในชีวิตประจำวัน”. **Answer:** The learner performs the action consistently with the stated rule and distinguishes it from a personal preference.
+1. **Recall / evidence:** ชี้ข้อมูล/บุคคล/กติกาที่ตอบตัวชี้วัดโดยตรง This assesses: “ปฏิบัติตนตามข้อตกลง กติกา กฎ ระเบียบและหน้าที่ ที่ต้องปฏิบัติในชีวิตประจำวัน”. **Answer:** คำตอบต้องอ้างรายละเอียดเฉพาะจากบัตร ไม่ใช่ตอบเป็นคำกว้าง ๆ
+2. **Explain / compare:** อธิบายผลของการปฏิบัติหรือไม่ปฏิบัติตามกติกาต่อคนอย่างน้อย 2 ฝ่าย This assesses: “ปฏิบัติตนตามข้อตกลง กติกา กฎ ระเบียบและหน้าที่ ที่ต้องปฏิบัติในชีวิตประจำวัน”. **Answer:** เชื่อมโยงเหตุและผลกับสิทธิ หน้าที่ หรือประโยชน์ส่วนรวมตามตัวชี้วัด
+3. **Apply / demonstrate:** จำลองหรือออกแบบการกระทำที่แสดงบทบาทพลเมือง/สมาชิกที่ดีในกรณีนี้ This assesses: “ปฏิบัติตนตามข้อตกลง กติกา กฎ ระเบียบและหน้าที่ ที่ต้องปฏิบัติในชีวิตประจำวัน”. **Answer:** การกระทำเป็นรูปธรรม เหมาะกับวัย เคารพผู้อื่น และตรงกับตัวชี้วัด
+
 ### 42. SO2.1-P2-02
 
 - **Standard:** SO2.1
@@ -1434,12 +1459,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community case card:** A class has 4 shared storybooks, 6 learners who want to read, and one classroom rule: return a book before another learner borrows it. The teacher adds one short case detail matched to the indicator (family role, classroom duty, community decision, cultural practice, rights or public holiday).
+**Assessment stimulus — ความหลากหลายทางวัฒนธรรม:** บัตรตัวอย่างวัฒนธรรม: เรื่องการทักทาย อาหาร งานประเพณีหรือความเชื่อของบุคคล/ชุมชนสองกลุ่ม พร้อมที่มาของข้อมูล อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Read the case card. Identify the person, group, right, duty, rule, custom or decision-making step that is directly relevant to “ปฏิบัติตนตามมารยาทไทย”. Give one detail from the case as evidence. **Answer:** Identify the relevant person/group/concept or step and cite the matching detail in the case. The response must fit the exact indicator, not merely repeat a general classroom rule.
-2. **Explain / compare:** Explain what would happen in this case if the relevant role, right, duty, custom or decision process in “ปฏิบัติตนตามมารยาทไทย” were followed. Include one effect on another person or the community. **Answer:** State a plausible effect that follows from the case and correctly explains the indicator concept. Credit a clear cause-and-effect link and a relevant effect on others.
-3. **Apply / demonstrate:** Role-play a respectful response to a new, realistic school/community interaction; the observer records the specific behaviour shown rather than judging accent, status or personality. This task assesses: “ปฏิบัติตนตามมารยาทไทย”. **Answer:** The behaviour is appropriate to the stated context and respects personal boundaries; accept culturally and situationally appropriate variation.
+1. **Recall / evidence:** ระบุการปฏิบัติหรือความแตกต่างทางวัฒนธรรมตามหลักฐาน This assesses: “ปฏิบัติตนตามมารยาทไทย”. **Answer:** ตอบตรงกับข้อมูลและระบุว่าตัวอย่างไม่จำเป็นต้องแทนสมาชิกทุกคนในกลุ่ม
+2. **Explain / compare:** อธิบายว่าควรปฏิบัติต่อความแตกต่างอย่างไรและเพราะเหตุใด This assesses: “ปฏิบัติตนตามมารยาทไทย”. **Answer:** ให้เหตุผลเรื่องการเคารพ ไม่ล้อเลียน ไม่เหมารวม และอยู่ร่วมกันได้
+3. **Apply / demonstrate:** เสนอวิธีเรียนรู้หรือร่วมกิจกรรมกับผู้มีวัฒนธรรมต่างกัน This assesses: “ปฏิบัติตนตามมารยาทไทย”. **Answer:** วิธีสุภาพ สมัครใจ ขออนุญาตเมื่อเหมาะสม และไม่บังคับให้ละทิ้งความเชื่อ
+
 ### 43. SO2.1-P2-03
 
 - **Standard:** SO2.1
@@ -1468,12 +1494,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community case card:** A class has 4 shared storybooks, 6 learners who want to read, and one classroom rule: return a book before another learner borrows it. The teacher adds one short case detail matched to the indicator (family role, classroom duty, community decision, cultural practice, rights or public holiday).
+**Assessment stimulus — ความหลากหลายทางวัฒนธรรม:** บัตรตัวอย่างวัฒนธรรม: เรื่องการทักทาย อาหาร งานประเพณีหรือความเชื่อของบุคคล/ชุมชนสองกลุ่ม พร้อมที่มาของข้อมูล อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Read the case card. Identify the person, group, right, duty, rule, custom or decision-making step that is directly relevant to “แสดงพฤติกรรมในการยอมรับความคิด ความเชื่อ และการปฏิบัติของบุคคลอื่นที่แตกต่างกันโดยปราศจากอคติ”. Give one detail from the case as evidence. **Answer:** Identify the relevant person/group/concept or step and cite the matching detail in the case. The response must fit the exact indicator, not merely repeat a general classroom rule.
-2. **Explain / compare:** Explain what would happen in this case if the relevant role, right, duty, custom or decision process in “แสดงพฤติกรรมในการยอมรับความคิด ความเชื่อ และการปฏิบัติของบุคคลอื่นที่แตกต่างกันโดยปราศจากอคติ” were followed. Include one effect on another person or the community. **Answer:** State a plausible effect that follows from the case and correctly explains the indicator concept. Credit a clear cause-and-effect link and a relevant effect on others.
-3. **Apply / demonstrate:** In a paired discussion, demonstrate listening to a different view, restating it fairly and responding without ridicule or exclusion. This task assesses: “แสดงพฤติกรรมในการยอมรับความคิด ความเชื่อ และการปฏิบัติของบุคคลอื่นที่แตกต่างกันโดยปราศจากอคติ”. **Answer:** Teacher observes accurate listening and a non-discriminatory response; learners are not required to agree with the other view.
+1. **Recall / evidence:** ระบุการปฏิบัติหรือความแตกต่างทางวัฒนธรรมตามหลักฐาน This assesses: “แสดงพฤติกรรมในการยอมรับความคิด ความเชื่อ และการปฏิบัติของบุคคลอื่นที่แตกต่างกันโดยปราศจากอคติ”. **Answer:** ตอบตรงกับข้อมูลและระบุว่าตัวอย่างไม่จำเป็นต้องแทนสมาชิกทุกคนในกลุ่ม
+2. **Explain / compare:** อธิบายว่าควรปฏิบัติต่อความแตกต่างอย่างไรและเพราะเหตุใด This assesses: “แสดงพฤติกรรมในการยอมรับความคิด ความเชื่อ และการปฏิบัติของบุคคลอื่นที่แตกต่างกันโดยปราศจากอคติ”. **Answer:** ให้เหตุผลเรื่องการเคารพ ไม่ล้อเลียน ไม่เหมารวม และอยู่ร่วมกันได้
+3. **Apply / demonstrate:** เสนอวิธีเรียนรู้หรือร่วมกิจกรรมกับผู้มีวัฒนธรรมต่างกัน This assesses: “แสดงพฤติกรรมในการยอมรับความคิด ความเชื่อ และการปฏิบัติของบุคคลอื่นที่แตกต่างกันโดยปราศจากอคติ”. **Answer:** วิธีสุภาพ สมัครใจ ขออนุญาตเมื่อเหมาะสม และไม่บังคับให้ละทิ้งความเชื่อ
+
 ### 44. SO2.1-P2-04
 
 - **Standard:** SO2.1
@@ -1502,12 +1529,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community case card:** A class has 4 shared storybooks, 6 learners who want to read, and one classroom rule: return a book before another learner borrows it. The teacher adds one short case detail matched to the indicator (family role, classroom duty, community decision, cultural practice, rights or public holiday).
+**Assessment stimulus — สิทธิและเสรีภาพ:** บัตรกรณี: นักเรียนหนึ่งคนกำลังพูด อีกคนต้องการใช้ของส่วนรวม และมีกติกาคุ้มครองสิทธิของทุกคน อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Read the case card. Identify the person, group, right, duty, rule, custom or decision-making step that is directly relevant to “เคารพในสิทธิ เสรีภาพของตนเองและผู้อื่น”. Give one detail from the case as evidence. **Answer:** Identify the relevant person/group/concept or step and cite the matching detail in the case. The response must fit the exact indicator, not merely repeat a general classroom rule.
-2. **Explain / compare:** Explain what would happen in this case if the relevant role, right, duty, custom or decision process in “เคารพในสิทธิ เสรีภาพของตนเองและผู้อื่น” were followed. Include one effect on another person or the community. **Answer:** State a plausible effect that follows from the case and correctly explains the indicator concept. Credit a clear cause-and-effect link and a relevant effect on others.
-3. **Apply / demonstrate:** The class must choose a fair action for the case. Propose one action, name who should take part or be responsible, and justify it using “เคารพในสิทธิ เสรีภาพของตนเองและผู้อื่น”. **Answer:** The proposal is practical, respects the relevant rights/duties/customs or decision process, identifies the responsible participant(s), and gives a reason connected to the indicator. Accept alternative fair solutions with sound justification.
+1. **Recall / evidence:** ระบุสิทธิหรือเสรีภาพของคนสองฝ่ายจากกรณี This assesses: “เคารพในสิทธิ เสรีภาพของตนเองและผู้อื่น”. **Answer:** ระบุสิทธิในการแสดงความคิดเห็น/ใช้ของตามกติกาโดยไม่ละเมิดผู้อื่น
+2. **Explain / compare:** อธิบายว่าการขัดจังหวะหรือแย่งของกระทบสิทธิของอีกฝ่ายอย่างไร This assesses: “เคารพในสิทธิ เสรีภาพของตนเองและผู้อื่น”. **Answer:** เชื่อมโยงพฤติกรรมกับผลต่อสิทธิที่ระบุในบัตร
+3. **Apply / demonstrate:** แสดงบทบาทสมมติแก้ปัญหาโดยใช้ถ้อยคำสุภาพและเคารพสิทธิ This assesses: “เคารพในสิทธิ เสรีภาพของตนเองและผู้อื่น”. **Answer:** ให้โอกาสทั้งสองฝ่าย ไม่บังคับ ไม่ใช้ความรุนแรง และทำตามกติกาที่เป็นธรรม
+
 ### 45. SO2.2-P2-01
 
 - **Standard:** SO2.2
@@ -1536,12 +1564,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community case card:** A class has 4 shared storybooks, 6 learners who want to read, and one classroom rule: return a book before another learner borrows it. The teacher adds one short case detail matched to the indicator (family role, classroom duty, community decision, cultural practice, rights or public holiday).
+**Assessment stimulus — สมาชิกและบทบาทในสังคม:** บัตรสถานการณ์: นักเรียน 6 คนใช้หนังสือร่วมกัน มีตารางยืมคืนและหน้าที่ดูแลชั้นเรียน ระบุผู้เกี่ยวข้องและกติกาที่ใช้ในบทเรียนนี้ อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Read the case card. Identify the person, group, right, duty, rule, custom or decision-making step that is directly relevant to “อธิบายความสัมพันธ์ของตนเองและสมาชิกในครอบครัวในฐานะเป็นส่วนหนึ่งของชุมชน”. Give one detail from the case as evidence. **Answer:** Identify the relevant person/group/concept or step and cite the matching detail in the case. The response must fit the exact indicator, not merely repeat a general classroom rule.
-2. **Explain / compare:** Explain what would happen in this case if the relevant role, right, duty, custom or decision process in “อธิบายความสัมพันธ์ของตนเองและสมาชิกในครอบครัวในฐานะเป็นส่วนหนึ่งของชุมชน” were followed. Include one effect on another person or the community. **Answer:** State a plausible effect that follows from the case and correctly explains the indicator concept. Credit a clear cause-and-effect link and a relevant effect on others.
-3. **Apply / demonstrate:** The class must choose a fair action for the case. Propose one action, name who should take part or be responsible, and justify it using “อธิบายความสัมพันธ์ของตนเองและสมาชิกในครอบครัวในฐานะเป็นส่วนหนึ่งของชุมชน”. **Answer:** The proposal is practical, respects the relevant rights/duties/customs or decision process, identifies the responsible participant(s), and gives a reason connected to the indicator. Accept alternative fair solutions with sound justification.
+1. **Recall / evidence:** ชี้ข้อมูล/บุคคล/กติกาที่ตอบตัวชี้วัดโดยตรง This assesses: “อธิบายความสัมพันธ์ของตนเองและสมาชิกในครอบครัวในฐานะเป็นส่วนหนึ่งของชุมชน”. **Answer:** คำตอบต้องอ้างรายละเอียดเฉพาะจากบัตร ไม่ใช่ตอบเป็นคำกว้าง ๆ
+2. **Explain / compare:** อธิบายผลของการปฏิบัติหรือไม่ปฏิบัติตามกติกาต่อคนอย่างน้อย 2 ฝ่าย This assesses: “อธิบายความสัมพันธ์ของตนเองและสมาชิกในครอบครัวในฐานะเป็นส่วนหนึ่งของชุมชน”. **Answer:** เชื่อมโยงเหตุและผลกับสิทธิ หน้าที่ หรือประโยชน์ส่วนรวมตามตัวชี้วัด
+3. **Apply / demonstrate:** จำลองหรือออกแบบการกระทำที่แสดงบทบาทพลเมือง/สมาชิกที่ดีในกรณีนี้ This assesses: “อธิบายความสัมพันธ์ของตนเองและสมาชิกในครอบครัวในฐานะเป็นส่วนหนึ่งของชุมชน”. **Answer:** การกระทำเป็นรูปธรรม เหมาะกับวัย เคารพผู้อื่น และตรงกับตัวชี้วัด
+
 ### 46. SO2.2-P2-02
 
 - **Standard:** SO2.2
@@ -1570,12 +1599,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community case card:** A class has 4 shared storybooks, 6 learners who want to read, and one classroom rule: return a book before another learner borrows it. The teacher adds one short case detail matched to the indicator (family role, classroom duty, community decision, cultural practice, rights or public holiday).
+**Assessment stimulus — ประชาธิปไตยและการตัดสินใจ:** บัตรกรณี: ห้องเรียนต้องเลือกวิธีแบ่งเวลาสนามกีฬา มีข้อเสนอ 2 แบบและขั้นตอนรับฟังความเห็น/ลงคะแนน/เลือกตัวแทนตามที่ระบุ อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Read the case card. Identify the person, group, right, duty, rule, custom or decision-making step that is directly relevant to “ระบุผู้มีบทบาท อำนาจในการตัดสินใจในโรงเรียนและชุมชน”. Give one detail from the case as evidence. **Answer:** Identify the relevant person/group/concept or step and cite the matching detail in the case. The response must fit the exact indicator, not merely repeat a general classroom rule.
-2. **Explain / compare:** Explain what would happen in this case if the relevant role, right, duty, custom or decision process in “ระบุผู้มีบทบาท อำนาจในการตัดสินใจในโรงเรียนและชุมชน” were followed. Include one effect on another person or the community. **Answer:** State a plausible effect that follows from the case and correctly explains the indicator concept. Credit a clear cause-and-effect link and a relevant effect on others.
-3. **Apply / demonstrate:** The class must choose a fair action for the case. Propose one action, name who should take part or be responsible, and justify it using “ระบุผู้มีบทบาท อำนาจในการตัดสินใจในโรงเรียนและชุมชน”. **Answer:** The proposal is practical, respects the relevant rights/duties/customs or decision process, identifies the responsible participant(s), and gives a reason connected to the indicator. Accept alternative fair solutions with sound justification.
+1. **Recall / evidence:** ระบุผู้มีส่วนร่วมและขั้นตอนตัดสินใจที่ปรากฏในบัตร This assesses: “ระบุผู้มีบทบาท อำนาจในการตัดสินใจในโรงเรียนและชุมชน”. **Answer:** ตอบตามขั้นตอนจริงในบัตร เช่น รับฟัง เสนอ ลงคะแนน นับคะแนน หรือมอบหมายตัวแทน
+2. **Explain / compare:** เปรียบเทียบการออกเสียงโดยตรงกับการเลือกตัวแทนโดยใช้กรณีนี้ This assesses: “ระบุผู้มีบทบาท อำนาจในการตัดสินใจในโรงเรียนและชุมชน”. **Answer:** แบบตรงทุกคนออกเสียงเอง ส่วนแบบตัวแทนผู้ได้รับเลือกตัดสินใจ/ออกเสียงแทนกลุ่ม
+3. **Apply / demonstrate:** เสนอขั้นตอนตัดสินใจสำหรับกรณีใหม่โดยให้เหตุผลเรื่องความเป็นธรรม This assesses: “ระบุผู้มีบทบาท อำนาจในการตัดสินใจในโรงเรียนและชุมชน”. **Answer:** มีการรับฟัง มีส่วนร่วม วิธีตัดสินใจโปร่งใส และเคารพผลที่ได้
+
 ### 47. SO3.1-P2-01
 
 - **Standard:** SO3.1
@@ -1604,12 +1634,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — family money record:** This week a learner receives 50 baht. Recorded spending: snack 10 baht, school pencil 5 baht, bus fare 10 baht. The learner plans to save the money left.
+**Assessment stimulus — การผลิตและทรัพยากร:** บัตรการผลิตสินค้า: น้ำผลไม้ใช้ผลไม้ น้ำ ขวด เครื่องคั้นและแรงงาน; กระดาษใช้เยื่อกระดาษ เครื่องจักรและแรงงาน อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the numbers and details in the stimulus. Identify the good, service, resource, need, want, income, expense or saving that best demonstrates “ระบุทรัพยากรที่นำมาผลิตสินค้าและบริการที่ใช้ในชีวิตประจำวัน”. Show the relevant number or detail. **Answer:** The response correctly identifies the economic concept requested by the indicator and uses the exact supporting number/detail from the stimulus. For calculations, accept only mathematically correct totals and balances.
-2. **Explain / compare:** Use the stimulus to explain one choice a learner or family can make that demonstrates “ระบุทรัพยากรที่นำมาผลิตสินค้าและบริการที่ใช้ในชีวิตประจำวัน”. Include the trade-off or result of that choice. **Answer:** The explanation names a realistic choice, uses the stimulus evidence and accurately describes its result (such as remaining money, a forgone purchase, a saved resource or a benefit to buyer/seller).
-3. **Apply / demonstrate:** Change one detail in the stimulus (for example, the amount of money or the available resource). Explain how the decision should change to continue meeting “ระบุทรัพยากรที่นำมาผลิตสินค้าและบริการที่ใช้ในชีวิตประจำวัน”, and give a reason. **Answer:** The revised decision follows logically from the changed constraint and is justified using the indicator concept. Accept more than one valid solution; check arithmetic and whether the response respects limited resources.
+1. **Recall / evidence:** จำแนกวัตถุดิบ เครื่องมือ/ทุน และแรงงานจากบัตร This assesses: “ระบุทรัพยากรที่นำมาผลิตสินค้าและบริการที่ใช้ในชีวิตประจำวัน”. **Answer:** จัดประเภทตรงกับข้อมูล เช่น ผลไม้เป็นวัตถุดิบ เครื่องคั้นเป็นเครื่องมือ ผู้ทำงานเป็นแรงงาน
+2. **Explain / compare:** อธิบายว่าการขาดปัจจัยหนึ่งอย่างส่งผลต่อการผลิตอย่างไร This assesses: “ระบุทรัพยากรที่นำมาผลิตสินค้าและบริการที่ใช้ในชีวิตประจำวัน”. **Answer:** ผลอธิบายได้ตามหน้าที่ของปัจจัยนั้น เช่น ขาดวัตถุดิบจึงผลิตไม่ได้
+3. **Apply / demonstrate:** วางแผนผลิตสินค้าหนึ่งชนิดและระบุปัจจัยที่ต้องใช้ให้ครบ This assesses: “ระบุทรัพยากรที่นำมาผลิตสินค้าและบริการที่ใช้ในชีวิตประจำวัน”. **Answer:** มีวัตถุดิบ เครื่องมือ/ทุนและแรงงานที่สัมพันธ์กับสินค้า
+
 ### 48. SO3.1-P2-02
 
 - **Standard:** SO3.1
@@ -1638,12 +1669,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — family money record:** This week a learner receives 50 baht. Recorded spending: snack 10 baht, school pencil 5 baht, bus fare 10 baht. The learner plans to save the money left.
+**Assessment stimulus — รายรับ รายจ่ายและการออม:** บัตรบัญชี: รายรับ 120 บาท ซื้ออาหาร 35 บาท อุปกรณ์เรียน 25 บาท ค่าเดินทาง 20 บาท และออม 10 บาท อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the numbers and details in the stimulus. Identify the good, service, resource, need, want, income, expense or saving that best demonstrates “บอกที่มาของรายได้และรายจ่ายของตนเองและครอบครัว”. Show the relevant number or detail. **Answer:** The response correctly identifies the economic concept requested by the indicator and uses the exact supporting number/detail from the stimulus. For calculations, accept only mathematically correct totals and balances.
-2. **Explain / compare:** Use the stimulus to explain one choice a learner or family can make that demonstrates “บอกที่มาของรายได้และรายจ่ายของตนเองและครอบครัว”. Include the trade-off or result of that choice. **Answer:** The explanation names a realistic choice, uses the stimulus evidence and accurately describes its result (such as remaining money, a forgone purchase, a saved resource or a benefit to buyer/seller).
-3. **Apply / demonstrate:** Change one detail in the stimulus (for example, the amount of money or the available resource). Explain how the decision should change to continue meeting “บอกที่มาของรายได้และรายจ่ายของตนเองและครอบครัว”, and give a reason. **Answer:** The revised decision follows logically from the changed constraint and is justified using the indicator concept. Accept more than one valid solution; check arithmetic and whether the response respects limited resources.
+1. **Recall / evidence:** คำนวณรายจ่ายรวมและเงินคงเหลือหลังหักรายจ่ายกับเงินออม This assesses: “บอกที่มาของรายได้และรายจ่ายของตนเองและครอบครัว”. **Answer:** รายจ่าย 80 บาท เงินคงเหลือ 30 บาท (120−35−25−20−10)
+2. **Explain / compare:** อธิบายว่ารายการใดจำเป็น/ปรับลดได้และเพราะเหตุใด This assesses: “บอกที่มาของรายได้และรายจ่ายของตนเองและครอบครัว”. **Answer:** ให้เหตุผลจากวัตถุประสงค์และสถานการณ์ ไม่จัดประเภทโดยไม่มีเหตุผล
+3. **Apply / demonstrate:** จัดงบประมาณจากรายรับ 120 บาท โดยมีรายจ่ายและเงินออมที่รวมกันไม่เกินรายรับ This assesses: “บอกที่มาของรายได้และรายจ่ายของตนเองและครอบครัว”. **Answer:** ยอดรวมถูกต้อง ไม่ใช้จ่ายเกินรายรับและมีเงินออมตามเป้าหมาย
+
 ### 49. SO3.1-P2-03
 
 - **Standard:** SO3.1
@@ -1672,12 +1704,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — family money record:** This week a learner receives 50 baht. Recorded spending: snack 10 baht, school pencil 5 baht, bus fare 10 baht. The learner plans to save the money left.
+**Assessment stimulus — รายรับ รายจ่ายและการออม:** บัตรบัญชี: รายรับ 120 บาท ซื้ออาหาร 35 บาท อุปกรณ์เรียน 25 บาท ค่าเดินทาง 20 บาท และออม 10 บาท อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the numbers and details in the stimulus. Identify the good, service, resource, need, want, income, expense or saving that best demonstrates “บันทึกรายรับ-รายจ่ายของตนเอง”. Show the relevant number or detail. **Answer:** The response correctly identifies the economic concept requested by the indicator and uses the exact supporting number/detail from the stimulus. For calculations, accept only mathematically correct totals and balances.
-2. **Explain / compare:** Use the stimulus to explain one choice a learner or family can make that demonstrates “บันทึกรายรับ-รายจ่ายของตนเอง”. Include the trade-off or result of that choice. **Answer:** The explanation names a realistic choice, uses the stimulus evidence and accurately describes its result (such as remaining money, a forgone purchase, a saved resource or a benefit to buyer/seller).
-3. **Apply / demonstrate:** Complete a dated practice ledger from supplied, age-appropriate transactions, recording each income/expense and calculating the closing balance; use fictional amounts if preferred. This task assesses: “บันทึกรายรับ-รายจ่ายของตนเอง”. **Answer:** Every transaction is entered in the correct column and the balance is arithmetically correct; no learner must disclose personal finances.
+1. **Recall / evidence:** คำนวณรายจ่ายรวมและเงินคงเหลือหลังหักรายจ่ายกับเงินออม This assesses: “บันทึกรายรับ-รายจ่ายของตนเอง”. **Answer:** รายจ่าย 80 บาท เงินคงเหลือ 30 บาท (120−35−25−20−10)
+2. **Explain / compare:** อธิบายว่ารายการใดจำเป็น/ปรับลดได้และเพราะเหตุใด This assesses: “บันทึกรายรับ-รายจ่ายของตนเอง”. **Answer:** ให้เหตุผลจากวัตถุประสงค์และสถานการณ์ ไม่จัดประเภทโดยไม่มีเหตุผล
+3. **Apply / demonstrate:** จัดงบประมาณจากรายรับ 120 บาท โดยมีรายจ่ายและเงินออมที่รวมกันไม่เกินรายรับ This assesses: “บันทึกรายรับ-รายจ่ายของตนเอง”. **Answer:** ยอดรวมถูกต้อง ไม่ใช้จ่ายเกินรายรับและมีเงินออมตามเป้าหมาย
+
 ### 50. SO3.1-P2-04
 
 - **Standard:** SO3.1
@@ -1706,12 +1739,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — family money record:** This week a learner receives 50 baht. Recorded spending: snack 10 baht, school pencil 5 baht, bus fare 10 baht. The learner plans to save the money left.
+**Assessment stimulus — รายรับ รายจ่ายและการออม:** บัตรบัญชี: รายรับ 120 บาท ซื้ออาหาร 35 บาท อุปกรณ์เรียน 25 บาท ค่าเดินทาง 20 บาท และออม 10 บาท อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the numbers and details in the stimulus. Identify the good, service, resource, need, want, income, expense or saving that best demonstrates “สรุปผลดีของการใช้จ่ายที่เหมาะสมกับรายได้และการออม”. Show the relevant number or detail. **Answer:** The response correctly identifies the economic concept requested by the indicator and uses the exact supporting number/detail from the stimulus. For calculations, accept only mathematically correct totals and balances.
-2. **Explain / compare:** Use the stimulus to explain one choice a learner or family can make that demonstrates “สรุปผลดีของการใช้จ่ายที่เหมาะสมกับรายได้และการออม”. Include the trade-off or result of that choice. **Answer:** The explanation names a realistic choice, uses the stimulus evidence and accurately describes its result (such as remaining money, a forgone purchase, a saved resource or a benefit to buyer/seller).
-3. **Apply / demonstrate:** Change one detail in the stimulus (for example, the amount of money or the available resource). Explain how the decision should change to continue meeting “สรุปผลดีของการใช้จ่ายที่เหมาะสมกับรายได้และการออม”, and give a reason. **Answer:** The revised decision follows logically from the changed constraint and is justified using the indicator concept. Accept more than one valid solution; check arithmetic and whether the response respects limited resources.
+1. **Recall / evidence:** คำนวณรายจ่ายรวมและเงินคงเหลือหลังหักรายจ่ายกับเงินออม This assesses: “สรุปผลดีของการใช้จ่ายที่เหมาะสมกับรายได้และการออม”. **Answer:** รายจ่าย 80 บาท เงินคงเหลือ 30 บาท (120−35−25−20−10)
+2. **Explain / compare:** อธิบายว่ารายการใดจำเป็น/ปรับลดได้และเพราะเหตุใด This assesses: “สรุปผลดีของการใช้จ่ายที่เหมาะสมกับรายได้และการออม”. **Answer:** ให้เหตุผลจากวัตถุประสงค์และสถานการณ์ ไม่จัดประเภทโดยไม่มีเหตุผล
+3. **Apply / demonstrate:** จัดงบประมาณจากรายรับ 120 บาท โดยมีรายจ่ายและเงินออมที่รวมกันไม่เกินรายรับ This assesses: “สรุปผลดีของการใช้จ่ายที่เหมาะสมกับรายได้และการออม”. **Answer:** ยอดรวมถูกต้อง ไม่ใช้จ่ายเกินรายรับและมีเงินออมตามเป้าหมาย
+
 ### 51. SO3.2-P2-01
 
 - **Standard:** SO3.2
@@ -1740,12 +1774,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — family money record:** This week a learner receives 50 baht. Recorded spending: snack 10 baht, school pencil 5 baht, bus fare 10 baht. The learner plans to save the money left.
+**Assessment stimulus — การแลกเปลี่ยน:** บัตรแลกเปลี่ยน: คน A มีดินสอและต้องการยางลบ คน B มียางลบและต้องการดินสอ ทั้งคู่ตกลงแลก อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the numbers and details in the stimulus. Identify the good, service, resource, need, want, income, expense or saving that best demonstrates “อธิบายการแลกเปลี่ยนสินค้าและบริการโดยวิธีต่าง ๆ”. Show the relevant number or detail. **Answer:** The response correctly identifies the economic concept requested by the indicator and uses the exact supporting number/detail from the stimulus. For calculations, accept only mathematically correct totals and balances.
-2. **Explain / compare:** Use the stimulus to explain one choice a learner or family can make that demonstrates “อธิบายการแลกเปลี่ยนสินค้าและบริการโดยวิธีต่าง ๆ”. Include the trade-off or result of that choice. **Answer:** The explanation names a realistic choice, uses the stimulus evidence and accurately describes its result (such as remaining money, a forgone purchase, a saved resource or a benefit to buyer/seller).
-3. **Apply / demonstrate:** Change one detail in the stimulus (for example, the amount of money or the available resource). Explain how the decision should change to continue meeting “อธิบายการแลกเปลี่ยนสินค้าและบริการโดยวิธีต่าง ๆ”, and give a reason. **Answer:** The revised decision follows logically from the changed constraint and is justified using the indicator concept. Accept more than one valid solution; check arithmetic and whether the response respects limited resources.
+1. **Recall / evidence:** ระบุสิ่งที่แต่ละฝ่ายให้และได้รับ This assesses: “อธิบายการแลกเปลี่ยนสินค้าและบริการโดยวิธีต่าง ๆ”. **Answer:** คำตอบระบุของที่แลกตรงตามบัตร
+2. **Explain / compare:** เปรียบเทียบการแลกของกับการซื้อโดยใช้เงิน This assesses: “อธิบายการแลกเปลี่ยนสินค้าและบริการโดยวิธีต่าง ๆ”. **Answer:** การแลกใช้สิ่งของแลกสิ่งของ ส่วนการซื้อใช้เงินเป็นสื่อกลาง
+3. **Apply / demonstrate:** ออกแบบข้อตกลงแลกเปลี่ยนใหม่ที่ทั้งสองฝ่ายยินยอม This assesses: “อธิบายการแลกเปลี่ยนสินค้าและบริการโดยวิธีต่าง ๆ”. **Answer:** ระบุความต้องการของทั้งสองฝ่ายและข้อตกลงที่สมัครใจเป็นธรรม
+
 ### 52. SO3.2-P2-02
 
 - **Standard:** SO3.2
@@ -1774,12 +1809,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — family money record:** This week a learner receives 50 baht. Recorded spending: snack 10 baht, school pencil 5 baht, bus fare 10 baht. The learner plans to save the money left.
+**Assessment stimulus — การซื้อขาย:** บัตรตลาด: ผู้ซื้อเลือกสมุดราคา 15 บาท จ่าย 20 บาท ผู้ขายแจ้งราคา ส่งสินค้าและทอนเงิน 5 บาท อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the numbers and details in the stimulus. Identify the good, service, resource, need, want, income, expense or saving that best demonstrates “บอกความสัมพันธ์ระหว่างผู้ซื้อและผู้ขาย”. Show the relevant number or detail. **Answer:** The response correctly identifies the economic concept requested by the indicator and uses the exact supporting number/detail from the stimulus. For calculations, accept only mathematically correct totals and balances.
-2. **Explain / compare:** Use the stimulus to explain one choice a learner or family can make that demonstrates “บอกความสัมพันธ์ระหว่างผู้ซื้อและผู้ขาย”. Include the trade-off or result of that choice. **Answer:** The explanation names a realistic choice, uses the stimulus evidence and accurately describes its result (such as remaining money, a forgone purchase, a saved resource or a benefit to buyer/seller).
-3. **Apply / demonstrate:** Change one detail in the stimulus (for example, the amount of money or the available resource). Explain how the decision should change to continue meeting “บอกความสัมพันธ์ระหว่างผู้ซื้อและผู้ขาย”, and give a reason. **Answer:** The revised decision follows logically from the changed constraint and is justified using the indicator concept. Accept more than one valid solution; check arithmetic and whether the response respects limited resources.
+1. **Recall / evidence:** ระบุหน้าที่ของผู้ซื้อและผู้ขายจากเหตุการณ์ This assesses: “บอกความสัมพันธ์ระหว่างผู้ซื้อและผู้ขาย”. **Answer:** ผู้ซื้อจ่ายเงิน/ตรวจสินค้า ผู้ขายแจ้งราคาถูกต้องและส่งมอบสินค้า/เงินทอน
+2. **Explain / compare:** อธิบายว่าความซื่อสัตย์ทำให้การซื้อขายเป็นธรรมอย่างไร This assesses: “บอกความสัมพันธ์ระหว่างผู้ซื้อและผู้ขาย”. **Answer:** กล่าวถึงราคา สินค้า เงินทอนและความไว้วางใจตรงตามกรณี
+3. **Apply / demonstrate:** จำลองซื้อขายโดยใช้ราคาที่ระบุและคำนวณเงินทอน This assesses: “บอกความสัมพันธ์ระหว่างผู้ซื้อและผู้ขาย”. **Answer:** ขั้นตอนครบ เงินทอนถูกต้องและทั้งสองฝ่ายยินยอม
+
 ### 53. SO4.1-P2-01
 
 - **Standard:** SO4.1
@@ -1808,12 +1844,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — หลักฐานอดีตและปัจจุบัน:** ชุดหลักฐานอดีต-ปัจจุบัน: ภาพ/คำบอกเล่าที่ระบุแหล่งและช่วงเวลาเกี่ยวกับการเดินทาง การสื่อสาร สิ่งของหรือชุมชน อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “ใช้คำระบุเวลาที่แสดงเหตุการณ์ในอดีต ปัจจุบัน และอนาคต”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “ใช้คำระบุเวลาที่แสดงเหตุการณ์ในอดีต ปัจจุบัน และอนาคต”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “ใช้คำระบุเวลาที่แสดงเหตุการณ์ในอดีต ปัจจุบัน และอนาคต”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** ระบุการเปลี่ยนแปลง/เหตุการณ์และหลักฐานจากชุดข้อมูล This assesses: “ใช้คำระบุเวลาที่แสดงเหตุการณ์ในอดีต ปัจจุบัน และอนาคต”. **Answer:** ชี้รายละเอียดที่เห็นหรืออ่านได้จริง พร้อมระบุแหล่งและช่วงเวลา
+2. **Explain / compare:** อธิบายผลของการเปลี่ยนแปลง/เหตุการณ์ต่อชีวิตปัจจุบันโดยอ้างหลักฐาน This assesses: “ใช้คำระบุเวลาที่แสดงเหตุการณ์ในอดีต ปัจจุบัน และอนาคต”. **Answer:** เชื่อมโยงเหตุและผลตามข้อมูล ไม่แต่งวันที่หรือสาเหตุ
+3. **Apply / demonstrate:** ทำตารางอดีต/ปัจจุบันหรือแผนภาพเหตุการณ์→ผล พร้อมแหล่งข้อมูล This assesses: “ใช้คำระบุเวลาที่แสดงเหตุการณ์ในอดีต ปัจจุบัน และอนาคต”. **Answer:** ข้อมูลสองช่วงเวลาเปรียบเทียบได้และมีหลักฐานรองรับ
+
 ### 54. SO4.1-P2-02
 
 - **Standard:** SO4.1
@@ -1842,12 +1879,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — เวลาและลำดับเหตุการณ์:** บัตรปฏิทิน/เส้นเวลา: มีวัน เดือน ปีและเหตุการณ์ 4 รายการพร้อมเวลาหรือแหล่งที่มา อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “ลำดับเหตุการณ์ที่เกิดขึ้นในครอบครัว หรือในชีวิตของตนเองโดยใช้หลักฐานที่เกี่ยวข้อง”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “ลำดับเหตุการณ์ที่เกิดขึ้นในครอบครัว หรือในชีวิตของตนเองโดยใช้หลักฐานที่เกี่ยวข้อง”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “ลำดับเหตุการณ์ที่เกิดขึ้นในครอบครัว หรือในชีวิตของตนเองโดยใช้หลักฐานที่เกี่ยวข้อง”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** อ่านหรือเรียงข้อมูลเวลา/เหตุการณ์ตามที่ตัวชี้วัดระบุ This assesses: “ลำดับเหตุการณ์ที่เกิดขึ้นในครอบครัว หรือในชีวิตของตนเองโดยใช้หลักฐานที่เกี่ยวข้อง”. **Answer:** คำตอบตรงกับวันที่/เวลาหรือลำดับในบัตร
+2. **Explain / compare:** อธิบายวิธีนับช่วงเวลา/เรียงเหตุการณ์โดยอ้างข้อมูล This assesses: “ลำดับเหตุการณ์ที่เกิดขึ้นในครอบครัว หรือในชีวิตของตนเองโดยใช้หลักฐานที่เกี่ยวข้อง”. **Answer:** คำนวณหรือลำดับถูกต้องและแสดงวิธีคิด ไม่สับสนการนับรวมวันต้นปลาย
+3. **Apply / demonstrate:** สร้างปฏิทิน/เส้นเวลาเหตุการณ์สมมติ 4 รายการและระบุแหล่งข้อมูล This assesses: “ลำดับเหตุการณ์ที่เกิดขึ้นในครอบครัว หรือในชีวิตของตนเองโดยใช้หลักฐานที่เกี่ยวข้อง”. **Answer:** มีวันเวลา/ลำดับครบ ถูกต้องและตรวจสอบได้
+
 ### 55. SO4.2-P2-01
 
 - **Standard:** SO4.2
@@ -1876,12 +1914,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — หลักฐานอดีตและปัจจุบัน:** ชุดหลักฐานอดีต-ปัจจุบัน: ภาพ/คำบอกเล่าที่ระบุแหล่งและช่วงเวลาเกี่ยวกับการเดินทาง การสื่อสาร สิ่งของหรือชุมชน อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “สืบค้นถึงการเปลี่ยนแปลงในวิถีชีวิตประจำวันของคนในชุมชนของตนจากอดีตถึงปัจจุบัน”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “สืบค้นถึงการเปลี่ยนแปลงในวิถีชีวิตประจำวันของคนในชุมชนของตนจากอดีตถึงปัจจุบัน”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “สืบค้นถึงการเปลี่ยนแปลงในวิถีชีวิตประจำวันของคนในชุมชนของตนจากอดีตถึงปัจจุบัน”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** ระบุการเปลี่ยนแปลง/เหตุการณ์และหลักฐานจากชุดข้อมูล This assesses: “สืบค้นถึงการเปลี่ยนแปลงในวิถีชีวิตประจำวันของคนในชุมชนของตนจากอดีตถึงปัจจุบัน”. **Answer:** ชี้รายละเอียดที่เห็นหรืออ่านได้จริง พร้อมระบุแหล่งและช่วงเวลา
+2. **Explain / compare:** อธิบายผลของการเปลี่ยนแปลง/เหตุการณ์ต่อชีวิตปัจจุบันโดยอ้างหลักฐาน This assesses: “สืบค้นถึงการเปลี่ยนแปลงในวิถีชีวิตประจำวันของคนในชุมชนของตนจากอดีตถึงปัจจุบัน”. **Answer:** เชื่อมโยงเหตุและผลตามข้อมูล ไม่แต่งวันที่หรือสาเหตุ
+3. **Apply / demonstrate:** ทำตารางอดีต/ปัจจุบันหรือแผนภาพเหตุการณ์→ผล พร้อมแหล่งข้อมูล This assesses: “สืบค้นถึงการเปลี่ยนแปลงในวิถีชีวิตประจำวันของคนในชุมชนของตนจากอดีตถึงปัจจุบัน”. **Answer:** ข้อมูลสองช่วงเวลาเปรียบเทียบได้และมีหลักฐานรองรับ
+
 ### 56. SO4.2-P2-02
 
 - **Standard:** SO4.2
@@ -1910,12 +1949,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — หลักฐานอดีตและปัจจุบัน:** ชุดหลักฐานอดีต-ปัจจุบัน: ภาพ/คำบอกเล่าที่ระบุแหล่งและช่วงเวลาเกี่ยวกับการเดินทาง การสื่อสาร สิ่งของหรือชุมชน อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “อธิบายผลกระทบของการเปลี่ยนแปลงที่มีต่อวิถีชีวิตของคนในชุมชน”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “อธิบายผลกระทบของการเปลี่ยนแปลงที่มีต่อวิถีชีวิตของคนในชุมชน”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “อธิบายผลกระทบของการเปลี่ยนแปลงที่มีต่อวิถีชีวิตของคนในชุมชน”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** ระบุการเปลี่ยนแปลง/เหตุการณ์และหลักฐานจากชุดข้อมูล This assesses: “อธิบายผลกระทบของการเปลี่ยนแปลงที่มีต่อวิถีชีวิตของคนในชุมชน”. **Answer:** ชี้รายละเอียดที่เห็นหรืออ่านได้จริง พร้อมระบุแหล่งและช่วงเวลา
+2. **Explain / compare:** อธิบายผลของการเปลี่ยนแปลง/เหตุการณ์ต่อชีวิตปัจจุบันโดยอ้างหลักฐาน This assesses: “อธิบายผลกระทบของการเปลี่ยนแปลงที่มีต่อวิถีชีวิตของคนในชุมชน”. **Answer:** เชื่อมโยงเหตุและผลตามข้อมูล ไม่แต่งวันที่หรือสาเหตุ
+3. **Apply / demonstrate:** ทำตารางอดีต/ปัจจุบันหรือแผนภาพเหตุการณ์→ผล พร้อมแหล่งข้อมูล This assesses: “อธิบายผลกระทบของการเปลี่ยนแปลงที่มีต่อวิถีชีวิตของคนในชุมชน”. **Answer:** ข้อมูลสองช่วงเวลาเปรียบเทียบได้และมีหลักฐานรองรับ
+
 ### 57. SO4.3-P2-01
 
 - **Standard:** SO4.3
@@ -1944,12 +1984,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — ความดีและผลงาน:** บัตรหลักฐาน: บุคคลช่วยเพื่อนอ่านหนังสือ/จัดอุปกรณ์/ดูแลผู้สูงอายุ พร้อมผลที่เกิดขึ้นจริง อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “ระบุบุคคลที่ทำประโยชน์ต่อท้องถิ่นหรือประเทศชาติ”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “ระบุบุคคลที่ทำประโยชน์ต่อท้องถิ่นหรือประเทศชาติ”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “ระบุบุคคลที่ทำประโยชน์ต่อท้องถิ่นหรือประเทศชาติ”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** ระบุความสามารถหรือความดีและการกระทำเฉพาะจากบัตร This assesses: “ระบุบุคคลที่ทำประโยชน์ต่อท้องถิ่นหรือประเทศชาติ”. **Answer:** ระบุคนและการกระทำที่มีหลักฐาน ไม่ใช้คำชมลอย ๆ
+2. **Explain / compare:** อธิบายผลจากการกระทำนั้นต่อผู้รับประโยชน์หรือส่วนรวม This assesses: “ระบุบุคคลที่ทำประโยชน์ต่อท้องถิ่นหรือประเทศชาติ”. **Answer:** ผลต้องสอดคล้องกับเหตุการณ์ในบัตร
+3. **Apply / demonstrate:** ยกตัวอย่างการใช้ความสามารถช่วยงานบ้าน/โรงเรียนและบอกผลที่คาด This assesses: “ระบุบุคคลที่ทำประโยชน์ต่อท้องถิ่นหรือประเทศชาติ”. **Answer:** การกระทำทำได้จริง ระบุผู้ได้ประโยชน์และผลที่สมเหตุสมผล
+
 ### 58. SO4.3-P2-02
 
 - **Standard:** SO4.3
@@ -1978,12 +2019,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — มรดกและวัฒนธรรมชุมชน:** บัตรแหล่งวัฒนธรรมชุมชน: สถานที่/ประเพณี/ภูมิปัญญาหนึ่งอย่าง ระบุชื่อ ผู้เกี่ยวข้อง จุดประสงค์และแหล่งข้อมูล อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “ยกตัวอย่างวัฒนธรรม ประเพณีและภูมิปัญญาไทยที่ภาคภูมิใจและควรอนุรักษ์ไว้”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “ยกตัวอย่างวัฒนธรรม ประเพณีและภูมิปัญญาไทยที่ภาคภูมิใจและควรอนุรักษ์ไว้”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “ยกตัวอย่างวัฒนธรรม ประเพณีและภูมิปัญญาไทยที่ภาคภูมิใจและควรอนุรักษ์ไว้”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** ระบุองค์ประกอบหรือสถานที่และประเภทตามบัตร This assesses: “ยกตัวอย่างวัฒนธรรม ประเพณีและภูมิปัญญาไทยที่ภาคภูมิใจและควรอนุรักษ์ไว้”. **Answer:** ตอบตรงกับข้อมูลที่ให้
+2. **Explain / compare:** อธิบายคุณค่าหรือความสำคัญต่อชุมชนโดยอ้างหลักฐาน This assesses: “ยกตัวอย่างวัฒนธรรม ประเพณีและภูมิปัญญาไทยที่ภาคภูมิใจและควรอนุรักษ์ไว้”. **Answer:** เชื่อมโยงกับประวัติ ความทรงจำ การใช้ประโยชน์หรืออัตลักษณ์ตามข้อมูล
+3. **Apply / demonstrate:** เสนอวิธีอนุรักษ์หรือเรียนรู้อย่างเคารพผู้ถือปฏิบัติ This assesses: “ยกตัวอย่างวัฒนธรรม ประเพณีและภูมิปัญญาไทยที่ภาคภูมิใจและควรอนุรักษ์ไว้”. **Answer:** ข้อเสนอทำได้จริง ไม่บิดเบือนความหมายและไม่เหมารวม
+
 ### 59. SO5.1-P2-01
 
 - **Standard:** SO5.1
@@ -2012,12 +2054,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community geography field card:** Use a simple north-arrow sketch of the school area. Mark the classroom, gate, playground and one nearby natural feature. Add a short observation record (time, weather or visible environmental condition) relevant to this indicator. If the lesson concerns change or pollution, add a dated before/now photograph pair or a teacher-verified local example.
+**Assessment stimulus — สิ่งแวดล้อมธรรมชาติ:** บัตรสิ่งแวดล้อมธรรมชาติ: แม่น้ำ ภูเขา ฝน แสงแดดและพื้นที่ราบ พร้อมข้อมูลผลต่อการดำรงชีวิต อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the field card, sketch or observation record. Identify the location, direction, physical feature, weather condition, resource or environmental change that directly answers “ระบุสิ่งแวดล้อมทางธรรมชาติและที่มนุษย์สร้างขึ้น ซึ่งปรากฏระหว่างบ้านกับโรงเรียน”. Point to the map/photo/data as evidence. **Answer:** The answer identifies the correct feature or condition and refers to the correct map position, direction, photograph or observation. Direction must agree with the north arrow; claims about change must match the dated evidence.
-2. **Explain / compare:** Compare two marked places, observations or time points in the field card. Explain one spatial relationship, difference or effect relevant to “ระบุสิ่งแวดล้อมทางธรรมชาติและที่มนุษย์สร้างขึ้น ซึ่งปรากฏระหว่างบ้านกับโรงเรียน”. **Answer:** The comparison names both items and gives one accurate relationship/difference/effect supported by the field card. Accept different examples if map direction and evidence are correct.
-3. **Apply / demonstrate:** Propose and sketch or describe one safe action at the marked school/community location that demonstrates “ระบุสิ่งแวดล้อมทางธรรมชาติและที่มนุษย์สร้างขึ้น ซึ่งปรากฏระหว่างบ้านกับโรงเรียน”. Explain what evidence would show that the action helped. **Answer:** The action is practical for the named location, addresses the indicator, is safe for children and includes an observable success measure (for example, cleaner area, correct route/map, recorded observation or reduced waste).
+1. **Recall / evidence:** ระบุสิ่งแวดล้อมธรรมชาติและผลต่อมนุษย์ตามบัตร This assesses: “ระบุสิ่งแวดล้อมทางธรรมชาติและที่มนุษย์สร้างขึ้น ซึ่งปรากฏระหว่างบ้านกับโรงเรียน”. **Answer:** คำตอบยกตัวอย่างจากบัตรและระบุผลที่สัมพันธ์กัน
+2. **Explain / compare:** อธิบายความสัมพันธ์กับความต้องการพื้นฐาน/กิจกรรม/อาชีพ This assesses: “ระบุสิ่งแวดล้อมทางธรรมชาติและที่มนุษย์สร้างขึ้น ซึ่งปรากฏระหว่างบ้านกับโรงเรียน”. **Answer:** เชื่อมโยงน้ำ อาหาร ที่อยู่อาศัย การเดินทางหรือความปลอดภัยตามหลักฐาน
+3. **Apply / demonstrate:** เสนอวิธีปรับตัวหรือใช้ประโยชน์อย่างรับผิดชอบ This assesses: “ระบุสิ่งแวดล้อมทางธรรมชาติและที่มนุษย์สร้างขึ้น ซึ่งปรากฏระหว่างบ้านกับโรงเรียน”. **Answer:** ข้อเสนอเหมาะกับสภาพแวดล้อมและคำนึงถึงความปลอดภัย
+
 ### 60. SO5.1-P2-02
 
 - **Standard:** SO5.1
@@ -2046,12 +2089,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community geography field card:** Use a simple north-arrow sketch of the school area. Mark the classroom, gate, playground and one nearby natural feature. Add a short observation record (time, weather or visible environmental condition) relevant to this indicator. If the lesson concerns change or pollution, add a dated before/now photograph pair or a teacher-verified local example.
+**Assessment stimulus — โลก ดวงอาทิตย์และดวงจันทร์:** แบบจำลองโลก-ดวงอาทิตย์-ดวงจันทร์: ใช้ลูกบอล/ภาพตำแหน่งและระบุปรากฏการณ์ที่ต้องอธิบาย อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the field card, sketch or observation record. Identify the location, direction, physical feature, weather condition, resource or environmental change that directly answers “ระบุตำแหน่งและลักษณะทางกายภาพของสิ่งต่าง ๆ ที่ปรากฏในแผนผัง แผนที่ รูปถ่าย และลูกโลก”. Point to the map/photo/data as evidence. **Answer:** The answer identifies the correct feature or condition and refers to the correct map position, direction, photograph or observation. Direction must agree with the north arrow; claims about change must match the dated evidence.
-2. **Explain / compare:** Compare two marked places, observations or time points in the field card. Explain one spatial relationship, difference or effect relevant to “ระบุตำแหน่งและลักษณะทางกายภาพของสิ่งต่าง ๆ ที่ปรากฏในแผนผัง แผนที่ รูปถ่าย และลูกโลก”. **Answer:** The comparison names both items and gives one accurate relationship/difference/effect supported by the field card. Accept different examples if map direction and evidence are correct.
-3. **Apply / demonstrate:** Propose and sketch or describe one safe action at the marked school/community location that demonstrates “ระบุตำแหน่งและลักษณะทางกายภาพของสิ่งต่าง ๆ ที่ปรากฏในแผนผัง แผนที่ รูปถ่าย และลูกโลก”. Explain what evidence would show that the action helped. **Answer:** The action is practical for the named location, addresses the indicator, is safe for children and includes an observable success measure (for example, cleaner area, correct route/map, recorded observation or reduced waste).
+1. **Recall / evidence:** ระบุวัตถุท้องฟ้าและตำแหน่งสัมพันธ์ตามแบบจำลอง This assesses: “ระบุตำแหน่งและลักษณะทางกายภาพของสิ่งต่าง ๆ ที่ปรากฏในแผนผัง แผนที่ รูปถ่าย และลูกโลก”. **Answer:** ระบุโลก ดวงอาทิตย์และดวงจันทร์ถูกต้อง
+2. **Explain / compare:** อธิบายความสัมพันธ์ของตำแหน่ง/การเคลื่อนที่ที่ทำให้เกิดปรากฏการณ์ที่ระบุ This assesses: “ระบุตำแหน่งและลักษณะทางกายภาพของสิ่งต่าง ๆ ที่ปรากฏในแผนผัง แผนที่ รูปถ่าย และลูกโลก”. **Answer:** คำอธิบายตรงกับแบบจำลองและหลักวิทยาศาสตร์ที่สอน
+3. **Apply / demonstrate:** ใช้แบบจำลองแสดงปรากฏการณ์และอธิบายส่วนที่แทนวัตถุแต่ละชนิด This assesses: “ระบุตำแหน่งและลักษณะทางกายภาพของสิ่งต่าง ๆ ที่ปรากฏในแผนผัง แผนที่ รูปถ่าย และลูกโลก”. **Answer:** แบบจำลองสัมพันธ์ถูกต้อง ห้ามมองดวงอาทิตย์โดยตรง
+
 ### 61. SO5.1-P2-03
 
 - **Standard:** SO5.1
@@ -2080,12 +2124,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community geography field card:** Use a simple north-arrow sketch of the school area. Mark the classroom, gate, playground and one nearby natural feature. Add a short observation record (time, weather or visible environmental condition) relevant to this indicator. If the lesson concerns change or pollution, add a dated before/now photograph pair or a teacher-verified local example.
+**Assessment stimulus — โลก ดวงอาทิตย์และดวงจันทร์:** แบบจำลองโลก-ดวงอาทิตย์-ดวงจันทร์: ใช้ลูกบอล/ภาพตำแหน่งและระบุปรากฏการณ์ที่ต้องอธิบาย อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the field card, sketch or observation record. Identify the location, direction, physical feature, weather condition, resource or environmental change that directly answers “สังเกตและแสดงความสัมพันธ์ระหว่างโลก ดวงอาทิตย์และดวงจันทร์ที่ทำให้เกิดปรากฏการณ์”. Point to the map/photo/data as evidence. **Answer:** The answer identifies the correct feature or condition and refers to the correct map position, direction, photograph or observation. Direction must agree with the north arrow; claims about change must match the dated evidence.
-2. **Explain / compare:** Compare two marked places, observations or time points in the field card. Explain one spatial relationship, difference or effect relevant to “สังเกตและแสดงความสัมพันธ์ระหว่างโลก ดวงอาทิตย์และดวงจันทร์ที่ทำให้เกิดปรากฏการณ์”. **Answer:** The comparison names both items and gives one accurate relationship/difference/effect supported by the field card. Accept different examples if map direction and evidence are correct.
-3. **Apply / demonstrate:** Use a safe teacher-led model or diagram to show the relative positions/movement of Earth, Sun and Moon for the phenomenon being taught; narrate what is moving relative to what. This task assesses: “สังเกตและแสดงความสัมพันธ์ระหว่างโลก ดวงอาทิตย์และดวงจันทร์ที่ทำให้เกิดปรากฏการณ์”. **Answer:** Model demonstrates the scientifically correct relationship for the named phenomenon; never ask learners to look directly at the Sun.
+1. **Recall / evidence:** ระบุวัตถุท้องฟ้าและตำแหน่งสัมพันธ์ตามแบบจำลอง This assesses: “สังเกตและแสดงความสัมพันธ์ระหว่างโลก ดวงอาทิตย์และดวงจันทร์ที่ทำให้เกิดปรากฏการณ์”. **Answer:** ระบุโลก ดวงอาทิตย์และดวงจันทร์ถูกต้อง
+2. **Explain / compare:** อธิบายความสัมพันธ์ของตำแหน่ง/การเคลื่อนที่ที่ทำให้เกิดปรากฏการณ์ที่ระบุ This assesses: “สังเกตและแสดงความสัมพันธ์ระหว่างโลก ดวงอาทิตย์และดวงจันทร์ที่ทำให้เกิดปรากฏการณ์”. **Answer:** คำอธิบายตรงกับแบบจำลองและหลักวิทยาศาสตร์ที่สอน
+3. **Apply / demonstrate:** ใช้แบบจำลองแสดงปรากฏการณ์และอธิบายส่วนที่แทนวัตถุแต่ละชนิด This assesses: “สังเกตและแสดงความสัมพันธ์ระหว่างโลก ดวงอาทิตย์และดวงจันทร์ที่ทำให้เกิดปรากฏการณ์”. **Answer:** แบบจำลองสัมพันธ์ถูกต้อง ห้ามมองดวงอาทิตย์โดยตรง
+
 ### 62. SO5.2-P2-01
 
 - **Standard:** SO5.2
@@ -2114,12 +2159,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community geography field card:** Use a simple north-arrow sketch of the school area. Mark the classroom, gate, playground and one nearby natural feature. Add a short observation record (time, weather or visible environmental condition) relevant to this indicator. If the lesson concerns change or pollution, add a dated before/now photograph pair or a teacher-verified local example.
+**Assessment stimulus — สิ่งแวดล้อมธรรมชาติ:** บัตรสิ่งแวดล้อมธรรมชาติ: แม่น้ำ ภูเขา ฝน แสงแดดและพื้นที่ราบ พร้อมข้อมูลผลต่อการดำรงชีวิต อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the field card, sketch or observation record. Identify the location, direction, physical feature, weather condition, resource or environmental change that directly answers “อธิบายความสำคัญของสิ่งแวดล้อมทางธรรมชาติและที่มนุษย์สร้างขึ้น”. Point to the map/photo/data as evidence. **Answer:** The answer identifies the correct feature or condition and refers to the correct map position, direction, photograph or observation. Direction must agree with the north arrow; claims about change must match the dated evidence.
-2. **Explain / compare:** Compare two marked places, observations or time points in the field card. Explain one spatial relationship, difference or effect relevant to “อธิบายความสำคัญของสิ่งแวดล้อมทางธรรมชาติและที่มนุษย์สร้างขึ้น”. **Answer:** The comparison names both items and gives one accurate relationship/difference/effect supported by the field card. Accept different examples if map direction and evidence are correct.
-3. **Apply / demonstrate:** Propose and sketch or describe one safe action at the marked school/community location that demonstrates “อธิบายความสำคัญของสิ่งแวดล้อมทางธรรมชาติและที่มนุษย์สร้างขึ้น”. Explain what evidence would show that the action helped. **Answer:** The action is practical for the named location, addresses the indicator, is safe for children and includes an observable success measure (for example, cleaner area, correct route/map, recorded observation or reduced waste).
+1. **Recall / evidence:** ระบุสิ่งแวดล้อมธรรมชาติและผลต่อมนุษย์ตามบัตร This assesses: “อธิบายความสำคัญของสิ่งแวดล้อมทางธรรมชาติและที่มนุษย์สร้างขึ้น”. **Answer:** คำตอบยกตัวอย่างจากบัตรและระบุผลที่สัมพันธ์กัน
+2. **Explain / compare:** อธิบายความสัมพันธ์กับความต้องการพื้นฐาน/กิจกรรม/อาชีพ This assesses: “อธิบายความสำคัญของสิ่งแวดล้อมทางธรรมชาติและที่มนุษย์สร้างขึ้น”. **Answer:** เชื่อมโยงน้ำ อาหาร ที่อยู่อาศัย การเดินทางหรือความปลอดภัยตามหลักฐาน
+3. **Apply / demonstrate:** เสนอวิธีปรับตัวหรือใช้ประโยชน์อย่างรับผิดชอบ This assesses: “อธิบายความสำคัญของสิ่งแวดล้อมทางธรรมชาติและที่มนุษย์สร้างขึ้น”. **Answer:** ข้อเสนอเหมาะกับสภาพแวดล้อมและคำนึงถึงความปลอดภัย
+
 ### 63. SO5.2-P2-02
 
 - **Standard:** SO5.2
@@ -2148,12 +2194,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community geography field card:** Use a simple north-arrow sketch of the school area. Mark the classroom, gate, playground and one nearby natural feature. Add a short observation record (time, weather or visible environmental condition) relevant to this indicator. If the lesson concerns change or pollution, add a dated before/now photograph pair or a teacher-verified local example.
+**Assessment stimulus — ทรัพยากรธรรมชาติ:** บัตรทรัพยากร: แสงอาทิตย์ ลม น้ำ ป่าไม้และแร่ พร้อมข้อมูลการเกิดทดแทนและการใช้ อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the field card, sketch or observation record. Identify the location, direction, physical feature, weather condition, resource or environmental change that directly answers “จำแนกและใช้ทรัพยากรธรรมชาติที่ใช้แล้วไม่หมดไป ที่ใช้แล้วหมดไป และสร้างทดแทนขึ้นใหม่ได้อย่างคุ้มค่า”. Point to the map/photo/data as evidence. **Answer:** The answer identifies the correct feature or condition and refers to the correct map position, direction, photograph or observation. Direction must agree with the north arrow; claims about change must match the dated evidence.
-2. **Explain / compare:** Compare two marked places, observations or time points in the field card. Explain one spatial relationship, difference or effect relevant to “จำแนกและใช้ทรัพยากรธรรมชาติที่ใช้แล้วไม่หมดไป ที่ใช้แล้วหมดไป และสร้างทดแทนขึ้นใหม่ได้อย่างคุ้มค่า”. **Answer:** The comparison names both items and gives one accurate relationship/difference/effect supported by the field card. Accept different examples if map direction and evidence are correct.
-3. **Apply / demonstrate:** Propose and sketch or describe one safe action at the marked school/community location that demonstrates “จำแนกและใช้ทรัพยากรธรรมชาติที่ใช้แล้วไม่หมดไป ที่ใช้แล้วหมดไป และสร้างทดแทนขึ้นใหม่ได้อย่างคุ้มค่า”. Explain what evidence would show that the action helped. **Answer:** The action is practical for the named location, addresses the indicator, is safe for children and includes an observable success measure (for example, cleaner area, correct route/map, recorded observation or reduced waste).
+1. **Recall / evidence:** จำแนกทรัพยากรตามประเภทที่ตัวชี้วัดระบุ This assesses: “จำแนกและใช้ทรัพยากรธรรมชาติที่ใช้แล้วไม่หมดไป ที่ใช้แล้วหมดไป และสร้างทดแทนขึ้นใหม่ได้อย่างคุ้มค่า”. **Answer:** จำแนกตามข้อมูลเรื่องการเกิดทดแทน/ใช้แล้วหมดไป ไม่เหมารวมว่าน้ำหรือป่าไม่มีวันหมด
+2. **Explain / compare:** อธิบายวิธีใช้ทรัพยากรอย่างคุ้มค่าและผลหากใช้เกินขีดจำกัด This assesses: “จำแนกและใช้ทรัพยากรธรรมชาติที่ใช้แล้วไม่หมดไป ที่ใช้แล้วหมดไป และสร้างทดแทนขึ้นใหม่ได้อย่างคุ้มค่า”. **Answer:** อธิบายการฟื้นตัว/การหมดไปตามชนิดทรัพยากร
+3. **Apply / demonstrate:** จัดทำแผนใช้ทรัพยากรหนึ่งชนิดในโรงเรียนพร้อมตัวชี้วัด This assesses: “จำแนกและใช้ทรัพยากรธรรมชาติที่ใช้แล้วไม่หมดไป ที่ใช้แล้วหมดไป และสร้างทดแทนขึ้นใหม่ได้อย่างคุ้มค่า”. **Answer:** มีวิธีปฏิบัติและตัวชี้วัดที่ตรวจสอบได้
+
 ### 64. SO5.2-P2-03
 
 - **Standard:** SO5.2
@@ -2182,12 +2229,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community geography field card:** Use a simple north-arrow sketch of the school area. Mark the classroom, gate, playground and one nearby natural feature. Add a short observation record (time, weather or visible environmental condition) relevant to this indicator. If the lesson concerns change or pollution, add a dated before/now photograph pair or a teacher-verified local example.
+**Assessment stimulus — อากาศและฤดูกาล:** บัตรข้อมูลอากาศ: ตารางเช้า-กลางวัน-เย็นหรือข้อมูลฤดูกาล ระบุเมฆ ฝน ลม อุณหภูมิและวันที่สังเกต อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the field card, sketch or observation record. Identify the location, direction, physical feature, weather condition, resource or environmental change that directly answers “อธิบายความสัมพันธ์ระหว่างฤดูกาล กับการดำเนินชีวิตของมนุษย์”. Point to the map/photo/data as evidence. **Answer:** The answer identifies the correct feature or condition and refers to the correct map position, direction, photograph or observation. Direction must agree with the north arrow; claims about change must match the dated evidence.
-2. **Explain / compare:** Compare two marked places, observations or time points in the field card. Explain one spatial relationship, difference or effect relevant to “อธิบายความสัมพันธ์ระหว่างฤดูกาล กับการดำเนินชีวิตของมนุษย์”. **Answer:** The comparison names both items and gives one accurate relationship/difference/effect supported by the field card. Accept different examples if map direction and evidence are correct.
-3. **Apply / demonstrate:** Propose and sketch or describe one safe action at the marked school/community location that demonstrates “อธิบายความสัมพันธ์ระหว่างฤดูกาล กับการดำเนินชีวิตของมนุษย์”. Explain what evidence would show that the action helped. **Answer:** The action is practical for the named location, addresses the indicator, is safe for children and includes an observable success measure (for example, cleaner area, correct route/map, recorded observation or reduced waste).
+1. **Recall / evidence:** อ่านและระบุสภาพอากาศ/ฤดูกาลจากข้อมูล This assesses: “อธิบายความสัมพันธ์ระหว่างฤดูกาล กับการดำเนินชีวิตของมนุษย์”. **Answer:** ตอบตรงกับบันทึก ไม่อนุมานเกินข้อมูล
+2. **Explain / compare:** เปรียบเทียบสองเวลา/ฤดูกาลและอธิบายผลต่อกิจกรรมหรือการดำเนินชีวิต This assesses: “อธิบายความสัมพันธ์ระหว่างฤดูกาล กับการดำเนินชีวิตของมนุษย์”. **Answer:** ยกผลที่สมเหตุสมผลและเชื่อมกับข้อมูลอากาศ
+3. **Apply / demonstrate:** เลือกการเตรียมตัว/กิจกรรมให้เหมาะกับสภาพอากาศและอธิบายเหตุผล This assesses: “อธิบายความสัมพันธ์ระหว่างฤดูกาล กับการดำเนินชีวิตของมนุษย์”. **Answer:** ข้อเสนอปลอดภัยและสัมพันธ์กับข้อมูล
+
 ### 65. SO5.2-P2-04
 
 - **Standard:** SO5.2
@@ -2216,12 +2264,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community geography field card:** Use a simple north-arrow sketch of the school area. Mark the classroom, gate, playground and one nearby natural feature. Add a short observation record (time, weather or visible environmental condition) relevant to this indicator. If the lesson concerns change or pollution, add a dated before/now photograph pair or a teacher-verified local example.
+**Assessment stimulus — การจัดการสิ่งแวดล้อม:** บัตรแผนดูแลสิ่งแวดล้อม: จุดปัญหา บทบาทผู้ร่วมกิจกรรม อุปกรณ์ปลอดภัยและวิธีบันทึกผลก่อน/หลัง อ่านบัตรแล้วตอบเป็นประโยคสั้น
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the field card, sketch or observation record. Identify the location, direction, physical feature, weather condition, resource or environmental change that directly answers “มีส่วนร่วมในการจัดการสิ่งแวดล้อมในโรงเรียน”. Point to the map/photo/data as evidence. **Answer:** The answer identifies the correct feature or condition and refers to the correct map position, direction, photograph or observation. Direction must agree with the north arrow; claims about change must match the dated evidence.
-2. **Explain / compare:** Compare two marked places, observations or time points in the field card. Explain one spatial relationship, difference or effect relevant to “มีส่วนร่วมในการจัดการสิ่งแวดล้อมในโรงเรียน”. **Answer:** The comparison names both items and gives one accurate relationship/difference/effect supported by the field card. Accept different examples if map direction and evidence are correct.
-3. **Apply / demonstrate:** Join a supervised school environmental action, complete an assigned role and record one before/after indicator (for example, litter count in a defined area). This task assesses: “มีส่วนร่วมในการจัดการสิ่งแวดล้อมในโรงเรียน”. **Answer:** Learner completes a safe role and records a comparable measure; the class uses the same area and method before and after.
+1. **Recall / evidence:** ระบุปัญหา จุดดำเนินงานและบทบาทของตนจากแผน This assesses: “มีส่วนร่วมในการจัดการสิ่งแวดล้อมในโรงเรียน”. **Answer:** ตอบตรงกับแผนและขอบเขตหน้าที่
+2. **Explain / compare:** อธิบายว่าการร่วมมือและการวัดผลช่วยแก้ปัญหาอย่างไร This assesses: “มีส่วนร่วมในการจัดการสิ่งแวดล้อมในโรงเรียน”. **Answer:** เชื่อมโยงบทบาทกับผลที่ตรวจสอบได้
+3. **Apply / demonstrate:** ร่วมกิจกรรมที่ได้รับอนุญาตหรือจำลองบทบาท พร้อมบันทึกผลก่อน/หลัง This assesses: “มีส่วนร่วมในการจัดการสิ่งแวดล้อมในโรงเรียน”. **Answer:** มีหลักฐานการมีส่วนร่วมและผลที่สังเกตได้ ห้ามจัดการขยะอันตรายหรืองานนอกการดูแล
+
 ### 66. SO1.1-P3-01
 
 - **Standard:** SO1.1
@@ -2590,12 +2639,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community case card:** A class has 4 shared storybooks, 6 learners who want to read, and one classroom rule: return a book before another learner borrows it. The teacher adds one short case detail matched to the indicator (family role, classroom duty, community decision, cultural practice, rights or public holiday).
+**Assessment stimulus — ความหลากหลายทางวัฒนธรรม:** บัตรตัวอย่างวัฒนธรรม: เรื่องการทักทาย อาหาร งานประเพณีหรือความเชื่อของบุคคล/ชุมชนสองกลุ่ม พร้อมที่มาของข้อมูล อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Read the case card. Identify the person, group, right, duty, rule, custom or decision-making step that is directly relevant to “สรุปประโยชน์และปฏิบัติตนตามประเพณีและวัฒนธรรมในครอบครัวและท้องถิ่น”. Give one detail from the case as evidence. **Answer:** Identify the relevant person/group/concept or step and cite the matching detail in the case. The response must fit the exact indicator, not merely repeat a general classroom rule.
-2. **Explain / compare:** Explain what would happen in this case if the relevant role, right, duty, custom or decision process in “สรุปประโยชน์และปฏิบัติตนตามประเพณีและวัฒนธรรมในครอบครัวและท้องถิ่น” were followed. Include one effect on another person or the community. **Answer:** State a plausible effect that follows from the case and correctly explains the indicator concept. Credit a clear cause-and-effect link and a relevant effect on others.
-3. **Apply / demonstrate:** Demonstrate one appropriate way to take part in, learn about or support a locally verified family/community tradition; explain its benefit using the source or community guidance. This task assesses: “สรุปประโยชน์และปฏิบัติตนตามประเพณีและวัฒนธรรมในครอบครัวและท้องถิ่น”. **Answer:** Observed or simulated participation is respectful, voluntary and consistent with the local source; accept different family practices.
+1. **Recall / evidence:** ระบุการปฏิบัติหรือความแตกต่างทางวัฒนธรรมตามหลักฐาน This assesses: “สรุปประโยชน์และปฏิบัติตนตามประเพณีและวัฒนธรรมในครอบครัวและท้องถิ่น”. **Answer:** ตอบตรงกับข้อมูลและระบุว่าตัวอย่างไม่จำเป็นต้องแทนสมาชิกทุกคนในกลุ่ม
+2. **Explain / compare:** อธิบายว่าควรปฏิบัติต่อความแตกต่างอย่างไรและเพราะเหตุใด This assesses: “สรุปประโยชน์และปฏิบัติตนตามประเพณีและวัฒนธรรมในครอบครัวและท้องถิ่น”. **Answer:** ให้เหตุผลเรื่องการเคารพ ไม่ล้อเลียน ไม่เหมารวม และอยู่ร่วมกันได้
+3. **Apply / demonstrate:** เสนอวิธีเรียนรู้หรือร่วมกิจกรรมกับผู้มีวัฒนธรรมต่างกัน This assesses: “สรุปประโยชน์และปฏิบัติตนตามประเพณีและวัฒนธรรมในครอบครัวและท้องถิ่น”. **Answer:** วิธีสุภาพ สมัครใจ ขออนุญาตเมื่อเหมาะสม และไม่บังคับให้ละทิ้งความเชื่อ
+
 ### 77. SO2.1-P3-02
 
 - **Standard:** SO2.1
@@ -2624,12 +2674,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community case card:** A class has 4 shared storybooks, 6 learners who want to read, and one classroom rule: return a book before another learner borrows it. The teacher adds one short case detail matched to the indicator (family role, classroom duty, community decision, cultural practice, rights or public holiday).
+**Assessment stimulus — ความหลากหลายทางวัฒนธรรม:** บัตรตัวอย่างวัฒนธรรม: เรื่องการทักทาย อาหาร งานประเพณีหรือความเชื่อของบุคคล/ชุมชนสองกลุ่ม พร้อมที่มาของข้อมูล อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Read the case card. Identify the person, group, right, duty, rule, custom or decision-making step that is directly relevant to “บอกพฤติกรรมการดำเนินชีวิตของตนเองและผู้อื่นที่อยู่ในกระแสวัฒนธรรมที่หลากหลาย”. Give one detail from the case as evidence. **Answer:** Identify the relevant person/group/concept or step and cite the matching detail in the case. The response must fit the exact indicator, not merely repeat a general classroom rule.
-2. **Explain / compare:** Explain what would happen in this case if the relevant role, right, duty, custom or decision process in “บอกพฤติกรรมการดำเนินชีวิตของตนเองและผู้อื่นที่อยู่ในกระแสวัฒนธรรมที่หลากหลาย” were followed. Include one effect on another person or the community. **Answer:** State a plausible effect that follows from the case and correctly explains the indicator concept. Credit a clear cause-and-effect link and a relevant effect on others.
-3. **Apply / demonstrate:** The class must choose a fair action for the case. Propose one action, name who should take part or be responsible, and justify it using “บอกพฤติกรรมการดำเนินชีวิตของตนเองและผู้อื่นที่อยู่ในกระแสวัฒนธรรมที่หลากหลาย”. **Answer:** The proposal is practical, respects the relevant rights/duties/customs or decision process, identifies the responsible participant(s), and gives a reason connected to the indicator. Accept alternative fair solutions with sound justification.
+1. **Recall / evidence:** ระบุการปฏิบัติหรือความแตกต่างทางวัฒนธรรมตามหลักฐาน This assesses: “บอกพฤติกรรมการดำเนินชีวิตของตนเองและผู้อื่นที่อยู่ในกระแสวัฒนธรรมที่หลากหลาย”. **Answer:** ตอบตรงกับข้อมูลและระบุว่าตัวอย่างไม่จำเป็นต้องแทนสมาชิกทุกคนในกลุ่ม
+2. **Explain / compare:** อธิบายว่าควรปฏิบัติต่อความแตกต่างอย่างไรและเพราะเหตุใด This assesses: “บอกพฤติกรรมการดำเนินชีวิตของตนเองและผู้อื่นที่อยู่ในกระแสวัฒนธรรมที่หลากหลาย”. **Answer:** ให้เหตุผลเรื่องการเคารพ ไม่ล้อเลียน ไม่เหมารวม และอยู่ร่วมกันได้
+3. **Apply / demonstrate:** เสนอวิธีเรียนรู้หรือร่วมกิจกรรมกับผู้มีวัฒนธรรมต่างกัน This assesses: “บอกพฤติกรรมการดำเนินชีวิตของตนเองและผู้อื่นที่อยู่ในกระแสวัฒนธรรมที่หลากหลาย”. **Answer:** วิธีสุภาพ สมัครใจ ขออนุญาตเมื่อเหมาะสม และไม่บังคับให้ละทิ้งความเชื่อ
+
 ### 78. SO2.1-P3-03
 
 - **Standard:** SO2.1
@@ -2658,12 +2709,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community case card:** A class has 4 shared storybooks, 6 learners who want to read, and one classroom rule: return a book before another learner borrows it. The teacher adds one short case detail matched to the indicator (family role, classroom duty, community decision, cultural practice, rights or public holiday).
+**Assessment stimulus — ความหลากหลายทางวัฒนธรรม:** บัตรตัวอย่างวัฒนธรรม: เรื่องการทักทาย อาหาร งานประเพณีหรือความเชื่อของบุคคล/ชุมชนสองกลุ่ม พร้อมที่มาของข้อมูล อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Read the case card. Identify the person, group, right, duty, rule, custom or decision-making step that is directly relevant to “อธิบายความสำคัญของวันหยุดราชการที่สำคัญ”. Give one detail from the case as evidence. **Answer:** Identify the relevant person/group/concept or step and cite the matching detail in the case. The response must fit the exact indicator, not merely repeat a general classroom rule.
-2. **Explain / compare:** Explain what would happen in this case if the relevant role, right, duty, custom or decision process in “อธิบายความสำคัญของวันหยุดราชการที่สำคัญ” were followed. Include one effect on another person or the community. **Answer:** State a plausible effect that follows from the case and correctly explains the indicator concept. Credit a clear cause-and-effect link and a relevant effect on others.
-3. **Apply / demonstrate:** The class must choose a fair action for the case. Propose one action, name who should take part or be responsible, and justify it using “อธิบายความสำคัญของวันหยุดราชการที่สำคัญ”. **Answer:** The proposal is practical, respects the relevant rights/duties/customs or decision process, identifies the responsible participant(s), and gives a reason connected to the indicator. Accept alternative fair solutions with sound justification.
+1. **Recall / evidence:** ระบุการปฏิบัติหรือความแตกต่างทางวัฒนธรรมตามหลักฐาน This assesses: “อธิบายความสำคัญของวันหยุดราชการที่สำคัญ”. **Answer:** ตอบตรงกับข้อมูลและระบุว่าตัวอย่างไม่จำเป็นต้องแทนสมาชิกทุกคนในกลุ่ม
+2. **Explain / compare:** อธิบายว่าควรปฏิบัติต่อความแตกต่างอย่างไรและเพราะเหตุใด This assesses: “อธิบายความสำคัญของวันหยุดราชการที่สำคัญ”. **Answer:** ให้เหตุผลเรื่องการเคารพ ไม่ล้อเลียน ไม่เหมารวม และอยู่ร่วมกันได้
+3. **Apply / demonstrate:** เสนอวิธีเรียนรู้หรือร่วมกิจกรรมกับผู้มีวัฒนธรรมต่างกัน This assesses: “อธิบายความสำคัญของวันหยุดราชการที่สำคัญ”. **Answer:** วิธีสุภาพ สมัครใจ ขออนุญาตเมื่อเหมาะสม และไม่บังคับให้ละทิ้งความเชื่อ
+
 ### 79. SO2.1-P3-04
 
 - **Standard:** SO2.1
@@ -2692,12 +2744,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community case card:** A class has 4 shared storybooks, 6 learners who want to read, and one classroom rule: return a book before another learner borrows it. The teacher adds one short case detail matched to the indicator (family role, classroom duty, community decision, cultural practice, rights or public holiday).
+**Assessment stimulus — ความดีและผลงาน:** บัตรหลักฐาน: บุคคลช่วยเพื่อนอ่านหนังสือ/จัดอุปกรณ์/ดูแลผู้สูงอายุ พร้อมผลที่เกิดขึ้นจริง อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Read the case card. Identify the person, group, right, duty, rule, custom or decision-making step that is directly relevant to “ยกตัวอย่างบุคคลซึ่งมีผลงานที่เป็นประโยชน์แก่ชุมชนและท้องถิ่นของตน”. Give one detail from the case as evidence. **Answer:** Identify the relevant person/group/concept or step and cite the matching detail in the case. The response must fit the exact indicator, not merely repeat a general classroom rule.
-2. **Explain / compare:** Explain what would happen in this case if the relevant role, right, duty, custom or decision process in “ยกตัวอย่างบุคคลซึ่งมีผลงานที่เป็นประโยชน์แก่ชุมชนและท้องถิ่นของตน” were followed. Include one effect on another person or the community. **Answer:** State a plausible effect that follows from the case and correctly explains the indicator concept. Credit a clear cause-and-effect link and a relevant effect on others.
-3. **Apply / demonstrate:** The class must choose a fair action for the case. Propose one action, name who should take part or be responsible, and justify it using “ยกตัวอย่างบุคคลซึ่งมีผลงานที่เป็นประโยชน์แก่ชุมชนและท้องถิ่นของตน”. **Answer:** The proposal is practical, respects the relevant rights/duties/customs or decision process, identifies the responsible participant(s), and gives a reason connected to the indicator. Accept alternative fair solutions with sound justification.
+1. **Recall / evidence:** ระบุความสามารถหรือความดีและการกระทำเฉพาะจากบัตร This assesses: “ยกตัวอย่างบุคคลซึ่งมีผลงานที่เป็นประโยชน์แก่ชุมชนและท้องถิ่นของตน”. **Answer:** ระบุคนและการกระทำที่มีหลักฐาน ไม่ใช้คำชมลอย ๆ
+2. **Explain / compare:** อธิบายผลจากการกระทำนั้นต่อผู้รับประโยชน์หรือส่วนรวม This assesses: “ยกตัวอย่างบุคคลซึ่งมีผลงานที่เป็นประโยชน์แก่ชุมชนและท้องถิ่นของตน”. **Answer:** ผลต้องสอดคล้องกับเหตุการณ์ในบัตร
+3. **Apply / demonstrate:** ยกตัวอย่างการใช้ความสามารถช่วยงานบ้าน/โรงเรียนและบอกผลที่คาด This assesses: “ยกตัวอย่างบุคคลซึ่งมีผลงานที่เป็นประโยชน์แก่ชุมชนและท้องถิ่นของตน”. **Answer:** การกระทำทำได้จริง ระบุผู้ได้ประโยชน์และผลที่สมเหตุสมผล
+
 ### 80. SO2.2-P3-01
 
 - **Standard:** SO2.2
@@ -2726,12 +2779,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community case card:** A class has 4 shared storybooks, 6 learners who want to read, and one classroom rule: return a book before another learner borrows it. The teacher adds one short case detail matched to the indicator (family role, classroom duty, community decision, cultural practice, rights or public holiday).
+**Assessment stimulus — ประชาธิปไตยและการตัดสินใจ:** บัตรกรณี: ห้องเรียนต้องเลือกวิธีแบ่งเวลาสนามกีฬา มีข้อเสนอ 2 แบบและขั้นตอนรับฟังความเห็น/ลงคะแนน/เลือกตัวแทนตามที่ระบุ อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Read the case card. Identify the person, group, right, duty, rule, custom or decision-making step that is directly relevant to “ระบุบทบาทหน้าที่ของสมาชิกของชุมชนในการมีส่วนร่วมในกิจกรรมต่าง ๆ ตามกระบวนการประชาธิปไตย”. Give one detail from the case as evidence. **Answer:** Identify the relevant person/group/concept or step and cite the matching detail in the case. The response must fit the exact indicator, not merely repeat a general classroom rule.
-2. **Explain / compare:** Explain what would happen in this case if the relevant role, right, duty, custom or decision process in “ระบุบทบาทหน้าที่ของสมาชิกของชุมชนในการมีส่วนร่วมในกิจกรรมต่าง ๆ ตามกระบวนการประชาธิปไตย” were followed. Include one effect on another person or the community. **Answer:** State a plausible effect that follows from the case and correctly explains the indicator concept. Credit a clear cause-and-effect link and a relevant effect on others.
-3. **Apply / demonstrate:** Take part in a simulated community activity by carrying out an age-appropriate role (for example, sharing information, recording views or helping tally a class poll); explain how the role supports participation. This task assesses: “ระบุบทบาทหน้าที่ของสมาชิกของชุมชนในการมีส่วนร่วมในกิจกรรมต่าง ๆ ตามกระบวนการประชาธิปไตย”. **Answer:** Learner performs a realistic, age-appropriate role and explains its contribution; do not assign children legally restricted adult responsibilities.
+1. **Recall / evidence:** ระบุผู้มีส่วนร่วมและขั้นตอนตัดสินใจที่ปรากฏในบัตร This assesses: “ระบุบทบาทหน้าที่ของสมาชิกของชุมชนในการมีส่วนร่วมในกิจกรรมต่าง ๆ ตามกระบวนการประชาธิปไตย”. **Answer:** ตอบตามขั้นตอนจริงในบัตร เช่น รับฟัง เสนอ ลงคะแนน นับคะแนน หรือมอบหมายตัวแทน
+2. **Explain / compare:** เปรียบเทียบการออกเสียงโดยตรงกับการเลือกตัวแทนโดยใช้กรณีนี้ This assesses: “ระบุบทบาทหน้าที่ของสมาชิกของชุมชนในการมีส่วนร่วมในกิจกรรมต่าง ๆ ตามกระบวนการประชาธิปไตย”. **Answer:** แบบตรงทุกคนออกเสียงเอง ส่วนแบบตัวแทนผู้ได้รับเลือกตัดสินใจ/ออกเสียงแทนกลุ่ม
+3. **Apply / demonstrate:** เสนอขั้นตอนตัดสินใจสำหรับกรณีใหม่โดยให้เหตุผลเรื่องความเป็นธรรม This assesses: “ระบุบทบาทหน้าที่ของสมาชิกของชุมชนในการมีส่วนร่วมในกิจกรรมต่าง ๆ ตามกระบวนการประชาธิปไตย”. **Answer:** มีการรับฟัง มีส่วนร่วม วิธีตัดสินใจโปร่งใส และเคารพผลที่ได้
+
 ### 81. SO2.2-P3-02
 
 - **Standard:** SO2.2
@@ -2760,12 +2814,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community case card:** A class has 4 shared storybooks, 6 learners who want to read, and one classroom rule: return a book before another learner borrows it. The teacher adds one short case detail matched to the indicator (family role, classroom duty, community decision, cultural practice, rights or public holiday).
+**Assessment stimulus — ประชาธิปไตยและการตัดสินใจ:** บัตรกรณี: ห้องเรียนต้องเลือกวิธีแบ่งเวลาสนามกีฬา มีข้อเสนอ 2 แบบและขั้นตอนรับฟังความเห็น/ลงคะแนน/เลือกตัวแทนตามที่ระบุ อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Read the case card. Identify the person, group, right, duty, rule, custom or decision-making step that is directly relevant to “วิเคราะห์ความแตกต่างของกระบวนการการตัดสินใจในชั้นเรียน โรงเรียนและชุมชน โดยวิธีการออกเสียงโดยตรงและการเลือกตัวแทนออกเสียง”. Give one detail from the case as evidence. **Answer:** Identify the relevant person/group/concept or step and cite the matching detail in the case. The response must fit the exact indicator, not merely repeat a general classroom rule.
-2. **Explain / compare:** Explain what would happen in this case if the relevant role, right, duty, custom or decision process in “วิเคราะห์ความแตกต่างของกระบวนการการตัดสินใจในชั้นเรียน โรงเรียนและชุมชน โดยวิธีการออกเสียงโดยตรงและการเลือกตัวแทนออกเสียง” were followed. Include one effect on another person or the community. **Answer:** State a plausible effect that follows from the case and correctly explains the indicator concept. Credit a clear cause-and-effect link and a relevant effect on others.
-3. **Apply / demonstrate:** The class must choose a fair action for the case. Propose one action, name who should take part or be responsible, and justify it using “วิเคราะห์ความแตกต่างของกระบวนการการตัดสินใจในชั้นเรียน โรงเรียนและชุมชน โดยวิธีการออกเสียงโดยตรงและการเลือกตัวแทนออกเสียง”. **Answer:** The proposal is practical, respects the relevant rights/duties/customs or decision process, identifies the responsible participant(s), and gives a reason connected to the indicator. Accept alternative fair solutions with sound justification.
+1. **Recall / evidence:** ระบุผู้มีส่วนร่วมและขั้นตอนตัดสินใจที่ปรากฏในบัตร This assesses: “วิเคราะห์ความแตกต่างของกระบวนการการตัดสินใจในชั้นเรียน โรงเรียนและชุมชน โดยวิธีการออกเสียงโดยตรงและการเลือกตัวแทนออกเสียง”. **Answer:** ตอบตามขั้นตอนจริงในบัตร เช่น รับฟัง เสนอ ลงคะแนน นับคะแนน หรือมอบหมายตัวแทน
+2. **Explain / compare:** เปรียบเทียบการออกเสียงโดยตรงกับการเลือกตัวแทนโดยใช้กรณีนี้ This assesses: “วิเคราะห์ความแตกต่างของกระบวนการการตัดสินใจในชั้นเรียน โรงเรียนและชุมชน โดยวิธีการออกเสียงโดยตรงและการเลือกตัวแทนออกเสียง”. **Answer:** แบบตรงทุกคนออกเสียงเอง ส่วนแบบตัวแทนผู้ได้รับเลือกตัดสินใจ/ออกเสียงแทนกลุ่ม
+3. **Apply / demonstrate:** เสนอขั้นตอนตัดสินใจสำหรับกรณีใหม่โดยให้เหตุผลเรื่องความเป็นธรรม This assesses: “วิเคราะห์ความแตกต่างของกระบวนการการตัดสินใจในชั้นเรียน โรงเรียนและชุมชน โดยวิธีการออกเสียงโดยตรงและการเลือกตัวแทนออกเสียง”. **Answer:** มีการรับฟัง มีส่วนร่วม วิธีตัดสินใจโปร่งใส และเคารพผลที่ได้
+
 ### 82. SO2.2-P3-03
 
 - **Standard:** SO2.2
@@ -2794,12 +2849,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community case card:** A class has 4 shared storybooks, 6 learners who want to read, and one classroom rule: return a book before another learner borrows it. The teacher adds one short case detail matched to the indicator (family role, classroom duty, community decision, cultural practice, rights or public holiday).
+**Assessment stimulus — ประชาธิปไตยและการตัดสินใจ:** บัตรกรณี: ห้องเรียนต้องเลือกวิธีแบ่งเวลาสนามกีฬา มีข้อเสนอ 2 แบบและขั้นตอนรับฟังความเห็น/ลงคะแนน/เลือกตัวแทนตามที่ระบุ อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Read the case card. Identify the person, group, right, duty, rule, custom or decision-making step that is directly relevant to “ยกตัวอย่างการเปลี่ยนแปลงในชั้นเรียน โรงเรียนและชุมชนที่เป็นผลจากการตัดสินใจของบุคคลและกลุ่ม”. Give one detail from the case as evidence. **Answer:** Identify the relevant person/group/concept or step and cite the matching detail in the case. The response must fit the exact indicator, not merely repeat a general classroom rule.
-2. **Explain / compare:** Explain what would happen in this case if the relevant role, right, duty, custom or decision process in “ยกตัวอย่างการเปลี่ยนแปลงในชั้นเรียน โรงเรียนและชุมชนที่เป็นผลจากการตัดสินใจของบุคคลและกลุ่ม” were followed. Include one effect on another person or the community. **Answer:** State a plausible effect that follows from the case and correctly explains the indicator concept. Credit a clear cause-and-effect link and a relevant effect on others.
-3. **Apply / demonstrate:** The class must choose a fair action for the case. Propose one action, name who should take part or be responsible, and justify it using “ยกตัวอย่างการเปลี่ยนแปลงในชั้นเรียน โรงเรียนและชุมชนที่เป็นผลจากการตัดสินใจของบุคคลและกลุ่ม”. **Answer:** The proposal is practical, respects the relevant rights/duties/customs or decision process, identifies the responsible participant(s), and gives a reason connected to the indicator. Accept alternative fair solutions with sound justification.
+1. **Recall / evidence:** ระบุผู้มีส่วนร่วมและขั้นตอนตัดสินใจที่ปรากฏในบัตร This assesses: “ยกตัวอย่างการเปลี่ยนแปลงในชั้นเรียน โรงเรียนและชุมชนที่เป็นผลจากการตัดสินใจของบุคคลและกลุ่ม”. **Answer:** ตอบตามขั้นตอนจริงในบัตร เช่น รับฟัง เสนอ ลงคะแนน นับคะแนน หรือมอบหมายตัวแทน
+2. **Explain / compare:** เปรียบเทียบการออกเสียงโดยตรงกับการเลือกตัวแทนโดยใช้กรณีนี้ This assesses: “ยกตัวอย่างการเปลี่ยนแปลงในชั้นเรียน โรงเรียนและชุมชนที่เป็นผลจากการตัดสินใจของบุคคลและกลุ่ม”. **Answer:** แบบตรงทุกคนออกเสียงเอง ส่วนแบบตัวแทนผู้ได้รับเลือกตัดสินใจ/ออกเสียงแทนกลุ่ม
+3. **Apply / demonstrate:** เสนอขั้นตอนตัดสินใจสำหรับกรณีใหม่โดยให้เหตุผลเรื่องความเป็นธรรม This assesses: “ยกตัวอย่างการเปลี่ยนแปลงในชั้นเรียน โรงเรียนและชุมชนที่เป็นผลจากการตัดสินใจของบุคคลและกลุ่ม”. **Answer:** มีการรับฟัง มีส่วนร่วม วิธีตัดสินใจโปร่งใส และเคารพผลที่ได้
+
 ### 83. SO3.1-P3-01
 
 - **Standard:** SO3.1
@@ -2828,12 +2884,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — limited-resource decision card:** A school club has 30 baht and 3 hours to prepare a class market. It needs price labels, reusable bags and a table display. The club cannot buy every possible material, so it must choose what is most necessary and avoid waste.
+**Assessment stimulus — สินค้าและบริการ:** บัตรชีวิตประจำวัน: มีสมุดเป็นสินค้า และบริการถ่ายเอกสาร/ตัดผม/ขนส่งเป็นบริการ ระบุผู้ใช้และประโยชน์ อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the numbers and details in the stimulus. Identify the good, service, resource, need, want, income, expense or saving that best demonstrates “จำแนกความต้องการและความจำเป็นในการใช้สินค้าและบริการในการดำรงชีวิต”. Show the relevant number or detail. **Answer:** The response correctly identifies the economic concept requested by the indicator and uses the exact supporting number/detail from the stimulus. For calculations, accept only mathematically correct totals and balances.
-2. **Explain / compare:** Use the stimulus to explain one choice a learner or family can make that demonstrates “จำแนกความต้องการและความจำเป็นในการใช้สินค้าและบริการในการดำรงชีวิต”. Include the trade-off or result of that choice. **Answer:** The explanation names a realistic choice, uses the stimulus evidence and accurately describes its result (such as remaining money, a forgone purchase, a saved resource or a benefit to buyer/seller).
-3. **Apply / demonstrate:** Change one detail in the stimulus (for example, the amount of money or the available resource). Explain how the decision should change to continue meeting “จำแนกความต้องการและความจำเป็นในการใช้สินค้าและบริการในการดำรงชีวิต”, and give a reason. **Answer:** The revised decision follows logically from the changed constraint and is justified using the indicator concept. Accept more than one valid solution; check arithmetic and whether the response respects limited resources.
+1. **Recall / evidence:** จำแนกตัวอย่างสินค้าและบริการจากบัตร This assesses: “จำแนกความต้องการและความจำเป็นในการใช้สินค้าและบริการในการดำรงชีวิต”. **Answer:** สินค้าเป็นสิ่งของ ส่วนบริการเป็นงาน/กิจกรรมที่ผู้ให้บริการทำให้
+2. **Explain / compare:** อธิบายความแตกต่างพร้อมยกตัวอย่างจากบัตร This assesses: “จำแนกความต้องการและความจำเป็นในการใช้สินค้าและบริการในการดำรงชีวิต”. **Answer:** คำอธิบายแยกสิ่งของกับกิจกรรมบริการได้ถูกต้อง
+3. **Apply / demonstrate:** จัดกลุ่มรายการใหม่ 4 รายการและอธิบายประโยชน์ของแต่ละรายการ This assesses: “จำแนกความต้องการและความจำเป็นในการใช้สินค้าและบริการในการดำรงชีวิต”. **Answer:** จำแนกตรงตามลักษณะและประโยชน์สัมพันธ์กับผู้ใช้
+
 ### 84. SO3.1-P3-02
 
 - **Standard:** SO3.1
@@ -2862,12 +2919,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — limited-resource decision card:** A school club has 30 baht and 3 hours to prepare a class market. It needs price labels, reusable bags and a table display. The club cannot buy every possible material, so it must choose what is most necessary and avoid waste.
+**Assessment stimulus — รายรับ รายจ่ายและการออม:** บัตรบัญชี: รายรับ 120 บาท ซื้ออาหาร 35 บาท อุปกรณ์เรียน 25 บาท ค่าเดินทาง 20 บาท และออม 10 บาท อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the numbers and details in the stimulus. Identify the good, service, resource, need, want, income, expense or saving that best demonstrates “วิเคราะห์การใช้จ่ายของตนเอง”. Show the relevant number or detail. **Answer:** The response correctly identifies the economic concept requested by the indicator and uses the exact supporting number/detail from the stimulus. For calculations, accept only mathematically correct totals and balances.
-2. **Explain / compare:** Use the stimulus to explain one choice a learner or family can make that demonstrates “วิเคราะห์การใช้จ่ายของตนเอง”. Include the trade-off or result of that choice. **Answer:** The explanation names a realistic choice, uses the stimulus evidence and accurately describes its result (such as remaining money, a forgone purchase, a saved resource or a benefit to buyer/seller).
-3. **Apply / demonstrate:** Change one detail in the stimulus (for example, the amount of money or the available resource). Explain how the decision should change to continue meeting “วิเคราะห์การใช้จ่ายของตนเอง”, and give a reason. **Answer:** The revised decision follows logically from the changed constraint and is justified using the indicator concept. Accept more than one valid solution; check arithmetic and whether the response respects limited resources.
+1. **Recall / evidence:** คำนวณรายจ่ายรวมและเงินคงเหลือหลังหักรายจ่ายกับเงินออม This assesses: “วิเคราะห์การใช้จ่ายของตนเอง”. **Answer:** รายจ่าย 80 บาท เงินคงเหลือ 30 บาท (120−35−25−20−10)
+2. **Explain / compare:** อธิบายว่ารายการใดจำเป็น/ปรับลดได้และเพราะเหตุใด This assesses: “วิเคราะห์การใช้จ่ายของตนเอง”. **Answer:** ให้เหตุผลจากวัตถุประสงค์และสถานการณ์ ไม่จัดประเภทโดยไม่มีเหตุผล
+3. **Apply / demonstrate:** จัดงบประมาณจากรายรับ 120 บาท โดยมีรายจ่ายและเงินออมที่รวมกันไม่เกินรายรับ This assesses: “วิเคราะห์การใช้จ่ายของตนเอง”. **Answer:** ยอดรวมถูกต้อง ไม่ใช้จ่ายเกินรายรับและมีเงินออมตามเป้าหมาย
+
 ### 85. SO3.1-P3-03
 
 - **Standard:** SO3.1
@@ -2896,12 +2954,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — limited-resource decision card:** A school club has 30 baht and 3 hours to prepare a class market. It needs price labels, reusable bags and a table display. The club cannot buy every possible material, so it must choose what is most necessary and avoid waste.
+**Assessment stimulus — การผลิตและทรัพยากร:** บัตรการผลิตสินค้า: น้ำผลไม้ใช้ผลไม้ น้ำ ขวด เครื่องคั้นและแรงงาน; กระดาษใช้เยื่อกระดาษ เครื่องจักรและแรงงาน อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the numbers and details in the stimulus. Identify the good, service, resource, need, want, income, expense or saving that best demonstrates “อธิบายได้ว่าทรัพยากรที่มีอยู่จำกัดมีผลต่อการผลิตและบริโภคสินค้าและบริการ”. Show the relevant number or detail. **Answer:** The response correctly identifies the economic concept requested by the indicator and uses the exact supporting number/detail from the stimulus. For calculations, accept only mathematically correct totals and balances.
-2. **Explain / compare:** Use the stimulus to explain one choice a learner or family can make that demonstrates “อธิบายได้ว่าทรัพยากรที่มีอยู่จำกัดมีผลต่อการผลิตและบริโภคสินค้าและบริการ”. Include the trade-off or result of that choice. **Answer:** The explanation names a realistic choice, uses the stimulus evidence and accurately describes its result (such as remaining money, a forgone purchase, a saved resource or a benefit to buyer/seller).
-3. **Apply / demonstrate:** Change one detail in the stimulus (for example, the amount of money or the available resource). Explain how the decision should change to continue meeting “อธิบายได้ว่าทรัพยากรที่มีอยู่จำกัดมีผลต่อการผลิตและบริโภคสินค้าและบริการ”, and give a reason. **Answer:** The revised decision follows logically from the changed constraint and is justified using the indicator concept. Accept more than one valid solution; check arithmetic and whether the response respects limited resources.
+1. **Recall / evidence:** จำแนกวัตถุดิบ เครื่องมือ/ทุน และแรงงานจากบัตร This assesses: “อธิบายได้ว่าทรัพยากรที่มีอยู่จำกัดมีผลต่อการผลิตและบริโภคสินค้าและบริการ”. **Answer:** จัดประเภทตรงกับข้อมูล เช่น ผลไม้เป็นวัตถุดิบ เครื่องคั้นเป็นเครื่องมือ ผู้ทำงานเป็นแรงงาน
+2. **Explain / compare:** อธิบายว่าการขาดปัจจัยหนึ่งอย่างส่งผลต่อการผลิตอย่างไร This assesses: “อธิบายได้ว่าทรัพยากรที่มีอยู่จำกัดมีผลต่อการผลิตและบริโภคสินค้าและบริการ”. **Answer:** ผลอธิบายได้ตามหน้าที่ของปัจจัยนั้น เช่น ขาดวัตถุดิบจึงผลิตไม่ได้
+3. **Apply / demonstrate:** วางแผนผลิตสินค้าหนึ่งชนิดและระบุปัจจัยที่ต้องใช้ให้ครบ This assesses: “อธิบายได้ว่าทรัพยากรที่มีอยู่จำกัดมีผลต่อการผลิตและบริโภคสินค้าและบริการ”. **Answer:** มีวัตถุดิบ เครื่องมือ/ทุนและแรงงานที่สัมพันธ์กับสินค้า
+
 ### 86. SO3.2-P3-01
 
 - **Standard:** SO3.2
@@ -2930,12 +2989,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — limited-resource decision card:** A school club has 30 baht and 3 hours to prepare a class market. It needs price labels, reusable bags and a table display. The club cannot buy every possible material, so it must choose what is most necessary and avoid waste.
+**Assessment stimulus — ภาษีและบริการสาธารณะ:** บัตรบริการสาธารณะ: ถนน โรงเรียนรัฐ สถานพยาบาลและเก็บขยะ พร้อมคำอธิบายว่ารัฐใช้งบประมาณสนับสนุน อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the numbers and details in the stimulus. Identify the good, service, resource, need, want, income, expense or saving that best demonstrates “บอกสินค้าและบริการที่รัฐจัดหาและให้บริการแก่ประชาชน”. Show the relevant number or detail. **Answer:** The response correctly identifies the economic concept requested by the indicator and uses the exact supporting number/detail from the stimulus. For calculations, accept only mathematically correct totals and balances.
-2. **Explain / compare:** Use the stimulus to explain one choice a learner or family can make that demonstrates “บอกสินค้าและบริการที่รัฐจัดหาและให้บริการแก่ประชาชน”. Include the trade-off or result of that choice. **Answer:** The explanation names a realistic choice, uses the stimulus evidence and accurately describes its result (such as remaining money, a forgone purchase, a saved resource or a benefit to buyer/seller).
-3. **Apply / demonstrate:** Change one detail in the stimulus (for example, the amount of money or the available resource). Explain how the decision should change to continue meeting “บอกสินค้าและบริการที่รัฐจัดหาและให้บริการแก่ประชาชน”, and give a reason. **Answer:** The revised decision follows logically from the changed constraint and is justified using the indicator concept. Accept more than one valid solution; check arithmetic and whether the response respects limited resources.
+1. **Recall / evidence:** ระบุบริการ/หน้าที่ภาษีที่เกี่ยวข้องกับตัวชี้วัดจากบัตร This assesses: “บอกสินค้าและบริการที่รัฐจัดหาและให้บริการแก่ประชาชน”. **Answer:** ตอบชื่อบริการหรือบทบาทภาษีตรงตามข้อมูล
+2. **Explain / compare:** อธิบายว่าบริการสาธารณะหรือภาษีมีประโยชน์ต่อประชาชนอย่างไร This assesses: “บอกสินค้าและบริการที่รัฐจัดหาและให้บริการแก่ประชาชน”. **Answer:** เชื่อมโยงภาษีตามกฎหมายกับรายได้รัฐและบริการส่วนรวม ไม่เหมารวมอัตราภาษี
+3. **Apply / demonstrate:** ทำป้ายอธิบายบริการสาธารณะหรือหน้าที่พลเมืองที่เกี่ยวข้อง This assesses: “บอกสินค้าและบริการที่รัฐจัดหาและให้บริการแก่ประชาชน”. **Answer:** ระบุบริการ/หน้าที่และประโยชน์ต่อส่วนรวมอย่างถูกต้อง
+
 ### 87. SO3.2-P3-02
 
 - **Standard:** SO3.2
@@ -2964,12 +3024,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — limited-resource decision card:** A school club has 30 baht and 3 hours to prepare a class market. It needs price labels, reusable bags and a table display. The club cannot buy every possible material, so it must choose what is most necessary and avoid waste.
+**Assessment stimulus — ภาษีและบริการสาธารณะ:** บัตรบริการสาธารณะ: ถนน โรงเรียนรัฐ สถานพยาบาลและเก็บขยะ พร้อมคำอธิบายว่ารัฐใช้งบประมาณสนับสนุน อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the numbers and details in the stimulus. Identify the good, service, resource, need, want, income, expense or saving that best demonstrates “บอกความสำคัญของภาษีและบทบาทของประชาชนในการเสียภาษี”. Show the relevant number or detail. **Answer:** The response correctly identifies the economic concept requested by the indicator and uses the exact supporting number/detail from the stimulus. For calculations, accept only mathematically correct totals and balances.
-2. **Explain / compare:** Use the stimulus to explain one choice a learner or family can make that demonstrates “บอกความสำคัญของภาษีและบทบาทของประชาชนในการเสียภาษี”. Include the trade-off or result of that choice. **Answer:** The explanation names a realistic choice, uses the stimulus evidence and accurately describes its result (such as remaining money, a forgone purchase, a saved resource or a benefit to buyer/seller).
-3. **Apply / demonstrate:** Change one detail in the stimulus (for example, the amount of money or the available resource). Explain how the decision should change to continue meeting “บอกความสำคัญของภาษีและบทบาทของประชาชนในการเสียภาษี”, and give a reason. **Answer:** The revised decision follows logically from the changed constraint and is justified using the indicator concept. Accept more than one valid solution; check arithmetic and whether the response respects limited resources.
+1. **Recall / evidence:** ระบุบริการ/หน้าที่ภาษีที่เกี่ยวข้องกับตัวชี้วัดจากบัตร This assesses: “บอกความสำคัญของภาษีและบทบาทของประชาชนในการเสียภาษี”. **Answer:** ตอบชื่อบริการหรือบทบาทภาษีตรงตามข้อมูล
+2. **Explain / compare:** อธิบายว่าบริการสาธารณะหรือภาษีมีประโยชน์ต่อประชาชนอย่างไร This assesses: “บอกความสำคัญของภาษีและบทบาทของประชาชนในการเสียภาษี”. **Answer:** เชื่อมโยงภาษีตามกฎหมายกับรายได้รัฐและบริการส่วนรวม ไม่เหมารวมอัตราภาษี
+3. **Apply / demonstrate:** ทำป้ายอธิบายบริการสาธารณะหรือหน้าที่พลเมืองที่เกี่ยวข้อง This assesses: “บอกความสำคัญของภาษีและบทบาทของประชาชนในการเสียภาษี”. **Answer:** ระบุบริการ/หน้าที่และประโยชน์ต่อส่วนรวมอย่างถูกต้อง
+
 ### 88. SO3.2-P3-03
 
 - **Standard:** SO3.2
@@ -2998,12 +3059,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — limited-resource decision card:** A school club has 30 baht and 3 hours to prepare a class market. It needs price labels, reusable bags and a table display. The club cannot buy every possible material, so it must choose what is most necessary and avoid waste.
+**Assessment stimulus — การแข่งขันทางการค้า:** บัตรตลาดจำลอง: ร้าน A ขายดินสอคุณภาพใกล้เคียงกัน 10 บาท ร้าน B 8 บาท ลูกค้าเปรียบเทียบราคาได้ อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the numbers and details in the stimulus. Identify the good, service, resource, need, want, income, expense or saving that best demonstrates “อธิบายเหตุผลการแข่งขันทางการค้า ที่มีผลทำให้ราคาสินค้าลดลง”. Show the relevant number or detail. **Answer:** The response correctly identifies the economic concept requested by the indicator and uses the exact supporting number/detail from the stimulus. For calculations, accept only mathematically correct totals and balances.
-2. **Explain / compare:** Use the stimulus to explain one choice a learner or family can make that demonstrates “อธิบายเหตุผลการแข่งขันทางการค้า ที่มีผลทำให้ราคาสินค้าลดลง”. Include the trade-off or result of that choice. **Answer:** The explanation names a realistic choice, uses the stimulus evidence and accurately describes its result (such as remaining money, a forgone purchase, a saved resource or a benefit to buyer/seller).
-3. **Apply / demonstrate:** Change one detail in the stimulus (for example, the amount of money or the available resource). Explain how the decision should change to continue meeting “อธิบายเหตุผลการแข่งขันทางการค้า ที่มีผลทำให้ราคาสินค้าลดลง”, and give a reason. **Answer:** The revised decision follows logically from the changed constraint and is justified using the indicator concept. Accept more than one valid solution; check arithmetic and whether the response respects limited resources.
+1. **Recall / evidence:** คำนวณว่าร้านใดถูกกว่าและต่างกันเท่าใด This assesses: “อธิบายเหตุผลการแข่งขันทางการค้า ที่มีผลทำให้ราคาสินค้าลดลง”. **Answer:** ร้าน B ถูกกว่า 2 บาท
+2. **Explain / compare:** อธิบายว่าการแข่งขันอาจทำให้ผู้ขายปรับราคา/คุณภาพเพื่อดึงดูดลูกค้าอย่างไร This assesses: “อธิบายเหตุผลการแข่งขันทางการค้า ที่มีผลทำให้ราคาสินค้าลดลง”. **Answer:** อ้างข้อมูลทั้งสองร้านและระบุว่าเป็นแนวโน้ม ไม่ใช่กฎว่าราคาต้องลดเสมอ
+3. **Apply / demonstrate:** เลือกซื้อโดยเปรียบเทียบราคา คุณภาพและความจำเป็น This assesses: “อธิบายเหตุผลการแข่งขันทางการค้า ที่มีผลทำให้ราคาสินค้าลดลง”. **Answer:** เหตุผลใช้ข้อมูลราคาและคุณภาพ ไม่เลือกจากราคาอย่างเดียว
+
 ### 89. SO4.1-P3-01
 
 - **Standard:** SO4.1
@@ -3032,12 +3094,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — เวลาและลำดับเหตุการณ์:** บัตรปฏิทิน/เส้นเวลา: มีวัน เดือน ปีและเหตุการณ์ 4 รายการพร้อมเวลาหรือแหล่งที่มา อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “เทียบศักราชที่สำคัญตามปฏิทินที่ใช้ในชีวิตประจำวัน”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “เทียบศักราชที่สำคัญตามปฏิทินที่ใช้ในชีวิตประจำวัน”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Convert the same supplied date between the two named calendar eras, show the calculation or reference rule used, and label both year systems. This task assesses: “เทียบศักราชที่สำคัญตามปฏิทินที่ใช้ในชีวิตประจำวัน”. **Answer:** Both era labels and converted year are correct for the stated conversion rule; do not compare year numbers without naming the calendar systems.
+1. **Recall / evidence:** อ่านหรือเรียงข้อมูลเวลา/เหตุการณ์ตามที่ตัวชี้วัดระบุ This assesses: “เทียบศักราชที่สำคัญตามปฏิทินที่ใช้ในชีวิตประจำวัน”. **Answer:** คำตอบตรงกับวันที่/เวลาหรือลำดับในบัตร
+2. **Explain / compare:** อธิบายวิธีนับช่วงเวลา/เรียงเหตุการณ์โดยอ้างข้อมูล This assesses: “เทียบศักราชที่สำคัญตามปฏิทินที่ใช้ในชีวิตประจำวัน”. **Answer:** คำนวณหรือลำดับถูกต้องและแสดงวิธีคิด ไม่สับสนการนับรวมวันต้นปลาย
+3. **Apply / demonstrate:** สร้างปฏิทิน/เส้นเวลาเหตุการณ์สมมติ 4 รายการและระบุแหล่งข้อมูล This assesses: “เทียบศักราชที่สำคัญตามปฏิทินที่ใช้ในชีวิตประจำวัน”. **Answer:** มีวันเวลา/ลำดับครบ ถูกต้องและตรวจสอบได้
+
 ### 90. SO4.1-P3-02
 
 - **Standard:** SO4.1
@@ -3066,12 +3129,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — เวลาและลำดับเหตุการณ์:** บัตรปฏิทิน/เส้นเวลา: มีวัน เดือน ปีและเหตุการณ์ 4 รายการพร้อมเวลาหรือแหล่งที่มา อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “แสดงลำดับเหตุการณ์สำคัญของโรงเรียนและชุมชน โดยระบุหลักฐานและแหล่งข้อมูลที่เกี่ยวข้อง”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “แสดงลำดับเหตุการณ์สำคัญของโรงเรียนและชุมชน โดยระบุหลักฐานและแหล่งข้อมูลที่เกี่ยวข้อง”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Build a short timeline of three school/community events using the supplied dated records, attach a source label to each event and present the sequence. This task assesses: “แสดงลำดับเหตุการณ์สำคัญของโรงเรียนและชุมชน โดยระบุหลักฐานและแหล่งข้อมูลที่เกี่ยวข้อง”. **Answer:** Events are correctly ordered, each is linked to a traceable source and no date or event is invented.
+1. **Recall / evidence:** อ่านหรือเรียงข้อมูลเวลา/เหตุการณ์ตามที่ตัวชี้วัดระบุ This assesses: “แสดงลำดับเหตุการณ์สำคัญของโรงเรียนและชุมชน โดยระบุหลักฐานและแหล่งข้อมูลที่เกี่ยวข้อง”. **Answer:** คำตอบตรงกับวันที่/เวลาหรือลำดับในบัตร
+2. **Explain / compare:** อธิบายวิธีนับช่วงเวลา/เรียงเหตุการณ์โดยอ้างข้อมูล This assesses: “แสดงลำดับเหตุการณ์สำคัญของโรงเรียนและชุมชน โดยระบุหลักฐานและแหล่งข้อมูลที่เกี่ยวข้อง”. **Answer:** คำนวณหรือลำดับถูกต้องและแสดงวิธีคิด ไม่สับสนการนับรวมวันต้นปลาย
+3. **Apply / demonstrate:** สร้างปฏิทิน/เส้นเวลาเหตุการณ์สมมติ 4 รายการและระบุแหล่งข้อมูล This assesses: “แสดงลำดับเหตุการณ์สำคัญของโรงเรียนและชุมชน โดยระบุหลักฐานและแหล่งข้อมูลที่เกี่ยวข้อง”. **Answer:** มีวันเวลา/ลำดับครบ ถูกต้องและตรวจสอบได้
+
 ### 91. SO4.2-P3-01
 
 - **Standard:** SO4.2
@@ -3100,12 +3164,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — หลักฐานอดีตและปัจจุบัน:** ชุดหลักฐานอดีต-ปัจจุบัน: ภาพ/คำบอกเล่าที่ระบุแหล่งและช่วงเวลาเกี่ยวกับการเดินทาง การสื่อสาร สิ่งของหรือชุมชน อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “ระบุปัจจัยที่มีอิทธิพลต่อการตั้งถิ่นฐานและพัฒนาการของชุมชน”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “ระบุปัจจัยที่มีอิทธิพลต่อการตั้งถิ่นฐานและพัฒนาการของชุมชน”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “ระบุปัจจัยที่มีอิทธิพลต่อการตั้งถิ่นฐานและพัฒนาการของชุมชน”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** ระบุการเปลี่ยนแปลง/เหตุการณ์และหลักฐานจากชุดข้อมูล This assesses: “ระบุปัจจัยที่มีอิทธิพลต่อการตั้งถิ่นฐานและพัฒนาการของชุมชน”. **Answer:** ชี้รายละเอียดที่เห็นหรืออ่านได้จริง พร้อมระบุแหล่งและช่วงเวลา
+2. **Explain / compare:** อธิบายผลของการเปลี่ยนแปลง/เหตุการณ์ต่อชีวิตปัจจุบันโดยอ้างหลักฐาน This assesses: “ระบุปัจจัยที่มีอิทธิพลต่อการตั้งถิ่นฐานและพัฒนาการของชุมชน”. **Answer:** เชื่อมโยงเหตุและผลตามข้อมูล ไม่แต่งวันที่หรือสาเหตุ
+3. **Apply / demonstrate:** ทำตารางอดีต/ปัจจุบันหรือแผนภาพเหตุการณ์→ผล พร้อมแหล่งข้อมูล This assesses: “ระบุปัจจัยที่มีอิทธิพลต่อการตั้งถิ่นฐานและพัฒนาการของชุมชน”. **Answer:** ข้อมูลสองช่วงเวลาเปรียบเทียบได้และมีหลักฐานรองรับ
+
 ### 92. SO4.2-P3-02
 
 - **Standard:** SO4.2
@@ -3134,12 +3199,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — มรดกและวัฒนธรรมชุมชน:** บัตรแหล่งวัฒนธรรมชุมชน: สถานที่/ประเพณี/ภูมิปัญญาหนึ่งอย่าง ระบุชื่อ ผู้เกี่ยวข้อง จุดประสงค์และแหล่งข้อมูล อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “สรุปลักษณะที่สำคัญของขนบธรรมเนียมประเพณีและวัฒนธรรมของชุมชน”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “สรุปลักษณะที่สำคัญของขนบธรรมเนียมประเพณีและวัฒนธรรมของชุมชน”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “สรุปลักษณะที่สำคัญของขนบธรรมเนียมประเพณีและวัฒนธรรมของชุมชน”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** ระบุองค์ประกอบหรือสถานที่และประเภทตามบัตร This assesses: “สรุปลักษณะที่สำคัญของขนบธรรมเนียมประเพณีและวัฒนธรรมของชุมชน”. **Answer:** ตอบตรงกับข้อมูลที่ให้
+2. **Explain / compare:** อธิบายคุณค่าหรือความสำคัญต่อชุมชนโดยอ้างหลักฐาน This assesses: “สรุปลักษณะที่สำคัญของขนบธรรมเนียมประเพณีและวัฒนธรรมของชุมชน”. **Answer:** เชื่อมโยงกับประวัติ ความทรงจำ การใช้ประโยชน์หรืออัตลักษณ์ตามข้อมูล
+3. **Apply / demonstrate:** เสนอวิธีอนุรักษ์หรือเรียนรู้อย่างเคารพผู้ถือปฏิบัติ This assesses: “สรุปลักษณะที่สำคัญของขนบธรรมเนียมประเพณีและวัฒนธรรมของชุมชน”. **Answer:** ข้อเสนอทำได้จริง ไม่บิดเบือนความหมายและไม่เหมารวม
+
 ### 93. SO4.2-P3-03
 
 - **Standard:** SO4.2
@@ -3168,12 +3234,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — มรดกและวัฒนธรรมชุมชน:** บัตรแหล่งวัฒนธรรมชุมชน: สถานที่/ประเพณี/ภูมิปัญญาหนึ่งอย่าง ระบุชื่อ ผู้เกี่ยวข้อง จุดประสงค์และแหล่งข้อมูล อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “เปรียบเทียบความเหมือนและความต่างทางวัฒนธรรมของชุมชนตนเองกับชุมชนอื่น ๆ”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “เปรียบเทียบความเหมือนและความต่างทางวัฒนธรรมของชุมชนตนเองกับชุมชนอื่น ๆ”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “เปรียบเทียบความเหมือนและความต่างทางวัฒนธรรมของชุมชนตนเองกับชุมชนอื่น ๆ”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** ระบุองค์ประกอบหรือสถานที่และประเภทตามบัตร This assesses: “เปรียบเทียบความเหมือนและความต่างทางวัฒนธรรมของชุมชนตนเองกับชุมชนอื่น ๆ”. **Answer:** ตอบตรงกับข้อมูลที่ให้
+2. **Explain / compare:** อธิบายคุณค่าหรือความสำคัญต่อชุมชนโดยอ้างหลักฐาน This assesses: “เปรียบเทียบความเหมือนและความต่างทางวัฒนธรรมของชุมชนตนเองกับชุมชนอื่น ๆ”. **Answer:** เชื่อมโยงกับประวัติ ความทรงจำ การใช้ประโยชน์หรืออัตลักษณ์ตามข้อมูล
+3. **Apply / demonstrate:** เสนอวิธีอนุรักษ์หรือเรียนรู้อย่างเคารพผู้ถือปฏิบัติ This assesses: “เปรียบเทียบความเหมือนและความต่างทางวัฒนธรรมของชุมชนตนเองกับชุมชนอื่น ๆ”. **Answer:** ข้อเสนอทำได้จริง ไม่บิดเบือนความหมายและไม่เหมารวม
+
 ### 94. SO4.3-P3-01
 
 - **Standard:** SO4.3
@@ -3202,12 +3269,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — ข้อมูลประวัติศาสตร์ชาติ:** บัตรแหล่งข้อมูลชาติ/ประวัติศาสตร์: ข้อความและภาพจากแหล่งทางการ ระบุชื่อ บุคคล สัญลักษณ์หรือผลงานพร้อมบริบท อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “ระบุพระนามและพระราชกรณียกิจโดยสังเขปของพระมหากษัตริย์ไทยที่เป็นผู้สถาปนาอาณาจักรไทย”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “ระบุพระนามและพระราชกรณียกิจโดยสังเขปของพระมหากษัตริย์ไทยที่เป็นผู้สถาปนาอาณาจักรไทย”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “ระบุพระนามและพระราชกรณียกิจโดยสังเขปของพระมหากษัตริย์ไทยที่เป็นผู้สถาปนาอาณาจักรไทย”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** ระบุชื่อ/ความหมาย/ผลงานที่ตัวชี้วัดถามจากบัตร This assesses: “ระบุพระนามและพระราชกรณียกิจโดยสังเขปของพระมหากษัตริย์ไทยที่เป็นผู้สถาปนาอาณาจักรไทย”. **Answer:** ตอบตรงกับแหล่งข้อมูลที่แนบ ไม่แต่งรายละเอียด
+2. **Explain / compare:** อธิบายความสำคัญโดยอ้างข้อเท็จจริงในบัตร This assesses: “ระบุพระนามและพระราชกรณียกิจโดยสังเขปของพระมหากษัตริย์ไทยที่เป็นผู้สถาปนาอาณาจักรไทย”. **Answer:** ความสำคัญเชื่อมโยงกับข้อมูลที่ยืนยันได้และไม่กล่าวเกินหลักฐาน
+3. **Apply / demonstrate:** จัดทำบันทึกสรุปข้อมูล 3 ประเด็น พร้อมระบุแหล่งข้อมูล This assesses: “ระบุพระนามและพระราชกรณียกิจโดยสังเขปของพระมหากษัตริย์ไทยที่เป็นผู้สถาปนาอาณาจักรไทย”. **Answer:** ครบประเด็น ถูกต้อง และแยกข้อเท็จจริงจากความคิดเห็น
+
 ### 95. SO4.3-P3-02
 
 - **Standard:** SO4.3
@@ -3236,12 +3304,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — ข้อมูลประวัติศาสตร์ชาติ:** บัตรแหล่งข้อมูลชาติ/ประวัติศาสตร์: ข้อความและภาพจากแหล่งทางการ ระบุชื่อ บุคคล สัญลักษณ์หรือผลงานพร้อมบริบท อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “อธิบายพระราชประวัติและพระราชกรณียกิจของพระมหากษัตริย์ในรัชกาลปัจจุบัน โดยสังเขป”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “อธิบายพระราชประวัติและพระราชกรณียกิจของพระมหากษัตริย์ในรัชกาลปัจจุบัน โดยสังเขป”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “อธิบายพระราชประวัติและพระราชกรณียกิจของพระมหากษัตริย์ในรัชกาลปัจจุบัน โดยสังเขป”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** ระบุชื่อ/ความหมาย/ผลงานที่ตัวชี้วัดถามจากบัตร This assesses: “อธิบายพระราชประวัติและพระราชกรณียกิจของพระมหากษัตริย์ในรัชกาลปัจจุบัน โดยสังเขป”. **Answer:** ตอบตรงกับแหล่งข้อมูลที่แนบ ไม่แต่งรายละเอียด
+2. **Explain / compare:** อธิบายความสำคัญโดยอ้างข้อเท็จจริงในบัตร This assesses: “อธิบายพระราชประวัติและพระราชกรณียกิจของพระมหากษัตริย์ในรัชกาลปัจจุบัน โดยสังเขป”. **Answer:** ความสำคัญเชื่อมโยงกับข้อมูลที่ยืนยันได้และไม่กล่าวเกินหลักฐาน
+3. **Apply / demonstrate:** จัดทำบันทึกสรุปข้อมูล 3 ประเด็น พร้อมระบุแหล่งข้อมูล This assesses: “อธิบายพระราชประวัติและพระราชกรณียกิจของพระมหากษัตริย์ในรัชกาลปัจจุบัน โดยสังเขป”. **Answer:** ครบประเด็น ถูกต้อง และแยกข้อเท็จจริงจากความคิดเห็น
+
 ### 96. SO4.3-P3-03
 
 - **Standard:** SO4.3
@@ -3270,12 +3339,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — local-history evidence set:** Prepare three labelled evidence cards about the family, school or community topic named in the lesson: (A) an older photograph/object or first-person account, (B) a dated record or reliable written source, and (C) a present-day observation. Write the source and date on each card; do not invent dates or historical claims.
+**Assessment stimulus — ข้อมูลประวัติศาสตร์ชาติ:** บัตรแหล่งข้อมูลชาติ/ประวัติศาสตร์: ข้อความและภาพจากแหล่งทางการ ระบุชื่อ บุคคล สัญลักษณ์หรือผลงานพร้อมบริบท อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Examine evidence cards A–C. Identify the event, person, time, change, symbol or historical detail needed for “เล่าวีรกรรมของบรรพบุรุษไทยที่มีส่วนปกป้องประเทศชาติ”. State which card supports your answer. **Answer:** Name a detail that is explicitly supported by the cited card and identify the source correctly. If the indicator asks for sequence or calendar time, the order/date must agree with the evidence.
-2. **Explain / compare:** Compare two of the evidence cards. Explain one similarity, difference, sequence or cause-and-effect relationship that helps answer “เล่าวีรกรรมของบรรพบุรุษไทยที่มีส่วนปกป้องประเทศชาติ”. **Answer:** The response accurately compares the chosen sources and states one supported relationship. Credit a correct time sequence or a plausible cause/effect only when supported by the evidence; distinguish evidence from opinion.
-3. **Apply / demonstrate:** Create a two- or three-step timeline, labelled explanation or short oral-history summary that answers “เล่าวีรกรรมของบรรพบุรุษไทยที่มีส่วนปกป้องประเทศชาติ”. Include the source label for each factual detail. **Answer:** The product includes the required number/order of steps or details, is consistent with the evidence cards, and identifies sources. Do not award factual credit for unsupported invented history.
+1. **Recall / evidence:** ระบุชื่อ/ความหมาย/ผลงานที่ตัวชี้วัดถามจากบัตร This assesses: “เล่าวีรกรรมของบรรพบุรุษไทยที่มีส่วนปกป้องประเทศชาติ”. **Answer:** ตอบตรงกับแหล่งข้อมูลที่แนบ ไม่แต่งรายละเอียด
+2. **Explain / compare:** อธิบายความสำคัญโดยอ้างข้อเท็จจริงในบัตร This assesses: “เล่าวีรกรรมของบรรพบุรุษไทยที่มีส่วนปกป้องประเทศชาติ”. **Answer:** ความสำคัญเชื่อมโยงกับข้อมูลที่ยืนยันได้และไม่กล่าวเกินหลักฐาน
+3. **Apply / demonstrate:** จัดทำบันทึกสรุปข้อมูล 3 ประเด็น พร้อมระบุแหล่งข้อมูล This assesses: “เล่าวีรกรรมของบรรพบุรุษไทยที่มีส่วนปกป้องประเทศชาติ”. **Answer:** ครบประเด็น ถูกต้อง และแยกข้อเท็จจริงจากความคิดเห็น
+
 ### 97. SO5.1-P3-01
 
 - **Standard:** SO5.1
@@ -3304,12 +3374,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community geography field card:** Use a simple north-arrow sketch of the school area. Mark the classroom, gate, playground and one nearby natural feature. Add a short observation record (time, weather or visible environmental condition) relevant to this indicator. If the lesson concerns change or pollution, add a dated before/now photograph pair or a teacher-verified local example.
+**Assessment stimulus — แผนที่และตำแหน่ง:** แผนที่/แผนผังเฉพาะโจทย์: จุด A ห้องเรียน จุด B ประตู จุด C สนาม พร้อมลูกศรทิศเหนือ สัญลักษณ์และมาตราส่วนเมื่อมี อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the field card, sketch or observation record. Identify the location, direction, physical feature, weather condition, resource or environmental change that directly answers “สำรวจข้อมูลทางภูมิศาสตร์ในโรงเรียนและชุมชน โดยใช้แผนผัง แผนที่ และรูปถ่าย เพื่อแสดงความสัมพันธ์ของตำแหน่ง ระยะ ทิศทาง”. Point to the map/photo/data as evidence. **Answer:** The answer identifies the correct feature or condition and refers to the correct map position, direction, photograph or observation. Direction must agree with the north arrow; claims about change must match the dated evidence.
-2. **Explain / compare:** Compare two marked places, observations or time points in the field card. Explain one spatial relationship, difference or effect relevant to “สำรวจข้อมูลทางภูมิศาสตร์ในโรงเรียนและชุมชน โดยใช้แผนผัง แผนที่ และรูปถ่าย เพื่อแสดงความสัมพันธ์ของตำแหน่ง ระยะ ทิศทาง”. **Answer:** The comparison names both items and gives one accurate relationship/difference/effect supported by the field card. Accept different examples if map direction and evidence are correct.
-3. **Apply / demonstrate:** Conduct a short, safe school/community survey using a map or plan, north arrow and photo record; measure or estimate distance with the stated method and report one location relationship. This task assesses: “สำรวจข้อมูลทางภูมิศาสตร์ในโรงเรียนและชุมชน โดยใช้แผนผัง แผนที่ และรูปถ่าย เพื่อแสดงความสัมพันธ์ของตำแหน่ง ระยะ ทิศทาง”. **Answer:** The record identifies locations, direction and distance method; conclusions match the collected map/photo evidence.
+1. **Recall / evidence:** อ่านตำแหน่ง ทิศ ระยะหรือสัญลักษณ์ที่โจทย์ถาม This assesses: “สำรวจข้อมูลทางภูมิศาสตร์ในโรงเรียนและชุมชน โดยใช้แผนผัง แผนที่ และรูปถ่าย เพื่อแสดงความสัมพันธ์ของตำแหน่ง ระยะ ทิศทาง”. **Answer:** คำตอบตรงกับลูกศร/มาตราส่วน/คำอธิบาย; ห้ามเดาระยะเมื่อไม่มีมาตราส่วน
+2. **Explain / compare:** อธิบายความสัมพันธ์ของจุดสองจุดโดยใช้ทิศ/ระยะ/สัญลักษณ์ This assesses: “สำรวจข้อมูลทางภูมิศาสตร์ในโรงเรียนและชุมชน โดยใช้แผนผัง แผนที่ และรูปถ่าย เพื่อแสดงความสัมพันธ์ของตำแหน่ง ระยะ ทิศทาง”. **Answer:** ระบุจุดทั้งสองและอ้างข้อมูลบนแผนที่ถูกต้อง
+3. **Apply / demonstrate:** วาดแผนผังพื้นที่ตามข้อมูลสำรวจ ใส่ชื่อ สัญลักษณ์และทิศเหนือ This assesses: “สำรวจข้อมูลทางภูมิศาสตร์ในโรงเรียนและชุมชน โดยใช้แผนผัง แผนที่ และรูปถ่าย เพื่อแสดงความสัมพันธ์ของตำแหน่ง ระยะ ทิศทาง”. **Answer:** ตำแหน่งสอดคล้องข้อมูลสำรวจ มีคำอธิบายทิศและไม่สร้างสถานที่ที่ไม่มีจริง
+
 ### 98. SO5.1-P3-02
 
 - **Standard:** SO5.1
@@ -3338,12 +3409,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community geography field card:** Use a simple north-arrow sketch of the school area. Mark the classroom, gate, playground and one nearby natural feature. Add a short observation record (time, weather or visible environmental condition) relevant to this indicator. If the lesson concerns change or pollution, add a dated before/now photograph pair or a teacher-verified local example.
+**Assessment stimulus — แผนที่และตำแหน่ง:** แผนที่/แผนผังเฉพาะโจทย์: จุด A ห้องเรียน จุด B ประตู จุด C สนาม พร้อมลูกศรทิศเหนือ สัญลักษณ์และมาตราส่วนเมื่อมี อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the field card, sketch or observation record. Identify the location, direction, physical feature, weather condition, resource or environmental change that directly answers “วาดแผนผังเพื่อแสดงตำแหน่งที่ตั้งของสถานที่สำคัญในบริเวณโรงเรียนและชุมชน”. Point to the map/photo/data as evidence. **Answer:** The answer identifies the correct feature or condition and refers to the correct map position, direction, photograph or observation. Direction must agree with the north arrow; claims about change must match the dated evidence.
-2. **Explain / compare:** Compare two marked places, observations or time points in the field card. Explain one spatial relationship, difference or effect relevant to “วาดแผนผังเพื่อแสดงตำแหน่งที่ตั้งของสถานที่สำคัญในบริเวณโรงเรียนและชุมชน”. **Answer:** The comparison names both items and gives one accurate relationship/difference/effect supported by the field card. Accept different examples if map direction and evidence are correct.
-3. **Apply / demonstrate:** Draw a labelled plan of the named school/community area showing at least three verified important places, a key and orientation; then use it to explain one route. This task assesses: “วาดแผนผังเพื่อแสดงตำแหน่งที่ตั้งของสถานที่สำคัญในบริเวณโรงเรียนและชุมชน”. **Answer:** Relative positions match the verified base information; plan includes labels, key and orientation, and route description matches the drawing.
+1. **Recall / evidence:** อ่านตำแหน่ง ทิศ ระยะหรือสัญลักษณ์ที่โจทย์ถาม This assesses: “วาดแผนผังเพื่อแสดงตำแหน่งที่ตั้งของสถานที่สำคัญในบริเวณโรงเรียนและชุมชน”. **Answer:** คำตอบตรงกับลูกศร/มาตราส่วน/คำอธิบาย; ห้ามเดาระยะเมื่อไม่มีมาตราส่วน
+2. **Explain / compare:** อธิบายความสัมพันธ์ของจุดสองจุดโดยใช้ทิศ/ระยะ/สัญลักษณ์ This assesses: “วาดแผนผังเพื่อแสดงตำแหน่งที่ตั้งของสถานที่สำคัญในบริเวณโรงเรียนและชุมชน”. **Answer:** ระบุจุดทั้งสองและอ้างข้อมูลบนแผนที่ถูกต้อง
+3. **Apply / demonstrate:** วาดแผนผังพื้นที่ตามข้อมูลสำรวจ ใส่ชื่อ สัญลักษณ์และทิศเหนือ This assesses: “วาดแผนผังเพื่อแสดงตำแหน่งที่ตั้งของสถานที่สำคัญในบริเวณโรงเรียนและชุมชน”. **Answer:** ตำแหน่งสอดคล้องข้อมูลสำรวจ มีคำอธิบายทิศและไม่สร้างสถานที่ที่ไม่มีจริง
+
 ### 99. SO5.2-P3-01
 
 - **Standard:** SO5.2
@@ -3372,12 +3444,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community geography field card:** Use a simple north-arrow sketch of the school area. Mark the classroom, gate, playground and one nearby natural feature. Add a short observation record (time, weather or visible environmental condition) relevant to this indicator. If the lesson concerns change or pollution, add a dated before/now photograph pair or a teacher-verified local example.
+**Assessment stimulus — สิ่งแวดล้อมธรรมชาติ:** บัตรสิ่งแวดล้อมธรรมชาติ: แม่น้ำ ภูเขา ฝน แสงแดดและพื้นที่ราบ พร้อมข้อมูลผลต่อการดำรงชีวิต อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the field card, sketch or observation record. Identify the location, direction, physical feature, weather condition, resource or environmental change that directly answers “เปรียบเทียบการเปลี่ยนแปลงสิ่งแวดล้อมของชุมชนในอดีตกับปัจจุบัน”. Point to the map/photo/data as evidence. **Answer:** The answer identifies the correct feature or condition and refers to the correct map position, direction, photograph or observation. Direction must agree with the north arrow; claims about change must match the dated evidence.
-2. **Explain / compare:** Compare two marked places, observations or time points in the field card. Explain one spatial relationship, difference or effect relevant to “เปรียบเทียบการเปลี่ยนแปลงสิ่งแวดล้อมของชุมชนในอดีตกับปัจจุบัน”. **Answer:** The comparison names both items and gives one accurate relationship/difference/effect supported by the field card. Accept different examples if map direction and evidence are correct.
-3. **Apply / demonstrate:** Propose and sketch or describe one safe action at the marked school/community location that demonstrates “เปรียบเทียบการเปลี่ยนแปลงสิ่งแวดล้อมของชุมชนในอดีตกับปัจจุบัน”. Explain what evidence would show that the action helped. **Answer:** The action is practical for the named location, addresses the indicator, is safe for children and includes an observable success measure (for example, cleaner area, correct route/map, recorded observation or reduced waste).
+1. **Recall / evidence:** ระบุสิ่งแวดล้อมธรรมชาติและผลต่อมนุษย์ตามบัตร This assesses: “เปรียบเทียบการเปลี่ยนแปลงสิ่งแวดล้อมของชุมชนในอดีตกับปัจจุบัน”. **Answer:** คำตอบยกตัวอย่างจากบัตรและระบุผลที่สัมพันธ์กัน
+2. **Explain / compare:** อธิบายความสัมพันธ์กับความต้องการพื้นฐาน/กิจกรรม/อาชีพ This assesses: “เปรียบเทียบการเปลี่ยนแปลงสิ่งแวดล้อมของชุมชนในอดีตกับปัจจุบัน”. **Answer:** เชื่อมโยงน้ำ อาหาร ที่อยู่อาศัย การเดินทางหรือความปลอดภัยตามหลักฐาน
+3. **Apply / demonstrate:** เสนอวิธีปรับตัวหรือใช้ประโยชน์อย่างรับผิดชอบ This assesses: “เปรียบเทียบการเปลี่ยนแปลงสิ่งแวดล้อมของชุมชนในอดีตกับปัจจุบัน”. **Answer:** ข้อเสนอเหมาะกับสภาพแวดล้อมและคำนึงถึงความปลอดภัย
+
 ### 100. SO5.2-P3-02
 
 - **Standard:** SO5.2
@@ -3406,12 +3479,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community geography field card:** Use a simple north-arrow sketch of the school area. Mark the classroom, gate, playground and one nearby natural feature. Add a short observation record (time, weather or visible environmental condition) relevant to this indicator. If the lesson concerns change or pollution, add a dated before/now photograph pair or a teacher-verified local example.
+**Assessment stimulus — ทรัพยากรธรรมชาติ:** บัตรทรัพยากร: แสงอาทิตย์ ลม น้ำ ป่าไม้และแร่ พร้อมข้อมูลการเกิดทดแทนและการใช้ อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the field card, sketch or observation record. Identify the location, direction, physical feature, weather condition, resource or environmental change that directly answers “อธิบายการใช้ประโยชน์จากสิ่งแวดล้อม และทรัพยากรธรรมชาติในการสนองความต้องการพื้นฐานของมนุษย์ และการประกอบอาชีพ”. Point to the map/photo/data as evidence. **Answer:** The answer identifies the correct feature or condition and refers to the correct map position, direction, photograph or observation. Direction must agree with the north arrow; claims about change must match the dated evidence.
-2. **Explain / compare:** Compare two marked places, observations or time points in the field card. Explain one spatial relationship, difference or effect relevant to “อธิบายการใช้ประโยชน์จากสิ่งแวดล้อม และทรัพยากรธรรมชาติในการสนองความต้องการพื้นฐานของมนุษย์ และการประกอบอาชีพ”. **Answer:** The comparison names both items and gives one accurate relationship/difference/effect supported by the field card. Accept different examples if map direction and evidence are correct.
-3. **Apply / demonstrate:** Propose and sketch or describe one safe action at the marked school/community location that demonstrates “อธิบายการใช้ประโยชน์จากสิ่งแวดล้อม และทรัพยากรธรรมชาติในการสนองความต้องการพื้นฐานของมนุษย์ และการประกอบอาชีพ”. Explain what evidence would show that the action helped. **Answer:** The action is practical for the named location, addresses the indicator, is safe for children and includes an observable success measure (for example, cleaner area, correct route/map, recorded observation or reduced waste).
+1. **Recall / evidence:** จำแนกทรัพยากรตามประเภทที่ตัวชี้วัดระบุ This assesses: “อธิบายการใช้ประโยชน์จากสิ่งแวดล้อม และทรัพยากรธรรมชาติในการสนองความต้องการพื้นฐานของมนุษย์ และการประกอบอาชีพ”. **Answer:** จำแนกตามข้อมูลเรื่องการเกิดทดแทน/ใช้แล้วหมดไป ไม่เหมารวมว่าน้ำหรือป่าไม่มีวันหมด
+2. **Explain / compare:** อธิบายวิธีใช้ทรัพยากรอย่างคุ้มค่าและผลหากใช้เกินขีดจำกัด This assesses: “อธิบายการใช้ประโยชน์จากสิ่งแวดล้อม และทรัพยากรธรรมชาติในการสนองความต้องการพื้นฐานของมนุษย์ และการประกอบอาชีพ”. **Answer:** อธิบายการฟื้นตัว/การหมดไปตามชนิดทรัพยากร
+3. **Apply / demonstrate:** จัดทำแผนใช้ทรัพยากรหนึ่งชนิดในโรงเรียนพร้อมตัวชี้วัด This assesses: “อธิบายการใช้ประโยชน์จากสิ่งแวดล้อม และทรัพยากรธรรมชาติในการสนองความต้องการพื้นฐานของมนุษย์ และการประกอบอาชีพ”. **Answer:** มีวิธีปฏิบัติและตัวชี้วัดที่ตรวจสอบได้
+
 ### 101. SO5.2-P3-03
 
 - **Standard:** SO5.2
@@ -3440,12 +3514,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community geography field card:** Use a simple north-arrow sketch of the school area. Mark the classroom, gate, playground and one nearby natural feature. Add a short observation record (time, weather or visible environmental condition) relevant to this indicator. If the lesson concerns change or pollution, add a dated before/now photograph pair or a teacher-verified local example.
+**Assessment stimulus — มลพิษ:** บัตรกรณีมลพิษ: เผาขยะ ควันรถ น้ำเสียหรือขยะลงคลอง พร้อมหลักฐานแหล่งกำเนิด อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the field card, sketch or observation record. Identify the location, direction, physical feature, weather condition, resource or environmental change that directly answers “อธิบายสาเหตุที่ทำให้เกิดมลพิษโดยมนุษย์”. Point to the map/photo/data as evidence. **Answer:** The answer identifies the correct feature or condition and refers to the correct map position, direction, photograph or observation. Direction must agree with the north arrow; claims about change must match the dated evidence.
-2. **Explain / compare:** Compare two marked places, observations or time points in the field card. Explain one spatial relationship, difference or effect relevant to “อธิบายสาเหตุที่ทำให้เกิดมลพิษโดยมนุษย์”. **Answer:** The comparison names both items and gives one accurate relationship/difference/effect supported by the field card. Accept different examples if map direction and evidence are correct.
-3. **Apply / demonstrate:** Propose and sketch or describe one safe action at the marked school/community location that demonstrates “อธิบายสาเหตุที่ทำให้เกิดมลพิษโดยมนุษย์”. Explain what evidence would show that the action helped. **Answer:** The action is practical for the named location, addresses the indicator, is safe for children and includes an observable success measure (for example, cleaner area, correct route/map, recorded observation or reduced waste).
+1. **Recall / evidence:** ระบุชนิดมลพิษและกิจกรรมมนุษย์ที่เป็นสาเหตุ This assesses: “อธิบายสาเหตุที่ทำให้เกิดมลพิษโดยมนุษย์”. **Answer:** ตอบตรงกับกรณี เช่น การเผาทำให้เกิดมลพิษทางอากาศ
+2. **Explain / compare:** อธิบายสายเหตุจากกิจกรรม→ของเสีย/มลพิษ→ผลต่อสิ่งแวดล้อม This assesses: “อธิบายสาเหตุที่ทำให้เกิดมลพิษโดยมนุษย์”. **Answer:** ระบุสาเหตุและผลที่มีหลักฐาน ไม่กล่าวโทษบุคคลโดยไม่มีข้อมูล
+3. **Apply / demonstrate:** เสนอวิธีลดสาเหตุหนึ่งอย่างและวิธีวัดผล This assesses: “อธิบายสาเหตุที่ทำให้เกิดมลพิษโดยมนุษย์”. **Answer:** วิธีปลอดภัย ทำได้จริงและมีตัวชี้วัด
+
 ### 102. SO5.2-P3-04
 
 - **Standard:** SO5.2
@@ -3474,12 +3549,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community geography field card:** Use a simple north-arrow sketch of the school area. Mark the classroom, gate, playground and one nearby natural feature. Add a short observation record (time, weather or visible environmental condition) relevant to this indicator. If the lesson concerns change or pollution, add a dated before/now photograph pair or a teacher-verified local example.
+**Assessment stimulus — เมืองและชนบท:** บัตรเปรียบเทียบเมือง/ชนบท: ภาพความหนาแน่นอาคาร ถนน บริการ พื้นที่เกษตรและระยะทาง อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the field card, sketch or observation record. Identify the location, direction, physical feature, weather condition, resource or environmental change that directly answers “อธิบายความแตกต่างของลักษณะเมืองและชนบท”. Point to the map/photo/data as evidence. **Answer:** The answer identifies the correct feature or condition and refers to the correct map position, direction, photograph or observation. Direction must agree with the north arrow; claims about change must match the dated evidence.
-2. **Explain / compare:** Compare two marked places, observations or time points in the field card. Explain one spatial relationship, difference or effect relevant to “อธิบายความแตกต่างของลักษณะเมืองและชนบท”. **Answer:** The comparison names both items and gives one accurate relationship/difference/effect supported by the field card. Accept different examples if map direction and evidence are correct.
-3. **Apply / demonstrate:** Propose and sketch or describe one safe action at the marked school/community location that demonstrates “อธิบายความแตกต่างของลักษณะเมืองและชนบท”. Explain what evidence would show that the action helped. **Answer:** The action is practical for the named location, addresses the indicator, is safe for children and includes an observable success measure (for example, cleaner area, correct route/map, recorded observation or reduced waste).
+1. **Recall / evidence:** ระบุลักษณะเมืองและชนบทจากภาพ This assesses: “อธิบายความแตกต่างของลักษณะเมืองและชนบท”. **Answer:** ยกหลักฐานจากภาพ ไม่จัดอันดับว่าพื้นที่ใดดีกว่า
+2. **Explain / compare:** อธิบายความแตกต่างด้านการเดินทาง อาชีพหรือบริการโดยใช้ข้อมูล This assesses: “อธิบายความแตกต่างของลักษณะเมืองและชนบท”. **Answer:** เชื่อมโยงกับลักษณะพื้นที่และยอมรับความหลากหลายภายในแต่ละพื้นที่
+3. **Apply / demonstrate:** เสนอการจัดบริการหนึ่งอย่างให้เหมาะกับพื้นที่ที่กำหนด This assesses: “อธิบายความแตกต่างของลักษณะเมืองและชนบท”. **Answer:** ข้อเสนอสัมพันธ์กับความหนาแน่น ระยะทางและความต้องการ
+
 ### 103. SO5.2-P3-05
 
 - **Standard:** SO5.2
@@ -3508,12 +3584,13 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community geography field card:** Use a simple north-arrow sketch of the school area. Mark the classroom, gate, playground and one nearby natural feature. Add a short observation record (time, weather or visible environmental condition) relevant to this indicator. If the lesson concerns change or pollution, add a dated before/now photograph pair or a teacher-verified local example.
+**Assessment stimulus — ภูมิประเทศและวิถีชีวิต:** บัตรข้อมูลภูมิประเทศ: พื้นที่ริมน้ำ พื้นที่ราบหรือพื้นที่สูง พร้อมอาชีพ/กิจกรรมที่พบในหลักฐาน อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the field card, sketch or observation record. Identify the location, direction, physical feature, weather condition, resource or environmental change that directly answers “อธิบายความสัมพันธ์ระหว่างลักษณะทางกายภาพกับการดำเนินชีวิตของคนในชุมชน”. Point to the map/photo/data as evidence. **Answer:** The answer identifies the correct feature or condition and refers to the correct map position, direction, photograph or observation. Direction must agree with the north arrow; claims about change must match the dated evidence.
-2. **Explain / compare:** Compare two marked places, observations or time points in the field card. Explain one spatial relationship, difference or effect relevant to “อธิบายความสัมพันธ์ระหว่างลักษณะทางกายภาพกับการดำเนินชีวิตของคนในชุมชน”. **Answer:** The comparison names both items and gives one accurate relationship/difference/effect supported by the field card. Accept different examples if map direction and evidence are correct.
-3. **Apply / demonstrate:** Propose and sketch or describe one safe action at the marked school/community location that demonstrates “อธิบายความสัมพันธ์ระหว่างลักษณะทางกายภาพกับการดำเนินชีวิตของคนในชุมชน”. Explain what evidence would show that the action helped. **Answer:** The action is practical for the named location, addresses the indicator, is safe for children and includes an observable success measure (for example, cleaner area, correct route/map, recorded observation or reduced waste).
+1. **Recall / evidence:** จับคู่ลักษณะทางกายภาพกับกิจกรรมหรืออาชีพที่บัตรระบุ This assesses: “อธิบายความสัมพันธ์ระหว่างลักษณะทางกายภาพกับการดำเนินชีวิตของคนในชุมชน”. **Answer:** จับคู่ตรงกับข้อมูล ไม่เหมารวมว่าทุกคนทำอาชีพเดียวกัน
+2. **Explain / compare:** อธิบายว่าลักษณะทางกายภาพมีผลต่อการดำเนินชีวิตอย่างไร This assesses: “อธิบายความสัมพันธ์ระหว่างลักษณะทางกายภาพกับการดำเนินชีวิตของคนในชุมชน”. **Answer:** เชื่อมโยงภูมิประเทศกับน้ำ การเดินทาง อาชีพหรือที่อยู่อาศัยตามหลักฐาน
+3. **Apply / demonstrate:** เสนอวิธีปรับตัวต่อข้อจำกัดทางกายภาพหนึ่งอย่าง This assesses: “อธิบายความสัมพันธ์ระหว่างลักษณะทางกายภาพกับการดำเนินชีวิตของคนในชุมชน”. **Answer:** ข้อเสนอปลอดภัยและตอบข้อจำกัดในบัตร
+
 ### 104. SO5.2-P3-06
 
 - **Standard:** SO5.2
@@ -3542,9 +3619,10 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — school/community geography field card:** Use a simple north-arrow sketch of the school area. Mark the classroom, gate, playground and one nearby natural feature. Add a short observation record (time, weather or visible environmental condition) relevant to this indicator. If the lesson concerns change or pollution, add a dated before/now photograph pair or a teacher-verified local example.
+**Assessment stimulus — การจัดการสิ่งแวดล้อม:** บัตรแผนดูแลสิ่งแวดล้อม: จุดปัญหา บทบาทผู้ร่วมกิจกรรม อุปกรณ์ปลอดภัยและวิธีบันทึกผลก่อน/หลัง อ้างหลักฐานและเขียนเหตุผลเป็นลำดับ
 
 **Independent practice — indicator-specific assessment tasks**
-1. **Recall / evidence:** Use the field card, sketch or observation record. Identify the location, direction, physical feature, weather condition, resource or environmental change that directly answers “มีส่วนร่วมในการจัดการสิ่งแวดล้อมในชุมชน”. Point to the map/photo/data as evidence. **Answer:** The answer identifies the correct feature or condition and refers to the correct map position, direction, photograph or observation. Direction must agree with the north arrow; claims about change must match the dated evidence.
-2. **Explain / compare:** Compare two marked places, observations or time points in the field card. Explain one spatial relationship, difference or effect relevant to “มีส่วนร่วมในการจัดการสิ่งแวดล้อมในชุมชน”. **Answer:** The comparison names both items and gives one accurate relationship/difference/effect supported by the field card. Accept different examples if map direction and evidence are correct.
-3. **Apply / demonstrate:** Take part in a supervised community environmental action with an agreed role, then record one before/after measure or observation and report what changed. This task assesses: “มีส่วนร่วมในการจัดการสิ่งแวดล้อมในชุมชน”. **Answer:** Learner completes a safe, authorised role and records comparable evidence; no hazardous waste handling or unsupervised community activity.
+1. **Recall / evidence:** ระบุปัญหา จุดดำเนินงานและบทบาทของตนจากแผน This assesses: “มีส่วนร่วมในการจัดการสิ่งแวดล้อมในชุมชน”. **Answer:** ตอบตรงกับแผนและขอบเขตหน้าที่
+2. **Explain / compare:** อธิบายว่าการร่วมมือและการวัดผลช่วยแก้ปัญหาอย่างไร This assesses: “มีส่วนร่วมในการจัดการสิ่งแวดล้อมในชุมชน”. **Answer:** เชื่อมโยงบทบาทกับผลที่ตรวจสอบได้
+3. **Apply / demonstrate:** ร่วมกิจกรรมที่ได้รับอนุญาตหรือจำลองบทบาท พร้อมบันทึกผลก่อน/หลัง This assesses: “มีส่วนร่วมในการจัดการสิ่งแวดล้อมในชุมชน”. **Answer:** มีหลักฐานการมีส่วนร่วมและผลที่สังเกตได้ ห้ามจัดการขยะอันตรายหรืองานนอกการดูแล
+
