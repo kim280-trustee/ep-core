@@ -1,6 +1,7 @@
 # Thai Curriculum — Consolidated Import and Acceptance Test Plan
 
-**Repository branch:** paul/thai-national-curriculum-foundation  
+**Implementation branch:** `paul/subject-rollout`  
+**Pull request:** [#174](https://github.com/kim280-trustee/ep-core/pull/174) (draft; not merged)  
 **Purpose:** One coordinated application test after all curriculum source packs and catalogue work are complete.  
 **Current rule:** Automated source validation may run during implementation. Do not repeatedly test the authenticated application after each subject. Do not import or publish these packs to the live pilot school.
 
@@ -34,9 +35,9 @@ These resources are deliberately not added to the eight-area national-master tot
 
 Thai Studies is outside this rollout and must not be reported as complete.
 
-## 3. One consolidated application test
+## 3. One consolidated application test — approval-gated
 
-Run this only after all source packs, catalogue mappings and automated validators are complete. Use a dedicated staging organization and test classes if available. Do not use the live pilot school or real learner records as a test fixture.
+Run this only after all source packs, catalogue mappings and automated validators are complete. **Execution gate:** the source and automated preflight checks may run now. Authenticated import and student/teacher workflow testing must wait until an isolated staging organization, test class and authorized staging teacher/student sessions are explicitly approved and available. None is currently authorized. Do not create staging resources or use the live pilot school or real learner records as test fixtures.
 
 ### A. Teacher access and academic selectors
 
@@ -50,7 +51,7 @@ Run this only after all source packs, catalogue mappings and automated validator
 
 - Preview the 39 national source packs and the separate 2025, specialist Science and Computer Studies packs.
 - Compare source lesson counts and question counts with the tables above.
-- Confirm all 197 M4–M6 shared outcomes expand to M4, M5 and M6.
+- Confirm all 197 shared M4–M6 source outcomes each expand to exactly three grade-specific records (591 grade-scoped records in total), with no cross-grade code collisions.
 - Confirm grade-specific outcomes resolve to exactly one grade.
 - Confirm the imported objective code, official Thai indicator wording, lesson title, learning outcome, practical activity and teacher guidance are preserved.
 - Confirm each imported question has a distinct grade-scoped import code where shared outcomes expand.
@@ -105,4 +106,6 @@ These automated checks validate source structure, parser compatibility, objectiv
 
 ## 6. Release boundary
 
-Keep PR #173 open and in draft until the consolidated staging test and review are complete. Do not merge, activate curricula, publish content or import into the live school automatically. The final rollout decision must be made after the test results are reviewed.
+PR #174 remains open and in draft. Do not merge, activate curricula, publish content or import into the live school automatically. The consolidated authenticated application test is **not yet authorized**: no isolated staging organization, test class or authenticated staging teacher/student session has been approved. The test plan is prepared, but all actions in sections A–E that require authenticated application access remain pending. The final rollout decision must be made only after explicit staging authorization, execution of the tests and review of the results.
+
+Until then, permitted work is limited to source-pack validation, offline parser/contract checks, production build, lint, read-only audits and documentation. Do not apply Supabase migrations, seed curriculum data, create staging organizations/classes/users, or change live school/learner records as part of this test plan.

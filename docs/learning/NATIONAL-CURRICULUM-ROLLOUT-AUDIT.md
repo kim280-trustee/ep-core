@@ -1,7 +1,7 @@
 # Thai National Curriculum — P1–M6 and Early-Primary 2025 Rollout Audit
 
 **Repository:** `kim280-trustee/ep-core`  
-**Branch:** `paul/thai-national-curriculum-foundation`  
+**Branch:** `paul/subject-rollout`  
 **Audit date:** 21 November 2026  
 **Implementation status:** All eight B.E. 2551 (2008), revised B.E. 2560 (2017), learning-area catalogues are complete. The separate B.E. 2568 (2025) P1–P3 competency framework is now seeded as a draft. Consolidated authenticated application testing is intentionally deferred until curriculum source work is complete.
 
@@ -106,4 +106,15 @@ The single consolidated authenticated import and application test is specified i
 - Teacher packs remain Markdown source. No pack has been imported into a school organization or published as part of this batch.
 - No school, class, student, assignment, publication or learner-progress records were created or changed by the curriculum work.
 - Do not begin repeated subject-by-subject UI tests. Finish curriculum source and pack work first, then perform one consolidated authenticated teacher import, student assessment, teacher review, gradebook and progress-reporting test.
-- Keep PR #173 open and in draft until the consolidated review is complete. Do not merge or activate curricula automatically.
+- Keep PR #174 open and in draft until the approval-gated consolidated review is complete. Do not merge or activate curricula automatically.
+
+
+## Consolidated rollout readiness — 23 November 2026
+
+All eight national learning areas now have source packs and automated validators on `paul/subject-rollout`. The reconciled source totals are **2,056 unique official indicators**, **2,450 required grade alignments**, **2,056 source lesson sections** and **6,168 source tasks**. Shared outcomes are expanded by the importer to an expected **2,450 grade-specific lesson drafts** and **7,350 question drafts**. These expected import totals have not been confirmed by a new staging import.
+
+The separate B.E. 2568 P1–P3 competency framework (24 outcomes / 72 tasks), 300 upper-secondary Science specialist outcomes (900 tasks), and Cambridge Click Start Computer Studies (41 lessons / 123 tasks) remain outside the eight-area national totals. Thai Studies remains outside this rollout and is not marked complete.
+
+The latest source-validation workflow confirms the national, Thai Language/Career, B.E. 2568, Science, Mathematics, Computer Studies, HPE, Arts and Foreign Languages checks pass, along with the production build and ESLint. The only remaining failing workflow step is the Social Studies pack validator, which belongs to Edna's separate workstream and is intentionally not modified in this branch.
+
+**Application acceptance is prepared but not authorized.** No isolated staging organization, test class or authenticated staging teacher/student session has been approved. Accordingly, no staging resources have been created, no authenticated import or publication has been performed, no Supabase migration has been applied in this batch, and no live school or learner records have been changed. Follow `CURRICULUM-CONSOLIDATED-IMPORT-TEST-PLAN.md` only after explicit staging authorization.
