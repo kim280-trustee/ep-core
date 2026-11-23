@@ -14,11 +14,17 @@ assert.match(migration, /security definer[\s\S]*set search_path = ''/i,
   "The protected-key verification must use a fixed search path.");
 assert.match(migration, /auth\.uid\(\)/,
   "The verification RPC must require an authenticated user.");
+assert.match(migration, /p_class_group_id uuid[\s\S]*public\.is_organization_member\(p_organization_id\)/,
+  "The verification RPC must be scoped to the selected organization and class.");
+assert.match(migration, /membership\.membership_type = 'teacher'[\s\S]*membership\.status = 'active'/,
+  "The verification RPC must require an active teacher in the selected class or an academic manager.");
+assert.match(migration, /public\.learning_can_manage_academic_records\(p_organization_id\)/,
+  "The verification RPC must allow authorized academic managers.");
 assert.match(migration, /public\.is_organization_member\(p_organization_id\)/,
   "The verification RPC must enforce organization membership.");
-assert.match(migration, /revoke all on function public\.verify_learning_pack_import_questions\(uuid, jsonb\) from public, anon/i,
+assert.match(migration, /revoke all on function public\.verify_learning_pack_import_questions\(uuid, uuid, jsonb\) from public, anon/i,
   "The verification RPC must not be executable by public or anonymous callers.");
-assert.match(migration, /grant execute on function public\.verify_learning_pack_import_questions\(uuid, jsonb\) to authenticated/i,
+assert.match(migration, /grant execute on function public\.verify_learning_pack_import_questions\(uuid, uuid, jsonb\) to authenticated/i,
   "The verification RPC must be callable by authenticated users.");
 assert.match(migration, /question_version_count|version_count/,
   "The RPC must verify question versions.");
