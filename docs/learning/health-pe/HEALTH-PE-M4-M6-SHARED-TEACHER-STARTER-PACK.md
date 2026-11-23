@@ -28,9 +28,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-01` — อธิบายกระบวนการสร้างเสริมและดำรงประสิทธิภาพการทำงานของระบบอวัยวะต่าง ๆ
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on body systems, growth and development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At upper-secondary level, use a visual model, structured discussion and guided practice focused on body systems, growth and development. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on body systems, growth and development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, use a visual model, structured discussion and guided practice focused on body systems, growth and development. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายกระบวนการสร้างเสริมและดำรงประสิทธิภาพการทำงานของระบบอวัยวะต่าง ๆ”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for body systems, growth and development at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -49,9 +49,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-02` — วางแผนดูแลสุขภาพตามภาวะการเจริญเติบโตและพัฒนาการของตนเองและบุคคลในครอบครัว
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on body growth and development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At upper-secondary level, use a visual model, structured discussion and guided practice focused on body growth and development. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on body growth and development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, use a visual model, structured discussion and guided practice focused on body growth and development. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วางแผนดูแลสุขภาพตามภาวะการเจริญเติบโตและพัฒนาการของตนเองและบุคคลในครอบครัว”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for body growth and development at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -70,9 +70,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-03` — วิเคราะห์อิทธิพลของครอบครัว เพื่อน สังคม และวัฒนธรรมที่มีผลต่อพฤติกรรมทางเพศและการดำเนินชีวิต
 
-**Teaching activity:** Use a fictional, age-appropriate case about family roles and supportive relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At upper-secondary level, use a fictional, age-appropriate case about family roles and supportive relationships. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about family roles and supportive relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, use a fictional, age-appropriate case about family roles and supportive relationships. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์อิทธิพลของครอบครัว เพื่อน สังคม และวัฒนธรรมที่มีผลต่อพฤติกรรมทางเพศและการดำเนินชีวิต”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for family roles and supportive relationships at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -91,9 +91,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-04` — วิเคราะห์ค่านิยมในเรื่องเพศตามวัฒนธรรมไทยและวัฒนธรรมอื่น ๆ
 
-**Teaching activity:** Use a fictional, age-appropriate case about gender, respect and personal identity. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At upper-secondary level, use a fictional, age-appropriate case about gender, respect and personal identity. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about gender, respect and personal identity. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, use a fictional, age-appropriate case about gender, respect and personal identity. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์ค่านิยมในเรื่องเพศตามวัฒนธรรมไทยและวัฒนธรรมอื่น ๆ”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for gender, respect and personal identity at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -112,9 +112,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-05` — เลือกใช้ทักษะที่เหมาะสมในการป้องกัน ลดความขัดแย้ง และแก้ปัญหาเรื่องเพศและครอบครัว
 
-**Teaching activity:** Use a fictional, age-appropriate case about family roles and supportive relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At upper-secondary level, use a fictional, age-appropriate case about family roles and supportive relationships. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about family roles and supportive relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, use a fictional, age-appropriate case about family roles and supportive relationships. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “เลือกใช้ทักษะที่เหมาะสมในการป้องกัน ลดความขัดแย้ง และแก้ปัญหาเรื่องเพศและครอบครัว”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for family roles and supportive relationships at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -133,9 +133,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-06` — วิเคราะห์สาเหตุและผลของความขัดแย้งที่อาจเกิดขึ้นระหว่างนักเรียนหรือเยาวชนในชุมชน และเสนอแนวทางแก้ไขปัญหา
 
-**Teaching activity:** Use a teacher-led safety station about medicines and safe medicine use. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At upper-secondary level, run a teacher-led safety station about medicines and safe medicine use. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about medicines and safe medicine use. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, run a teacher-led safety station about medicines and safe medicine use. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์สาเหตุและผลของความขัดแย้งที่อาจเกิดขึ้นระหว่างนักเรียนหรือเยาวชนในชุมชน และเสนอแนวทางแก้ไขปัญหา”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for medicines and safe medicine use at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -154,9 +154,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-07` — วิเคราะห์ความคิดรวบยอดเกี่ยวกับการเคลื่อนไหวรูปแบบต่าง ๆ ในการเล่นกีฬา
 
-**Teaching activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At upper-secondary level, set up an inclusive skill station for movement control and coordination. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, set up an inclusive skill station for movement control and coordination. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์ความคิดรวบยอดเกี่ยวกับการเคลื่อนไหวรูปแบบต่าง ๆ ในการเล่นกีฬา”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for movement control and coordination at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -175,9 +175,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-08` — ใช้ความสามารถของตน เพื่อเพิ่มศักยภาพของทีม คำนึงถึงผลที่เกิดต่อผู้อื่นและสังคม
 
-**Teaching activity:** Set up a progressive, inclusive skill station for movement, physical activity and sport. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At upper-secondary level, set up an inclusive skill station for movement, physical activity and sport. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for movement, physical activity and sport. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, set up an inclusive skill station for movement, physical activity and sport. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ใช้ความสามารถของตน เพื่อเพิ่มศักยภาพของทีม คำนึงถึงผลที่เกิดต่อผู้อื่นและสังคม”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for movement, physical activity and sport at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -196,9 +196,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-09` — เล่นกีฬาไทย กีฬาสากล ประเภทบุคคล/คู่ กีฬาประเภททีมอย่างน้อย ๑ ชนิด
 
-**Teaching activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At upper-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “เล่นกีฬาไทย กีฬาสากล ประเภทบุคคล/คู่ กีฬาประเภททีมอย่างน้อย ๑ ชนิด”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for sport skills, tactics and team play at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -217,9 +217,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-10` — แสดงการเคลื่อนไหวได้อย่างสร้างสรรค์
 
-**Teaching activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At upper-secondary level, set up an inclusive skill station for movement control and coordination. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, set up an inclusive skill station for movement control and coordination. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “แสดงการเคลื่อนไหวได้อย่างสร้างสรรค์”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for movement control and coordination at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -238,9 +238,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-11` — เข้าร่วมกิจกรรมนันทนาการนอกโรงเรียน และนำหลักการแนวคิดไปปรับปรุงและพัฒนาคุณภาพชีวิตของตนและสังคม
 
-**Teaching activity:** Set up a progressive, inclusive skill station for movement, physical activity and sport. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At upper-secondary level, set up an inclusive skill station for movement, physical activity and sport. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for movement, physical activity and sport. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, set up an inclusive skill station for movement, physical activity and sport. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “เข้าร่วมกิจกรรมนันทนาการนอกโรงเรียน และนำหลักการแนวคิดไปปรับปรุงและพัฒนาคุณภาพชีวิตของตนและสังคม”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for movement, physical activity and sport at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -259,9 +259,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-12` — ออกกำลังกายและเล่นกีฬาที่เหมาะสมกับตนเองอย่างสม่ำเสมอ และใช้ความสามารถของตนเองเพิ่มศักยภาพของทีม ลดความเป็นตัวตน คำนึงถึงผลที่เกิดต่อสังคม
 
-**Teaching activity:** Set up a progressive, inclusive skill station for exercise routines and physical activity. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At upper-secondary level, set up an inclusive skill station for exercise routines and physical activity. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for exercise routines and physical activity. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, set up an inclusive skill station for exercise routines and physical activity. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ออกกำลังกายและเล่นกีฬาที่เหมาะสมกับตนเองอย่างสม่ำเสมอ และใช้ความสามารถของตนเองเพิ่มศักยภาพของทีม ลดความเป็นตัวตน คำนึงถึงผลที่เกิดต่อสังคม”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for exercise routines and physical activity at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -280,9 +280,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-13` — อธิบายและปฏิบัติเกี่ยวกับสิทธิ กฎ กติกา กลวิธีต่าง ๆ ในระหว่างการเล่น การแข่งขันกีฬากับผู้อื่นและนำไปสรุปเป็นแนวปฏิบัติและใช้ในชีวิตประจำวันอย่างต่อเนื่อง
 
-**Teaching activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At upper-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายและปฏิบัติเกี่ยวกับสิทธิ กฎ กติกา กลวิธีต่าง ๆ ในระหว่างการเล่น การแข่งขันกีฬากับผู้อื่นและนำไปสรุปเป็นแนวปฏิบัติและใช้ในชีวิตประจำวันอย่างต่อเนื่อง”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for sport skills, tactics and team play at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -301,9 +301,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-14` — แสดงออกถึงการมีมารยาทในการดู การเล่น และการแข่งขันกีฬาด้วยความมีน้ำใจนักกีฬา และนำไปใช้ปฏิบัติทุกโอกาสจนเป็นบุคลิกภาพที่ดี
 
-**Teaching activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At upper-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for sport skills, tactics and team play. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, set up an inclusive skill station for sport skills, tactics and team play. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “แสดงออกถึงการมีมารยาทในการดู การเล่น และการแข่งขันกีฬาด้วยความมีน้ำใจนักกีฬา และนำไปใช้ปฏิบัติทุกโอกาสจนเป็นบุคลิกภาพที่ดี”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for sport skills, tactics and team play at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -322,9 +322,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-15` — ร่วมกิจกรรมทางกายและเล่นกีฬาอย่างมีความสุข ชื่นชมในคุณค่าและความงามของการกีฬา
 
-**Teaching activity:** Set up a progressive, inclusive skill station for traditional games and recreational activities. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At upper-secondary level, set up an inclusive skill station for traditional games and recreational activities. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for traditional games and recreational activities. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, set up an inclusive skill station for traditional games and recreational activities. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ร่วมกิจกรรมทางกายและเล่นกีฬาอย่างมีความสุข ชื่นชมในคุณค่าและความงามของการกีฬา”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for traditional games and recreational activities at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -343,9 +343,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-16` — วิเคราะห์บทบาทและความรับผิดชอบของบุคคลที่มีต่อการสร้างเสริมสุขภาพและการป้องกันโรคในชุมชน
 
-**Teaching activity:** Use a teacher-led safety station about illness, infection and disease prevention. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At upper-secondary level, run a teacher-led safety station about illness, infection and disease prevention. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about illness, infection and disease prevention. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, run a teacher-led safety station about illness, infection and disease prevention. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์บทบาทและความรับผิดชอบของบุคคลที่มีต่อการสร้างเสริมสุขภาพและการป้องกันโรคในชุมชน”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for illness, infection and disease prevention at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -364,9 +364,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-17` — วิเคราะห์อิทธิพลของสื่อโฆษณาเกี่ยวกับสุขภาพเพื่อการเลือกบริโภค
 
-**Teaching activity:** Provide a realistic label, information card or community-health data set about health information, media literacy and advertising. Learners inspect evidence, compare options and justify a practical, age-appropriate health decision.
+**Teaching activity:** At upper-secondary level, provide a label, information card or community-health data set about health information, media literacy and advertising. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Learners distinguish evidence from claims and justify a practical, age-appropriate decision.
 
-**Practical activity:** Provide a realistic label, information card or community-health data set about health information, media literacy and advertising. Learners inspect evidence, compare options and justify a practical, age-appropriate health decision. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, provide a label, information card or community-health data set about health information, media literacy and advertising. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Learners distinguish evidence from claims and justify a practical, age-appropriate decision. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์อิทธิพลของสื่อโฆษณาเกี่ยวกับสุขภาพเพื่อการเลือกบริโภค”. Accept evidence showing accurate interpretation of the supplied evidence, a balanced and safe choice, and a reason linked to health needs rather than advertising claims. The learner must explain why the evidence is correct for health information, media literacy and advertising at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -385,9 +385,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-18` — ปฏิบัติตนตามสิทธิของผู้บริโภค
 
-**Teaching activity:** Provide a realistic label, information card or community-health data set about consumer rights and safe products. Learners inspect evidence, compare options and justify a practical, age-appropriate health decision.
+**Teaching activity:** At upper-secondary level, provide a label, information card or community-health data set about consumer rights and safe products. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Learners distinguish evidence from claims and justify a practical, age-appropriate decision.
 
-**Practical activity:** Provide a realistic label, information card or community-health data set about consumer rights and safe products. Learners inspect evidence, compare options and justify a practical, age-appropriate health decision. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, provide a label, information card or community-health data set about consumer rights and safe products. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Learners distinguish evidence from claims and justify a practical, age-appropriate decision. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ปฏิบัติตนตามสิทธิของผู้บริโภค”. Accept evidence showing accurate interpretation of the supplied evidence, a balanced and safe choice, and a reason linked to health needs rather than advertising claims. The learner must explain why the evidence is correct for consumer rights and safe products at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -406,9 +406,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-19` — วิเคราะห์สาเหตุและเสนอแนวทางการป้องกันการเจ็บป่วยและการตายของคนไทย
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At upper-secondary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์สาเหตุและเสนอแนวทางการป้องกันการเจ็บป่วยและการตายของคนไทย”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for health promotion and disease prevention at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -427,9 +427,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-20` — วางแผนและปฏิบัติตามแผนการพัฒนาสุขภาพของตนเองและครอบครัว
 
-**Teaching activity:** Use a fictional, age-appropriate case about family roles and supportive relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At upper-secondary level, use a fictional, age-appropriate case about family roles and supportive relationships. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about family roles and supportive relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, use a fictional, age-appropriate case about family roles and supportive relationships. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วางแผนและปฏิบัติตามแผนการพัฒนาสุขภาพของตนเองและครอบครัว”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for family roles and supportive relationships at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -448,9 +448,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-21` — มีส่วนร่วมในการส่งเสริมและพัฒนาสุขภาพของบุคคลในชุมชน
 
-**Teaching activity:** Provide a realistic label, information card or community-health data set about community health promotion. Learners inspect evidence, compare options and justify a practical, age-appropriate health decision.
+**Teaching activity:** At upper-secondary level, provide a label, information card or community-health data set about community health promotion. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Learners distinguish evidence from claims and justify a practical, age-appropriate decision.
 
-**Practical activity:** Provide a realistic label, information card or community-health data set about community health promotion. Learners inspect evidence, compare options and justify a practical, age-appropriate health decision. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, provide a label, information card or community-health data set about community health promotion. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Learners distinguish evidence from claims and justify a practical, age-appropriate decision. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “มีส่วนร่วมในการส่งเสริมและพัฒนาสุขภาพของบุคคลในชุมชน”. Accept evidence showing use of relevant evidence, a feasible prevention or improvement action, and clear roles for individuals or community partners. The learner must explain why the evidence is correct for community health promotion at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -469,9 +469,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-22` — มีส่วนร่วมในการป้องกันความเสี่ยงต่อการใช้ยา การใช้สารเสพติดและความรุนแรง เพื่อสุขภาพของตนเอง ครอบครัว และสังคม
 
-**Teaching activity:** Use a fictional, age-appropriate case about family roles and supportive relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At upper-secondary level, use a fictional, age-appropriate case about family roles and supportive relationships. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about family roles and supportive relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, use a fictional, age-appropriate case about family roles and supportive relationships. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “มีส่วนร่วมในการป้องกันความเสี่ยงต่อการใช้ยา การใช้สารเสพติดและความรุนแรง เพื่อสุขภาพของตนเอง ครอบครัว และสังคม”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for family roles and supportive relationships at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -490,9 +490,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-23` — วางแผนและปฏิบัติตามแผนการพัฒนาสมรรถภาพกายและสมรรถภาพกลไก
 
-**Teaching activity:** Set up a progressive, inclusive skill station for physical fitness and fitness testing. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At upper-secondary level, set up an inclusive skill station for physical fitness and fitness testing. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for physical fitness and fitness testing. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, set up an inclusive skill station for physical fitness and fitness testing. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วางแผนและปฏิบัติตามแผนการพัฒนาสมรรถภาพกายและสมรรถภาพกลไก”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for physical fitness and fitness testing at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -511,9 +511,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-24` — วิเคราะห์ผลกระทบที่เกิดจากการครอบครอง การใช้และการจำหน่ายสารเสพติด
 
-**Teaching activity:** Use a teacher-led safety station about substance-use prevention and recovery support. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At upper-secondary level, run a teacher-led safety station about substance-use prevention and recovery support. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about substance-use prevention and recovery support. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, run a teacher-led safety station about substance-use prevention and recovery support. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์ผลกระทบที่เกิดจากการครอบครอง การใช้และการจำหน่ายสารเสพติด”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for substance-use prevention and recovery support at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -532,9 +532,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-25` — วิเคราะห์ปัจจัยที่มีผลต่อสุขภาพหรือความรุนแรงของคนไทยและเสนอแนวทางป้องกัน
 
-**Teaching activity:** Use a fictional, age-appropriate case about violence prevention and conflict resolution. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At upper-secondary level, use a fictional, age-appropriate case about violence prevention and conflict resolution. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about violence prevention and conflict resolution. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, use a fictional, age-appropriate case about violence prevention and conflict resolution. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วิเคราะห์ปัจจัยที่มีผลต่อสุขภาพหรือความรุนแรงของคนไทยและเสนอแนวทางป้องกัน”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for violence prevention and conflict resolution at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -553,9 +553,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-26` — วางแผน กำหนดแนวทางลดอุบัติเหตุ และสร้างเสริมความปลอดภัยในชุมชน
 
-**Teaching activity:** Use a teacher-led safety station about accident prevention and community safety. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At upper-secondary level, run a teacher-led safety station about accident prevention and community safety. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about accident prevention and community safety. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, run a teacher-led safety station about accident prevention and community safety. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “วางแผน กำหนดแนวทางลดอุบัติเหตุ และสร้างเสริมความปลอดภัยในชุมชน”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for accident prevention and community safety at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -574,9 +574,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-27` — มีส่วนร่วมในการสร้างเสริมความปลอดภัยในชุมชน
 
-**Teaching activity:** Provide a realistic label, information card or community-health data set about community health promotion. Learners inspect evidence, compare options and justify a practical, age-appropriate health decision.
+**Teaching activity:** At upper-secondary level, provide a label, information card or community-health data set about community health promotion. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Learners distinguish evidence from claims and justify a practical, age-appropriate decision.
 
-**Practical activity:** Provide a realistic label, information card or community-health data set about community health promotion. Learners inspect evidence, compare options and justify a practical, age-appropriate health decision. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, provide a label, information card or community-health data set about community health promotion. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Learners distinguish evidence from claims and justify a practical, age-appropriate decision. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “มีส่วนร่วมในการสร้างเสริมความปลอดภัยในชุมชน”. Accept evidence showing use of relevant evidence, a feasible prevention or improvement action, and clear roles for individuals or community partners. The learner must explain why the evidence is correct for community health promotion at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -595,9 +595,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-28` — ใช้ทักษะการตัดสินใจแก้ปัญหาในสถานการณ์ที่เสี่ยงต่อสุขภาพและความรุนแรง
 
-**Teaching activity:** Use a fictional, age-appropriate case about violence prevention and conflict resolution. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At upper-secondary level, use a fictional, age-appropriate case about violence prevention and conflict resolution. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about violence prevention and conflict resolution. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, use a fictional, age-appropriate case about violence prevention and conflict resolution. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ใช้ทักษะการตัดสินใจแก้ปัญหาในสถานการณ์ที่เสี่ยงต่อสุขภาพและความรุนแรง”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for violence prevention and conflict resolution at upper-secondary level; do not award full credit for unrelated general advice.
 
@@ -616,9 +616,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-M46-29` — แสดงวิธีการช่วยฟื้นคืนชีพอย่างถูกวิธี
 
-**Teaching activity:** Use a teacher-led safety station about cardiopulmonary resuscitation and emergency response. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At upper-secondary level, run a teacher-led safety station about cardiopulmonary resuscitation and emergency response. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about cardiopulmonary resuscitation and emergency response. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At upper-secondary level, run a teacher-led safety station about cardiopulmonary resuscitation and emergency response. Use an evidence-based case, investigation or performance analysis. Learners plan and justify an approach, monitor results, evaluate limitations and explain implications for a team, family or community where relevant. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “แสดงวิธีการช่วยฟื้นคืนชีพอย่างถูกวิธี”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for cardiopulmonary resuscitation and emergency response at upper-secondary level; do not award full credit for unrelated general advice.
 
