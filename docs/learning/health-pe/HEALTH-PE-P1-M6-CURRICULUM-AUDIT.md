@@ -87,3 +87,15 @@ A deeper review found that the 663 tasks are indicator-linked but are not 663 in
 The starter packs therefore pass structural/parser validation, but assessment-content quality is not yet accepted as fully complete. The remaining authoring work is to replace broad scaffold prompts and answer guidance with objective-specific evidence, practical performance criteria and safe scenarios, then add regression checks for meaningful task specificity. The 23 November wording correction fixed identified grammar defects and the HPE validator now guards against their recurrence.
 
 No content has been imported or published. The isolated staging environment and authorised staging teacher account remain prerequisites for import acceptance.
+
+
+## Live database re-verification — 23 November 2026
+
+Read-only queries against the existing ep-core Supabase project reconfirmed:
+- 221 unique HPE objectives and 279 grade-level alignments.
+- 139 must-know and 140 should-know alignment rows; zero unclassified rows.
+- All 12 grade rows (P1–M6) exactly match the expected objective and priority counts.
+- All shared M4–M6 indicators have all three grade alignments; missing shared-grade alignments: 0.
+- HPE lesson content items: 0; HPE questions: 0.
+
+These were SELECT-only checks. No migration was applied, and no school, class, student, assignment, lesson draft or question record was changed.
