@@ -113,8 +113,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Match each term or example to its approved meaning on the card. This assesses: “บอกความหมาย ความสำคัญ และเคารพพระรัตนตรัย ปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนาหรือหลักธรรมของศาสนาที่ตนนับถือ ตามที่กำหนด”. **Answer:** Matches the verified card exactly.
 2. **Explain / compare:** Explain the meaning or importance of one selected Jewel or principle using the approved definition. This task assesses: “บอกความหมาย ความสำคัญ และเคารพพระรัตนตรัย ปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนาหรือหลักธรรมของศาสนาที่ตนนับถือ ตามที่กำหนด”. **Answer:** Explanation is consistent with the approved definition.
-3. **Apply / demonstrate:** Resolve a short ethical dilemma using one principle from the card and justify the action. This task assesses: “บอกความหมาย ความสำคัญ และเคารพพระรัตนตรัย ปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนาหรือหลักธรรมของศาสนาที่ตนนับถือ ตามที่กำหนด”. **Answer:** Feasible action and explicit principle-based reason; never assess personal faith or worship.
-### 4. SO1.1-P1-04
+3. **Apply / demonstrate:** In a teacher-led fictional classroom dilemma, role-play one response that follows a selected principle from the verified card; name the principle after the role-play. This task assesses: “บอกความหมาย ความสำคัญ และเคารพพระรัตนตรัย ปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนาหรือหลักธรรมของศาสนาที่ตนนับถือ ตามที่กำหนด”. **Answer:** The action is observable, safe and consistent with the selected source-verified principle; assess the explanation and action, never personal belief or worship.### 4. SO1.1-P1-04
 
 - **Standard:** SO1.1
 - **2021 priority classification:** should_know
@@ -147,8 +146,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the practice and sequence its main steps from the source. This assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตา มีสติที่เป็นพื้นฐานของสมาธิในพระพุทธศาสนาหรือการพัฒนาจิต ตามแนวทางของศาสนาที่ตนนับถือ ตามที่กำหนด”. **Answer:** Practice and steps match the source.
 2. **Explain / compare:** Explain how one step supports the purpose stated in the source. This task assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตา มีสติที่เป็นพื้นฐานของสมาธิในพระพุทธศาสนาหรือการพัฒนาจิต ตามแนวทางของศาสนาที่ตนนับถือ ตามที่กำหนด”. **Answer:** Purpose is accurate and source-grounded.
-3. **Apply / demonstrate:** Describe or design a brief attention/reflection routine and one observable sign that it supports focus. This task assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตา มีสติที่เป็นพื้นฐานของสมาธิในพระพุทธศาสนาหรือการพัฒนาจิต ตามแนวทางของศาสนาที่ตนนับถือ ตามที่กำหนด”. **Answer:** Safe, voluntary routine with observable evidence; do not grade prayer, belief or spiritual attainment.
-### 5. SO1.2-P1-01
+3. **Apply / demonstrate:** Choose a practice actually taught in the verified tradition card. With the learner's agreement, demonstrate or sequence its taught steps; an observer may instead explain the steps and purpose without performing worship. This task assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตา มีสติที่เป็นพื้นฐานของสมาธิในพระพุทธศาสนาหรือการพัฒนาจิต ตามแนวทางของศาสนาที่ตนนับถือ ตามที่กำหนด”. **Answer:** Steps and purpose match the selected source; participation is voluntary and an equivalent observation/explanation route is available. Do not grade faith, prayer sincerity or spiritual attainment.### 5. SO1.2-P1-01
 
 - **Standard:** SO1.2
 - **2021 priority classification:** should_know
@@ -181,8 +179,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the place and one service task shown in the plan. This assesses: “บำเพ็ญประโยชน์ต่อวัด หรือศาสนสถานของศาสนาที่ตนนับถือ”. **Answer:** Correct place and task.
 2. **Explain / compare:** Explain how the task helps care for the place or people who use it. This task assesses: “บำเพ็ญประโยชน์ต่อวัด หรือศาสนสถานของศาสนาที่ตนนับถือ”. **Answer:** Practical benefit supported by the plan.
-3. **Apply / demonstrate:** Select a safe task suitable for a child and state one permission, safety or respect rule. This task assesses: “บำเพ็ญประโยชน์ต่อวัด หรือศาสนสถานของศาสนาที่ตนนับถือ”. **Answer:** Safe supervised action and relevant rule; provide an equivalent community-care alternative where participation is inappropriate.
-### 6. SO1.2-P1-02
+3. **Apply / demonstrate:** Complete or rehearse a supervised service task from the approved plan (for example, sorting safe materials or arranging an agreed area); state who authorised it and one safety rule. This task assesses: “บำเพ็ญประโยชน์ต่อวัด หรือศาสนสถานของศาสนาที่ตนนับถือ”. **Answer:** Teacher observes a useful, age-appropriate action carried out with permission and supervision; no handling of sacred objects or restricted areas without explicit guidance.### 6. SO1.2-P1-02
 
 - **Standard:** SO1.2
 - **2021 priority classification:** should_know
@@ -249,8 +246,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the event and identify or sequence its key actions from the card. This assesses: “ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนา ตามที่กำหนดได้ถูกต้อง”. **Answer:** Event and actions are accurately identified.
 2. **Explain / compare:** Explain the purpose of one action using the source note. This task assesses: “ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนา ตามที่กำหนดได้ถูกต้อง”. **Answer:** Purpose matches the verified source.
-3. **Apply / demonstrate:** Prepare a short guide for a respectful observer with three context-specific rules and reasons. This task assesses: “ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนา ตามที่กำหนดได้ถูกต้อง”. **Answer:** Rules are appropriate to this event; observing is acceptable instead of worship participation.
-### 8. SO2.1-P1-01
+3. **Apply / demonstrate:** In a role-play based on the verified event card, demonstrate the correct conduct for an invited participant or respectful observer and explain one choice. This task assesses: “ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนา ตามที่กำหนดได้ถูกต้อง”. **Answer:** Observed conduct matches the event-specific source and local guidance; observing rather than joining worship is an acceptable route.### 8. SO2.1-P1-01
 
 - **Standard:** SO2.1
 - **2021 priority classification:** should_know
@@ -283,8 +279,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the people in the case and one helpful action each person can take. This assesses: “บอกประโยชน์และปฏิบัติตนเป็นสมาชิกที่ดีของครอบครัวและโรงเรียน”. **Answer:** Names people and actions supported by the case.
 2. **Explain / compare:** Explain how the action benefits the family or school and what may happen if the responsibility is ignored. This task assesses: “บอกประโยชน์และปฏิบัติตนเป็นสมาชิกที่ดีของครอบครัวและโรงเรียน”. **Answer:** Explains a realistic benefit or consequence linked to the case.
-3. **Apply / demonstrate:** Choose one action you can take in a similar situation and explain how it supports the group. This task assesses: “บอกประโยชน์และปฏิบัติตนเป็นสมาชิกที่ดีของครอบครัวและโรงเรียน”. **Answer:** Gives a feasible, respectful action and explains its benefit.
-### 9. SO2.1-P1-02
+3. **Apply / demonstrate:** Role-play one helpful action in the family or school case, then identify the responsibility it fulfils. This task assesses: “บอกประโยชน์และปฏิบัติตนเป็นสมาชิกที่ดีของครอบครัวและโรงเรียน”. **Answer:** The learner demonstrates a feasible, respectful action and correctly links it to a group responsibility.### 9. SO2.1-P1-02
 
 - **Standard:** SO2.1
 - **2021 priority classification:** must_know
@@ -419,8 +414,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the decision to be made and the people who should take part. This assesses: “มีส่วนร่วมในการตัดสินใจและทำกิจกรรมในครอบครัวและโรงเรียนตามกระบวนการประชาธิปไตย”. **Answer:** Identifies issue and relevant participants.
 2. **Explain / compare:** Describe the agreed steps for listening, considering options and reaching a decision. This task assesses: “มีส่วนร่วมในการตัดสินใจและทำกิจกรรมในครอบครัวและโรงเรียนตามกระบวนการประชาธิปไตย”. **Answer:** Describes a fair, age-appropriate process from the case.
-3. **Apply / demonstrate:** Take part in a simulated decision: state a view, listen to another view and explain how the group reached a fair outcome. This task assesses: “มีส่วนร่วมในการตัดสินใจและทำกิจกรรมในครอบครัวและโรงเรียนตามกระบวนการประชาธิปไตย”. **Answer:** Demonstrates listening and participation; outcome follows the stated process, not simply the learner's preferred choice.
-### 13. SO3.1-P1-01
+3. **Apply / demonstrate:** Take part in a real, low-stakes class decision: state a view, listen to another view, follow the agreed voting/consensus procedure and report how the decision was reached. This task assesses: “มีส่วนร่วมในการตัดสินใจและทำกิจกรรมในครอบครัวและโรงเรียนตามกระบวนการประชาธิปไตย”. **Answer:** Teacher observes participation, listening and adherence to the agreed fair process; the learner need not agree with the final result.### 13. SO3.1-P1-01
 
 - **Standard:** SO3.1
 - **2021 priority classification:** should_know
@@ -759,8 +753,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the national symbol shown and identify one feature accurately. This assesses: “อธิบายความหมายและความสำคัญของสัญลักษณ์สำคัญของชาติไทยและปฏิบัติได้ถูกต้อง”. **Answer:** Correct symbol and feature.
 2. **Explain / compare:** Explain its meaning or importance using the approved information card. This task assesses: “อธิบายความหมายและความสำคัญของสัญลักษณ์สำคัญของชาติไทยและปฏิบัติได้ถูกต้อง”. **Answer:** Meaning follows the approved source.
-3. **Apply / demonstrate:** Choose the correct respectful action for a classroom scenario involving the symbol and justify it using the guidance. This task assesses: “อธิบายความหมายและความสำคัญของสัญลักษณ์สำคัญของชาติไทยและปฏิบัติได้ถูกต้อง”. **Answer:** Action matches current official guidance; do not add unsupported rules.
-### 23. SO4.3-P1-02
+3. **Apply / demonstrate:** Demonstrate the appropriate response in a teacher-provided scenario involving one national symbol, using the current verified official guidance card; explain the meaning behind the response. This task assesses: “อธิบายความหมายและความสำคัญของสัญลักษณ์สำคัญของชาติไทยและปฏิบัติได้ถูกต้อง”. **Answer:** The response follows the specific verified guidance for the symbol and context; do not add unsupported etiquette rules.### 23. SO4.3-P1-02
 
 - **Standard:** SO4.3
 - **2021 priority classification:** should_know
@@ -929,8 +922,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Locate two named classroom objects on the sketch. This assesses: “ใช้แผนผังแสดงตำแหน่งของสิ่งต่าง ๆ ในห้องเรียน”. **Answer:** Objects are correctly located.
 2. **Explain / compare:** Draw or complete a simple plan showing the positions of the named objects and include a key or labels. This task assesses: “ใช้แผนผังแสดงตำแหน่งของสิ่งต่าง ๆ ในห้องเรียน”. **Answer:** Plan represents relative positions clearly with labels/key.
-3. **Apply / demonstrate:** Explain how a classmate can use your plan to find one object, using position/direction words. This task assesses: “ใช้แผนผังแสดงตำแหน่งของสิ่งต่าง ๆ ในห้องเรียน”. **Answer:** Directions lead to the correct object and match the plan.
-### 28. SO5.1-P1-04
+3. **Apply / demonstrate:** Use the learner's own classroom plan to guide a partner to a named object; the partner checks whether the directions lead to the correct location. This task assesses: “ใช้แผนผังแสดงตำแหน่งของสิ่งต่าง ๆ ในห้องเรียน”. **Answer:** The plan and spoken directions identify the correct object and use position/direction consistently.### 28. SO5.1-P1-04
 
 - **Standard:** SO5.1
 - **2021 priority classification:** should_know
@@ -963,8 +955,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify one weather condition recorded at each observation time. This assesses: “สังเกตและบอกการเปลี่ยนแปลงของสภาพอากาศในรอบวัน”. **Answer:** Conditions match the log.
 2. **Explain / compare:** Describe one change or one condition that stayed the same during the day. This task assesses: “สังเกตและบอกการเปลี่ยนแปลงของสภาพอากาศในรอบวัน”. **Answer:** Comparison accurately identifies change or continuity.
-3. **Apply / demonstrate:** Choose suitable clothing or an activity for one recorded condition and explain the evidence behind the choice. This task assesses: “สังเกตและบอกการเปลี่ยนแปลงของสภาพอากาศในรอบวัน”. **Answer:** Choice is sensible and tied to the observed condition.
-### 29. SO5.2-P1-01
+3. **Apply / demonstrate:** Make two brief weather observations at different times on the same day, record what is seen (such as cloud cover, rain or wind using safe observation), and report one change. This task assesses: “สังเกตและบอกการเปลี่ยนแปลงของสภาพอากาศในรอบวัน”. **Answer:** Two time-labelled observations are recorded accurately and the stated change is visible in the records; do not infer temperature or wind speed without measuring.### 29. SO5.2-P1-01
 
 - **Standard:** SO5.2
 - **2021 priority classification:** must_know
@@ -1031,8 +1022,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify what changed between the two observations. This assesses: “สังเกตและเปรียบเทียบการเปลี่ยนแปลงของสิ่งแวดล้อมเพื่อการปฏิบัติตนอย่างเหมาะสม”. **Answer:** Identifies the actual change shown.
 2. **Explain / compare:** Compare the two conditions and explain one way behaviour should change. This task assesses: “สังเกตและเปรียบเทียบการเปลี่ยนแปลงของสิ่งแวดล้อมเพื่อการปฏิบัติตนอย่างเหมาะสม”. **Answer:** Comparison is accurate and linked to appropriate behaviour.
-3. **Apply / demonstrate:** Choose a suitable action for the current condition and justify it with evidence. This task assesses: “สังเกตและเปรียบเทียบการเปลี่ยนแปลงของสิ่งแวดล้อมเพื่อการปฏิบัติตนอย่างเหมาะสม”. **Answer:** Action is safe and justified by the evidence.
-### 31. SO5.2-P1-03
+3. **Apply / demonstrate:** Compare two teacher-provided or directly observed environmental conditions and demonstrate one suitable response to the current condition; explain the observation that informed it. This task assesses: “สังเกตและเปรียบเทียบการเปลี่ยนแปลงของสิ่งแวดล้อมเพื่อการปฏิบัติตนอย่างเหมาะสม”. **Answer:** The comparison identifies a real change and the demonstrated response is safe and justified by the evidence.### 31. SO5.2-P1-03
 
 - **Standard:** SO5.2
 - **2021 priority classification:** must_know
@@ -1065,8 +1055,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the environmental issue and where it occurs in the audit. This assesses: “มีส่วนร่วมในการดูแลสิ่งแวดล้อมที่บ้านและห้องเรียน”. **Answer:** Issue and location match the audit.
 2. **Explain / compare:** Explain one cause or consequence supported by the observation. This task assesses: “มีส่วนร่วมในการดูแลสิ่งแวดล้อมที่บ้านและห้องเรียน”. **Answer:** Cause/consequence supported by the data or observation.
-3. **Apply / demonstrate:** Plan one safe action, name who can help and state how the class will check whether it worked. This task assesses: “มีส่วนร่วมในการดูแลสิ่งแวดล้อมที่บ้านและห้องเรียน”. **Answer:** Action is safe, roles are realistic and success measure is observable.
-### 32. SO1.1-P2-01
+3. **Apply / demonstrate:** Carry out one agreed, safe home/classroom care action, then record the before-and-after observation or completed checklist with adult support where needed. This task assesses: “มีส่วนร่วมในการดูแลสิ่งแวดล้อมที่บ้านและห้องเรียน”. **Answer:** The learner participates in the agreed action and records an observable result; no hazardous cleaning or unsupervised work.### 32. SO1.1-P2-01
 
 - **Standard:** SO1.1
 - **2021 priority classification:** should_know
@@ -1201,8 +1190,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Match each term or example to its approved meaning on the card. This assesses: “บอกความหมาย ความสำคัญ และเคารพพระรัตนตรัย ปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนา หรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Matches the verified card exactly.
 2. **Explain / compare:** Explain the meaning or importance of one selected Jewel or principle using the approved definition. This task assesses: “บอกความหมาย ความสำคัญ และเคารพพระรัตนตรัย ปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนา หรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Explanation is consistent with the approved definition.
-3. **Apply / demonstrate:** Resolve a short ethical dilemma using one principle from the card and justify the action. This task assesses: “บอกความหมาย ความสำคัญ และเคารพพระรัตนตรัย ปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนา หรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Feasible action and explicit principle-based reason; never assess personal faith or worship.
-### 36. SO1.1-P2-05
+3. **Apply / demonstrate:** Use a verified principle card to role-play a response to a new everyday dilemma, then explain how the action follows the principle. This task assesses: “บอกความหมาย ความสำคัญ และเคารพพระรัตนตรัย ปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนา หรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** The role-played action and explanation match the selected source-verified principle; never assess personal faith or worship.### 36. SO1.1-P2-05
 
 - **Standard:** SO1.1
 - **2021 priority classification:** should_know
@@ -1269,8 +1257,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the practice and sequence its main steps from the source. This assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตา มีสติที่เป็นพื้นฐานของสมาธิ ในพระพุทธศาสนาหรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Practice and steps match the source.
 2. **Explain / compare:** Explain how one step supports the purpose stated in the source. This task assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตา มีสติที่เป็นพื้นฐานของสมาธิ ในพระพุทธศาสนาหรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Purpose is accurate and source-grounded.
-3. **Apply / demonstrate:** Describe or design a brief attention/reflection routine and one observable sign that it supports focus. This task assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตา มีสติที่เป็นพื้นฐานของสมาธิ ในพระพุทธศาสนาหรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Safe, voluntary routine with observable evidence; do not grade prayer, belief or spiritual attainment.
-### 38. SO1.1-P2-07
+3. **Apply / demonstrate:** Select a practice taught in the verified tradition card and, voluntarily, demonstrate or sequence its steps; alternatively, annotate the steps and explain their purpose as an observer. This task assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตา มีสติที่เป็นพื้นฐานของสมาธิ ในพระพุทธศาสนาหรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Steps and purpose are source-accurate; demonstration is voluntary and observation/explanation is accepted without grading belief or spiritual attainment.### 38. SO1.1-P2-07
 
 - **Standard:** SO1.1
 - **2021 priority classification:** must_know
@@ -1337,8 +1324,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the person, place or object in each case and select the respectful action. This assesses: “ปฏิบัติตนอย่างเหมาะสมต่อสาวกของศาสนาที่ตนนับถือ ตามที่กำหนดได้ถูกต้อง”. **Answer:** Correct identification and action.
 2. **Explain / compare:** Explain why one action is appropriate, citing the case instruction. This task assesses: “ปฏิบัติตนอย่างเหมาะสมต่อสาวกของศาสนาที่ตนนับถือ ตามที่กำหนดได้ถูกต้อง”. **Answer:** Reason is grounded in the source/context.
-3. **Apply / demonstrate:** Create a visitor checklist with three practical rules for the represented site or interaction. This task assesses: “ปฏิบัติตนอย่างเหมาะสมต่อสาวกของศาสนาที่ตนนับถือ ตามที่กำหนดได้ถูกต้อง”. **Answer:** Three practical, context-specific rules; avoid assuming all traditions share identical practices.
-### 40. SO1.2-P2-02
+3. **Apply / demonstrate:** Role-play a respectful interaction with a religious adherent using the context-specific guidance card; demonstrate the appropriate greeting or conduct only where the source says it is appropriate. This task assesses: “ปฏิบัติตนอย่างเหมาะสมต่อสาวกของศาสนาที่ตนนับถือ ตามที่กำหนดได้ถูกต้อง”. **Answer:** Observed interaction follows the supplied tradition-specific guidance and respects the person's boundaries; do not assume one greeting or practice fits all.### 40. SO1.2-P2-02
 
 - **Standard:** SO1.2
 - **2021 priority classification:** should_know
@@ -1371,8 +1357,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the event and identify or sequence its key actions from the card. This assesses: “ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนา ตามที่กำหนดได้ถูกต้อง”. **Answer:** Event and actions are accurately identified.
 2. **Explain / compare:** Explain the purpose of one action using the source note. This task assesses: “ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนา ตามที่กำหนดได้ถูกต้อง”. **Answer:** Purpose matches the verified source.
-3. **Apply / demonstrate:** Prepare a short guide for a respectful observer with three context-specific rules and reasons. This task assesses: “ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนา ตามที่กำหนดได้ถูกต้อง”. **Answer:** Rules are appropriate to this event; observing is acceptable instead of worship participation.
-### 41. SO2.1-P2-01
+3. **Apply / demonstrate:** In a scenario based on the verified event card, demonstrate or sequence appropriate conduct for a participant or observer and explain why it fits that event. This task assesses: “ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนา ตามที่กำหนดได้ถูกต้อง”. **Answer:** Conduct and explanation match the named event and source; observing is acceptable and worship participation is never compulsory.### 41. SO2.1-P2-01
 
 - **Standard:** SO2.1
 - **2021 priority classification:** must_know
@@ -1405,8 +1390,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the rule that applies to the situation. This assesses: “ปฏิบัติตนตามข้อตกลง กติกา กฎ ระเบียบและหน้าที่ ที่ต้องปฏิบัติในชีวิตประจำวัน”. **Answer:** Selects the relevant rule from the card.
 2. **Explain / compare:** Explain how following the rule protects people or supports shared activity. This task assesses: “ปฏิบัติตนตามข้อตกลง กติกา กฎ ระเบียบและหน้าที่ ที่ต้องปฏิบัติในชีวิตประจำวัน”. **Answer:** Explains its purpose in context.
-3. **Apply / demonstrate:** Choose the correct action in a new situation and explain which rule supports it. This task assesses: “ปฏิบัติตนตามข้อตกลง กติกา กฎ ระเบียบและหน้าที่ ที่ต้องปฏิบัติในชีวิตประจำวัน”. **Answer:** Action follows the rule and reason; distinguish a written rule from a personal preference.
-### 42. SO2.1-P2-02
+3. **Apply / demonstrate:** Complete a short classroom routine simulation by following the relevant agreement/rule, then point to the rule that guided the action. This task assesses: “ปฏิบัติตนตามข้อตกลง กติกา กฎ ระเบียบและหน้าที่ ที่ต้องปฏิบัติในชีวิตประจำวัน”. **Answer:** The learner performs the action consistently with the stated rule and distinguishes it from a personal preference.### 42. SO2.1-P2-02
 
 - **Standard:** SO2.1
 - **2021 priority classification:** should_know
@@ -1439,8 +1423,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the context and the respectful manner shown in each picture/dialogue. This assesses: “ปฏิบัติตนตามมารยาทไทย”. **Answer:** Matches conduct to the context shown.
 2. **Explain / compare:** Explain why the manner is appropriate in that context. This task assesses: “ปฏิบัติตนตามมารยาทไทย”. **Answer:** Explains respect for the other person and situation.
-3. **Apply / demonstrate:** Role-play or describe a respectful response to a new situation, noting that context and individual boundaries matter. This task assesses: “ปฏิบัติตนตามมารยาทไทย”. **Answer:** Response is respectful and context-sensitive; accept appropriate variations and avoid rigid assumptions.
-### 43. SO2.1-P2-03
+3. **Apply / demonstrate:** Role-play a respectful response to a new, realistic school/community interaction; the observer records the specific behaviour shown rather than judging accent, status or personality. This task assesses: “ปฏิบัติตนตามมารยาทไทย”. **Answer:** The behaviour is appropriate to the stated context and respects personal boundaries; accept culturally and situationally appropriate variation.### 43. SO2.1-P2-03
 
 - **Standard:** SO2.1
 - **2021 priority classification:** should_know
@@ -1473,8 +1456,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify one difference between the two profiles without labelling either as better. This assesses: “แสดงพฤติกรรมในการยอมรับความคิด ความเชื่อ และการปฏิบัติของบุคคลอื่นที่แตกต่างกันโดยปราศจากอคติ”. **Answer:** States a factual difference from the profiles without stereotyping.
 2. **Explain / compare:** Explain how both people can take part in the shared activity respectfully. This task assesses: “แสดงพฤติกรรมในการยอมรับความคิด ความเชื่อ และการปฏิบัติของบุคคลอื่นที่แตกต่างกันโดยปราศจากอคติ”. **Answer:** Suggests inclusive participation for both people.
-3. **Apply / demonstrate:** Respond to a disagreement by describing one fair way to listen and cooperate without prejudice. This task assesses: “แสดงพฤติกรรมในการยอมรับความคิด ความเชื่อ และการปฏิบัติของบุคคลอื่นที่แตกต่างกันโดยปราศจากอคติ”. **Answer:** Gives a fair, non-discriminatory response and shows listening.
-### 44. SO2.1-P2-04
+3. **Apply / demonstrate:** In a paired discussion, demonstrate listening to a different view, restating it fairly and responding without ridicule or exclusion. This task assesses: “แสดงพฤติกรรมในการยอมรับความคิด ความเชื่อ และการปฏิบัติของบุคคลอื่นที่แตกต่างกันโดยปราศจากอคติ”. **Answer:** Teacher observes accurate listening and a non-discriminatory response; learners are not required to agree with the other view.### 44. SO2.1-P2-04
 
 - **Standard:** SO2.1
 - **2021 priority classification:** must_know
@@ -1677,8 +1659,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Read the ledger and identify one income item and one expense item. This assesses: “บันทึกรายรับ-รายจ่ายของตนเอง”. **Answer:** Correctly identifies items.
 2. **Explain / compare:** Calculate the total income and total expenses for the period. This task assesses: “บันทึกรายรับ-รายจ่ายของตนเอง”. **Answer:** Totals are arithmetically correct.
-3. **Apply / demonstrate:** Complete a missing ledger entry or calculate the remaining balance, showing the operation. This task assesses: “บันทึกรายรับ-รายจ่ายของตนเอง”. **Answer:** Entry/balance follows the supplied amounts and calculation.
-### 50. SO3.1-P2-04
+3. **Apply / demonstrate:** Complete a dated practice ledger from supplied, age-appropriate transactions, recording each income/expense and calculating the closing balance; use fictional amounts if preferred. This task assesses: “บันทึกรายรับ-รายจ่ายของตนเอง”. **Answer:** Every transaction is entered in the correct column and the balance is arithmetically correct; no learner must disclose personal finances.### 50. SO3.1-P2-04
 
 - **Standard:** SO3.1
 - **2021 priority classification:** must_know
@@ -2085,8 +2066,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the three bodies in the diagram and identify their positions. This assesses: “สังเกตและแสดงความสัมพันธ์ระหว่างโลก ดวงอาทิตย์และดวงจันทร์ที่ทำให้เกิดปรากฏการณ์”. **Answer:** Correctly names bodies and positions.
 2. **Explain / compare:** Match the observed or modelled day/night or Moon appearance pattern to the diagram, using the teacher's explanation. This task assesses: “สังเกตและแสดงความสัมพันธ์ระหว่างโลก ดวงอาทิตย์และดวงจันทร์ที่ทำให้เกิดปรากฏการณ์”. **Answer:** Matches the phenomenon to the verified model/observation.
-3. **Apply / demonstrate:** Explain one relationship between Earth, Sun and Moon that accounts for the selected phenomenon. This task assesses: “สังเกตและแสดงความสัมพันธ์ระหว่างโลก ดวงอาทิตย์และดวงจันทร์ที่ทำให้เกิดปรากฏการณ์”. **Answer:** Explanation is scientifically accurate for the taught phenomenon; never direct students to view the Sun.
-### 62. SO5.2-P2-01
+3. **Apply / demonstrate:** Use a safe teacher-led model or diagram to show the relative positions/movement of Earth, Sun and Moon for the phenomenon being taught; narrate what is moving relative to what. This task assesses: “สังเกตและแสดงความสัมพันธ์ระหว่างโลก ดวงอาทิตย์และดวงจันทร์ที่ทำให้เกิดปรากฏการณ์”. **Answer:** Model demonstrates the scientifically correct relationship for the named phenomenon; never ask learners to look directly at the Sun.### 62. SO5.2-P2-01
 
 - **Standard:** SO5.2
 - **2021 priority classification:** must_know
@@ -2221,8 +2201,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the environmental issue and where it occurs in the audit. This assesses: “มีส่วนร่วมในการจัดการสิ่งแวดล้อมในโรงเรียน”. **Answer:** Issue and location match the audit.
 2. **Explain / compare:** Explain one cause or consequence supported by the observation. This task assesses: “มีส่วนร่วมในการจัดการสิ่งแวดล้อมในโรงเรียน”. **Answer:** Cause/consequence supported by the data or observation.
-3. **Apply / demonstrate:** Plan one safe action, name who can help and state how the class will check whether it worked. This task assesses: “มีส่วนร่วมในการจัดการสิ่งแวดล้อมในโรงเรียน”. **Answer:** Action is safe, roles are realistic and success measure is observable.
-### 66. SO1.1-P3-01
+3. **Apply / demonstrate:** Join a supervised school environmental action, complete an assigned role and record one before/after indicator (for example, litter count in a defined area). This task assesses: “มีส่วนร่วมในการจัดการสิ่งแวดล้อมในโรงเรียน”. **Answer:** Learner completes a safe role and records a comparable measure; the class uses the same area and method before and after.### 66. SO1.1-P3-01
 
 - **Standard:** SO1.1
 - **2021 priority classification:** should_know
@@ -2391,8 +2370,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Match each term or example to its approved meaning on the card. This assesses: “แสดงความเคารพพระรัตนตรัยและปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนาหรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Matches the verified card exactly.
 2. **Explain / compare:** Explain the meaning or importance of one selected Jewel or principle using the approved definition. This task assesses: “แสดงความเคารพพระรัตนตรัยและปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนาหรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Explanation is consistent with the approved definition.
-3. **Apply / demonstrate:** Resolve a short ethical dilemma using one principle from the card and justify the action. This task assesses: “แสดงความเคารพพระรัตนตรัยและปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนาหรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Feasible action and explicit principle-based reason; never assess personal faith or worship.
-### 71. SO1.1-P3-06
+3. **Apply / demonstrate:** Use a verified principle card to demonstrate a fair response in a role-played everyday situation, then identify the principle and explain the link. This task assesses: “แสดงความเคารพพระรัตนตรัยและปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนาหรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** The observable action and explanation match the source-verified principle; assess conduct in the scenario, not private belief or worship.### 71. SO1.1-P3-06
 
 - **Standard:** SO1.1
 - **2021 priority classification:** should_know
@@ -2425,8 +2403,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the practice and sequence its main steps from the source. This assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตามีสติที่เป็นพื้นฐานของสมาธิ ในพระพุทธศาสนา หรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Practice and steps match the source.
 2. **Explain / compare:** Explain how one step supports the purpose stated in the source. This task assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตามีสติที่เป็นพื้นฐานของสมาธิ ในพระพุทธศาสนา หรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Purpose is accurate and source-grounded.
-3. **Apply / demonstrate:** Describe or design a brief attention/reflection routine and one observable sign that it supports focus. This task assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตามีสติที่เป็นพื้นฐานของสมาธิ ในพระพุทธศาสนา หรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Safe, voluntary routine with observable evidence; do not grade prayer, belief or spiritual attainment.
-### 72. SO1.1-P3-07
+3. **Apply / demonstrate:** Choose a practice described in the verified tradition card and voluntarily demonstrate or sequence its steps; alternatively, as an observer, annotate the steps and explain the purpose. This task assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตามีสติที่เป็นพื้นฐานของสมาธิ ในพระพุทธศาสนา หรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Steps and purpose match the selected source; demonstration is voluntary and no learner is graded on belief, prayer sincerity or spiritual attainment.### 72. SO1.1-P3-07
 
 - **Standard:** SO1.1
 - **2021 priority classification:** should_know
@@ -2493,8 +2470,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the person, place or object in each case and select the respectful action. This assesses: “ปฏิบัติตนอย่างเหมาะสมต่อสาวก ศาสนสถาน ศาสนวัตถุของศาสนาที่ตนนับถือได้ถูกต้อง”. **Answer:** Correct identification and action.
 2. **Explain / compare:** Explain why one action is appropriate, citing the case instruction. This task assesses: “ปฏิบัติตนอย่างเหมาะสมต่อสาวก ศาสนสถาน ศาสนวัตถุของศาสนาที่ตนนับถือได้ถูกต้อง”. **Answer:** Reason is grounded in the source/context.
-3. **Apply / demonstrate:** Create a visitor checklist with three practical rules for the represented site or interaction. This task assesses: “ปฏิบัติตนอย่างเหมาะสมต่อสาวก ศาสนสถาน ศาสนวัตถุของศาสนาที่ตนนับถือได้ถูกต้อง”. **Answer:** Three practical, context-specific rules; avoid assuming all traditions share identical practices.
-### 74. SO1.2-P3-02
+3. **Apply / demonstrate:** Demonstrate appropriate conduct in a teacher-led scenario involving a named adherent, place or sacred object, following the verified tradition-specific guidance. This task assesses: “ปฏิบัติตนอย่างเหมาะสมต่อสาวก ศาสนสถาน ศาสนวัตถุของศาสนาที่ตนนับถือได้ถูกต้อง”. **Answer:** Observed conduct matches the supplied guidance for that specific person/place/object; no handling or entry where permission is not given.### 74. SO1.2-P3-02
 
 - **Standard:** SO1.2
 - **2021 priority classification:** should_know
@@ -2527,8 +2503,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the event and identify or sequence its key actions from the card. This assesses: “เห็นคุณค่าและปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนาตามที่กำหนดได้ถูกต้อง”. **Answer:** Event and actions are accurately identified.
 2. **Explain / compare:** Explain the purpose of one action using the source note. This task assesses: “เห็นคุณค่าและปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนาตามที่กำหนดได้ถูกต้อง”. **Answer:** Purpose matches the verified source.
-3. **Apply / demonstrate:** Prepare a short guide for a respectful observer with three context-specific rules and reasons. This task assesses: “เห็นคุณค่าและปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนาตามที่กำหนดได้ถูกต้อง”. **Answer:** Rules are appropriate to this event; observing is acceptable instead of worship participation.
-### 75. SO1.2-P3-03
+3. **Apply / demonstrate:** Use the verified event card to demonstrate or sequence appropriate conduct for an invited participant or observer, then explain the purpose of one action. This task assesses: “เห็นคุณค่าและปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนาตามที่กำหนดได้ถูกต้อง”. **Answer:** Action and explanation are specific to the named event; observing is acceptable and participation in worship is not compulsory.### 75. SO1.2-P3-03
 
 - **Standard:** SO1.2
 - **2021 priority classification:** should_know
@@ -2595,8 +2570,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the tradition and the people/community associated with it in the source. This assesses: “สรุปประโยชน์และปฏิบัติตนตามประเพณีและวัฒนธรรมในครอบครัวและท้องถิ่น”. **Answer:** Correct tradition and context.
 2. **Explain / compare:** Explain one benefit or meaning of the tradition using the source. This task assesses: “สรุปประโยชน์และปฏิบัติตนตามประเพณีและวัฒนธรรมในครอบครัวและท้องถิ่น”. **Answer:** Benefit/meaning is supported by the source.
-3. **Apply / demonstrate:** Suggest a respectful way to participate, learn or help preserve the tradition while recognising that practices can vary. This task assesses: “สรุปประโยชน์และปฏิบัติตนตามประเพณีและวัฒนธรรมในครอบครัวและท้องถิ่น”. **Answer:** Proposal is respectful and recognises variation and voluntary participation.
-### 77. SO2.1-P3-02
+3. **Apply / demonstrate:** Demonstrate one appropriate way to take part in, learn about or support a locally verified family/community tradition; explain its benefit using the source or community guidance. This task assesses: “สรุปประโยชน์และปฏิบัติตนตามประเพณีและวัฒนธรรมในครอบครัวและท้องถิ่น”. **Answer:** Observed or simulated participation is respectful, voluntary and consistent with the local source; accept different family practices.### 77. SO2.1-P3-02
 
 - **Standard:** SO2.1
 - **2021 priority classification:** must_know
@@ -2731,8 +2705,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify two roles community members can take in the activity. This assesses: “ระบุบทบาทหน้าที่ของสมาชิกของชุมชนในการมีส่วนร่วมในกิจกรรมต่าง ๆ ตามกระบวนการประชาธิปไตย”. **Answer:** Names roles present in the scenario.
 2. **Explain / compare:** Explain how one role helps the group make or carry out a decision. This task assesses: “ระบุบทบาทหน้าที่ของสมาชิกของชุมชนในการมีส่วนร่วมในกิจกรรมต่าง ๆ ตามกระบวนการประชาธิปไตย”. **Answer:** Explains a relevant contribution to participation or accountability.
-3. **Apply / demonstrate:** Choose a role suitable for a child or adult in the scenario and explain its contribution. This task assesses: “ระบุบทบาทหน้าที่ของสมาชิกของชุมชนในการมีส่วนร่วมในกิจกรรมต่าง ๆ ตามกระบวนการประชาธิปไตย”. **Answer:** Chooses an appropriate role and explains it; do not imply children can perform legally restricted adult functions.
-### 81. SO2.2-P3-02
+3. **Apply / demonstrate:** Take part in a simulated community activity by carrying out an age-appropriate role (for example, sharing information, recording views or helping tally a class poll); explain how the role supports participation. This task assesses: “ระบุบทบาทหน้าที่ของสมาชิกของชุมชนในการมีส่วนร่วมในกิจกรรมต่าง ๆ ตามกระบวนการประชาธิปไตย”. **Answer:** Learner performs a realistic, age-appropriate role and explains its contribution; do not assign children legally restricted adult responsibilities.### 81. SO2.2-P3-02
 
 - **Standard:** SO2.2
 - **2021 priority classification:** should_know
@@ -3037,8 +3010,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the era and year shown for each supplied date. This assesses: “เทียบศักราชที่สำคัญตามปฏิทินที่ใช้ในชีวิตประจำวัน”. **Answer:** Correct era and year identification.
 2. **Explain / compare:** Convert the supplied year using the verified reference table and show the operation. This task assesses: “เทียบศักราชที่สำคัญตามปฏิทินที่ใช้ในชีวิตประจำวัน”. **Answer:** Conversion follows the supplied verified rule; no mental shortcut unsupported by the table.
-3. **Apply / demonstrate:** Explain why the calendar system must be named when comparing year numbers. This task assesses: “เทียบศักราชที่สำคัญตามปฏิทินที่ใช้ในชีวิตประจำวัน”. **Answer:** Explains that different eras can assign different year numbers to the same date.
-### 90. SO4.1-P3-02
+3. **Apply / demonstrate:** Convert the same supplied date between the two named calendar eras, show the calculation or reference rule used, and label both year systems. This task assesses: “เทียบศักราชที่สำคัญตามปฏิทินที่ใช้ในชีวิตประจำวัน”. **Answer:** Both era labels and converted year are correct for the stated conversion rule; do not compare year numbers without naming the calendar systems.### 90. SO4.1-P3-02
 
 - **Standard:** SO4.1
 - **2021 priority classification:** should_know
@@ -3071,8 +3043,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify one event and name the record that documents it. This assesses: “แสดงลำดับเหตุการณ์สำคัญของโรงเรียนและชุมชน โดยระบุหลักฐานและแหล่งข้อมูลที่เกี่ยวข้อง”. **Answer:** Event and source are correctly matched.
 2. **Explain / compare:** Place three events in chronological order and cite the date/source for each. This task assesses: “แสดงลำดับเหตุการณ์สำคัญของโรงเรียนและชุมชน โดยระบุหลักฐานและแหล่งข้อมูลที่เกี่ยวข้อง”. **Answer:** Order follows verified dates or explicit source chronology.
-3. **Apply / demonstrate:** Create a short school/community timeline with source labels and explain one change visible across the timeline. This task assesses: “แสดงลำดับเหตุการณ์สำคัญของโรงเรียนและชุมชน โดยระบุหลักฐานและแหล่งข้อมูลที่เกี่ยวข้อง”. **Answer:** Timeline is source-labelled and the stated change is supported by the records.
-### 91. SO4.2-P3-01
+3. **Apply / demonstrate:** Build a short timeline of three school/community events using the supplied dated records, attach a source label to each event and present the sequence. This task assesses: “แสดงลำดับเหตุการณ์สำคัญของโรงเรียนและชุมชน โดยระบุหลักฐานและแหล่งข้อมูลที่เกี่ยวข้อง”. **Answer:** Events are correctly ordered, each is linked to a traceable source and no date or event is invented.### 91. SO4.2-P3-01
 
 - **Standard:** SO4.2
 - **2021 priority classification:** should_know
@@ -3309,8 +3280,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Locate two survey points on the map and identify their direction from one another. This assesses: “สำรวจข้อมูลทางภูมิศาสตร์ในโรงเรียนและชุมชน โดยใช้แผนผัง แผนที่ และรูปถ่าย เพื่อแสดงความสัมพันธ์ของตำแหน่ง ระยะ ทิศทาง”. **Answer:** Correct points and direction.
 2. **Explain / compare:** Use the map/photo and distance record to describe the spatial relationship between the points. This task assesses: “สำรวจข้อมูลทางภูมิศาสตร์ในโรงเรียนและชุมชน โดยใช้แผนผัง แผนที่ และรูปถ่าย เพื่อแสดงความสัมพันธ์ของตำแหน่ง ระยะ ทิศทาง”. **Answer:** Uses distance and image/map evidence accurately.
-3. **Apply / demonstrate:** Create a short evidence note explaining one pattern found in the survey, citing the map, direction and distance. This task assesses: “สำรวจข้อมูลทางภูมิศาสตร์ในโรงเรียนและชุมชน โดยใช้แผนผัง แผนที่ และรูปถ่าย เพื่อแสดงความสัมพันธ์ของตำแหน่ง ระยะ ทิศทาง”. **Answer:** Pattern statement follows the survey evidence and identifies sources.
-### 98. SO5.1-P3-02
+3. **Apply / demonstrate:** Conduct a short, safe school/community survey using a map or plan, north arrow and photo record; measure or estimate distance with the stated method and report one location relationship. This task assesses: “สำรวจข้อมูลทางภูมิศาสตร์ในโรงเรียนและชุมชน โดยใช้แผนผัง แผนที่ และรูปถ่าย เพื่อแสดงความสัมพันธ์ของตำแหน่ง ระยะ ทิศทาง”. **Answer:** The record identifies locations, direction and distance method; conclusions match the collected map/photo evidence.### 98. SO5.1-P3-02
 
 - **Standard:** SO5.1
 - **2021 priority classification:** should_know
@@ -3343,8 +3313,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name three important places from the approved local list. This assesses: “วาดแผนผังเพื่อแสดงตำแหน่งที่ตั้งของสถานที่สำคัญในบริเวณโรงเรียนและชุมชน”. **Answer:** Names places in the supplied list.
 2. **Explain / compare:** Draw a simple plan placing the three places in their correct relative positions and add labels/key. This task assesses: “วาดแผนผังเพื่อแสดงตำแหน่งที่ตั้งของสถานที่สำคัญในบริเวณโรงเรียนและชุมชน”. **Answer:** Plan shows defensible relative positions with labels/key and orientation.
-3. **Apply / demonstrate:** Explain one route or spatial relationship shown on the plan using direction or distance words. This task assesses: “วาดแผนผังเพื่อแสดงตำแหน่งที่ตั้งของสถานที่สำคัญในบริเวณโรงเรียนและชุมชน”. **Answer:** Explanation matches the plan; do not invent exact distances.
-### 99. SO5.2-P3-01
+3. **Apply / demonstrate:** Draw a labelled plan of the named school/community area showing at least three verified important places, a key and orientation; then use it to explain one route. This task assesses: “วาดแผนผังเพื่อแสดงตำแหน่งที่ตั้งของสถานที่สำคัญในบริเวณโรงเรียนและชุมชน”. **Answer:** Relative positions match the verified base information; plan includes labels, key and orientation, and route description matches the drawing.### 99. SO5.2-P3-01
 
 - **Standard:** SO5.2
 - **2021 priority classification:** should_know
@@ -3547,4 +3516,4 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the environmental issue and where it occurs in the audit. This assesses: “มีส่วนร่วมในการจัดการสิ่งแวดล้อมในชุมชน”. **Answer:** Issue and location match the audit.
 2. **Explain / compare:** Explain one cause or consequence supported by the observation. This task assesses: “มีส่วนร่วมในการจัดการสิ่งแวดล้อมในชุมชน”. **Answer:** Cause/consequence supported by the data or observation.
-3. **Apply / demonstrate:** Plan one safe action, name who can help and state how the class will check whether it worked. This task assesses: “มีส่วนร่วมในการจัดการสิ่งแวดล้อมในชุมชน”. **Answer:** Action is safe, roles are realistic and success measure is observable.
+3. **Apply / demonstrate:** Take part in a supervised community environmental action with an agreed role, then record one before/after measure or observation and report what changed. This task assesses: “มีส่วนร่วมในการจัดการสิ่งแวดล้อมในชุมชน”. **Answer:** Learner completes a safe, authorised role and records comparable evidence; no hazardous waste handling or unsupervised community activity.
