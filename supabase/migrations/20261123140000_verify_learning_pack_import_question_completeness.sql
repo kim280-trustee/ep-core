@@ -66,6 +66,10 @@ begin
     raise exception 'Only an authorized class teacher or academic manager can verify imported question drafts';
   end if;
 
+  if p_expected_questions is null or jsonb_typeof(p_expected_questions) <> 'array' then
+    raise exception 'Expected questions must be supplied as a JSON array';
+  end if;
+
   -- A class teacher may verify only question drafts they created. Academic
   -- managers retain organization-wide recovery access. Without this check,
   -- an authorized teacher could use expected-answer guesses as an oracle for
@@ -79,10 +83,6 @@ begin
     where question.created_by <> v_auth_user_id
   ) then
     raise exception 'Teachers can verify only question drafts they created; ask an academic manager to inspect another teacher''s import';
-  end if;
-
-  if p_expected_questions is null or jsonb_typeof(p_expected_questions) <> 'array' then
-    raise exception 'Expected questions must be supplied as a JSON array';
   end if;
 
   v_expected_count := jsonb_array_length(p_expected_questions);
