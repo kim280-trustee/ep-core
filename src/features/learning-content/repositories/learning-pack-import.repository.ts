@@ -342,13 +342,13 @@ export const learningPackImportRepository = {
           objective_id: question.objectiveId,
           weight: 1,
         }));
-      const { error: objectiveError } = await supabase
+      const { data: insertedQuestionObjectives, error: objectiveError } = await supabase
         .from("learning_question_objectives")
         .insert(objectiveRows)
         .select("question_version_id,objective_id");
       if (objectiveError) throw objectiveError;
       assertExactUniqueValues(
-        (objectiveRows ?? []).map((row) => `${row.question_version_id}:${row.objective_id}`),
+        (insertedQuestionObjectives ?? []).map((row) => `${row.question_version_id}:${row.objective_id}`),
         input.questions.map((question) => `${versionByQuestionId.get(questionByCode.get(normalizeLearningImportCode(question.code))!)!}:${question.objectiveId}`),
         "question objective links",
       );
@@ -452,13 +452,13 @@ export const learningPackImportRepository = {
           change_summary: "Imported as an initial teacher-reviewed draft from a curriculum teacher pack.",
           created_by: input.createdBy,
         }));
-      const { error: contentVersionError } = await supabase
+      const { data: insertedContentVersions, error: contentVersionError } = await supabase
         .from("learning_content_versions")
         .insert(contentVersionRows)
         .select("id,content_item_id");
       if (contentVersionError) throw contentVersionError;
       assertExactUniqueValues(
-        (contentVersionRows ?? []).map((row) => row.content_item_id),
+        (insertedContentVersions ?? []).map((row) => row.content_item_id),
         [...contentByCode.values()],
         "lesson versions",
       );
@@ -469,13 +469,13 @@ export const learningPackImportRepository = {
           objective_id: lesson.objectiveId,
           sequence_no: 1,
         }));
-      const { error: contentObjectiveError } = await supabase
+      const { data: insertedContentObjectives, error: contentObjectiveError } = await supabase
         .from("learning_content_objectives")
         .insert(contentObjectiveRows)
         .select("content_item_id,objective_id");
       if (contentObjectiveError) throw contentObjectiveError;
       assertExactUniqueValues(
-        (contentObjectiveRows ?? []).map((row) => `${row.content_item_id}:${row.objective_id}`),
+        (insertedContentObjectives ?? []).map((row) => `${row.content_item_id}:${row.objective_id}`),
         input.lessons.map((lesson) => `${contentByCode.get(normalizeLearningImportCode(lesson.contentImportCode ?? `EP-${lesson.objectiveCode}-LESSON`))!}:${lesson.objectiveId}`),
         "lesson objective links",
       );
@@ -536,13 +536,13 @@ export const learningPackImportRepository = {
           objective_id: question.objectiveId,
           weight: 1,
         }));
-      const { error: questionObjectiveError } = await supabase
+      const { data: insertedLessonQuestionObjectives, error: questionObjectiveError } = await supabase
         .from("learning_question_objectives")
         .insert(questionObjectiveRows)
         .select("question_version_id,objective_id");
       if (questionObjectiveError) throw questionObjectiveError;
       assertExactUniqueValues(
-        (questionObjectiveRows ?? []).map((row) => `${row.question_version_id}:${row.objective_id}`),
+        (insertedLessonQuestionObjectives ?? []).map((row) => `${row.question_version_id}:${row.objective_id}`),
         questionInputs.map((question) => `${versionByQuestionId.get(questionByCode.get(question.code)!)!}:${question.objectiveId}`),
         "question objective links",
       );
