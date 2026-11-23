@@ -1,5 +1,10 @@
 import type { Database, Json } from "@/core/database/database.types";
 import { supabase } from "@/core/infrastructure/supabase/client";
+import {
+  findExistingImportCodeConflicts,
+  formatExistingImportCodeConflict,
+  normalizeLearningImportCode,
+} from "@/features/learning-content/utils/learning-pack-import-validation";
 
 export type LearningPackImportQuestion = {
   code: string;
@@ -67,7 +72,7 @@ export const learningPackImportRepository = {
         .eq("organization_id", input.organizationId)
         .in("code", batch);
       if (error) throw error;
-      for (const item of data ?? []) existingContentCodes.add(makeImportCode(item.code));
+      for (const item of data ?? []) existingContentCodes.add(normalizeLearningImportCode(item.code));
     }
 
     for (let offset = 0; offset < questionCodes.length; offset += lookupBatchSize) {
@@ -78,7 +83,7 @@ export const learningPackImportRepository = {
         .eq("organization_id", input.organizationId)
         .in("code", batch);
       if (error) throw error;
-      for (const item of data ?? []) existingQuestionCodes.add(makeImportCode(item.code));
+      for (const item of data ?? []) existingQuestionCodes.add(normalizeLearningImportCode(item.code));
     }
 
     return {
@@ -91,13 +96,13 @@ export const learningPackImportRepository = {
       throw new Error("A teacher, organization, curriculum, subject and at least one question are required.");
     }
     if (input.questions.some((question) =>
-      !question.code.trim() || !makeImportCode(question.code) ||
+      !question.code.trim() || !normalizeLearningImportCode(question.code) ||
       !question.prompt.trim() || !question.expectedAnswer.trim() ||
       !question.objectiveId || !question.gradeLevelId
     )) {
       throw new Error("Every question needs a valid code, prompt, answer key and exact aligned objective.");
     }
-    const codes = input.questions.map((question) => makeImportCode(question.code));
+    const codes = input.questions.map((question) => normalizeLearningImportCode(question.code));
     if (new Set(codes).size !== codes.length) throw new Error("The question-only pack contains duplicate normalized question codes.");
 
     // Fail before writing anything when a previous attempt already created
@@ -108,19 +113,21 @@ export const learningPackImportRepository = {
       contentCodes: [],
       questionCodes: codes,
     });
-    const existingQuestionCodes = codes.filter((code) => existingCodes.questionCodes.has(code));
-    if (existingQuestionCodes.length) {
-      throw new Error(
-        `The organization already contains ${existingQuestionCodes.length} question code(s): ${existingQuestionCodes.slice(0, 5).join(", ")}. Resolve the existing drafts or use new import codes before retrying.`,
-      );
-    }
+    const conflicts = findExistingImportCodeConflicts({
+      requestedContentCodes: [],
+      requestedQuestionCodes: codes,
+      existingContentCodes: existingCodes.contentCodes,
+      existingQuestionCodes: existingCodes.questionCodes,
+    });
+    const conflictMessage = formatExistingImportCodeConflict(conflicts);
+    if (conflictMessage) throw new Error(conflictMessage);
 
     const createdQuestionIds: string[] = [];
     try {
       const questionRows: Database["public"]["Tables"]["learning_questions"]["Insert"][] =
         input.questions.map((question) => ({
           organization_id: input.organizationId,
-          code: makeImportCode(question.code),
+          code: normalizeLearningImportCode(question.code),
           question_type: "short_answer",
           language_code: input.languageCode,
           created_by: input.createdBy,
@@ -131,12 +138,12 @@ export const learningPackImportRepository = {
         .select("id,code");
       if (questionError) throw questionError;
       createdQuestionIds.push(...(questions ?? []).map((question) => question.id));
-      const questionByCode = new Map((questions ?? []).map((question) => [makeImportCode(question.code), question.id]));
+      const questionByCode = new Map((questions ?? []).map((question) => [normalizeLearningImportCode(question.code), question.id]));
       if (questionByCode.size !== input.questions.length) throw new Error("The question insert did not return every created question.");
 
       const versionRows: Database["public"]["Tables"]["learning_question_versions"]["Insert"][] =
         input.questions.map((question) => ({
-          question_id: questionByCode.get(makeImportCode(question.code))!,
+          question_id: questionByCode.get(normalizeLearningImportCode(question.code))!,
           version_no: 1,
           curriculum_id: input.curriculumId,
           grade_level_id: question.gradeLevelId,
@@ -155,13 +162,13 @@ export const learningPackImportRepository = {
       if (versionByQuestionId.size !== input.questions.length) throw new Error("The question-version insert did not return every created version.");
 
       await saveEvaluationKeys(input.questions.map((question) => ({
-        questionVersionId: versionByQuestionId.get(questionByCode.get(makeImportCode(question.code))!)!,
+        questionVersionId: versionByQuestionId.get(questionByCode.get(normalizeLearningImportCode(question.code))!)!,
         expectedAnswer: question.expectedAnswer,
       })));
 
       const objectiveRows: Database["public"]["Tables"]["learning_question_objectives"]["Insert"][] =
         input.questions.map((question) => ({
-          question_version_id: versionByQuestionId.get(questionByCode.get(makeImportCode(question.code))!)!,
+          question_version_id: versionByQuestionId.get(questionByCode.get(normalizeLearningImportCode(question.code))!)!,
           objective_id: question.objectiveId,
           weight: 1,
         }));
@@ -191,14 +198,14 @@ export const learningPackImportRepository = {
       !lesson.title.trim() || !lesson.learningOutcome.trim() || !lesson.activity.trim() ||
       lesson.questions.length !== 3 ||
       lesson.questions.some((question) =>
-        !question.code.trim() || !makeImportCode(question.code) ||
+        !question.code.trim() || !normalizeLearningImportCode(question.code) ||
         !question.prompt.trim() || !question.expectedAnswer.trim()
       )
     )) {
       throw new Error("Every imported lesson needs an exact academic objective, grade, teaching content and three complete answer-keyed questions.");
     }
-    const contentCodes = input.lessons.map((lesson) => makeImportCode(lesson.contentImportCode ?? `EP-${lesson.objectiveCode}-LESSON`));
-    const questionCodes = input.lessons.flatMap((lesson) => lesson.questions.map((question) => makeImportCode(question.code)));
+    const contentCodes = input.lessons.map((lesson) => normalizeLearningImportCode(lesson.contentImportCode ?? `EP-${lesson.objectiveCode}-LESSON`));
+    const questionCodes = input.lessons.flatMap((lesson) => lesson.questions.map((question) => normalizeLearningImportCode(question.code)));
     if (contentCodes.some((code) => !code) || new Set(contentCodes).size !== contentCodes.length ||
       new Set(questionCodes).size !== questionCodes.length) {
       throw new Error("The import chunk contains an empty or duplicate normalized content/question code.");
@@ -211,21 +218,14 @@ export const learningPackImportRepository = {
       contentCodes,
       questionCodes,
     });
-    const existingContentCodes = contentCodes.filter((code) => existingCodes.contentCodes.has(code));
-    const existingQuestionCodes = questionCodes.filter((code) => existingCodes.questionCodes.has(code));
-    if (existingContentCodes.length || existingQuestionCodes.length) {
-      const details = [
-        existingContentCodes.length
-          ? `${existingContentCodes.length} lesson code(s): ${existingContentCodes.slice(0, 3).join(", ")}`
-          : "",
-        existingQuestionCodes.length
-          ? `${existingQuestionCodes.length} question code(s): ${existingQuestionCodes.slice(0, 3).join(", ")}`
-          : "",
-      ].filter(Boolean).join("; ");
-      throw new Error(
-        `This organization already contains imported content codes (${details}). Resolve the existing drafts or use new import codes before retrying.`,
-      );
-    }
+    const conflicts = findExistingImportCodeConflicts({
+      requestedContentCodes: contentCodes,
+      requestedQuestionCodes: questionCodes,
+      existingContentCodes: existingCodes.contentCodes,
+      existingQuestionCodes: existingCodes.questionCodes,
+    });
+    const conflictMessage = formatExistingImportCodeConflict(conflicts);
+    if (conflictMessage) throw new Error(conflictMessage);
 
     const createdContentIds: string[] = [];
     const createdQuestionIds: string[] = [];
@@ -234,7 +234,7 @@ export const learningPackImportRepository = {
       const contentRows: Database["public"]["Tables"]["learning_content_items"]["Insert"][] =
         input.lessons.map((lesson) => ({
           organization_id: input.organizationId,
-          code: makeImportCode(lesson.contentImportCode ?? `EP-${lesson.objectiveCode}-LESSON`),
+          code: normalizeLearningImportCode(lesson.contentImportCode ?? `EP-${lesson.objectiveCode}-LESSON`),
           title: lesson.title,
           content_type: "lesson",
           language_code: input.languageCode,
@@ -255,7 +255,7 @@ export const learningPackImportRepository = {
 
       const contentVersionRows: Database["public"]["Tables"]["learning_content_versions"]["Insert"][] =
         input.lessons.map((lesson) => ({
-          content_item_id: contentByCode.get(makeImportCode(lesson.contentImportCode ?? `EP-${lesson.objectiveCode}-LESSON`))!,
+          content_item_id: contentByCode.get(normalizeLearningImportCode(lesson.contentImportCode ?? `EP-${lesson.objectiveCode}-LESSON`))!,
           version_no: 1,
           body: {
             sections: [
@@ -280,7 +280,7 @@ export const learningPackImportRepository = {
 
       const contentObjectiveRows: Database["public"]["Tables"]["learning_content_objectives"]["Insert"][] =
         input.lessons.map((lesson) => ({
-          content_item_id: contentByCode.get(makeImportCode(lesson.contentImportCode ?? `EP-${lesson.objectiveCode}-LESSON`))!,
+          content_item_id: contentByCode.get(normalizeLearningImportCode(lesson.contentImportCode ?? `EP-${lesson.objectiveCode}-LESSON`))!,
           objective_id: lesson.objectiveId,
           sequence_no: 1,
         }));
@@ -292,7 +292,7 @@ export const learningPackImportRepository = {
       const questionInputs = input.lessons.flatMap((lesson) =>
         lesson.questions.map((question) => ({
           ...question,
-          code: makeImportCode(question.code),
+          code: normalizeLearningImportCode(question.code),
           objectiveId: lesson.objectiveId,
           curriculumGradeLevelId: lesson.gradeLevelId,
         })),
@@ -376,10 +376,6 @@ export const learningPackImportRepository = {
     }
   },
 };
-
-function makeImportCode(value: string) {
-  return value.toUpperCase().replace(/[^A-Z0-9]+/g, "-").replace(/^-|-$/g, "");
-}
 
 
 async function saveEvaluationKeys(
