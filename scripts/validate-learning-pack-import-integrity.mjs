@@ -24,6 +24,8 @@ assert.match(migration, /question_version_count|version_count/,
   "The RPC must verify question versions.");
 assert.match(migration, /learning_question_evaluation_keys/,
   "The RPC must verify protected evaluation-key presence and content internally.");
+assert.match(migration, /learning_objective_alignments[\\s\\S]*learning_curriculum_subjects/,
+  "The RPC must validate exact active objective-to-curriculum/grade/subject alignment.");
 assert.match(migration, /learning_question_objectives/,
   "The RPC must verify objective mappings.");
 assert.match(migration, /evaluation_key->>'expected_answer'/,
@@ -46,10 +48,11 @@ assert.match(repository, /hasSection\("Practice questions"/,
 assert.match(repository, /objectives\.length === 1/,
   "Existing lessons must have exactly one expected objective link.");
 
-const questionCheck = page.indexOf("verifyExistingQuestionImports");
-const questionPlan = page.indexOf("selectNewImportQuestions");
-const lessonCheck = page.indexOf("findIncompleteExistingContentCodes");
-const lessonPlan = page.indexOf("planResumableLessonImport");
+const planningStart = page.indexOf("const questionCandidates");
+const questionCheck = page.indexOf("verifyExistingQuestionImports", planningStart);
+const questionPlan = page.indexOf("selectNewImportQuestions", planningStart);
+const lessonCheck = page.indexOf("findIncompleteExistingContentCodes", planningStart);
+const lessonPlan = page.indexOf("planResumableLessonImport", planningStart);
 assert.ok(questionCheck >= 0 && questionPlan > questionCheck,
   "Question completeness must be verified before question-only retry planning.");
 assert.ok(lessonCheck >= 0 && lessonPlan > lessonCheck,
