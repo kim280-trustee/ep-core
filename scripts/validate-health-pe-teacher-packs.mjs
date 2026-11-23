@@ -80,6 +80,8 @@ for (const pack of packs) {
     for (const requiredField of ["Teaching activity", "Practical activity", "Expected evidence", "Teacher check"]) {
       if (!lessonMarkdown.includes("**" + requiredField + ":**")) failures.push(code + ": missing " + requiredField + " guidance");
     }
+    const expectedBand = code.includes("-P1-") || code.includes("-P2-") || code.includes("-P3-") ? "early-primary" : code.includes("-P4-") || code.includes("-P5-") || code.includes("-P6-") ? "upper-primary" : code.includes("-M1-") || code.includes("-M2-") || code.includes("-M3-") ? "lower-secondary" : "upper-secondary";
+    if (!lessonMarkdown.includes("**Teaching activity:** At " + expectedBand + " level")) failures.push(code + ": teaching activity is not differentiated for its grade band");
     const q1 = lesson.questions[0];
     const q2 = lesson.questions[1];
     const q3 = lesson.questions[2];
