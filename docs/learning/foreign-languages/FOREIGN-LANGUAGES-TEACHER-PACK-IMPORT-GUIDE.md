@@ -2,7 +2,7 @@
 
 **Curriculum:** `TH-BASIC-CORE-2008-2017`  
 **Subject:** `FOREIGN-LANGUAGES` — English  
-**Branch:** `paul/thai-national-curriculum-foundation`
+**Branch:** `paul/subject-rollout`
 
 ## Prepared packs
 
@@ -37,3 +37,21 @@ The teacher packs are prepared in Markdown, but no Foreign Languages lesson draf
 All 193 indicators have three indicator-specific formative tasks (579 total). Each prompt includes the official Thai indicator and answer/evidence guidance. The tasks cover the eight official standards and are differentiated by grade band.
 
 Run `npm run validate:foreign-languages-packs` to validate all packs through the actual TypeScript importer parser. GitHub Actions run 220 passed this check, all other curriculum validators, production build and ESLint.
+
+
+## Practical lesson and assessment differentiation — 23 November 2026
+
+Each of the 193 source lessons now has an objective-specific practical activity, expected-evidence statement and teacher check. Activities are differentiated across early primary, upper primary, lower secondary and upper secondary, and mapped to the lesson's official standard:
+
+- ต 1.1: listening/reading comprehension supported by evidence from the source.
+- ต 1.2: interpersonal interaction, relevant responses and follow-up turns.
+- ต 1.3: organised presentations or written products for a defined audience.
+- ต 2.1: contextual and respectful use of cultural/social conventions.
+- ต 2.2: evidence-based comparison of English and Thai language/culture.
+- ต 3.1: accurate cross-curricular content communicated in English.
+- ต 4.1: successful communication in real or simulated situations.
+- ต 4.2: credible research, accurate synthesis and source acknowledgement.
+
+The 193 source lessons expand to 235 grade-scoped lesson drafts and 705 grade-scoped question drafts after the 21 shared M4–M6 indicators expand to three grades each. These are expected import counts, not records already imported.
+
+The validator checks all 193 objective-specific practical activities and their grade-band/indicator links, in addition to the existing 579 indicator-linked answer-keyed tasks. Run `npm run validate:foreign-languages-packs` before import.

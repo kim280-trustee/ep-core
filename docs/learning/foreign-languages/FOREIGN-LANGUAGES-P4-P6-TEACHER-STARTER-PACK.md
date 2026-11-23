@@ -28,11 +28,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use short dialogues, texts, chants and story cards. Practise reading aloud, following instructions, identifying details and explaining the main idea.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P4-01, learners work with a short teacher-selected audio or text that directly practises “ปฏิบัติตามคำสั่ง คำขอร้อง และคำแนะนำ (instructions) ง่าย ๆ ที่ฟังหรืออ่าน”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P4-01: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P4-01 (ปฏิบัติตามคำสั่ง คำขอร้อง และคำแนะนำ (instructions) ง่าย ๆ ที่ฟังหรืออ่าน): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P4-01, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “ปฏิบัติตามคำสั่ง คำขอร้อง และคำแนะนำ (instructions) ง่าย ๆ ที่ฟังหรืออ่าน”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-P4-01; accept an equivalent clear response at the expected grade level.
@@ -49,11 +49,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use short dialogues, texts, chants and story cards. Practise reading aloud, following instructions, identifying details and explaining the main idea.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P4-02, learners work with a short teacher-selected audio or text that directly practises “อ่านออกเสียงคำ สะกดคำ อ่านกลุ่มคำ ประโยค ข้อความง่าย ๆ และบทพูดเข้าจังหวะถูกต้องตามหลักการอ่าน”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P4-02: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P4-02 (อ่านออกเสียงคำ สะกดคำ อ่านกลุ่มคำ ประโยค ข้อความง่าย ๆ และบทพูดเข้าจังหวะถูกต้องตามหลักการอ่าน): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P4-02, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “อ่านออกเสียงคำ สะกดคำ อ่านกลุ่มคำ ประโยค ข้อความง่าย ๆ และบทพูดเข้าจังหวะถูกต้องตามหลักการอ่าน”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-P4-02; accept an equivalent clear response at the expected grade level.
@@ -70,11 +70,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use short dialogues, texts, chants and story cards. Practise reading aloud, following instructions, identifying details and explaining the main idea.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P4-03, learners work with a short teacher-selected audio or text that directly practises “เลือก/ระบุภาพหรือสัญลักษณ์ หรือเครื่องหมายตรงตามความหมายของประโยคและข้อความสั้น ๆ ที่ฟังหรืออ่าน”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P4-03: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P4-03 (เลือก/ระบุภาพหรือสัญลักษณ์ หรือเครื่องหมายตรงตามความหมายของประโยคและข้อความสั้น ๆ ที่ฟังหรืออ่าน): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P4-03, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “เลือก/ระบุภาพหรือสัญลักษณ์ หรือเครื่องหมายตรงตามความหมายของประโยคและข้อความสั้น ๆ ที่ฟังหรืออ่าน”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-P4-03; accept an equivalent clear response at the expected grade level.
@@ -91,11 +91,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use short dialogues, texts, chants and story cards. Practise reading aloud, following instructions, identifying details and explaining the main idea.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P4-04, learners work with a short teacher-selected audio or text that directly practises “ตอบคำถามจากการฟังและอ่านประโยค บทสนทนา นิทานง่าย ๆ”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P4-04: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P4-04 (ตอบคำถามจากการฟังและอ่านประโยค บทสนทนา นิทานง่าย ๆ): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P4-04, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “ตอบคำถามจากการฟังและอ่านประโยค บทสนทนา นิทานง่าย ๆ”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-P4-04; accept an equivalent clear response at the expected grade level.
@@ -112,11 +112,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use structured role-play and information-gap tasks for requests, permission, help, personal information and feelings.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P4-05, learners practise “พูด/เขียนโต้ตอบในการสื่อสารระหว่างบุคคล” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P4-05: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P4-05 (พูด/เขียนโต้ตอบในการสื่อสารระหว่างบุคคล): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P4-05, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “พูด/เขียนโต้ตอบในการสื่อสารระหว่างบุคคล”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-P4-05; accept other natural and correct expressions.
@@ -133,11 +133,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use structured role-play and information-gap tasks for requests, permission, help, personal information and feelings.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P4-06, learners practise “ใช้คำสั่ง คำขอร้อง และคำขออนุญาตง่าย ๆ” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P4-06: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P4-06 (ใช้คำสั่ง คำขอร้อง และคำขออนุญาตง่าย ๆ): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P4-06, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “ใช้คำสั่ง คำขอร้อง และคำขออนุญาตง่าย ๆ”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-P4-06; accept other natural and correct expressions.
@@ -154,11 +154,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use structured role-play and information-gap tasks for requests, permission, help, personal information and feelings.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P4-07, learners practise “พูด/เขียนแสดงความต้องการของตนเอง และขอความช่วยเหลือในสถานการณ์ง่าย ๆ” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P4-07: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P4-07 (พูด/เขียนแสดงความต้องการของตนเอง และขอความช่วยเหลือในสถานการณ์ง่าย ๆ): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P4-07, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “พูด/เขียนแสดงความต้องการของตนเอง และขอความช่วยเหลือในสถานการณ์ง่าย ๆ”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-P4-07; accept other natural and correct expressions.
@@ -175,11 +175,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use structured role-play and information-gap tasks for requests, permission, help, personal information and feelings.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P4-08, learners practise “พูด/เขียนเพื่อขอและให้ข้อมูลเกี่ยวกับตนเอง เพื่อนและครอบครัว” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P4-08: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P4-08 (พูด/เขียนเพื่อขอและให้ข้อมูลเกี่ยวกับตนเอง เพื่อนและครอบครัว): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P4-08, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “พูด/เขียนเพื่อขอและให้ข้อมูลเกี่ยวกับตนเอง เพื่อนและครอบครัว”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-P4-08; accept other natural and correct expressions.
@@ -196,11 +196,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use structured role-play and information-gap tasks for requests, permission, help, personal information and feelings.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P4-09, learners practise “พูดแสดงความรู้สึกของตนเองเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัวและกิจกรรมต่าง ๆ ตามแบบที่ฟัง” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P4-09: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P4-09 (พูดแสดงความรู้สึกของตนเองเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัวและกิจกรรมต่าง ๆ ตามแบบที่ฟัง): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P4-09, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “พูดแสดงความรู้สึกของตนเองเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัวและกิจกรรมต่าง ๆ ตามแบบที่ฟัง”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-P4-09; accept other natural and correct expressions.
@@ -217,11 +217,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use short presentations, charts, picture sequences and opinion prompts. Require relevant details and a simple reason.
 
-**Practical activity:** Practise language production, presentation, writing and expression of ideas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P4-10, learners prepare a short presentation or written product that demonstrates “พูด/เขียนให้ข้อมูลเกี่ยวกับตนเองและเรื่องใกล้ตัว”. They select relevant information, organise it for a named audience, rehearse or edit it, then present and respond to one question. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P4-10: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P4-10 (พูด/เขียนให้ข้อมูลเกี่ยวกับตนเองและเรื่องใกล้ตัว): a focused spoken or written product, information arranged in a logical order, language appropriate to the audience, and a relevant response to feedback or a follow-up question.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P4-10, assess task relevance, organisation of ideas, accuracy and range of language appropriate to the grade, and clarity for the intended audience. Accept different valid examples and formats when they meet the indicator.
 
 **Independent practice**
 1. **Plan:** For a presentation or written task connected to “พูด/เขียนให้ข้อมูลเกี่ยวกับตนเองและเรื่องใกล้ตัว”, identify the topic, audience, purpose and key information that must be included. **Answer:** Identify the correct topic/purpose/audience and select information relevant to FL-P4-10.
@@ -238,11 +238,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use short presentations, charts, picture sequences and opinion prompts. Require relevant details and a simple reason.
 
-**Practical activity:** Practise language production, presentation, writing and expression of ideas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P4-11, learners prepare a short presentation or written product that demonstrates “พูด/วาดภาพแสดงความสัมพันธ์ของสิ่งต่าง ๆ ใกล้ตัวตามที่ฟังหรืออ่าน”. They select relevant information, organise it for a named audience, rehearse or edit it, then present and respond to one question. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P4-11: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P4-11 (พูด/วาดภาพแสดงความสัมพันธ์ของสิ่งต่าง ๆ ใกล้ตัวตามที่ฟังหรืออ่าน): a focused spoken or written product, information arranged in a logical order, language appropriate to the audience, and a relevant response to feedback or a follow-up question.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P4-11, assess task relevance, organisation of ideas, accuracy and range of language appropriate to the grade, and clarity for the intended audience. Accept different valid examples and formats when they meet the indicator.
 
 **Independent practice**
 1. **Plan:** For a presentation or written task connected to “พูด/วาดภาพแสดงความสัมพันธ์ของสิ่งต่าง ๆ ใกล้ตัวตามที่ฟังหรืออ่าน”, identify the topic, audience, purpose and key information that must be included. **Answer:** Identify the correct topic/purpose/audience and select information relevant to FL-P4-11.
@@ -259,11 +259,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use short presentations, charts, picture sequences and opinion prompts. Require relevant details and a simple reason.
 
-**Practical activity:** Practise language production, presentation, writing and expression of ideas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P4-12, learners prepare a short presentation or written product that demonstrates “พูดแสดงความคิดเห็นง่าย ๆ เกี่ยวกับเรื่องต่าง ๆ ใกล้ตัว”. They select relevant information, organise it for a named audience, rehearse or edit it, then present and respond to one question. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P4-12: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P4-12 (พูดแสดงความคิดเห็นง่าย ๆ เกี่ยวกับเรื่องต่าง ๆ ใกล้ตัว): a focused spoken or written product, information arranged in a logical order, language appropriate to the audience, and a relevant response to feedback or a follow-up question.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P4-12, assess task relevance, organisation of ideas, accuracy and range of language appropriate to the grade, and clarity for the intended audience. Accept different valid examples and formats when they meet the indicator.
 
 **Independent practice**
 1. **Plan:** For a presentation or written task connected to “พูดแสดงความคิดเห็นง่าย ๆ เกี่ยวกับเรื่องต่าง ๆ ใกล้ตัว”, identify the topic, audience, purpose and key information that must be included. **Answer:** Identify the correct topic/purpose/audience and select information relevant to FL-P4-12.
@@ -280,11 +280,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use greetings, polite expressions, gestures, festival picture cards and short cultural presentations. Compare respectfully and avoid stereotypes.
 
-**Practical activity:** Practise language, culture, etiquette and intercultural communication through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P4-13, learners examine a respectful, specific cultural or social situation linked to “พูดและทำท่าประกอบอย่างสุภาพตามมารยาทสังคม/วัฒนธรรมของเจ้าของภาษา”. They identify the relevant expression, gesture, convention or cultural information, practise an appropriate response, and explain why context matters. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P4-13: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P4-13 (พูดและทำท่าประกอบอย่างสุภาพตามมารยาทสังคม/วัฒนธรรมของเจ้าของภาษา): accurate identification of the relevant cultural or social feature, an appropriate language or behaviour choice in context, and a respectful explanation that avoids treating one example as universal.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P4-13, assess contextual appropriateness, respectful interpretation, accuracy of the cultural information and the learner's ability to explain variation. Do not reward stereotypes or claims that all members of a culture behave identically.
 
 **Independent practice**
 1. **Notice culture:** From a short text, image or dialogue related to “พูดและทำท่าประกอบอย่างสุภาพตามมารยาทสังคม/วัฒนธรรมของเจ้าของภาษา”, identify the relevant cultural practice, social convention, gesture or language choice. **Answer:** Identify the cultural/language feature accurately and describe the situation in which it is used; avoid treating one example as universal.
@@ -301,11 +301,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use greetings, polite expressions, gestures, festival picture cards and short cultural presentations. Compare respectfully and avoid stereotypes.
 
-**Practical activity:** Practise language, culture, etiquette and intercultural communication through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P4-14, learners examine a respectful, specific cultural or social situation linked to “ตอบคำถามเกี่ยวกับเทศกาล/วันสำคัญ/งานฉลอง และชีวิตความเป็นอยู่ของเจ้าของภาษา”. They identify the relevant expression, gesture, convention or cultural information, practise an appropriate response, and explain why context matters. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P4-14: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P4-14 (ตอบคำถามเกี่ยวกับเทศกาล/วันสำคัญ/งานฉลอง และชีวิตความเป็นอยู่ของเจ้าของภาษา): accurate identification of the relevant cultural or social feature, an appropriate language or behaviour choice in context, and a respectful explanation that avoids treating one example as universal.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P4-14, assess contextual appropriateness, respectful interpretation, accuracy of the cultural information and the learner's ability to explain variation. Do not reward stereotypes or claims that all members of a culture behave identically.
 
 **Independent practice**
 1. **Notice culture:** From a short text, image or dialogue related to “ตอบคำถามเกี่ยวกับเทศกาล/วันสำคัญ/งานฉลอง และชีวิตความเป็นอยู่ของเจ้าของภาษา”, identify the relevant cultural practice, social convention, gesture or language choice. **Answer:** Identify the cultural/language feature accurately and describe the situation in which it is used; avoid treating one example as universal.
@@ -322,11 +322,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use greetings, polite expressions, gestures, festival picture cards and short cultural presentations. Compare respectfully and avoid stereotypes.
 
-**Practical activity:** Practise language, culture, etiquette and intercultural communication through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P4-15, learners examine a respectful, specific cultural or social situation linked to “เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมที่เหมาะกับวัย”. They identify the relevant expression, gesture, convention or cultural information, practise an appropriate response, and explain why context matters. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P4-15: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P4-15 (เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมที่เหมาะกับวัย): accurate identification of the relevant cultural or social feature, an appropriate language or behaviour choice in context, and a respectful explanation that avoids treating one example as universal.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P4-15, assess contextual appropriateness, respectful interpretation, accuracy of the cultural information and the learner's ability to explain variation. Do not reward stereotypes or claims that all members of a culture behave identically.
 
 **Independent practice**
 1. **Notice culture:** From a short text, image or dialogue related to “เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมที่เหมาะกับวัย”, identify the relevant cultural practice, social convention, gesture or language choice. **Answer:** Identify the cultural/language feature accurately and describe the situation in which it is used; avoid treating one example as universal.
@@ -343,11 +343,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use paired English–Thai examples to compare pronunciation, letters, word order, punctuation or cultural practices named in the indicator.
 
-**Practical activity:** Practise language comparison and intercultural analysis through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P4-16, learners compare two short English and Thai examples connected to “บอกความแตกต่างของเสียงตัวอักษร คำ กลุ่มคำ ประโยค และข้อความของภาษาต่างประเทศและภาษาไทย”. They mark the relevant sound, letter, word, structure or cultural feature, explain one similarity and one difference where applicable, and apply the comparison in a new example. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P4-16: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P4-16 (บอกความแตกต่างของเสียงตัวอักษร คำ กลุ่มคำ ประโยค และข้อความของภาษาต่างประเทศและภาษาไทย): correctly identified features in both examples, a supported comparison that distinguishes similarity from difference, and an accurate application to a fresh language example.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P4-16, assess accuracy of both examples, quality of the comparison, use of evidence and ability to apply the finding. Accept more than one valid comparison when it is supported by the examples.
 
 **Independent practice**
 1. **Identify patterns:** Find the language feature, cultural convention or similarity/difference required by “บอกความแตกต่างของเสียงตัวอักษร คำ กลุ่มคำ ประโยค และข้อความของภาษาต่างประเทศและภาษาไทย” in two short examples. **Answer:** Identify the relevant pattern accurately in both examples and use appropriate language to describe it.
@@ -364,11 +364,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use paired English–Thai examples to compare pronunciation, letters, word order, punctuation or cultural practices named in the indicator.
 
-**Practical activity:** Practise language comparison and intercultural analysis through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P4-17, learners compare two short English and Thai examples connected to “บอกความเหมือน/ความแตกต่างระหว่างเทศกาลและงานฉลองตามวัฒนธรรมของเจ้าของภาษากับของไทย”. They mark the relevant sound, letter, word, structure or cultural feature, explain one similarity and one difference where applicable, and apply the comparison in a new example. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P4-17: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P4-17 (บอกความเหมือน/ความแตกต่างระหว่างเทศกาลและงานฉลองตามวัฒนธรรมของเจ้าของภาษากับของไทย): correctly identified features in both examples, a supported comparison that distinguishes similarity from difference, and an accurate application to a fresh language example.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P4-17, assess accuracy of both examples, quality of the comparison, use of evidence and ability to apply the finding. Accept more than one valid comparison when it is supported by the examples.
 
 **Independent practice**
 1. **Identify patterns:** Find the language feature, cultural convention or similarity/difference required by “บอกความเหมือน/ความแตกต่างระหว่างเทศกาลและงานฉลองตามวัฒนธรรมของเจ้าของภาษากับของไทย” in two short examples. **Answer:** Identify the relevant pattern accurately in both examples and use appropriate language to describe it.
@@ -385,11 +385,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Build a mini word wall or bilingual poster using vocabulary from mathematics, science, arts or another learning area; learners label, use and present the words.
 
-**Practical activity:** Practise integrated language use across learning areas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P4-18, learners use a teacher-approved source from another learning area to practise “ค้นคว้า/รวบรวมคำศัพท์ที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่น และนำเสนอด้วยการพูด/การเขียน”. They identify the subject idea and key English terms, explain the idea in English, and create a labelled visual, short report or oral explanation. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P4-18: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P4-18 (ค้นคว้า/รวบรวมคำศัพท์ที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่น และนำเสนอด้วยการพูด/การเขียน): correct subject information, appropriate subject vocabulary, an understandable English explanation or product, and acknowledgement of the source when one is used.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P4-18, assess both subject accuracy and language clarity. Check that key vocabulary is used correctly, the explanation matches the source, and the product communicates the idea rather than merely copying isolated words.
 
 **Independent practice**
 1. **Find key information:** From a short subject-related text, diagram or data source connected to “ค้นคว้า/รวบรวมคำศัพท์ที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่น และนำเสนอด้วยการพูด/การเขียน”, identify the key vocabulary and two relevant facts. **Answer:** Select vocabulary and facts that accurately match the other learning area and the language outcome in FL-P4-18.
@@ -406,11 +406,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Rehearse realistic school situations such as asking for help, borrowing materials, following classroom instructions, asking directions and joining activities.
 
-**Practical activity:** Practise real-life communication in school, community and everyday situations through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P4-19, learners complete a realistic classroom, school or community simulation that practises “ฟังและพูด/อ่านในสถานการณ์ที่เกิดขึ้นในห้องเรียนและสถานศึกษา”. Assign roles, define the audience and purpose, and require learners to exchange information or complete the real-world communication task. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P4-19: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P4-19 (ฟังและพูด/อ่านในสถานการณ์ที่เกิดขึ้นในห้องเรียนและสถานศึกษา): language that fits the real or simulated situation, successful completion of the communicative purpose, and an appropriate response to an unexpected question or clarification request.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P4-19, assess whether the learner achieves the communication purpose, adapts language to audience and setting, responds meaningfully, and uses clear, respectful expressions. Minor errors should not outweigh successful communication when meaning remains clear.
 
 **Independent practice**
 1. **Identify context:** For a school, community or everyday situation related to “ฟังและพูด/อ่านในสถานการณ์ที่เกิดขึ้นในห้องเรียนและสถานศึกษา”, identify the purpose, audience and suitable expressions. **Answer:** Identify the situation and choose language appropriate to its purpose and audience.
@@ -427,11 +427,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use age-appropriate dictionaries, reference cards or approved digital resources to search, collect, record and present relevant information.
 
-**Practical activity:** Practise international communication, research and participation in the wider world through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P4-20, learners use one or more teacher-approved sources to practise “ใช้ภาษาต่างประเทศในการสืบค้นและรวบรวมข้อมูลต่าง ๆ”. They search or collect relevant information, record key terms and source details, check reliability, then summarise or communicate the findings for a stated study, school or career purpose. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P4-20: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P4-20 (ใช้ภาษาต่างประเทศในการสืบค้นและรวบรวมข้อมูลต่าง ๆ): relevant information from an appropriate source, accurate notes or a summary, a clear English output for the stated purpose, and source acknowledgement where research is used.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P4-20, assess relevance and credibility of sources, accuracy of notes or summary, language suitable for the audience and purpose, and correct source acknowledgement. Do not accept copied material presented as the learner's own work.
 
 **Independent practice**
 1. **Research / identify:** Use an age-appropriate teacher-approved source related to “ใช้ภาษาต่างประเทศในการสืบค้นและรวบรวมข้อมูลต่าง ๆ”. Identify the main information, intended audience and source details. **Answer:** Identify accurate information and a credible source relevant to FL-P4-20; distinguish source information from unsupported opinion.
@@ -448,11 +448,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use short dialogues, texts, chants and story cards. Practise reading aloud, following instructions, identifying details and explaining the main idea.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P5-01, learners work with a short teacher-selected audio or text that directly practises “ปฏิบัติตามคำสั่ง คำขอร้อง และคำแนะนำง่าย ๆ ที่ฟังและอ่าน”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P5-01: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P5-01 (ปฏิบัติตามคำสั่ง คำขอร้อง และคำแนะนำง่าย ๆ ที่ฟังและอ่าน): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P5-01, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “ปฏิบัติตามคำสั่ง คำขอร้อง และคำแนะนำง่าย ๆ ที่ฟังและอ่าน”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-P5-01; accept an equivalent clear response at the expected grade level.
@@ -469,11 +469,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use short dialogues, texts, chants and story cards. Practise reading aloud, following instructions, identifying details and explaining the main idea.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P5-02, learners work with a short teacher-selected audio or text that directly practises “อ่านออกเสียงประโยค ข้อความ และบทกลอนสั้น ๆ ถูกต้องตามหลักการอ่าน”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P5-02: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P5-02 (อ่านออกเสียงประโยค ข้อความ และบทกลอนสั้น ๆ ถูกต้องตามหลักการอ่าน): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P5-02, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “อ่านออกเสียงประโยค ข้อความ และบทกลอนสั้น ๆ ถูกต้องตามหลักการอ่าน”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-P5-02; accept an equivalent clear response at the expected grade level.
@@ -490,11 +490,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use short dialogues, texts, chants and story cards. Practise reading aloud, following instructions, identifying details and explaining the main idea.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P5-03, learners work with a short teacher-selected audio or text that directly practises “ระบุ/วาดภาพ สัญลักษณ์ หรือเครื่องหมายตรงตามความหมายของประโยคและข้อความสั้น ๆ ที่ฟังหรืออ่าน”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P5-03: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P5-03 (ระบุ/วาดภาพ สัญลักษณ์ หรือเครื่องหมายตรงตามความหมายของประโยคและข้อความสั้น ๆ ที่ฟังหรืออ่าน): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P5-03, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “ระบุ/วาดภาพ สัญลักษณ์ หรือเครื่องหมายตรงตามความหมายของประโยคและข้อความสั้น ๆ ที่ฟังหรืออ่าน”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-P5-03; accept an equivalent clear response at the expected grade level.
@@ -511,11 +511,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use short dialogues, texts, chants and story cards. Practise reading aloud, following instructions, identifying details and explaining the main idea.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P5-04, learners work with a short teacher-selected audio or text that directly practises “บอกใจความสำคัญและตอบคำถามจากการฟังและอ่านบทสนทนา นิทานง่าย ๆ หรือเรื่องสั้น ๆ”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P5-04: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P5-04 (บอกใจความสำคัญและตอบคำถามจากการฟังและอ่านบทสนทนา นิทานง่าย ๆ หรือเรื่องสั้น ๆ): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P5-04, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “บอกใจความสำคัญและตอบคำถามจากการฟังและอ่านบทสนทนา นิทานง่าย ๆ หรือเรื่องสั้น ๆ”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-P5-04; accept an equivalent clear response at the expected grade level.
@@ -532,11 +532,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use structured role-play and information-gap tasks for requests, permission, help, personal information and feelings.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P5-05, learners practise “พูด/เขียนโต้ตอบในการสื่อสารระหว่างบุคคล” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P5-05: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P5-05 (พูด/เขียนโต้ตอบในการสื่อสารระหว่างบุคคล): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P5-05, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “พูด/เขียนโต้ตอบในการสื่อสารระหว่างบุคคล”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-P5-05; accept other natural and correct expressions.
@@ -553,11 +553,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use structured role-play and information-gap tasks for requests, permission, help, personal information and feelings.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P5-06, learners practise “ใช้คำสั่ง คำขอร้อง คำขออนุญาต และให้คำแนะนำง่าย ๆ” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P5-06: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P5-06 (ใช้คำสั่ง คำขอร้อง คำขออนุญาต และให้คำแนะนำง่าย ๆ): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P5-06, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “ใช้คำสั่ง คำขอร้อง คำขออนุญาต และให้คำแนะนำง่าย ๆ”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-P5-06; accept other natural and correct expressions.
@@ -574,11 +574,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use structured role-play and information-gap tasks for requests, permission, help, personal information and feelings.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P5-07, learners practise “พูด/เขียนแสดงความต้องการ ขอความช่วยเหลือ ตอบรับและปฏิเสธการให้ความช่วยเหลือในสถานการณ์ง่าย ๆ” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P5-07: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P5-07 (พูด/เขียนแสดงความต้องการ ขอความช่วยเหลือ ตอบรับและปฏิเสธการให้ความช่วยเหลือในสถานการณ์ง่าย ๆ): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P5-07, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “พูด/เขียนแสดงความต้องการ ขอความช่วยเหลือ ตอบรับและปฏิเสธการให้ความช่วยเหลือในสถานการณ์ง่าย ๆ”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-P5-07; accept other natural and correct expressions.
@@ -595,11 +595,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use structured role-play and information-gap tasks for requests, permission, help, personal information and feelings.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P5-08, learners practise “พูด/เขียนเพื่อขอและให้ข้อมูลเกี่ยวกับตนเอง เพื่อน ครอบครัว และเรื่องใกล้ตัว” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P5-08: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P5-08 (พูด/เขียนเพื่อขอและให้ข้อมูลเกี่ยวกับตนเอง เพื่อน ครอบครัว และเรื่องใกล้ตัว): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P5-08, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “พูด/เขียนเพื่อขอและให้ข้อมูลเกี่ยวกับตนเอง เพื่อน ครอบครัว และเรื่องใกล้ตัว”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-P5-08; accept other natural and correct expressions.
@@ -616,11 +616,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use structured role-play and information-gap tasks for requests, permission, help, personal information and feelings.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P5-09, learners practise “พูด/เขียนแสดงความรู้สึกของตนเองเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัวและกิจกรรมต่าง ๆ พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P5-09: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P5-09 (พูด/เขียนแสดงความรู้สึกของตนเองเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัวและกิจกรรมต่าง ๆ พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P5-09, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “พูด/เขียนแสดงความรู้สึกของตนเองเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัวและกิจกรรมต่าง ๆ พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-P5-09; accept other natural and correct expressions.
@@ -637,11 +637,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use short presentations, charts, picture sequences and opinion prompts. Require relevant details and a simple reason.
 
-**Practical activity:** Practise language production, presentation, writing and expression of ideas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P5-10, learners prepare a short presentation or written product that demonstrates “พูด/เขียนให้ข้อมูลเกี่ยวกับตนเองและเรื่องใกล้ตัว”. They select relevant information, organise it for a named audience, rehearse or edit it, then present and respond to one question. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P5-10: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P5-10 (พูด/เขียนให้ข้อมูลเกี่ยวกับตนเองและเรื่องใกล้ตัว): a focused spoken or written product, information arranged in a logical order, language appropriate to the audience, and a relevant response to feedback or a follow-up question.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P5-10, assess task relevance, organisation of ideas, accuracy and range of language appropriate to the grade, and clarity for the intended audience. Accept different valid examples and formats when they meet the indicator.
 
 **Independent practice**
 1. **Plan:** For a presentation or written task connected to “พูด/เขียนให้ข้อมูลเกี่ยวกับตนเองและเรื่องใกล้ตัว”, identify the topic, audience, purpose and key information that must be included. **Answer:** Identify the correct topic/purpose/audience and select information relevant to FL-P5-10.
@@ -658,11 +658,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use short presentations, charts, picture sequences and opinion prompts. Require relevant details and a simple reason.
 
-**Practical activity:** Practise language production, presentation, writing and expression of ideas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P5-11, learners prepare a short presentation or written product that demonstrates “เขียนภาพ แผนผัง และแผนภูมิแสดงข้อมูลต่าง ๆ ตามที่ฟังหรืออ่าน”. They select relevant information, organise it for a named audience, rehearse or edit it, then present and respond to one question. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P5-11: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P5-11 (เขียนภาพ แผนผัง และแผนภูมิแสดงข้อมูลต่าง ๆ ตามที่ฟังหรืออ่าน): a focused spoken or written product, information arranged in a logical order, language appropriate to the audience, and a relevant response to feedback or a follow-up question.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P5-11, assess task relevance, organisation of ideas, accuracy and range of language appropriate to the grade, and clarity for the intended audience. Accept different valid examples and formats when they meet the indicator.
 
 **Independent practice**
 1. **Plan:** For a presentation or written task connected to “เขียนภาพ แผนผัง และแผนภูมิแสดงข้อมูลต่าง ๆ ตามที่ฟังหรืออ่าน”, identify the topic, audience, purpose and key information that must be included. **Answer:** Identify the correct topic/purpose/audience and select information relevant to FL-P5-11.
@@ -679,11 +679,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use short presentations, charts, picture sequences and opinion prompts. Require relevant details and a simple reason.
 
-**Practical activity:** Practise language production, presentation, writing and expression of ideas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P5-12, learners prepare a short presentation or written product that demonstrates “พูดแสดงความคิดเห็นเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัว”. They select relevant information, organise it for a named audience, rehearse or edit it, then present and respond to one question. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P5-12: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P5-12 (พูดแสดงความคิดเห็นเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัว): a focused spoken or written product, information arranged in a logical order, language appropriate to the audience, and a relevant response to feedback or a follow-up question.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P5-12, assess task relevance, organisation of ideas, accuracy and range of language appropriate to the grade, and clarity for the intended audience. Accept different valid examples and formats when they meet the indicator.
 
 **Independent practice**
 1. **Plan:** For a presentation or written task connected to “พูดแสดงความคิดเห็นเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัว”, identify the topic, audience, purpose and key information that must be included. **Answer:** Identify the correct topic/purpose/audience and select information relevant to FL-P5-12.
@@ -700,11 +700,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use greetings, polite expressions, gestures, festival picture cards and short cultural presentations. Compare respectfully and avoid stereotypes.
 
-**Practical activity:** Practise language, culture, etiquette and intercultural communication through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P5-13, learners examine a respectful, specific cultural or social situation linked to “ใช้ถ้อยคำ น้ำเสียง และกิริยาท่าทางอย่างสุภาพตามมารยาทสังคมและวัฒนธรรมของเจ้าของภาษา”. They identify the relevant expression, gesture, convention or cultural information, practise an appropriate response, and explain why context matters. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P5-13: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P5-13 (ใช้ถ้อยคำ น้ำเสียง และกิริยาท่าทางอย่างสุภาพตามมารยาทสังคมและวัฒนธรรมของเจ้าของภาษา): accurate identification of the relevant cultural or social feature, an appropriate language or behaviour choice in context, and a respectful explanation that avoids treating one example as universal.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P5-13, assess contextual appropriateness, respectful interpretation, accuracy of the cultural information and the learner's ability to explain variation. Do not reward stereotypes or claims that all members of a culture behave identically.
 
 **Independent practice**
 1. **Notice culture:** From a short text, image or dialogue related to “ใช้ถ้อยคำ น้ำเสียง และกิริยาท่าทางอย่างสุภาพตามมารยาทสังคมและวัฒนธรรมของเจ้าของภาษา”, identify the relevant cultural practice, social convention, gesture or language choice. **Answer:** Identify the cultural/language feature accurately and describe the situation in which it is used; avoid treating one example as universal.
@@ -721,11 +721,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use greetings, polite expressions, gestures, festival picture cards and short cultural presentations. Compare respectfully and avoid stereotypes.
 
-**Practical activity:** Practise language, culture, etiquette and intercultural communication through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P5-14, learners examine a respectful, specific cultural or social situation linked to “ตอบคำถาม/บอกความสำคัญของเทศกาล/วันสำคัญ/งานฉลองและชีวิตความเป็นอยู่ของเจ้าของภาษา”. They identify the relevant expression, gesture, convention or cultural information, practise an appropriate response, and explain why context matters. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P5-14: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P5-14 (ตอบคำถาม/บอกความสำคัญของเทศกาล/วันสำคัญ/งานฉลองและชีวิตความเป็นอยู่ของเจ้าของภาษา): accurate identification of the relevant cultural or social feature, an appropriate language or behaviour choice in context, and a respectful explanation that avoids treating one example as universal.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P5-14, assess contextual appropriateness, respectful interpretation, accuracy of the cultural information and the learner's ability to explain variation. Do not reward stereotypes or claims that all members of a culture behave identically.
 
 **Independent practice**
 1. **Notice culture:** From a short text, image or dialogue related to “ตอบคำถาม/บอกความสำคัญของเทศกาล/วันสำคัญ/งานฉลองและชีวิตความเป็นอยู่ของเจ้าของภาษา”, identify the relevant cultural practice, social convention, gesture or language choice. **Answer:** Identify the cultural/language feature accurately and describe the situation in which it is used; avoid treating one example as universal.
@@ -742,11 +742,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use greetings, polite expressions, gestures, festival picture cards and short cultural presentations. Compare respectfully and avoid stereotypes.
 
-**Practical activity:** Practise language, culture, etiquette and intercultural communication through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P5-15, learners examine a respectful, specific cultural or social situation linked to “เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมตามความสนใจ”. They identify the relevant expression, gesture, convention or cultural information, practise an appropriate response, and explain why context matters. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P5-15: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P5-15 (เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมตามความสนใจ): accurate identification of the relevant cultural or social feature, an appropriate language or behaviour choice in context, and a respectful explanation that avoids treating one example as universal.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P5-15, assess contextual appropriateness, respectful interpretation, accuracy of the cultural information and the learner's ability to explain variation. Do not reward stereotypes or claims that all members of a culture behave identically.
 
 **Independent practice**
 1. **Notice culture:** From a short text, image or dialogue related to “เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมตามความสนใจ”, identify the relevant cultural practice, social convention, gesture or language choice. **Answer:** Identify the cultural/language feature accurately and describe the situation in which it is used; avoid treating one example as universal.
@@ -763,11 +763,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use paired English–Thai examples to compare pronunciation, letters, word order, punctuation or cultural practices named in the indicator.
 
-**Practical activity:** Practise language comparison and intercultural analysis through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P5-16, learners compare two short English and Thai examples connected to “บอกความเหมือน/ความแตกต่างระหว่างการออกเสียงประโยคชนิดต่าง ๆ การใช้เครื่องหมายวรรคตอน และการลำดับคำตามโครงสร้างประโยคของภาษาต่างประเทศและภาษาไทย”. They mark the relevant sound, letter, word, structure or cultural feature, explain one similarity and one difference where applicable, and apply the comparison in a new example. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P5-16: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P5-16 (บอกความเหมือน/ความแตกต่างระหว่างการออกเสียงประโยคชนิดต่าง ๆ การใช้เครื่องหมายวรรคตอน และการลำดับคำตามโครงสร้างประโยคของภาษาต่างประเทศและภาษาไทย): correctly identified features in both examples, a supported comparison that distinguishes similarity from difference, and an accurate application to a fresh language example.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P5-16, assess accuracy of both examples, quality of the comparison, use of evidence and ability to apply the finding. Accept more than one valid comparison when it is supported by the examples.
 
 **Independent practice**
 1. **Identify patterns:** Find the language feature, cultural convention or similarity/difference required by “บอกความเหมือน/ความแตกต่างระหว่างการออกเสียงประโยคชนิดต่าง ๆ การใช้เครื่องหมายวรรคตอน และการลำดับคำตามโครงสร้างประโยคของภาษาต่างประเทศและภาษาไทย” in two short examples. **Answer:** Identify the relevant pattern accurately in both examples and use appropriate language to describe it.
@@ -784,11 +784,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use paired English–Thai examples to compare pronunciation, letters, word order, punctuation or cultural practices named in the indicator.
 
-**Practical activity:** Practise language comparison and intercultural analysis through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P5-17, learners compare two short English and Thai examples connected to “บอกความเหมือน/ความแตกต่างระหว่างเทศกาลและงานฉลองตามวัฒนธรรมของเจ้าของภาษากับของไทย”. They mark the relevant sound, letter, word, structure or cultural feature, explain one similarity and one difference where applicable, and apply the comparison in a new example. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P5-17: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P5-17 (บอกความเหมือน/ความแตกต่างระหว่างเทศกาลและงานฉลองตามวัฒนธรรมของเจ้าของภาษากับของไทย): correctly identified features in both examples, a supported comparison that distinguishes similarity from difference, and an accurate application to a fresh language example.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P5-17, assess accuracy of both examples, quality of the comparison, use of evidence and ability to apply the finding. Accept more than one valid comparison when it is supported by the examples.
 
 **Independent practice**
 1. **Identify patterns:** Find the language feature, cultural convention or similarity/difference required by “บอกความเหมือน/ความแตกต่างระหว่างเทศกาลและงานฉลองตามวัฒนธรรมของเจ้าของภาษากับของไทย” in two short examples. **Answer:** Identify the relevant pattern accurately in both examples and use appropriate language to describe it.
@@ -805,11 +805,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Build a mini word wall or bilingual poster using vocabulary from mathematics, science, arts or another learning area; learners label, use and present the words.
 
-**Practical activity:** Practise integrated language use across learning areas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P5-18, learners use a teacher-approved source from another learning area to practise “ค้นคว้า รวบรวมคำศัพท์ที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่น และนำเสนอด้วยการพูด/การเขียน”. They identify the subject idea and key English terms, explain the idea in English, and create a labelled visual, short report or oral explanation. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P5-18: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P5-18 (ค้นคว้า รวบรวมคำศัพท์ที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่น และนำเสนอด้วยการพูด/การเขียน): correct subject information, appropriate subject vocabulary, an understandable English explanation or product, and acknowledgement of the source when one is used.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P5-18, assess both subject accuracy and language clarity. Check that key vocabulary is used correctly, the explanation matches the source, and the product communicates the idea rather than merely copying isolated words.
 
 **Independent practice**
 1. **Find key information:** From a short subject-related text, diagram or data source connected to “ค้นคว้า รวบรวมคำศัพท์ที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่น และนำเสนอด้วยการพูด/การเขียน”, identify the key vocabulary and two relevant facts. **Answer:** Select vocabulary and facts that accurately match the other learning area and the language outcome in FL-P5-18.
@@ -826,11 +826,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Rehearse realistic school situations such as asking for help, borrowing materials, following classroom instructions, asking directions and joining activities.
 
-**Practical activity:** Practise real-life communication in school, community and everyday situations through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P5-19, learners complete a realistic classroom, school or community simulation that practises “ฟัง พูด และอ่าน/เขียนในสถานการณ์ต่าง ๆ ที่เกิดขึ้นในห้องเรียนและสถานศึกษา”. Assign roles, define the audience and purpose, and require learners to exchange information or complete the real-world communication task. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P5-19: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P5-19 (ฟัง พูด และอ่าน/เขียนในสถานการณ์ต่าง ๆ ที่เกิดขึ้นในห้องเรียนและสถานศึกษา): language that fits the real or simulated situation, successful completion of the communicative purpose, and an appropriate response to an unexpected question or clarification request.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P5-19, assess whether the learner achieves the communication purpose, adapts language to audience and setting, responds meaningfully, and uses clear, respectful expressions. Minor errors should not outweigh successful communication when meaning remains clear.
 
 **Independent practice**
 1. **Identify context:** For a school, community or everyday situation related to “ฟัง พูด และอ่าน/เขียนในสถานการณ์ต่าง ๆ ที่เกิดขึ้นในห้องเรียนและสถานศึกษา”, identify the purpose, audience and suitable expressions. **Answer:** Identify the situation and choose language appropriate to its purpose and audience.
@@ -847,11 +847,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use age-appropriate dictionaries, reference cards or approved digital resources to search, collect, record and present relevant information.
 
-**Practical activity:** Practise international communication, research and participation in the wider world through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P5-20, learners use one or more teacher-approved sources to practise “ใช้ภาษาต่างประเทศในการสืบค้นและรวบรวมข้อมูลต่าง ๆ”. They search or collect relevant information, record key terms and source details, check reliability, then summarise or communicate the findings for a stated study, school or career purpose. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P5-20: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P5-20 (ใช้ภาษาต่างประเทศในการสืบค้นและรวบรวมข้อมูลต่าง ๆ): relevant information from an appropriate source, accurate notes or a summary, a clear English output for the stated purpose, and source acknowledgement where research is used.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P5-20, assess relevance and credibility of sources, accuracy of notes or summary, language suitable for the audience and purpose, and correct source acknowledgement. Do not accept copied material presented as the learner's own work.
 
 **Independent practice**
 1. **Research / identify:** Use an age-appropriate teacher-approved source related to “ใช้ภาษาต่างประเทศในการสืบค้นและรวบรวมข้อมูลต่าง ๆ”. Identify the main information, intended audience and source details. **Answer:** Identify accurate information and a credible source relevant to FL-P5-20; distinguish source information from unsupported opinion.
@@ -868,11 +868,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use short dialogues, texts, chants and story cards. Practise reading aloud, following instructions, identifying details and explaining the main idea.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P6-01, learners work with a short teacher-selected audio or text that directly practises “ปฏิบัติตามคำสั่ง คำขอร้อง และคำแนะนำที่ฟังและอ่าน”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P6-01: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P6-01 (ปฏิบัติตามคำสั่ง คำขอร้อง และคำแนะนำที่ฟังและอ่าน): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P6-01, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “ปฏิบัติตามคำสั่ง คำขอร้อง และคำแนะนำที่ฟังและอ่าน”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-P6-01; accept an equivalent clear response at the expected grade level.
@@ -889,11 +889,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use short dialogues, texts, chants and story cards. Practise reading aloud, following instructions, identifying details and explaining the main idea.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P6-02, learners work with a short teacher-selected audio or text that directly practises “อ่านออกเสียงข้อความ นิทาน และบทกลอนสั้น ๆ ถูกต้องตามหลักการอ่าน”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P6-02: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P6-02 (อ่านออกเสียงข้อความ นิทาน และบทกลอนสั้น ๆ ถูกต้องตามหลักการอ่าน): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P6-02, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “อ่านออกเสียงข้อความ นิทาน และบทกลอนสั้น ๆ ถูกต้องตามหลักการอ่าน”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-P6-02; accept an equivalent clear response at the expected grade level.
@@ -910,11 +910,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use short dialogues, texts, chants and story cards. Practise reading aloud, following instructions, identifying details and explaining the main idea.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P6-03, learners work with a short teacher-selected audio or text that directly practises “เลือก/ระบุประโยคหรือข้อความสั้น ๆ ตรงตามภาพ สัญลักษณ์ หรือเครื่องหมายที่อ่าน”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P6-03: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P6-03 (เลือก/ระบุประโยคหรือข้อความสั้น ๆ ตรงตามภาพ สัญลักษณ์ หรือเครื่องหมายที่อ่าน): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P6-03, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “เลือก/ระบุประโยคหรือข้อความสั้น ๆ ตรงตามภาพ สัญลักษณ์ หรือเครื่องหมายที่อ่าน”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-P6-03; accept an equivalent clear response at the expected grade level.
@@ -931,11 +931,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use short dialogues, texts, chants and story cards. Practise reading aloud, following instructions, identifying details and explaining the main idea.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P6-04, learners work with a short teacher-selected audio or text that directly practises “บอกใจความสำคัญและตอบคำถามจากการฟังและอ่านบทสนทนา นิทานง่าย ๆ และเรื่องเล่า”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P6-04: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P6-04 (บอกใจความสำคัญและตอบคำถามจากการฟังและอ่านบทสนทนา นิทานง่าย ๆ และเรื่องเล่า): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P6-04, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “บอกใจความสำคัญและตอบคำถามจากการฟังและอ่านบทสนทนา นิทานง่าย ๆ และเรื่องเล่า”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-P6-04; accept an equivalent clear response at the expected grade level.
@@ -952,11 +952,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use structured role-play and information-gap tasks for requests, permission, help, personal information and feelings.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P6-05, learners practise “พูด/เขียนโต้ตอบในการสื่อสารระหว่างบุคคล” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P6-05: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P6-05 (พูด/เขียนโต้ตอบในการสื่อสารระหว่างบุคคล): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P6-05, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “พูด/เขียนโต้ตอบในการสื่อสารระหว่างบุคคล”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-P6-05; accept other natural and correct expressions.
@@ -973,11 +973,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use structured role-play and information-gap tasks for requests, permission, help, personal information and feelings.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P6-06, learners practise “ใช้คำสั่ง คำขอร้อง คำขออนุญาต และคำแนะนำ” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P6-06: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P6-06 (ใช้คำสั่ง คำขอร้อง คำขออนุญาต และคำแนะนำ): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P6-06, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “ใช้คำสั่ง คำขอร้อง คำขออนุญาต และคำแนะนำ”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-P6-06; accept other natural and correct expressions.
@@ -994,11 +994,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use structured role-play and information-gap tasks for requests, permission, help, personal information and feelings.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P6-07, learners practise “พูด/เขียนแสดงความต้องการ ขอความช่วยเหลือ ตอบรับและปฏิเสธการให้ความช่วยเหลือในสถานการณ์ง่าย ๆ” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P6-07: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P6-07 (พูด/เขียนแสดงความต้องการ ขอความช่วยเหลือ ตอบรับและปฏิเสธการให้ความช่วยเหลือในสถานการณ์ง่าย ๆ): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P6-07, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “พูด/เขียนแสดงความต้องการ ขอความช่วยเหลือ ตอบรับและปฏิเสธการให้ความช่วยเหลือในสถานการณ์ง่าย ๆ”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-P6-07; accept other natural and correct expressions.
@@ -1015,11 +1015,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use structured role-play and information-gap tasks for requests, permission, help, personal information and feelings.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P6-08, learners practise “พูดและเขียนเพื่อขอและให้ข้อมูลเกี่ยวกับตนเอง เพื่อน ครอบครัว และเรื่องใกล้ตัว” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P6-08: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P6-08 (พูดและเขียนเพื่อขอและให้ข้อมูลเกี่ยวกับตนเอง เพื่อน ครอบครัว และเรื่องใกล้ตัว): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P6-08, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “พูดและเขียนเพื่อขอและให้ข้อมูลเกี่ยวกับตนเอง เพื่อน ครอบครัว และเรื่องใกล้ตัว”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-P6-08; accept other natural and correct expressions.
@@ -1036,11 +1036,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use structured role-play and information-gap tasks for requests, permission, help, personal information and feelings.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P6-09, learners practise “พูด/เขียนแสดงความรู้สึกของตนเองเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัวและกิจกรรมต่าง ๆ พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P6-09: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P6-09 (พูด/เขียนแสดงความรู้สึกของตนเองเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัวและกิจกรรมต่าง ๆ พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P6-09, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “พูด/เขียนแสดงความรู้สึกของตนเองเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัวและกิจกรรมต่าง ๆ พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-P6-09; accept other natural and correct expressions.
@@ -1057,11 +1057,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use short presentations, charts, picture sequences and opinion prompts. Require relevant details and a simple reason.
 
-**Practical activity:** Practise language production, presentation, writing and expression of ideas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P6-10, learners prepare a short presentation or written product that demonstrates “พูด/เขียนให้ข้อมูลเกี่ยวกับตนเอง เพื่อน และสิ่งแวดล้อมใกล้ตัว”. They select relevant information, organise it for a named audience, rehearse or edit it, then present and respond to one question. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P6-10: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P6-10 (พูด/เขียนให้ข้อมูลเกี่ยวกับตนเอง เพื่อน และสิ่งแวดล้อมใกล้ตัว): a focused spoken or written product, information arranged in a logical order, language appropriate to the audience, and a relevant response to feedback or a follow-up question.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P6-10, assess task relevance, organisation of ideas, accuracy and range of language appropriate to the grade, and clarity for the intended audience. Accept different valid examples and formats when they meet the indicator.
 
 **Independent practice**
 1. **Plan:** For a presentation or written task connected to “พูด/เขียนให้ข้อมูลเกี่ยวกับตนเอง เพื่อน และสิ่งแวดล้อมใกล้ตัว”, identify the topic, audience, purpose and key information that must be included. **Answer:** Identify the correct topic/purpose/audience and select information relevant to FL-P6-10.
@@ -1078,11 +1078,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use short presentations, charts, picture sequences and opinion prompts. Require relevant details and a simple reason.
 
-**Practical activity:** Practise language production, presentation, writing and expression of ideas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P6-11, learners prepare a short presentation or written product that demonstrates “เขียนภาพ แผนผัง แผนภูมิ และตารางแสดงข้อมูลต่าง ๆ ที่ฟังหรืออ่าน”. They select relevant information, organise it for a named audience, rehearse or edit it, then present and respond to one question. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P6-11: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P6-11 (เขียนภาพ แผนผัง แผนภูมิ และตารางแสดงข้อมูลต่าง ๆ ที่ฟังหรืออ่าน): a focused spoken or written product, information arranged in a logical order, language appropriate to the audience, and a relevant response to feedback or a follow-up question.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P6-11, assess task relevance, organisation of ideas, accuracy and range of language appropriate to the grade, and clarity for the intended audience. Accept different valid examples and formats when they meet the indicator.
 
 **Independent practice**
 1. **Plan:** For a presentation or written task connected to “เขียนภาพ แผนผัง แผนภูมิ และตารางแสดงข้อมูลต่าง ๆ ที่ฟังหรืออ่าน”, identify the topic, audience, purpose and key information that must be included. **Answer:** Identify the correct topic/purpose/audience and select information relevant to FL-P6-11.
@@ -1099,11 +1099,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use short presentations, charts, picture sequences and opinion prompts. Require relevant details and a simple reason.
 
-**Practical activity:** Practise language production, presentation, writing and expression of ideas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P6-12, learners prepare a short presentation or written product that demonstrates “พูด/เขียนแสดงความคิดเห็นเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัว”. They select relevant information, organise it for a named audience, rehearse or edit it, then present and respond to one question. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P6-12: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P6-12 (พูด/เขียนแสดงความคิดเห็นเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัว): a focused spoken or written product, information arranged in a logical order, language appropriate to the audience, and a relevant response to feedback or a follow-up question.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P6-12, assess task relevance, organisation of ideas, accuracy and range of language appropriate to the grade, and clarity for the intended audience. Accept different valid examples and formats when they meet the indicator.
 
 **Independent practice**
 1. **Plan:** For a presentation or written task connected to “พูด/เขียนแสดงความคิดเห็นเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัว”, identify the topic, audience, purpose and key information that must be included. **Answer:** Identify the correct topic/purpose/audience and select information relevant to FL-P6-12.
@@ -1120,11 +1120,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use greetings, polite expressions, gestures, festival picture cards and short cultural presentations. Compare respectfully and avoid stereotypes.
 
-**Practical activity:** Practise language, culture, etiquette and intercultural communication through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P6-13, learners examine a respectful, specific cultural or social situation linked to “ใช้ถ้อยคำ น้ำเสียง และกิริยาท่าทางอย่างสุภาพ เหมาะสม ตามมารยาทสังคมและวัฒนธรรมของเจ้าของภาษา”. They identify the relevant expression, gesture, convention or cultural information, practise an appropriate response, and explain why context matters. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P6-13: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P6-13 (ใช้ถ้อยคำ น้ำเสียง และกิริยาท่าทางอย่างสุภาพ เหมาะสม ตามมารยาทสังคมและวัฒนธรรมของเจ้าของภาษา): accurate identification of the relevant cultural or social feature, an appropriate language or behaviour choice in context, and a respectful explanation that avoids treating one example as universal.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P6-13, assess contextual appropriateness, respectful interpretation, accuracy of the cultural information and the learner's ability to explain variation. Do not reward stereotypes or claims that all members of a culture behave identically.
 
 **Independent practice**
 1. **Notice culture:** From a short text, image or dialogue related to “ใช้ถ้อยคำ น้ำเสียง และกิริยาท่าทางอย่างสุภาพ เหมาะสม ตามมารยาทสังคมและวัฒนธรรมของเจ้าของภาษา”, identify the relevant cultural practice, social convention, gesture or language choice. **Answer:** Identify the cultural/language feature accurately and describe the situation in which it is used; avoid treating one example as universal.
@@ -1141,11 +1141,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use greetings, polite expressions, gestures, festival picture cards and short cultural presentations. Compare respectfully and avoid stereotypes.
 
-**Practical activity:** Practise language, culture, etiquette and intercultural communication through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P6-14, learners examine a respectful, specific cultural or social situation linked to “ให้ข้อมูลเกี่ยวกับเทศกาล/วันสำคัญ/งานฉลอง/ชีวิตความเป็นอยู่ของเจ้าของภาษา”. They identify the relevant expression, gesture, convention or cultural information, practise an appropriate response, and explain why context matters. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P6-14: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P6-14 (ให้ข้อมูลเกี่ยวกับเทศกาล/วันสำคัญ/งานฉลอง/ชีวิตความเป็นอยู่ของเจ้าของภาษา): accurate identification of the relevant cultural or social feature, an appropriate language or behaviour choice in context, and a respectful explanation that avoids treating one example as universal.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P6-14, assess contextual appropriateness, respectful interpretation, accuracy of the cultural information and the learner's ability to explain variation. Do not reward stereotypes or claims that all members of a culture behave identically.
 
 **Independent practice**
 1. **Notice culture:** From a short text, image or dialogue related to “ให้ข้อมูลเกี่ยวกับเทศกาล/วันสำคัญ/งานฉลอง/ชีวิตความเป็นอยู่ของเจ้าของภาษา”, identify the relevant cultural practice, social convention, gesture or language choice. **Answer:** Identify the cultural/language feature accurately and describe the situation in which it is used; avoid treating one example as universal.
@@ -1162,11 +1162,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use greetings, polite expressions, gestures, festival picture cards and short cultural presentations. Compare respectfully and avoid stereotypes.
 
-**Practical activity:** Practise language, culture, etiquette and intercultural communication through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P6-15, learners examine a respectful, specific cultural or social situation linked to “เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมตามความสนใจ”. They identify the relevant expression, gesture, convention or cultural information, practise an appropriate response, and explain why context matters. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P6-15: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P6-15 (เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมตามความสนใจ): accurate identification of the relevant cultural or social feature, an appropriate language or behaviour choice in context, and a respectful explanation that avoids treating one example as universal.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P6-15, assess contextual appropriateness, respectful interpretation, accuracy of the cultural information and the learner's ability to explain variation. Do not reward stereotypes or claims that all members of a culture behave identically.
 
 **Independent practice**
 1. **Notice culture:** From a short text, image or dialogue related to “เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมตามความสนใจ”, identify the relevant cultural practice, social convention, gesture or language choice. **Answer:** Identify the cultural/language feature accurately and describe the situation in which it is used; avoid treating one example as universal.
@@ -1183,11 +1183,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use paired English–Thai examples to compare pronunciation, letters, word order, punctuation or cultural practices named in the indicator.
 
-**Practical activity:** Practise language comparison and intercultural analysis through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P6-16, learners compare two short English and Thai examples connected to “บอกความเหมือน/ความแตกต่างระหว่างการออกเสียงประโยคชนิดต่าง ๆ การใช้เครื่องหมายวรรคตอน และการลำดับคำตามโครงสร้างประโยคของภาษาต่างประเทศและภาษาไทย”. They mark the relevant sound, letter, word, structure or cultural feature, explain one similarity and one difference where applicable, and apply the comparison in a new example. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P6-16: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P6-16 (บอกความเหมือน/ความแตกต่างระหว่างการออกเสียงประโยคชนิดต่าง ๆ การใช้เครื่องหมายวรรคตอน และการลำดับคำตามโครงสร้างประโยคของภาษาต่างประเทศและภาษาไทย): correctly identified features in both examples, a supported comparison that distinguishes similarity from difference, and an accurate application to a fresh language example.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P6-16, assess accuracy of both examples, quality of the comparison, use of evidence and ability to apply the finding. Accept more than one valid comparison when it is supported by the examples.
 
 **Independent practice**
 1. **Identify patterns:** Find the language feature, cultural convention or similarity/difference required by “บอกความเหมือน/ความแตกต่างระหว่างการออกเสียงประโยคชนิดต่าง ๆ การใช้เครื่องหมายวรรคตอน และการลำดับคำตามโครงสร้างประโยคของภาษาต่างประเทศและภาษาไทย” in two short examples. **Answer:** Identify the relevant pattern accurately in both examples and use appropriate language to describe it.
@@ -1204,11 +1204,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use paired English–Thai examples to compare pronunciation, letters, word order, punctuation or cultural practices named in the indicator.
 
-**Practical activity:** Practise language comparison and intercultural analysis through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P6-17, learners compare two short English and Thai examples connected to “เปรียบเทียบความเหมือน/ความแตกต่างระหว่างเทศกาล งานฉลองและประเพณีของเจ้าของภาษากับของไทย”. They mark the relevant sound, letter, word, structure or cultural feature, explain one similarity and one difference where applicable, and apply the comparison in a new example. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P6-17: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P6-17 (เปรียบเทียบความเหมือน/ความแตกต่างระหว่างเทศกาล งานฉลองและประเพณีของเจ้าของภาษากับของไทย): correctly identified features in both examples, a supported comparison that distinguishes similarity from difference, and an accurate application to a fresh language example.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P6-17, assess accuracy of both examples, quality of the comparison, use of evidence and ability to apply the finding. Accept more than one valid comparison when it is supported by the examples.
 
 **Independent practice**
 1. **Identify patterns:** Find the language feature, cultural convention or similarity/difference required by “เปรียบเทียบความเหมือน/ความแตกต่างระหว่างเทศกาล งานฉลองและประเพณีของเจ้าของภาษากับของไทย” in two short examples. **Answer:** Identify the relevant pattern accurately in both examples and use appropriate language to describe it.
@@ -1225,11 +1225,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Build a mini word wall or bilingual poster using vocabulary from mathematics, science, arts or another learning area; learners label, use and present the words.
 
-**Practical activity:** Practise integrated language use across learning areas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P6-18, learners use a teacher-approved source from another learning area to practise “ค้นคว้า รวบรวมคำศัพท์ที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่นจากแหล่งเรียนรู้ และนำเสนอด้วยการพูด/การเขียน”. They identify the subject idea and key English terms, explain the idea in English, and create a labelled visual, short report or oral explanation. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P6-18: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P6-18 (ค้นคว้า รวบรวมคำศัพท์ที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่นจากแหล่งเรียนรู้ และนำเสนอด้วยการพูด/การเขียน): correct subject information, appropriate subject vocabulary, an understandable English explanation or product, and acknowledgement of the source when one is used.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P6-18, assess both subject accuracy and language clarity. Check that key vocabulary is used correctly, the explanation matches the source, and the product communicates the idea rather than merely copying isolated words.
 
 **Independent practice**
 1. **Find key information:** From a short subject-related text, diagram or data source connected to “ค้นคว้า รวบรวมคำศัพท์ที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่นจากแหล่งเรียนรู้ และนำเสนอด้วยการพูด/การเขียน”, identify the key vocabulary and two relevant facts. **Answer:** Select vocabulary and facts that accurately match the other learning area and the language outcome in FL-P6-18.
@@ -1246,11 +1246,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Rehearse realistic school situations such as asking for help, borrowing materials, following classroom instructions, asking directions and joining activities.
 
-**Practical activity:** Practise real-life communication in school, community and everyday situations through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P6-19, learners complete a realistic classroom, school or community simulation that practises “ใช้ภาษาสื่อสารในสถานการณ์ต่าง ๆ ที่เกิดขึ้นในห้องเรียนและสถานศึกษา”. Assign roles, define the audience and purpose, and require learners to exchange information or complete the real-world communication task. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P6-19: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P6-19 (ใช้ภาษาสื่อสารในสถานการณ์ต่าง ๆ ที่เกิดขึ้นในห้องเรียนและสถานศึกษา): language that fits the real or simulated situation, successful completion of the communicative purpose, and an appropriate response to an unexpected question or clarification request.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P6-19, assess whether the learner achieves the communication purpose, adapts language to audience and setting, responds meaningfully, and uses clear, respectful expressions. Minor errors should not outweigh successful communication when meaning remains clear.
 
 **Independent practice**
 1. **Identify context:** For a school, community or everyday situation related to “ใช้ภาษาสื่อสารในสถานการณ์ต่าง ๆ ที่เกิดขึ้นในห้องเรียนและสถานศึกษา”, identify the purpose, audience and suitable expressions. **Answer:** Identify the situation and choose language appropriate to its purpose and audience.
@@ -1267,11 +1267,11 @@ Each lesson preserves the official Thai indicator wording and code. The activiti
 
 **Teaching activity:** Use age-appropriate dictionaries, reference cards or approved digital resources to search, collect, record and present relevant information.
 
-**Practical activity:** Practise international communication, research and participation in the wider world through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to upper primary learners using short texts, complete sentences and simple exchanges.
+**Practical activity:** For FL-P6-20, learners use one or more teacher-approved sources to practise “ใช้ภาษาต่างประเทศในการสืบค้นและรวบรวมข้อมูลต่าง ๆ”. They search or collect relevant information, record key terms and source details, check reliability, then summarise or communicate the findings for a stated study, school or career purpose. Grade band: upper-primary. Use sentence frames, short connected exchanges or paragraphs, and guided peer checking.
 
-**Expected evidence:** Three tasks demonstrate FL-P6-20: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-P6-20 (ใช้ภาษาต่างประเทศในการสืบค้นและรวบรวมข้อมูลต่าง ๆ): relevant information from an appropriate source, accurate notes or a summary, a clear English output for the stated purpose, and source acknowledgement where research is used.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-P6-20, assess relevance and credibility of sources, accuracy of notes or summary, language suitable for the audience and purpose, and correct source acknowledgement. Do not accept copied material presented as the learner's own work.
 
 **Independent practice**
 1. **Research / identify:** Use an age-appropriate teacher-approved source related to “ใช้ภาษาต่างประเทศในการสืบค้นและรวบรวมข้อมูลต่าง ๆ”. Identify the main information, intended audience and source details. **Answer:** Identify accurate information and a credible source relevant to FL-P6-20; distinguish source information from unsupported opinion.
