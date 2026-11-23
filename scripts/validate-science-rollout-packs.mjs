@@ -50,6 +50,9 @@ const totals = {
   bySubject: new Map(),
 };
 const seenObjectives = new Set();
+const seenContentImportCodes = new Map();
+const seenQuestionImportCodes = new Map();
+const normalizeImportCode = (value) => value.toUpperCase().replace(/[^A-Z0-9]+/g, "-").replace(/^-|-$/g, "");
 
 for (const pack of packs) {
   const markdown = await readFile(resolve(root, pack.path), "utf8");
@@ -93,6 +96,31 @@ for (const pack of packs) {
     const key = pack.subject + "|" + gradeKey + "|" + identity.trim().toUpperCase();
     if (seenObjectives.has(key)) failures.push(pack.path + ": duplicate subject/grade objective identity " + key);
     seenObjectives.add(key);
+
+    // The importer writes codes unique within an organization, not per subject.
+    // Check the exact generated codes across all 17 packs before any teacher import.
+    if (lesson.objectiveCode) {
+      const importGrades = parsedGrades.length ? parsedGrades : pack.grade ? [pack.grade] : [];
+      for (const grade of importGrades) {
+        const gradeSuffix = importGrades.length > 1 ? "-" + grade : "";
+        const contentCode = normalizeImportCode("EP-" + lesson.objectiveCode + gradeSuffix + "-LESSON");
+        const contentOwner = seenContentImportCodes.get(contentCode);
+        if (contentOwner) {
+          failures.push(pack.path + ": content import code " + contentCode + " collides with " + contentOwner);
+        } else {
+          seenContentImportCodes.set(contentCode, pack.path + " lesson " + lesson.number);
+        }
+        for (const questionNumber of [1, 2, 3]) {
+          const questionCode = normalizeImportCode("EP-" + lesson.objectiveCode + gradeSuffix + "-Q" + String(questionNumber).padStart(2, "0"));
+          const questionOwner = seenQuestionImportCodes.get(questionCode);
+          if (questionOwner) {
+            failures.push(pack.path + ": question import code " + questionCode + " collides with " + questionOwner);
+          } else {
+            seenQuestionImportCodes.set(questionCode, pack.path + " lesson " + lesson.number);
+          }
+        }
+      }
+    }
 
     const questionNumbers = new Set();
     for (const question of lesson.questions) {
