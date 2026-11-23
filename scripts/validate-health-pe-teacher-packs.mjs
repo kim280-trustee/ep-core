@@ -73,6 +73,23 @@ for (const pack of packs) {
     if (code) codes.add(code);
     const indicator = code ? indicators.get(code) : null;
     if (!indicator) failures.push((code ?? pack.path + " lesson " + lesson.number) + ": official Thai indicator is missing");
+    const sectionIndex = headings.findIndex((heading) => heading[2] === code);
+    const sectionStart = sectionIndex >= 0 ? headings[sectionIndex].index : -1;
+    const sectionEnd = sectionIndex >= 0 ? (headings[sectionIndex + 1]?.index ?? markdown.length) : sectionStart;
+    const lessonMarkdown = sectionStart >= 0 ? markdown.slice(sectionStart, sectionEnd) : "";
+    for (const requiredField of ["Teaching activity", "Practical activity", "Expected evidence", "Teacher check"]) {
+      if (!lessonMarkdown.includes("**" + requiredField + ":**")) failures.push(code + ": missing " + requiredField + " guidance");
+    }
+    const q1 = lesson.questions[0];
+    const q2 = lesson.questions[1];
+    const q3 = lesson.questions[2];
+    if (q1 && (!q1.prompt.includes("two specific facts, decisions or steps") || !q1.expectedAnswer.includes("two accurate, distinct points"))) failures.push(code + ": weak knowledge-task criteria");
+    if (q2 && (!q2.prompt.toLowerCase().includes("fictional") || !q2.prompt.includes("What should the learner do first"))) failures.push(code + ": weak fictional-case decision task");
+    if (q3 && (!q3.prompt.includes("observable success criterion") || !q3.prompt.includes("demonstration"))) failures.push(code + ": weak observable-performance task");
+    if (q1 && !q1.expectedAnswer.includes(indicator)) failures.push(code + ": knowledge answer guide omits exact Thai indicator");
+    if (q2 && !q2.expectedAnswer.includes(indicator)) failures.push(code + ": case answer guide omits exact Thai indicator");
+    if (q3 && !q3.expectedAnswer.includes(indicator)) failures.push(code + ": performance answer guide omits exact Thai indicator");
+    if (/Identify the body system, body function, growth change or development concept needed to explain this indicator/.test(lessonMarkdown)) failures.push(code + ": generic legacy assessment scaffold remains");
     if (code?.includes("-M46-")) {
       if (!pack.shared) failures.push(code + ": M46 outcome must be in the shared upper-secondary pack");
       if (JSON.stringify(extractTeacherPackGradeCodes(code)) !== JSON.stringify(["M4", "M5", "M6"])) failures.push(code + ": shared grade scope is incorrect");
@@ -98,6 +115,6 @@ if (failures.length) {
   for (const failure of failures) process.stderr.write("- " + failure + "\n");
   process.exitCode = 1;
 } else {
-  process.stdout.write("\nPASS: " + lessonsTotal + " unique Health & PE indicators and " + questionsTotal + " indicator-linked answer-keyed tasks parsed by the actual TypeScript importer parser.\n");
+  process.stdout.write("\nPASS: " + lessonsTotal + " unique Health & PE indicators and " + questionsTotal + " objective-linked answer-keyed tasks parsed by the actual TypeScript importer parser.\n");
   process.stdout.write("The 29 shared M4–M6 indicators expand to 87 grade-specific lesson drafts and 261 grade-scoped questions.\n");
 }
