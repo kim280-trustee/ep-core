@@ -70,6 +70,7 @@ begin
     raise exception 'Expected questions must be supplied as a JSON array';
   end if;
 
+  -- Bound the payload before expanding JSON into rows or touching protected keys.
   -- A class teacher may verify only question drafts they created. Academic
   -- managers retain organization-wide recovery access. Without this check,
   -- an authorized teacher could use expected-answer guesses as an oracle for
@@ -80,7 +81,7 @@ begin
     join public.learning_questions question
       on question.organization_id = p_organization_id
      and question.code = upper(trim(item.code))
-    where question.created_by <> v_auth_user_id
+    where question.created_by is distinct from v_auth_user_id
   ) then
     raise exception 'Teachers can verify only question drafts they created; ask an academic manager to inspect another teacher''s import';
   end if;
