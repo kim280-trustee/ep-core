@@ -40,7 +40,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A verified, age-appropriate biography card for the Buddha or the relevant tradition's founder, with three dated/ordered life events and the source named. Use only events supported by the selected curriculum source.
+**Assessment stimulus — verified tradition/source card: A verified, age-appropriate biography card for the Buddha or the relevant tradition's founder, with three dated/ordered life events and the source named. Use only events supported by the selected curriculum source.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** From the biography card, identify the founder and name the three life events in the order shown. This assesses: “บอกพุทธประวัติ หรือประวัติของศาสดาที่ตนนับถือโดยสังเขป”. **Answer:** The answer names the person and orders the three source-supported events correctly; accept oral sequencing or picture cards.
@@ -1128,7 +1128,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A verified biography timeline with the Buddha's birth, enlightenment and renunciation, or equivalent key life events for the selected tradition's founder, clearly labelled and sourced.
+**Assessment stimulus — verified tradition/source card: A verified biography timeline with the Buddha's birth, enlightenment and renunciation, or equivalent key life events for the selected tradition's founder, clearly labelled and sourced.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Arrange the three events from the timeline in chronological order and name each event. This assesses: “สรุปพุทธประวัติ ตั้งแต่ประสูติ จนถึงการออกผนวช หรือประวัติศาสดาที่ตนนับถือตามที่กำหนด”. **Answer:** The sequence is correct according to the verified source; accept ordered cards or oral responses.
@@ -1196,7 +1196,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A verified Three Jewels and Ovada 3 reference card, or the selected tradition's approved equivalent, with a plain-language explanation of each term and source citation.
+**Assessment stimulus — verified tradition/source card: A verified Three Jewels and Ovada 3 reference card, or the selected tradition's approved equivalent, with a plain-language explanation of each term and source citation.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Match each term shown on the card to its meaning; identify the three Ovada 3 principles where the Buddhist source is used. This assesses: “บอกความหมาย ความสำคัญ และเคารพพระรัตนตรัย ปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนา หรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Each match is accurate to the source; use only the selected tradition's terminology and approved equivalent.
@@ -1264,7 +1264,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A verified instruction card for a short attention or loving-kindness practice taught in the selected tradition, listing steps and the stated purpose. Offer observation/explanation instead of participation.
+**Assessment stimulus — verified tradition/source card: A verified instruction card for a short attention or loving-kindness practice taught in the selected tradition, listing steps and the stated purpose. Offer observation/explanation instead of participation.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the practice and place its steps in the order given. This assesses: “เห็นคุณค่าและสวดมนต์ แผ่เมตตา มีสติที่เป็นพื้นฐานของสมาธิ ในพระพุทธศาสนาหรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** The response names and sequences the steps accurately from the card.
@@ -1366,7 +1366,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A verified observance/ceremony card with its name, purpose, date/context and ordered age-appropriate actions, drawn from the tradition being taught.
+**Assessment stimulus — verified tradition/source card: A verified observance/ceremony card with its name, purpose, date/context and ordered age-appropriate actions, drawn from the tradition being taught.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the observance and identify two steps from the verified sequence. This assesses: “ปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนา ตามที่กำหนดได้ถูกต้อง”. **Answer:** The response identifies the correct event and two accurate steps.
@@ -2284,7 +2284,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A verified timeline of the Buddha's period of ascetic practice through enlightenment/teaching and parinibbana, or equivalent key events for the selected tradition's founder; label source and chronology.
+**Assessment stimulus — verified tradition/source card: A verified timeline of the Buddha's period of ascetic practice through enlightenment/teaching and parinibbana, or equivalent key events for the selected tradition's founder; label source and chronology.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Arrange the events from ascetic practice to parinibbana (or the source's equivalent life stages) in correct order. This assesses: “สรุปพุทธประวัติตั้งแต่การบำเพ็ญเพียร จนถึงปรินิพพาน หรือประวัติของศาสดาที่ตนนับถือ ตามที่กำหนด”. **Answer:** Chronology and event names match the verified timeline.
@@ -2386,7 +2386,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A verified reference card defining the Three Jewels and Ovada 3, or the selected tradition's corresponding approved teaching, with one accurate example for each principle.
+**Assessment stimulus — verified tradition/source card: A verified reference card defining the Three Jewels and Ovada 3, or the selected tradition's corresponding approved teaching, with one accurate example for each principle.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the relevant teaching and identify the principle represented by each example on the card. This assesses: “แสดงความเคารพพระรัตนตรัยและปฏิบัติตามหลักธรรมโอวาท ๓ ในพระพุทธศาสนาหรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** All examples are matched to the correct source-defined principle.
@@ -2488,7 +2488,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A verified case card about caring for a religious adherent, place or object in the learner's studied tradition, with explicit permission rules and boundaries for visitors/children.
+**Assessment stimulus — verified tradition/source card: A verified case card about caring for a religious adherent, place or object in the learner's studied tradition, with explicit permission rules and boundaries for visitors/children.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Identify the person/place/object and one appropriate behaviour stated in the case card. This assesses: “ปฏิบัติตนอย่างเหมาะสมต่อสาวก ศาสนสถาน ศาสนวัตถุของศาสนาที่ตนนับถือได้ถูกต้อง”. **Answer:** The answer correctly identifies the item and behaviour from the source.
@@ -2522,7 +2522,7 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 
 **Teacher check:** Check separately (1) accuracy against the Thai indicator, (2) explanation supported by an example or source, and (3) application to the scenario. Give feedback on the missing criterion.
 
-**Assessment stimulus — A verified ceremony/important-day card with the event's name, meaning, date/context and sequence of actions, including which actions are optional or restricted.
+**Assessment stimulus — verified tradition/source card: A verified ceremony/important-day card with the event's name, meaning, date/context and sequence of actions, including which actions are optional or restricted.
 
 **Independent practice — indicator-specific assessment tasks**
 1. **Recall / evidence:** Name the event and sequence three key steps or identify three key features from the source. This assesses: “เห็นคุณค่าและปฏิบัติตนในศาสนพิธี พิธีกรรม และวันสำคัญทางศาสนาตามที่กำหนดได้ถูกต้อง”. **Answer:** The response matches the verified source and preserves the correct order where sequence is assessed.
