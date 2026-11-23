@@ -164,6 +164,7 @@ begin
       and q.status = 'draft'
       and details.version_count = 1
       and details.scope_match_count = 1
+      and details.scoring_mode_match_count = 1
       and details.prompt_match_count = 1
       and details.key_count = 1
       and details.key_match_count = 1
@@ -203,6 +204,7 @@ begin
         or q.status is distinct from 'draft' then 'question_state_mismatch'
       when details.version_count <> 1 then 'question_version_incomplete'
       when details.scope_match_count <> 1 then 'academic_scope_mismatch'
+      when details.scoring_mode_match_count <> 1 then 'question_scoring_mode_mismatch'
       when details.prompt_match_count <> 1 then 'question_prompt_mismatch'
       when details.key_count <> 1 or details.key_match_count <> 1 then 'protected_answer_key_incomplete'
       when mappings.mapping_count <> 1 or mappings.expected_mapping_count <> 1 then 'objective_mapping_incomplete'
@@ -246,6 +248,9 @@ begin
           and v.subject_id = e.subject_id
           and v.published_at is null
       )::integer scope_match_count,
+      count(v.id) filter (
+        where v.configuration->>'response_mode' = 'manual_review'
+      )::integer scoring_mode_match_count,
       count(v.id) filter (
         where v.prompt->>'text' = e.prompt
       )::integer prompt_match_count,
