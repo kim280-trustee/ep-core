@@ -254,6 +254,6 @@ end;
 $function$;
 
 revoke all on function public.verify_learning_pack_import_questions(uuid, uuid, jsonb) from public, anon;
-grant execute on function public.verify_learning_pack_import_questions(uuid, jsonb) to authenticated;
+grant execute on function public.verify_learning_pack_import_questions(uuid, uuid, jsonb) to authenticated;
 
 commit;
