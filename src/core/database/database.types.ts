@@ -5667,6 +5667,15 @@ export type Database = {
         }
         Returns: string
       }
+      verify_learning_pack_import_questions: {
+        Args: { p_expected_questions: Json; p_organization_id: string }
+        Returns: {
+          is_complete: boolean
+          issue: string | null
+          question_code: string
+          question_exists: boolean
+        }[]
+      }
       save_learning_question_evaluation_key: {
         Args: {
           p_evaluation_key: Json
