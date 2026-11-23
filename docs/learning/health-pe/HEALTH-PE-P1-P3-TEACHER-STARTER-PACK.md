@@ -28,9 +28,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P1-01` — อธิบายลักษณะและหน้าที่ของอวัยวะภายนอก
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on external body organs. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on external body organs. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on external body organs. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on external body organs. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายลักษณะและหน้าที่ของอวัยวะภายนอก”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for external body organs at early-primary level; do not award full credit for unrelated general advice.
 
@@ -49,9 +49,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P1-02` — อธิบายวิธีดูแลรักษาอวัยวะภายนอก
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on external body organs. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on external body organs. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on external body organs. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on external body organs. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายวิธีดูแลรักษาอวัยวะภายนอก”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for external body organs at early-primary level; do not award full credit for unrelated general advice.
 
@@ -70,9 +70,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P1-03` — ระบุสมาชิกในครอบครัวและความรักความผูกพันของสมาชิกที่มีต่อกัน
 
-**Teaching activity:** Use a fictional, age-appropriate case about family roles and supportive relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At early-primary level, use a fictional, age-appropriate case about family roles and supportive relationships. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about family roles and supportive relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a fictional, age-appropriate case about family roles and supportive relationships. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ระบุสมาชิกในครอบครัวและความรักความผูกพันของสมาชิกที่มีต่อกัน”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for family roles and supportive relationships at early-primary level; do not award full credit for unrelated general advice.
 
@@ -91,9 +91,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P1-04` — บอกสิ่งที่ชื่นชอบ และภาคภูมิใจในตนเอง
 
-**Teaching activity:** Use a fictional, age-appropriate case about relationships, personal development and boundaries. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At early-primary level, use a fictional, age-appropriate case about relationships, personal development and boundaries. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about relationships, personal development and boundaries. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a fictional, age-appropriate case about relationships, personal development and boundaries. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “บอกสิ่งที่ชื่นชอบ และภาคภูมิใจในตนเอง”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for relationships, personal development and boundaries at early-primary level; do not award full credit for unrelated general advice.
 
@@ -112,9 +112,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P1-05` — บอกลักษณะความแตกต่างระหว่างเพศชายและเพศหญิง
 
-**Teaching activity:** Use a fictional, age-appropriate case about gender, respect and personal identity. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At early-primary level, use a fictional, age-appropriate case about gender, respect and personal identity. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about gender, respect and personal identity. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a fictional, age-appropriate case about gender, respect and personal identity. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “บอกลักษณะความแตกต่างระหว่างเพศชายและเพศหญิง”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for gender, respect and personal identity at early-primary level; do not award full credit for unrelated general advice.
 
@@ -133,9 +133,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P1-06` — เคลื่อนไหวร่างกายขณะอยู่กับที่ เคลื่อนที่และใช้อุปกรณ์ประกอบ
 
-**Teaching activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At early-primary level, set up an inclusive skill station for movement control and coordination. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, set up an inclusive skill station for movement control and coordination. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “เคลื่อนไหวร่างกายขณะอยู่กับที่ เคลื่อนที่และใช้อุปกรณ์ประกอบ”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for movement control and coordination at early-primary level; do not award full credit for unrelated general advice.
 
@@ -154,9 +154,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P1-07` — เล่นเกมเบ็ดเตล็ดและเข้าร่วมกิจกรรมทางกายที่ใช้การเคลื่อนไหวตามธรรมชาติ
 
-**Teaching activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At early-primary level, set up an inclusive skill station for movement control and coordination. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, set up an inclusive skill station for movement control and coordination. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “เล่นเกมเบ็ดเตล็ดและเข้าร่วมกิจกรรมทางกายที่ใช้การเคลื่อนไหวตามธรรมชาติ”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for movement control and coordination at early-primary level; do not award full credit for unrelated general advice.
 
@@ -175,9 +175,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P1-08` — ออกกำลังกาย และเล่นเกม ตามคำแนะนำอย่างสนุกสนาน
 
-**Teaching activity:** Set up a progressive, inclusive skill station for exercise routines and physical activity. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At early-primary level, set up an inclusive skill station for exercise routines and physical activity. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for exercise routines and physical activity. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, set up an inclusive skill station for exercise routines and physical activity. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ออกกำลังกาย และเล่นเกม ตามคำแนะนำอย่างสนุกสนาน”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for exercise routines and physical activity at early-primary level; do not award full credit for unrelated general advice.
 
@@ -196,9 +196,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P1-09` — ปฏิบัติตนตามกฎ กติกา ข้อตกลงในการเล่นเกมตามคำแนะนำ
 
-**Teaching activity:** Set up a progressive, inclusive skill station for rules, fair play and sportsmanship. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At early-primary level, set up an inclusive skill station for rules, fair play and sportsmanship. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for rules, fair play and sportsmanship. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, set up an inclusive skill station for rules, fair play and sportsmanship. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ปฏิบัติตนตามกฎ กติกา ข้อตกลงในการเล่นเกมตามคำแนะนำ”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for rules, fair play and sportsmanship at early-primary level; do not award full credit for unrelated general advice.
 
@@ -217,9 +217,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P1-10` — ปฏิบัติตนตามหลักสุขบัญญัติแห่งชาติ ตามคำแนะนำ
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on personal hygiene and healthy routines. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on personal hygiene and healthy routines. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on personal hygiene and healthy routines. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on personal hygiene and healthy routines. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ปฏิบัติตนตามหลักสุขบัญญัติแห่งชาติ ตามคำแนะนำ”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for personal hygiene and healthy routines at early-primary level; do not award full credit for unrelated general advice.
 
@@ -238,9 +238,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P1-11` — บอกอาการเจ็บป่วยที่เกิดขึ้นกับตนเอง
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “บอกอาการเจ็บป่วยที่เกิดขึ้นกับตนเอง”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for health promotion and disease prevention at early-primary level; do not award full credit for unrelated general advice.
 
@@ -259,9 +259,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P1-12` — ปฏิบัติตนตามคำแนะนำเมื่อมีอาการเจ็บป่วย
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ปฏิบัติตนตามคำแนะนำเมื่อมีอาการเจ็บป่วย”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for health promotion and disease prevention at early-primary level; do not award full credit for unrelated general advice.
 
@@ -280,9 +280,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P1-13` — ระบุสิ่งที่ทำให้เกิดอันตรายที่บ้าน โรงเรียน และการป้องกัน
 
-**Teaching activity:** Use a teacher-led safety station about safety, risk reduction and life skills. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At early-primary level, run a teacher-led safety station about safety, risk reduction and life skills. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about safety, risk reduction and life skills. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, run a teacher-led safety station about safety, risk reduction and life skills. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ระบุสิ่งที่ทำให้เกิดอันตรายที่บ้าน โรงเรียน และการป้องกัน”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for safety, risk reduction and life skills at early-primary level; do not award full credit for unrelated general advice.
 
@@ -301,9 +301,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P1-14` — บอกสาเหตุและการป้องกันอันตรายที่เกิดจากการเล่น
 
-**Teaching activity:** Use a teacher-led safety station about safety, risk reduction and life skills. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At early-primary level, run a teacher-led safety station about safety, risk reduction and life skills. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about safety, risk reduction and life skills. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, run a teacher-led safety station about safety, risk reduction and life skills. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “บอกสาเหตุและการป้องกันอันตรายที่เกิดจากการเล่น”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for safety, risk reduction and life skills at early-primary level; do not award full credit for unrelated general advice.
 
@@ -322,9 +322,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P1-15` — แสดงคำพูดหรือท่าทางขอความช่วยเหลือจากผู้อื่น เมื่อเกิดเหตุร้ายที่บ้านและโรงเรียน
 
-**Teaching activity:** Use a teacher-led safety station about safety, risk reduction and life skills. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At early-primary level, run a teacher-led safety station about safety, risk reduction and life skills. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about safety, risk reduction and life skills. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, run a teacher-led safety station about safety, risk reduction and life skills. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “แสดงคำพูดหรือท่าทางขอความช่วยเหลือจากผู้อื่น เมื่อเกิดเหตุร้ายที่บ้านและโรงเรียน”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for safety, risk reduction and life skills at early-primary level; do not award full credit for unrelated general advice.
 
@@ -343,9 +343,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P2-01` — อธิบายลักษณะ และหน้าที่ของอวัยวะภายใน
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on internal organs and body systems. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on internal organs and body systems. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on internal organs and body systems. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on internal organs and body systems. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายลักษณะ และหน้าที่ของอวัยวะภายใน”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for internal organs and body systems at early-primary level; do not award full credit for unrelated general advice.
 
@@ -364,9 +364,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P2-02` — อธิบายวิธีดูแลรักษาอวัยวะภายใน
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on internal organs and body systems. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on internal organs and body systems. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on internal organs and body systems. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on internal organs and body systems. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายวิธีดูแลรักษาอวัยวะภายใน”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for internal organs and body systems at early-primary level; do not award full credit for unrelated general advice.
 
@@ -385,9 +385,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P2-03` — อธิบายธรรมชาติของชีวิตมนุษย์
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on body systems, growth and development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on body systems, growth and development. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on body systems, growth and development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on body systems, growth and development. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายธรรมชาติของชีวิตมนุษย์”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for body systems, growth and development at early-primary level; do not award full credit for unrelated general advice.
 
@@ -406,9 +406,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P2-04` — ระบุบทบาทหน้าที่ของตนเองและสมาชิกในครอบครัว
 
-**Teaching activity:** Use a fictional, age-appropriate case about family roles and supportive relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At early-primary level, use a fictional, age-appropriate case about family roles and supportive relationships. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about family roles and supportive relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a fictional, age-appropriate case about family roles and supportive relationships. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ระบุบทบาทหน้าที่ของตนเองและสมาชิกในครอบครัว”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for family roles and supportive relationships at early-primary level; do not award full credit for unrelated general advice.
 
@@ -427,9 +427,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P2-05` — บอกความสำคัญของเพื่อน
 
-**Teaching activity:** Use a fictional, age-appropriate case about friendship and peer relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At early-primary level, use a fictional, age-appropriate case about friendship and peer relationships. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about friendship and peer relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a fictional, age-appropriate case about friendship and peer relationships. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “บอกความสำคัญของเพื่อน”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for friendship and peer relationships at early-primary level; do not award full credit for unrelated general advice.
 
@@ -448,9 +448,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P2-06` — ระบุพฤติกรรมที่เหมาะสมกับเพศ
 
-**Teaching activity:** Use a fictional, age-appropriate case about gender, respect and personal identity. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At early-primary level, use a fictional, age-appropriate case about gender, respect and personal identity. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about gender, respect and personal identity. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a fictional, age-appropriate case about gender, respect and personal identity. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ระบุพฤติกรรมที่เหมาะสมกับเพศ”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for gender, respect and personal identity at early-primary level; do not award full credit for unrelated general advice.
 
@@ -469,9 +469,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P2-07` — อธิบายความภาคภูมิใจในความเป็นเพศหญิงหรือเพศชาย
 
-**Teaching activity:** Use a fictional, age-appropriate case about gender, respect and personal identity. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At early-primary level, use a fictional, age-appropriate case about gender, respect and personal identity. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about gender, respect and personal identity. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a fictional, age-appropriate case about gender, respect and personal identity. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายความภาคภูมิใจในความเป็นเพศหญิงหรือเพศชาย”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for gender, respect and personal identity at early-primary level; do not award full credit for unrelated general advice.
 
@@ -490,9 +490,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P2-08` — ควบคุมการเคลื่อนไหวร่างกาย ขณะอยู่กับที่ เคลื่อนที่ และใช้อุปกรณ์ประกอบ
 
-**Teaching activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At early-primary level, set up an inclusive skill station for movement control and coordination. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, set up an inclusive skill station for movement control and coordination. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ควบคุมการเคลื่อนไหวร่างกาย ขณะอยู่กับที่ เคลื่อนที่ และใช้อุปกรณ์ประกอบ”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for movement control and coordination at early-primary level; do not award full credit for unrelated general advice.
 
@@ -511,9 +511,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P2-09` — เล่นเกมเบ็ดเตล็ดและเข้าร่วมกิจกรรมทางกายที่วิธีเล่นอาศัยการเคลื่อนไหวเบื้องต้นทั้งแบบอยู่กับที่ เคลื่อนที่และใช้อุปกรณ์ประกอบ
 
-**Teaching activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At early-primary level, set up an inclusive skill station for movement control and coordination. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, set up an inclusive skill station for movement control and coordination. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “เล่นเกมเบ็ดเตล็ดและเข้าร่วมกิจกรรมทางกายที่วิธีเล่นอาศัยการเคลื่อนไหวเบื้องต้นทั้งแบบอยู่กับที่ เคลื่อนที่และใช้อุปกรณ์ประกอบ”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for movement control and coordination at early-primary level; do not award full credit for unrelated general advice.
 
@@ -532,9 +532,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P2-10` — ออกกำลังกาย และเล่นเกมได้ด้วยตนเองอย่างสนุกสนาน
 
-**Teaching activity:** Set up a progressive, inclusive skill station for exercise routines and physical activity. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At early-primary level, set up an inclusive skill station for exercise routines and physical activity. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for exercise routines and physical activity. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, set up an inclusive skill station for exercise routines and physical activity. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ออกกำลังกาย และเล่นเกมได้ด้วยตนเองอย่างสนุกสนาน”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for exercise routines and physical activity at early-primary level; do not award full credit for unrelated general advice.
 
@@ -553,9 +553,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P2-11` — ปฏิบัติตามกฎ กติกาและข้อตกลงในการเล่นเกมเป็นกลุ่ม
 
-**Teaching activity:** Set up a progressive, inclusive skill station for rules, fair play and sportsmanship. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At early-primary level, set up an inclusive skill station for rules, fair play and sportsmanship. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for rules, fair play and sportsmanship. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, set up an inclusive skill station for rules, fair play and sportsmanship. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ปฏิบัติตามกฎ กติกาและข้อตกลงในการเล่นเกมเป็นกลุ่ม”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for rules, fair play and sportsmanship at early-primary level; do not award full credit for unrelated general advice.
 
@@ -574,9 +574,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P2-12` — บอกลักษณะของการมีสุขภาพดี
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on personal hygiene. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on personal hygiene. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “บอกลักษณะของการมีสุขภาพดี”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for personal hygiene at early-primary level; do not award full credit for unrelated general advice.
 
@@ -595,9 +595,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P2-13` — เลือกกินอาหารที่มีประโยชน์
 
-**Teaching activity:** Provide a realistic label, information card or community-health data set about food groups and balanced nutrition. Learners inspect evidence, compare options and justify a practical, age-appropriate health decision.
+**Teaching activity:** At early-primary level, provide a label, information card or community-health data set about food groups and balanced nutrition. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners distinguish evidence from claims and justify a practical, age-appropriate decision.
 
-**Practical activity:** Provide a realistic label, information card or community-health data set about food groups and balanced nutrition. Learners inspect evidence, compare options and justify a practical, age-appropriate health decision. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, provide a label, information card or community-health data set about food groups and balanced nutrition. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners distinguish evidence from claims and justify a practical, age-appropriate decision. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “เลือกกินอาหารที่มีประโยชน์”. Accept evidence showing accurate interpretation of the supplied evidence, a balanced and safe choice, and a reason linked to health needs rather than advertising claims. The learner must explain why the evidence is correct for food groups and balanced nutrition at early-primary level; do not award full credit for unrelated general advice.
 
@@ -616,9 +616,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P2-14` — ระบุของใช้และของเล่นที่มีผลเสียต่อสุขภาพ
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on personal hygiene. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on personal hygiene. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ระบุของใช้และของเล่นที่มีผลเสียต่อสุขภาพ”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for personal hygiene at early-primary level; do not award full credit for unrelated general advice.
 
@@ -637,9 +637,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P2-15` — อธิบายอาการและวิธีป้องกันการเจ็บป่วย การบาดเจ็บที่อาจเกิดขึ้น
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายอาการและวิธีป้องกันการเจ็บป่วย การบาดเจ็บที่อาจเกิดขึ้น”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for health promotion and disease prevention at early-primary level; do not award full credit for unrelated general advice.
 
@@ -658,9 +658,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P2-16` — ปฏิบัติตามคำแนะนำเมื่อมีอาการเจ็บป่วยและบาดเจ็บ
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on health promotion and disease prevention. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ปฏิบัติตามคำแนะนำเมื่อมีอาการเจ็บป่วยและบาดเจ็บ”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for health promotion and disease prevention at early-primary level; do not award full credit for unrelated general advice.
 
@@ -679,9 +679,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P2-17` — ปฏิบัติในการป้องกันอุบัติเหตุที่อาจเกิดขึ้นทางน้ำ และทางบก
 
-**Teaching activity:** Use a teacher-led safety station about accident prevention and community safety. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At early-primary level, run a teacher-led safety station about accident prevention and community safety. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about accident prevention and community safety. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, run a teacher-led safety station about accident prevention and community safety. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ปฏิบัติในการป้องกันอุบัติเหตุที่อาจเกิดขึ้นทางน้ำ และทางบก”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for accident prevention and community safety at early-primary level; do not award full credit for unrelated general advice.
 
@@ -700,9 +700,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P2-18` — บอกชื่อยาสามัญประจำบ้านและใช้ยาตามคำแนะนำ
 
-**Teaching activity:** Use a teacher-led safety station about medicines and safe medicine use. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At early-primary level, run a teacher-led safety station about medicines and safe medicine use. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about medicines and safe medicine use. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, run a teacher-led safety station about medicines and safe medicine use. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “บอกชื่อยาสามัญประจำบ้านและใช้ยาตามคำแนะนำ”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for medicines and safe medicine use at early-primary level; do not award full credit for unrelated general advice.
 
@@ -721,9 +721,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P2-19` — ระบุโทษของสารเสพติด สารอันตรายใกล้ตัวและวิธีการป้องกัน
 
-**Teaching activity:** Use a teacher-led safety station about substance-use prevention and recovery support. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At early-primary level, run a teacher-led safety station about substance-use prevention and recovery support. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about substance-use prevention and recovery support. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, run a teacher-led safety station about substance-use prevention and recovery support. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ระบุโทษของสารเสพติด สารอันตรายใกล้ตัวและวิธีการป้องกัน”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for substance-use prevention and recovery support at early-primary level; do not award full credit for unrelated general advice.
 
@@ -742,9 +742,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P2-20` — ปฏิบัติตนตามสัญลักษณ์และป้ายเตือนของสิ่งของหรือสถานที่ที่เป็นอันตราย
 
-**Teaching activity:** Use a teacher-led safety station about safety, risk reduction and life skills. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At early-primary level, run a teacher-led safety station about safety, risk reduction and life skills. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about safety, risk reduction and life skills. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, run a teacher-led safety station about safety, risk reduction and life skills. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ปฏิบัติตนตามสัญลักษณ์และป้ายเตือนของสิ่งของหรือสถานที่ที่เป็นอันตราย”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for safety, risk reduction and life skills at early-primary level; do not award full credit for unrelated general advice.
 
@@ -763,9 +763,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P2-21` — อธิบายสาเหตุ อันตราย วิธีป้องกันอัคคีภัยและแสดงการหนีไฟ
 
-**Teaching activity:** Use a teacher-led safety station about fire prevention and evacuation. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At early-primary level, run a teacher-led safety station about fire prevention and evacuation. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about fire prevention and evacuation. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, run a teacher-led safety station about fire prevention and evacuation. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายสาเหตุ อันตราย วิธีป้องกันอัคคีภัยและแสดงการหนีไฟ”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for fire prevention and evacuation at early-primary level; do not award full credit for unrelated general advice.
 
@@ -784,9 +784,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P3-01` — อธิบายลักษณะและการเจริญเติบโตของร่างกายมนุษย์
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on body growth and development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on body growth and development. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on body growth and development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on body growth and development. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายลักษณะและการเจริญเติบโตของร่างกายมนุษย์”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for body growth and development at early-primary level; do not award full credit for unrelated general advice.
 
@@ -805,9 +805,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P3-02` — เปรียบเทียบการเจริญเติบโตของตนเองกับเกณฑ์มาตรฐาน
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on body growth and development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on body growth and development. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on body growth and development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on body growth and development. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “เปรียบเทียบการเจริญเติบโตของตนเองกับเกณฑ์มาตรฐาน”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for body growth and development at early-primary level; do not award full credit for unrelated general advice.
 
@@ -826,9 +826,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P3-03` — ระบุปัจจัยที่มีผลต่อการเจริญเติบโต
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on body growth and development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on body growth and development. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on body growth and development. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on body growth and development. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ระบุปัจจัยที่มีผลต่อการเจริญเติบโต”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for body growth and development at early-primary level; do not award full credit for unrelated general advice.
 
@@ -847,9 +847,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P3-04` — อธิบายความสำคัญและความแตกต่างของครอบครัวที่มีต่อตนเอง
 
-**Teaching activity:** Use a fictional, age-appropriate case about family roles and supportive relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At early-primary level, use a fictional, age-appropriate case about family roles and supportive relationships. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about family roles and supportive relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a fictional, age-appropriate case about family roles and supportive relationships. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายความสำคัญและความแตกต่างของครอบครัวที่มีต่อตนเอง”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for family roles and supportive relationships at early-primary level; do not award full credit for unrelated general advice.
 
@@ -868,9 +868,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P3-05` — อธิบายวิธีสร้างสัมพันธภาพในครอบครัวและกลุ่มเพื่อน
 
-**Teaching activity:** Use a fictional, age-appropriate case about family roles and supportive relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At early-primary level, use a fictional, age-appropriate case about family roles and supportive relationships. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about family roles and supportive relationships. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a fictional, age-appropriate case about family roles and supportive relationships. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายวิธีสร้างสัมพันธภาพในครอบครัวและกลุ่มเพื่อน”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for family roles and supportive relationships at early-primary level; do not award full credit for unrelated general advice.
 
@@ -889,9 +889,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P3-06` — บอกวิธีหลีกเลี่ยงพฤติกรรมที่นำไปสู่การถูกล่วงละเมิดทางเพศ
 
-**Teaching activity:** Use a fictional, age-appropriate case about gender, respect and personal identity. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences.
+**Teaching activity:** At early-primary level, use a fictional, age-appropriate case about gender, respect and personal identity. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures.
 
-**Practical activity:** Use a fictional, age-appropriate case about gender, respect and personal identity. Model respectful language, consent, privacy and help-seeking; learners rehearse a safe response without sharing personal experiences. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a fictional, age-appropriate case about gender, respect and personal identity. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Model respectful communication, privacy, consent where relevant and trusted help-seeking; never request personal disclosures. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “บอกวิธีหลีกเลี่ยงพฤติกรรมที่นำไปสู่การถูกล่วงละเมิดทางเพศ”. Accept evidence showing respectful communication, recognition of roles or boundaries, privacy, consent where relevant, and a safe help-seeking option. The learner must explain why the evidence is correct for gender, respect and personal identity at early-primary level; do not award full credit for unrelated general advice.
 
@@ -910,9 +910,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P3-07` — ควบคุมการเคลื่อนไหวร่างกาย ขณะอยู่กับที่ เคลื่อนที่ และใช้อุปกรณ์ประกอบอย่างมีทิศทาง
 
-**Teaching activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At early-primary level, set up an inclusive skill station for movement control and coordination. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, set up an inclusive skill station for movement control and coordination. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ควบคุมการเคลื่อนไหวร่างกาย ขณะอยู่กับที่ เคลื่อนที่ และใช้อุปกรณ์ประกอบอย่างมีทิศทาง”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for movement control and coordination at early-primary level; do not award full credit for unrelated general advice.
 
@@ -931,9 +931,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P3-08` — เคลื่อนไหวร่างกายที่ใช้ทักษะการเคลื่อนไหวแบบบังคับทิศทางในการเล่นเกมเบ็ดเตล็ด
 
-**Teaching activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At early-primary level, set up an inclusive skill station for movement control and coordination. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for movement control and coordination. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, set up an inclusive skill station for movement control and coordination. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “เคลื่อนไหวร่างกายที่ใช้ทักษะการเคลื่อนไหวแบบบังคับทิศทางในการเล่นเกมเบ็ดเตล็ด”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for movement control and coordination at early-primary level; do not award full credit for unrelated general advice.
 
@@ -952,9 +952,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P3-09` — เลือกออกกำลังกาย การละเล่นพื้นเมือง และเล่นเกมที่เหมาะสมกับจุดเด่น จุดด้อย และข้อจำกัดของตนเอง
 
-**Teaching activity:** Set up a progressive, inclusive skill station for exercise routines and physical activity. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At early-primary level, set up an inclusive skill station for exercise routines and physical activity. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for exercise routines and physical activity. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, set up an inclusive skill station for exercise routines and physical activity. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “เลือกออกกำลังกาย การละเล่นพื้นเมือง และเล่นเกมที่เหมาะสมกับจุดเด่น จุดด้อย และข้อจำกัดของตนเอง”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for exercise routines and physical activity at early-primary level; do not award full credit for unrelated general advice.
 
@@ -973,9 +973,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P3-10` — ปฏิบัติตามกฎ กติกาและข้อตกลงของการออกกำลังกาย การเล่นเกม การละเล่นพื้นเมืองได้ด้วยตนเอง
 
-**Teaching activity:** Set up a progressive, inclusive skill station for exercise routines and physical activity. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At early-primary level, set up an inclusive skill station for exercise routines and physical activity. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for exercise routines and physical activity. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, set up an inclusive skill station for exercise routines and physical activity. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ปฏิบัติตามกฎ กติกาและข้อตกลงของการออกกำลังกาย การเล่นเกม การละเล่นพื้นเมืองได้ด้วยตนเอง”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for exercise routines and physical activity at early-primary level; do not award full credit for unrelated general advice.
 
@@ -994,9 +994,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P3-11` — อธิบายการติดต่อและวิธีการป้องกันการแพร่กระจายของโรค
 
-**Teaching activity:** Use a teacher-led safety station about illness, infection and disease prevention. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At early-primary level, run a teacher-led safety station about illness, infection and disease prevention. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about illness, infection and disease prevention. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, run a teacher-led safety station about illness, infection and disease prevention. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “อธิบายการติดต่อและวิธีการป้องกันการแพร่กระจายของโรค”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for illness, infection and disease prevention at early-primary level; do not award full credit for unrelated general advice.
 
@@ -1015,9 +1015,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P3-12` — จำแนกอาหารหลัก ๕ หมู่
 
-**Teaching activity:** Provide a realistic label, information card or community-health data set about food groups and balanced nutrition. Learners inspect evidence, compare options and justify a practical, age-appropriate health decision.
+**Teaching activity:** At early-primary level, provide a label, information card or community-health data set about food groups and balanced nutrition. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners distinguish evidence from claims and justify a practical, age-appropriate decision.
 
-**Practical activity:** Provide a realistic label, information card or community-health data set about food groups and balanced nutrition. Learners inspect evidence, compare options and justify a practical, age-appropriate health decision. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, provide a label, information card or community-health data set about food groups and balanced nutrition. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners distinguish evidence from claims and justify a practical, age-appropriate decision. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “จำแนกอาหารหลัก ๕ หมู่”. Accept evidence showing accurate interpretation of the supplied evidence, a balanced and safe choice, and a reason linked to health needs rather than advertising claims. The learner must explain why the evidence is correct for food groups and balanced nutrition at early-primary level; do not award full credit for unrelated general advice.
 
@@ -1036,9 +1036,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P3-13` — เลือกกินอาหารที่หลากหลายครบ ๕ หมู่ ในสัดส่วนที่เหมาะสม
 
-**Teaching activity:** Provide a realistic label, information card or community-health data set about food groups and balanced nutrition. Learners inspect evidence, compare options and justify a practical, age-appropriate health decision.
+**Teaching activity:** At early-primary level, provide a label, information card or community-health data set about food groups and balanced nutrition. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners distinguish evidence from claims and justify a practical, age-appropriate decision.
 
-**Practical activity:** Provide a realistic label, information card or community-health data set about food groups and balanced nutrition. Learners inspect evidence, compare options and justify a practical, age-appropriate health decision. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, provide a label, information card or community-health data set about food groups and balanced nutrition. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners distinguish evidence from claims and justify a practical, age-appropriate decision. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “เลือกกินอาหารที่หลากหลายครบ ๕ หมู่ ในสัดส่วนที่เหมาะสม”. Accept evidence showing accurate interpretation of the supplied evidence, a balanced and safe choice, and a reason linked to health needs rather than advertising claims. The learner must explain why the evidence is correct for food groups and balanced nutrition at early-primary level; do not award full credit for unrelated general advice.
 
@@ -1057,9 +1057,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P3-14` — แสดงการแปรงฟันให้สะอาดอย่างถูกวิธี
 
-**Teaching activity:** Use a visual model, structured discussion and guided practice focused on oral hygiene and dental care. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence.
+**Teaching activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on oral hygiene and dental care. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator.
 
-**Practical activity:** Use a visual model, structured discussion and guided practice focused on oral hygiene and dental care. Learners explain the key concept, apply it to a familiar fictional example and produce one observable piece of evidence. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, use a visual model, structured discussion and guided practice focused on oral hygiene and dental care. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Learners produce one observable piece of evidence directly linked to the indicator. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “แสดงการแปรงฟันให้สะอาดอย่างถูกวิธี”. Accept evidence showing accurate subject knowledge, a relevant example, a safe practical application, and a clear explanation. The learner must explain why the evidence is correct for oral hygiene and dental care at early-primary level; do not award full credit for unrelated general advice.
 
@@ -1078,9 +1078,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P3-15` — สร้างเสริมสมรรถภาพทางกายได้ตามคำแนะนำ
 
-**Teaching activity:** Set up a progressive, inclusive skill station for physical fitness and fitness testing. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement.
+**Teaching activity:** At early-primary level, set up an inclusive skill station for physical fitness and fitness testing. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal.
 
-**Practical activity:** Set up a progressive, inclusive skill station for physical fitness and fitness testing. Demonstrate the target skill, let learners practise at an appropriate intensity, and record one observable success criterion and one next-step improvement. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, set up an inclusive skill station for physical fitness and fitness testing. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Use safe space, suitable equipment, progressive intensity and an agreed stop signal. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “สร้างเสริมสมรรถภาพทางกายได้ตามคำแนะนำ”. Accept evidence showing correct technique or movement choice, body control, safe space/equipment use, and one observable performance criterion. The learner must explain why the evidence is correct for physical fitness and fitness testing at early-primary level; do not award full credit for unrelated general advice.
 
@@ -1099,9 +1099,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P3-16` — ปฏิบัติตนเพื่อความปลอดภัยจากอุบัติเหตุในบ้าน โรงเรียน และการเดินทาง
 
-**Teaching activity:** Use a teacher-led safety station about accident prevention and community safety. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At early-primary level, run a teacher-led safety station about accident prevention and community safety. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about accident prevention and community safety. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, run a teacher-led safety station about accident prevention and community safety. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “ปฏิบัติตนเพื่อความปลอดภัยจากอุบัติเหตุในบ้าน โรงเรียน และการเดินทาง”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for accident prevention and community safety at early-primary level; do not award full credit for unrelated general advice.
 
@@ -1120,9 +1120,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P3-17` — แสดงวิธีขอความช่วยเหลือจากบุคคลและแหล่งต่าง ๆ เมื่อเกิดเหตุร้าย หรืออุบัติเหตุ
 
-**Teaching activity:** Use a teacher-led safety station about accident prevention and community safety. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At early-primary level, run a teacher-led safety station about accident prevention and community safety. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about accident prevention and community safety. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, run a teacher-led safety station about accident prevention and community safety. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “แสดงวิธีขอความช่วยเหลือจากบุคคลและแหล่งต่าง ๆ เมื่อเกิดเหตุร้าย หรืออุบัติเหตุ”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for accident prevention and community safety at early-primary level; do not award full credit for unrelated general advice.
 
@@ -1141,9 +1141,9 @@ This pack preserves the official Thai indicator wording and standard code. Each 
 
 **Objective:** `HPE-P3-18` — แสดงวิธีปฐมพยาบาล เมื่อบาดเจ็บจากการเล่น
 
-**Teaching activity:** Use a teacher-led safety station about first aid and emergency response. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service.
+**Teaching activity:** At early-primary level, run a teacher-led safety station about first aid and emergency response. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins.
 
-**Practical activity:** Use a teacher-led safety station about first aid and emergency response. Learners identify the hazard or need, choose the approved safe action and explain when to alert a responsible adult or emergency service. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
+**Practical activity:** At early-primary level, run a teacher-led safety station about first aid and emergency response. Use picture cards or a simple model and teacher demonstration. Learners complete one short guided practice round, name the key feature in simple language and repeat the safe action with a clear cue. Prioritise scene safety and approved guidance; first aid/CPR practice requires trained supervision and appropriate mannequins. Each learner must produce individual evidence of the target skill or decision; provide an accessible alternative that measures the same outcome.
 
 **Expected evidence:** Evidence must directly demonstrate “แสดงวิธีปฐมพยาบาล เมื่อบาดเจ็บจากการเล่น”. Accept evidence showing recognition of the hazard, an approved risk-reducing action, protection of self and others, and timely referral to a responsible adult or trained service. The learner must explain why the evidence is correct for first aid and emergency response at early-primary level; do not award full credit for unrelated general advice.
 
