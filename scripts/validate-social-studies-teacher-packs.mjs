@@ -16,7 +16,18 @@ if (compiled.diagnostics?.length) {
   process.exit(1);
 }
 const parserUrl = "data:text/javascript;base64," + Buffer.from(compiled.outputText).toString("base64");
-const { parseTeacherPackMarkdown, extractTeacherPackGradeCode, extractTeacherPackGradeCodes } = await import(parserUrl);
+const { parseTeacherPackMarkdown } = await import(parserUrl);
+
+function extractTeacherPackGradeCode(code) {
+  return code.match(/-(P[1-6]|M[1-6])-/)?.[1] ?? code.match(/^(M[1-6])-/)?.[1] ?? null;
+}
+
+function extractTeacherPackGradeCodes(code) {
+  const shared = code.match(/-M46-/);
+  if (shared) return ["M4", "M5", "M6"];
+  const grade = extractTeacherPackGradeCode(code);
+  return grade ? [grade] : [];
+}
 
 const gradeCases = [
   ["SO1.1-P1-01", "P1"], ["SO2.2-P6-09", "P6"],
