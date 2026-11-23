@@ -126,7 +126,7 @@ Each of the 104 lessons now has three tasks (recall/evidence, explain/compare, a
 
 **Verification performed:** fetched the updated branch file after commit; confirmed 104 P1–P3 indicator headings, 104 stimulus cards, 312 task entries, 312 answer-key labels and all three ordered task labels in every lesson. The subject validator was extended to check the P1–P3 stimulus-card strand and task progression. The validator and TypeScript importer have **not** been executed in a repository runtime, and GitHub Actions was not triggered from this connector session.
 
-**Academic review status:** the P1–P3 task structures are substantially more operational, but they are not yet signed off as fully classroom-ready. SO1 and SO4 require the teacher to complete the specified verified source cards with the actual tradition/local-history material for the lesson. All 104 tasks still need a subject-matter pass to confirm that the selected case/source and expected evidence match each individual indicator—not merely its strand. This is explicitly retained as open work; no automatic-marking claim is made.
+**Academic review status:** the P1–P3 pack is not yet signed off as fully classroom-ready. An indicator-specific authoring pass has replaced the broad SO1 templates in all 26 P1–P3 religion/morality lessons. Each now specifies a suitable source artifact, tasks matched to its indicator content/verb, and corresponding expected evidence. Teachers must still populate source cards from approved materials; this authoring pass does not independently certify every doctrinal, historical or cultural source. The 21 P1–P3 SO4 history lessons remain open for the same review. SO2, SO3 and SO5 also remain subject to final subject-matter review. No automatic-marking claim is made.
 
 ## 5. Live content-import status
 
@@ -167,7 +167,7 @@ The original source audit also records an arithmetic discrepancy in the printed 
 - [ ] Confirm the 2023 Social Studies M4–M6 Geography S5.2/2 and S5.2/3 correction is reflected in the source mapping and packs.
 - [ ] Review all 418 lesson sequences/resources for indicator and strand specificity.
 - [x] Replace generic P1–P3 task frames with strand-specific stimulus/task/answer structures (104 lessons; 312 tasks); structural counts verified.
-- [ ] Complete the indicator-by-indicator academic review of all 104 revised P1–P3 tasks, including verified SO1 source cards and SO4 local-history evidence.
+- [ ] Complete the indicator-by-indicator academic review of the 104 revised P1–P3 tasks; SO1's 26 lessons have received a specific authoring pass, while SO4's 21 history lessons and the remaining strands still require review.
 - [ ] Review the remaining 942 P4–M6 formative tasks and answer/evidence guides for classroom usability, accuracy, age appropriateness and marking clarity.
 - [ ] Correct pack front-matter statements that still say classification audit is pending where database evidence now confirms pathway and P1–M2 priority classifications.
 - [ ] Run the Social Studies validator and GitHub Actions on `edna/subject-rollout`.
