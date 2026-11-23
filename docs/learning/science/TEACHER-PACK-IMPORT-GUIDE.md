@@ -87,7 +87,13 @@ All imported content and questions remain **drafts**. The importer does not subm
 
 ## Repeatable parser validation
 
-Run `npm.cmd run validate:science-packs` from the repository root before importing the two consolidated core Science packs. This command checks TypeScript parser diagnostics, transpiles and executes the actual TypeScript teacher-pack parser, then verifies lesson counts, grade distribution, heading/objective grade agreement, cross-pack unique objective codes, sequential question numbers and all three non-empty answer keys per lesson. Expected result: 174 M1–M3 lessons plus 102 M4–M6 lessons, with 828 answer-keyed questions in total. The latest draft PR #174 validation passed this Science parser check and the specialist-pack validator. All other subject-pack checks also passed except Social Studies. Production build and ESLint both passed; the overall workflow remains failed only because Edna's Social Studies parser check failed. This is a source-pack/parser check; it does not replace the authenticated preview and draft-save test in the teacher application.
+Run `npm.cmd run validate:science-packs` from the repository root before importing Science core material. It transpiles and executes the actual TypeScript teacher-pack parser, then validates all five core packs: 139 primary P1–P6 lessons and 276 secondary M1–M6 lessons, for 415 core lessons and 1,245 answer-keyed formative tasks. It checks lesson counts, grade distribution, heading/objective grade agreement, cross-pack unique objective codes, sequential question numbers, non-empty answer keys and primary teacher-only marking guides.
+
+Run `npm.cmd run validate:science-specialist-packs` to validate the 12 Biology, Chemistry, Physics and Earth/Space packs: 300 lessons and 900 answer-keyed questions.
+
+Run `npm.cmd run validate:science-rollout-packs` for the aggregate 17-pack gate. It checks every import file together, including each pack's expected lesson count, grade scope, question count, subject totals, language allocation and duplicate subject/grade objective identities. Expected total: 715 lessons and 2,145 questions (139 Thai primary lessons / 417 tasks; 576 English secondary and specialist lessons / 1,728 questions).
+
+These are source-pack/parser checks; they do not replace authenticated preview, draft-save import and teacher/student acceptance tests in the application. CI also runs the independent validators for the other learning areas. A failure in another subject's validator is reported separately and does not mean the Science parser failed.
 
 ## Complete 17-pack Science rollout gate
 
