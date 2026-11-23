@@ -63,7 +63,7 @@ For each validated lesson:
 3. One `learning_content_objectives` link to the exact curriculum objective.
 4. Three `learning_questions` rows using the existing `short_answer` question type.
 5. Three `learning_question_versions` rows with exact curriculum, grade and subject scope.
-6. Three protected `learning_question_evaluation_keys` rows containing the teacher-pack expected answers.
+6. Three protected `learning_question_evaluation_keys` rows containing the teacher-pack expected answers. The browser importer writes these through the existing `save_learning_question_evaluation_key` SECURITY DEFINER RPC, not direct table access; the RPC checks authenticated active teacher membership or academic-record management permission and rejects published versions. The evaluation-key table remains unreadable and non-writable directly by authenticated browser clients.
 
 The importer also preserves pack-level safety/teaching guidance and per-lesson marking guides in teacher-only content sections; these are not exposed to students.
 7. Three `learning_question_objectives` links to the same objective.
