@@ -42,6 +42,16 @@ let lessonsTotal = 0;
 let questionsTotal = 0;
 for (const pack of packs) {
   const markdown = await readFile(resolve(root, pack.path), "utf8");
+  const languageDefects = [
+    ["Give one accurate facts", "singular fact wording"],
+    ["at a early primary level", "early-primary article"],
+    ["at a upper primary level", "upper-primary article"],
+    ["at a lower secondary level", "lower-secondary compound modifier"],
+    ["at a upper secondary level", "upper-secondary article"],
+  ];
+  for (const [phrase, label] of languageDefects) {
+    if (markdown.includes(phrase)) failures.push(pack.path + ": contains a language defect (" + label + "): " + phrase);
+  }
   const headings = [...markdown.matchAll(/^### (\d+)\. (HPE-(?:P[1-6]|M[1-6]|M46)-\d+)(?:\s+—\s+(.+))?\s*$/gm)];
   const indicators = new Map();
   for (let index = 0; index < headings.length; index += 1) {
