@@ -99,6 +99,16 @@ These are source-pack/parser checks; they do not replace authenticated preview, 
 
 Run `npm run validate:science-rollout-packs` to validate all 17 primary, secondary-core and upper-secondary specialist import files together through the actual TypeScript importer parser. This aggregate check independently asserts each pack's lesson/question counts, grade scope, three sequential answer-keyed questions per lesson, duplicate subject/grade objective identities, language allocation and subject totals. Expected totals: 715 lessons and 2,145 questions (Thai 139/417; English 576/1,728). CI runs this gate after the core and specialist Science validators.
 
+## Complete imported question-group verification
+
+After importing the 17 Science packs as drafts, run `docs/learning/science/SCIENCE-IMPORT-COMPLETE-GROUP-VERIFICATION.sql` in the authorized Supabase SQL editor. It is read-only and does not create, update, delete or publish records.
+
+The query starts from each imported lesson and generates its three expected question codes (`Q01`, `Q02`, `Q03`). It then LEFT JOINs the question, version, protected evaluation key and objective link. This is important: checks that start from versions or objective links can silently omit a question whose dependent record is missing.
+
+Expected result: 2,145 `QUESTION_SLOT` rows plus one `SUMMARY` row, all marked `PASS`. The query detects missing or duplicate question rows, versions and protected answer keys; missing or incorrect objective links; wrong language/status; and curriculum/grade/subject alignment errors. Any `CHECK_*` result or a summary other than `PASS` blocks acceptance. Inspect the affected draft records through the authorized workflow before attempting recovery.
+
+CI validates the SQL contract offline. It checks that all three expected slots are generated and that every dependent table is LEFT JOINed. It does not connect to Supabase or claim that content has been imported.
+
 ## Question Bank access
 
 The Question Bank now lets an authorized teacher select a curriculum, grade and subject independently of the selected access class. The class still establishes the organization context. Academic filtering uses batched version/objective lookups so large imported packs do not cause one database request per question.
