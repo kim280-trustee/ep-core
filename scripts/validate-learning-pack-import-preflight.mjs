@@ -75,4 +75,4 @@ assert.deepEqual(
   "Question-only retry must skip existing normalized codes and preserve untouched questions.",
 );
 
-process.stdout.write("PASS: import preflight, collision detection, resumable lesson retries and question-only retry selection.\\n");
+process.stdout.write("PASS: import preflight, collision detection, resumable lesson retries and question-only retry selection.\n");
