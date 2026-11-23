@@ -102,7 +102,7 @@ Run this only after all source packs, catalogue mappings and automated validator
 
 The GitHub Actions workflow runs the 39-pack national validator, the Thai Language/Career parser checks, the 2025 competency validator, consolidated Science and specialist Science validators, secondary and primary Mathematics validators, Computer Studies validator, and parser validators for Social Studies, Health/PE, Arts, Foreign Languages and Thai Language. It then runs the production build and ESLint.
 
-These automated checks validate source structure, parser compatibility, objective-code uniqueness, answer-key presence and grade mapping. They do not replace the consolidated authenticated application test above.
+These automated checks validate source structure, parser compatibility, objective-code uniqueness, answer-key presence and grade mapping. The shared parser also has a regression fixture for Social Studies packs where a Thai-only official-indicator line precedes the explicit objective-code line. All curriculum source validators, production build and ESLint passed in PR workflow `45140711254` on commit `40aa7b6ca99ae841b871625e70d7e54514edd78f`. They do not replace the consolidated authenticated application test above.
 
 ## 6. Release boundary
 
