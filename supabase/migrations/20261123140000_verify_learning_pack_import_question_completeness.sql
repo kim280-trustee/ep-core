@@ -23,6 +23,7 @@ declare
   v_auth_user_id uuid := (select auth.uid());
   v_expected_count integer;
   v_distinct_count integer;
+  v_is_academic_manager boolean;
 begin
   if v_auth_user_id is null then
     raise exception 'Authentication is required';
@@ -44,6 +45,9 @@ begin
     raise exception 'The selected class is not active in this organization';
   end if;
 
+  v_is_academic_manager := public.learning_can_manage_academic_records(p_organization_id)
+    and public.is_organization_member(p_organization_id);
+
   if not (
     (
       public.learning_can_manage_academic_records(p_organization_id)
@@ -60,6 +64,21 @@ begin
     )
   ) then
     raise exception 'Only an authorized class teacher or academic manager can verify imported question drafts';
+  end if;
+
+  -- A class teacher may verify only question drafts they created. Academic
+  -- managers retain organization-wide recovery access. Without this check,
+  -- an authorized teacher could use expected-answer guesses as an oracle for
+  -- another teacher's protected evaluation keys in the same organization.
+  if not v_is_academic_manager and exists (
+    select 1
+    from jsonb_to_recordset(p_expected_questions) as item(code text)
+    join public.learning_questions question
+      on question.organization_id = p_organization_id
+     and question.code = upper(trim(item.code))
+    where question.created_by <> v_auth_user_id
+  ) then
+    raise exception 'Teachers can verify only question drafts they created; ask an academic manager to inspect another teacher''s import';
   end if;
 
   if p_expected_questions is null or jsonb_typeof(p_expected_questions) <> 'array' then
