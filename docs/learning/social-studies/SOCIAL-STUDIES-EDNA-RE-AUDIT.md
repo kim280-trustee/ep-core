@@ -128,6 +128,36 @@ Each of the 104 lessons has three tasks (recall/evidence, explain/compare, apply
 
 **Academic review status:** the P1–P3 pack is not yet signed off as fully classroom-ready. An indicator-specific authoring pass has replaced the broad SO1 templates in all 26 P1–P3 religion/morality lessons. Each now specifies a suitable source artifact, tasks matched to its indicator content/verb, and corresponding expected evidence. Teachers must still populate source cards from approved materials; this authoring pass does not independently certify every doctrinal, historical or cultural source. The 22 P1–P3 SO4 history lessons have now received an indicator-specific authoring pass, with source requirements for dates, oral histories, archives, photographs, maps or official records as appropriate. Teachers must still populate and verify these source sets before classroom use. SO2, SO3 and SO5 have received the same indicator-specific authoring pass. Teachers must still populate the source cards with verified local/school examples or data, and an independent subject-matter reviewer must check those sources and the final classroom delivery before sign-off. No automatic-marking claim is made.
 
+
+## 4B. P1–P3 performance-evidence review — 23 November 2026
+
+A second review focused on indicators whose official Thai wording requires learners to **practise, participate, demonstrate, observe, record, use, draw, survey or compare** rather than only describe a correct answer. The task-three assessment and marking guidance were strengthened for **32 indicators** across P1–P3. The revised prompts now require observable or inspectable evidence such as:
+
+- a role-play or observed response linked to a verified religious principle, civic rule or social interaction;
+- supervised, permission-based service or environmental action with a recorded result;
+- participation in an actual low-stakes classroom decision or a simulated community participation role;
+- use of a learner-created classroom plan, a weather observation record, or a labelled community map;
+- a source-labelled timeline, calendar-era conversion, or safe geography survey with a stated distance method;
+- a completed income/expense ledger using supplied fictional transactions where privacy is preferred;
+- a safe model demonstration of the Earth–Sun–Moon relationship.
+
+The corresponding answer guides now identify observable performance, source alignment, safety boundaries and acceptable alternatives. The prompts continue to quote the exact official Thai indicator and retain the parser's required `**Answer:**` label. The edit changed task 3 for 32 indicators; it did not claim that every task in all 104 lessons is now independently source-populated or classroom-tested.
+
+### Sensitive religious indicators and assessment limits
+
+Two indicators explicitly concern a learner's religious affiliation: `SO1.2-P1-02` and `SO1.2-P3-03`. The assessment must not require a child to disclose, adopt, perform or publicly affirm a personal religion. The current task uses a fictional/voluntary case to assess understanding of voluntary affiliation and respect for others. This is a safeguarding alternative, **not evidence that a learner's personal declaration has been assessed**. Any school-level ceremonial activity must remain optional, be handled under school/family policy and never be used to grade belief or identity.
+
+For prayer, meditation and ritual indicators, the revised tasks permit source-based observation or explanation as an alternative to participation. Where a learner voluntarily demonstrates a practice, the teacher must use a verified tradition-specific source and assess only observable understanding/conduct—not faith, sincerity or spiritual attainment.
+
+### Remaining academic risks
+
+1. **Source population:** source cards remain teacher-populated. Biography, scripture/doctrine, ceremony, royal-history, local-history, cultural and geography sources must be verified, dated where relevant, and suitable for the grade before classroom use.
+2. **Local evidence:** SO4/SO5 activities depend on real school/community records, maps, photographs, observations or measurements. A teacher must not invent local dates, distances, events or environmental data.
+3. **Task coverage:** the 32 performance-task edits strengthen a specific subset of task-three prompts. They do not constitute an independent academic review of every question/answer pair or a formal moderation of the marking guides.
+4. **Execution:** the latest pack edit has not yet been run through the actual TypeScript parser/importer or the repository validator in a runtime. Structural checks on the fetched text are not a substitute for those tests.
+
+**Current P1–P3 status:** task authoring and performance-evidence correction are in progress. Do not mark P1–P3 academically signed off until the source cards are populated and independently checked, all 312 tasks are reviewed for accuracy/age fit/marking clarity, and the actual importer and validator pass.
+
 ## 5. Live content-import status
 
 Read-only joins from Social Studies objectives to the application content/question tables returned:
@@ -167,7 +197,7 @@ The original source audit also records an arithmetic discrepancy in the printed 
 - [ ] Confirm the 2023 Social Studies M4–M6 Geography S5.2/2 and S5.2/3 correction is reflected in the source mapping and packs.
 - [ ] Review all 418 lesson sequences/resources for indicator and strand specificity.
 - [x] Replace generic P1–P3 task frames with strand-specific stimulus/task/answer structures (104 lessons; 312 tasks); structural counts verified.
-- [ ] Complete independent subject-matter/source verification and classroom acceptance testing for all 104 P1–P3 lessons (312 tasks). The indicator-specific authoring pass is complete across SO1–SO5; teachers must populate verified source cards and reviewers must confirm accuracy, age appropriateness and marking clarity.
+- [ ] Complete independent subject-matter/source verification and classroom acceptance testing for all 104 P1–P3 lessons (312 tasks). The 32 task-three performance-evidence corrections are authored; teachers must populate verified source cards and reviewers must confirm all tasks for accuracy, age appropriateness and marking clarity.
 - [ ] Review the remaining 942 P4–M6 formative tasks and answer/evidence guides for classroom usability, accuracy, age appropriateness and marking clarity.
 - [ ] Correct pack front-matter statements that still say classification audit is pending where database evidence now confirms pathway and P1–M2 priority classifications.
 - [ ] Run the Social Studies validator and GitHub Actions on `edna/subject-rollout`.
