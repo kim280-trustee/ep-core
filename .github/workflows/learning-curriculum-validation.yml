@@ -47,6 +47,10 @@ jobs:
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:thai-2025-packs
 
+      - name: Validate student-facing content visibility
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:student-content-visibility
+
       - name: Validate consolidated Science teacher packs
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:science-packs
