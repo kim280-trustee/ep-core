@@ -10,7 +10,7 @@ const compiled = ts.transpileModule(source, {
 });
 assert.equal(compiled.diagnostics?.length ?? 0, 0, "Import validation helper must transpile cleanly.");
 const moduleUrl = "data:text/javascript;base64," + Buffer.from(compiled.outputText).toString("base64");
-const { normalizeLearningImportCode, findExistingImportCodeConflicts, formatExistingImportCodeConflict } = await import(moduleUrl);
+const { normalizeLearningImportCode, findExistingImportCodeConflicts, formatExistingImportCodeConflict, planResumableLessonImport, selectNewImportQuestions } = await import(moduleUrl);
 
 assert.equal(normalizeLearningImportCode(" ep sci/p1 001 "), "EP-SCI-P1-001");
 assert.equal(normalizeLearningImportCode("..."), "");
