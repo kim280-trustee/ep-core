@@ -22,7 +22,7 @@ pack_objectives as (
 ),
 pack_questions as (
   select distinct q.id,q.organization_id,q.code,q.language_code,q.status,
-         qv.grade_level_id,qo.objective_id
+         qv.grade_level_id,qv.curriculum_id,qv.subject_id,qo.objective_id
   from public.learning_questions q
   join public.learning_question_versions qv on qv.question_id=q.id
   join public.learning_question_objectives qo on qo.question_version_id=qv.id
@@ -80,6 +80,19 @@ metrics as (
     from public.learning_question_objectives qo join question_versions v on v.id=qo.question_version_id
   union all select 'objective_grade_pairs_not_three_questions',count(*)::bigint,0
     from question_objective_counts where question_count<>3
+  union all select 'questions_wrong_curriculum_grade_alignment',count(distinct q.id)::bigint,0
+    from pack_questions q
+    left join public.learning_objective_alignments oa
+      on oa.objective_id=q.objective_id
+     and oa.curriculum_id=q.curriculum_id
+     and oa.grade_level_id=q.grade_level_id
+    where oa.id is null
+  union all select 'questions_wrong_subject_alignment',count(distinct q.id)::bigint,0
+    from pack_questions q
+    join public.learning_objectives o on o.id=q.objective_id
+    join public.learning_topics t on t.id=o.topic_id
+    join public.learning_skills sk on sk.id=t.skill_id
+    where q.subject_id<>sk.subject_id
   union all select 'questions_wrong_version_count',count(*) filter(where version_count<>1),0 from question_integrity
   union all select 'questions_wrong_answer_key_count',count(*) filter(where answer_key_count<>1),0 from question_integrity
   union all select 'questions_wrong_objective_link_count',count(*) filter(where objective_link_count<>1),0 from question_integrity
@@ -150,13 +163,16 @@ from expected e
 left join actual a using(record_type,language_code,status)
 order by e.record_type,e.language_code;
 
--- Count lesson drafts that retained at least one teacher-only guidance section.
-select count(distinct i.id) lessons_with_teacher_only_guidance
-from public.learning_content_versions v
-join public.learning_content_items i on i.id=v.content_item_id
-where i.content_type='lesson'
-  and i.metadata->>'source'='teacher_pack_import'
-  and exists (
+-- Count primary Thai Science drafts that retained their teacher-only marking guides.
+-- All 139 primary lessons must retain at least one teacher-only section.
+with guidance as (
+  select count(distinct i.id)::bigint lessons_with_teacher_only_guidance
+  from public.learning_content_versions v
+  join public.learning_content_items i on i.id=v.content_item_id
+  where i.content_type='lesson'
+    and i.language_code='th'
+    and i.metadata->>'source'='teacher_pack_import'
+    and exists (
     select 1
     from public.learning_content_objectives co
     join public.learning_objectives o on o.id=co.objective_id
@@ -164,7 +180,7 @@ where i.content_type='lesson'
     join public.learning_skills sk on sk.id=t.skill_id
     join public.learning_subjects sub on sub.id=sk.subject_id
     where co.content_item_id=i.id
-      and sub.code in ('SCI','BIOLOGY','CHEMISTRY','PHYSICS','EARTH_SPACE')
+      and sub.code='SCI'
   )
   and exists (
     select 1
@@ -174,4 +190,8 @@ where i.content_type='lesson'
     ) as sections(section)
     where section->>'type'='teacher_only'
       and section->>'audience'='teacher'
-  );
+  )
+)
+select lessons_with_teacher_only_guidance,139::bigint expected,
+       case when lessons_with_teacher_only_guidance=139 then 'PASS' else 'CHECK' end result
+from guidance;
