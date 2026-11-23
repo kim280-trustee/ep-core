@@ -92,7 +92,7 @@ metrics as (
     join public.learning_objectives o on o.id=q.objective_id
     join public.learning_topics t on t.id=o.topic_id
     join public.learning_skills sk on sk.id=t.skill_id
-    where q.subject_id<>sk.subject_id
+    where q.subject_id is distinct from sk.subject_id
   union all select 'questions_wrong_version_count',count(*) filter(where version_count<>1),0 from question_integrity
   union all select 'questions_wrong_answer_key_count',count(*) filter(where answer_key_count<>1),0 from question_integrity
   union all select 'questions_wrong_objective_link_count',count(*) filter(where objective_link_count<>1),0 from question_integrity
