@@ -6,7 +6,7 @@ The eight Arts packs contain 279 official source indicators and 837 source asses
 
 ## Before import
 
-1. Confirm the eight pack files and run `npm run validate:arts-teacher-packs`.
+1. Confirm the eight pack files and run `npm run validate:arts-packs`.
 2. Confirm an isolated staging Supabase project, staging organization, test class and authorized staging teacher session. Do not use the Khamkhen Kheo Chanupathum pilot or real learner accounts.
 3. Review grade, subject and indicator mapping for all 357 lesson drafts and 1,071 questions.
 4. Import through the authenticated teacher content-import workflow as drafts only. Do not insert content directly with SQL.
