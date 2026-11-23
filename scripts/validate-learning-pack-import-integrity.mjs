@@ -36,6 +36,8 @@ assert.match(migration, /learning_objective_alignments[\s\S]*learning_curriculum
   "The RPC must validate exact active objective-to-curriculum/grade/subject alignment.");
 assert.match(migration, /learning_question_objectives/,
   "The RPC must verify objective mappings.");
+assert.match(migration, /configuration->>'response_mode' = 'manual_review'/,
+  "The RPC must verify the question version's manual-review response configuration.");
 assert.match(migration, /evaluation_key->>'expected_answer'/,
   "The RPC must compare the protected expected answer without returning it.");
 assert.match(migration, /returns table \([\s\S]*question_code text[\s\S]*question_exists boolean[\s\S]*is_complete boolean[\s\S]*issue text/i,
