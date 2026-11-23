@@ -33,6 +33,24 @@ for (const [code, expected] of [["P1-TH68-READ-01", "P1"], ["P3-TH68-ARTS-01", "
 
 const packs = [
   {
+    path: "docs/learning/science/P1-P3-science-w1-w3-teacher-starter-pack.md",
+    expectedLessons: 42,
+    expectedQuestions: 126,
+    expectedGrades: { P1: 10, P2: 12, P3: 20 },
+  },
+  {
+    path: "docs/learning/science/P4-P6-science-w1-w3-teacher-starter-pack.md",
+    expectedLessons: 69,
+    expectedQuestions: 207,
+    expectedGrades: { P4: 16, P5: 27, P6: 26 },
+  },
+  {
+    path: "docs/learning/science/SCIENCE-TECHNOLOGY-W4.2-P1-P6-TEACHER-STARTER-PACK.md",
+    expectedLessons: 28,
+    expectedQuestions: 84,
+    expectedGrades: { P1: 5, P2: 4, P3: 5, P4: 5, P5: 5, P6: 4 },
+  },
+  {
     path: "docs/learning/science/SCIENCE-M1-M3-COMPLETE-IMPORT.md",
     expectedLessons: 174,
     expectedQuestions: 522,
@@ -86,8 +104,8 @@ for (const pack of packs) {
         failures.push(`${pack.path}: objective code ${lesson.objectiveCode} has no recognized M1–M6 grade prefix`);
       } else {
         grades[grade] = (grades[grade] ?? 0) + 1;
-        const headingGrade = lesson.title.match(/^\[(M[1-6])\]/)?.[1];
-        if (headingGrade !== grade) {
+        const headingGrade = lesson.title.match(/^\[([PM][1-6])\]/)?.[1];
+        if (headingGrade && headingGrade !== grade) {
           failures.push(`${pack.path}: lesson ${lesson.number} heading grade ${headingGrade ?? "missing"} does not match objective grade ${grade}`);
         }
       }
