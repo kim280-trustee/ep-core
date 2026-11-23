@@ -64,6 +64,8 @@ For each validated lesson:
 4. Three `learning_questions` rows using the existing `short_answer` question type.
 5. Three `learning_question_versions` rows with exact curriculum, grade and subject scope.
 6. Three protected `learning_question_evaluation_keys` rows containing the teacher-pack expected answers.
+
+The importer also preserves pack-level safety/teaching guidance and per-lesson marking guides in teacher-only content sections; these are not exposed to students.
 7. Three `learning_question_objectives` links to the same objective.
 
 Short-answer scoring uses `manual_review`. Answer keys are stored in the protected evaluation-key table and are not included in student-facing lesson content. The assessment builder supports published `short_answer` questions alongside automatically scored question types. Students submit written responses; attempts remain pending until an authorized teacher marks every written response in the teacher review queue at `/teacher/assessments/:assessmentId/review`. The trusted grading function finalizes the attempt and updates the assessment result and gradebook only after all manual responses are marked.
