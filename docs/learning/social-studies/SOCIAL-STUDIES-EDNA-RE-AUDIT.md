@@ -112,6 +112,22 @@ These are useful formative task frames, but several do not yet provide a concret
 
 Required next step: audit all 1,254 tasks by indicator and strand. Retain valid open-ended tasks, but make each prompt operational for a real lesson by supplying the needed source/case/data or a precise teacher-provided stimulus, and strengthen the answer guide with indicator-specific expected evidence, acceptable alternatives and common misconceptions. Religious learning must never assess personal faith, identity, worship or participation.
 
+## 4A. P1–P3 assessment-authoring batch — 23 November 2026
+
+The P1–P3 pack has been revised across all **104 lesson sections and 312 answer-keyed tasks**. The previous generic identify/explain/apply prompts were replaced with strand-specific assessment structures for:
+
+- **SO1 Religion, morality and ethics:** a verified-source card, source-based identification, explanation and respectful application. The teacher must select an appropriate curriculum source; personal belief and worship are never assessed.
+- **SO2 Civics, culture and community:** a school/community case card, identification of the relevant role/right/duty/custom/decision process, consequence analysis and a justified fair action.
+- **SO3 Economics:** age-banded spending, income/expense and limited-resource scenarios, with number/detail evidence and decision consequences.
+- **SO4 History:** a three-part local-history evidence set, source attribution, comparison/sequence and a source-labelled timeline or explanation. Teachers must use verified local records and must not invent dates or historical claims.
+- **SO5 Geography and environment:** a north-arrow school/community field sketch, location/observation evidence, comparison and a safe, measurable action.
+
+Each of the 104 lessons now has three tasks (recall/evidence, explain/compare, apply/demonstrate) and a corresponding answer/marking guide. All 312 tasks retain the exact Thai official indicator text in the prompt and use the importer-compatible `**Answer:**` structure.
+
+**Verification performed:** fetched the updated branch file after commit; confirmed 104 P1–P3 indicator headings, 312 task entries and 312 answer-key labels. This is a structural count, not a successful run of the repository's TypeScript importer or the full subject validator. GitHub Actions was not triggered from this connector session.
+
+**Academic review status:** the P1–P3 task structures are substantially more operational, but they are not yet signed off as fully classroom-ready. SO1 and SO4 require the teacher to complete the specified verified source cards with the actual tradition/local-history material for the lesson. All 104 tasks still need a subject-matter pass to confirm that the selected case/source and expected evidence match each individual indicator—not merely its strand. This is explicitly retained as open work; no automatic-marking claim is made.
+
 ## 5. Live content-import status
 
 Read-only joins from Social Studies objectives to the application content/question tables returned:
@@ -150,7 +166,9 @@ The original source audit also records an arithmetic discrepancy in the printed 
 - [ ] Reconcile unique-indicator totals to 194 Must-Know / 224 Should-Know.
 - [ ] Confirm the 2023 Social Studies M4–M6 Geography S5.2/2 and S5.2/3 correction is reflected in the source mapping and packs.
 - [ ] Review all 418 lesson sequences/resources for indicator and strand specificity.
-- [ ] Review all 1,254 formative tasks and answer/evidence guides for classroom usability, accuracy, age appropriateness and marking clarity.
+- [x] Replace generic P1–P3 task frames with strand-specific stimulus/task/answer structures (104 lessons; 312 tasks); structural counts verified.
+- [ ] Complete the indicator-by-indicator academic review of all 104 revised P1–P3 tasks, including verified SO1 source cards and SO4 local-history evidence.
+- [ ] Review the remaining 942 P4–M6 formative tasks and answer/evidence guides for classroom usability, accuracy, age appropriateness and marking clarity.
 - [ ] Correct pack front-matter statements that still say classification audit is pending where database evidence now confirms pathway and P1–M2 priority classifications.
 - [ ] Run the Social Studies validator and GitHub Actions on `edna/subject-rollout`.
 - [ ] Run final read-only database verification after any authorized academic-catalogue migration.
