@@ -339,20 +339,24 @@ async function saveEvaluationKeys(
   entries: Array<{ questionVersionId: string; expectedAnswer: string }>,
 ) {
   // Evaluation keys intentionally have no authenticated table INSERT policy.
-  // Use the trusted SECURITY DEFINER RPC, which verifies the active teacher
+  // Use the trusted SECURITY DEFINER RPC, which verifies active teacher
   // membership/academic permission and refuses writes to published versions.
-  // allSettled ensures every in-flight key write finishes before the caller
-  // begins its chunk cleanup after a failure.
-  const results = await Promise.allSettled(entries.map((entry) =>
-    supabase.rpc("save_learning_question_evaluation_key", {
-      p_question_version_id: entry.questionVersionId,
-      p_evaluation_key: { expected_answer: entry.expectedAnswer } as unknown as Json,
-      p_scoring_rules: { method: "manual_review" } as unknown as Json,
-    }),
-  ));
-  const failed = results.find((result) =>
-    result.status === "rejected" || (result.status === "fulfilled" && result.value.error),
-  );
-  if (failed?.status === "rejected") throw failed.reason;
-  if (failed?.status === "fulfilled" && failed.value.error) throw failed.value.error;
+  // Small settled batches avoid flooding the RPC endpoint and ensure all
+  // in-flight calls finish before the caller begins failed-chunk cleanup.
+  const concurrency = 10;
+  for (let offset = 0; offset < entries.length; offset += concurrency) {
+    const batch = entries.slice(offset, offset + concurrency);
+    const results = await Promise.allSettled(batch.map((entry) =>
+      supabase.rpc("save_learning_question_evaluation_key", {
+        p_question_version_id: entry.questionVersionId,
+        p_evaluation_key: { expected_answer: entry.expectedAnswer } as unknown as Json,
+        p_scoring_rules: { method: "manual_review" } as unknown as Json,
+      }),
+    ));
+    const failed = results.find((result) =>
+      result.status === "rejected" || (result.status === "fulfilled" && result.value.error),
+    );
+    if (failed?.status === "rejected") throw failed.reason;
+    if (failed?.status === "fulfilled" && failed.value.error) throw failed.value.error;
+  }
 }
