@@ -36,6 +36,6 @@ The teacher packs are prepared in Markdown, but no HPE lesson drafts or question
 
 ## Assessment authoring and automated validation
 
-All 221 indicators have three indicator-specific tasks (663 total). Each task includes the exact Thai indicator text and answer/evidence guidance. Tasks vary by HPE standard and grade band. Use fictional scenarios for sensitive content, do not ask learners to disclose personal experiences, and follow the safety guidance above.
+All 221 indicators have three indicator-linked tasks (663 total). Each task includes the exact Thai indicator text and answer/evidence guidance. Tasks use shared scaffolds by HPE standard and grade band; the curriculum audit records the remaining objective-specific assessment-authoring work. Use fictional scenarios for sensitive content, do not ask learners to disclose personal experiences, and follow the safety guidance above.
 
 Run `npm run validate:health-pe-packs` to validate the four packs through the actual TypeScript importer parser. GitHub Actions run 176 passed this check, the Social Studies and Science parser checks, all eight national-area pack validation, the Thai B.E. 2568 pack check, production build and ESLint.
