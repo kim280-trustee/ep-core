@@ -77,6 +77,7 @@ begin
       or item.curriculum_id is null
       or item.grade_level_id is null
       or item.subject_id is null
+      or item.language_code is null
       or item.language_code not in ('en', 'th')
   ) then
     raise exception 'Every expected question needs code, prompt, answer, objective and complete academic scope';
