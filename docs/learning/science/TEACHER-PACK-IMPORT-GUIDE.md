@@ -115,3 +115,16 @@ The importer is implemented in the repository. The 14 consolidated secondary Sci
 Social Studies teacher packs use objective codes such as `SO2.1-P4-03`. The parser preserves the dotted standard code and maps the embedded grade to the exact grade-level alignment. The upper-secondary pack uses 61 shared `M46` outcomes; each aligns to M4, M5 and M6. The importer expands each shared outcome into three grade-specific draft lessons and uses grade-scoped content/question codes to avoid duplicate-code collisions. The official Thai indicator wording supplies the imported lesson title. No record is published automatically.
 
 Run `npm run validate:social-studies-packs` to verify all 418 Social Studies indicators and 1,254 answer-keyed formative tasks through the actual TypeScript importer parser.
+
+
+## Duplicate-code preflight and safe retry behavior
+
+Before inserting either a lesson pack or a question-only pack, the authenticated importer checks the target organization for existing normalized content and question codes. Codes are compared using the same canonical normalization used for persistence, so differences in letter case, spaces or punctuation do not bypass the check. The preflight query is batched to keep large-pack requests bounded.
+
+If the importer reports an existing code:
+1. Stop the retry; do not repeatedly submit the same pack or generate replacement codes just to bypass the warning.
+2. Inspect the target organization's draft content and question bank for the reported codes.
+3. Determine whether the earlier attempt completed, partially completed, or left records requiring an authorized cleanup/reconciliation.
+4. Resume only with the confirmed missing chunks and their original intended codes, after resolving the existing records through the authorized application workflow.
+
+The preflight check is an early diagnostic guard. Database uniqueness constraints remain authoritative if two import sessions race between preflight and insert. No import should be run against the live pilot as a recovery test. The offline regression gate is `npm run validate:learning-pack-import-preflight`; CI runs it with the other learning-content validators.
