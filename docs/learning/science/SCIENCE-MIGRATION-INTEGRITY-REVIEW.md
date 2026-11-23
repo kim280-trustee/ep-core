@@ -1,6 +1,9 @@
 # E&P Learning — Science Migration Integrity Review
 
-**Branch:** `paul/thai-national-curriculum-foundation`  
+> **Historical migration review — superseded for current readiness.** This document preserves the earlier migration-review checkpoint and its release checklist. Its statements below that the 102 upper-secondary core indicators or M3 priority classifications were still outstanding are historical, not current. For the authoritative 23 November 2026 status, use `SCIENCE-ROLLOUT-READINESS.md` and `SCIENCE-CORE-CURRICULUM-GAP-AUDIT.md`. Live Supabase now verifies 415/415 required P1–M6 core indicators in the national master, 276/276 M1–M6 core indicators in the canonical secondary catalogue, 300 additional specialist outcomes, zero duplicate core objective-grade alignments and zero required core objectives without priority classification. Nine legacy M3 W3.2 records remain non-required supplementary rows. The prepared full resource set is 715 lessons and 2,145 formative tasks/questions; none have been imported into the live content library yet.
+
+**Original review branch:** `paul/thai-national-curriculum-foundation`  
+**Current working branch:** `paul/subject-rollout`  
 **Scope:** 45 original Science curriculum migrations, one corrective M2/M3 integrity migration, one additive M3 greenhouse-effect migration, four OBEC priority-classification migrations, one national-core alignment/priority reconciliation migration, primary W4.2 indicator migrations, and lower-secondary completion/correction migrations  
 **Review type:** Static source review plus runtime migration verification against the existing Supabase project.
 
