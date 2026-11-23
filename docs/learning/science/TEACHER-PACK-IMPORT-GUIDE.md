@@ -10,11 +10,11 @@ Open **Teacher Content Library → Import teacher pack**, or use the route `/tea
 
 - Sign in with a real, active teacher account.
 - Select an assigned teacher class to identify the organization where the drafts will be created.
-- Select the Thai Science curriculum, the pack's subject and its fallback grade.
+- For secondary core and specialist packs, select curriculum `TH-SCI-M1-M6`. For primary P1–P6 packs, select `TH-BASIC-CORE-2008-2017`. Select the matching subject; the fallback grade applies only to packs without grade-coded objectives.
 - Upload one consolidated Markdown (`.md`) pack at a time. The secondary core and specialist import set is provided as 14 subject/grade files across five tracks. Primary P1–P6 Science packs are maintained separately. Each import uses the correct subject and grade scope.
 - Check every objective code and grade shown in the preview. Code-less official outcomes are matched against the selected subject/grade catalogue; ambiguous matches block the import.
 
-The selected class is used only to establish the teacher's organization access. It does not change that class, add a subject to it, or assign content to its students.
+The selected class is used only to establish the teacher's organization access. It does not change that class, add a subject to it, or assign content to its students. Choose the content language explicitly: use English (`en`) for the secondary core and specialist packs, and Thai (`th`) for the primary P1–P6 packs. The import page saves this language on both lesson and question records; it does not translate or rewrite the Markdown.
 
 ## Consolidated Science import files
 
@@ -39,6 +39,20 @@ Import these 14 files using curriculum `TH-SCI-M1-M6`. The M1–M3 and M4–M6 c
 | **Total** | **5 subject tracks** | **M1–M6** | **576** | **1,728** |
 
 Import one file at a time and select the exact subject and grade shown in the table. The mixed-grade M4–M6 core Science file is intentional: every objective code carries its source grade. Do not combine the grade-specific specialist import files; their grade selector is part of code-less outcome resolution. All imported records remain unpublished drafts.
+
+## Primary Science import files
+
+Import these three packs using curriculum `TH-BASIC-CORE-2008-2017`, subject `SCI` — Science and Technology, and content language `th`. Each lesson contains a grade-coded objective, three formative tasks and expected evidence. The importer resolves the grade from each objective code and verifies its exact curriculum alignment; the fallback-grade selector is not used for these coded lessons.
+
+| Import file | Grades | Lessons | Formative tasks |
+|---|---|---:|---:|
+| `P1-P3-science-w1-w3-teacher-starter-pack.md` | P1–P3 | 42 | 126 |
+| `P4-P6-science-w1-w3-teacher-starter-pack.md` | P4–P6 | 69 | 207 |
+| `SCIENCE-TECHNOLOGY-W4.2-P1-P6-TEACHER-STARTER-PACK.md` | P1–P6 | 28 | 84 |
+| **Total** | **P1–P6** | **139** | **417** |
+
+The primary packs use the national master curriculum because their official grade alignments are registered in `TH-BASIC-CORE-2008-2017`. Import each file separately and confirm the preview reports the expected lesson and question counts before saving drafts.
+
 
 ## What the importer creates
 
