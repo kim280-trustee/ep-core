@@ -89,6 +89,10 @@ All imported content and questions remain **drafts**. The importer does not subm
 
 Run `npm.cmd run validate:science-packs` from the repository root before importing the two consolidated core Science packs. This command checks TypeScript parser diagnostics, transpiles and executes the actual TypeScript teacher-pack parser, then verifies lesson counts, grade distribution, heading/objective grade agreement, cross-pack unique objective codes, sequential question numbers and all three non-empty answer keys per lesson. Expected result: 174 M1–M3 lessons plus 102 M4–M6 lessons, with 828 answer-keyed questions in total. The latest draft PR #174 validation passed this Science parser check and the specialist-pack validator. All other subject-pack checks also passed except Social Studies. Production build and ESLint both passed; the overall workflow remains failed only because Edna's Social Studies parser check failed. This is a source-pack/parser check; it does not replace the authenticated preview and draft-save test in the teacher application.
 
+## Complete 17-pack Science rollout gate
+
+Run `npm run validate:science-rollout-packs` to validate all 17 primary, secondary-core and upper-secondary specialist import files together through the actual TypeScript importer parser. This aggregate check independently asserts each pack's lesson/question counts, grade scope, three sequential answer-keyed questions per lesson, duplicate subject/grade objective identities, language allocation and subject totals. Expected totals: 715 lessons and 2,145 questions (Thai 139/417; English 576/1,728). CI runs this gate after the core and specialist Science validators.
+
 ## Question Bank access
 
 The Question Bank now lets an authorized teacher select a curriculum, grade and subject independently of the selected access class. The class still establishes the organization context. Academic filtering uses batched version/objective lookups so large imported packs do not cause one database request per question.
