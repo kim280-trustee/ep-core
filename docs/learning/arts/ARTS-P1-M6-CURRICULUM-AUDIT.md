@@ -59,3 +59,17 @@ The expected-answer guidance describes observable evidence and accepts equivalen
 The teacher-pack parser now accepts the Arts heading formats, dotted/dashed lesson numbering and objective-code labels. It recognises `ARTS-Pn`, `ARTS-Mn` and shared `ARTS-M46` codes. The importer expands the 39 shared M4–M6 outcomes into 117 grade-specific lesson drafts and 351 grade-scoped question codes.
 
 GitHub Actions run 204 passed all national pack checks, Thai B.E. 2568, Science, Social Studies, Health & PE and Arts importer-parser validation, production build and ESLint.
+
+
+## Discipline-specific teaching and assessment upgrade — 23 November 2026
+
+All 279 source lessons and 837 source tasks have been rewritten across the eight packs. Each lesson now identifies its Arts discipline (visual arts, music, or dance and drama), exact indicator focus, and grade band. Teaching sequences use discipline-appropriate examples, materials, rehearsal or studio practice, observable evidence, and safety guidance.
+
+The assessment progression is consistent but is not the former cross-discipline generic prompt set:
+- Knowledge/close observation: identify two distinct discipline-specific features and cite visible, audible or performed evidence.
+- Application: solve a fictional discipline-specific case using a sequenced three-step plan.
+- Demonstration: submit an indicator-matched artefact, notation/listening record, performance or evidence product with explicit criteria and reflection.
+
+Delivery is differentiated for early primary (P1–P3), upper primary (P4–P6), lower secondary (M1–M3) and upper secondary (M4–M6). The 39 shared M4–M6 source indicators expand to 117 grade-specific lesson drafts and 351 grade-scoped questions. Across all grades, expected import scope is **357 lesson drafts and 1,071 question drafts**.
+
+This is source-pack authoring and offline validation only. No content was imported or published, no migration was applied, and no live school or learner data was changed. Staging import, database reconciliation and teacher acceptance remain pending; this audit does not claim classroom acceptance.
