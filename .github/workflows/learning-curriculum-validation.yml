@@ -63,6 +63,10 @@ jobs:
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:science-import-completeness-sql
 
+      - name: Validate complete import retry integrity and protected-key verification
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:learning-pack-import-integrity
+
       - name: Validate teacher-pack parser question contract
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:teacher-pack-parser-contract
