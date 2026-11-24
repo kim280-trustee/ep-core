@@ -248,6 +248,7 @@ export default function LearningAssessmentRuntimePage() {
     mutationFn: async ({
       questionId,
       value,
+      questionType,
     }: {
       questionId: string;
       value: string;
