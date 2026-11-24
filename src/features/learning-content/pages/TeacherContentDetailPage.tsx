@@ -156,11 +156,14 @@ export default function TeacherContentDetailPage() {
     return section && typeof section === "object" ? section as Record<string, unknown> : null;
   }, [latestVersion]);
 
+  // Hydrate editable teacher drafts when the asynchronously loaded version changes.
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (!latestStructuredActivity) return;
     setStarterCodeDraft(typeof latestStructuredActivity.starterCode === "string" ? latestStructuredActivity.starterCode : "");
     setProjectRequirementsDraft(typeof latestStructuredActivity.requirements === "string" ? latestStructuredActivity.requirements : "");
   }, [latestStructuredActivity]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const latestBody = useMemo(() => {
     if (!latestVersion?.body) return "";
