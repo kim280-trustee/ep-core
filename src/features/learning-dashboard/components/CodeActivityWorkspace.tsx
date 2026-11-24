@@ -62,13 +62,10 @@ export default function CodeActivityWorkspace({
   const frameRef = useRef<HTMLIFrameElement>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [ready, setReady] = useState(false);
-  const [output, setOutput] = useState("");
+  const [outputOverride, setOutputOverride] = useState<{ initialOutput: string; value: string } | null>(null);
+  const output = outputOverride?.initialOutput === initialOutput ? outputOverride.value : initialOutput;
   const [runState, setRunState] = useState<"idle" | "running" | "success" | "error" | "timeout">("idle");
 
-  // Keep the displayed output aligned when the saved submission changes.
-  /* eslint-disable react-hooks/set-state-in-effect */
-  useEffect(() => { setOutput(initialOutput); }, [initialOutput]);
-  /* eslint-enable react-hooks/set-state-in-effect */
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
@@ -79,7 +76,7 @@ export default function CodeActivityWorkspace({
       }
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       const result = { output: String(event.data.output ?? ""), success: event.data.success === true };
-      setOutput(result.output);
+      setOutputOverride({ initialOutput, value: result.output });
       setRunState(result.success ? "success" : "error");
       onRunResult(result);
     };
@@ -93,13 +90,13 @@ export default function CodeActivityWorkspace({
   const runCode = () => {
     if (disabled || !ready || !frameRef.current?.contentWindow) return;
     setRunState("running");
-    setOutput("Running your code…");
+    setOutputOverride({ initialOutput, value: "Running your code…" });
     onRunResult({ output: "", success: false });
     frameRef.current.contentWindow.postMessage({ channel: "ep-code-run", code: value }, "*");
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => {
       setRunState("timeout");
-      setOutput("Execution stopped after 2 seconds. Check your code for an endless loop and try again.");
+      setOutputOverride({ initialOutput, value: "Execution stopped after 2 seconds. Check your code for an endless loop and try again." });
       onRunResult({ output: "Execution timed out.", success: false });
       setReady(false);
       if (frameRef.current) frameRef.current.srcdoc = RUNNER_DOCUMENT;
@@ -126,14 +123,14 @@ export default function CodeActivityWorkspace({
           autoCorrect="off"
           value={value}
           disabled={disabled}
-          onChange={(event) => { setOutput(""); setRunState("idle"); onChange(event.target.value); }}
+          onChange={(event) => { setOutputOverride({ initialOutput, value: "" }); setRunState("idle"); onChange(event.target.value); }}
           className="min-h-64 w-full resize-y rounded-xl border border-slate-700 bg-slate-950 p-4 font-mono text-sm leading-6 text-emerald-100 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 disabled:opacity-70"
         />
         <div className="mt-3 flex flex-wrap items-center gap-3">
           <button type="button" onClick={runCode} disabled={disabled || !ready || runState === "running"} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50">
             <Play size={16} /> {runState === "running" ? "Running…" : "Run code"}
           </button>
-          <button type="button" onClick={() => { onChange(starterCode); setOutput(""); setRunState("idle"); onRunResult({ output: "", success: false }); }} disabled={disabled} className="inline-flex items-center gap-2 rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 disabled:opacity-50">
+          <button type="button" onClick={() => { onChange(starterCode); setOutputOverride({ initialOutput, value: "" }); setRunState("idle"); onRunResult({ output: "", success: false }); }} disabled={disabled} className="inline-flex items-center gap-2 rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 disabled:opacity-50">
             <RotateCcw size={15} /> Reset starter code
           </button>
           {!ready && <span className="text-xs text-slate-500">Preparing secure runner…</span>}
