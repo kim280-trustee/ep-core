@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, Eye, FileText, Save, Send, Archive, ClipboardPlus, Plus, Trash2 } from "lucide-react";
 import type { FormEvent } from "react";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useAuth } from "@/core/auth";
 import { useTranslation } from "@/core/i18n";
 import { Link, useNavigate, useParams } from "react-router-dom";
