@@ -85,7 +85,7 @@ export default function CodeActivityWorkspace({
       window.removeEventListener("message", handleMessage);
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
-  }, [onRunResult]);
+  }, [initialOutput, onRunResult]);
 
   const runCode = () => {
     if (disabled || !ready || !frameRef.current?.contentWindow) return;
