@@ -24,8 +24,8 @@ export default function TeacherContentDetailPage() {
   const queryClient = useQueryClient();
   const [body, setBody] = useState("");
   const [bodyEdited, setBodyEdited] = useState(false);
-  const [starterCodeDraft, setStarterCodeDraft] = useState("");
-  const [projectRequirementsDraft, setProjectRequirementsDraft] = useState("");
+  const [starterCodeOverride, setStarterCodeOverride] = useState<{ versionId: string; value: string } | null>(null);
+  const [projectRequirementsOverride, setProjectRequirementsOverride] = useState<{ versionId: string; value: string } | null>(null);
   const [changeSummary, setChangeSummary] = useState("");
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
@@ -156,14 +156,13 @@ export default function TeacherContentDetailPage() {
     return section && typeof section === "object" ? section as Record<string, unknown> : null;
   }, [latestVersion]);
 
-  // Hydrate editable teacher drafts when the asynchronously loaded version changes.
-  /* eslint-disable react-hooks/set-state-in-effect */
-  useEffect(() => {
-    if (!latestStructuredActivity) return;
-    setStarterCodeDraft(typeof latestStructuredActivity.starterCode === "string" ? latestStructuredActivity.starterCode : "");
-    setProjectRequirementsDraft(typeof latestStructuredActivity.requirements === "string" ? latestStructuredActivity.requirements : "");
-  }, [latestStructuredActivity]);
-  /* eslint-enable react-hooks/set-state-in-effect */
+  const activityVersionId = latestVersion?.id ?? "";
+  const starterCodeDraft = starterCodeOverride?.versionId === activityVersionId
+    ? starterCodeOverride.value
+    : typeof latestStructuredActivity?.starterCode === "string" ? latestStructuredActivity.starterCode : "";
+  const projectRequirementsDraft = projectRequirementsOverride?.versionId === activityVersionId
+    ? projectRequirementsOverride.value
+    : typeof latestStructuredActivity?.requirements === "string" ? latestStructuredActivity.requirements : "";
 
   const latestBody = useMemo(() => {
     if (!latestVersion?.body) return "";
@@ -670,13 +669,13 @@ export default function TeacherContentDetailPage() {
               {latestStructuredActivity?.type === "code_activity" && (
                 <label className="mt-4 block">
                   <span className="mb-1.5 block text-sm font-medium text-slate-700">Student starter code (JavaScript)</span>
-                  <textarea value={starterCodeDraft} onChange={(event) => setStarterCodeDraft(event.target.value)} maxLength={12000} spellCheck={false} className="input min-h-56 w-full resize-y font-mono text-sm" />
+                  <textarea value={starterCodeDraft} onChange={(event) => setStarterCodeOverride({ versionId: activityVersionId, value: event.target.value })} maxLength={12000} spellCheck={false} className="input min-h-56 w-full resize-y font-mono text-sm" />
                 </label>
               )}
               {latestStructuredActivity?.type === "project_activity" && (
                 <label className="mt-4 block">
                   <span className="mb-1.5 block text-sm font-medium text-slate-700">Project submission requirements</span>
-                  <textarea value={projectRequirementsDraft} onChange={(event) => setProjectRequirementsDraft(event.target.value)} maxLength={3000} rows={4} className="input w-full resize-y" />
+                  <textarea value={projectRequirementsDraft} onChange={(event) => setProjectRequirementsOverride({ versionId: activityVersionId, value: event.target.value })} maxLength={3000} rows={4} className="input w-full resize-y" />
                 </label>
               )}
 
