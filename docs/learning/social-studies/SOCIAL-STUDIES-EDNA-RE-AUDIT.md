@@ -1,6 +1,6 @@
 # Social Studies — Edna Independent Subject Re-audit
 
-**Audit date:** 23 November 2026  
+**Audit date:** 24 November 2026  
 **Repository:** `kim280-trustee/ep-core`  
 **Working branch:** `edna/subject-rollout`  
 **Requested baseline:** `paul/learning-academic-integrity-audit`  
@@ -224,7 +224,7 @@ The original source audit also records an arithmetic discrepancy in the printed 
 - [ ] Transcribe and independently verify all 61 shared M4–M6 2021 priority labels against the official OBEC source.
 - [ ] Apply those labels to the correct 233 grade-alignment rows without duplicating the 111 unique objectives.
 - [ ] Reconcile unique-indicator totals to 194 Must-Know / 224 Should-Know.
-- [ ] Confirm the 2023 Social Studies M4–M6 Geography S5.2/2 and S5.2/3 correction is reflected in the source mapping and packs.
+- [x] Confirm the 2023 OBEC correction is reflected in the M4–M6 teacher pack: `SO5.2-M46-02` and `SO5.2-M46-03` are present with Thai indicator wording matching the July 2023 correction letter. [Official OBEC correction letter](https://smart.obec.go.th/upload/book/upload_files/1690421462x1023659602_1.pdf). The source-to-database mapping/import reconciliation remains open; pack text presence alone does not close that check.
 - [ ] Review all 418 lesson sequences/resources for indicator and strand specificity.
 - [x] Replace generic P1–P3 task frames with strand-specific stimulus/task/answer structures (104 lessons; 312 tasks); structural counts verified.
 - [ ] Complete independent subject-matter/source verification and classroom acceptance testing for all 104 P1–P3 lessons (312 tasks). The 32 task-three performance-evidence corrections are authored; teachers must populate verified source cards and reviewers must confirm all tasks for accuracy, age appropriateness and marking clarity.
@@ -250,3 +250,21 @@ A final targeted review found 14 SO1 application tasks still using the same gene
 
 
 **Latest execution evidence:** GitHub Actions run [45115755622](https://github.com/kim280-trustee/ep-core/actions/runs/45115755622) failed in the new importer/validator step with the two parser transpilation errors above. `npm ci` completed and reported zero vulnerabilities. No importer result, pack-validation result, production build or lint pass was produced.
+
+
+## 4F. Current technical and source re-check — 24 November 2026
+
+The earlier execution-gate statements in sections 4B–4E are historical snapshots and are superseded by the current branch workflow evidence below.
+
+**Branch head under verification:** `603efa80ab82b5966b51f185a090e78fd9ee65e1` on `edna/subject-rollout`.
+
+**GitHub Actions run:** [45339677351](https://github.com/kim280-trustee/ep-core/actions/runs/45339677351).
+
+- The actual TypeScript importer-backed Social Studies validator completed successfully. It parsed all eight packs: 418 unique indicators and 1,254 indicator-linked, answer-keyed tasks. M4–M6's 61 shared indicators correctly retain three grade alignments.
+- `npm audit` completed successfully with zero vulnerabilities.
+- The previous lint failure was traced to one unused `useEffect` import in `TeacherContentDetailPage.tsx` and a missing `initialOutput` dependency in `CodeActivityWorkspace.tsx`. Both source corrections have been committed in this branch as `30d1713` and `603efa8`.
+- At the time this audit note was prepared, repository-wide lint and the TypeScript/production build had not yet returned a final result. Do not mark the technical gate complete until the workflow is green.
+
+**2023 Geography correction source check:** the official July 2023 OBEC correction letter explicitly adds M4–M6 Geography indicators S5.2 ม.4–6/2 and S5.2 ม.4–6/3 to the between-learning group. The M4–M6 starter pack contains the corresponding `SO5.2-M46-02` and `SO5.2-M46-03` entries with matching Thai indicator text. This verifies pack text presence only; the imported source mapping and live catalogue reconciliation still require evidence.
+
+**Academic and staging gates remain open.** The P1–P3 pack's successful parser validation is structural, not independent academic approval. The 942 P4–M6 tasks still require detailed academic/source review. No complete traceable source register or signed independent moderation has been supplied for all 1,254 tasks. Historical 2021 Must-Know / Should-Know labels for M3 and M4–M6 are not currently persisted; the official summary gives grade-level totals (M3 28/22; M4–M6 31/30), but no labels have been inferred from pathway classifications. Staging import, read-only reconciliation and teacher acceptance remain outstanding. No live KKC pilot data has been changed.
