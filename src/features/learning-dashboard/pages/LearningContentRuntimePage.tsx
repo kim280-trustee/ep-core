@@ -161,6 +161,8 @@ export default function LearningContentRuntimePage() {
     enabled: Boolean(id && content && user?.id),
   });
 
+  // Hydrate editable activity drafts from the asynchronously loaded saved response.
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     const structuredSection = query.data?.sections.find((section) => section.type === "code_activity" || section.type === "project_activity");
     if (!structuredSection) return;
@@ -195,6 +197,7 @@ export default function LearningContentRuntimePage() {
       }
     }
   }, [query.data, responseQuery.data]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const fillInDraftKey = `${id}:${content}`;
   const savedFillInAnswers = useMemo(() => {
@@ -231,7 +234,7 @@ export default function LearningContentRuntimePage() {
       }
       const uploadedPaths: string[] = [];
       try {
-        let attachments = [...projectAttachments];
+        const attachments = [...projectAttachments];
         if (isProjectActivity && projectFiles.length) {
           if (attachments.length + projectFiles.length > 3) throw new Error("A project can include up to 3 files.");
           for (const file of projectFiles) {
