@@ -65,7 +65,10 @@ export default function CodeActivityWorkspace({
   const [output, setOutput] = useState("");
   const [runState, setRunState] = useState<"idle" | "running" | "success" | "error" | "timeout">("idle");
 
+  // Keep the displayed output aligned when the saved submission changes.
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => { setOutput(initialOutput); }, [initialOutput]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
