@@ -268,3 +268,54 @@ The earlier execution-gate statements in sections 4B–4E are historical snapsho
 **2023 Geography correction source check:** the official July 2023 OBEC correction letter explicitly adds M4–M6 Geography indicators S5.2 ม.4–6/2 and S5.2 ม.4–6/3 to the between-learning group. The M4–M6 starter pack contains the corresponding `SO5.2-M46-02` and `SO5.2-M46-03` entries with matching Thai indicator text. This verifies pack text presence only; the imported source mapping and live catalogue reconciliation still require evidence.
 
 **Academic and staging gates remain open.** The P1–P3 pack's successful parser validation is structural, not independent academic approval. The 942 P4–M6 tasks still require detailed academic/source review. No complete traceable source register or signed independent moderation has been supplied for all 1,254 tasks. Historical 2021 Must-Know / Should-Know labels for M3 and M4–M6 are not currently persisted; the official summary gives grade-level totals (M3 28/22; M4–M6 31/30), but no labels have been inferred from pathway classifications. Staging import, read-only reconciliation and teacher acceptance remain outstanding. No live KKC pilot data has been changed.
+
+
+## 4G. Task-level specificity assessment and final technical verification — 25 November 2026
+
+### Scope and method
+
+A direct read of all eight current teacher starter packs was completed. The assessment counted indicator lesson headings and the three numbered task/answer entries per indicator, then compared task wording after normalising indicator codes and quoted official indicator text. This is a structural specificity screen; it is not represented as a substitute for subject-matter fact-checking or independent moderation.
+
+| Pack | Indicator lessons | Task/answer entries | Distinct normalised task forms |
+|---|---:|---:|---:|
+| P1–P3 | 104 | 312 | 165 |
+| P4 | 38 | 114 | 11 |
+| P5 | 36 | 108 | 11 |
+| P6 | 39 | 117 | 11 |
+| M1 | 45 | 135 | 12 |
+| M2 | 45 | 135 | 11 |
+| M3 | 50 | 150 | 11 |
+| M4–M6 | 61 | 183 | 11 |
+| **Total** | **418** | **1,254** | — |
+
+The 942 P4–M6 tasks are the sum of P4, P5, P6, M1, M2, M3 and the shared M4–M6 pack: 114 + 108 + 117 + 135 + 135 + 150 + 183 = 942. The remaining 312 tasks are P1–P3.
+
+### Findings requiring correction before classroom acceptance
+
+- P4–M6 packs use only 11–12 normalised prompt forms per pack across their 108–183 tasks. Many prompts differ mainly by inserting the official indicator wording into a common recall, explain or apply frame.
+- Several prompts ask learners to use a “picture, short source, map or classroom example” without actually supplying or identifying the stimulus. Some upper-secondary tasks ask learners to evaluate “two responses” without providing those responses.
+- Many answer guides describe the type of response (“identify accurate items directly required by the indicator”, “give an accurate explanation”) rather than supplying indicator-specific factual criteria, model evidence, acceptable alternatives and misconceptions.
+- These entries are useful as planning scaffolds, but they are not yet fully specified, independently fact-checked assessment items. A parser's answer-key count must not be described as academic validation.
+- P1–P3 has greater task-form diversity after its prior authoring passes, but its 312 entries still require source-card completion and independent review as documented in sections 4A–4E.
+
+### Required remediation
+
+For each of the 942 P4–M6 entries, replace the generic placeholder stimulus with a named, traceable source/case/map/data set or an explicit teacher-created stimulus specification. Write the actual learner task against the indicator's cognitive verb and content. Replace circular answer guidance with observable success criteria, supported factual content, acceptable alternatives and likely misconceptions. Keep religious assessment inclusive: never score personal belief, identity, worship or participation.
+
+Do not mass-generate factual answers or sources where authoritative evidence has not been checked. Mark such entries as awaiting source verification and qualified review rather than presenting them as complete.
+
+### M3–M6 2021 priority labels
+
+The official OBEC 2021 document is the controlling source for Must-Know / Should-Know. Its grade totals are M3 28/22 and M4–M6 31/30. The detailed table contains indicator-level classifications, but those individual rows have not yet been transcribed and independently reconciled against the catalogue. No labels have been inferred from the separate between-learning / terminal pathway classification. No database write is authorised by this audit.
+
+### Technical verification
+
+GitHub Actions run 45339845892 for commit 5629ce6659d9edcc5921bdcc8695d69dcb6f6a38 completed successfully on 24 November 2026. All steps passed: Social Studies teacher-pack importer and validator, dependency security audit, repository-wide lint, and TypeScript/production build. The validator parsed all eight packs, 418 unique indicators and 1,254 indicator-linked answer-keyed tasks. This is structural and technical evidence only.
+
+Run: https://github.com/kim280-trustee/ep-core/actions/runs/45339845892
+
+### Final acceptance decision
+
+**Social Studies is not ready to be marked complete or released for classroom use.** The technical gate is closed. The task-level review has identified concrete quality defects and therefore remains open pending remediation and qualified academic moderation. The M3–M6 individual 2021 labels remain to be transcribed and reconciled. No authorised non-production staging tenant, import permission, teacher acceptance record or independent signed academic approval was available in this repository review. No live KKC pilot data or production content was changed.
+
+The next safe implementation batch must improve the task packs with verified stimuli and indicator-specific marking guidance, add traceable per-task review status, and only then request independent subject-matter sign-off and authorised staging acceptance.
