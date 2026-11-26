@@ -112,7 +112,7 @@ jobs:
           mv "$migrations/20261118205000_sync_science_core_national_curriculum_alignments_and_priority.sql" \
              "$migrations/20261118205001_sync_science_core_national_curriculum_alignments_and_priority.sql"
 
-          duplicates="$(find "$migrations" -maxdepth 1 -name '*.sql' -printf '%f\\n' | cut -d_ -f1 | sort | uniq -d)"
+          duplicates="$(find "$migrations" -maxdepth 1 -name '*.sql' -printf '%f\n' | cut -d_ -f1 | sort | uniq -d)"
           if [ -n "$duplicates" ]; then
             echo "Duplicate migration versions remain:"
             echo "$duplicates"
