@@ -76,7 +76,7 @@ jobs:
             # Replay the complete Learning schema and curriculum dependency
             # chain before applying the focused security hardening migrations.
             case "$name" in
-              *learning*|*thai_*|*career_*|*health_pe_*|*arts_*|*science_*|*foreign_languages*|*curriculum_rollout*|*source_specific*|*classify_*|*align_*)
+              *learning*|*thai_*|*social_studies*|*career_*|*health_pe_*|*arts_*|*science_*|*foreign_languages*|*curriculum_rollout*|*source_specific*|*classify_*|*align_*|*separate_*)
                 keep=true
                 ;;
             esac
