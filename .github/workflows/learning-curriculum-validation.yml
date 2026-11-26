@@ -35,6 +35,10 @@ jobs:
         id: install
         run: npm ci
 
+      - name: Audit locked dependency tree
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm audit
+
       - name: Validate all national curriculum teacher packs
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:national-curriculum-packs
