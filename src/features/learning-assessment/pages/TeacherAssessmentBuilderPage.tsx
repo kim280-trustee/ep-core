@@ -201,7 +201,7 @@ export default function TeacherAssessmentBuilderPage() {
       if (activeAssessment.curriculumId !== selectedClass?.classGroup.curriculumId || activeAssessment.gradeLevelId !== selectedClass?.classGroup.gradeLevelId || activeAssessment.subjectId !== selectedSubjectId) {
         throw new Error("This draft does not match the selected class, grade and subject. Create a new draft for this academic scope.");
       }
-      return learningAssessmentService.publishAssessment(activeAssessment.id, user!.id);
+      return learningAssessmentService.publishAssessment(activeAssessment.id);
     },
     onSuccess: async () => {
       setMessage({ kind: "success", text: t("assessmentBuilder.published") });
