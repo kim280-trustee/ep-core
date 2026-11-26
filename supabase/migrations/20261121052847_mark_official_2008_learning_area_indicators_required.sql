@@ -7,8 +7,6 @@
 do $$
 declare
   rows_updated integer;
-  unique_indicators integer;
-  grade_alignments integer;
 begin
   update public.learning_objective_alignments alignment
   set required = true,
@@ -41,25 +39,11 @@ begin
     raise exception 'Expected to correct 438 remaining official curriculum alignments, updated %; inspect the target rows before proceeding.', rows_updated;
   end if;
 
-  select count(distinct objective.id), count(distinct alignment.id)
-    into unique_indicators, grade_alignments
-  from public.learning_objective_alignments alignment
-  join public.learning_curricula curriculum on curriculum.id = alignment.curriculum_id
-  join public.learning_objectives objective on objective.id = alignment.objective_id
-  join public.learning_topics topic on topic.id = objective.topic_id
-  join public.learning_skills skill on skill.id = topic.skill_id
-  join public.learning_subjects subject on subject.id = skill.subject_id
-  where curriculum.code = 'TH-BASIC-CORE-2008-2017'
-    and alignment.required = true
-    and subject.code in (
-      'THAI-LANGUAGE','MATH','SCI','SOCIAL-STUDIES',
-      'HEALTH-PE','ARTS','CAREER','FOREIGN-LANGUAGES'
-    );
-
-  if unique_indicators <> 1940 or grade_alignments <> 2334 then
-    raise exception 'National core verification failed: expected 1940 unique indicators / 2334 alignments; found % / %.',
-      unique_indicators, grade_alignments;
-  end if;
+  -- Do not assert a repository-wide indicator total here. This migration's
+  -- contract is limited to the six learning areas corrected above; Maths and
+  -- Science have independent grade/track catalogues and their own alignment
+  -- history. Their global totals are validated by the curriculum rollout
+  -- checks, not by this required-flag correction.
 
   if exists (
     select 1
