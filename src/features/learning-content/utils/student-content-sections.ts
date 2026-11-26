@@ -38,7 +38,7 @@ export function getStudentVisibleContentSections(body: Record<string, unknown>):
       visibility === "teacher" ||
       visibility === "staff" ||
       visibility === "private" ||
-      /(?:^| )(?:answer key|marking guide|mark scheme|teacher guidance|teacher notes|teaching notes|staff notes|assessor notes|moderation notes|teacher rubric|teacher only|safety and teaching guidance)(?: |$)/u.test(title)
+      /(?:answer\\s*key|marking\\s*guide|mark\\s*scheme|teacher\\s*guidance|teacher\\s*notes|teaching\\s*notes|staff\\s*notes|assessor\\s*notes|moderation\\s*notes|teacher\\s*rubric|teacher\\s*only|safety\\s+and\\s+teaching\\s+guidance)/u.test(title)
     ) return [];
 
     const sectionType = typeof record.type === "string" ? record.type : "text";
