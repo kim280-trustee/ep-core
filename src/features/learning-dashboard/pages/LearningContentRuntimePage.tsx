@@ -210,7 +210,8 @@ export default function LearningContentRuntimePage() {
         if (isProjectActivity && projectFiles.length) {
           if (attachments.length + projectFiles.length > 3) throw new Error("A project can include up to 3 files.");
           for (const file of projectFiles) {
-            const contentType = getProjectEvidenceMimeType(file);\n            if (file.size > 15 * 1024 * 1024 || !contentType) {
+            const contentType = getProjectEvidenceMimeType(file);
+            if (file.size > 15 * 1024 * 1024 || !contentType) {
               throw new Error("Each file must be 15 MB or smaller and use an allowed document, image, text or ZIP format.");
             }
             const safeName = file.name.replace(/[^A-Za-z0-9._-]/g, "_").slice(-100) || "project-evidence";
