@@ -348,7 +348,8 @@ begin
     into v_definition;
   if position('auth.uid()' in v_definition) = 0
      or position('learning_can_manage_academic_records' in v_definition) = 0
-     or position('learning_is_active_teacher' in v_definition) = 0
+     or position('learning_teacher_can_view_student' in v_definition) = 0
+     or position('learning_is_active_teacher' in v_definition) > 0
      or position('attempt_status' in v_definition) = 0
      or position('evaluating' in v_definition) = 0
      or position('manual_reviewed' in v_definition) = 0
