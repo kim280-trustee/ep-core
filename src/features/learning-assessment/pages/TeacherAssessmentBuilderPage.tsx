@@ -175,24 +175,14 @@ export default function TeacherAssessmentBuilderPage() {
       if (!pendingQuestionOptions.length) {
         throw new Error("Select at least one published question that is not already attached.");
       }
-      const currentItems = await learningAssessmentService.listAssessmentQuestions(activeAssessment.id);
-      const currentIds = new Set(currentItems.map((item) => item.questionVersionId));
-      let sequenceNo = currentItems.reduce((max, item) => Math.max(max, item.sequenceNo), 0) + 1;
-      let added = 0;
-      for (const question of pendingQuestionOptions) {
-        if (currentIds.has(question.versionId)) continue;
-        await learningAssessmentService.addAssessmentQuestion({
-          assessmentId: activeAssessment.id,
+      return learningAssessmentService.addAssessmentQuestions({
+        assessmentId: activeAssessment.id,
+        questions: pendingQuestionOptions.map((question) => ({
           questionVersionId: question.versionId,
-          sequenceNo,
           points: 1,
           required: true,
-        });
-        currentIds.add(question.versionId);
-        sequenceNo += 1;
-        added += 1;
-      }
-      return added;
+        })),
+      });
     },
     onSuccess: async (added) => {
       setMessage({ kind: "success", text: added ? `Added ${added} question(s). Each question is worth 1 point; publish when the draft is ready.` : "Those questions are already attached to this assessment." });
@@ -211,8 +201,6 @@ export default function TeacherAssessmentBuilderPage() {
       if (activeAssessment.curriculumId !== selectedClass?.classGroup.curriculumId || activeAssessment.gradeLevelId !== selectedClass?.classGroup.gradeLevelId || activeAssessment.subjectId !== selectedSubjectId) {
         throw new Error("This draft does not match the selected class, grade and subject. Create a new draft for this academic scope.");
       }
-      const items = await learningAssessmentService.listAssessmentQuestions(activeAssessment.id);
-      if (!items.length) throw new Error("Add at least one question before publishing.");
       return learningAssessmentService.publishAssessment(activeAssessment.id, user!.id);
     },
     onSuccess: async () => {

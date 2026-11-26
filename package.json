@@ -33,7 +33,8 @@
     "validate:learning-project-evidence": "node scripts/validate-learning-project-evidence-storage.mjs",
     "validate:learning-assessment-runtime": "node scripts/validate-learning-assessment-runtime.mjs",
     "validate:teacher-assessment-review": "node scripts/validate-teacher-assessment-review.mjs",
-    "validate:learning-question-bundle": "node scripts/validate-learning-question-bundle.mjs"
+    "validate:learning-question-bundle": "node scripts/validate-learning-question-bundle.mjs",
+    "validate:learning-assessment-authoring": "node scripts/validate-learning-assessment-authoring.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",

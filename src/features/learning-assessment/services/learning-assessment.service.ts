@@ -75,6 +75,9 @@ export const learningAssessmentService = {
     >[0],
   ) => learningAssessmentRepository.addAssessmentQuestion(input),
 
+  addAssessmentQuestions: (input: Parameters<typeof learningAssessmentRepository.addAssessmentQuestions>[0]) =>
+    learningAssessmentRepository.addAssessmentQuestions(input),
+
   publishQuestion: (id: string, reviewerId: string) =>
     learningAssessmentRepository.publishQuestion(id, reviewerId),
 

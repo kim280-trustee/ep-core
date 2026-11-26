@@ -75,6 +75,10 @@ jobs:
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:learning-question-bundle
 
+      - name: Validate atomic assessment question attachment and publication
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:learning-assessment-authoring
+
       - name: Validate learning-pack import duplicate preflight
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:learning-pack-import-preflight

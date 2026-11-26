@@ -357,7 +357,9 @@ begin
     raise exception 'Manual grading RPC lacks authenticated manager, pending-attempt, one-time grading or score-bound checks';
   end if;
 
-  if position('learning_teacher_can_view_student(v_answer.organization_id, v_answer.student_user_id)' in v_definition) = 0 then
+  if position('learning_teacher_can_view_student' in v_definition) = 0
+     or position('v_answer.organization_id' in v_definition) = 0
+     or position('v_answer.student_user_id' in v_definition) = 0 then
     raise exception 'Manual grading RPC does not require the teacher to share the student''s active class';
   end if;
 
@@ -396,6 +398,27 @@ begin
     raise exception 'Atomic question bundle RPC must be executable only by authenticated callers';
   end if;
 
+  -- Atomic assessment authoring: row locks serialize attachment against publication.
+  if to_regprocedure('public.add_learning_assessment_questions(uuid,jsonb)') is null
+     or to_regprocedure('public.publish_learning_assessment(uuid)') is null then raise exception 'Atomic assessment authoring RPCs are missing'; end if;
+  select lower(pg_get_functiondef('public.add_learning_assessment_questions(uuid,jsonb)'::regprocedure)) into v_definition;
+  if position('auth.uid()' in v_definition)=0 or position('learning_current_user_id()' in v_definition)=0
+     or position('learning_can_manage_academic_records' in v_definition)=0 or position('learning_is_active_teacher' in v_definition)=0
+     or position('for update' in v_definition)=0 or position('jsonb_to_recordset' in v_definition)=0
+     or position('published_at' in v_definition)=0 or position('sequence_no' in v_definition)=0 then
+    raise exception 'Atomic assessment attachment lacks authorization, locking, published-version or ordered batch checks'; end if;
+  select lower(pg_get_functiondef('public.publish_learning_assessment(uuid)'::regprocedure)) into v_definition;
+  if position('auth.uid()' in v_definition)=0 or position('learning_current_user_id()' in v_definition)=0
+     or position('learning_can_manage_academic_records' in v_definition)=0 or position('learning_is_active_teacher' in v_definition)=0
+     or position('for update' in v_definition)=0 or position('published' in v_definition)=0
+     or position('reviewed_by' in v_definition)=0 or position('published_at' in v_definition)=0 then
+    raise exception 'Assessment publication lacks authorization, serialization or reviewed publication metadata'; end if;
+  if has_function_privilege('anon','public.add_learning_assessment_questions(uuid,jsonb)','EXECUTE')
+     or not has_function_privilege('authenticated','public.add_learning_assessment_questions(uuid,jsonb)','EXECUTE')
+     or has_function_privilege('anon','public.publish_learning_assessment(uuid)','EXECUTE')
+     or not has_function_privilege('authenticated','public.publish_learning_assessment(uuid)','EXECUTE') then
+    raise exception 'Atomic assessment authoring RPCs must be executable only by authenticated callers'; end if;
+
   -- All inspected SECURITY DEFINER authorization helpers must pin search_path.
   if exists (
     select 1
@@ -417,7 +440,9 @@ begin
         'assign_learning_teacher_substitute',
         'cancel_learning_teacher_substitute_coverage',
         'grade_learning_attempt_answer',
-        'create_learning_question_bundle'
+        'create_learning_question_bundle',
+        'add_learning_assessment_questions',
+        'publish_learning_assessment'
       )
       and not coalesce(p.proconfig, array[]::text[]) @> array['search_path=""']
   ) then

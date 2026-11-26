@@ -1,0 +1,17 @@
+import { readFileSync } from "node:fs";
+import assert from "node:assert/strict";
+const read=(path)=>readFileSync(new URL(path,import.meta.url),"utf8");
+const migration=read("../supabase/migrations/20261126160000_atomic_assessment_question_attachment_and_publication.sql");
+const repository=read("../src/features/learning-assessment/repositories/learning-assessment.repository.ts");
+const service=read("../src/features/learning-assessment/services/learning-assessment.service.ts");
+const page=read("../src/features/learning-assessment/pages/TeacherAssessmentBuilderPage.tsx");
+const security=read("../supabase/tests/learning_security_contract.sql");
+for(const token of ["security definer","set search_path = ''","auth.uid()","learning_current_user_id()","learning_can_manage_academic_records","learning_is_active_teacher","for update","jsonb_to_recordset","published_at","curriculum_id","grade_level_id","subject_id","revoke all","grant execute on function"]) assert.ok(migration.toLowerCase().includes(token.toLowerCase()),`Migration is missing ${token}`);
+assert.ok(repository.includes('rpc("add_learning_assessment_questions"'),"Repository must call batch attachment RPC");
+assert.ok(repository.includes('rpc("publish_learning_assessment"'),"Repository must call protected publication RPC");
+assert.ok(service.includes("addAssessmentQuestions"),"Service must expose batch attachment");
+assert.ok(page.includes("learningAssessmentService.addAssessmentQuestions("),"Builder must attach all selected questions atomically");
+assert.ok(!page.includes("for (const question of pendingQuestionOptions)"),"Builder must not attach questions individually");
+assert.ok(security.includes("add_learning_assessment_questions(uuid,jsonb)"),"Security contract must inspect batch attachment");
+assert.ok(security.includes("publish_learning_assessment(uuid)"),"Security contract must inspect publication");
+console.log("Atomic assessment attachment and publication contract passed.");
