@@ -67,6 +67,7 @@ const packs = [
 ];
 
 const codes = new Set();
+const expectedTaskIds = new Set();
 const failures = [];
 let lessonTotal = 0;
 let questionTotal = 0;
@@ -178,6 +179,7 @@ for (const pack of packs) {
     if (JSON.stringify(questionNumbers) !== JSON.stringify([1, 2, 3])) failures.push(code + ": expected exactly question numbers 1, 2 and 3");
     for (const question of lesson.questions) {
       questionTotal += 1;
+      expectedTaskIds.add(code + "-Q" + question.number);
       if (!question.prompt.trim() || !question.expectedAnswer.trim()) failures.push(code + ": empty question or answer guidance");
       if (!officialIndicator || !question.prompt.includes(officialIndicator)) failures.push(code + ": task " + question.number + " is not explicitly tied to its official Thai indicator");
     }
@@ -191,6 +193,61 @@ for (const pack of packs) {
 if (lessonTotal !== 418) failures.push("Expected 418 unique Social Studies indicators, found " + lessonTotal);
 if (codes.size !== 418) failures.push("Expected 418 unique Social Studies objective codes, found " + codes.size);
 if (questionTotal !== 1254) failures.push("Expected 1,254 answer-keyed tasks, found " + questionTotal);
+
+const moderationRegisterPath = resolve(root, "docs/learning/social-studies/SOCIAL-STUDIES-TASK-LEVEL-MODERATION-REGISTER.csv");
+const moderationRegister = await readFile(moderationRegisterPath, "utf8");
+function parseCsvLine(line) {
+  const values = [];
+  let value = "";
+  let quoted = false;
+  for (let index = 0; index < line.length; index += 1) {
+    const character = line[index];
+    if (character === '"') {
+      if (quoted && line[index + 1] === '"') { value += '"'; index += 1; }
+      else quoted = !quoted;
+    } else if (character === "," && !quoted) {
+      values.push(value); value = "";
+    } else value += character;
+  }
+  values.push(value);
+  return values;
+}
+const registerLines = moderationRegister.trimEnd().split(/\r?\n/);
+const registerHeader = parseCsvLine(registerLines[0] ?? "");
+const registerRows = registerLines.slice(1).map(parseCsvLine);
+if (registerRows.length !== 1254) failures.push("Moderation register must contain exactly 1,254 task rows; found " + registerRows.length);
+if (registerHeader.length !== 17) failures.push("Moderation register must contain 17 declared columns; found " + registerHeader.length);
+const registeredTaskIds = new Set();
+const registeredCounts = new Map();
+for (const row of registerRows) {
+  if (row.length !== registerHeader.length) {
+    failures.push("Moderation register contains a row with " + row.length + " columns instead of " + registerHeader.length);
+    continue;
+  }
+  const taskId = row[0];
+  if (!taskId || registeredTaskIds.has(taskId)) failures.push("Moderation register has a missing or duplicate task ID: " + taskId);
+  registeredTaskIds.add(taskId);
+  const indicatorCode = row[3];
+  registeredCounts.set(indicatorCode, (registeredCounts.get(indicatorCode) ?? 0) + 1);
+  if (!expectedTaskIds.has(taskId)) failures.push("Moderation register contains a task not present in the parsed packs: " + taskId);
+  if (row[12] === "" || row[13] !== "PENDING qualified source/content review" ||
+      row[14] !== "PENDING grade/age review" ||
+      row[15] !== "PENDING indicator-specific marking review" ||
+      row[16] !== "NOT MODERATED — reviewer sign-off required") {
+    failures.push("Moderation register must preserve explicit pending review states: " + taskId);
+  }
+}
+for (const taskId of expectedTaskIds) {
+  if (!registeredTaskIds.has(taskId)) failures.push("Pack task is missing from the moderation register: " + taskId);
+}
+if (registeredTaskIds.size !== expectedTaskIds.size) failures.push("Moderation register task IDs do not exactly match parsed pack tasks.");
+if (registeredCounts.size !== 418 || [...registeredCounts.values()].some((count) => count !== 3)) {
+  failures.push("Moderation register must contain exactly three task rows for each of 418 indicators.");
+}
+if (failures.length === 0) {
+  process.stdout.write("PASS: moderation register contains 1,254 unique task rows mapped exactly to all 418 parsed indicators; academic review states remain explicitly pending.\\n");
+}
+
 if (failures.length) {
   process.stderr.write("\nSocial Studies pack validation failed (" + failures.length + " issue(s)):\n");
   for (const failure of failures) process.stderr.write("- " + failure + "\n");
