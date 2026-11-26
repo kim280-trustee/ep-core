@@ -24,6 +24,9 @@ const visible = getStudentVisibleContentSections({
     { type: "text", title: "Assessment notes", audience: "staff", body: "PRIVATE ASSESSMENT NOTES" },
     { type: "text", title: "Private lesson notes", visibility: "private", body: "PRIVATE VISIBILITY NOTES" },
     { type: "text", title: "Extra section", teacherOnly: true, body: "PRIVATE TEACHER FLAG" },
+    { type: "text", title: "Answer-key", body: "PRIVATE PUNCTUATED KEY" },
+    { type: "text", title: "Teacher_notes", body: "PRIVATE PUNCTUATED NOTES" },
+    { type: "text", title: "Visible task", body: "Read the passage.", answerKey: "SECRET", teacherNotes: "SECRET", rubric: "SECRET", solution: "SECRET", internalMetadata: { expectedAnswer: "SECRET" } },
     { type: "text", title: "Student safety instructions", body: "Keep a safe distance from the equipment." },
     { type: "text", title: "Practice questions", body: "1. Describe evaporation." },
     { type: "code_activity", title: "Coding task", body: "Build a loop.", instructions: "Use a for loop.", starterCode: "for (;;) {}", requirements: ["loop"] },
@@ -36,14 +39,16 @@ const visible = getStudentVisibleContentSections({
 
 assert.deepEqual(
   visible.map((section) => section.title),
-  ["Learning outcome", "Student safety instructions", "Practice questions", "Coding task", "Project"],
+  ["Learning outcome", "Student safety instructions", "Practice questions", "Coding task", "Project", "Visible task"],
   "Only student-facing content sections should remain.",
 );
 const serialized = JSON.stringify(visible).toLowerCase();
-for (const privateText of ["private answer key", "private staff notes", "private safety notes", "private answer key title", "private rubric", "private assessment notes", "private visibility notes", "private teacher flag", "marking guide", "teacher notes"]) {
+for (const privateText of ["private answer key", "private staff notes", "private safety notes", "private answer key title", "private rubric", "private assessment notes", "private visibility notes", "private teacher flag", "private punctuated key", "private punctuated notes", "marking guide", "teacher notes", "secret"]) {
   assert.equal(serialized.includes(privateText), false, "Student content leaked teacher-only material: " + privateText);
 }
 assert.equal(visible[1].body, "Keep a safe distance from the equipment.", "Student-facing safety instructions must remain visible.");
+assert.deepEqual(Object.keys(visible[5]).sort(), ["body", "instructions", "requirements", "starterCode", "title", "type"],
+  "Student-visible sections must use an allow-listed output shape without arbitrary source metadata.");
 assert.equal(visible[3].starterCode, "for (;;) {}", "Coding activity starter code must be preserved.");
 assert.equal(visible[3].instructions, "Use a for loop.", "Coding activity instructions must be preserved.");
 assert.equal(visible[4].requirements, "Include labels.", "Project requirements must be preserved.");
