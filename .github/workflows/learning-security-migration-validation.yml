@@ -15,8 +15,9 @@ permissions:
   contents: read
 
 concurrency:
-  group: learning-security-migrations-${{ github.ref }}
-  cancel-in-progress: true
+  # All refs share one isolated Supabase port range; serialize runs globally.
+  group: learning-security-migrations
+  cancel-in-progress: false
 
 jobs:
   migration-validation:

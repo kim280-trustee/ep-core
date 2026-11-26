@@ -54,6 +54,7 @@ $test$;
 do $learning_security_contract$
 declare
   v_definition text;
+  v_definition_compact text;
   v_config text[];
   v_has_rls boolean;
 begin
@@ -357,13 +358,12 @@ begin
     raise exception 'Manual grading RPC lacks authenticated manager, pending-attempt, one-time grading or score-bound checks';
   end if;
 
-  if position('learning_teacher_can_view_student' in v_definition) = 0
-     or position('v_answer.organization_id' in v_definition) = 0
-     or position('v_answer.student_user_id' in v_definition) = 0 then
+  v_definition_compact := regexp_replace(v_definition, '\\s+', '', 'g');
+  if position('learning_teacher_can_view_student(v_answer.organization_id,v_answer.student_user_id)' in v_definition_compact) = 0 then
     raise exception 'Manual grading RPC does not require the teacher to share the student''s active class';
   end if;
 
-  if position('learning_is_active_teacher(v_answer.organization_id)' in v_definition) > 0 then
+  if position('learning_is_active_teacher(v_answer.organization_id)' in v_definition_compact) > 0 then
     raise exception 'Manual grading RPC still permits organization-wide teacher grading';
   end if;
 
