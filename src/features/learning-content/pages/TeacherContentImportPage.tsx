@@ -1,5 +1,5 @@
 import { useMemo, useState, type ChangeEvent, type ReactNode } from "react";
-import { formatImportChunkFailure, planResumableLessonImport, selectNewImportQuestions } from "@/features/learning-content/utils/learning-pack-import-validation";
+import { formatImportChunkFailure, normalizeLearningObjectiveText, planResumableLessonImport, scoreLearningObjectiveText, selectNewImportQuestions } from "@/features/learning-content/utils/learning-pack-import-validation";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, FileUp, Upload } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -133,10 +133,10 @@ export default function TeacherContentImportPage() {
         }
 
         if (!objective && lesson.objectiveText) {
-          const normalizedText = normalizeText(lesson.objectiveText);
+          const normalizedText = normalizeLearningObjectiveText(lesson.objectiveText);
           const exactTextMatches = objectives.filter((item) =>
-            normalizeText(item.name) === normalizedText ||
-            normalizeText(item.description ?? "") === normalizedText
+            normalizeLearningObjectiveText(item.name) === normalizedText ||
+            normalizeLearningObjectiveText(item.description ?? "") === normalizedText
           );
           if (exactTextMatches.length === 1) {
             objective = exactTextMatches[0];
@@ -145,7 +145,7 @@ export default function TeacherContentImportPage() {
             const scored = alignedCandidates
               .map((item) => ({
                 item,
-                score: textSimilarity(lesson.objectiveText!, item.description || item.name),
+                score: scoreLearningObjectiveText(lesson.objectiveText!, item.description || item.name),
               }))
               .sort((left, right) => right.score - left.score);
             const best = scored[0];
@@ -515,27 +515,6 @@ export default function TeacherContentImportPage() {
       </section>
     </div>
   );
-}
-
-function normalizeText(value: string) {
-  return value.toLowerCase().replace(/[’']/g, "").replace(/[^a-z0-9]+/g, " ").trim();
-}
-
-function textSimilarity(left: string, right: string) {
-  const ignored = new Set(["the", "and", "of", "to", "a", "an", "in", "for", "using", "use", "how", "what", "with", "from", "by", "on", "at", "as", "is", "are", "be", "that", "this", "their", "its", "into", "across"]);
-  const tokens = (value: string) => new Set(
-    normalizeText(value).split(" ")
-      .map((token) => token.endsWith("ies") ? `${token.slice(0, -3)}y` : token.endsWith("s") ? token.slice(0, -1) : token)
-      .filter((token) => token.length > 2 && !ignored.has(token)),
-  );
-  const leftTokens = tokens(left);
-  const rightTokens = tokens(right);
-  if (!leftTokens.size || !rightTokens.size) return 0;
-  let intersection = 0;
-  leftTokens.forEach((token) => { if (rightTokens.has(token)) intersection += 1; });
-  const sourceCoverage = intersection / leftTokens.size;
-  const dice = (2 * intersection) / (leftTokens.size + rightTokens.size);
-  return sourceCoverage * 0.7 + dice * 0.3;
 }
 
 function Field({ label, children }: { label: string; children: ReactNode }) {
