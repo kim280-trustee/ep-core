@@ -27,7 +27,8 @@
     "validate:learning-pack-import-repository-contract": "node scripts/validate-learning-pack-import-repository-contract.mjs",
     "validate:science-import-completeness-sql": "node scripts/validate-science-import-completeness-sql.mjs",
     "validate:learning-pack-import-integrity": "node scripts/validate-learning-pack-import-integrity.mjs",
-    "validate:teacher-pack-parser-contract": "node scripts/validate-teacher-pack-parser-contract.mjs"
+    "validate:teacher-pack-parser-contract": "node scripts/validate-teacher-pack-parser-contract.mjs",
+    "validate:learning-content-lifecycle": "node scripts/validate-learning-content-lifecycle-contract.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
