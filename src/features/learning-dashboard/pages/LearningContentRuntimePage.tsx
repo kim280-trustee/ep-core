@@ -17,6 +17,27 @@ const ALLOWED_PROJECT_FILE_TYPES = new Set([
   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
 ]);
 
+const PROJECT_FILE_MIME_BY_EXTENSION: Record<string, string> = {
+  pdf: "application/pdf",
+  png: "image/png",
+  jpg: "image/jpeg",
+  jpeg: "image/jpeg",
+  webp: "image/webp",
+  txt: "text/plain",
+  zip: "application/zip",
+  docx: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  pptx: "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+  xlsx: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+};
+
+function getProjectEvidenceMimeType(file: File): string | null {
+  const browserMimeType = file.type.trim().toLocaleLowerCase();
+  if (browserMimeType) return ALLOWED_PROJECT_FILE_TYPES.has(browserMimeType) ? browserMimeType : null;
+  const extension = file.name.split(".").pop()?.toLocaleLowerCase() ?? "";
+  const fallbackMimeType = PROJECT_FILE_MIME_BY_EXTENSION[extension];
+  return fallbackMimeType && ALLOWED_PROJECT_FILE_TYPES.has(fallbackMimeType) ? fallbackMimeType : null;
+}
+
 function isValidHttpsUrl(value: string) {
   try {
     const parsed = new URL(value.trim());
@@ -189,12 +210,12 @@ export default function LearningContentRuntimePage() {
         if (isProjectActivity && projectFiles.length) {
           if (attachments.length + projectFiles.length > 3) throw new Error("A project can include up to 3 files.");
           for (const file of projectFiles) {
-            if (file.size > 15 * 1024 * 1024 || !ALLOWED_PROJECT_FILE_TYPES.has(file.type)) {
+            const contentType = getProjectEvidenceMimeType(file);\n            if (file.size > 15 * 1024 * 1024 || !contentType) {
               throw new Error("Each file must be 15 MB or smaller and use an allowed document, image, text or ZIP format.");
             }
             const safeName = file.name.replace(/[^A-Za-z0-9._-]/g, "_").slice(-100) || "project-evidence";
             const objectPath = `${query.data.assignment.organizationId}/${id}/${content}/${user.id}/${crypto.randomUUID()}-${safeName}`;
-            const { error } = await supabase.storage.from("learning-project-submissions").upload(objectPath, file, { contentType: file.type, upsert: false });
+            const { error } = await supabase.storage.from("learning-project-submissions").upload(objectPath, file, { contentType, upsert: false });
             if (error) throw error;
             uploadedPaths.push(objectPath);
             attachments.push({ path: objectPath, name: file.name, size: file.size, type: file.type });
@@ -377,7 +398,7 @@ export default function LearningContentRuntimePage() {
                         const selected = Array.from(event.target.files ?? []);
                         setProjectFileError("");
                         if (projectAttachments.length + selected.length > 3) { setProjectFileError("A project can include up to 3 files."); event.target.value = ""; return; }
-                        const invalid = selected.find((file) => file.size > 15 * 1024 * 1024 || !ALLOWED_PROJECT_FILE_TYPES.has(file.type));
+                        const invalid = selected.find((file) => file.size > 15 * 1024 * 1024 || !getProjectEvidenceMimeType(file));
                         if (invalid) { setProjectFileError("Each file must be 15 MB or smaller and use an allowed document, image, text or ZIP format."); event.target.value = ""; return; }
                         setProjectFiles(selected);
                       }} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm file:mr-3 file:rounded-lg file:border-0 file:bg-slate-100 file:px-3 file:py-2 file:text-xs file:font-semibold" />
@@ -385,7 +406,7 @@ export default function LearningContentRuntimePage() {
                     {projectFileError && <p role="alert" className="text-xs text-red-700 sm:col-span-2">{projectFileError}</p>}
                     {(projectAttachments.length > 0 || projectFiles.length > 0) && <div className="space-y-1 text-xs text-slate-600 sm:col-span-2">
                       {projectAttachments.map((file) => <p key={file.path}>Saved: {file.name}</p>)}
-                      {projectFiles.map((file) => <p key={file.name}>Ready to upload: {file.name} ({(file.size / 1024 / 1024).toFixed(1)} MB)</p>)}
+                      {projectFiles.map((file, fileIndex) => <p key={`${file.name}-${fileIndex}`}>Ready to upload: {file.name} ({(file.size / 1024 / 1024).toFixed(1)} MB)</p>)}
                     </div>}
                   </div>
                 </div>

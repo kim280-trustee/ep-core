@@ -58,4 +58,40 @@ requireMatch(/v_existing_count\s*>=\s*3/isu,
 requireMatch(/before\s+insert\s+on\s+storage\.objects/isu,
   "File limit must be enforced by a database trigger");
 
+
+const runtimePage = await readFile(
+  "src/features/learning-dashboard/pages/LearningContentRuntimePage.tsx",
+  "utf8",
+);
+const teacherResponsesPage = await readFile(
+  "src/features/learning-content/pages/TeacherContentResponsesPage.tsx",
+  "utf8",
+);
+
+// Browser MIME metadata is not consistently populated for every supported file.
+// The extension fallback is used only when the browser supplies no MIME type;
+// a non-empty unsupported MIME type must still be rejected.
+assert.match(runtimePage, /function getProjectEvidenceMimeType\(file: File\): string \| null/isu,
+  "Project uploads must normalize file MIME types");
+assert.match(runtimePage, /if \(browserMimeType\) return ALLOWED_PROJECT_FILE_TYPES\.has\(browserMimeType\) \? browserMimeType : null/isu,
+  "An explicit unsupported browser MIME type must not be overridden by the filename");
+assert.match(runtimePage, /PROJECT_FILE_MIME_BY_EXTENSION/isu,
+  "Supported extensions must provide a fallback when browser MIME metadata is empty");
+assert.match(runtimePage, /const contentType = getProjectEvidenceMimeType\(file\)/isu,
+  "The upload must send the validated MIME type to private storage");
+assert.match(runtimePage, /file\.size > 15 \* 1024 \* 1024 \|\| !contentType/isu,
+  "The upload path must enforce the size and MIME constraints");
+assert.match(runtimePage, /uploadedPaths\.length[\s\S]*?\.remove\(uploadedPaths\)/isu,
+  "Partially uploaded evidence must be removed when response persistence fails");
+assert.match(runtimePage, /create\(\{ contentType, upsert: false \}\)/isu,
+  "Evidence objects must be uploaded without overwriting an existing object");
+assert.match(runtimePage, /setProjectFiles\(selected\)/isu,
+  "The selected evidence files must be retained for the next save or submit");
+assert.match(teacherResponsesPage, /createSignedUrl\(file\.path, 3600\)/isu,
+  "Teacher evidence access must use expiring signed URLs");
+assert.match(teacherResponsesPage, /file\.path\.startsWith\(expectedPathPrefix\)/isu,
+  "Teacher evidence links must be constrained to the response ownership path");
+assert.match(teacherResponsesPage, /target="_blank" rel="noopener noreferrer"/isu,
+  "External project and evidence links must use safe new-tab attributes");
+
 console.log("Learning project evidence storage contract passed.");

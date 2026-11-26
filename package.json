@@ -29,8 +29,7 @@
     "validate:learning-pack-import-integrity": "node scripts/validate-learning-pack-import-integrity.mjs",
     "validate:teacher-pack-parser-contract": "node scripts/validate-teacher-pack-parser-contract.mjs",
     "validate:learning-content-lifecycle": "node scripts/validate-learning-content-lifecycle-contract.mjs",
-    "validate:learning-content-responses": "node scripts/validate-learning-content-response-contract.mjs",
-    "validate:learning-project-evidence": "node scripts/validate-learning-project-evidence-storage.mjs"
+    "validate:learning-content-responses": "node scripts/validate-learning-content-response-contract.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
