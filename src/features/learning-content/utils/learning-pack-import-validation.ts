@@ -118,9 +118,9 @@ export function normalizeLearningObjectiveText(value: string): string {
     .normalize("NFKC")
     .toLocaleLowerCase()
     .replace(/[’']/gu, "")
-    .replace(/[^\\p{L}\\p{N}]+/gu, " ")
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
     .trim()
-    .replace(/\\s+/gu, " ");
+    .replace(/\s+/gu, " ");
 }
 
 /** Conservative token-overlap score for objective-description suggestions. */
