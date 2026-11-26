@@ -19,12 +19,26 @@ export function getStudentVisibleContentSections(body: Record<string, unknown>):
   return raw.flatMap((section): StudentVisibleContentSection[] => {
     if (!section || typeof section !== "object" || Array.isArray(section)) return [];
     const record = section as Record<string, unknown>;
-    const title = typeof record.title === "string" ? record.title.toLowerCase() : "";
+    const title = typeof record.title === "string"
+      ? record.title.normalize("NFKC").toLocaleLowerCase().replace(/[\\s_-]+/gu, " ").trim()
+      : "";
+    const audience = typeof record.audience === "string" ? record.audience.toLocaleLowerCase() : "";
+    const visibility = typeof record.visibility === "string" ? record.visibility.toLocaleLowerCase() : "";
 
+    // Treat explicit privacy metadata as authoritative. Also block common
+    // teacher-facing labels because older packs predate the audience field.
+    // The returned object below is deliberately allow-listed; arbitrary source
+    // properties (including answer keys and internal notes) are never spread.
     if (
       record.type === "teacher_only" ||
-      record.audience === "teacher" ||
-      /safety and teaching guidance|teacher guidance|teacher notes|teaching notes/.test(title)
+      record.teacherOnly === true ||
+      record.isTeacherOnly === true ||
+      audience === "teacher" ||
+      audience === "staff" ||
+      visibility === "teacher" ||
+      visibility === "staff" ||
+      visibility === "private" ||
+      /(?:^| )(?:answer key|marking guide|mark scheme|teacher guidance|teacher notes|teaching notes|staff notes|assessor notes|moderation notes|teacher rubric|teacher only|safety and teaching guidance)(?: |$)/u.test(title)
     ) return [];
 
     const sectionType = typeof record.type === "string" ? record.type : "text";
