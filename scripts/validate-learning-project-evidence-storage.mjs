@@ -83,7 +83,7 @@ assert.match(runtimePage, /file\.size > 15 \* 1024 \* 1024 \|\| !contentType/isu
   "The upload path must enforce the size and MIME constraints");
 assert.match(runtimePage, /uploadedPaths\.length[\s\S]*?\.remove\(uploadedPaths\)/isu,
   "Partially uploaded evidence must be removed when response persistence fails");
-assert.match(runtimePage, /create\(\{ contentType, upsert: false \}\)/isu,
+assert.match(runtimePage, /\.upload\(objectPath, file, \{ contentType, upsert: false \}\)/isu,
   "Evidence objects must be uploaded without overwriting an existing object");
 assert.match(runtimePage, /setProjectFiles\(selected\)/isu,
   "The selected evidence files must be retained for the next save or submit");
