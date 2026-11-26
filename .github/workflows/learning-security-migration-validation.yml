@@ -97,6 +97,28 @@ jobs:
             fi
           done
 
+      - name: Normalize duplicate migration versions in isolated test checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          migrations="supabase/migrations"
+
+          # The repository contains two pairs of historical files sharing
+          # Supabase version prefixes. Supabase CLI requires unique versions.
+          # Rename only the temporary CI checkout; never modify committed
+          # production migration filenames or their SQL contents.
+          mv "$migrations/20261117090000_thai_social_studies_p5_p6_official_indicators.sql" \
+             "$migrations/20261117090001_thai_social_studies_p5_p6_official_indicators.sql"
+          mv "$migrations/20261118205000_sync_science_core_national_curriculum_alignments_and_priority.sql" \
+             "$migrations/20261118205001_sync_science_core_national_curriculum_alignments_and_priority.sql"
+
+          duplicates="$(find "$migrations" -maxdepth 1 -name '*.sql' -printf '%f\\n' | cut -d_ -f1 | sort | uniq -d)"
+          if [ -n "$duplicates" ]; then
+            echo "Duplicate migration versions remain:"
+            echo "$duplicates"
+            exit 1
+          fi
+
       - name: Add local-only foundation baseline to isolated migration replay
         run: cp .github/test-fixtures/ep_core_foundation_baseline.sql supabase/migrations/20260818000000_ep_core_foundation_baseline.sql
 
