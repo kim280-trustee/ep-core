@@ -101,8 +101,8 @@ assert.match(runtimePage, /projectAttachments\.length \+ projectFiles\.length \+
   "The three-file cap must include saved and newly selected draft evidence");
 assert.match(teacherResponsesPage, /createSignedUrl\(file\.path, 3600\)/isu,
   "Teacher evidence access must use expiring signed URLs");
-assert.match(teacherResponsesPage, /file\.path\.startsWith\(expectedPathPrefix\)/isu,
-  "Teacher evidence links must be constrained to the response ownership path");
+assert.match(teacherResponsesPage, /isOwnedEvidencePath\(file\.path, expectedPathPrefix\)/isu,
+  "Teacher evidence links must be constrained to a single file in the response ownership path");
 assert.match(teacherResponsesPage, /target="_blank" rel="noopener noreferrer"/isu,
   "External project and evidence links must use safe new-tab attributes");
 
