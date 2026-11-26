@@ -219,7 +219,7 @@ export default function LearningContentRuntimePage() {
             const { error } = await supabase.storage.from("learning-project-submissions").upload(objectPath, file, { contentType, upsert: false });
             if (error) throw error;
             uploadedPaths.push(objectPath);
-            attachments.push({ path: objectPath, name: file.name, size: file.size, type: file.type });
+            attachments.push({ path: objectPath, name: file.name, size: file.size, type: contentType });
           }
           text = JSON.stringify({ kind: "project_submission", url: projectUrl.trim(), reflection: projectReflection.trim(), attachments });
         }
