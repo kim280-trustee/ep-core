@@ -100,7 +100,6 @@ jobs:
             name="$(basename "$file")"
             version="${name%%_*}"
             keep=false
-            [[ "$name" == *learning* ]] && keep=true
             [[ "$name" == "20260918210000_core_organization_memberships.sql" ]] && keep=true
             for expected in "${keep_versions[@]}"; do
               [[ "$version" == "$expected" ]] && keep=true
