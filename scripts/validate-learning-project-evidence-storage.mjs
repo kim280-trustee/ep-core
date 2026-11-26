@@ -99,6 +99,8 @@ assert.match(runtimePage, /projectCleanupPaths\.length > 0[\s\S]*?Retry file cle
   "Failed post-save cleanup must remain visible and retryable");
 assert.match(runtimePage, /projectAttachments\.length \+ projectFiles\.length \+ selected\.length > 3/isu,
   "The three-file cap must include saved and newly selected draft evidence");
+assert.match(runtimePage, /saved\.attachments\.length <= 3[\s\S]*?file\.name\.length > 255[\s\S]*?Number\.isFinite\(file\.size\)[\s\S]*?file\.size > 15 \* 1024 \* 1024[\s\S]*?ALLOWED_PROJECT_FILE_TYPES\.has\(file\.type\)[\s\S]*?isOwnedProjectEvidencePath\(file\.path, query\.data\.assignment\.organizationId, id, content, user\.id\)/isu,
+  "Restored student draft evidence must enforce count, metadata, MIME, size and exact ownership path constraints");
 assert.match(teacherResponsesPage, /createSignedUrl\(file\.path, 3600\)/isu,
   "Teacher evidence access must use expiring signed URLs");
 assert.match(teacherResponsesPage, /isOwnedEvidencePath\(file\.path, expectedPathPrefix\)/isu,

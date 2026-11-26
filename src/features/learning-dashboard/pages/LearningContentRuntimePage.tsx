@@ -165,12 +165,28 @@ export default function LearningContentRuntimePage() {
         const saved = JSON.parse(responseQuery.data?.responseText ?? "{}") as { url?: unknown; reflection?: unknown; attachments?: unknown };
         setProjectUrl(typeof saved.url === "string" ? saved.url : "");
         setProjectReflection(typeof saved.reflection === "string" ? saved.reflection : "");
-        const attachments = Array.isArray(saved.attachments) ? saved.attachments.flatMap((item) => {
-          if (!item || typeof item !== "object") return [];
-          const file = item as Record<string, unknown>;
-          if (typeof file.path !== "string" || typeof file.name !== "string" || typeof file.size !== "number" || typeof file.type !== "string") return [];
-          return [{ path: file.path, name: file.name, size: file.size, type: file.type }];
-        }) : [];
+        const attachments = Array.isArray(saved.attachments) && saved.attachments.length <= 3
+          ? saved.attachments.flatMap((item) => {
+            if (!item || typeof item !== "object") return [];
+            const file = item as Record<string, unknown>;
+            if (
+              typeof file.path !== "string" ||
+              typeof file.name !== "string" ||
+              !file.name.trim() ||
+              file.name.length > 255 ||
+              typeof file.size !== "number" ||
+              !Number.isFinite(file.size) ||
+              file.size <= 0 ||
+              file.size > 15 * 1024 * 1024 ||
+              typeof file.type !== "string" ||
+              !ALLOWED_PROJECT_FILE_TYPES.has(file.type) ||
+              !query.data ||
+              !user?.id ||
+              !isOwnedProjectEvidencePath(file.path, query.data.assignment.organizationId, id, content, user.id)
+            ) return [];
+            return [{ path: file.path, name: file.name, size: file.size, type: file.type }];
+          })
+          : [];
         setProjectAttachments(attachments);
       } catch {
         setProjectUrl("");
