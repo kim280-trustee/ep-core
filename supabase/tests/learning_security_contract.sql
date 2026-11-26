@@ -177,8 +177,19 @@ begin
      or position('learning_class_memberships' in v_definition) = 0
      or position('membership_type' in v_definition) = 0
      or position('active' in v_definition) = 0
-     or position('submit_learning_attempt_internal' in v_definition) = 0 then
-    raise exception 'Assessment submission RPC lacks authenticated active-enrollment revalidation';
+     or position('submit_learning_attempt_auto_v1' in v_definition) = 0 then
+    raise exception 'Assessment submission RPC lacks authenticated active-enrollment revalidation or the protected evaluator call';
+  end if;
+
+  -- The automatic evaluator is the prior enrollment-guarded wrapper, retained
+  -- under this name when manual-review support wraps it.
+  select pg_get_functiondef('public.submit_learning_attempt_auto_v1(uuid)'::regprocedure)
+    into v_definition;
+  if position('submit_learning_attempt_internal' in v_definition) = 0
+     or position('learning_class_memberships' in v_definition) = 0
+     or position('membership_type' in v_definition) = 0
+     or position('active' in v_definition) = 0 then
+    raise exception 'Automatic assessment evaluator no longer delegates through the protected enrollment wrapper';
   end if;
 
   if has_function_privilege('authenticated', 'public.submit_learning_attempt_internal(uuid)', 'EXECUTE')
