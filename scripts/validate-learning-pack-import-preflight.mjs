@@ -10,10 +10,21 @@ const compiled = ts.transpileModule(source, {
 });
 assert.equal(compiled.diagnostics?.length ?? 0, 0, "Import validation helper must transpile cleanly.");
 const moduleUrl = "data:text/javascript;base64," + Buffer.from(compiled.outputText).toString("base64");
-const { normalizeLearningImportCode, findExistingImportCodeConflicts, formatExistingImportCodeConflict, planResumableLessonImport, selectNewImportQuestions, formatImportChunkFailure } = await import(moduleUrl);
+const { normalizeLearningImportCode, findExistingImportCodeConflicts, formatExistingImportCodeConflict, planResumableLessonImport, selectNewImportQuestions, formatImportChunkFailure, normalizeLearningObjectiveText, scoreLearningObjectiveText } = await import(moduleUrl);
 
 assert.equal(normalizeLearningImportCode(" ep sci/p1 001 "), "EP-SCI-P1-001");
 assert.equal(normalizeLearningImportCode("..."), "");
+
+assert.equal(normalizeLearningObjectiveText("อธิบายความสำคัญของศาสนา"), "อธิบายความสำคัญของศาสนา",
+  "Thai objective text must survive normalization instead of collapsing to an empty string.");
+assert.equal(normalizeLearningObjectiveText("ＡＢＣ  123"), "abc 123",
+  "Compatibility characters and repeated whitespace must normalize consistently.");
+assert.ok(scoreLearningObjectiveText("Explain the importance of community cooperation", "Explain the importance of community cooperation") > 0.99,
+  "Identical English objective descriptions must score as exact matches.");
+assert.ok(scoreLearningObjectiveText("อธิบายความสำคัญของศาสนา", "อธิบายความสำคัญของศาสนา") > 0.99,
+  "Identical Thai objective descriptions must score as exact matches.");
+assert.equal(scoreLearningObjectiveText("อธิบายความสำคัญของศาสนา", ""), 0,
+  "Empty or unmatchable descriptions must never produce a suggested objective.");
 assert.deepEqual(findExistingImportCodeConflicts({
   requestedContentCodes: ["ep-sci-p1-001", "ep-sci-p1-002"],
   requestedQuestionCodes: ["q-001", "q-002"],
