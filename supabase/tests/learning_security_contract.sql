@@ -348,15 +348,21 @@ begin
     into v_definition;
   if position('auth.uid()' in v_definition) = 0
      or position('learning_can_manage_academic_records' in v_definition) = 0
-     or position('learning_teacher_can_view_student' in v_definition) = 0
-     or position('learning_is_active_teacher(v_answer.organization_id)' in v_definition) > 0
      or position('attempt_status' in v_definition) = 0
      or position('evaluating' in v_definition) = 0
      or position('manual_reviewed' in v_definition) = 0
      or position('p_awarded_points < 0' in v_definition) = 0
      or position('p_awarded_points > v_answer.points' in v_definition) = 0
      or position('p_teacher_feedback' in v_definition) = 0 then
-    raise exception 'Manual grading RPC lacks authenticated teacher/manager, pending-attempt, one-time grading or score-bound checks';
+    raise exception 'Manual grading RPC lacks authenticated manager, pending-attempt, one-time grading or score-bound checks';
+  end if;
+
+  if position('learning_teacher_can_view_student(v_answer.organization_id, v_answer.student_user_id)' in v_definition) = 0 then
+    raise exception 'Manual grading RPC does not require the teacher to share the student''s active class';
+  end if;
+
+  if position('learning_is_active_teacher(v_answer.organization_id)' in v_definition) > 0 then
+    raise exception 'Manual grading RPC still permits organization-wide teacher grading';
   end if;
 
   if has_function_privilege('anon', 'public.grade_learning_attempt_answer(uuid,numeric,text)', 'EXECUTE')
