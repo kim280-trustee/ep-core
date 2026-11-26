@@ -373,6 +373,16 @@ begin
   end if;
 
 
+  -- Retried assessment attachment batches skip existing links and remain bounded.
+  select lower(pg_get_functiondef('public.add_learning_assessment_questions(uuid,jsonb)'::regprocedure))
+    into v_definition;
+  if position('jsonb_array_length(p_questions)>100' in regexp_replace(v_definition, '\\s+', '', 'g')) = 0
+     or position('for update' in v_definition) = 0
+     or position('where not exists' in v_definition) = 0
+     or position('count(distinct x.question_version_id)' in v_definition) = 0 then
+    raise exception 'Assessment attachment retries must skip already attached question versions';
+  end if;
+
   -- Question authoring must persist its complete academic/scoring bundle atomically.
   if to_regprocedure('public.create_learning_question_bundle(uuid,uuid,text,text,uuid,uuid,uuid,jsonb,jsonb,jsonb,jsonb,jsonb,uuid,text)') is null then
     raise exception 'Atomic question bundle RPC is missing';
