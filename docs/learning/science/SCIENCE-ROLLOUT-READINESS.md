@@ -443,7 +443,7 @@ The teacher import page now has an explicit content-language selector and stores
 
 ## Authenticated Science import execution tracker — 23 November 2026
 
-All 17 source packs are prepared and parser-validated. The authenticated import and acceptance pass MUST use a dedicated staging organization and isolated test class. Do not import into the live Khamkhen Kheo Chanupathum pilot or use real learner records as test fixtures. No approved staging organization, staging teacher account or isolated test class has been identified yet, so imports remain blocked pending that environment. Once staging access is provisioned, import each file under an authorized staging teacher account, verify preview counts and save as unpublished drafts. Do not publish during the import pass. The last recorded live-database verification found 0 Science lesson drafts and 0 Science question drafts; re-run the read-only verification before and after staging import.
+All 17 source packs are prepared and parser-validated. The owner has chosen to complete repository-side work without staging, so authenticated import and application acceptance are intentionally deferred; no staging organization, class or test account will be provisioned. Do not import into the live Khamkhen Kheo Chanupathum pilot or use real learner records as test fixtures. If a later release decision commissions authenticated acceptance, it must use a separately authorized isolated environment, import only unpublished drafts, and run the read-only verification before and after import. The last recorded live-database verification found 0 Science lesson drafts and 0 Science question drafts; those zero counts are the pre-import baseline, not evidence of a completed import.
 
 | # | Import pack | Curriculum | Subject | Language | Lessons | Questions/tasks | Status |
 |---:|---|---|---|---|---:|---:|---|
@@ -464,7 +464,7 @@ All 17 source packs are prepared and parser-validated. The authenticated import 
 | 15 | `EARTH-SPACE-M4-IMPORT.md` | TH-SCI-M1-M6 | EARTH_SPACE | en | 12 | 36 | Pending |
 | 16 | `EARTH-SPACE-M5-IMPORT.md` | TH-SCI-M1-M6 | EARTH_SPACE | en | 13 | 39 | Pending |
 | 17 | `EARTH-SPACE-M6-IMPORT.md` | TH-SCI-M1-M6 | EARTH_SPACE | en | 19 | 57 | Pending |
-| | **Total** | | | | **715** | **2,145** | **Pending** |
+| | **Total** | | | | **715** | **2,145** | **Deferred — no staging** |
 
 After all 17 imports, verify 715 lesson drafts, 2,145 question drafts, 715 objective links, protected answer-key rows, correct `language_code` values and zero duplicate import codes. Then complete teacher review and student/teacher acceptance testing before any publication.
 
