@@ -29,20 +29,16 @@ begin
 
   begin
     perform public.add_learning_assessment_questions(gen_random_uuid(), '[]'::jsonb);
-    raise exception using errcode = 'PZ001', message = 'Assessment question attachment accepted without an authenticated identity';
-  exception when sqlstate 'P0001' then
-    if sqlerrm <> 'Authentication is required' then
-      raise;
-    end if;
+    raise exception using errcode = 'PZ001', message = 'Anonymous caller executed assessment question attachment';
+  exception when insufficient_privilege then
+    null;
   end;
 
   begin
     perform public.publish_learning_assessment(gen_random_uuid());
-    raise exception using errcode = 'PZ001', message = 'Assessment publication accepted without an authenticated identity';
-  exception when sqlstate 'P0001' then
-    if sqlerrm <> 'Authentication is required' then
-      raise;
-    end if;
+    raise exception using errcode = 'PZ001', message = 'Anonymous caller executed assessment publication';
+  exception when insufficient_privilege then
+    null;
   end;
 
   begin
