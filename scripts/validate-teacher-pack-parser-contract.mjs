@@ -11,7 +11,27 @@ const compiled = ts.transpileModule(source, {
 });
 assert.equal(compiled.diagnostics?.length ?? 0, 0, "Teacher-pack parser must transpile cleanly.");
 const moduleUrl = "data:text/javascript;base64," + Buffer.from(compiled.outputText).toString("base64");
-const { parseTeacherPackMarkdown } = await import(moduleUrl);
+const { parseTeacherPackMarkdown, extractTeacherPackGradeCode, extractTeacherPackGradeCodes } = await import(moduleUrl);
+
+const gradeCodeCases = [
+  ["SCI-M1-01", ["M1"]],
+  ["MATH-P2-04", ["P2"]],
+  ["SO1.1-P4-01", ["P4"]],
+  ["HPE-M3-02", ["M3"]],
+  ["ARTS-P6-03", ["P6"]],
+  ["THAI-P3-05", ["P3"]],
+  ["CAREER-M2-07", ["M2"]],
+  ["FL-M4-02", ["M4"]],
+  ["SCI-M46-01", ["M4", "M5", "M6"]],
+];
+for (const [code, expected] of gradeCodeCases) {
+  assert.deepEqual(extractTeacherPackGradeCodes(code), expected, `Grade resolution failed for ${code}`);
+  if (expected.length === 1) assert.equal(extractTeacherPackGradeCode(code), expected[0]);
+}
+assert.equal(extractTeacherPackGradeCode("SCI-M46-01"), null,
+  "A shared M4-M6 code must not be collapsed to a single grade.");
+assert.deepEqual(extractTeacherPackGradeCodes("unknown-objective"), [],
+  "Unrecognized objective codes must not be assigned a guessed grade.");
 
 function packWithQuestionNumbers(numbers) {
   const questions = numbers.map((number) => `${number}. Question ${number}? **Answer:** Expected answer ${number}.`).join("\n");
