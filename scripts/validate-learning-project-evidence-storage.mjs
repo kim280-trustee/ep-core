@@ -85,6 +85,8 @@ assert.match(runtimePage, /uploadedPaths\.length[\s\S]*?\.remove\(uploadedPaths\
   "Partially uploaded evidence must be removed when response persistence fails");
 assert.match(runtimePage, /\.upload\(objectPath, file, \{ contentType, upsert: false \}\)/isu,
   "Evidence objects must be uploaded without overwriting an existing object");
+assert.match(runtimePage, /attachments\.push\(\{ path: objectPath, name: file\.name, size: file\.size, type: contentType \}\)/isu,
+  "Persisted attachment metadata must use the normalized MIME type");
 assert.match(runtimePage, /setProjectFiles\(selected\)/isu,
   "The selected evidence files must be retained for the next save or submit");
 assert.match(teacherResponsesPage, /createSignedUrl\(file\.path, 3600\)/isu,
