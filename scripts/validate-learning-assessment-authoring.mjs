@@ -12,6 +12,14 @@ assert.ok(repository.includes('rpc("add_learning_assessment_questions"'),"Reposi
 assert.ok(repository.includes('rpc("publish_learning_assessment"'),"Repository must call protected publication RPC");
 assert.ok(service.includes("addAssessmentQuestions"),"Service must expose batch attachment");
 assert.ok(page.includes("learningAssessmentService.addAssessmentQuestions("),"Builder must attach all selected questions atomically");
+assert.ok(repository.includes("listPublishedQuestionVersionsForQuestions"),"Repository must batch published question-version lookup");
+assert.ok(repository.includes("listQuestionObjectivesForVersions"),"Repository must batch question-objective lookup");
+assert.ok(service.includes("listPublishedQuestionVersionsForQuestions"),"Service must expose batched version lookup");
+assert.ok(service.includes("listQuestionObjectivesForVersions"),"Service must expose batched objective lookup");
+assert.ok(page.includes("learningAssessmentService.listPublishedQuestionVersionsForQuestions("),"Builder must load published versions in batches");
+assert.ok(page.includes("learningAssessmentService.listQuestionObjectivesForVersions("),"Builder must load objective mappings in batches");
+assert.ok(!page.includes("eligible.map(async (question) =>"),"Builder must not perform per-question version/objective requests");
+assert.ok(page.includes("version.curriculumId !== selectedClass.classGroup.curriculumId"),"Builder must hide questions outside the selected curriculum/grade/subject scope");
 assert.ok(!page.includes("for (const question of pendingQuestionOptions)"),"Builder must not attach questions individually");
 assert.ok(security.includes("add_learning_assessment_questions(uuid,jsonb)"),"Security contract must inspect batch attachment");
 assert.ok(security.includes("publish_learning_assessment(uuid)"),"Security contract must inspect publication");

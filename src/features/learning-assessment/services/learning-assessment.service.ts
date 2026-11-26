@@ -19,11 +19,17 @@ export const learningAssessmentService = {
   listQuestionVersions: (id: string) =>
     learningAssessmentRepository.listQuestionVersions(id),
 
+  listPublishedQuestionVersionsForQuestions: (ids: string[]) =>
+    learningAssessmentRepository.listPublishedQuestionVersionsForQuestions(ids),
+
   getQuestionVersion: (id: string) =>
     learningAssessmentRepository.getQuestionVersion(id),
 
   listQuestionObjectives: (id: string) =>
     learningAssessmentRepository.listQuestionObjectives(id),
+
+  listQuestionObjectivesForVersions: (ids: string[]) =>
+    learningAssessmentRepository.listQuestionObjectivesForVersions(ids),
 
   saveQuestionEvaluationKey: (
     input: Parameters<typeof learningAssessmentRepository.saveQuestionEvaluationKey>[0],

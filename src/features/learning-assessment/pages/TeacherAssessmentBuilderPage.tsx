@@ -74,33 +74,49 @@ export default function TeacherAssessmentBuilderPage() {
         selectedClass.classGroup.curriculumId,
         selectedClass.classGroup.gradeLevelId,
       );
-      const alignedObjectiveIds = new Set(
-        objectives.filter((objective) => alignments.some((alignment) => alignment.objectiveId === objective.id)).map((objective) => objective.id),
-      );
-
-      const questions = await learningAssessmentService.listQuestions(organizationId);
-      const eligible = questions.filter(
+      const alignedObjectiveIds = new Set(alignments.map((alignment) => alignment.objectiveId));
+      const subjectObjectiveIds = new Set(objectives.map((objective) => objective.id));
+      const eligible = (await learningAssessmentService.listQuestions(organizationId)).filter(
         (question) =>
           question.status === "published" &&
           (question.questionType === "single_choice" || question.questionType === "true_false" || question.questionType === "short_answer"),
       );
-      const options = await Promise.all(
-        eligible.map(async (question) => {
-          const versions = await learningAssessmentService.listQuestionVersions(question.id);
-          const version = versions.find((candidate) => candidate.publishedAt !== null);
-          if (!version) return null;
-          const mappings = await learningAssessmentService.listQuestionObjectives(version.id);
-          if (!mappings.length || mappings.some((mapping) => !alignedObjectiveIds.has(mapping.objectiveId))) return null;
-          return {
-            id: question.id,
-            code: question.code,
-            type: question.questionType as "single_choice" | "true_false" | "short_answer",
-            prompt: typeof version.prompt.text === "string" ? version.prompt.text : question.code,
-            versionId: version.id,
-          } satisfies PublishedQuestionOption;
-        }),
-      );
-      return options.filter((option): option is PublishedQuestionOption => option !== null);
+      if (!eligible.length) return [];
+
+      // Fetch all published versions and objective mappings in bounded batches,
+      // rather than issuing two additional requests for every question.
+      const versions = await learningAssessmentService.listPublishedQuestionVersionsForQuestions(eligible.map((question) => question.id));
+      const latestVersionByQuestion = new Map<string, (typeof versions)[number]>();
+      for (const version of versions) {
+        if (!latestVersionByQuestion.has(version.questionId)) latestVersionByQuestion.set(version.questionId, version);
+      }
+      const latestVersions = [...latestVersionByQuestion.values()];
+      const mappings = await learningAssessmentService.listQuestionObjectivesForVersions(latestVersions.map((version) => version.id));
+      const objectiveIdsByVersion = new Map<string, string[]>();
+      for (const mapping of mappings) {
+        const objectiveIds = objectiveIdsByVersion.get(mapping.questionVersionId) ?? [];
+        objectiveIds.push(mapping.objectiveId);
+        objectiveIdsByVersion.set(mapping.questionVersionId, objectiveIds);
+      }
+
+      return eligible.flatMap((question) => {
+        const version = latestVersionByQuestion.get(question.id);
+        if (
+          !version ||
+          version.curriculumId !== selectedClass.classGroup.curriculumId ||
+          version.gradeLevelId !== selectedClass.classGroup.gradeLevelId ||
+          version.subjectId !== selectedSubjectId
+        ) return [];
+        const objectiveIds = objectiveIdsByVersion.get(version.id) ?? [];
+        if (!objectiveIds.length || objectiveIds.some((id) => !subjectObjectiveIds.has(id) || !alignedObjectiveIds.has(id))) return [];
+        return [{
+          id: question.id,
+          code: question.code,
+          type: question.questionType as "single_choice" | "true_false" | "short_answer",
+          prompt: typeof version.prompt.text === "string" ? version.prompt.text : question.code,
+          versionId: version.id,
+        }];
+      });
     },
     enabled: Boolean(organizationId && selectedClass && selectedSubjectId),
   });
