@@ -28,6 +28,24 @@ begin
   end;
 
   begin
+    perform public.add_learning_assessment_questions(gen_random_uuid(), '[]'::jsonb);
+    raise exception using errcode = 'PZ001', message = 'Assessment question attachment accepted without an authenticated identity';
+  exception when sqlstate 'P0001' then
+    if sqlerrm <> 'Authentication is required' then
+      raise;
+    end if;
+  end;
+
+  begin
+    perform public.publish_learning_assessment(gen_random_uuid());
+    raise exception using errcode = 'PZ001', message = 'Assessment publication accepted without an authenticated identity';
+  exception when sqlstate 'P0001' then
+    if sqlerrm <> 'Authentication is required' then
+      raise;
+    end if;
+  end;
+
+  begin
     perform public.accept_learning_parent_invitation(gen_random_uuid());
     raise exception using errcode = 'PZ001', message = 'Anonymous parent invitation acceptance unexpectedly executed';
   exception when insufficient_privilege then
@@ -37,6 +55,20 @@ begin
   begin
     perform public.submit_learning_attempt_internal(gen_random_uuid());
     raise exception using errcode = 'PZ001', message = 'Anonymous caller executed internal assessment evaluator';
+  exception when insufficient_privilege then
+    null;
+  end;
+
+  begin
+    perform public.add_learning_assessment_questions(gen_random_uuid(), '[]'::jsonb);
+    raise exception using errcode = 'PZ001', message = 'Anonymous caller executed assessment question attachment';
+  exception when insufficient_privilege then
+    null;
+  end;
+
+  begin
+    perform public.publish_learning_assessment(gen_random_uuid());
+    raise exception using errcode = 'PZ001', message = 'Anonymous caller executed assessment publication';
   exception when insufficient_privilege then
     null;
   end;

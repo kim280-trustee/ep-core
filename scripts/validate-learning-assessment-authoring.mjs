@@ -15,4 +15,6 @@ assert.ok(page.includes("learningAssessmentService.addAssessmentQuestions("),"Bu
 assert.ok(!page.includes("for (const question of pendingQuestionOptions)"),"Builder must not attach questions individually");
 assert.ok(security.includes("add_learning_assessment_questions(uuid,jsonb)"),"Security contract must inspect batch attachment");
 assert.ok(security.includes("publish_learning_assessment(uuid)"),"Security contract must inspect publication");
+const runtime=read("../supabase/tests/learning_rpc_runtime_authorization.sql");
+for(const token of ["add_learning_assessment_questions(gen_random_uuid(), '[]'::jsonb)","publish_learning_assessment(gen_random_uuid())","Assessment question attachment accepted without an authenticated identity","Assessment publication accepted without an authenticated identity"]) assert.ok(runtime.includes(token),`Runtime authorization suite is missing ${token}`);
 console.log("Atomic assessment attachment and publication contract passed.");

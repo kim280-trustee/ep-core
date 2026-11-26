@@ -359,7 +359,7 @@ begin
   end if;
 
   v_definition_compact := regexp_replace(v_definition, '[[:space:]]+', '', 'g');
-  if position('learning_teacher_can_view_student(v_answer.organization_id,v_answer.student_user_id)' in v_definition_compact) = 0 then
+  if position('public.learning_teacher_can_view_student(v_answer.organization_id,v_answer.student_user_id)' in v_definition_compact) = 0 then
     raise exception 'Manual grading RPC does not require the teacher to share the student''s active class';
   end if;
 
