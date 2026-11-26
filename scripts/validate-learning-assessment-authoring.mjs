@@ -7,6 +7,9 @@ const repository=read("../src/features/learning-assessment/repositories/learning
 const service=read("../src/features/learning-assessment/services/learning-assessment.service.ts");
 const page=read("../src/features/learning-assessment/pages/TeacherAssessmentBuilderPage.tsx");
 const security=read("../supabase/tests/learning_security_contract.sql");
+const securityWorkflow=read("../.github/workflows/learning-security-migration-validation.yml");
+const migrationAllowList=securityWorkflow.split("# Keep the explicit six-branch security migration set")[1]?.split("esac")[0] ?? "";
+for(const version of ["20261126140000","20261126150000","20261126160000","20261126170000"]) assert.ok(migrationAllowList.includes(version),`Security replay allow-list is missing assessment migration ${version}`);
 for(const token of ["security definer","set search_path = ''","auth.uid()","learning_current_user_id()","learning_can_manage_academic_records","learning_is_active_teacher","for update","jsonb_to_recordset","published_at","curriculum_id","grade_level_id","subject_id","revoke all","grant execute on function"]) assert.ok(migration.toLowerCase().includes(token.toLowerCase()),`Migration is missing ${token}`);
 assert.ok(repository.includes('rpc("add_learning_assessment_questions"'),"Repository must call batch attachment RPC");
 assert.ok(repository.includes('rpc("publish_learning_assessment"'),"Repository must call protected publication RPC");
