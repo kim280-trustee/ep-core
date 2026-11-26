@@ -319,3 +319,45 @@ Run: https://github.com/kim280-trustee/ep-core/actions/runs/45339845892
 **Social Studies is not ready to be marked complete or released for classroom use.** The technical gate is closed. The task-level review has identified concrete quality defects and therefore remains open pending remediation and qualified academic moderation. The M3–M6 individual 2021 labels remain to be transcribed and reconciled. No authorised non-production staging tenant, import permission, teacher acceptance record or independent signed academic approval was available in this repository review. No live KKC pilot data or production content was changed.
 
 The next safe implementation batch must improve the task packs with verified stimuli and indicator-specific marking guidance, add traceable per-task review status, and only then request independent subject-matter sign-off and authorised staging acceptance.
+
+## 4H. Six-workstream closeout tracker and task-level register — 26 November 2026
+
+### Workstream 1 — Technical validation: CLOSED
+
+The latest subject-branch commit before this closeout, `bd11d30ee415edef1f89b6f89619bb6c75d5dcb3`, completed GitHub Actions run [45575248732](https://github.com/kim280-trustee/ep-core/actions/runs/45575248732) successfully. All eight workflow steps passed, including the importer-backed Social Studies validator, dependency security audit, repository-wide lint, and TypeScript/production build. The validator's structural result remains 418 unique indicators and 1,254 answer-keyed tasks. This closes technical execution only; it does not certify academic accuracy.
+
+### Workstream 2 — Task-level moderation register: REGISTER CREATED; MODERATION OPEN
+
+Created `SOCIAL-STUDIES-TASK-LEVEL-MODERATION-REGISTER.csv` with one row per task: **1,254 rows across 418 indicators**, including the exact task prompt and answer guidance, grade scope, standard, priority/pathway values already present in the packs, and separate pending fields for source/content accuracy, age fit, marking clarity and independent moderation.
+
+The register deliberately records P1–P3 source cards as specifications whose traceable source records are not yet verified. P4–M6 rows identify the generic or teacher-supplied stimulus gap. No task is falsely marked academically approved. The CSV is a review-control artifact, not evidence that the tasks have been moderated.
+
+### Workstream 3 — P4–M6 specificity remediation: OPEN
+
+The 942 P4–M6 tasks are now individually indexed in the register. The earlier structural screen found only 11–12 normalised prompt forms per pack, with repeated generic stimulus references and circular answer guidance. The register preserves the current prompts and answers so each can be reviewed and replaced without losing the baseline. Actual remediation still requires named, traceable source/case/map/data or a complete teacher-created stimulus specification, plus indicator-specific answer criteria. No unsupported factual content has been generated to make this appear complete.
+
+### Workstream 4 — M3 and M4–M6 2021 priority classification: SOURCE LOCATED; ROW RECONCILIATION OPEN
+
+The controlling 2021 OBEC PDF is now directly located and opened: https://academic.obec.go.th/images/official/1622514876_d_1.pdf. The official summary reports M3 **28 Must-Know / 22 Should-Know** and M4–M6 **31 Must-Know / 30 Should-Know**, within the 418-indicator total of 194/224. The detailed tables expose the indicator code, Thai indicator text and separate Must-Know / Should-Know columns. The exact indicator rows still need transcription and exact-text reconciliation against the 50 M3 and 61 shared M4–M6 catalogue indicators before any labels can be written. The 61 shared values must then be aligned to 183 grade rows, without duplicating the 61 unique objectives. No database change is authorised by this audit.
+
+### Workstream 5 — Independent academic/source moderation: OPEN
+
+All 1,254 tasks are now traceable in the register, but no qualified independent reviewer has signed off the complete set. Source verification is also outstanding, including tradition-specific sources and inclusion checks for SO1, official legal/civic references for SO2, sourced economic data for SO3, historical records for SO4, and verified maps/data for SO5. P1–P3's 312 tasks remain subject to source population and independent review as well. Religious assessment must not score personal belief, identity, worship or participation.
+
+### Workstream 6 — Staging import, read-only reconciliation and teacher acceptance: BLOCKED ON AUTHORISATION
+
+The repository review has not established an authorised non-production staging tenant, an approved import permission, or a named teacher acceptance record. Live Social Studies objectives currently have no linked teacher content items or question versions in the previously recorded read-only check. No content has been imported into the live KKC pilot and no production data has been changed. Staging must remain blocked until the school/project owner supplies the approved non-production target and permission, after which import reconciliation and teacher acceptance can be recorded.
+
+### Current closeout decision
+
+| Workstream | Status |
+|---|---|
+| 1. Technical validation | CLOSED — latest workflow green |
+| 2. Task-level register | CLOSED — 1,254 rows created; reviews remain pending |
+| 3. P4–M6 task remediation | OPEN — 942 tasks |
+| 4. M3/M4–M6 priority labels | OPEN — official source located; exact rows not yet reconciled |
+| 5. Independent moderation/source verification | OPEN — reviewer and source checks outstanding |
+| 6. Staging/import/teacher acceptance | BLOCKED — authorisation and acceptance evidence unavailable |
+
+**Overall:** Social Studies remains **IN PROGRESS — NOT APPROVED FOR RELEASE**. The technical validation and moderation-register creation are closed as work products. Academic remediation, official priority-row reconciliation, independent sign-off and authorised staging acceptance remain outstanding. The task register is at `docs/learning/social-studies/SOCIAL-STUDIES-TASK-LEVEL-MODERATION-REGISTER.csv`.
+
