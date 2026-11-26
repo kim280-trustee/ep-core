@@ -32,14 +32,7 @@ begin
       'CAREER',
       'FOREIGN-LANGUAGES'
     )
-    and alignment.required = false
-    and (
-      alignment.indicator_classification in ('must_know','should_know')
-      or (
-        subject.code = 'SOCIAL-STUDIES'
-        and alignment.pathway_classification in ('between_learning','terminal')
-      )
-    );
+    and alignment.required = false;
 
   get diagnostics rows_updated = row_count;
   if rows_updated not in (0, 839) then
