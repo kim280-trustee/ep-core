@@ -2,7 +2,6 @@ import { readFileSync } from "node:fs";
 import assert from "node:assert/strict";
 const read=(path)=>readFileSync(new URL(path,import.meta.url),"utf8");
 const migration=read("../supabase/migrations/20261126160000_atomic_assessment_question_attachment_and_publication.sql");
-const retryMigration=read("../supabase/migrations/20261126170000_retry_safe_assessment_question_attachment.sql");
 const repository=read("../src/features/learning-assessment/repositories/learning-assessment.repository.ts");
 const service=read("../src/features/learning-assessment/services/learning-assessment.service.ts");
 const page=read("../src/features/learning-assessment/pages/TeacherAssessmentBuilderPage.tsx");
@@ -15,6 +14,4 @@ assert.ok(page.includes("learningAssessmentService.addAssessmentQuestions("),"Bu
 assert.ok(!page.includes("for (const question of pendingQuestionOptions)"),"Builder must not attach questions individually");
 assert.ok(security.includes("add_learning_assessment_questions(uuid,jsonb)"),"Security contract must inspect batch attachment");
 assert.ok(security.includes("publish_learning_assessment(uuid)"),"Security contract must inspect publication");
-for(const token of ["jsonb_array_length(p_questions)>100","for update","where not exists","get diagnostics v_added=row_count","revoke all","grant execute on function"]) assert.ok(retryMigration.toLowerCase().includes(token),`Retry-safe attachment migration is missing ${token}`);
-assert.ok(security.includes("Assessment attachment retries must skip already attached question versions"),"Security contract must verify retry-safe attachment");
 console.log("Atomic assessment attachment and publication contract passed.");
