@@ -338,6 +338,31 @@ begin
     raise exception 'Substitute assignment must enforce manager, class, date and timetable-conflict checks';
   end if;
 
+  -- Manual assessment grading must remain a server-authorized, bounded,
+  -- single-use operation. The UI is not an authorization boundary.
+  if to_regprocedure('public.grade_learning_attempt_answer(uuid,numeric,text)') is null then
+    raise exception 'Manual assessment grading RPC is missing';
+  end if;
+
+  select lower(pg_get_functiondef('public.grade_learning_attempt_answer(uuid,numeric,text)'::regprocedure))
+    into v_definition;
+  if position('auth.uid()' in v_definition) = 0
+     or position('learning_can_manage_academic_records' in v_definition) = 0
+     or position('learning_is_active_teacher' in v_definition) = 0
+     or position('attempt_status' in v_definition) = 0
+     or position('evaluating' in v_definition) = 0
+     or position('manual_reviewed' in v_definition) = 0
+     or position('p_awarded_points < 0' in v_definition) = 0
+     or position('p_awarded_points > v_answer.points' in v_definition) = 0
+     or position('p_teacher_feedback' in v_definition) = 0 then
+    raise exception 'Manual grading RPC lacks authenticated teacher/manager, pending-attempt, one-time grading or score-bound checks';
+  end if;
+
+  if has_function_privilege('anon', 'public.grade_learning_attempt_answer(uuid,numeric,text)', 'EXECUTE')
+     or not has_function_privilege('authenticated', 'public.grade_learning_attempt_answer(uuid,numeric,text)', 'EXECUTE') then
+    raise exception 'Manual grading RPC must be executable only by authenticated callers';
+  end if;
+
   -- All inspected SECURITY DEFINER authorization helpers must pin search_path.
   if exists (
     select 1
@@ -357,7 +382,8 @@ begin
         'create_learning_teacher_leave_request',
         'review_learning_teacher_leave_request',
         'assign_learning_teacher_substitute',
-        'cancel_learning_teacher_substitute_coverage'
+        'cancel_learning_teacher_substitute_coverage',
+        'grade_learning_attempt_answer'
       )
       and not coalesce(p.proconfig, array[]::text[]) @> array['search_path=""']
   ) then
