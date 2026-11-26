@@ -20,7 +20,7 @@ export function getStudentVisibleContentSections(body: Record<string, unknown>):
     if (!section || typeof section !== "object" || Array.isArray(section)) return [];
     const record = section as Record<string, unknown>;
     const title = typeof record.title === "string"
-      ? record.title.normalize("NFKC").toLocaleLowerCase().replace(/[\\s_-]+/gu, " ").trim()
+      ? record.title.normalize("NFKC").toLocaleLowerCase().replace(/[\s_-]+/gu, " ").trim()
       : "";
     const audience = typeof record.audience === "string" ? record.audience.toLocaleLowerCase() : "";
     const visibility = typeof record.visibility === "string" ? record.visibility.toLocaleLowerCase() : "";
