@@ -15,8 +15,9 @@ permissions:
   contents: read
 
 concurrency:
-  group: learning-security-migrations-${{ github.ref }}
-  cancel-in-progress: true
+  # All refs share one isolated Supabase port range; serialize security replays.
+  group: learning-security-migrations
+  cancel-in-progress: false
 
 jobs:
   migration-validation:
@@ -188,7 +189,8 @@ jobs:
               '20261031060000',
               '20261031061000',
               '20261031062000',
-              '20261031063000'
+              '20261031063000',
+              '20261126170000'
             ];
             missing text[];
           BEGIN

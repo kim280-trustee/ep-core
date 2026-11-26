@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import assert from "node:assert/strict";
 const read=(path)=>readFileSync(new URL(path,import.meta.url),"utf8");
 const migration=read("../supabase/migrations/20261126160000_atomic_assessment_question_attachment_and_publication.sql");
+const retryMigration=read("../supabase/migrations/20261126170000_learning_retry_safe_assessment_question_attachment.sql");
 const repository=read("../src/features/learning-assessment/repositories/learning-assessment.repository.ts");
 const service=read("../src/features/learning-assessment/services/learning-assessment.service.ts");
 const page=read("../src/features/learning-assessment/pages/TeacherAssessmentBuilderPage.tsx");
