@@ -15,7 +15,7 @@ const { normalizeLearningImportCode, findExistingImportCodeConflicts, formatExis
 assert.equal(normalizeLearningImportCode(" ep sci/p1 001 "), "EP-SCI-P1-001");
 assert.equal(normalizeLearningImportCode("..."), "");
 
-assert.equal(normalizeLearningObjectiveText("อธิบายความสำคัญของศาสนา"), "อธิบายความสำคัญของศาสนา",
+assert.equal(normalizeLearningObjectiveText("อธิบายความสำคัญของศาสนา"), "อธิบายความสําคัญของศาสนา",
   "Thai objective text must survive normalization instead of collapsing to an empty string.");
 assert.equal(normalizeLearningObjectiveText("ＡＢＣ  123"), "abc 123",
   "Compatibility characters and repeated whitespace must normalize consistently.");
