@@ -39,19 +39,19 @@ const visible = getStudentVisibleContentSections({
 
 assert.deepEqual(
   visible.map((section) => section.title),
-  ["Learning outcome", "Student safety instructions", "Practice questions", "Coding task", "Project", "Visible task"],
+  ["Learning outcome", "Visible task", "Student safety instructions", "Practice questions", "Coding task", "Project"],
   "Only student-facing content sections should remain.",
 );
 const serialized = JSON.stringify(visible).toLowerCase();
 for (const privateText of ["private answer key", "private staff notes", "private safety notes", "private answer key title", "private rubric", "private assessment notes", "private visibility notes", "private teacher flag", "private punctuated key", "private punctuated notes", "marking guide", "teacher notes", "secret"]) {
   assert.equal(serialized.includes(privateText), false, "Student content leaked teacher-only material: " + privateText);
 }
-assert.equal(visible[1].body, "Keep a safe distance from the equipment.", "Student-facing safety instructions must remain visible.");
-assert.deepEqual(Object.keys(visible[5]).sort(), ["body", "instructions", "requirements", "starterCode", "title", "type"],
+assert.equal(visible[2].body, "Keep a safe distance from the equipment.", "Student-facing safety instructions must remain visible.");
+assert.deepEqual(Object.keys(visible[1]).sort(), ["body", "instructions", "requirements", "starterCode", "title", "type"],
   "Student-visible sections must use an allow-listed output shape without arbitrary source metadata.");
-assert.equal(visible[3].starterCode, "for (;;) {}", "Coding activity starter code must be preserved.");
-assert.equal(visible[3].instructions, "Use a for loop.", "Coding activity instructions must be preserved.");
-assert.equal(visible[4].requirements, "Include labels.", "Project requirements must be preserved.");
+assert.equal(visible[4].starterCode, "for (;;) {}", "Coding activity starter code must be preserved.");
+assert.equal(visible[4].instructions, "Use a for loop.", "Coding activity instructions must be preserved.");
+assert.equal(visible[5].requirements, "Include labels.", "Project requirements must be preserved.");
 assert.deepEqual(getStudentVisibleContentSections({ sections: "not-an-array" }), [], "Malformed section payloads must safely return no sections.");
 
 const runtime = await readFile(resolve(process.cwd(), "src/features/learning-dashboard/pages/LearningContentRuntimePage.tsx"), "utf8");
