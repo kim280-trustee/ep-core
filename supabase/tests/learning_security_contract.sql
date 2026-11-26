@@ -358,7 +358,7 @@ begin
     raise exception 'Manual grading RPC lacks authenticated manager, pending-attempt, one-time grading or score-bound checks';
   end if;
 
-  v_definition_compact := regexp_replace(v_definition, '\\s+', '', 'g');
+  v_definition_compact := regexp_replace(v_definition, '[[:space:]]+', '', 'g');
   if position('learning_teacher_can_view_student(v_answer.organization_id,v_answer.student_user_id)' in v_definition_compact) = 0 then
     raise exception 'Manual grading RPC does not require the teacher to share the student''s active class';
   end if;
@@ -376,7 +376,7 @@ begin
   -- Retried assessment attachment batches skip existing links and remain bounded.
   select lower(pg_get_functiondef('public.add_learning_assessment_questions(uuid,jsonb)'::regprocedure))
     into v_definition;
-  if position('jsonb_array_length(p_questions)>100' in regexp_replace(v_definition, '\\s+', '', 'g')) = 0
+  if position('jsonb_array_length(p_questions)>100' in regexp_replace(v_definition, '[[:space:]]+', '', 'g')) = 0
      or position('for update' in v_definition) = 0
      or position('where not exists' in v_definition) = 0
      or position('count(distinct x.question_version_id)' in v_definition) = 0 then
