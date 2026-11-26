@@ -2,8 +2,8 @@
 
 **Repository:** `kim280-trustee/ep-core`  
 **Branch:** `paul/subject-rollout`  
-**Audit date:** 21 November 2026  
-**Implementation status:** All eight B.E. 2551 (2008), revised B.E. 2560 (2017), learning-area catalogues are complete. The separate B.E. 2568 (2025) P1–P3 competency framework is now seeded as a draft. Consolidated authenticated application testing is intentionally deferred until curriculum source work is complete.
+**Audit date:** 26 November 2026  
+**Implementation status:** Repository-side curriculum source packs, importer hardening and automated verification are complete on `paul/subject-rollout`. The separate B.E. 2568 (2025) P1–P3 competency framework remains a draft. Authenticated application acceptance is intentionally deferred; staging is not being provisioned.
 
 ## 1. Eight learning areas — 2008/2017 national core
 
