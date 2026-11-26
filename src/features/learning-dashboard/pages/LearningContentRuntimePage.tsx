@@ -30,6 +30,13 @@ const PROJECT_FILE_MIME_BY_EXTENSION: Record<string, string> = {
   xlsx: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
 };
 
+function isOwnedProjectEvidencePath(path: string, organizationId: string, assignmentId: string, contentItemId: string, studentUserId: string) {
+  const prefix = `${organizationId}/${assignmentId}/${contentItemId}/${studentUserId}/`;
+  if (!path.startsWith(prefix)) return false;
+  const filename = path.slice(prefix.length);
+  return Boolean(filename) && !filename.includes("/") && !filename.includes(String.fromCharCode(92)) && filename !== "." && filename !== "..";
+}
+
 function getProjectEvidenceMimeType(file: File): string | null {
   const browserMimeType = file.type.trim().toLocaleLowerCase();
   if (browserMimeType) return ALLOWED_PROJECT_FILE_TYPES.has(browserMimeType) ? browserMimeType : null;
@@ -237,7 +244,7 @@ export default function LearningContentRuntimePage() {
               ? previous.attachments.flatMap((item) => item && typeof item === "object" && "path" in item && typeof item.path === "string" ? [item.path] : [])
               : [];
             const retainedPaths = new Set(attachments.map((file) => file.path));
-            const obsoletePaths = previousPaths.filter((path) => !retainedPaths.has(path));
+            const obsoletePaths = previousPaths.filter((path) => isOwnedProjectEvidencePath(path, query.data.assignment.organizationId, id, content, user.id) && !retainedPaths.has(path));
             if (obsoletePaths.length) {
               const { error: cleanupError } = await supabase.storage.from("learning-project-submissions").remove(obsoletePaths);
               if (cleanupError) setProjectCleanupPaths(obsoletePaths);
@@ -464,7 +471,7 @@ export default function LearningContentRuntimePage() {
             </>}
           </div>
           {responseMutation.isError && <p className="mt-3 text-sm text-red-600">{mutationErrorMessage(responseMutation.error, "Could not save your response.")}</p>}
-          {projectCleanupPaths.length > 0 && <div role="status" className="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900"><p>Your draft was saved, but {projectCleanupPaths.length} removed evidence file(s) could not yet be deleted from private storage.</p><button type="button" className="mt-2 font-semibold underline" onClick={async () => { const { error } = await supabase.storage.from("learning-project-submissions").remove(projectCleanupPaths); if (!error) setProjectCleanupPaths([]); }}>Retry file cleanup</button></div>}
+          {projectCleanupPaths.length > 0 && <div role="status" className="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900"><p>Your draft was saved, but {projectCleanupPaths.length} removed evidence file(s) could not yet be deleted from private storage.</p><button type="button" className="mt-2 font-semibold underline" onClick={async () => { const safePaths = projectCleanupPaths.filter((path) => isOwnedProjectEvidencePath(path, query.data.assignment.organizationId, id, content, user.id)); if (!safePaths.length) { setProjectCleanupPaths([]); return; } const { error } = await supabase.storage.from("learning-project-submissions").remove(safePaths); if (!error) setProjectCleanupPaths([]); }}>Retry file cleanup</button></div>}
         </section>
       ) : (
         <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">

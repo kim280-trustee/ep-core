@@ -8,6 +8,19 @@ import { learningContentService } from "@/features/learning-content";
 
 type GradeDraft = { score: string; maxScore: string; feedback: string };
 
+const PROJECT_EVIDENCE_MIME_TYPES = new Set([
+  "application/pdf", "image/png", "image/jpeg", "image/webp", "text/plain", "application/zip",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+]);
+
+function isOwnedEvidencePath(path: string, prefix: string) {
+  if (!path.startsWith(prefix)) return false;
+  const filename = path.slice(prefix.length);
+  return Boolean(filename) && !filename.includes("/") && !filename.includes(String.fromCharCode(92)) && filename !== "." && filename !== "..";
+}
+
 function parseCodeSubmission(value: string) {
   try {
     const parsed = JSON.parse(value) as { kind?: unknown; code?: unknown; output?: unknown; language?: unknown };
@@ -27,12 +40,12 @@ function parseProjectSubmission(value: string) {
     const parsed = JSON.parse(value) as { kind?: unknown; url?: unknown; reflection?: unknown; attachments?: unknown };
     if (parsed.kind !== "project_submission" || typeof parsed.url !== "string") return null;
     const url = new URL(parsed.url);
-    if (url.protocol !== "https:") return null;
-    const attachments = Array.isArray(parsed.attachments) ? parsed.attachments.flatMap((item) => {
+    if (url.protocol !== "https:" || !url.hostname) return null;
+    const attachments = Array.isArray(parsed.attachments) && parsed.attachments.length <= 3 ? parsed.attachments.flatMap((item) => {
       if (!item || typeof item !== "object") return [];
       const file = item as Record<string, unknown>;
-      if (typeof file.path !== "string" || typeof file.name !== "string" || typeof file.size !== "number") return [];
-      return [{ path: file.path, name: file.name, size: file.size }];
+      if (typeof file.path !== "string" || typeof file.name !== "string" || !file.name.trim() || file.name.length > 255 || typeof file.size !== "number" || !Number.isFinite(file.size) || file.size <= 0 || file.size > 15 * 1024 * 1024 || typeof file.type !== "string" || !PROJECT_EVIDENCE_MIME_TYPES.has(file.type)) return [];
+      return [{ path: file.path, name: file.name, size: file.size, type: file.type }];
     }) : [];
     return { url: url.toString(), reflection: typeof parsed.reflection === "string" ? parsed.reflection : "", attachments };
   } catch {
@@ -57,7 +70,7 @@ export default function TeacherContentResponsesPage() {
       return Promise.all(rows.map(async (row) => {
         const project = parseProjectSubmission(row.responseText);
         const expectedPathPrefix = `${row.organizationId}/${row.assignmentId}/${row.contentItemId}/${row.studentUserId}/`;
-        const ownedAttachments = (project?.attachments ?? []).filter((file) => file.path.startsWith(expectedPathPrefix));
+        const ownedAttachments = (project?.attachments ?? []).filter((file) => isOwnedEvidencePath(file.path, expectedPathPrefix));
         const responseAttachments = await Promise.all(ownedAttachments.map(async (file) => {
           const { data, error } = await supabase.storage.from("learning-project-submissions").createSignedUrl(file.path, 3600);
           return { ...file, signedUrl: error ? null : data?.signedUrl ?? null };

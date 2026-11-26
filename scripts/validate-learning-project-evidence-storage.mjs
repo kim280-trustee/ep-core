@@ -106,4 +106,17 @@ assert.match(teacherResponsesPage, /file\.path\.startsWith\(expectedPathPrefix\)
 assert.match(teacherResponsesPage, /target="_blank" rel="noopener noreferrer"/isu,
   "External project and evidence links must use safe new-tab attributes");
 
+assert.match(runtimePage, /isOwnedProjectEvidencePath\\(path, query\\.data\\.assignment\\.organizationId, id, content, user\\.id\\)/isu,
+  "Student cleanup must be restricted to the exact response ownership path");
+assert.match(runtimePage, /projectCleanupPaths\\.filter\\(\\(path\\) => isOwnedProjectEvidencePath/isu,
+  "Manual cleanup retries must revalidate each object path");
+assert.match(teacherResponsesPage, /isOwnedEvidencePath\\(file\\.path, expectedPathPrefix\\)/isu,
+  "Teacher evidence links must be constrained to a single file in the response ownership path");
+assert.match(teacherResponsesPage, /file\\.size > 15 \\* 1024 \\* 1024/isu,
+  "Teacher evidence metadata must respect the upload size ceiling");
+assert.match(teacherResponsesPage, /parsed\\.attachments\\.length <= 3/isu,
+  "Teacher response parsing must enforce the three-file limit");
+assert.match(teacherResponsesPage, /PROJECT_EVIDENCE_MIME_TYPES\\.has\\(file\\.type\\)/isu,
+  "Teacher evidence metadata must use an allowed MIME type");
+
 console.log("Learning project evidence storage contract passed.");
