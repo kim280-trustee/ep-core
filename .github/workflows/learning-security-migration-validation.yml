@@ -207,6 +207,28 @@ jobs:
               RAISE EXCEPTION 'Expected assessment submission RPC is missing';
             END IF;
 
+            IF NOT EXISTS (
+              SELECT 1 FROM information_schema.columns
+              WHERE table_schema = 'public'
+                AND table_name = 'learning_objective_alignments'
+                AND column_name = 'indicator_classification'
+            ) OR NOT EXISTS (
+              SELECT 1 FROM information_schema.columns
+              WHERE table_schema = 'public'
+                AND table_name = 'learning_objective_alignments'
+                AND column_name = 'pathway_classification'
+            ) THEN
+              RAISE EXCEPTION 'Source-specific indicator and pathway classifications must remain separate columns';
+            END IF;
+
+            IF NOT EXISTS (
+              SELECT 1 FROM pg_constraint
+              WHERE conrelid = 'public.learning_objective_alignments'::regclass
+                AND conname = 'learning_objective_alignments_pathway_classification_check'
+            ) THEN
+              RAISE EXCEPTION 'Social Studies pathway classification constraint is missing';
+            END IF;
+
             IF to_regclass('public.learning_parent_invitations') IS NULL THEN
               RAISE EXCEPTION 'Parent invitation table is missing';
             END IF;
