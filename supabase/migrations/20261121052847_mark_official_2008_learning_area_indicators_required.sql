@@ -73,8 +73,12 @@ begin
     join public.learning_subjects subject on subject.id = skill.subject_id
     where curriculum.code = 'TH-BASIC-CORE-2008-2017'
       and subject.code = 'SCI'
+      and curriculum.code in ('TH-SCI-M1-M6', 'TH-BASIC-CORE-2008-2017')
+      and alignment.grade_level_id in (
+        select id from public.learning_grade_levels where code = 'M3'
+      )
       and alignment.required = true
-      and objective.code like 'M3-S3_2-%'
+      and objective.code between 'M3-S3_2-01' and 'M3-S3_2-09'
       and alignment.indicator_classification is null
   ) then
     raise exception 'Legacy M3 W3.2 supplementary Science outcomes must remain non-required.';
