@@ -118,7 +118,7 @@ export function normalizeLearningObjectiveText(value: string): string {
     .normalize("NFKC")
     .toLocaleLowerCase()
     .replace(/[’']/gu, "")
-    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .replace(/[^\p{L}\p{M}\p{N}]+/gu, " ")
     .trim()
     .replace(/\s+/gu, " ");
 }
