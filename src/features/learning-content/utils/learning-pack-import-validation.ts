@@ -110,3 +110,33 @@ export function formatImportChunkFailure(input: { kind: ImportChunkKind; chunkNu
   const label = input.kind === "lesson" ? "Lesson" : "Question";
   return `${label} chunk ${input.chunkNumber} of ${input.totalChunks} failed: ${detail} Earlier completed chunks are retained. The failed chunk attempts its own cleanup; inspect the draft library before retrying if the error reports a cleanup failure.`;
 }
+
+
+/** Normalize objective prose without discarding Thai or other Unicode scripts. */
+export function normalizeLearningObjectiveText(value: string): string {
+  return value
+    .normalize("NFKC")
+    .toLocaleLowerCase()
+    .replace(/[’']/gu, "")
+    .replace(/[^\\p{L}\\p{N}]+/gu, " ")
+    .trim()
+    .replace(/\\s+/gu, " ");
+}
+
+/** Conservative token-overlap score for objective-description suggestions. */
+export function scoreLearningObjectiveText(left: string, right: string): number {
+  const ignored = new Set(["the", "and", "of", "to", "a", "an", "in", "for", "using", "use", "how", "what", "with", "from", "by", "on", "at", "as", "is", "are", "be", "that", "this", "their", "its", "into", "across"]);
+  const tokens = (value: string) => new Set(
+    normalizeLearningObjectiveText(value).split(" ")
+      .map((token) => token.endsWith("ies") ? `${token.slice(0, -3)}y` : token.endsWith("s") ? token.slice(0, -1) : token)
+      .filter((token) => token.length > 2 && !ignored.has(token)),
+  );
+  const leftTokens = tokens(left);
+  const rightTokens = tokens(right);
+  if (!leftTokens.size || !rightTokens.size) return 0;
+  let intersection = 0;
+  leftTokens.forEach((token) => { if (rightTokens.has(token)) intersection += 1; });
+  const sourceCoverage = intersection / leftTokens.size;
+  const dice = (2 * intersection) / (leftTokens.size + rightTokens.size);
+  return sourceCoverage * 0.7 + dice * 0.3;
+}
