@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AlertCircle, ArrowLeft, CheckCircle2, Clock3, Send } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
@@ -72,6 +72,8 @@ export default function LearningAssessmentRuntimePage() {
   const [started, setStarted] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [pendingAnswerSaves, setPendingAnswerSaves] = useState(0);
+  // Serialize writes so a slower earlier request cannot overwrite a newer answer.
+  const answerSaveQueue = useRef<Promise<void>>(Promise.resolve());
 
   const id = assignmentId ?? "";
   const assessment = assessmentId ?? "";
@@ -266,10 +268,16 @@ export default function LearningAssessmentRuntimePage() {
 
   const persistAnswer = async (questionId: string, value: string, questionType: string) => {
     setPendingAnswerSaves((count) => count + 1);
+    const queuedSave = answerSaveQueue.current
+      .catch(() => undefined)
+      .then(async () => {
+        await saveAnswerMutation.mutateAsync({ questionId, value, questionType });
+      });
+    answerSaveQueue.current = queuedSave;
     try {
-      await saveAnswerMutation.mutateAsync({ questionId, value, questionType });
+      await queuedSave;
     } catch {
-      // The mutation error is shown below; keep the rejection handled here.
+      // Keep the rejection handled; the mutation error is shown below.
     } finally {
       setPendingAnswerSaves((count) => Math.max(0, count - 1));
     }
@@ -740,7 +748,7 @@ export default function LearningAssessmentRuntimePage() {
           className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
         >
           <Send size={17} />
-          {submitMutation.isPending ? "Submitting..." : "Submit assessment"}
+          {submitMutation.isPending ? "Submitting..." : pendingAnswerSaves > 0 ? "Saving answers..." : "Submit assessment"}
         </button>
 
         {attemptAnswersQuery.isError && (
