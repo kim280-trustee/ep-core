@@ -6,9 +6,6 @@ const sql = await readFile(
   "utf8",
 );
 
-const checks = [
-  [/ 'learning-project-submissions' /x, "placeholder"],
-];
 function requireMatch(pattern, message) {
   assert.match(sql, pattern, message);
 }
