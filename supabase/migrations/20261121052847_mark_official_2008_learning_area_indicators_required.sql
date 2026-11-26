@@ -35,8 +35,10 @@ begin
     and alignment.required = false;
 
   get diagnostics rows_updated = row_count;
-  if rows_updated not in (0, 839) then
-    raise exception 'Expected to correct 839 official curriculum alignments, updated %; inspect the target rows before proceeding.', rows_updated;
+  -- Earlier curriculum migrations already marked 401 alignments required;
+  -- this correction should therefore update the remaining 438 rows.
+  if rows_updated not in (0, 438) then
+    raise exception 'Expected to correct 438 remaining official curriculum alignments, updated %; inspect the target rows before proceeding.', rows_updated;
   end if;
 
   select count(distinct objective.id), count(distinct alignment.id)
