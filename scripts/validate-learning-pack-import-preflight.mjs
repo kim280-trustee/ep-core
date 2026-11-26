@@ -25,6 +25,8 @@ assert.ok(scoreLearningObjectiveText("อธิบายความสำคั
   "Identical Thai objective descriptions must score as exact matches.");
 assert.equal(scoreLearningObjectiveText("อธิบายความสำคัญของศาสนา", ""), 0,
   "Empty or unmatchable descriptions must never produce a suggested objective.");
+assert.equal(scoreLearningObjectiveText("อธิบายความสำคัญของศาสนา", "คำนวณพื้นที่รูปสามเหลี่ยม"), 0,
+  "Unrelated Thai objectives must not become false fuzzy matches.");
 assert.deepEqual(findExistingImportCodeConflicts({
   requestedContentCodes: ["ep-sci-p1-001", "ep-sci-p1-002"],
   requestedQuestionCodes: ["q-001", "q-002"],
