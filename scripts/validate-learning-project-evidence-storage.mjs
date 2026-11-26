@@ -87,8 +87,18 @@ assert.match(runtimePage, /\.upload\(objectPath, file, \{ contentType, upsert: f
   "Evidence objects must be uploaded without overwriting an existing object");
 assert.match(runtimePage, /attachments\.push\(\{ path: objectPath, name: file\.name, size: file\.size, type: contentType \}\)/isu,
   "Persisted attachment metadata must use the normalized MIME type");
-assert.match(runtimePage, /setProjectFiles\(selected\)/isu,
-  "The selected evidence files must be retained for the next save or submit");
+assert.match(runtimePage, /setProjectFiles\(\(current\) => \[\.\.\.current, \.\.\.selected\]\)/isu,
+  "Selecting additional evidence must preserve previously selected files");
+assert.match(runtimePage, /setProjectAttachments\(\(current\) => current\.filter\(\(attachment\) => attachment\.path !== file\.path\)\)/isu,
+  "Students must be able to remove a saved attachment from a draft");
+assert.match(runtimePage, /setProjectFiles\(\(current\) => current\.filter\(\(_, index\) => index !== fileIndex\)\)/isu,
+  "Students must be able to remove a newly selected file");
+assert.match(runtimePage, /status === "draft"[\s\S]*?\.remove\(obsoletePaths\)/isu,
+  "Obsolete draft evidence must be deleted only after response metadata is persisted");
+assert.match(runtimePage, /projectCleanupPaths\.length > 0[\s\S]*?Retry file cleanup/isu,
+  "Failed post-save cleanup must remain visible and retryable");
+assert.match(runtimePage, /projectAttachments\.length \+ projectFiles\.length \+ selected\.length > 3/isu,
+  "The three-file cap must include saved and newly selected draft evidence");
 assert.match(teacherResponsesPage, /createSignedUrl\(file\.path, 3600\)/isu,
   "Teacher evidence access must use expiring signed URLs");
 assert.match(teacherResponsesPage, /file\.path\.startsWith\(expectedPathPrefix\)/isu,

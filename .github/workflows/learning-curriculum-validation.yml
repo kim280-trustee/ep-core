@@ -59,6 +59,10 @@ jobs:
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:learning-content-responses
 
+      - name: Validate private project evidence storage and draft cleanup
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:learning-project-evidence
+
       - name: Validate learning-pack import duplicate preflight
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:learning-pack-import-preflight

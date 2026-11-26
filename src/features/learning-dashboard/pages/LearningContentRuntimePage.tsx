@@ -71,6 +71,7 @@ export default function LearningContentRuntimePage() {
   const [projectFiles, setProjectFiles] = useState<File[]>([]);
   const [projectAttachments, setProjectAttachments] = useState<Array<{ path: string; name: string; size: number; type: string }>>([]);
   const [projectFileError, setProjectFileError] = useState("");
+  const [projectCleanupPaths, setProjectCleanupPaths] = useState<string[]>([]);
   const [fillInAnswerDrafts, setFillInAnswerDrafts] = useState<Record<string, string[]>>({});
 
   useEffect(() => {
@@ -227,6 +228,25 @@ export default function LearningContentRuntimePage() {
           organizationId: query.data.assignment.organizationId, assignmentId: id, contentItemId: content,
           contentVersionId: query.data.version.id, studentUserId: user.id, responseText: text, status,
         });
+        // Persist the revised draft first; only then remove objects no longer referenced.
+        // Submitted responses are immutable and never enter this cleanup path.
+        if (isProjectActivity && status === "draft" && responseQuery.data?.responseText) {
+          try {
+            const previous = JSON.parse(responseQuery.data.responseText) as { attachments?: unknown };
+            const previousPaths = Array.isArray(previous.attachments)
+              ? previous.attachments.flatMap((item) => item && typeof item === "object" && "path" in item && typeof item.path === "string" ? [item.path] : [])
+              : [];
+            const retainedPaths = new Set(attachments.map((file) => file.path));
+            const obsoletePaths = previousPaths.filter((path) => !retainedPaths.has(path));
+            if (obsoletePaths.length) {
+              const { error: cleanupError } = await supabase.storage.from("learning-project-submissions").remove(obsoletePaths);
+              if (cleanupError) setProjectCleanupPaths(obsoletePaths);
+              else setProjectCleanupPaths([]);
+            }
+          } catch {
+            // Saving the draft succeeded; cleanup can be retried separately.
+          }
+        }
         setProjectFiles([]);
         return saved;
       } catch (error) {
@@ -398,16 +418,16 @@ export default function LearningContentRuntimePage() {
                       <input type="file" multiple accept=".pdf,.png,.jpg,.jpeg,.webp,.txt,.zip,.docx,.pptx,.xlsx" disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending} onChange={(event) => {
                         const selected = Array.from(event.target.files ?? []);
                         setProjectFileError("");
-                        if (projectAttachments.length + selected.length > 3) { setProjectFileError("A project can include up to 3 files."); event.target.value = ""; return; }
+                        if (projectAttachments.length + projectFiles.length + selected.length > 3) { setProjectFileError("A project can include up to 3 files."); event.target.value = ""; return; }
                         const invalid = selected.find((file) => file.size > 15 * 1024 * 1024 || !getProjectEvidenceMimeType(file));
                         if (invalid) { setProjectFileError("Each file must be 15 MB or smaller and use an allowed document, image, text or ZIP format."); event.target.value = ""; return; }
-                        setProjectFiles(selected);
+                        setProjectFiles((current) => [...current, ...selected]);
                       }} className="mt-1 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm file:mr-3 file:rounded-lg file:border-0 file:bg-slate-100 file:px-3 file:py-2 file:text-xs file:font-semibold" />
                     </label>
                     {projectFileError && <p role="alert" className="text-xs text-red-700 sm:col-span-2">{projectFileError}</p>}
                     {(projectAttachments.length > 0 || projectFiles.length > 0) && <div className="space-y-1 text-xs text-slate-600 sm:col-span-2">
-                      {projectAttachments.map((file) => <p key={file.path}>Saved: {file.name}</p>)}
-                      {projectFiles.map((file, fileIndex) => <p key={`${file.name}-${fileIndex}`}>Ready to upload: {file.name} ({(file.size / 1024 / 1024).toFixed(1)} MB)</p>)}
+                      {projectAttachments.map((file) => <div key={file.path} className="flex items-center justify-between gap-3"><p className="min-w-0 truncate">Saved draft: {file.name}</p><button type="button" disabled={responseQuery.data?.status === "submitted" || responseMutation.isPending} onClick={() => setProjectAttachments((current) => current.filter((attachment) => attachment.path !== file.path))} className="shrink-0 font-semibold text-red-700 underline disabled:opacity-40">Remove</button></div>)}
+                      {projectFiles.map((file, fileIndex) => <div key={`${file.name}-${fileIndex}`} className="flex items-center justify-between gap-3"><p className="min-w-0 truncate">Ready to upload: {file.name} ({(file.size / 1024 / 1024).toFixed(1)} MB)</p><button type="button" disabled={responseMutation.isPending} onClick={() => setProjectFiles((current) => current.filter((_, index) => index !== fileIndex))} className="shrink-0 font-semibold text-red-700 underline disabled:opacity-40">Remove</button></div>)}
                     </div>}
                   </div>
                 </div>
@@ -444,6 +464,7 @@ export default function LearningContentRuntimePage() {
             </>}
           </div>
           {responseMutation.isError && <p className="mt-3 text-sm text-red-600">{mutationErrorMessage(responseMutation.error, "Could not save your response.")}</p>}
+          {projectCleanupPaths.length > 0 && <div role="status" className="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900"><p>Your draft was saved, but {projectCleanupPaths.length} removed evidence file(s) could not yet be deleted from private storage.</p><button type="button" className="mt-2 font-semibold underline" onClick={async () => { const { error } = await supabase.storage.from("learning-project-submissions").remove(projectCleanupPaths); if (!error) setProjectCleanupPaths([]); }}>Retry file cleanup</button></div>}
         </section>
       ) : (
         <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
