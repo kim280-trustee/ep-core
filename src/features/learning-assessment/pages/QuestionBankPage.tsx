@@ -236,39 +236,32 @@ export default function QuestionBankPage() {
       if ((questionType === "single_choice" || questionType === "true_false") && !correctOption) throw new Error(t("questionBank.chooseCorrect"));
       if (questionType === "short_answer" && !shortAnswer.trim()) throw new Error(t("questionBank.enterExpected"));
 
-      let questionId = editingQuestionId;
-      let versionNo = 1;
-      if (!questionId) {
-        const question = await learningAssessmentService.createQuestion({
-          organizationId, code: code.trim().toUpperCase(), questionType, createdBy: user.id,
-        });
-        questionId = question.id;
-      } else {
-        const versions = await learningAssessmentService.listQuestionVersions(questionId);
-        versionNo = (versions[0]?.versionNo ?? 0) + 1;
-      }
-
       const configuration = questionType === "single_choice"
         ? { options: choices.map((choice) => ({ key: choice.key, label: choice.label.trim() })) }
         : questionType === "true_false"
           ? { options: [{ key: "true", label: "True" }, { key: "false", label: "False" }] }
           : { response_mode: "manual_review" };
 
-      const version = await learningAssessmentService.createQuestionVersion({
-        questionId, versionNo,
+      await learningAssessmentService.createQuestionBundle({
+        organizationId,
+        questionId: editingQuestionId,
+        code: code.trim().toUpperCase(),
+        questionType,
         curriculumId: activeCurriculumId,
         gradeLevelId: activeGradeLevelId,
         subjectId: selectedSubjectId,
-        prompt: { text: prompt.trim() }, configuration,
-        explanation: explanation.trim() ? { text: explanation.trim() } : null, createdBy: user.id,
+        prompt: { text: prompt.trim() },
+        configuration,
+        explanation: explanation.trim() ? { text: explanation.trim() } : null,
+        evaluationKey: questionType === "short_answer"
+          ? { expected_answer: shortAnswer.trim() }
+          : { correct_option_id: correctOption },
+        scoringRules: questionType === "short_answer"
+          ? { method: "manual_review" }
+          : { method: "exact_option" },
+        objectiveId,
+        languageCode: "en",
       });
-
-      await learningAssessmentService.saveQuestionEvaluationKey({
-        questionVersionId: version.id,
-        evaluationKey: questionType === "short_answer" ? { expected_answer: shortAnswer.trim() } : { correct_option_id: correctOption },
-        scoringRules: questionType === "short_answer" ? { method: "manual_review" } : { method: "exact_option" },
-      });
-      await learningAssessmentService.addQuestionObjective({ questionVersionId: version.id, objectiveId, weight: 1 });
       return Boolean(editingQuestionId);
     },
     onSuccess: async (wasVersion) => {

@@ -3,6 +3,7 @@ import type {
   LearningAssessmentInsert,
   LearningAttemptAnswerInput,
   LearningQuestionInsert,
+  LearningQuestionBundleInput,
 } from "../types/learning-assessment.types";
 
 export const learningAssessmentService = {
@@ -48,6 +49,9 @@ export const learningAssessmentService = {
 
   createQuestion: (input: LearningQuestionInsert & { createdBy: string }) =>
     learningAssessmentRepository.createQuestion(input),
+
+  createQuestionBundle: (input: LearningQuestionBundleInput) =>
+    learningAssessmentRepository.createQuestionBundle(input),
 
   createQuestionVersion: (
     input: Parameters<

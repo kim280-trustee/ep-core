@@ -364,6 +364,32 @@ begin
     raise exception 'Manual grading RPC must be executable only by authenticated callers';
   end if;
 
+
+  -- Question authoring must persist its complete academic/scoring bundle atomically.
+  if to_regprocedure('public.create_learning_question_bundle(uuid,uuid,text,text,uuid,uuid,uuid,jsonb,jsonb,jsonb,jsonb,jsonb,uuid,text)') is null then
+    raise exception 'Atomic question bundle RPC is missing';
+  end if;
+
+  select lower(pg_get_functiondef('public.create_learning_question_bundle(uuid,uuid,text,text,uuid,uuid,uuid,jsonb,jsonb,jsonb,jsonb,jsonb,uuid,text)'::regprocedure))
+    into v_definition;
+  if position('auth.uid()' in v_definition) = 0
+     or position('learning_current_user_id()' in v_definition) = 0
+     or position('learning_can_manage_academic_records' in v_definition) = 0
+     or position('learning_is_active_teacher' in v_definition) = 0
+     or position('learning_question_versions' in v_definition) = 0
+     or position('learning_question_evaluation_keys' in v_definition) = 0
+     or position('learning_question_objectives' in v_definition) = 0
+     or position('for update' in v_definition) = 0
+     or position('manual_review' in v_definition) = 0
+     or position('exact_option' in v_definition) = 0 then
+    raise exception 'Atomic question bundle RPC lacks authorization, locking or complete version/key/objective writes';
+  end if;
+
+  if has_function_privilege('anon', 'public.create_learning_question_bundle(uuid,uuid,text,text,uuid,uuid,uuid,jsonb,jsonb,jsonb,jsonb,jsonb,uuid,text)', 'EXECUTE')
+     or not has_function_privilege('authenticated', 'public.create_learning_question_bundle(uuid,uuid,text,text,uuid,uuid,uuid,jsonb,jsonb,jsonb,jsonb,jsonb,uuid,text)', 'EXECUTE') then
+    raise exception 'Atomic question bundle RPC must be executable only by authenticated callers';
+  end if;
+
   -- All inspected SECURITY DEFINER authorization helpers must pin search_path.
   if exists (
     select 1
@@ -384,7 +410,8 @@ begin
         'review_learning_teacher_leave_request',
         'assign_learning_teacher_substitute',
         'cancel_learning_teacher_substitute_coverage',
-        'grade_learning_attempt_answer'
+        'grade_learning_attempt_answer',
+        'create_learning_question_bundle'
       )
       and not coalesce(p.proconfig, array[]::text[]) @> array['search_path=""']
   ) then
