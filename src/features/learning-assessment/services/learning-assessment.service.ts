@@ -81,8 +81,8 @@ export const learningAssessmentService = {
   publishQuestion: (id: string, reviewerId: string) =>
     learningAssessmentRepository.publishQuestion(id, reviewerId),
 
-  publishAssessment: (id: string) =>
-    learningAssessmentRepository.publishAssessment(id),
+  publishAssessment: (id: string, reviewerId: string) =>
+    learningAssessmentRepository.publishAssessment(id, reviewerId),
 
   updateQuestionStatus: (
     id: string,
