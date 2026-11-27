@@ -151,6 +151,10 @@ jobs:
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:gradebook-recalculation-consistency
 
+      - name: Validate gradebook finalization freshness
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:gradebook-finalization-freshness
+
       - name: Build production application
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run build
