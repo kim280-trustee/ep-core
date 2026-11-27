@@ -6,7 +6,10 @@ import { useTranslation } from "@/core/i18n/useTranslation";
 import { LearningWorkspaceShell } from "@/features/learning-shared/components/LearningWorkspaceShell";
 import { learningTeacherService } from "../services/learning-teacher.service";
 
-const navigationGroups = [
+type TeacherNavigationItem = { to: string; label: string; icon: typeof LayoutDashboard; end?: boolean };
+type TeacherNavigationGroup = { label: string | null; items: TeacherNavigationItem[] };
+
+const navigationGroups: TeacherNavigationGroup[] = [
   {
     label: null,
     items: [{ to: "/teacher", label: "learning.dashboard", icon: LayoutDashboard, end: true }],

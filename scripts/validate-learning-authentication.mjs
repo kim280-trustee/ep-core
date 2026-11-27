@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 
 const read = (path) => readFile(new URL(path, import.meta.url), "utf8");
-const [login, provider, context, repository, roleRoute, studentRoutes, teacherRoutes, parentRoutes, adminRoutes, studentLayout, teacherLayout, parentLayout] =
+const [login, provider, context, repository, roleRoute, studentRoutes, teacherRoutes, parentRoutes, adminRoutes, studentLayout, teacherLayout, parentLayout, workspaceShell] =
   await Promise.all([
     read("../src/features/auth/pages/LoginPage.tsx"),
     read("../src/core/auth/auth.provider.tsx"),
@@ -16,6 +16,7 @@ const [login, provider, context, repository, roleRoute, studentRoutes, teacherRo
     read("../src/features/learning-dashboard/layouts/StudentLayout.tsx"),
     read("../src/features/learning-teacher/layouts/TeacherLayout.tsx"),
     read("../src/features/learning-parent/layouts/ParentLayout.tsx"),
+    read("../src/features/learning-shared/components/LearningWorkspaceShell.tsx"),
   ]);
 
 const checks = [
@@ -39,16 +40,16 @@ const checks = [
   ["teacher portal requires a teacher membership", teacherRoutes.includes('<LearningRoleRoute role="teacher">')],
   ["parent portal requires an active parent link", parentRoutes.includes('<LearningRoleRoute role="parent">')],
   ["school-admin routes require academic-management permission", adminRoutes.includes('<LearningRoleRoute role="school-admin">')],
-  ["student, teacher and parent portals expose logout", studentLayout.includes("await logout()") && teacherLayout.includes("await logout()") && parentLayout.includes("await logout()")],
-  ["school-admin portal exposes logout on every protected school-admin route", adminRoutes.includes("function SchoolAdminSessionBar") && adminRoutes.includes("await logout()") && adminRoutes.includes("<SchoolAdminSessionBar>{children}</SchoolAdminSessionBar>")],
+  ["student, teacher and parent portals expose logout", studentLayout.includes("LearningWorkspaceShell") && teacherLayout.includes("LearningWorkspaceShell") && parentLayout.includes("LearningWorkspaceShell") && workspaceShell.includes("await logout()")],
+  ["school-admin portal exposes logout on every protected school-admin route", adminRoutes.includes('<LearningWorkspaceShell role="school-admin"') && workspaceShell.includes("await logout()")],
   ["role guard blocks protected content while access is unresolved or denied", roleRoute.includes('access === "checking"') && roleRoute.includes('access === "denied"') && roleRoute.includes('access === "error"')],
   ["logout restores identity only after a successful account reload", provider.includes("const restoredUser = await loadUser();") && provider.includes("if (!restoredUser)") && provider.includes("return authenticatedUser;") && provider.includes("return null;") && provider.includes("{ cause: error }")],
   ["login verifies the refreshed application identity matches the Supabase session before redirecting", login.includes("const refreshedUser = await refreshUser();") && login.includes("refreshedUser.authUserId !== session.user.id") && login.includes("navigate(getDestinationPath(destination, requestedPath), { replace: true })")],
   ["auth refresh returns the verified profile or null rather than hiding hydration failure", context.includes("() => Promise<User | null>") && provider.includes("refreshUser: loadUser") && provider.includes("Promise<User | null>")],
   ["auth refresh returns a verified profile result to its callers", provider.includes("refreshUser: loadUser") && context.includes("() => Promise<User | null>")],
-  ["all four portals display the actual logout recovery outcome", studentLayout.includes("error instanceof Error ? error.message") && teacherLayout.includes("error instanceof Error ? error.message") && parentLayout.includes("error instanceof Error ? error.message") && adminRoutes.includes("error instanceof Error ? error.message")],
-  ["no portal falsely claims the session was restored after every logout failure", !studentLayout.includes("Your session has been restored") && !teacherLayout.includes("Your session has been restored") && !parentLayout.includes("Your session has been restored") && !adminRoutes.includes("Your session has been restored")],
-  ["student, teacher, parent and school-admin portals display logout failures", studentLayout.includes("logoutError") && teacherLayout.includes("logoutError") && parentLayout.includes("logoutError") && adminRoutes.includes("logoutError")],
+  ["all four portals display the actual logout recovery outcome", workspaceShell.includes("error instanceof Error ? error.message")],
+  ["no portal falsely claims the session was restored after every logout failure", !workspaceShell.includes("Your session has been restored")],
+  ["student, teacher, parent and school-admin portals display logout failures", studentLayout.includes("LearningWorkspaceShell") && teacherLayout.includes("LearningWorkspaceShell") && parentLayout.includes("LearningWorkspaceShell") && adminRoutes.includes("LearningWorkspaceShell") && workspaceShell.includes("logoutError")],
 ];
 
 for (const [label, passed] of checks) {
