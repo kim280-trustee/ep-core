@@ -75,13 +75,13 @@ A 193-row register has been generated from the live catalogue at `docs/learning/
 
 **Not yet full academic sign-off.** This pass reconciles source-stage counts, grade/interval structure, priority totals and stored standard-code provenance. It does not yet certify every one of the 193 Thai objective descriptions and central learning-content descriptions character by character against the official Thai source, nor independently validate every classification decision. A source-note prefix match is provenance evidence, not proof of exact text fidelity.
 
-No Foreign Languages teacher packs have been imported. The live database currently has zero content items linked to these objectives; no drafts were created and nothing was published. The curriculum remains in draft status.
+P1–P3 teacher packs are now prepared: 50 lessons and 150 answer-keyed questions across 50 unique objective codes. The subject-specific validator and import guide are in the repository. The live database still has zero content items linked to these objectives; no drafts were imported and nothing was published. P4–M6 teacher-pack authoring remains outstanding.
 
 ## Remaining work
 
 1. Complete the 193-row, indicator-by-indicator Thai wording and source-content comparison against the official OBEC curriculum.
 2. Confirm the product meaning of the separate `required` alignment flag; do not collapse it into the 2021 Must-Know/Should-Know priority classification.
-3. Prepare grade-appropriate teacher packs with lesson outcomes, learning activities, formative questions and answer/marking guidance.
+3. Complete grade-appropriate teacher packs for P4–P6 and M1–M6; P1–P3 are prepared (50 lessons, 150 questions).
 4. Validate all packs through the teacher-pack parser and duplicate-code preflight.
 5. Import only through the authenticated `/teacher/content/import` workflow into an authorized isolated environment.
 6. Run post-import checks for objective links, question counts, answer-key integrity, language, draft status and publication visibility.
@@ -89,4 +89,4 @@ No Foreign Languages teacher packs have been imported. The live database current
 
 ## Verification artifact
 
-The read-only SQL checks are maintained in `supabase/verification/foreign-languages-curriculum-verification.sql`. They include distinct-indicator totals, grade-alignment totals and an M4–M6 shared-set check. The script does not mutate curriculum, content, school or student data.
+The read-only SQL checks are maintained in `supabase/verification/foreign-languages-curriculum-verification.sql`. They include distinct-indicator totals, grade-alignment totals and an M4–M6 shared-set check. The P1–P3 teacher-pack files, validator, and import guide are maintained alongside this readiness record. The SQL script does not mutate curriculum, content, school or student data.
