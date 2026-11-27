@@ -151,6 +151,12 @@ The database audit confirms the separate 2021 Must-Know / Should-Know field only
 
 The 2021 OBEC PDF's printed grand-total cell says 408, while its ten grade rows sum to 418 and the priority columns sum to 418 (194 + 224). The grade and priority subtotals are internally consistent; the printed 408 is a source-document arithmetic discrepancy. Use the grade-level rows and preserve this caveat in any derived data.
 
+
+
+### Row-level review control
+
+Created `SOCIAL-STUDIES-ACADEMIC-REVIEW-REGISTER.csv` on 27 November 2026 with exactly **1,254 unique task rows** linked to all **418 indicator codes** across the eight source packs. Each row records its task number/type, grade scope, source pack and official Thai indicator, with separate source-verification, prompt-specificity, marking-criteria and independent-moderation states. All review states intentionally begin as pending; register creation does not imply that a task has passed review. This provides a row-by-row control point for the remaining academic work.
+
 **Release decision:** curriculum coverage, task structure, parser/importer validation and CI are repository-side achievements. Academic task specificity, complete source verification, M3/M4–M6 2021 priority reconciliation, independent subject-matter sign-off and authorised isolated staging/teacher acceptance remain open. Social Studies is not approved for classroom release.
 
 
