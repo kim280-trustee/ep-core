@@ -34,16 +34,16 @@ The 2021 priority labels were published for the COVID-period 2021 school year an
 | P1 | 16 | 48 | Prepared; structural check previously passed |
 | P2 | 16 | 48 | Prepared; structural check previously passed |
 | P3 | 18 | 54 | Prepared; structural check previously passed |
-| P4 | 20 | 60 | Prepared; parser-contract structural check pending |
-| P5 | 20 | 60 | Prepared; parser-contract structural check pending |
-| P6 | 20 | 60 | Prepared; parser-contract structural check pending |
-| **P1–P6** | **110** | **330** | **Prepared; full validator execution pending** |
+| P4 | 20 | 60 | Prepared; parser-contract structural check passed |
+| P5 | 20 | 60 | Prepared; parser-contract structural check passed |
+| P6 | 20 | 60 | Prepared; parser-contract structural check passed |
+| **P1–P6** | **110** | **330** | **Prepared; structural check passed; full Node validator execution pending** |
 
 Each prepared lesson is mapped to a grade-specific catalogue objective and includes the original Thai indicator wording, a learning outcome, a practical activity and three answer-keyed practice questions. P4–P6 activities and tasks have been refined to match the indicator skill and increase independence by grade. The validator uses the shared teacher-pack parser and checks lesson totals, grade prefixes, unique objective codes, register membership and question/answer completeness.
 
 ## Remaining work
 
-1. Run the full P1–P6 validator in the repository environment and resolve any parser issues.
+1. Run the committed P1–P6 validator in the repository environment; the parser-contract structural check has passed, but Node execution has not yet been run here.
 2. Prepare M1, M2 and M3 packs.
 3. Prepare the shared M4–M6 interval pack without duplicating the 21 objective records.
 4. Complete line-by-line Thai source and academic-content review; all register review fields remain pending.
