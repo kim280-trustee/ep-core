@@ -43,8 +43,20 @@ duplicate_grade_objectives AS (
   FROM fl_alignments
   GROUP BY objective_id, grade_level_id
   HAVING COUNT(*) > 1
+),
+objective_classifications AS (
+  SELECT
+    objective_id,
+    COUNT(DISTINCT indicator_classification) AS classification_count,
+    MIN(indicator_classification) AS classification
+  FROM fl_alignments
+  GROUP BY objective_id
 )
 SELECT
+  (SELECT COUNT(*) FROM objective_classifications) AS distinct_aligned_objectives,
+  (SELECT COUNT(*) FROM objective_classifications WHERE classification = 'must_know') AS distinct_must_know_objectives,
+  (SELECT COUNT(*) FROM objective_classifications WHERE classification = 'should_know') AS distinct_should_know_objectives,
+  (SELECT COUNT(*) FROM objective_classifications WHERE classification_count <> 1) AS objectives_with_conflicting_classifications,
   (SELECT COUNT(*) FROM fl_objectives WHERE status = 'active') AS active_objectives,
   (SELECT COUNT(DISTINCT code) FROM fl_objectives WHERE status = 'active') AS distinct_active_objective_codes,
   (SELECT COUNT(*) FROM duplicate_codes) AS duplicate_objective_code_groups,
@@ -139,3 +151,29 @@ SELECT
   COUNT(*) FILTER (WHERE status = 'draft') AS draft_items,
   COUNT(*) FILTER (WHERE status = 'published') AS published_items
 FROM linked_content;
+
+
+-- 5) Confirm the upper-secondary M4-M6 interval indicators are the same set,
+-- rather than three separate sets of 21 indicators.
+WITH fl_subject AS (
+  SELECT id FROM public.learning_subjects WHERE code = 'FOREIGN-LANGUAGES'
+),
+fl_alignments AS (
+  SELECT DISTINCT a.objective_id, g.code AS grade_code
+  FROM public.learning_objective_alignments a
+  JOIN public.learning_objectives o ON o.id = a.objective_id
+  JOIN public.learning_topics t ON t.id = o.topic_id
+  JOIN public.learning_skills s ON s.id = t.skill_id
+  JOIN fl_subject fs ON fs.id = s.subject_id
+  JOIN public.learning_curricula c ON c.id = a.curriculum_id
+  JOIN public.learning_grade_levels g ON g.id = a.grade_level_id
+  WHERE c.code = 'TH-BASIC-CORE-2008-2017'
+),
+m4 AS (SELECT objective_id FROM fl_alignments WHERE grade_code = 'M4'),
+m5 AS (SELECT objective_id FROM fl_alignments WHERE grade_code = 'M5'),
+m6 AS (SELECT objective_id FROM fl_alignments WHERE grade_code = 'M6')
+SELECT
+  (SELECT COUNT(*) FROM m4) AS m4_indicator_count,
+  (SELECT COUNT(*) FROM m5) AS m5_indicator_count,
+  (SELECT COUNT(*) FROM m6) AS m6_indicator_count,
+  (SELECT COUNT(*) FROM m4 JOIN m5 USING (objective_id) JOIN m6 USING (objective_id)) AS shared_across_m4_m5_m6;
