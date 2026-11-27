@@ -31,7 +31,6 @@
 1. Listen to “Turn to page 12, underline the title, then compare with your partner.” What are the three actions? **Answer:** Turn to page 12, underline the title, and compare with a partner.
 2. Read aloud: “Our class visits the library every Friday.” Which word tells when? **Answer:** Every Friday.
 3. A sign shows a person washing hands. Which sentence matches: “Wash your hands” or “Close the window”? **Answer:** Wash your hands.
-4. Read: “Nida packed a raincoat because the sky was dark. After lunch, it began to rain.” Why did Nida pack a raincoat? **Answer:** Because the sky was dark and rain was possible.
 
 ### 2. Read short texts, stories and poems aloud
 
@@ -47,7 +46,6 @@
 1. Read aloud: “The bright green leaves moved gently in the wind.” Keep the final sounds clear. **Answer:** The sentence is read clearly with the final sounds audible.
 2. Read the short rhyme: “I see a bee beside a tree.” Which words rhyme? **Answer:** Bee and tree.
 3. Read “The train leaves at nine.” Which word has the long /a/ sound? **Answer:** Train.
-4. Read the sentence with suitable pauses: “When the bell rings, we line up.” Where is the pause? **Answer:** After “rings”.
 
 ### 3. Match written sentences to visual information
 
@@ -63,7 +61,6 @@
 1. A map symbol shows a hospital. Which label matches it? **Answer:** Hospital.
 2. A notice says “No running.” Which picture matches the notice? **Answer:** The picture showing people walking, not running.
 3. Read: “The blue bag is under the desk.” Where is the bag? **Answer:** Under the desk.
-4. Choose the symbol for “Turn left” from the three direction signs. **Answer:** The left-turn arrow.
 
 ### 4. Identify main ideas and answer questions about stories
 
@@ -79,7 +76,6 @@
 1. Read: “Mali gets up at six. She eats breakfast at six thirty and walks to school at seven.” What time does Mali eat breakfast? **Answer:** At six thirty.
 2. What is the main idea of the short text? **Answer:** A correct summary of the person's routine or the story's central event.
 3. Name one detail that supports the main idea. **Answer:** One accurate detail from the text.
-4. Write one question that can be answered from the text. **Answer:** A relevant question whose answer appears in the text.
 
 ### 5. Maintain a short interpersonal conversation
 
