@@ -6,6 +6,10 @@ interface LoginLocationState {
   from?: string;
 }
 
+function isPathWithin(path: string | undefined, root: string): path is string {
+  return path === root || Boolean(path?.startsWith(`${root}/`));
+}
+
 export function LoginPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,26 +24,32 @@ export function LoginPage() {
 
   async function handleLogin(event: React.FormEvent) {
     event.preventDefault();
+    if (loading) return;
+
+    const normalizedEmail = email.trim();
+    if (!normalizedEmail || !password) {
+      setError("Enter your email address and password.");
+      return;
+    }
+
     setLoading(true);
     setError("");
+    let sessionEstablished = false;
 
     try {
-      const { error: signInError } = await authService.signIn(email.trim(), password);
-
-      if (signInError) {
-        throw signInError;
-      }
+      const { error: signInError } = await authService.signIn(normalizedEmail, password);
+      if (signInError) throw signInError;
 
       const session = await authService.getSession();
-
       if (!session?.user) {
         throw new Error("Sign-in did not create an active session. Please try again.");
       }
+      sessionEstablished = true;
 
       const destination = await authService.getLoginDestination(session.user.id);
-
       if (!destination) {
         await authService.signOut();
+        sessionEstablished = false;
         await refreshUser();
         throw new Error(
           "This email is not linked to an E&P Learning student, teacher, parent, or school administrator account. Contact your school administrator.",
@@ -47,22 +57,27 @@ export function LoginPage() {
       }
 
       const requestedPathMatchesRole =
-        (destination === "/teacher" &&
-          (requestedPath === "/teacher" || requestedPath?.startsWith("/teacher/"))) ||
-        (destination === "/learning" &&
-          (requestedPath === "/learning" || requestedPath?.startsWith("/learning/"))) ||
-        (destination === "/parent" &&
-          (requestedPath === "/parent" || requestedPath?.startsWith("/parent/"))) ||
-        (destination === "/school-admin" &&
-          (requestedPath === "/school-admin" || requestedPath?.startsWith("/school-admin/")));
+        (destination === "/teacher" && isPathWithin(requestedPath, "/teacher")) ||
+        (destination === "/learning" && isPathWithin(requestedPath, "/learning")) ||
+        (destination === "/parent" && isPathWithin(requestedPath, "/parent")) ||
+        (destination === "/school-admin" && isPathWithin(requestedPath, "/school-admin"));
 
       await refreshUser();
-      navigate(
-        requestedPathMatchesRole ? requestedPath! : destination,
-        { replace: true },
-      );
+      navigate(requestedPathMatchesRole ? requestedPath : destination, { replace: true });
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Sign-in failed. Please check your details and try again.");
+      if (sessionEstablished) {
+        try {
+          await authService.signOut();
+          await refreshUser();
+        } catch {
+          // Keep the original authentication/authorization error visible.
+        }
+      }
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Sign-in failed. Please check your details and try again.",
+      );
     } finally {
       setLoading(false);
     }
@@ -72,13 +87,14 @@ export function LoginPage() {
     <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4 py-8">
       <form
         onSubmit={handleLogin}
+        aria-busy={loading}
         className="w-full max-w-md space-y-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8"
       >
         <div>
           <p className="text-sm font-bold tracking-wide text-slate-500">E&P TECHNOLOGIES</p>
           <h1 className="mt-2 text-2xl font-bold text-slate-950">Sign in to E&P Learning</h1>
           <p className="mt-2 text-sm leading-6 text-slate-600">
-            Continue to your teacher, student, or parent portal.
+            Continue to your teacher, student, parent, or school administrator portal.
           </p>
         </div>
 
@@ -95,6 +111,7 @@ export function LoginPage() {
             onChange={(event) => setEmail(event.target.value)}
             className="w-full rounded-xl border border-slate-300 px-3 py-2.5 outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
             required
+            disabled={loading}
           />
         </label>
 
@@ -109,11 +126,12 @@ export function LoginPage() {
             onChange={(event) => setPassword(event.target.value)}
             className="w-full rounded-xl border border-slate-300 px-3 py-2.5 outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
             required
+            disabled={loading}
           />
         </label>
 
         {error && (
-          <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+          <div role="alert" aria-live="assertive" className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">
             {error}
           </div>
         )}
