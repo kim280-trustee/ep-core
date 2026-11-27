@@ -23,47 +23,55 @@ export function AuthProvider({ children }: Props) {
     const requestId = ++loadRequestId.current;
 
     try {
-      const { data } = await supabase.auth.getSession();
+      const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+      if (sessionError) throw sessionError;
       if (requestId !== loadRequestId.current) return;
 
-      if (!data.session) {
+      const authUser = sessionData.session?.user;
+      if (!authUser) {
         setUser(null);
         return;
       }
 
-      const authUser = data.session.user;
-      const { data: profile } = await supabase
+      const { data: profile, error: profileError } = await supabase
         .from("users")
         .select("*")
         .eq("auth_user_id", authUser.id)
-        .single();
+        .maybeSingle();
 
+      if (profileError) throw profileError;
       if (requestId !== loadRequestId.current) return;
 
+      // A valid Supabase session without an application profile is not an
+      // authenticated E&P account. Clear the local session to avoid a login loop.
       if (!profile) {
+        const { error: signOutError } = await supabase.auth.signOut({ scope: "local" });
+        if (signOutError) throw signOutError;
         setUser(null);
         return;
       }
 
-      const { data: userRole } = await supabase
+      const { data: userRole, error: userRoleError } = await supabase
         .from("user_roles")
         .select("role_id")
         .eq("user_id", profile.id)
         .limit(1)
         .maybeSingle();
 
+      if (userRoleError) throw userRoleError;
       if (requestId !== loadRequestId.current) return;
 
       let role: User["role"] = "STAFF";
 
       if (userRole?.role_id) {
-        const { data: roleRecord } = await supabase
+        const { data: roleRecord, error: roleError } = await supabase
           .from("roles")
           .select("name")
           .eq("id", userRole.role_id)
           .eq("tenant_id", profile.tenant_id)
           .maybeSingle();
 
+        if (roleError) throw roleError;
         if (requestId !== loadRequestId.current) return;
 
         if (
@@ -88,6 +96,7 @@ export function AuthProvider({ children }: Props) {
       });
     } catch {
       if (requestId === loadRequestId.current) {
+        // Never retain a previous account after a failed identity lookup.
         setUser(null);
       }
     } finally {
@@ -103,7 +112,16 @@ export function AuthProvider({ children }: Props) {
       if (mounted) void loadUser();
     }, 0);
 
-    const { data } = supabase.auth.onAuthStateChange(() => {
+    const { data } = supabase.auth.onAuthStateChange((event) => {
+      if (!mounted) return;
+
+      if (event === "SIGNED_OUT") {
+        loadRequestId.current += 1;
+        setUser(null);
+        setLoading(false);
+        return;
+      }
+
       window.setTimeout(() => {
         if (mounted) void loadUser();
       }, 0);
@@ -118,10 +136,11 @@ export function AuthProvider({ children }: Props) {
   }, [loadUser]);
 
   const logout = useCallback(async () => {
-    await authService.signOut();
+    // Invalidate pending profile reads and clear the visible identity immediately.
     loadRequestId.current += 1;
     setUser(null);
     setLoading(false);
+    await authService.signOut();
   }, []);
 
   return (
