@@ -33,13 +33,17 @@ export default function StudentLayout() {
   const { t } = useTranslation();
   const { user, logout } = useAuth();
   const [loggingOut, setLoggingOut] = useState(false);
+  const [logoutError, setLogoutError] = useState("");
 
   const handleLogout = async () => {
     if (loggingOut) return;
     setLoggingOut(true);
+    setLogoutError("");
     try {
       await logout();
       navigate("/login", { replace: true });
+    } catch {
+      setLogoutError("We could not sign you out. Your session has been restored; please try again.");
     } finally {
       setLoggingOut(false);
     }
@@ -80,6 +84,7 @@ export default function StudentLayout() {
         </aside>
 
         <main className="min-w-0 flex-1">
+          {logoutError && <p role="alert" aria-live="assertive" className="border-b border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">{logoutError}</p>}
           <div className="border-b border-slate-200 bg-white px-4 py-3 lg:hidden">
             <div className="flex items-center justify-between gap-3">
               <div className="min-w-0">
