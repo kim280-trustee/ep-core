@@ -38,7 +38,8 @@
     "validate:gradebook-recalculation-consistency": "node scripts/validate-gradebook-recalculation-consistency.mjs",
     "validate:gradebook-finalization-freshness": "node scripts/validate-gradebook-finalization-freshness.mjs",
     "validate:assessment-result-gradebook-sync": "node scripts/validate-assessment-result-gradebook-sync.mjs",
-    "validate:assessment-result-gradebook-retention": "node scripts/validate-assessment-result-gradebook-retention.mjs"
+    "validate:assessment-result-gradebook-retention": "node scripts/validate-assessment-result-gradebook-retention.mjs",
+    "validate:assessment-gradebook-mapping-reconciliation": "node scripts/validate-assessment-gradebook-mapping-reconciliation.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
