@@ -164,6 +164,7 @@ export function AuthProvider({ children }: Props) {
       if (!identityRestored) {
         throw new Error(
           "We could not complete sign-out, and your account session could not be verified. Reload this page before continuing.",
+          { cause: error },
         );
       }
       throw error;
