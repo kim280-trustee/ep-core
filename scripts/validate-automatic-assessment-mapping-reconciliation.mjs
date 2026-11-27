@@ -35,7 +35,7 @@ assert.ok(migration.includes("before update of organization_id, class_subject_id
 assert.ok(migration.includes("assessment assignment academic mapping or publication state changed"));
 assert.ok(migration.includes("grade.tenant_id = v_entry.tenant_id"));
 assert.ok(migration.includes("v_grade_status text"));
-assert.ok(migration.includes("limit 1 for update"));
+assert.ok(migration.replace(/\s+/g, " ").includes("limit 1 for update"));
 assert.ok(migration.includes("if v_grade_status = 'finalized' then"));
 assert.ok(migration.includes("coalesce("));
 assert.ok(migration.includes("v_entry.created_by"));
