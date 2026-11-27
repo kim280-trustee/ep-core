@@ -66,14 +66,43 @@ export class SupabaseAuthRepository implements AuthRepository {
     if (parentError) throw parentError;
     if (parentLinks?.length) return "/parent";
 
-    const { data: permissionRows, error: permissionsError } = await supabase.rpc(
-      "get_current_user_permissions",
+    const { data: organizationMemberships, error: organizationMembershipError } = await supabase
+      .from("organization_memberships")
+      .select("organization_id")
+      .eq("user_id", profile.id)
+      .eq("status", "active");
+
+    if (organizationMembershipError) throw organizationMembershipError;
+
+    const organizationIds = [
+      ...new Set((organizationMemberships ?? []).map((membership) => membership.organization_id)),
+    ];
+
+    if (organizationIds.length === 0) return null;
+
+    // Use the same organization-scoped database predicate as LearningRoleRoute.
+    // The generated Supabase type may not yet include this private-schema RPC.
+    const permissionClient = supabase as unknown as {
+      rpc: (
+        functionName: string,
+        args: Record<string, unknown>,
+      ) => Promise<{ data: unknown; error: { message: string } | null }>;
+    };
+
+    const permissionResults = await Promise.all(
+      organizationIds.map((organizationId) =>
+        permissionClient.rpc("learning_can_manage_academic_records", {
+          target_organization_id: organizationId,
+        }),
+      ),
     );
 
-    if (permissionsError) throw permissionsError;
+    const failedPermissionCheck = permissionResults.find((result) => result.error);
+    if (failedPermissionCheck?.error) {
+      throw new Error(failedPermissionCheck.error.message);
+    }
 
-    const permissions = permissionRows as { permission_code: string }[] | null;
-    if (permissions?.some((permission) => permission.permission_code === "learning.academic.manage")) {
+    if (permissionResults.some((result) => result.data === true)) {
       return "/school-admin";
     }
 
