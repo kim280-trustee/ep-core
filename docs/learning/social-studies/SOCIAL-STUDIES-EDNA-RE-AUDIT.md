@@ -430,3 +430,17 @@ Sixteen M3 rows have now been reconciled in the crosswalk by matching standard, 
 - SO3.2: four rows (2 Must-Know, 2 Should-Know), official printed p.236, rows 30–33.
 
 The crosswalk marks only these 16 entries `RECONCILED_EXACT_TEXT_AND_CODE`; the other 95 rows remain blank and `UNRECONCILED`. The source table contains an apparent grade/code inconsistency in the next entries (the printed grade cell is M3 while some listed indicator codes show M4/5 and M4/6); those rows are intentionally not force-matched to M3 pack indicators. This is an evidence-backed partial reconciliation, not a complete 111-row closeout. No production database or live school content was changed.
+
+
+## 4L. Moderation-register schema repair and validator re-run — 27 November 2026
+
+The first workflow after the M3 crosswalk update exposed a moderation-register integration defect. The importer validator requires exactly 17 columns, task IDs matching the current parsed pack convention (`-Q1`, `-Q2`, `-Q3`), and three rows for each of the 418 parsed indicator codes. The register artifact at the branch head was empty, while the prior populated register snapshot used a 15-column schema and `-T1`/`-T2`/`-T3` task identifiers. The workflow therefore failed before the later security, lint and production-build steps could run.
+
+This repair restored the register from the previously populated 1,254-row snapshot, preserved its task prompts, answer guidance, grade-pack labels, official Thai indicator text, and pre-existing priority/pathway values, aligned the task identifiers to the current parser's Q1/Q2/Q3 convention, and expanded the structure to the validator's 17-column contract. The new review-control fields explicitly remain pending:
+- `PENDING — source/content and factual review not completed`
+- `PENDING qualified source/content review`
+- `PENDING grade/age review`
+- `PENDING indicator-specific marking review`
+- `NOT MODERATED — reviewer sign-off required`
+
+Pre-commit integrity checks confirmed 1,254 task rows, 1,254 unique task IDs, 418 indicator IDs and exactly three tasks per indicator. This is a structural repair only; it does not complete source verification, factual review, age/inclusion review, marking review or independent moderation. Commit: `eb164924015951fbaf968eb9f24d8905bc5b8361`. The Social Studies workflow triggered by this commit must pass before the technical validation gate can be closed again.
