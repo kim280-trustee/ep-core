@@ -29,9 +29,9 @@
 - **Resources:** Teacher-approved short texts, dialogues, notices, information cards, relevant visuals and learner response sheets.
 
 **Independent practice**
-1. Follow a three-step spoken or written instruction and list the actions in order. **Answer:** The actions are listed accurately and in the correct sequence.
-2. Read a short passage aloud, marking pauses and stressed words. **Answer:** The reading is clear and uses suitable pauses and word stress.
-3. Interpret a timetable, chart, notice or diagram and match it to a sentence. **Answer:** The sentence matches the information shown in the visual.
+1. Follow this instruction: “Open your book, read page 8 and underline two key words.” List the three actions in order. **Answer:** Open the book; read page 8; underline two key words.
+2. A teacher says, “Please work with a partner.” What should you do? **Answer:** Work with one partner.
+3. Write one polite classroom instruction for a classmate. **Answer:** A clear instruction such as “Please close the door.”
 
 ### 2. Reading aloud
 
@@ -45,9 +45,9 @@
 - **Resources:** Teacher-approved short texts, dialogues, notices, information cards, relevant visuals and learner response sheets.
 
 **Independent practice**
-1. Follow a three-step spoken or written instruction and list the actions in order. **Answer:** The actions are listed accurately and in the correct sequence.
-2. Read a short passage aloud, marking pauses and stressed words. **Answer:** The reading is clear and uses suitable pauses and word stress.
-3. Interpret a timetable, chart, notice or diagram and match it to a sentence. **Answer:** The sentence matches the information shown in the visual.
+1. Read aloud a short story paragraph and mark where you pause at punctuation. **Answer:** Pauses are placed at full stops and commas where appropriate.
+2. Read this line aloud with clear word stress: “The children visited the museum yesterday.” **Answer:** The sentence is read intelligibly with natural stress.
+3. Choose one word from the passage that was difficult to pronounce and show how you practised it. **Answer:** A relevant word and a reasonable pronunciation strategy.
 
 ### 3. Visual and non-text information
 
@@ -61,9 +61,9 @@
 - **Resources:** Teacher-approved short texts, dialogues, notices, information cards, relevant visuals and learner response sheets.
 
 **Independent practice**
-1. Follow a three-step spoken or written instruction and list the actions in order. **Answer:** The actions are listed accurately and in the correct sequence.
-2. Read a short passage aloud, marking pauses and stressed words. **Answer:** The reading is clear and uses suitable pauses and word stress.
-3. Interpret a timetable, chart, notice or diagram and match it to a sentence. **Answer:** The sentence matches the information shown in the visual.
+1. A school timetable shows English at 9:00 and Science at 10:00. Which subject is first? **Answer:** English.
+2. Match the sentence “The library closes at 4 p.m.” to the correct notice or timetable entry. **Answer:** The entry showing the library closing at 4 p.m.
+3. Write one sentence describing information shown in a simple chart or sign. **Answer:** A sentence that accurately describes the visual.
 
 ### 4. Reading and listening comprehension
 
@@ -77,9 +77,9 @@
 - **Resources:** Teacher-approved short texts, dialogues, notices, information cards, relevant visuals and learner response sheets.
 
 **Independent practice**
-1. Follow a three-step spoken or written instruction and list the actions in order. **Answer:** The actions are listed accurately and in the correct sequence.
-2. Read a short passage aloud, marking pauses and stressed words. **Answer:** The reading is clear and uses suitable pauses and word stress.
-3. Interpret a timetable, chart, notice or diagram and match it to a sentence. **Answer:** The sentence matches the information shown in the visual.
+1. Read a short dialogue and identify what the speakers are mainly discussing. **Answer:** A correct topic.
+2. State the main idea of a short story and one detail that supports it. **Answer:** A correct main idea and a supporting detail from the story.
+3. Answer a question about the story using evidence from the text. **Answer:** A relevant answer supported by a specific detail.
 
 ### 5. Everyday exchanges
 
@@ -93,9 +93,9 @@
 - **Resources:** Teacher-approved short texts, dialogues, notices, information cards, relevant visuals and learner response sheets.
 
 **Independent practice**
-1. Begin a conversation about the topic and ask a relevant question. **Answer:** A suitable opening and relevant question.
-2. Respond with a complete answer and ask a useful follow-up question. **Answer:** A relevant answer and follow-up that keep the exchange going.
-3. Write or perform a short exchange using appropriate language for the situation. **Answer:** A coherent exchange with suitable expressions and turn-taking.
+1. Ask a new classmate about one hobby and one after-school activity. **Answer:** Two relevant questions, such as “What is your hobby?” and “What do you do after school?”
+2. Respond to a partner's answers and ask one follow-up question. **Answer:** A relevant response and follow-up question.
+3. Write a short dialogue exchanging personal or daily-routine information. **Answer:** A coherent dialogue with suitable questions and answers.
 
 ### 6. Requests and explanations
 
@@ -109,9 +109,9 @@
 - **Resources:** Teacher-approved short texts, dialogues, notices, information cards, relevant visuals and learner response sheets.
 
 **Independent practice**
-1. Begin a conversation about the topic and ask a relevant question. **Answer:** A suitable opening and relevant question.
-2. Respond with a complete answer and ask a useful follow-up question. **Answer:** A relevant answer and follow-up that keep the exchange going.
-3. Write or perform a short exchange using appropriate language for the situation. **Answer:** A coherent exchange with suitable expressions and turn-taking.
+1. Ask a classmate politely to explain a homework instruction. **Answer:** “Could you explain the homework, please?”
+2. Give a short piece of advice for someone who is late for class. **Answer:** A suitable suggestion, such as “You should prepare your bag earlier.”
+3. Explain two steps for completing a simple classroom task. **Answer:** Two clear steps in a logical order.
 
 ### 7. Needs and offers of help
 
@@ -125,9 +125,9 @@
 - **Resources:** Teacher-approved short texts, dialogues, notices, information cards, relevant visuals and learner response sheets.
 
 **Independent practice**
-1. Begin a conversation about the topic and ask a relevant question. **Answer:** A suitable opening and relevant question.
-2. Respond with a complete answer and ask a useful follow-up question. **Answer:** A relevant answer and follow-up that keep the exchange going.
-3. Write or perform a short exchange using appropriate language for the situation. **Answer:** A coherent exchange with suitable expressions and turn-taking.
+1. State what you need when you cannot understand a worksheet question. **Answer:** A clear statement of need and request for help.
+2. Offer to help a classmate carry books or find a room. **Answer:** A suitable offer, such as “Would you like me to help you?”
+3. Write a polite acceptance and a polite refusal of an offer. **Answer:** Suitable responses such as “Yes, please. Thank you.” and “No, thank you.”
 
 ### 8. Information and opinions
 
@@ -141,9 +141,9 @@
 - **Resources:** Teacher-approved short texts, dialogues, notices, information cards, relevant visuals and learner response sheets.
 
 **Independent practice**
-1. Begin a conversation about the topic and ask a relevant question. **Answer:** A suitable opening and relevant question.
-2. Respond with a complete answer and ask a useful follow-up question. **Answer:** A relevant answer and follow-up that keep the exchange going.
-3. Write or perform a short exchange using appropriate language for the situation. **Answer:** A coherent exchange with suitable expressions and turn-taking.
+1. Read a short notice and ask a question about its time or place. **Answer:** A relevant question whose answer appears in the notice.
+2. Give two accurate details from a short dialogue or text. **Answer:** Two correct details from the source.
+3. State an opinion about the information and give one reason. **Answer:** A relevant opinion with a supporting reason.
 
 ### 9. Feelings and reasons
 
@@ -157,9 +157,9 @@
 - **Resources:** Teacher-approved short texts, dialogues, notices, information cards, relevant visuals and learner response sheets.
 
 **Independent practice**
-1. Begin a conversation about the topic and ask a relevant question. **Answer:** A suitable opening and relevant question.
-2. Respond with a complete answer and ask a useful follow-up question. **Answer:** A relevant answer and follow-up that keep the exchange going.
-3. Write or perform a short exchange using appropriate language for the situation. **Answer:** A coherent exchange with suitable expressions and turn-taking.
+1. Describe how you feel about a school activity or recent experience. **Answer:** A suitable feeling statement.
+2. Give a reason and one example to explain your feeling. **Answer:** A relevant reason or example.
+3. Respond respectfully to a classmate who feels differently. **Answer:** A respectful response that acknowledges the different view.
 
 ### 10. Descriptions
 
@@ -173,9 +173,9 @@
 - **Resources:** Teacher-approved short texts, dialogues, notices, information cards, relevant visuals and learner response sheets.
 
 **Independent practice**
-1. Prepare a short description, summary or opinion response about the lesson topic. **Answer:** A clear response that addresses the topic.
-2. Add two accurate supporting details, examples or reasons. **Answer:** Two relevant and accurate supporting points.
-3. Present the response in connected sentences and check clarity. **Answer:** A coherent response with clear organisation.
+1. Describe your usual school morning in four connected sentences. **Answer:** Four relevant sentences in a logical order.
+2. Write a short paragraph about a familiar place or experience. **Answer:** A coherent paragraph with accurate details.
+3. Add time, place and one descriptive detail to improve your paragraph. **Answer:** Relevant details that make the description clearer.
 
 ### 11. Main ideas and themes
 
@@ -189,9 +189,9 @@
 - **Resources:** Teacher-approved short texts, dialogues, notices, information cards, relevant visuals and learner response sheets.
 
 **Independent practice**
-1. Prepare a short description, summary or opinion response about the lesson topic. **Answer:** A clear response that addresses the topic.
-2. Add two accurate supporting details, examples or reasons. **Answer:** Two relevant and accurate supporting points.
-3. Present the response in connected sentences and check clarity. **Answer:** A coherent response with clear organisation.
+1. Read a short story or report and identify its theme. **Answer:** A concise theme supported by the text.
+2. Summarise the main idea in two or three sentences. **Answer:** An accurate summary of the central information.
+3. Select one detail that supports the theme or summary and explain why. **Answer:** A relevant detail and a clear connection to the main idea.
 
 ### 12. Opinions and supporting reasons
 
@@ -205,9 +205,9 @@
 - **Resources:** Teacher-approved short texts, dialogues, notices, information cards, relevant visuals and learner response sheets.
 
 **Independent practice**
-1. Prepare a short description, summary or opinion response about the lesson topic. **Answer:** A clear response that addresses the topic.
-2. Add two accurate supporting details, examples or reasons. **Answer:** Two relevant and accurate supporting points.
-3. Present the response in connected sentences and check clarity. **Answer:** A coherent response with clear organisation.
+1. Give your opinion about a familiar activity or school issue. **Answer:** A clear and relevant opinion.
+2. Support the opinion with a reason or example. **Answer:** A relevant reason or example.
+3. Present your opinion and reason as a short spoken or written response. **Answer:** A coherent response containing an opinion and support.
 
 ### 13. Polite communication
 
@@ -221,9 +221,9 @@
 - **Resources:** Teacher-approved short texts, dialogues, notices, information cards, relevant visuals and learner response sheets.
 
 **Independent practice**
-1. Choose language or behaviour suitable for the audience and situation. **Answer:** A respectful, context-appropriate choice.
-2. Describe a factual example from a teacher-approved source or activity. **Answer:** An accurate description based on the source or activity.
-3. Explain the example respectfully without assuming that everyone participates or shares the same beliefs. **Answer:** A factual and inclusive explanation.
+1. Choose an appropriate greeting for a teacher, classmate and school visitor. **Answer:** A suitable greeting for each person and situation.
+2. Role-play a short exchange using polite words, tone and respectful gestures. **Answer:** The exchange is polite and context-appropriate; physical contact is not required.
+3. Explain why your language changes depending on the person or occasion. **Answer:** A reason linked to audience, relationship or context.
 
 ### 14. Celebrations and daily life
 
@@ -237,9 +237,9 @@
 - **Resources:** Teacher-approved short texts, dialogues, notices, information cards, relevant visuals and learner response sheets.
 
 **Independent practice**
-1. Choose language or behaviour suitable for the audience and situation. **Answer:** A respectful, context-appropriate choice.
-2. Describe a factual example from a teacher-approved source or activity. **Answer:** An accurate description based on the source or activity.
-3. Explain the example respectfully without assuming that everyone participates or shares the same beliefs. **Answer:** A factual and inclusive explanation.
+1. Use a factual source card to describe one celebration or important day. **Answer:** An accurate description based on the source.
+2. Describe one aspect of daily life or a tradition in the source community. **Answer:** A factual detail without generalising to everyone.
+3. Compare the example with another factual example using neutral language. **Answer:** A respectful, evidence-based comparison.
 
 ### 15. Language and cultural activities
 
@@ -253,9 +253,9 @@
 - **Resources:** Teacher-approved short texts, dialogues, notices, information cards, relevant visuals and learner response sheets.
 
 **Independent practice**
-1. Choose language or behaviour suitable for the audience and situation. **Answer:** A respectful, context-appropriate choice.
-2. Describe a factual example from a teacher-approved source or activity. **Answer:** An accurate description based on the source or activity.
-3. Explain the example respectfully without assuming that everyone participates or shares the same beliefs. **Answer:** A factual and inclusive explanation.
+1. Choose a language activity such as a dialogue, poster or cultural information display. **Answer:** A suitable activity and a clear purpose.
+2. Prepare one English contribution for the activity. **Answer:** A relevant spoken or written contribution.
+3. Show evidence of planning or participation without requiring personal belief or worship. **Answer:** A completed language contribution, plan or factual display.
 
 ### 16. English–Thai language comparison
 
@@ -269,9 +269,9 @@
 - **Resources:** Teacher-approved short texts, dialogues, notices, information cards, relevant visuals and learner response sheets.
 
 **Independent practice**
-1. Compare two English and Thai examples or two factual cultural examples. **Answer:** A relevant comparison based on the examples.
-2. Identify one supported similarity and one difference. **Answer:** An accurate similarity and difference.
-3. Explain why understanding the difference helps communication or respectful interaction. **Answer:** A clear explanation linked to communication or respect.
+1. Compare the word order in “She plays football” and its Thai equivalent. **Answer:** English commonly places the subject before the verb and object; Thai word order differs in relevant ways.
+2. Identify one pronunciation or punctuation difference in an English and Thai example. **Answer:** A correct observation about a sound, intonation or punctuation feature.
+3. Explain how correct word order or punctuation helps a reader understand meaning. **Answer:** A clear explanation linked to sentence meaning.
 
 ### 17. Cultural comparison
 
@@ -285,9 +285,9 @@
 - **Resources:** Teacher-approved short texts, dialogues, notices, information cards, relevant visuals and learner response sheets.
 
 **Independent practice**
-1. Compare two English and Thai examples or two factual cultural examples. **Answer:** A relevant comparison based on the examples.
-2. Identify one supported similarity and one difference. **Answer:** An accurate similarity and difference.
-3. Explain why understanding the difference helps communication or respectful interaction. **Answer:** A clear explanation linked to communication or respect.
+1. Use two factual source cards to compare one aspect of daily life or a celebration. **Answer:** A relevant comparison based on both sources.
+2. State one similarity and one difference between the examples. **Answer:** One accurate similarity and one accurate difference.
+3. Explain how you can show respect when a custom is unfamiliar to you. **Answer:** A respectful response such as asking politely, listening and avoiding negative judgement.
 
 ### 18. Cross-curricular research
 
@@ -301,9 +301,9 @@
 - **Resources:** Teacher-approved short texts, dialogues, notices, information cards, relevant visuals and learner response sheets.
 
 **Independent practice**
-1. Choose a topic from another subject and identify an appropriate source. **Answer:** A relevant topic and teacher-approved source.
-2. Collect and summarise two or three accurate facts. **Answer:** Accurate facts expressed concisely in the learner's own words.
-3. Present the findings and name the source. **Answer:** A clear presentation with source attribution.
+1. Choose a topic from Science, Mathematics, Health or another subject and identify a suitable source. **Answer:** A relevant topic and teacher-approved source.
+2. Collect and summarise three facts from the source in your own words. **Answer:** Three accurate and relevant facts.
+3. Present the facts in a short report and name the source. **Answer:** A clear presentation with source attribution.
 
 ### 19. Real-life communication
 
@@ -317,9 +317,9 @@
 - **Resources:** Teacher-approved short texts, dialogues, notices, information cards, relevant visuals and learner response sheets.
 
 **Independent practice**
-1. Respond appropriately to a realistic school, community or public situation. **Answer:** A response suitable for the situation and audience.
-2. Continue the interaction with a relevant question or explanation. **Answer:** A coherent follow-up that moves the interaction forward.
-3. Close the interaction politely or identify a practical next step. **Answer:** A suitable closing or next step.
+1. A visitor asks where the school office is. Give clear directions. **Answer:** A helpful and understandable set of directions.
+2. Continue the exchange by checking whether the visitor needs more help. **Answer:** A relevant follow-up question or offer.
+3. Close the conversation politely. **Answer:** A suitable closing such as “You’re welcome. Have a good day.”
 
 ### 20. Research and information use
 
@@ -333,9 +333,9 @@
 - **Resources:** Teacher-approved short texts, dialogues, notices, information cards, relevant visuals and learner response sheets.
 
 **Independent practice**
-1. Choose a research question or communication purpose and a teacher-approved English source. **Answer:** A focused purpose and suitable source.
-2. Collect, organise and summarise relevant information. **Answer:** Accurate, relevant information organised clearly.
-3. Present the information for the intended audience and identify the source. **Answer:** A clear presentation with source attribution and suitable language.
+1. Choose a question about a study or career topic and select a teacher-approved English source. **Answer:** A focused research question and suitable source.
+2. Collect and summarise two useful facts, recording where they came from. **Answer:** Two accurate facts and the source name.
+3. Explain how the information could help with further study or a future job. **Answer:** A relevant explanation linked to the research topic.
 
 ### 21. School and community announcements
 
@@ -349,6 +349,6 @@
 - **Resources:** Teacher-approved short texts, dialogues, notices, information cards, relevant visuals and learner response sheets.
 
 **Independent practice**
-1. Choose a research question or communication purpose and a teacher-approved English source. **Answer:** A focused purpose and suitable source.
-2. Collect, organise and summarise relevant information. **Answer:** Accurate, relevant information organised clearly.
-3. Present the information for the intended audience and identify the source. **Answer:** A clear presentation with source attribution and suitable language.
+1. Choose a school or community event to announce and identify the audience. **Answer:** A suitable topic and clear audience.
+2. Write an English announcement with what, when, where and who. **Answer:** A clear announcement containing the key facts.
+3. Edit the announcement for accuracy, polite tone and readability. **Answer:** A corrected announcement with accurate information and suitable tone.
