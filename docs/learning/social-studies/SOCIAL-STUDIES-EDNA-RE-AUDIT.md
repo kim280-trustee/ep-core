@@ -417,3 +417,16 @@ The task register contains 1,254 unique task rows; the P4–M6 subset contains 9
 ### OBEC source arithmetic discrepancy
 
 A close reading of the official Social Studies summary table on printed page 172 shows a source-document arithmetic inconsistency: the grade-level totals sum to 418 indicators, and the grade-level Must-Know/Should-Know counts sum to 194/224 (also 418), but the PDF's printed grand-total cell says 408. The detailed catalogue and the grade-level rows both use 418. This discrepancy is recorded for reviewer awareness; the 408 grand-total cell is not silently corrected or treated as authority for individual labels. The official source remains the PDF linked above.
+
+
+## 4K. M3 OBEC detailed-row reconciliation batch — 27 November 2026
+
+The official OBEC PDF is now accessible as parsed text at https://www.academic.obec.go.th/images/official/1622514876_d_1.pdf (document dated 31 May 2021; Social Studies section, printed pp. 230 onward). The exact row text and the separate Must-Know/Should-Know checkmark columns were inspected, rather than relying on grade totals.
+
+Sixteen M3 rows have now been reconciled in the crosswalk by matching standard, indicator wording and row sequence:
+- SO2.1: five rows (4 Must-Know, 1 Should-Know), official printed p.234, rows 18–22.
+- SO2.2: four rows (all Must-Know), official printed p.235, rows 23–26.
+- SO3.1: three rows (2 Must-Know, 1 Should-Know), official printed pp.235–236, rows 27–29.
+- SO3.2: four rows (2 Must-Know, 2 Should-Know), official printed p.236, rows 30–33.
+
+The crosswalk marks only these 16 entries `RECONCILED_EXACT_TEXT_AND_CODE`; the other 95 rows remain blank and `UNRECONCILED`. The source table contains an apparent grade/code inconsistency in the next entries (the printed grade cell is M3 while some listed indicator codes show M4/5 and M4/6); those rows are intentionally not force-matched to M3 pack indicators. This is an evidence-backed partial reconciliation, not a complete 111-row closeout. No production database or live school content was changed.
