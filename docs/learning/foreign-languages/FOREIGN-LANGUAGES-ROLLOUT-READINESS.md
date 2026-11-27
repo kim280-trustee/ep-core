@@ -43,11 +43,11 @@ The 2021 priority labels were published for the COVID-period 2021 school year an
 | M4–M6 shared interval | 21 | 63 | Prepared once; covers M4, M5 and M6 without duplicating objective records |
 | **P1–M6** | **193** | **579** | **All distinct indicators authored; full ten-pack Node validator execution pending** |
 
-Each lesson preserves its grade-specific catalogue objective code and original Thai indicator wording, with a learning outcome, practical activity and three answer-keyed practice questions. M1–M3 question sets are aligned to the specific indicator skill and progress from supported everyday communication to connected, evidence-based responses.
+Each lesson preserves its catalogue objective code and original Thai indicator wording, with a learning outcome, practical activity and three answer-keyed practice questions. M1–M3 question sets are aligned to the specific indicator skill and progress from supported everyday communication to connected, evidence-based responses.
 
 ## Remaining work
 
-1. Run the committed nine-pack validator in the repository environment; all nine packs have passed the parser-contract structural checks, but Node execution has not yet been run here.
+1. Run the committed ten-pack validator in the repository environment; structural checks across all ten packs confirm lesson, objective and answer-key counts, but Node execution has not yet been run here.
 2. Run the updated ten-pack validator, including the single shared M4–M6 interval pack.
 3. Complete line-by-line Thai source and academic-content review; all register review fields remain pending.
 4. Import each approved grade pack through the authenticated teacher route `/teacher/content/import`, draft-only.
