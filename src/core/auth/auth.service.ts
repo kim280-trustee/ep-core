@@ -35,10 +35,10 @@ class AuthService {
     return this.repository.getSession();
   }
 
-  getLoginDestination(
+  getLoginDestinations(
     authUserId: string,
   ) {
-    return this.repository.getLoginDestination(
+    return this.repository.getLoginDestinations(
       authUserId,
     );
   }
