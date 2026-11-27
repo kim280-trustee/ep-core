@@ -403,3 +403,12 @@ The populated register was committed as `96e0b584d109a81075e904979021d9210bf5d92
 ### Honest outcome
 
 This batch closes the missing register artifact and provides an official source location/page map for exact classification work. It does **not** close the three academic workstreams: 942-task substantive remediation, individual M3/M4–M6 priority-row reconciliation, or qualified review of all 1,254 tasks. Those require source-specific evidence and independent human academic judgement; marking them complete without that evidence would be false.
+
+
+## 4J. Task-screening and OBEC reconciliation controls — 27 November 2026
+
+The 1,254-row moderation register was expanded with reproducible first-pass flags for generic stimulus references, comparison tasks that do not state the compared responses, circular/non-criterion answer guidance, and prompts without a named stimulus. The screening identified 349 generic-stimulus references, 36 unspecified-comparison prompts, 690 circular/non-criterion answer guides, and 560 prompts without a named stimulus. These are overlapping rule-based flags, not a human quality verdict; each flagged item remains subject to source review and subject-matter moderation.
+
+A separate `SOCIAL-STUDIES-M3-M46-OBEC-2021-PRIORITY-CROSSWALK.csv` now contains all 111 M3 and M4–M6 catalogue indicators, their official Thai wording, and the exact OBEC PDF page location for the detailed table. All 111 rows are explicitly marked `UNRECONCILED` until the source's Must-Know/Should-Know checkmark is transcribed and exact-matched. This prevents a grade-level total or pathway label from being misused as an individual priority classification.
+
+The task register contains 1,254 unique task rows; the P4–M6 subset contains 942. This closes the task indexing and first-pass screening artifacts, not the content remediation or academic approval. The crosswalk closes the source-location and indicator-indexing artifact, not the individual classification reconciliation. No individual 2021 labels have been guessed or written.
