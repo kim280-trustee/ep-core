@@ -147,6 +147,10 @@ jobs:
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:thai-language-packs
 
+      - name: Validate gradebook recalculation and finalization consistency
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:gradebook-recalculation-consistency
+
       - name: Build production application
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run build
