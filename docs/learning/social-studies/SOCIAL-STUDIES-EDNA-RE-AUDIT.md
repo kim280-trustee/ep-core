@@ -412,3 +412,8 @@ The 1,254-row moderation register was expanded with reproducible first-pass flag
 A separate `SOCIAL-STUDIES-M3-M46-OBEC-2021-PRIORITY-CROSSWALK.csv` now contains all 111 M3 and M4–M6 catalogue indicators, their official Thai wording, and the exact OBEC PDF page location for the detailed table. All 111 rows are explicitly marked `UNRECONCILED` until the source's Must-Know/Should-Know checkmark is transcribed and exact-matched. This prevents a grade-level total or pathway label from being misused as an individual priority classification.
 
 The task register contains 1,254 unique task rows; the P4–M6 subset contains 942. This closes the task indexing and first-pass screening artifacts, not the content remediation or academic approval. The crosswalk closes the source-location and indicator-indexing artifact, not the individual classification reconciliation. No individual 2021 labels have been guessed or written.
+
+
+### OBEC source arithmetic discrepancy
+
+A close reading of the official Social Studies summary table on printed page 172 shows a source-document arithmetic inconsistency: the grade-level totals sum to 418 indicators, and the grade-level Must-Know/Should-Know counts sum to 194/224 (also 418), but the PDF's printed grand-total cell says 408. The detailed catalogue and the grade-level rows both use 418. This discrepancy is recorded for reviewer awareness; the 408 grand-total cell is not silently corrected or treated as authority for individual labels. The official source remains the PDF linked above.
