@@ -25,6 +25,9 @@ export const learningAssessmentService = {
   getQuestionVersion: (id: string) =>
     learningAssessmentRepository.getQuestionVersion(id),
 
+  listQuestionVersionsByIds: (ids: string[]) =>
+    learningAssessmentRepository.listQuestionVersionsByIds(ids),
+
   listQuestionObjectives: (id: string) =>
     learningAssessmentRepository.listQuestionObjectives(id),
 
@@ -49,6 +52,9 @@ export const learningAssessmentService = {
 
   listAttemptAnswers: (id: string) =>
     learningAssessmentRepository.listAttemptAnswers(id),
+
+  listAttemptAnswersForAttempts: (ids: string[]) =>
+    learningAssessmentRepository.listAttemptAnswersForAttempts(ids),
 
   listResults: (id: string) =>
     learningAssessmentRepository.listResults(id),
