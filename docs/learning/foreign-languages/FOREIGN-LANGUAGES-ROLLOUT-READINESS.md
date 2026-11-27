@@ -48,6 +48,13 @@ The database currently contains eight distinct Foreign Languages standard/topic 
 
 All 12 expected grades have required alignments. All 235 alignment records carry a source note beginning with the corresponding official standard code and the OBEC 2021 priority-classification provenance.
 
+## Official source references
+
+- OBEC Bureau of Academic Affairs and Educational Standards, **Foreign Languages (English): Core Indicators and Learning Standards, B.E. 2551**: https://www.academic.obec.go.th/web/document/view/283
+- OBEC, **Must-Know and Should-Know Indicators**, Foreign Languages (English), in the 2021 compilation: https://academic.obec.go.th/images/official/1622514876_d_1.pdf
+
+The 2021 OBEC compilation begins the Foreign Languages (English) indicator tables on printed page 333. Its P1 table lists 16 indicators, with 9 Must-Know and 7 Should-Know; the live database's P1 alignment is an exact 16 / 9 / 7 match. This is a verified source cross-check for P1, not a claim that every grade's indicator wording has already received line-by-line academic review.
+
 ## Subject status
 
 **Curriculum catalogue verification: passed for structural coverage and classification.** The active objective count, distinct code count, grade alignment count, priority classification totals and source-note/standard-code consistency reconcile without duplicate groups or unclassified rows.
