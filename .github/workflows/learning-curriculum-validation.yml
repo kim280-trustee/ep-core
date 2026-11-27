@@ -75,6 +75,10 @@ jobs:
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:teacher-assessment-review
 
+      - name: Validate assessment result and gradebook integrity
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:assessment-gradebook-integrity
+
       - name: Validate atomic teacher question authoring bundle
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:learning-question-bundle
