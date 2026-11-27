@@ -34,6 +34,7 @@ const checks = [
   ["parent portal requires an active parent link", parentRoutes.includes('<LearningRoleRoute role="parent">')],
   ["school-admin routes require academic-management permission", adminRoutes.includes('<LearningRoleRoute role="school-admin">')],
   ["student, teacher and parent portals expose logout", studentLayout.includes("await logout()") && teacherLayout.includes("await logout()") && parentLayout.includes("await logout()")],
+  ["school-admin portal exposes logout on every protected school-admin route", adminRoutes.includes("function SchoolAdminSessionBar") && adminRoutes.includes("await logout()") && adminRoutes.includes("<SchoolAdminSessionBar>{children}</SchoolAdminSessionBar>")],
   ["role guard blocks protected content while access is unresolved or denied", roleRoute.includes('access === "checking"') && roleRoute.includes('access === "denied"') && roleRoute.includes('access === "error"')],
 ];
 
