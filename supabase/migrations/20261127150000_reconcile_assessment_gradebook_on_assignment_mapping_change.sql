@@ -20,6 +20,7 @@ declare
   v_entry public.learning_gradebook_entries%rowtype;
   v_after public.learning_gradebook_entries%rowtype;
   v_actor uuid;
+  v_grade_status text;
   v_changed integer := 0;
 begin
   if p_assignment_id is null or p_reason is null or btrim(p_reason) = '' then
@@ -38,16 +39,18 @@ begin
     order by e.id
     for update
   loop
-    if exists (
-      select 1
-      from public.learning_term_grades grade
-      where grade.tenant_id = v_entry.tenant_id
-        and grade.organization_id = v_entry.organization_id
-        and grade.term_id = v_entry.term_id
-        and grade.class_subject_id = v_entry.class_subject_id
-        and grade.student_user_id = v_entry.student_user_id
-        and grade.status = 'finalized'
-    ) then
+    select grade.status
+      into v_grade_status
+    from public.learning_term_grades grade
+    where grade.tenant_id = v_entry.tenant_id
+      and grade.organization_id = v_entry.organization_id
+      and grade.term_id = v_entry.term_id
+      and grade.class_subject_id = v_entry.class_subject_id
+      and grade.student_user_id = v_entry.student_user_id
+    limit 1
+    for update;
+
+    if v_grade_status = 'finalized' then
       raise exception
         'Assignment mapping cannot change while a linked term grade is finalized. Reopen the term grade with an audit reason first.';
     end if;
