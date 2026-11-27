@@ -154,25 +154,25 @@ test.describe("Learning authentication browser acceptance", () => {
   test("rejects valid credentials when the account has no active Learning portal access", async ({ page }) => {
     await signIn(page, "unassigned@example.test");
     await expect(page.getByRole("alert")).toContainText("not linked to an E&P Learning");
-    await expect(page).toHaveURL(/\\/login$/);
+    await expect(page).toHaveURL(/login$/);
   });
 
   test("does not grant School Admin from organization membership without the required permission", async ({ page }) => {
     await signIn(page, "admin-unprivileged@example.test");
     await expect(page.getByRole("alert")).toContainText("not linked to an E&P Learning");
-    await expect(page).toHaveURL(/\\/login$/);
+    await expect(page).toHaveURL(/login$/);
   });
 
   test("fails closed when the School Admin permission check errors", async ({ page }) => {
     await signIn(page, "admin-rpc-error@example.test");
     await expect(page.getByRole("alert")).toContainText("Permission check unavailable");
-    await expect(page).toHaveURL(/\\/login$/);
+    await expect(page).toHaveURL(/login$/);
   });
 
   test("shows a credential error for an unknown account", async ({ page }) => {
     await signIn(page, "unknown@example.test");
     await expect(page.getByRole("alert")).toContainText("Invalid login credentials");
-    await expect(page).toHaveURL(/\\/login$/);
+    await expect(page).toHaveURL(/login$/);
   });
 
   test("allows a multi-role user to sign out from the portal chooser", async ({ page }) => {
