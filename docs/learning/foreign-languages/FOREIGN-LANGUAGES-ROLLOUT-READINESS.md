@@ -43,11 +43,11 @@ The 2021 priority labels were published for the COVID-period 2021 school year an
 | M4–M6 shared interval | 21 | 63 | Prepared once; covers M4, M5 and M6 without duplicating objective records |
 | **P1–M6** | **193** | **579** | **All distinct indicators authored; full ten-pack Node validator execution pending** |
 
-Each lesson preserves its catalogue objective code and original Thai indicator wording, with a learning outcome, practical activity and three answer-keyed practice questions. M1–M3 question sets are aligned to the specific indicator skill and progress from supported everyday communication to connected, evidence-based responses.
+Each lesson preserves its catalogue objective code, official indicator code, standard, historical priority label and original Thai indicator wording, with a learning outcome, practical activity and three answer-keyed practice questions. A full pack-to-register comparison across all 193 objectives found exact matches for these five metadata fields. M1–M3 question sets are aligned to the specific indicator skill and progress from supported everyday communication to connected, evidence-based responses.
 
 ## Remaining work
 
-1. Run the committed ten-pack Node validator in the repository environment; structural checks across all ten packs confirm lesson, objective and answer-key counts, but actual Node execution has not yet been run here.
+1. Obtain a successful GitHub Actions run of the committed ten-pack Node validator; no workflow run has been returned for the latest branch commits yet. The independent content-to-register check passed for all 193 objectives, including exact Thai wording and official indicator codes.
 3. Complete line-by-line Thai source and academic-content review; all register review fields remain pending.
 4. Import each approved grade pack through the authenticated teacher route `/teacher/content/import`, draft-only.
 5. Verify imported objective links, question counts, protected answer keys, draft status and absence of unintended publication.
