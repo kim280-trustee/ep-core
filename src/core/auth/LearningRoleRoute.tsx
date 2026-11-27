@@ -83,34 +83,22 @@ async function hasLearningAccess(userId: string, role: LearningAudience): Promis
 export function LearningRoleRoute({ children, role }: Props) {
   const { user, loading } = useAuth();
   const location = useLocation();
-  const [access, setAccess] = useState<AccessState>("checking");
-  const [checkedUserId, setCheckedUserId] = useState<string | null>(null);
+  const [result, setResult] = useState<{ key: string; access: Exclude<AccessState, "checking"> } | null>(null);
   const [retry, setRetry] = useState(0);
+  const requestKey = user ? `${user.id}:${role}:${retry}` : null;
+  const access = requestKey && result?.key === requestKey ? result.access : "checking";
 
   useEffect(() => {
+    if (loading || !user) return;
+
     let active = true;
-
-    if (loading || !user) {
-      setAccess("checking");
-      return () => {
-        active = false;
-      };
-    }
-
-    setAccess("checking");
-    setCheckedUserId(null);
+    const key = `${user.id}:${role}:${retry}`;
     void hasLearningAccess(user.id, role)
       .then((allowed) => {
-        if (active) {
-          setAccess(allowed ? "allowed" : "denied");
-          setCheckedUserId(user.id);
-        }
+        if (active) setResult({ key, access: allowed ? "allowed" : "denied" });
       })
       .catch(() => {
-        if (active) {
-          setAccess("error");
-          setCheckedUserId(user.id);
-        }
+        if (active) setResult({ key, access: "error" });
       });
 
     return () => {
@@ -118,7 +106,7 @@ export function LearningRoleRoute({ children, role }: Props) {
     };
   }, [loading, user, role, retry]);
 
-  if (loading || (user && (checkedUserId !== user.id || access === "checking"))) {
+  if (loading || (user && access === "checking")) {
     return (
       <div className="flex min-h-screen items-center justify-center" role="status" aria-live="polite">
         Checking your access...
