@@ -8,6 +8,7 @@ const reinclude = read("supabase/migrations/20261127140000_validate_assessment_g
 const automatic = read("supabase/migrations/20261127150000_reconcile_assessment_gradebook_on_assignment_mapping_change.sql");
 const catalogTest = read("supabase/tests/learning_assessment_gradebook_mapping_catalog.sql");
 const workflow = read(".github/workflows/learning-curriculum-validation.yml");
+const releaseGate = read("docs/learning-assessment-gradebook-release-gate.md");
 const pkg = JSON.parse(readFileSync("package.json", "utf8"));
 
 assert.ok(sync.includes("assessment_result_id"));
@@ -35,5 +36,9 @@ assert.ok(pkg.scripts["validate:automatic-assessment-mapping-reconciliation"]);
 assert.ok(workflow.includes("validate:assessment-gradebook-mapping-reconciliation"));
 assert.ok(workflow.includes("validate:automatic-assessment-mapping-reconciliation"));
 assert.ok(workflow.includes("validate:assessment-gradebook-release-chain"));
+assert.ok(releaseGate.includes("disposable-database behavior tests"));
+assert.ok(releaseGate.includes("authenticated product acceptance"));
+assert.ok(releaseGate.includes("never against production"));
+assert.ok(releaseGate.includes("merely closed"));
 
 console.log("Assessment-to-gradebook release-chain contract passed.");
