@@ -19,18 +19,18 @@ export function AuthProvider({ children }: Props) {
   const [loading, setLoading] = useState(true);
   const loadRequestId = useRef(0);
 
-  const loadUser = useCallback(async (): Promise<boolean> => {
+  const loadUser = useCallback(async (): Promise<User | null> => {
     const requestId = ++loadRequestId.current;
 
     try {
       const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
       if (sessionError) throw sessionError;
-      if (requestId !== loadRequestId.current) return false;
+      if (requestId !== loadRequestId.current) return null;
 
       const authUser = sessionData.session?.user;
       if (!authUser) {
         setUser(null);
-        return false;
+        return null;
       }
 
       const { data: profile, error: profileError } = await supabase
@@ -40,7 +40,7 @@ export function AuthProvider({ children }: Props) {
         .maybeSingle();
 
       if (profileError) throw profileError;
-      if (requestId !== loadRequestId.current) return false;
+      if (requestId !== loadRequestId.current) return null;
 
       // A valid Supabase session without an application profile is not an
       // authenticated E&P account. Clear the local session to avoid a login loop.
@@ -48,7 +48,7 @@ export function AuthProvider({ children }: Props) {
         const { error: signOutError } = await supabase.auth.signOut({ scope: "local" });
         if (signOutError) throw signOutError;
         setUser(null);
-        return false;
+        return null;
       }
 
       const { data: userRole, error: userRoleError } = await supabase
@@ -59,7 +59,7 @@ export function AuthProvider({ children }: Props) {
         .maybeSingle();
 
       if (userRoleError) throw userRoleError;
-      if (requestId !== loadRequestId.current) return false;
+      if (requestId !== loadRequestId.current) return null;
 
       let role: User["role"] = "STAFF";
 
@@ -72,7 +72,7 @@ export function AuthProvider({ children }: Props) {
           .maybeSingle();
 
         if (roleError) throw roleError;
-        if (requestId !== loadRequestId.current) return false;
+        if (requestId !== loadRequestId.current) return null;
 
         if (
           roleRecord?.name === "OWNER" ||
@@ -83,9 +83,9 @@ export function AuthProvider({ children }: Props) {
         }
       }
 
-      if (requestId !== loadRequestId.current) return false;
+      if (requestId !== loadRequestId.current) return null;
 
-      setUser({
+      const authenticatedUser: User = {
         id: profile.id,
         authUserId: authUser.id,
         tenantId: profile.tenant_id,
@@ -93,14 +93,15 @@ export function AuthProvider({ children }: Props) {
         email: profile.email,
         role,
         createdAt: profile.created_at ?? new Date().toISOString(),
-      });
-      return true;
+      };
+      setUser(authenticatedUser);
+      return authenticatedUser;
     } catch {
       if (requestId === loadRequestId.current) {
         // Never retain a previous account after a failed identity lookup.
         setUser(null);
       }
-      return false;
+      return null;
     } finally {
       if (requestId === loadRequestId.current) {
         setLoading(false);
@@ -160,8 +161,8 @@ export function AuthProvider({ children }: Props) {
       // A failed sign-out is recoverable only when the current account identity
       // can be reloaded and verified. Never tell the user it was restored when
       // the session/profile lookup failed or returned no active account.
-      const identityRestored = await loadUser();
-      if (!identityRestored) {
+      const restoredUser = await loadUser();
+      if (!restoredUser) {
         throw new Error(
           "We could not complete sign-out, and your account session could not be verified. Reload this page before continuing.",
           { cause: error },
@@ -176,7 +177,7 @@ export function AuthProvider({ children }: Props) {
       value={{
         user,
         loading,
-        refreshUser: async () => { await loadUser(); },
+        refreshUser: loadUser,
         logout,
       }}
     >

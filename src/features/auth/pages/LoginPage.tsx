@@ -62,7 +62,12 @@ export function LoginPage() {
         (destination === "/parent" && isPathWithin(requestedPath, "/parent")) ||
         (destination === "/school-admin" && isPathWithin(requestedPath, "/school-admin"));
 
-      await refreshUser();
+      const refreshedUser = await refreshUser();
+      if (!refreshedUser || refreshedUser.authUserId !== session.user.id) {
+        throw new Error(
+          "Your sign-in succeeded, but we could not verify your E&P account profile. Please try again or contact your school administrator.",
+        );
+      }
       navigate(requestedPathMatchesRole ? requestedPath : destination, { replace: true });
     } catch (err) {
       if (sessionEstablished) {
