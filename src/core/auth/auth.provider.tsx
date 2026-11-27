@@ -19,52 +19,60 @@ export function AuthProvider({ children }: Props) {
   const [loading, setLoading] = useState(true);
   const loadRequestId = useRef(0);
 
-  const loadUser = useCallback(async () => {
+  const loadUser = useCallback(async (): Promise<User | null> => {
     const requestId = ++loadRequestId.current;
 
     try {
-      const { data } = await supabase.auth.getSession();
-      if (requestId !== loadRequestId.current) return;
+      const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+      if (sessionError) throw sessionError;
+      if (requestId !== loadRequestId.current) return null;
 
-      if (!data.session) {
+      const authUser = sessionData.session?.user;
+      if (!authUser) {
         setUser(null);
-        return;
+        return null;
       }
 
-      const authUser = data.session.user;
-      const { data: profile } = await supabase
+      const { data: profile, error: profileError } = await supabase
         .from("users")
         .select("*")
         .eq("auth_user_id", authUser.id)
-        .single();
+        .maybeSingle();
 
-      if (requestId !== loadRequestId.current) return;
+      if (profileError) throw profileError;
+      if (requestId !== loadRequestId.current) return null;
 
+      // A valid Supabase session without an application profile is not an
+      // authenticated E&P account. Clear the local session to avoid a login loop.
       if (!profile) {
+        const { error: signOutError } = await supabase.auth.signOut({ scope: "local" });
+        if (signOutError) throw signOutError;
         setUser(null);
-        return;
+        return null;
       }
 
-      const { data: userRole } = await supabase
+      const { data: userRole, error: userRoleError } = await supabase
         .from("user_roles")
         .select("role_id")
         .eq("user_id", profile.id)
         .limit(1)
         .maybeSingle();
 
-      if (requestId !== loadRequestId.current) return;
+      if (userRoleError) throw userRoleError;
+      if (requestId !== loadRequestId.current) return null;
 
       let role: User["role"] = "STAFF";
 
       if (userRole?.role_id) {
-        const { data: roleRecord } = await supabase
+        const { data: roleRecord, error: roleError } = await supabase
           .from("roles")
           .select("name")
           .eq("id", userRole.role_id)
           .eq("tenant_id", profile.tenant_id)
           .maybeSingle();
 
-        if (requestId !== loadRequestId.current) return;
+        if (roleError) throw roleError;
+        if (requestId !== loadRequestId.current) return null;
 
         if (
           roleRecord?.name === "OWNER" ||
@@ -75,9 +83,9 @@ export function AuthProvider({ children }: Props) {
         }
       }
 
-      if (requestId !== loadRequestId.current) return;
+      if (requestId !== loadRequestId.current) return null;
 
-      setUser({
+      const authenticatedUser: User = {
         id: profile.id,
         authUserId: authUser.id,
         tenantId: profile.tenant_id,
@@ -85,11 +93,15 @@ export function AuthProvider({ children }: Props) {
         email: profile.email,
         role,
         createdAt: profile.created_at ?? new Date().toISOString(),
-      });
+      };
+      setUser(authenticatedUser);
+      return authenticatedUser;
     } catch {
       if (requestId === loadRequestId.current) {
+        // Never retain a previous account after a failed identity lookup.
         setUser(null);
       }
+      return null;
     } finally {
       if (requestId === loadRequestId.current) {
         setLoading(false);
@@ -103,7 +115,28 @@ export function AuthProvider({ children }: Props) {
       if (mounted) void loadUser();
     }, 0);
 
-    const { data } = supabase.auth.onAuthStateChange(() => {
+    const { data } = supabase.auth.onAuthStateChange((event) => {
+      if (!mounted) return;
+
+      if (event === "SIGNED_OUT") {
+        loadRequestId.current += 1;
+        setUser(null);
+        setLoading(false);
+        return;
+      }
+
+      // Every Supabase auth event can invalidate an in-flight identity read.
+      // In particular, token refreshes and cross-tab session changes must not
+      // allow an older profile lookup to overwrite the current session.
+      loadRequestId.current += 1;
+
+      if (event === "SIGNED_IN") {
+        // Do not render the previous account while the new account profile and
+        // Learning membership are being resolved.
+        setUser(null);
+        setLoading(true);
+      }
+
       window.setTimeout(() => {
         if (mounted) void loadUser();
       }, 0);
@@ -118,11 +151,26 @@ export function AuthProvider({ children }: Props) {
   }, [loadUser]);
 
   const logout = useCallback(async () => {
-    await authService.signOut();
+    // Invalidate pending profile reads and clear the visible identity immediately.
     loadRequestId.current += 1;
     setUser(null);
     setLoading(false);
-  }, []);
+    try {
+      await authService.signOut();
+    } catch (error) {
+      // A failed sign-out is recoverable only when the current account identity
+      // can be reloaded and verified. Never tell the user it was restored when
+      // the session/profile lookup failed or returned no active account.
+      const restoredUser = await loadUser();
+      if (!restoredUser) {
+        throw new Error(
+          "We could not complete sign-out, and your account session could not be verified. Reload this page before continuing.",
+          { cause: error },
+        );
+      }
+      throw error;
+    }
+  }, [loadUser]);
 
   return (
     <AuthContext.Provider

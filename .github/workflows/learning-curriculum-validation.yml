@@ -35,6 +35,19 @@ jobs:
         id: install
         run: npm ci
 
+      - name: Install isolated Playwright browser-test runner
+        id: playwright_install
+        if: ${{ steps.install.outcome == 'success' }}
+        run: npm install --no-save --package-lock=false @playwright/test
+
+      - name: Install Chromium for browser acceptance tests
+        if: ${{ steps.playwright_install.outcome == 'success' }}
+        run: npx playwright install --with-deps chromium
+
+      - name: Run mocked Learning authentication browser acceptance
+        if: ${{ steps.playwright_install.outcome == 'success' }}
+        run: npm run test:learning-authentication-browser
+
       - name: Audit locked dependency tree
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm audit
@@ -146,6 +159,10 @@ jobs:
       - name: Validate Thai Language teacher packs through importer parser
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:thai-language-packs
+
+      - name: Validate Learning login, session and role authorization contracts
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:learning-authentication
 
       - name: Build production application
         if: ${{ always() && steps.install.outcome == 'success' }}

@@ -1,51 +1,44 @@
-import { BookOpen, BookOpenCheck, FileQuestion, FileText, Languages, LayoutDashboard, LogOut, PlusCircle, GraduationCap, Sparkles, Bell, Target, CalendarDays, ClipboardCheck } from "lucide-react";
-import { Navigate, NavLink, Outlet, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { BookOpen, BookOpenCheck, FileQuestion, FileText, Languages, LayoutDashboard, PlusCircle, GraduationCap, Sparkles, Bell, Target, CalendarDays, ClipboardCheck } from "lucide-react";
+import { Navigate, NavLink, Outlet } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { ProtectedRoute, useAuth } from "@/core/auth";
+import { useAuth } from "@/core/auth";
 import { useTranslation } from "@/core/i18n/useTranslation";
-import { LearningLanguageSelector } from "@/features/learning-shared/components/LearningLanguageSelector";
+import { LearningWorkspaceShell } from "@/features/learning-shared/components/LearningWorkspaceShell";
 import { learningTeacherService } from "../services/learning-teacher.service";
 
-const navigationGroups = [
+type TeacherNavigationItem = { to: string; label: string; icon: typeof LayoutDashboard; end?: boolean };
+type TeacherNavigationGroup = { label: string | null; items: TeacherNavigationItem[] };
+
+const navigationGroups: TeacherNavigationGroup[] = [
   {
     label: null,
-    items: [
-      { to: "/teacher", label: "learning.dashboard", icon: LayoutDashboard, end: true },
-    ],
+    items: [{ to: "/teacher", label: "learning.dashboard", icon: LayoutDashboard, end: true }],
   },
   {
     label: "learning.teaching",
     items: [
-      { to: "/teacher/workload", label: "teacherWorkload.title", icon: ClipboardCheck, end: false },
-      { to: "/teacher/leave", label: "teacherLeave.title", icon: CalendarDays, end: false },
-      { to: "/teacher/content", label: "learning.contentLibrary", icon: FileText, end: false },
-      { to: "/teacher/lesson-plans", label: "learning.lessonPlanning", icon: BookOpenCheck, end: false },
-      { to: "/teacher/vocabulary", label: "learning.vocabulary", icon: Languages, end: false },
-      { to: "/calendar", label: "learning.schoolCalendar", icon: CalendarDays, end: false },
-      { to: "/teacher/vocabulary/assignments/new", label: "learning.vocabularyAssignment", icon: BookOpenCheck, end: false },
-      { to: "/notifications", label: "learning.notifications", icon: Bell, end: false },
-      { to: "/marketplace", label: "learning.extraClasses", icon: GraduationCap, end: false },
-      { to: "/teacher/authoring", label: "learning.authoring", icon: BookOpen, end: false },
-      { to: "/teacher/ai-assistant", label: "learning.aiAssistant", icon: Sparkles, end: false },
-      { to: "/teacher/interventions", label: "learning.studentSupport", icon: Target, end: false },
-      { to: "/teacher/question-bank", label: "learning.questionBank", icon: FileQuestion, end: false },
-      { to: "/teacher/assessments", label: "assessmentBuilder.title", icon: ClipboardCheck, end: false },
-    ],
-  },
-  {
-    label: "learning.assignments",
-    items: [
-      { to: "/teacher/assignments/new", label: "learning.createAssignment", icon: PlusCircle, end: false },
+      { to: "/teacher/workload", label: "teacherWorkload.title", icon: ClipboardCheck },
+      { to: "/teacher/leave", label: "teacherLeave.title", icon: CalendarDays },
+      { to: "/teacher/content", label: "learning.contentLibrary", icon: FileText },
+      { to: "/teacher/lesson-plans", label: "learning.lessonPlanning", icon: BookOpenCheck },
+      { to: "/teacher/vocabulary", label: "learning.vocabulary", icon: Languages },
+      { to: "/calendar", label: "learning.schoolCalendar", icon: CalendarDays },
+      { to: "/teacher/vocabulary/assignments/new", label: "learning.vocabularyAssignment", icon: BookOpenCheck },
+      { to: "/notifications", label: "learning.notifications", icon: Bell },
+      { to: "/marketplace", label: "learning.extraClasses", icon: GraduationCap },
+      { to: "/teacher/authoring", label: "learning.authoring", icon: BookOpen },
+      { to: "/teacher/ai-assistant", label: "learning.aiAssistant", icon: Sparkles },
+      { to: "/teacher/interventions", label: "learning.studentSupport", icon: Target },
+      { to: "/teacher/question-bank", label: "learning.questionBank", icon: FileQuestion },
+      { to: "/teacher/assessments", label: "assessmentBuilder.title", icon: ClipboardCheck },
+      { to: "/teacher/assignments/new", label: "learning.createAssignment", icon: PlusCircle },
     ],
   },
 ];
 
 export default function TeacherLayout() {
-  const { user, loading, logout } = useAuth();
+  const { user, loading } = useAuth();
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const [loggingOut, setLoggingOut] = useState(false);
   const teacherAccess = useQuery({
     queryKey: ["learning", "teacher-access", user?.id],
     queryFn: () => learningTeacherService.listTeacherClasses(user!.id),
@@ -53,135 +46,82 @@ export default function TeacherLayout() {
     staleTime: 60_000,
   });
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-slate-50 p-6">
-        <div className="mx-auto h-24 max-w-7xl animate-pulse rounded-2xl bg-slate-200" />
-      </div>
-    );
+  if (loading || teacherAccess.isPending) {
+    return <div className="min-h-screen bg-slate-50 p-6"><div className="mx-auto h-24 max-w-7xl animate-pulse rounded-2xl bg-slate-200" /></div>;
   }
-
-  if (!user) {
-    return <Navigate to="/login" replace />;
-  }
-
-  if (teacherAccess.isPending) {
-    return (
-      <div className="min-h-screen bg-slate-50 p-6">
-        <div className="mx-auto h-24 max-w-7xl animate-pulse rounded-2xl bg-slate-200" />
-      </div>
-    );
-  }
-
+  if (!user) return <Navigate to="/login" replace />;
   if (teacherAccess.isError || !teacherAccess.data?.length) {
-    return <Navigate to="/login" replace />;
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-slate-50 px-4">
+        <section className="w-full max-w-lg rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <h1 className="text-xl font-semibold text-slate-900">{teacherAccess.isError ? "Teacher access could not be loaded" : "No active teaching classes"}</h1>
+          <p className="mt-2 text-sm text-slate-600">
+            {teacherAccess.isError
+              ? "Your teacher membership was verified, but the class list could not be loaded. Please try again."
+              : "Your account does not currently have an active teaching class. Contact your school administrator if this is unexpected."}
+          </p>
+          {teacherAccess.isError && <button type="button" onClick={() => void teacherAccess.refetch()} className="mt-5 rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700">Try again</button>}
+        </section>
+      </main>
+    );
   }
 
-  const handleLogout = async () => {
-    if (loggingOut) return;
-    setLoggingOut(true);
-    try { await logout(); navigate("/login", { replace: true }); }
-    finally { setLoggingOut(false); }
-  };
-
-  const primaryClassId = teacherAccess.data?.[0]?.classGroup.id;
+  const primaryClassId = teacherAccess.data[0]?.classGroup.id;
   const classLinks = primaryClassId ? [
-    { to: "/teacher/classes/"+primaryClassId, label: "learning.classOverview" },
-    { to: "/teacher/classes/"+primaryClassId+"/assignments/history", label: "learning.assignmentHistory" },
-    { to: "/teacher/classes/"+primaryClassId+"/parents", label: "learning.parents" },
-    { to: "/teacher/classes/"+primaryClassId+"/gradebook", label: "learning.gradebook" },
-    { to: "/teacher/classes/"+primaryClassId+"/gradebook/reports", label: "learning.gradebookReports" },
-    { to: "/teacher/classes/"+primaryClassId+"/gradebook/settings", label: "learning.gradebookSettings" },
-    { to: "/teacher/classes/"+primaryClassId+"/gamification", label: "learning.classGamification" },
-    { to: "/teacher/classes/"+primaryClassId+"/live-games", label: "liveGames.navigation" },
+    { to: `/teacher/classes/${primaryClassId}`, label: "learning.classOverview" },
+    { to: `/teacher/classes/${primaryClassId}/assignments/history`, label: "learning.assignmentHistory" },
+    { to: `/teacher/classes/${primaryClassId}/parents`, label: "learning.parents" },
+    { to: `/teacher/classes/${primaryClassId}/gradebook`, label: "learning.gradebook" },
+    { to: `/teacher/classes/${primaryClassId}/gradebook/reports`, label: "learning.gradebookReports" },
+    { to: `/teacher/classes/${primaryClassId}/gradebook/settings`, label: "learning.gradebookSettings" },
+    { to: `/teacher/classes/${primaryClassId}/gamification`, label: "learning.classGamification" },
+    { to: `/teacher/classes/${primaryClassId}/live-games`, label: "liveGames.navigation" },
   ] : [];
 
   const linkClass = (active: boolean) => [
-    "inline-flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition",
-    active ? "bg-slate-900 text-white shadow-sm" : "text-slate-600 hover:bg-slate-100 hover:text-slate-950"
+    "flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition",
+    active ? "bg-slate-900 text-white shadow-sm" : "text-slate-600 hover:bg-slate-100 hover:text-slate-950",
   ].join(" ");
 
   return (
-    <ProtectedRoute>
-      <div className="min-h-screen bg-slate-50">
-        <div className="mx-auto flex min-h-screen max-w-[1600px]">
-          <aside className="hidden w-72 shrink-0 border-r border-slate-200 bg-white p-4 lg:flex lg:flex-col">
-            <div className="px-3 py-3">
-              <div className="flex items-center justify-between gap-2"><p className="text-lg font-bold text-slate-950">E&P Learning</p><LearningLanguageSelector compact /></div>
-              <p className="mt-1 text-xs text-slate-500">{t("learning.teacherWorkspace")}</p>
+    <LearningWorkspaceShell
+      role="teacher"
+      navigation={
+        <nav className="space-y-5" aria-label="Teacher portal navigation">
+          {navigationGroups.map((group) => (
+            <div key={group.label ?? "dashboard"}>
+              {group.label && <p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">{t(group.label)}</p>}
+              <div className={group.label ? "mt-2 space-y-1" : "space-y-1"}>
+                {group.items.map(({ to, label, icon: Icon, end }) => (
+                  <NavLink key={to} to={to} end={end} className={({ isActive }) => linkClass(isActive)}>
+                    <Icon size={18} />{t(label)}
+                  </NavLink>
+                ))}
+              </div>
             </div>
-
-            <nav className="mt-6 space-y-5" aria-label="Teacher portal navigation">
-              {navigationGroups.map((group) => (
-                <div key={group.label ?? "dashboard"}>
-                  {group.label && <p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">{t(group.label)}</p>}
-                  <div className={group.label ? "mt-2 space-y-1" : "space-y-1"}>
-                    {group.items.map(({ to, label, icon: Icon, end }) => (
-                      <NavLink key={to} to={to} end={end} className={({ isActive }) => linkClass(isActive)}>
-                        <Icon size={18} />
-                        {t(label)}
-                      </NavLink>
-                    ))}
-                  </div>
-                </div>
+          ))}
+          <div className="border-t border-slate-200 pt-4">
+            <p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">{t("learning.academic")}</p>
+            <div className="mt-2 space-y-1">
+              {classLinks.map((item) => (
+                <NavLink key={item.to} to={item.to} className={({ isActive }) => linkClass(isActive)}>{t(item.label)}</NavLink>
               ))}
-            </nav>
-
-            <div className="mt-6 border-t border-slate-200 pt-4">
-              <p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">{t("learning.academic")}</p>
-              <div className="mt-2 space-y-1">
-                {classLinks.map(item => (
-                  <NavLink key={item.to} to={item.to} className={({ isActive }) => linkClass(isActive)}>
-                    {t(item.label)}
-                  </NavLink>
-                ))}
-              </div>
             </div>
-
-            <div className="mt-6 border-t border-slate-200 pt-4">
-              <p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">{t("learning.myClasses")}</p>
-              <div className="mt-2 space-y-1">
-                {teacherAccess.data.slice(0, 8).map(cls => (
-                  <NavLink key={cls.classGroup.id} to={"/teacher/classes/"+cls.classGroup.id} className={({ isActive }) => linkClass(isActive)}>
-                    {cls.classGroup.name}
-                  </NavLink>
-                ))}
-              </div>
+          </div>
+          <div className="border-t border-slate-200 pt-4">
+            <p className="px-3 text-xs font-semibold uppercase tracking-wide text-slate-400">{t("learning.myClasses")}</p>
+            <div className="mt-2 space-y-1">
+              {teacherAccess.data.slice(0, 8).map((cls) => (
+                <NavLink key={cls.classGroup.id} to={`/teacher/classes/${cls.classGroup.id}`} className={({ isActive }) => linkClass(isActive)}>
+                  {cls.classGroup.name}
+                </NavLink>
+              ))}
             </div>
-
-            <div className="mt-auto border-t border-slate-200 pt-4">
-              <p className="truncate px-3 text-xs text-slate-500">{user.email || ""}</p>
-              <button type="button" onClick={() => void handleLogout()} disabled={loggingOut} className="mt-3 inline-flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-100 disabled:opacity-50">
-                <LogOut size={18}/>
-                {loggingOut ? t("learning.signingOut") : t("learning.logout")}
-              </button>
-            </div>
-          </aside>
-
-          <main className="min-w-0 flex-1">
-            <div className="border-b border-slate-200 bg-white px-4 py-3 lg:hidden">
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <div><p className="font-bold text-slate-950">E&P Learning</p><p className="text-xs text-slate-500">{t("learning.teacherWorkspace")}</p></div>
-                </div>
-                <LearningLanguageSelector compact />
-                <button type="button" onClick={() => void handleLogout()} disabled={loggingOut} className="rounded-xl border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-600 disabled:opacity-50">
-                  {loggingOut ? t("learning.signingOut") : t("learning.logout")}
-                </button>
-              </div>
-              <nav className="mt-3 flex gap-2 overflow-x-auto pb-1" aria-label="Teacher mobile navigation">
-                {navigationGroups.flatMap(group => group.items).map(({ to, label, icon: Icon, end }) => (
-                  <NavLink key={to} to={to} end={end} className={({ isActive }) => "inline-flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold "+(isActive ? "bg-slate-900 text-white" : "text-slate-600 ring-1 ring-inset ring-slate-200")}>
-                    <Icon size={16}/>
-                    {t(label)}
-                  </NavLink>
-                ))}
-              </nav>
-            </div>
-            <div className="p-4 sm:p-6 lg:p-8"><Outlet /></div>
-          </main>
-        </div>
-      </div>
-    </ProtectedRoute>
+          </div>
+        </nav>
+      }
+    >
+      <Outlet />
+    </LearningWorkspaceShell>
   );
 }
