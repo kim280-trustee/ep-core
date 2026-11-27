@@ -183,4 +183,41 @@ on public.learning_assignment_targets
 for each row
 execute function private.guard_learning_assessment_assignment_target_mapping();
 
+
+create or replace function private.guard_learning_assessment_assignment_parent_mapping()
+returns trigger
+language plpgsql
+security definer
+set search_path = ''
+as $function$
+begin
+  if old.class_subject_id is distinct from new.class_subject_id
+     or old.organization_id is distinct from new.organization_id
+     or (
+       old.status in ('published', 'closed')
+       and new.status not in ('published', 'closed')
+     ) then
+    perform private.exclude_assessment_gradebook_entries_for_mapping_change(
+      old.id,
+      null,
+      null,
+      null,
+      'Assessment assignment academic mapping or publication state changed'
+    );
+  end if;
+  return new;
+end;
+$function$;
+
+revoke all on function private.guard_learning_assessment_assignment_parent_mapping()
+from public, anon, authenticated;
+
+drop trigger if exists learning_assessment_assignment_parent_mapping_guard
+on public.learning_assignments;
+create trigger learning_assessment_assignment_parent_mapping_guard
+before update of organization_id, class_subject_id, status
+on public.learning_assignments
+for each row
+execute function private.guard_learning_assessment_assignment_parent_mapping();
+
 commit;
