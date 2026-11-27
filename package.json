@@ -35,7 +35,8 @@
     "validate:teacher-assessment-review": "node scripts/validate-teacher-assessment-review.mjs",
     "validate:learning-question-bundle": "node scripts/validate-learning-question-bundle.mjs",
     "validate:learning-assessment-authoring": "node scripts/validate-learning-assessment-authoring.mjs",
-    "validate:learning-authentication": "node scripts/validate-learning-authentication.mjs"
+    "validate:learning-authentication": "node scripts/validate-learning-authentication.mjs",
+    "test:learning-authentication-browser": "playwright test"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
