@@ -28,6 +28,8 @@ const checks = [
   ["logout is local to the current browser session", repository.includes('signOut({ scope: "local" })')],
   ["auth provider fails closed on identity lookup errors", provider.includes("if (profileError) throw profileError") && provider.includes("if (userRoleError) throw userRoleError") && provider.includes("if (roleError) throw roleError")],
   ["auth provider invalidates stale reads and handles sign-out events", provider.includes("loadRequestId.current += 1") && provider.includes('event === "SIGNED_OUT"') && provider.includes('event === "SIGNED_IN"') && provider.includes("setLoading(true)")],
+  ["auth provider invalidates in-flight identity reads on every Supabase auth event", provider.includes("Every Supabase auth event can invalidate an in-flight identity read") && provider.includes("loadRequestId.current += 1;") && provider.includes("window.setTimeout(() => {")],
+  ["cross-tab sign-out or expired sessions immediately clear the authenticated identity", provider.includes('event === "SIGNED_OUT"') && provider.includes("setUser(null);") && provider.includes("setLoading(false);")],
   ["auth provider clears a session without an application profile", provider.includes("if (!profile)") && provider.includes('signOut({ scope: "local" })')],
   ["student portal requires a student membership", studentRoutes.includes('<LearningRoleRoute role="student">')],
   ["teacher portal requires a teacher membership", teacherRoutes.includes('<LearningRoleRoute role="teacher">')],
