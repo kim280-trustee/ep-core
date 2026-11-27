@@ -39,13 +39,30 @@ export default function TeacherAssessmentReviewPage() {
         learningAssessmentService.listAssessmentQuestions(assessmentId),
         learningAssessmentService.listAttemptsForAssessment(assessmentId),
       ]);
-      const questionDetails = await Promise.all(assessmentQuestions.map(async (item) => {
-        const version = await learningAssessmentService.getQuestionVersion(item.questionVersionId);
-        const question = await learningAssessmentService.getQuestion(version.questionId);
-        return { item, version, question };
-      }));
-      const attemptsWithAnswers = await Promise.all(attempts.map(async (attempt) => {
-        const answers = await learningAssessmentService.listAttemptAnswers(attempt.id);
+      const [questionVersions, questionRows, allAnswers] = await Promise.all([
+        learningAssessmentService.listQuestionVersionsByIds(
+          assessmentQuestions.map((item) => item.questionVersionId),
+        ),
+        learningAssessmentService.listQuestions(assessmentQuery.data?.organizationId ?? undefined),
+        learningAssessmentService.listAttemptAnswersForAttempts(attempts.map((attempt) => attempt.id)),
+      ]);
+      const versionsById = new Map(questionVersions.map((version) => [version.id, version]));
+      const questionsById = new Map(questionRows.map((question) => [question.id, question]));
+      const questionDetails = assessmentQuestions.flatMap((item) => {
+        const version = versionsById.get(item.questionVersionId);
+        if (!version) throw new Error("A published assessment question version could not be loaded.");
+        const question = questionsById.get(version.questionId);
+        if (!question) throw new Error("An assessment question could not be loaded.");
+        return [{ item, version, question }];
+      });
+      const answersByAttempt = new Map<string, typeof allAnswers>();
+      for (const answer of allAnswers) {
+        const existing = answersByAttempt.get(answer.attemptId) ?? [];
+        existing.push(answer);
+        answersByAttempt.set(answer.attemptId, existing);
+      }
+      const attemptsWithAnswers = attempts.map((attempt) => {
+        const answers = answersByAttempt.get(attempt.id) ?? [];
         const manualAnswers = answers.flatMap((answer) => {
           const detail = questionDetails.find((entry) => entry.item.id === answer.assessmentQuestionId);
           if (!detail || detail.question.questionType !== "short_answer") return [];
@@ -57,7 +74,7 @@ export default function TeacherAssessmentReviewPage() {
           }];
         });
         return { attempt, answers: manualAnswers };
-      }));
+      });
       return attemptsWithAnswers
         .filter((row) =>
           row.attempt.status === "evaluating" ||
