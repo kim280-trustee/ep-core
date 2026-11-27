@@ -467,3 +467,20 @@ Eleven further M3 rows were reconciled against the OBEC 2021 detailed table:
 The crosswalk uses explicit whitespace-normalised match statuses where the source and catalogue differ only in spacing around Thai conjunctions. Those are not described as byte-for-byte exact matches. All eleven indicator codes match their source rows.
 
 The crosswalk now has 31 of 111 rows reconciled. For the M3 portion, 31 of 50 rows are reconciled and 19 remain unresolved; the 61 shared M4–M6 rows are still outstanding. The 31 M3 classifications currently total 18 Must-Know and 13 Should-Know. This count is not a completed M3 result: the unresolved 19 include apparent source-code/grade inconsistencies and other standards requiring exact review. No classifications were inferred from totals or neighbouring rows.
+
+
+## 4O. M3 priority reconciliation completed — 27 November 2026
+
+The remaining 19 M3 priority rows have now been reconciled by matching the indicator code and Thai wording to the detailed 2021 OBEC Social Studies tables. The source pages used are printed pp.230–239. The row-level results are recorded in `SOCIAL-STUDIES-M3-M46-OBEC-2021-PRIORITY-CROSSWALK.csv`.
+
+This final M3 batch covers:
+- SO1.1 M3/1–M3/10 (printed pp.230–232).
+- SO1.2 M3/1–M3/3 (printed p.232).
+- SO3.2 M3/5–M3/6 (printed p.236).
+- SO4.1 M3/1–M3/2 and SO4.2 M3/1–M3/2 (printed p.237).
+
+The completed M3 crosswalk now contains 50/50 reconciled indicators: 28 Must-Know and 22 Should-Know, matching the M3 row in the OBEC 2021 summary. No priority was assigned by distributing totals; each label was taken from its corresponding detailed indicator row. The row/code/wording anomalies previously observed in the extracted source remain recorded separately where relevant and do not change the exact matches above.
+
+**Batch 1 — M3 priority reconciliation: COMPLETE.** This closes the M3 classification scope only. It does not close the shared M4–M6 crosswalk (61 indicators), academic task review, staging, teacher acceptance or independent sign-off.
+
+The preceding moderation-register repair was validated by GitHub Actions run [45929074904](https://github.com/kim280-trustee/ep-core/actions/runs/45929074904), which completed successfully. That run confirmed the importer/validator, dependency security audit, repository lint and TypeScript/production build on commit `4bd985710c381bdc1e1115af22d847e1ac8b276d). The current M3 completion commit is newer and must receive its own green workflow before the M3 technical gate is marked passed.
