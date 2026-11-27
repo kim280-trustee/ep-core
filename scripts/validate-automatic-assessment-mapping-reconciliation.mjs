@@ -9,6 +9,9 @@ const migration = readFileSync(
 assert.ok(migration.includes("private.exclude_assessment_gradebook_entries_for_mapping_change"));
 assert.ok(migration.includes("e.source_type = 'assessment_result'"));
 assert.ok(migration.includes("e.assignment_id = p_assignment_id"));
+assert.ok(migration.includes("p_assessment_id is null or e.assessment_id = p_assessment_id"));
+assert.ok(migration.includes("p_class_group_id is null or e.class_group_id = p_class_group_id"));
+assert.ok(migration.includes("p_student_user_id is null or e.student_user_id = p_student_user_id"));
 assert.ok(migration.includes("e.included_in_grade = true"));
 assert.ok(migration.includes("for update"));
 assert.ok(migration.includes("grade.status = 'finalized'"));
