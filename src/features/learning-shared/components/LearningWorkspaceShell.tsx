@@ -94,7 +94,9 @@ export function LearningWorkspaceShell({ role, navigation, children }: Props) {
         <p className="text-lg font-bold text-slate-950">E&P Learning</p>
         <p className="mt-1 text-xs text-slate-500">{ROLE_LABELS[role]}</p>
       </div>
-      <div className="min-h-0 flex-1 overflow-y-auto px-3 py-4">
+      <div className="min-h-0 flex-1 overflow-y-auto px-3 py-4" onClick={(event) => {
+        if ((event.target as HTMLElement).closest("a")) setMobileOpen(false);
+      }}>
         {navigation}
       </div>
       <div className="border-t border-slate-200 p-4">
