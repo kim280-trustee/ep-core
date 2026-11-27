@@ -537,3 +537,14 @@ The authored material includes curriculum-approved-source templates for religiou
 The P5 rows in `SOCIAL-STUDIES-TASK-LEVEL-MODERATION-REGISTER.csv` have been updated in place: 108 task rows, preserving the 1,254-row catalogue, 418 indicator coverage and 17-column schema. Source/content verification, factual accuracy, age/inclusion review, marking-quality review and independent moderation remain pending. This authoring pass is not a substitute for those reviews.
 
 **P5 task-specific authoring: COMPLETE (108/108 across 36/36 indicators).** **P5 source verification, factual/age review, independent moderation and teacher acceptance: OPEN.** No staging import or production/live-school data change was made.
+
+
+## 4S. Primary 6 task-specific stimulus and marking-criteria batch — 27 November 2026
+
+The P6 teacher pack now contains topic-specific assessment stimuli and three aligned tasks for each of its 39 indicators (117 tasks total). The progression is recall/identify, explain/analyse and apply/demonstrate. Each prompt is tied to the exact Thai indicator wording, and each answer guide identifies the evidence, reasoning or performance needed for credit.
+
+The P6 materials use named classroom source sets: approved biography timelines and religious teaching cards; respectful interfaith visitor and inclusion cases; fictional peer-pressure and safe-help-seeking scenarios; current teacher-verified legal extracts, local-government charts, election guides and news-source comparisons; fictional producer/consumer, market and cooperative cases with clearly illustrative values; dated historical source sets and teacher-approved Rattanakosin profiles; and map/image/hazard/environment evidence packs that require dated, verified Thai sources. Religious practice is never compelled or assessed as personal belief. Current legal, government, ASEAN, country-profile, historical and geographic facts must be checked against the cited current or adopted authoritative sources before classroom use; no unverified local facts, emergency routes or statistics have been invented.
+
+The P6 register rows have been updated in place: 117 task rows across 39 indicators, preserving the complete 1,254-task catalogue, 418 indicators and 17-column schema. All source/content verification, factual accuracy, age/inclusion, marking-quality and independent moderation statuses remain pending/not moderated. Automated structural validation confirms 39 P6 indicators, three unique task IDs per indicator and no change to the other grade-pack rows.
+
+**P6 task-specific authoring: COMPLETE (117/117 across 39/39 indicators).** **P6 source verification, factual/age review, independent moderation and teacher acceptance: OPEN.** No staging import or production/live-school data change was made.
