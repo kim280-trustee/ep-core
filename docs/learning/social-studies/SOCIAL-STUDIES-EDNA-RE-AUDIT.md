@@ -455,3 +455,15 @@ Four additional M3 SO1.2 rows were reconciled against the detailed OBEC 2021 tab
 - `SO1.2-M3-07` — นำเสนอแนวทางในการธำรงรักษาศาสนาที่ตนนับถือ.
 
 The crosswalk now contains 20 reconciled rows out of 111, with 91 still unresolved. The 20 reconciled rows comprise 12 Must-Know and 8 Should-Know. This does not complete the M3 crosswalk: other M3 standards and the shared M4–M6 rows remain under source reconciliation. No label is inferred from a grade-level summary or pathway field.
+
+
+## 4N. M3 history and geography priority reconciliation — 27 November 2026
+
+Eleven further M3 rows were reconciled against the OBEC 2021 detailed table:
+- SO4.3, official rows 40–43, printed p.238: /1 Must-Know; /2 Must-Know; /3 Must-Know; /4 Should-Know.
+- SO5.1, official rows 44–45, printed p.239: /1 Should-Know; /2 Should-Know.
+- SO5.2, official rows 46–50, printed p.239: /1 Should-Know; /2 Must-Know; /3 Must-Know; /4 Must-Know; /5 Should-Know.
+
+The crosswalk uses explicit whitespace-normalised match statuses where the source and catalogue differ only in spacing around Thai conjunctions. Those are not described as byte-for-byte exact matches. All eleven indicator codes match their source rows.
+
+The crosswalk now has 31 of 111 rows reconciled. For the M3 portion, 31 of 50 rows are reconciled and 19 remain unresolved; the 61 shared M4–M6 rows are still outstanding. The 31 M3 classifications currently total 18 Must-Know and 13 Should-Know. This count is not a completed M3 result: the unresolved 19 include apparent source-code/grade inconsistencies and other standards requiring exact review. No classifications were inferred from totals or neighbouring rows.
