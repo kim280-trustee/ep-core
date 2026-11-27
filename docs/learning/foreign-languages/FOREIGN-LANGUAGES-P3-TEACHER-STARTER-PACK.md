@@ -21,9 +21,9 @@
 - **Standard:** ต 1.1
 - **Priority classification:** must_know
 - **Official indicator:** ปฏิบัติตามคำสั่งและคำขอร้องที่ฟังหรืออ่าน
-- **Objective:** `FL-P3-01` — ปฏิบัติตามคำสั่งและคำขอร้องที่ฟังหรืออ่าน
-- **Learning outcomes:** Learners follow familiar commands and requests presented orally or in short written form.
-- **Practical activity:** Provide a simple classroom task card with two steps. Model the commands orally and in writing; learners complete the actions in sequence and explain which words helped them.
+**Objective:** `FL-P3-01` — ปฏิบัติตามคำสั่งและคำขอร้องที่ฟังหรืออ่าน
+**Learning outcomes:** Learners follow familiar commands and requests presented orally or in short written form.
+**Practical activity:** Provide a simple classroom task card with two steps. Model the commands orally and in writing; learners complete the actions in sequence and explain which words helped them.
 - **Resources:** Illustrated instruction cards and classroom objects.
 
 **Independent practice**
@@ -36,9 +36,9 @@
 - **Standard:** ต 1.1
 - **Priority classification:** must_know
 - **Official indicator:** อ่านออกเสียงคำ สะกดคำ อ่านกลุ่มคำ ประโยค และบทพูดเข้าจังหวะง่าย ๆ ถูกต้องตามหลักการอ่าน
-- **Objective:** `FL-P3-02` — อ่านออกเสียงคำ สะกดคำ อ่านกลุ่มคำ ประโยค และบทพูดเข้าจังหวะง่าย ๆ ถูกต้องตามหลักการอ่าน
-- **Learning outcomes:** Learners read familiar words and short sentences aloud with clear sounds and simple rhythm.
-- **Practical activity:** Use a short chant with repeated sound patterns. Learners underline the target sound, practise the rhythm and read the chant in pairs.
+**Objective:** `FL-P3-02` — อ่านออกเสียงคำ สะกดคำ อ่านกลุ่มคำ ประโยค และบทพูดเข้าจังหวะง่าย ๆ ถูกต้องตามหลักการอ่าน
+**Learning outcomes:** Learners read familiar words and short sentences aloud with clear sounds and simple rhythm.
+**Practical activity:** Use a short chant with repeated sound patterns. Learners underline the target sound, practise the rhythm and read the chant in pairs.
 - **Resources:** Short teacher-created chant, word cards and sound prompts.
 
 **Independent practice**
@@ -51,9 +51,9 @@
 - **Standard:** ต 1.1
 - **Priority classification:** must_know
 - **Official indicator:** เลือก/ระบุภาพหรือสัญลักษณ์ตรงตามความหมายของกลุ่มคำและประโยคที่ฟัง
-- **Objective:** `FL-P3-03` — เลือก/ระบุภาพหรือสัญลักษณ์ตรงตามความหมายของกลุ่มคำและประโยคที่ฟัง
-- **Learning outcomes:** Learners interpret a spoken phrase or sentence and select the matching picture or symbol.
-- **Practical activity:** Use a picture scene with clear differences in number, location, action and colour. Read one sentence at a time and ask learners to justify the selected picture using one detail.
+**Objective:** `FL-P3-03` — เลือก/ระบุภาพหรือสัญลักษณ์ตรงตามความหมายของกลุ่มคำและประโยคที่ฟัง
+**Learning outcomes:** Learners interpret a spoken phrase or sentence and select the matching picture or symbol.
+**Practical activity:** Use a picture scene with clear differences in number, location, action and colour. Read one sentence at a time and ask learners to justify the selected picture using one detail.
 - **Resources:** Picture scenes and symbol cards.
 
 **Independent practice**
@@ -66,9 +66,9 @@
 - **Standard:** ต 1.1
 - **Priority classification:** must_know
 - **Official indicator:** ตอบคำถามจากการฟังหรืออ่านประโยค บทสนทนา หรือนิทานง่าย ๆ
-- **Objective:** `FL-P3-04` — ตอบคำถามจากการฟังหรืออ่านประโยค บทสนทนา หรือนิทานง่าย ๆ
-- **Learning outcomes:** Learners answer simple comprehension questions about a short listening or reading text.
-- **Practical activity:** Read a short dialogue or story twice. Learners identify who, where and what happened, then point to the sentence or picture detail supporting an answer.
+**Objective:** `FL-P3-04` — ตอบคำถามจากการฟังหรืออ่านประโยค บทสนทนา หรือนิทานง่าย ๆ
+**Learning outcomes:** Learners answer simple comprehension questions about a short listening or reading text.
+**Practical activity:** Read a short dialogue or story twice. Learners identify who, where and what happened, then point to the sentence or picture detail supporting an answer.
 - **Resources:** Short illustrated dialogue and question cards.
 
 **Independent practice**
@@ -81,9 +81,9 @@
 - **Standard:** ต 1.2
 - **Priority classification:** must_know
 - **Official indicator:** พูดโต้ตอบด้วยคำสั้น ๆ ง่าย ๆ ในการสื่อสารระหว่างบุคคลตามแบบที่ฟัง
-- **Objective:** `FL-P3-05` — พูดโต้ตอบด้วยคำสั้น ๆ ง่าย ๆ ในการสื่อสารระหว่างบุคคลตามแบบที่ฟัง
-- **Learning outcomes:** Learners sustain a short modelled conversation using greetings, thanks, apologies and simple follow-up responses.
-- **Practical activity:** Model a short conversation with a greeting, a question and a response. Learners practise changing one detail while keeping the exchange polite and understandable.
+**Objective:** `FL-P3-05` — พูดโต้ตอบด้วยคำสั้น ๆ ง่าย ๆ ในการสื่อสารระหว่างบุคคลตามแบบที่ฟัง
+**Learning outcomes:** Learners sustain a short modelled conversation using greetings, thanks, apologies and simple follow-up responses.
+**Practical activity:** Model a short conversation with a greeting, a question and a response. Learners practise changing one detail while keeping the exchange polite and understandable.
 - **Resources:** Dialogue strips and role cards.
 
 **Independent practice**
@@ -96,9 +96,9 @@
 - **Standard:** ต 1.2
 - **Priority classification:** must_know
 - **Official indicator:** ใช้คำสั่งและคำขอร้องง่าย ๆ ตามแบบที่ฟัง
-- **Objective:** `FL-P3-06` — ใช้คำสั่งและคำขอร้องง่าย ๆ ตามแบบที่ฟัง
-- **Learning outcomes:** Learners give clear simple commands and polite requests in familiar classroom situations.
-- **Practical activity:** Learners create a two-step classroom instruction using “please” where appropriate, then exchange and follow each other's instructions.
+**Objective:** `FL-P3-06` — ใช้คำสั่งและคำขอร้องง่าย ๆ ตามแบบที่ฟัง
+**Learning outcomes:** Learners give clear simple commands and polite requests in familiar classroom situations.
+**Practical activity:** Learners create a two-step classroom instruction using “please” where appropriate, then exchange and follow each other's instructions.
 - **Resources:** Classroom task cards and objects.
 
 **Independent practice**
@@ -111,9 +111,9 @@
 - **Standard:** ต 1.2
 - **Priority classification:** should_know
 - **Official indicator:** บอกความต้องการง่าย ๆ ของตนเองตามแบบที่ฟัง
-- **Objective:** `FL-P3-07` — บอกความต้องการง่าย ๆ ของตนเองตามแบบที่ฟัง
-- **Learning outcomes:** Learners express a simple need and add a polite word or short reason.
-- **Practical activity:** Present classroom and daily-life situations. Learners choose an appropriate request and practise saying it with a reason, such as needing a pencil for writing.
+**Objective:** `FL-P3-07` — บอกความต้องการง่าย ๆ ของตนเองตามแบบที่ฟัง
+**Learning outcomes:** Learners express a simple need and add a polite word or short reason.
+**Practical activity:** Present classroom and daily-life situations. Learners choose an appropriate request and practise saying it with a reason, such as needing a pencil for writing.
 - **Resources:** Situation cards and useful phrase bank.
 
 **Independent practice**
@@ -126,9 +126,9 @@
 - **Standard:** ต 1.2
 - **Priority classification:** must_know
 - **Official indicator:** พูดขอและให้ข้อมูลง่าย ๆ เกี่ยวกับตนเองและเพื่อนตามแบบที่ฟัง
-- **Objective:** `FL-P3-08` — พูดขอและให้ข้อมูลง่าย ๆ เกี่ยวกับตนเองและเพื่อนตามแบบที่ฟัง
-- **Learning outcomes:** Learners ask and answer simple questions about themselves and a friend using a model.
-- **Practical activity:** Use fictional profile cards. Learners interview a partner about a name, age, favourite colour or time, then report one fact about the partner.
+**Objective:** `FL-P3-08` — พูดขอและให้ข้อมูลง่าย ๆ เกี่ยวกับตนเองและเพื่อนตามแบบที่ฟัง
+**Learning outcomes:** Learners ask and answer simple questions about themselves and a friend using a model.
+**Practical activity:** Use fictional profile cards. Learners interview a partner about a name, age, favourite colour or time, then report one fact about the partner.
 - **Resources:** Fictional profile cards and interview prompts.
 
 **Independent practice**
@@ -141,9 +141,9 @@
 - **Standard:** ต 1.2
 - **Priority classification:** must_know
 - **Official indicator:** บอกความรู้สึกของตนเองเกี่ยวกับสิ่งต่าง ๆ ใกล้ตัวหรือกิจกรรมต่าง ๆ ตามแบบที่ฟัง
-- **Objective:** `FL-P3-09` — บอกความรู้สึกของตนเองเกี่ยวกับสิ่งต่าง ๆ ใกล้ตัวหรือกิจกรรมต่าง ๆ ตามแบบที่ฟัง
-- **Learning outcomes:** Learners express a simple feeling about a familiar object or activity using a model phrase.
-- **Practical activity:** Use activity and object pictures. Model “I like…”, “I don’t like…” and simple feeling words. Learners choose a picture and give a short reason if ready.
+**Objective:** `FL-P3-09` — บอกความรู้สึกของตนเองเกี่ยวกับสิ่งต่าง ๆ ใกล้ตัวหรือกิจกรรมต่าง ๆ ตามแบบที่ฟัง
+**Learning outcomes:** Learners express a simple feeling about a familiar object or activity using a model phrase.
+**Practical activity:** Use activity and object pictures. Model “I like…”, “I don’t like…” and simple feeling words. Learners choose a picture and give a short reason if ready.
 - **Resources:** Activity picture cards and feeling-word cards.
 
 **Independent practice**
@@ -156,9 +156,9 @@
 - **Standard:** ต 1.3
 - **Priority classification:** must_know
 - **Official indicator:** พูดให้ข้อมูลเกี่ยวกับตนเองและเรื่องใกล้ตัว
-- **Objective:** `FL-P3-10` — พูดให้ข้อมูลเกี่ยวกับตนเองและเรื่องใกล้ตัว
-- **Learning outcomes:** Learners give several connected facts about themselves or a familiar topic.
-- **Practical activity:** Create a short “About me” or “My school” presentation using a picture prompt. Learners include at least three accurate facts.
+**Objective:** `FL-P3-10` — พูดให้ข้อมูลเกี่ยวกับตนเองและเรื่องใกล้ตัว
+**Learning outcomes:** Learners give several connected facts about themselves or a familiar topic.
+**Practical activity:** Create a short “About me” or “My school” presentation using a picture prompt. Learners include at least three accurate facts.
 - **Resources:** Picture prompt and simple presentation frame.
 
 **Independent practice**
@@ -171,9 +171,9 @@
 - **Standard:** ต 1.3
 - **Priority classification:** must_know
 - **Official indicator:** จัดหมวดหมู่คำตามประเภทของบุคคล สัตว์ และสิ่งของตามที่ฟังหรืออ่าน
-- **Objective:** `FL-P3-11` — จัดหมวดหมู่คำตามประเภทของบุคคล สัตว์ และสิ่งของตามที่ฟังหรืออ่าน
-- **Learning outcomes:** Learners sort familiar vocabulary into people, animals and things based on spoken or written words.
-- **Practical activity:** Read a mixed word list aloud. Learners place each card under one of three category headings and explain one choice.
+**Objective:** `FL-P3-11` — จัดหมวดหมู่คำตามประเภทของบุคคล สัตว์ และสิ่งของตามที่ฟังหรืออ่าน
+**Learning outcomes:** Learners sort familiar vocabulary into people, animals and things based on spoken or written words.
+**Practical activity:** Read a mixed word list aloud. Learners place each card under one of three category headings and explain one choice.
 - **Resources:** Word cards and category labels.
 
 **Independent practice**
@@ -186,9 +186,9 @@
 - **Standard:** ต 1.3
 - **Priority classification:** must_know
 - **Official indicator:** พูดและเขียนแสดงความคิดเห็นเกี่ยวกับกิจกรรมหรือเรื่องต่าง ๆ ใกล้ตัว พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ
-- **Objective:** `FL-P3-12` — พูดและเขียนแสดงความคิดเห็นเกี่ยวกับกิจกรรมหรือเรื่องต่าง ๆ ใกล้ตัว พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ
-- **Learning outcomes:** Learners express a simple opinion about a familiar activity and add a short reason.
-- **Practical activity:** Use pictures of reading, drawing, playing sport and listening to music. Model “I like… because…”. Learners say or write one opinion with a reason.
+**Objective:** `FL-P3-12` — พูดและเขียนแสดงความคิดเห็นเกี่ยวกับกิจกรรมหรือเรื่องต่าง ๆ ใกล้ตัว พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ
+**Learning outcomes:** Learners express a simple opinion about a familiar activity and add a short reason.
+**Practical activity:** Use pictures of reading, drawing, playing sport and listening to music. Model “I like… because…”. Learners say or write one opinion with a reason.
 - **Resources:** Activity pictures and because sentence frames.
 
 **Independent practice**
@@ -201,9 +201,9 @@
 - **Standard:** ต 2.1
 - **Priority classification:** should_know
 - **Official indicator:** พูดและทำท่าประกอบตามมารยาทสังคม/วัฒนธรรมของเจ้าของภาษา
-- **Objective:** `FL-P3-13` — พูดและทำท่าประกอบตามมารยาทสังคม/วัฒนธรรมของเจ้าของภาษา
-- **Learning outcomes:** Learners select polite words, voice and non-contact gestures for familiar social exchanges.
-- **Practical activity:** Compare short role-play examples of thanking, apologising, greeting and responding. Learners identify which words and gestures are respectful in that context.
+**Objective:** `FL-P3-13` — พูดและทำท่าประกอบตามมารยาทสังคม/วัฒนธรรมของเจ้าของภาษา
+**Learning outcomes:** Learners select polite words, voice and non-contact gestures for familiar social exchanges.
+**Practical activity:** Compare short role-play examples of thanking, apologising, greeting and responding. Learners identify which words and gestures are respectful in that context.
 - **Resources:** Situation cards and short dialogue models.
 
 **Independent practice**
@@ -216,9 +216,9 @@
 - **Standard:** ต 2.1
 - **Priority classification:** should_know
 - **Official indicator:** บอกชื่อและคำศัพท์ง่าย ๆ เกี่ยวกับเทศกาล/วันสำคัญ/งานฉลอง และชีวิตความเป็นอยู่ของเจ้าของภาษา
-- **Objective:** `FL-P3-14` — บอกชื่อและคำศัพท์ง่าย ๆ เกี่ยวกับเทศกาล/วันสำคัญ/งานฉลอง และชีวิตความเป็นอยู่ของเจ้าของภาษา
-- **Learning outcomes:** Learners identify and use a small set of vocabulary related to festivals, celebrations and everyday life.
-- **Practical activity:** Use factual picture cards about food, clothing, seasons, greetings and common celebrations. Learners label objects and compare one feature with a familiar Thai context without ranking cultures.
+**Objective:** `FL-P3-14` — บอกชื่อและคำศัพท์ง่าย ๆ เกี่ยวกับเทศกาล/วันสำคัญ/งานฉลอง และชีวิตความเป็นอยู่ของเจ้าของภาษา
+**Learning outcomes:** Learners identify and use a small set of vocabulary related to festivals, celebrations and everyday life.
+**Practical activity:** Use factual picture cards about food, clothing, seasons, greetings and common celebrations. Learners label objects and compare one feature with a familiar Thai context without ranking cultures.
 - **Resources:** Neutral information cards and vocabulary labels.
 
 **Independent practice**
@@ -231,9 +231,9 @@
 - **Standard:** ต 2.1
 - **Priority classification:** should_know
 - **Official indicator:** เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมที่เหมาะกับวัย
-- **Objective:** `FL-P3-15` — เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมที่เหมาะกับวัย
-- **Learning outcomes:** Learners participate in an age-appropriate activity and use language connected to it.
-- **Practical activity:** Offer a story retell, team word game, short song, simple drama or greeting-card task. Learners choose a suitable activity and demonstrate one language outcome.
+**Objective:** `FL-P3-15` — เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมที่เหมาะกับวัย
+**Learning outcomes:** Learners participate in an age-appropriate activity and use language connected to it.
+**Practical activity:** Offer a story retell, team word game, short song, simple drama or greeting-card task. Learners choose a suitable activity and demonstrate one language outcome.
 - **Resources:** Story cards, word cards and simple props.
 
 **Independent practice**
@@ -246,9 +246,9 @@
 - **Standard:** ต 2.2
 - **Priority classification:** should_know
 - **Official indicator:** บอกความแตกต่างของเสียงตัวอักษร คำ กลุ่มคำ และประโยคง่าย ๆ ของภาษาต่างประเทศและภาษาไทย
-- **Objective:** `FL-P3-16` — บอกความแตกต่างของเสียงตัวอักษร คำ กลุ่มคำ และประโยคง่าย ๆ ของภาษาต่างประเทศและภาษาไทย
-- **Learning outcomes:** Learners identify one clear difference between a taught English sound, word or simple sentence and its Thai comparison.
-- **Practical activity:** Compare a short English sentence and a Thai sentence. Notice word order, spacing or a sound difference. Avoid claiming that every word has a direct equivalent.
+**Objective:** `FL-P3-16` — บอกความแตกต่างของเสียงตัวอักษร คำ กลุ่มคำ และประโยคง่าย ๆ ของภาษาต่างประเทศและภาษาไทย
+**Learning outcomes:** Learners identify one clear difference between a taught English sound, word or simple sentence and its Thai comparison.
+**Practical activity:** Compare a short English sentence and a Thai sentence. Notice word order, spacing or a sound difference. Avoid claiming that every word has a direct equivalent.
 - **Resources:** Short bilingual sentence cards and sound examples.
 
 **Independent practice**
@@ -261,9 +261,9 @@
 - **Standard:** ต 3.1
 - **Priority classification:** must_know
 - **Official indicator:** บอกคำศัพท์ที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่น
-- **Objective:** `FL-P3-17` — บอกคำศัพท์ที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่น
-- **Learning outcomes:** Learners identify and say English vocabulary connected to another subject, using a simple context.
-- **Practical activity:** Run a cross-curricular word hunt using a maths chart, science picture, art display or PE instruction. Learners record a word and explain which subject it connects to.
+**Objective:** `FL-P3-17` — บอกคำศัพท์ที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่น
+**Learning outcomes:** Learners identify and say English vocabulary connected to another subject, using a simple context.
+**Practical activity:** Run a cross-curricular word hunt using a maths chart, science picture, art display or PE instruction. Learners record a word and explain which subject it connects to.
 - **Resources:** Classroom subject displays and word-record cards.
 
 **Independent practice**
@@ -276,9 +276,9 @@
 - **Standard:** ต 4.1
 - **Priority classification:** must_know
 - **Official indicator:** ฟัง/พูดในสถานการณ์ง่าย ๆ ที่เกิดขึ้นในห้องเรียน
-- **Objective:** `FL-P3-18` — ฟัง/พูดในสถานการณ์ง่าย ๆ ที่เกิดขึ้นในห้องเรียน
-- **Learning outcomes:** Learners understand and use short spoken exchanges in familiar classroom situations.
-- **Practical activity:** Set up classroom stations for asking permission, asking for clarification, borrowing an object and responding to a classmate. Learners complete a short exchange at each station.
+**Objective:** `FL-P3-18` — ฟัง/พูดในสถานการณ์ง่าย ๆ ที่เกิดขึ้นในห้องเรียน
+**Learning outcomes:** Learners understand and use short spoken exchanges in familiar classroom situations.
+**Practical activity:** Set up classroom stations for asking permission, asking for clarification, borrowing an object and responding to a classmate. Learners complete a short exchange at each station.
 - **Resources:** Situation cards and classroom objects.
 
 **Independent practice**
