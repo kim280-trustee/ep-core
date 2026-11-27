@@ -37,6 +37,14 @@ begin
     and not t.tgisinternal and t.tgenabled <> 'D';
   if v_count <> 1 then raise exception 'Assessment assignment parent-mapping trigger is missing or disabled'; end if;
 
+
+  select count(*) into v_count
+  from pg_trigger t
+  where t.tgrelid = 'public.learning_terms'::regclass
+    and t.tgname = 'learning_term_gradebook_retention_guard'
+    and not t.tgisinternal and t.tgenabled <> 'D';
+  if v_count <> 1 then raise exception 'Linked academic-term retention trigger is missing or disabled'; end if;
+
   select p.prosecdef, array_to_string(p.proconfig, ',')
     into v_definer, v_config
   from pg_proc p
