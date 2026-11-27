@@ -27,6 +27,13 @@ assert.ok(migration.includes("before delete or update of assignment_id, item_typ
 assert.ok(migration.includes("before delete or update of assignment_id, class_group_id, student_user_id, status"));
 assert.ok(migration.includes("old.item_type = 'assessment'"));
 assert.ok(migration.includes("old.status = 'active'"));
+assert.ok(migration.includes("private.guard_learning_assessment_assignment_parent_mapping()"));
+assert.ok(migration.includes("old.class_subject_id is distinct from new.class_subject_id"));
+assert.ok(migration.includes("old.organization_id is distinct from new.organization_id"));
+assert.ok(migration.includes("new.status not in ('published', 'closed')"));
+assert.ok(migration.includes("before update of organization_id, class_subject_id, status"));
+assert.ok(migration.includes("assessment assignment academic mapping or publication state changed"));
+assert.ok(migration.includes("grade.tenant_id = v_entry.tenant_id"));
 assert.ok(migration.includes("revoke all on function private.guard_learning_assessment_assignment_item_mapping()"));
 assert.ok(migration.includes("revoke all on function private.guard_learning_assessment_assignment_target_mapping()"));
 
