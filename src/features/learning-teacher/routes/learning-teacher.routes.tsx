@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components -- Route config modules intentionally define lazy page components and export route objects. */
 import type { RouteObject } from "react-router-dom";
+import { LearningRoleRoute } from "@/core/auth";
 import TeacherLayout from "../layouts/TeacherLayout";
 
 import { lazy } from "react";
@@ -39,7 +40,7 @@ const TeacherVocabularyAssignmentPage = lazy(() => import("@/features/learning-v
 export const learningTeacherRoutes: RouteObject[] = [
   {
     path: "teacher",
-    element: <TeacherLayout />,
+    element: <LearningRoleRoute role="teacher"><TeacherLayout /></LearningRoleRoute>,
     children: [
       { index: true, element: <TeacherDashboardPage /> },
       { path: "workload", element: <TeacherWorkloadAssistantPage /> },
