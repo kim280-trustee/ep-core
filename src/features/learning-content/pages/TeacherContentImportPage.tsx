@@ -99,6 +99,10 @@ export default function TeacherContentImportPage() {
 
     for (const lesson of parsedLessons) {
       let targetGradeLevelId = activeGradeLevelId;
+      const isSharedUpperSecondary = /(?:^|[-_])M46(?:[-_]|$)/i.test(lesson.objectiveCode ?? "");
+      if (isSharedUpperSecondary) {
+        targetGradeLevelId = gradeLevels.data?.find((item) => item.code.toUpperCase() === "M4")?.id ?? targetGradeLevelId;
+      }
       const gradeCode = lesson.objectiveCode?.match(/^(M[1-6])[-_]/i)?.[1]?.toUpperCase();
       if (gradeCode) {
         const grade = gradeLevels.data?.find((item) => item.code.toUpperCase() === gradeCode);
@@ -163,7 +167,14 @@ export default function TeacherContentImportPage() {
         }
       }
 
-      if (!alignedToGrade(objective.id, targetGradeLevelId)) {
+      if (isSharedUpperSecondary) {
+        const sharedGrades = ["M4", "M5", "M6"].map((code) => gradeLevels.data?.find((item) => item.code.toUpperCase() === code));
+        const missingGrades = sharedGrades.filter((grade) => !grade || !alignedToGrade(objective!.id, grade.id));
+        if (missingGrades.length) {
+          errors.push(`Section ${lesson.number} “${lesson.title}”: shared M4–M6 objective ${objective.code} is not aligned to all three upper-secondary grades in this curriculum.`);
+          continue;
+        }
+      } else if (!alignedToGrade(objective.id, targetGradeLevelId)) {
         errors.push(`Section ${lesson.number} “${lesson.title}”: objective ${objective.code} is not aligned to grade ${gradeLevels.data?.find((item) => item.id === targetGradeLevelId)?.code ?? "selected grade"} in this curriculum.`);
         continue;
       }
@@ -186,11 +197,17 @@ export default function TeacherContentImportPage() {
         learningOutcome: lesson.learningOutcome,
         activity: lesson.activity,
         teacherGuidance: lesson.packGuidance,
-        questions: lesson.questions.map((question) => ({
-          code: makeImportCode(`EP-${objective!.code}-${questionsOnly ? "DL-" : ""}Q${String(question.number).padStart(2, "0")}`),
-          prompt: question.prompt,
-          expectedAnswer: question.expectedAnswer,
-        })),
+        questions: lesson.questions.flatMap((question) => {
+          const questionGrades = isSharedUpperSecondary
+            ? ["M4", "M5", "M6"].map((code) => gradeLevels.data!.find((item) => item.code.toUpperCase() === code)!)
+            : [gradeLevels.data?.find((item) => item.id === targetGradeLevelId)].filter((grade): grade is NonNullable<typeof grade> => Boolean(grade));
+          return questionGrades.map((grade) => ({
+            code: makeImportCode(`EP-${objective!.code}-${questionsOnly ? "DL-" : ""}${isSharedUpperSecondary ? `${grade.code}-` : ""}Q${String(question.number).padStart(2, "0")}`),
+            gradeLevelId: grade.id,
+            prompt: question.prompt,
+            expectedAnswer: question.expectedAnswer,
+          }));
+        }),
       });
     }
 
@@ -248,7 +265,7 @@ export default function TeacherContentImportPage() {
         const questions = resolved.rows.flatMap((lesson) => lesson.questions.map((question) => ({
           ...question,
           objectiveId: lesson.objectiveId,
-          gradeLevelId: lesson.gradeLevelId,
+          gradeLevelId: question.gradeLevelId ?? lesson.gradeLevelId,
         })));
         for (let offset = 0; offset < questions.length; offset += CHUNK_SIZE) {
           const result = await learningPackImportService.importQuestionsOnly({
