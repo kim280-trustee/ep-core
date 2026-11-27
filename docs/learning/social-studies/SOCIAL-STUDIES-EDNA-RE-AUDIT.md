@@ -361,3 +361,45 @@ The repository review has not established an authorised non-production staging t
 
 **Overall:** Social Studies remains **IN PROGRESS — NOT APPROVED FOR RELEASE**. The technical validation and moderation-register creation are closed as work products. Academic remediation, official priority-row reconciliation, independent sign-off and authorised staging acceptance remain outstanding. The task register is at `docs/learning/social-studies/SOCIAL-STUDIES-TASK-LEVEL-MODERATION-REGISTER.csv`.
 
+
+
+## 4I. Consolidated academic remediation batch — 27 November 2026
+
+### Task-level register materialised and reconciled
+
+The previously tracked CSV path existed as a zero-byte file. This batch populated it directly from the eight current teacher starter packs and verified the output before committing:
+
+- 1,254 task rows, with 1,254 unique task IDs.
+- 418 unique indicator IDs represented.
+- Grade-pack row counts: P1–P3 312; P4 114; P5 108; P6 117; M1 135; M2 135; M3 150; M4–M6 183.
+- Each row retains the pack's indicator code, official Thai indicator text, task wording, answer guidance, task type, and any priority/pathway label actually present in the pack.
+- Separate source verification, factual accuracy, age/inclusion, marking-quality and independent-moderation fields are explicitly set to pending/not reviewed. No item is marked approved.
+
+This is now a real, populated review register. It is an indexing and moderation-control artifact, not a completed academic review.
+
+### P4–M6 task specificity remediation
+
+The 942 P4–M6 entries are now represented individually in the register. The earlier assessment remains valid: generic source placeholders, missing stimuli, unspecified comparison responses and circular answer guidance are still present in the source packs. The register does not silently rewrite or bless these prompts.
+
+A responsible correction needs a traceable source or complete teacher-created stimulus, the actual learner-facing question, a criterion-based answer key, acceptable alternatives and likely misconceptions. For source-dependent questions, each factual answer must be checked against the cited source. Those facts cannot be safely manufactured from the indicator wording alone. Therefore the 942-task content remediation is **NOT CLOSED** in this batch.
+
+### OBEC 2021 priority-label reconciliation
+
+The controlling OBEC 2021 PDF was opened at the official Academic Affairs and Educational Standards site:
+https://academic.obec.go.th/images/official/1622514876_d_1.pdf
+
+The Social Studies summary table is on printed page 172; the M3 detailed table begins at printed page 230 and the M4–M6 detailed table begins at printed page 240. The summary confirms M3 28 Must-Know / 22 Should-Know and M4–M6 31 Must-Know / 30 Should-Know (418 total indicators, 194/224 overall). The detailed table's two checkmark columns are the controlling per-indicator evidence.
+
+The pack catalogue's M3 and M4–M6 indicator codes and Thai wording still need a complete exact row-by-row transcription against those detailed tables. This batch does not convert the totals into invented individual labels, nor infer 2021 labels from between-learning/terminal pathway classifications. Accordingly, the per-indicator reconciliation is **NOT CLOSED** and no label/database writes are authorised on the basis of the summary totals.
+
+### Independent academic review
+
+The populated register now makes the full 1,254-task review auditable, but all source, factual, age/inclusion, marking and independent-review fields remain explicitly pending. No qualified independent Social Studies reviewer has supplied a signed review. This gate is **NOT CLOSED**.
+
+### Commit evidence and safety
+
+The populated register was committed as `96e0b584d109a81075e904979021d9210bf5d921`. No application source, database, live KKC pilot data or production content was changed in this batch. The register's 1,254 rows and 1,254 unique task IDs were checked before commit. Technical workflow validation for this new commit must be checked separately.
+
+### Honest outcome
+
+This batch closes the missing register artifact and provides an official source location/page map for exact classification work. It does **not** close the three academic workstreams: 942-task substantive remediation, individual M3/M4–M6 priority-row reconciliation, or qualified review of all 1,254 tasks. Those require source-specific evidence and independent human academic judgement; marking them complete without that evidence would be false.
