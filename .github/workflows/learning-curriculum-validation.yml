@@ -35,6 +35,19 @@ jobs:
         id: install
         run: npm ci
 
+      - name: Install isolated Playwright browser-test runner
+        id: playwright_install
+        if: ${{ steps.install.outcome == 'success' }}
+        run: npm install --no-save --package-lock=false @playwright/test
+
+      - name: Install Chromium for browser acceptance tests
+        if: ${{ steps.playwright_install.outcome == 'success' }}
+        run: npx playwright install --with-deps chromium
+
+      - name: Run mocked Learning authentication browser acceptance
+        if: ${{ steps.playwright_install.outcome == 'success' }}
+        run: npm run test:learning-authentication-browser
+
       - name: Audit locked dependency tree
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm audit
