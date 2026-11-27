@@ -14,10 +14,10 @@ interface Props {
 }
 
 const roleLabels: Record<LearningAudience, string> = {
-  student: "student account",
-  teacher: "active teacher membership",
-  parent: "active parent link",
-  "school-admin": "school administration permission",
+  student: "an active student membership",
+  teacher: "an active teacher membership",
+  parent: "an active parent link",
+  "school-admin": "the school administration permission",
 };
 
 async function hasLearningAccess(userId: string, role: LearningAudience): Promise<boolean> {
@@ -142,7 +142,7 @@ export function LearningRoleRoute({ children, role }: Props) {
         <section className="w-full max-w-lg rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
           <h1 className="text-xl font-semibold text-slate-900">Access denied</h1>
           <p className="mt-2 text-sm text-slate-600">
-            This page requires an {roleLabels[role]}. Your account does not currently have that access.
+            This page requires {roleLabels[role]}. Your account does not currently have that access.
           </p>
           <Link className="mt-5 inline-flex font-medium text-blue-700 hover:underline" to="/login">
             Return to sign in
