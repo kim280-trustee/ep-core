@@ -167,6 +167,10 @@ jobs:
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:assessment-gradebook-mapping-reconciliation
 
+      - name: Validate automatic assessment mapping reconciliation
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:automatic-assessment-mapping-reconciliation
+
       - name: Build production application
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run build
