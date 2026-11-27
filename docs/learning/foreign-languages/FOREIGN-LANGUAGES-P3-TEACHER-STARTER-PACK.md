@@ -19,7 +19,7 @@
 ### 1. Follow spoken or written commands and requests
 
 - **Standard:** ต 1.1
-- **Priority classification:** must_know
+- **Official indicator code:** ต 1.1 ป.3/1- **Priority classification:** must_know
 - **Official indicator:** ปฏิบัติตามคำสั่งและคำขอร้องที่ฟังหรืออ่าน
 **Objective:** `FL-P3-01` — ปฏิบัติตามคำสั่งและคำขอร้องที่ฟังหรืออ่าน
 **Learning outcomes:** Learners follow familiar commands and requests presented orally or in short written form.
@@ -34,7 +34,7 @@
 ### 2. Read aloud and spell words, phrases and simple chants
 
 - **Standard:** ต 1.1
-- **Priority classification:** must_know
+- **Official indicator code:** ต 1.1 ป.3/1- **Priority classification:** must_know
 - **Official indicator:** อ่านออกเสียงคำ สะกดคำ อ่านกลุ่มคำ ประโยค และบทพูดเข้าจังหวะง่าย ๆ ถูกต้องตามหลักการอ่าน
 **Objective:** `FL-P3-02` — อ่านออกเสียงคำ สะกดคำ อ่านกลุ่มคำ ประโยค และบทพูดเข้าจังหวะง่าย ๆ ถูกต้องตามหลักการอ่าน
 **Learning outcomes:** Learners read familiar words and short sentences aloud with clear sounds and simple rhythm.
@@ -49,7 +49,7 @@
 ### 3. Match pictures or symbols to heard phrases and sentences
 
 - **Standard:** ต 1.1
-- **Priority classification:** must_know
+- **Official indicator code:** ต 1.1 ป.3/1- **Priority classification:** must_know
 - **Official indicator:** เลือก/ระบุภาพหรือสัญลักษณ์ตรงตามความหมายของกลุ่มคำและประโยคที่ฟัง
 **Objective:** `FL-P3-03` — เลือก/ระบุภาพหรือสัญลักษณ์ตรงตามความหมายของกลุ่มคำและประโยคที่ฟัง
 **Learning outcomes:** Learners interpret a spoken phrase or sentence and select the matching picture or symbol.
@@ -64,7 +64,7 @@
 ### 4. Answer questions about a simple conversation or story
 
 - **Standard:** ต 1.1
-- **Priority classification:** must_know
+- **Official indicator code:** ต 1.1 ป.3/1- **Priority classification:** must_know
 - **Official indicator:** ตอบคำถามจากการฟังหรืออ่านประโยค บทสนทนา หรือนิทานง่าย ๆ
 **Objective:** `FL-P3-04` — ตอบคำถามจากการฟังหรืออ่านประโยค บทสนทนา หรือนิทานง่าย ๆ
 **Learning outcomes:** Learners answer simple comprehension questions about a short listening or reading text.
@@ -79,7 +79,7 @@
 ### 5. Exchange short expressions in interpersonal communication
 
 - **Standard:** ต 1.2
-- **Priority classification:** must_know
+- **Official indicator code:** ต 1.2 ป.3/1- **Priority classification:** must_know
 - **Official indicator:** พูดโต้ตอบด้วยคำสั้น ๆ ง่าย ๆ ในการสื่อสารระหว่างบุคคลตามแบบที่ฟัง
 **Objective:** `FL-P3-05` — พูดโต้ตอบด้วยคำสั้น ๆ ง่าย ๆ ในการสื่อสารระหว่างบุคคลตามแบบที่ฟัง
 **Learning outcomes:** Learners sustain a short modelled conversation using greetings, thanks, apologies and simple follow-up responses.
@@ -94,7 +94,7 @@
 ### 6. Use simple commands and requests
 
 - **Standard:** ต 1.2
-- **Priority classification:** must_know
+- **Official indicator code:** ต 1.2 ป.3/1- **Priority classification:** must_know
 - **Official indicator:** ใช้คำสั่งและคำขอร้องง่าย ๆ ตามแบบที่ฟัง
 **Objective:** `FL-P3-06` — ใช้คำสั่งและคำขอร้องง่าย ๆ ตามแบบที่ฟัง
 **Learning outcomes:** Learners give clear simple commands and polite requests in familiar classroom situations.
@@ -109,7 +109,7 @@
 ### 7. Express simple needs
 
 - **Standard:** ต 1.2
-- **Priority classification:** should_know
+- **Official indicator code:** ต 1.2 ป.3/1- **Priority classification:** should_know
 - **Official indicator:** บอกความต้องการง่าย ๆ ของตนเองตามแบบที่ฟัง
 **Objective:** `FL-P3-07` — บอกความต้องการง่าย ๆ ของตนเองตามแบบที่ฟัง
 **Learning outcomes:** Learners express a simple need and add a polite word or short reason.
@@ -124,7 +124,7 @@
 ### 8. Ask for and give information about yourself and a friend
 
 - **Standard:** ต 1.2
-- **Priority classification:** must_know
+- **Official indicator code:** ต 1.2 ป.3/1- **Priority classification:** must_know
 - **Official indicator:** พูดขอและให้ข้อมูลง่าย ๆ เกี่ยวกับตนเองและเพื่อนตามแบบที่ฟัง
 **Objective:** `FL-P3-08` — พูดขอและให้ข้อมูลง่าย ๆ เกี่ยวกับตนเองและเพื่อนตามแบบที่ฟัง
 **Learning outcomes:** Learners ask and answer simple questions about themselves and a friend using a model.
@@ -139,7 +139,7 @@
 ### 9. Tell how you feel about familiar things or activities
 
 - **Standard:** ต 1.2
-- **Priority classification:** must_know
+- **Official indicator code:** ต 1.2 ป.3/1- **Priority classification:** must_know
 - **Official indicator:** บอกความรู้สึกของตนเองเกี่ยวกับสิ่งต่าง ๆ ใกล้ตัวหรือกิจกรรมต่าง ๆ ตามแบบที่ฟัง
 **Objective:** `FL-P3-09` — บอกความรู้สึกของตนเองเกี่ยวกับสิ่งต่าง ๆ ใกล้ตัวหรือกิจกรรมต่าง ๆ ตามแบบที่ฟัง
 **Learning outcomes:** Learners express a simple feeling about a familiar object or activity using a model phrase.
@@ -154,7 +154,7 @@
 ### 10. Give information about yourself and familiar topics
 
 - **Standard:** ต 1.3
-- **Priority classification:** must_know
+- **Official indicator code:** ต 1.3 ป.3/1- **Priority classification:** must_know
 - **Official indicator:** พูดให้ข้อมูลเกี่ยวกับตนเองและเรื่องใกล้ตัว
 **Objective:** `FL-P3-10` — พูดให้ข้อมูลเกี่ยวกับตนเองและเรื่องใกล้ตัว
 **Learning outcomes:** Learners give several connected facts about themselves or a familiar topic.
@@ -169,7 +169,7 @@
 ### 11. Group words by people, animals and things
 
 - **Standard:** ต 1.3
-- **Priority classification:** must_know
+- **Official indicator code:** ต 1.3 ป.3/1- **Priority classification:** must_know
 - **Official indicator:** จัดหมวดหมู่คำตามประเภทของบุคคล สัตว์ และสิ่งของตามที่ฟังหรืออ่าน
 **Objective:** `FL-P3-11` — จัดหมวดหมู่คำตามประเภทของบุคคล สัตว์ และสิ่งของตามที่ฟังหรืออ่าน
 **Learning outcomes:** Learners sort familiar vocabulary into people, animals and things based on spoken or written words.
@@ -184,7 +184,7 @@
 ### 12. Give an opinion about a familiar activity and a short reason
 
 - **Standard:** ต 1.3
-- **Priority classification:** must_know
+- **Official indicator code:** ต 1.3 ป.3/1- **Priority classification:** must_know
 - **Official indicator:** พูดและเขียนแสดงความคิดเห็นเกี่ยวกับกิจกรรมหรือเรื่องต่าง ๆ ใกล้ตัว พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ
 **Objective:** `FL-P3-12` — พูดและเขียนแสดงความคิดเห็นเกี่ยวกับกิจกรรมหรือเรื่องต่าง ๆ ใกล้ตัว พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ
 **Learning outcomes:** Learners express a simple opinion about a familiar activity and add a short reason.
@@ -199,7 +199,7 @@
 ### 13. Use speech and gestures with social manners
 
 - **Standard:** ต 2.1
-- **Priority classification:** should_know
+- **Official indicator code:** ต 2.1 ป.3/1- **Priority classification:** should_know
 - **Official indicator:** พูดและทำท่าประกอบตามมารยาทสังคม/วัฒนธรรมของเจ้าของภาษา
 **Objective:** `FL-P3-13` — พูดและทำท่าประกอบตามมารยาทสังคม/วัฒนธรรมของเจ้าของภาษา
 **Learning outcomes:** Learners select polite words, voice and non-contact gestures for familiar social exchanges.
@@ -214,7 +214,7 @@
 ### 14. Name vocabulary about festivals and everyday life
 
 - **Standard:** ต 2.1
-- **Priority classification:** should_know
+- **Official indicator code:** ต 2.1 ป.3/1- **Priority classification:** should_know
 - **Official indicator:** บอกชื่อและคำศัพท์ง่าย ๆ เกี่ยวกับเทศกาล/วันสำคัญ/งานฉลอง และชีวิตความเป็นอยู่ของเจ้าของภาษา
 **Objective:** `FL-P3-14` — บอกชื่อและคำศัพท์ง่าย ๆ เกี่ยวกับเทศกาล/วันสำคัญ/งานฉลอง และชีวิตความเป็นอยู่ของเจ้าของภาษา
 **Learning outcomes:** Learners identify and use a small set of vocabulary related to festivals, celebrations and everyday life.
@@ -229,7 +229,7 @@
 ### 15. Participate in age-appropriate language and cultural activities
 
 - **Standard:** ต 2.1
-- **Priority classification:** should_know
+- **Official indicator code:** ต 2.1 ป.3/1- **Priority classification:** should_know
 - **Official indicator:** เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมที่เหมาะกับวัย
 **Objective:** `FL-P3-15` — เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมที่เหมาะกับวัย
 **Learning outcomes:** Learners participate in an age-appropriate activity and use language connected to it.
@@ -244,7 +244,7 @@
 ### 16. Identify differences in sounds, words and simple sentences in English and Thai
 
 - **Standard:** ต 2.2
-- **Priority classification:** should_know
+- **Official indicator code:** ต 2.2 ป.3/1- **Priority classification:** should_know
 - **Official indicator:** บอกความแตกต่างของเสียงตัวอักษร คำ กลุ่มคำ และประโยคง่าย ๆ ของภาษาต่างประเทศและภาษาไทย
 **Objective:** `FL-P3-16` — บอกความแตกต่างของเสียงตัวอักษร คำ กลุ่มคำ และประโยคง่าย ๆ ของภาษาต่างประเทศและภาษาไทย
 **Learning outcomes:** Learners identify one clear difference between a taught English sound, word or simple sentence and its Thai comparison.
@@ -259,7 +259,7 @@
 ### 17. Say vocabulary connected to another learning area
 
 - **Standard:** ต 3.1
-- **Priority classification:** must_know
+- **Official indicator code:** ต 3.1 ป.3/1- **Priority classification:** must_know
 - **Official indicator:** บอกคำศัพท์ที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่น
 **Objective:** `FL-P3-17` — บอกคำศัพท์ที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่น
 **Learning outcomes:** Learners identify and say English vocabulary connected to another subject, using a simple context.
@@ -274,7 +274,7 @@
 ### 18. Listen and speak in simple classroom situations
 
 - **Standard:** ต 4.1
-- **Priority classification:** must_know
+- **Official indicator code:** ต 4.1 ป.3/1- **Priority classification:** must_know
 - **Official indicator:** ฟัง/พูดในสถานการณ์ง่าย ๆ ที่เกิดขึ้นในห้องเรียน
 **Objective:** `FL-P3-18` — ฟัง/พูดในสถานการณ์ง่าย ๆ ที่เกิดขึ้นในห้องเรียน
 **Learning outcomes:** Learners understand and use short spoken exchanges in familiar classroom situations.
