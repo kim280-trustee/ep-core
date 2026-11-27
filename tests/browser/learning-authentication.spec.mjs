@@ -107,7 +107,8 @@ test.describe("Learning authentication browser acceptance", () => {
 
   for (const role of ["student", "teacher", "parent", "school-admin"]) {
     test(`routes a single-role ${role} account to its authorized portal`, async ({ page }) => {
-      await signIn(page, `${role}@example.test`);
+      const accountEmail = role === "school-admin" ? "admin@example.test" : `${role}@example.test`;
+      await signIn(page, accountEmail);
       await expect(page).toHaveURL(new RegExp(`${portalForRole[role]}$`));
       await expect(page.getByText("Access denied")).toHaveCount(0);
       if (role === "school-admin") {
