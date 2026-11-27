@@ -2,7 +2,7 @@ import { BookOpen, BookOpenCheck, FileQuestion, FileText, Languages, LayoutDashb
 import { Navigate, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { ProtectedRoute, useAuth } from "@/core/auth";
+import { useAuth } from "@/core/auth";
 import { useTranslation } from "@/core/i18n/useTranslation";
 import { LearningLanguageSelector } from "@/features/learning-shared/components/LearningLanguageSelector";
 import { learningTeacherService } from "../services/learning-teacher.service";
@@ -74,7 +74,25 @@ export default function TeacherLayout() {
   }
 
   if (teacherAccess.isError || !teacherAccess.data?.length) {
-    return <Navigate to="/login" replace />;
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-slate-50 px-4">
+        <section className="w-full max-w-lg rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <h1 className="text-xl font-semibold text-slate-900">
+            {teacherAccess.isError ? "Teacher access could not be loaded" : "No active teaching classes"}
+          </h1>
+          <p className="mt-2 text-sm text-slate-600">
+            {teacherAccess.isError
+              ? "Your teacher membership was verified, but the class list could not be loaded. Please try again."
+              : "Your account does not currently have an active teaching class. Contact your school administrator if this is unexpected."}
+          </p>
+          {teacherAccess.isError && (
+            <button type="button" onClick={() => void teacherAccess.refetch()} className="mt-5 rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700">
+              Try again
+            </button>
+          )}
+        </section>
+      </main>
+    );
   }
 
   const handleLogout = async () => {
@@ -102,7 +120,6 @@ export default function TeacherLayout() {
   ].join(" ");
 
   return (
-    <ProtectedRoute>
       <div className="min-h-screen bg-slate-50">
         <div className="mx-auto flex min-h-screen max-w-[1600px]">
           <aside className="hidden w-72 shrink-0 border-r border-slate-200 bg-white p-4 lg:flex lg:flex-col">
@@ -182,6 +199,5 @@ export default function TeacherLayout() {
           </main>
         </div>
       </div>
-    </ProtectedRoute>
   );
 }
