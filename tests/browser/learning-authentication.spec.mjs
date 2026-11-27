@@ -113,7 +113,6 @@ test.describe("Learning authentication browser acceptance", () => {
       if (role === "school-admin") {
         await expect(page.getByRole("button", { name: "Logout" })).toBeVisible();
       }
-      }
     });
   }
 
