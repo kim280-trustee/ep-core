@@ -444,3 +444,14 @@ This repair restored the register from the previously populated 1,254-row snapsh
 - `NOT MODERATED — reviewer sign-off required`
 
 Pre-commit integrity checks confirmed 1,254 task rows, 1,254 unique task IDs, 418 indicator IDs and exactly three tasks per indicator. This is a structural repair only; it does not complete source verification, factual review, age/inclusion review, marking review or independent moderation. Commit: `eb164924015951fbaf968eb9f24d8905bc5b8361`. The Social Studies workflow triggered by this commit must pass before the technical validation gate can be closed again.
+
+
+## 4M. M3 religious-studies priority reconciliation — 27 November 2026
+
+Four additional M3 SO1.2 rows were reconciled against the detailed OBEC 2021 table on printed page 233 (official rows 14–17). All four carry the Should-Know checkmark:
+- `SO1.2-M3-04` — ปฏิบัติตนในศาสนพิธี พิธีกรรมได้ถูกต้อง.
+- `SO1.2-M3-05` — อธิบายประวัติวันสำคัญทางศาสนาตามที่กำหนดและปฏิบัติได้ถูกต้อง.
+- `SO1.2-M3-06` — แสดงตนเป็นพุทธมามกะ หรือแสดงตนเป็นศาสนิกชนของศาสนาที่ตนนับถือ. The source has a whitespace variation relative to the catalogue wording; this row is explicitly marked as a code match with whitespace-normalised text, not as a byte-for-byte exact text match.
+- `SO1.2-M3-07` — นำเสนอแนวทางในการธำรงรักษาศาสนาที่ตนนับถือ.
+
+The crosswalk now contains 20 reconciled rows out of 111, with 91 still unresolved. The 20 reconciled rows comprise 12 Must-Know and 8 Should-Know. This does not complete the M3 crosswalk: other M3 standards and the shared M4–M6 rows remain under source reconciliation. No label is inferred from a grade-level summary or pathway field.
