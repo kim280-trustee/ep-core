@@ -153,21 +153,21 @@ test.describe("Learning authentication browser acceptance", () => {
 
   test("denies a teacher who manually opens the parent portal", async ({ page }) => {
     await signIn(page, "teacher@example.test");
-    await expect(page).toHaveURL(/\\/teacher$/);
+    await expect(page).toHaveURL(/\/teacher$/);
     await page.goto("/parent");
     await expect(page.getByRole("heading", { name: "Access denied" })).toBeVisible();
   });
 
   test("denies a teacher who manually opens the School Admin portal", async ({ page }) => {
     await signIn(page, "teacher@example.test");
-    await expect(page).toHaveURL(/\\/teacher$/);
+    await expect(page).toHaveURL(/\/teacher$/);
     await page.goto("/school-admin");
     await expect(page.getByRole("heading", { name: "Access denied" })).toBeVisible();
   });
 
   test("denies a parent who manually opens the teacher portal", async ({ page }) => {
     await signIn(page, "parent@example.test");
-    await expect(page).toHaveURL(/\\/parent$/);
+    await expect(page).toHaveURL(/\/parent$/);
     await page.goto("/teacher");
     await expect(page.getByRole("heading", { name: "Access denied" })).toBeVisible();
   });
