@@ -122,10 +122,14 @@ export function AuthProvider({ children }: Props) {
         return;
       }
 
+      // Every Supabase auth event can invalidate an in-flight identity read.
+      // In particular, token refreshes and cross-tab session changes must not
+      // allow an older profile lookup to overwrite the current session.
+      loadRequestId.current += 1;
+
       if (event === "SIGNED_IN") {
         // Do not render the previous account while the new account profile and
         // Learning membership are being resolved.
-        loadRequestId.current += 1;
         setUser(null);
         setLoading(true);
       }
