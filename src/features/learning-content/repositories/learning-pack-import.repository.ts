@@ -95,16 +95,16 @@ export const learningPackImportRepository = {
       const versionByQuestionId = new Map((versions ?? []).map((version) => [version.question_id, version.id]));
       if (versionByQuestionId.size !== input.questions.length) throw new Error("The question-version insert did not return every created version.");
 
-      const evaluationRows: Database["public"]["Tables"]["learning_question_evaluation_keys"]["Insert"][] =
-        input.questions.map((question) => ({
-          question_version_id: versionByQuestionId.get(questionByCode.get(makeImportCode(question.code))!)!,
-          evaluation_key: { expected_answer: question.expectedAnswer } as unknown as Json,
-          scoring_rules: { method: "manual_review" } as unknown as Json,
-        }));
-      const { error: evaluationError } = await supabase
-        .from("learning_question_evaluation_keys")
-        .insert(evaluationRows);
-      if (evaluationError) throw evaluationError;
+      for (const question of input.questions) {
+        const questionId = questionByCode.get(makeImportCode(question.code))!;
+        const questionVersionId = versionByQuestionId.get(questionId)!;
+        const { error: evaluationError } = await supabase.rpc("save_learning_question_evaluation_key", {
+          p_question_version_id: questionVersionId,
+          p_evaluation_key: { expected_answer: question.expectedAnswer } as unknown as Json,
+          p_scoring_rules: { method: "manual_review" } as unknown as Json,
+        });
+        if (evaluationError) throw evaluationError;
+      }
 
       const objectiveRows: Database["public"]["Tables"]["learning_question_objectives"]["Insert"][] =
         input.questions.map((question) => ({
@@ -256,16 +256,15 @@ export const learningPackImportRepository = {
         throw new Error("The question-version insert did not return every created version.");
       }
 
-      const evaluationKeyRows: Database["public"]["Tables"]["learning_question_evaluation_keys"]["Insert"][] =
-        questionInputs.map((question) => ({
-          question_version_id: versionByQuestionId.get(questionByCode.get(question.code)!)!,
-          evaluation_key: { expected_answer: question.expectedAnswer } as unknown as Json,
-          scoring_rules: { method: "manual_review" } as unknown as Json,
-        }));
-      const { error: evaluationKeyError } = await supabase
-        .from("learning_question_evaluation_keys")
-        .insert(evaluationKeyRows);
-      if (evaluationKeyError) throw evaluationKeyError;
+      for (const question of questionInputs) {
+        const questionVersionId = versionByQuestionId.get(questionByCode.get(question.code)!)!;
+        const { error: evaluationKeyError } = await supabase.rpc("save_learning_question_evaluation_key", {
+          p_question_version_id: questionVersionId,
+          p_evaluation_key: { expected_answer: question.expectedAnswer } as unknown as Json,
+          p_scoring_rules: { method: "manual_review" } as unknown as Json,
+        });
+        if (evaluationKeyError) throw evaluationKeyError;
+      }
 
       const questionObjectiveRows: Database["public"]["Tables"]["learning_question_objectives"]["Insert"][] =
         questionInputs.map((question) => ({
