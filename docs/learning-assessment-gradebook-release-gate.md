@@ -26,6 +26,8 @@ Run only against an isolated local Supabase database after replaying the complet
 | Assignment class-subject or organization changed | All included assessment-result entries sourced from that assignment are excluded |
 | Assignment moved from published/closed to a non-published state | Matching included entries are excluded |
 | Assignment merely closed | Historical entries are retained; no automatic exclusion |
+| Academic term deleted or moved to another organization while gradebook records exist | Mutation is rejected; historical gradebook/term-grade records are retained |
+| Academic term status changed to inactive/closed | Historical records remain attached to the same term identity |
 | Exclusion occurs | Before/after snapshots, actor, timestamp, and nonblank reason are recorded |
 | Affected term grade is finalized | Mapping mutation is rejected; finalized snapshot remains unchanged |
 | Manager reopens with reason, mapping is repaired, then includes entry | Re-inclusion succeeds only when the original source mapping is valid |
@@ -55,6 +57,7 @@ Record screenshots or test evidence, test identity, migration revision, and outc
 
 - This implementation handles assignment item, assignment target, and assignment parent mapping changes.
 - Closing an assignment intentionally does not erase or exclude historical academic records.
-- A finalized term grade blocks mapping changes until an authorized, audited reopen.
+- A finalized term grade blocks assignment mapping changes until an authorized, audited reopen.
+- A term linked to gradebook history cannot be deleted or moved between organizations; inactive/closed status changes preserve its historical identity.
 - Automatic exclusion is not automatic deletion. Historical result/gradebook provenance is retained.
 - Static validators and a green application build do not substitute for disposable-database behavior tests or authenticated acceptance.
