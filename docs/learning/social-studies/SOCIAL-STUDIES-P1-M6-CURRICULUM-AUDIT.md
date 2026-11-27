@@ -123,6 +123,37 @@ The answer guidance is formative marking guidance: it describes the evidence req
 The shared upper-secondary pack uses 61 M46 outcome codes aligned to M4, M5 and M6 (183 grade alignments). The parser deliberately does not collapse M46 to one grade. The importer expands each shared outcome into three grade-specific draft lessons and generates distinct grade-scoped lesson and question codes.
 
 
+## Academic quality re-review — 27 November 2026
+
+The earlier authoring checklist and CI validator establish that all 418 indicator lessons contain three prompts, answer-guidance text and exact Thai indicator references. They do **not** establish that each task has a supplied stimulus, indicator-specific factual success criteria or independently verified source material.
+
+A direct content sample of the current M3 pack (SO1.1-M3-01 to SO1.1-M3-03) found the following defects:
+
+- The recall prompts refer generically to a lesson picture, short source, map or classroom example, but the lesson does not identify or include the actual assessment stimulus.
+- The answer guidance says to identify items “directly required by” the indicator, or to explain the idea “stated in” the indicator. This repeats the objective rather than giving task-specific expected evidence, acceptable factual answers or misconceptions.
+- The application prompt asks learners to compare two possible responses without supplying the two responses or a defined case.
+- The teaching sequence and resource description are repeated across the sampled SO1 lessons instead of being tailored to the specific indicator's knowledge and source requirements.
+
+**Revised interpretation:** the 1,254 tasks are structurally present and linked to 418 indicators, but the sampled tasks remain authoring scaffolds rather than fully specified, source-verified assessment items. The previous checklist item “replace generic prompt stems” is therefore complete only as a structural rewrite; academic specificity and source verification remain open. Do not treat the green validator as academic approval.
+
+### Required correction before classroom acceptance
+
+For each task, the authoring review must verify:
+1. A named, traceable source or a complete teacher-created stimulus is supplied with the task.
+2. The prompt measures the official indicator's action verb and subject content, not merely repeats its wording.
+3. The marking guide identifies observable evidence and factually acceptable responses, with reasonable alternatives and likely misconceptions.
+4. Source accuracy, age suitability, accessibility and inclusion are checked. Religious tasks must never score personal faith, identity, worship or participation.
+5. A qualified independent Social Studies reviewer approves the final pack.
+
+### Classification and source caveat
+
+The database audit confirms the separate 2021 Must-Know / Should-Know field only for P1–M2; M3–M6 pathway values are stored separately in `pathway_classification`. The repository evidence reviewed here does not establish an exact 2021 priority-label reconciliation for M3 and M4–M6. Do not infer these labels from between-learning / terminal values or from `required`.
+
+The 2021 OBEC PDF's printed grand-total cell says 408, while its ten grade rows sum to 418 and the priority columns sum to 418 (194 + 224). The grade and priority subtotals are internally consistent; the printed 408 is a source-document arithmetic discrepancy. Use the grade-level rows and preserve this caveat in any derived data.
+
+**Release decision:** curriculum coverage, task structure, parser/importer validation and CI are repository-side achievements. Academic task specificity, complete source verification, M3/M4–M6 2021 priority reconciliation, independent subject-matter sign-off and authorised isolated staging/teacher acceptance remain open. Social Studies is not approved for classroom release.
+
+
 ## Shared M4–M6 import handling
 
 The parser exposes an explicit multi-grade scope helper: `SOx.y-M46-nn` resolves to M4, M5 and M6, while grade-specific Social Studies codes resolve to exactly one grade. The teacher importer expands each shared outcome into three grade-specific draft rows and generates distinct grade-scoped lesson and question codes, so importing the shared pack does not collide with itself or suppress later grades. The official Thai indicator wording is used as the imported lesson title. This mapping is covered by the Social Studies pack validator and is included in the consolidated CI build.
