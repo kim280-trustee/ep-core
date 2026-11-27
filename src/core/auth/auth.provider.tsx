@@ -148,8 +148,15 @@ export function AuthProvider({ children }: Props) {
     loadRequestId.current += 1;
     setUser(null);
     setLoading(false);
-    await authService.signOut();
-  }, []);
+    try {
+      await authService.signOut();
+    } catch (error) {
+      // If remote sign-out fails, restore the still-valid local identity so the
+      // user is not stranded on a protected route with a hidden active session.
+      await loadUser();
+      throw error;
+    }
+  }, [loadUser]);
 
   return (
     <AuthContext.Provider
