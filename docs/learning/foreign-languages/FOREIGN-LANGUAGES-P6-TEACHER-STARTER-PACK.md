@@ -36,7 +36,7 @@
 ### 2. Read short texts, stories and poems aloud
 
 - **Standard:** ต 1.1
-- **Official indicator code:** ต 1.1 ป.6/1
+- **Official indicator code:** ต 1.1 ป.6/2
 - **Priority classification:** must_know
 - **Official indicator:** อ่านออกเสียงข้อความ นิทาน และบทกลอนสั้น ๆ ถูกต้องตามหลักการอ่าน
 **Objective:** `FL-P6-02` — อ่านออกเสียงข้อความ นิทาน และบทกลอนสั้น ๆ ถูกต้องตามหลักการอ่าน
@@ -52,7 +52,7 @@
 ### 3. Match written sentences to visual information
 
 - **Standard:** ต 1.1
-- **Official indicator code:** ต 1.1 ป.6/1
+- **Official indicator code:** ต 1.1 ป.6/3
 - **Priority classification:** must_know
 - **Official indicator:** เลือก/ระบุประโยคหรือข้อความสั้น ๆ ตรงตามภาพ สัญลักษณ์ หรือเครื่องหมายที่อ่าน
 **Objective:** `FL-P6-03` — เลือก/ระบุประโยคหรือข้อความสั้น ๆ ตรงตามภาพ สัญลักษณ์ หรือเครื่องหมายที่อ่าน
@@ -68,7 +68,7 @@
 ### 4. Identify main ideas and answer questions about stories
 
 - **Standard:** ต 1.1
-- **Official indicator code:** ต 1.1 ป.6/1
+- **Official indicator code:** ต 1.1 ป.6/4
 - **Priority classification:** must_know
 - **Official indicator:** บอกใจความสำคัญและตอบคำถามจากการฟังและอ่านบทสนทนา นิทานง่าย ๆ และเรื่องเล่า
 **Objective:** `FL-P6-04` — บอกใจความสำคัญและตอบคำถามจากการฟังและอ่านบทสนทนา นิทานง่าย ๆ และเรื่องเล่า
@@ -100,7 +100,7 @@
 ### 6. Give polite instructions, requests and advice
 
 - **Standard:** ต 1.2
-- **Official indicator code:** ต 1.2 ป.6/1
+- **Official indicator code:** ต 1.2 ป.6/2
 - **Priority classification:** must_know
 - **Official indicator:** ใช้คำสั่ง คำขอร้อง คำขออนุญาต และคำแนะนำ
 **Objective:** `FL-P6-06` — ใช้คำสั่ง คำขอร้อง คำขออนุญาต และคำแนะนำ
@@ -116,7 +116,7 @@
 ### 7. Express needs and negotiate help politely
 
 - **Standard:** ต 1.2
-- **Official indicator code:** ต 1.2 ป.6/1
+- **Official indicator code:** ต 1.2 ป.6/3
 - **Priority classification:** must_know
 - **Official indicator:** พูด/เขียนแสดงความต้องการ ขอความช่วยเหลือ ตอบรับและปฏิเสธการให้ความช่วยเหลือในสถานการณ์ง่าย ๆ
 **Objective:** `FL-P6-07` — พูด/เขียนแสดงความต้องการ ขอความช่วยเหลือ ตอบรับและปฏิเสธการให้ความช่วยเหลือในสถานการณ์ง่าย ๆ
@@ -132,7 +132,7 @@
 ### 8. Exchange information about people and familiar topics
 
 - **Standard:** ต 1.2
-- **Official indicator code:** ต 1.2 ป.6/1
+- **Official indicator code:** ต 1.2 ป.6/4
 - **Priority classification:** must_know
 - **Official indicator:** พูดและเขียนเพื่อขอและให้ข้อมูลเกี่ยวกับตนเอง เพื่อน ครอบครัว และเรื่องใกล้ตัว
 **Objective:** `FL-P6-08` — พูดและเขียนเพื่อขอและให้ข้อมูลเกี่ยวกับตนเอง เพื่อน ครอบครัว และเรื่องใกล้ตัว
@@ -148,7 +148,7 @@
 ### 9. Explain feelings with a supporting reason
 
 - **Standard:** ต 1.2
-- **Official indicator code:** ต 1.2 ป.6/1
+- **Official indicator code:** ต 1.2 ป.6/5
 - **Priority classification:** must_know
 - **Official indicator:** พูด/เขียนแสดงความรู้สึกของตนเองเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัวและกิจกรรมต่าง ๆ พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ
 **Objective:** `FL-P6-09` — พูด/เขียนแสดงความรู้สึกของตนเองเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัวและกิจกรรมต่าง ๆ พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ
@@ -180,7 +180,7 @@
 ### 11. Organise information in charts, maps and tables
 
 - **Standard:** ต 1.3
-- **Official indicator code:** ต 1.3 ป.6/1
+- **Official indicator code:** ต 1.3 ป.6/2
 - **Priority classification:** must_know
 - **Official indicator:** เขียนภาพ แผนผัง แผนภูมิ และตารางแสดงข้อมูลต่าง ๆ ที่ฟังหรืออ่าน
 **Objective:** `FL-P6-11` — เขียนภาพ แผนผัง แผนภูมิ และตารางแสดงข้อมูลต่าง ๆ ที่ฟังหรืออ่าน
@@ -196,7 +196,7 @@
 ### 12. Present and support an opinion
 
 - **Standard:** ต 1.3
-- **Official indicator code:** ต 1.3 ป.6/1
+- **Official indicator code:** ต 1.3 ป.6/3
 - **Priority classification:** must_know
 - **Official indicator:** พูด/เขียนแสดงความคิดเห็นเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัว
 **Objective:** `FL-P6-12` — พูด/เขียนแสดงความคิดเห็นเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัว
@@ -228,7 +228,7 @@
 ### 14. Present factual information about celebrations and daily life
 
 - **Standard:** ต 2.1
-- **Official indicator code:** ต 2.1 ป.6/1
+- **Official indicator code:** ต 2.1 ป.6/2
 - **Priority classification:** must_know
 - **Official indicator:** ให้ข้อมูลเกี่ยวกับเทศกาล/วันสำคัญ/งานฉลอง/ชีวิตความเป็นอยู่ของเจ้าของภาษา
 **Objective:** `FL-P6-14` — ให้ข้อมูลเกี่ยวกับเทศกาล/วันสำคัญ/งานฉลอง/ชีวิตความเป็นอยู่ของเจ้าของภาษา
@@ -244,7 +244,7 @@
 ### 15. Select and take part in language and cultural activities
 
 - **Standard:** ต 2.1
-- **Official indicator code:** ต 2.1 ป.6/1
+- **Official indicator code:** ต 2.1 ป.6/3
 - **Priority classification:** should_know
 - **Official indicator:** เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมตามความสนใจ
 **Objective:** `FL-P6-15` — เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมตามความสนใจ
@@ -276,7 +276,7 @@
 ### 17. Compare traditions using examples and evidence
 
 - **Standard:** ต 2.2
-- **Official indicator code:** ต 2.2 ป.6/1
+- **Official indicator code:** ต 2.2 ป.6/2
 - **Priority classification:** must_know
 - **Official indicator:** เปรียบเทียบความเหมือน/ความแตกต่างระหว่างเทศกาล งานฉลองและประเพณีของเจ้าของภาษากับของไทย
 **Objective:** `FL-P6-17` — เปรียบเทียบความเหมือน/ความแตกต่างระหว่างเทศกาล งานฉลองและประเพณีของเจ้าของภาษากับของไทย
