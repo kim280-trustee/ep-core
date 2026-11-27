@@ -109,21 +109,26 @@ security definer
 set search_path = ''
 as $function$
 begin
-  if old.item_type = 'assessment'
-     and old.assessment_id is not null
-     and (
-       tg_op = 'DELETE'
-       or new.assignment_id is distinct from old.assignment_id
+  if old.item_type = 'assessment' and old.assessment_id is not null then
+    if tg_op = 'DELETE' then
+      perform private.exclude_assessment_gradebook_entries_for_mapping_change(
+        old.assignment_id,
+        old.assessment_id,
+        null,
+        null,
+        'Assessment assignment mapping removed or changed'
+      );
+    elsif new.assignment_id is distinct from old.assignment_id
        or new.item_type is distinct from old.item_type
-       or new.assessment_id is distinct from old.assessment_id
-     ) then
-    perform private.exclude_assessment_gradebook_entries_for_mapping_change(
-      old.assignment_id,
-      old.assessment_id,
-      null,
-      null,
-      'Assessment assignment mapping removed or changed'
-    );
+       or new.assessment_id is distinct from old.assessment_id then
+      perform private.exclude_assessment_gradebook_entries_for_mapping_change(
+        old.assignment_id,
+        old.assessment_id,
+        null,
+        null,
+        'Assessment assignment mapping removed or changed'
+      );
+    end if;
   end if;
 
   if tg_op = 'DELETE' then
@@ -151,21 +156,27 @@ security definer
 set search_path = ''
 as $function$
 begin
-  if old.status = 'active'
-     and (
-       tg_op = 'DELETE'
-       or new.status is distinct from old.status
+  if old.status = 'active' then
+    if tg_op = 'DELETE' then
+      perform private.exclude_assessment_gradebook_entries_for_mapping_change(
+        old.assignment_id,
+        null,
+        old.class_group_id,
+        old.student_user_id,
+        'Active assessment assignment target removed or changed'
+      );
+    elsif new.status is distinct from old.status
        or new.assignment_id is distinct from old.assignment_id
        or new.class_group_id is distinct from old.class_group_id
-       or new.student_user_id is distinct from old.student_user_id
-     ) then
-    perform private.exclude_assessment_gradebook_entries_for_mapping_change(
-      old.assignment_id,
-      null,
-      old.class_group_id,
-      old.student_user_id,
-      'Active assessment assignment target removed or changed'
-    );
+       or new.student_user_id is distinct from old.student_user_id then
+      perform private.exclude_assessment_gradebook_entries_for_mapping_change(
+        old.assignment_id,
+        null,
+        old.class_group_id,
+        old.student_user_id,
+        'Active assessment assignment target removed or changed'
+      );
+    end if;
   end if;
 
   if tg_op = 'DELETE' then
