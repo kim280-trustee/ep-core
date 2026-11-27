@@ -500,3 +500,16 @@ The CSV row sequence was independently checked after the update: 111 data rows, 
 **Batch 1 — complete OBEC priority crosswalk reconciliation: COMPLETE.** This closes the priority classification work for M3 and M4–M6. It does not constitute academic moderation of the 1,254 learning tasks, nor does it complete staging, teacher acceptance or independent academic sign-off.
 
 The moderation-register repair has a successful workflow on commit `4bd985710c381bdc1e1115af22d847e1ac8b276d` (run [45929074904](https://github.com/kim280-trustee/ep-core/actions/runs/45929074904)). The latest crosswalk commits are being revalidated; the importer and security audit have passed on the preceding run, but lint and production build must finish on the current commit before the crosswalk technical gate can be closed.
+
+
+## 4Q. Primary 4 task-specific stimulus and register restoration — 27 November 2026
+
+The P4 teacher pack has been revised across all 38 indicators and all 114 answer-keyed tasks. Each lesson now includes a named, topic-specific assessment stimulus and a three-step recall/evidence, explanation and application progression. Prompts and answer guidance explicitly cite the exact Thai indicator wording; answer guidance identifies the evidence or criterion required rather than repeating the indicator.
+
+The new stimuli include age-appropriate religious/community cases; child-rights categories; local civics and election cases; illustrative consumer/economic data (explicitly labelled illustrative); historical evidence and Sukhothai source cards; and map/photo/fieldwork specifications for provincial geography. No invented local map facts or local statistics are presented as established facts. Where a teacher must supply an approved source, local map/photo or event card, that dependency is stated in the lesson and the register continues to mark source/factual review as pending.
+
+**Catalogue alignment flag retained:** `SO1.2-P4-04` is preserved exactly as recorded, but its official Thai wording describes democratic citizenship/community membership rather than the SO1.2 religious-sites strand. The task wording follows the supplied Thai indicator; the code/standard assignment must be checked against the controlling OBEC curriculum catalogue before import. No silent code change was made.
+
+The moderation register was empty on the active `edna/subject-rollout` branch and has been reconstructed from the eight current teacher packs: 418 unique indicator codes, exactly three tasks per indicator, 1,254 unique `-Q1/-Q2/-Q3` task IDs and 17 columns per row. All source, factual, age/inclusion, marking and independent moderation controls remain explicitly pending/not moderated; register population is not academic approval.
+
+**P4 prompt/stimulus authoring batch: COMPLETE (114/114).** **P4 source verification, factual review, age/inclusion review, independent moderation and teacher acceptance: OPEN.** No staging import or production/live-school data change was made.
