@@ -24,7 +24,7 @@ assert.ok(automatic.includes("learning_term_gradebook_retention_guard"));
 assert.ok(automatic.includes("guard_linked_learning_term_gradebook_retention"));
 assert.ok(automatic.includes("cannot be deleted or moved to another organization"));
 assert.ok(catalogTest.includes("learning_terms"));
-assert.ok(releaseGate.includes("Academic term deleted or moved"));
+assert.ok(releaseGate.includes("academic term deleted or moved to another organization"));
 assert.ok(automatic.includes("included_in_grade = false"));
 assert.ok(automatic.includes("learning_gradebook_audit_log"));
 assert.ok(automatic.includes("to_jsonb(v_entry)"));
