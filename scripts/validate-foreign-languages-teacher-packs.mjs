@@ -26,9 +26,10 @@ const packs = [
   { grade: "M1", path: "docs/learning/foreign-languages/FOREIGN-LANGUAGES-M1-TEACHER-STARTER-PACK.md", expectedLessons: 20 },
   { grade: "M2", path: "docs/learning/foreign-languages/FOREIGN-LANGUAGES-M2-TEACHER-STARTER-PACK.md", expectedLessons: 21 },
   { grade: "M3", path: "docs/learning/foreign-languages/FOREIGN-LANGUAGES-M3-TEACHER-STARTER-PACK.md", expectedLessons: 21 },
+  { grade: "M4-M6", path: "docs/learning/foreign-languages/FOREIGN-LANGUAGES-M4-M6-TEACHER-STARTER-PACK.md", expectedLessons: 21 },
 ];
 const register = await readFile(resolve(root, "docs/learning/foreign-languages/FOREIGN-LANGUAGES-INDICATOR-SOURCE-RECONCILIATION.csv"), "utf8");
-const registeredCodes = new Set(register.split(/\r?\n/).filter(line => /^"FL-(?:P[1-6]|M[1-3])-/.test(line)).map(line => line.match(/^"([^"]+)"/)?.[1]).filter(Boolean));
+const registeredCodes = new Set(register.split(/\r?\n/).filter(line => /^"FL-(?:P[1-6]|M[1-3]|M46)-/.test(line)).map(line => line.match(/^"([^"]+)"/)?.[1]).filter(Boolean));
 const allCodes = new Set();
 let lessonTotal = 0;
 let questionTotal = 0;
@@ -40,7 +41,7 @@ for (const pack of packs) {
   if (lessons.length !== pack.expectedLessons) failures.push(pack.grade + ": expected " + pack.expectedLessons + " lessons, found " + lessons.length);
   for (const lesson of lessons) {
     const code = lesson.objectiveCode;
-    if (!code || !code.startsWith("FL-" + pack.grade + "-")) failures.push(pack.grade + " lesson " + lesson.number + ": objective code is missing or belongs to another grade");
+    if (!code || !(pack.grade === "M4-M6" ? code.startsWith("FL-M46-") : code.startsWith("FL-" + pack.grade + "-")) ) failures.push(pack.grade + " lesson " + lesson.number + ": objective code is missing or belongs to another grade");
     else {
       if (allCodes.has(code)) failures.push("Duplicate objective code: " + code);
       allCodes.add(code);
@@ -54,11 +55,11 @@ for (const pack of packs) {
   lessonTotal += lessons.length;
   questionTotal += lessons.reduce((sum, lesson) => sum + lesson.questions.length, 0);
 }
-if (lessonTotal !== 172) failures.push("Expected 172 lessons across P1-M3, found " + lessonTotal);
-if (questionTotal !== 516) failures.push("Expected 516 answer-keyed questions across P1-M3, found " + questionTotal);
-if (allCodes.size !== 172) failures.push("Expected 172 unique objective codes, found " + allCodes.size);
+if (lessonTotal !== 193) failures.push("Expected 193 lessons across P1-M6 (with one shared M4-M6 interval), found " + lessonTotal);
+if (questionTotal !== 579) failures.push("Expected 579 answer-keyed questions across P1-M6 (with one shared M4-M6 interval), found " + questionTotal);
+if (allCodes.size !== 193) failures.push("Expected 193 unique objective codes, found " + allCodes.size);
 if (failures.length) {
   for (const failure of failures) process.stderr.write("FAIL: " + failure + "\n");
   process.exit(1);
 }
-process.stdout.write("Foreign Languages P1-M3 teacher packs valid: 172 lessons, 516 answer-keyed questions, 172 unique registered objective codes.\n");
+process.stdout.write("Foreign Languages P1-M6 teacher packs valid: 193 lessons, 579 answer-keyed questions, 193 unique registered objective codes; M4-M6 interval indicators represented once.\n");
