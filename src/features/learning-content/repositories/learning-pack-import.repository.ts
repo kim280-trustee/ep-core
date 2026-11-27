@@ -5,6 +5,7 @@ export type LearningPackImportQuestion = {
   code: string;
   prompt: string;
   expectedAnswer: string;
+  gradeLevelId?: string;
 };
 
 export type LearningPackImportLesson = {
@@ -136,9 +137,19 @@ export const learningPackImportRepository = {
     if (input.lessons.some((lesson) =>
       !lesson.objectiveId || !lesson.objectiveCode || !lesson.gradeLevelId ||
       !lesson.title.trim() || !lesson.learningOutcome.trim() || !lesson.activity.trim() ||
-      lesson.questions.length !== 3
+      lesson.questions.length < 3 || lesson.questions.length % 3 !== 0
     )) {
-      throw new Error("Every imported lesson needs an exact academic objective, grade, teaching content and three answer-keyed questions.");
+      throw new Error("Every imported lesson needs an exact academic objective, grade, teaching content and three answer-keyed questions per grade.");
+    }
+    for (const lesson of input.lessons) {
+      const counts = new Map<string, number>();
+      for (const question of lesson.questions) {
+        const gradeId = question.gradeLevelId ?? lesson.gradeLevelId;
+        counts.set(gradeId, (counts.get(gradeId) ?? 0) + 1);
+      }
+      if ([...counts.values()].some((count) => count !== 3)) {
+        throw new Error("Each grade-level question set must contain exactly three answer-keyed questions.");
+      }
     }
     const contentCodes = input.lessons.map((lesson) => makeImportCode(`EP-${lesson.objectiveCode}-LESSON`));
     const questionCodes = input.lessons.flatMap((lesson) => lesson.questions.map((question) => question.code));
@@ -212,7 +223,7 @@ export const learningPackImportRepository = {
         lesson.questions.map((question) => ({
           ...question,
           objectiveId: lesson.objectiveId,
-          curriculumGradeLevelId: lesson.gradeLevelId,
+          curriculumGradeLevelId: question.gradeLevelId ?? lesson.gradeLevelId,
         })),
       );
       const questionRows: Database["public"]["Tables"]["learning_questions"]["Insert"][] =
