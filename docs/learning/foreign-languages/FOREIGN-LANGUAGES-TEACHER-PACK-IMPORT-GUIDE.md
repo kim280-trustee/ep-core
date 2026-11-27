@@ -4,8 +4,8 @@
 
 - **Curriculum:** `TH-BASIC-CORE-2008-2017`
 - **Subject:** `FOREIGN-LANGUAGES` — Foreign Languages (English)
-- **Coverage prepared:** P1–P6, 110 indicator lessons and 330 answer-keyed questions
-- **Remaining authoring:** M1–M6
+- **Coverage prepared:** P1–M3, 172 indicator lessons and 516 answer-keyed questions
+- **Remaining authoring:** M4–M6 shared interval pack
 - **Catalogue:** 193 distinct indicators; 235 grade alignments because the 21 M4–M6 interval indicators map to M4, M5 and M6
 
 The curriculum catalogue is already present in Supabase. This guide covers teacher-pack drafts only; it does not authorize direct database writes or publication.
@@ -20,13 +20,16 @@ The curriculum catalogue is already present in Supabase. This guide covers teach
 | `FOREIGN-LANGUAGES-P4-TEACHER-STARTER-PACK.md` | P4 | 20 | 60 |
 | `FOREIGN-LANGUAGES-P5-TEACHER-STARTER-PACK.md` | P5 | 20 | 60 |
 | `FOREIGN-LANGUAGES-P6-TEACHER-STARTER-PACK.md` | P6 | 20 | 60 |
-| **Total** | **P1–P6** | **110** | **330** |
+| `FOREIGN-LANGUAGES-M1-TEACHER-STARTER-PACK.md` | M1 | 20 | 60 |
+| `FOREIGN-LANGUAGES-M2-TEACHER-STARTER-PACK.md` | M2 | 21 | 63 |
+| `FOREIGN-LANGUAGES-M3-TEACHER-STARTER-PACK.md` | M3 | 21 | 63 |
+| **Total** | **P1–M3** | **172** | **516** |
 
-Each lesson has its catalogue objective code, original Thai indicator wording, a learning outcome, a practical activity and exactly three answer-keyed questions. P4–P6 tasks progress from supported practice to more independent short texts, explanations and simple research.
+Each lesson preserves its catalogue objective code and original Thai indicator wording, with a learning outcome, practical activity and exactly three answer-keyed questions. M1–M3 questions are individually aligned to the indicator skill, with increasing independence across the middle-school grades.
 
 ## Validation
 
-Run `node scripts/validate-foreign-languages-teacher-packs.mjs` from the repository root. The validator uses the shared teacher-pack parser and checks grade counts, code uniqueness, source-register membership, outcomes, activities and all three answer keys per lesson.
+Run `node scripts/validate-foreign-languages-teacher-packs.mjs` from the repository root. The validator uses the shared teacher-pack parser and checks all nine grade packs, lesson counts, code uniqueness, source-register membership, outcomes, activities and all three answer keys per lesson.
 
 ## Authorized teacher import
 
@@ -56,10 +59,10 @@ The indicator-level audit register is `FOREIGN-LANGUAGES-INDICATOR-SOURCE-RECONC
 ## Current status
 
 - Foreign Languages catalogue: structurally verified against the OBEC source-stage counts.
-- P1–P6 teacher packs: prepared, 110 lessons and 330 answer-keyed questions.
-- Pack validator: updated for P1–P6; execution in the repository environment remains pending.
+- P1–M3 teacher packs: prepared, 172 lessons and 516 answer-keyed questions.
+- Pack validator: updated for P1–M3; full Node execution remains pending.
 - Authorized teacher import: not yet run.
 - Post-import objective/question/answer-key checks: pending.
-- M1–M6 packs: not yet prepared.
+- M4–M6 shared interval pack: not yet prepared.
 - Teacher review, student acceptance and publication: pending.
 - No Foreign Languages content drafts have been imported or published.
