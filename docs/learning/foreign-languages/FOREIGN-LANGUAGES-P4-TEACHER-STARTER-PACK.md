@@ -20,7 +20,8 @@
 ### 1. Follow spoken and written classroom instructions
 
 - **Standard:** ต 1.1
-- **Official indicator code:** ต 1.1 ป.4/1- **Priority classification:** must_know
+- **Official indicator code:** ต 1.1 ป.4/1
+- **Priority classification:** must_know
 - **Official indicator:** ปฏิบัติตามคำสั่ง คำขอร้อง และคำแนะนำ (instructions) ง่าย ๆ ที่ฟังหรืออ่าน
 **Objective:** `FL-P4-01` — ปฏิบัติตามคำสั่ง คำขอร้อง และคำแนะนำ (instructions) ง่าย ๆ ที่ฟังหรืออ่าน
 **Learning outcomes:** Learners follow spoken and written classroom instructions through a short, observable English-language task in a familiar, age-appropriate context.
@@ -35,7 +36,8 @@
 ### 2. Read words, sentences and short rhythmic texts aloud
 
 - **Standard:** ต 1.1
-- **Official indicator code:** ต 1.1 ป.4/1- **Priority classification:** must_know
+- **Official indicator code:** ต 1.1 ป.4/1
+- **Priority classification:** must_know
 - **Official indicator:** อ่านออกเสียงคำ สะกดคำ อ่านกลุ่มคำ ประโยค ข้อความง่าย ๆ และบทพูดเข้าจังหวะถูกต้องตามหลักการอ่าน
 **Objective:** `FL-P4-02` — อ่านออกเสียงคำ สะกดคำ อ่านกลุ่มคำ ประโยค ข้อความง่าย ๆ และบทพูดเข้าจังหวะถูกต้องตามหลักการอ่าน
 **Learning outcomes:** Learners read words, sentences and short rhythmic texts aloud through a short, observable English-language task in a familiar, age-appropriate context.
@@ -50,7 +52,8 @@
 ### 3. Match short sentences to pictures and signs
 
 - **Standard:** ต 1.1
-- **Official indicator code:** ต 1.1 ป.4/1- **Priority classification:** must_know
+- **Official indicator code:** ต 1.1 ป.4/1
+- **Priority classification:** must_know
 - **Official indicator:** เลือก/ระบุภาพหรือสัญลักษณ์ หรือเครื่องหมายตรงตามความหมายของประโยคและข้อความสั้น ๆ ที่ฟังหรืออ่าน
 **Objective:** `FL-P4-03` — เลือก/ระบุภาพหรือสัญลักษณ์ หรือเครื่องหมายตรงตามความหมายของประโยคและข้อความสั้น ๆ ที่ฟังหรืออ่าน
 **Learning outcomes:** Learners match short sentences to pictures and signs through a short, observable English-language task in a familiar, age-appropriate context.
@@ -65,7 +68,8 @@
 ### 4. Answer questions about short dialogues and stories
 
 - **Standard:** ต 1.1
-- **Official indicator code:** ต 1.1 ป.4/1- **Priority classification:** must_know
+- **Official indicator code:** ต 1.1 ป.4/1
+- **Priority classification:** must_know
 - **Official indicator:** ตอบคำถามจากการฟังและอ่านประโยค บทสนทนา นิทานง่าย ๆ
 **Objective:** `FL-P4-04` — ตอบคำถามจากการฟังและอ่านประโยค บทสนทนา นิทานง่าย ๆ
 **Learning outcomes:** Learners answer questions about short dialogues and stories through a short, observable English-language task in a familiar, age-appropriate context.
@@ -80,7 +84,8 @@
 ### 5. Exchange information in everyday conversations
 
 - **Standard:** ต 1.2
-- **Official indicator code:** ต 1.2 ป.4/1- **Priority classification:** must_know
+- **Official indicator code:** ต 1.2 ป.4/1
+- **Priority classification:** must_know
 - **Official indicator:** พูด/เขียนโต้ตอบในการสื่อสารระหว่างบุคคล
 **Objective:** `FL-P4-05` — พูด/เขียนโต้ตอบในการสื่อสารระหว่างบุคคล
 **Learning outcomes:** Learners exchange information in everyday conversations through a short, observable English-language task in a familiar, age-appropriate context.
@@ -95,7 +100,8 @@
 ### 6. Give polite commands and requests
 
 - **Standard:** ต 1.2
-- **Official indicator code:** ต 1.2 ป.4/1- **Priority classification:** must_know
+- **Official indicator code:** ต 1.2 ป.4/1
+- **Priority classification:** must_know
 - **Official indicator:** ใช้คำสั่ง คำขอร้อง และคำขออนุญาตง่าย ๆ
 **Objective:** `FL-P4-06` — ใช้คำสั่ง คำขอร้อง และคำขออนุญาตง่าย ๆ
 **Learning outcomes:** Learners give polite commands and requests through a short, observable English-language task in a familiar, age-appropriate context.
@@ -110,7 +116,8 @@
 ### 7. Express needs and ask for help
 
 - **Standard:** ต 1.2
-- **Official indicator code:** ต 1.2 ป.4/1- **Priority classification:** must_know
+- **Official indicator code:** ต 1.2 ป.4/1
+- **Priority classification:** must_know
 - **Official indicator:** พูด/เขียนแสดงความต้องการของตนเอง และขอความช่วยเหลือในสถานการณ์ง่าย ๆ
 **Objective:** `FL-P4-07` — พูด/เขียนแสดงความต้องการของตนเอง และขอความช่วยเหลือในสถานการณ์ง่าย ๆ
 **Learning outcomes:** Learners express needs and ask for help through a short, observable English-language task in a familiar, age-appropriate context.
@@ -125,7 +132,8 @@
 ### 8. Ask for and give information about people
 
 - **Standard:** ต 1.2
-- **Official indicator code:** ต 1.2 ป.4/1- **Priority classification:** must_know
+- **Official indicator code:** ต 1.2 ป.4/1
+- **Priority classification:** must_know
 - **Official indicator:** พูด/เขียนเพื่อขอและให้ข้อมูลเกี่ยวกับตนเอง เพื่อนและครอบครัว
 **Objective:** `FL-P4-08` — พูด/เขียนเพื่อขอและให้ข้อมูลเกี่ยวกับตนเอง เพื่อนและครอบครัว
 **Learning outcomes:** Learners ask for and give information about people through a short, observable English-language task in a familiar, age-appropriate context.
@@ -140,7 +148,8 @@
 ### 9. Express feelings about familiar topics
 
 - **Standard:** ต 1.2
-- **Official indicator code:** ต 1.2 ป.4/1- **Priority classification:** should_know
+- **Official indicator code:** ต 1.2 ป.4/1
+- **Priority classification:** should_know
 - **Official indicator:** พูดแสดงความรู้สึกของตนเองเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัวและกิจกรรมต่าง ๆ ตามแบบที่ฟัง
 **Objective:** `FL-P4-09` — พูดแสดงความรู้สึกของตนเองเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัวและกิจกรรมต่าง ๆ ตามแบบที่ฟัง
 **Learning outcomes:** Learners express feelings about familiar topics through a short, observable English-language task in a familiar, age-appropriate context.
@@ -155,7 +164,8 @@
 ### 10. Describe yourself and familiar things
 
 - **Standard:** ต 1.3
-- **Official indicator code:** ต 1.3 ป.4/1- **Priority classification:** must_know
+- **Official indicator code:** ต 1.3 ป.4/1
+- **Priority classification:** must_know
 - **Official indicator:** พูด/เขียนให้ข้อมูลเกี่ยวกับตนเองและเรื่องใกล้ตัว
 **Objective:** `FL-P4-10` — พูด/เขียนให้ข้อมูลเกี่ยวกับตนเองและเรื่องใกล้ตัว
 **Learning outcomes:** Learners describe themselves and familiar things through a short, observable English-language task in a familiar, age-appropriate context.
@@ -170,7 +180,8 @@
 ### 11. Show relationships between familiar things
 
 - **Standard:** ต 1.3
-- **Official indicator code:** ต 1.3 ป.4/1- **Priority classification:** must_know
+- **Official indicator code:** ต 1.3 ป.4/1
+- **Priority classification:** must_know
 - **Official indicator:** พูด/วาดภาพแสดงความสัมพันธ์ของสิ่งต่าง ๆ ใกล้ตัวตามที่ฟังหรืออ่าน
 **Objective:** `FL-P4-11` — พูด/วาดภาพแสดงความสัมพันธ์ของสิ่งต่าง ๆ ใกล้ตัวตามที่ฟังหรืออ่าน
 **Learning outcomes:** Learners show relationships between familiar things through a short, observable English-language task in a familiar, age-appropriate context.
@@ -185,7 +196,8 @@
 ### 12. Give a simple opinion about familiar topics
 
 - **Standard:** ต 1.3
-- **Official indicator code:** ต 1.3 ป.4/1- **Priority classification:** must_know
+- **Official indicator code:** ต 1.3 ป.4/1
+- **Priority classification:** must_know
 - **Official indicator:** พูดแสดงความคิดเห็นง่าย ๆ เกี่ยวกับเรื่องต่าง ๆ ใกล้ตัว
 **Objective:** `FL-P4-12` — พูดแสดงความคิดเห็นง่าย ๆ เกี่ยวกับเรื่องต่าง ๆ ใกล้ตัว
 **Learning outcomes:** Learners give a simple opinion about familiar topics through a short, observable English-language task in a familiar, age-appropriate context.
@@ -200,7 +212,8 @@
 ### 13. Use polite language and appropriate gestures
 
 - **Standard:** ต 2.1
-- **Official indicator code:** ต 2.1 ป.4/1- **Priority classification:** must_know
+- **Official indicator code:** ต 2.1 ป.4/1
+- **Priority classification:** must_know
 - **Official indicator:** พูดและทำท่าประกอบอย่างสุภาพตามมารยาทสังคม/วัฒนธรรมของเจ้าของภาษา
 **Objective:** `FL-P4-13` — พูดและทำท่าประกอบอย่างสุภาพตามมารยาทสังคม/วัฒนธรรมของเจ้าของภาษา
 **Learning outcomes:** Learners use polite language and appropriate gestures through a short, observable English-language task in a familiar, age-appropriate context.
@@ -215,7 +228,8 @@
 ### 14. Answer factual questions about celebrations and daily life
 
 - **Standard:** ต 2.1
-- **Official indicator code:** ต 2.1 ป.4/1- **Priority classification:** must_know
+- **Official indicator code:** ต 2.1 ป.4/1
+- **Priority classification:** must_know
 - **Official indicator:** ตอบคำถามเกี่ยวกับเทศกาล/วันสำคัญ/งานฉลอง และชีวิตความเป็นอยู่ของเจ้าของภาษา
 **Objective:** `FL-P4-14` — ตอบคำถามเกี่ยวกับเทศกาล/วันสำคัญ/งานฉลอง และชีวิตความเป็นอยู่ของเจ้าของภาษา
 **Learning outcomes:** Learners answer factual questions about celebrations and daily life through a short, observable English-language task in a familiar, age-appropriate context.
@@ -230,7 +244,8 @@
 ### 15. Participate in age-appropriate language activities
 
 - **Standard:** ต 2.1
-- **Official indicator code:** ต 2.1 ป.4/1- **Priority classification:** should_know
+- **Official indicator code:** ต 2.1 ป.4/1
+- **Priority classification:** should_know
 - **Official indicator:** เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมที่เหมาะกับวัย
 **Objective:** `FL-P4-15` — เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมที่เหมาะกับวัย
 **Learning outcomes:** Learners participate in age-appropriate language activities through a short, observable English-language task in a familiar, age-appropriate context.
@@ -245,7 +260,8 @@
 ### 16. Compare English and Thai sounds and sentence patterns
 
 - **Standard:** ต 2.2
-- **Official indicator code:** ต 2.2 ป.4/1- **Priority classification:** must_know
+- **Official indicator code:** ต 2.2 ป.4/1
+- **Priority classification:** must_know
 - **Official indicator:** บอกความแตกต่างของเสียงตัวอักษร คำ กลุ่มคำ ประโยค และข้อความของภาษาต่างประเทศและภาษาไทย
 **Objective:** `FL-P4-16` — บอกความแตกต่างของเสียงตัวอักษร คำ กลุ่มคำ ประโยค และข้อความของภาษาต่างประเทศและภาษาไทย
 **Learning outcomes:** Learners compare English and Thai sounds and sentence patterns through a short, observable English-language task in a familiar, age-appropriate context.
@@ -260,7 +276,8 @@
 ### 17. Compare celebrations using respectful factual evidence
 
 - **Standard:** ต 2.2
-- **Official indicator code:** ต 2.2 ป.4/1- **Priority classification:** must_know
+- **Official indicator code:** ต 2.2 ป.4/1
+- **Priority classification:** must_know
 - **Official indicator:** บอกความเหมือน/ความแตกต่างระหว่างเทศกาลและงานฉลองตามวัฒนธรรมของเจ้าของภาษากับของไทย
 **Objective:** `FL-P4-17` — บอกความเหมือน/ความแตกต่างระหว่างเทศกาลและงานฉลองตามวัฒนธรรมของเจ้าของภาษากับของไทย
 **Learning outcomes:** Learners compare celebrations using respectful factual evidence through a short, observable English-language task in a familiar, age-appropriate context.
@@ -275,7 +292,8 @@
 ### 18. Collect and present cross-curricular vocabulary
 
 - **Standard:** ต 3.1
-- **Official indicator code:** ต 3.1 ป.4/1- **Priority classification:** must_know
+- **Official indicator code:** ต 3.1 ป.4/1
+- **Priority classification:** must_know
 - **Official indicator:** ค้นคว้า/รวบรวมคำศัพท์ที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่น และนำเสนอด้วยการพูด/การเขียน
 **Objective:** `FL-P4-18` — ค้นคว้า/รวบรวมคำศัพท์ที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่น และนำเสนอด้วยการพูด/การเขียน
 **Learning outcomes:** Learners collect and present cross-curricular vocabulary through a short, observable English-language task in a familiar, age-appropriate context.
@@ -290,7 +308,8 @@
 ### 19. Communicate in school situations
 
 - **Standard:** ต 4.1
-- **Official indicator code:** ต 4.1 ป.4/1- **Priority classification:** must_know
+- **Official indicator code:** ต 4.1 ป.4/1
+- **Priority classification:** must_know
 - **Official indicator:** ฟังและพูด/อ่านในสถานการณ์ที่เกิดขึ้นในห้องเรียนและสถานศึกษา
 **Objective:** `FL-P4-19` — ฟังและพูด/อ่านในสถานการณ์ที่เกิดขึ้นในห้องเรียนและสถานศึกษา
 **Learning outcomes:** Learners communicate in school situations through a short, observable English-language task in a familiar, age-appropriate context.
@@ -305,7 +324,8 @@
 ### 20. Use English to find and collect information
 
 - **Standard:** ต 4.2
-- **Official indicator code:** ต 4.2 ป.4/1- **Priority classification:** should_know
+- **Official indicator code:** ต 4.2 ป.4/1
+- **Priority classification:** should_know
 - **Official indicator:** ใช้ภาษาต่างประเทศในการสืบค้นและรวบรวมข้อมูลต่าง ๆ
 **Objective:** `FL-P4-20` — ใช้ภาษาต่างประเทศในการสืบค้นและรวบรวมข้อมูลต่าง ๆ
 **Learning outcomes:** Learners use English to find and collect information through a short, observable English-language task in a familiar, age-appropriate context.
