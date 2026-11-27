@@ -3,7 +3,7 @@ import type {
   Session,
 } from "@supabase/supabase-js";
 
-export type LoginDestination = "/teacher" | "/learning" | "/parent" | "/school-admin" | null;
+export type LoginDestination = "/teacher" | "/learning" | "/parent" | "/school-admin";
 
 export interface AuthRepository {
   signIn(
@@ -20,7 +20,7 @@ export interface AuthRepository {
 
   getSession(): Promise<Session | null>;
 
-  getLoginDestination(
+  getLoginDestinations(
     authUserId: string,
-  ): Promise<LoginDestination>;
+  ): Promise<LoginDestination[]>;
 }
