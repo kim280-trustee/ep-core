@@ -392,7 +392,7 @@ export default function TeacherContentImportPage() {
           <h2 className="font-semibold text-slate-900">3. Validate the objective mappings</h2>
           <div className="mt-3 flex flex-wrap gap-4 text-sm text-slate-600">
             <span>{parsedLessons.length} lessons detected</span>
-            <span>{parsedLessons.length * 3} questions detected</span>
+            <span>{resolved.rows.reduce((total, lesson) => total + lesson.questions.length, 0)} grade-scoped questions prepared</span>
             <span>{resolved.rows.length} objectives matched</span>
           </div>
           {catalogue.isPending || alignments.isPending ? <p className="mt-4 text-sm text-slate-500">Checking active curriculum alignments…</p> : null}
@@ -421,7 +421,7 @@ export default function TeacherContentImportPage() {
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5">
         <h2 className="font-semibold text-slate-900">4. Import as drafts</h2>
-        <p className="mt-1 text-sm text-slate-500">{questionsOnly ? "Each question is linked to its exact grade-level objective and saved as a manual-review question. Answer keys remain protected. No lessons are created and nothing is published." : "Each lesson is linked to its exact objective. Its three questions are created as manual-review short answers, and answer keys remain in the protected evaluation-key table. Nothing is published."}</p>
+        <p className="mt-1 text-sm text-slate-500">{questionsOnly ? "Each question is linked to its exact grade-level objective and saved as a manual-review question. Answer keys remain protected. No lessons are created and nothing is published." : "Each lesson is linked once to its exact objective. Its three questions are created as manual-review short answers per aligned grade (shared M4–M6 indicators receive one question set per grade), and answer keys remain in the protected evaluation-key table. Nothing is published."}</p>
         {(importProgress.lessons > 0 || importProgress.questions > 0) && <p className="mt-3 text-sm text-slate-700">Saved so far: {importProgress.lessons} lessons and {importProgress.questions} questions.</p>}
         {message && <p className="mt-3 rounded-lg bg-slate-50 p-3 text-sm text-slate-700">{message}</p>}
         <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
