@@ -29,8 +29,8 @@ function SchoolAdminSessionBar({ children }: { children: ReactNode }) {
     try {
       await logout();
       navigate("/login", { replace: true });
-    } catch {
-      setLogoutError("We could not sign you out. Your session has been restored; please try again.");
+    } catch (error) {
+      setLogoutError(error instanceof Error ? error.message : "We could not sign you out. Please try again.");
     } finally {
       setLoggingOut(false);
     }
