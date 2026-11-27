@@ -27,7 +27,7 @@ const checks = [
   ["login destination checks active parent links and school-admin permission", repository.includes('learning_parent_student_links') && repository.includes('organization_memberships') && repository.includes('learning_can_manage_academic_records') && repository.includes('target_organization_id')],
   ["logout is local to the current browser session", repository.includes('signOut({ scope: "local" })')],
   ["auth provider fails closed on identity lookup errors", provider.includes("if (profileError) throw profileError") && provider.includes("if (userRoleError) throw userRoleError") && provider.includes("if (roleError) throw roleError")],
-  ["auth provider invalidates stale reads and handles sign-out events", provider.includes("loadRequestId.current += 1") && provider.includes('event === "SIGNED_OUT"')],
+  ["auth provider invalidates stale reads and handles sign-out events", provider.includes("loadRequestId.current += 1") && provider.includes('event === "SIGNED_OUT"') && provider.includes('event === "SIGNED_IN"') && provider.includes("setLoading(true)")],
   ["auth provider clears a session without an application profile", provider.includes("if (!profile)") && provider.includes('signOut({ scope: "local" })')],
   ["student portal requires a student membership", studentRoutes.includes('<LearningRoleRoute role="student">')],
   ["teacher portal requires a teacher membership", teacherRoutes.includes('<LearningRoleRoute role="teacher">')],
