@@ -29,7 +29,29 @@ const packs = [
   { grade: "M4-M6", path: "docs/learning/foreign-languages/FOREIGN-LANGUAGES-M4-M6-TEACHER-STARTER-PACK.md", expectedLessons: 21 },
 ];
 const register = await readFile(resolve(root, "docs/learning/foreign-languages/FOREIGN-LANGUAGES-INDICATOR-SOURCE-RECONCILIATION.csv"), "utf8");
-const registeredCodes = new Set(register.split(/\r?\n/).filter(line => /^"FL-(?:P[1-6]|M[1-3]|M46)-/.test(line)).map(line => line.match(/^"([^"]+)"/)?.[1]).filter(Boolean));
+function parseCsvLine(line) {
+  const values = [];
+  let value = "";
+  let quoted = false;
+  for (let index = 0; index < line.length; index += 1) {
+    const character = line[index];
+    if (character === '"') {
+      if (quoted && line[index + 1] === '"') { value += '"'; index += 1; }
+      else quoted = !quoted;
+    } else if (character === "," && !quoted) {
+      values.push(value);
+      value = "";
+    } else value += character;
+  }
+  values.push(value);
+  return values;
+}
+const registerRows = register.split(/\r?\n/)
+  .filter(line => line.trim() && !line.startsWith("#"))
+  .map(parseCsvLine);
+const registerHeaders = registerRows.shift();
+const registerIndex = Object.fromEntries(registerHeaders.map((header, index) => [header, index]));
+const registeredObjectives = new Map(registerRows.map(row => [row[registerIndex.objective_code], row]));
 const allCodes = new Set();
 let lessonTotal = 0;
 let questionTotal = 0;
@@ -41,11 +63,33 @@ for (const pack of packs) {
   if (lessons.length !== pack.expectedLessons) failures.push(pack.grade + ": expected " + pack.expectedLessons + " lessons, found " + lessons.length);
   for (const lesson of lessons) {
     const code = lesson.objectiveCode;
-    if (!code || !(pack.grade === "M4-M6" ? code.startsWith("FL-M46-") : code.startsWith("FL-" + pack.grade + "-")) ) failures.push(pack.grade + " lesson " + lesson.number + ": objective code is missing or belongs to another grade");
+    if (!code || !(pack.grade === "M4-M6" ? code.startsWith("FL-M46-") : code.startsWith("FL-" + pack.grade + "-"))) failures.push(pack.grade + " lesson " + lesson.number + ": objective code is missing or belongs to another grade");
     else {
       if (allCodes.has(code)) failures.push("Duplicate objective code: " + code);
       allCodes.add(code);
-      if (!registeredCodes.has(code)) failures.push("Objective code is absent from source register: " + code);
+      const registered = registeredObjectives.get(code);
+      if (!registered) failures.push("Objective code is absent from source register: " + code);
+      const section = markdown.split(/^### \d+\. .*$/m)[lesson.number] ?? "";
+      const field = (pattern) => section.match(pattern)?.[1]?.trim() ?? "";
+      if (registered) {
+        const expected = {
+          officialCode: registered[registerIndex.official_indicator_code],
+          standard: registered[registerIndex.standard_code],
+          priority: registered[registerIndex.priority_classification],
+          thai: registered[registerIndex.database_thai_description],
+        };
+        const actual = {
+          officialCode: field(/^- \*\*Official indicator code:\*\* (.+)$/m),
+          standard: field(/^- \*\*Standard:\*\* (.+)$/m),
+          priority: field(/^- \*\*Priority classification:\*\* (.+)$/m),
+          thai: field(/^- \*\*Official indicator:\*\* (.+)$/m),
+        };
+        for (const key of Object.keys(expected)) {
+          if (actual[key] !== expected[key]) failures.push(code + ": " + key + " does not exactly match the source register");
+        }
+        const objectiveThai = section.match(/^\*\*Objective:\*\* `[^\x60]+` — (.+)$/m)?.[1]?.trim() ?? "";
+        if (objectiveThai !== expected.thai) failures.push(code + ": objective Thai wording does not exactly match the source register");
+      }
     }
     if (!lesson.learningOutcome.trim()) failures.push(code + ": learning outcome is empty");
     if (!lesson.activity.trim()) failures.push(code + ": practical activity is empty");
