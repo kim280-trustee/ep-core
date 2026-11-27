@@ -84,6 +84,7 @@ export function LearningRoleRoute({ children, role }: Props) {
   const { user, loading } = useAuth();
   const location = useLocation();
   const [access, setAccess] = useState<AccessState>("checking");
+  const [checkedUserId, setCheckedUserId] = useState<string | null>(null);
   const [retry, setRetry] = useState(0);
 
   useEffect(() => {
@@ -97,12 +98,19 @@ export function LearningRoleRoute({ children, role }: Props) {
     }
 
     setAccess("checking");
+    setCheckedUserId(null);
     void hasLearningAccess(user.id, role)
       .then((allowed) => {
-        if (active) setAccess(allowed ? "allowed" : "denied");
+        if (active) {
+          setAccess(allowed ? "allowed" : "denied");
+          setCheckedUserId(user.id);
+        }
       })
       .catch(() => {
-        if (active) setAccess("error");
+        if (active) {
+          setAccess("error");
+          setCheckedUserId(user.id);
+        }
       });
 
     return () => {
@@ -110,7 +118,7 @@ export function LearningRoleRoute({ children, role }: Props) {
     };
   }, [loading, user, role, retry]);
 
-  if (loading || (user && access === "checking")) {
+  if (loading || (user && (checkedUserId !== user.id || access === "checking"))) {
     return (
       <div className="flex min-h-screen items-center justify-center" role="status" aria-live="polite">
         Checking your access...
