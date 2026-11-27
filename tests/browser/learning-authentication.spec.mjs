@@ -84,8 +84,9 @@ async function mockSupabase(page) {
       if (table === "learning_class_memberships") {
         const requestedRole = url.searchParams.get("membership_type")?.replace("eq.", "");
         rows = roles.filter((role) => (role === "student" || role === "teacher") && (!requestedRole || requestedRole === role))
-          .map((role) => ({ id: `membership-${role}`, user_id: profile.id, membership_type: role, status: "active", class_group_id: "test-class" }));
+          .map((role) => ({ id: `membership-${role}`, tenant_id: profile.tenant_id, organization_id: "organization-test", user_id: profile.id, membership_type: role, status: "active", class_group_id: "test-class", joined_at: "2026-01-01T00:00:00Z", created_at: "2026-01-01T00:00:00Z", updated_at: "2026-01-01T00:00:00Z" }));
       }
+      if (table === "learning_class_groups") rows = [{ id: "test-class", organization_id: "organization-test", academic_year_id: "test-year", curriculum_id: null, grade_level_id: "grade-7", code: "TEST-CLASS", name: "Test Class", status: "active", created_at: "2026-01-01T00:00:00Z", updated_at: "2026-01-01T00:00:00Z" }];
       if (table === "learning_parent_student_links" && roles.includes("parent")) {
         rows = [{ id: "parent-link", parent_user_id: profile.id, status: "active" }];
       }
