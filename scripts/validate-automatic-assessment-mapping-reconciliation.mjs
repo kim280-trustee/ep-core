@@ -14,7 +14,7 @@ assert.ok(migration.includes("p_class_group_id is null or e.class_group_id = p_c
 assert.ok(migration.includes("p_student_user_id is null or e.student_user_id = p_student_user_id"));
 assert.ok(migration.includes("e.included_in_grade = true"));
 assert.ok(migration.includes("for update"));
-assert.ok(migration.includes("grade.status = 'finalized'"));
+assert.ok(migration.includes("if v_grade_status = 'finalized' then"));
 assert.ok(migration.includes("reopen the term grade with an audit reason first"));
 assert.ok(migration.includes("included_in_grade = false"));
 assert.ok(migration.includes("learning_gradebook_audit_log"));
@@ -41,5 +41,6 @@ assert.ok(migration.includes("coalesce("));
 assert.ok(migration.includes("v_entry.created_by"));
 assert.ok(migration.includes("revoke all on function private.guard_learning_assessment_assignment_item_mapping()"));
 assert.ok(migration.includes("revoke all on function private.guard_learning_assessment_assignment_target_mapping()"));
+assert.ok(migration.includes("revoke all on function private.guard_learning_assessment_assignment_parent_mapping()"));
 
 console.log("Automatic assessment gradebook mapping reconciliation contract passed.");
