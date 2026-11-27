@@ -35,7 +35,8 @@
     "validate:teacher-assessment-review": "node scripts/validate-teacher-assessment-review.mjs",
     "validate:learning-question-bundle": "node scripts/validate-learning-question-bundle.mjs",
     "validate:learning-assessment-authoring": "node scripts/validate-learning-assessment-authoring.mjs",
-    "validate:gradebook-recalculation-consistency": "node scripts/validate-gradebook-recalculation-consistency.mjs"
+    "validate:gradebook-recalculation-consistency": "node scripts/validate-gradebook-recalculation-consistency.mjs",
+    "validate:gradebook-finalization-freshness": "node scripts/validate-gradebook-finalization-freshness.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
