@@ -47,8 +47,7 @@ Each lesson preserves its catalogue objective code and original Thai indicator w
 
 ## Remaining work
 
-1. Run the committed ten-pack validator in the repository environment; structural checks across all ten packs confirm lesson, objective and answer-key counts, but Node execution has not yet been run here.
-2. Run the updated ten-pack validator, including the single shared M4–M6 interval pack.
+1. Run the committed ten-pack Node validator in the repository environment; structural checks across all ten packs confirm lesson, objective and answer-key counts, but actual Node execution has not yet been run here.
 3. Complete line-by-line Thai source and academic-content review; all register review fields remain pending.
 4. Import each approved grade pack through the authenticated teacher route `/teacher/content/import`, draft-only.
 5. Verify imported objective links, question counts, protected answer keys, draft status and absence of unintended publication.
