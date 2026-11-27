@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components -- Route config modules intentionally define lazy page components and export route objects. */
 import type { RouteObject } from "react-router-dom";
-import { ProtectedRoute } from "@/core/auth";
+import { LearningRoleRoute } from "@/core/auth";
 
 import { lazy } from "react";
 
@@ -16,14 +16,14 @@ const SchoolAnnouncementsPage = lazy(() => import("../pages/SchoolAnnouncementsP
 const SchoolTeacherLeaveManagementPage = lazy(() => import("../pages/SchoolTeacherLeaveManagementPage"));
 
 export const learningSchoolAdminRoutes: RouteObject[] = [
-  { path: "school-admin", element: <ProtectedRoute><SchoolAdministrationPage /></ProtectedRoute> },
-  { path: "school-admin/analytics", element: <ProtectedRoute><SchoolAnalyticsPage /></ProtectedRoute> },
-  { path: "school-admin/parents", element: <ProtectedRoute><SchoolParentLinksPage /></ProtectedRoute> },
-  { path: "school-admin/admissions", element: <ProtectedRoute><SchoolStudentAdmissionsPage /></ProtectedRoute> },
-  { path: "student/invite", element: <ProtectedRoute><StudentInvitationPage /></ProtectedRoute> },
-  { path: "school-admin/timetable", element: <ProtectedRoute><SchoolTimetablePage /></ProtectedRoute> },
-  { path: "school-admin/staff", element: <ProtectedRoute><SchoolStaffAdministrationPage /></ProtectedRoute> },
-  { path: "school-admin/attendance-report", element: <ProtectedRoute><SchoolAttendanceReportPage /></ProtectedRoute> },
-  { path: "school-admin/announcements", element: <ProtectedRoute><SchoolAnnouncementsPage /></ProtectedRoute> },
-  { path: "school-admin/teacher-leave", element: <ProtectedRoute><SchoolTeacherLeaveManagementPage /></ProtectedRoute> },
+  { path: "school-admin", element: <LearningRoleRoute role="school-admin"><SchoolAdministrationPage /></LearningRoleRoute> },
+  { path: "school-admin/analytics", element: <LearningRoleRoute role="school-admin"><SchoolAnalyticsPage /></LearningRoleRoute> },
+  { path: "school-admin/parents", element: <LearningRoleRoute role="school-admin"><SchoolParentLinksPage /></LearningRoleRoute> },
+  { path: "school-admin/admissions", element: <LearningRoleRoute role="school-admin"><SchoolStudentAdmissionsPage /></LearningRoleRoute> },
+  { path: "student/invite", element: <LearningRoleRoute role="school-admin"><StudentInvitationPage /></LearningRoleRoute> },
+  { path: "school-admin/timetable", element: <LearningRoleRoute role="school-admin"><SchoolTimetablePage /></LearningRoleRoute> },
+  { path: "school-admin/staff", element: <LearningRoleRoute role="school-admin"><SchoolStaffAdministrationPage /></LearningRoleRoute> },
+  { path: "school-admin/attendance-report", element: <LearningRoleRoute role="school-admin"><SchoolAttendanceReportPage /></LearningRoleRoute> },
+  { path: "school-admin/announcements", element: <LearningRoleRoute role="school-admin"><SchoolAnnouncementsPage /></LearningRoleRoute> },
+  { path: "school-admin/teacher-leave", element: <LearningRoleRoute role="school-admin"><SchoolTeacherLeaveManagementPage /></LearningRoleRoute> },
 ];
