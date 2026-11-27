@@ -41,8 +41,8 @@ begin
     return false;
   end if;
 
-  select count(distinct a.id), min(a.id)
-    into v_assignment_count, v_assignment_id
+  select count(distinct a.id)
+    into v_assignment_count
   from public.learning_assignment_items ai
   join public.learning_assignments a on a.id = ai.assignment_id
   join public.learning_assignment_targets t on t.assignment_id = a.id
@@ -69,6 +69,29 @@ begin
   if v_assignment_count <> 1 or v_assignment_id is null then
     return false;
   end if;
+
+  select distinct a.id into v_assignment_id
+  from public.learning_assignment_items ai
+  join public.learning_assignments a on a.id = ai.assignment_id
+  join public.learning_assignment_targets t on t.assignment_id = a.id
+  where ai.assessment_id = v_assessment_id
+    and ai.item_type = 'assessment'
+    and a.status = 'published'
+    and a.organization_id = v_entry.organization_id
+    and t.status = 'active'
+    and (
+      t.student_user_id = v_entry.student_user_id
+      or (
+        t.class_group_id is not null
+        and exists (
+          select 1 from public.learning_class_memberships cm
+          where cm.class_group_id = t.class_group_id
+            and cm.user_id = v_entry.student_user_id
+            and cm.membership_type = 'student'
+            and cm.status = 'active'
+        )
+      )
+    );
 
   if not exists (
     select 1
