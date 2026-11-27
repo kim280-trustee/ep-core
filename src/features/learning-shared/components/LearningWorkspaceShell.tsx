@@ -74,7 +74,7 @@ export function LearningWorkspaceShell({ role, navigation, children }: Props) {
 
   const portalSelector = availablePortals.length > 1 ? (
     <label className="block min-w-0">
-      <span className="sr-only">Switch portal</span>
+      <span className="mb-1 block text-xs font-medium text-slate-500">Switch portal</span>
       <select
         aria-label="Switch portal"
         value={ROLE_PATHS[role]}
@@ -93,6 +93,7 @@ export function LearningWorkspaceShell({ role, navigation, children }: Props) {
       <div className="border-b border-slate-200 px-5 py-5">
         <p className="text-lg font-bold text-slate-950">E&P Learning</p>
         <p className="mt-1 text-xs text-slate-500">{ROLE_LABELS[role]}</p>
+        {portalSelector && <div className="mt-4">{portalSelector}</div>}
       </div>
       <div className="min-h-0 flex-1 overflow-y-auto px-3 py-4" onClick={(event) => {
         if ((event.target as HTMLElement).closest("a")) setMobileOpen(false);
@@ -140,7 +141,6 @@ export function LearningWorkspaceShell({ role, navigation, children }: Props) {
             </div>
             <div className="flex shrink-0 items-center gap-2 sm:gap-3">
               <LearningLanguageSelector scope={role === "parent" ? "parent" : "account"} compact />
-              {portalSelector && <div className="w-40 sm:w-48">{portalSelector}</div>}
             </div>
           </header>
 
