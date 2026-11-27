@@ -20,13 +20,17 @@ function SchoolAdminSessionBar({ children }: { children: ReactNode }) {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [loggingOut, setLoggingOut] = useState(false);
+  const [logoutError, setLogoutError] = useState("");
 
   const handleLogout = async () => {
     if (loggingOut) return;
     setLoggingOut(true);
+    setLogoutError("");
     try {
       await logout();
       navigate("/login", { replace: true });
+    } catch {
+      setLogoutError("We could not sign you out. Your session has been restored; please try again.");
     } finally {
       setLoggingOut(false);
     }
@@ -49,6 +53,7 @@ function SchoolAdminSessionBar({ children }: { children: ReactNode }) {
           {loggingOut ? "Signing out..." : "Logout"}
         </button>
       </div>
+      {logoutError && <p role="alert" aria-live="assertive" className="mx-auto max-w-7xl border-b border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 sm:px-6">{logoutError}</p>}
       {children}
     </div>
   );
