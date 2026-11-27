@@ -223,4 +223,53 @@ on public.learning_assignments
 for each row
 execute function private.guard_learning_assessment_assignment_parent_mapping();
 
+
+-- Term rows are referenced by gradebook entries and term-grade snapshots with
+-- cascading foreign keys. Block destructive identity changes rather than
+-- allowing PostgreSQL to cascade-delete historical academic records.
+create or replace function private.guard_linked_learning_term_gradebook_retention()
+returns trigger
+language plpgsql
+security definer
+set search_path = ''
+as $function$
+begin
+  if tg_op = 'DELETE'
+     or old.organization_id is distinct from new.organization_id then
+    if exists (
+      select 1
+      from public.learning_gradebook_entries e
+      where e.term_id = old.id
+        and e.organization_id = old.organization_id
+    ) or exists (
+      select 1
+      from public.learning_term_grades grade
+      where grade.term_id = old.id
+        and grade.organization_id = old.organization_id
+    ) then
+      raise exception
+        'Academic term % is linked to gradebook records and cannot be deleted or moved to another organization. Preserve the historical term identity.',
+        old.id
+        using errcode = '23503';
+    end if;
+  end if;
+
+  if tg_op = 'DELETE' then
+    return old;
+  end if;
+  return new;
+end;
+$function$;
+
+revoke all on function private.guard_linked_learning_term_gradebook_retention()
+from public, anon, authenticated;
+
+drop trigger if exists learning_term_gradebook_retention_guard
+on public.learning_terms;
+create trigger learning_term_gradebook_retention_guard
+before delete or update of organization_id
+on public.learning_terms
+for each row
+execute function private.guard_linked_learning_term_gradebook_retention();
+
 commit;
