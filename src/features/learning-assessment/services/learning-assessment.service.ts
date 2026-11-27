@@ -25,6 +25,9 @@ export const learningAssessmentService = {
   getQuestionVersion: (id: string) =>
     learningAssessmentRepository.getQuestionVersion(id),
 
+  listQuestionVersionsByIds: (ids: string[]) =>
+    learningAssessmentRepository.listQuestionVersionsByIds(ids),
+
   listQuestionObjectives: (id: string) =>
     learningAssessmentRepository.listQuestionObjectives(id),
 
