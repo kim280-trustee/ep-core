@@ -7,6 +7,9 @@ const accounts = {
   "admin@example.test": { id: "44444444-4444-4444-8444-444444444444", profileId: "dddddddd-dddd-4ddd-8ddd-dddddddddddd", roles: ["school-admin"] },
   "teacher-parent@example.test": { id: "55555555-5555-4555-8555-555555555555", profileId: "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee", roles: ["teacher", "parent"] },
   "admin-parent@example.test": { id: "66666666-6666-4666-8666-666666666666", profileId: "ffffffff-ffff-4fff-8fff-ffffffffffff", roles: ["school-admin", "parent"] },
+  "unassigned@example.test": { id: "77777777-7777-4777-8777-777777777777", profileId: "abababab-abab-4bab-8bab-abababababab", roles: [] },
+  "admin-unprivileged@example.test": { id: "88888888-8888-4888-8888-888888888888", profileId: "bcbcbcbc-bcbc-4cbc-8cbc-bcbcbcbcbcbc", roles: ["school-admin-candidate"] },
+  "admin-rpc-error@example.test": { id: "99999999-9999-4999-8999-999999999999", profileId: "cdcdcdcd-cdcd-4dcd-8dcd-cdcdcdcdcdcd", roles: ["school-admin-rpc-error"] },
 };
 
 const portalForRole = {
@@ -53,7 +56,12 @@ async function mockSupabase(page) {
       return reply({ id: activeAccount.id, aud: "authenticated", role: "authenticated", email: Object.keys(accounts).find((email) => accounts[email] === activeAccount), app_metadata: {}, user_metadata: {}, created_at: "2026-01-01T00:00:00Z" });
     }
 
-    if (path.startsWith("/rest/v1/rpc/")) return reply(true);
+    if (path.startsWith("/rest/v1/rpc/")) {
+      if (activeAccount?.roles.includes("school-admin-rpc-error")) {
+        return reply({ message: "Permission check unavailable" }, 500);
+      }
+      return reply(activeAccount?.roles.includes("school-admin") === true);
+    }
 
     if (path.startsWith("/rest/v1/")) {
       if (!activeAccount) return reply({ message: "JWT expired" }, 401);
@@ -81,7 +89,7 @@ async function mockSupabase(page) {
       if (table === "learning_parent_student_links" && roles.includes("parent")) {
         rows = [{ id: "parent-link", parent_user_id: profile.id, status: "active" }];
       }
-      if (table === "organization_memberships" && roles.includes("school-admin")) {
+      if (table === "organization_memberships" && (roles.includes("school-admin") || roles.includes("school-admin-candidate") || roles.includes("school-admin-rpc-error"))) {
         rows = [{ organization_id: "organization-test", user_id: profile.id, status: "active" }];
       }
       const wantsObject = request.headers()["accept"]?.includes("application/vnd.pgrst.object");
@@ -141,6 +149,30 @@ test.describe("Learning authentication browser acceptance", () => {
     await expect(page).toHaveURL(/\/learning$/);
     await page.goto("/teacher");
     await expect(page.getByRole("heading", { name: "Access denied" })).toBeVisible();
+  });
+
+  test("rejects valid credentials when the account has no active Learning portal access", async ({ page }) => {
+    await signIn(page, "unassigned@example.test");
+    await expect(page.getByRole("alert")).toContainText("not linked to an E&P Learning");
+    await expect(page).toHaveURL(/\\/login$/);
+  });
+
+  test("does not grant School Admin from organization membership without the required permission", async ({ page }) => {
+    await signIn(page, "admin-unprivileged@example.test");
+    await expect(page.getByRole("alert")).toContainText("not linked to an E&P Learning");
+    await expect(page).toHaveURL(/\\/login$/);
+  });
+
+  test("fails closed when the School Admin permission check errors", async ({ page }) => {
+    await signIn(page, "admin-rpc-error@example.test");
+    await expect(page.getByRole("alert")).toContainText("Permission check unavailable");
+    await expect(page).toHaveURL(/\\/login$/);
+  });
+
+  test("shows a credential error for an unknown account", async ({ page }) => {
+    await signIn(page, "unknown@example.test");
+    await expect(page.getByRole("alert")).toContainText("Invalid login credentials");
+    await expect(page).toHaveURL(/\\/login$/);
   });
 
   test("allows a multi-role user to sign out from the portal chooser", async ({ page }) => {
