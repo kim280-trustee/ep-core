@@ -65,6 +65,10 @@ The 2021 compilation explicitly frames its Must-Know/Should-Know prioritisation 
 
 The official 2008 curriculum distinguishes grade-level indicators for P1–M3 from interval indicators for upper-secondary M4–M6. The database's three-grade mapping of the upper-secondary interval set is consistent with that structure.
 
+## Indicator-level audit register
+
+A 193-row register has been generated from the live catalogue at `docs/learning/foreign-languages/FOREIGN-LANGUAGES-INDICATOR-SOURCE-RECONCILIATION.csv`. It records each database objective code, official indicator code from its stored provenance note, standard, official stage, 2021 priority classification and printed OBEC source page. The two comparison-status columns are intentionally marked `pending_line_by_line_review`; this register is a controlled review checklist, not evidence that every description has already been matched word-for-word.
+
 ## Subject status
 
 **Structural and count reconciliation: passed.** The 193 distinct active objective records, 193 distinct codes, eight standard codes, 193 distinct indicator classifications, 235 grade alignments, 12 grade records and upper-secondary interval expansion reconcile. The official per-stage indicator and priority totals match the live database counts.
@@ -85,4 +89,4 @@ No Foreign Languages teacher packs have been imported. The live database current
 
 ## Verification artifact
 
-The read-only SQL checks are maintained in `supabase/verification/foreign-languages-curriculum-verification.sql`. It does not mutate curriculum, content, school or student data.
+The read-only SQL checks are maintained in `supabase/verification/foreign-languages-curriculum-verification.sql`. They include distinct-indicator totals, grade-alignment totals and an M4–M6 shared-set check. The script does not mutate curriculum, content, school or student data.
