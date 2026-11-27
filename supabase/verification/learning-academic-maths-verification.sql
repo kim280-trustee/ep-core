@@ -51,6 +51,10 @@ join public.learning_topics topic on topic.id = objective.topic_id
 join public.learning_skills skill on skill.id = topic.skill_id
 join public.learning_subjects subject on subject.id = skill.subject_id
 where subject.code = 'MATH' and objective.status = 'active'
+  -- Limit this check to the 41 Thai M1-M6 core-curriculum objective codes.
+  -- Other active MATH objectives may belong to separate curricula and are not
+  -- expected to align to TH-MATH-M1-M6.
+  and objective.code ~ '^M[1-6]-'
   and not exists (
     select 1
     from public.learning_objective_alignments alignment
@@ -82,3 +86,22 @@ select
    join public.learning_skills skill on skill.id=topic.skill_id
    join public.learning_subjects subject on subject.id=skill.subject_id
    where subject.code='MATH') as maths_question_drafts;
+
+-- Expected result: zero rows. Every Thai M1-M6 core indicator is classified
+-- as must_know and required in the Mathematics catalogue.
+select objective.code as objective_code,
+       alignment.indicator_classification,
+       alignment.required
+from public.learning_objectives objective
+join public.learning_topics topic on topic.id = objective.topic_id
+join public.learning_skills skill on skill.id = topic.skill_id
+join public.learning_subjects subject on subject.id = skill.subject_id
+join public.learning_objective_alignments alignment on alignment.objective_id = objective.id
+join public.learning_curricula curriculum on curriculum.id = alignment.curriculum_id
+where subject.code = 'MATH'
+  and curriculum.code = 'TH-MATH-M1-M6'
+  and objective.status = 'active'
+  and objective.code ~ '^M[1-6]-'
+  and (alignment.indicator_classification is distinct from 'must_know'
+       or alignment.required is not true)
+order by objective.code;
