@@ -234,8 +234,27 @@ security definer
 set search_path = ''
 as $function$
 begin
-  if tg_op = 'DELETE'
-     or old.organization_id is distinct from new.organization_id then
+  if tg_op = 'DELETE' then
+    if exists (
+      select 1
+      from public.learning_gradebook_entries e
+      where e.term_id = old.id
+        and e.organization_id = old.organization_id
+    ) or exists (
+      select 1
+      from public.learning_term_grades grade
+      where grade.term_id = old.id
+        and grade.organization_id = old.organization_id
+    ) then
+      raise exception
+        'Academic term % is linked to gradebook records and cannot be deleted or moved to another organization. Preserve the historical term identity.',
+        old.id
+        using errcode = '23503';
+    end if;
+    return old;
+  end if;
+
+  if old.organization_id is distinct from new.organization_id then
     if exists (
       select 1
       from public.learning_gradebook_entries e
@@ -254,9 +273,6 @@ begin
     end if;
   end if;
 
-  if tg_op = 'DELETE' then
-    return old;
-  end if;
   return new;
 end;
 $function$;
