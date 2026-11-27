@@ -115,14 +115,20 @@ test.describe("Learning authentication browser acceptance", () => {
   });
 
   for (const role of ["student", "teacher", "parent", "school-admin"]) {
-    test(`routes a single-role ${role} account to its authorized portal`, async ({ page }) => {
+    test(`routes a single-role ${role} account to its authorized portal and shows its workspace navigation`, async ({ page }) => {
       const accountEmail = role === "school-admin" ? "admin@example.test" : `${role}@example.test`;
       await signIn(page, accountEmail);
       await expect(page).toHaveURL(new RegExp(`${portalForRole[role]}$`));
       await expect(page.getByText("Access denied")).toHaveCount(0);
-      if (role === "school-admin") {
-        await expect(page.getByRole("button", { name: "Logout" })).toBeVisible();
-      }
+      const navNames = {
+        student: "Student portal navigation",
+        teacher: "Teacher portal navigation",
+        parent: "Parent portal navigation",
+        "school-admin": "School Admin portal navigation",
+      };
+      await expect(page.getByRole("navigation", { name: navNames[role] })).toBeVisible();
+      await expect(page.getByRole("button", { name: "Logout" })).toBeVisible();
+      await expect(page.getByLabel("Switch portal")).toHaveCount(0);
     });
   }
 
@@ -144,6 +150,32 @@ test.describe("Learning authentication browser acceptance", () => {
     await expect(page.getByRole("button", { name: /Parent Portal/ })).toBeVisible();
     await page.getByRole("button", { name: /Parent Portal/ }).click();
     await expect(page).toHaveURL(/\/parent$/);
+  });
+
+  test("lets a teacher-parent switch between both workspaces without signing out", async ({ page }) => {
+    await signIn(page, "teacher-parent@example.test");
+    await page.getByRole("button", { name: /Teacher Portal/ }).click();
+    await expect(page).toHaveURL(/\/teacher$/);
+    await expect(page.getByLabel("Switch portal")).toHaveValue("/teacher");
+    await page.getByLabel("Switch portal").selectOption("/parent");
+    await expect(page).toHaveURL(/\/parent$/);
+    await expect(page.getByRole("navigation", { name: "Parent portal navigation" })).toBeVisible();
+    await page.getByLabel("Switch portal").selectOption("/teacher");
+    await expect(page).toHaveURL(/\/teacher$/);
+    await expect(page.getByRole("navigation", { name: "Teacher portal navigation" })).toBeVisible();
+  });
+
+  test("lets a School Admin who is also a parent switch workspaces without signing out", async ({ page }) => {
+    await signIn(page, "admin-parent@example.test");
+    await page.getByRole("button", { name: /School Admin Portal/ }).click();
+    await expect(page).toHaveURL(/\/school-admin$/);
+    await expect(page.getByLabel("Switch portal")).toHaveValue("/school-admin");
+    await page.getByLabel("Switch portal").selectOption("/parent");
+    await expect(page).toHaveURL(/\/parent$/);
+    await expect(page.getByRole("navigation", { name: "Parent portal navigation" })).toBeVisible();
+    await page.getByLabel("Switch portal").selectOption("/school-admin");
+    await expect(page).toHaveURL(/\/school-admin$/);
+    await expect(page.getByRole("navigation", { name: "School Admin portal navigation" })).toBeVisible();
   });
 
   test("offers School Admin and Parent to a multi-role administrator and routes the chosen portal", async ({ page }) => {
