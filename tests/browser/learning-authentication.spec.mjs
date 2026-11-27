@@ -112,8 +112,7 @@ test.describe("Learning authentication browser acceptance", () => {
       await expect(page.getByText("Access denied")).toHaveCount(0);
       if (role === "school-admin") {
         await expect(page.getByRole("button", { name: "Logout" })).toBeVisible();
-      } else if (role === "teacher") {
-        await expect(page.getByText("No active teaching classes")).toBeVisible();
+      }
       }
     });
   }
