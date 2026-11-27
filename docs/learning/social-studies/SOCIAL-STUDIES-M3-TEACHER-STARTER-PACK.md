@@ -22,27 +22,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: อธิบายการเผยแผ่พระพุทธศาสนาหรือศาสนาที่ตนนับถือสู่ประเทศต่าง ๆ ทั่วโลก
 **Suggested teaching sequence**
 
-1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
-2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
-3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
-4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+1. Introduce the exact religious history, text, teaching, practice or interfaith relationship named in the indicator using a balanced, age-appropriate source. Establish context and avoid asking learners to disclose personal beliefs.
+2. Model how to examine the source: identify its origin, key concepts, relevant people or events, and distinguish documented information from interpretation.
+3. Learners analyse the indicator's specific focus. Depending on the indicator, trace historical spread, assess cultural or peace-building contributions, compare teachings with sustainability principles, or interpret a biography or religious text.
+4. Learners present an evidence-based explanation or respectful application. Assess accuracy, reasoning and source use; never assess personal faith, worship or disclosure.
 
-**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+**Resources:** a balanced religious-history or cultural source, a short text or teaching extract, and a source-analysis or comparison organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายการเผยแผ่พระพุทธศาสนาหรือศาสนาที่ตนนับถือสู่ประเทศต่าง ๆ ทั่วโลก
 
-**Practical activity:** Use a short, respectful account or case from an appropriate tradition. Identify the relevant teaching, value or practice and connect it to a real-life choice; never assess personal belief or require worship. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a balanced, neutral source directly matched to the indicator. Learners examine the specified historical, textual, ethical, cultural or sustainability relationship and present an evidence-based explanation or respectful application. Do not require worship or disclosure of personal belief.
 **Expected evidence:** Three completed responses that demonstrate SO1.1-M3-01: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “อธิบายการเผยแผ่พระพุทธศาสนาหรือศาสนาที่ตนนับถือสู่ประเทศต่าง ๆ ทั่วโลก”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO1.1-M3-01 (อธิบายการเผยแผ่พระพุทธศาสนาหรือศาสนาที่ตนนับถือสู่ประเทศต่าง ๆ ทั่วโลก). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in religion, ethics and ways of life: “อธิบายการเผยแผ่พระพุทธศาสนาหรือศาสนาที่ตนนับถือสู่ประเทศต่าง ๆ ทั่วโลก”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO1.1-M3-01 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a short school or community case connected to “อธิบายการเผยแผ่พระพุทธศาสนาหรือศาสนาที่ตนนับถือสู่ประเทศต่าง ๆ ทั่วโลก”. Identify the relevant teaching, value or practice, compare two possible responses, and justify the more respectful response. **Answer:** Identify a relevant principle from SO1.1-M3-01, compare both responses fairly and justify a respectful application. Do not grade personal belief.
+1. **Recall / identify:** From the source set for this lesson, identify two accurate facts about the routes, people, periods and social contexts through which the named religion spread. For each, name the source or passage that supports it. This assesses: “อธิบายการเผยแผ่พระพุทธศาสนาหรือศาสนาที่ตนนับถือสู่ประเทศต่าง ๆ ทั่วโลก”. **Answer:** Identifies two accurate and relevant details about the routes, people, periods and social contexts through which the named religion spread, with each detail traceable to the supplied source and directly linked to SO1.1-M3-01.
+2. **Explain / analyse:** Analyse the significance or relationship required by this indicator. Explain how the evidence supports your interpretation and include one relevant historical, cultural or contemporary example. Distinguish documented facts from your interpretation. This assesses: “อธิบายการเผยแผ่พระพุทธศาสนาหรือศาสนาที่ตนนับถือสู่ประเทศต่าง ๆ ทั่วโลก”. **Answer:** Explains the specific significance or relationship in the indicator, supports the analysis with relevant source evidence and gives an appropriate example. Accept other defensible interpretations supported by evidence.
+3. **Apply / demonstrate:** Prepare a short evidence-based explanation, comparison or respectful response for a school/community scenario connected to this indicator. Use at least two relevant details and explain how they support your conclusion. Do not disclose personal faith or perform worship. This assesses: “อธิบายการเผยแผ่พระพุทธศาสนาหรือศาสนาที่ตนนับถือสู่ประเทศต่าง ๆ ทั่วโลก”. **Answer:** Presents a respectful and accurate application or conclusion, uses at least two relevant details and explains the connection to the indicator. Do not assess personal belief, worship or disclosure of faith.
 ### 2. SO1.1-M3-02
 
 - **Standard:** SO1.1
@@ -53,27 +52,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: วิเคราะห์ความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือในฐานะที่ช่วยสร้างสรรค์อารยธรรม และความสงบสุขแก่โลก
 **Suggested teaching sequence**
 
-1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
-2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
-3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
-4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+1. Introduce the exact religious history, text, teaching, practice or interfaith relationship named in the indicator using a balanced, age-appropriate source. Establish context and avoid asking learners to disclose personal beliefs.
+2. Model how to examine the source: identify its origin, key concepts, relevant people or events, and distinguish documented information from interpretation.
+3. Learners analyse the indicator's specific focus. Depending on the indicator, trace historical spread, assess cultural or peace-building contributions, compare teachings with sustainability principles, or interpret a biography or religious text.
+4. Learners present an evidence-based explanation or respectful application. Assess accuracy, reasoning and source use; never assess personal faith, worship or disclosure.
 
-**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+**Resources:** a balanced religious-history or cultural source, a short text or teaching extract, and a source-analysis or comparison organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์ความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือในฐานะที่ช่วยสร้างสรรค์อารยธรรม และความสงบสุขแก่โลก
 
-**Practical activity:** Use a short, respectful account or case from an appropriate tradition. Identify the relevant teaching, value or practice and connect it to a real-life choice; never assess personal belief or require worship. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a balanced, neutral source directly matched to the indicator. Learners examine the specified historical, textual, ethical, cultural or sustainability relationship and present an evidence-based explanation or respectful application. Do not require worship or disclosure of personal belief.
 **Expected evidence:** Three completed responses that demonstrate SO1.1-M3-02: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “วิเคราะห์ความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือในฐานะที่ช่วยสร้างสรรค์อารยธรรม และความสงบสุขแก่โลก”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO1.1-M3-02 (วิเคราะห์ความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือในฐานะที่ช่วยสร้างสรรค์อารยธรรม และความสงบสุขแก่โลก). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in religion, ethics and ways of life: “วิเคราะห์ความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือในฐานะที่ช่วยสร้างสรรค์อารยธรรม และความสงบสุขแก่โลก”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO1.1-M3-02 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a short school or community case connected to “วิเคราะห์ความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือในฐานะที่ช่วยสร้างสรรค์อารยธรรม และความสงบสุขแก่โลก”. Identify the relevant teaching, value or practice, compare two possible responses, and justify the more respectful response. **Answer:** Identify a relevant principle from SO1.1-M3-02, compare both responses fairly and justify a respectful application. Do not grade personal belief.
+1. **Recall / identify:** From the source set for this lesson, identify two accurate facts about the documented contributions to culture, social harmony or peace identified in the source. For each, name the source or passage that supports it. This assesses: “วิเคราะห์ความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือในฐานะที่ช่วยสร้างสรรค์อารยธรรม และความสงบสุขแก่โลก”. **Answer:** Identifies two accurate and relevant details about the documented contributions to culture, social harmony or peace identified in the source, with each detail traceable to the supplied source and directly linked to SO1.1-M3-02.
+2. **Explain / analyse:** Analyse the significance or relationship required by this indicator. Explain how the evidence supports your interpretation and include one relevant historical, cultural or contemporary example. Distinguish documented facts from your interpretation. This assesses: “วิเคราะห์ความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือในฐานะที่ช่วยสร้างสรรค์อารยธรรม และความสงบสุขแก่โลก”. **Answer:** Explains the specific significance or relationship in the indicator, supports the analysis with relevant source evidence and gives an appropriate example. Accept other defensible interpretations supported by evidence.
+3. **Apply / demonstrate:** Prepare a short evidence-based explanation, comparison or respectful response for a school/community scenario connected to this indicator. Use at least two relevant details and explain how they support your conclusion. Do not disclose personal faith or perform worship. This assesses: “วิเคราะห์ความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือในฐานะที่ช่วยสร้างสรรค์อารยธรรม และความสงบสุขแก่โลก”. **Answer:** Presents a respectful and accurate application or conclusion, uses at least two relevant details and explains the connection to the indicator. Do not assess personal belief, worship or disclosure of faith.
 ### 3. SO1.1-M3-03
 
 - **Standard:** SO1.1
@@ -84,27 +82,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: อภิปรายความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือกับปรัชญาของเศรษฐกิจพอเพียงและการพัฒนาอย่างยั่งยืน
 **Suggested teaching sequence**
 
-1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
-2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
-3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
-4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+1. Introduce the exact religious history, text, teaching, practice or interfaith relationship named in the indicator using a balanced, age-appropriate source. Establish context and avoid asking learners to disclose personal beliefs.
+2. Model how to examine the source: identify its origin, key concepts, relevant people or events, and distinguish documented information from interpretation.
+3. Learners analyse the indicator's specific focus. Depending on the indicator, trace historical spread, assess cultural or peace-building contributions, compare teachings with sustainability principles, or interpret a biography or religious text.
+4. Learners present an evidence-based explanation or respectful application. Assess accuracy, reasoning and source use; never assess personal faith, worship or disclosure.
 
-**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+**Resources:** a balanced religious-history or cultural source, a short text or teaching extract, and a source-analysis or comparison organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อภิปรายความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือกับปรัชญาของเศรษฐกิจพอเพียงและการพัฒนาอย่างยั่งยืน
 
-**Practical activity:** Use a short, respectful account or case from an appropriate tradition. Identify the relevant teaching, value or practice and connect it to a real-life choice; never assess personal belief or require worship. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a balanced, neutral source directly matched to the indicator. Learners examine the specified historical, textual, ethical, cultural or sustainability relationship and present an evidence-based explanation or respectful application. Do not require worship or disclosure of personal belief.
 **Expected evidence:** Three completed responses that demonstrate SO1.1-M3-03: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “อภิปรายความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือกับปรัชญาของเศรษฐกิจพอเพียงและการพัฒนาอย่างยั่งยืน”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO1.1-M3-03 (อภิปรายความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือกับปรัชญาของเศรษฐกิจพอเพียงและการพัฒนาอย่างยั่งยืน). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in religion, ethics and ways of life: “อภิปรายความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือกับปรัชญาของเศรษฐกิจพอเพียงและการพัฒนาอย่างยั่งยืน”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO1.1-M3-03 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a short school or community case connected to “อภิปรายความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือกับปรัชญาของเศรษฐกิจพอเพียงและการพัฒนาอย่างยั่งยืน”. Identify the relevant teaching, value or practice, compare two possible responses, and justify the more respectful response. **Answer:** Identify a relevant principle from SO1.1-M3-03, compare both responses fairly and justify a respectful application. Do not grade personal belief.
+1. **Recall / identify:** From the source set for this lesson, identify two accurate facts about the relationship between the specified religious principles and sufficiency-economy or sustainable-development concepts. For each, name the source or passage that supports it. This assesses: “อภิปรายความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือกับปรัชญาของเศรษฐกิจพอเพียงและการพัฒนาอย่างยั่งยืน”. **Answer:** Identifies two accurate and relevant details about the relationship between the specified religious principles and sufficiency-economy or sustainable-development concepts, with each detail traceable to the supplied source and directly linked to SO1.1-M3-03.
+2. **Explain / analyse:** Analyse the significance or relationship required by this indicator. Explain how the evidence supports your interpretation and include one relevant historical, cultural or contemporary example. Distinguish documented facts from your interpretation. This assesses: “อภิปรายความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือกับปรัชญาของเศรษฐกิจพอเพียงและการพัฒนาอย่างยั่งยืน”. **Answer:** Explains the specific significance or relationship in the indicator, supports the analysis with relevant source evidence and gives an appropriate example. Accept other defensible interpretations supported by evidence.
+3. **Apply / demonstrate:** Prepare a short evidence-based explanation, comparison or respectful response for a school/community scenario connected to this indicator. Use at least two relevant details and explain how they support your conclusion. Do not disclose personal faith or perform worship. This assesses: “อภิปรายความสำคัญของพระพุทธศาสนาหรือศาสนาที่ตนนับถือกับปรัชญาของเศรษฐกิจพอเพียงและการพัฒนาอย่างยั่งยืน”. **Answer:** Presents a respectful and accurate application or conclusion, uses at least two relevant details and explains the connection to the indicator. Do not assess personal belief, worship or disclosure of faith.
 ### 4. SO1.1-M3-04
 
 - **Standard:** SO1.1
@@ -115,27 +112,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: วิเคราะห์พุทธประวัติจากพระพุทธรูปปางต่าง ๆ หรือประวัติศาสดาที่ตนนับถือตามที่กำหนด
 **Suggested teaching sequence**
 
-1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
-2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
-3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
-4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+1. Introduce the exact religious history, text, teaching, practice or interfaith relationship named in the indicator using a balanced, age-appropriate source. Establish context and avoid asking learners to disclose personal beliefs.
+2. Model how to examine the source: identify its origin, key concepts, relevant people or events, and distinguish documented information from interpretation.
+3. Learners analyse the indicator's specific focus. Depending on the indicator, trace historical spread, assess cultural or peace-building contributions, compare teachings with sustainability principles, or interpret a biography or religious text.
+4. Learners present an evidence-based explanation or respectful application. Assess accuracy, reasoning and source use; never assess personal faith, worship or disclosure.
 
-**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+**Resources:** a balanced religious-history or cultural source, a short text or teaching extract, and a source-analysis or comparison organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์พุทธประวัติจากพระพุทธรูปปางต่าง ๆ หรือประวัติศาสดาที่ตนนับถือตามที่กำหนด
 
-**Practical activity:** Use a short, respectful account or case from an appropriate tradition. Identify the relevant teaching, value or practice and connect it to a real-life choice; never assess personal belief or require worship. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a balanced, neutral source directly matched to the indicator. Learners examine the specified historical, textual, ethical, cultural or sustainability relationship and present an evidence-based explanation or respectful application. Do not require worship or disclosure of personal belief.
 **Expected evidence:** Three completed responses that demonstrate SO1.1-M3-04: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “วิเคราะห์พุทธประวัติจากพระพุทธรูปปางต่าง ๆ หรือประวัติศาสดาที่ตนนับถือตามที่กำหนด”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO1.1-M3-04 (วิเคราะห์พุทธประวัติจากพระพุทธรูปปางต่าง ๆ หรือประวัติศาสดาที่ตนนับถือตามที่กำหนด). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in religion, ethics and ways of life: “วิเคราะห์พุทธประวัติจากพระพุทธรูปปางต่าง ๆ หรือประวัติศาสดาที่ตนนับถือตามที่กำหนด”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO1.1-M3-04 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a short school or community case connected to “วิเคราะห์พุทธประวัติจากพระพุทธรูปปางต่าง ๆ หรือประวัติศาสดาที่ตนนับถือตามที่กำหนด”. Identify the relevant teaching, value or practice, compare two possible responses, and justify the more respectful response. **Answer:** Identify a relevant principle from SO1.1-M3-04, compare both responses fairly and justify a respectful application. Do not grade personal belief.
+1. **Recall / identify:** From the source set for this lesson, identify two accurate facts about the specified religious biography, role model, event and associated lesson. For each, name the source or passage that supports it. This assesses: “วิเคราะห์พุทธประวัติจากพระพุทธรูปปางต่าง ๆ หรือประวัติศาสดาที่ตนนับถือตามที่กำหนด”. **Answer:** Identifies two accurate and relevant details about the specified religious biography, role model, event and associated lesson, with each detail traceable to the supplied source and directly linked to SO1.1-M3-04.
+2. **Explain / analyse:** Analyse the significance or relationship required by this indicator. Explain how the evidence supports your interpretation and include one relevant historical, cultural or contemporary example. Distinguish documented facts from your interpretation. This assesses: “วิเคราะห์พุทธประวัติจากพระพุทธรูปปางต่าง ๆ หรือประวัติศาสดาที่ตนนับถือตามที่กำหนด”. **Answer:** Explains the specific significance or relationship in the indicator, supports the analysis with relevant source evidence and gives an appropriate example. Accept other defensible interpretations supported by evidence.
+3. **Apply / demonstrate:** Prepare a short evidence-based explanation, comparison or respectful response for a school/community scenario connected to this indicator. Use at least two relevant details and explain how they support your conclusion. Do not disclose personal faith or perform worship. This assesses: “วิเคราะห์พุทธประวัติจากพระพุทธรูปปางต่าง ๆ หรือประวัติศาสดาที่ตนนับถือตามที่กำหนด”. **Answer:** Presents a respectful and accurate application or conclusion, uses at least two relevant details and explains the connection to the indicator. Do not assess personal belief, worship or disclosure of faith.
 ### 5. SO1.1-M3-05
 
 - **Standard:** SO1.1
@@ -146,27 +142,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: วิเคราะห์และประพฤติตนตามแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดกเรื่องเล่าและศาสนิกชนตัวอย่างตามที่กำหนด
 **Suggested teaching sequence**
 
-1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
-2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
-3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
-4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+1. Introduce the exact religious history, text, teaching, practice or interfaith relationship named in the indicator using a balanced, age-appropriate source. Establish context and avoid asking learners to disclose personal beliefs.
+2. Model how to examine the source: identify its origin, key concepts, relevant people or events, and distinguish documented information from interpretation.
+3. Learners analyse the indicator's specific focus. Depending on the indicator, trace historical spread, assess cultural or peace-building contributions, compare teachings with sustainability principles, or interpret a biography or religious text.
+4. Learners present an evidence-based explanation or respectful application. Assess accuracy, reasoning and source use; never assess personal faith, worship or disclosure.
 
-**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+**Resources:** a balanced religious-history or cultural source, a short text or teaching extract, and a source-analysis or comparison organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์และประพฤติตนตามแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดกเรื่องเล่าและศาสนิกชนตัวอย่างตามที่กำหนด
 
-**Practical activity:** Use a short, respectful account or case from an appropriate tradition. Identify the relevant teaching, value or practice and connect it to a real-life choice; never assess personal belief or require worship. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a balanced, neutral source directly matched to the indicator. Learners examine the specified historical, textual, ethical, cultural or sustainability relationship and present an evidence-based explanation or respectful application. Do not require worship or disclosure of personal belief.
 **Expected evidence:** Three completed responses that demonstrate SO1.1-M3-05: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “วิเคราะห์และประพฤติตนตามแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดกเรื่องเล่าและศาสนิกชนตัวอย่างตามที่กำหนด”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO1.1-M3-05 (วิเคราะห์และประพฤติตนตามแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดกเรื่องเล่าและศาสนิกชนตัวอย่างตามที่กำหนด). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in religion, ethics and ways of life: “วิเคราะห์และประพฤติตนตามแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดกเรื่องเล่าและศาสนิกชนตัวอย่างตามที่กำหนด”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO1.1-M3-05 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a short school or community case connected to “วิเคราะห์และประพฤติตนตามแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดกเรื่องเล่าและศาสนิกชนตัวอย่างตามที่กำหนด”. Identify the relevant teaching, value or practice, compare two possible responses, and justify the more respectful response. **Answer:** Identify a relevant principle from SO1.1-M3-05, compare both responses fairly and justify a respectful application. Do not grade personal belief.
+1. **Recall / identify:** From the source set for this lesson, identify two accurate facts about the specified religious biography, role model, event and associated lesson. For each, name the source or passage that supports it. This assesses: “วิเคราะห์และประพฤติตนตามแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดกเรื่องเล่าและศาสนิกชนตัวอย่างตามที่กำหนด”. **Answer:** Identifies two accurate and relevant details about the specified religious biography, role model, event and associated lesson, with each detail traceable to the supplied source and directly linked to SO1.1-M3-05.
+2. **Explain / analyse:** Analyse the significance or relationship required by this indicator. Explain how the evidence supports your interpretation and include one relevant historical, cultural or contemporary example. Distinguish documented facts from your interpretation. This assesses: “วิเคราะห์และประพฤติตนตามแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดกเรื่องเล่าและศาสนิกชนตัวอย่างตามที่กำหนด”. **Answer:** Explains the specific significance or relationship in the indicator, supports the analysis with relevant source evidence and gives an appropriate example. Accept other defensible interpretations supported by evidence.
+3. **Apply / demonstrate:** Prepare a short evidence-based explanation, comparison or respectful response for a school/community scenario connected to this indicator. Use at least two relevant details and explain how they support your conclusion. Do not disclose personal faith or perform worship. This assesses: “วิเคราะห์และประพฤติตนตามแบบอย่างการดำเนินชีวิตและข้อคิดจากประวัติสาวก ชาดกเรื่องเล่าและศาสนิกชนตัวอย่างตามที่กำหนด”. **Answer:** Presents a respectful and accurate application or conclusion, uses at least two relevant details and explains the connection to the indicator. Do not assess personal belief, worship or disclosure of faith.
 ### 6. SO1.1-M3-06
 
 - **Standard:** SO1.1
@@ -177,27 +172,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: อธิบายสังฆคุณ และข้อธรรมสำคัญในกรอบอริยสัจ ๔ หรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด
 **Suggested teaching sequence**
 
-1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
-2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
-3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
-4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+1. Introduce the exact religious history, text, teaching, practice or interfaith relationship named in the indicator using a balanced, age-appropriate source. Establish context and avoid asking learners to disclose personal beliefs.
+2. Model how to examine the source: identify its origin, key concepts, relevant people or events, and distinguish documented information from interpretation.
+3. Learners analyse the indicator's specific focus. Depending on the indicator, trace historical spread, assess cultural or peace-building contributions, compare teachings with sustainability principles, or interpret a biography or religious text.
+4. Learners present an evidence-based explanation or respectful application. Assess accuracy, reasoning and source use; never assess personal faith, worship or disclosure.
 
-**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+**Resources:** a balanced religious-history or cultural source, a short text or teaching extract, and a source-analysis or comparison organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายสังฆคุณ และข้อธรรมสำคัญในกรอบอริยสัจ ๔ หรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด
 
-**Practical activity:** Use a short, respectful account or case from an appropriate tradition. Identify the relevant teaching, value or practice and connect it to a real-life choice; never assess personal belief or require worship. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a balanced, neutral source directly matched to the indicator. Learners examine the specified historical, textual, ethical, cultural or sustainability relationship and present an evidence-based explanation or respectful application. Do not require worship or disclosure of personal belief.
 **Expected evidence:** Three completed responses that demonstrate SO1.1-M3-06: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “อธิบายสังฆคุณ และข้อธรรมสำคัญในกรอบอริยสัจ ๔ หรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO1.1-M3-06 (อธิบายสังฆคุณ และข้อธรรมสำคัญในกรอบอริยสัจ ๔ หรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in religion, ethics and ways of life: “อธิบายสังฆคุณ และข้อธรรมสำคัญในกรอบอริยสัจ ๔ หรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO1.1-M3-06 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a short school or community case connected to “อธิบายสังฆคุณ และข้อธรรมสำคัญในกรอบอริยสัจ ๔ หรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด”. Identify the relevant teaching, value or practice, compare two possible responses, and justify the more respectful response. **Answer:** Identify a relevant principle from SO1.1-M3-06, compare both responses fairly and justify a respectful application. Do not grade personal belief.
+1. **Recall / identify:** From the source set for this lesson, identify two accurate facts about the text, teaching, ritual or observance named in the indicator. For each, name the source or passage that supports it. This assesses: “อธิบายสังฆคุณ และข้อธรรมสำคัญในกรอบอริยสัจ ๔ หรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Identifies two accurate and relevant details about the text, teaching, ritual or observance named in the indicator, with each detail traceable to the supplied source and directly linked to SO1.1-M3-06.
+2. **Explain / analyse:** Analyse the significance or relationship required by this indicator. Explain how the evidence supports your interpretation and include one relevant historical, cultural or contemporary example. Distinguish documented facts from your interpretation. This assesses: “อธิบายสังฆคุณ และข้อธรรมสำคัญในกรอบอริยสัจ ๔ หรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Explains the specific significance or relationship in the indicator, supports the analysis with relevant source evidence and gives an appropriate example. Accept other defensible interpretations supported by evidence.
+3. **Apply / demonstrate:** Prepare a short evidence-based explanation, comparison or respectful response for a school/community scenario connected to this indicator. Use at least two relevant details and explain how they support your conclusion. Do not disclose personal faith or perform worship. This assesses: “อธิบายสังฆคุณ และข้อธรรมสำคัญในกรอบอริยสัจ ๔ หรือหลักธรรมของศาสนาที่ตนนับถือตามที่กำหนด”. **Answer:** Presents a respectful and accurate application or conclusion, uses at least two relevant details and explains the connection to the indicator. Do not assess personal belief, worship or disclosure of faith.
 ### 7. SO1.1-M3-07
 
 - **Standard:** SO1.1
@@ -208,27 +202,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: เห็นคุณค่า และวิเคราะห์การปฏิบัติตนตามหลักธรรมในการพัฒนาตนเพื่อเตรียมพร้อมสำหรับการทำงานและการมีครอบครัว
 **Suggested teaching sequence**
 
-1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
-2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
-3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
-4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+1. Introduce the exact religious history, text, teaching, practice or interfaith relationship named in the indicator using a balanced, age-appropriate source. Establish context and avoid asking learners to disclose personal beliefs.
+2. Model how to examine the source: identify its origin, key concepts, relevant people or events, and distinguish documented information from interpretation.
+3. Learners analyse the indicator's specific focus. Depending on the indicator, trace historical spread, assess cultural or peace-building contributions, compare teachings with sustainability principles, or interpret a biography or religious text.
+4. Learners present an evidence-based explanation or respectful application. Assess accuracy, reasoning and source use; never assess personal faith, worship or disclosure.
 
-**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+**Resources:** a balanced religious-history or cultural source, a short text or teaching extract, and a source-analysis or comparison organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: เห็นคุณค่า และวิเคราะห์การปฏิบัติตนตามหลักธรรมในการพัฒนาตนเพื่อเตรียมพร้อมสำหรับการทำงานและการมีครอบครัว
 
-**Practical activity:** Use a short, respectful account or case from an appropriate tradition. Identify the relevant teaching, value or practice and connect it to a real-life choice; never assess personal belief or require worship. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a balanced, neutral source directly matched to the indicator. Learners examine the specified historical, textual, ethical, cultural or sustainability relationship and present an evidence-based explanation or respectful application. Do not require worship or disclosure of personal belief.
 **Expected evidence:** Three completed responses that demonstrate SO1.1-M3-07: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “เห็นคุณค่า และวิเคราะห์การปฏิบัติตนตามหลักธรรมในการพัฒนาตนเพื่อเตรียมพร้อมสำหรับการทำงานและการมีครอบครัว”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO1.1-M3-07 (เห็นคุณค่า และวิเคราะห์การปฏิบัติตนตามหลักธรรมในการพัฒนาตนเพื่อเตรียมพร้อมสำหรับการทำงานและการมีครอบครัว). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in religion, ethics and ways of life: “เห็นคุณค่า และวิเคราะห์การปฏิบัติตนตามหลักธรรมในการพัฒนาตนเพื่อเตรียมพร้อมสำหรับการทำงานและการมีครอบครัว”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO1.1-M3-07 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a short school or community case connected to “เห็นคุณค่า และวิเคราะห์การปฏิบัติตนตามหลักธรรมในการพัฒนาตนเพื่อเตรียมพร้อมสำหรับการทำงานและการมีครอบครัว”. Identify the relevant teaching, value or practice, compare two possible responses, and justify the more respectful response. **Answer:** Identify a relevant principle from SO1.1-M3-07, compare both responses fairly and justify a respectful application. Do not grade personal belief.
+1. **Recall / identify:** From the source set for this lesson, identify two accurate facts about the text, teaching, ritual or observance named in the indicator. For each, name the source or passage that supports it. This assesses: “เห็นคุณค่า และวิเคราะห์การปฏิบัติตนตามหลักธรรมในการพัฒนาตนเพื่อเตรียมพร้อมสำหรับการทำงานและการมีครอบครัว”. **Answer:** Identifies two accurate and relevant details about the text, teaching, ritual or observance named in the indicator, with each detail traceable to the supplied source and directly linked to SO1.1-M3-07.
+2. **Explain / analyse:** Analyse the significance or relationship required by this indicator. Explain how the evidence supports your interpretation and include one relevant historical, cultural or contemporary example. Distinguish documented facts from your interpretation. This assesses: “เห็นคุณค่า และวิเคราะห์การปฏิบัติตนตามหลักธรรมในการพัฒนาตนเพื่อเตรียมพร้อมสำหรับการทำงานและการมีครอบครัว”. **Answer:** Explains the specific significance or relationship in the indicator, supports the analysis with relevant source evidence and gives an appropriate example. Accept other defensible interpretations supported by evidence.
+3. **Apply / demonstrate:** Prepare a short evidence-based explanation, comparison or respectful response for a school/community scenario connected to this indicator. Use at least two relevant details and explain how they support your conclusion. Do not disclose personal faith or perform worship. This assesses: “เห็นคุณค่า และวิเคราะห์การปฏิบัติตนตามหลักธรรมในการพัฒนาตนเพื่อเตรียมพร้อมสำหรับการทำงานและการมีครอบครัว”. **Answer:** Presents a respectful and accurate application or conclusion, uses at least two relevant details and explains the connection to the indicator. Do not assess personal belief, worship or disclosure of faith.
 ### 8. SO1.1-M3-08
 
 - **Standard:** SO1.1
@@ -239,27 +232,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: เห็นคุณค่าของการพัฒนาจิตเพื่อการเรียนรู้และดำเนินชีวิต ด้วยวิธีคิดแบบโยนิโสมนสิการ คือ วิธีคิดแบบอริยสัจ และวิธีคิดแบบสืบสาวเหตุปัจจัย หรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือ
 **Suggested teaching sequence**
 
-1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
-2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
-3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
-4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+1. Introduce the exact religious history, text, teaching, practice or interfaith relationship named in the indicator using a balanced, age-appropriate source. Establish context and avoid asking learners to disclose personal beliefs.
+2. Model how to examine the source: identify its origin, key concepts, relevant people or events, and distinguish documented information from interpretation.
+3. Learners analyse the indicator's specific focus. Depending on the indicator, trace historical spread, assess cultural or peace-building contributions, compare teachings with sustainability principles, or interpret a biography or religious text.
+4. Learners present an evidence-based explanation or respectful application. Assess accuracy, reasoning and source use; never assess personal faith, worship or disclosure.
 
-**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+**Resources:** a balanced religious-history or cultural source, a short text or teaching extract, and a source-analysis or comparison organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: เห็นคุณค่าของการพัฒนาจิตเพื่อการเรียนรู้และดำเนินชีวิต ด้วยวิธีคิดแบบโยนิโสมนสิการ คือ วิธีคิดแบบอริยสัจ และวิธีคิดแบบสืบสาวเหตุปัจจัย หรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือ
 
-**Practical activity:** Use a short, respectful account or case from an appropriate tradition. Identify the relevant teaching, value or practice and connect it to a real-life choice; never assess personal belief or require worship. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a balanced, neutral source directly matched to the indicator. Learners examine the specified historical, textual, ethical, cultural or sustainability relationship and present an evidence-based explanation or respectful application. Do not require worship or disclosure of personal belief.
 **Expected evidence:** Three completed responses that demonstrate SO1.1-M3-08: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “เห็นคุณค่าของการพัฒนาจิตเพื่อการเรียนรู้และดำเนินชีวิต ด้วยวิธีคิดแบบโยนิโสมนสิการ คือ วิธีคิดแบบอริยสัจ และวิธีคิดแบบสืบสาวเหตุปัจจัย หรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือ”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO1.1-M3-08 (เห็นคุณค่าของการพัฒนาจิตเพื่อการเรียนรู้และดำเนินชีวิต ด้วยวิธีคิดแบบโยนิโสมนสิการ คือ วิธีคิดแบบอริยสัจ และวิธีคิดแบบสืบสาวเหตุปัจจัย หรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือ). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in religion, ethics and ways of life: “เห็นคุณค่าของการพัฒนาจิตเพื่อการเรียนรู้และดำเนินชีวิต ด้วยวิธีคิดแบบโยนิโสมนสิการ คือ วิธีคิดแบบอริยสัจ และวิธีคิดแบบสืบสาวเหตุปัจจัย หรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือ”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO1.1-M3-08 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a short school or community case connected to “เห็นคุณค่าของการพัฒนาจิตเพื่อการเรียนรู้และดำเนินชีวิต ด้วยวิธีคิดแบบโยนิโสมนสิการ คือ วิธีคิดแบบอริยสัจ และวิธีคิดแบบสืบสาวเหตุปัจจัย หรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือ”. Identify the relevant teaching, value or practice, compare two possible responses, and justify the more respectful response. **Answer:** Identify a relevant principle from SO1.1-M3-08, compare both responses fairly and justify a respectful application. Do not grade personal belief.
+1. **Recall / identify:** From the source set for this lesson, identify two accurate facts about the historical, textual, ethical or cultural subject named in the indicator. For each, name the source or passage that supports it. This assesses: “เห็นคุณค่าของการพัฒนาจิตเพื่อการเรียนรู้และดำเนินชีวิต ด้วยวิธีคิดแบบโยนิโสมนสิการ คือ วิธีคิดแบบอริยสัจ และวิธีคิดแบบสืบสาวเหตุปัจจัย หรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือ”. **Answer:** Identifies two accurate and relevant details about the historical, textual, ethical or cultural subject named in the indicator, with each detail traceable to the supplied source and directly linked to SO1.1-M3-08.
+2. **Explain / analyse:** Analyse the significance or relationship required by this indicator. Explain how the evidence supports your interpretation and include one relevant historical, cultural or contemporary example. Distinguish documented facts from your interpretation. This assesses: “เห็นคุณค่าของการพัฒนาจิตเพื่อการเรียนรู้และดำเนินชีวิต ด้วยวิธีคิดแบบโยนิโสมนสิการ คือ วิธีคิดแบบอริยสัจ และวิธีคิดแบบสืบสาวเหตุปัจจัย หรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือ”. **Answer:** Explains the specific significance or relationship in the indicator, supports the analysis with relevant source evidence and gives an appropriate example. Accept other defensible interpretations supported by evidence.
+3. **Apply / demonstrate:** Prepare a short evidence-based explanation, comparison or respectful response for a school/community scenario connected to this indicator. Use at least two relevant details and explain how they support your conclusion. Do not disclose personal faith or perform worship. This assesses: “เห็นคุณค่าของการพัฒนาจิตเพื่อการเรียนรู้และดำเนินชีวิต ด้วยวิธีคิดแบบโยนิโสมนสิการ คือ วิธีคิดแบบอริยสัจ และวิธีคิดแบบสืบสาวเหตุปัจจัย หรือการพัฒนาจิตตามแนวทางของศาสนาที่ตนนับถือ”. **Answer:** Presents a respectful and accurate application or conclusion, uses at least two relevant details and explains the connection to the indicator. Do not assess personal belief, worship or disclosure of faith.
 ### 9. SO1.1-M3-09
 
 - **Standard:** SO1.1
@@ -270,27 +262,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: สวดมนต์ แผ่เมตตา บริหารจิตและเจริญปัญญาด้วยอานาปานสติ หรือตามแนวทางของศาสนาที่ตนนับถือ
 **Suggested teaching sequence**
 
-1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
-2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
-3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
-4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+1. Introduce the exact religious history, text, teaching, practice or interfaith relationship named in the indicator using a balanced, age-appropriate source. Establish context and avoid asking learners to disclose personal beliefs.
+2. Model how to examine the source: identify its origin, key concepts, relevant people or events, and distinguish documented information from interpretation.
+3. Learners analyse the indicator's specific focus. Depending on the indicator, trace historical spread, assess cultural or peace-building contributions, compare teachings with sustainability principles, or interpret a biography or religious text.
+4. Learners present an evidence-based explanation or respectful application. Assess accuracy, reasoning and source use; never assess personal faith, worship or disclosure.
 
-**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+**Resources:** a balanced religious-history or cultural source, a short text or teaching extract, and a source-analysis or comparison organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: สวดมนต์ แผ่เมตตา บริหารจิตและเจริญปัญญาด้วยอานาปานสติ หรือตามแนวทางของศาสนาที่ตนนับถือ
 
-**Practical activity:** Use a short, respectful account or case from an appropriate tradition. Identify the relevant teaching, value or practice and connect it to a real-life choice; never assess personal belief or require worship. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a balanced, neutral source directly matched to the indicator. Learners examine the specified historical, textual, ethical, cultural or sustainability relationship and present an evidence-based explanation or respectful application. Do not require worship or disclosure of personal belief.
 **Expected evidence:** Three completed responses that demonstrate SO1.1-M3-09: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “สวดมนต์ แผ่เมตตา บริหารจิตและเจริญปัญญาด้วยอานาปานสติ หรือตามแนวทางของศาสนาที่ตนนับถือ”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO1.1-M3-09 (สวดมนต์ แผ่เมตตา บริหารจิตและเจริญปัญญาด้วยอานาปานสติ หรือตามแนวทางของศาสนาที่ตนนับถือ). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in religion, ethics and ways of life: “สวดมนต์ แผ่เมตตา บริหารจิตและเจริญปัญญาด้วยอานาปานสติ หรือตามแนวทางของศาสนาที่ตนนับถือ”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO1.1-M3-09 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a short school or community case connected to “สวดมนต์ แผ่เมตตา บริหารจิตและเจริญปัญญาด้วยอานาปานสติ หรือตามแนวทางของศาสนาที่ตนนับถือ”. Identify the relevant teaching, value or practice, compare two possible responses, and justify the more respectful response. **Answer:** Identify a relevant principle from SO1.1-M3-09, compare both responses fairly and justify a respectful application. Do not grade personal belief.
+1. **Recall / identify:** From the source set for this lesson, identify two accurate facts about the historical, textual, ethical or cultural subject named in the indicator. For each, name the source or passage that supports it. This assesses: “สวดมนต์ แผ่เมตตา บริหารจิตและเจริญปัญญาด้วยอานาปานสติ หรือตามแนวทางของศาสนาที่ตนนับถือ”. **Answer:** Identifies two accurate and relevant details about the historical, textual, ethical or cultural subject named in the indicator, with each detail traceable to the supplied source and directly linked to SO1.1-M3-09.
+2. **Explain / analyse:** Analyse the significance or relationship required by this indicator. Explain how the evidence supports your interpretation and include one relevant historical, cultural or contemporary example. Distinguish documented facts from your interpretation. This assesses: “สวดมนต์ แผ่เมตตา บริหารจิตและเจริญปัญญาด้วยอานาปานสติ หรือตามแนวทางของศาสนาที่ตนนับถือ”. **Answer:** Explains the specific significance or relationship in the indicator, supports the analysis with relevant source evidence and gives an appropriate example. Accept other defensible interpretations supported by evidence.
+3. **Apply / demonstrate:** Prepare a short evidence-based explanation, comparison or respectful response for a school/community scenario connected to this indicator. Use at least two relevant details and explain how they support your conclusion. Do not disclose personal faith or perform worship. This assesses: “สวดมนต์ แผ่เมตตา บริหารจิตและเจริญปัญญาด้วยอานาปานสติ หรือตามแนวทางของศาสนาที่ตนนับถือ”. **Answer:** Presents a respectful and accurate application or conclusion, uses at least two relevant details and explains the connection to the indicator. Do not assess personal belief, worship or disclosure of faith.
 ### 10. SO1.1-M3-10
 
 - **Standard:** SO1.1
@@ -301,27 +292,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: วิเคราะห์ความแตกต่างและยอมรับวิถีการดำเนินชีวิตของศาสนิกชนในศาสนาอื่น ๆ
 **Suggested teaching sequence**
 
-1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
-2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
-3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
-4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+1. Introduce the exact religious history, text, teaching, practice or interfaith relationship named in the indicator using a balanced, age-appropriate source. Establish context and avoid asking learners to disclose personal beliefs.
+2. Model how to examine the source: identify its origin, key concepts, relevant people or events, and distinguish documented information from interpretation.
+3. Learners analyse the indicator's specific focus. Depending on the indicator, trace historical spread, assess cultural or peace-building contributions, compare teachings with sustainability principles, or interpret a biography or religious text.
+4. Learners present an evidence-based explanation or respectful application. Assess accuracy, reasoning and source use; never assess personal faith, worship or disclosure.
 
-**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+**Resources:** a balanced religious-history or cultural source, a short text or teaching extract, and a source-analysis or comparison organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์ความแตกต่างและยอมรับวิถีการดำเนินชีวิตของศาสนิกชนในศาสนาอื่น ๆ
 
-**Practical activity:** Use a short, respectful account or case from an appropriate tradition. Identify the relevant teaching, value or practice and connect it to a real-life choice; never assess personal belief or require worship. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a balanced, neutral source directly matched to the indicator. Learners examine the specified historical, textual, ethical, cultural or sustainability relationship and present an evidence-based explanation or respectful application. Do not require worship or disclosure of personal belief.
 **Expected evidence:** Three completed responses that demonstrate SO1.1-M3-10: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “วิเคราะห์ความแตกต่างและยอมรับวิถีการดำเนินชีวิตของศาสนิกชนในศาสนาอื่น ๆ”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO1.1-M3-10 (วิเคราะห์ความแตกต่างและยอมรับวิถีการดำเนินชีวิตของศาสนิกชนในศาสนาอื่น ๆ). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in religion, ethics and ways of life: “วิเคราะห์ความแตกต่างและยอมรับวิถีการดำเนินชีวิตของศาสนิกชนในศาสนาอื่น ๆ”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO1.1-M3-10 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a short school or community case connected to “วิเคราะห์ความแตกต่างและยอมรับวิถีการดำเนินชีวิตของศาสนิกชนในศาสนาอื่น ๆ”. Identify the relevant teaching, value or practice, compare two possible responses, and justify the more respectful response. **Answer:** Identify a relevant principle from SO1.1-M3-10, compare both responses fairly and justify a respectful application. Do not grade personal belief.
+1. **Recall / identify:** From the source set for this lesson, identify two accurate facts about the specified religious biography, role model, event and associated lesson. For each, name the source or passage that supports it. This assesses: “วิเคราะห์ความแตกต่างและยอมรับวิถีการดำเนินชีวิตของศาสนิกชนในศาสนาอื่น ๆ”. **Answer:** Identifies two accurate and relevant details about the specified religious biography, role model, event and associated lesson, with each detail traceable to the supplied source and directly linked to SO1.1-M3-10.
+2. **Explain / analyse:** Analyse the significance or relationship required by this indicator. Explain how the evidence supports your interpretation and include one relevant historical, cultural or contemporary example. Distinguish documented facts from your interpretation. This assesses: “วิเคราะห์ความแตกต่างและยอมรับวิถีการดำเนินชีวิตของศาสนิกชนในศาสนาอื่น ๆ”. **Answer:** Explains the specific significance or relationship in the indicator, supports the analysis with relevant source evidence and gives an appropriate example. Accept other defensible interpretations supported by evidence.
+3. **Apply / demonstrate:** Prepare a short evidence-based explanation, comparison or respectful response for a school/community scenario connected to this indicator. Use at least two relevant details and explain how they support your conclusion. Do not disclose personal faith or perform worship. This assesses: “วิเคราะห์ความแตกต่างและยอมรับวิถีการดำเนินชีวิตของศาสนิกชนในศาสนาอื่น ๆ”. **Answer:** Presents a respectful and accurate application or conclusion, uses at least two relevant details and explains the connection to the indicator. Do not assess personal belief, worship or disclosure of faith.
 ### 11. SO1.2-M3-01
 
 - **Standard:** SO1.2
@@ -332,27 +322,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: วิเคราะห์หน้าที่และบทบาทของสาวกและปฏิบัติตนต่อสาวกตามที่กำหนดได้ถูกต้อง
 **Suggested teaching sequence**
 
-1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
-2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
-3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
-4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+1. Introduce the exact religious history, text, teaching, practice or interfaith relationship named in the indicator using a balanced, age-appropriate source. Establish context and avoid asking learners to disclose personal beliefs.
+2. Model how to examine the source: identify its origin, key concepts, relevant people or events, and distinguish documented information from interpretation.
+3. Learners analyse the indicator's specific focus. Depending on the indicator, trace historical spread, assess cultural or peace-building contributions, compare teachings with sustainability principles, or interpret a biography or religious text.
+4. Learners present an evidence-based explanation or respectful application. Assess accuracy, reasoning and source use; never assess personal faith, worship or disclosure.
 
-**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+**Resources:** a balanced religious-history or cultural source, a short text or teaching extract, and a source-analysis or comparison organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์หน้าที่และบทบาทของสาวกและปฏิบัติตนต่อสาวกตามที่กำหนดได้ถูกต้อง
 
-**Practical activity:** Use a short, respectful account or case from an appropriate tradition. Identify the relevant teaching, value or practice and connect it to a real-life choice; never assess personal belief or require worship. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a balanced, neutral source directly matched to the indicator. Learners examine the specified historical, textual, ethical, cultural or sustainability relationship and present an evidence-based explanation or respectful application. Do not require worship or disclosure of personal belief.
 **Expected evidence:** Three completed responses that demonstrate SO1.2-M3-01: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “วิเคราะห์หน้าที่และบทบาทของสาวกและปฏิบัติตนต่อสาวกตามที่กำหนดได้ถูกต้อง”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO1.2-M3-01 (วิเคราะห์หน้าที่และบทบาทของสาวกและปฏิบัติตนต่อสาวกตามที่กำหนดได้ถูกต้อง). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in religion, ethics and ways of life: “วิเคราะห์หน้าที่และบทบาทของสาวกและปฏิบัติตนต่อสาวกตามที่กำหนดได้ถูกต้อง”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO1.2-M3-01 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a short school or community case connected to “วิเคราะห์หน้าที่และบทบาทของสาวกและปฏิบัติตนต่อสาวกตามที่กำหนดได้ถูกต้อง”. Identify the relevant teaching, value or practice, compare two possible responses, and justify the more respectful response. **Answer:** Identify a relevant principle from SO1.2-M3-01, compare both responses fairly and justify a respectful application. Do not grade personal belief.
+1. **Recall / identify:** From the source set for this lesson, identify two accurate facts about the historical, textual, ethical or cultural subject named in the indicator. For each, name the source or passage that supports it. This assesses: “วิเคราะห์หน้าที่และบทบาทของสาวกและปฏิบัติตนต่อสาวกตามที่กำหนดได้ถูกต้อง”. **Answer:** Identifies two accurate and relevant details about the historical, textual, ethical or cultural subject named in the indicator, with each detail traceable to the supplied source and directly linked to SO1.2-M3-01.
+2. **Explain / analyse:** Analyse the significance or relationship required by this indicator. Explain how the evidence supports your interpretation and include one relevant historical, cultural or contemporary example. Distinguish documented facts from your interpretation. This assesses: “วิเคราะห์หน้าที่และบทบาทของสาวกและปฏิบัติตนต่อสาวกตามที่กำหนดได้ถูกต้อง”. **Answer:** Explains the specific significance or relationship in the indicator, supports the analysis with relevant source evidence and gives an appropriate example. Accept other defensible interpretations supported by evidence.
+3. **Apply / demonstrate:** Prepare a short evidence-based explanation, comparison or respectful response for a school/community scenario connected to this indicator. Use at least two relevant details and explain how they support your conclusion. Do not disclose personal faith or perform worship. This assesses: “วิเคราะห์หน้าที่และบทบาทของสาวกและปฏิบัติตนต่อสาวกตามที่กำหนดได้ถูกต้อง”. **Answer:** Presents a respectful and accurate application or conclusion, uses at least two relevant details and explains the connection to the indicator. Do not assess personal belief, worship or disclosure of faith.
 ### 12. SO1.2-M3-02
 
 - **Standard:** SO1.2
@@ -363,27 +352,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: ปฏิบัติตนอย่างเหมาะสมต่อบุคคลต่าง ๆ ตามหลักศาสนาตามที่กำหนด
 **Suggested teaching sequence**
 
-1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
-2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
-3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
-4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+1. Introduce the exact religious history, text, teaching, practice or interfaith relationship named in the indicator using a balanced, age-appropriate source. Establish context and avoid asking learners to disclose personal beliefs.
+2. Model how to examine the source: identify its origin, key concepts, relevant people or events, and distinguish documented information from interpretation.
+3. Learners analyse the indicator's specific focus. Depending on the indicator, trace historical spread, assess cultural or peace-building contributions, compare teachings with sustainability principles, or interpret a biography or religious text.
+4. Learners present an evidence-based explanation or respectful application. Assess accuracy, reasoning and source use; never assess personal faith, worship or disclosure.
 
-**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+**Resources:** a balanced religious-history or cultural source, a short text or teaching extract, and a source-analysis or comparison organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: ปฏิบัติตนอย่างเหมาะสมต่อบุคคลต่าง ๆ ตามหลักศาสนาตามที่กำหนด
 
-**Practical activity:** Use a short, respectful account or case from an appropriate tradition. Identify the relevant teaching, value or practice and connect it to a real-life choice; never assess personal belief or require worship. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a balanced, neutral source directly matched to the indicator. Learners examine the specified historical, textual, ethical, cultural or sustainability relationship and present an evidence-based explanation or respectful application. Do not require worship or disclosure of personal belief.
 **Expected evidence:** Three completed responses that demonstrate SO1.2-M3-02: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “ปฏิบัติตนอย่างเหมาะสมต่อบุคคลต่าง ๆ ตามหลักศาสนาตามที่กำหนด”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO1.2-M3-02 (ปฏิบัติตนอย่างเหมาะสมต่อบุคคลต่าง ๆ ตามหลักศาสนาตามที่กำหนด). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in religion, ethics and ways of life: “ปฏิบัติตนอย่างเหมาะสมต่อบุคคลต่าง ๆ ตามหลักศาสนาตามที่กำหนด”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO1.2-M3-02 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a short school or community case connected to “ปฏิบัติตนอย่างเหมาะสมต่อบุคคลต่าง ๆ ตามหลักศาสนาตามที่กำหนด”. Identify the relevant teaching, value or practice, compare two possible responses, and justify the more respectful response. **Answer:** Identify a relevant principle from SO1.2-M3-02, compare both responses fairly and justify a respectful application. Do not grade personal belief.
+1. **Recall / identify:** From the source set for this lesson, identify two accurate facts about the historical, textual, ethical or cultural subject named in the indicator. For each, name the source or passage that supports it. This assesses: “ปฏิบัติตนอย่างเหมาะสมต่อบุคคลต่าง ๆ ตามหลักศาสนาตามที่กำหนด”. **Answer:** Identifies two accurate and relevant details about the historical, textual, ethical or cultural subject named in the indicator, with each detail traceable to the supplied source and directly linked to SO1.2-M3-02.
+2. **Explain / analyse:** Analyse the significance or relationship required by this indicator. Explain how the evidence supports your interpretation and include one relevant historical, cultural or contemporary example. Distinguish documented facts from your interpretation. This assesses: “ปฏิบัติตนอย่างเหมาะสมต่อบุคคลต่าง ๆ ตามหลักศาสนาตามที่กำหนด”. **Answer:** Explains the specific significance or relationship in the indicator, supports the analysis with relevant source evidence and gives an appropriate example. Accept other defensible interpretations supported by evidence.
+3. **Apply / demonstrate:** Prepare a short evidence-based explanation, comparison or respectful response for a school/community scenario connected to this indicator. Use at least two relevant details and explain how they support your conclusion. Do not disclose personal faith or perform worship. This assesses: “ปฏิบัติตนอย่างเหมาะสมต่อบุคคลต่าง ๆ ตามหลักศาสนาตามที่กำหนด”. **Answer:** Presents a respectful and accurate application or conclusion, uses at least two relevant details and explains the connection to the indicator. Do not assess personal belief, worship or disclosure of faith.
 ### 13. SO1.2-M3-03
 
 - **Standard:** SO1.2
@@ -394,27 +382,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: ปฏิบัติหน้าที่ของศาสนิกชนที่ดี
 **Suggested teaching sequence**
 
-1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
-2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
-3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
-4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+1. Introduce the exact religious history, text, teaching, practice or interfaith relationship named in the indicator using a balanced, age-appropriate source. Establish context and avoid asking learners to disclose personal beliefs.
+2. Model how to examine the source: identify its origin, key concepts, relevant people or events, and distinguish documented information from interpretation.
+3. Learners analyse the indicator's specific focus. Depending on the indicator, trace historical spread, assess cultural or peace-building contributions, compare teachings with sustainability principles, or interpret a biography or religious text.
+4. Learners present an evidence-based explanation or respectful application. Assess accuracy, reasoning and source use; never assess personal faith, worship or disclosure.
 
-**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+**Resources:** a balanced religious-history or cultural source, a short text or teaching extract, and a source-analysis or comparison organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: ปฏิบัติหน้าที่ของศาสนิกชนที่ดี
 
-**Practical activity:** Use a short, respectful account or case from an appropriate tradition. Identify the relevant teaching, value or practice and connect it to a real-life choice; never assess personal belief or require worship. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a balanced, neutral source directly matched to the indicator. Learners examine the specified historical, textual, ethical, cultural or sustainability relationship and present an evidence-based explanation or respectful application. Do not require worship or disclosure of personal belief.
 **Expected evidence:** Three completed responses that demonstrate SO1.2-M3-03: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “ปฏิบัติหน้าที่ของศาสนิกชนที่ดี”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO1.2-M3-03 (ปฏิบัติหน้าที่ของศาสนิกชนที่ดี). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in religion, ethics and ways of life: “ปฏิบัติหน้าที่ของศาสนิกชนที่ดี”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO1.2-M3-03 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a short school or community case connected to “ปฏิบัติหน้าที่ของศาสนิกชนที่ดี”. Identify the relevant teaching, value or practice, compare two possible responses, and justify the more respectful response. **Answer:** Identify a relevant principle from SO1.2-M3-03, compare both responses fairly and justify a respectful application. Do not grade personal belief.
+1. **Recall / identify:** From the source set for this lesson, identify two accurate facts about the specified religious biography, role model, event and associated lesson. For each, name the source or passage that supports it. This assesses: “ปฏิบัติหน้าที่ของศาสนิกชนที่ดี”. **Answer:** Identifies two accurate and relevant details about the specified religious biography, role model, event and associated lesson, with each detail traceable to the supplied source and directly linked to SO1.2-M3-03.
+2. **Explain / analyse:** Analyse the significance or relationship required by this indicator. Explain how the evidence supports your interpretation and include one relevant historical, cultural or contemporary example. Distinguish documented facts from your interpretation. This assesses: “ปฏิบัติหน้าที่ของศาสนิกชนที่ดี”. **Answer:** Explains the specific significance or relationship in the indicator, supports the analysis with relevant source evidence and gives an appropriate example. Accept other defensible interpretations supported by evidence.
+3. **Apply / demonstrate:** Prepare a short evidence-based explanation, comparison or respectful response for a school/community scenario connected to this indicator. Use at least two relevant details and explain how they support your conclusion. Do not disclose personal faith or perform worship. This assesses: “ปฏิบัติหน้าที่ของศาสนิกชนที่ดี”. **Answer:** Presents a respectful and accurate application or conclusion, uses at least two relevant details and explains the connection to the indicator. Do not assess personal belief, worship or disclosure of faith.
 ### 14. SO1.2-M3-04
 
 - **Standard:** SO1.2
@@ -425,27 +412,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: ปฏิบัติตนในศาสนพิธี พิธีกรรมได้ถูกต้อง
 **Suggested teaching sequence**
 
-1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
-2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
-3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
-4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+1. Introduce the exact religious history, text, teaching, practice or interfaith relationship named in the indicator using a balanced, age-appropriate source. Establish context and avoid asking learners to disclose personal beliefs.
+2. Model how to examine the source: identify its origin, key concepts, relevant people or events, and distinguish documented information from interpretation.
+3. Learners analyse the indicator's specific focus. Depending on the indicator, trace historical spread, assess cultural or peace-building contributions, compare teachings with sustainability principles, or interpret a biography or religious text.
+4. Learners present an evidence-based explanation or respectful application. Assess accuracy, reasoning and source use; never assess personal faith, worship or disclosure.
 
-**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+**Resources:** a balanced religious-history or cultural source, a short text or teaching extract, and a source-analysis or comparison organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: ปฏิบัติตนในศาสนพิธี พิธีกรรมได้ถูกต้อง
 
-**Practical activity:** Use a short, respectful account or case from an appropriate tradition. Identify the relevant teaching, value or practice and connect it to a real-life choice; never assess personal belief or require worship. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a balanced, neutral source directly matched to the indicator. Learners examine the specified historical, textual, ethical, cultural or sustainability relationship and present an evidence-based explanation or respectful application. Do not require worship or disclosure of personal belief.
 **Expected evidence:** Three completed responses that demonstrate SO1.2-M3-04: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “ปฏิบัติตนในศาสนพิธี พิธีกรรมได้ถูกต้อง”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO1.2-M3-04 (ปฏิบัติตนในศาสนพิธี พิธีกรรมได้ถูกต้อง). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in religion, ethics and ways of life: “ปฏิบัติตนในศาสนพิธี พิธีกรรมได้ถูกต้อง”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO1.2-M3-04 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a short school or community case connected to “ปฏิบัติตนในศาสนพิธี พิธีกรรมได้ถูกต้อง”. Identify the relevant teaching, value or practice, compare two possible responses, and justify the more respectful response. **Answer:** Identify a relevant principle from SO1.2-M3-04, compare both responses fairly and justify a respectful application. Do not grade personal belief.
+1. **Recall / identify:** From the source set for this lesson, identify two accurate facts about the text, teaching, ritual or observance named in the indicator. For each, name the source or passage that supports it. This assesses: “ปฏิบัติตนในศาสนพิธี พิธีกรรมได้ถูกต้อง”. **Answer:** Identifies two accurate and relevant details about the text, teaching, ritual or observance named in the indicator, with each detail traceable to the supplied source and directly linked to SO1.2-M3-04.
+2. **Explain / analyse:** Analyse the significance or relationship required by this indicator. Explain how the evidence supports your interpretation and include one relevant historical, cultural or contemporary example. Distinguish documented facts from your interpretation. This assesses: “ปฏิบัติตนในศาสนพิธี พิธีกรรมได้ถูกต้อง”. **Answer:** Explains the specific significance or relationship in the indicator, supports the analysis with relevant source evidence and gives an appropriate example. Accept other defensible interpretations supported by evidence.
+3. **Apply / demonstrate:** Prepare a short evidence-based explanation, comparison or respectful response for a school/community scenario connected to this indicator. Use at least two relevant details and explain how they support your conclusion. Do not disclose personal faith or perform worship. This assesses: “ปฏิบัติตนในศาสนพิธี พิธีกรรมได้ถูกต้อง”. **Answer:** Presents a respectful and accurate application or conclusion, uses at least two relevant details and explains the connection to the indicator. Do not assess personal belief, worship or disclosure of faith.
 ### 15. SO1.2-M3-05
 
 - **Standard:** SO1.2
@@ -456,27 +442,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: อธิบายประวัติวันสำคัญทางศาสนาตามที่กำหนดและปฏิบัติตนได้ถูกต้อง
 **Suggested teaching sequence**
 
-1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
-2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
-3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
-4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+1. Introduce the exact religious history, text, teaching, practice or interfaith relationship named in the indicator using a balanced, age-appropriate source. Establish context and avoid asking learners to disclose personal beliefs.
+2. Model how to examine the source: identify its origin, key concepts, relevant people or events, and distinguish documented information from interpretation.
+3. Learners analyse the indicator's specific focus. Depending on the indicator, trace historical spread, assess cultural or peace-building contributions, compare teachings with sustainability principles, or interpret a biography or religious text.
+4. Learners present an evidence-based explanation or respectful application. Assess accuracy, reasoning and source use; never assess personal faith, worship or disclosure.
 
-**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+**Resources:** a balanced religious-history or cultural source, a short text or teaching extract, and a source-analysis or comparison organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายประวัติวันสำคัญทางศาสนาตามที่กำหนดและปฏิบัติตนได้ถูกต้อง
 
-**Practical activity:** Use a short, respectful account or case from an appropriate tradition. Identify the relevant teaching, value or practice and connect it to a real-life choice; never assess personal belief or require worship. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a balanced, neutral source directly matched to the indicator. Learners examine the specified historical, textual, ethical, cultural or sustainability relationship and present an evidence-based explanation or respectful application. Do not require worship or disclosure of personal belief.
 **Expected evidence:** Three completed responses that demonstrate SO1.2-M3-05: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “อธิบายประวัติวันสำคัญทางศาสนาตามที่กำหนดและปฏิบัติตนได้ถูกต้อง”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO1.2-M3-05 (อธิบายประวัติวันสำคัญทางศาสนาตามที่กำหนดและปฏิบัติตนได้ถูกต้อง). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in religion, ethics and ways of life: “อธิบายประวัติวันสำคัญทางศาสนาตามที่กำหนดและปฏิบัติตนได้ถูกต้อง”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO1.2-M3-05 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a short school or community case connected to “อธิบายประวัติวันสำคัญทางศาสนาตามที่กำหนดและปฏิบัติตนได้ถูกต้อง”. Identify the relevant teaching, value or practice, compare two possible responses, and justify the more respectful response. **Answer:** Identify a relevant principle from SO1.2-M3-05, compare both responses fairly and justify a respectful application. Do not grade personal belief.
+1. **Recall / identify:** From the source set for this lesson, identify two accurate facts about the text, teaching, ritual or observance named in the indicator. For each, name the source or passage that supports it. This assesses: “อธิบายประวัติวันสำคัญทางศาสนาตามที่กำหนดและปฏิบัติตนได้ถูกต้อง”. **Answer:** Identifies two accurate and relevant details about the text, teaching, ritual or observance named in the indicator, with each detail traceable to the supplied source and directly linked to SO1.2-M3-05.
+2. **Explain / analyse:** Analyse the significance or relationship required by this indicator. Explain how the evidence supports your interpretation and include one relevant historical, cultural or contemporary example. Distinguish documented facts from your interpretation. This assesses: “อธิบายประวัติวันสำคัญทางศาสนาตามที่กำหนดและปฏิบัติตนได้ถูกต้อง”. **Answer:** Explains the specific significance or relationship in the indicator, supports the analysis with relevant source evidence and gives an appropriate example. Accept other defensible interpretations supported by evidence.
+3. **Apply / demonstrate:** Prepare a short evidence-based explanation, comparison or respectful response for a school/community scenario connected to this indicator. Use at least two relevant details and explain how they support your conclusion. Do not disclose personal faith or perform worship. This assesses: “อธิบายประวัติวันสำคัญทางศาสนาตามที่กำหนดและปฏิบัติตนได้ถูกต้อง”. **Answer:** Presents a respectful and accurate application or conclusion, uses at least two relevant details and explains the connection to the indicator. Do not assess personal belief, worship or disclosure of faith.
 ### 16. SO1.2-M3-06
 
 - **Standard:** SO1.2
@@ -487,27 +472,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: แสดงตนเป็นพุทธมามกะ หรือแสดงตนเป็นศาสนิกชน ของศาสนาที่ตนนับถือ
 **Suggested teaching sequence**
 
-1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
-2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
-3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
-4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+1. Introduce the exact religious history, text, teaching, practice or interfaith relationship named in the indicator using a balanced, age-appropriate source. Establish context and avoid asking learners to disclose personal beliefs.
+2. Model how to examine the source: identify its origin, key concepts, relevant people or events, and distinguish documented information from interpretation.
+3. Learners analyse the indicator's specific focus. Depending on the indicator, trace historical spread, assess cultural or peace-building contributions, compare teachings with sustainability principles, or interpret a biography or religious text.
+4. Learners present an evidence-based explanation or respectful application. Assess accuracy, reasoning and source use; never assess personal faith, worship or disclosure.
 
-**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+**Resources:** a balanced religious-history or cultural source, a short text or teaching extract, and a source-analysis or comparison organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: แสดงตนเป็นพุทธมามกะ หรือแสดงตนเป็นศาสนิกชน ของศาสนาที่ตนนับถือ
 
-**Practical activity:** Use a short, respectful account or case from an appropriate tradition. Identify the relevant teaching, value or practice and connect it to a real-life choice; never assess personal belief or require worship. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a balanced, neutral source directly matched to the indicator. Learners examine the specified historical, textual, ethical, cultural or sustainability relationship and present an evidence-based explanation or respectful application. Do not require worship or disclosure of personal belief.
 **Expected evidence:** Three completed responses that demonstrate SO1.2-M3-06: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “แสดงตนเป็นพุทธมามกะ หรือแสดงตนเป็นศาสนิกชน ของศาสนาที่ตนนับถือ”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO1.2-M3-06 (แสดงตนเป็นพุทธมามกะ หรือแสดงตนเป็นศาสนิกชน ของศาสนาที่ตนนับถือ). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in religion, ethics and ways of life: “แสดงตนเป็นพุทธมามกะ หรือแสดงตนเป็นศาสนิกชน ของศาสนาที่ตนนับถือ”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO1.2-M3-06 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a short school or community case connected to “แสดงตนเป็นพุทธมามกะ หรือแสดงตนเป็นศาสนิกชน ของศาสนาที่ตนนับถือ”. Identify the relevant teaching, value or practice, compare two possible responses, and justify the more respectful response. **Answer:** Identify a relevant principle from SO1.2-M3-06, compare both responses fairly and justify a respectful application. Do not grade personal belief.
+1. **Recall / identify:** From the source set for this lesson, identify two accurate facts about the specified religious biography, role model, event and associated lesson. For each, name the source or passage that supports it. This assesses: “แสดงตนเป็นพุทธมามกะ หรือแสดงตนเป็นศาสนิกชน ของศาสนาที่ตนนับถือ”. **Answer:** Identifies two accurate and relevant details about the specified religious biography, role model, event and associated lesson, with each detail traceable to the supplied source and directly linked to SO1.2-M3-06.
+2. **Explain / analyse:** Analyse the significance or relationship required by this indicator. Explain how the evidence supports your interpretation and include one relevant historical, cultural or contemporary example. Distinguish documented facts from your interpretation. This assesses: “แสดงตนเป็นพุทธมามกะ หรือแสดงตนเป็นศาสนิกชน ของศาสนาที่ตนนับถือ”. **Answer:** Explains the specific significance or relationship in the indicator, supports the analysis with relevant source evidence and gives an appropriate example. Accept other defensible interpretations supported by evidence.
+3. **Apply / demonstrate:** Prepare a short evidence-based explanation, comparison or respectful response for a school/community scenario connected to this indicator. Use at least two relevant details and explain how they support your conclusion. Do not disclose personal faith or perform worship. This assesses: “แสดงตนเป็นพุทธมามกะ หรือแสดงตนเป็นศาสนิกชน ของศาสนาที่ตนนับถือ”. **Answer:** Presents a respectful and accurate application or conclusion, uses at least two relevant details and explains the connection to the indicator. Do not assess personal belief, worship or disclosure of faith.
 ### 17. SO1.2-M3-07
 
 - **Standard:** SO1.2
@@ -518,27 +502,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: นำเสนอแนวทางในการธำรงรักษาศาสนาที่ตนนับถือ
 **Suggested teaching sequence**
 
-1. Begin with a familiar situation involving kindness, honesty, responsibility or respectful coexistence; invite learners to describe the action without disclosing personal beliefs.
-2. Present a short, balanced source about the relevant tradition, teaching or practice. Identify its context and distinguish factual information from personal opinion.
-3. Model how the source connects to the indicator. In pairs, compare two possible actions and explain which better demonstrates the stated principle while respecting different beliefs.
-4. Learners complete the application task independently and explain the evidence behind their choice. Assess understanding and respectful reasoning, never personal faith or worship.
+1. Introduce the exact religious history, text, teaching, practice or interfaith relationship named in the indicator using a balanced, age-appropriate source. Establish context and avoid asking learners to disclose personal beliefs.
+2. Model how to examine the source: identify its origin, key concepts, relevant people or events, and distinguish documented information from interpretation.
+3. Learners analyse the indicator's specific focus. Depending on the indicator, trace historical spread, assess cultural or peace-building contributions, compare teachings with sustainability principles, or interpret a biography or religious text.
+4. Learners present an evidence-based explanation or respectful application. Assess accuracy, reasoning and source use; never assess personal faith, worship or disclosure.
 
-**Resources:** a short age-appropriate account, a neutral information card and a real-life ethical situation.
+**Resources:** a balanced religious-history or cultural source, a short text or teaching extract, and a source-analysis or comparison organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: นำเสนอแนวทางในการธำรงรักษาศาสนาที่ตนนับถือ
 
-**Practical activity:** Use a short, respectful account or case from an appropriate tradition. Identify the relevant teaching, value or practice and connect it to a real-life choice; never assess personal belief or require worship. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a balanced, neutral source directly matched to the indicator. Learners examine the specified historical, textual, ethical, cultural or sustainability relationship and present an evidence-based explanation or respectful application. Do not require worship or disclosure of personal belief.
 **Expected evidence:** Three completed responses that demonstrate SO1.2-M3-07: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “นำเสนอแนวทางในการธำรงรักษาศาสนาที่ตนนับถือ”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO1.2-M3-07 (นำเสนอแนวทางในการธำรงรักษาศาสนาที่ตนนับถือ). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in religion, ethics and ways of life: “นำเสนอแนวทางในการธำรงรักษาศาสนาที่ตนนับถือ”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO1.2-M3-07 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a short school or community case connected to “นำเสนอแนวทางในการธำรงรักษาศาสนาที่ตนนับถือ”. Identify the relevant teaching, value or practice, compare two possible responses, and justify the more respectful response. **Answer:** Identify a relevant principle from SO1.2-M3-07, compare both responses fairly and justify a respectful application. Do not grade personal belief.
+1. **Recall / identify:** From the source set for this lesson, identify two accurate facts about the historical, textual, ethical or cultural subject named in the indicator. For each, name the source or passage that supports it. This assesses: “นำเสนอแนวทางในการธำรงรักษาศาสนาที่ตนนับถือ”. **Answer:** Identifies two accurate and relevant details about the historical, textual, ethical or cultural subject named in the indicator, with each detail traceable to the supplied source and directly linked to SO1.2-M3-07.
+2. **Explain / analyse:** Analyse the significance or relationship required by this indicator. Explain how the evidence supports your interpretation and include one relevant historical, cultural or contemporary example. Distinguish documented facts from your interpretation. This assesses: “นำเสนอแนวทางในการธำรงรักษาศาสนาที่ตนนับถือ”. **Answer:** Explains the specific significance or relationship in the indicator, supports the analysis with relevant source evidence and gives an appropriate example. Accept other defensible interpretations supported by evidence.
+3. **Apply / demonstrate:** Prepare a short evidence-based explanation, comparison or respectful response for a school/community scenario connected to this indicator. Use at least two relevant details and explain how they support your conclusion. Do not disclose personal faith or perform worship. This assesses: “นำเสนอแนวทางในการธำรงรักษาศาสนาที่ตนนับถือ”. **Answer:** Presents a respectful and accurate application or conclusion, uses at least two relevant details and explains the connection to the indicator. Do not assess personal belief, worship or disclosure of faith.
 ### 18. SO2.1-M3-01
 
 - **Standard:** SO2.1
@@ -549,27 +532,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: อธิบายความแตกต่างของการกระทำความผิดระหว่างคดีอาญา และคดีแพ่ง
 **Suggested teaching sequence**
 
-1. Introduce a realistic school or community situation in which a right, duty, rule or public responsibility matters. Ask who is affected.
-2. Read the case and relevant rule/process together. Identify the people involved, the right or duty at stake, and the authority or process that applies.
-3. Model a stakeholder chart. Groups compare possible responses for fairness, rights, responsibilities and consequences, citing the relevant rule.
-4. Each learner proposes and justifies a fair, lawful next step. Check that the recommendation protects affected people and uses the relevant civic process.
+1. Present a realistic civic case that directly reflects the right, duty, constitutional principle, government role, democratic process or social issue in the indicator.
+2. Identify the relevant constitutional or legal extract, stakeholders, institutions and civic terms. Model how to distinguish a right, responsibility, power, procedure and public interest.
+3. Learners analyse the case by tracing authority, participation, accountability, competing interests or consequences as appropriate to the indicator. Require evidence from the case and relevant rule.
+4. Learners develop a reasoned, fair and lawful civic response, proposal or conclusion. Check that the action is feasible and respects rights, duties and due process.
 
-**Resources:** a school/community case card, a stakeholder chart and the relevant child-rights, school-rule or civic-process extract.
+**Resources:** a current age-appropriate civic case card, relevant constitutional or legal extract, and a stakeholder or institutional-process diagram.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายความแตกต่างของการกระทำความผิดระหว่างคดีอาญา และคดีแพ่ง
 
-**Practical activity:** Present a realistic school or community case. Identify the people involved, the relevant right, duty, rule or civic process, and a fair next step. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a realistic civic or constitutional case aligned to the indicator. Learners identify the relevant rights, duties, institutions or process, analyse the stakeholders and consequences, and justify a fair, lawful response using the relevant rule.
 **Expected evidence:** Three completed responses that demonstrate SO2.1-M3-01: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “อธิบายความแตกต่างของการกระทำความผิดระหว่างคดีอาญา และคดีแพ่ง”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO2.1-M3-01 (อธิบายความแตกต่างของการกระทำความผิดระหว่างคดีอาญา และคดีแพ่ง). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in civics, rights and responsibilities: “อธิบายความแตกต่างของการกระทำความผิดระหว่างคดีอาญา และคดีแพ่ง”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO2.1-M3-01 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a school or community case related to “อธิบายความแตกต่างของการกระทำความผิดระหว่างคดีอาญา และคดีแพ่ง”. Identify stakeholders, the rights and responsibilities involved, the relevant rule or democratic process, and a justified solution. **Answer:** Identify stakeholders and applicable rights/responsibilities, use the civic rule or process in SO2.1-M3-01, and justify a feasible fair solution.
+1. **Recall / identify:** Read the civic or constitutional case and identify the exact right, duty, constitutional principle, institution, authority or process required by this indicator. Name the relevant stakeholders and cite two case details. This assesses: “อธิบายความแตกต่างของการกระทำความผิดระหว่างคดีอาญา และคดีแพ่ง”. **Answer:** Correctly identifies the civic or constitutional concept required by SO2.1-M3-01, relevant stakeholders/institutions and two supporting case details.
+2. **Explain / analyse:** Analyse how the rule, institution or civic principle in this indicator operates in the case. Explain the responsibilities or powers involved and analyse one consequence for the people or public interest, using evidence. This assesses: “อธิบายความแตกต่างของการกระทำความผิดระหว่างคดีอาญา และคดีแพ่ง”. **Answer:** Accurately explains the operation of the principle or institution, identifies relevant powers or responsibilities and analyses a consequence using evidence.
+3. **Apply / demonstrate:** Develop a fair, lawful and practical response to the case. Identify who should act, the relevant constitutional/legal procedure and how the proposal protects rights, responsibilities and public interest. Justify it with evidence. This assesses: “อธิบายความแตกต่างของการกระทำความผิดระหว่างคดีอาญา และคดีแพ่ง”. **Answer:** Proposes a feasible and lawful action, identifies the responsible actor and procedure, and justifies how it respects rights, duties and public interest.
 ### 19. SO2.1-M3-02
 
 - **Standard:** SO2.1
@@ -580,27 +562,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: มีส่วนร่วมในการปกป้องคุ้มครองผู้อื่นตามหลักสิทธิมนุษยชน
 **Suggested teaching sequence**
 
-1. Introduce a realistic school or community situation in which a right, duty, rule or public responsibility matters. Ask who is affected.
-2. Read the case and relevant rule/process together. Identify the people involved, the right or duty at stake, and the authority or process that applies.
-3. Model a stakeholder chart. Groups compare possible responses for fairness, rights, responsibilities and consequences, citing the relevant rule.
-4. Each learner proposes and justifies a fair, lawful next step. Check that the recommendation protects affected people and uses the relevant civic process.
+1. Present a realistic civic case that directly reflects the right, duty, constitutional principle, government role, democratic process or social issue in the indicator.
+2. Identify the relevant constitutional or legal extract, stakeholders, institutions and civic terms. Model how to distinguish a right, responsibility, power, procedure and public interest.
+3. Learners analyse the case by tracing authority, participation, accountability, competing interests or consequences as appropriate to the indicator. Require evidence from the case and relevant rule.
+4. Learners develop a reasoned, fair and lawful civic response, proposal or conclusion. Check that the action is feasible and respects rights, duties and due process.
 
-**Resources:** a school/community case card, a stakeholder chart and the relevant child-rights, school-rule or civic-process extract.
+**Resources:** a current age-appropriate civic case card, relevant constitutional or legal extract, and a stakeholder or institutional-process diagram.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: มีส่วนร่วมในการปกป้องคุ้มครองผู้อื่นตามหลักสิทธิมนุษยชน
 
-**Practical activity:** Present a realistic school or community case. Identify the people involved, the relevant right, duty, rule or civic process, and a fair next step. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a realistic civic or constitutional case aligned to the indicator. Learners identify the relevant rights, duties, institutions or process, analyse the stakeholders and consequences, and justify a fair, lawful response using the relevant rule.
 **Expected evidence:** Three completed responses that demonstrate SO2.1-M3-02: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “มีส่วนร่วมในการปกป้องคุ้มครองผู้อื่นตามหลักสิทธิมนุษยชน”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO2.1-M3-02 (มีส่วนร่วมในการปกป้องคุ้มครองผู้อื่นตามหลักสิทธิมนุษยชน). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in civics, rights and responsibilities: “มีส่วนร่วมในการปกป้องคุ้มครองผู้อื่นตามหลักสิทธิมนุษยชน”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO2.1-M3-02 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a school or community case related to “มีส่วนร่วมในการปกป้องคุ้มครองผู้อื่นตามหลักสิทธิมนุษยชน”. Identify stakeholders, the rights and responsibilities involved, the relevant rule or democratic process, and a justified solution. **Answer:** Identify stakeholders and applicable rights/responsibilities, use the civic rule or process in SO2.1-M3-02, and justify a feasible fair solution.
+1. **Recall / identify:** Read the civic or constitutional case and identify the exact right, duty, constitutional principle, institution, authority or process required by this indicator. Name the relevant stakeholders and cite two case details. This assesses: “มีส่วนร่วมในการปกป้องคุ้มครองผู้อื่นตามหลักสิทธิมนุษยชน”. **Answer:** Correctly identifies the civic or constitutional concept required by SO2.1-M3-02, relevant stakeholders/institutions and two supporting case details.
+2. **Explain / analyse:** Analyse how the rule, institution or civic principle in this indicator operates in the case. Explain the responsibilities or powers involved and analyse one consequence for the people or public interest, using evidence. This assesses: “มีส่วนร่วมในการปกป้องคุ้มครองผู้อื่นตามหลักสิทธิมนุษยชน”. **Answer:** Accurately explains the operation of the principle or institution, identifies relevant powers or responsibilities and analyses a consequence using evidence.
+3. **Apply / demonstrate:** Develop a fair, lawful and practical response to the case. Identify who should act, the relevant constitutional/legal procedure and how the proposal protects rights, responsibilities and public interest. Justify it with evidence. This assesses: “มีส่วนร่วมในการปกป้องคุ้มครองผู้อื่นตามหลักสิทธิมนุษยชน”. **Answer:** Proposes a feasible and lawful action, identifies the responsible actor and procedure, and justifies how it respects rights, duties and public interest.
 ### 20. SO2.1-M3-03
 
 - **Standard:** SO2.1
@@ -611,27 +592,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: อนุรักษ์วัฒนธรรมไทยและเลือกรับวัฒนธรรมสากลที่เหมาะสม
 **Suggested teaching sequence**
 
-1. Introduce a realistic school or community situation in which a right, duty, rule or public responsibility matters. Ask who is affected.
-2. Read the case and relevant rule/process together. Identify the people involved, the right or duty at stake, and the authority or process that applies.
-3. Model a stakeholder chart. Groups compare possible responses for fairness, rights, responsibilities and consequences, citing the relevant rule.
-4. Each learner proposes and justifies a fair, lawful next step. Check that the recommendation protects affected people and uses the relevant civic process.
+1. Present a realistic civic case that directly reflects the right, duty, constitutional principle, government role, democratic process or social issue in the indicator.
+2. Identify the relevant constitutional or legal extract, stakeholders, institutions and civic terms. Model how to distinguish a right, responsibility, power, procedure and public interest.
+3. Learners analyse the case by tracing authority, participation, accountability, competing interests or consequences as appropriate to the indicator. Require evidence from the case and relevant rule.
+4. Learners develop a reasoned, fair and lawful civic response, proposal or conclusion. Check that the action is feasible and respects rights, duties and due process.
 
-**Resources:** a school/community case card, a stakeholder chart and the relevant child-rights, school-rule or civic-process extract.
+**Resources:** a current age-appropriate civic case card, relevant constitutional or legal extract, and a stakeholder or institutional-process diagram.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อนุรักษ์วัฒนธรรมไทยและเลือกรับวัฒนธรรมสากลที่เหมาะสม
 
-**Practical activity:** Present a realistic school or community case. Identify the people involved, the relevant right, duty, rule or civic process, and a fair next step. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a realistic civic or constitutional case aligned to the indicator. Learners identify the relevant rights, duties, institutions or process, analyse the stakeholders and consequences, and justify a fair, lawful response using the relevant rule.
 **Expected evidence:** Three completed responses that demonstrate SO2.1-M3-03: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “อนุรักษ์วัฒนธรรมไทยและเลือกรับวัฒนธรรมสากลที่เหมาะสม”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO2.1-M3-03 (อนุรักษ์วัฒนธรรมไทยและเลือกรับวัฒนธรรมสากลที่เหมาะสม). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in civics, rights and responsibilities: “อนุรักษ์วัฒนธรรมไทยและเลือกรับวัฒนธรรมสากลที่เหมาะสม”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO2.1-M3-03 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a school or community case related to “อนุรักษ์วัฒนธรรมไทยและเลือกรับวัฒนธรรมสากลที่เหมาะสม”. Identify stakeholders, the rights and responsibilities involved, the relevant rule or democratic process, and a justified solution. **Answer:** Identify stakeholders and applicable rights/responsibilities, use the civic rule or process in SO2.1-M3-03, and justify a feasible fair solution.
+1. **Recall / identify:** Read the civic or constitutional case and identify the exact right, duty, constitutional principle, institution, authority or process required by this indicator. Name the relevant stakeholders and cite two case details. This assesses: “อนุรักษ์วัฒนธรรมไทยและเลือกรับวัฒนธรรมสากลที่เหมาะสม”. **Answer:** Correctly identifies the civic or constitutional concept required by SO2.1-M3-03, relevant stakeholders/institutions and two supporting case details.
+2. **Explain / analyse:** Analyse how the rule, institution or civic principle in this indicator operates in the case. Explain the responsibilities or powers involved and analyse one consequence for the people or public interest, using evidence. This assesses: “อนุรักษ์วัฒนธรรมไทยและเลือกรับวัฒนธรรมสากลที่เหมาะสม”. **Answer:** Accurately explains the operation of the principle or institution, identifies relevant powers or responsibilities and analyses a consequence using evidence.
+3. **Apply / demonstrate:** Develop a fair, lawful and practical response to the case. Identify who should act, the relevant constitutional/legal procedure and how the proposal protects rights, responsibilities and public interest. Justify it with evidence. This assesses: “อนุรักษ์วัฒนธรรมไทยและเลือกรับวัฒนธรรมสากลที่เหมาะสม”. **Answer:** Proposes a feasible and lawful action, identifies the responsible actor and procedure, and justifies how it respects rights, duties and public interest.
 ### 21. SO2.1-M3-04
 
 - **Standard:** SO2.1
@@ -642,27 +622,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: วิเคราะห์ปัจจัยที่ก่อให้เกิดปัญหาความขัดแย้งในประเทศ และเสนอแนวคิดในการลดความขัดแย้ง
 **Suggested teaching sequence**
 
-1. Introduce a realistic school or community situation in which a right, duty, rule or public responsibility matters. Ask who is affected.
-2. Read the case and relevant rule/process together. Identify the people involved, the right or duty at stake, and the authority or process that applies.
-3. Model a stakeholder chart. Groups compare possible responses for fairness, rights, responsibilities and consequences, citing the relevant rule.
-4. Each learner proposes and justifies a fair, lawful next step. Check that the recommendation protects affected people and uses the relevant civic process.
+1. Present a realistic civic case that directly reflects the right, duty, constitutional principle, government role, democratic process or social issue in the indicator.
+2. Identify the relevant constitutional or legal extract, stakeholders, institutions and civic terms. Model how to distinguish a right, responsibility, power, procedure and public interest.
+3. Learners analyse the case by tracing authority, participation, accountability, competing interests or consequences as appropriate to the indicator. Require evidence from the case and relevant rule.
+4. Learners develop a reasoned, fair and lawful civic response, proposal or conclusion. Check that the action is feasible and respects rights, duties and due process.
 
-**Resources:** a school/community case card, a stakeholder chart and the relevant child-rights, school-rule or civic-process extract.
+**Resources:** a current age-appropriate civic case card, relevant constitutional or legal extract, and a stakeholder or institutional-process diagram.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์ปัจจัยที่ก่อให้เกิดปัญหาความขัดแย้งในประเทศ และเสนอแนวคิดในการลดความขัดแย้ง
 
-**Practical activity:** Present a realistic school or community case. Identify the people involved, the relevant right, duty, rule or civic process, and a fair next step. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a realistic civic or constitutional case aligned to the indicator. Learners identify the relevant rights, duties, institutions or process, analyse the stakeholders and consequences, and justify a fair, lawful response using the relevant rule.
 **Expected evidence:** Three completed responses that demonstrate SO2.1-M3-04: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “วิเคราะห์ปัจจัยที่ก่อให้เกิดปัญหาความขัดแย้งในประเทศ และเสนอแนวคิดในการลดความขัดแย้ง”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO2.1-M3-04 (วิเคราะห์ปัจจัยที่ก่อให้เกิดปัญหาความขัดแย้งในประเทศ และเสนอแนวคิดในการลดความขัดแย้ง). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in civics, rights and responsibilities: “วิเคราะห์ปัจจัยที่ก่อให้เกิดปัญหาความขัดแย้งในประเทศ และเสนอแนวคิดในการลดความขัดแย้ง”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO2.1-M3-04 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a school or community case related to “วิเคราะห์ปัจจัยที่ก่อให้เกิดปัญหาความขัดแย้งในประเทศ และเสนอแนวคิดในการลดความขัดแย้ง”. Identify stakeholders, the rights and responsibilities involved, the relevant rule or democratic process, and a justified solution. **Answer:** Identify stakeholders and applicable rights/responsibilities, use the civic rule or process in SO2.1-M3-04, and justify a feasible fair solution.
+1. **Recall / identify:** Read the civic or constitutional case and identify the exact right, duty, constitutional principle, institution, authority or process required by this indicator. Name the relevant stakeholders and cite two case details. This assesses: “วิเคราะห์ปัจจัยที่ก่อให้เกิดปัญหาความขัดแย้งในประเทศ และเสนอแนวคิดในการลดความขัดแย้ง”. **Answer:** Correctly identifies the civic or constitutional concept required by SO2.1-M3-04, relevant stakeholders/institutions and two supporting case details.
+2. **Explain / analyse:** Analyse how the rule, institution or civic principle in this indicator operates in the case. Explain the responsibilities or powers involved and analyse one consequence for the people or public interest, using evidence. This assesses: “วิเคราะห์ปัจจัยที่ก่อให้เกิดปัญหาความขัดแย้งในประเทศ และเสนอแนวคิดในการลดความขัดแย้ง”. **Answer:** Accurately explains the operation of the principle or institution, identifies relevant powers or responsibilities and analyses a consequence using evidence.
+3. **Apply / demonstrate:** Develop a fair, lawful and practical response to the case. Identify who should act, the relevant constitutional/legal procedure and how the proposal protects rights, responsibilities and public interest. Justify it with evidence. This assesses: “วิเคราะห์ปัจจัยที่ก่อให้เกิดปัญหาความขัดแย้งในประเทศ และเสนอแนวคิดในการลดความขัดแย้ง”. **Answer:** Proposes a feasible and lawful action, identifies the responsible actor and procedure, and justifies how it respects rights, duties and public interest.
 ### 22. SO2.1-M3-05
 
 - **Standard:** SO2.1
@@ -673,27 +652,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: เสนอแนวคิดในการดำรงชีวิตอย่างมีความสุขในประเทศและสังคมโลก
 **Suggested teaching sequence**
 
-1. Introduce a realistic school or community situation in which a right, duty, rule or public responsibility matters. Ask who is affected.
-2. Read the case and relevant rule/process together. Identify the people involved, the right or duty at stake, and the authority or process that applies.
-3. Model a stakeholder chart. Groups compare possible responses for fairness, rights, responsibilities and consequences, citing the relevant rule.
-4. Each learner proposes and justifies a fair, lawful next step. Check that the recommendation protects affected people and uses the relevant civic process.
+1. Present a realistic civic case that directly reflects the right, duty, constitutional principle, government role, democratic process or social issue in the indicator.
+2. Identify the relevant constitutional or legal extract, stakeholders, institutions and civic terms. Model how to distinguish a right, responsibility, power, procedure and public interest.
+3. Learners analyse the case by tracing authority, participation, accountability, competing interests or consequences as appropriate to the indicator. Require evidence from the case and relevant rule.
+4. Learners develop a reasoned, fair and lawful civic response, proposal or conclusion. Check that the action is feasible and respects rights, duties and due process.
 
-**Resources:** a school/community case card, a stakeholder chart and the relevant child-rights, school-rule or civic-process extract.
+**Resources:** a current age-appropriate civic case card, relevant constitutional or legal extract, and a stakeholder or institutional-process diagram.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: เสนอแนวคิดในการดำรงชีวิตอย่างมีความสุขในประเทศและสังคมโลก
 
-**Practical activity:** Present a realistic school or community case. Identify the people involved, the relevant right, duty, rule or civic process, and a fair next step. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a realistic civic or constitutional case aligned to the indicator. Learners identify the relevant rights, duties, institutions or process, analyse the stakeholders and consequences, and justify a fair, lawful response using the relevant rule.
 **Expected evidence:** Three completed responses that demonstrate SO2.1-M3-05: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “เสนอแนวคิดในการดำรงชีวิตอย่างมีความสุขในประเทศและสังคมโลก”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO2.1-M3-05 (เสนอแนวคิดในการดำรงชีวิตอย่างมีความสุขในประเทศและสังคมโลก). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in civics, rights and responsibilities: “เสนอแนวคิดในการดำรงชีวิตอย่างมีความสุขในประเทศและสังคมโลก”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO2.1-M3-05 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a school or community case related to “เสนอแนวคิดในการดำรงชีวิตอย่างมีความสุขในประเทศและสังคมโลก”. Identify stakeholders, the rights and responsibilities involved, the relevant rule or democratic process, and a justified solution. **Answer:** Identify stakeholders and applicable rights/responsibilities, use the civic rule or process in SO2.1-M3-05, and justify a feasible fair solution.
+1. **Recall / identify:** Read the civic or constitutional case and identify the exact right, duty, constitutional principle, institution, authority or process required by this indicator. Name the relevant stakeholders and cite two case details. This assesses: “เสนอแนวคิดในการดำรงชีวิตอย่างมีความสุขในประเทศและสังคมโลก”. **Answer:** Correctly identifies the civic or constitutional concept required by SO2.1-M3-05, relevant stakeholders/institutions and two supporting case details.
+2. **Explain / analyse:** Analyse how the rule, institution or civic principle in this indicator operates in the case. Explain the responsibilities or powers involved and analyse one consequence for the people or public interest, using evidence. This assesses: “เสนอแนวคิดในการดำรงชีวิตอย่างมีความสุขในประเทศและสังคมโลก”. **Answer:** Accurately explains the operation of the principle or institution, identifies relevant powers or responsibilities and analyses a consequence using evidence.
+3. **Apply / demonstrate:** Develop a fair, lawful and practical response to the case. Identify who should act, the relevant constitutional/legal procedure and how the proposal protects rights, responsibilities and public interest. Justify it with evidence. This assesses: “เสนอแนวคิดในการดำรงชีวิตอย่างมีความสุขในประเทศและสังคมโลก”. **Answer:** Proposes a feasible and lawful action, identifies the responsible actor and procedure, and justifies how it respects rights, duties and public interest.
 ### 23. SO2.2-M3-01
 
 - **Standard:** SO2.2
@@ -704,27 +682,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: อธิบายระบอบการปกครองแบบต่าง ๆ ที่ใช้ในยุคปัจจุบัน
 **Suggested teaching sequence**
 
-1. Introduce a realistic school or community situation in which a right, duty, rule or public responsibility matters. Ask who is affected.
-2. Read the case and relevant rule/process together. Identify the people involved, the right or duty at stake, and the authority or process that applies.
-3. Model a stakeholder chart. Groups compare possible responses for fairness, rights, responsibilities and consequences, citing the relevant rule.
-4. Each learner proposes and justifies a fair, lawful next step. Check that the recommendation protects affected people and uses the relevant civic process.
+1. Present a realistic civic case that directly reflects the right, duty, constitutional principle, government role, democratic process or social issue in the indicator.
+2. Identify the relevant constitutional or legal extract, stakeholders, institutions and civic terms. Model how to distinguish a right, responsibility, power, procedure and public interest.
+3. Learners analyse the case by tracing authority, participation, accountability, competing interests or consequences as appropriate to the indicator. Require evidence from the case and relevant rule.
+4. Learners develop a reasoned, fair and lawful civic response, proposal or conclusion. Check that the action is feasible and respects rights, duties and due process.
 
-**Resources:** a school/community case card, a stakeholder chart and the relevant child-rights, school-rule or civic-process extract.
+**Resources:** a current age-appropriate civic case card, relevant constitutional or legal extract, and a stakeholder or institutional-process diagram.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายระบอบการปกครองแบบต่าง ๆ ที่ใช้ในยุคปัจจุบัน
 
-**Practical activity:** Present a realistic school or community case. Identify the people involved, the relevant right, duty, rule or civic process, and a fair next step. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a realistic civic or constitutional case aligned to the indicator. Learners identify the relevant rights, duties, institutions or process, analyse the stakeholders and consequences, and justify a fair, lawful response using the relevant rule.
 **Expected evidence:** Three completed responses that demonstrate SO2.2-M3-01: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “อธิบายระบอบการปกครองแบบต่าง ๆ ที่ใช้ในยุคปัจจุบัน”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO2.2-M3-01 (อธิบายระบอบการปกครองแบบต่าง ๆ ที่ใช้ในยุคปัจจุบัน). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in civics, rights and responsibilities: “อธิบายระบอบการปกครองแบบต่าง ๆ ที่ใช้ในยุคปัจจุบัน”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO2.2-M3-01 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a school or community case related to “อธิบายระบอบการปกครองแบบต่าง ๆ ที่ใช้ในยุคปัจจุบัน”. Identify stakeholders, the rights and responsibilities involved, the relevant rule or democratic process, and a justified solution. **Answer:** Identify stakeholders and applicable rights/responsibilities, use the civic rule or process in SO2.2-M3-01, and justify a feasible fair solution.
+1. **Recall / identify:** Read the civic or constitutional case and identify the exact right, duty, constitutional principle, institution, authority or process required by this indicator. Name the relevant stakeholders and cite two case details. This assesses: “อธิบายระบอบการปกครองแบบต่าง ๆ ที่ใช้ในยุคปัจจุบัน”. **Answer:** Correctly identifies the civic or constitutional concept required by SO2.2-M3-01, relevant stakeholders/institutions and two supporting case details.
+2. **Explain / analyse:** Analyse how the rule, institution or civic principle in this indicator operates in the case. Explain the responsibilities or powers involved and analyse one consequence for the people or public interest, using evidence. This assesses: “อธิบายระบอบการปกครองแบบต่าง ๆ ที่ใช้ในยุคปัจจุบัน”. **Answer:** Accurately explains the operation of the principle or institution, identifies relevant powers or responsibilities and analyses a consequence using evidence.
+3. **Apply / demonstrate:** Develop a fair, lawful and practical response to the case. Identify who should act, the relevant constitutional/legal procedure and how the proposal protects rights, responsibilities and public interest. Justify it with evidence. This assesses: “อธิบายระบอบการปกครองแบบต่าง ๆ ที่ใช้ในยุคปัจจุบัน”. **Answer:** Proposes a feasible and lawful action, identifies the responsible actor and procedure, and justifies how it respects rights, duties and public interest.
 ### 24. SO2.2-M3-02
 
 - **Standard:** SO2.2
@@ -735,27 +712,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: วิเคราะห์ เปรียบเทียบระบอบการปกครองของไทยกับประเทศอื่น ๆ ที่มีการปกครองระบอบประชาธิปไตย
 **Suggested teaching sequence**
 
-1. Introduce a realistic school or community situation in which a right, duty, rule or public responsibility matters. Ask who is affected.
-2. Read the case and relevant rule/process together. Identify the people involved, the right or duty at stake, and the authority or process that applies.
-3. Model a stakeholder chart. Groups compare possible responses for fairness, rights, responsibilities and consequences, citing the relevant rule.
-4. Each learner proposes and justifies a fair, lawful next step. Check that the recommendation protects affected people and uses the relevant civic process.
+1. Present a realistic civic case that directly reflects the right, duty, constitutional principle, government role, democratic process or social issue in the indicator.
+2. Identify the relevant constitutional or legal extract, stakeholders, institutions and civic terms. Model how to distinguish a right, responsibility, power, procedure and public interest.
+3. Learners analyse the case by tracing authority, participation, accountability, competing interests or consequences as appropriate to the indicator. Require evidence from the case and relevant rule.
+4. Learners develop a reasoned, fair and lawful civic response, proposal or conclusion. Check that the action is feasible and respects rights, duties and due process.
 
-**Resources:** a school/community case card, a stakeholder chart and the relevant child-rights, school-rule or civic-process extract.
+**Resources:** a current age-appropriate civic case card, relevant constitutional or legal extract, and a stakeholder or institutional-process diagram.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์ เปรียบเทียบระบอบการปกครองของไทยกับประเทศอื่น ๆ ที่มีการปกครองระบอบประชาธิปไตย
 
-**Practical activity:** Present a realistic school or community case. Identify the people involved, the relevant right, duty, rule or civic process, and a fair next step. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a realistic civic or constitutional case aligned to the indicator. Learners identify the relevant rights, duties, institutions or process, analyse the stakeholders and consequences, and justify a fair, lawful response using the relevant rule.
 **Expected evidence:** Three completed responses that demonstrate SO2.2-M3-02: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “วิเคราะห์ เปรียบเทียบระบอบการปกครองของไทยกับประเทศอื่น ๆ ที่มีการปกครองระบอบประชาธิปไตย”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO2.2-M3-02 (วิเคราะห์ เปรียบเทียบระบอบการปกครองของไทยกับประเทศอื่น ๆ ที่มีการปกครองระบอบประชาธิปไตย). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in civics, rights and responsibilities: “วิเคราะห์ เปรียบเทียบระบอบการปกครองของไทยกับประเทศอื่น ๆ ที่มีการปกครองระบอบประชาธิปไตย”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO2.2-M3-02 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a school or community case related to “วิเคราะห์ เปรียบเทียบระบอบการปกครองของไทยกับประเทศอื่น ๆ ที่มีการปกครองระบอบประชาธิปไตย”. Identify stakeholders, the rights and responsibilities involved, the relevant rule or democratic process, and a justified solution. **Answer:** Identify stakeholders and applicable rights/responsibilities, use the civic rule or process in SO2.2-M3-02, and justify a feasible fair solution.
+1. **Recall / identify:** Read the civic or constitutional case and identify the exact right, duty, constitutional principle, institution, authority or process required by this indicator. Name the relevant stakeholders and cite two case details. This assesses: “วิเคราะห์ เปรียบเทียบระบอบการปกครองของไทยกับประเทศอื่น ๆ ที่มีการปกครองระบอบประชาธิปไตย”. **Answer:** Correctly identifies the civic or constitutional concept required by SO2.2-M3-02, relevant stakeholders/institutions and two supporting case details.
+2. **Explain / analyse:** Analyse how the rule, institution or civic principle in this indicator operates in the case. Explain the responsibilities or powers involved and analyse one consequence for the people or public interest, using evidence. This assesses: “วิเคราะห์ เปรียบเทียบระบอบการปกครองของไทยกับประเทศอื่น ๆ ที่มีการปกครองระบอบประชาธิปไตย”. **Answer:** Accurately explains the operation of the principle or institution, identifies relevant powers or responsibilities and analyses a consequence using evidence.
+3. **Apply / demonstrate:** Develop a fair, lawful and practical response to the case. Identify who should act, the relevant constitutional/legal procedure and how the proposal protects rights, responsibilities and public interest. Justify it with evidence. This assesses: “วิเคราะห์ เปรียบเทียบระบอบการปกครองของไทยกับประเทศอื่น ๆ ที่มีการปกครองระบอบประชาธิปไตย”. **Answer:** Proposes a feasible and lawful action, identifies the responsible actor and procedure, and justifies how it respects rights, duties and public interest.
 ### 25. SO2.2-M3-03
 
 - **Standard:** SO2.2
@@ -766,27 +742,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: วิเคราะห์รัฐธรรมนูญฉบับปัจจุบันในมาตราต่าง ๆ ที่เกี่ยวข้องกับการเลือกตั้ง การมีส่วนร่วม และการตรวจสอบการใช้อำนาจรัฐ
 **Suggested teaching sequence**
 
-1. Introduce a realistic school or community situation in which a right, duty, rule or public responsibility matters. Ask who is affected.
-2. Read the case and relevant rule/process together. Identify the people involved, the right or duty at stake, and the authority or process that applies.
-3. Model a stakeholder chart. Groups compare possible responses for fairness, rights, responsibilities and consequences, citing the relevant rule.
-4. Each learner proposes and justifies a fair, lawful next step. Check that the recommendation protects affected people and uses the relevant civic process.
+1. Present a realistic civic case that directly reflects the right, duty, constitutional principle, government role, democratic process or social issue in the indicator.
+2. Identify the relevant constitutional or legal extract, stakeholders, institutions and civic terms. Model how to distinguish a right, responsibility, power, procedure and public interest.
+3. Learners analyse the case by tracing authority, participation, accountability, competing interests or consequences as appropriate to the indicator. Require evidence from the case and relevant rule.
+4. Learners develop a reasoned, fair and lawful civic response, proposal or conclusion. Check that the action is feasible and respects rights, duties and due process.
 
-**Resources:** a school/community case card, a stakeholder chart and the relevant child-rights, school-rule or civic-process extract.
+**Resources:** a current age-appropriate civic case card, relevant constitutional or legal extract, and a stakeholder or institutional-process diagram.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์รัฐธรรมนูญฉบับปัจจุบันในมาตราต่าง ๆ ที่เกี่ยวข้องกับการเลือกตั้ง การมีส่วนร่วม และการตรวจสอบการใช้อำนาจรัฐ
 
-**Practical activity:** Present a realistic school or community case. Identify the people involved, the relevant right, duty, rule or civic process, and a fair next step. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a realistic civic or constitutional case aligned to the indicator. Learners identify the relevant rights, duties, institutions or process, analyse the stakeholders and consequences, and justify a fair, lawful response using the relevant rule.
 **Expected evidence:** Three completed responses that demonstrate SO2.2-M3-03: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “วิเคราะห์รัฐธรรมนูญฉบับปัจจุบันในมาตราต่าง ๆ ที่เกี่ยวข้องกับการเลือกตั้ง การมีส่วนร่วม และการตรวจสอบการใช้อำนาจรัฐ”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO2.2-M3-03 (วิเคราะห์รัฐธรรมนูญฉบับปัจจุบันในมาตราต่าง ๆ ที่เกี่ยวข้องกับการเลือกตั้ง การมีส่วนร่วม และการตรวจสอบการใช้อำนาจรัฐ). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in civics, rights and responsibilities: “วิเคราะห์รัฐธรรมนูญฉบับปัจจุบันในมาตราต่าง ๆ ที่เกี่ยวข้องกับการเลือกตั้ง การมีส่วนร่วม และการตรวจสอบการใช้อำนาจรัฐ”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO2.2-M3-03 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a school or community case related to “วิเคราะห์รัฐธรรมนูญฉบับปัจจุบันในมาตราต่าง ๆ ที่เกี่ยวข้องกับการเลือกตั้ง การมีส่วนร่วม และการตรวจสอบการใช้อำนาจรัฐ”. Identify stakeholders, the rights and responsibilities involved, the relevant rule or democratic process, and a justified solution. **Answer:** Identify stakeholders and applicable rights/responsibilities, use the civic rule or process in SO2.2-M3-03, and justify a feasible fair solution.
+1. **Recall / identify:** Read the civic or constitutional case and identify the exact right, duty, constitutional principle, institution, authority or process required by this indicator. Name the relevant stakeholders and cite two case details. This assesses: “วิเคราะห์รัฐธรรมนูญฉบับปัจจุบันในมาตราต่าง ๆ ที่เกี่ยวข้องกับการเลือกตั้ง การมีส่วนร่วม และการตรวจสอบการใช้อำนาจรัฐ”. **Answer:** Correctly identifies the civic or constitutional concept required by SO2.2-M3-03, relevant stakeholders/institutions and two supporting case details.
+2. **Explain / analyse:** Analyse how the rule, institution or civic principle in this indicator operates in the case. Explain the responsibilities or powers involved and analyse one consequence for the people or public interest, using evidence. This assesses: “วิเคราะห์รัฐธรรมนูญฉบับปัจจุบันในมาตราต่าง ๆ ที่เกี่ยวข้องกับการเลือกตั้ง การมีส่วนร่วม และการตรวจสอบการใช้อำนาจรัฐ”. **Answer:** Accurately explains the operation of the principle or institution, identifies relevant powers or responsibilities and analyses a consequence using evidence.
+3. **Apply / demonstrate:** Develop a fair, lawful and practical response to the case. Identify who should act, the relevant constitutional/legal procedure and how the proposal protects rights, responsibilities and public interest. Justify it with evidence. This assesses: “วิเคราะห์รัฐธรรมนูญฉบับปัจจุบันในมาตราต่าง ๆ ที่เกี่ยวข้องกับการเลือกตั้ง การมีส่วนร่วม และการตรวจสอบการใช้อำนาจรัฐ”. **Answer:** Proposes a feasible and lawful action, identifies the responsible actor and procedure, and justifies how it respects rights, duties and public interest.
 ### 26. SO2.2-M3-04
 
 - **Standard:** SO2.2
@@ -797,27 +772,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: วิเคราะห์ประเด็นปัญหาที่เป็นอุปสรรคต่อการพัฒนาประชาธิปไตยของประเทศไทยและเสนอแนวทางแก้ไข
 **Suggested teaching sequence**
 
-1. Introduce a realistic school or community situation in which a right, duty, rule or public responsibility matters. Ask who is affected.
-2. Read the case and relevant rule/process together. Identify the people involved, the right or duty at stake, and the authority or process that applies.
-3. Model a stakeholder chart. Groups compare possible responses for fairness, rights, responsibilities and consequences, citing the relevant rule.
-4. Each learner proposes and justifies a fair, lawful next step. Check that the recommendation protects affected people and uses the relevant civic process.
+1. Present a realistic civic case that directly reflects the right, duty, constitutional principle, government role, democratic process or social issue in the indicator.
+2. Identify the relevant constitutional or legal extract, stakeholders, institutions and civic terms. Model how to distinguish a right, responsibility, power, procedure and public interest.
+3. Learners analyse the case by tracing authority, participation, accountability, competing interests or consequences as appropriate to the indicator. Require evidence from the case and relevant rule.
+4. Learners develop a reasoned, fair and lawful civic response, proposal or conclusion. Check that the action is feasible and respects rights, duties and due process.
 
-**Resources:** a school/community case card, a stakeholder chart and the relevant child-rights, school-rule or civic-process extract.
+**Resources:** a current age-appropriate civic case card, relevant constitutional or legal extract, and a stakeholder or institutional-process diagram.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์ประเด็นปัญหาที่เป็นอุปสรรคต่อการพัฒนาประชาธิปไตยของประเทศไทยและเสนอแนวทางแก้ไข
 
-**Practical activity:** Present a realistic school or community case. Identify the people involved, the relevant right, duty, rule or civic process, and a fair next step. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use a realistic civic or constitutional case aligned to the indicator. Learners identify the relevant rights, duties, institutions or process, analyse the stakeholders and consequences, and justify a fair, lawful response using the relevant rule.
 **Expected evidence:** Three completed responses that demonstrate SO2.2-M3-04: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “วิเคราะห์ประเด็นปัญหาที่เป็นอุปสรรคต่อการพัฒนาประชาธิปไตยของประเทศไทยและเสนอแนวทางแก้ไข”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO2.2-M3-04 (วิเคราะห์ประเด็นปัญหาที่เป็นอุปสรรคต่อการพัฒนาประชาธิปไตยของประเทศไทยและเสนอแนวทางแก้ไข). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in civics, rights and responsibilities: “วิเคราะห์ประเด็นปัญหาที่เป็นอุปสรรคต่อการพัฒนาประชาธิปไตยของประเทศไทยและเสนอแนวทางแก้ไข”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO2.2-M3-04 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a school or community case related to “วิเคราะห์ประเด็นปัญหาที่เป็นอุปสรรคต่อการพัฒนาประชาธิปไตยของประเทศไทยและเสนอแนวทางแก้ไข”. Identify stakeholders, the rights and responsibilities involved, the relevant rule or democratic process, and a justified solution. **Answer:** Identify stakeholders and applicable rights/responsibilities, use the civic rule or process in SO2.2-M3-04, and justify a feasible fair solution.
+1. **Recall / identify:** Read the civic or constitutional case and identify the exact right, duty, constitutional principle, institution, authority or process required by this indicator. Name the relevant stakeholders and cite two case details. This assesses: “วิเคราะห์ประเด็นปัญหาที่เป็นอุปสรรคต่อการพัฒนาประชาธิปไตยของประเทศไทยและเสนอแนวทางแก้ไข”. **Answer:** Correctly identifies the civic or constitutional concept required by SO2.2-M3-04, relevant stakeholders/institutions and two supporting case details.
+2. **Explain / analyse:** Analyse how the rule, institution or civic principle in this indicator operates in the case. Explain the responsibilities or powers involved and analyse one consequence for the people or public interest, using evidence. This assesses: “วิเคราะห์ประเด็นปัญหาที่เป็นอุปสรรคต่อการพัฒนาประชาธิปไตยของประเทศไทยและเสนอแนวทางแก้ไข”. **Answer:** Accurately explains the operation of the principle or institution, identifies relevant powers or responsibilities and analyses a consequence using evidence.
+3. **Apply / demonstrate:** Develop a fair, lawful and practical response to the case. Identify who should act, the relevant constitutional/legal procedure and how the proposal protects rights, responsibilities and public interest. Justify it with evidence. This assesses: “วิเคราะห์ประเด็นปัญหาที่เป็นอุปสรรคต่อการพัฒนาประชาธิปไตยของประเทศไทยและเสนอแนวทางแก้ไข”. **Answer:** Proposes a feasible and lawful action, identifies the responsible actor and procedure, and justifies how it respects rights, duties and public interest.
 ### 27. SO3.1-M3-01
 
 - **Standard:** SO3.1
@@ -828,27 +802,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: อธิบายกลไกราคาในระบบเศรษฐกิจ
 **Suggested teaching sequence**
 
-1. Present a familiar choice involving needs, wants, limited resources, work, goods, services or money. Ask learners what must be decided.
-2. Identify the resources and constraints in the case. Model the relevant economic concept using a simple table, picture, calculation or flow diagram.
-3. Pairs compare at least two choices, considering costs, benefits, opportunity, scarcity or effects on people as required by the indicator.
-4. Learners complete an individual decision or recommendation and justify it with evidence from the case. Assess the economic reasoning, not merely the selected option.
+1. Introduce a household, business, community or national economic case that illustrates the exact economic concept named in the indicator.
+2. Identify the actors, resources, constraints and data. Model the relevant economic vocabulary and any calculation, graph, budget, flow or comparison needed.
+3. Learners analyse the relevant relationship: scarcity and choice, production and consumption, finance, saving, investment, market forces, interdependence or government policy, as specified by the indicator.
+4. Learners make and justify an economic decision or explanation using evidence. Check calculations, assumptions, trade-offs and the effect on relevant stakeholders.
 
-**Resources:** a household, school or community decision card, a simple budget/resource table and a price, needs or production example.
+**Resources:** a household, business or national economic case, a relevant data table or graph, and a calculation or decision organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายกลไกราคาในระบบเศรษฐกิจ
 
-**Practical activity:** Use a familiar household, workplace or community decision. Identify the relevant resources, choices, costs, benefits or economic relationships and justify a responsible decision. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use an evidence-based economic case with realistic figures or source information. Learners interpret the relevant data, analyse the economic relationship named in the indicator, compare possible choices and justify a decision or conclusion.
 **Expected evidence:** Three completed responses that demonstrate SO3.1-M3-01: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “อธิบายกลไกราคาในระบบเศรษฐกิจ”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO3.1-M3-01 (อธิบายกลไกราคาในระบบเศรษฐกิจ). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in economics and resource decisions: “อธิบายกลไกราคาในระบบเศรษฐกิจ”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO3.1-M3-01 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a household, business or community case connected to “อธิบายกลไกราคาในระบบเศรษฐกิจ”. Identify the scarce resource or economic choice, compare two options, and justify a decision using evidence from the case. **Answer:** Apply the economic concept in SO3.1-M3-01, identify the relevant resource/choice or relationship, compare options and support a reasoned decision with case evidence.
+1. **Recall / identify:** Study the economic case, graph or data table. Identify the economic concept, actors, resources and two figures or facts needed to address this indicator. This assesses: “อธิบายกลไกราคาในระบบเศรษฐกิจ”. **Answer:** Correctly identifies the economic concept, relevant actors/resources and two accurate data points or facts from the case.
+2. **Explain / analyse:** Analyse the economic relationship required by the indicator. Show the relevant calculation, comparison, trend or cause-and-effect link and explain its impact on the actors involved. This assesses: “อธิบายกลไกราคาในระบบเศรษฐกิจ”. **Answer:** Uses the data accurately and explains the specific economic relationship in the indicator, including a correct calculation/comparison where needed and its effect on relevant actors.
+3. **Apply / demonstrate:** Make an evidence-based economic recommendation or conclusion. Compare at least two options or explanations, identify the relevant cost, benefit, trade-off or risk, and justify your choice with the supplied evidence. This assesses: “อธิบายกลไกราคาในระบบเศรษฐกิจ”. **Answer:** Compares realistic alternatives and justifies a coherent decision or conclusion with accurate economic reasoning; accept alternative conclusions when evidence supports them.
 ### 28. SO3.1-M3-02
 
 - **Standard:** SO3.1
@@ -859,27 +832,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: มีส่วนร่วมในการแก้ไขปัญหาและพัฒนาท้องถิ่นตามปรัชญาของเศรษฐกิจพอเพียง
 **Suggested teaching sequence**
 
-1. Present a familiar choice involving needs, wants, limited resources, work, goods, services or money. Ask learners what must be decided.
-2. Identify the resources and constraints in the case. Model the relevant economic concept using a simple table, picture, calculation or flow diagram.
-3. Pairs compare at least two choices, considering costs, benefits, opportunity, scarcity or effects on people as required by the indicator.
-4. Learners complete an individual decision or recommendation and justify it with evidence from the case. Assess the economic reasoning, not merely the selected option.
+1. Introduce a household, business, community or national economic case that illustrates the exact economic concept named in the indicator.
+2. Identify the actors, resources, constraints and data. Model the relevant economic vocabulary and any calculation, graph, budget, flow or comparison needed.
+3. Learners analyse the relevant relationship: scarcity and choice, production and consumption, finance, saving, investment, market forces, interdependence or government policy, as specified by the indicator.
+4. Learners make and justify an economic decision or explanation using evidence. Check calculations, assumptions, trade-offs and the effect on relevant stakeholders.
 
-**Resources:** a household, school or community decision card, a simple budget/resource table and a price, needs or production example.
+**Resources:** a household, business or national economic case, a relevant data table or graph, and a calculation or decision organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: มีส่วนร่วมในการแก้ไขปัญหาและพัฒนาท้องถิ่นตามปรัชญาของเศรษฐกิจพอเพียง
 
-**Practical activity:** Use a familiar household, workplace or community decision. Identify the relevant resources, choices, costs, benefits or economic relationships and justify a responsible decision. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use an evidence-based economic case with realistic figures or source information. Learners interpret the relevant data, analyse the economic relationship named in the indicator, compare possible choices and justify a decision or conclusion.
 **Expected evidence:** Three completed responses that demonstrate SO3.1-M3-02: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “มีส่วนร่วมในการแก้ไขปัญหาและพัฒนาท้องถิ่นตามปรัชญาของเศรษฐกิจพอเพียง”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO3.1-M3-02 (มีส่วนร่วมในการแก้ไขปัญหาและพัฒนาท้องถิ่นตามปรัชญาของเศรษฐกิจพอเพียง). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in economics and resource decisions: “มีส่วนร่วมในการแก้ไขปัญหาและพัฒนาท้องถิ่นตามปรัชญาของเศรษฐกิจพอเพียง”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO3.1-M3-02 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a household, business or community case connected to “มีส่วนร่วมในการแก้ไขปัญหาและพัฒนาท้องถิ่นตามปรัชญาของเศรษฐกิจพอเพียง”. Identify the scarce resource or economic choice, compare two options, and justify a decision using evidence from the case. **Answer:** Apply the economic concept in SO3.1-M3-02, identify the relevant resource/choice or relationship, compare options and support a reasoned decision with case evidence.
+1. **Recall / identify:** Study the economic case, graph or data table. Identify the economic concept, actors, resources and two figures or facts needed to address this indicator. This assesses: “มีส่วนร่วมในการแก้ไขปัญหาและพัฒนาท้องถิ่นตามปรัชญาของเศรษฐกิจพอเพียง”. **Answer:** Correctly identifies the economic concept, relevant actors/resources and two accurate data points or facts from the case.
+2. **Explain / analyse:** Analyse the economic relationship required by the indicator. Show the relevant calculation, comparison, trend or cause-and-effect link and explain its impact on the actors involved. This assesses: “มีส่วนร่วมในการแก้ไขปัญหาและพัฒนาท้องถิ่นตามปรัชญาของเศรษฐกิจพอเพียง”. **Answer:** Uses the data accurately and explains the specific economic relationship in the indicator, including a correct calculation/comparison where needed and its effect on relevant actors.
+3. **Apply / demonstrate:** Make an evidence-based economic recommendation or conclusion. Compare at least two options or explanations, identify the relevant cost, benefit, trade-off or risk, and justify your choice with the supplied evidence. This assesses: “มีส่วนร่วมในการแก้ไขปัญหาและพัฒนาท้องถิ่นตามปรัชญาของเศรษฐกิจพอเพียง”. **Answer:** Compares realistic alternatives and justifies a coherent decision or conclusion with accurate economic reasoning; accept alternative conclusions when evidence supports them.
 ### 29. SO3.1-M3-03
 
 - **Standard:** SO3.1
@@ -890,27 +862,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: วิเคราะห์ความสัมพันธ์ระหว่างแนวคิดเศรษฐกิจพอเพียงกับระบบสหกรณ์
 **Suggested teaching sequence**
 
-1. Present a familiar choice involving needs, wants, limited resources, work, goods, services or money. Ask learners what must be decided.
-2. Identify the resources and constraints in the case. Model the relevant economic concept using a simple table, picture, calculation or flow diagram.
-3. Pairs compare at least two choices, considering costs, benefits, opportunity, scarcity or effects on people as required by the indicator.
-4. Learners complete an individual decision or recommendation and justify it with evidence from the case. Assess the economic reasoning, not merely the selected option.
+1. Introduce a household, business, community or national economic case that illustrates the exact economic concept named in the indicator.
+2. Identify the actors, resources, constraints and data. Model the relevant economic vocabulary and any calculation, graph, budget, flow or comparison needed.
+3. Learners analyse the relevant relationship: scarcity and choice, production and consumption, finance, saving, investment, market forces, interdependence or government policy, as specified by the indicator.
+4. Learners make and justify an economic decision or explanation using evidence. Check calculations, assumptions, trade-offs and the effect on relevant stakeholders.
 
-**Resources:** a household, school or community decision card, a simple budget/resource table and a price, needs or production example.
+**Resources:** a household, business or national economic case, a relevant data table or graph, and a calculation or decision organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์ความสัมพันธ์ระหว่างแนวคิดเศรษฐกิจพอเพียงกับระบบสหกรณ์
 
-**Practical activity:** Use a familiar household, workplace or community decision. Identify the relevant resources, choices, costs, benefits or economic relationships and justify a responsible decision. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use an evidence-based economic case with realistic figures or source information. Learners interpret the relevant data, analyse the economic relationship named in the indicator, compare possible choices and justify a decision or conclusion.
 **Expected evidence:** Three completed responses that demonstrate SO3.1-M3-03: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “วิเคราะห์ความสัมพันธ์ระหว่างแนวคิดเศรษฐกิจพอเพียงกับระบบสหกรณ์”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO3.1-M3-03 (วิเคราะห์ความสัมพันธ์ระหว่างแนวคิดเศรษฐกิจพอเพียงกับระบบสหกรณ์). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in economics and resource decisions: “วิเคราะห์ความสัมพันธ์ระหว่างแนวคิดเศรษฐกิจพอเพียงกับระบบสหกรณ์”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO3.1-M3-03 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a household, business or community case connected to “วิเคราะห์ความสัมพันธ์ระหว่างแนวคิดเศรษฐกิจพอเพียงกับระบบสหกรณ์”. Identify the scarce resource or economic choice, compare two options, and justify a decision using evidence from the case. **Answer:** Apply the economic concept in SO3.1-M3-03, identify the relevant resource/choice or relationship, compare options and support a reasoned decision with case evidence.
+1. **Recall / identify:** Study the economic case, graph or data table. Identify the economic concept, actors, resources and two figures or facts needed to address this indicator. This assesses: “วิเคราะห์ความสัมพันธ์ระหว่างแนวคิดเศรษฐกิจพอเพียงกับระบบสหกรณ์”. **Answer:** Correctly identifies the economic concept, relevant actors/resources and two accurate data points or facts from the case.
+2. **Explain / analyse:** Analyse the economic relationship required by the indicator. Show the relevant calculation, comparison, trend or cause-and-effect link and explain its impact on the actors involved. This assesses: “วิเคราะห์ความสัมพันธ์ระหว่างแนวคิดเศรษฐกิจพอเพียงกับระบบสหกรณ์”. **Answer:** Uses the data accurately and explains the specific economic relationship in the indicator, including a correct calculation/comparison where needed and its effect on relevant actors.
+3. **Apply / demonstrate:** Make an evidence-based economic recommendation or conclusion. Compare at least two options or explanations, identify the relevant cost, benefit, trade-off or risk, and justify your choice with the supplied evidence. This assesses: “วิเคราะห์ความสัมพันธ์ระหว่างแนวคิดเศรษฐกิจพอเพียงกับระบบสหกรณ์”. **Answer:** Compares realistic alternatives and justifies a coherent decision or conclusion with accurate economic reasoning; accept alternative conclusions when evidence supports them.
 ### 30. SO3.2-M3-01
 
 - **Standard:** SO3.2
@@ -921,27 +892,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: อธิบายบทบาทหน้าที่ของรัฐบาลในระบบเศรษฐกิจ
 **Suggested teaching sequence**
 
-1. Present a familiar choice involving needs, wants, limited resources, work, goods, services or money. Ask learners what must be decided.
-2. Identify the resources and constraints in the case. Model the relevant economic concept using a simple table, picture, calculation or flow diagram.
-3. Pairs compare at least two choices, considering costs, benefits, opportunity, scarcity or effects on people as required by the indicator.
-4. Learners complete an individual decision or recommendation and justify it with evidence from the case. Assess the economic reasoning, not merely the selected option.
+1. Introduce a household, business, community or national economic case that illustrates the exact economic concept named in the indicator.
+2. Identify the actors, resources, constraints and data. Model the relevant economic vocabulary and any calculation, graph, budget, flow or comparison needed.
+3. Learners analyse the relevant relationship: scarcity and choice, production and consumption, finance, saving, investment, market forces, interdependence or government policy, as specified by the indicator.
+4. Learners make and justify an economic decision or explanation using evidence. Check calculations, assumptions, trade-offs and the effect on relevant stakeholders.
 
-**Resources:** a household, school or community decision card, a simple budget/resource table and a price, needs or production example.
+**Resources:** a household, business or national economic case, a relevant data table or graph, and a calculation or decision organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายบทบาทหน้าที่ของรัฐบาลในระบบเศรษฐกิจ
 
-**Practical activity:** Use a familiar household, workplace or community decision. Identify the relevant resources, choices, costs, benefits or economic relationships and justify a responsible decision. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use an evidence-based economic case with realistic figures or source information. Learners interpret the relevant data, analyse the economic relationship named in the indicator, compare possible choices and justify a decision or conclusion.
 **Expected evidence:** Three completed responses that demonstrate SO3.2-M3-01: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “อธิบายบทบาทหน้าที่ของรัฐบาลในระบบเศรษฐกิจ”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO3.2-M3-01 (อธิบายบทบาทหน้าที่ของรัฐบาลในระบบเศรษฐกิจ). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in economics and resource decisions: “อธิบายบทบาทหน้าที่ของรัฐบาลในระบบเศรษฐกิจ”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO3.2-M3-01 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a household, business or community case connected to “อธิบายบทบาทหน้าที่ของรัฐบาลในระบบเศรษฐกิจ”. Identify the scarce resource or economic choice, compare two options, and justify a decision using evidence from the case. **Answer:** Apply the economic concept in SO3.2-M3-01, identify the relevant resource/choice or relationship, compare options and support a reasoned decision with case evidence.
+1. **Recall / identify:** Study the economic case, graph or data table. Identify the economic concept, actors, resources and two figures or facts needed to address this indicator. This assesses: “อธิบายบทบาทหน้าที่ของรัฐบาลในระบบเศรษฐกิจ”. **Answer:** Correctly identifies the economic concept, relevant actors/resources and two accurate data points or facts from the case.
+2. **Explain / analyse:** Analyse the economic relationship required by the indicator. Show the relevant calculation, comparison, trend or cause-and-effect link and explain its impact on the actors involved. This assesses: “อธิบายบทบาทหน้าที่ของรัฐบาลในระบบเศรษฐกิจ”. **Answer:** Uses the data accurately and explains the specific economic relationship in the indicator, including a correct calculation/comparison where needed and its effect on relevant actors.
+3. **Apply / demonstrate:** Make an evidence-based economic recommendation or conclusion. Compare at least two options or explanations, identify the relevant cost, benefit, trade-off or risk, and justify your choice with the supplied evidence. This assesses: “อธิบายบทบาทหน้าที่ของรัฐบาลในระบบเศรษฐกิจ”. **Answer:** Compares realistic alternatives and justifies a coherent decision or conclusion with accurate economic reasoning; accept alternative conclusions when evidence supports them.
 ### 31. SO3.2-M3-02
 
 - **Standard:** SO3.2
@@ -952,27 +922,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: แสดงความคิดเห็นต่อนโยบายและกิจกรรมทางเศรษฐกิจของรัฐบาลที่มีต่อบุคคล กลุ่มคน และประเทศชาติ
 **Suggested teaching sequence**
 
-1. Present a familiar choice involving needs, wants, limited resources, work, goods, services or money. Ask learners what must be decided.
-2. Identify the resources and constraints in the case. Model the relevant economic concept using a simple table, picture, calculation or flow diagram.
-3. Pairs compare at least two choices, considering costs, benefits, opportunity, scarcity or effects on people as required by the indicator.
-4. Learners complete an individual decision or recommendation and justify it with evidence from the case. Assess the economic reasoning, not merely the selected option.
+1. Introduce a household, business, community or national economic case that illustrates the exact economic concept named in the indicator.
+2. Identify the actors, resources, constraints and data. Model the relevant economic vocabulary and any calculation, graph, budget, flow or comparison needed.
+3. Learners analyse the relevant relationship: scarcity and choice, production and consumption, finance, saving, investment, market forces, interdependence or government policy, as specified by the indicator.
+4. Learners make and justify an economic decision or explanation using evidence. Check calculations, assumptions, trade-offs and the effect on relevant stakeholders.
 
-**Resources:** a household, school or community decision card, a simple budget/resource table and a price, needs or production example.
+**Resources:** a household, business or national economic case, a relevant data table or graph, and a calculation or decision organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: แสดงความคิดเห็นต่อนโยบายและกิจกรรมทางเศรษฐกิจของรัฐบาลที่มีต่อบุคคล กลุ่มคน และประเทศชาติ
 
-**Practical activity:** Use a familiar household, workplace or community decision. Identify the relevant resources, choices, costs, benefits or economic relationships and justify a responsible decision. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use an evidence-based economic case with realistic figures or source information. Learners interpret the relevant data, analyse the economic relationship named in the indicator, compare possible choices and justify a decision or conclusion.
 **Expected evidence:** Three completed responses that demonstrate SO3.2-M3-02: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “แสดงความคิดเห็นต่อนโยบายและกิจกรรมทางเศรษฐกิจของรัฐบาลที่มีต่อบุคคล กลุ่มคน และประเทศชาติ”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO3.2-M3-02 (แสดงความคิดเห็นต่อนโยบายและกิจกรรมทางเศรษฐกิจของรัฐบาลที่มีต่อบุคคล กลุ่มคน และประเทศชาติ). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in economics and resource decisions: “แสดงความคิดเห็นต่อนโยบายและกิจกรรมทางเศรษฐกิจของรัฐบาลที่มีต่อบุคคล กลุ่มคน และประเทศชาติ”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO3.2-M3-02 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a household, business or community case connected to “แสดงความคิดเห็นต่อนโยบายและกิจกรรมทางเศรษฐกิจของรัฐบาลที่มีต่อบุคคล กลุ่มคน และประเทศชาติ”. Identify the scarce resource or economic choice, compare two options, and justify a decision using evidence from the case. **Answer:** Apply the economic concept in SO3.2-M3-02, identify the relevant resource/choice or relationship, compare options and support a reasoned decision with case evidence.
+1. **Recall / identify:** Study the economic case, graph or data table. Identify the economic concept, actors, resources and two figures or facts needed to address this indicator. This assesses: “แสดงความคิดเห็นต่อนโยบายและกิจกรรมทางเศรษฐกิจของรัฐบาลที่มีต่อบุคคล กลุ่มคน และประเทศชาติ”. **Answer:** Correctly identifies the economic concept, relevant actors/resources and two accurate data points or facts from the case.
+2. **Explain / analyse:** Analyse the economic relationship required by the indicator. Show the relevant calculation, comparison, trend or cause-and-effect link and explain its impact on the actors involved. This assesses: “แสดงความคิดเห็นต่อนโยบายและกิจกรรมทางเศรษฐกิจของรัฐบาลที่มีต่อบุคคล กลุ่มคน และประเทศชาติ”. **Answer:** Uses the data accurately and explains the specific economic relationship in the indicator, including a correct calculation/comparison where needed and its effect on relevant actors.
+3. **Apply / demonstrate:** Make an evidence-based economic recommendation or conclusion. Compare at least two options or explanations, identify the relevant cost, benefit, trade-off or risk, and justify your choice with the supplied evidence. This assesses: “แสดงความคิดเห็นต่อนโยบายและกิจกรรมทางเศรษฐกิจของรัฐบาลที่มีต่อบุคคล กลุ่มคน และประเทศชาติ”. **Answer:** Compares realistic alternatives and justifies a coherent decision or conclusion with accurate economic reasoning; accept alternative conclusions when evidence supports them.
 ### 32. SO3.2-M3-03
 
 - **Standard:** SO3.2
@@ -983,27 +952,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: อภิปรายบทบาทความสำคัญของการรวมกลุ่มทางเศรษฐกิจระหว่างประเทศ
 **Suggested teaching sequence**
 
-1. Present a familiar choice involving needs, wants, limited resources, work, goods, services or money. Ask learners what must be decided.
-2. Identify the resources and constraints in the case. Model the relevant economic concept using a simple table, picture, calculation or flow diagram.
-3. Pairs compare at least two choices, considering costs, benefits, opportunity, scarcity or effects on people as required by the indicator.
-4. Learners complete an individual decision or recommendation and justify it with evidence from the case. Assess the economic reasoning, not merely the selected option.
+1. Introduce a household, business, community or national economic case that illustrates the exact economic concept named in the indicator.
+2. Identify the actors, resources, constraints and data. Model the relevant economic vocabulary and any calculation, graph, budget, flow or comparison needed.
+3. Learners analyse the relevant relationship: scarcity and choice, production and consumption, finance, saving, investment, market forces, interdependence or government policy, as specified by the indicator.
+4. Learners make and justify an economic decision or explanation using evidence. Check calculations, assumptions, trade-offs and the effect on relevant stakeholders.
 
-**Resources:** a household, school or community decision card, a simple budget/resource table and a price, needs or production example.
+**Resources:** a household, business or national economic case, a relevant data table or graph, and a calculation or decision organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อภิปรายบทบาทความสำคัญของการรวมกลุ่มทางเศรษฐกิจระหว่างประเทศ
 
-**Practical activity:** Use a familiar household, workplace or community decision. Identify the relevant resources, choices, costs, benefits or economic relationships and justify a responsible decision. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use an evidence-based economic case with realistic figures or source information. Learners interpret the relevant data, analyse the economic relationship named in the indicator, compare possible choices and justify a decision or conclusion.
 **Expected evidence:** Three completed responses that demonstrate SO3.2-M3-03: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “อภิปรายบทบาทความสำคัญของการรวมกลุ่มทางเศรษฐกิจระหว่างประเทศ”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO3.2-M3-03 (อภิปรายบทบาทความสำคัญของการรวมกลุ่มทางเศรษฐกิจระหว่างประเทศ). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in economics and resource decisions: “อภิปรายบทบาทความสำคัญของการรวมกลุ่มทางเศรษฐกิจระหว่างประเทศ”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO3.2-M3-03 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a household, business or community case connected to “อภิปรายบทบาทความสำคัญของการรวมกลุ่มทางเศรษฐกิจระหว่างประเทศ”. Identify the scarce resource or economic choice, compare two options, and justify a decision using evidence from the case. **Answer:** Apply the economic concept in SO3.2-M3-03, identify the relevant resource/choice or relationship, compare options and support a reasoned decision with case evidence.
+1. **Recall / identify:** Study the economic case, graph or data table. Identify the economic concept, actors, resources and two figures or facts needed to address this indicator. This assesses: “อภิปรายบทบาทความสำคัญของการรวมกลุ่มทางเศรษฐกิจระหว่างประเทศ”. **Answer:** Correctly identifies the economic concept, relevant actors/resources and two accurate data points or facts from the case.
+2. **Explain / analyse:** Analyse the economic relationship required by the indicator. Show the relevant calculation, comparison, trend or cause-and-effect link and explain its impact on the actors involved. This assesses: “อภิปรายบทบาทความสำคัญของการรวมกลุ่มทางเศรษฐกิจระหว่างประเทศ”. **Answer:** Uses the data accurately and explains the specific economic relationship in the indicator, including a correct calculation/comparison where needed and its effect on relevant actors.
+3. **Apply / demonstrate:** Make an evidence-based economic recommendation or conclusion. Compare at least two options or explanations, identify the relevant cost, benefit, trade-off or risk, and justify your choice with the supplied evidence. This assesses: “อภิปรายบทบาทความสำคัญของการรวมกลุ่มทางเศรษฐกิจระหว่างประเทศ”. **Answer:** Compares realistic alternatives and justifies a coherent decision or conclusion with accurate economic reasoning; accept alternative conclusions when evidence supports them.
 ### 33. SO3.2-M3-04
 
 - **Standard:** SO3.2
@@ -1014,27 +982,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: อภิปรายผลกระทบที่เกิดจากภาวะเงินเฟ้อ เงินฝืด
 **Suggested teaching sequence**
 
-1. Present a familiar choice involving needs, wants, limited resources, work, goods, services or money. Ask learners what must be decided.
-2. Identify the resources and constraints in the case. Model the relevant economic concept using a simple table, picture, calculation or flow diagram.
-3. Pairs compare at least two choices, considering costs, benefits, opportunity, scarcity or effects on people as required by the indicator.
-4. Learners complete an individual decision or recommendation and justify it with evidence from the case. Assess the economic reasoning, not merely the selected option.
+1. Introduce a household, business, community or national economic case that illustrates the exact economic concept named in the indicator.
+2. Identify the actors, resources, constraints and data. Model the relevant economic vocabulary and any calculation, graph, budget, flow or comparison needed.
+3. Learners analyse the relevant relationship: scarcity and choice, production and consumption, finance, saving, investment, market forces, interdependence or government policy, as specified by the indicator.
+4. Learners make and justify an economic decision or explanation using evidence. Check calculations, assumptions, trade-offs and the effect on relevant stakeholders.
 
-**Resources:** a household, school or community decision card, a simple budget/resource table and a price, needs or production example.
+**Resources:** a household, business or national economic case, a relevant data table or graph, and a calculation or decision organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อภิปรายผลกระทบที่เกิดจากภาวะเงินเฟ้อ เงินฝืด
 
-**Practical activity:** Use a familiar household, workplace or community decision. Identify the relevant resources, choices, costs, benefits or economic relationships and justify a responsible decision. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use an evidence-based economic case with realistic figures or source information. Learners interpret the relevant data, analyse the economic relationship named in the indicator, compare possible choices and justify a decision or conclusion.
 **Expected evidence:** Three completed responses that demonstrate SO3.2-M3-04: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “อภิปรายผลกระทบที่เกิดจากภาวะเงินเฟ้อ เงินฝืด”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO3.2-M3-04 (อภิปรายผลกระทบที่เกิดจากภาวะเงินเฟ้อ เงินฝืด). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in economics and resource decisions: “อภิปรายผลกระทบที่เกิดจากภาวะเงินเฟ้อ เงินฝืด”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO3.2-M3-04 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a household, business or community case connected to “อภิปรายผลกระทบที่เกิดจากภาวะเงินเฟ้อ เงินฝืด”. Identify the scarce resource or economic choice, compare two options, and justify a decision using evidence from the case. **Answer:** Apply the economic concept in SO3.2-M3-04, identify the relevant resource/choice or relationship, compare options and support a reasoned decision with case evidence.
+1. **Recall / identify:** Study the economic case, graph or data table. Identify the economic concept, actors, resources and two figures or facts needed to address this indicator. This assesses: “อภิปรายผลกระทบที่เกิดจากภาวะเงินเฟ้อ เงินฝืด”. **Answer:** Correctly identifies the economic concept, relevant actors/resources and two accurate data points or facts from the case.
+2. **Explain / analyse:** Analyse the economic relationship required by the indicator. Show the relevant calculation, comparison, trend or cause-and-effect link and explain its impact on the actors involved. This assesses: “อภิปรายผลกระทบที่เกิดจากภาวะเงินเฟ้อ เงินฝืด”. **Answer:** Uses the data accurately and explains the specific economic relationship in the indicator, including a correct calculation/comparison where needed and its effect on relevant actors.
+3. **Apply / demonstrate:** Make an evidence-based economic recommendation or conclusion. Compare at least two options or explanations, identify the relevant cost, benefit, trade-off or risk, and justify your choice with the supplied evidence. This assesses: “อภิปรายผลกระทบที่เกิดจากภาวะเงินเฟ้อ เงินฝืด”. **Answer:** Compares realistic alternatives and justifies a coherent decision or conclusion with accurate economic reasoning; accept alternative conclusions when evidence supports them.
 ### 34. SO3.2-M3-05
 
 - **Standard:** SO3.2
@@ -1045,27 +1012,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: วิเคราะห์ผลเสียจากการว่างงาน และแนวทางแก้ปัญหา
 **Suggested teaching sequence**
 
-1. Present a familiar choice involving needs, wants, limited resources, work, goods, services or money. Ask learners what must be decided.
-2. Identify the resources and constraints in the case. Model the relevant economic concept using a simple table, picture, calculation or flow diagram.
-3. Pairs compare at least two choices, considering costs, benefits, opportunity, scarcity or effects on people as required by the indicator.
-4. Learners complete an individual decision or recommendation and justify it with evidence from the case. Assess the economic reasoning, not merely the selected option.
+1. Introduce a household, business, community or national economic case that illustrates the exact economic concept named in the indicator.
+2. Identify the actors, resources, constraints and data. Model the relevant economic vocabulary and any calculation, graph, budget, flow or comparison needed.
+3. Learners analyse the relevant relationship: scarcity and choice, production and consumption, finance, saving, investment, market forces, interdependence or government policy, as specified by the indicator.
+4. Learners make and justify an economic decision or explanation using evidence. Check calculations, assumptions, trade-offs and the effect on relevant stakeholders.
 
-**Resources:** a household, school or community decision card, a simple budget/resource table and a price, needs or production example.
+**Resources:** a household, business or national economic case, a relevant data table or graph, and a calculation or decision organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์ผลเสียจากการว่างงาน และแนวทางแก้ปัญหา
 
-**Practical activity:** Use a familiar household, workplace or community decision. Identify the relevant resources, choices, costs, benefits or economic relationships and justify a responsible decision. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use an evidence-based economic case with realistic figures or source information. Learners interpret the relevant data, analyse the economic relationship named in the indicator, compare possible choices and justify a decision or conclusion.
 **Expected evidence:** Three completed responses that demonstrate SO3.2-M3-05: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “วิเคราะห์ผลเสียจากการว่างงาน และแนวทางแก้ปัญหา”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO3.2-M3-05 (วิเคราะห์ผลเสียจากการว่างงาน และแนวทางแก้ปัญหา). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in economics and resource decisions: “วิเคราะห์ผลเสียจากการว่างงาน และแนวทางแก้ปัญหา”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO3.2-M3-05 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a household, business or community case connected to “วิเคราะห์ผลเสียจากการว่างงาน และแนวทางแก้ปัญหา”. Identify the scarce resource or economic choice, compare two options, and justify a decision using evidence from the case. **Answer:** Apply the economic concept in SO3.2-M3-05, identify the relevant resource/choice or relationship, compare options and support a reasoned decision with case evidence.
+1. **Recall / identify:** Study the economic case, graph or data table. Identify the economic concept, actors, resources and two figures or facts needed to address this indicator. This assesses: “วิเคราะห์ผลเสียจากการว่างงาน และแนวทางแก้ปัญหา”. **Answer:** Correctly identifies the economic concept, relevant actors/resources and two accurate data points or facts from the case.
+2. **Explain / analyse:** Analyse the economic relationship required by the indicator. Show the relevant calculation, comparison, trend or cause-and-effect link and explain its impact on the actors involved. This assesses: “วิเคราะห์ผลเสียจากการว่างงาน และแนวทางแก้ปัญหา”. **Answer:** Uses the data accurately and explains the specific economic relationship in the indicator, including a correct calculation/comparison where needed and its effect on relevant actors.
+3. **Apply / demonstrate:** Make an evidence-based economic recommendation or conclusion. Compare at least two options or explanations, identify the relevant cost, benefit, trade-off or risk, and justify your choice with the supplied evidence. This assesses: “วิเคราะห์ผลเสียจากการว่างงาน และแนวทางแก้ปัญหา”. **Answer:** Compares realistic alternatives and justifies a coherent decision or conclusion with accurate economic reasoning; accept alternative conclusions when evidence supports them.
 ### 35. SO3.2-M3-06
 
 - **Standard:** SO3.2
@@ -1076,27 +1042,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: วิเคราะห์สาเหตุ และวิธีการกีดกันทางการค้าในการค้าระหว่างประเทศ
 **Suggested teaching sequence**
 
-1. Present a familiar choice involving needs, wants, limited resources, work, goods, services or money. Ask learners what must be decided.
-2. Identify the resources and constraints in the case. Model the relevant economic concept using a simple table, picture, calculation or flow diagram.
-3. Pairs compare at least two choices, considering costs, benefits, opportunity, scarcity or effects on people as required by the indicator.
-4. Learners complete an individual decision or recommendation and justify it with evidence from the case. Assess the economic reasoning, not merely the selected option.
+1. Introduce a household, business, community or national economic case that illustrates the exact economic concept named in the indicator.
+2. Identify the actors, resources, constraints and data. Model the relevant economic vocabulary and any calculation, graph, budget, flow or comparison needed.
+3. Learners analyse the relevant relationship: scarcity and choice, production and consumption, finance, saving, investment, market forces, interdependence or government policy, as specified by the indicator.
+4. Learners make and justify an economic decision or explanation using evidence. Check calculations, assumptions, trade-offs and the effect on relevant stakeholders.
 
-**Resources:** a household, school or community decision card, a simple budget/resource table and a price, needs or production example.
+**Resources:** a household, business or national economic case, a relevant data table or graph, and a calculation or decision organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์สาเหตุ และวิธีการกีดกันทางการค้าในการค้าระหว่างประเทศ
 
-**Practical activity:** Use a familiar household, workplace or community decision. Identify the relevant resources, choices, costs, benefits or economic relationships and justify a responsible decision. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use an evidence-based economic case with realistic figures or source information. Learners interpret the relevant data, analyse the economic relationship named in the indicator, compare possible choices and justify a decision or conclusion.
 **Expected evidence:** Three completed responses that demonstrate SO3.2-M3-06: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “วิเคราะห์สาเหตุ และวิธีการกีดกันทางการค้าในการค้าระหว่างประเทศ”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO3.2-M3-06 (วิเคราะห์สาเหตุ และวิธีการกีดกันทางการค้าในการค้าระหว่างประเทศ). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in economics and resource decisions: “วิเคราะห์สาเหตุ และวิธีการกีดกันทางการค้าในการค้าระหว่างประเทศ”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO3.2-M3-06 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Analyse a household, business or community case connected to “วิเคราะห์สาเหตุ และวิธีการกีดกันทางการค้าในการค้าระหว่างประเทศ”. Identify the scarce resource or economic choice, compare two options, and justify a decision using evidence from the case. **Answer:** Apply the economic concept in SO3.2-M3-06, identify the relevant resource/choice or relationship, compare options and support a reasoned decision with case evidence.
+1. **Recall / identify:** Study the economic case, graph or data table. Identify the economic concept, actors, resources and two figures or facts needed to address this indicator. This assesses: “วิเคราะห์สาเหตุ และวิธีการกีดกันทางการค้าในการค้าระหว่างประเทศ”. **Answer:** Correctly identifies the economic concept, relevant actors/resources and two accurate data points or facts from the case.
+2. **Explain / analyse:** Analyse the economic relationship required by the indicator. Show the relevant calculation, comparison, trend or cause-and-effect link and explain its impact on the actors involved. This assesses: “วิเคราะห์สาเหตุ และวิธีการกีดกันทางการค้าในการค้าระหว่างประเทศ”. **Answer:** Uses the data accurately and explains the specific economic relationship in the indicator, including a correct calculation/comparison where needed and its effect on relevant actors.
+3. **Apply / demonstrate:** Make an evidence-based economic recommendation or conclusion. Compare at least two options or explanations, identify the relevant cost, benefit, trade-off or risk, and justify your choice with the supplied evidence. This assesses: “วิเคราะห์สาเหตุ และวิธีการกีดกันทางการค้าในการค้าระหว่างประเทศ”. **Answer:** Compares realistic alternatives and justifies a coherent decision or conclusion with accurate economic reasoning; accept alternative conclusions when evidence supports them.
 ### 36. SO4.1-M3-01
 
 - **Standard:** SO4.1
@@ -1107,27 +1072,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: วิเคราะห์เรื่องราวเหตุการณ์สำคัญทางประวัติศาสตร์ได้อย่างมีเหตุผลตามวิธีการทางประวัติศาสตร์
 **Suggested teaching sequence**
 
-1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
-2. Model how to identify source type, author/context, date and relevant detail. Separate what the source directly shows from an inference or opinion.
-3. Learners sequence events or compare two sources, recording details that support a cause, consequence, change, continuity or historical interpretation relevant to the indicator.
-4. Each learner writes, explains or presents a short conclusion supported by source evidence. Check chronology and whether the evidence actually supports the claim.
+1. Introduce the historical period, event, person, development or historical method specified by the indicator through a dated primary or secondary source.
+2. Model source evaluation: origin, date, author or creator, purpose, context, reliability and limitations. Separate what is directly evidenced from inference.
+3. Learners organise or compare evidence to investigate the exact historical question, including chronology, cause and consequence, continuity and change, regional connection or historical interpretation as appropriate.
+4. Learners present a supported historical argument, comparison or timeline. Check chronological accuracy, source evaluation and whether evidence supports each claim.
 
-**Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
+**Resources:** dated primary and secondary source extracts, a historical timeline or map, and a source reliability/evidence organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์เรื่องราวเหตุการณ์สำคัญทางประวัติศาสตร์ได้อย่างมีเหตุผลตามวิธีการทางประวัติศาสตร์
 
-**Practical activity:** Use an age-appropriate historical source, image or timeline. Identify evidence, sequence relevant events and distinguish what the source shows from opinion. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use dated primary and secondary sources that directly address the indicator. Learners evaluate the sources, organise evidence to analyse the required historical relationship and present a supported interpretation, comparison or timeline.
 **Expected evidence:** Three completed responses that demonstrate SO4.1-M3-01: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “วิเคราะห์เรื่องราวเหตุการณ์สำคัญทางประวัติศาสตร์ได้อย่างมีเหตุผลตามวิธีการทางประวัติศาสตร์”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO4.1-M3-01 (วิเคราะห์เรื่องราวเหตุการณ์สำคัญทางประวัติศาสตร์ได้อย่างมีเหตุผลตามวิธีการทางประวัติศาสตร์). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in history and historical evidence: “วิเคราะห์เรื่องราวเหตุการณ์สำคัญทางประวัติศาสตร์ได้อย่างมีเหตุผลตามวิธีการทางประวัติศาสตร์”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO4.1-M3-01 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Examine two short sources about “วิเคราะห์เรื่องราวเหตุการณ์สำคัญทางประวัติศาสตร์ได้อย่างมีเหตุผลตามวิธีการทางประวัติศาสตร์”. Record one useful detail from each, distinguish evidence from opinion, and explain one cause, consequence, similarity or difference. **Answer:** Cite accurate details from both sources, distinguish evidence from opinion and give a defensible historical explanation relevant to SO4.1-M3-01.
+1. **Recall / identify:** Examine the dated source or sources. Identify the historical event, period, person, development or method specified by this indicator. Record two details and identify what each source directly states. This assesses: “วิเคราะห์เรื่องราวเหตุการณ์สำคัญทางประวัติศาสตร์ได้อย่างมีเหตุผลตามวิธีการทางประวัติศาสตร์”. **Answer:** Identifies the correct historical focus and two accurate source details, with source statements distinguished from inference.
+2. **Explain / analyse:** Analyse the historical relationship required by the indicator: chronology, cause, consequence, continuity, change, connection or interpretation. Support your analysis with source evidence and comment on one relevant source limitation. This assesses: “วิเคราะห์เรื่องราวเหตุการณ์สำคัญทางประวัติศาสตร์ได้อย่างมีเหตุผลตามวิธีการทางประวัติศาสตร์”. **Answer:** Explains the required historical relationship accurately, supports it with relevant evidence and recognises a relevant limitation or perspective where appropriate.
+3. **Apply / demonstrate:** Construct a short historical argument, comparison or timeline that answers this indicator. Use at least two source details, explain how they support your conclusion and distinguish evidence from inference. This assesses: “วิเคราะห์เรื่องราวเหตุการณ์สำคัญทางประวัติศาสตร์ได้อย่างมีเหตุผลตามวิธีการทางประวัติศาสตร์”. **Answer:** Presents a coherent, chronologically accurate argument, comparison or timeline supported by at least two source details; evidence is clearly linked to the conclusion.
 ### 37. SO4.1-M3-02
 
 - **Standard:** SO4.1
@@ -1138,27 +1102,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: ใช้วิธีการทางประวัติศาสตร์ในการศึกษาเรื่องราวต่าง ๆ ที่ตนสนใจ
 **Suggested teaching sequence**
 
-1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
-2. Model how to identify source type, author/context, date and relevant detail. Separate what the source directly shows from an inference or opinion.
-3. Learners sequence events or compare two sources, recording details that support a cause, consequence, change, continuity or historical interpretation relevant to the indicator.
-4. Each learner writes, explains or presents a short conclusion supported by source evidence. Check chronology and whether the evidence actually supports the claim.
+1. Introduce the historical period, event, person, development or historical method specified by the indicator through a dated primary or secondary source.
+2. Model source evaluation: origin, date, author or creator, purpose, context, reliability and limitations. Separate what is directly evidenced from inference.
+3. Learners organise or compare evidence to investigate the exact historical question, including chronology, cause and consequence, continuity and change, regional connection or historical interpretation as appropriate.
+4. Learners present a supported historical argument, comparison or timeline. Check chronological accuracy, source evaluation and whether evidence supports each claim.
 
-**Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
+**Resources:** dated primary and secondary source extracts, a historical timeline or map, and a source reliability/evidence organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: ใช้วิธีการทางประวัติศาสตร์ในการศึกษาเรื่องราวต่าง ๆ ที่ตนสนใจ
 
-**Practical activity:** Use an age-appropriate historical source, image or timeline. Identify evidence, sequence relevant events and distinguish what the source shows from opinion. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use dated primary and secondary sources that directly address the indicator. Learners evaluate the sources, organise evidence to analyse the required historical relationship and present a supported interpretation, comparison or timeline.
 **Expected evidence:** Three completed responses that demonstrate SO4.1-M3-02: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “ใช้วิธีการทางประวัติศาสตร์ในการศึกษาเรื่องราวต่าง ๆ ที่ตนสนใจ”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO4.1-M3-02 (ใช้วิธีการทางประวัติศาสตร์ในการศึกษาเรื่องราวต่าง ๆ ที่ตนสนใจ). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in history and historical evidence: “ใช้วิธีการทางประวัติศาสตร์ในการศึกษาเรื่องราวต่าง ๆ ที่ตนสนใจ”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO4.1-M3-02 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Examine two short sources about “ใช้วิธีการทางประวัติศาสตร์ในการศึกษาเรื่องราวต่าง ๆ ที่ตนสนใจ”. Record one useful detail from each, distinguish evidence from opinion, and explain one cause, consequence, similarity or difference. **Answer:** Cite accurate details from both sources, distinguish evidence from opinion and give a defensible historical explanation relevant to SO4.1-M3-02.
+1. **Recall / identify:** Examine the dated source or sources. Identify the historical event, period, person, development or method specified by this indicator. Record two details and identify what each source directly states. This assesses: “ใช้วิธีการทางประวัติศาสตร์ในการศึกษาเรื่องราวต่าง ๆ ที่ตนสนใจ”. **Answer:** Identifies the correct historical focus and two accurate source details, with source statements distinguished from inference.
+2. **Explain / analyse:** Analyse the historical relationship required by the indicator: chronology, cause, consequence, continuity, change, connection or interpretation. Support your analysis with source evidence and comment on one relevant source limitation. This assesses: “ใช้วิธีการทางประวัติศาสตร์ในการศึกษาเรื่องราวต่าง ๆ ที่ตนสนใจ”. **Answer:** Explains the required historical relationship accurately, supports it with relevant evidence and recognises a relevant limitation or perspective where appropriate.
+3. **Apply / demonstrate:** Construct a short historical argument, comparison or timeline that answers this indicator. Use at least two source details, explain how they support your conclusion and distinguish evidence from inference. This assesses: “ใช้วิธีการทางประวัติศาสตร์ในการศึกษาเรื่องราวต่าง ๆ ที่ตนสนใจ”. **Answer:** Presents a coherent, chronologically accurate argument, comparison or timeline supported by at least two source details; evidence is clearly linked to the conclusion.
 ### 38. SO4.2-M3-01
 
 - **Standard:** SO4.2
@@ -1169,27 +1132,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: อธิบายพัฒนาการทางสังคม เศรษฐกิจและการเมืองของภูมิภาคต่าง ๆ ในโลกโดยสังเขป
 **Suggested teaching sequence**
 
-1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
-2. Model how to identify source type, author/context, date and relevant detail. Separate what the source directly shows from an inference or opinion.
-3. Learners sequence events or compare two sources, recording details that support a cause, consequence, change, continuity or historical interpretation relevant to the indicator.
-4. Each learner writes, explains or presents a short conclusion supported by source evidence. Check chronology and whether the evidence actually supports the claim.
+1. Introduce the historical period, event, person, development or historical method specified by the indicator through a dated primary or secondary source.
+2. Model source evaluation: origin, date, author or creator, purpose, context, reliability and limitations. Separate what is directly evidenced from inference.
+3. Learners organise or compare evidence to investigate the exact historical question, including chronology, cause and consequence, continuity and change, regional connection or historical interpretation as appropriate.
+4. Learners present a supported historical argument, comparison or timeline. Check chronological accuracy, source evaluation and whether evidence supports each claim.
 
-**Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
+**Resources:** dated primary and secondary source extracts, a historical timeline or map, and a source reliability/evidence organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: อธิบายพัฒนาการทางสังคม เศรษฐกิจและการเมืองของภูมิภาคต่าง ๆ ในโลกโดยสังเขป
 
-**Practical activity:** Use an age-appropriate historical source, image or timeline. Identify evidence, sequence relevant events and distinguish what the source shows from opinion. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use dated primary and secondary sources that directly address the indicator. Learners evaluate the sources, organise evidence to analyse the required historical relationship and present a supported interpretation, comparison or timeline.
 **Expected evidence:** Three completed responses that demonstrate SO4.2-M3-01: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “อธิบายพัฒนาการทางสังคม เศรษฐกิจและการเมืองของภูมิภาคต่าง ๆ ในโลกโดยสังเขป”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO4.2-M3-01 (อธิบายพัฒนาการทางสังคม เศรษฐกิจและการเมืองของภูมิภาคต่าง ๆ ในโลกโดยสังเขป). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in history and historical evidence: “อธิบายพัฒนาการทางสังคม เศรษฐกิจและการเมืองของภูมิภาคต่าง ๆ ในโลกโดยสังเขป”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO4.2-M3-01 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Examine two short sources about “อธิบายพัฒนาการทางสังคม เศรษฐกิจและการเมืองของภูมิภาคต่าง ๆ ในโลกโดยสังเขป”. Record one useful detail from each, distinguish evidence from opinion, and explain one cause, consequence, similarity or difference. **Answer:** Cite accurate details from both sources, distinguish evidence from opinion and give a defensible historical explanation relevant to SO4.2-M3-01.
+1. **Recall / identify:** Examine the dated source or sources. Identify the historical event, period, person, development or method specified by this indicator. Record two details and identify what each source directly states. This assesses: “อธิบายพัฒนาการทางสังคม เศรษฐกิจและการเมืองของภูมิภาคต่าง ๆ ในโลกโดยสังเขป”. **Answer:** Identifies the correct historical focus and two accurate source details, with source statements distinguished from inference.
+2. **Explain / analyse:** Analyse the historical relationship required by the indicator: chronology, cause, consequence, continuity, change, connection or interpretation. Support your analysis with source evidence and comment on one relevant source limitation. This assesses: “อธิบายพัฒนาการทางสังคม เศรษฐกิจและการเมืองของภูมิภาคต่าง ๆ ในโลกโดยสังเขป”. **Answer:** Explains the required historical relationship accurately, supports it with relevant evidence and recognises a relevant limitation or perspective where appropriate.
+3. **Apply / demonstrate:** Construct a short historical argument, comparison or timeline that answers this indicator. Use at least two source details, explain how they support your conclusion and distinguish evidence from inference. This assesses: “อธิบายพัฒนาการทางสังคม เศรษฐกิจและการเมืองของภูมิภาคต่าง ๆ ในโลกโดยสังเขป”. **Answer:** Presents a coherent, chronologically accurate argument, comparison or timeline supported by at least two source details; evidence is clearly linked to the conclusion.
 ### 39. SO4.2-M3-02
 
 - **Standard:** SO4.2
@@ -1200,27 +1162,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: วิเคราะห์ผลของการเปลี่ยนแปลงที่นำไปสู่ความร่วมมือและความขัดแย้งในคริสต์ศตวรรษที่ ๒๐ ตลอดจนความพยายามในการขจัดปัญหาความขัดแย้ง
 **Suggested teaching sequence**
 
-1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
-2. Model how to identify source type, author/context, date and relevant detail. Separate what the source directly shows from an inference or opinion.
-3. Learners sequence events or compare two sources, recording details that support a cause, consequence, change, continuity or historical interpretation relevant to the indicator.
-4. Each learner writes, explains or presents a short conclusion supported by source evidence. Check chronology and whether the evidence actually supports the claim.
+1. Introduce the historical period, event, person, development or historical method specified by the indicator through a dated primary or secondary source.
+2. Model source evaluation: origin, date, author or creator, purpose, context, reliability and limitations. Separate what is directly evidenced from inference.
+3. Learners organise or compare evidence to investigate the exact historical question, including chronology, cause and consequence, continuity and change, regional connection or historical interpretation as appropriate.
+4. Learners present a supported historical argument, comparison or timeline. Check chronological accuracy, source evaluation and whether evidence supports each claim.
 
-**Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
+**Resources:** dated primary and secondary source extracts, a historical timeline or map, and a source reliability/evidence organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์ผลของการเปลี่ยนแปลงที่นำไปสู่ความร่วมมือและความขัดแย้งในคริสต์ศตวรรษที่ ๒๐ ตลอดจนความพยายามในการขจัดปัญหาความขัดแย้ง
 
-**Practical activity:** Use an age-appropriate historical source, image or timeline. Identify evidence, sequence relevant events and distinguish what the source shows from opinion. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use dated primary and secondary sources that directly address the indicator. Learners evaluate the sources, organise evidence to analyse the required historical relationship and present a supported interpretation, comparison or timeline.
 **Expected evidence:** Three completed responses that demonstrate SO4.2-M3-02: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “วิเคราะห์ผลของการเปลี่ยนแปลงที่นำไปสู่ความร่วมมือและความขัดแย้งในคริสต์ศตวรรษที่ ๒๐ ตลอดจนความพยายามในการขจัดปัญหาความขัดแย้ง”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO4.2-M3-02 (วิเคราะห์ผลของการเปลี่ยนแปลงที่นำไปสู่ความร่วมมือและความขัดแย้งในคริสต์ศตวรรษที่ ๒๐ ตลอดจนความพยายามในการขจัดปัญหาความขัดแย้ง). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in history and historical evidence: “วิเคราะห์ผลของการเปลี่ยนแปลงที่นำไปสู่ความร่วมมือและความขัดแย้งในคริสต์ศตวรรษที่ ๒๐ ตลอดจนความพยายามในการขจัดปัญหาความขัดแย้ง”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO4.2-M3-02 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Examine two short sources about “วิเคราะห์ผลของการเปลี่ยนแปลงที่นำไปสู่ความร่วมมือและความขัดแย้งในคริสต์ศตวรรษที่ ๒๐ ตลอดจนความพยายามในการขจัดปัญหาความขัดแย้ง”. Record one useful detail from each, distinguish evidence from opinion, and explain one cause, consequence, similarity or difference. **Answer:** Cite accurate details from both sources, distinguish evidence from opinion and give a defensible historical explanation relevant to SO4.2-M3-02.
+1. **Recall / identify:** Examine the dated source or sources. Identify the historical event, period, person, development or method specified by this indicator. Record two details and identify what each source directly states. This assesses: “วิเคราะห์ผลของการเปลี่ยนแปลงที่นำไปสู่ความร่วมมือและความขัดแย้งในคริสต์ศตวรรษที่ ๒๐ ตลอดจนความพยายามในการขจัดปัญหาความขัดแย้ง”. **Answer:** Identifies the correct historical focus and two accurate source details, with source statements distinguished from inference.
+2. **Explain / analyse:** Analyse the historical relationship required by the indicator: chronology, cause, consequence, continuity, change, connection or interpretation. Support your analysis with source evidence and comment on one relevant source limitation. This assesses: “วิเคราะห์ผลของการเปลี่ยนแปลงที่นำไปสู่ความร่วมมือและความขัดแย้งในคริสต์ศตวรรษที่ ๒๐ ตลอดจนความพยายามในการขจัดปัญหาความขัดแย้ง”. **Answer:** Explains the required historical relationship accurately, supports it with relevant evidence and recognises a relevant limitation or perspective where appropriate.
+3. **Apply / demonstrate:** Construct a short historical argument, comparison or timeline that answers this indicator. Use at least two source details, explain how they support your conclusion and distinguish evidence from inference. This assesses: “วิเคราะห์ผลของการเปลี่ยนแปลงที่นำไปสู่ความร่วมมือและความขัดแย้งในคริสต์ศตวรรษที่ ๒๐ ตลอดจนความพยายามในการขจัดปัญหาความขัดแย้ง”. **Answer:** Presents a coherent, chronologically accurate argument, comparison or timeline supported by at least two source details; evidence is clearly linked to the conclusion.
 ### 40. SO4.3-M3-01
 
 - **Standard:** SO4.3
@@ -1231,27 +1192,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: วิเคราะห์พัฒนาการของไทยสมัยรัตนโกสินทร์ในด้านต่าง ๆ
 **Suggested teaching sequence**
 
-1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
-2. Model how to identify source type, author/context, date and relevant detail. Separate what the source directly shows from an inference or opinion.
-3. Learners sequence events or compare two sources, recording details that support a cause, consequence, change, continuity or historical interpretation relevant to the indicator.
-4. Each learner writes, explains or presents a short conclusion supported by source evidence. Check chronology and whether the evidence actually supports the claim.
+1. Introduce the historical period, event, person, development or historical method specified by the indicator through a dated primary or secondary source.
+2. Model source evaluation: origin, date, author or creator, purpose, context, reliability and limitations. Separate what is directly evidenced from inference.
+3. Learners organise or compare evidence to investigate the exact historical question, including chronology, cause and consequence, continuity and change, regional connection or historical interpretation as appropriate.
+4. Learners present a supported historical argument, comparison or timeline. Check chronological accuracy, source evaluation and whether evidence supports each claim.
 
-**Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
+**Resources:** dated primary and secondary source extracts, a historical timeline or map, and a source reliability/evidence organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์พัฒนาการของไทยสมัยรัตนโกสินทร์ในด้านต่าง ๆ
 
-**Practical activity:** Use an age-appropriate historical source, image or timeline. Identify evidence, sequence relevant events and distinguish what the source shows from opinion. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use dated primary and secondary sources that directly address the indicator. Learners evaluate the sources, organise evidence to analyse the required historical relationship and present a supported interpretation, comparison or timeline.
 **Expected evidence:** Three completed responses that demonstrate SO4.3-M3-01: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “วิเคราะห์พัฒนาการของไทยสมัยรัตนโกสินทร์ในด้านต่าง ๆ”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO4.3-M3-01 (วิเคราะห์พัฒนาการของไทยสมัยรัตนโกสินทร์ในด้านต่าง ๆ). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in history and historical evidence: “วิเคราะห์พัฒนาการของไทยสมัยรัตนโกสินทร์ในด้านต่าง ๆ”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO4.3-M3-01 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Examine two short sources about “วิเคราะห์พัฒนาการของไทยสมัยรัตนโกสินทร์ในด้านต่าง ๆ”. Record one useful detail from each, distinguish evidence from opinion, and explain one cause, consequence, similarity or difference. **Answer:** Cite accurate details from both sources, distinguish evidence from opinion and give a defensible historical explanation relevant to SO4.3-M3-01.
+1. **Recall / identify:** Examine the dated source or sources. Identify the historical event, period, person, development or method specified by this indicator. Record two details and identify what each source directly states. This assesses: “วิเคราะห์พัฒนาการของไทยสมัยรัตนโกสินทร์ในด้านต่าง ๆ”. **Answer:** Identifies the correct historical focus and two accurate source details, with source statements distinguished from inference.
+2. **Explain / analyse:** Analyse the historical relationship required by the indicator: chronology, cause, consequence, continuity, change, connection or interpretation. Support your analysis with source evidence and comment on one relevant source limitation. This assesses: “วิเคราะห์พัฒนาการของไทยสมัยรัตนโกสินทร์ในด้านต่าง ๆ”. **Answer:** Explains the required historical relationship accurately, supports it with relevant evidence and recognises a relevant limitation or perspective where appropriate.
+3. **Apply / demonstrate:** Construct a short historical argument, comparison or timeline that answers this indicator. Use at least two source details, explain how they support your conclusion and distinguish evidence from inference. This assesses: “วิเคราะห์พัฒนาการของไทยสมัยรัตนโกสินทร์ในด้านต่าง ๆ”. **Answer:** Presents a coherent, chronologically accurate argument, comparison or timeline supported by at least two source details; evidence is clearly linked to the conclusion.
 ### 41. SO4.3-M3-02
 
 - **Standard:** SO4.3
@@ -1262,27 +1222,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: วิเคราะห์ปัจจัยที่ส่งผลต่อความมั่นคงและความเจริญรุ่งเรืองของไทยในสมัยรัตนโกสินทร์
 **Suggested teaching sequence**
 
-1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
-2. Model how to identify source type, author/context, date and relevant detail. Separate what the source directly shows from an inference or opinion.
-3. Learners sequence events or compare two sources, recording details that support a cause, consequence, change, continuity or historical interpretation relevant to the indicator.
-4. Each learner writes, explains or presents a short conclusion supported by source evidence. Check chronology and whether the evidence actually supports the claim.
+1. Introduce the historical period, event, person, development or historical method specified by the indicator through a dated primary or secondary source.
+2. Model source evaluation: origin, date, author or creator, purpose, context, reliability and limitations. Separate what is directly evidenced from inference.
+3. Learners organise or compare evidence to investigate the exact historical question, including chronology, cause and consequence, continuity and change, regional connection or historical interpretation as appropriate.
+4. Learners present a supported historical argument, comparison or timeline. Check chronological accuracy, source evaluation and whether evidence supports each claim.
 
-**Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
+**Resources:** dated primary and secondary source extracts, a historical timeline or map, and a source reliability/evidence organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์ปัจจัยที่ส่งผลต่อความมั่นคงและความเจริญรุ่งเรืองของไทยในสมัยรัตนโกสินทร์
 
-**Practical activity:** Use an age-appropriate historical source, image or timeline. Identify evidence, sequence relevant events and distinguish what the source shows from opinion. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use dated primary and secondary sources that directly address the indicator. Learners evaluate the sources, organise evidence to analyse the required historical relationship and present a supported interpretation, comparison or timeline.
 **Expected evidence:** Three completed responses that demonstrate SO4.3-M3-02: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “วิเคราะห์ปัจจัยที่ส่งผลต่อความมั่นคงและความเจริญรุ่งเรืองของไทยในสมัยรัตนโกสินทร์”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO4.3-M3-02 (วิเคราะห์ปัจจัยที่ส่งผลต่อความมั่นคงและความเจริญรุ่งเรืองของไทยในสมัยรัตนโกสินทร์). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in history and historical evidence: “วิเคราะห์ปัจจัยที่ส่งผลต่อความมั่นคงและความเจริญรุ่งเรืองของไทยในสมัยรัตนโกสินทร์”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO4.3-M3-02 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Examine two short sources about “วิเคราะห์ปัจจัยที่ส่งผลต่อความมั่นคงและความเจริญรุ่งเรืองของไทยในสมัยรัตนโกสินทร์”. Record one useful detail from each, distinguish evidence from opinion, and explain one cause, consequence, similarity or difference. **Answer:** Cite accurate details from both sources, distinguish evidence from opinion and give a defensible historical explanation relevant to SO4.3-M3-02.
+1. **Recall / identify:** Examine the dated source or sources. Identify the historical event, period, person, development or method specified by this indicator. Record two details and identify what each source directly states. This assesses: “วิเคราะห์ปัจจัยที่ส่งผลต่อความมั่นคงและความเจริญรุ่งเรืองของไทยในสมัยรัตนโกสินทร์”. **Answer:** Identifies the correct historical focus and two accurate source details, with source statements distinguished from inference.
+2. **Explain / analyse:** Analyse the historical relationship required by the indicator: chronology, cause, consequence, continuity, change, connection or interpretation. Support your analysis with source evidence and comment on one relevant source limitation. This assesses: “วิเคราะห์ปัจจัยที่ส่งผลต่อความมั่นคงและความเจริญรุ่งเรืองของไทยในสมัยรัตนโกสินทร์”. **Answer:** Explains the required historical relationship accurately, supports it with relevant evidence and recognises a relevant limitation or perspective where appropriate.
+3. **Apply / demonstrate:** Construct a short historical argument, comparison or timeline that answers this indicator. Use at least two source details, explain how they support your conclusion and distinguish evidence from inference. This assesses: “วิเคราะห์ปัจจัยที่ส่งผลต่อความมั่นคงและความเจริญรุ่งเรืองของไทยในสมัยรัตนโกสินทร์”. **Answer:** Presents a coherent, chronologically accurate argument, comparison or timeline supported by at least two source details; evidence is clearly linked to the conclusion.
 ### 42. SO4.3-M3-03
 
 - **Standard:** SO4.3
@@ -1293,27 +1252,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: วิเคราะห์ภูมิปัญญาและวัฒนธรรมไทยสมัยรัตนโกสินทร์ และอิทธิพลต่อการพัฒนาชาติไทย
 **Suggested teaching sequence**
 
-1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
-2. Model how to identify source type, author/context, date and relevant detail. Separate what the source directly shows from an inference or opinion.
-3. Learners sequence events or compare two sources, recording details that support a cause, consequence, change, continuity or historical interpretation relevant to the indicator.
-4. Each learner writes, explains or presents a short conclusion supported by source evidence. Check chronology and whether the evidence actually supports the claim.
+1. Introduce the historical period, event, person, development or historical method specified by the indicator through a dated primary or secondary source.
+2. Model source evaluation: origin, date, author or creator, purpose, context, reliability and limitations. Separate what is directly evidenced from inference.
+3. Learners organise or compare evidence to investigate the exact historical question, including chronology, cause and consequence, continuity and change, regional connection or historical interpretation as appropriate.
+4. Learners present a supported historical argument, comparison or timeline. Check chronological accuracy, source evaluation and whether evidence supports each claim.
 
-**Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
+**Resources:** dated primary and secondary source extracts, a historical timeline or map, and a source reliability/evidence organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์ภูมิปัญญาและวัฒนธรรมไทยสมัยรัตนโกสินทร์ และอิทธิพลต่อการพัฒนาชาติไทย
 
-**Practical activity:** Use an age-appropriate historical source, image or timeline. Identify evidence, sequence relevant events and distinguish what the source shows from opinion. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use dated primary and secondary sources that directly address the indicator. Learners evaluate the sources, organise evidence to analyse the required historical relationship and present a supported interpretation, comparison or timeline.
 **Expected evidence:** Three completed responses that demonstrate SO4.3-M3-03: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “วิเคราะห์ภูมิปัญญาและวัฒนธรรมไทยสมัยรัตนโกสินทร์ และอิทธิพลต่อการพัฒนาชาติไทย”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO4.3-M3-03 (วิเคราะห์ภูมิปัญญาและวัฒนธรรมไทยสมัยรัตนโกสินทร์ และอิทธิพลต่อการพัฒนาชาติไทย). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in history and historical evidence: “วิเคราะห์ภูมิปัญญาและวัฒนธรรมไทยสมัยรัตนโกสินทร์ และอิทธิพลต่อการพัฒนาชาติไทย”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO4.3-M3-03 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Examine two short sources about “วิเคราะห์ภูมิปัญญาและวัฒนธรรมไทยสมัยรัตนโกสินทร์ และอิทธิพลต่อการพัฒนาชาติไทย”. Record one useful detail from each, distinguish evidence from opinion, and explain one cause, consequence, similarity or difference. **Answer:** Cite accurate details from both sources, distinguish evidence from opinion and give a defensible historical explanation relevant to SO4.3-M3-03.
+1. **Recall / identify:** Examine the dated source or sources. Identify the historical event, period, person, development or method specified by this indicator. Record two details and identify what each source directly states. This assesses: “วิเคราะห์ภูมิปัญญาและวัฒนธรรมไทยสมัยรัตนโกสินทร์ และอิทธิพลต่อการพัฒนาชาติไทย”. **Answer:** Identifies the correct historical focus and two accurate source details, with source statements distinguished from inference.
+2. **Explain / analyse:** Analyse the historical relationship required by the indicator: chronology, cause, consequence, continuity, change, connection or interpretation. Support your analysis with source evidence and comment on one relevant source limitation. This assesses: “วิเคราะห์ภูมิปัญญาและวัฒนธรรมไทยสมัยรัตนโกสินทร์ และอิทธิพลต่อการพัฒนาชาติไทย”. **Answer:** Explains the required historical relationship accurately, supports it with relevant evidence and recognises a relevant limitation or perspective where appropriate.
+3. **Apply / demonstrate:** Construct a short historical argument, comparison or timeline that answers this indicator. Use at least two source details, explain how they support your conclusion and distinguish evidence from inference. This assesses: “วิเคราะห์ภูมิปัญญาและวัฒนธรรมไทยสมัยรัตนโกสินทร์ และอิทธิพลต่อการพัฒนาชาติไทย”. **Answer:** Presents a coherent, chronologically accurate argument, comparison or timeline supported by at least two source details; evidence is clearly linked to the conclusion.
 ### 43. SO4.3-M3-04
 
 - **Standard:** SO4.3
@@ -1324,27 +1282,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: วิเคราะห์บทบาทของไทยในสมัยประชาธิปไตย
 **Suggested teaching sequence**
 
-1. Display an age-appropriate historical image, object or event prompt. Ask learners what they notice and what they still need evidence to establish.
-2. Model how to identify source type, author/context, date and relevant detail. Separate what the source directly shows from an inference or opinion.
-3. Learners sequence events or compare two sources, recording details that support a cause, consequence, change, continuity or historical interpretation relevant to the indicator.
-4. Each learner writes, explains or presents a short conclusion supported by source evidence. Check chronology and whether the evidence actually supports the claim.
+1. Introduce the historical period, event, person, development or historical method specified by the indicator through a dated primary or secondary source.
+2. Model source evaluation: origin, date, author or creator, purpose, context, reliability and limitations. Separate what is directly evidenced from inference.
+3. Learners organise or compare evidence to investigate the exact historical question, including chronology, cause and consequence, continuity and change, regional connection or historical interpretation as appropriate.
+4. Learners present a supported historical argument, comparison or timeline. Check chronological accuracy, source evaluation and whether evidence supports each claim.
 
-**Resources:** a dated photograph or artefact image, a short primary/secondary source extract and a timeline or source-analysis frame.
+**Resources:** dated primary and secondary source extracts, a historical timeline or map, and a source reliability/evidence organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์บทบาทของไทยในสมัยประชาธิปไตย
 
-**Practical activity:** Use an age-appropriate historical source, image or timeline. Identify evidence, sequence relevant events and distinguish what the source shows from opinion. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use dated primary and secondary sources that directly address the indicator. Learners evaluate the sources, organise evidence to analyse the required historical relationship and present a supported interpretation, comparison or timeline.
 **Expected evidence:** Three completed responses that demonstrate SO4.3-M3-04: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “วิเคราะห์บทบาทของไทยในสมัยประชาธิปไตย”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO4.3-M3-04 (วิเคราะห์บทบาทของไทยในสมัยประชาธิปไตย). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in history and historical evidence: “วิเคราะห์บทบาทของไทยในสมัยประชาธิปไตย”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO4.3-M3-04 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Examine two short sources about “วิเคราะห์บทบาทของไทยในสมัยประชาธิปไตย”. Record one useful detail from each, distinguish evidence from opinion, and explain one cause, consequence, similarity or difference. **Answer:** Cite accurate details from both sources, distinguish evidence from opinion and give a defensible historical explanation relevant to SO4.3-M3-04.
+1. **Recall / identify:** Examine the dated source or sources. Identify the historical event, period, person, development or method specified by this indicator. Record two details and identify what each source directly states. This assesses: “วิเคราะห์บทบาทของไทยในสมัยประชาธิปไตย”. **Answer:** Identifies the correct historical focus and two accurate source details, with source statements distinguished from inference.
+2. **Explain / analyse:** Analyse the historical relationship required by the indicator: chronology, cause, consequence, continuity, change, connection or interpretation. Support your analysis with source evidence and comment on one relevant source limitation. This assesses: “วิเคราะห์บทบาทของไทยในสมัยประชาธิปไตย”. **Answer:** Explains the required historical relationship accurately, supports it with relevant evidence and recognises a relevant limitation or perspective where appropriate.
+3. **Apply / demonstrate:** Construct a short historical argument, comparison or timeline that answers this indicator. Use at least two source details, explain how they support your conclusion and distinguish evidence from inference. This assesses: “วิเคราะห์บทบาทของไทยในสมัยประชาธิปไตย”. **Answer:** Presents a coherent, chronologically accurate argument, comparison or timeline supported by at least two source details; evidence is clearly linked to the conclusion.
 ### 44. SO5.1-M3-01
 
 - **Standard:** SO5.1
@@ -1355,27 +1312,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: วิเคราะห์ลักษณะทางกายภาพของทวีปอเมริกาเหนือ และทวีปอเมริกาใต้ โดยเลือกใช้แผนที่เฉพาะเรื่องและเครื่องมือทางภูมิศาสตร์สืบค้นข้อมูล
 **Suggested teaching sequence**
 
-1. Begin with a place, landscape, route or environmental issue familiar to learners. Locate it and ask what spatial information would help explain it.
-2. Model how to read the map, key, scale, direction, photograph or data display needed for the indicator. Demonstrate the geographic terms accurately.
-3. Pairs identify a location, pattern or relationship and use at least two visible details from the map, image or data to explain it.
-4. Learners produce an annotated map, short interpretation or evidence-based response. Assess correct use of geographic evidence and the link between people and place.
+1. Locate the regions, countries or geographic features named in the indicator on an appropriate map. Introduce the physical or human geographic question to be investigated.
+2. Model interpretation of map keys, scale, direction, coordinates, photographs, climate or population data, and explain the geographic terms required by the indicator.
+3. Learners investigate spatial distribution and the relevant physical, human, economic or environmental relationship. Require comparison across places or evidence from more than one geographic source where appropriate.
+4. Learners create an annotated map, geographic explanation or sustainable management recommendation. Check spatial accuracy and whether the evidence supports the conclusion.
 
-**Resources:** a labelled map or atlas extract, a local photograph, a simple map/data set and a geographic vocabulary frame.
+**Resources:** regional maps or atlas extracts, relevant geographic photographs and data, and an annotated-map or spatial-analysis organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์ลักษณะทางกายภาพของทวีปอเมริกาเหนือ และทวีปอเมริกาใต้ โดยเลือกใช้แผนที่เฉพาะเรื่องและเครื่องมือทางภูมิศาสตร์สืบค้นข้อมูล
 
-**Practical activity:** Use a local map, photograph, simple spatial data or environmental case. Identify location or pattern, explain the relationship and propose an evidence-based action. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use labelled regional maps and relevant geographic data or photographs. Learners locate the places in the indicator, analyse the specified spatial or human–environment relationship, and produce an annotated map, explanation or evidence-based recommendation.
 **Expected evidence:** Three completed responses that demonstrate SO5.1-M3-01: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “วิเคราะห์ลักษณะทางกายภาพของทวีปอเมริกาเหนือ และทวีปอเมริกาใต้ โดยเลือกใช้แผนที่เฉพาะเรื่องและเครื่องมือทางภูมิศาสตร์สืบค้นข้อมูล”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO5.1-M3-01 (วิเคราะห์ลักษณะทางกายภาพของทวีปอเมริกาเหนือ และทวีปอเมริกาใต้ โดยเลือกใช้แผนที่เฉพาะเรื่องและเครื่องมือทางภูมิศาสตร์สืบค้นข้อมูล). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in geography and human–environment relationships: “วิเคราะห์ลักษณะทางกายภาพของทวีปอเมริกาเหนือ และทวีปอเมริกาใต้ โดยเลือกใช้แผนที่เฉพาะเรื่องและเครื่องมือทางภูมิศาสตร์สืบค้นข้อมูล”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO5.1-M3-01 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Interpret a map, photograph or small data set about “วิเคราะห์ลักษณะทางกายภาพของทวีปอเมริกาเหนือ และทวีปอเมริกาใต้ โดยเลือกใช้แผนที่เฉพาะเรื่องและเครื่องมือทางภูมิศาสตร์สืบค้นข้อมูล”. Describe the spatial pattern or human–environment relationship, cite two details, and propose a suitable response. **Answer:** Interpret the spatial/environmental concept in SO5.1-M3-01, cite two source details and propose a response supported by evidence.
+1. **Recall / identify:** Use the regional map, map key and data provided. Locate the places or features named in this indicator and record two accurate details about their location, distribution or characteristics. This assesses: “วิเคราะห์ลักษณะทางกายภาพของทวีปอเมริกาเหนือ และทวีปอเมริกาใต้ โดยเลือกใช้แผนที่เฉพาะเรื่องและเครื่องมือทางภูมิศาสตร์สืบค้นข้อมูล”. **Answer:** Correctly identifies the places/features/pattern required by SO5.1-M3-01 and cites two accurate geographic details, using direction, location or distribution appropriately.
+2. **Explain / analyse:** Analyse the geographic pattern or relationship required by the indicator. Use at least two map, photograph or data details to explain the physical, human, economic or environmental factors involved. This assesses: “วิเคราะห์ลักษณะทางกายภาพของทวีปอเมริกาเหนือ และทวีปอเมริกาใต้ โดยเลือกใช้แผนที่เฉพาะเรื่องและเครื่องมือทางภูมิศาสตร์สืบค้นข้อมูล”. **Answer:** Explains the specific spatial or human–environment relationship and supports it with at least two accurate details from geographic evidence.
+3. **Apply / demonstrate:** Create an annotated map, comparative geographic explanation or sustainable-management recommendation that addresses this indicator. Identify the places affected, cite geographic evidence and justify the proposed conclusion or action. This assesses: “วิเคราะห์ลักษณะทางกายภาพของทวีปอเมริกาเหนือ และทวีปอเมริกาใต้ โดยเลือกใช้แผนที่เฉพาะเรื่องและเครื่องมือทางภูมิศาสตร์สืบค้นข้อมูล”. **Answer:** Produces an accurate map, comparison or feasible recommendation, identifies affected places and justifies the conclusion using relevant geographic evidence.
 ### 45. SO5.1-M3-02
 
 - **Standard:** SO5.1
@@ -1386,27 +1342,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: วิเคราะห์สาเหตุการเกิดภัยพิบัติและผลกระทบในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้
 **Suggested teaching sequence**
 
-1. Begin with a place, landscape, route or environmental issue familiar to learners. Locate it and ask what spatial information would help explain it.
-2. Model how to read the map, key, scale, direction, photograph or data display needed for the indicator. Demonstrate the geographic terms accurately.
-3. Pairs identify a location, pattern or relationship and use at least two visible details from the map, image or data to explain it.
-4. Learners produce an annotated map, short interpretation or evidence-based response. Assess correct use of geographic evidence and the link between people and place.
+1. Locate the regions, countries or geographic features named in the indicator on an appropriate map. Introduce the physical or human geographic question to be investigated.
+2. Model interpretation of map keys, scale, direction, coordinates, photographs, climate or population data, and explain the geographic terms required by the indicator.
+3. Learners investigate spatial distribution and the relevant physical, human, economic or environmental relationship. Require comparison across places or evidence from more than one geographic source where appropriate.
+4. Learners create an annotated map, geographic explanation or sustainable management recommendation. Check spatial accuracy and whether the evidence supports the conclusion.
 
-**Resources:** a labelled map or atlas extract, a local photograph, a simple map/data set and a geographic vocabulary frame.
+**Resources:** regional maps or atlas extracts, relevant geographic photographs and data, and an annotated-map or spatial-analysis organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์สาเหตุการเกิดภัยพิบัติและผลกระทบในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้
 
-**Practical activity:** Use a local map, photograph, simple spatial data or environmental case. Identify location or pattern, explain the relationship and propose an evidence-based action. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use labelled regional maps and relevant geographic data or photographs. Learners locate the places in the indicator, analyse the specified spatial or human–environment relationship, and produce an annotated map, explanation or evidence-based recommendation.
 **Expected evidence:** Three completed responses that demonstrate SO5.1-M3-02: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “วิเคราะห์สาเหตุการเกิดภัยพิบัติและผลกระทบในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO5.1-M3-02 (วิเคราะห์สาเหตุการเกิดภัยพิบัติและผลกระทบในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in geography and human–environment relationships: “วิเคราะห์สาเหตุการเกิดภัยพิบัติและผลกระทบในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO5.1-M3-02 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Interpret a map, photograph or small data set about “วิเคราะห์สาเหตุการเกิดภัยพิบัติและผลกระทบในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้”. Describe the spatial pattern or human–environment relationship, cite two details, and propose a suitable response. **Answer:** Interpret the spatial/environmental concept in SO5.1-M3-02, cite two source details and propose a response supported by evidence.
+1. **Recall / identify:** Use the regional map, map key and data provided. Locate the places or features named in this indicator and record two accurate details about their location, distribution or characteristics. This assesses: “วิเคราะห์สาเหตุการเกิดภัยพิบัติและผลกระทบในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้”. **Answer:** Correctly identifies the places/features/pattern required by SO5.1-M3-02 and cites two accurate geographic details, using direction, location or distribution appropriately.
+2. **Explain / analyse:** Analyse the geographic pattern or relationship required by the indicator. Use at least two map, photograph or data details to explain the physical, human, economic or environmental factors involved. This assesses: “วิเคราะห์สาเหตุการเกิดภัยพิบัติและผลกระทบในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้”. **Answer:** Explains the specific spatial or human–environment relationship and supports it with at least two accurate details from geographic evidence.
+3. **Apply / demonstrate:** Create an annotated map, comparative geographic explanation or sustainable-management recommendation that addresses this indicator. Identify the places affected, cite geographic evidence and justify the proposed conclusion or action. This assesses: “วิเคราะห์สาเหตุการเกิดภัยพิบัติและผลกระทบในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้”. **Answer:** Produces an accurate map, comparison or feasible recommendation, identifies affected places and justifies the conclusion using relevant geographic evidence.
 ### 46. SO5.2-M3-01
 
 - **Standard:** SO5.2
@@ -1417,27 +1372,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: สำรวจและระบุทำเลที่ตั้งของกิจกรรมทางเศรษฐกิจและสังคมในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้
 **Suggested teaching sequence**
 
-1. Begin with a place, landscape, route or environmental issue familiar to learners. Locate it and ask what spatial information would help explain it.
-2. Model how to read the map, key, scale, direction, photograph or data display needed for the indicator. Demonstrate the geographic terms accurately.
-3. Pairs identify a location, pattern or relationship and use at least two visible details from the map, image or data to explain it.
-4. Learners produce an annotated map, short interpretation or evidence-based response. Assess correct use of geographic evidence and the link between people and place.
+1. Locate the regions, countries or geographic features named in the indicator on an appropriate map. Introduce the physical or human geographic question to be investigated.
+2. Model interpretation of map keys, scale, direction, coordinates, photographs, climate or population data, and explain the geographic terms required by the indicator.
+3. Learners investigate spatial distribution and the relevant physical, human, economic or environmental relationship. Require comparison across places or evidence from more than one geographic source where appropriate.
+4. Learners create an annotated map, geographic explanation or sustainable management recommendation. Check spatial accuracy and whether the evidence supports the conclusion.
 
-**Resources:** a labelled map or atlas extract, a local photograph, a simple map/data set and a geographic vocabulary frame.
+**Resources:** regional maps or atlas extracts, relevant geographic photographs and data, and an annotated-map or spatial-analysis organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: สำรวจและระบุทำเลที่ตั้งของกิจกรรมทางเศรษฐกิจและสังคมในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้
 
-**Practical activity:** Use a local map, photograph, simple spatial data or environmental case. Identify location or pattern, explain the relationship and propose an evidence-based action. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use labelled regional maps and relevant geographic data or photographs. Learners locate the places in the indicator, analyse the specified spatial or human–environment relationship, and produce an annotated map, explanation or evidence-based recommendation.
 **Expected evidence:** Three completed responses that demonstrate SO5.2-M3-01: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “สำรวจและระบุทำเลที่ตั้งของกิจกรรมทางเศรษฐกิจและสังคมในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO5.2-M3-01 (สำรวจและระบุทำเลที่ตั้งของกิจกรรมทางเศรษฐกิจและสังคมในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in geography and human–environment relationships: “สำรวจและระบุทำเลที่ตั้งของกิจกรรมทางเศรษฐกิจและสังคมในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO5.2-M3-01 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Interpret a map, photograph or small data set about “สำรวจและระบุทำเลที่ตั้งของกิจกรรมทางเศรษฐกิจและสังคมในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้”. Describe the spatial pattern or human–environment relationship, cite two details, and propose a suitable response. **Answer:** Interpret the spatial/environmental concept in SO5.2-M3-01, cite two source details and propose a response supported by evidence.
+1. **Recall / identify:** Use the regional map, map key and data provided. Locate the places or features named in this indicator and record two accurate details about their location, distribution or characteristics. This assesses: “สำรวจและระบุทำเลที่ตั้งของกิจกรรมทางเศรษฐกิจและสังคมในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้”. **Answer:** Correctly identifies the places/features/pattern required by SO5.2-M3-01 and cites two accurate geographic details, using direction, location or distribution appropriately.
+2. **Explain / analyse:** Analyse the geographic pattern or relationship required by the indicator. Use at least two map, photograph or data details to explain the physical, human, economic or environmental factors involved. This assesses: “สำรวจและระบุทำเลที่ตั้งของกิจกรรมทางเศรษฐกิจและสังคมในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้”. **Answer:** Explains the specific spatial or human–environment relationship and supports it with at least two accurate details from geographic evidence.
+3. **Apply / demonstrate:** Create an annotated map, comparative geographic explanation or sustainable-management recommendation that addresses this indicator. Identify the places affected, cite geographic evidence and justify the proposed conclusion or action. This assesses: “สำรวจและระบุทำเลที่ตั้งของกิจกรรมทางเศรษฐกิจและสังคมในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้”. **Answer:** Produces an accurate map, comparison or feasible recommendation, identifies affected places and justifies the conclusion using relevant geographic evidence.
 ### 47. SO5.2-M3-02
 
 - **Standard:** SO5.2
@@ -1448,27 +1402,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: วิเคราะห์ปัจจัยทางกายภาพและปัจจัยทางสังคมที่ส่งผลต่อทำเลที่ตั้งของกิจกรรมทางเศรษฐกิจและสังคมในทวีปอเมริกาเหนือและทวีปอเมริกาใต้
 **Suggested teaching sequence**
 
-1. Begin with a place, landscape, route or environmental issue familiar to learners. Locate it and ask what spatial information would help explain it.
-2. Model how to read the map, key, scale, direction, photograph or data display needed for the indicator. Demonstrate the geographic terms accurately.
-3. Pairs identify a location, pattern or relationship and use at least two visible details from the map, image or data to explain it.
-4. Learners produce an annotated map, short interpretation or evidence-based response. Assess correct use of geographic evidence and the link between people and place.
+1. Locate the regions, countries or geographic features named in the indicator on an appropriate map. Introduce the physical or human geographic question to be investigated.
+2. Model interpretation of map keys, scale, direction, coordinates, photographs, climate or population data, and explain the geographic terms required by the indicator.
+3. Learners investigate spatial distribution and the relevant physical, human, economic or environmental relationship. Require comparison across places or evidence from more than one geographic source where appropriate.
+4. Learners create an annotated map, geographic explanation or sustainable management recommendation. Check spatial accuracy and whether the evidence supports the conclusion.
 
-**Resources:** a labelled map or atlas extract, a local photograph, a simple map/data set and a geographic vocabulary frame.
+**Resources:** regional maps or atlas extracts, relevant geographic photographs and data, and an annotated-map or spatial-analysis organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์ปัจจัยทางกายภาพและปัจจัยทางสังคมที่ส่งผลต่อทำเลที่ตั้งของกิจกรรมทางเศรษฐกิจและสังคมในทวีปอเมริกาเหนือและทวีปอเมริกาใต้
 
-**Practical activity:** Use a local map, photograph, simple spatial data or environmental case. Identify location or pattern, explain the relationship and propose an evidence-based action. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use labelled regional maps and relevant geographic data or photographs. Learners locate the places in the indicator, analyse the specified spatial or human–environment relationship, and produce an annotated map, explanation or evidence-based recommendation.
 **Expected evidence:** Three completed responses that demonstrate SO5.2-M3-02: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “วิเคราะห์ปัจจัยทางกายภาพและปัจจัยทางสังคมที่ส่งผลต่อทำเลที่ตั้งของกิจกรรมทางเศรษฐกิจและสังคมในทวีปอเมริกาเหนือและทวีปอเมริกาใต้”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO5.2-M3-02 (วิเคราะห์ปัจจัยทางกายภาพและปัจจัยทางสังคมที่ส่งผลต่อทำเลที่ตั้งของกิจกรรมทางเศรษฐกิจและสังคมในทวีปอเมริกาเหนือและทวีปอเมริกาใต้). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in geography and human–environment relationships: “วิเคราะห์ปัจจัยทางกายภาพและปัจจัยทางสังคมที่ส่งผลต่อทำเลที่ตั้งของกิจกรรมทางเศรษฐกิจและสังคมในทวีปอเมริกาเหนือและทวีปอเมริกาใต้”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO5.2-M3-02 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Interpret a map, photograph or small data set about “วิเคราะห์ปัจจัยทางกายภาพและปัจจัยทางสังคมที่ส่งผลต่อทำเลที่ตั้งของกิจกรรมทางเศรษฐกิจและสังคมในทวีปอเมริกาเหนือและทวีปอเมริกาใต้”. Describe the spatial pattern or human–environment relationship, cite two details, and propose a suitable response. **Answer:** Interpret the spatial/environmental concept in SO5.2-M3-02, cite two source details and propose a response supported by evidence.
+1. **Recall / identify:** Use the regional map, map key and data provided. Locate the places or features named in this indicator and record two accurate details about their location, distribution or characteristics. This assesses: “วิเคราะห์ปัจจัยทางกายภาพและปัจจัยทางสังคมที่ส่งผลต่อทำเลที่ตั้งของกิจกรรมทางเศรษฐกิจและสังคมในทวีปอเมริกาเหนือและทวีปอเมริกาใต้”. **Answer:** Correctly identifies the places/features/pattern required by SO5.2-M3-02 and cites two accurate geographic details, using direction, location or distribution appropriately.
+2. **Explain / analyse:** Analyse the geographic pattern or relationship required by the indicator. Use at least two map, photograph or data details to explain the physical, human, economic or environmental factors involved. This assesses: “วิเคราะห์ปัจจัยทางกายภาพและปัจจัยทางสังคมที่ส่งผลต่อทำเลที่ตั้งของกิจกรรมทางเศรษฐกิจและสังคมในทวีปอเมริกาเหนือและทวีปอเมริกาใต้”. **Answer:** Explains the specific spatial or human–environment relationship and supports it with at least two accurate details from geographic evidence.
+3. **Apply / demonstrate:** Create an annotated map, comparative geographic explanation or sustainable-management recommendation that addresses this indicator. Identify the places affected, cite geographic evidence and justify the proposed conclusion or action. This assesses: “วิเคราะห์ปัจจัยทางกายภาพและปัจจัยทางสังคมที่ส่งผลต่อทำเลที่ตั้งของกิจกรรมทางเศรษฐกิจและสังคมในทวีปอเมริกาเหนือและทวีปอเมริกาใต้”. **Answer:** Produces an accurate map, comparison or feasible recommendation, identifies affected places and justifies the conclusion using relevant geographic evidence.
 ### 48. SO5.2-M3-03
 
 - **Standard:** SO5.2
@@ -1479,27 +1432,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: สืบค้น อภิปรายประเด็นปัญหาจากปฏิสัมพันธ์ระหว่างสิ่งแวดล้อมทางกายภาพกับมนุษย์ที่เกิดขึ้นในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้
 **Suggested teaching sequence**
 
-1. Begin with a place, landscape, route or environmental issue familiar to learners. Locate it and ask what spatial information would help explain it.
-2. Model how to read the map, key, scale, direction, photograph or data display needed for the indicator. Demonstrate the geographic terms accurately.
-3. Pairs identify a location, pattern or relationship and use at least two visible details from the map, image or data to explain it.
-4. Learners produce an annotated map, short interpretation or evidence-based response. Assess correct use of geographic evidence and the link between people and place.
+1. Locate the regions, countries or geographic features named in the indicator on an appropriate map. Introduce the physical or human geographic question to be investigated.
+2. Model interpretation of map keys, scale, direction, coordinates, photographs, climate or population data, and explain the geographic terms required by the indicator.
+3. Learners investigate spatial distribution and the relevant physical, human, economic or environmental relationship. Require comparison across places or evidence from more than one geographic source where appropriate.
+4. Learners create an annotated map, geographic explanation or sustainable management recommendation. Check spatial accuracy and whether the evidence supports the conclusion.
 
-**Resources:** a labelled map or atlas extract, a local photograph, a simple map/data set and a geographic vocabulary frame.
+**Resources:** regional maps or atlas extracts, relevant geographic photographs and data, and an annotated-map or spatial-analysis organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: สืบค้น อภิปรายประเด็นปัญหาจากปฏิสัมพันธ์ระหว่างสิ่งแวดล้อมทางกายภาพกับมนุษย์ที่เกิดขึ้นในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้
 
-**Practical activity:** Use a local map, photograph, simple spatial data or environmental case. Identify location or pattern, explain the relationship and propose an evidence-based action. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use labelled regional maps and relevant geographic data or photographs. Learners locate the places in the indicator, analyse the specified spatial or human–environment relationship, and produce an annotated map, explanation or evidence-based recommendation.
 **Expected evidence:** Three completed responses that demonstrate SO5.2-M3-03: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “สืบค้น อภิปรายประเด็นปัญหาจากปฏิสัมพันธ์ระหว่างสิ่งแวดล้อมทางกายภาพกับมนุษย์ที่เกิดขึ้นในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO5.2-M3-03 (สืบค้น อภิปรายประเด็นปัญหาจากปฏิสัมพันธ์ระหว่างสิ่งแวดล้อมทางกายภาพกับมนุษย์ที่เกิดขึ้นในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in geography and human–environment relationships: “สืบค้น อภิปรายประเด็นปัญหาจากปฏิสัมพันธ์ระหว่างสิ่งแวดล้อมทางกายภาพกับมนุษย์ที่เกิดขึ้นในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO5.2-M3-03 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Interpret a map, photograph or small data set about “สืบค้น อภิปรายประเด็นปัญหาจากปฏิสัมพันธ์ระหว่างสิ่งแวดล้อมทางกายภาพกับมนุษย์ที่เกิดขึ้นในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้”. Describe the spatial pattern or human–environment relationship, cite two details, and propose a suitable response. **Answer:** Interpret the spatial/environmental concept in SO5.2-M3-03, cite two source details and propose a response supported by evidence.
+1. **Recall / identify:** Use the regional map, map key and data provided. Locate the places or features named in this indicator and record two accurate details about their location, distribution or characteristics. This assesses: “สืบค้น อภิปรายประเด็นปัญหาจากปฏิสัมพันธ์ระหว่างสิ่งแวดล้อมทางกายภาพกับมนุษย์ที่เกิดขึ้นในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้”. **Answer:** Correctly identifies the places/features/pattern required by SO5.2-M3-03 and cites two accurate geographic details, using direction, location or distribution appropriately.
+2. **Explain / analyse:** Analyse the geographic pattern or relationship required by the indicator. Use at least two map, photograph or data details to explain the physical, human, economic or environmental factors involved. This assesses: “สืบค้น อภิปรายประเด็นปัญหาจากปฏิสัมพันธ์ระหว่างสิ่งแวดล้อมทางกายภาพกับมนุษย์ที่เกิดขึ้นในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้”. **Answer:** Explains the specific spatial or human–environment relationship and supports it with at least two accurate details from geographic evidence.
+3. **Apply / demonstrate:** Create an annotated map, comparative geographic explanation or sustainable-management recommendation that addresses this indicator. Identify the places affected, cite geographic evidence and justify the proposed conclusion or action. This assesses: “สืบค้น อภิปรายประเด็นปัญหาจากปฏิสัมพันธ์ระหว่างสิ่งแวดล้อมทางกายภาพกับมนุษย์ที่เกิดขึ้นในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้”. **Answer:** Produces an accurate map, comparison or feasible recommendation, identifies affected places and justifies the conclusion using relevant geographic evidence.
 ### 49. SO5.2-M3-04
 
 - **Standard:** SO5.2
@@ -1510,27 +1462,26 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: วิเคราะห์แนวทางการจัดการภัยพิบัติและการจัดการทรัพยากรและสิ่งแวดล้อมในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้ที่ยั่งยืน
 **Suggested teaching sequence**
 
-1. Begin with a place, landscape, route or environmental issue familiar to learners. Locate it and ask what spatial information would help explain it.
-2. Model how to read the map, key, scale, direction, photograph or data display needed for the indicator. Demonstrate the geographic terms accurately.
-3. Pairs identify a location, pattern or relationship and use at least two visible details from the map, image or data to explain it.
-4. Learners produce an annotated map, short interpretation or evidence-based response. Assess correct use of geographic evidence and the link between people and place.
+1. Locate the regions, countries or geographic features named in the indicator on an appropriate map. Introduce the physical or human geographic question to be investigated.
+2. Model interpretation of map keys, scale, direction, coordinates, photographs, climate or population data, and explain the geographic terms required by the indicator.
+3. Learners investigate spatial distribution and the relevant physical, human, economic or environmental relationship. Require comparison across places or evidence from more than one geographic source where appropriate.
+4. Learners create an annotated map, geographic explanation or sustainable management recommendation. Check spatial accuracy and whether the evidence supports the conclusion.
 
-**Resources:** a labelled map or atlas extract, a local photograph, a simple map/data set and a geographic vocabulary frame.
+**Resources:** regional maps or atlas extracts, relevant geographic photographs and data, and an annotated-map or spatial-analysis organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: วิเคราะห์แนวทางการจัดการภัยพิบัติและการจัดการทรัพยากรและสิ่งแวดล้อมในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้ที่ยั่งยืน
 
-**Practical activity:** Use a local map, photograph, simple spatial data or environmental case. Identify location or pattern, explain the relationship and propose an evidence-based action. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use labelled regional maps and relevant geographic data or photographs. Learners locate the places in the indicator, analyse the specified spatial or human–environment relationship, and produce an annotated map, explanation or evidence-based recommendation.
 **Expected evidence:** Three completed responses that demonstrate SO5.2-M3-04: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “วิเคราะห์แนวทางการจัดการภัยพิบัติและการจัดการทรัพยากรและสิ่งแวดล้อมในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้ที่ยั่งยืน”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO5.2-M3-04 (วิเคราะห์แนวทางการจัดการภัยพิบัติและการจัดการทรัพยากรและสิ่งแวดล้อมในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้ที่ยั่งยืน). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in geography and human–environment relationships: “วิเคราะห์แนวทางการจัดการภัยพิบัติและการจัดการทรัพยากรและสิ่งแวดล้อมในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้ที่ยั่งยืน”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO5.2-M3-04 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Interpret a map, photograph or small data set about “วิเคราะห์แนวทางการจัดการภัยพิบัติและการจัดการทรัพยากรและสิ่งแวดล้อมในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้ที่ยั่งยืน”. Describe the spatial pattern or human–environment relationship, cite two details, and propose a suitable response. **Answer:** Interpret the spatial/environmental concept in SO5.2-M3-04, cite two source details and propose a response supported by evidence.
+1. **Recall / identify:** Use the regional map, map key and data provided. Locate the places or features named in this indicator and record two accurate details about their location, distribution or characteristics. This assesses: “วิเคราะห์แนวทางการจัดการภัยพิบัติและการจัดการทรัพยากรและสิ่งแวดล้อมในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้ที่ยั่งยืน”. **Answer:** Correctly identifies the places/features/pattern required by SO5.2-M3-04 and cites two accurate geographic details, using direction, location or distribution appropriately.
+2. **Explain / analyse:** Analyse the geographic pattern or relationship required by the indicator. Use at least two map, photograph or data details to explain the physical, human, economic or environmental factors involved. This assesses: “วิเคราะห์แนวทางการจัดการภัยพิบัติและการจัดการทรัพยากรและสิ่งแวดล้อมในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้ที่ยั่งยืน”. **Answer:** Explains the specific spatial or human–environment relationship and supports it with at least two accurate details from geographic evidence.
+3. **Apply / demonstrate:** Create an annotated map, comparative geographic explanation or sustainable-management recommendation that addresses this indicator. Identify the places affected, cite geographic evidence and justify the proposed conclusion or action. This assesses: “วิเคราะห์แนวทางการจัดการภัยพิบัติและการจัดการทรัพยากรและสิ่งแวดล้อมในทวีปอเมริกาเหนือ และทวีปอเมริกาใต้ที่ยั่งยืน”. **Answer:** Produces an accurate map, comparison or feasible recommendation, identifies affected places and justifies the conclusion using relevant geographic evidence.
 ### 50. SO5.2-M3-05
 
 - **Standard:** SO5.2
@@ -1541,24 +1492,23 @@ Use the indicator as the learning target. Adapt examples to the learners' commun
 - **Learning intention:** Learners will demonstrate: ระบุความร่วมมือระหว่างประเทศที่มีผลต่อการจัดการทรัพยากรและสิ่งแวดล้อม
 **Suggested teaching sequence**
 
-1. Begin with a place, landscape, route or environmental issue familiar to learners. Locate it and ask what spatial information would help explain it.
-2. Model how to read the map, key, scale, direction, photograph or data display needed for the indicator. Demonstrate the geographic terms accurately.
-3. Pairs identify a location, pattern or relationship and use at least two visible details from the map, image or data to explain it.
-4. Learners produce an annotated map, short interpretation or evidence-based response. Assess correct use of geographic evidence and the link between people and place.
+1. Locate the regions, countries or geographic features named in the indicator on an appropriate map. Introduce the physical or human geographic question to be investigated.
+2. Model interpretation of map keys, scale, direction, coordinates, photographs, climate or population data, and explain the geographic terms required by the indicator.
+3. Learners investigate spatial distribution and the relevant physical, human, economic or environmental relationship. Require comparison across places or evidence from more than one geographic source where appropriate.
+4. Learners create an annotated map, geographic explanation or sustainable management recommendation. Check spatial accuracy and whether the evidence supports the conclusion.
 
-**Resources:** a labelled map or atlas extract, a local photograph, a simple map/data set and a geographic vocabulary frame.
+**Resources:** regional maps or atlas extracts, relevant geographic photographs and data, and an annotated-map or spatial-analysis organiser.
 
-**Differentiation:** For lower secondary learners: Use short authentic sources and guided vocabulary; require learners to explain their reasoning and cite details from the case or source.
+**Differentiation:** For M3 learners: Pre-teach subject vocabulary, provide a structured source/data organiser and model how to cite evidence. Support learners with a shortened source or guided prompts; extend learners by comparing sources, evaluating competing explanations or defending a conclusion with multiple pieces of evidence.
 
 **Learning intention:** Learners will be able to demonstrate the specific knowledge or performance in this official indicator: ระบุความร่วมมือระหว่างประเทศที่มีผลต่อการจัดการทรัพยากรและสิ่งแวดล้อม
 
-**Practical activity:** Use a local map, photograph, simple spatial data or environmental case. Identify location or pattern, explain the relationship and propose an evidence-based action. Adapt the source and response length to lower secondary learners, using pictures and oral modelling for early primary, short organisers for upper primary, guided source analysis for lower secondary, and multiple sources or data for upper secondary.
-
+**Practical activity:** Use labelled regional maps and relevant geographic data or photographs. Learners locate the places in the indicator, analyse the specified spatial or human–environment relationship, and produce an annotated map, explanation or evidence-based recommendation.
 **Expected evidence:** Three completed responses that demonstrate SO5.2-M3-05: accurate identification, a clear explanation supported by a relevant example, and a grade-appropriate application task. Accept oral, written, visual, map-based, timeline-based or practical evidence when it measures the same learning target.
 
 **Teacher check:** Check separately: (1) accuracy against the Thai indicator, (2) explanation supported by a relevant example or source, and (3) application to the scenario. Give feedback on the missing criterion; do not reward unsupported guessing.
 
 **Independent practice**
-1. **Recall / identify:** From the lesson's picture, short source, map or classroom example, identify 2 accurate facts, terms, people, practices or features needed to meet this indicator: “ระบุความร่วมมือระหว่างประเทศที่มีผลต่อการจัดการทรัพยากรและสิ่งแวดล้อม”. Answer in a short list, labelled drawing or oral response. **Answer:** Identify 2 accurate items directly required by official indicator SO5.2-M3-05 (ระบุความร่วมมือระหว่างประเทศที่มีผลต่อการจัดการทรัพยากรและสิ่งแวดล้อม). Accept equivalent wording and age-appropriate examples; do not award unrelated facts.
-2. **Explain / analyse:** In your own words, explain how or why the idea in this indicator matters in geography and human–environment relationships: “ระบุความร่วมมือระหว่างประเทศที่มีผลต่อการจัดการทรัพยากรและสิ่งแวดล้อม”. Support your explanation with one relevant Thai or local example and explain how the example demonstrates the indicator. **Answer:** Accurately explain the idea or relationship stated in SO5.2-M3-05 and support it with one relevant example. Accept other accurate examples; the explanation must address the indicator rather than repeat it.
-3. **Apply / demonstrate:** Interpret a map, photograph or small data set about “ระบุความร่วมมือระหว่างประเทศที่มีผลต่อการจัดการทรัพยากรและสิ่งแวดล้อม”. Describe the spatial pattern or human–environment relationship, cite two details, and propose a suitable response. **Answer:** Interpret the spatial/environmental concept in SO5.2-M3-05, cite two source details and propose a response supported by evidence.
+1. **Recall / identify:** Use the regional map, map key and data provided. Locate the places or features named in this indicator and record two accurate details about their location, distribution or characteristics. This assesses: “ระบุความร่วมมือระหว่างประเทศที่มีผลต่อการจัดการทรัพยากรและสิ่งแวดล้อม”. **Answer:** Correctly identifies the places/features/pattern required by SO5.2-M3-05 and cites two accurate geographic details, using direction, location or distribution appropriately.
+2. **Explain / analyse:** Analyse the geographic pattern or relationship required by the indicator. Use at least two map, photograph or data details to explain the physical, human, economic or environmental factors involved. This assesses: “ระบุความร่วมมือระหว่างประเทศที่มีผลต่อการจัดการทรัพยากรและสิ่งแวดล้อม”. **Answer:** Explains the specific spatial or human–environment relationship and supports it with at least two accurate details from geographic evidence.
+3. **Apply / demonstrate:** Create an annotated map, comparative geographic explanation or sustainable-management recommendation that addresses this indicator. Identify the places affected, cite geographic evidence and justify the proposed conclusion or action. This assesses: “ระบุความร่วมมือระหว่างประเทศที่มีผลต่อการจัดการทรัพยากรและสิ่งแวดล้อม”. **Answer:** Produces an accurate map, comparison or feasible recommendation, identifies affected places and justifies the conclusion using relevant geographic evidence.
