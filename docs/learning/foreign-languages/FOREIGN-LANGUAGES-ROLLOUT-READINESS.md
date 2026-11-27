@@ -65,6 +65,10 @@ The 2021 compilation explicitly frames its Must-Know/Should-Know prioritisation 
 
 The official 2008 curriculum distinguishes grade-level indicators for P1–M3 from interval indicators for upper-secondary M4–M6. The database's three-grade mapping of the upper-secondary interval set is consistent with that structure.
 
+## P1–P3 pack preparation check
+
+The three P1–P3 Markdown packs contain 50 lesson sections, 150 answer-keyed questions and 50 unique objective codes. A structural check confirmed the grade prefixes, objective-register membership, learning-outcome/activity fields, three-question numbering and non-empty answer keys. The shared parser contract is used by the new `scripts/validate-foreign-languages-teacher-packs.mjs` validator; the validator is committed for repository execution.
+
 ## Indicator-level audit register
 
 A 193-row register has been generated from the live catalogue at `docs/learning/foreign-languages/FOREIGN-LANGUAGES-INDICATOR-SOURCE-RECONCILIATION.csv`. It records each database objective code, official indicator code from its stored provenance note, standard, official stage, 2021 priority classification and printed OBEC source page. The two comparison-status columns are intentionally marked `pending_line_by_line_review`; this register is a controlled review checklist, not evidence that every description has already been matched word-for-word.
