@@ -105,36 +105,37 @@ export default function LearningAssessmentRuntimePage() {
         current.organizationId ?? undefined,
       );
 
-      const questions = await Promise.all(
-        assessmentQuestions.map(async (assessmentQuestion) => {
-          const version =
-            await learningAssessmentService.getQuestionVersion(
-              assessmentQuestion.questionVersionId,
-            );
-          const question = questionRows.find(
-            (item) => item.id === version.questionId,
-          );
-
-          if (!question) {
-            throw new Error("A question could not be loaded.");
-          }
-          if (question.questionType !== "single_choice" && question.questionType !== "true_false" && question.questionType !== "short_answer") {
-            throw new Error("This assessment contains a question type that is not supported yet. Please contact your teacher.");
-          }
-
-          const prompt = textFromJson(version.prompt);
-
-          return {
-            id: version.id,
-            assessmentQuestionId: assessmentQuestion.id,
-            questionType: question.questionType,
-            prompt: prompt || "Question",
-            options: optionsFromConfiguration(version.configuration),
-            points: assessmentQuestion.points,
-            required: assessmentQuestion.required,
-          } satisfies QuestionDisplay;
-        }),
+      const questionVersions = await learningAssessmentService.listQuestionVersionsByIds(
+        assessmentQuestions.map((item) => item.questionVersionId),
       );
+      const versionsById = new Map(questionVersions.map((version) => [version.id, version]));
+
+      const questions = assessmentQuestions.map((assessmentQuestion) => {
+        const version = versionsById.get(assessmentQuestion.questionVersionId);
+        if (!version) {
+          throw new Error("A published assessment question version could not be loaded.");
+        }
+
+        const question = questionRows.find((item) => item.id === version.questionId);
+        if (!question) {
+          throw new Error("A question could not be loaded.");
+        }
+        if (question.questionType !== "single_choice" && question.questionType !== "true_false" && question.questionType !== "short_answer") {
+          throw new Error("This assessment contains a question type that is not supported yet. Please contact your teacher.");
+        }
+
+        const prompt = textFromJson(version.prompt);
+
+        return {
+          id: version.id,
+          assessmentQuestionId: assessmentQuestion.id,
+          questionType: question.questionType,
+          prompt: prompt || "Question",
+          options: optionsFromConfiguration(version.configuration),
+          points: assessmentQuestion.points,
+          required: assessmentQuestion.required,
+        } satisfies QuestionDisplay;
+      });
 
       return { assessment: current, questions };
     },
