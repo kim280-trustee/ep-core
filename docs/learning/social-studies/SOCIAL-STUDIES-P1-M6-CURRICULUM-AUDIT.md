@@ -153,6 +153,12 @@ The 2021 OBEC PDF's printed grand-total cell says 408, while its ten grade rows 
 
 
 
+
+
+### M3–M6 2021 priority reconciliation control
+
+Created `SOCIAL-STUDIES-2021-PRIORITY-RECONCILIATION.csv` with **111 unique rows**: 50 M3 indicators and 61 shared M4–M6 indicators, each carrying its official Thai indicator wording and the relevant 2021 OBEC PDF page range. The Must-Know / Should-Know value is deliberately `unverified` for every row until the PDF's detailed table is transcribed and exact indicator-code/text matching is completed. This is an index and reconciliation control, not a completed classification backfill.
+
 ### Row-level review control
 
 Created `SOCIAL-STUDIES-ACADEMIC-REVIEW-REGISTER.csv` on 27 November 2026 with exactly **1,254 unique task rows** linked to all **418 indicator codes** across the eight source packs. Each row records its task number/type, grade scope, source pack and official Thai indicator, with separate source-verification, prompt-specificity, marking-criteria and independent-moderation states. All review states intentionally begin as pending; register creation does not imply that a task has passed review. This provides a row-by-row control point for the remaining academic work.
