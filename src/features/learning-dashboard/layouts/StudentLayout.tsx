@@ -2,7 +2,9 @@ import { Award, BookOpen, CalendarDays, Compass, Languages, LayoutDashboard, Tre
 import { NavLink, Outlet } from "react-router-dom";
 import { LearningWorkspaceShell } from "@/features/learning-shared/components/LearningWorkspaceShell";
 
-const items = [
+type StudentNavigationItem = { to: string; label: string; icon: typeof LayoutDashboard; end?: boolean };
+
+const items: StudentNavigationItem[] = [
   { to: "/learning", label: "Dashboard", icon: LayoutDashboard, end: true },
   { to: "/learning/today", label: "Daily Hub", icon: CalendarDays },
   { to: "/learning/live-games", label: "Live Games", icon: Gamepad2 },

@@ -6,7 +6,9 @@ import { useAuth } from "@/core/auth";
 import { useTranslation } from "@/core/i18n/useTranslation";
 import { LearningWorkspaceShell } from "@/features/learning-shared/components/LearningWorkspaceShell";
 
-const items = [
+type ParentNavigationItem = { to: string; label: string; icon: typeof Home; end?: boolean };
+
+const items: ParentNavigationItem[] = [
   { to: "/parent", label: "learning.dashboard", icon: Home, end: true },
   { to: "/parent/invite", label: "learning.invitation", icon: UserPlus },
   { to: "/parent/announcements", label: "learning.announcements", icon: Megaphone },

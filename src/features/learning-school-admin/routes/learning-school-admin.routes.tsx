@@ -17,7 +17,9 @@ const SchoolAttendanceReportPage = lazy(() => import("../pages/SchoolAttendanceR
 const SchoolAnnouncementsPage = lazy(() => import("../pages/SchoolAnnouncementsPage"));
 const SchoolTeacherLeaveManagementPage = lazy(() => import("../pages/SchoolTeacherLeaveManagementPage"));
 
-const adminItems = [
+type SchoolAdminNavigationItem = { to: string; label: string; icon: typeof LayoutDashboard; end?: boolean };
+
+const adminItems: SchoolAdminNavigationItem[] = [
   { to: "/school-admin", label: "School Overview", icon: LayoutDashboard, end: true },
   { to: "/school-admin/analytics", label: "School Analytics", icon: BarChart3 },
   { to: "/school-admin/admissions", label: "Student Admissions", icon: GraduationCap },
