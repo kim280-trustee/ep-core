@@ -122,6 +122,14 @@ export function AuthProvider({ children }: Props) {
         return;
       }
 
+      if (event === "SIGNED_IN") {
+        // Do not render the previous account while the new account profile and
+        // Learning membership are being resolved.
+        loadRequestId.current += 1;
+        setUser(null);
+        setLoading(true);
+      }
+
       window.setTimeout(() => {
         if (mounted) void loadUser();
       }, 0);
