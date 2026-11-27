@@ -101,8 +101,9 @@ async function mockSupabase(page) {
   });
 }
 
-async function signIn(page, email) {
-  await page.goto("/login");
+async function signIn(page, email, startPath = "/login") {
+  await page.goto(startPath);
+  await expect(page).toHaveURL(/login$/);
   await page.getByLabel("Email address").fill(email);
   await page.getByLabel("Password").fill("test-password-not-a-real-credential");
   await page.getByRole("button", { name: "Sign In" }).click();
@@ -124,6 +125,17 @@ test.describe("Learning authentication browser acceptance", () => {
       }
     });
   }
+
+  test("preserves an authorized teacher deep link after sign-in", async ({ page }) => {
+    await signIn(page, "teacher@example.test", "/teacher/classes/test-class");
+    await expect(page).toHaveURL(/\/teacher\/classes\/test-class$/);
+  });
+
+  test("does not send a parent to a requested teacher-only deep link", async ({ page }) => {
+    await signIn(page, "parent@example.test", "/teacher/classes/test-class");
+    await expect(page).toHaveURL(/\/parent$/);
+    await expect(page.getByRole("heading", { name: "Access denied" })).toHaveCount(0);
+  });
 
   test("offers both eligible portals to a teacher-parent account", async ({ page }) => {
     await signIn(page, "teacher-parent@example.test");
