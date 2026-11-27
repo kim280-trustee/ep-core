@@ -17,7 +17,7 @@ assert.ok(migration.includes("t.class_group_id = v_entry.class_group_id"));
 assert.ok(migration.includes("term.id = v_entry.term_id"));
 assert.ok(migration.includes("term.organization_id = v_entry.organization_id"));
 assert.ok(!migration.includes("min(id)"));
-assert.ok(/if p_included_in_grade\\s+and v_entry.source_type = 'assessment_result'/s.test(migration));
+assert.ok(migration.replace(/\s+/g, " ").includes("if p_included_in_grade and v_entry.source_type = 'assessment_result'"));
 assert.ok(migration.includes("not private.learning_assessment_gradebook_mapping_is_valid(v_entry.id)"));
 assert.ok(migration.includes("keep this record excluded"));
 assert.ok(migration.includes("for update"));
