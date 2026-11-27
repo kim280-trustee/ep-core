@@ -2,10 +2,11 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 
 const read = (path) => readFile(new URL(path, import.meta.url), "utf8");
-const [login, provider, repository, roleRoute, studentRoutes, teacherRoutes, parentRoutes, adminRoutes, studentLayout, teacherLayout, parentLayout] =
+const [login, provider, context, repository, roleRoute, studentRoutes, teacherRoutes, parentRoutes, adminRoutes, studentLayout, teacherLayout, parentLayout] =
   await Promise.all([
     read("../src/features/auth/pages/LoginPage.tsx"),
     read("../src/core/auth/auth.provider.tsx"),
+    read("../src/core/auth/auth.context.ts"),
     read("../src/core/auth/supabase.auth.repository.ts"),
     read("../src/core/auth/LearningRoleRoute.tsx"),
     read("../src/features/learning-dashboard/routes/learning-dashboard.routes.tsx"),
