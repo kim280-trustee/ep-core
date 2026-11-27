@@ -2,7 +2,7 @@
 import type { RouteObject } from "react-router-dom";
 import { lazy } from "react";
 import { Navigate } from "react-router-dom";
-import { ProtectedRoute } from "@/core/auth";
+import { LearningRoleRoute } from "@/core/auth";
 import StudentLayout from "../layouts/StudentLayout";
 
 const LearningDashboardPage = lazy(() => import("../pages/LearningDashboardPage"));
@@ -22,9 +22,9 @@ export const learningDashboardRoutes: RouteObject[] = [
   {
     path: "learning",
     element: (
-      <ProtectedRoute>
+      <LearningRoleRoute role="student">
         <StudentLayout />
-      </ProtectedRoute>
+      </LearningRoleRoute>
     ),
     children: [
       { index: true, element: <LearningDashboardPage /> },
