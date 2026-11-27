@@ -28,9 +28,6 @@ const adminItems = [
   { to: "/school-admin/attendance-report", label: "Attendance Reports", icon: ClipboardCheck },
   { to: "/school-admin/announcements", label: "Announcements", icon: Megaphone },
   { to: "/school-admin/teacher-leave", label: "Teacher Leave", icon: CalendarDays },
-  { to: "/calendar", label: "School Calendar", icon: CalendarDays },
-  { to: "/notifications", label: "Notifications", icon: Bell },
-  { to: "/marketplace", label: "Extra Classes", icon: GraduationCap },
 ];
 
 function SchoolAdminNavigation() {
