@@ -30,7 +30,7 @@ export class SupabaseAuthRepository implements AuthRepository {
     return data.session;
   }
 
-  async getLoginDestination(authUserId: string): Promise<LoginDestination> {
+  async getLoginDestinations(authUserId: string): Promise<LoginDestination[]> {
     const { data: profile, error: profileError } = await supabase
       .from("users")
       .select("id")
@@ -38,7 +38,9 @@ export class SupabaseAuthRepository implements AuthRepository {
       .maybeSingle();
 
     if (profileError) throw profileError;
-    if (!profile) return null;
+    if (!profile) return [];
+
+    const destinations: LoginDestination[] = [];
 
     const { data: memberships, error: membershipError } = await supabase
       .from("learning_class_memberships")
@@ -49,11 +51,11 @@ export class SupabaseAuthRepository implements AuthRepository {
     if (membershipError) throw membershipError;
 
     if (memberships?.some((membership) => membership.membership_type === "teacher")) {
-      return "/teacher";
+      destinations.push("/teacher");
     }
 
     if (memberships?.some((membership) => membership.membership_type === "student")) {
-      return "/learning";
+      destinations.push("/learning");
     }
 
     const { data: parentLinks, error: parentError } = await supabase
@@ -64,7 +66,7 @@ export class SupabaseAuthRepository implements AuthRepository {
       .limit(1);
 
     if (parentError) throw parentError;
-    if (parentLinks?.length) return "/parent";
+    if (parentLinks?.length) destinations.push("/parent");
 
     const { data: organizationMemberships, error: organizationMembershipError } = await supabase
       .from("organization_memberships")
@@ -78,34 +80,34 @@ export class SupabaseAuthRepository implements AuthRepository {
       ...new Set((organizationMemberships ?? []).map((membership) => membership.organization_id)),
     ];
 
-    if (organizationIds.length === 0) return null;
+    if (organizationIds.length > 0) {
+      // Use the same organization-scoped database predicate as LearningRoleRoute.
+      // The generated Supabase type may not yet include this private-schema RPC.
+      const permissionClient = supabase as unknown as {
+        rpc: (
+          functionName: string,
+          args: Record<string, unknown>,
+        ) => Promise<{ data: unknown; error: { message: string } | null }>;
+      };
 
-    // Use the same organization-scoped database predicate as LearningRoleRoute.
-    // The generated Supabase type may not yet include this private-schema RPC.
-    const permissionClient = supabase as unknown as {
-      rpc: (
-        functionName: string,
-        args: Record<string, unknown>,
-      ) => Promise<{ data: unknown; error: { message: string } | null }>;
-    };
+      const permissionResults = await Promise.all(
+        organizationIds.map((organizationId) =>
+          permissionClient.rpc("learning_can_manage_academic_records", {
+            target_organization_id: organizationId,
+          }),
+        ),
+      );
 
-    const permissionResults = await Promise.all(
-      organizationIds.map((organizationId) =>
-        permissionClient.rpc("learning_can_manage_academic_records", {
-          target_organization_id: organizationId,
-        }),
-      ),
-    );
+      const failedPermissionCheck = permissionResults.find((result) => result.error);
+      if (failedPermissionCheck?.error) {
+        throw new Error(failedPermissionCheck.error.message);
+      }
 
-    const failedPermissionCheck = permissionResults.find((result) => result.error);
-    if (failedPermissionCheck?.error) {
-      throw new Error(failedPermissionCheck.error.message);
+      if (permissionResults.some((result) => result.data === true)) {
+        destinations.push("/school-admin");
+      }
     }
 
-    if (permissionResults.some((result) => result.data === true)) {
-      return "/school-admin";
-    }
-
-    return null;
+    return destinations;
   }
 }
