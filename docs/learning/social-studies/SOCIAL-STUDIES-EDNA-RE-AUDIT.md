@@ -526,3 +526,14 @@ The new stimuli include age-appropriate religious/community cases; child-rights 
 The moderation register was empty on the active `edna/subject-rollout` branch and has been reconstructed from the eight current teacher packs: 418 unique indicator codes, exactly three tasks per indicator, 1,254 unique `-Q1/-Q2/-Q3` task IDs and 17 columns per row. All source, factual, age/inclusion, marking and independent moderation controls remain explicitly pending/not moderated; register population is not academic approval.
 
 **P4 prompt/stimulus authoring batch: COMPLETE (114/114).** **P4 source verification, factual review, age/inclusion review, independent moderation and teacher acceptance: OPEN.** No staging import or production/live-school data change was made.
+
+
+## 4R. Primary 5 task-specific stimulus and marking-criteria batch — 27 November 2026
+
+The P5 teacher pack now contains topic-specific stimuli and three aligned tasks for each of its 36 indicators (108 tasks total). The revised progression is recall/identify, explain/analyse and apply/demonstrate. Every task is tied to the exact official Thai indicator wording, and answer guidance states the evidence, reasoning or performance needed for credit.
+
+The authored material includes curriculum-approved-source templates for religious biographies, scripture, ceremonies and exemplary stories; explicit rights-protection scenarios; local-government tasks that require the correct current authority chart and statutory source; clearly labelled illustrative household/cooperative/budget data; historical inquiry source sets and Ayutthaya/Thonburi chronology; and regional map/photo tasks that require verified local data rather than invented geographic facts. Borrowing examples are illustrative and direct pupils to check total repayment, terms and lender legitimacy. Cultural and religious tasks do not assess personal belief or compel worship.
+
+The P5 rows in `SOCIAL-STUDIES-TASK-LEVEL-MODERATION-REGISTER.csv` have been updated in place: 108 task rows, preserving the 1,254-row catalogue, 418 indicator coverage and 17-column schema. Source/content verification, factual accuracy, age/inclusion review, marking-quality review and independent moderation remain pending. This authoring pass is not a substitute for those reviews.
+
+**P5 task-specific authoring: COMPLETE (108/108 across 36/36 indicators).** **P5 source verification, factual/age review, independent moderation and teacher acceptance: OPEN.** No staging import or production/live-school data change was made.
