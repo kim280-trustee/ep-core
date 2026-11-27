@@ -15,16 +15,15 @@ declare
   v_entry public.learning_gradebook_entries%rowtype;
   v_assessment_id uuid;
   v_assignment_id uuid;
-  v_assignment_count integer;
-  v_term_id uuid;
-  v_term_count integer;
 begin
   select * into v_entry
   from public.learning_gradebook_entries
   where id = p_entry_id;
 
-  if not found or v_entry.source_type <> 'assessment_result'
-     or v_entry.assessment_result_id is null then
+  if not found
+     or v_entry.source_type <> 'assessment_result'
+     or v_entry.assessment_result_id is null
+     or v_entry.assignment_id is null then
     return false;
   end if;
 
@@ -41,96 +40,44 @@ begin
     return false;
   end if;
 
-  select count(distinct a.id)
-    into v_assignment_count
-  from public.learning_assignment_items ai
-  join public.learning_assignments a on a.id = ai.assignment_id
-  join public.learning_assignment_targets t on t.assignment_id = a.id
-  where ai.assessment_id = v_assessment_id
-    and ai.item_type = 'assessment'
-    and a.status = 'published'
-    and a.organization_id = v_entry.organization_id
-    and t.status = 'active'
-    and (
-      t.student_user_id = v_entry.student_user_id
-      or (
-        t.class_group_id is not null
-        and exists (
-          select 1
-          from public.learning_class_memberships cm
-          where cm.class_group_id = t.class_group_id
-            and cm.user_id = v_entry.student_user_id
-            and cm.membership_type = 'student'
-            and cm.status = 'active'
-        )
-      )
-    );
+  v_assignment_id := v_entry.assignment_id;
 
-  if v_assignment_count <> 1 or v_assignment_id is null then
-    return false;
-  end if;
-
-  select distinct a.id into v_assignment_id
-  from public.learning_assignment_items ai
-  join public.learning_assignments a on a.id = ai.assignment_id
-  join public.learning_assignment_targets t on t.assignment_id = a.id
-  where ai.assessment_id = v_assessment_id
-    and ai.item_type = 'assessment'
-    and a.status = 'published'
-    and a.organization_id = v_entry.organization_id
-    and t.status = 'active'
-    and (
-      t.student_user_id = v_entry.student_user_id
-      or (
-        t.class_group_id is not null
-        and exists (
-          select 1 from public.learning_class_memberships cm
-          where cm.class_group_id = t.class_group_id
-            and cm.user_id = v_entry.student_user_id
-            and cm.membership_type = 'student'
-            and cm.status = 'active'
-        )
-      )
-    );
-
+  -- Validate the exact assignment recorded when this gradebook row was
+  -- created. Do not remap historical results to a different assignment.
   if not exists (
     select 1
     from public.learning_assignments a
-    join public.learning_assignment_targets t on t.assignment_id = a.id
+    join public.learning_assignment_items ai
+      on ai.assignment_id = a.id
+     and ai.item_type = 'assessment'
+     and ai.assessment_id = v_assessment_id
+    join public.learning_assignment_targets t
+      on t.assignment_id = a.id
+     and t.status = 'active'
+    join public.learning_class_memberships cm
+      on cm.class_group_id = t.class_group_id
+     and cm.user_id = v_entry.student_user_id
+     and cm.organization_id = a.organization_id
+     and cm.membership_type = 'student'
+     and cm.status = 'active'
     where a.id = v_assignment_id
+      and a.organization_id = v_entry.organization_id
       and a.class_subject_id = v_entry.class_subject_id
-      and t.status = 'active'
-      and (
-        (t.student_user_id = v_entry.student_user_id and t.class_group_id is null)
-        or (
-          t.class_group_id = v_entry.class_group_id
-          and exists (
-            select 1 from public.learning_class_memberships cm
-            where cm.class_group_id = t.class_group_id
-              and cm.user_id = v_entry.student_user_id
-              and cm.membership_type = 'student'
-              and cm.status = 'active'
-          )
-        )
-      )
+      and a.status = 'published'
+      and t.class_group_id = v_entry.class_group_id
+      and (t.student_user_id is null or t.student_user_id = v_entry.student_user_id)
   ) then
     return false;
   end if;
 
-  select count(*), min(id)
-    into v_term_count, v_term_id
-  from public.learning_terms
-  where organization_id = v_entry.organization_id
-    and status = 'active';
-
-  return v_term_count = 1
-    and v_term_id = v_entry.term_id
-    and exists (
-      select 1 from public.learning_assignments a
-      where a.id = v_assignment_id
-        and a.class_subject_id = v_entry.class_subject_id
-        and a.organization_id = v_entry.organization_id
-    );
+  -- A historical term remains valid when closed. It must still exist and
+  -- match the immutable organization/term context stored on the entry.
+  return exists (
+    select 1
+    from public.learning_terms term
+    where term.id = v_entry.term_id
+      and term.organization_id = v_entry.organization_id
+  );
 end;
 $function$;
 
@@ -194,7 +141,7 @@ begin
   if p_included_in_grade
      and v_entry.source_type = 'assessment_result'
      and not private.learning_assessment_gradebook_mapping_is_valid(v_entry.id) then
-    raise exception 'The assessment assignment or active-term mapping is missing or ambiguous. Keep this record excluded until the academic mapping is corrected.';
+    raise exception 'The original assessment assignment or stored academic term mapping is missing or invalid. Keep this record excluded until the academic mapping is corrected.';
   end if;
 
   select grade.status into v_grade_status
