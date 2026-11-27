@@ -147,6 +147,10 @@ jobs:
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:thai-language-packs
 
+      - name: Validate Learning login, session and role authorization contracts
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:learning-authentication
+
       - name: Build production application
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run build
