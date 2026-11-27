@@ -118,6 +118,8 @@ as $function$
 declare
   v_auth_user_id uuid := (select auth.uid());
   v_student_user_id uuid;
+  v_tenant_id uuid;
+  v_organization_id uuid;
   v_status text;
   v_result jsonb;
   v_score numeric(10,2);
@@ -137,7 +139,8 @@ begin
     raise exception 'Authenticated application user was not found';
   end if;
 
-  select a.status into v_status
+  select a.status, a.tenant_id, a.organization_id
+    into v_status, v_tenant_id, v_organization_id
   from public.learning_attempts a
   where a.id = p_attempt_id
     and a.student_user_id = v_student_user_id
@@ -145,6 +148,26 @@ begin
 
   if not found then
     raise exception 'Assessment attempt was not found or is not owned by this student';
+  end if;
+
+  -- Revalidate active enrollment before either automatic evaluation or the
+  -- manual-review path. The earlier guarded evaluator is not sufficient here:
+  -- manual submissions do not call it.
+  perform 1
+  from public.organizations o
+  join public.learning_class_memberships cm
+    on cm.organization_id = o.id
+   and cm.tenant_id = o.tenant_id
+   and cm.user_id = v_student_user_id
+   and cm.membership_type = 'student'
+   and cm.status = 'active'
+  where o.tenant_id = v_tenant_id
+    and o.status = 'active'
+    and (v_organization_id is null or o.id = v_organization_id)
+  for share of o, cm;
+
+  if not found then
+    raise exception 'An active student enrollment in this organization is required';
   end if;
 
   if v_status = 'evaluated' then

@@ -1,0 +1,95 @@
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import { resolve } from "node:path";
+import ts from "typescript";
+
+const source = await readFile(resolve(process.cwd(), "src/features/learning-content/utils/learning-pack-import-validation.ts"), "utf8");
+const compiled = ts.transpileModule(source, {
+  compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext },
+  reportDiagnostics: true,
+});
+assert.equal(compiled.diagnostics?.length ?? 0, 0, "Import validation helper must transpile cleanly.");
+const moduleUrl = "data:text/javascript;base64," + Buffer.from(compiled.outputText).toString("base64");
+const { normalizeLearningImportCode, findExistingImportCodeConflicts, formatExistingImportCodeConflict, planResumableLessonImport, selectNewImportQuestions, formatImportChunkFailure, normalizeLearningObjectiveText, scoreLearningObjectiveText } = await import(moduleUrl);
+
+assert.equal(normalizeLearningImportCode(" ep sci/p1 001 "), "EP-SCI-P1-001");
+assert.equal(normalizeLearningImportCode("..."), "");
+
+assert.equal(normalizeLearningObjectiveText("อธิบายความสำคัญของศาสนา"), "อธิบายความสําคัญของศาสนา",
+  "Thai objective text must survive normalization instead of collapsing to an empty string.");
+assert.equal(normalizeLearningObjectiveText("ＡＢＣ  123"), "abc 123",
+  "Compatibility characters and repeated whitespace must normalize consistently.");
+assert.ok(scoreLearningObjectiveText("Explain the importance of community cooperation", "Explain the importance of community cooperation") > 0.99,
+  "Identical English objective descriptions must score as exact matches.");
+assert.ok(scoreLearningObjectiveText("อธิบายความสำคัญของศาสนา", "อธิบายความสำคัญของศาสนา") > 0.99,
+  "Identical Thai objective descriptions must score as exact matches.");
+assert.equal(scoreLearningObjectiveText("อธิบายความสำคัญของศาสนา", ""), 0,
+  "Empty or unmatchable descriptions must never produce a suggested objective.");
+assert.equal(scoreLearningObjectiveText("อธิบายความสำคัญของศาสนา", "คำนวณพื้นที่รูปสามเหลี่ยม"), 0,
+  "Unrelated Thai objectives must not become false fuzzy matches.");
+assert.deepEqual(findExistingImportCodeConflicts({
+  requestedContentCodes: ["ep-sci-p1-001", "ep-sci-p1-002"],
+  requestedQuestionCodes: ["q-001", "q-002"],
+  existingContentCodes: new Set(["EP SCI P1 001"]),
+  existingQuestionCodes: new Set(["Q-002"]),
+}), { contentCodes: ["EP-SCI-P1-001"], questionCodes: ["Q-002"] });
+assert.deepEqual(findExistingImportCodeConflicts({
+  requestedContentCodes: ["new-lesson"],
+  requestedQuestionCodes: ["new-question"],
+  existingContentCodes: new Set(["old-lesson"]),
+  existingQuestionCodes: new Set(["old-question"]),
+}), { contentCodes: [], questionCodes: [] });
+assert.equal(formatExistingImportCodeConflict({ contentCodes: [], questionCodes: [] }), null);
+assert.match(formatExistingImportCodeConflict({ contentCodes: ["LESSON-1"], questionCodes: ["Q-1"] }), /1 lesson code\(s\): LESSON-1; 1 question code\(s\): Q-1/);
+
+const lesson = (code) => ({
+  objectiveCode: code,
+  contentImportCode: `EP-${code}-LESSON`,
+  questions: [1, 2, 3].map((number) => ({ code: `EP-${code}-Q0${number}` })),
+});
+const fresh = lesson("SCI-P1-001");
+const complete = lesson("SCI-P1-002");
+assert.deepEqual(
+  planResumableLessonImport(
+    [fresh, complete],
+    new Set([complete.contentImportCode.toLowerCase()]),
+    new Set(complete.questions.map((question) => question.code.toLowerCase())),
+  ),
+  { lessonsToImport: [fresh], skippedLessons: 1 },
+  "A complete prior lesson group must be skipped while untouched lessons remain importable.",
+);
+assert.throws(
+  () => planResumableLessonImport([fresh], new Set([fresh.contentImportCode]), new Set()),
+  /SCI-P1-001.*lesson record: yes; existing questions: 0\/3/,
+  "A parent lesson without its questions must stop the retry.",
+);
+assert.throws(
+  () => planResumableLessonImport([fresh], new Set(), new Set([fresh.questions[0].code])),
+  /SCI-P1-001.*lesson record: no; existing questions: 1\/3/,
+  "Question records without the parent lesson must stop the retry.",
+);
+assert.throws(
+  () => planResumableLessonImport(
+    [fresh],
+    new Set([fresh.contentImportCode]),
+    new Set(fresh.questions.slice(0, 2).map((question) => question.code)),
+  ),
+  /existing questions: 2\/3/,
+  "A partially-created lesson group must stop the retry.",
+);
+const questionCandidates = [
+  { code: "NEW-Q-01" },
+  { code: "OLD-Q-02" },
+  { code: "NEW-Q-03" },
+];
+assert.deepEqual(
+  selectNewImportQuestions(questionCandidates, new Set(["old q 02"])),
+  { questionsToImport: [questionCandidates[0], questionCandidates[2]], skippedQuestions: 1 },
+  "Question-only retry must skip existing normalized codes and preserve untouched questions.",
+);
+
+const chunkFailure = formatImportChunkFailure({ kind: "lesson", chunkNumber: 3, totalChunks: 6, error: new Error("protected answer-key write failed") });
+assert.match(chunkFailure, /Lesson chunk 3 of 6 failed/);
+assert.match(chunkFailure, /Earlier completed chunks are retained/);
+assert.match(chunkFailure, /failed chunk attempts its own cleanup/);
+process.stdout.write("PASS: import preflight, resumable retries and chunk-failure recovery reporting.\n");

@@ -89,11 +89,11 @@ These 300 outcomes are additional upper-secondary specialist content. They remai
 
 - [x] P1–P6 W1–W3 indicators seeded, aligned and classified (111 total).
 - [x] P1–P6 W4.2 indicators seeded, aligned and classified (28).
-- [ ] M1–M3 W1–W4 indicator codes reconciled exactly to OBEC.
-- [ ] Transcribe all 102 upper-secondary core indicators from the OBEC M4/M5/M6 tables, verify per-grade counts and priorities, then seed each indicator only to its source grade.
-- [ ] Both `TH-BASIC-CORE-2008-2017` and `TH-SCI-M1-M6` have consistent M1–M6 SCI core alignments.
-- [ ] The final unique-indicator and grade-alignment totals reconcile to the official 415-indicator table.
-- [ ] All Science teacher packs cover the completed official indicator set; specialist packs remain separately identified.
+- [x] M1–M3 W1–W4 indicator codes reconciled exactly to OBEC.
+- [x] Transcribe all 102 upper-secondary core indicators from the OBEC M4/M5/M6 tables, verify per-grade counts and priorities, then seed each indicator only to its source grade.
+- [x] Both `TH-BASIC-CORE-2008-2017` and `TH-SCI-M1-M6` have consistent M1–M6 SCI core alignments.
+- [x] The final unique-indicator and grade-alignment totals reconcile to the official 415-indicator table.
+- [x] All Science teacher packs cover the completed official indicator set; specialist packs remain separately identified.
 - [ ] Only after every curriculum rollout is complete: run app-wide tests, local lint/build and teacher-import smoke tests.
 
 

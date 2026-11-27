@@ -1,8 +1,9 @@
 # Thai Curriculum — Consolidated Import and Acceptance Test Plan
 
-**Repository branch:** paul/thai-national-curriculum-foundation  
+**Implementation branch:** `paul/subject-rollout`  
+**Pull request:** [#174](https://github.com/kim280-trustee/ep-core/pull/174) (draft; not merged)  
 **Purpose:** One coordinated application test after all curriculum source packs and catalogue work are complete.  
-**Current rule:** Automated source validation may run during implementation. Do not repeatedly test the authenticated application after each subject. Do not import or publish these packs to the live pilot school.
+**Current rule:** Complete repository-side implementation and automated verification without provisioning staging. Do not repeatedly test the authenticated application after each subject. Do not import or publish these packs to the live pilot school. Staging is intentionally deferred and is not a blocker to closing the source-pack and repository implementation work.
 
 ## 1. National 2008/2017 curriculum — source and import totals
 
@@ -34,13 +35,13 @@ These resources are deliberately not added to the eight-area national-master tot
 
 Thai Studies is outside this rollout and must not be reported as complete.
 
-## 3. One consolidated application test
+## 3. One consolidated application test — approval-gated
 
-Run this only after all source packs, catalogue mappings and automated validators are complete. Use a dedicated staging organization and test classes if available. Do not use the live pilot school or real learner records as a test fixture.
+These steps describe a separate future authenticated acceptance pass; they are not part of the repository-side completion gate. Source-pack, parser, importer-contract, build and lint checks are completed through CI. The owner has chosen to finish without staging, so no staging organization, class or test accounts will be created. Do not substitute the live pilot school or real learner records as test fixtures.
 
 ### A. Teacher access and academic selectors
 
-- Sign in as an authorized teacher in the staging organization.
+- (Deferred) Sign in as an authorized teacher in an isolated test organization, if authenticated acceptance is commissioned later.
 - Confirm the intended curriculum, grade and subject selectors load without errors.
 - Confirm each selected subject is available for the selected curriculum.
 - Confirm grade lists match the curriculum version and do not silently fall back to another grade.
@@ -50,14 +51,14 @@ Run this only after all source packs, catalogue mappings and automated validator
 
 - Preview the 39 national source packs and the separate 2025, specialist Science and Computer Studies packs.
 - Compare source lesson counts and question counts with the tables above.
-- Confirm all 197 M4–M6 shared outcomes expand to M4, M5 and M6.
+- Confirm all 197 shared M4–M6 source outcomes each expand to exactly three grade-specific records (591 grade-scoped records in total), with no cross-grade code collisions.
 - Confirm grade-specific outcomes resolve to exactly one grade.
 - Confirm the imported objective code, official Thai indicator wording, lesson title, learning outcome, practical activity and teacher guidance are preserved.
 - Confirm each imported question has a distinct grade-scoped import code where shared outcomes expand.
 
 ### C. Draft import and resumability
 
-- Import into staging as unpublished drafts only.
+- (Deferred) If a separate isolated test environment is later authorized, import as unpublished drafts only.
 - Verify the final national totals: 2,450 grade-specific lesson drafts and 7,350 question drafts.
 - Verify the 2025 framework remains separate at 24 outcomes / 72 questions.
 - Verify the four Science specialist tracks remain separate at 300 outcomes / 900 questions.
@@ -91,7 +92,7 @@ Run this only after all source packs, catalogue mappings and automated validator
 | Catalogue coverage | 2,056 unique required indicators / 2,450 required alignments; zero unclassified required rows |
 | Source packs | All 39 national packs and all separate packs pass their dedicated parser/structure validators |
 | Shared-grade expansion | 197 shared outcomes expand to 591 grade-specific lesson rows; no code collisions |
-| National draft import | 2,450 lesson drafts / 7,350 question drafts in staging |
+| National draft import | Deferred: no staging import is performed in this repository-only completion |
 | Separate curriculum boundaries | 2025, specialist Science and Computer Studies totals remain separate |
 | Answer-key protection | Learner cannot access protected evaluation keys |
 | Teacher/student workflow | Preview, draft review, controlled publication, student submission, teacher review and progress all pass |
@@ -101,8 +102,10 @@ Run this only after all source packs, catalogue mappings and automated validator
 
 The GitHub Actions workflow runs the 39-pack national validator, the Thai Language/Career parser checks, the 2025 competency validator, consolidated Science and specialist Science validators, secondary and primary Mathematics validators, Computer Studies validator, and parser validators for Social Studies, Health/PE, Arts, Foreign Languages and Thai Language. It then runs the production build and ESLint.
 
-These automated checks validate source structure, parser compatibility, objective-code uniqueness, answer-key presence and grade mapping. They do not replace the consolidated authenticated application test above.
+These automated checks validate source structure, parser compatibility, objective-code uniqueness, answer-key presence and grade mapping. The shared parser also has a regression fixture for Social Studies packs where a Thai-only official-indicator line precedes the explicit objective-code line. All curriculum source validators, production build and ESLint passed in PR workflow `45140943548` on commit `6a259f6b92b70fe2adb5ab248d894d400065f0c9`. The workflow completed successfully. These checks do not claim that authenticated database import or teacher/student application acceptance has occurred.
 
 ## 6. Release boundary
 
-Keep PR #173 open and in draft until the consolidated staging test and review are complete. Do not merge, activate curricula, publish content or import into the live school automatically. The final rollout decision must be made after the test results are reviewed.
+PR #174 remains open and in draft. Do not merge, activate curricula, publish content or import into the live school automatically. Repository-side implementation and automated verification are complete on the current branch. Authenticated import, protected-answer-key runtime verification, and teacher/student workflow acceptance remain explicitly deferred because staging is not being provisioned. This is a known release limitation, not an unfinished repository task.
+
+No Supabase migration is applied by this completion batch; no curriculum data is seeded; no staging organization, class or user is created; and no live school or learner record is changed. If authenticated acceptance is commissioned later, it must use a separately authorized isolated environment and follow sections A–E.

@@ -1,4 +1,5 @@
 import { useMemo, useState, type ChangeEvent, type ReactNode } from "react";
+import { formatImportChunkFailure, normalizeLearningObjectiveText, planResumableLessonImport, scoreLearningObjectiveText, selectNewImportQuestions } from "@/features/learning-content/utils/learning-pack-import-validation";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, FileUp, Upload } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -29,6 +30,7 @@ export default function TeacherContentImportPage() {
   const [curriculumId, setCurriculumId] = useState("");
   const [gradeLevelId, setGradeLevelId] = useState("");
   const [subjectId, setSubjectId] = useState("");
+  const [languageCode, setLanguageCode] = useState<"en" | "th">("en");
   const [parsedLessons, setParsedLessons] = useState<ParsedTeacherPackLesson[]>([]);
   const [questionsOnly, setQuestionsOnly] = useState(false);
   const [fileName, setFileName] = useState("");
@@ -131,10 +133,10 @@ export default function TeacherContentImportPage() {
         }
 
         if (!objective && lesson.objectiveText) {
-          const normalizedText = normalizeText(lesson.objectiveText);
+          const normalizedText = normalizeLearningObjectiveText(lesson.objectiveText);
           const exactTextMatches = objectives.filter((item) =>
-            normalizeText(item.name) === normalizedText ||
-            normalizeText(item.description ?? "") === normalizedText
+            normalizeLearningObjectiveText(item.name) === normalizedText ||
+            normalizeLearningObjectiveText(item.description ?? "") === normalizedText
           );
           if (exactTextMatches.length === 1) {
             objective = exactTextMatches[0];
@@ -143,7 +145,7 @@ export default function TeacherContentImportPage() {
             const scored = alignedCandidates
               .map((item) => ({
                 item,
-                score: textSimilarity(lesson.objectiveText!, item.description || item.name),
+                score: scoreLearningObjectiveText(lesson.objectiveText!, item.description || item.name),
               }))
               .sort((left, right) => right.score - left.score);
             const best = scored[0];
@@ -232,6 +234,17 @@ export default function TeacherContentImportPage() {
     }
   }
 
+  async function invalidateImportQueries() {
+    // A partial import can persist earlier chunks before a later chunk fails.
+    // Refresh all affected views on both success and failure without allowing
+    // a cache-refresh error to hide the original import result.
+    await Promise.allSettled([
+      queryClient.invalidateQueries({ queryKey: ["learning", "teacher-content-library", organizationId] }),
+      queryClient.invalidateQueries({ queryKey: ["learning", "question-bank"] }),
+      queryClient.invalidateQueries({ queryKey: ["learning", "authoring", "questions"] }),
+    ]);
+  }
+
   async function importPack() {
     if (!user?.id || !organizationId || !activeCurriculumId || !activeSubjectId) {
       setMessage("Sign in and select an organization, curriculum and subject before importing.");
@@ -244,6 +257,7 @@ export default function TeacherContentImportPage() {
     setImportProgress({ lessons: 0, questions: 0 });
     let importedLessons = 0;
     let importedQuestions = 0;
+    let failedChunk: { kind: "lesson" | "question"; number: number; total: number } | null = null;
 
     try {
       const requestedContentCodes = questionsOnly ? [] : resolved.rows.map((lesson) =>
@@ -258,65 +272,109 @@ export default function TeacherContentImportPage() {
         questionCodes: requestedQuestionCodes,
       });
 
+      const questionCandidates = resolved.rows.flatMap((lesson) => lesson.questions.map((question) => ({
+        ...question,
+        objectiveId: lesson.objectiveId,
+        gradeLevelId: lesson.gradeLevelId,
+      })));
+      const questionIntegrity = await learningPackImportService.verifyExistingQuestionImports({
+        organizationId,
+        classGroupId: selectedClassGroupId,
+        curriculumId: activeCurriculumId,
+        subjectId: activeSubjectId,
+        languageCode,
+        questions: questionCandidates,
+      });
+      const incompleteExistingQuestions = questionCandidates.filter((question) => {
+        const code = makeImportCode(question.code);
+        if (!existing.questionCodes.has(code)) return false;
+        const integrity = questionIntegrity.get(code);
+        return !integrity?.questionExists || !integrity.isComplete;
+      });
+      if (incompleteExistingQuestions.length) {
+        const details = incompleteExistingQuestions.slice(0, 4).map((question) => {
+          const integrity = questionIntegrity.get(makeImportCode(question.code));
+          return `${makeImportCode(question.code)} (${integrity?.issue ?? "verification_missing"})`;
+        }).join(", ");
+        throw new Error(`Existing question drafts are incomplete or do not match this pack: ${details}. No existing records were skipped or overwritten. Inspect the affected drafts before retrying.`);
+      }
+      const completeQuestionCodes = new Set(
+        [...questionIntegrity.entries()]
+          .filter(([, integrity]) => integrity.questionExists && integrity.isComplete)
+          .map(([code]) => code),
+      );
+
       if (questionsOnly) {
-        const questions = resolved.rows.flatMap((lesson) => lesson.questions.map((question) => ({
-          ...question,
-          objectiveId: lesson.objectiveId,
-          gradeLevelId: lesson.gradeLevelId,
-        }))).filter((question) => !existing.questionCodes.has(makeImportCode(question.code)));
-        const skippedQuestions = requestedQuestionCodes.length - questions.length;
+        const questionPlan = selectNewImportQuestions(questionCandidates, completeQuestionCodes);
+        const questions = questionPlan.questionsToImport;
+        const skippedQuestions = questionPlan.skippedQuestions;
+        const totalChunks = Math.ceil(questions.length / CHUNK_SIZE);
         for (let offset = 0; offset < questions.length; offset += CHUNK_SIZE) {
+          const chunkNumber = Math.floor(offset / CHUNK_SIZE) + 1;
+          failedChunk = { kind: "question", number: chunkNumber, total: totalChunks };
           const result = await learningPackImportService.importQuestionsOnly({
             organizationId,
             createdBy: user.id,
             curriculumId: activeCurriculumId,
             subjectId: activeSubjectId,
+            languageCode,
             questions: questions.slice(offset, offset + CHUNK_SIZE),
           });
           importedQuestions += result.questions;
+          failedChunk = null;
           setImportProgress({ lessons: 0, questions: importedQuestions });
         }
         setMessage(`Imported ${importedQuestions} new assessment question drafts; skipped ${skippedQuestions} existing question codes. All new items remain unpublished for teacher review.`);
       } else {
-        const newLessons: ResolvedLesson[] = [];
-        let skippedLessons = 0;
-        for (const lesson of resolved.rows) {
-          const contentExists = existing.contentCodes.has(lesson.contentImportCode);
-          const existingQuestionCount = lesson.questions.filter((question) =>
-            existing.questionCodes.has(makeImportCode(question.code))
-          ).length;
-          if (contentExists && existingQuestionCount === lesson.questions.length) {
-            skippedLessons += 1;
-            continue;
-          }
-          if (contentExists || existingQuestionCount > 0) {
-            throw new Error(`The saved records for ${lesson.objectiveCode} are incomplete (lesson record: ${contentExists ? "yes" : "no"}; existing questions: ${existingQuestionCount}/3). No records were overwritten. Inspect this objective's drafts before retrying.`);
-          }
-          newLessons.push(lesson);
+        const existingLessons = resolved.rows.filter((lesson) =>
+          existing.contentCodes.has(makeImportCode(lesson.contentImportCode)),
+        );
+        const incompleteContentCodes = await learningPackImportService.findIncompleteExistingContentCodes({
+          organizationId,
+          languageCode,
+          lessons: existingLessons,
+        });
+        if (incompleteContentCodes.size) {
+          throw new Error(`Existing lesson drafts are incomplete or do not match this pack: ${[...incompleteContentCodes].slice(0, 4).join(", ")}. No existing records were skipped or overwritten. Inspect the affected drafts before retrying.`);
         }
+        const lessonPlan = planResumableLessonImport(
+          resolved.rows,
+          existing.contentCodes,
+          completeQuestionCodes,
+        );
+        const newLessons = lessonPlan.lessonsToImport;
+        const skippedLessons = lessonPlan.skippedLessons;
+        const totalChunks = Math.ceil(newLessons.length / CHUNK_SIZE);
         for (let offset = 0; offset < newLessons.length; offset += CHUNK_SIZE) {
+          const chunkNumber = Math.floor(offset / CHUNK_SIZE) + 1;
+          failedChunk = { kind: "lesson", number: chunkNumber, total: totalChunks };
           const chunk = newLessons.slice(offset, offset + CHUNK_SIZE);
           const result = await learningPackImportService.importChunk({
             organizationId,
             createdBy: user.id,
             curriculumId: activeCurriculumId,
             subjectId: activeSubjectId,
+            languageCode,
             lessons: chunk,
           });
           importedLessons += result.lessons;
           importedQuestions += result.questions;
+          failedChunk = null;
           setImportProgress({ lessons: importedLessons, questions: importedQuestions });
         }
         setMessage(`Imported ${importedLessons} new lesson drafts and ${importedQuestions} new question drafts; safely skipped ${skippedLessons} complete lessons from an earlier run. All new items remain unpublished for teacher review.`);
       }
-      await queryClient.invalidateQueries({ queryKey: ["learning", "teacher-content-library", organizationId] });
-      await queryClient.invalidateQueries({ queryKey: ["learning", "question-bank"] });
-      await queryClient.invalidateQueries({ queryKey: ["learning", "authoring", "questions"] });
+      await invalidateImportQueries();
     } catch (error) {
-      const reason = error instanceof Error ? error.message : "Unknown import error.";
+      // Earlier chunks may already be committed; refresh affected lists even
+      // when a later chunk fails or cleanup reports an error.
+      await invalidateImportQueries();
+      const reason = failedChunk
+        ? formatImportChunkFailure({ kind: failedChunk.kind, chunkNumber: failedChunk.number, totalChunks: failedChunk.total, error })
+        : error instanceof Error ? error.message : "Unknown import error.";
       setMessage(importedLessons || importedQuestions
-        ? `Partial import: ${importedLessons} lesson drafts and ${importedQuestions} question drafts were saved in completed chunks. The next chunk stopped: ${reason}`
-        : `Nothing was imported: ${reason}`);
+        ? `Partial import: ${importedLessons} lesson drafts and ${importedQuestions} question drafts were saved in completed chunks. ${reason}`
+        : failedChunk ? `Nothing was saved from this run. ${reason}` : `Nothing was imported: ${reason}`);
     } finally {
       setImporting(false);
     }
@@ -382,6 +440,12 @@ export default function TeacherContentImportPage() {
           <Field label="Subject">
             <select value={activeSubjectId} onChange={(event) => setSubjectId(event.target.value)} className="input w-full">
               {(subjects.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name} ({item.code})</option>)}
+            </select>
+          </Field>
+          <Field label="Content language">
+            <select value={languageCode} onChange={(event) => setLanguageCode(event.target.value as "en" | "th")} className="input w-full">
+              <option value="en">English (en)</option>
+              <option value="th">Thai (th)</option>
             </select>
           </Field>
         </div>
@@ -451,27 +515,6 @@ export default function TeacherContentImportPage() {
       </section>
     </div>
   );
-}
-
-function normalizeText(value: string) {
-  return value.toLowerCase().replace(/[’']/g, "").replace(/[^a-z0-9]+/g, " ").trim();
-}
-
-function textSimilarity(left: string, right: string) {
-  const ignored = new Set(["the", "and", "of", "to", "a", "an", "in", "for", "using", "use", "how", "what", "with", "from", "by", "on", "at", "as", "is", "are", "be", "that", "this", "their", "its", "into", "across"]);
-  const tokens = (value: string) => new Set(
-    normalizeText(value).split(" ")
-      .map((token) => token.endsWith("ies") ? `${token.slice(0, -3)}y` : token.endsWith("s") ? token.slice(0, -1) : token)
-      .filter((token) => token.length > 2 && !ignored.has(token)),
-  );
-  const leftTokens = tokens(left);
-  const rightTokens = tokens(right);
-  if (!leftTokens.size || !rightTokens.size) return 0;
-  let intersection = 0;
-  leftTokens.forEach((token) => { if (rightTokens.has(token)) intersection += 1; });
-  const sourceCoverage = intersection / leftTokens.size;
-  const dice = (2 * intersection) / (leftTokens.size + rightTokens.size);
-  return sourceCoverage * 0.7 + dice * 0.3;
 }
 
 function Field({ label, children }: { label: string; children: ReactNode }) {

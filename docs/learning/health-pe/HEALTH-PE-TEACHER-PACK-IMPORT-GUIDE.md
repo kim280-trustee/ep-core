@@ -31,11 +31,11 @@ Import the four packs as unpublished teacher-content drafts. The M4–M6 pack co
 
 The 221 curriculum objectives and 279 grade-level alignments are already present and verified in Supabase. OBEC classifications are complete (139 must-know and 140 should-know alignment rows).
 
-The teacher packs are prepared in Markdown, but no HPE lesson drafts or question-bank drafts have been imported. The live database currently reports zero HPE lesson drafts and zero HPE question drafts. Import remains a teacher-authorised action; this guide does not create school or learner records.
+The teacher packs are prepared in Markdown and pass the current HPE parser/content-contract checks, but no HPE lesson drafts or question-bank drafts have been imported. Isolated staging import and authorised teacher acceptance remain outstanding prerequisites. The live database currently reports zero HPE lesson drafts and zero HPE question drafts. Import remains a teacher-authorised action; this guide does not create school or learner records.
 
 
 ## Assessment authoring and automated validation
 
-All 221 indicators have three indicator-specific tasks (663 total). Each task includes the exact Thai indicator text and answer/evidence guidance. Tasks vary by HPE standard and grade band. Use fictional scenarios for sensitive content, do not ask learners to disclose personal experiences, and follow the safety guidance above.
+All 221 indicators now have three objective-linked formative tasks (663 total): a two-point knowledge check, a fictional-case decision task and an observable demonstration/evidence task. Each prompt and answer guide references the exact Thai indicator, identifies the relevant HPE topic and sets criteria for acceptable evidence. The three-part structure is consistent across lessons, while the objective, case context and evidence requirements are linked to each indicator. Teaching activity, practical activity, expected evidence and teacher check are also topic- and grade-band-specific. Use fictional scenarios for sensitive content, do not ask learners to disclose personal experiences, and follow the safety guidance above.
 
 Run `npm run validate:health-pe-packs` to validate the four packs through the actual TypeScript importer parser. GitHub Actions run 176 passed this check, the Social Studies and Science parser checks, all eight national-area pack validation, the Thai B.E. 2568 pack check, production build and ESLint.

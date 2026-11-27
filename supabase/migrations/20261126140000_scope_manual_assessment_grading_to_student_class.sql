@@ -1,0 +1,296 @@
+-- Restrict manual assessment marking to academic managers or teachers
+-- who actively teach the student's class in this organization.
+begin;
+
+create or replace function public.grade_learning_attempt_answer(
+  p_answer_id uuid,
+  p_awarded_points numeric,
+  p_teacher_feedback text default null
+)
+returns jsonb
+language plpgsql
+security definer
+set search_path = ''
+as $function$
+declare
+  v_auth_user_id uuid := (select auth.uid());
+  v_teacher_id uuid;
+  v_answer record;
+  v_pending_manual integer;
+  v_score numeric(10,2);
+  v_max_score numeric(10,2);
+  v_percentage numeric(7,4);
+  v_result_id uuid;
+  v_now timestamptz := now();
+  v_objective record;
+  v_previous_score numeric(6,3);
+  v_previous_attempts integer;
+  v_new_score numeric(6,3);
+  v_confidence numeric(6,3);
+begin
+  if v_auth_user_id is null then
+    raise exception 'Authentication is required';
+  end if;
+
+  select u.id into v_teacher_id
+  from public.users u
+  where u.auth_user_id = v_auth_user_id;
+
+  if v_teacher_id is null then
+    raise exception 'Authenticated teacher account was not found';
+  end if;
+
+  select
+    aa.id as answer_id,
+    aa.attempt_id,
+    aa.assessment_question_id,
+    aa.evaluation_status,
+    a.status as attempt_status,
+    a.student_user_id,
+    a.tenant_id,
+    a.organization_id,
+    a.assessment_id,
+    aq.points,
+    aq.question_version_id,
+    q.question_type,
+    ek.scoring_rules
+  into v_answer
+  from public.learning_attempt_answers aa
+  join public.learning_attempts a on a.id = aa.attempt_id
+  join public.learning_assessment_questions aq on aq.id = aa.assessment_question_id
+  join public.learning_question_versions qv on qv.id = aq.question_version_id
+  join public.learning_questions q on q.id = qv.question_id
+  left join public.learning_question_evaluation_keys ek on ek.question_version_id = qv.id
+  where aa.id = p_answer_id
+  for update of aa, a;
+
+  if not found then
+    raise exception 'Assessment answer was not found';
+  end if;
+
+  if v_answer.attempt_status <> 'evaluating' then
+    raise exception 'Only submitted attempts awaiting review can be graded';
+  end if;
+
+  if v_answer.question_type <> 'short_answer'
+     or coalesce(v_answer.scoring_rules->>'method', '') <> 'manual_review' then
+    raise exception 'This answer is not configured for manual review';
+  end if;
+
+  if v_answer.evaluation_status = 'manual_reviewed' then
+    raise exception 'This answer has already been graded';
+  end if;
+
+  if p_awarded_points is null or p_awarded_points < 0 or p_awarded_points > v_answer.points then
+    raise exception 'Awarded points must be between zero and the question maximum';
+  end if;
+
+  if v_answer.organization_id is null
+     or not (
+       public.learning_can_manage_academic_records(v_answer.organization_id)
+       or public.learning_teacher_can_view_student(v_answer.organization_id, v_answer.student_user_id)
+     ) then
+    raise exception 'You are not authorized to grade this assessment';
+  end if;
+
+  update public.learning_attempt_answers
+  set evaluation_status = 'manual_reviewed',
+      is_correct = (p_awarded_points >= v_answer.points),
+      awarded_points = p_awarded_points,
+      feedback = case
+        when nullif(trim(coalesce(p_teacher_feedback, '')), '') is null then '{}'::jsonb
+        else jsonb_build_object('teacher_feedback', trim(p_teacher_feedback))
+      end,
+      evaluated_at = v_now,
+      updated_at = v_now
+  where id = p_answer_id;
+
+  select count(*)::integer into v_pending_manual
+  from public.learning_attempt_answers aa
+  join public.learning_assessment_questions aq on aq.id = aa.assessment_question_id
+  join public.learning_question_versions qv on qv.id = aq.question_version_id
+  join public.learning_questions q on q.id = qv.question_id
+  join public.learning_question_evaluation_keys ek on ek.question_version_id = qv.id
+  where aa.attempt_id = v_answer.attempt_id
+    and q.question_type = 'short_answer'
+    and ek.scoring_rules->>'method' = 'manual_review'
+    and aa.evaluation_status <> 'manual_reviewed';
+
+  if v_pending_manual > 0 then
+    return jsonb_build_object(
+      'attempt_id', v_answer.attempt_id,
+      'status', 'evaluating',
+      'pending_manual_answers', v_pending_manual
+    );
+  end if;
+
+  -- Unanswered required questions contribute zero while optional unanswered
+  -- questions are excluded from the denominator.
+  select
+    coalesce(sum(coalesce(aa.awarded_points, 0)), 0),
+    coalesce(sum(aq.points) filter (where aa.id is not null or aq.required), 0)
+  into v_score, v_max_score
+  from public.learning_assessment_questions aq
+  left join public.learning_attempt_answers aa
+    on aa.attempt_id = v_answer.attempt_id
+   and aa.assessment_question_id = aq.id
+  where aq.assessment_id = v_answer.assessment_id;
+
+  v_percentage := case when v_max_score > 0
+    then round((v_score / v_max_score) * 100, 4) else 0 end;
+
+  insert into public.learning_assessment_results (
+    attempt_id, student_user_id, organization_id, score, max_score,
+    percentage, passed, evaluated_at, summary
+  )
+  values (
+    v_answer.attempt_id, v_answer.student_user_id, v_answer.organization_id,
+    v_score, v_max_score, v_percentage, v_percentage >= 60, v_now,
+    jsonb_build_object('evaluation', 'teacher_review', 'graded_by', v_teacher_id)
+  )
+  on conflict (attempt_id) do update
+  set score = excluded.score,
+      max_score = excluded.max_score,
+      percentage = excluded.percentage,
+      passed = excluded.passed,
+      evaluated_at = excluded.evaluated_at,
+      summary = excluded.summary,
+      updated_at = v_now
+  returning id into v_result_id;
+
+  -- The existing result trigger writes the gradebook entry; correct its
+  -- provenance flag for teacher-marked work in the same transaction.
+  update public.learning_gradebook_entries
+  set notes = jsonb_set(coalesce(notes, '{}'::jsonb), '{automatic}', 'false'::jsonb, true)
+  where assessment_result_id = v_result_id;
+
+  update public.learning_attempts
+  set status = 'evaluated',
+      score = v_score,
+      max_score = v_max_score,
+      percentage = v_percentage,
+      updated_at = v_now
+  where id = v_answer.attempt_id;
+
+  -- Record objective mastery only after all manual responses are graded.
+  for v_objective in
+    select
+      qo.objective_id,
+      count(*)::integer as evidence_count,
+      count(*) filter (where aa.is_correct = true)::integer as correct_count
+    from public.learning_assessment_questions aq
+    join public.learning_question_objectives qo on qo.question_version_id = aq.question_version_id
+    join public.learning_attempt_answers aa
+      on aa.attempt_id = v_answer.attempt_id
+     and aa.assessment_question_id = aq.id
+    where aq.assessment_id = v_answer.assessment_id
+      and aa.evaluation_status in ('auto_evaluated', 'manual_reviewed')
+    group by qo.objective_id
+  loop
+    select sm.mastery_score, sm.attempts_count into v_previous_score, v_previous_attempts
+    from public.learning_student_mastery sm
+    where sm.student_user_id = v_answer.student_user_id
+      and sm.objective_id = v_objective.objective_id
+      and sm.organization_id is not distinct from v_answer.organization_id
+    for update;
+
+    if found then
+      v_new_score := round(
+        ((v_previous_score * greatest(v_previous_attempts, 0))
+          + ((v_objective.correct_count::numeric / greatest(v_objective.evidence_count, 1)) * 100))
+        / greatest(v_previous_attempts + v_objective.evidence_count, 1), 3);
+      update public.learning_student_mastery sm
+      set mastery_score = v_new_score,
+          confidence_score = least(100, (sm.attempts_count + v_objective.evidence_count) * 20),
+          state = case
+            when v_new_score >= 80 then 'mastered'
+            when v_new_score >= 60 then 'proficient'
+            when v_new_score >= 40 then 'developing'
+            else 'needs_review' end,
+          attempts_count = sm.attempts_count + v_objective.evidence_count,
+          correct_count = sm.correct_count + v_objective.correct_count,
+          last_assessed_at = v_now,
+          next_review_at = case
+            when v_new_score < 60 then v_now + interval '3 days'
+            when v_new_score < 80 then v_now + interval '7 days'
+            else v_now + interval '30 days' end,
+          updated_at = v_now
+      where sm.student_user_id = v_answer.student_user_id
+        and sm.objective_id = v_objective.objective_id
+        and sm.organization_id is not distinct from v_answer.organization_id;
+    else
+      v_new_score := round(
+        (v_objective.correct_count::numeric / greatest(v_objective.evidence_count, 1)) * 100, 3
+      );
+      v_confidence := least(100, v_objective.evidence_count * 20);
+      insert into public.learning_student_mastery (
+        tenant_id, organization_id, student_user_id, objective_id,
+        mastery_score, confidence_score, state, attempts_count, correct_count,
+        last_assessed_at, next_review_at
+      ) values (
+        v_answer.tenant_id, v_answer.organization_id, v_answer.student_user_id,
+        v_objective.objective_id, v_new_score, v_confidence,
+        case when v_new_score >= 80 then 'mastered'
+          when v_new_score >= 60 then 'proficient'
+          when v_new_score >= 40 then 'developing' else 'needs_review' end,
+        v_objective.evidence_count, v_objective.correct_count, v_now,
+        case when v_new_score < 60 then v_now + interval '3 days'
+          when v_new_score < 80 then v_now + interval '7 days'
+          else v_now + interval '30 days' end
+      );
+    end if;
+
+    insert into public.learning_mastery_events (
+      tenant_id, organization_id, student_user_id, objective_id, attempt_id,
+      previous_score, new_score, evidence
+    ) values (
+      v_answer.tenant_id, v_answer.organization_id, v_answer.student_user_id,
+      v_objective.objective_id, v_answer.attempt_id, v_previous_score,
+      v_new_score,
+      jsonb_build_object('source', 'teacher_review', 'assessment_id', v_answer.assessment_id,
+        'evidence_count', v_objective.evidence_count, 'correct_count', v_objective.correct_count)
+    );
+
+    if v_new_score < 80
+       and not exists (
+         select 1
+         from public.learning_recommendations existing_recommendation
+         where existing_recommendation.student_user_id = v_answer.student_user_id
+           and existing_recommendation.objective_id = v_objective.objective_id
+           and existing_recommendation.status = 'active'
+       )
+    then
+      insert into public.learning_recommendations (
+        tenant_id, organization_id, student_user_id, recommendation_type,
+        objective_id, assessment_id, priority, reason, status, generated_at
+      ) values (
+        v_answer.tenant_id, v_answer.organization_id, v_answer.student_user_id,
+        case when v_new_score < 60 then 'practice' else 'review' end,
+        v_objective.objective_id, v_answer.assessment_id,
+        case when v_new_score < 60 then 90 else 70 end,
+        jsonb_build_object('source', 'teacher_review', 'mastery_score', v_new_score,
+          'assessment_id', v_answer.assessment_id),
+        'active', v_now
+      );
+    end if;
+
+    v_new_score := null;
+    v_previous_score := null;
+    v_previous_attempts := null;
+  end loop;
+
+  return jsonb_build_object(
+    'attempt_id', v_answer.attempt_id,
+    'result_id', v_result_id,
+    'status', 'evaluated',
+    'score', v_score,
+    'max_score', v_max_score,
+    'percentage', v_percentage
+  );
+end;
+$function$;
+
+revoke all on function public.grade_learning_attempt_answer(uuid, numeric, text) from public, anon;
+grant execute on function public.grade_learning_attempt_answer(uuid, numeric, text) to authenticated;
+
+commit;

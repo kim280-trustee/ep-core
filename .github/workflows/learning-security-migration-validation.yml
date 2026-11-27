@@ -4,17 +4,20 @@ on:
   push:
     branches:
       - paul/ep-live-games-foundation
+      - paul/subject-rollout
   pull_request:
     branches:
       - paul/integrate-edna-content
+      - paul/thai-national-curriculum-foundation
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: learning-security-migrations-${{ github.ref }}
-  cancel-in-progress: true
+  # All refs share one isolated Supabase port range; serialize security replays.
+  group: learning-security-migrations
+  cancel-in-progress: false
 
 jobs:
   migration-validation:
@@ -63,51 +66,59 @@ jobs:
         run: |
           set -euo pipefail
           migrations="supabase/migrations"
-          keep_versions=(
-            20260818000000
-            20261030050000
-            20261031000000
-            20261031005000
-            20261031006000
-            20261031007000
-            20261031010000
-            20261031020000
-            20261031030000
-            20261031031000
-            20261031032000
-            20261031033000
-            20261031034000
-            20261031034050
-            20261031034100
-            20261031035000
-            20261031036000
-            20261031040000
-            20261031041000
-            20261031050000
-            20261031051000
-            20261031052000
-            20261031053000
-            20261031054000
-            20261031060000
-            20261031061000
-            20261031062000
-            20261031063000
-          )
           for file in "$migrations"/*.sql; do
             [ -f "$file" ] || continue
             name="$(basename "$file")"
-            version="${name%%_*}"
             keep=false
-            [[ "$name" == *learning* ]] && keep=true
+
+            # Core identity/organization foundation required by Learning.
             [[ "$name" == "20260918210000_core_organization_memberships.sql" ]] && keep=true
-            for expected in "${keep_versions[@]}"; do
-              [[ "$version" == "$expected" ]] && keep=true
-            done
+
+            # Replay the complete Learning schema and curriculum dependency
+            # chain before applying the focused security hardening migrations.
+            case "$name" in
+              *learning*|*thai_*|*social_studies*|*career_*|*health_pe_*|*arts_*|*science_*|*foreign_languages*|*curriculum_rollout*|*source_specific*|*classify_*|*align_*|*separate_*)
+                keep=true
+                ;;
+            esac
+
+            # Keep the explicit six-branch security migration set even if a
+            # future filename no longer carries a Learning keyword.
+            case "${name%%_*}" in
+              20261030050000|20261031000000|20261031005000|20261031006000|20261031007000|20261031010000|20261031020000|20261031030000|20261031031000|20261031032000|20261031033000|20261031034000|20261031034050|20261031034100|20261031035000|20261031036000|20261031040000|20261031041000|20261031050000|20261031051000|20261031052000|20261031053000|20261031054000|20261031060000|20261031061000|20261031062000|20261031063000|20261126140000|20261126150000|20261126160000|20261126170000)
+                keep=true
+                ;;
+            esac
+
             if [ "$keep" = false ]; then
               echo "Excluding out-of-scope POS/payment migration from Learning replay: $name"
               rm "$file"
+            else
+              echo "Keeping Learning dependency/security migration: $name"
             fi
           done
+
+      - name: Normalize duplicate migration versions in isolated test checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          migrations="supabase/migrations"
+
+          # The repository contains two pairs of historical files sharing
+          # Supabase version prefixes. Supabase CLI requires unique versions.
+          # Rename only the temporary CI checkout; never modify committed
+          # production migration filenames or their SQL contents.
+          mv "$migrations/20261117090000_thai_social_studies_p5_p6_official_indicators.sql" \
+             "$migrations/20261117090001_thai_social_studies_p5_p6_official_indicators.sql"
+          mv "$migrations/20261118205000_sync_science_core_national_curriculum_alignments_and_priority.sql" \
+             "$migrations/20261118205001_sync_science_core_national_curriculum_alignments_and_priority.sql"
+
+          duplicates="$(find "$migrations" -maxdepth 1 -name '*.sql' -printf '%f\n' | cut -d_ -f1 | sort | uniq -d)"
+          if [ -n "$duplicates" ]; then
+            echo "Duplicate migration versions remain:"
+            echo "$duplicates"
+            exit 1
+          fi
 
       - name: Add local-only foundation baseline to isolated migration replay
         run: cp .github/test-fixtures/ep_core_foundation_baseline.sql supabase/migrations/20260818000000_ep_core_foundation_baseline.sql
@@ -178,7 +189,11 @@ jobs:
               '20261031060000',
               '20261031061000',
               '20261031062000',
-              '20261031063000'
+              '20261031063000',
+              '20261126140000',
+              '20261126150000',
+              '20261126160000',
+              '20261126170000'
             ];
             missing text[];
           BEGIN
@@ -195,6 +210,28 @@ jobs:
 
             IF to_regprocedure('public.submit_learning_attempt(uuid)') IS NULL THEN
               RAISE EXCEPTION 'Expected assessment submission RPC is missing';
+            END IF;
+
+            IF NOT EXISTS (
+              SELECT 1 FROM information_schema.columns
+              WHERE table_schema = 'public'
+                AND table_name = 'learning_objective_alignments'
+                AND column_name = 'indicator_classification'
+            ) OR NOT EXISTS (
+              SELECT 1 FROM information_schema.columns
+              WHERE table_schema = 'public'
+                AND table_name = 'learning_objective_alignments'
+                AND column_name = 'pathway_classification'
+            ) THEN
+              RAISE EXCEPTION 'Source-specific indicator and pathway classifications must remain separate columns';
+            END IF;
+
+            IF NOT EXISTS (
+              SELECT 1 FROM pg_constraint
+              WHERE conrelid = 'public.learning_objective_alignments'::regclass
+                AND conname = 'learning_objective_alignments_pathway_classification_check'
+            ) THEN
+              RAISE EXCEPTION 'Social Studies pathway classification constraint is missing';
             END IF;
 
             IF to_regclass('public.learning_parent_invitations') IS NULL THEN
@@ -260,6 +297,7 @@ jobs:
           PGPASSWORD=postgres psql "postgresql://postgres:postgres@127.0.0.1:57422/postgres" -v ON_ERROR_STOP=1 -f /tmp/verify-learning-security.sql
           PGPASSWORD=postgres psql "postgresql://postgres:postgres@127.0.0.1:57422/postgres" -v ON_ERROR_STOP=1 -f supabase/tests/learning_security_contract.sql
           PGPASSWORD=postgres psql "postgresql://postgres:postgres@127.0.0.1:57422/postgres" -v ON_ERROR_STOP=1 -f supabase/tests/learning_role_matrix_runtime.sql
+          PGPASSWORD=postgres psql "postgresql://postgres:postgres@127.0.0.1:57422/postgres" -v ON_ERROR_STOP=1 -f supabase/tests/learning_rpc_runtime_authorization.sql
 
       - name: Stop local Supabase stack
         if: always()

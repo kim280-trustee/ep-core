@@ -54,6 +54,7 @@ $test$;
 do $learning_security_contract$
 declare
   v_definition text;
+  v_definition_compact text;
   v_config text[];
   v_has_rls boolean;
 begin
@@ -177,8 +178,19 @@ begin
      or position('learning_class_memberships' in v_definition) = 0
      or position('membership_type' in v_definition) = 0
      or position('active' in v_definition) = 0
-     or position('submit_learning_attempt_internal' in v_definition) = 0 then
-    raise exception 'Assessment submission RPC lacks authenticated active-enrollment revalidation';
+     or position('submit_learning_attempt_auto_v1' in v_definition) = 0 then
+    raise exception 'Assessment submission RPC lacks authenticated active-enrollment revalidation or the protected evaluator call';
+  end if;
+
+  -- The automatic evaluator is the prior enrollment-guarded wrapper, retained
+  -- under this name when manual-review support wraps it.
+  select pg_get_functiondef('public.submit_learning_attempt_auto_v1(uuid)'::regprocedure)
+    into v_definition;
+  if position('submit_learning_attempt_internal' in v_definition) = 0
+     or position('learning_class_memberships' in v_definition) = 0
+     or position('membership_type' in v_definition) = 0
+     or position('active' in v_definition) = 0 then
+    raise exception 'Automatic assessment evaluator no longer delegates through the protected enrollment wrapper';
   end if;
 
   if has_function_privilege('authenticated', 'public.submit_learning_attempt_internal(uuid)', 'EXECUTE')
@@ -327,6 +339,96 @@ begin
     raise exception 'Substitute assignment must enforce manager, class, date and timetable-conflict checks';
   end if;
 
+  -- Manual assessment grading must remain a server-authorized, bounded,
+  -- single-use operation. The UI is not an authorization boundary.
+  if to_regprocedure('public.grade_learning_attempt_answer(uuid,numeric,text)') is null then
+    raise exception 'Manual assessment grading RPC is missing';
+  end if;
+
+  select lower(pg_get_functiondef('public.grade_learning_attempt_answer(uuid,numeric,text)'::regprocedure))
+    into v_definition;
+  if position('auth.uid()' in v_definition) = 0
+     or position('learning_can_manage_academic_records' in v_definition) = 0
+     or position('attempt_status' in v_definition) = 0
+     or position('evaluating' in v_definition) = 0
+     or position('manual_reviewed' in v_definition) = 0
+     or position('p_awarded_points < 0' in v_definition) = 0
+     or position('p_awarded_points > v_answer.points' in v_definition) = 0
+     or position('p_teacher_feedback' in v_definition) = 0 then
+    raise exception 'Manual grading RPC lacks authenticated manager, pending-attempt, one-time grading or score-bound checks';
+  end if;
+
+  v_definition_compact := regexp_replace(v_definition, '[[:space:]]+', '', 'g');
+  if position('public.learning_teacher_can_view_student(v_answer.organization_id,v_answer.student_user_id)' in v_definition_compact) = 0 then
+    raise exception 'Manual grading RPC does not require the teacher to share the student''s active class';
+  end if;
+
+  if position('learning_is_active_teacher(v_answer.organization_id)' in v_definition_compact) > 0 then
+    raise exception 'Manual grading RPC still permits organization-wide teacher grading';
+  end if;
+
+  if has_function_privilege('anon', 'public.grade_learning_attempt_answer(uuid,numeric,text)', 'EXECUTE')
+     or not has_function_privilege('authenticated', 'public.grade_learning_attempt_answer(uuid,numeric,text)', 'EXECUTE') then
+    raise exception 'Manual grading RPC must be executable only by authenticated callers';
+  end if;
+
+
+  -- Retried assessment attachment batches skip existing links and remain bounded.
+  select lower(pg_get_functiondef('public.add_learning_assessment_questions(uuid,jsonb)'::regprocedure))
+    into v_definition;
+  if position('jsonb_array_length(p_questions)>100' in regexp_replace(v_definition, '[[:space:]]+', '', 'g')) = 0
+     or position('for update' in v_definition) = 0
+     or position('where not exists' in v_definition) = 0
+     or position('count(distinct x.question_version_id)' in v_definition) = 0 then
+    raise exception 'Assessment attachment retries must skip already attached question versions';
+  end if;
+
+  -- Question authoring must persist its complete academic/scoring bundle atomically.
+  if to_regprocedure('public.create_learning_question_bundle(uuid,uuid,text,text,uuid,uuid,uuid,jsonb,jsonb,jsonb,jsonb,jsonb,uuid,text)') is null then
+    raise exception 'Atomic question bundle RPC is missing';
+  end if;
+
+  select lower(pg_get_functiondef('public.create_learning_question_bundle(uuid,uuid,text,text,uuid,uuid,uuid,jsonb,jsonb,jsonb,jsonb,jsonb,uuid,text)'::regprocedure))
+    into v_definition;
+  if position('auth.uid()' in v_definition) = 0
+     or position('learning_current_user_id()' in v_definition) = 0
+     or position('learning_can_manage_academic_records' in v_definition) = 0
+     or position('learning_is_active_teacher' in v_definition) = 0
+     or position('learning_question_versions' in v_definition) = 0
+     or position('learning_question_evaluation_keys' in v_definition) = 0
+     or position('learning_question_objectives' in v_definition) = 0
+     or position('for update' in v_definition) = 0
+     or position('manual_review' in v_definition) = 0
+     or position('exact_option' in v_definition) = 0 then
+    raise exception 'Atomic question bundle RPC lacks authorization, locking or complete version/key/objective writes';
+  end if;
+
+  if has_function_privilege('anon', 'public.create_learning_question_bundle(uuid,uuid,text,text,uuid,uuid,uuid,jsonb,jsonb,jsonb,jsonb,jsonb,uuid,text)', 'EXECUTE')
+     or not has_function_privilege('authenticated', 'public.create_learning_question_bundle(uuid,uuid,text,text,uuid,uuid,uuid,jsonb,jsonb,jsonb,jsonb,jsonb,uuid,text)', 'EXECUTE') then
+    raise exception 'Atomic question bundle RPC must be executable only by authenticated callers';
+  end if;
+
+  -- Atomic assessment authoring: row locks serialize attachment against publication.
+  if to_regprocedure('public.add_learning_assessment_questions(uuid,jsonb)') is null
+     or to_regprocedure('public.publish_learning_assessment(uuid)') is null then raise exception 'Atomic assessment authoring RPCs are missing'; end if;
+  select lower(pg_get_functiondef('public.add_learning_assessment_questions(uuid,jsonb)'::regprocedure)) into v_definition;
+  if position('auth.uid()' in v_definition)=0 or position('learning_current_user_id()' in v_definition)=0
+     or position('learning_can_manage_academic_records' in v_definition)=0 or position('learning_is_active_teacher' in v_definition)=0
+     or position('for update' in v_definition)=0 or position('jsonb_to_recordset' in v_definition)=0
+     or position('published_at' in v_definition)=0 or position('sequence_no' in v_definition)=0 then
+    raise exception 'Atomic assessment attachment lacks authorization, locking, published-version or ordered batch checks'; end if;
+  select lower(pg_get_functiondef('public.publish_learning_assessment(uuid)'::regprocedure)) into v_definition;
+  if position('auth.uid()' in v_definition)=0 or position('learning_current_user_id()' in v_definition)=0
+     or position('learning_can_manage_academic_records' in v_definition)=0 or position('learning_is_active_teacher' in v_definition)=0
+     or position('for update' in v_definition)=0 or position('published' in v_definition)=0
+     or position('reviewed_by' in v_definition)=0 or position('published_at' in v_definition)=0 then
+    raise exception 'Assessment publication lacks authorization, serialization or reviewed publication metadata'; end if;
+  if has_function_privilege('anon','public.add_learning_assessment_questions(uuid,jsonb)','EXECUTE')
+     or not has_function_privilege('authenticated','public.add_learning_assessment_questions(uuid,jsonb)','EXECUTE')
+     or has_function_privilege('anon','public.publish_learning_assessment(uuid)','EXECUTE')
+     or not has_function_privilege('authenticated','public.publish_learning_assessment(uuid)','EXECUTE') then
+    raise exception 'Atomic assessment authoring RPCs must be executable only by authenticated callers'; end if;
+
   -- All inspected SECURITY DEFINER authorization helpers must pin search_path.
   if exists (
     select 1
@@ -346,7 +448,11 @@ begin
         'create_learning_teacher_leave_request',
         'review_learning_teacher_leave_request',
         'assign_learning_teacher_substitute',
-        'cancel_learning_teacher_substitute_coverage'
+        'cancel_learning_teacher_substitute_coverage',
+        'grade_learning_attempt_answer',
+        'create_learning_question_bundle',
+        'add_learning_assessment_questions',
+        'publish_learning_assessment'
       )
       and not coalesce(p.proconfig, array[]::text[]) @> array['search_path=""']
   ) then

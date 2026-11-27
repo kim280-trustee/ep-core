@@ -33,6 +33,29 @@ for (const [code, expected] of [["P1-TH68-READ-01", "P1"], ["P3-TH68-ARTS-01", "
 
 const packs = [
   {
+    path: "docs/learning/science/P1-P3-science-w1-w3-teacher-starter-pack.md",
+    expectedLessons: 42,
+    expectedQuestions: 126,
+    expectedGrades: { P1: 10, P2: 12, P3: 20 },
+    expectedMarkingGuide: true,
+    expectedTeacherGuidance: true,
+  },
+  {
+    path: "docs/learning/science/P4-P6-science-w1-w3-teacher-starter-pack.md",
+    expectedLessons: 69,
+    expectedQuestions: 207,
+    expectedGrades: { P4: 16, P5: 27, P6: 26 },
+    expectedMarkingGuide: true,
+    expectedTeacherGuidance: true,
+  },
+  {
+    path: "docs/learning/science/SCIENCE-TECHNOLOGY-W4.2-P1-P6-TEACHER-STARTER-PACK.md",
+    expectedLessons: 28,
+    expectedQuestions: 84,
+    expectedGrades: { P1: 5, P2: 4, P3: 5, P4: 5, P5: 5, P6: 4 },
+    expectedTeacherGuidance: true,
+  },
+  {
     path: "docs/learning/science/SCIENCE-M1-M3-COMPLETE-IMPORT.md",
     expectedLessons: 174,
     expectedQuestions: 522,
@@ -48,6 +71,7 @@ const packs = [
 
 let totalLessons = 0;
 let totalQuestions = 0;
+let totalTeacherGuidance = 0;
 const allObjectiveCodes = new Set();
 const failures = [];
 
@@ -83,13 +107,24 @@ for (const pack of packs) {
 
       const grade = extractTeacherPackGradeCode(lesson.objectiveCode);
       if (!grade) {
-        failures.push(`${pack.path}: objective code ${lesson.objectiveCode} has no recognized M1–M6 grade prefix`);
+        failures.push(`${pack.path}: objective code ${lesson.objectiveCode} has no recognized P1–M6 grade prefix`);
       } else {
         grades[grade] = (grades[grade] ?? 0) + 1;
-        const headingGrade = lesson.title.match(/^\[(M[1-6])\]/)?.[1];
-        if (headingGrade !== grade) {
+        const headingGrade = lesson.title.match(/^\[([PM][1-6])\]/)?.[1];
+        if (headingGrade && headingGrade !== grade) {
           failures.push(`${pack.path}: lesson ${lesson.number} heading grade ${headingGrade ?? "missing"} does not match objective grade ${grade}`);
         }
+      }
+    }
+
+    if (pack.expectedMarkingGuide && !lesson.packGuidance.includes("Marking guide:")) {
+      failures.push(`${pack.path}: lesson ${lesson.number} is missing its teacher-only marking guide`);
+    }
+    if (pack.expectedTeacherGuidance) {
+      if (!lesson.packGuidance.trim()) {
+        failures.push(`${pack.path}: lesson ${lesson.number} is missing teacher-only guidance`);
+      } else {
+        totalTeacherGuidance += 1;
       }
     }
 
@@ -133,6 +168,10 @@ for (const pack of packs) {
   totalLessons += lessons.length;
   totalQuestions += questionCount;
   process.stdout.write(`Parsed ${pack.path}: ${lessons.length} lessons, ${codes.size} unique objective codes, ${questionCount} answer-keyed questions; grades ${JSON.stringify(grades)}\n`);
+}
+
+if (totalTeacherGuidance !== 139) {
+  failures.push(`Expected 139 primary lessons with teacher-only guidance, found ${totalTeacherGuidance}`);
 }
 
 if (failures.length) {

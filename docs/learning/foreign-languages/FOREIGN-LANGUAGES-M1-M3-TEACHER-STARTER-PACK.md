@@ -26,11 +26,11 @@
 
 **Teaching activity:** Use age-appropriate news, stories, announcements and digital media. Learners practise skimming, scanning, inference and evidence-based comprehension.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M1-01, learners work with a short teacher-selected audio or text that directly practises “ปฏิบัติตามคำสั่ง คำขอร้อง คำแนะนำ และคำชี้แจงง่าย ๆ ที่ฟังและอ่าน”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M1-01: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M1-01 (ปฏิบัติตามคำสั่ง คำขอร้อง คำแนะนำ และคำชี้แจงง่าย ๆ ที่ฟังและอ่าน): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M1-01, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “ปฏิบัติตามคำสั่ง คำขอร้อง คำแนะนำ และคำชี้แจงง่าย ๆ ที่ฟังและอ่าน”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-M1-01; accept an equivalent clear response at the expected grade level.
@@ -47,11 +47,11 @@
 
 **Teaching activity:** Use age-appropriate news, stories, announcements and digital media. Learners practise skimming, scanning, inference and evidence-based comprehension.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M1-02, learners work with a short teacher-selected audio or text that directly practises “อ่านออกเสียงข้อความ นิทาน และบทร้อยกรองสั้น ๆ ถูกต้องตามหลักการอ่าน”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M1-02: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M1-02 (อ่านออกเสียงข้อความ นิทาน และบทร้อยกรองสั้น ๆ ถูกต้องตามหลักการอ่าน): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M1-02, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “อ่านออกเสียงข้อความ นิทาน และบทร้อยกรองสั้น ๆ ถูกต้องตามหลักการอ่าน”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-M1-02; accept an equivalent clear response at the expected grade level.
@@ -68,11 +68,11 @@
 
 **Teaching activity:** Use age-appropriate news, stories, announcements and digital media. Learners practise skimming, scanning, inference and evidence-based comprehension.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M1-03, learners work with a short teacher-selected audio or text that directly practises “เลือก/ระบุประโยคและข้อความให้สัมพันธ์กับสื่อที่ไม่ใช่ความเรียง (non-text information) ที่อ่าน”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M1-03: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M1-03 (เลือก/ระบุประโยคและข้อความให้สัมพันธ์กับสื่อที่ไม่ใช่ความเรียง (non-text information) ที่อ่าน): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M1-03, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “เลือก/ระบุประโยคและข้อความให้สัมพันธ์กับสื่อที่ไม่ใช่ความเรียง (non-text information) ที่อ่าน”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-M1-03; accept an equivalent clear response at the expected grade level.
@@ -89,11 +89,11 @@
 
 **Teaching activity:** Use age-appropriate news, stories, announcements and digital media. Learners practise skimming, scanning, inference and evidence-based comprehension.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M1-04, learners work with a short teacher-selected audio or text that directly practises “ระบุหัวข้อเรื่อง ใจความสำคัญ และตอบคำถามจากการฟังและอ่านบทสนทนา นิทาน และเรื่องสั้น”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M1-04: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M1-04 (ระบุหัวข้อเรื่อง ใจความสำคัญ และตอบคำถามจากการฟังและอ่านบทสนทนา นิทาน และเรื่องสั้น): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M1-04, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “ระบุหัวข้อเรื่อง ใจความสำคัญ และตอบคำถามจากการฟังและอ่านบทสนทนา นิทาน และเรื่องสั้น”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-M1-04; accept an equivalent clear response at the expected grade level.
@@ -110,11 +110,11 @@
 
 **Teaching activity:** Run structured discussions, information-gap tasks and role-plays involving requests, advice, offers of help, opinions, experiences and sustained turn-taking.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M1-05, learners practise “สนทนาแลกเปลี่ยนข้อมูลเกี่ยวกับตนเอง กิจกรรม และสถานการณ์ต่าง ๆ ในชีวิตประจำวัน” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M1-05: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M1-05 (สนทนาแลกเปลี่ยนข้อมูลเกี่ยวกับตนเอง กิจกรรม และสถานการณ์ต่าง ๆ ในชีวิตประจำวัน): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M1-05, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “สนทนาแลกเปลี่ยนข้อมูลเกี่ยวกับตนเอง กิจกรรม และสถานการณ์ต่าง ๆ ในชีวิตประจำวัน”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-M1-05; accept other natural and correct expressions.
@@ -131,11 +131,11 @@
 
 **Teaching activity:** Run structured discussions, information-gap tasks and role-plays involving requests, advice, offers of help, opinions, experiences and sustained turn-taking.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M1-06, learners practise “ใช้คำขอร้อง ให้คำแนะนำ และคำชี้แจงตามสถานการณ์” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M1-06: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M1-06 (ใช้คำขอร้อง ให้คำแนะนำ และคำชี้แจงตามสถานการณ์): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M1-06, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “ใช้คำขอร้อง ให้คำแนะนำ และคำชี้แจงตามสถานการณ์”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-M1-06; accept other natural and correct expressions.
@@ -152,11 +152,11 @@
 
 **Teaching activity:** Run structured discussions, information-gap tasks and role-plays involving requests, advice, offers of help, opinions, experiences and sustained turn-taking.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M1-07, learners practise “พูดและเขียนแสดงความต้องการ ขอความช่วยเหลือ ตอบรับและปฏิเสธการให้ความช่วยเหลือในสถานการณ์ต่าง ๆ อย่างเหมาะสม” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M1-07: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M1-07 (พูดและเขียนแสดงความต้องการ ขอความช่วยเหลือ ตอบรับและปฏิเสธการให้ความช่วยเหลือในสถานการณ์ต่าง ๆ อย่างเหมาะสม): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M1-07, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “พูดและเขียนแสดงความต้องการ ขอความช่วยเหลือ ตอบรับและปฏิเสธการให้ความช่วยเหลือในสถานการณ์ต่าง ๆ อย่างเหมาะสม”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-M1-07; accept other natural and correct expressions.
@@ -173,11 +173,11 @@
 
 **Teaching activity:** Run structured discussions, information-gap tasks and role-plays involving requests, advice, offers of help, opinions, experiences and sustained turn-taking.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M1-08, learners practise “พูดและเขียนเพื่อขอและให้ข้อมูล และแสดงความคิดเห็นเกี่ยวกับเรื่องที่ฟังหรืออ่านอย่างเหมาะสม” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M1-08: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M1-08 (พูดและเขียนเพื่อขอและให้ข้อมูล และแสดงความคิดเห็นเกี่ยวกับเรื่องที่ฟังหรืออ่านอย่างเหมาะสม): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M1-08, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “พูดและเขียนเพื่อขอและให้ข้อมูล และแสดงความคิดเห็นเกี่ยวกับเรื่องที่ฟังหรืออ่านอย่างเหมาะสม”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-M1-08; accept other natural and correct expressions.
@@ -194,11 +194,11 @@
 
 **Teaching activity:** Run structured discussions, information-gap tasks and role-plays involving requests, advice, offers of help, opinions, experiences and sustained turn-taking.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M1-09, learners practise “พูดและเขียนแสดงความรู้สึกและความคิดเห็นของตนเองเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัว กิจกรรมต่าง ๆ พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M1-09: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M1-09 (พูดและเขียนแสดงความรู้สึกและความคิดเห็นของตนเองเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัว กิจกรรมต่าง ๆ พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M1-09, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “พูดและเขียนแสดงความรู้สึกและความคิดเห็นของตนเองเกี่ยวกับเรื่องต่าง ๆ ใกล้ตัว กิจกรรมต่าง ๆ พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-M1-09; accept other natural and correct expressions.
@@ -215,11 +215,11 @@
 
 **Teaching activity:** Learners prepare a short report, summary or presentation on a relevant topic. Require clear structure, accurate details, reasons and examples.
 
-**Practical activity:** Practise language production, presentation, writing and expression of ideas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M1-10, learners prepare a short presentation or written product that demonstrates “พูดและเขียนบรรยายเกี่ยวกับตนเอง กิจวัตรประจำวัน ประสบการณ์ และสิ่งแวดล้อมใกล้ตัว”. They select relevant information, organise it for a named audience, rehearse or edit it, then present and respond to one question. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M1-10: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M1-10 (พูดและเขียนบรรยายเกี่ยวกับตนเอง กิจวัตรประจำวัน ประสบการณ์ และสิ่งแวดล้อมใกล้ตัว): a focused spoken or written product, information arranged in a logical order, language appropriate to the audience, and a relevant response to feedback or a follow-up question.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M1-10, assess task relevance, organisation of ideas, accuracy and range of language appropriate to the grade, and clarity for the intended audience. Accept different valid examples and formats when they meet the indicator.
 
 **Independent practice**
 1. **Plan:** For a presentation or written task connected to “พูดและเขียนบรรยายเกี่ยวกับตนเอง กิจวัตรประจำวัน ประสบการณ์ และสิ่งแวดล้อมใกล้ตัว”, identify the topic, audience, purpose and key information that must be included. **Answer:** Identify the correct topic/purpose/audience and select information relevant to FL-M1-10.
@@ -236,11 +236,11 @@
 
 **Teaching activity:** Learners prepare a short report, summary or presentation on a relevant topic. Require clear structure, accurate details, reasons and examples.
 
-**Practical activity:** Practise language production, presentation, writing and expression of ideas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M1-11, learners prepare a short presentation or written product that demonstrates “พูด/เขียนสรุปใจความสำคัญ/แก่นสาระ (theme) ที่ได้จากการวิเคราะห์เรื่อง/เหตุการณ์ที่อยู่ในความสนใจของสังคม”. They select relevant information, organise it for a named audience, rehearse or edit it, then present and respond to one question. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M1-11: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M1-11 (พูด/เขียนสรุปใจความสำคัญ/แก่นสาระ (theme) ที่ได้จากการวิเคราะห์เรื่อง/เหตุการณ์ที่อยู่ในความสนใจของสังคม): a focused spoken or written product, information arranged in a logical order, language appropriate to the audience, and a relevant response to feedback or a follow-up question.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M1-11, assess task relevance, organisation of ideas, accuracy and range of language appropriate to the grade, and clarity for the intended audience. Accept different valid examples and formats when they meet the indicator.
 
 **Independent practice**
 1. **Plan:** For a presentation or written task connected to “พูด/เขียนสรุปใจความสำคัญ/แก่นสาระ (theme) ที่ได้จากการวิเคราะห์เรื่อง/เหตุการณ์ที่อยู่ในความสนใจของสังคม”, identify the topic, audience, purpose and key information that must be included. **Answer:** Identify the correct topic/purpose/audience and select information relevant to FL-M1-11.
@@ -257,11 +257,11 @@
 
 **Teaching activity:** Learners prepare a short report, summary or presentation on a relevant topic. Require clear structure, accurate details, reasons and examples.
 
-**Practical activity:** Practise language production, presentation, writing and expression of ideas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M1-12, learners prepare a short presentation or written product that demonstrates “พูด/เขียนแสดงความคิดเห็นเกี่ยวกับกิจกรรมหรือเรื่องต่าง ๆ ใกล้ตัว พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ”. They select relevant information, organise it for a named audience, rehearse or edit it, then present and respond to one question. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M1-12: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M1-12 (พูด/เขียนแสดงความคิดเห็นเกี่ยวกับกิจกรรมหรือเรื่องต่าง ๆ ใกล้ตัว พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ): a focused spoken or written product, information arranged in a logical order, language appropriate to the audience, and a relevant response to feedback or a follow-up question.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M1-12, assess task relevance, organisation of ideas, accuracy and range of language appropriate to the grade, and clarity for the intended audience. Accept different valid examples and formats when they meet the indicator.
 
 **Independent practice**
 1. **Plan:** For a presentation or written task connected to “พูด/เขียนแสดงความคิดเห็นเกี่ยวกับกิจกรรมหรือเรื่องต่าง ๆ ใกล้ตัว พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ”, identify the topic, audience, purpose and key information that must be included. **Answer:** Identify the correct topic/purpose/audience and select information relevant to FL-M1-12.
@@ -278,11 +278,11 @@
 
 **Teaching activity:** Use case studies, short cultural research and role-play. Learners select language and register for the audience and explain customs without stereotyping.
 
-**Practical activity:** Practise language, culture, etiquette and intercultural communication through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M1-13, learners examine a respectful, specific cultural or social situation linked to “ใช้ภาษา น้ำเสียง และกิริยาท่าทางสุภาพเหมาะสมตามมารยาทสังคมและวัฒนธรรมของเจ้าของภาษา”. They identify the relevant expression, gesture, convention or cultural information, practise an appropriate response, and explain why context matters. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M1-13: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M1-13 (ใช้ภาษา น้ำเสียง และกิริยาท่าทางสุภาพเหมาะสมตามมารยาทสังคมและวัฒนธรรมของเจ้าของภาษา): accurate identification of the relevant cultural or social feature, an appropriate language or behaviour choice in context, and a respectful explanation that avoids treating one example as universal.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M1-13, assess contextual appropriateness, respectful interpretation, accuracy of the cultural information and the learner's ability to explain variation. Do not reward stereotypes or claims that all members of a culture behave identically.
 
 **Independent practice**
 1. **Notice culture:** From a short text, image or dialogue related to “ใช้ภาษา น้ำเสียง และกิริยาท่าทางสุภาพเหมาะสมตามมารยาทสังคมและวัฒนธรรมของเจ้าของภาษา”, identify the relevant cultural practice, social convention, gesture or language choice. **Answer:** Identify the cultural/language feature accurately and describe the situation in which it is used; avoid treating one example as universal.
@@ -299,11 +299,11 @@
 
 **Teaching activity:** Use case studies, short cultural research and role-play. Learners select language and register for the audience and explain customs without stereotyping.
 
-**Practical activity:** Practise language, culture, etiquette and intercultural communication through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M1-14, learners examine a respectful, specific cultural or social situation linked to “บรรยายเกี่ยวกับเทศกาล วันสำคัญ ชีวิตความเป็นอยู่ และประเพณีของเจ้าของภาษา”. They identify the relevant expression, gesture, convention or cultural information, practise an appropriate response, and explain why context matters. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M1-14: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M1-14 (บรรยายเกี่ยวกับเทศกาล วันสำคัญ ชีวิตความเป็นอยู่ และประเพณีของเจ้าของภาษา): accurate identification of the relevant cultural or social feature, an appropriate language or behaviour choice in context, and a respectful explanation that avoids treating one example as universal.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M1-14, assess contextual appropriateness, respectful interpretation, accuracy of the cultural information and the learner's ability to explain variation. Do not reward stereotypes or claims that all members of a culture behave identically.
 
 **Independent practice**
 1. **Notice culture:** From a short text, image or dialogue related to “บรรยายเกี่ยวกับเทศกาล วันสำคัญ ชีวิตความเป็นอยู่ และประเพณีของเจ้าของภาษา”, identify the relevant cultural practice, social convention, gesture or language choice. **Answer:** Identify the cultural/language feature accurately and describe the situation in which it is used; avoid treating one example as universal.
@@ -320,11 +320,11 @@
 
 **Teaching activity:** Use case studies, short cultural research and role-play. Learners select language and register for the audience and explain customs without stereotyping.
 
-**Practical activity:** Practise language, culture, etiquette and intercultural communication through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M1-15, learners examine a respectful, specific cultural or social situation linked to “เข้าร่วม/จัดกิจกรรมทางภาษาและวัฒนธรรมตามความสนใจ”. They identify the relevant expression, gesture, convention or cultural information, practise an appropriate response, and explain why context matters. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M1-15: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M1-15 (เข้าร่วม/จัดกิจกรรมทางภาษาและวัฒนธรรมตามความสนใจ): accurate identification of the relevant cultural or social feature, an appropriate language or behaviour choice in context, and a respectful explanation that avoids treating one example as universal.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M1-15, assess contextual appropriateness, respectful interpretation, accuracy of the cultural information and the learner's ability to explain variation. Do not reward stereotypes or claims that all members of a culture behave identically.
 
 **Independent practice**
 1. **Notice culture:** From a short text, image or dialogue related to “เข้าร่วม/จัดกิจกรรมทางภาษาและวัฒนธรรมตามความสนใจ”, identify the relevant cultural practice, social convention, gesture or language choice. **Answer:** Identify the cultural/language feature accurately and describe the situation in which it is used; avoid treating one example as universal.
@@ -341,11 +341,11 @@
 
 **Teaching activity:** Compare English and Thai sentence patterns, idioms, proverbs, pronunciation and cultural assumptions using paired examples and short explanations.
 
-**Practical activity:** Practise language comparison and intercultural analysis through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M1-16, learners compare two short English and Thai examples connected to “บอกความเหมือนและความแตกต่างระหว่างการออกเสียงประโยคชนิดต่าง ๆ การใช้เครื่องหมายวรรคตอน และการลำดับคำตามโครงสร้างประโยคของภาษาต่างประเทศและภาษาไทย”. They mark the relevant sound, letter, word, structure or cultural feature, explain one similarity and one difference where applicable, and apply the comparison in a new example. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M1-16: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M1-16 (บอกความเหมือนและความแตกต่างระหว่างการออกเสียงประโยคชนิดต่าง ๆ การใช้เครื่องหมายวรรคตอน และการลำดับคำตามโครงสร้างประโยคของภาษาต่างประเทศและภาษาไทย): correctly identified features in both examples, a supported comparison that distinguishes similarity from difference, and an accurate application to a fresh language example.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M1-16, assess accuracy of both examples, quality of the comparison, use of evidence and ability to apply the finding. Accept more than one valid comparison when it is supported by the examples.
 
 **Independent practice**
 1. **Identify patterns:** Find the language feature, cultural convention or similarity/difference required by “บอกความเหมือนและความแตกต่างระหว่างการออกเสียงประโยคชนิดต่าง ๆ การใช้เครื่องหมายวรรคตอน และการลำดับคำตามโครงสร้างประโยคของภาษาต่างประเทศและภาษาไทย” in two short examples. **Answer:** Identify the relevant pattern accurately in both examples and use appropriate language to describe it.
@@ -362,11 +362,11 @@
 
 **Teaching activity:** Compare English and Thai sentence patterns, idioms, proverbs, pronunciation and cultural assumptions using paired examples and short explanations.
 
-**Practical activity:** Practise language comparison and intercultural analysis through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M1-17, learners compare two short English and Thai examples connected to “เปรียบเทียบความเหมือนและความแตกต่างระหว่างเทศกาล งานฉลอง วันสำคัญ และชีวิตความเป็นอยู่ของเจ้าของภาษากับของไทย”. They mark the relevant sound, letter, word, structure or cultural feature, explain one similarity and one difference where applicable, and apply the comparison in a new example. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M1-17: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M1-17 (เปรียบเทียบความเหมือนและความแตกต่างระหว่างเทศกาล งานฉลอง วันสำคัญ และชีวิตความเป็นอยู่ของเจ้าของภาษากับของไทย): correctly identified features in both examples, a supported comparison that distinguishes similarity from difference, and an accurate application to a fresh language example.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M1-17, assess accuracy of both examples, quality of the comparison, use of evidence and ability to apply the finding. Accept more than one valid comparison when it is supported by the examples.
 
 **Independent practice**
 1. **Identify patterns:** Find the language feature, cultural convention or similarity/difference required by “เปรียบเทียบความเหมือนและความแตกต่างระหว่างเทศกาล งานฉลอง วันสำคัญ และชีวิตความเป็นอยู่ของเจ้าของภาษากับของไทย” in two short examples. **Answer:** Identify the relevant pattern accurately in both examples and use appropriate language to describe it.
@@ -383,11 +383,11 @@
 
 **Teaching activity:** Set a cross-curricular research task. Learners search approved sources, record key facts, summarise findings and present them in speech or writing.
 
-**Practical activity:** Practise integrated language use across learning areas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M1-18, learners use a teacher-approved source from another learning area to practise “ค้นคว้า รวบรวม และสรุปข้อมูล/ข้อเท็จจริงที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่นจากแหล่งเรียนรู้ และนำเสนอด้วยการพูด/การเขียน”. They identify the subject idea and key English terms, explain the idea in English, and create a labelled visual, short report or oral explanation. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M1-18: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M1-18 (ค้นคว้า รวบรวม และสรุปข้อมูล/ข้อเท็จจริงที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่นจากแหล่งเรียนรู้ และนำเสนอด้วยการพูด/การเขียน): correct subject information, appropriate subject vocabulary, an understandable English explanation or product, and acknowledgement of the source when one is used.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M1-18, assess both subject accuracy and language clarity. Check that key vocabulary is used correctly, the explanation matches the source, and the product communicates the idea rather than merely copying isolated words.
 
 **Independent practice**
 1. **Find key information:** From a short subject-related text, diagram or data source connected to “ค้นคว้า รวบรวม และสรุปข้อมูล/ข้อเท็จจริงที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่นจากแหล่งเรียนรู้ และนำเสนอด้วยการพูด/การเขียน”, identify the key vocabulary and two relevant facts. **Answer:** Select vocabulary and facts that accurately match the other learning area and the language outcome in FL-M1-18.
@@ -404,11 +404,11 @@
 
 **Teaching activity:** Use realistic classroom, school, community and public-service scenarios. Learners adapt language to audience, purpose and setting.
 
-**Practical activity:** Practise real-life communication in school, community and everyday situations through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M1-19, learners complete a realistic classroom, school or community simulation that practises “ใช้ภาษาสื่อสารในสถานการณ์จริง/สถานการณ์จำลองที่เกิดขึ้นในห้องเรียนและสถานศึกษา”. Assign roles, define the audience and purpose, and require learners to exchange information or complete the real-world communication task. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M1-19: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M1-19 (ใช้ภาษาสื่อสารในสถานการณ์จริง/สถานการณ์จำลองที่เกิดขึ้นในห้องเรียนและสถานศึกษา): language that fits the real or simulated situation, successful completion of the communicative purpose, and an appropriate response to an unexpected question or clarification request.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M1-19, assess whether the learner achieves the communication purpose, adapts language to audience and setting, responds meaningfully, and uses clear, respectful expressions. Minor errors should not outweigh successful communication when meaning remains clear.
 
 **Independent practice**
 1. **Identify context:** For a school, community or everyday situation related to “ใช้ภาษาสื่อสารในสถานการณ์จริง/สถานการณ์จำลองที่เกิดขึ้นในห้องเรียนและสถานศึกษา”, identify the purpose, audience and suitable expressions. **Answer:** Identify the situation and choose language appropriate to its purpose and audience.
@@ -425,11 +425,11 @@
 
 **Teaching activity:** Use approved reference sources for a study or career-related question. Learners search, evaluate reliability, record, synthesise and present information.
 
-**Practical activity:** Practise international communication, research and participation in the wider world through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M1-20, learners use one or more teacher-approved sources to practise “ใช้ภาษาต่างประเทศในการสืบค้น/ค้นคว้า รวบรวม และสรุปความรู้/ข้อมูลต่าง ๆ จากสื่อและแหล่งการเรียนรู้ต่าง ๆ ในการศึกษาต่อและประกอบอาชีพ”. They search or collect relevant information, record key terms and source details, check reliability, then summarise or communicate the findings for a stated study, school or career purpose. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M1-20: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M1-20 (ใช้ภาษาต่างประเทศในการสืบค้น/ค้นคว้า รวบรวม และสรุปความรู้/ข้อมูลต่าง ๆ จากสื่อและแหล่งการเรียนรู้ต่าง ๆ ในการศึกษาต่อและประกอบอาชีพ): relevant information from an appropriate source, accurate notes or a summary, a clear English output for the stated purpose, and source acknowledgement where research is used.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M1-20, assess relevance and credibility of sources, accuracy of notes or summary, language suitable for the audience and purpose, and correct source acknowledgement. Do not accept copied material presented as the learner's own work.
 
 **Independent practice**
 1. **Research / identify:** Use an age-appropriate teacher-approved source related to “ใช้ภาษาต่างประเทศในการสืบค้น/ค้นคว้า รวบรวม และสรุปความรู้/ข้อมูลต่าง ๆ จากสื่อและแหล่งการเรียนรู้ต่าง ๆ ในการศึกษาต่อและประกอบอาชีพ”. Identify the main information, intended audience and source details. **Answer:** Identify accurate information and a credible source relevant to FL-M1-20; distinguish source information from unsupported opinion.
@@ -446,11 +446,11 @@
 
 **Teaching activity:** Use age-appropriate news, stories, announcements and digital media. Learners practise skimming, scanning, inference and evidence-based comprehension.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M2-01, learners work with a short teacher-selected audio or text that directly practises “ปฏิบัติตามคำขอร้อง คำแนะนำ คำชี้แจง และคำอธิบายง่าย ๆ ที่ฟังและอ่าน”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M2-01: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M2-01 (ปฏิบัติตามคำขอร้อง คำแนะนำ คำชี้แจง และคำอธิบายง่าย ๆ ที่ฟังและอ่าน): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M2-01, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “ปฏิบัติตามคำขอร้อง คำแนะนำ คำชี้แจง และคำอธิบายง่าย ๆ ที่ฟังและอ่าน”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-M2-01; accept an equivalent clear response at the expected grade level.
@@ -467,11 +467,11 @@
 
 **Teaching activity:** Use age-appropriate news, stories, announcements and digital media. Learners practise skimming, scanning, inference and evidence-based comprehension.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M2-02, learners work with a short teacher-selected audio or text that directly practises “อ่านออกเสียงข้อความ ข่าว ประกาศ และบทร้อยกรองสั้น ๆ ถูกต้องตามหลักการอ่าน”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M2-02: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M2-02 (อ่านออกเสียงข้อความ ข่าว ประกาศ และบทร้อยกรองสั้น ๆ ถูกต้องตามหลักการอ่าน): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M2-02, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “อ่านออกเสียงข้อความ ข่าว ประกาศ และบทร้อยกรองสั้น ๆ ถูกต้องตามหลักการอ่าน”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-M2-02; accept an equivalent clear response at the expected grade level.
@@ -488,11 +488,11 @@
 
 **Teaching activity:** Use age-appropriate news, stories, announcements and digital media. Learners practise skimming, scanning, inference and evidence-based comprehension.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M2-03, learners work with a short teacher-selected audio or text that directly practises “ระบุ/เขียนประโยคและข้อความให้สัมพันธ์กับสื่อที่ไม่ใช่ความเรียงรูปแบบต่าง ๆ ที่อ่าน”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M2-03: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M2-03 (ระบุ/เขียนประโยคและข้อความให้สัมพันธ์กับสื่อที่ไม่ใช่ความเรียงรูปแบบต่าง ๆ ที่อ่าน): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M2-03, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “ระบุ/เขียนประโยคและข้อความให้สัมพันธ์กับสื่อที่ไม่ใช่ความเรียงรูปแบบต่าง ๆ ที่อ่าน”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-M2-03; accept an equivalent clear response at the expected grade level.
@@ -509,11 +509,11 @@
 
 **Teaching activity:** Use age-appropriate news, stories, announcements and digital media. Learners practise skimming, scanning, inference and evidence-based comprehension.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M2-04, learners work with a short teacher-selected audio or text that directly practises “เลือกหัวข้อเรื่อง ใจความสำคัญ บอกรายละเอียดสนับสนุน (supporting detail) และแสดงความคิดเห็นเกี่ยวกับเรื่องที่ฟังและอ่าน พร้อมให้เหตุผลและยกตัวอย่างง่าย ๆ ประกอบ”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M2-04: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M2-04 (เลือกหัวข้อเรื่อง ใจความสำคัญ บอกรายละเอียดสนับสนุน (supporting detail) และแสดงความคิดเห็นเกี่ยวกับเรื่องที่ฟังและอ่าน พร้อมให้เหตุผลและยกตัวอย่างง่าย ๆ ประกอบ): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M2-04, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “เลือกหัวข้อเรื่อง ใจความสำคัญ บอกรายละเอียดสนับสนุน (supporting detail) และแสดงความคิดเห็นเกี่ยวกับเรื่องที่ฟังและอ่าน พร้อมให้เหตุผลและยกตัวอย่างง่าย ๆ ประกอบ”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-M2-04; accept an equivalent clear response at the expected grade level.
@@ -530,11 +530,11 @@
 
 **Teaching activity:** Run structured discussions, information-gap tasks and role-plays involving requests, advice, offers of help, opinions, experiences and sustained turn-taking.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M2-05, learners practise “สนทนาแลกเปลี่ยนข้อมูลเกี่ยวกับตนเอง เรื่องต่าง ๆ ใกล้ตัว และสถานการณ์ต่าง ๆ ในชีวิตประจำวันอย่างเหมาะสม” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M2-05: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M2-05 (สนทนาแลกเปลี่ยนข้อมูลเกี่ยวกับตนเอง เรื่องต่าง ๆ ใกล้ตัว และสถานการณ์ต่าง ๆ ในชีวิตประจำวันอย่างเหมาะสม): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M2-05, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “สนทนาแลกเปลี่ยนข้อมูลเกี่ยวกับตนเอง เรื่องต่าง ๆ ใกล้ตัว และสถานการณ์ต่าง ๆ ในชีวิตประจำวันอย่างเหมาะสม”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-M2-05; accept other natural and correct expressions.
@@ -551,11 +551,11 @@
 
 **Teaching activity:** Run structured discussions, information-gap tasks and role-plays involving requests, advice, offers of help, opinions, experiences and sustained turn-taking.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M2-06, learners practise “ใช้คำขอร้อง ให้คำแนะนำ คำชี้แจง และคำอธิบายตามสถานการณ์” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M2-06: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M2-06 (ใช้คำขอร้อง ให้คำแนะนำ คำชี้แจง และคำอธิบายตามสถานการณ์): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M2-06, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “ใช้คำขอร้อง ให้คำแนะนำ คำชี้แจง และคำอธิบายตามสถานการณ์”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-M2-06; accept other natural and correct expressions.
@@ -572,11 +572,11 @@
 
 **Teaching activity:** Run structured discussions, information-gap tasks and role-plays involving requests, advice, offers of help, opinions, experiences and sustained turn-taking.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M2-07, learners practise “พูดและเขียนแสดงความต้องการ เสนอและให้ความช่วยเหลือ ตอบรับและปฏิเสธการให้ความช่วยเหลือในสถานการณ์ต่าง ๆ อย่างเหมาะสม” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M2-07: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M2-07 (พูดและเขียนแสดงความต้องการ เสนอและให้ความช่วยเหลือ ตอบรับและปฏิเสธการให้ความช่วยเหลือในสถานการณ์ต่าง ๆ อย่างเหมาะสม): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M2-07, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “พูดและเขียนแสดงความต้องการ เสนอและให้ความช่วยเหลือ ตอบรับและปฏิเสธการให้ความช่วยเหลือในสถานการณ์ต่าง ๆ อย่างเหมาะสม”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-M2-07; accept other natural and correct expressions.
@@ -593,11 +593,11 @@
 
 **Teaching activity:** Run structured discussions, information-gap tasks and role-plays involving requests, advice, offers of help, opinions, experiences and sustained turn-taking.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M2-08, learners practise “พูดและเขียนเพื่อขอและให้ข้อมูล บรรยาย และแสดงความคิดเห็นเกี่ยวกับเรื่องที่ฟังหรืออ่านอย่างเหมาะสม” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M2-08: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M2-08 (พูดและเขียนเพื่อขอและให้ข้อมูล บรรยาย และแสดงความคิดเห็นเกี่ยวกับเรื่องที่ฟังหรืออ่านอย่างเหมาะสม): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M2-08, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “พูดและเขียนเพื่อขอและให้ข้อมูล บรรยาย และแสดงความคิดเห็นเกี่ยวกับเรื่องที่ฟังหรืออ่านอย่างเหมาะสม”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-M2-08; accept other natural and correct expressions.
@@ -614,11 +614,11 @@
 
 **Teaching activity:** Run structured discussions, information-gap tasks and role-plays involving requests, advice, offers of help, opinions, experiences and sustained turn-taking.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M2-09, learners practise “พูดและเขียนแสดงความรู้สึกและความคิดเห็นของตนเองเกี่ยวกับเรื่องต่าง ๆ กิจกรรม และประสบการณ์ พร้อมทั้งให้เหตุผลประกอบอย่างเหมาะสม” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M2-09: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M2-09 (พูดและเขียนแสดงความรู้สึกและความคิดเห็นของตนเองเกี่ยวกับเรื่องต่าง ๆ กิจกรรม และประสบการณ์ พร้อมทั้งให้เหตุผลประกอบอย่างเหมาะสม): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M2-09, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “พูดและเขียนแสดงความรู้สึกและความคิดเห็นของตนเองเกี่ยวกับเรื่องต่าง ๆ กิจกรรม และประสบการณ์ พร้อมทั้งให้เหตุผลประกอบอย่างเหมาะสม”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-M2-09; accept other natural and correct expressions.
@@ -635,11 +635,11 @@
 
 **Teaching activity:** Learners prepare a short report, summary or presentation on a relevant topic. Require clear structure, accurate details, reasons and examples.
 
-**Practical activity:** Practise language production, presentation, writing and expression of ideas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M2-10, learners prepare a short presentation or written product that demonstrates “พูดและเขียนบรรยายเกี่ยวกับตนเอง กิจวัตรประจำวัน ประสบการณ์ และข่าว/เหตุการณ์ที่อยู่ในความสนใจของสังคม”. They select relevant information, organise it for a named audience, rehearse or edit it, then present and respond to one question. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M2-10: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M2-10 (พูดและเขียนบรรยายเกี่ยวกับตนเอง กิจวัตรประจำวัน ประสบการณ์ และข่าว/เหตุการณ์ที่อยู่ในความสนใจของสังคม): a focused spoken or written product, information arranged in a logical order, language appropriate to the audience, and a relevant response to feedback or a follow-up question.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M2-10, assess task relevance, organisation of ideas, accuracy and range of language appropriate to the grade, and clarity for the intended audience. Accept different valid examples and formats when they meet the indicator.
 
 **Independent practice**
 1. **Plan:** For a presentation or written task connected to “พูดและเขียนบรรยายเกี่ยวกับตนเอง กิจวัตรประจำวัน ประสบการณ์ และข่าว/เหตุการณ์ที่อยู่ในความสนใจของสังคม”, identify the topic, audience, purpose and key information that must be included. **Answer:** Identify the correct topic/purpose/audience and select information relevant to FL-M2-10.
@@ -656,11 +656,11 @@
 
 **Teaching activity:** Learners prepare a short report, summary or presentation on a relevant topic. Require clear structure, accurate details, reasons and examples.
 
-**Practical activity:** Practise language production, presentation, writing and expression of ideas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M2-11, learners prepare a short presentation or written product that demonstrates “พูดและเขียนสรุปใจความสำคัญ/แก่นสาระ หัวข้อเรื่องที่ได้จากการวิเคราะห์เรื่อง/ข่าว/เหตุการณ์ที่อยู่ในความสนใจของสังคม”. They select relevant information, organise it for a named audience, rehearse or edit it, then present and respond to one question. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M2-11: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M2-11 (พูดและเขียนสรุปใจความสำคัญ/แก่นสาระ หัวข้อเรื่องที่ได้จากการวิเคราะห์เรื่อง/ข่าว/เหตุการณ์ที่อยู่ในความสนใจของสังคม): a focused spoken or written product, information arranged in a logical order, language appropriate to the audience, and a relevant response to feedback or a follow-up question.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M2-11, assess task relevance, organisation of ideas, accuracy and range of language appropriate to the grade, and clarity for the intended audience. Accept different valid examples and formats when they meet the indicator.
 
 **Independent practice**
 1. **Plan:** For a presentation or written task connected to “พูดและเขียนสรุปใจความสำคัญ/แก่นสาระ หัวข้อเรื่องที่ได้จากการวิเคราะห์เรื่อง/ข่าว/เหตุการณ์ที่อยู่ในความสนใจของสังคม”, identify the topic, audience, purpose and key information that must be included. **Answer:** Identify the correct topic/purpose/audience and select information relevant to FL-M2-11.
@@ -677,11 +677,11 @@
 
 **Teaching activity:** Learners prepare a short report, summary or presentation on a relevant topic. Require clear structure, accurate details, reasons and examples.
 
-**Practical activity:** Practise language production, presentation, writing and expression of ideas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M2-12, learners prepare a short presentation or written product that demonstrates “พูดและเขียนแสดงความคิดเห็นเกี่ยวกับกิจกรรม เรื่องต่าง ๆ ใกล้ตัว และประสบการณ์ พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ”. They select relevant information, organise it for a named audience, rehearse or edit it, then present and respond to one question. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M2-12: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M2-12 (พูดและเขียนแสดงความคิดเห็นเกี่ยวกับกิจกรรม เรื่องต่าง ๆ ใกล้ตัว และประสบการณ์ พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ): a focused spoken or written product, information arranged in a logical order, language appropriate to the audience, and a relevant response to feedback or a follow-up question.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M2-12, assess task relevance, organisation of ideas, accuracy and range of language appropriate to the grade, and clarity for the intended audience. Accept different valid examples and formats when they meet the indicator.
 
 **Independent practice**
 1. **Plan:** For a presentation or written task connected to “พูดและเขียนแสดงความคิดเห็นเกี่ยวกับกิจกรรม เรื่องต่าง ๆ ใกล้ตัว และประสบการณ์ พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ”, identify the topic, audience, purpose and key information that must be included. **Answer:** Identify the correct topic/purpose/audience and select information relevant to FL-M2-12.
@@ -698,11 +698,11 @@
 
 **Teaching activity:** Use case studies, short cultural research and role-play. Learners select language and register for the audience and explain customs without stereotyping.
 
-**Practical activity:** Practise language, culture, etiquette and intercultural communication through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M2-13, learners examine a respectful, specific cultural or social situation linked to “ใช้ภาษา น้ำเสียง และกิริยาท่าทางเหมาะกับบุคคลและโอกาส ตามมารยาทสังคมและวัฒนธรรมของเจ้าของภาษา”. They identify the relevant expression, gesture, convention or cultural information, practise an appropriate response, and explain why context matters. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M2-13: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M2-13 (ใช้ภาษา น้ำเสียง และกิริยาท่าทางเหมาะกับบุคคลและโอกาส ตามมารยาทสังคมและวัฒนธรรมของเจ้าของภาษา): accurate identification of the relevant cultural or social feature, an appropriate language or behaviour choice in context, and a respectful explanation that avoids treating one example as universal.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M2-13, assess contextual appropriateness, respectful interpretation, accuracy of the cultural information and the learner's ability to explain variation. Do not reward stereotypes or claims that all members of a culture behave identically.
 
 **Independent practice**
 1. **Notice culture:** From a short text, image or dialogue related to “ใช้ภาษา น้ำเสียง และกิริยาท่าทางเหมาะกับบุคคลและโอกาส ตามมารยาทสังคมและวัฒนธรรมของเจ้าของภาษา”, identify the relevant cultural practice, social convention, gesture or language choice. **Answer:** Identify the cultural/language feature accurately and describe the situation in which it is used; avoid treating one example as universal.
@@ -719,11 +719,11 @@
 
 **Teaching activity:** Use case studies, short cultural research and role-play. Learners select language and register for the audience and explain customs without stereotyping.
 
-**Practical activity:** Practise language, culture, etiquette and intercultural communication through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M2-14, learners examine a respectful, specific cultural or social situation linked to “อธิบายเกี่ยวกับเทศกาล วันสำคัญ ชีวิตความเป็นอยู่ และประเพณีของเจ้าของภาษา”. They identify the relevant expression, gesture, convention or cultural information, practise an appropriate response, and explain why context matters. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M2-14: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M2-14 (อธิบายเกี่ยวกับเทศกาล วันสำคัญ ชีวิตความเป็นอยู่ และประเพณีของเจ้าของภาษา): accurate identification of the relevant cultural or social feature, an appropriate language or behaviour choice in context, and a respectful explanation that avoids treating one example as universal.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M2-14, assess contextual appropriateness, respectful interpretation, accuracy of the cultural information and the learner's ability to explain variation. Do not reward stereotypes or claims that all members of a culture behave identically.
 
 **Independent practice**
 1. **Notice culture:** From a short text, image or dialogue related to “อธิบายเกี่ยวกับเทศกาล วันสำคัญ ชีวิตความเป็นอยู่ และประเพณีของเจ้าของภาษา”, identify the relevant cultural practice, social convention, gesture or language choice. **Answer:** Identify the cultural/language feature accurately and describe the situation in which it is used; avoid treating one example as universal.
@@ -740,11 +740,11 @@
 
 **Teaching activity:** Use case studies, short cultural research and role-play. Learners select language and register for the audience and explain customs without stereotyping.
 
-**Practical activity:** Practise language, culture, etiquette and intercultural communication through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M2-15, learners examine a respectful, specific cultural or social situation linked to “เข้าร่วม/จัดกิจกรรมทางภาษาและวัฒนธรรมตามความสนใจ”. They identify the relevant expression, gesture, convention or cultural information, practise an appropriate response, and explain why context matters. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M2-15: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M2-15 (เข้าร่วม/จัดกิจกรรมทางภาษาและวัฒนธรรมตามความสนใจ): accurate identification of the relevant cultural or social feature, an appropriate language or behaviour choice in context, and a respectful explanation that avoids treating one example as universal.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M2-15, assess contextual appropriateness, respectful interpretation, accuracy of the cultural information and the learner's ability to explain variation. Do not reward stereotypes or claims that all members of a culture behave identically.
 
 **Independent practice**
 1. **Notice culture:** From a short text, image or dialogue related to “เข้าร่วม/จัดกิจกรรมทางภาษาและวัฒนธรรมตามความสนใจ”, identify the relevant cultural practice, social convention, gesture or language choice. **Answer:** Identify the cultural/language feature accurately and describe the situation in which it is used; avoid treating one example as universal.
@@ -761,11 +761,11 @@
 
 **Teaching activity:** Compare English and Thai sentence patterns, idioms, proverbs, pronunciation and cultural assumptions using paired examples and short explanations.
 
-**Practical activity:** Practise language comparison and intercultural analysis through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M2-16, learners compare two short English and Thai examples connected to “เปรียบเทียบและอธิบายความเหมือนและความแตกต่างระหว่างการออกเสียงประโยคชนิดต่าง ๆ และการลำดับคำตามโครงสร้างประโยคของภาษาต่างประเทศและภาษาไทย”. They mark the relevant sound, letter, word, structure or cultural feature, explain one similarity and one difference where applicable, and apply the comparison in a new example. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M2-16: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M2-16 (เปรียบเทียบและอธิบายความเหมือนและความแตกต่างระหว่างการออกเสียงประโยคชนิดต่าง ๆ และการลำดับคำตามโครงสร้างประโยคของภาษาต่างประเทศและภาษาไทย): correctly identified features in both examples, a supported comparison that distinguishes similarity from difference, and an accurate application to a fresh language example.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M2-16, assess accuracy of both examples, quality of the comparison, use of evidence and ability to apply the finding. Accept more than one valid comparison when it is supported by the examples.
 
 **Independent practice**
 1. **Identify patterns:** Find the language feature, cultural convention or similarity/difference required by “เปรียบเทียบและอธิบายความเหมือนและความแตกต่างระหว่างการออกเสียงประโยคชนิดต่าง ๆ และการลำดับคำตามโครงสร้างประโยคของภาษาต่างประเทศและภาษาไทย” in two short examples. **Answer:** Identify the relevant pattern accurately in both examples and use appropriate language to describe it.
@@ -782,11 +782,11 @@
 
 **Teaching activity:** Compare English and Thai sentence patterns, idioms, proverbs, pronunciation and cultural assumptions using paired examples and short explanations.
 
-**Practical activity:** Practise language comparison and intercultural analysis through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M2-17, learners compare two short English and Thai examples connected to “เปรียบเทียบและอธิบายความเหมือนและความแตกต่างระหว่างเทศกาล งานฉลอง วันสำคัญ และชีวิตความเป็นอยู่ของเจ้าของภาษากับของไทย”. They mark the relevant sound, letter, word, structure or cultural feature, explain one similarity and one difference where applicable, and apply the comparison in a new example. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M2-17: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M2-17 (เปรียบเทียบและอธิบายความเหมือนและความแตกต่างระหว่างเทศกาล งานฉลอง วันสำคัญ และชีวิตความเป็นอยู่ของเจ้าของภาษากับของไทย): correctly identified features in both examples, a supported comparison that distinguishes similarity from difference, and an accurate application to a fresh language example.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M2-17, assess accuracy of both examples, quality of the comparison, use of evidence and ability to apply the finding. Accept more than one valid comparison when it is supported by the examples.
 
 **Independent practice**
 1. **Identify patterns:** Find the language feature, cultural convention or similarity/difference required by “เปรียบเทียบและอธิบายความเหมือนและความแตกต่างระหว่างเทศกาล งานฉลอง วันสำคัญ และชีวิตความเป็นอยู่ของเจ้าของภาษากับของไทย” in two short examples. **Answer:** Identify the relevant pattern accurately in both examples and use appropriate language to describe it.
@@ -803,11 +803,11 @@
 
 **Teaching activity:** Set a cross-curricular research task. Learners search approved sources, record key facts, summarise findings and present them in speech or writing.
 
-**Practical activity:** Practise integrated language use across learning areas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M2-18, learners use a teacher-approved source from another learning area to practise “ค้นคว้า รวบรวม และสรุปข้อมูล/ข้อเท็จจริงที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่นจากแหล่งเรียนรู้ และนำเสนอด้วยการพูด/การเขียน”. They identify the subject idea and key English terms, explain the idea in English, and create a labelled visual, short report or oral explanation. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M2-18: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M2-18 (ค้นคว้า รวบรวม และสรุปข้อมูล/ข้อเท็จจริงที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่นจากแหล่งเรียนรู้ และนำเสนอด้วยการพูด/การเขียน): correct subject information, appropriate subject vocabulary, an understandable English explanation or product, and acknowledgement of the source when one is used.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M2-18, assess both subject accuracy and language clarity. Check that key vocabulary is used correctly, the explanation matches the source, and the product communicates the idea rather than merely copying isolated words.
 
 **Independent practice**
 1. **Find key information:** From a short subject-related text, diagram or data source connected to “ค้นคว้า รวบรวม และสรุปข้อมูล/ข้อเท็จจริงที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่นจากแหล่งเรียนรู้ และนำเสนอด้วยการพูด/การเขียน”, identify the key vocabulary and two relevant facts. **Answer:** Select vocabulary and facts that accurately match the other learning area and the language outcome in FL-M2-18.
@@ -824,11 +824,11 @@
 
 **Teaching activity:** Use realistic classroom, school, community and public-service scenarios. Learners adapt language to audience, purpose and setting.
 
-**Practical activity:** Practise real-life communication in school, community and everyday situations through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M2-19, learners complete a realistic classroom, school or community simulation that practises “ใช้ภาษาสื่อสารในสถานการณ์จริง/สถานการณ์จำลองที่เกิดขึ้นในห้องเรียน สถานศึกษา และชุมชน”. Assign roles, define the audience and purpose, and require learners to exchange information or complete the real-world communication task. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M2-19: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M2-19 (ใช้ภาษาสื่อสารในสถานการณ์จริง/สถานการณ์จำลองที่เกิดขึ้นในห้องเรียน สถานศึกษา และชุมชน): language that fits the real or simulated situation, successful completion of the communicative purpose, and an appropriate response to an unexpected question or clarification request.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M2-19, assess whether the learner achieves the communication purpose, adapts language to audience and setting, responds meaningfully, and uses clear, respectful expressions. Minor errors should not outweigh successful communication when meaning remains clear.
 
 **Independent practice**
 1. **Identify context:** For a school, community or everyday situation related to “ใช้ภาษาสื่อสารในสถานการณ์จริง/สถานการณ์จำลองที่เกิดขึ้นในห้องเรียน สถานศึกษา และชุมชน”, identify the purpose, audience and suitable expressions. **Answer:** Identify the situation and choose language appropriate to its purpose and audience.
@@ -845,11 +845,11 @@
 
 **Teaching activity:** Use approved reference sources for a study or career-related question. Learners search, evaluate reliability, record, synthesise and present information.
 
-**Practical activity:** Practise international communication, research and participation in the wider world through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M2-20, learners use one or more teacher-approved sources to practise “ใช้ภาษาต่างประเทศในการสืบค้น/ค้นคว้า รวบรวมและสรุปความรู้/ข้อมูลต่าง ๆ จากสื่อและแหล่งการเรียนรู้ต่าง ๆ ในการศึกษาต่อและประกอบอาชีพ”. They search or collect relevant information, record key terms and source details, check reliability, then summarise or communicate the findings for a stated study, school or career purpose. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M2-20: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M2-20 (ใช้ภาษาต่างประเทศในการสืบค้น/ค้นคว้า รวบรวมและสรุปความรู้/ข้อมูลต่าง ๆ จากสื่อและแหล่งการเรียนรู้ต่าง ๆ ในการศึกษาต่อและประกอบอาชีพ): relevant information from an appropriate source, accurate notes or a summary, a clear English output for the stated purpose, and source acknowledgement where research is used.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M2-20, assess relevance and credibility of sources, accuracy of notes or summary, language suitable for the audience and purpose, and correct source acknowledgement. Do not accept copied material presented as the learner's own work.
 
 **Independent practice**
 1. **Research / identify:** Use an age-appropriate teacher-approved source related to “ใช้ภาษาต่างประเทศในการสืบค้น/ค้นคว้า รวบรวมและสรุปความรู้/ข้อมูลต่าง ๆ จากสื่อและแหล่งการเรียนรู้ต่าง ๆ ในการศึกษาต่อและประกอบอาชีพ”. Identify the main information, intended audience and source details. **Answer:** Identify accurate information and a credible source relevant to FL-M2-20; distinguish source information from unsupported opinion.
@@ -866,11 +866,11 @@
 
 **Teaching activity:** Use approved reference sources for a study or career-related question. Learners search, evaluate reliability, record, synthesise and present information.
 
-**Practical activity:** Practise international communication, research and participation in the wider world through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M2-21, learners use one or more teacher-approved sources to practise “เผยแพร่/ประชาสัมพันธ์ข้อมูลข่าวสารของโรงเรียนเป็นภาษาต่างประเทศ”. They search or collect relevant information, record key terms and source details, check reliability, then summarise or communicate the findings for a stated study, school or career purpose. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M2-21: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M2-21 (เผยแพร่/ประชาสัมพันธ์ข้อมูลข่าวสารของโรงเรียนเป็นภาษาต่างประเทศ): relevant information from an appropriate source, accurate notes or a summary, a clear English output for the stated purpose, and source acknowledgement where research is used.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M2-21, assess relevance and credibility of sources, accuracy of notes or summary, language suitable for the audience and purpose, and correct source acknowledgement. Do not accept copied material presented as the learner's own work.
 
 **Independent practice**
 1. **Research / identify:** Use an age-appropriate teacher-approved source related to “เผยแพร่/ประชาสัมพันธ์ข้อมูลข่าวสารของโรงเรียนเป็นภาษาต่างประเทศ”. Identify the main information, intended audience and source details. **Answer:** Identify accurate information and a credible source relevant to FL-M2-21; distinguish source information from unsupported opinion.
@@ -887,11 +887,11 @@
 
 **Teaching activity:** Use age-appropriate news, stories, announcements and digital media. Learners practise skimming, scanning, inference and evidence-based comprehension.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M3-01, learners work with a short teacher-selected audio or text that directly practises “ปฏิบัติตามคำขอร้อง คำแนะนำ คำชี้แจง และคำอธิบายที่ฟังและอ่าน”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M3-01: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M3-01 (ปฏิบัติตามคำขอร้อง คำแนะนำ คำชี้แจง และคำอธิบายที่ฟังและอ่าน): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M3-01, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “ปฏิบัติตามคำขอร้อง คำแนะนำ คำชี้แจง และคำอธิบายที่ฟังและอ่าน”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-M3-01; accept an equivalent clear response at the expected grade level.
@@ -908,11 +908,11 @@
 
 **Teaching activity:** Use age-appropriate news, stories, announcements and digital media. Learners practise skimming, scanning, inference and evidence-based comprehension.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M3-02, learners work with a short teacher-selected audio or text that directly practises “อ่านออกเสียงข้อความ ข่าว โฆษณา และบทร้อยกรองสั้น ๆ ถูกต้องตามหลักการอ่าน”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M3-02: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M3-02 (อ่านออกเสียงข้อความ ข่าว โฆษณา และบทร้อยกรองสั้น ๆ ถูกต้องตามหลักการอ่าน): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M3-02, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “อ่านออกเสียงข้อความ ข่าว โฆษณา และบทร้อยกรองสั้น ๆ ถูกต้องตามหลักการอ่าน”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-M3-02; accept an equivalent clear response at the expected grade level.
@@ -929,11 +929,11 @@
 
 **Teaching activity:** Use age-appropriate news, stories, announcements and digital media. Learners practise skimming, scanning, inference and evidence-based comprehension.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M3-03, learners work with a short teacher-selected audio or text that directly practises “ระบุและเขียนสื่อที่ไม่ใช่ความเรียงรูปแบบต่าง ๆ ให้สัมพันธ์กับประโยคและข้อความที่ฟังหรืออ่าน”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M3-03: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M3-03 (ระบุและเขียนสื่อที่ไม่ใช่ความเรียงรูปแบบต่าง ๆ ให้สัมพันธ์กับประโยคและข้อความที่ฟังหรืออ่าน): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M3-03, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “ระบุและเขียนสื่อที่ไม่ใช่ความเรียงรูปแบบต่าง ๆ ให้สัมพันธ์กับประโยคและข้อความที่ฟังหรืออ่าน”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-M3-03; accept an equivalent clear response at the expected grade level.
@@ -950,11 +950,11 @@
 
 **Teaching activity:** Use age-appropriate news, stories, announcements and digital media. Learners practise skimming, scanning, inference and evidence-based comprehension.
 
-**Practical activity:** Practise listening, reading, pronunciation, vocabulary and comprehension through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M3-04, learners work with a short teacher-selected audio or text that directly practises “เลือก/ระบุหัวข้อเรื่อง ใจความสำคัญ รายละเอียดสนับสนุน และแสดงความคิดเห็นเกี่ยวกับเรื่องที่ฟังและอ่านจากสื่อประเภทต่าง ๆ พร้อมทั้งให้เหตุผลและยกตัวอย่างประกอบ”. They identify the required information, follow or reconstruct the relevant sequence, and justify one response by pointing to a word, phrase, sound or detail. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M3-04: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M3-04 (เลือก/ระบุหัวข้อเรื่อง ใจความสำคัญ รายละเอียดสนับสนุน และแสดงความคิดเห็นเกี่ยวกับเรื่องที่ฟังและอ่านจากสื่อประเภทต่าง ๆ พร้อมทั้งให้เหตุผลและยกตัวอย่างประกอบ): an accurate response to the source, a correctly completed comprehension or reading/listening task, and a brief explanation or demonstration supported by details from the source.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M3-04, assess accurate identification or following of the target information, comprehension supported by source evidence, and clear completion of the specified listening/reading task. Accept equivalent correct language; do not reward unsupported guesses.
 
 **Independent practice**
 1. **Listen / read:** Use an age-appropriate audio clip or text related to “เลือก/ระบุหัวข้อเรื่อง ใจความสำคัญ รายละเอียดสนับสนุน และแสดงความคิดเห็นเกี่ยวกับเรื่องที่ฟังและอ่านจากสื่อประเภทต่าง ๆ พร้อมทั้งให้เหตุผลและยกตัวอย่างประกอบ”. Identify the exact instruction, sounds, words, main idea, sequence or details required by the indicator. **Answer:** The learner correctly identifies or follows the language information required by FL-M3-04; accept an equivalent clear response at the expected grade level.
@@ -971,11 +971,11 @@
 
 **Teaching activity:** Run structured discussions, information-gap tasks and role-plays involving requests, advice, offers of help, opinions, experiences and sustained turn-taking.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M3-05, learners practise “สนทนาและเขียนโต้ตอบข้อมูลเกี่ยวกับตนเอง เรื่องต่าง ๆ ใกล้ตัว สถานการณ์ ข่าว เรื่องที่อยู่ในความสนใจของสังคมและสื่อสารอย่างต่อเนื่องและเหมาะสม” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M3-05: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M3-05 (สนทนาและเขียนโต้ตอบข้อมูลเกี่ยวกับตนเอง เรื่องต่าง ๆ ใกล้ตัว สถานการณ์ ข่าว เรื่องที่อยู่ในความสนใจของสังคมและสื่อสารอย่างต่อเนื่องและเหมาะสม): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M3-05, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “สนทนาและเขียนโต้ตอบข้อมูลเกี่ยวกับตนเอง เรื่องต่าง ๆ ใกล้ตัว สถานการณ์ ข่าว เรื่องที่อยู่ในความสนใจของสังคมและสื่อสารอย่างต่อเนื่องและเหมาะสม”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-M3-05; accept other natural and correct expressions.
@@ -992,11 +992,11 @@
 
 **Teaching activity:** Run structured discussions, information-gap tasks and role-plays involving requests, advice, offers of help, opinions, experiences and sustained turn-taking.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M3-06, learners practise “ใช้คำขอร้อง ให้คำแนะนำ คำชี้แจง และคำอธิบายอย่างเหมาะสม” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M3-06: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M3-06 (ใช้คำขอร้อง ให้คำแนะนำ คำชี้แจง และคำอธิบายอย่างเหมาะสม): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M3-06, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “ใช้คำขอร้อง ให้คำแนะนำ คำชี้แจง และคำอธิบายอย่างเหมาะสม”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-M3-06; accept other natural and correct expressions.
@@ -1013,11 +1013,11 @@
 
 **Teaching activity:** Run structured discussions, information-gap tasks and role-plays involving requests, advice, offers of help, opinions, experiences and sustained turn-taking.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M3-07, learners practise “พูดและเขียนแสดงความต้องการ เสนอและให้ความช่วยเหลือ ตอบรับและปฏิเสธการให้ความช่วยเหลือในสถานการณ์ต่าง ๆ อย่างเหมาะสม” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M3-07: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M3-07 (พูดและเขียนแสดงความต้องการ เสนอและให้ความช่วยเหลือ ตอบรับและปฏิเสธการให้ความช่วยเหลือในสถานการณ์ต่าง ๆ อย่างเหมาะสม): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M3-07, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “พูดและเขียนแสดงความต้องการ เสนอและให้ความช่วยเหลือ ตอบรับและปฏิเสธการให้ความช่วยเหลือในสถานการณ์ต่าง ๆ อย่างเหมาะสม”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-M3-07; accept other natural and correct expressions.
@@ -1034,11 +1034,11 @@
 
 **Teaching activity:** Run structured discussions, information-gap tasks and role-plays involving requests, advice, offers of help, opinions, experiences and sustained turn-taking.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M3-08, learners practise “พูดและเขียนเพื่อขอและให้ข้อมูล อธิบาย เปรียบเทียบ และแสดงความคิดเห็นเกี่ยวกับเรื่องที่ฟังหรืออ่านอย่างเหมาะสม” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M3-08: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M3-08 (พูดและเขียนเพื่อขอและให้ข้อมูล อธิบาย เปรียบเทียบ และแสดงความคิดเห็นเกี่ยวกับเรื่องที่ฟังหรืออ่านอย่างเหมาะสม): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M3-08, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “พูดและเขียนเพื่อขอและให้ข้อมูล อธิบาย เปรียบเทียบ และแสดงความคิดเห็นเกี่ยวกับเรื่องที่ฟังหรืออ่านอย่างเหมาะสม”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-M3-08; accept other natural and correct expressions.
@@ -1055,11 +1055,11 @@
 
 **Teaching activity:** Run structured discussions, information-gap tasks and role-plays involving requests, advice, offers of help, opinions, experiences and sustained turn-taking.
 
-**Practical activity:** Practise interpersonal communication, interaction and appropriate language use through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M3-09, learners practise “พูดและเขียนบรรยายความรู้สึกและความคิดเห็นของตนเองเกี่ยวกับเรื่องต่าง ๆ กิจกรรม ประสบการณ์ และข่าว/เหตุการณ์ พร้อมทั้งให้เหตุผลประกอบอย่างเหมาะสม” in a paired information-gap or role-play. Each learner must initiate or respond, ask or answer a relevant question, use an appropriate expression, and make one follow-up turn. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M3-09: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M3-09 (พูดและเขียนบรรยายความรู้สึกและความคิดเห็นของตนเองเกี่ยวกับเรื่องต่าง ๆ กิจกรรม ประสบการณ์ และข่าว/เหตุการณ์ พร้อมทั้งให้เหตุผลประกอบอย่างเหมาะสม): a relevant opening or response, an appropriate question/answer or request, and a coherent follow-up that keeps the interaction meaningful.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M3-09, assess relevance to the situation, understandable pronunciation and language choices, appropriate turn-taking, and whether the learner responds to the partner rather than reciting an unrelated memorised line.
 
 **Independent practice**
 1. **Choose language:** For a situation related to “พูดและเขียนบรรยายความรู้สึกและความคิดเห็นของตนเองเกี่ยวกับเรื่องต่าง ๆ กิจกรรม ประสบการณ์ และข่าว/เหตุการณ์ พร้อมทั้งให้เหตุผลประกอบอย่างเหมาะสม”, identify useful words, expressions, question forms or polite language and explain when they are appropriate. **Answer:** Select expressions that match the communicative purpose, audience and level of formality required by FL-M3-09; accept other natural and correct expressions.
@@ -1076,11 +1076,11 @@
 
 **Teaching activity:** Learners prepare a short report, summary or presentation on a relevant topic. Require clear structure, accurate details, reasons and examples.
 
-**Practical activity:** Practise language production, presentation, writing and expression of ideas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M3-10, learners prepare a short presentation or written product that demonstrates “พูดและเขียนบรรยายเกี่ยวกับตนเอง ประสบการณ์ ข่าว/เหตุการณ์/เรื่อง/ประเด็นต่าง ๆ ที่อยู่ในความสนใจของสังคม”. They select relevant information, organise it for a named audience, rehearse or edit it, then present and respond to one question. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M3-10: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M3-10 (พูดและเขียนบรรยายเกี่ยวกับตนเอง ประสบการณ์ ข่าว/เหตุการณ์/เรื่อง/ประเด็นต่าง ๆ ที่อยู่ในความสนใจของสังคม): a focused spoken or written product, information arranged in a logical order, language appropriate to the audience, and a relevant response to feedback or a follow-up question.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M3-10, assess task relevance, organisation of ideas, accuracy and range of language appropriate to the grade, and clarity for the intended audience. Accept different valid examples and formats when they meet the indicator.
 
 **Independent practice**
 1. **Plan:** For a presentation or written task connected to “พูดและเขียนบรรยายเกี่ยวกับตนเอง ประสบการณ์ ข่าว/เหตุการณ์/เรื่อง/ประเด็นต่าง ๆ ที่อยู่ในความสนใจของสังคม”, identify the topic, audience, purpose and key information that must be included. **Answer:** Identify the correct topic/purpose/audience and select information relevant to FL-M3-10.
@@ -1097,11 +1097,11 @@
 
 **Teaching activity:** Learners prepare a short report, summary or presentation on a relevant topic. Require clear structure, accurate details, reasons and examples.
 
-**Practical activity:** Practise language production, presentation, writing and expression of ideas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M3-11, learners prepare a short presentation or written product that demonstrates “พูดและเขียนสรุปใจความสำคัญ/แก่นสาระ หัวข้อเรื่องที่ได้จากการวิเคราะห์เรื่อง/ข่าว/เหตุการณ์/สถานการณ์ที่อยู่ในความสนใจของสังคม”. They select relevant information, organise it for a named audience, rehearse or edit it, then present and respond to one question. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M3-11: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M3-11 (พูดและเขียนสรุปใจความสำคัญ/แก่นสาระ หัวข้อเรื่องที่ได้จากการวิเคราะห์เรื่อง/ข่าว/เหตุการณ์/สถานการณ์ที่อยู่ในความสนใจของสังคม): a focused spoken or written product, information arranged in a logical order, language appropriate to the audience, and a relevant response to feedback or a follow-up question.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M3-11, assess task relevance, organisation of ideas, accuracy and range of language appropriate to the grade, and clarity for the intended audience. Accept different valid examples and formats when they meet the indicator.
 
 **Independent practice**
 1. **Plan:** For a presentation or written task connected to “พูดและเขียนสรุปใจความสำคัญ/แก่นสาระ หัวข้อเรื่องที่ได้จากการวิเคราะห์เรื่อง/ข่าว/เหตุการณ์/สถานการณ์ที่อยู่ในความสนใจของสังคม”, identify the topic, audience, purpose and key information that must be included. **Answer:** Identify the correct topic/purpose/audience and select information relevant to FL-M3-11.
@@ -1118,11 +1118,11 @@
 
 **Teaching activity:** Learners prepare a short report, summary or presentation on a relevant topic. Require clear structure, accurate details, reasons and examples.
 
-**Practical activity:** Practise language production, presentation, writing and expression of ideas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M3-12, learners prepare a short presentation or written product that demonstrates “พูดและเขียนแสดงความคิดเห็นเกี่ยวกับกิจกรรม ประสบการณ์ และเหตุการณ์ พร้อมทั้งให้เหตุผลประกอบ”. They select relevant information, organise it for a named audience, rehearse or edit it, then present and respond to one question. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M3-12: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M3-12 (พูดและเขียนแสดงความคิดเห็นเกี่ยวกับกิจกรรม ประสบการณ์ และเหตุการณ์ พร้อมทั้งให้เหตุผลประกอบ): a focused spoken or written product, information arranged in a logical order, language appropriate to the audience, and a relevant response to feedback or a follow-up question.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M3-12, assess task relevance, organisation of ideas, accuracy and range of language appropriate to the grade, and clarity for the intended audience. Accept different valid examples and formats when they meet the indicator.
 
 **Independent practice**
 1. **Plan:** For a presentation or written task connected to “พูดและเขียนแสดงความคิดเห็นเกี่ยวกับกิจกรรม ประสบการณ์ และเหตุการณ์ พร้อมทั้งให้เหตุผลประกอบ”, identify the topic, audience, purpose and key information that must be included. **Answer:** Identify the correct topic/purpose/audience and select information relevant to FL-M3-12.
@@ -1139,11 +1139,11 @@
 
 **Teaching activity:** Use case studies, short cultural research and role-play. Learners select language and register for the audience and explain customs without stereotyping.
 
-**Practical activity:** Practise language, culture, etiquette and intercultural communication through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M3-13, learners examine a respectful, specific cultural or social situation linked to “เลือกใช้ภาษา น้ำเสียง และกิริยาท่าทางเหมาะกับบุคคลและโอกาส ตามมารยาทสังคมและวัฒนธรรมของเจ้าของภาษา”. They identify the relevant expression, gesture, convention or cultural information, practise an appropriate response, and explain why context matters. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M3-13: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M3-13 (เลือกใช้ภาษา น้ำเสียง และกิริยาท่าทางเหมาะกับบุคคลและโอกาส ตามมารยาทสังคมและวัฒนธรรมของเจ้าของภาษา): accurate identification of the relevant cultural or social feature, an appropriate language or behaviour choice in context, and a respectful explanation that avoids treating one example as universal.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M3-13, assess contextual appropriateness, respectful interpretation, accuracy of the cultural information and the learner's ability to explain variation. Do not reward stereotypes or claims that all members of a culture behave identically.
 
 **Independent practice**
 1. **Notice culture:** From a short text, image or dialogue related to “เลือกใช้ภาษา น้ำเสียง และกิริยาท่าทางเหมาะกับบุคคลและโอกาส ตามมารยาทสังคมและวัฒนธรรมของเจ้าของภาษา”, identify the relevant cultural practice, social convention, gesture or language choice. **Answer:** Identify the cultural/language feature accurately and describe the situation in which it is used; avoid treating one example as universal.
@@ -1160,11 +1160,11 @@
 
 **Teaching activity:** Use case studies, short cultural research and role-play. Learners select language and register for the audience and explain customs without stereotyping.
 
-**Practical activity:** Practise language, culture, etiquette and intercultural communication through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M3-14, learners examine a respectful, specific cultural or social situation linked to “อธิบายเกี่ยวกับชีวิตความเป็นอยู่ ขนบธรรมเนียมและประเพณีของเจ้าของภาษา”. They identify the relevant expression, gesture, convention or cultural information, practise an appropriate response, and explain why context matters. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M3-14: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M3-14 (อธิบายเกี่ยวกับชีวิตความเป็นอยู่ ขนบธรรมเนียมและประเพณีของเจ้าของภาษา): accurate identification of the relevant cultural or social feature, an appropriate language or behaviour choice in context, and a respectful explanation that avoids treating one example as universal.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M3-14, assess contextual appropriateness, respectful interpretation, accuracy of the cultural information and the learner's ability to explain variation. Do not reward stereotypes or claims that all members of a culture behave identically.
 
 **Independent practice**
 1. **Notice culture:** From a short text, image or dialogue related to “อธิบายเกี่ยวกับชีวิตความเป็นอยู่ ขนบธรรมเนียมและประเพณีของเจ้าของภาษา”, identify the relevant cultural practice, social convention, gesture or language choice. **Answer:** Identify the cultural/language feature accurately and describe the situation in which it is used; avoid treating one example as universal.
@@ -1181,11 +1181,11 @@
 
 **Teaching activity:** Use case studies, short cultural research and role-play. Learners select language and register for the audience and explain customs without stereotyping.
 
-**Practical activity:** Practise language, culture, etiquette and intercultural communication through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M3-15, learners examine a respectful, specific cultural or social situation linked to “เข้าร่วม/จัดกิจกรรมทางภาษาและวัฒนธรรมตามความสนใจ”. They identify the relevant expression, gesture, convention or cultural information, practise an appropriate response, and explain why context matters. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M3-15: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M3-15 (เข้าร่วม/จัดกิจกรรมทางภาษาและวัฒนธรรมตามความสนใจ): accurate identification of the relevant cultural or social feature, an appropriate language or behaviour choice in context, and a respectful explanation that avoids treating one example as universal.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M3-15, assess contextual appropriateness, respectful interpretation, accuracy of the cultural information and the learner's ability to explain variation. Do not reward stereotypes or claims that all members of a culture behave identically.
 
 **Independent practice**
 1. **Notice culture:** From a short text, image or dialogue related to “เข้าร่วม/จัดกิจกรรมทางภาษาและวัฒนธรรมตามความสนใจ”, identify the relevant cultural practice, social convention, gesture or language choice. **Answer:** Identify the cultural/language feature accurately and describe the situation in which it is used; avoid treating one example as universal.
@@ -1202,11 +1202,11 @@
 
 **Teaching activity:** Compare English and Thai sentence patterns, idioms, proverbs, pronunciation and cultural assumptions using paired examples and short explanations.
 
-**Practical activity:** Practise language comparison and intercultural analysis through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M3-16, learners compare two short English and Thai examples connected to “เปรียบเทียบและอธิบายความเหมือนและความแตกต่างระหว่างการออกเสียงประโยคชนิดต่าง ๆ และการลำดับคำตามโครงสร้างประโยคของภาษาต่างประเทศและภาษาไทย”. They mark the relevant sound, letter, word, structure or cultural feature, explain one similarity and one difference where applicable, and apply the comparison in a new example. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M3-16: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M3-16 (เปรียบเทียบและอธิบายความเหมือนและความแตกต่างระหว่างการออกเสียงประโยคชนิดต่าง ๆ และการลำดับคำตามโครงสร้างประโยคของภาษาต่างประเทศและภาษาไทย): correctly identified features in both examples, a supported comparison that distinguishes similarity from difference, and an accurate application to a fresh language example.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M3-16, assess accuracy of both examples, quality of the comparison, use of evidence and ability to apply the finding. Accept more than one valid comparison when it is supported by the examples.
 
 **Independent practice**
 1. **Identify patterns:** Find the language feature, cultural convention or similarity/difference required by “เปรียบเทียบและอธิบายความเหมือนและความแตกต่างระหว่างการออกเสียงประโยคชนิดต่าง ๆ และการลำดับคำตามโครงสร้างประโยคของภาษาต่างประเทศและภาษาไทย” in two short examples. **Answer:** Identify the relevant pattern accurately in both examples and use appropriate language to describe it.
@@ -1223,11 +1223,11 @@
 
 **Teaching activity:** Compare English and Thai sentence patterns, idioms, proverbs, pronunciation and cultural assumptions using paired examples and short explanations.
 
-**Practical activity:** Practise language comparison and intercultural analysis through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M3-17, learners compare two short English and Thai examples connected to “เปรียบเทียบและอธิบายความเหมือนและความแตกต่างระหว่างชีวิตความเป็นอยู่และวัฒนธรรมของเจ้าของภาษากับของไทย และนำไปใช้อย่างเหมาะสม”. They mark the relevant sound, letter, word, structure or cultural feature, explain one similarity and one difference where applicable, and apply the comparison in a new example. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M3-17: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M3-17 (เปรียบเทียบและอธิบายความเหมือนและความแตกต่างระหว่างชีวิตความเป็นอยู่และวัฒนธรรมของเจ้าของภาษากับของไทย และนำไปใช้อย่างเหมาะสม): correctly identified features in both examples, a supported comparison that distinguishes similarity from difference, and an accurate application to a fresh language example.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M3-17, assess accuracy of both examples, quality of the comparison, use of evidence and ability to apply the finding. Accept more than one valid comparison when it is supported by the examples.
 
 **Independent practice**
 1. **Identify patterns:** Find the language feature, cultural convention or similarity/difference required by “เปรียบเทียบและอธิบายความเหมือนและความแตกต่างระหว่างชีวิตความเป็นอยู่และวัฒนธรรมของเจ้าของภาษากับของไทย และนำไปใช้อย่างเหมาะสม” in two short examples. **Answer:** Identify the relevant pattern accurately in both examples and use appropriate language to describe it.
@@ -1244,11 +1244,11 @@
 
 **Teaching activity:** Set a cross-curricular research task. Learners search approved sources, record key facts, summarise findings and present them in speech or writing.
 
-**Practical activity:** Practise integrated language use across learning areas through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M3-18, learners use a teacher-approved source from another learning area to practise “ค้นคว้า รวบรวม และสรุปข้อมูล/ข้อเท็จจริงที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่นจากแหล่งเรียนรู้ และนำเสนอด้วยการพูดและการเขียน”. They identify the subject idea and key English terms, explain the idea in English, and create a labelled visual, short report or oral explanation. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M3-18: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M3-18 (ค้นคว้า รวบรวม และสรุปข้อมูล/ข้อเท็จจริงที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่นจากแหล่งเรียนรู้ และนำเสนอด้วยการพูดและการเขียน): correct subject information, appropriate subject vocabulary, an understandable English explanation or product, and acknowledgement of the source when one is used.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M3-18, assess both subject accuracy and language clarity. Check that key vocabulary is used correctly, the explanation matches the source, and the product communicates the idea rather than merely copying isolated words.
 
 **Independent practice**
 1. **Find key information:** From a short subject-related text, diagram or data source connected to “ค้นคว้า รวบรวม และสรุปข้อมูล/ข้อเท็จจริงที่เกี่ยวข้องกับกลุ่มสาระการเรียนรู้อื่นจากแหล่งเรียนรู้ และนำเสนอด้วยการพูดและการเขียน”, identify the key vocabulary and two relevant facts. **Answer:** Select vocabulary and facts that accurately match the other learning area and the language outcome in FL-M3-18.
@@ -1265,11 +1265,11 @@
 
 **Teaching activity:** Use realistic classroom, school, community and public-service scenarios. Learners adapt language to audience, purpose and setting.
 
-**Practical activity:** Practise real-life communication in school, community and everyday situations through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M3-19, learners complete a realistic classroom, school or community simulation that practises “ใช้ภาษาสื่อสารในสถานการณ์จริง/สถานการณ์จำลองที่เกิดขึ้นในห้องเรียน สถานศึกษา ชุมชน และสังคม”. Assign roles, define the audience and purpose, and require learners to exchange information or complete the real-world communication task. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M3-19: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M3-19 (ใช้ภาษาสื่อสารในสถานการณ์จริง/สถานการณ์จำลองที่เกิดขึ้นในห้องเรียน สถานศึกษา ชุมชน และสังคม): language that fits the real or simulated situation, successful completion of the communicative purpose, and an appropriate response to an unexpected question or clarification request.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M3-19, assess whether the learner achieves the communication purpose, adapts language to audience and setting, responds meaningfully, and uses clear, respectful expressions. Minor errors should not outweigh successful communication when meaning remains clear.
 
 **Independent practice**
 1. **Identify context:** For a school, community or everyday situation related to “ใช้ภาษาสื่อสารในสถานการณ์จริง/สถานการณ์จำลองที่เกิดขึ้นในห้องเรียน สถานศึกษา ชุมชน และสังคม”, identify the purpose, audience and suitable expressions. **Answer:** Identify the situation and choose language appropriate to its purpose and audience.
@@ -1286,11 +1286,11 @@
 
 **Teaching activity:** Use approved reference sources for a study or career-related question. Learners search, evaluate reliability, record, synthesise and present information.
 
-**Practical activity:** Practise international communication, research and participation in the wider world through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M3-20, learners use one or more teacher-approved sources to practise “ใช้ภาษาต่างประเทศในการสืบค้น/ค้นคว้า รวบรวม และสรุปความรู้/ข้อมูลต่าง ๆ จากสื่อและแหล่งการเรียนรู้ต่าง ๆ ในการศึกษาต่อและประกอบอาชีพ”. They search or collect relevant information, record key terms and source details, check reliability, then summarise or communicate the findings for a stated study, school or career purpose. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M3-20: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M3-20 (ใช้ภาษาต่างประเทศในการสืบค้น/ค้นคว้า รวบรวม และสรุปความรู้/ข้อมูลต่าง ๆ จากสื่อและแหล่งการเรียนรู้ต่าง ๆ ในการศึกษาต่อและประกอบอาชีพ): relevant information from an appropriate source, accurate notes or a summary, a clear English output for the stated purpose, and source acknowledgement where research is used.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M3-20, assess relevance and credibility of sources, accuracy of notes or summary, language suitable for the audience and purpose, and correct source acknowledgement. Do not accept copied material presented as the learner's own work.
 
 **Independent practice**
 1. **Research / identify:** Use an age-appropriate teacher-approved source related to “ใช้ภาษาต่างประเทศในการสืบค้น/ค้นคว้า รวบรวม และสรุปความรู้/ข้อมูลต่าง ๆ จากสื่อและแหล่งการเรียนรู้ต่าง ๆ ในการศึกษาต่อและประกอบอาชีพ”. Identify the main information, intended audience and source details. **Answer:** Identify accurate information and a credible source relevant to FL-M3-20; distinguish source information from unsupported opinion.
@@ -1307,11 +1307,11 @@
 
 **Teaching activity:** Use approved reference sources for a study or career-related question. Learners search, evaluate reliability, record, synthesise and present information.
 
-**Practical activity:** Practise international communication, research and participation in the wider world through a teacher-approved audio, text, dialogue or real-life scenario. Model the target language and give learners structured speaking/listening/reading/writing practice. Adapt to lower secondary learners using connected sentences, short paragraphs and supported inference.
+**Practical activity:** For FL-M3-21, learners use one or more teacher-approved sources to practise “เผยแพร่/ประชาสัมพันธ์ข้อมูลข่าวสารของโรงเรียน ชุมชน และท้องถิ่นเป็นภาษาต่างประเทศ”. They search or collect relevant information, record key terms and source details, check reliability, then summarise or communicate the findings for a stated study, school or career purpose. Grade band: lower-secondary. Use connected speech or paragraphs, supported inference, peer feedback and short evidence-based explanations.
 
-**Expected evidence:** Three tasks demonstrate FL-M3-21: accurate understanding, appropriate language use or interpretation, and a spoken/written performance or product. Accept equivalent correct language and accessible response formats while retaining the indicator's skill target.
+**Expected evidence:** Evidence for FL-M3-21 (เผยแพร่/ประชาสัมพันธ์ข้อมูลข่าวสารของโรงเรียน ชุมชน และท้องถิ่นเป็นภาษาต่างประเทศ): relevant information from an appropriate source, accurate notes or a summary, a clear English output for the stated purpose, and source acknowledgement where research is used.
 
-**Teacher check:** Assess (1) meaning and task accuracy, (2) vocabulary/grammar/pronunciation or language choices appropriate to the grade, and (3) communication with the intended audience. For open-ended speaking/writing, accept natural equivalent answers; assess clarity and relevance rather than one memorised sentence.
+**Teacher check:** For FL-M3-21, assess relevance and credibility of sources, accuracy of notes or summary, language suitable for the audience and purpose, and correct source acknowledgement. Do not accept copied material presented as the learner's own work.
 
 **Independent practice**
 1. **Research / identify:** Use an age-appropriate teacher-approved source related to “เผยแพร่/ประชาสัมพันธ์ข้อมูลข่าวสารของโรงเรียน ชุมชน และท้องถิ่นเป็นภาษาต่างประเทศ”. Identify the main information, intended audience and source details. **Answer:** Identify accurate information and a credible source relevant to FL-M3-21; distinguish source information from unsupported opinion.

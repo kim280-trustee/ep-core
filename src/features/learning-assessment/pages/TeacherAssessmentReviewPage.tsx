@@ -120,7 +120,7 @@ export default function TeacherAssessmentReviewPage() {
       </header>
 
       {reviewQuery.isPending ? <div className="h-40 animate-pulse rounded-2xl bg-slate-100" /> : reviewQuery.isError ? (
-        <Panel>Student responses could not be loaded. Refresh the page and try again.</Panel>
+        <Panel><div className="flex flex-wrap items-center justify-between gap-3"><span>Student responses could not be loaded. Retry before leaving this page.</span><button type="button" onClick={() => void reviewQuery.refetch()} className="rounded-lg border border-slate-300 px-3 py-2 text-sm font-semibold text-slate-700">Retry loading responses</button></div></Panel>
       ) : !reviewQuery.data?.length ? (
         <Panel>No student attempts have been submitted for this assessment yet.</Panel>
       ) : (
@@ -146,7 +146,7 @@ export default function TeacherAssessmentReviewPage() {
                       feedback: typeof answer.feedback?.teacher_feedback === "string" ? answer.feedback.teacher_feedback : "",
                     };
                     const score = Number(draft.score);
-                    const validScore = draft.score.trim() !== "" && Number.isFinite(score) && score >= 0 && score <= points;
+                    const validScore = isValidGradeDraft(draft.score, points);
                     const pending = answer.evaluationStatus === "pending";
                     return (
                       <article key={answer.id} className="rounded-xl border border-slate-200 p-4">
@@ -158,10 +158,11 @@ export default function TeacherAssessmentReviewPage() {
                         {pending ? (
                           <div className="mt-4 grid gap-3 md:grid-cols-[9rem_1fr_auto] md:items-end">
                             <label className="text-sm font-medium text-slate-700">Awarded points
-                              <input type="number" min="0" max={points} step="0.01" value={draft.score} onChange={(event) => setDrafts((current) => ({ ...current, [answer.id]: { ...draft, score: event.target.value } }))} className="input mt-1 w-full" />
+                              <input type="number" min="0" max={points} step="0.01" required aria-invalid={!validScore && draft.score.trim() !== ""} value={draft.score} onChange={(event) => setDrafts((current) => ({ ...current, [answer.id]: { ...draft, score: event.target.value } }))} className="input mt-1 w-full" />
                             </label>
                             <label className="text-sm font-medium text-slate-700">Feedback
-                              <textarea rows={2} value={draft.feedback} onChange={(event) => setDrafts((current) => ({ ...current, [answer.id]: { ...draft, feedback: event.target.value } }))} className="input mt-1 w-full resize-y" placeholder="Give constructive feedback (optional)" />
+                              <textarea rows={2} maxLength={2000} value={draft.feedback} onChange={(event) => setDrafts((current) => ({ ...current, [answer.id]: { ...draft, feedback: event.target.value } }))} className="input mt-1 w-full resize-y" placeholder="Give constructive feedback (optional)" />
+                              <span className="mt-1 block text-right text-xs text-slate-500">{draft.feedback.length}/2000</span>
                             </label>
                             <button type="button" disabled={!validScore || gradeMutation.isPending} onClick={() => gradeMutation.mutate({ answerId: answer.id, awardedPoints: score, teacherFeedback: draft.feedback, assignmentId: attempt.assignmentId ?? null, studentUserId: attempt.studentUserId })} className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">
                               {gradeMutation.isPending && gradeMutation.variables?.answerId === answer.id ? <Loader2 size={15} className="animate-spin" /> : <CheckCircle2 size={15} />}Save mark
@@ -186,9 +187,15 @@ export default function TeacherAssessmentReviewPage() {
         </div>
       )}
       {gradeMutation.isError && <p role="alert" className="rounded-xl bg-red-50 p-3 text-sm text-red-800">{gradeMutation.error instanceof Error ? gradeMutation.error.message : "Could not save the mark."}</p>}
-      {gradeMutation.isSuccess && <p className="rounded-xl bg-emerald-50 p-3 text-sm text-emerald-800">Mark saved. Results and gradebook will update when all written answers are graded.</p>}
+      {gradeMutation.isSuccess && <p role="status" className="rounded-xl bg-emerald-50 p-3 text-sm text-emerald-800">{gradeMutation.data?.status === "evaluated" ? "All written responses are marked. The final result and gradebook have been updated." : "Mark saved. Other written responses are still awaiting review."}</p>}
     </div>
   );
+}
+
+function isValidGradeDraft(value: string, maximum: number) {
+  if (!value.trim()) return false;
+  const score = Number(value);
+  return Number.isFinite(score) && score >= 0 && score <= maximum && Math.abs(score * 100 - Math.round(score * 100)) < 0.000001;
 }
 
 function Panel({ children }: { children: ReactNode }) {

@@ -32,49 +32,125 @@ jobs:
           cache: npm
 
       - name: Install locked dependencies
+        id: install
         run: npm ci
 
+      - name: Audit locked dependency tree
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm audit
+
       - name: Validate all national curriculum teacher packs
+        if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:national-curriculum-packs
 
       - name: Validate Thai Language and Career packs through importer parser
+        if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:thai-career-packs
 
       - name: Validate Thai B.E. 2568 competency pack
+        if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:thai-2025-packs
 
+      - name: Validate student-facing content visibility
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:student-content-visibility
+
+      - name: Validate content lifecycle and publishing safeguards
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:learning-content-lifecycle
+
+      - name: Validate student response security and grading safeguards
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:learning-content-responses
+
+      - name: Validate private project evidence storage and draft cleanup
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:learning-project-evidence
+
+      - name: Validate assessment answer persistence and submission ordering
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:learning-assessment-runtime
+
+      - name: Validate teacher assessment review and grading safeguards
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:teacher-assessment-review
+
+      - name: Validate atomic teacher question authoring bundle
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:learning-question-bundle
+
+      - name: Validate atomic assessment question attachment and publication
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:learning-assessment-authoring
+
+      - name: Validate learning-pack import duplicate preflight
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:learning-pack-import-preflight
+
+      - name: Validate authenticated import repository safety contract
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:learning-pack-import-repository-contract
+
+      - name: Validate complete Science import SQL verification contract
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:science-import-completeness-sql
+
+      - name: Validate complete import retry integrity and protected-key verification
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:learning-pack-import-integrity
+
+      - name: Validate teacher-pack parser question contract
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:teacher-pack-parser-contract
+
       - name: Validate consolidated Science teacher packs
+        if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:science-packs
 
       - name: Validate Biology, Chemistry, Physics and Earth/Space specialist packs
+        if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:science-specialist-packs
 
+      - name: Validate complete 17-pack Science rollout totals
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:science-rollout-packs
+
       - name: Validate Mathematics teacher packs through importer parser
+        if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:maths-packs
 
       - name: Validate primary Mathematics P1-P6 teacher packs
+        if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:maths-primary-packs
 
       - name: Validate Cambridge Click Start Computer Studies pack
+        if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:computer-studies-packs
 
       - name: Validate Social Studies teacher packs through importer parser
+        if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:social-studies-packs
 
       - name: Validate Health and PE teacher packs through importer parser
+        if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:health-pe-packs
 
       - name: Validate Arts teacher packs through importer parser
+        if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:arts-packs
 
       - name: Validate Foreign Languages teacher packs through importer parser
+        if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:foreign-languages-packs
 
       - name: Validate Thai Language teacher packs through importer parser
+        if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:thai-language-packs
 
       - name: Build production application
+        if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run build
 
       - name: Run ESLint
+        if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run lint

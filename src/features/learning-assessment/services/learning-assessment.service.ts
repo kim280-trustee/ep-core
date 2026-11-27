@@ -3,6 +3,7 @@ import type {
   LearningAssessmentInsert,
   LearningAttemptAnswerInput,
   LearningQuestionInsert,
+  LearningQuestionBundleInput,
 } from "../types/learning-assessment.types";
 
 export const learningAssessmentService = {
@@ -18,11 +19,17 @@ export const learningAssessmentService = {
   listQuestionVersions: (id: string) =>
     learningAssessmentRepository.listQuestionVersions(id),
 
+  listPublishedQuestionVersionsForQuestions: (ids: string[]) =>
+    learningAssessmentRepository.listPublishedQuestionVersionsForQuestions(ids),
+
   getQuestionVersion: (id: string) =>
     learningAssessmentRepository.getQuestionVersion(id),
 
   listQuestionObjectives: (id: string) =>
     learningAssessmentRepository.listQuestionObjectives(id),
+
+  listQuestionObjectivesForVersions: (ids: string[]) =>
+    learningAssessmentRepository.listQuestionObjectivesForVersions(ids),
 
   saveQuestionEvaluationKey: (
     input: Parameters<typeof learningAssessmentRepository.saveQuestionEvaluationKey>[0],
@@ -49,6 +56,9 @@ export const learningAssessmentService = {
   createQuestion: (input: LearningQuestionInsert & { createdBy: string }) =>
     learningAssessmentRepository.createQuestion(input),
 
+  createQuestionBundle: (input: LearningQuestionBundleInput) =>
+    learningAssessmentRepository.createQuestionBundle(input),
+
   createQuestionVersion: (
     input: Parameters<
       typeof learningAssessmentRepository.createQuestionVersion
@@ -70,6 +80,9 @@ export const learningAssessmentService = {
       typeof learningAssessmentRepository.addAssessmentQuestion
     >[0],
   ) => learningAssessmentRepository.addAssessmentQuestion(input),
+
+  addAssessmentQuestions: (input: Parameters<typeof learningAssessmentRepository.addAssessmentQuestions>[0]) =>
+    learningAssessmentRepository.addAssessmentQuestions(input),
 
   publishQuestion: (id: string, reviewerId: string) =>
     learningAssessmentRepository.publishQuestion(id, reviewerId),

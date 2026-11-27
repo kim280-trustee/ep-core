@@ -3,7 +3,7 @@
 **Curriculum:** `TH-BASIC-CORE-2008-2017` — Thai Basic Education Core Curriculum B.E. 2551 (2008), revised B.E. 2560 (2017)  
 **Subject:** `FOREIGN-LANGUAGES` — English  
 **Priority source:** OBEC, *Indicators and Core Learning Content: Must-Know and Should-Know*, 2021  
-**Status:** Complete — all indicators, grade alignments and priority classifications verified
+**Status:** Source curriculum mapping, teacher packs and objective-/grade-specific practical activities authored and validated. Draft import and authenticated application acceptance remain pending.
 
 ## Database coverage
 
@@ -94,3 +94,12 @@ The answer guidance accepts natural equivalent language and assesses meaning, re
 The importer recognises the `FL-Pn`, `FL-Mn` and shared `FL-M46` code formats. Each of the 21 shared M4–M6 outcomes expands into three grade-specific content drafts and grade-scoped question codes.
 
 GitHub Actions run 220 passed all national pack checks, Thai B.E. 2568, Science, Social Studies, Health & PE, Arts and Foreign Languages importer-parser validation, production build and ESLint.
+
+
+## Practical teaching and evidence differentiation — 23 November 2026
+
+The four source packs now provide a distinct practical activity, expected-evidence statement and teacher check for each of the 193 objectives. Each practical activity names its objective code, preserves the exact Thai indicator focus, follows the relevant one of the eight official standards, and is adapted to its grade band (early primary, upper primary, lower secondary or upper secondary).
+
+The assessment checks are aligned to the skill being taught: source-supported comprehension; meaningful interaction and turn-taking; audience-aware presentation; contextual cultural understanding; evidence-based language comparison; accurate cross-curricular explanation; successful real-life communication; or credible research and source acknowledgement. The three existing indicator-specific questions and answer/evidence guides remain in each lesson.
+
+The enhanced pack validator rejects missing objective/indicator/grade-band links, repeated practical activities and teacher checks that do not assess the relevant official standard. The 193 source lessons expand to **235 grade-scoped lesson drafts** (172 grade-specific + 63 shared M4–M6) and **705 grade-scoped question drafts** (516 + 189) after import. These are expected draft counts, not imported records.

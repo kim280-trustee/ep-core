@@ -20,7 +20,21 @@
     "validate:thai-language-packs": "node scripts/validate-thai-language-teacher-packs.mjs",
     "validate:computer-studies-packs": "node scripts/validate-computer-studies-teacher-pack.mjs",
     "validate:science-specialist-packs": "node scripts/validate-science-specialist-packs.mjs",
-    "validate:maths-primary-packs": "node scripts/validate-primary-maths-teacher-packs.mjs"
+    "validate:maths-primary-packs": "node scripts/validate-primary-maths-teacher-packs.mjs",
+    "validate:science-rollout-packs": "node scripts/validate-science-rollout-packs.mjs",
+    "validate:student-content-visibility": "node scripts/validate-student-content-visibility.mjs",
+    "validate:learning-pack-import-preflight": "node scripts/validate-learning-pack-import-preflight.mjs",
+    "validate:learning-pack-import-repository-contract": "node scripts/validate-learning-pack-import-repository-contract.mjs",
+    "validate:science-import-completeness-sql": "node scripts/validate-science-import-completeness-sql.mjs",
+    "validate:learning-pack-import-integrity": "node scripts/validate-learning-pack-import-integrity.mjs",
+    "validate:teacher-pack-parser-contract": "node scripts/validate-teacher-pack-parser-contract.mjs",
+    "validate:learning-content-lifecycle": "node scripts/validate-learning-content-lifecycle-contract.mjs",
+    "validate:learning-content-responses": "node scripts/validate-learning-content-response-contract.mjs",
+    "validate:learning-project-evidence": "node scripts/validate-learning-project-evidence-storage.mjs",
+    "validate:learning-assessment-runtime": "node scripts/validate-learning-assessment-runtime.mjs",
+    "validate:teacher-assessment-review": "node scripts/validate-teacher-assessment-review.mjs",
+    "validate:learning-question-bundle": "node scripts/validate-learning-question-bundle.mjs",
+    "validate:learning-assessment-authoring": "node scripts/validate-learning-assessment-authoring.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",

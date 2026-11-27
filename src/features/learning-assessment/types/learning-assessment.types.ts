@@ -68,3 +68,20 @@ export type LearningAttemptAnswerInput = {
   attemptId: string; assessmentQuestionId: string; answer: Record<string, unknown>;
 };
 export type LearningJson = Json;
+
+export type LearningQuestionBundleInput = {
+  organizationId: string;
+  questionId?: string | null;
+  code: string;
+  questionType: Extract<LearningQuestionType, "single_choice" | "true_false" | "short_answer">;
+  curriculumId: string;
+  gradeLevelId: string;
+  subjectId: string;
+  prompt: Record<string, unknown>;
+  configuration: Record<string, unknown>;
+  explanation?: Record<string, unknown> | null;
+  evaluationKey: Record<string, unknown>;
+  scoringRules: Record<string, unknown>;
+  objectiveId: string;
+  languageCode?: string;
+};

@@ -126,6 +126,12 @@ values
   );
 
 
+-- Private schema used by Learning SECURITY DEFINER helpers and policies.
+-- Keep schema access closed to public/anonymous callers in the isolated test DB.
+create schema if not exists private;
+revoke all on schema private from public, anon;
+grant usage on schema private to authenticated;
+
 -- Authorization helpers required by the organization membership foundation.
 -- Definitions mirror the live core authorization contract, with explicit
 -- function privileges for the isolated migration test environment.
