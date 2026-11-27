@@ -2,7 +2,7 @@
 import { lazy, type ReactNode } from "react";
 import type { RouteObject } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { BarChart3, Bell, CalendarDays, ClipboardCheck, GraduationCap, LayoutDashboard, Megaphone, Settings, Users } from "lucide-react";
+import { BarChart3, Bell, CalendarDays, ClipboardCheck, GraduationCap, LayoutDashboard, Megaphone, Users } from "lucide-react";
 import { LearningRoleRoute } from "@/core/auth";
 import { LearningWorkspaceShell } from "@/features/learning-shared/components/LearningWorkspaceShell";
 
