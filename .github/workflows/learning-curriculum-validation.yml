@@ -159,6 +159,10 @@ jobs:
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run validate:assessment-result-gradebook-sync
 
+      - name: Validate assessment-result gradebook retention safeguards
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run validate:assessment-result-gradebook-retention
+
       - name: Build production application
         if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run build
