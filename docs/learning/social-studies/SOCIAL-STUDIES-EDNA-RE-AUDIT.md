@@ -484,3 +484,19 @@ The completed M3 crosswalk now contains 50/50 reconciled indicators: 28 Must-Kno
 **Batch 1 — M3 priority reconciliation: COMPLETE.** This closes the M3 classification scope only. It does not close the shared M4–M6 crosswalk (61 indicators), academic task review, staging, teacher acceptance or independent sign-off.
 
 The preceding moderation-register repair was validated by GitHub Actions run [45929074904](https://github.com/kim280-trustee/ep-core/actions/runs/45929074904), which completed successfully. That run confirmed the importer/validator, dependency security audit, repository lint and TypeScript/production build on commit `4bd985710c381bdc1e1115af22d847e1ac8b276d). The current M3 completion commit is newer and must receive its own green workflow before the M3 technical gate is marked passed.
+
+
+## 4P. M4–M6 OBEC priority reconciliation completed — 27 November 2026
+
+All 61 M4–M6 catalogue indicators have now been matched against the detailed 2021 Social Studies priority table (printed pp.240–261). Matching was performed by the full standard/indicator code and Thai indicator wording, then the Must-Know or Should-Know checkmark was transcribed from that indicator's own row. The source table is reproduced in the 2021 OBEC PDF at `https://www.academic.obec.go.th/images/official/1622514876_d_1.pdf`; the searchable PDF text used to inspect the row-level cells is `https://filesthaischool0.com/files/uppic/84102720/document/84102720_0_20210614-124337.pdf`. The official document's M4–M6 summary (printed p.172) gives 61 indicators, 31 Must-Know and 30 Should-Know.
+
+The crosswalk now reconciles:
+- M3: 50/50 indicators — 28 Must-Know, 22 Should-Know.
+- M4–M6: 61/61 indicators — 31 Must-Know, 30 Should-Know.
+- Combined: 111/111 indicators reconciled, matching the M3 and M4–M6 summary totals.
+
+The CSV row sequence was independently checked after the update: 111 data rows, 8 columns per row, 50 M3 rows and 61 M4–M6 rows. The final M4–M6 row, `SO5.2-M46-04`, is Must-Know (printed p.261, detailed row 61); `SO5.2-M46-03` is Should-Know (printed p.260, detailed row 60). This distinction was checked against the actual two priority columns, not inferred from the summary.
+
+**Batch 1 — complete OBEC priority crosswalk reconciliation: COMPLETE.** This closes the priority classification work for M3 and M4–M6. It does not constitute academic moderation of the 1,254 learning tasks, nor does it complete staging, teacher acceptance or independent academic sign-off.
+
+The moderation-register repair has a successful workflow on commit `4bd985710c381bdc1e1115af22d847e1ac8b276d` (run [45929074904](https://github.com/kim280-trustee/ep-core/actions/runs/45929074904)). The latest crosswalk commits are being revalidated; the importer and security audit have passed on the preceding run, but lint and production build must finish on the current commit before the crosswalk technical gate can be closed.
