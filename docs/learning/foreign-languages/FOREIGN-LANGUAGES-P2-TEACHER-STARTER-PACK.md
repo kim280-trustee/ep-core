@@ -35,7 +35,7 @@
 ### 2. Read and spell simple words and sentences
 
 - **Standard:** ต 1.1
-- **Official indicator code:** ต 1.1 ป.2/1
+- **Official indicator code:** ต 1.1 ป.2/2
 - **Priority classification:** must_know
 - **Official indicator:** ระบุตัวอักษรและเสียง อ่านออกเสียงคำ สะกดคำ และอ่านประโยคง่าย ๆ ถูกต้องตามหลักการอ่าน
 **Objective:** `FL-P2-02` — ระบุตัวอักษรและเสียง อ่านออกเสียงคำ สะกดคำ และอ่านประโยคง่าย ๆ ถูกต้องตามหลักการอ่าน
@@ -51,7 +51,7 @@
 ### 3. Match heard words, phrases and sentences to pictures
 
 - **Standard:** ต 1.1
-- **Official indicator code:** ต 1.1 ป.2/1
+- **Official indicator code:** ต 1.1 ป.2/3
 - **Priority classification:** must_know
 - **Official indicator:** เลือกภาพตรงตามความหมายของคำ กลุ่มคำ และประโยคที่ฟัง
 **Objective:** `FL-P2-03` — เลือกภาพตรงตามความหมายของคำ กลุ่มคำ และประโยคที่ฟัง
@@ -67,7 +67,7 @@
 ### 4. Answer questions about a short listening text
 
 - **Standard:** ต 1.1
-- **Official indicator code:** ต 1.1 ป.2/1
+- **Official indicator code:** ต 1.1 ป.2/4
 - **Priority classification:** must_know
 - **Official indicator:** ตอบคำถามจากการฟังประโยค บทสนทนา หรือนิทานง่าย ๆ ที่มีภาพประกอบ
 **Objective:** `FL-P2-04` — ตอบคำถามจากการฟังประโยค บทสนทนา หรือนิทานง่าย ๆ ที่มีภาพประกอบ
@@ -99,7 +99,7 @@
 ### 6. Use simple commands and requests from a model
 
 - **Standard:** ต 1.2
-- **Official indicator code:** ต 1.2 ป.2/1
+- **Official indicator code:** ต 1.2 ป.2/2
 - **Priority classification:** should_know
 - **Official indicator:** ใช้คำสั่งและคำขอร้องง่าย ๆ ตามแบบที่ฟัง
 **Objective:** `FL-P2-06` — ใช้คำสั่งและคำขอร้องง่าย ๆ ตามแบบที่ฟัง
@@ -115,7 +115,7 @@
 ### 7. Express simple needs using a model
 
 - **Standard:** ต 1.2
-- **Official indicator code:** ต 1.2 ป.2/1
+- **Official indicator code:** ต 1.2 ป.2/3
 - **Priority classification:** should_know
 - **Official indicator:** บอกความต้องการง่าย ๆ ของตนเองตามแบบที่ฟัง
 **Objective:** `FL-P2-07` — บอกความต้องการง่าย ๆ ของตนเองตามแบบที่ฟัง
@@ -131,7 +131,7 @@
 ### 8. Ask for and give simple personal information
 
 - **Standard:** ต 1.2
-- **Official indicator code:** ต 1.2 ป.2/1
+- **Official indicator code:** ต 1.2 ป.2/4
 - **Priority classification:** must_know
 - **Official indicator:** พูดขอและให้ข้อมูลง่าย ๆ เกี่ยวกับตนเองตามแบบที่ฟัง
 **Objective:** `FL-P2-08` — พูดขอและให้ข้อมูลง่าย ๆ เกี่ยวกับตนเองตามแบบที่ฟัง
@@ -179,7 +179,7 @@
 ### 11. Name vocabulary linked to important festivals
 
 - **Standard:** ต 2.1
-- **Official indicator code:** ต 2.1 ป.2/1
+- **Official indicator code:** ต 2.1 ป.2/2
 - **Priority classification:** should_know
 - **Official indicator:** บอกชื่อและคำศัพท์เกี่ยวกับเทศกาลสำคัญของเจ้าของภาษา
 **Objective:** `FL-P2-11` — บอกชื่อและคำศัพท์เกี่ยวกับเทศกาลสำคัญของเจ้าของภาษา
@@ -195,7 +195,7 @@
 ### 12. Participate in age-appropriate language and cultural activities
 
 - **Standard:** ต 2.1
-- **Official indicator code:** ต 2.1 ป.2/1
+- **Official indicator code:** ต 2.1 ป.2/3
 - **Priority classification:** should_know
 - **Official indicator:** เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมที่เหมาะกับวัย
 **Objective:** `FL-P2-12` — เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมที่เหมาะกับวัย
