@@ -35,7 +35,7 @@
 ### 2. Read aloud and spell words, phrases and simple chants
 
 - **Standard:** ต 1.1
-- **Official indicator code:** ต 1.1 ป.3/1
+- **Official indicator code:** ต 1.1 ป.3/2
 - **Priority classification:** must_know
 - **Official indicator:** อ่านออกเสียงคำ สะกดคำ อ่านกลุ่มคำ ประโยค และบทพูดเข้าจังหวะง่าย ๆ ถูกต้องตามหลักการอ่าน
 **Objective:** `FL-P3-02` — อ่านออกเสียงคำ สะกดคำ อ่านกลุ่มคำ ประโยค และบทพูดเข้าจังหวะง่าย ๆ ถูกต้องตามหลักการอ่าน
@@ -51,7 +51,7 @@
 ### 3. Match pictures or symbols to heard phrases and sentences
 
 - **Standard:** ต 1.1
-- **Official indicator code:** ต 1.1 ป.3/1
+- **Official indicator code:** ต 1.1 ป.3/3
 - **Priority classification:** must_know
 - **Official indicator:** เลือก/ระบุภาพหรือสัญลักษณ์ตรงตามความหมายของกลุ่มคำและประโยคที่ฟัง
 **Objective:** `FL-P3-03` — เลือก/ระบุภาพหรือสัญลักษณ์ตรงตามความหมายของกลุ่มคำและประโยคที่ฟัง
@@ -67,7 +67,7 @@
 ### 4. Answer questions about a simple conversation or story
 
 - **Standard:** ต 1.1
-- **Official indicator code:** ต 1.1 ป.3/1
+- **Official indicator code:** ต 1.1 ป.3/4
 - **Priority classification:** must_know
 - **Official indicator:** ตอบคำถามจากการฟังหรืออ่านประโยค บทสนทนา หรือนิทานง่าย ๆ
 **Objective:** `FL-P3-04` — ตอบคำถามจากการฟังหรืออ่านประโยค บทสนทนา หรือนิทานง่าย ๆ
@@ -99,7 +99,7 @@
 ### 6. Use simple commands and requests
 
 - **Standard:** ต 1.2
-- **Official indicator code:** ต 1.2 ป.3/1
+- **Official indicator code:** ต 1.2 ป.3/2
 - **Priority classification:** must_know
 - **Official indicator:** ใช้คำสั่งและคำขอร้องง่าย ๆ ตามแบบที่ฟัง
 **Objective:** `FL-P3-06` — ใช้คำสั่งและคำขอร้องง่าย ๆ ตามแบบที่ฟัง
@@ -115,7 +115,7 @@
 ### 7. Express simple needs
 
 - **Standard:** ต 1.2
-- **Official indicator code:** ต 1.2 ป.3/1
+- **Official indicator code:** ต 1.2 ป.3/3
 - **Priority classification:** should_know
 - **Official indicator:** บอกความต้องการง่าย ๆ ของตนเองตามแบบที่ฟัง
 **Objective:** `FL-P3-07` — บอกความต้องการง่าย ๆ ของตนเองตามแบบที่ฟัง
@@ -131,7 +131,7 @@
 ### 8. Ask for and give information about yourself and a friend
 
 - **Standard:** ต 1.2
-- **Official indicator code:** ต 1.2 ป.3/1
+- **Official indicator code:** ต 1.2 ป.3/4
 - **Priority classification:** must_know
 - **Official indicator:** พูดขอและให้ข้อมูลง่าย ๆ เกี่ยวกับตนเองและเพื่อนตามแบบที่ฟัง
 **Objective:** `FL-P3-08` — พูดขอและให้ข้อมูลง่าย ๆ เกี่ยวกับตนเองและเพื่อนตามแบบที่ฟัง
@@ -147,7 +147,7 @@
 ### 9. Tell how you feel about familiar things or activities
 
 - **Standard:** ต 1.2
-- **Official indicator code:** ต 1.2 ป.3/1
+- **Official indicator code:** ต 1.2 ป.3/5
 - **Priority classification:** must_know
 - **Official indicator:** บอกความรู้สึกของตนเองเกี่ยวกับสิ่งต่าง ๆ ใกล้ตัวหรือกิจกรรมต่าง ๆ ตามแบบที่ฟัง
 **Objective:** `FL-P3-09` — บอกความรู้สึกของตนเองเกี่ยวกับสิ่งต่าง ๆ ใกล้ตัวหรือกิจกรรมต่าง ๆ ตามแบบที่ฟัง
@@ -179,7 +179,7 @@
 ### 11. Group words by people, animals and things
 
 - **Standard:** ต 1.3
-- **Official indicator code:** ต 1.3 ป.3/1
+- **Official indicator code:** ต 1.3 ป.3/2
 - **Priority classification:** must_know
 - **Official indicator:** จัดหมวดหมู่คำตามประเภทของบุคคล สัตว์ และสิ่งของตามที่ฟังหรืออ่าน
 **Objective:** `FL-P3-11` — จัดหมวดหมู่คำตามประเภทของบุคคล สัตว์ และสิ่งของตามที่ฟังหรืออ่าน
@@ -195,7 +195,7 @@
 ### 12. Give an opinion about a familiar activity and a short reason
 
 - **Standard:** ต 1.3
-- **Official indicator code:** ต 1.3 ป.3/1
+- **Official indicator code:** ต 1.3 ป.3/3
 - **Priority classification:** must_know
 - **Official indicator:** พูดและเขียนแสดงความคิดเห็นเกี่ยวกับกิจกรรมหรือเรื่องต่าง ๆ ใกล้ตัว พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ
 **Objective:** `FL-P3-12` — พูดและเขียนแสดงความคิดเห็นเกี่ยวกับกิจกรรมหรือเรื่องต่าง ๆ ใกล้ตัว พร้อมทั้งให้เหตุผลสั้น ๆ ประกอบ
@@ -227,7 +227,7 @@
 ### 14. Name vocabulary about festivals and everyday life
 
 - **Standard:** ต 2.1
-- **Official indicator code:** ต 2.1 ป.3/1
+- **Official indicator code:** ต 2.1 ป.3/2
 - **Priority classification:** should_know
 - **Official indicator:** บอกชื่อและคำศัพท์ง่าย ๆ เกี่ยวกับเทศกาล/วันสำคัญ/งานฉลอง และชีวิตความเป็นอยู่ของเจ้าของภาษา
 **Objective:** `FL-P3-14` — บอกชื่อและคำศัพท์ง่าย ๆ เกี่ยวกับเทศกาล/วันสำคัญ/งานฉลอง และชีวิตความเป็นอยู่ของเจ้าของภาษา
@@ -243,7 +243,7 @@
 ### 15. Participate in age-appropriate language and cultural activities
 
 - **Standard:** ต 2.1
-- **Official indicator code:** ต 2.1 ป.3/1
+- **Official indicator code:** ต 2.1 ป.3/3
 - **Priority classification:** should_know
 - **Official indicator:** เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมที่เหมาะกับวัย
 **Objective:** `FL-P3-15` — เข้าร่วมกิจกรรมทางภาษาและวัฒนธรรมที่เหมาะกับวัย
