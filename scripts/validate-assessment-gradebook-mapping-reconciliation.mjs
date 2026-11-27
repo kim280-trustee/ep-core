@@ -9,10 +9,14 @@ const migration = readFileSync(
 assert.ok(migration.includes("private.learning_assessment_gradebook_mapping_is_valid"));
 assert.ok(migration.includes("a.status = 'published'"));
 assert.ok(migration.includes("t.status = 'active'"));
-assert.ok(migration.includes("count(distinct a.id)"));
-assert.ok(migration.includes("v_assignment_count <> 1"));
-assert.ok(migration.includes("v_term_count = 1"));
-assert.ok(migration.includes("v_term_id = v_entry.term_id"));
+assert.ok(migration.includes("v_assignment_id := v_entry.assignment_id"));
+assert.ok(migration.includes("a.id = v_assignment_id"));
+assert.ok(migration.includes("ai.assessment_id = v_assessment_id"));
+assert.ok(migration.includes("a.class_subject_id = v_entry.class_subject_id"));
+assert.ok(migration.includes("t.class_group_id = v_entry.class_group_id"));
+assert.ok(migration.includes("term.id = v_entry.term_id"));
+assert.ok(migration.includes("term.organization_id = v_entry.organization_id"));
+assert.ok(!migration.includes("min(id)"));
 assert.ok(migration.includes("p_included_in_grade and v_entry.source_type = 'assessment_result'"));
 assert.ok(migration.includes("not private.learning_assessment_gradebook_mapping_is_valid(v_entry.id)"));
 assert.ok(migration.includes("keep this record excluded"));
