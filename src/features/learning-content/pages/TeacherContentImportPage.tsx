@@ -255,10 +255,35 @@ export default function TeacherContentImportPage() {
       ]);
       const contentCodes = new Set(existingContent.map((item) => makeImportCode(item.code)));
       const questionCodes = new Set(existingQuestions.map((item) => makeImportCode(item.code)));
+      const expectedContentCodes = questionsOnly
+        ? []
+        : resolved.rows.map((item) => makeImportCode(`EP-${item.objectiveCode}-LESSON`));
+      const expectedQuestionCodes = resolved.rows.flatMap((item) => item.questions.map((question) => makeImportCode(question.code)));
+      const existingContentCount = expectedContentCodes.filter((code) => contentCodes.has(code)).length;
+      const existingQuestionCount = expectedQuestionCodes.filter((code) => questionCodes.has(code)).length;
+      const allExpectedRecordsExist =
+        (questionsOnly || existingContentCount === expectedContentCodes.length) &&
+        existingQuestionCount === expectedQuestionCodes.length;
+
+      if (allExpectedRecordsExist) {
+        setImportProgress({
+          lessons: expectedContentCodes.length,
+          questions: expectedQuestionCodes.length,
+        });
+        setMessage(`This pack is already present in this organization: ${expectedContentCodes.length} lesson drafts and ${expectedQuestionCodes.length} question drafts. No new records were created and nothing was overwritten.`);
+        await queryClient.invalidateQueries({ queryKey: ["learning", "teacher-content-library", organizationId] });
+        await queryClient.invalidateQueries({ queryKey: ["learning", "question-bank"] });
+        await queryClient.invalidateQueries({ queryKey: ["learning", "authoring", "questions"] });
+        return;
+      }
+
       const duplicateContent = questionsOnly ? undefined : resolved.rows.find((item) => contentCodes.has(makeImportCode(`EP-${item.objectiveCode}-LESSON`)));
       const duplicateQuestion = resolved.rows.flatMap((item) => item.questions).find((item) => questionCodes.has(makeImportCode(item.code)));
       if (duplicateContent || duplicateQuestion) {
-        throw new Error(`Import stopped because a code already exists in this organization: ${duplicateContent ? makeImportCode(`EP-${duplicateContent.objectiveCode}-LESSON`) : duplicateQuestion?.code}. Existing records are not overwritten.`);
+        const partialState = existingContentCount > 0 || existingQuestionCount > 0
+          ? `Existing pack records: ${existingContentCount}/${expectedContentCodes.length} lessons and ${existingQuestionCount}/${expectedQuestionCodes.length} questions. `
+          : "";
+        throw new Error(`${partialState}A code already exists in this organization: ${duplicateContent ? makeImportCode(`EP-${duplicateContent.objectiveCode}-LESSON`) : duplicateQuestion?.code}. No existing records were overwritten; resolve this partial or conflicting pack before retrying.`);
       }
 
       if (questionsOnly) {
