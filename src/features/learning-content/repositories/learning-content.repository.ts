@@ -113,7 +113,22 @@ export const learningContentRepository: LearningContentRepository = {
   async listTopics(skillId){let q=supabase.from("learning_topics").select("*").eq("status","active").order("sequence_no");if(skillId)q=q.eq("skill_id",skillId);const{data,error}=await q;if(error)throw error;return(data??[]).map(mapTopic);},
   async listObjectives(topicId){let q=supabase.from("learning_objectives").select("*").eq("status","active").order("sequence_no");if(topicId)q=q.eq("topic_id",topicId);const{data,error}=await q;if(error)throw error;return(data??[]).map(mapObjective);},
   async listPrerequisites(objectiveId){const{data,error}=await supabase.from("learning_objective_prerequisites").select("*").eq("objective_id",objectiveId);if(error)throw error;return(data??[]).map(mapPrerequisite);},
-  async listAlignments(objectiveId,curriculumId,gradeLevelId){let q=supabase.from("learning_objective_alignments").select("*").order("sequence_no");if(objectiveId)q=q.eq("objective_id",objectiveId);if(curriculumId)q=q.eq("curriculum_id",curriculumId);if(gradeLevelId)q=q.eq("grade_level_id",gradeLevelId);const{data,error}=await q;if(error)throw error;return(data??[]).map(mapAlignment);},
+  async listAlignments(objectiveId,curriculumId,gradeLevelId){
+    const pageSize=1000;
+    const rows: AlignmentRow[]=[];
+    for(let from=0;;from+=pageSize){
+      let q=supabase.from("learning_objective_alignments").select("*").order("sequence_no").order("id").range(from,from+pageSize-1);
+      if(objectiveId)q=q.eq("objective_id",objectiveId);
+      if(curriculumId)q=q.eq("curriculum_id",curriculumId);
+      if(gradeLevelId)q=q.eq("grade_level_id",gradeLevelId);
+      const{data,error}=await q;
+      if(error)throw error;
+      const page=data??[];
+      rows.push(...page);
+      if(page.length<pageSize)break;
+    }
+    return rows.map(mapAlignment);
+  },
   async listContent(organizationId){let q=supabase.from("learning_content_items").select("*").order("updated_at",{ascending:false});if(organizationId)q=q.eq("organization_id",organizationId);const{data,error}=await q;if(error)throw error;return(data??[]).map(mapContentItem);},
   async getContent(id,organizationId){let q=supabase.from("learning_content_items").select("*").eq("id",id);if(organizationId)q=q.eq("organization_id",organizationId);const{data,error}=await q.maybeSingle();if(error)throw error;if(!data)throw new Error("Content item not found.");return mapContentItem(data);},
   async deleteContent(id){const{error}=await supabase.from("learning_content_items").delete().eq("id",id);if(error)throw error;},
